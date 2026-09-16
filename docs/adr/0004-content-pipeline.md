@@ -28,8 +28,8 @@ GUI eliminates.
 
 ## Schema decisions
 
-- **`quality` and `frequency` live on the child**, not on the node, because they describe _that
-  reply_ — which is what the UI colour-codes and what the validator cross-checks.
+- **`replyQuality` and `frequency` live on the child**, not on the node, because they describe
+  _that reply_ — which is what the UI colour-codes and what the validator cross-checks.
 - **`outcome` is on leaves only**, and a node has children _or_ an outcome, never both, never
   neither. Enforced by the schema, not by convention.
 - **`unexplored` is a first-class outcome.** Without it, the rule above makes half-finished work

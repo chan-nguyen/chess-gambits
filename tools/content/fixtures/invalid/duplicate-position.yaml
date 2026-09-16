@@ -1,0 +1,34 @@
+id: duplicate-position
+name: Adversarial fixture
+eco: C40
+category: trap
+side: white
+definingLine: [e4, e5, Nf3, f6, Nxe5, fxe5, Qh5+, Ke7, Qxe5+, Kf7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-16'
+  basis: { by: a, at: '2026-09-16' }
+judgement: { by: a, at: '2026-09-16' }
+tree:
+  children:
+    - ply: Qe8+
+      dismissed:
+        - { ply: Qxe8, reason: 'Takes the queen.' }
+        - { ply: Kxe8, reason: 'Takes the queen.' }
+      children:
+        - ply: Kf6
+          replyQuality: blunder
+          children:
+            - ply: Qg6+
+              outcome: { type: unexplored }
+    - ply: Qh5+
+      dismissed:
+        - { ply: Ke6, reason: 'Another king walk.' }
+        - { ply: Ke7, reason: 'Returns the king.' }
+        - { ply: g6, reason: 'Blocks with the g-pawn.' }
+      children:
+        - ply: Kf6
+          replyQuality: blunder
+          children:
+            - ply: Qg6+
+              outcome: { type: unexplored }

@@ -15,7 +15,10 @@ export default defineConfig({
   plugins: [react()],
   test: {
     // Only unit tests. `e2e/` holds Playwright specs and vitest would try to run them.
-    include: ['src/**/*.test.{ts,tsx}'],
+    // Both roots must be listed: `src/` is the application, `tools/` is the build-time
+    // content gate. Naming only `src/` silently drops the gate's own tests, which is how
+    // a suite reports green while the checks that matter most are not running at all.
+    include: ['src/**/*.test.{ts,tsx}', 'tools/**/*.test.ts'],
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     globals: true,

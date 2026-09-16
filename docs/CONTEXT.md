@@ -72,7 +72,7 @@ the whole trust model of this project depends on positions being computed, never
 
 ### Outcome
 
-Attached only to leaves, and exactly one of two shapes. Keeping these as distinct shapes rather than
+Attached only to leaves, and exactly one of **three** shapes. Keeping these as distinct shapes rather than
 one shape with optional fields is the type-level expression of the project's core honesty rule.
 
 **`ForcedMate`** — `{ kind: 'mate', inMoves: N, sequence: [...], provedBy: 'search' | 'modelled-net' }`
@@ -131,11 +131,17 @@ Vietnamese is the source locale: content is authored in Vietnamese and translate
 rejected by the schema, because a tier is a claim about the content and content is the only thing
 entitled to make it.
 
-| Tier       | Derivation                                                                                                                                                                         |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Listed** | Identity, ECO, side, defining line and soundness exist. No tree beyond the root                                                                                                    |
-| **Mapped** | A tree exists, every opponent node models the realistic replies, and every leaf has an outcome. Annotations may be sparse and Vietnamese-only                                      |
-| **Taught** | Mapped, plus every node has a Vietnamese annotation, every mate claim carries a machine proof, every `Assessment` leaf has a plan, and English and French translations are present |
+| Tier       | Derivation                                                                      |
+| ---------- | ------------------------------------------------------------------------------- |
+| **Listed** | Identity, ECO, side, defining line and soundness exist. No tree beyond the root |
+| **Mapped** | A tree exists and contains no `unexplored` leaf                                 |
+| **Taught** | Mapped, plus complete Vietnamese, English and French annotation                 |
+
+The earlier wording defined Mapped as "every opponent node models the realistic replies, and every
+leaf has an outcome". That cannot distinguish anything: both are hard errors for _all_ content
+(invariants 3 and 7a), so every file that validates at all would satisfy it. `unexplored` is what
+actually separates a mapped tree from a half-finished one, which is the whole reason that outcome
+shape exists.
 
 ### Soundness
 
@@ -230,22 +236,45 @@ can trust what this site says.
 
 1. Every node's position is reachable from the standard starting position by legal moves only.
 2. `kind` is derived from side to move; it is never authored and never stored in a content file.
-3. Only leaves carry an `outcome`; every leaf carries exactly one, of `mate`, `position` or
+   **In an authored file the outcome discriminant is spelled `type`, not `kind`.** The two collided:
+   this invariant bans `kind` from content, while the `Outcome` shapes above use `kind` as their
+   discriminant. A carve-out is exactly the hole an adversarial file walks through, so the ban has no
+   exception and the authored spelling differs. The domain type in code keeps `kind`.
+3. A node has exactly one of `children`, an `outcome`, or `transposesTo` — a three-way exclusive
+   choice. A transposing node is a leaf of its own subtree that carries no outcome, which the earlier
+   two-way wording made impossible to express.
+   Every true leaf carries exactly one outcome, of `mate`, `position` or
    `unexplored`.
 4. A `ForcedMate` outcome exists only where the build proves mate is forced, by exhaustive search
    within a node cap or by a fully modelled mate net verified by set equality against the legal move
    list. It is generated, never written. An unprovable claim fails the build.
 5. A `ForcedMate` leaf is only reachable through a reply marked `mistake` or `blunder`.
+   For this to be satisfiable, **a defining line ends with the learner's own ply**, so the root is
+   always an opponent node and the opponent's error is always a modelled reply carrying a quality.
+   Without that rule the invariant is unsatisfiable for exactly the traps this site exists to teach:
+   in the Damiano the losing move is Black's `2...f6`, which sits inside the defining line where no
+   reply node can carry a quality. The entry's defining line is therefore `1.e4 e5 2.Nf3`, and
+   `2...f6` is a modelled reply alongside `2...Nc6` — which is also how a learner actually meets it.
 6. A node claiming checkmate _is_ checkmate in the derived position.
 7. Every `Taught` node has a Vietnamese annotation. Other locales are optional and fall back.
    7a. At every opponent node, modelled children plus `dismissed` cover **every** legal reply. This is
    the invariant the product exists to satisfy; everything else verifies that what was modelled is
    correct, and only this one verifies that it was enough.
-   7b. Every claim that is not machine-proved carries `Provenance` recording that it is a judgement.
+   7b. Every claim that is not machine-proved carries provenance recording that it is a judgement.
+   Provenance is recorded **once per entry**, plus on `soundness` and on each `Assessment` outcome.
+   Per-child provenance on every `replyQuality` and `frequency` was specified and is unauthorable —
+   it would mean a block of metadata beside every move — so the entry-level record is what the UI
+   attributes those judgements to.
 8. `tier` is derived at build time and absent from content files.
 9. A gambit `id` is never reused or renamed after publication — published URLs must keep working.
 10. Nothing in the running application makes a network request to a third party.
 11. A `line` URL parameter round-trips exactly: encode, put in a URL, parse, compare.
 12. Transposition comparison uses the **first four FEN fields only**, scoped within one gambit.
-    Halfmove clock and fullmove number differ between transposed paths, and an en-passant square is
-    written on any double pawn push whether or not a capture exists.
+    Halfmove clock and fullmove number count how a position was reached, not what it is, and they
+    differ between transposed paths.
+    The rationale first given here was wrong on both halves and is corrected rather than quietly
+    dropped. Measured against chess.js 1.4.0: after `1.e4` the en-passant field is `-`, and after
+    `1.e4 d5 2.e5 f5` it is `f6` — the square is written **only when a capture is actually
+    available**, so field 4 carries real information and belongs in the key. And comparing on more
+    fields can only ever make matching stricter, so it can miss a real transposition but can never
+    invent a false one.
