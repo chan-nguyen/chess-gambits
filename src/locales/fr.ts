@@ -67,6 +67,17 @@ const fr: PartialTranslations = {
     check: 'échec',
     checkmate: 'échec et mat',
   },
+  progress: {
+    heading: 'Progression',
+    count: '{{learned}} branches apprises sur {{total}}',
+    learned: 'Apprise',
+    unmarked: "Cette branche n'est plus marquée comme apprise.",
+    undo: 'Annuler',
+    atBranchEnd: "Allez à la fin d'une ligne pour la marquer comme apprise.",
+    nothingToMark: "Ce gambit n'a pas encore de branche à marquer.",
+    versionDiscarded:
+      "Votre progression enregistrée provenait d'une version antérieure du site : elle a été supprimée. Il faudra marquer vos branches à nouveau.",
+  },
 }
 
 export default fr

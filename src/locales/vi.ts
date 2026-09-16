@@ -96,6 +96,29 @@ const vi = {
     check: 'chiếu',
     checkmate: 'chiếu hết',
   },
+  /**
+   * Progress (#14). A **count**, never a percentage (docs/design-system.md §3): a percentage
+   * falls when content improves, and a learner cannot tell an improvement from a regression.
+   *
+   * `count` is the one string in this catalogue with holes in it, and it has to be: the three
+   * languages do not agree on where the total goes — French puts it at the end of the
+   * sentence — so a sentence built from fragments would be right in one language only.
+   *
+   * `learned` is the marker's label and it never changes with the state. The state is
+   * `aria-pressed`; a control that changes both says two things at once and a screen reader
+   * reads the pair as a contradiction.
+   */
+  progress: {
+    heading: 'Tiến độ',
+    count: 'Đã thuộc {{learned}} trên {{total}} nhánh',
+    learned: 'Đã thuộc',
+    unmarked: 'Đã bỏ đánh dấu nhánh này.',
+    undo: 'Hoàn tác',
+    atBranchEnd: 'Đi đến cuối một biến để đánh dấu đã thuộc.',
+    nothingToMark: 'Gambit này chưa có nhánh nào để đánh dấu.',
+    versionDiscarded:
+      'Tiến độ đã lưu thuộc một phiên bản cũ của trang nên đã bị xoá. Bạn cần đánh dấu lại.',
+  },
 }
 
 export default vi

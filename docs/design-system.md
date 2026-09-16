@@ -375,6 +375,20 @@ Evans drops to 60% the day three branches are added, with no explanation and no 
 improvement from a regression. Mate nets are excluded from the denominator entirely — a generated
 net with 300 leaves would make every real gambit read as 4% complete forever.
 
+**What counts as a branch**, settled by #14 and recorded here rather than left in the code: one
+root-to-leaf line. `ProgressMarker` therefore appears where a line ends and nowhere else; mid-line it
+is replaced by a sentence saying so, because a disabled control is a thing to try and there is
+nothing here to try.
+
+**A second exclusion, alongside mate nets: an `unexplored` leaf is not a branch.** It is the
+placeholder that lets half-finished work be committed, so there is nothing at it to learn and its own
+annotation says so. Counting it would make the denominator a measure of content nobody has written,
+and a learner who had learned everything that exists would read "3 of 7" with no way to tell that from
+having four branches left — which is the failure the percentage was rejected for, arriving by the
+other door. The consequence is visible today and is the right one: every entry is at the _Listed_
+tier, whose whole tree is one unexplored root, so every entry shows "no branches to mark yet" rather
+than "0 of 1".
+
 ### Catalogue chunking
 
 Also found by walking the journey. The catalogue budget is 100KB gzipped _regardless of catalogue

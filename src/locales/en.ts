@@ -73,6 +73,17 @@ const en: PartialTranslations = {
     check: 'check',
     checkmate: 'checkmate',
   },
+  progress: {
+    heading: 'Progress',
+    count: '{{learned}} of {{total}} branches learned',
+    learned: 'Learned',
+    unmarked: 'This branch is no longer marked learned.',
+    undo: 'Undo',
+    atBranchEnd: 'Go to the end of a line to mark it learned.',
+    nothingToMark: 'This gambit has no branches to mark yet.',
+    versionDiscarded:
+      'Your saved progress came from an older version of this site, so it was discarded. You will need to mark your branches again.',
+  },
 }
 
 export default en
