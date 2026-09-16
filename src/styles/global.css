@@ -1,0 +1,106 @@
+@import './tokens.css';
+
+/*
+ * Element-level defaults, so a component only styles what is specific to it. Every value
+ * here is a token: this file is scanned by `no-raw-values.test.ts` like any other.
+ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--line-height-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin-block: 0 var(--space-4);
+  line-height: var(--line-height-heading);
+  font-weight: 600;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+}
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+h4 {
+  font-size: var(--text-lg);
+}
+
+p,
+ul,
+ol {
+  margin-block: 0 var(--space-4);
+}
+
+a {
+  color: var(--color-accent);
+}
+
+code,
+kbd,
+samp {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+/*
+ * One focus indicator, defined once and never removed (§5). The offset is what keeps it
+ * legible on a dark control: the ring is drawn against the page, not against the button.
+ */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+}
+
+img,
+svg {
+  max-inline-size: 100%;
+}
+
+/*
+ * Read by assistive technology, never drawn. A real box that is then clipped away, rather
+ * than `display: none`, which would remove it from the accessibility tree as well. The
+ * `VisuallyHidden` primitive in §3 is a later ticket; this is the class it will wrap.
+ */
+.visually-hidden {
+  position: absolute;
+  inline-size: var(--space-1);
+  block-size: var(--space-1);
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/*
+ * All motion off, unconditionally (§2). `!important` is the point: a component must not
+ * be able to animate through this, and `none` rather than a near-zero duration means
+ * nothing is left running at a speed nobody asked for.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

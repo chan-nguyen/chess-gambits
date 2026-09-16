@@ -1,0 +1,98 @@
+.site-header {
+  border-block-end: var(--border-width) solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.site-header__bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  inline-size: 100%;
+  max-inline-size: var(--layout-max-inline-size);
+  margin-inline: auto;
+  padding: var(--space-3) var(--space-4);
+}
+
+.site-header__name {
+  margin-inline-end: auto;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.site-header__name:hover {
+  text-decoration: underline;
+}
+
+.site-header__menu-button {
+  min-block-size: var(--target-size-touch);
+  padding-inline: var(--space-3);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease;
+}
+
+.site-header__menu-button:hover {
+  background-color: var(--color-surface-raised);
+}
+
+/*
+ * Collapsed below 768px, and genuinely removed rather than merely invisible: a
+ * `display: none` panel is out of the tab order and out of the accessibility tree, so a
+ * keyboard or screen-reader user cannot reach a link that is not on screen.
+ */
+.site-header__menu {
+  display: none;
+  flex-basis: 100%;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block-end: var(--space-2);
+}
+
+.site-header__menu[data-open='true'] {
+  display: flex;
+}
+
+.site-header__nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.site-header__nav a {
+  min-block-size: var(--target-size-touch);
+  display: flex;
+  align-items: center;
+}
+
+/*
+ * From 768px the menu is the header row itself, so the button has nothing to disclose.
+ * This rule wins over the `[data-open]` one above on source order at equal specificity,
+ * which is why it does not need to repeat the attribute.
+ */
+@media (min-width: 768px) {
+  .site-header__menu-button {
+    display: none;
+  }
+
+  .site-header__menu {
+    display: flex;
+    flex-basis: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-5);
+    padding-block-end: 0;
+  }
+
+  .site-header__nav {
+    flex-direction: row;
+    gap: var(--space-5);
+  }
+}

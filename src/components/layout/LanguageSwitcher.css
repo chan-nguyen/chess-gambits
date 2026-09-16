@@ -1,0 +1,32 @@
+.language-switcher__list {
+  display: flex;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.language-switcher__option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--target-size-min);
+  min-block-size: var(--target-size-touch);
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/*
+ * The current language is marked three ways — a filled chip, a heavier colour and an
+ * underline — because a chip that differed only in hue would be information carried by
+ * colour alone (§2). `aria-current` carries the same fact to assistive technology.
+ */
+.language-switcher__option[aria-current] {
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  text-decoration: underline;
+}

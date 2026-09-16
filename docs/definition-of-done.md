@@ -44,4 +44,5 @@ instead of it.
 - No secret, token, credential or personal data in code, content, tests, fixtures or logs
 - No third-party network request at runtime (requirement N8)
 - No `dangerouslySetInnerHTML`, and no content rendered as HTML
-- No `localStorage` access outside the wrapped helper
+- No `localStorage` access outside the wrapped helper, except the single pre-paint theme read
+  recorded in `docs/security.md` B5
