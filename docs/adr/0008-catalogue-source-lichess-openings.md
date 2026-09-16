@@ -45,16 +45,43 @@ This is a research summary and not legal advice.
   only, and CI fails if a previously published id disappears from the catalogue — invariant 9 is
   otherwise unenforced.
 - **Named traps are not in this dataset and must be hand-entered**, including their ECO codes. It
-  contains opening _variations_; "Légal's Mate", "the Fishing Pole" and "the Elephant Trap" are not
-  opening names. The ECO check would resolve a trap line to whatever opening it sits inside rather
-  than to the trap, so `category: trap` entries are exempt from it and live in their own curated
-  source file. This matters because the trap category is precisely what the owner added scope for on
-  2026-09-16: **"breadth is free" is true for gambits and false for traps**, and saying otherwise
-  would misrepresent the remaining work.
+  contains opening _variations_; "Légal's Mate" and "the Elephant Trap" are not opening names. The
+  ECO check would resolve a trap line to whatever opening it sits inside rather than to the trap, so
+  `category: trap` entries are exempt from it and live in their own curated source file. This
+  matters because the trap category is precisely what the owner added scope for on 2026-09-16:
+  **"breadth is free" is true for gambits and false for traps**, and saying otherwise would
+  misrepresent the remaining work.
+
+  _Corrected on 2026-09-16 against the snapshot at `4b86227`, rather than quietly dropped._ The
+  example was half wrong and the decision is unchanged. Thirteen rows do carry the word "Trap",
+  among them `Ruy Lopez: Noah's Ark Trap`, `Ruy Lopez: Berlin Defense, Fishing Pole Variation` and
+  `Queen's Gambit Declined: Albin Countergambit, Lasker Trap` — so "the Fishing Pole is not in it"
+  was not true. What is true is the thing the decision rests on: every one of those rows is filed
+  under the surrounding opening and **carries that opening's ECO code**. Noah's Ark Trap is C71
+  because the Modern Steinitz is C71. Importing them as traps would therefore produce exactly the
+  wrong-code outcome the exemption exists to prevent, and would publish a second entry for a trap
+  the curated file already carries under a different id. They are excluded by name in
+  `classification.yaml`, each with its reason. Légal's Mate, the Halosar Trap and the Kieninger Trap
+  are absent from the dataset in any form, which was the point of the original sentence.
+
 - The dataset's notion of what counts as a "gambit" will not match ours exactly. A curated
   include/exclude list is maintained alongside the import so classification is a reviewed decision
   rather than a substring match on the word "Gambit".
 - A licence and attribution file is required in the repository from bootstrap.
+- **The snapshot is vendored, not downloaded during the build.** `tools/catalogue/dataset/` holds
+  the five TSV files and the upstream commit they came from; `npm run catalogue:fetch` refreshes
+  them. A build that reaches the network is not reproducible, a deploy would depend on a third party
+  being up, and — the reason that decided it — the "every gambit-named row has a written decision"
+  gate would otherwise fire on unrelated pull requests whenever upstream added a row. Vendored, it
+  fires when a maintainer updates the data, which is when someone should be looking.
+- **Rows are folded to one entry per distinct name, keeping the shortest line.** The dataset carries
+  3810 rows under 3174 names: "Italian Game: Evans Gambit" alone appears 41 times, each a deeper
+  line of the same opening. One entry per row would publish 41 entries with identical names, which
+  is the problem family grouping exists to solve, reproduced one level down. The shortest line is
+  the line that identifies the opening, which is what `definingLine` means.
+- **A family is the dataset name's head** — everything before the first colon. That is mechanical and
+  needs no review to be right, which leaves the curated list free to decide only the thing that is
+  genuinely a judgement.
 
 ## What would change this
 

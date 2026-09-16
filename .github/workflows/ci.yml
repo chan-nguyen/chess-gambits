@@ -46,6 +46,12 @@ jobs:
       - name: Validate content
         run: npm run validate:content
 
+      # The catalogue gates (issue #12). Required for the same reason the content gate is:
+      # a previously published id that disappears 404s every shared URL to that gambit in a
+      # build that passes every other check (docs/CONTEXT.md, invariant 9).
+      - name: Build the catalogue
+        run: npm run catalogue
+
       - name: Build
         run: npm run build
 

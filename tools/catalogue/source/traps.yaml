@@ -1,0 +1,159 @@
+# Named traps. Hand-entered, one at a time, ECO code included.
+#
+# This file is the counterweight to `classification.yaml`. Breadth is free for gambits —
+# one rule admits a whole family and the dataset supplies the names, the codes and the
+# lines. **Breadth is not free for traps**, and the catalogue must not imply otherwise
+# (ADR-0008). Every entry below was written out by hand, its ECO looked up, its line
+# replayed on a board. Twelve of them took longer than six hundred gambits did.
+#
+# The reason is not laziness upstream. `lichess-org/chess-openings` is a list of opening
+# **variations**, so a trap appears in it only when it is also the name of a variation —
+# and when it does, it is filed under the surrounding opening and carries that opening's
+# ECO code. "Ruy Lopez: Noah's Ark Trap" is C71 because the Modern Steinitz is C71. That
+# is exactly why `category: trap` entries are exempt from the ECO check: the check would
+# resolve a trap line to whatever opening it sits inside and be satisfied by the wrong
+# answer. Légal's Mate, the Halosar Trap and the Kieninger Trap are not in the dataset in
+# any form.
+#
+# `line` ends with the **learner's own ply**, so the opponent's mistake is always a
+# modelled reply carrying a quality (docs/CONTEXT.md, invariant 5). The build checks it.
+# Nothing here claims a mate: a forced mate is proved by the build or refused (invariant 4),
+# and this file states identity only.
+
+reviewedBy: chan
+reviewedAt: '2026-09-16'
+basis: >-
+  Long-established trap lines from general opening literature, each line replayed on a
+  board and each ECO code taken from the surrounding opening in the dataset. These are
+  judgements about which traps are worth teaching, not measurements, and no engine was
+  consulted.
+
+traps:
+  - id: legals-mate
+    name: "Légal's Mate"
+    family: 'Philidor Defense'
+    eco: C41
+    side: white
+    soundness: sound
+    line: [e4, e5, Nf3, d6, Bc4, Bg4, Nc3]
+    reason: >-
+      The queen sacrifice that ends in mate with three minor pieces. Not in the dataset in
+      any form, under any name.
+
+  - id: fishing-pole-trap
+    name: 'Fishing Pole Trap'
+    family: 'Ruy Lopez'
+    eco: C65
+    side: black
+    soundness: dubious
+    line: [e4, e5, Nf3, Nc6, Bb5, Nf6, 'O-O', Ng4]
+    reason: >-
+      Black hangs the knight on g4 to open the h-file. The dataset does have a "Fishing
+      Pole Variation" row, filed under the Berlin Defense and coded C65 with it — an
+      opening variation, not a trap, which is the distinction this file exists for.
+
+  - id: elephant-trap
+    name: 'Elephant Trap'
+    family: "Queen's Gambit Declined"
+    eco: D51
+    side: black
+    soundness: sound
+    line: [d4, d5, c4, e6, Nc3, Nf6, Bg5, Nbd7]
+    reason: >-
+      The oldest trap in the Queen's Gambit Declined: taking on d5 loses a piece to the
+      pin-breaking check. Not in the dataset under this or any name.
+
+  - id: lasker-trap
+    name: 'Lasker Trap'
+    family: "Queen's Gambit Declined"
+    eco: D08
+    side: black
+    soundness: sound
+    line: [d4, d5, c4, e5, dxe5, d4, e3, 'Bb4+']
+    reason: >-
+      The famous underpromotion trap in the Albin. The dataset carries a row named for it,
+      as a sub-variation of the Albin Countergambit; that row is excluded in
+      `classification.yaml` so this entry is the only one for the trap.
+
+  # The Blackburne Shilling Trap is deliberately **not** here. Its line — 1.e4 e5 2.Nf3 Nc6
+  # 3.Bc4 Nd4 — is the same position the dataset calls the Blackburne-Kostić Gambit, which
+  # the catalogue already carries as a gambit. Two entries on one defining line would be two
+  # URLs for one opening, and the second one to be published would be the one nobody links
+  # to. The trap belongs inside that entry as a **trap branch**, which is a property of one
+  # branch rather than an entry of its own (docs/CONTEXT.md, "Trap branch").
+
+  - id: noahs-ark-trap
+    name: "Noah's Ark Trap"
+    family: 'Ruy Lopez'
+    eco: C71
+    side: black
+    soundness: sound
+    line: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, d6, d4, b5, Bb3, Nxd4]
+    reason: >-
+      The pawns close around the light-squared bishop and it never gets out. The dataset's
+      own row for it is C71 — the code of the Modern Steinitz it sits inside.
+
+  - id: mortimer-trap
+    name: 'Mortimer Trap'
+    family: 'Ruy Lopez'
+    eco: C65
+    side: black
+    soundness: dubious
+    line: [e4, e5, Nf3, Nc6, Bb5, Nf6, d3, Ne7]
+    reason: >-
+      Black retreats the knight and invites a fork that loses a piece to a discovered
+      attack. Filed by the dataset under the Anti-Berlin at C65.
+
+  - id: siberian-trap
+    name: 'Siberian Trap'
+    family: 'Sicilian Defense'
+    eco: B21
+    side: black
+    soundness: sound
+    line: [e4, c5, d4, cxd4, c3, dxc3, Nxc3, Nc6, Nf3, e6, Bc4, Qc7, 'O-O', Nf6, Qe2, Ng4]
+    reason: >-
+      The standard refutation of a careless Smith-Morra: ...Nd4 wins the queen. Its dataset
+      row is a Smith-Morra sub-variation and is excluded in `classification.yaml`.
+
+  - id: halosar-trap
+    name: 'Halosar Trap'
+    family: 'Blackmar-Diemer Gambit Accepted'
+    eco: D00
+    side: white
+    soundness: dubious
+    line: [d4, d5, e4, dxe4, Nc3, Nf6, f3, exf3, Qxf3, Qxd4, Be3, Qb4, 'O-O-O']
+    reason: >-
+      The Ryder Gambit's queen sacrifice trap. Not in the dataset under this name.
+
+  - id: kieninger-trap
+    name: 'Kieninger Trap'
+    family: 'Indian Defense'
+    eco: A52
+    side: black
+    soundness: sound
+    line: [d4, Nf6, c4, e5, dxe5, Ng4, Bf4, Nc6, Nf3, 'Bb4+', Nbd2, Qe7]
+    reason: >-
+      The smothered finish in the Budapest. Not in the dataset under this name.
+
+  - id: englund-gambit-trap
+    name: 'Englund Gambit Trap'
+    family: 'Englund Gambit'
+    eco: A40
+    side: black
+    soundness: unsound
+    line: [d4, e5, dxe5, Nc6, Nf3, Qe7, Bf4, 'Qb4+']
+    reason: >-
+      The ...Qb4+ and ...Qxb2 raid that ends in mate on b2 if White grabs the rook. The
+      gambit is unsound and the trap is the reason anyone plays it.
+
+  - id: damiano-defence-refutation
+    name: 'Damiano Defence, 3.Nxe5 refutation'
+    family: "King's Pawn Game"
+    eco: C40
+    side: white
+    soundness: sound
+    line: [e4, e5, Nf3, f6, Nxe5]
+    reason: >-
+      Already authored in `content/damiano-defence-refutation.yaml`, and listed here because
+      an authored entry that is in no catalogue source file is unreachable. Its id was
+      published before this file existed and is pinned by the frozen map.
