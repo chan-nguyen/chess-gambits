@@ -119,6 +119,21 @@ const vi = {
     versionDiscarded:
       'Tiến độ đã lưu thuộc một phiên bản cũ của trang nên đã bị xoá. Bạn cần đánh dấu lại.',
   },
+  tree: {
+    heading: 'Toàn bộ cây biến',
+    label: 'Cây biến của gambit',
+    show: 'Mở cây biến',
+    hide: 'Thu gọn cây biến',
+    close: 'Đóng cây biến',
+    positions: 'Số thế:',
+    lines: 'Số biến:',
+    mateIn: 'Chiếu hết sau',
+    assessment: 'Đánh giá thế cờ',
+    unexplored: 'Chưa dựng',
+    transposes: 'Chuyển vị',
+    showRefutation: 'Hiện toàn bộ đòn chiếu hết',
+    refutation: 'Đòn chiếu hết đã được chứng minh:',
+  },
 }
 
 export default vi

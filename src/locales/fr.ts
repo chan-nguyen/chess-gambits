@@ -78,6 +78,21 @@ const fr: PartialTranslations = {
     versionDiscarded:
       "Votre progression enregistrée provenait d'une version antérieure du site : elle a été supprimée. Il faudra marquer vos branches à nouveau.",
   },
+  tree: {
+    heading: 'Le gambit en entier',
+    label: 'Arbre du gambit',
+    show: 'Afficher l’arbre',
+    hide: 'Masquer l’arbre',
+    close: 'Fermer l’arbre',
+    positions: 'Positions :',
+    lines: 'Lignes :',
+    mateIn: 'Mat en',
+    assessment: 'Évaluation',
+    unexplored: 'Pas encore cartographié',
+    transposes: 'Transposition',
+    showRefutation: 'Afficher la réfutation complète',
+    refutation: 'La réfutation prouvée :',
+  },
 }
 
 export default fr

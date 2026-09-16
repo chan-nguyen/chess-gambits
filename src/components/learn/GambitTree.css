@@ -1,0 +1,238 @@
+/*
+ * The whole-tree view (docs/design-system.md §1 and §3).
+ *
+ * Two rules shape everything here. **Indentation measures branching, not depth**: a chain
+ * of forced plies is drawn along one row, and only a real branch point starts a level, so
+ * a fifteen-ply main line costs no indent at all and a 360px column stays a 360px column.
+ * And **no ending is told apart by its colour**: every marker carries a symbol and a word,
+ * and the rules at the bottom give each one a different shape as well (§2).
+ *
+ * The overlay below 768px needs no media query of its own: which of §1's three layouts is
+ * in use is a decision `GambitTree.tsx` makes from `matchMedia`, and the overlay element
+ * only exists when it has been made.
+ */
+
+.gambit-tree {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-block-start: var(--space-5);
+}
+
+.gambit-tree__title {
+  margin-block: 0;
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.gambit-tree__summary {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.gambit-tree__count {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/*
+ * The control that opens the tree, sized to §5's touch target rather than its 24px floor:
+ * below 768px this is the only way to the tree at all.
+ */
+.gambit-tree__toggle,
+.gambit-tree__close {
+  align-self: flex-start;
+  min-block-size: var(--target-size-touch);
+  min-inline-size: var(--target-size-touch);
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.gambit-tree__panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.gambit-tree__refutation {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* §5's 24px floor on a native control that ships smaller than it. */
+.gambit-tree__checkbox {
+  inline-size: var(--target-size-min);
+  block-size: var(--target-size-min);
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.gambit-tree__checkbox-label {
+  font-size: var(--text-sm);
+}
+
+.gambit-tree__root,
+.gambit-tree__branches {
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+/*
+ * A last resort rather than a layout: chains keep the tree narrow, but a gambit that
+ * branches at eight successive opponent nodes would still outgrow 360px, and the page
+ * itself must never scroll sideways. The padding keeps the focus ring inside the box that
+ * `overflow` would otherwise clip it out of.
+ */
+.gambit-tree__root {
+  padding: var(--space-1);
+  overflow-x: auto;
+}
+
+.gambit-tree__branches {
+  margin-inline-start: var(--space-2);
+  padding-inline-start: var(--space-3);
+  border-inline-start: var(--border-width) solid var(--color-border-strong);
+}
+
+.gambit-tree__plies {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding-block: var(--space-1);
+}
+
+.gambit-tree__node {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1);
+  min-block-size: var(--target-size-min);
+  min-inline-size: var(--target-size-min);
+  padding-inline: var(--space-2);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.gambit-tree__node:hover {
+  text-decoration: underline;
+}
+
+/*
+ * The current node, said four ways — border, surface, weight and `aria-current` — because
+ * a highlight that is only a tint is a highlight half the people reading it cannot see.
+ * The same four the move list uses, so the two agree about what "you are here" looks like.
+ */
+.gambit-tree__node--current {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.gambit-tree__ply {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.gambit-tree__marker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding-inline: var(--space-1);
+  border: var(--border-width) solid currentColor;
+  font-size: var(--text-xs);
+  font-weight: 600;
+}
+
+.gambit-tree__symbol {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/* The proved sequence, behind the refutation control. Its own row inside the node. */
+.gambit-tree__proof {
+  flex-basis: 100%;
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+.gambit-tree__sequence {
+  font-family: var(--font-mono);
+}
+
+/*
+ * One rule per ending, and each differs from the others in **shape**, not only in hue:
+ * a pill, a square, a dashed square, a dotted round box. `tree-layout.test.ts` reads these
+ * four rules, holds them to differing in something that is not a colour, and shows that
+ * check failing on a stylesheet where two of them differ only in `color`.
+ *
+ * `--color-mate` is the one outcome token used here. An assessment is drawn in body text
+ * rather than in `--color-advantage` or `--color-worse` on purpose: the tree marks which
+ * *kind* of ending a leaf has, and which way that assessment leans is a claim it does not
+ * have — stating it in a colour would be inventing one.
+ */
+.gambit-tree__marker--mate {
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  color: var(--color-mate);
+}
+
+.gambit-tree__marker--assessment {
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+}
+
+.gambit-tree__marker--unexplored {
+  border-radius: var(--radius-sm);
+  border-style: dashed;
+  color: var(--color-text-muted);
+}
+
+.gambit-tree__marker--transposition {
+  border-radius: var(--radius-lg);
+  border-style: dotted;
+  color: var(--color-text);
+}
+
+/*
+ * The full-screen overlay (§1, AC 3). It covers the page — including the skip link's
+ * layer — because it is modal: `GambitTree.tsx` keeps focus inside it and hands focus
+ * back to the control that opened it, which is what WCAG 2.2 2.4.11 asks for (AC 4).
+ */
+.gambit-tree__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  overflow: auto;
+  background-color: var(--color-bg);
+}
+
+.gambit-tree__overlay-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.gambit-tree__overlay-title {
+  margin-block: 0;
+  font-size: var(--text-xl);
+}
