@@ -332,6 +332,15 @@ test.describe('the number keys', () => {
     expect(await page.evaluate((key) => window.localStorage.getItem(key), shortcutStorageKey)).toBe(
       'off',
     )
+    /*
+     * Focus has to leave the checkbox before the key is pressed. The handler ignores any
+     * key whose target is an `INPUT`, so pressing `2` while the checkbox still holds focus
+     * proves nothing: this assertion passed just as happily when the setting did nothing at
+     * all. Blurring rather than reloading keeps the claim the one this test is making —
+     * that switching the shortcuts off takes effect *now*, not on the next page load, which
+     * is what `e2e/move-navigation.spec.ts` covers.
+     */
+    await page.getByRole('checkbox', { name: vi.learn.shortcuts }).blur()
     await page.keyboard.press('2')
 
     await expect(page).toHaveURL(lineUrl(EVANS_ENTRY.id, []))

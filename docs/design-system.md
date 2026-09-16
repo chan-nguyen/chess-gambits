@@ -452,7 +452,129 @@ Non-negotiable, and cheap now.
 - **Verified by**: automated axe checks in CI, plus a manual keyboard-only walkthrough of one full
   gambit tree before any release. Automation catches roughly a third of this; the walkthrough is not
   optional, and it is a recurring cost rather than a one-off — the maintainer is the sole reviewer
-  and is not a screen-reader user, which is a limitation to state rather than to paper over.
+  and is not a screen-reader user, which is a limitation to state rather than to paper over. The
+  three subsections below say exactly which third is automated, what the manual pass has to cover,
+  and where each review is written down.
+
+### What the automation covers, and what it does not
+
+Added by #18. `e2e/accessibility.spec.ts` runs axe-core through Playwright against the **built**
+site, over the home, catalogue, gambit and about routes in all three locales, with the rule tags
+`wcag2a`, `wcag2aa`, `wcag21a`, `wcag21aa` and `wcag22aa` — WCAG up to 2.2 AA and nothing else.
+Axe's `best-practice` tags are deliberately excluded: a check that blocks a merge may only carry
+rules this project has committed to.
+
+The four routes are scanned at the default desktop viewport and again at 360px, where §1 puts a
+different layout on screen — together with the two states that exist only there, the collapsed
+header menu and the full-screen tree overlay. A dialog is the control type most likely to carry a
+name/role/value fault, so scanning only the wide layout would have left the one dialog on this site
+unexamined.
+
+It runs inside the existing `e2e` job in `.github/workflows/ci.yml`, at both base paths, and a
+violation fails the build. It is not a report.
+
+Two narrowings are stated rather than left to be discovered:
+
+1. The twelve published route/locale pages are scanned as a visitor receives them, and today every
+   gambit page is at the _Listed_ tier — `npm run build` reports "700 listed · 0 mapped · 0 taught".
+   A gambit page with no tree renders no board, no branch choices, no quality badges and no outcome
+   card, so a sweep of published routes alone would pass without having looked at the components
+   this product is about. Three fixture-served states — a branch point, a plan choice and a leaf —
+   are scanned as well, in Vietnamese only, because what they add over the published routes is
+   component markup and that is locale-independent.
+2. **Automated rules catch roughly a third of WCAG, and this gate does not change that number.** A
+   green run is not a claim that the site is accessible. It is a claim that a specific, listed set
+   of machine-checkable failures is absent. Everything below is the rest.
+
+Three more things are checked in that file because a browser is the only thing that can settle
+them, and each carries a probe that makes it fail: a keyboard-only walk from the catalogue into an
+entry, through a branch node and on to a leaf, with the computed focus outline **measured** at every
+tab stop against `--color-focus` rather than read off the stylesheet; the polite live region, read
+back ply by ply in the learner's language; and 2.1.4, including the half that is easy to ship
+broken — a setting persisted in a previous session and character keys that are genuinely dead in
+this one.
+
+### The pre-release manual checklist
+
+Run before any release, on one full gambit tree. None of this is reachable by the gate above.
+
+- [ ] **Keyboard only, no pointer at all.** Catalogue → entry → through a branch node → to a leaf,
+      and back out. Every stop shows a focus ring, and focus after each navigation is on the
+      annotation heading, not at the top of the page.
+- [ ] **Nothing is a focus trap**, and `Esc` leaves the mobile tree overlay with focus somewhere
+      sensible (2.4.11).
+- [ ] **Screen reader**, one pass with VoiceOver: the board announces each square with its piece in
+      the page's language, each move is announced once and not twice, and the heading hierarchy
+      reads as a real outline.
+- [ ] **Reflow (1.4.10)**: 400% browser zoom at 1280px, which is the 320px-equivalent width the
+      criterion actually names — narrower than the 360px floor the rest of this project designs to.
+      No horizontal scroll, nothing clipped, nothing overlapping.
+- [ ] **Reduced motion**, with the OS setting on: no transition that survives it.
+- [ ] **The greyscale review** below.
+- [ ] **Both themes**, for all of the above.
+
+The limitation, stated plainly: the maintainer is the sole reviewer and **is not a screen-reader
+user**. The VoiceOver line above is a person driving an unfamiliar tool carefully, which finds
+gross breakage and does not find the things a daily user would. That is the honest ceiling on this
+checklist, and the argument for paying for a real audit before this project claims conformance
+anywhere a visitor can read it.
+
+### The greyscale review
+
+`npm run review:greyscale` desaturates and photographs the three surfaces §2 names — the board, the
+quality labels and the outcome cards — writing each frame to `test-results/` and attaching it to the
+Playwright report. The reviewer looks at the frames; the machine only produces them and proves they
+really came out of the filter.
+
+The automated half is not repeated there. It already exists: `e2e/branch-choices.spec.ts` for the
+quality labels, `e2e/outcomes.spec.ts` for the outcome cards, and
+`src/components/board/board-contrast.test.ts` for the pieces and squares. What is left for a person
+is whether the desaturated screen still _reads_ — five icons can be five distinct paths and still
+look like five smudges at 14px.
+
+This is not ceremony in this palette. Measured over the nine outcome and reply-quality colours in
+the tables above, **every one of the 36 pairs is under 1.5:1 of its partner once hue is removed, in
+both themes**. Twenty-six of the 36 are under 1.2:1 in light mode and twenty-five in dark. Three
+pairs are the identical grey: `--color-quality-good` against `--color-quality-mistake` and
+`--color-quality-best` against `--color-advantage` in light, and `--color-quality-best` against
+`--color-quality-inaccuracy` in dark. Among the five reply-quality colours alone, six of their ten
+pairs sit at or below 1.07:1.
+
+None of that is a defect — these are text colours on a surface, and §2's four rules hold over every
+one of them. It is the measurement behind "colour is never the only signal": in greyscale this
+palette carries **no** quality or outcome distinction at all, so the icon and the label are not a
+belt-and-braces addition to the hue. They are the whole signal.
+
+### Review log
+
+One entry per review, written when the review is performed rather than when it is due. An empty log
+under a shipped release is itself the finding.
+
+**2026-09-17 — #18, the gate's own first run.** Not a release review: this is the baseline the
+checklist above was written against.
+
+- **axe: 0 violations**, over 21 scans at WCAG 2.2 AA: twelve published route/locale pages (home,
+  catalogue, gambit, about × vi, en, fr), three fixture-served states (a branch point, a plan
+  choice, a leaf), and six at 360px including the open header menu and the open tree overlay. The
+  probe in the same file confirms the sweep reports a violation that is really there, so the zero
+  is a result rather than an empty run. Separately confirmed by hand: an `<img>` with no `alt` and
+  a 1.6:1 paragraph added to the about route turned the gate red on all three locales, naming the
+  rule, the impact and the selector.
+- **Greyscale: pass.** All five reply qualities carry a distinct icon silhouette _and_ a distinct
+  label. The closest pair is `best` (double chevron) against `good` (single chevron), told apart by
+  stroke count rather than by silhouette — the label is what carries it, which is the rule working
+  as written. Mate and assessment cards differ in border, icon, heading, internal structure and
+  provenance wording. White and black pieces read cleanly on both square colours.
+- **Not covered, and not a pass:** the last-ply highlight. `Board` implements it completely — the
+  tinted squares, the dashed and solid rings that make it a shape difference and not only a tint,
+  the `--color-board-highlight-*` tokens, and a unit test in `Board.test.tsx` — behind an optional
+  `lastMove` prop. **No caller passes that prop**: neither `LearningSurface` nor `BoardPreview`
+  mentions it, so no board on the shipped site has ever drawn a highlight. This is a wiring gap
+  rather than a design gap, and until it is closed §2's "board highlights carry a shape or border
+  difference, not only a tint" is a rule with nothing to hold over.
+- **Not performed:** the screen-reader, zoom, reduced-motion and dual-theme rows. #18 wired the gate
+  and wrote the checklist; it did not run the first manual pass, and recording that honestly is
+  cheaper than an entry that implies otherwise.
 
 ---
 

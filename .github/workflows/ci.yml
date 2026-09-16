@@ -88,7 +88,19 @@ jobs:
       - name: Install the browser
         run: npx playwright install --with-deps chromium
 
-      - name: End-to-end tests
+      # This step carries the **accessibility gate** as well (#18, requirement N4).
+      # `e2e/accessibility.spec.ts` runs axe-core over the home, catalogue, gambit and
+      # about routes in all three locales at WCAG 2.2 AA, and a violation fails this job
+      # like any other test failure — it reports nothing and passes nothing.
+      #
+      # Deliberately not its own job, and not even its own step: `playwright.config.ts`
+      # builds the site for its own web server, so either would pay for a second build and
+      # a second browser install to check the same `dist/`, on a budget of $0. What that
+      # costs is discoverability, which is why it is named here.
+      #
+      # `docs/design-system.md` §5 states what this gate does and does not cover — roughly
+      # a third of WCAG — and carries the manual checklist that covers the rest.
+      - name: End-to-end tests, including the accessibility gate
         run: npm run e2e
         env:
           BASE_PATH: ${{ matrix.base-path }}
