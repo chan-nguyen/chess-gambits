@@ -71,6 +71,26 @@ const MUST_BE_REJECTED: Readonly<Record<string, Expectation>> = {
     says: '`Nf6` is dismissed',
     at: 'tree.dismissed[0].ply',
   },
+  'dismiss-rest-covers-nothing.yaml': {
+    code: 'dismiss-rest-covers-nothing',
+    says: 'covers nothing here',
+    at: 'tree.dismissRest',
+  },
+  'dismiss-rest-on-learner-node.yaml': {
+    code: 'kind-mismatch',
+    says: 'only on an opponent node',
+    at: 'tree.dismissRest',
+  },
+  'dismiss-rest-placeholder-reason.yaml': {
+    code: 'schema',
+    says: 'placeholder',
+    at: 'tree.dismissRest.reason.vi',
+  },
+  'dismiss-rest-hides-modelled-reply.yaml': {
+    code: 'dismissed-also-modelled',
+    says: 'both modelled as a child and listed in `dismissed`',
+    at: 'tree',
+  },
   'duplicate-san.yaml': { code: 'duplicate-san', says: 'both `Ke7`', at: 'tree.children[1].ply' },
   'duplicate-position.yaml': { code: 'duplicate-position', says: 'transposesTo' },
   'transposition-mismatch.yaml': {

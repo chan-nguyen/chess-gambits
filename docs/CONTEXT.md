@@ -54,21 +54,50 @@ The aggregate root, and the unit a learner selects, a URL names, and a pull requ
 A position in the tree, reached by one **ply** from its parent. The root node is the position after
 the gambit's defining line.
 
-| Field          | Meaning                                                                                                                                                   |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ply`          | The single move in SAN that reached this node from its parent                                                                                             |
-| `kind`         | `learner` \| `opponent` — derived from side to move and the gambit's `side`, never authored                                                               |
-| `annotation`   | Localised explanation. See **Annotation**                                                                                                                 |
-| `children`     | Ordered child nodes. Empty means this is a **leaf**                                                                                                       |
-| `outcome`      | Present **only** on a leaf. See **Outcome**                                                                                                               |
-| `replyQuality` | Only on a **child of an opponent node** — that is, a move the opponent played. See below                                                                  |
-| `frequency`    | Only on a child of an opponent node: `common` \| `occasional` \| `rare`                                                                                   |
-| `dismissed`    | Only on an **opponent node**: legal replies deliberately not modelled, each with a reason. Modelled children plus `dismissed` must cover every legal move |
-| `transposesTo` | Instead of children: a path elsewhere in this gambit that this position transposes into                                                                   |
+| Field          | Meaning                                                                                                                                                    |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ply`          | The single move in SAN that reached this node from its parent                                                                                              |
+| `kind`         | `learner` \| `opponent` — derived from side to move and the gambit's `side`, never authored                                                                |
+| `annotation`   | Localised explanation. See **Annotation**                                                                                                                  |
+| `children`     | Ordered child nodes. Empty means this is a **leaf**                                                                                                        |
+| `outcome`      | Present **only** on a leaf. See **Outcome**                                                                                                                |
+| `replyQuality` | Only on a **child of an opponent node** — that is, a move the opponent played. See below                                                                   |
+| `frequency`    | Only on a child of an opponent node: `common` \| `occasional` \| `rare`                                                                                    |
+| `dismissed`    | Only on an **opponent node**: legal replies deliberately not modelled, each with a reason. A maintainer's note, read in a diff                             |
+| `dismissRest`  | Only on an **opponent node** that models replies: one catch-all answering every legal reply that is neither modelled nor individually dismissed. See below |
+| `transposesTo` | Instead of children: a path elsewhere in this gambit that this position transposes into                                                                    |
 
 Note what is _not_ stored: the FEN. A node's position is always derived by replaying plies from the
 standard starting position. Storing a FEN would let content drift out of sync with its own moves, and
 the whole trust model of this project depends on positions being computed, never asserted.
+
+### Dismissal
+
+The two ways a reply is answered without being modelled. Together with modelled children they
+are what makes invariant 7a satisfiable.
+
+`dismissed` names one reply and gives a reason. It is a **maintainer's note**: it is read in a
+diff, by the person deciding whether the omission is defensible, so its reason is a plain string
+in whatever language the maintainer thinks in.
+
+`dismissRest` is a single **catch-all** answering every legal reply left over. Its reason is
+**localised**, because unlike a `dismissed` reason it is shown to the learner — it is the site's
+answer to that move, and an answer in the wrong language is not one.
+
+It exists because of an arithmetic that otherwise ends the project. At the Evans Gambit after
+`4.b4` — the first branch point of the first gambit — 35 replies are legal, and 34 of them say the
+same thing. Thirty-four hand-written dismissals per node, at every opponent node, in every entry,
+is not work anyone completes; the realistic outcome is that opponent nodes stop being modelled at
+all, which is a larger hole than the one invariant 7a exists to close.
+
+It does not weaken the guarantee. The property that matters is that a learner is never met with a
+reply the site has nothing to say about, and "any other move here does not challenge the gambit;
+you continue with c3 and d4" _is_ an answer — a truthful one, and at club level the useful one.
+What would weaken it is a catch-all with a vacuous reason, so two things are refused: one that
+covers nothing, and one whose reason is empty or placeholder text. The validator also reports how
+many replies each catch-all answers, so the number stays visible rather than hidden behind one
+line, and the UI renders it as "34 other replies — \<reason\>". An omission a learner can see is
+honest; one they cannot see is the failure this whole check exists to prevent.
 
 ### Outcome
 
@@ -120,7 +149,8 @@ author's impression, and it is labelled as one.
 
 ### Annotation
 
-Localised prose attached to a node. Keyed by locale (`vi` \| `en` \| `fr`).
+Localised prose attached to a node, or to a `dismissRest` reason. Keyed by locale
+(`vi` \| `en` \| `fr`).
 
 Vietnamese is the source locale: content is authored in Vietnamese and translated outward. A missing
 `en` or `fr` falls back to `vi` and is visibly marked untranslated — never blank, never a raw key.
@@ -257,9 +287,13 @@ can trust what this site says.
    `2...f6` is a modelled reply alongside `2...Nc6` — which is also how a learner actually meets it.
 6. A node claiming checkmate _is_ checkmate in the derived position.
 7. Every `Taught` node has a Vietnamese annotation. Other locales are optional and fall back.
-   7a. At every opponent node, modelled children plus `dismissed` cover **every** legal reply. This is
-   the invariant the product exists to satisfy; everything else verifies that what was modelled is
-   correct, and only this one verifies that it was enough.
+   7a. At every opponent node, modelled children plus `dismissed` plus at most one `dismissRest`
+   cover **every** legal reply. This is the invariant the product exists to satisfy; everything else
+   verifies that what was modelled is correct, and only this one verifies that it was enough.
+   A `dismissRest` answers the leftovers and nothing else, so it can never cover a reply that is
+   modelled or individually dismissed — which is why an overlap between `children` and `dismissed`
+   is still reported when one is present. It is refused where it would cover nothing, and its reason
+   is localised because a learner reads it.
    7b. Every claim that is not machine-proved carries provenance recording that it is a judgement.
    Provenance is recorded **once per entry**, plus on `soundness` and on each `Assessment` outcome.
    Per-child provenance on every `replyQuality` and `frequency` was specified and is unauthorable —

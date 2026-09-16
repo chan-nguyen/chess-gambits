@@ -77,6 +77,29 @@ export type DismissedReply = {
   readonly reason: string
 }
 
+/**
+ * One catch-all standing in for every legal reply that is neither modelled nor individually
+ * dismissed.
+ *
+ * Thirty-four hand-written dismissals per node is not work anyone completes, and an author
+ * who stops modelling opponent nodes leaves a larger hole than the one invariant 7a exists
+ * to close. The guarantee is unchanged: a learner is never met with a reply the site has
+ * nothing to say about, and "any other move here does not challenge the gambit" is an
+ * answer.
+ *
+ * Its `reason` is localised, unlike `DismissedReply.reason`: a per-move dismissal is a
+ * maintainer's note read in a diff, whereas this one is shown to the learner.
+ */
+export type DismissRest = {
+  readonly reason: Annotation
+  /**
+   * The replies this catch-all actually covers, derived from the legal move list at
+   * validation time. Never authored — the whole point is that the number is computed and
+   * stated rather than hidden behind one line.
+   */
+  readonly covers: readonly string[]
+}
+
 /** A position in the tree, reached by one ply from its parent. */
 export type ContentNode = {
   /** The single SAN move that reached this node. Absent on the root. */
@@ -89,6 +112,8 @@ export type ContentNode = {
   readonly replyQuality: ReplyQuality | undefined
   readonly frequency: Frequency | undefined
   readonly dismissed: readonly DismissedReply[]
+  /** Only on an opponent node that models replies. See `DismissRest`. */
+  readonly dismissRest: DismissRest | undefined
   readonly children: readonly ContentNode[]
   readonly outcome: Outcome | undefined
   /** SAN path from the entry root that this position transposes into. */
