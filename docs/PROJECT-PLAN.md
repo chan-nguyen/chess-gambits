@@ -1,6 +1,6 @@
 # Chess Gambit Trainer — Project Plan
 
-Status: Architecture
+Status: Delivery
 Last updated: 2026-09-16
 
 > Living document. Update it when reality diverges from it — a plan nobody updates is a plan nobody
@@ -239,7 +239,56 @@ free learning site is within its terms.
 
 ## 5. Plan
 
-_To be completed in Phase 3._
+Repository: <https://github.com/chan-nguyen/chess-gambits> · Board: Personal Apps (project 1) ·
+Live: <https://chan-nguyen.github.io/chess-gambits/>
+
+### Epics
+
+| Milestone                   | Outcome                                                                                                               |
+| --------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **E1 Walking skeleton**     | The architecture proven end to end: base path, deep links returning real HTTP 200s, deployed, with per-shell metadata |
+| **E2 Content pipeline**     | Schema, the thirteen validation checks, PGN import and export, compilation to JSON                                    |
+| **E3 Mate proving**         | Engine oracle, certificate generator, independent verifier, red-test corpus                                           |
+| **E4 Learning surface**     | Board, navigation, branch choices, tree view, outcome components                                                      |
+| **E5 Catalogue**            | Dataset import, families, frozen ids, search and filters                                                              |
+| **E6 Internationalisation** | Three locales, Vietnamese fallback, visible untranslated marker                                                       |
+| **E7 Progress**             | Per-browser progress, stored locally, counted rather than percentaged                                                 |
+| **E8 Quality gates**        | Accessibility and performance enforced in CI                                                                          |
+| **E9 Seed content**         | The first three taught entries                                                                                        |
+
+### Waves
+
+Everything in a wave is independent and may run in parallel; each wave depends on the one before.
+Independence here means **disjoint files**, not merely unrelated goals — two agents editing one
+module corrupt each other's work regardless of how different their tickets sound.
+
+| Wave  | Tickets                                                             | Why these, together                                                                                                                                                                                           |
+| ----- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **1** | #16 routing · #3 content schema · #4 board                          | The riskiest integration plus two genuinely isolated units. #16 owns the router and build scripts, #3 owns content validation and touches nothing in `src/`, #4 owns one component and imports no chess logic |
+| **2** | #2 tokens and shell · #5 mate proving · #6 compile and load         | #2 fills the routes #16 created; #5 and #6 both build on the #3 schema but own separate scripts                                                                                                               |
+| **3** | #7 i18n · #8 navigation · #12 catalogue import                      |                                                                                                                                                                                                               |
+| **4** | #9 branch choices · #10 tree view · #11 outcomes · #14 progress     | All four extend the learning surface #8 establishes, in separate components                                                                                                                                   |
+| **5** | #13 catalogue page · #17 shell metadata                             |                                                                                                                                                                                                               |
+| **6** | #15 seed content · #18 accessibility gate · #19 performance budgets |                                                                                                                                                                                                               |
+
+Concurrency is capped at roughly four implementation agents — the limit is review capacity, not the
+machine. Unreviewed parallel work is not throughput.
+
+### What the owner merges
+
+Scaffolding, documentation and test-only changes may be merged once CI is green and the diff has been
+read. **Every feature pull request is the owner's call.** Tickets labelled `needs-human` touch CI
+workflows or the build and are never self-merged.
+
+### Walking-skeleton exit criteria
+
+Wave 1 is not done because three pull requests merged. It is done when all of these hold:
+
+- [ ] The base path works, and `BASE_PATH=/` produces a working root-served build
+- [ ] One deep link returns HTTP 200 with the correct `lang` and a distinct title
+- [ ] A `line` parameter containing `+` and `#` round-trips exactly
+- [ ] One proved mate certificate verifies in CI, and one deliberately broken certificate is rejected
+- [ ] The bundle is measured and recorded against the 200KB budget
 
 ## 6. Risks
 
@@ -286,6 +335,7 @@ _To be completed in Phase 3._
 | 2026-09-16 | 1 — Discovery    | Owner approved the scope contract, with the coverage revision above                                                                                                                                                                                                                                                                                            | Phase 1 gate passed                                                                                                                                                                                                |
 | 2026-09-16 | 2 — Architecture | Domain model, design system and threat model written                                                                                                                                                                                                                                                                                                           | Foundations that do not depend on library choice                                                                                                                                                                   |
 | 2026-09-16 | 2 — Architecture | Scope widened again to include named opening traps that are not gambits, tagged `category`                                                                                                                                                                                                                                                                     | Owner's decision. Légal's Mate, the Fishing Pole and the Elephant Trap are not gambits, and they are the best material for the brief's stated goal                                                                 |
+| 2026-09-16 | 3 — Planning     | Repository created public, CI green on the empty project, Pages live, `main` protected. 18 tickets across 9 epics on the board, waves sequenced by file ownership                                                                                                                                                                                              | Phase 2 gate passed; Phase 3 bootstrap complete                                                                                                                                                                    |
 | 2026-09-16 | 2 — Architecture | **Adversarial review found 34 issues; the design was revised rather than defended.** Mate proving moved to engine-oracle-plus-committed-certificate; the board library was dropped for an own SVG board; reply completeness became a blocking check; `unexplored` became a real outcome; provenance extended to every claim; the `line` URL encoding was fixed | The review showed the first design never checked the one thing the product exists to do — that the opponent's replies are complete — and that a build-time engine was never actually forbidden, only assumed to be |
 | 2026-09-16 | 2 — Architecture | Ten ADRs written. Board library decided on **licence**, not merit; mate verification redesigned after measurement                                                                                                                                                                                                                                              | chessground and chessops are GPL-3.0-or-later. Measurement showed searching every leaf for mates would take CI hours, so intent-plus-proof replaced discovery-by-search                                            |
 
