@@ -67,6 +67,35 @@ const vi = {
     blackKnight: 'mã đen',
     blackPawn: 'tốt đen',
   },
+  /**
+   * The learning surface (#8). Chess notation is never localised, so there is no key here
+   * for a SAN move or a move number; what is localised is the prose around them, and the
+   * words a screen reader speaks when the position changes.
+   *
+   * `ply` in a key name is deliberate (docs/CONTEXT.md, *Ply*): navigation steps by one
+   * side's single move. Vietnamese "nước" and French "coup" already mean exactly that;
+   * English "move" does not, so the English copy says "position" rather than quietly
+   * calling a ply a move.
+   */
+  learn: {
+    loading: 'Đang tải thế cờ…',
+    navigation: 'Điều hướng trong biến',
+    toStart: 'Về đầu biến',
+    previousPly: 'Nước trước',
+    nextPly: 'Nước sau',
+    atStart: 'Đây là đầu biến.',
+    atEnd: 'Đây là cuối biến.',
+    startingPosition: 'Thế xuất phát',
+    after: 'Sau',
+    noAnnotation: 'Nước này chưa có giải thích.',
+    plyList: 'Các nước trong biến',
+    shortcuts: 'Phím tắt bàn phím',
+    shortcutsHint: 'Dùng phím mũi tên trái và phải để đi trong biến.',
+    branchNotFound: 'Gambit này không có nước sau đây, nên trang hiển thị thế gần nhất:',
+    capture: 'ăn quân',
+    check: 'chiếu',
+    checkmate: 'chiếu hết',
+  },
 }
 
 export default vi

@@ -1,8 +1,10 @@
-import { render, screen, waitFor } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import { RouterProvider, createMemoryRouter } from 'react-router'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { MATE_ENTRY, MATE_LINE } from './components/learn/learn-fixtures'
 import { storedLocaleKey } from './lib/locale'
 import { lineSearch } from './lib/line'
+import viCatalogue from './locales/vi'
 import { routes } from './router'
 
 const setBrowserLanguages = (languages: readonly string[]): void => {
@@ -131,25 +133,66 @@ describe('the locale-less root', () => {
 })
 
 describe('the line parameter on a gambit route', () => {
-  it('restores a path that contains a check and a mate', async () => {
-    const plies = ['Nxe5', 'Bxd1', 'Bxf7+', 'Ke7', 'Nd5#']
-    renderAt(`/vi/gambits/evans-gambit${lineSearch(plies)}`)
+  /*
+   * #8 replaced the gambit route's placeholder with the learning surface, so the parsed
+   * line is now read back off the move list — which is the real claim anyway: what matters
+   * is that a shared link puts the learner on the node it names, not that some element
+   * holds the right string. The tree is served from a fixture so these stay tests of the
+   * router and the URL rather than of what happens to be in `content/`.
+   */
+  beforeEach(() => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn(() =>
+        Promise.resolve(
+          new Response(JSON.stringify({ ...MATE_ENTRY, id: 'evans-gambit' }), {
+            status: 200,
+            headers: { 'content-type': 'application/json' },
+          }),
+        ),
+      ),
+    )
+  })
 
-    expect(await screen.findByTestId('line-plies')).toHaveTextContent(plies.join(' '))
+  afterEach(() => vi.unstubAllGlobals())
+
+  const plies = async () => {
+    const list = await screen.findByRole('navigation', { name: viCatalogue.learn.plyList })
+    return within(list)
+      .getAllByRole('link')
+      .map((link) => link.textContent)
+  }
+
+  it('restores a path that contains a check and a mate', async () => {
+    renderAt(`/vi/gambits/evans-gambit${lineSearch(MATE_LINE)}`)
+
+    expect(await plies()).toStrictEqual([
+      viCatalogue.learn.startingPosition,
+      '5...Bh5',
+      '6.Nxe5',
+      '6...Bxd1',
+      '7.Bxf7+',
+      '7...Ke7',
+      '8.Nd5#',
+    ])
     expect(screen.queryByRole('alert')).toBeNull()
   })
 
   it('recovers to the nearest valid node and says what was wrong', async () => {
     renderAt('/vi/gambits/evans-gambit?line=e4_e5_not-a-move_Nf3')
 
-    expect(await screen.findByTestId('line-plies')).toHaveTextContent('e4 e5')
-    expect(screen.getByRole('alert')).toHaveTextContent('not-a-move')
+    // `e4` and `e5` read as SAN, so the parser keeps them and stops at the third segment;
+    // the tree then rejects `e4` as well, and the page says both things rather than one.
+    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition])
+    const alerts = screen.getAllByRole('alert').map((alert) => alert.textContent ?? '')
+    expect(alerts.join(' ')).toContain('not-a-move')
+    expect(alerts.join(' ')).toContain(viCatalogue.learn.branchNotFound)
   })
 
   it('reads a missing parameter as the gambit root', async () => {
     renderAt('/vi/gambits/evans-gambit')
 
-    expect(await screen.findByTestId('line-plies')).toHaveTextContent('the gambit root')
+    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition])
     expect(screen.queryByRole('alert')).toBeNull()
   })
 })

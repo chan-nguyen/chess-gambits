@@ -54,6 +54,25 @@ const en: PartialTranslations = {
     blackKnight: 'black knight',
     blackPawn: 'black pawn',
   },
+  learn: {
+    loading: 'Loading the position…',
+    navigation: 'Navigate this line',
+    toStart: 'Back to the start',
+    previousPly: 'Previous position',
+    nextPly: 'Next position',
+    atStart: 'This is the start of the line.',
+    atEnd: 'This is the end of the line.',
+    startingPosition: 'Starting position',
+    after: 'After',
+    noAnnotation: 'This move has no explanation yet.',
+    plyList: 'Moves in this line',
+    shortcuts: 'Keyboard shortcuts',
+    shortcutsHint: 'Use the left and right arrow keys to move through the line.',
+    branchNotFound: 'This gambit has no such move, so the nearest position is shown:',
+    capture: 'capture',
+    check: 'check',
+    checkmate: 'checkmate',
+  },
 }
 
 export default en

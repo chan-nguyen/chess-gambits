@@ -1,0 +1,47 @@
+.move-list__plies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.move-list__item {
+  display: flex;
+}
+
+/*
+ * Monospace (§3), so a column of SAN lines up and `Nf3` cannot be mistaken for prose.
+ * Sized to §5's 24px floor: many of these sit in one row, and the primary touch control
+ * is the navigator above, not this.
+ */
+.move-list__ply {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-size-min);
+  padding-inline: var(--space-2);
+  border: var(--border-width) solid transparent;
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.move-list__ply--start {
+  font-family: var(--font-sans);
+}
+
+.move-list__ply:hover {
+  text-decoration: underline;
+}
+
+/* Weight, border and surface together — never the tint alone (§2). */
+.move-list__ply[aria-current='true'] {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  font-weight: 700;
+}

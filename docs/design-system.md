@@ -66,6 +66,13 @@ reading order never does.
 At every width the board and the next/previous controls are visible together without scrolling. The
 core loop is _look at the position, press next_ — if that needs a scroll, the product has failed.
 
+That rule also settles the one ambiguity in the three regions above. The previous/next controls are
+listed under **move context**, and they are rendered immediately under the board rather than under
+the annotation, at every width — a paragraph of prose between the board and the controls is exactly
+what pushes the controls off a 360px screen. #8 implemented it that way; `e2e/move-navigation.spec.ts`
+measures both at five viewport sizes and in the longest of the three languages, and carries a probe
+that shows the measurement failing.
+
 ---
 
 ## 2. Tokens
