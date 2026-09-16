@@ -121,6 +121,30 @@ const fr: PartialTranslations = {
     showRefutation: 'Afficher la réfutation complète',
     refutation: 'La réfutation prouvée :',
   },
+  outcome: {
+    mateHeading: 'Mat forcé en {{moves}}',
+    mateForced: 'L’adversaire est mat quelle que soit sa défense.',
+    netModelled:
+      'Toutes les défenses légales ont été énumérées et réfutées. Voici la ligne où la défense résiste le plus longtemps :',
+    netImmediate: 'Il n’y a aucune défense à modéliser : le mat tombe immédiatement.',
+
+    assessmentHeading: 'Où mène cette ligne',
+    evaluation: 'Évaluation',
+    plan: 'Plan de milieu de partie',
+
+    unexploredHeading: 'Cette branche n’est pas encore cartographiée',
+    unexploredBody:
+      'La ligne s’arrête ici. Le site n’a encore ni évaluation ni plan pour cette position, et il n’en inventera pas.',
+
+    proved: 'Prouvé par la machine',
+    provedNote: 'Le compte et la ligne ci-dessus ont été générés puis rejoués contre le certificat',
+    howProved: 'Comment un mat est prouvé',
+    judgement: 'Le jugement d’un auteur',
+    judgementNote:
+      'L’évaluation et le plan ci-dessus sont le jugement d’une personne, vérifié par aucune machine :',
+    noClaim: 'Aucune affirmation',
+    noClaimNote: 'Personne n’a évalué cette position ; il n’y a donc rien à attribuer ici.',
+  },
 }
 
 export default fr

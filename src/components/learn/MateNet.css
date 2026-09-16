@@ -1,0 +1,44 @@
+/*
+ * One board, one list, and no second board at any width (docs/design-system.md §3).
+ *
+ * The list wraps beside the board and falls under it only when the column is too narrow for
+ * both, which at 360px it is not: a 96px preview and three plies of SAN fit on one row.
+ */
+
+.mate-net {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.mate-net__note {
+  margin-block: 0;
+}
+
+.mate-net__figure {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+/*
+ * Numbered in the text of each item rather than by a list marker: `7...Ke7` is standard
+ * notation and a browser's own `1. 2. 3.` counting plies beside it would be a second,
+ * disagreeing set of numbers.
+ */
+.mate-net__plies {
+  display: flex;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.mate-net__ply {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  white-space: nowrap;
+}

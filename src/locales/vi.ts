@@ -170,6 +170,39 @@ const vi = {
     showRefutation: 'Hiện toàn bộ đòn chiếu hết',
     refutation: 'Đòn chiếu hết đã được chứng minh:',
   },
+  /**
+   * Một lá cây và điều nó khẳng định (#11). Ba hình dạng của `Outcome`, và **hai loại
+   * nguồn gốc**: một thế chiếu hết do máy chứng minh, và một đánh giá do người viết nhận
+   * định. Hai thứ đó không cùng loại khẳng định và không bao giờ được trông giống nhau
+   * (docs/CONTEXT.md, *Provenance*).
+   *
+   * Không có khoá nào ngoài nhóm chiếu hết được phép chứa chữ "chiếu hết": một thế cờ chỉ
+   * đang thắng thì không phải là chiếu hết (docs/design-system.md §7), và
+   * `outcome-distinction.test.ts` đọc chính ba cuốn từ điển này để kiểm.
+   */
+  outcome: {
+    mateHeading: 'Chiếu hết bắt buộc sau {{moves}} nước',
+    mateForced: 'Đối thủ bị chiếu hết dù chống đỡ cách nào.',
+    netModelled:
+      'Mọi nước chống đỡ hợp lệ đều đã được liệt kê và bác bỏ. Đây là biến đối thủ cầm cự lâu nhất:',
+    netImmediate: 'Không có nước chống đỡ nào để dựng: chiếu hết đến ngay.',
+
+    assessmentHeading: 'Biến này dẫn đến đâu',
+    evaluation: 'Đánh giá',
+    plan: 'Kế hoạch trung cuộc',
+
+    unexploredHeading: 'Nhánh này chưa được dựng',
+    unexploredBody:
+      'Biến dừng ở đây. Trang chưa có đánh giá hay kế hoạch cho thế cờ này, và sẽ không đoán.',
+
+    proved: 'Máy chứng minh',
+    provedNote: 'Số nước và biến ở trên do máy sinh ra rồi kiểm lại bằng chứng chỉ',
+    howProved: 'Cách chứng minh một thế chiếu hết',
+    judgement: 'Nhận định của người viết',
+    judgementNote: 'Đánh giá và kế hoạch ở trên là nhận định của một người, không máy nào kiểm:',
+    noClaim: 'Chưa khẳng định gì',
+    noClaimNote: 'Chưa ai đánh giá thế cờ này, nên ở đây không có gì để quy cho ai.',
+  },
 }
 
 export default vi

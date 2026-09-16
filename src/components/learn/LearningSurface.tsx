@@ -13,6 +13,7 @@ import { AnnotationPanel } from './AnnotationPanel.tsx'
 import { BranchChoices } from './BranchChoices.tsx'
 import { MoveList } from './MoveList.tsx'
 import { MoveNavigator } from './MoveNavigator.tsx'
+import { OutcomeCard } from './OutcomeCard.tsx'
 import { PlanChoices } from './PlanChoices.tsx'
 import { ShortcutToggle } from './ShortcutToggle.tsx'
 import { announcementOf, localiseAnnotation } from './annotation.ts'
@@ -272,12 +273,28 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
         )}
 
         {/*
-         * #11's slot. A leaf's outcome — `MateOutcome`, `AssessmentOutcome` or the "not yet
-         * mapped" state — and a `MateNet`'s shared board and SAN list belong here, between
-         * the choices and the move list. Nothing renders it yet: `node.outcome` is read by
-         * nothing in this file, and `branchChoices` already refuses to turn a mate net into
-         * preview boards, so #11 adds a component and a condition and changes nothing else.
+         * What this line ends in (#11), between the choices and the move list — the slot #9
+         * left, filled by a condition and a component and nothing else.
+         *
+         * `OutcomeCard` renders no element of its own: it switches to `MateOutcome`,
+         * `AssessmentOutcome` or `UnexploredOutcome`, which share no shell. A proved forced
+         * mate and an author's judgement are different kinds of claim, and a panel that drew
+         * them as one thing in two colours would make the opinion look proved rather than
+         * making the proof mean anything (docs/CONTEXT.md, *Provenance*).
+         *
+         * The position goes down with it because the mate arm plays its proved line *from*
+         * this leaf, and `MateNet` anchors the SAN list against one board: the wire carries
+         * the longest line of the net and never the net itself, so that is the only board
+         * there is to draw.
          */}
+        {node.outcome !== undefined && (
+          <OutcomeCard
+            outcome={node.outcome}
+            fen={node.fen}
+            orientation={entry.side}
+            locale={locale}
+          />
+        )}
 
         <MoveList steps={steps} />
         <ShortcutToggle

@@ -11,7 +11,17 @@ import en from '../../locales/en.ts'
 import fr from '../../locales/fr.ts'
 import viCatalogue from '../../locales/vi.ts'
 import { GambitRoute } from '../../routes/gambit.tsx'
-import { EVANS_ENTRY, MAIN_LINE, MAPPED_ENTRY, PLAN_LINE, WIDE_ENTRY } from './learn-fixtures.ts'
+import {
+  EVANS_ENTRY,
+  MAIN_LINE,
+  MAPPED_ENTRY,
+  OUTCOMES_ENTRY,
+  OUTCOME_ASSESSMENT_LINE,
+  OUTCOME_MATE_LINE,
+  OUTCOME_UNEXPLORED_LINE,
+  PLAN_LINE,
+  WIDE_ENTRY,
+} from './learn-fixtures.ts'
 import { shortcutStorageKey } from './shortcuts.ts'
 
 /**
@@ -800,5 +810,57 @@ describe('preview boards are out of the way (AC 9)', () => {
     const link = choice(/Ba5/)
     link.focus()
     expect(link).toHaveFocus()
+  })
+})
+
+/**
+ * Where a line ends (#11), wired into the surface.
+ *
+ * `OutcomeCard.test.tsx` holds the three components; what is asserted here is the one
+ * condition this file owns — a leaf's outcome is drawn, and a position that is still in the
+ * middle of a line draws nothing. A card that appeared mid-line would be telling a learner
+ * that the position they are standing in is where the line ends.
+ */
+describe('what the line ends in (#11)', () => {
+  const ENDINGS = [
+    { what: 'a proved mate', line: OUTCOME_MATE_LINE, card: '.mate-outcome' },
+    { what: 'an assessed position', line: OUTCOME_ASSESSMENT_LINE, card: '.assessment-outcome' },
+    { what: 'an unmapped branch', line: OUTCOME_UNEXPLORED_LINE, card: '.unexplored-outcome' },
+  ]
+
+  it.each(ENDINGS)('draws $what at the leaf that carries it', async ({ line, card }) => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line })
+
+    expect(document.querySelector(card)).not.toBeNull()
+    // And only that one: the three cards never appear together.
+    expect(document.querySelectorAll('section[class$="-outcome"]')).toHaveLength(1)
+  })
+
+  it('draws nothing at a position the line runs on from', async () => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE.slice(0, 2) })
+
+    expect(document.querySelectorAll('section[class$="-outcome"]')).toHaveLength(0)
+    expect(document.querySelector('.provenance')).toBeNull()
+  })
+
+  it('draws it below the replies and above the move list, where §1 puts it', async () => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+
+    const context = document.querySelector('.learning-surface__context')
+    const order = [...(context?.children ?? [])].map((child) => child.className)
+    expect(order.findIndex((name) => name.includes('mate-outcome'))).toBeLessThan(
+      order.findIndex((name) => name.includes('move-list')),
+    )
+  })
+
+  it('plays the proved line from the leaf, not from wherever the board happens to be', async () => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+
+    // 6...Bxd1 was the last ply played, so the proof runs 7.Bxf7+ onwards.
+    expect([...document.querySelectorAll('.mate-net__ply')].map((li) => li.textContent)).toEqual([
+      '7.Bxf7+',
+      '7...Ke7',
+      '8.Nd5#',
+    ])
   })
 })
