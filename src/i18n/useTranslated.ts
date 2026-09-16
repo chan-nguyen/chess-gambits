@@ -25,7 +25,24 @@ export type TranslatedText = {
   readonly untranslated: boolean
 }
 
-export const useTranslated = (): ((key: TranslationKey) => TranslatedText) => {
+/**
+ * Values for a string with holes in it — `{{learned}} of {{total}} branches learned`.
+ *
+ * Added by #14, which needed the first one. Interpolation rather than three strings glued
+ * together, because word order is not a constant: Vietnamese and English put the total in
+ * the middle of that sentence and French puts it at the end, and a sentence assembled from
+ * fragments can only ever be right in the language it was assembled in.
+ *
+ * Handed to i18next as `replace` rather than spread into the options, so a value named
+ * `count`, `ns` or `context` stays a value instead of becoming an option that happens to
+ * share its name.
+ */
+export type TranslationValues = Readonly<Record<string, string | number>>
+
+export const useTranslated = (): ((
+  key: TranslationKey,
+  values?: TranslationValues,
+) => TranslatedText) => {
   const { t, i18n } = useTranslation()
 
   /**
@@ -40,8 +57,8 @@ export const useTranslated = (): ((key: TranslationKey) => TranslatedText) => {
    */
   const activeBundleMissing = !i18n.hasResourceBundle(i18n.language, translationNamespace)
 
-  return (key) => {
-    const details = t(key, { returnDetails: true })
+  return (key, values) => {
+    const details = t(key, { returnDetails: true, replace: values })
     const used = isLocale(details.usedLng) ? details.usedLng : defaultLocale
 
     return {

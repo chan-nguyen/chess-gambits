@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router'
 import './gambit.css'
 import { LearningSurface, PendingPosition } from '../components/learn/LearningSurface.tsx'
+import { GambitProgress } from '../components/progress/GambitProgress.tsx'
 import { ContentLoadError } from '../components/content/ContentLoadError.tsx'
 import type { CompiledEntry } from '../lib/content-types.ts'
 import { loadEntry, type EntryLoad, type EntryLoadFailure } from '../lib/content.ts'
@@ -112,7 +113,21 @@ export const GambitRoute = () => {
         />
       )}
 
-      {state.status === 'loaded' && <LearningSurface entry={state.entry} requested={plies} />}
+      {state.status === 'loaded' && (
+        <>
+          <LearningSurface entry={state.entry} requested={plies} />
+          {/*
+           * #14's mount point, and it is here rather than inside the surface for two
+           * reasons. The surface belongs to #9 and is being changed in parallel, and this
+           * needs nothing from it: the entry and the plies are the same two values the
+           * surface receives, and `GambitProgress` resolves the path itself. It sits
+           * **after** the surface because §1 requires the board and the previous/next
+           * controls to be visible together without scrolling at every width, and anything
+           * inserted above them is what pushes them apart on a 360px phone.
+           */}
+          <GambitProgress entry={state.entry} requested={plies} />
+        </>
+      )}
     </main>
   )
 }

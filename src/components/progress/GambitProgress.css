@@ -1,0 +1,40 @@
+.gambit-progress {
+  margin-block-start: var(--space-5);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+/* Set like an `h3` because it reads as one; it is a `<p>` for the reason the component gives. */
+.gambit-progress__heading {
+  margin-block: 0 var(--space-2);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+}
+
+.gambit-progress__count {
+  margin-block: 0 var(--space-3);
+  font-weight: 600;
+}
+
+.gambit-progress__empty,
+.gambit-progress__hint {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/*
+ * Progress that has been thrown away is worth more room than a muted line: it is the one
+ * thing on this panel the learner cannot get back. The rule on the inline start is a second,
+ * non-colour signal — the sentence itself says what happened, so nothing here is carried by
+ * hue alone.
+ */
+.gambit-progress__notice {
+  margin-block: 0 var(--space-3);
+  padding-inline-start: var(--space-3);
+  border-inline-start: var(--focus-ring-width) solid var(--color-border-strong);
+  font-size: var(--text-sm);
+}

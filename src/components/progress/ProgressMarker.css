@@ -1,0 +1,55 @@
+.progress-marker {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2) var(--space-3);
+}
+
+/* §5's touch floor. Modelled on `ThemeControl.css`: this project has one button shape. */
+.progress-marker__toggle {
+  min-block-size: var(--target-size-touch);
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease;
+}
+
+.progress-marker__toggle:hover {
+  background-color: var(--color-surface-raised);
+}
+
+/* Border, weight and colour together, so "learned" is not a hue difference. */
+.progress-marker__toggle[aria-pressed='true'] {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/*
+ * Empty for most of its life and it must take no room then: it is present from the first
+ * render so that filling it is announced, which is a fact about the accessibility tree and
+ * must not be a gap in the layout.
+ */
+.progress-marker__undo {
+  flex: 1 1 auto;
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.progress-marker__undo-action {
+  min-block-size: var(--target-size-min);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--color-accent);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-decoration: underline;
+  cursor: pointer;
+}

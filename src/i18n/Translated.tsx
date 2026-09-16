@@ -1,10 +1,12 @@
 import { UntranslatedNotice } from './UntranslatedNotice.tsx'
 import type { TranslationKey } from './translations.ts'
-import { useTranslated } from './useTranslated.ts'
+import { useTranslated, type TranslationValues } from './useTranslated.ts'
 
 type TranslatedProps = {
   /** A key from the Vietnamese catalogue. A typo here is a compile error. */
   readonly id: TranslationKey
+  /** Values for a string with `{{holes}}` in it. See `TranslationValues`. */
+  readonly values?: TranslationValues
 }
 
 /**
@@ -19,8 +21,8 @@ type TranslatedProps = {
  * marker, and `lang` on the element would be inherited by children that are translated, so
  * those strings are marked by the visible text around them instead.
  */
-export const Translated = ({ id }: TranslatedProps) => {
-  const translated = useTranslated()(id)
+export const Translated = ({ id, values }: TranslatedProps) => {
+  const translated = useTranslated()(id, values)
 
   if (!translated.untranslated) return <>{translated.text}</>
 
