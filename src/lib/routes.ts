@@ -22,15 +22,22 @@ export const gambitIdParam = 'id'
 /** Locale-relative paths of the routes that exist without any content. */
 const staticRoutePaths: readonly string[] = ['', routeSegments.catalogue, routeSegments.about]
 
-/**
- * The gambit ids that get their own shell.
+/*
+ * Module prose rather than a doc comment, because it documents the *absence* of a symbol
+ * and a `/**` block with no declaration under it is shown for whatever happens to follow.
  *
- * Empty until #12 compiles the catalogue. This constant is the seam: that ticket reads
- * the compiled catalogue and passes the ids to `shellPaths`, and nothing else in this
- * module changes. Emitting a shell per gambit with no code change is requirement F11
- * working as intended.
+ * The gambit ids that get their own shell arrive as an argument to `shellPaths`, and they
+ * are read off the built catalogue by `scripts/generate-shells.ts`.
+ *
+ * This used to be an empty constant waiting for #12 to fill it. A constant was the wrong
+ * seam: 700 ids are generated data, so a committed copy of them would be a second source
+ * of truth for which URLs exist, kept in step by hand and wrong the first time it was not.
+ * The list the browser downloads is the list that gets shells, which is the only version
+ * of that rule that cannot drift.
+ *
+ * Nothing in the browser needs the list — the router matches `:id` — so it is not in the
+ * bundle at all.
  */
-export const publishedGambitIds: readonly string[] = []
 
 /** A site-relative path, without the base path. `routePath('vi')` is the locale home. */
 export const routePath = (locale: string, ...segments: readonly string[]): string =>

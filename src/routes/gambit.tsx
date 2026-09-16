@@ -1,13 +1,17 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router'
 import './gambit.css'
+import { NotTaughtYet } from '../components/catalogue/EmptyTree.tsx'
+import { useCatalogue } from '../components/catalogue/useCatalogue.ts'
 import { LearningSurface, PendingPosition } from '../components/learn/LearningSurface.tsx'
 import { GambitTree } from '../components/learn/GambitTree.tsx'
 import { GambitProgress } from '../components/progress/GambitProgress.tsx'
 import { ContentLoadError } from '../components/content/ContentLoadError.tsx'
+import { findEntry, fullName } from '../lib/catalogue.ts'
 import type { CompiledEntry } from '../lib/content-types.ts'
 import { loadEntry, type EntryLoad, type EntryLoadFailure } from '../lib/content.ts'
 import { describeLineProblem, lineParam, parseLine } from '../lib/line.ts'
+import { defaultLocale, isLocale } from '../lib/locale.ts'
 
 /**
  * The learning surface (#8): a position, its annotation, and the controls that step
@@ -89,13 +93,38 @@ const useEntry = (
 }
 
 export const GambitRoute = () => {
-  const { id } = useParams()
+  const { id, locale } = useParams()
+  const safeLocale = locale !== undefined && isLocale(locale) ? locale : defaultLocale
   const [searchParams] = useSearchParams()
   const raw = searchParams.get(lineParam) ?? ''
   const { plies, problem } = useMemo(() => parseLine(raw), [raw])
   const { state, retry } = useEntry(id)
 
-  const name = state.status === 'loaded' ? state.entry.name : (id ?? '')
+  /**
+   * **A missing content file is not an error here** (requirement F15, #13's AC 8). Six
+   * hundred and ninety-nine of this site's seven hundred entries are listed and have no
+   * tree yet, so a 404 from the content directory is the *ordinary* case and the page it
+   * deserves is the one that shows what the catalogue does know.
+   *
+   * The catalogue is fetched only in that case. It is not on the learning surface's
+   * critical path (§6) and a taught gambit must not pay for a lookup it never needs.
+   * Every other failure — offline, a damaged file, an error status — is still a failure
+   * and still reaches `ContentLoadError`.
+   */
+  const notPublished = state.status === 'failed' && state.failure.reason === 'missing'
+  const { state: catalogueState, retry: retryCatalogue } = useCatalogue(safeLocale, notPublished)
+
+  const listed =
+    catalogueState.status === 'loaded' && id !== undefined
+      ? findEntry(catalogueState.catalogue, id)
+      : null
+
+  const name =
+    state.status === 'loaded'
+      ? state.entry.name
+      : listed !== null
+        ? fullName(listed.family, listed.entry)
+        : (id ?? '')
 
   return (
     <main className="gambit">
@@ -105,14 +134,22 @@ export const GambitRoute = () => {
 
       {state.status === 'loading' && <PendingPosition />}
 
-      {state.status === 'failed' && (
-        <ContentLoadError
-          what={name}
-          failure={state.failure}
-          onRetry={retry}
-          retrying={state.retrying}
-        />
-      )}
+      {state.status === 'failed' &&
+        (notPublished ? (
+          <NotTaughtYet
+            locale={safeLocale}
+            id={id ?? ''}
+            state={catalogueState}
+            onRetry={retryCatalogue}
+          />
+        ) : (
+          <ContentLoadError
+            what={name}
+            failure={state.failure}
+            onRetry={retry}
+            retrying={state.retrying}
+          />
+        ))}
 
       {state.status === 'loaded' && (
         <>

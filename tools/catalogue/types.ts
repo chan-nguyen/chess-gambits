@@ -41,6 +41,8 @@ export type CatalogueRecord = {
   readonly soundness: SoundnessValue
   readonly tier: Tier
   readonly definingLine: readonly string[]
+  /** Countable branches in the compiled tree. See `CatalogueEntryPayload.branches`. */
+  readonly branches: number
 }
 
 /**
@@ -64,6 +66,24 @@ export type CatalogueEntryPayload = {
   readonly tier: Tier
   /** Space-joined SAN, from the standard start position. */
   readonly line: string
+  /**
+   * How many branches this entry has to learn, so a catalogue card can say "3 of 12"
+   * without downloading a tree.
+   *
+   * The catalogue downloads **no** entry tree — that is why 700 entries cost 16.7KB
+   * instead of megabytes, and `e2e/content-loading.spec.ts` asserts it — so the only
+   * honest way for a card to show a denominator is for the build to put one here.
+   *
+   * It is counted by `countableBranches` in `src/components/progress/branches.ts`, the
+   * same function the gambit page uses, imported rather than reimplemented. A card and a
+   * page disagreeing about how much there is to learn would be worse than neither showing
+   * a number, and the only way to guarantee they agree is for there to be one rule.
+   *
+   * Zero is the honest answer for an entry with no authored tree, which is every entry
+   * today: a Tier 0 entry's whole tree is one `unexplored` root and there is nothing in it
+   * to have learned.
+   */
+  readonly branches: number
 }
 
 export type CatalogueFamilyPayload = {

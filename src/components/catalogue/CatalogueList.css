@@ -1,0 +1,90 @@
+.catalogue-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+.catalogue-family {
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+/* The heading exists for the outline; the button inside it carries the type scale. */
+.catalogue-family__heading {
+  margin: 0;
+  font-size: var(--text-base);
+}
+
+.catalogue-family__toggle {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  inline-size: 100%;
+  min-block-size: var(--target-size-touch);
+  padding: var(--space-3);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: none;
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  text-align: start;
+}
+
+/*
+ * The open/closed signal is a triangle that rotates, plus `aria-expanded`, plus the panel
+ * itself appearing. Not a colour, and not a hue change on the row (§2). Drawn as a text
+ * glyph rather than an icon file: it costs no request, it inherits the text colour, and it
+ * is hidden from assistive technology because `aria-expanded` already says this.
+ */
+.catalogue-family__toggle::after {
+  content: '▸';
+  color: var(--color-text-muted);
+  transition: rotate var(--duration-fast) ease;
+}
+
+.catalogue-family__toggle[aria-expanded='true']::after {
+  rotate: 90deg;
+}
+
+.catalogue-family__count {
+  margin-inline-start: auto;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+/*
+ * `display: grid` beats the user agent's `[hidden] { display: none }` on specificity, so
+ * the closed state has to be restated here. Without this line a "closed" family renders
+ * its cards in full — the attribute would be set, and nothing would act on it.
+ */
+.catalogue-family__entries[hidden] {
+  display: none;
+}
+
+.catalogue-family__entries {
+  display: grid;
+  gap: var(--space-3);
+  margin-block: 0;
+  padding: 0 var(--space-3) var(--space-3);
+  list-style: none;
+}
+
+/*
+ * One column on a phone, two from the first breakpoint. `minmax(0, 1fr)` rather than
+ * `1fr`: a long unbroken gambit name would otherwise set the column's minimum width and
+ * push the grid wider than the page, which is a horizontal scrollbar at 360px.
+ */
+@media (min-width: 768px) {
+  .catalogue-family__entries {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -18,7 +18,7 @@ export default defineConfig({
     // Both roots must be listed: `src/` is the application, `tools/` is the build-time
     // content gate. Naming only `src/` silently drops the gate's own tests, which is how
     // a suite reports green while the checks that matter most are not running at all.
-    include: ['src/**/*.test.{ts,tsx}', 'tools/**/*.test.ts'],
+    include: ['src/**/*.test.{ts,tsx}', 'tools/**/*.test.{ts,tsx}'],
     /**
      * Vitest's 5s default assumes tests do not compute anything. Several here do real work:
      * proving a mate *absent* is exhaustive search and costs seconds by nature (ADR-0005), and

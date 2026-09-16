@@ -39,6 +39,17 @@ export type CatalogueEntry = {
   readonly tier: Tier
   /** Space-joined SAN from the standard start position. */
   readonly line: string
+  /**
+   * How many branches this entry has to learn, baked in by the build.
+   *
+   * The catalogue downloads no tree, so a card cannot count them itself. The build counts
+   * them with `countableBranches` — the same function `GambitProgress` uses — so the card
+   * and the page cannot disagree about the denominator (`tools/catalogue/types.ts`).
+   *
+   * Zero is a real answer and today it is every entry's: a Tier 0 entry's whole tree is
+   * one `unexplored` root, and an `unexplored` leaf is not a branch.
+   */
+  readonly branches: number
 }
 
 export type CatalogueFamily = {
@@ -70,6 +81,47 @@ export const catalogueUrl = (locale: Locale): string =>
 /** What a learner reads, and what a name filter matches against. */
 export const fullName = (family: CatalogueFamily, entry: CatalogueEntry): string =>
   entry.variation === '' ? family.name : `${family.name}: ${entry.variation}`
+
+/** A family and one of its entries, which is what a lookup by id has to answer with. */
+export type CatalogueLookup = {
+  readonly family: CatalogueFamily
+  readonly entry: CatalogueEntry
+}
+
+/**
+ * The entry at an id, or null.
+ *
+ * The gambit page asks this after a content file turns out not to exist, which is how it
+ * tells "listed but not taught yet" — the state requirement F15 is about — from "no such
+ * gambit". Both arrive as the same 404 from the content directory, and only the catalogue
+ * can tell them apart.
+ *
+ * The family comes back too, because a name is a family and a variation folded together
+ * and an entry alone does not carry one (`fullName`).
+ */
+export const findEntry = (catalogue: Catalogue, id: string): CatalogueLookup | null => {
+  for (const family of catalogue.families) {
+    const entry = family.entries.find((candidate) => candidate.id === id)
+    if (entry !== undefined) return { family, entry }
+  }
+  return null
+}
+
+/**
+ * The first entry taught in depth, in catalogue order, or null when there is none.
+ *
+ * The home page routes to a taught entry and never to the raw catalogue
+ * (docs/design-system.md, *The catalogue defaults to depth, not to breadth*). Today the
+ * answer is null on every locale, and that is why the home page has a designed state for
+ * it rather than a link that would point at nothing.
+ */
+export const firstTaught = (catalogue: Catalogue): CatalogueLookup | null => {
+  for (const family of catalogue.families) {
+    const entry = family.entries.find((candidate) => candidate.tier === 'taught')
+    if (entry !== undefined) return { family, entry }
+  }
+  return null
+}
 
 export type CatalogueLoadFailure =
   /** The request never completed: no connection, or the request was blocked. */
@@ -106,6 +158,15 @@ const isCategory = oneOf<Category>(['gambit', 'trap'])
 const isSoundnessValue = oneOf<SoundnessValue>(['sound', 'dubious', 'unsound'])
 const isTier = oneOf<Tier>(['listed', 'mapped', 'taught'])
 
+/**
+ * A count, so a negative or fractional one is not a count. Checked rather than trusted for
+ * the same reason as every other field here: the thing that produces a number the page
+ * would divide by is our build, and the thing that answers the request is a static host
+ * that can also answer with a truncated file or a stale one.
+ */
+const isBranchCount = (value: unknown): value is number =>
+  isNumber(value) && Number.isInteger(value) && value >= 0
+
 const isEntry = (value: unknown): value is CatalogueEntry =>
   isRecord(value) &&
   isString(value.id) &&
@@ -115,7 +176,8 @@ const isEntry = (value: unknown): value is CatalogueEntry =>
   isSide(value.side) &&
   isSoundnessValue(value.soundness) &&
   isTier(value.tier) &&
-  isString(value.line)
+  isString(value.line) &&
+  isBranchCount(value.branches)
 
 const isFamily = (value: unknown): value is CatalogueFamily =>
   isRecord(value) && isString(value.id) && isString(value.name) && arrayOf(isEntry)(value.entries)

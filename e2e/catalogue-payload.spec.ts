@@ -36,7 +36,16 @@ test('no route downloads the catalogue it was not asked for', async ({ page }) =
     if (request.url().includes('/catalogue/')) seen.push(request.url())
   })
 
-  for (const route of ['vi/', 'vi/about', 'fr/about']) {
+  /**
+   * The home page is **no longer on this list**, and that is a deliberate narrowing rather
+   * than a gate bent to fit a feature. #13's AC 7 requires the home page to route to a
+   * taught entry, and which entries are taught is generated data: the only alternative to
+   * reading it from the catalogue is a copy of it committed somewhere else, kept in step by
+   * hand. The fetch is not render-blocking — the page's own copy paints from the shell — so
+   * what this test protected has moved rather than gone, and it is asserted below: a
+   * visitor still downloads one locale's catalogue and never three.
+   */
+  for (const route of ['vi/about', 'fr/about']) {
     await page.goto(route)
     await page.waitForLoadState('networkidle')
   }
@@ -46,6 +55,32 @@ test('no route downloads the catalogue it was not asked for', async ({ page }) =
   // The recorder has to be able to catch one, or the assertion above is a tautology.
   await page.evaluate((url) => fetch(url), catalogueUrl('vi'))
   await expect.poll(() => seen.length).toBe(1)
+})
+
+test('a route that needs the catalogue downloads one locale of it, never three', async ({
+  page,
+}) => {
+  /**
+   * The chunking guarantee, which is what the budget above depends on: the payloads are
+   * built per locale precisely so a visitor pays for one language of names
+   * (docs/design-system.md, *Catalogue chunking*). A page that fetched all three would sit
+   * inside the per-file budget and be three times over it in practice.
+   */
+  for (const route of ['vi/', 'vi/gambits']) {
+    const seen: string[] = []
+    page.on('request', (request) => {
+      if (request.url().includes('/catalogue/')) seen.push(request.url())
+    })
+
+    await page.goto(route)
+    await page.waitForLoadState('networkidle')
+
+    expect(seen.length, `${route} requested ${seen.join(', ')}`).toBeGreaterThan(0)
+    expect(new Set(seen), `${route} requested more than one catalogue`).toHaveProperty('size', 1)
+    expect(seen[0]).toContain('catalogue.vi.json')
+
+    page.removeAllListeners('request')
+  }
 })
 
 test('the catalogue payload stays inside its budget over the whole file', async ({ page }) => {

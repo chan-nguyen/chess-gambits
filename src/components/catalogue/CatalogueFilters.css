@@ -1,0 +1,108 @@
+.catalogue-filters {
+  margin-block-end: var(--space-5);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+/*
+ * An `h2` set down to `--text-lg`. It is a real heading — it is what makes the page's
+ * outline readable and what names the search landmark — but it labels a row of controls
+ * rather than a section of prose, and at `--text-2xl` it would outweigh them.
+ */
+.catalogue-filters__heading {
+  margin-block: 0 var(--space-3);
+  font-size: var(--text-lg);
+}
+
+/*
+ * One column below 768px and a wrapping row above it, so the four controls never sit at a
+ * width that truncates their labels. The query field is allowed to take the slack: it is
+ * the one whose content varies in length.
+ */
+.catalogue-filters__fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.catalogue-filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-block: 0;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.catalogue-filters__field--query {
+  flex: 1 1 100%;
+}
+
+@media (min-width: 768px) {
+  .catalogue-filters__field--query {
+    flex: 1 1 var(--layout-max-inline-size);
+  }
+}
+
+.catalogue-filters__input,
+.catalogue-filters__select {
+  min-block-size: var(--target-size-touch);
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-base);
+  font-weight: 400;
+}
+
+.catalogue-filters__hint {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 400;
+}
+
+.catalogue-filters__depth {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin: var(--space-4) 0 0;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.catalogue-filters__depth > legend {
+  padding-inline: var(--space-1);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+/*
+ * The whole label is the target, which is what gets a radio to §5's 44px touch floor
+ * without resizing the control itself — a radio scaled up is a radio that no longer looks
+ * like one.
+ */
+.catalogue-filters__radio {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  min-block-size: var(--target-size-touch);
+  font-size: var(--text-sm);
+}
+
+.catalogue-filters__clear {
+  min-block-size: var(--target-size-touch);
+  margin-block-start: var(--space-4);
+  padding-inline: var(--space-4);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
