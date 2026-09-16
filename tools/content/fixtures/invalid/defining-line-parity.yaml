@@ -1,0 +1,29 @@
+# Adversarial fixture. The defining line ends on Black's ply while the learner plays White,
+# so the root is a *learner* node — which docs/CONTEXT.md invariant 5 forbids.
+#
+# This is the Damiano, the invariant's own worked example, written the wrong way round. The
+# losing move is Black's `2...f6`, and here it sits inside the defining line, where no node
+# can carry a `replyQuality`. That makes the rest of invariant 5 — a forced mate is reachable
+# only through a reply marked `mistake` or `blunder` — unsatisfiable for exactly the trap the
+# entry exists to teach. The defining line must be `1.e4 e5 2.Nf3`, with `2...f6` modelled
+# as a reply alongside `2...Nc6`.
+id: fixture-defining-line-parity
+name: 'Adversarial: a defining line that ends on the opponent'
+eco: C40
+category: trap
+side: white
+definingLine: [e4, e5, Nf3, f6]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-16'
+  basis:
+    by: fixture-author
+    at: '2026-09-16'
+judgement:
+  by: fixture-author
+  at: '2026-09-16'
+tree:
+  annotation:
+    vi: Gốc cây này là nút của người học, nên nước thua của Đen không thể mang nhãn chất lượng.
+  outcome:
+    type: unexplored

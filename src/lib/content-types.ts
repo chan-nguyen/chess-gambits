@@ -31,8 +31,15 @@ export type CompiledAnnotation = {
   readonly fr?: string
 }
 
+/** A machine proof, naming the certificate a reader can fetch and replay (ADR-0005). */
+export type CompiledProved = {
+  readonly basis: 'proved'
+  readonly by: 'certificate'
+  readonly certificate: string
+}
+
 export type CompiledProvenance =
-  | { readonly basis: 'proved'; readonly by: 'certificate'; readonly certificate: string }
+  | CompiledProved
   | {
       readonly basis: 'judgement'
       readonly by: string
@@ -46,6 +53,12 @@ export type CompiledOutcome =
       readonly inMoves: number
       readonly sequence: readonly string[]
       readonly provedBy: 'search' | 'modelled-net'
+      /**
+       * Narrow on purpose: a mate that arrived over the wire carrying a *judgement* is not a
+       * mate this project will render, so the type cannot express one. This is what lets the
+       * UI show a proof and an opinion differently without asking which it has.
+       */
+      readonly basis: CompiledProved
     }
   | {
       readonly kind: 'position'

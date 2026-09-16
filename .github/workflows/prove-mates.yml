@@ -1,0 +1,57 @@
+name: Prove mates
+
+# ADR-0005, step 2. The oracle runs here and nowhere else.
+#
+# Finding a mate is expensive and may take minutes; proving one absent is three orders of
+# magnitude dearer again. Neither belongs on a pull request, so this job is scheduled and
+# `npm run verify:mates` — which needs no engine and costs milliseconds — is what gates a
+# merge. If this job is slow, or Stockfish is unavailable, or a claim cannot be proved, no
+# merge is blocked and nothing is published: the content gate goes on refusing the claim.
+on:
+  schedule:
+    # Weekly, early Monday UTC. Opening theory does not move faster than that.
+    - cron: '17 4 * * 1'
+  workflow_dispatch:
+
+# Read-only on purpose. This job reports drift; it does not commit certificates, because a
+# bot with write access to the thing that proves the site's claims is a larger risk than a
+# maintainer running one command.
+permissions:
+  contents: read
+
+concurrency:
+  group: prove-mates
+  cancel-in-progress: false
+
+jobs:
+  prove:
+    name: prove
+    # Standard runner only: larger runners are billed even on a public repository.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install from the lockfile
+        run: npm ci
+
+      # Installed on the runner, never shipped. GPL-3.0 binds conveying; speaking UCI to a
+      # binary on a runner is use, and no Stockfish code enters the bundle.
+      - name: Install the oracle
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends stockfish
+
+      - name: Regenerate every certificate
+        run: npm run prove:mates -- content tools/mate/fixtures/valid
+
+      # The generator is deterministic, so a changed file means the content changed under a
+      # proof and nobody regenerated it. That is a real finding and it is reported as one.
+      - name: Report drift
+        run: |
+          if ! git diff --exit-code --stat; then
+            echo "::error::A committed certificate no longer matches what the generator produces."
+            echo "Run 'npm run prove:mates' locally, review the diff, and commit it."
+            exit 1
+          fi

@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import manifestSource from '../../package.json?raw'
 import compiledEntry from '../../tools/content/fixtures/compiled/taught-entry.json?raw'
+import provedMate from '../../tools/content/fixtures/compiled/proved-mate.json?raw'
 import { entryUrl, isCompiledEntry, isGambitId, loadEntry } from './content'
 
 /**
@@ -89,7 +90,7 @@ describe('a successful load', () => {
     expect(result.entry.id).toBe('fixture-taught-entry')
     expect(result.entry.tier).toBe('taught')
     expect(result.entry.tree.fen).toContain('/')
-    expect(result.entry.tree.children?.[0]?.kind).toBe('opponent')
+    expect(result.entry.tree.children?.[0]?.kind).toBe('learner')
   })
 })
 
@@ -251,5 +252,68 @@ describe('the content pipeline never reaches the browser (ADR-0004)', () => {
       .map(([path]) => path)
 
     expect(offenders).toStrictEqual([])
+  })
+})
+
+/**
+ * A proved mate, as the browser receives it (ADR-0005).
+ *
+ * The payload below is byte for byte what the compiler emits from a content file whose leaf
+ * claimed a trap and whose certificate verified — `tools/content/mate-claims.test.ts` pins
+ * it. What matters here is the other end of that pipe: the guard must accept a mate that
+ * names the certificate proving it, and reject one that does not, because a mate with
+ * nothing to point at is exactly the assertion this project refuses to make.
+ */
+describe('a proved mate over the wire', () => {
+  const PROVED: unknown = JSON.parse(provedMate)
+
+  const mateOutcome = (entry: unknown): Record<string, unknown> => {
+    const parsed: unknown = JSON.parse(JSON.stringify(entry))
+    if (!isCompiledEntry(parsed)) throw new Error('the fixture is not a compiled entry')
+    const outcome = parsed.tree.children?.[0]?.outcome
+    if (outcome?.kind !== 'mate') throw new Error('the fixture no longer carries a mate')
+    return { ...outcome }
+  }
+
+  const withOutcome = (outcome: unknown): unknown => {
+    const parsed: unknown = JSON.parse(JSON.stringify(PROVED))
+    if (!isCompiledEntry(parsed)) throw new Error('the fixture is not a compiled entry')
+    const [child] = parsed.tree.children ?? []
+    return { ...parsed, tree: { ...parsed.tree, children: [{ ...child, outcome }] } }
+  }
+
+  it('arrives with its move count, its line and the certificate that proves it', async () => {
+    respond(PROVED)
+
+    const result = await loadEntry('fixture-legal-trap')
+    if (!result.ok) throw new Error(`expected a load, got ${result.failure.reason}`)
+
+    const outcome = result.entry.tree.children?.[0]?.outcome
+    expect(outcome).toEqual({
+      kind: 'mate',
+      inMoves: 2,
+      sequence: ['Bxf7+', 'Ke7', 'Nd5#'],
+      provedBy: 'modelled-net',
+      basis: {
+        basis: 'proved',
+        by: 'certificate',
+        certificate: 'fixture-legal-trap.Bxd1.mate.json',
+      },
+    })
+  })
+
+  it('is refused when the mate names no certificate at all', () => {
+    const { basis: _basis, ...unproved } = mateOutcome(PROVED)
+
+    expect(isCompiledEntry(withOutcome(unproved))).toBe(false)
+  })
+
+  it('is refused when the mate carries a judgement where a proof belongs', () => {
+    const opinion = {
+      ...mateOutcome(PROVED),
+      basis: { basis: 'judgement', by: 'someone', at: '2026-09-16' },
+    }
+
+    expect(isCompiledEntry(withOutcome(opinion))).toBe(false)
   })
 })

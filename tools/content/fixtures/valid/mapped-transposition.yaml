@@ -1,12 +1,16 @@
 # Fixture, not published content. A learner node with two prescribed plans that reach the
 # same position, so the second one points at the first with `transposesTo` instead of
 # duplicating the subtree. Vietnamese only, so it derives `mapped` rather than `taught`.
+#
+# The defining line ends with White's 5.Qxe5+, the learner's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). 5...Kf7 is Black's only legal reply and is
+# modelled as one; the transposition path is measured from the entry root and moved with it.
 id: fixture-mapped-transposition
 name: 'Fixture: two move orders that transpose'
 eco: C40
 category: trap
 side: white
-definingLine: [e4, e5, Nf3, f6, Nxe5, fxe5, Qh5+, Ke7, Qxe5+, Kf7]
+definingLine: [e4, e5, Nf3, f6, Nxe5, fxe5, Qh5+, Ke7, Qxe5+]
 soundness:
   value: unsound
   reviewedAt: '2026-09-16'
@@ -18,66 +22,72 @@ judgement:
   at: '2026-09-16'
 tree:
   annotation:
-    vi: Trắng có hai cách chiếu dẫn tới cùng một thế cờ sau khi vua Đen lên f6.
+    vi: Vua Đen bị chiếu ở e7 và chỉ có một nước đi hợp lệ duy nhất.
   children:
-    - ply: Qe8+
+    - ply: Kf7
+      replyQuality: best
+      frequency: common
       annotation:
-        vi: Chiếu ở e8 và thí hậu ngay lập tức.
-      dismissed:
-        - ply: Qxe8
-          reason: Takes the queen; a plain material win, outside what this fixture models.
-        - ply: Kxe8
-          reason: Takes the queen with the king; same material outcome as Qxe8.
+        vi: Trắng có hai cách chiếu dẫn tới cùng một thế cờ sau khi vua Đen lên f6.
       children:
-        - ply: Kf6
-          replyQuality: blunder
-          frequency: rare
+        - ply: Qe8+
           annotation:
-            vi: Từ chối ăn hậu và đi lên f6.
+            vi: Chiếu ở e8 và thí hậu ngay lập tức.
+          dismissed:
+            - ply: Qxe8
+              reason: Takes the queen; a plain material win, outside what this fixture models.
+            - ply: Kxe8
+              reason: Takes the queen with the king; same material outcome as Qxe8.
           children:
-            - ply: Qg6+
+            - ply: Kf6
+              replyQuality: blunder
+              frequency: rare
               annotation:
-                vi: Hậu chiếu ở g6 và lại được chào mời.
-              dismissed:
-                - ply: Ke7
-                  reason: Declines again and walks back; nothing is resolved.
-                - ply: Ke5
-                  reason: Declines again and walks further up the board.
-                - ply: Kxg6
-                  reason: Takes the queen with the king; same material outcome as hxg6.
+                vi: Từ chối ăn hậu và đi lên f6.
               children:
-                - ply: hxg6
-                  replyQuality: best
-                  frequency: common
+                - ply: Qg6+
                   annotation:
-                    vi: Tốt h7 ăn hậu.
-                  outcome:
-                    type: position
-                    evaluation:
-                      vi: Đen hơn hậu và mã, chỉ mất hai tốt.
-                    plan:
-                      vi: Đen đưa vua về nơi an toàn rồi đổi quân về tàn cuộc.
-                    basis:
-                      by: fixture-author
-                      at: '2026-09-16'
-    - ply: Qh5+
-      annotation:
-        vi: Chiếu ở h5 trước. Nếu Đen đáp Kf6 thì hai cách đi trùng nhau.
-      dismissed:
-        - ply: Ke6
-          reason: A different king walk, outside what this fixture models.
-        - ply: Ke7
-          reason: Returns the king to e7, repeating the position before the check.
-        - ply: g6
-          reason: Blocks with the g-pawn instead of moving the king.
-      children:
-        - ply: Kf6
-          replyQuality: blunder
-          frequency: rare
+                    vi: Hậu chiếu ở g6 và lại được chào mời.
+                  dismissed:
+                    - ply: Ke7
+                      reason: Declines again and walks back; nothing is resolved.
+                    - ply: Ke5
+                      reason: Declines again and walks further up the board.
+                    - ply: Kxg6
+                      reason: Takes the queen with the king; same material outcome as hxg6.
+                  children:
+                    - ply: hxg6
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Tốt h7 ăn hậu.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Đen hơn hậu và mã, chỉ mất hai tốt.
+                        plan:
+                          vi: Đen đưa vua về nơi an toàn rồi đổi quân về tàn cuộc.
+                        basis:
+                          by: fixture-author
+                          at: '2026-09-16'
+        - ply: Qh5+
           annotation:
-            vi: Cùng nước đi như nhánh trên, nhưng hậu đang ở h5.
+            vi: Chiếu ở h5 trước. Nếu Đen đáp Kf6 thì hai cách đi trùng nhau.
+          dismissed:
+            - ply: Ke6
+              reason: A different king walk, outside what this fixture models.
+            - ply: Ke7
+              reason: Returns the king to e7, repeating the position before the check.
+            - ply: g6
+              reason: Blocks with the g-pawn instead of moving the king.
           children:
-            - ply: Qg6+
+            - ply: Kf6
+              replyQuality: blunder
+              frequency: rare
               annotation:
-                vi: Tới đây hai cách đi cho ra đúng cùng một thế cờ.
-              transposesTo: [Qe8+, Kf6, Qg6+]
+                vi: Cùng nước đi như nhánh trên, nhưng hậu đang ở h5.
+              children:
+                - ply: Qg6+
+                  annotation:
+                    vi: Tới đây hai cách đi cho ra đúng cùng một thế cờ.
+                  transposesTo: [Kf7, Qe8+, Kf6, Qg6+]

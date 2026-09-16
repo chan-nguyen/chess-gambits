@@ -58,8 +58,19 @@ const judgement = z.strictObject({
   source: prose.optional(),
 })
 
+/**
+ * The three outcomes an author may write, and the one they may not.
+ *
+ * `trap` is how a leaf is *claimed* as a forced mate (ADR-0005, step 1): it is a bare
+ * marker with no move count, no line and no certificate name, because every one of those is
+ * a thing the build derives and a thing a file that could state it could lie about. The
+ * validator either replaces it with a proved `mate` outcome, having replayed a committed
+ * certificate move by move, or refuses the file. `type: mate` is rejected earlier still, by
+ * `derived-fields.ts`, with its own explanation.
+ */
 const outcome = z.discriminatedUnion('type', [
   z.strictObject({ type: z.literal('unexplored') }),
+  z.strictObject({ type: z.literal('trap') }),
   z.strictObject({
     type: z.literal('position'),
     evaluation: annotation,

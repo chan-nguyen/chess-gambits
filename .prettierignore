@@ -11,3 +11,9 @@ tools/content/fixtures/invalid
 # A compiled-content fixture: byte for byte what the compile step emits, minification and
 # all. Formatting it would make it stop being that, and the test that pins it would fail.
 tools/content/fixtures/compiled
+
+# Proof certificates. These are written by `npm run prove:mates` and are byte for byte what
+# the generator emits; the scheduled job re-runs it and treats any difference as content
+# having changed under a proof. Reformatting them would make that alarm fire on whitespace
+# instead of on chess, and would edit a machine's proof by hand.
+*.mate.json

@@ -1,0 +1,43 @@
+# Fixture, not published content. Légal's Mate in its h3 form, and the only mate in two in
+# this corpus: after 6...Bxd1?? White answers 7.Bxf7+ and Black has exactly one legal reply,
+# so the net is a chain rather than a fan.
+#
+# The defining line ends on White's 6.Nxe5, which is the learner's own ply, so the root is an
+# opponent node and 6...Bxd1 is a modelled reply that can carry `blunder` (invariant 5).
+id: fixture-legal-trap
+name: "Fixture: Légal's Mate, the h3 form"
+eco: C50
+category: trap
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, d6, Nc3, Bg4, h3, Bh5, Nxe5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-16'
+  basis:
+    by: fixture-author
+    at: '2026-09-16'
+    source: 'Author impression; no engine and no published source. The mate below is proved.'
+judgement:
+  by: fixture-author
+  at: '2026-09-16'
+  source: 'The reply quality here is an author impression. The mate is not — it is proved.'
+tree:
+  annotation:
+    vi: Trắng thí hậu. Nếu Đen ăn hậu thì bị chiếu bí; nếu Đen ăn mã thì ván cờ vẫn bình thường.
+    en: White offers the queen. Taking it is mate; taking the knight instead keeps an ordinary game.
+    fr: Les Blancs offrent la dame. La prendre, c'est mat ; prendre le cavalier garde une partie normale.
+  dismissRest:
+    reason:
+      vi: Không ăn hậu thì không có bẫy; ván cờ tiếp tục bình thường và nằm ngoài phạm vi bản mẫu này.
+      en: Anything but taking the queen leaves an ordinary game, which is outside what this fixture models.
+      fr: Tout sauf prendre la dame laisse une partie ordinaire, hors du champ de ce modèle.
+  children:
+    - ply: Bxd1
+      replyQuality: blunder
+      frequency: rare
+      annotation:
+        vi: Ăn hậu. Đây là nước thua, và phần còn lại được máy chứng minh.
+        en: Taking the queen. This is the losing move, and what follows is machine-proved.
+        fr: Prendre la dame. C'est le coup perdant, et la suite est prouvée par la machine.
+      outcome:
+        type: trap

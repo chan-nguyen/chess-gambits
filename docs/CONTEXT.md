@@ -104,12 +104,22 @@ honest; one they cannot see is the failure this whole check exists to prevent.
 Attached only to leaves, and exactly one of **three** shapes. Keeping these as distinct shapes rather than
 one shape with optional fields is the type-level expression of the project's core honesty rule.
 
-**`ForcedMate`** — `{ kind: 'mate', inMoves: N, sequence: [...], provedBy: 'search' | 'modelled-net' }`
+**`ForcedMate`** —
+`{ kind: 'mate', inMoves: N, sequence: [...], provedBy: 'search' | 'modelled-net', basis: Proved }`
 
 The opponent is checkmated in `N` **moves** regardless of how they defend. This shape may **never be
-hand-authored**. The author marks a leaf as a claimed trap and writes neither a move count nor the
-word "mate"; the build proves it by one of two sound routes (ADR-0005) and generates the outcome, or
+hand-authored**. The author marks a leaf `outcome: { type: trap }` — a bare claim with no move count,
+no line and no certificate name, because each of those is something the build derives and something a
+file able to state it could lie about. The build then proves it and generates the outcome, or
 **rejects the claim** and fails. A claim that cannot be proved is not downgraded silently.
+
+`sequence` is the longest line in the net, in plies from this leaf: the mate as it goes when the
+defender holds out longest, so a mate in N runs to `2N - 1` plies. `provedBy` records which half of
+the proof carries "mate within N" — a net with defender branching is proved by set equality against
+the legal move list (`modelled-net`), and where the attacker mates at once there is no net to model
+and a one-ply exhaustive search settles it (`search`). Minimality is established by bounded search in
+both cases. `basis` is the narrow `Proved` provenance and not the full union, so a hand-judged mate is
+not expressible: there is no way to construct the type without naming a certificate.
 
 **`Assessment`** — `{ kind: 'position', evaluation: ..., plan: ..., basis: Provenance }`
 
@@ -275,10 +285,14 @@ can trust what this site says.
    two-way wording made impossible to express.
    Every true leaf carries exactly one outcome, of `mate`, `position` or
    `unexplored`.
-4. A `ForcedMate` outcome exists only where the build proves mate is forced, by exhaustive search
-   within a node cap or by a fully modelled mate net verified by set equality against the legal move
-   list. It is generated, never written. An unprovable claim fails the build.
-5. A `ForcedMate` leaf is only reachable through a reply marked `mistake` or `blunder`.
+4. A `ForcedMate` outcome exists only where the build proves mate is forced: a machine-expanded
+   mate net, committed as a certificate and verified by replay — every attacker move legal, every
+   defender node set-equal to the full legal move list including all four promotions, every terminal
+   a checkmate, no repetition — and a bounded search confirming no shorter mate exists. It is
+   generated, never written. An unprovable claim fails the build, and a search that reaches its node
+   cap counts as unprovable.
+5. A `ForcedMate` leaf is only reachable through a reply marked `mistake` or `blunder`, anywhere on
+   the path from the entry root to that leaf.
    For this to be satisfiable, **a defining line ends with the learner's own ply**, so the root is
    always an opponent node and the opponent's error is always a modelled reply carrying a quality.
    Without that rule the invariant is unsatisfiable for exactly the traps this site exists to teach:

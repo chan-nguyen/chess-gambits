@@ -7,6 +7,7 @@ import type {
   CompiledEntry,
   CompiledNode,
   CompiledOutcome,
+  CompiledProved,
   CompiledProvenance,
   CompiledSoundness,
   Frequency,
@@ -96,9 +97,15 @@ const isStrings = arrayOf(isString)
 const isAnnotation = (value: unknown): value is CompiledAnnotation =>
   isRecord(value) && isString(value.vi) && isOptionalString(value.en) && isOptionalString(value.fr)
 
+const isProved = (value: unknown): value is CompiledProved =>
+  isRecord(value) &&
+  value.basis === 'proved' &&
+  value.by === 'certificate' &&
+  isString(value.certificate)
+
 const isProvenance = (value: unknown): value is CompiledProvenance => {
   if (!isRecord(value)) return false
-  if (value.basis === 'proved') return value.by === 'certificate' && isString(value.certificate)
+  if (value.basis === 'proved') return isProved(value)
   return (
     value.basis === 'judgement' &&
     isString(value.by) &&
@@ -114,7 +121,10 @@ const isOutcome = (value: unknown): value is CompiledOutcome => {
       return (
         typeof value.inMoves === 'number' &&
         isStrings(value.sequence) &&
-        (value.provedBy === 'search' || value.provedBy === 'modelled-net')
+        (value.provedBy === 'search' || value.provedBy === 'modelled-net') &&
+        // A mate without a certificate to point at is the assertion this whole project
+        // refuses to make, so it does not get to arrive as one.
+        isProved(value.basis)
       )
     case 'position':
       return isAnnotation(value.evaluation) && isAnnotation(value.plan) && isProvenance(value.basis)

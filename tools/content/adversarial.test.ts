@@ -79,7 +79,7 @@ const MUST_BE_REJECTED: Readonly<Record<string, Expectation>> = {
   'dismiss-rest-on-learner-node.yaml': {
     code: 'kind-mismatch',
     says: 'only on an opponent node',
-    at: 'tree.dismissRest',
+    at: 'tree.children[0].dismissRest',
   },
   'dismiss-rest-placeholder-reason.yaml': {
     code: 'schema',
@@ -96,7 +96,7 @@ const MUST_BE_REJECTED: Readonly<Record<string, Expectation>> = {
   'transposition-mismatch.yaml': {
     code: 'transposition-mismatch',
     says: 'first four FEN fields',
-    at: 'tree.children[1].children[0].transposesTo',
+    at: 'tree.children[0].children[1].children[0].transposesTo',
   },
   'transposition-unresolved.yaml': { code: 'transposition-unresolved', says: 'No node at' },
   'outcome-and-children.yaml': { code: 'node-shape', says: 'children and outcome', at: 'tree' },
@@ -104,7 +104,7 @@ const MUST_BE_REJECTED: Readonly<Record<string, Expectation>> = {
   'reply-quality-on-prescribed-move.yaml': {
     code: 'kind-mismatch',
     says: 'only on a child of an opponent node',
-    at: 'tree.children[0].replyQuality',
+    at: 'tree.children[0].children[0].replyQuality',
   },
   'annotation-without-vietnamese.yaml': {
     code: 'schema',
@@ -114,6 +114,11 @@ const MUST_BE_REJECTED: Readonly<Record<string, Expectation>> = {
   'empty-annotation.yaml': { code: 'schema', says: 'empty', at: 'tree.annotation.vi' },
   'placeholder-annotation.yaml': { code: 'schema', says: 'placeholder', at: 'tree.annotation.vi' },
   'unknown-field.yaml': { code: 'schema', says: 'annotaion', at: 'tree' },
+  'defining-line-parity.yaml': {
+    code: 'defining-line-parity',
+    says: 'invariant 5',
+    at: 'definingLine[3]',
+  },
   'yaml-alias-bomb.yaml': { code: 'yaml-alias', says: 'refused' },
   'yaml-too-deep.yaml': { code: 'yaml-too-deep', says: '100 levels' },
 }

@@ -48,7 +48,7 @@ describe('validate:content', () => {
     expect(result.status).toBe(1)
     expect(result.stdout).toContain('tools/content/fixtures/invalid/missing-reply.yaml:')
     expect(result.stdout).toContain('[reply-incomplete]')
-    expect(result.stdout).toMatch(/31 file\(s\) rejected/)
+    expect(result.stdout).toMatch(/32 file\(s\) rejected/)
   })
 
   it('exits 1 when two entries share an id, because an id is a published URL', () => {

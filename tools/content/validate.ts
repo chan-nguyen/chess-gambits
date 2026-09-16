@@ -1,3 +1,7 @@
+import { readFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { certificateFileName } from '../mate/certificate.ts'
+import { describeFailure, verifyCertificate } from '../mate/verify.ts'
 import type { Position } from './board.ts'
 import { applyPly, replay } from './board.ts'
 import type { ContentIssue, IssueCode, SourceLocation } from './issue.ts'
@@ -18,8 +22,10 @@ import type {
   DismissRest,
   DismissedReply,
   Entry,
+  ForcedMate,
   NodeKind,
   Outcome,
+  ReplyQuality,
   Side,
   Tier,
 } from './types.ts'
@@ -28,10 +34,12 @@ import type { YamlSource } from './yaml-source.ts'
 import { loadYaml } from './yaml-source.ts'
 
 /**
- * The content gate (requirement F12). Implements the blocking checks of ADR-0004 that do
- * not need a mate proof: schema, legality, SAN canonicalisation, checkmate and non-mate
- * assertion, reply completeness, duplicates and transpositions, i18n completeness and side
- * consistency. Mate proving is ADR-0005 and issue #5.
+ * The content gate (requirement F12). Implements the blocking checks of ADR-0004: schema,
+ * legality, SAN canonicalisation, checkmate and non-mate assertion, reply completeness,
+ * duplicates and transpositions, i18n completeness and side consistency — and the two
+ * halves of ADR-0005 that belong to content rather than to a certificate: a claimed trap is
+ * replaced by a proved mate or the file is refused, and a proved mate is reachable only the
+ * way invariant 5 says it may be.
  *
  * Every issue names the file and the node, as a SAN path and as a data path, because an
  * error the author cannot locate is an error they will work around rather than fix.
@@ -59,6 +67,26 @@ export type DismissRestReport = {
   readonly legalReplies: number
 }
 
+/**
+ * One leaf marked `type: trap`, whether or not a proof was found for it.
+ *
+ * Reported even when the claim was refused, because that is precisely the state
+ * `npm run prove:mates` exists to act on: it needs to know which leaf to send to the oracle,
+ * and the only file that knows is the one the gate has just rejected.
+ */
+export type MateClaim = {
+  readonly entryId: string
+  /** Canonical SAN from the entry root, which is what names the certificate. */
+  readonly nodePath: readonly string[]
+  /** The whole game to this leaf: the defining line followed by the node path. */
+  readonly line: readonly string[]
+  /** The file a proof of this claim must live in, beside the content file. */
+  readonly certificate: string
+  /** The side that would deliver the mate — always the learner (invariant 5). */
+  readonly attacker: Side
+  readonly proved: boolean
+}
+
 export type EntryReport = {
   readonly file: string
   readonly issues: readonly ContentIssue[]
@@ -68,11 +96,40 @@ export type EntryReport = {
   readonly nodeCount: number
   readonly dismissedCount: number
   readonly dismissRest: readonly DismissRestReport[]
+  readonly mateClaims: readonly MateClaim[]
+}
+
+/**
+ * How the validator gets hold of a certificate. The default reads the file that sits beside
+ * the content file, which is where `prove:mates` writes it (ADR-0005, step 3).
+ *
+ * Injectable so a test can state a certificate inline rather than on disk, and so a caller
+ * that has already loaded and verified a corpus does not pay for it twice. It returns raw
+ * JSON rather than a verdict on purpose: **verification always happens here**, so there is
+ * no way to hand this module a proof it has not checked itself.
+ */
+export type CertificateSource = (directory: string, fileName: string) => unknown
+
+const readCertificateFile: CertificateSource = (directory, fileName) => {
+  try {
+    const text: string = readFileSync(join(directory, fileName), 'utf8')
+    const parsed: unknown = JSON.parse(text)
+    return parsed
+  } catch {
+    return undefined
+  }
 }
 
 type Walk = {
   readonly source: YamlSource
   readonly learnerSide: Side
+  readonly entryId: string
+  /** Canonical, so a certificate's `line` can be compared ply for ply. Known after replay. */
+  definingLine: readonly string[]
+  /** Where certificates live: the directory holding the content file. */
+  readonly directory: string
+  readonly certificates: CertificateSource
+  readonly mateClaims: MateClaim[]
   readonly issues: ContentIssue[]
   /** Canonical SAN path from the entry root -> the position there, for transposition lookup. */
   readonly byPath: Map<string, Position>
@@ -114,7 +171,14 @@ const toAnnotation = (authored: AuthoredAnnotation): Annotation => ({
   fr: authored.fr,
 })
 
-const toOutcome = (authored: AuthoredOutcome): Outcome => {
+/**
+ * The two authored outcomes that mean what they say. A `trap` claim is not one of them: it
+ * is a request for a proof, answered by `proveTrap`, and the type excludes it here so that
+ * forgetting to handle it is a compile error rather than a mate claim nobody checked.
+ */
+type StatedOutcome = Exclude<AuthoredOutcome, { type: 'trap' }>
+
+const toOutcome = (authored: StatedOutcome): Outcome => {
   switch (authored.type) {
     case 'unexplored':
       return { kind: 'unexplored' }
@@ -148,6 +212,129 @@ const outcomeReachesTier = (outcome: Outcome): { mapped: boolean; taught: boolea
       return { mapped: false, taught: false }
     default:
       return assertNever(outcome)
+  }
+}
+
+/**
+ * Turn a claimed trap into a proved mate, or refuse it (ADR-0005; invariants 4 and 5).
+ *
+ * Nothing here is taken on trust. The certificate is found by name derived from the entry
+ * and the node, replayed move by move by `verifyCertificate`, and then checked *again*
+ * against this file: the game it proves must be this entry's defining line followed by this
+ * node's path, and the side it mates with must be the learner. A certificate that proves a
+ * real mate somewhere else is not a proof of anything here.
+ *
+ * A claim that cannot be proved is **refused**. It is never downgraded to an assessment and
+ * never carried as a warning: the leaf goes back to the author, who writes what is actually
+ * true about the position.
+ */
+const proveTrap = (
+  walk: Walk,
+  sanPath: readonly string[],
+  dataPath: readonly (string | number)[],
+  kind: NodeKind,
+  reachedThroughBlunder: boolean,
+): ForcedMate | undefined => {
+  const at = [...dataPath, 'outcome']
+  const certificate = certificateFileName(walk.entryId, sanPath)
+  const line = [...walk.definingLine, ...sanPath]
+
+  const record = (proved: boolean): undefined => {
+    walk.mateClaims.push({
+      entryId: walk.entryId,
+      nodePath: sanPath,
+      line,
+      certificate,
+      attacker: walk.learnerSide,
+      proved,
+    })
+    return undefined
+  }
+
+  // The learner is the one who springs the trap, so the claimed position is one where the
+  // learner is to move. A trap claimed on an opponent node says the *opponent* mates, which
+  // is not a thing this site teaches and not a thing the prover can even attribute.
+  if (kind !== 'learner') {
+    report(
+      walk,
+      'kind-mismatch',
+      at,
+      sanPath,
+      `A \`trap\` claims that the learner mates from here, so it belongs on a learner node. Here it is the opponent's turn (docs/CONTEXT.md, Outcome).`,
+    )
+    return record(false)
+  }
+
+  // Invariant 5, the clause the whole invariant exists for. A mate reachable through correct
+  // play would mean the gambit refutes best play, which would be the most important
+  // discovery in opening theory rather than a website feature.
+  if (!reachedThroughBlunder) {
+    report(
+      walk,
+      'mate-not-through-blunder',
+      at,
+      sanPath,
+      `A forced mate is reachable only through a reply marked \`mistake\` or \`blunder\`, and no reply on the path to this leaf carries one. If the opponent reaches this position by playing well, the claim is that the gambit refutes correct play (docs/CONTEXT.md, invariant 5).`,
+    )
+    return record(false)
+  }
+
+  const value = walk.certificates(walk.directory, certificate)
+  if (value === undefined) {
+    report(
+      walk,
+      'mate-unproved',
+      at,
+      sanPath,
+      `This leaf claims a trap, and there is no proof of it: \`${certificate}\` is not beside this file. Run \`npm run prove:mates\`. A mate is generated by the build or the claim is refused — it is never written by hand and never assumed (docs/CONTEXT.md, invariant 4; ADR-0005).`,
+    )
+    return record(false)
+  }
+
+  const verification = verifyCertificate(certificate, value)
+  if (!verification.ok) {
+    report(
+      walk,
+      'mate-unproved',
+      at,
+      sanPath,
+      `\`${certificate}\` does not prove a mate here:\n    ${verification.failures.map(describeFailure).join('\n    ')}`,
+    )
+    return record(false)
+  }
+
+  const proof = verification.proof
+  if (proof.certificate.line.join(' ') !== line.join(' ')) {
+    report(
+      walk,
+      'mate-unproved',
+      at,
+      sanPath,
+      `\`${certificate}\` proves a mate in a different game. It replays \`${proof.certificate.line.join(' ')}\`, and this leaf is reached by \`${line.join(' ')}\`. A valid proof of the wrong position proves nothing about this one.`,
+    )
+    return record(false)
+  }
+
+  if (proof.attacker !== walk.learnerSide) {
+    report(
+      walk,
+      'mate-unproved',
+      at,
+      sanPath,
+      `\`${certificate}\` proves that ${proof.attacker} mates, but the learner plays ${walk.learnerSide}.`,
+    )
+    return record(false)
+  }
+
+  record(true)
+  return {
+    kind: 'mate',
+    inMoves: proof.inMoves,
+    sequence: proof.sequence,
+    // A net with no defender node is a mate the attacker delivers at once: there is nothing
+    // modelled, and a one-ply exhaustive search is the whole proof.
+    provedBy: proof.defenderNodes === 0 ? 'search' : 'modelled-net',
+    basis: { basis: 'proved', by: 'certificate', certificate },
   }
 }
 
@@ -288,9 +475,15 @@ const walkNode = (
   sanPath: readonly string[],
   ply: string | undefined,
   parentKind: NodeKind | undefined,
+  reachedThroughBlunder: boolean,
 ): ContentNode => {
   walk.nodeCount += 1
   const kind: NodeKind = position.turn === walk.learnerSide ? 'learner' : 'opponent'
+  const quality: ReplyQuality | undefined = 'replyQuality' in node ? node.replyQuality : undefined
+  // Invariant 5 is about the *path*, not the leaf: the opponent's error may be several plies
+  // above the mate. Once a `mistake` or `blunder` has been played, everything below it is
+  // reached through one.
+  const throughBlunder = reachedThroughBlunder || quality === 'mistake' || quality === 'blunder'
 
   const existing = walk.byPositionKey.get(position.key) ?? []
   if (node.transposesTo === undefined) {
@@ -313,7 +506,7 @@ const walkNode = (
 
   countAnnotation(walk, node.annotation)
 
-  if ('replyQuality' in node && node.replyQuality !== undefined && parentKind !== 'opponent') {
+  if (quality !== undefined && parentKind !== 'opponent') {
     report(
       walk,
       'kind-mismatch',
@@ -449,6 +642,7 @@ const walkNode = (
           [...sanPath, played.canonical],
           played.canonical,
           kind,
+          throughBlunder,
         ),
       )
     })
@@ -481,7 +675,12 @@ const walkNode = (
     })
   }
 
-  const outcome = node.outcome === undefined ? undefined : toOutcome(node.outcome)
+  const outcome: Outcome | undefined =
+    node.outcome === undefined
+      ? undefined
+      : node.outcome.type === 'trap'
+        ? proveTrap(walk, sanPath, dataPath, kind, throughBlunder)
+        : toOutcome(node.outcome)
   if (outcome !== undefined && outcome.kind === 'position') {
     walk.coverage.slots += 2
     walk.coverage.vi += 2
@@ -515,7 +714,7 @@ const walkNode = (
     kind,
     fen: position.fen,
     annotation: node.annotation === undefined ? undefined : toAnnotation(node.annotation),
-    replyQuality: 'replyQuality' in node ? node.replyQuality : undefined,
+    replyQuality: quality,
     frequency: 'frequency' in node ? node.frequency : undefined,
     dismissed: dismissedReplies,
     dismissRest,
@@ -613,12 +812,22 @@ const failed = (file: string, issues: readonly ContentIssue[]): EntryReport => (
   nodeCount: 0,
   dismissedCount: 0,
   dismissRest: [],
+  mateClaims: [],
 })
 
-const buildEntry = (source: YamlSource, authored: AuthoredEntry): EntryReport => {
+const buildEntry = (
+  source: YamlSource,
+  authored: AuthoredEntry,
+  certificates: CertificateSource,
+): EntryReport => {
   const walk: Walk = {
     source,
     learnerSide: authored.side,
+    entryId: authored.id,
+    definingLine: [],
+    directory: dirname(source.file),
+    certificates,
+    mateClaims: [],
     issues: [],
     byPath: new Map(),
     byPositionKey: new Map(),
@@ -654,7 +863,37 @@ const buildEntry = (source: YamlSource, authored: AuthoredEntry): EntryReport =>
     }
   })
 
-  const tree = walkNode(walk, authored.tree, opening.position, ['tree'], [], undefined, undefined)
+  // Invariant 5's structural half. A defining line ending on the *opponent's* ply makes the
+  // root a learner node, and then the opponent's losing move sits inside the defining line
+  // where no node can carry a `replyQuality` — which makes the rest of invariant 5
+  // unsatisfiable for exactly the traps this site exists to teach. Reported and stopped
+  // rather than reported and continued: with the root the wrong kind, every `kind` below it
+  // is inverted too, and a page of consequences buries the one cause.
+  if (opening.position.turn === authored.side) {
+    const lastIndex = opening.canonical.length - 1
+    const lastPly = opening.canonical[lastIndex] ?? ''
+    const opponent = authored.side === 'white' ? 'black' : 'white'
+    report(
+      walk,
+      'defining-line-parity',
+      ['definingLine', lastIndex],
+      undefined,
+      `The learner plays ${authored.side}, so the defining line must end with a ${authored.side} ply and leave ${opponent} to move at the root. It ends with \`${lastPly}\` after ${opening.canonical.length} plies, which is ${opponent}'s, so the root is a learner node. Move \`${lastPly}\` out of the defining line and model it as a reply (docs/CONTEXT.md, invariant 5).`,
+    )
+    return failed(source.file, walk.issues)
+  }
+
+  walk.definingLine = opening.canonical
+  const tree = walkNode(
+    walk,
+    authored.tree,
+    opening.position,
+    ['tree'],
+    [],
+    undefined,
+    undefined,
+    false,
+  )
   checkDuplicatePositions(walk)
   checkTranspositions(walk)
 
@@ -694,10 +933,15 @@ const buildEntry = (source: YamlSource, authored: AuthoredEntry): EntryReport =>
     nodeCount: walk.nodeCount,
     dismissedCount: walk.dismissedCount,
     dismissRest: walk.dismissRest,
+    mateClaims: walk.mateClaims,
   }
 }
 
-export const validateText = (file: string, text: string): EntryReport => {
+export const validateText = (
+  file: string,
+  text: string,
+  certificates: CertificateSource = readCertificateFile,
+): EntryReport => {
   const loaded = loadYaml(file, text)
   if (!loaded.ok) return failed(file, loaded.issues)
 
@@ -707,5 +951,5 @@ export const validateText = (file: string, text: string): EntryReport => {
   const parsed = parseEntry(loaded.source)
   if (!parsed.ok) return failed(file, parsed.issues)
 
-  return buildEntry(loaded.source, parsed.entry)
+  return buildEntry(loaded.source, parsed.entry, certificates)
 }
