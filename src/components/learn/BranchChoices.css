@@ -1,0 +1,117 @@
+.branch-choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/*
+ * `h3`, under the annotation panel's `h2`. The replies are a subsection of the position
+ * that heading names — "After 5.c3" and then "Replies you have to be ready for" — so the
+ * level is the one a screen-reader user navigating by heading would expect, and no level
+ * is skipped (docs/design-system.md §5).
+ */
+.branch-choices__heading {
+  margin-block: 0;
+  font-size: var(--text-lg);
+}
+
+.branch-choices__list {
+  display: grid;
+  gap: var(--space-2);
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+/*
+ * One column at 360px. Several preview boards side by side at phone width is the case
+ * ADR-0003 says the first board choice had missed, and the answer is not a smaller board:
+ * it is one per row until there is room for two.
+ */
+@media (min-width: 768px) {
+  .branch-choices__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/*
+ * ...and back to one column in the right-hand column of the desktop layout, which is half
+ * a 1024px screen and narrower than the phone breakpoint the rule above is written for.
+ */
+@media (min-width: 1024px) {
+  .branch-choices__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.branch-choices__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+  font-size: var(--text-sm);
+}
+
+.branch-choices__empty,
+.branch-choices__provenance {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.branch-choices__author,
+.branch-choices__certificate {
+  font-weight: 700;
+}
+
+.branch-choices__certificate {
+  font-family: var(--font-mono);
+}
+
+/*
+ * Colour *and* shape *and* a word. The colour is the least of the three: two of these five
+ * tokens are the same grey as each other, which is measured in `greyscale.test.ts`.
+ */
+.quality-badge {
+  display: inline-flex;
+  gap: var(--space-1);
+  align-items: center;
+  font-weight: 700;
+}
+
+.quality-badge__icon {
+  inline-size: var(--space-4);
+  block-size: var(--space-4);
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.quality-badge--best {
+  color: var(--color-quality-best);
+}
+
+.quality-badge--good {
+  color: var(--color-quality-good);
+}
+
+.quality-badge--inaccuracy {
+  color: var(--color-quality-inaccuracy);
+}
+
+.quality-badge--mistake {
+  color: var(--color-quality-mistake);
+}
+
+.quality-badge--blunder {
+  color: var(--color-quality-blunder);
+}
+
+/* No quality stated is a real state, and it is not one of the five — so it has no hue. */
+.quality-badge--unstated,
+.frequency-tag {
+  color: var(--color-text-muted);
+  font-weight: 400;
+}
