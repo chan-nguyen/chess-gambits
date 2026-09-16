@@ -28,6 +28,25 @@ afterEach(cleanup)
 
 const positions = FEN_FIXTURES.slice(0, COUNT).map((fixture) => fixture.fen)
 
+/**
+ * The least-interrupted of several runs, which is the standard answer to a noisy
+ * microbenchmark: scheduling can only ever make a measurement slower, never faster, so the
+ * minimum is the closest reading to the real cost.
+ *
+ * The first version of this test took one sample of each. Alone that passed; under the full
+ * suite, with fifty files in parallel, a single-board sample of a fraction of a millisecond
+ * got distorted enough to make the ratio explode, and the gate failed intermittently. An
+ * intermittent gate is worse than no gate — it teaches people to re-run until it is green.
+ */
+const fastestOf = (runs: number, measure: () => number): number => {
+  let best = Number.POSITIVE_INFINITY
+  for (let i = 0; i < runs; i += 1) {
+    best = Math.min(best, measure())
+    cleanup()
+  }
+  return best
+}
+
 const mountOne = (showCoordinates: boolean): number => {
   const started = performance.now()
   render(
@@ -61,9 +80,8 @@ describe(`mounting ${COUNT} boards`, () => {
   ])('scales linearly across twenty-four %s', (label, showCoordinates) => {
     mountMany(showCoordinates)
     cleanup()
-    const one = mountOne(showCoordinates)
-    cleanup()
-    const many = mountMany(showCoordinates)
+    const one = fastestOf(7, () => mountOne(showCoordinates))
+    const many = fastestOf(3, () => mountMany(showCoordinates))
     const ratio = many / Math.max(one, 0.01)
 
     console.info(
