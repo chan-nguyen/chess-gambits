@@ -10,12 +10,26 @@ import { lineSearch } from '../../lib/line.ts'
 import { defaultLocale, isLocale } from '../../lib/locale.ts'
 import { Board } from '../board/Board.tsx'
 import { AnnotationPanel } from './AnnotationPanel.tsx'
+import { BranchChoices } from './BranchChoices.tsx'
 import { MoveList } from './MoveList.tsx'
 import { MoveNavigator } from './MoveNavigator.tsx'
+import { PlanChoices } from './PlanChoices.tsx'
 import { ShortcutToggle } from './ShortcutToggle.tsx'
 import { announcementOf, localiseAnnotation } from './annotation.ts'
-import { rememberShortcutSetting, readShortcutSetting, type ShortcutSetting } from './shortcuts.ts'
-import { nextPath, plyLabel, previousPath, resolvePath } from './tree-path.ts'
+import {
+  branchShortcutIndex,
+  rememberShortcutSetting,
+  readShortcutSetting,
+  type ShortcutSetting,
+} from './shortcuts.ts'
+import {
+  branchChoices,
+  nextPath,
+  plyLabel,
+  previousPath,
+  resolvePath,
+  type BranchChoice,
+} from './tree-path.ts'
 
 /**
  * The core loop: look at the position, press next.
@@ -64,6 +78,27 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
   const previous = previousPath(path)
   const next = nextPath(node, path)
 
+  /**
+   * The continuations that are rendered as choices — and therefore, exactly, the ones the
+   * `1`-`9` keys reach.
+   *
+   * One list rather than two. A key cap drawn on a control that no key reaches, or a key
+   * that moves the page with nothing on screen to say so, are the same defect from opposite
+   * ends, and the only way to be sure neither happens is for the render and the keyboard to
+   * read the same array.
+   *
+   * Which is why a learner node with a *single* prescribed move offers nothing here: that
+   * move is `next`, it is not a choice, and `PlanChoices` would be announcing a decision
+   * the gambit is not asking the learner to make. An opponent node with a single modelled
+   * reply does offer it, because there the reply's quality, frequency and provenance are
+   * the point even when there is only one of them (docs/CONTEXT.md, *The central
+   * asymmetry*).
+   */
+  const choices = useMemo(() => {
+    const ahead = branchChoices(node, path)
+    return node.kind === 'opponent' || ahead.length > 1 ? ahead : []
+  }, [node, path])
+
   const go = useCallback(
     (target: readonly string[] | null): void => {
       if (target === null) return
@@ -87,13 +122,26 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
   const targets = useRef<{
     previous: readonly string[] | null
     next: readonly string[] | null
-  }>({ previous, next })
+    choices: readonly BranchChoice[]
+  }>({ previous, next, choices })
 
   useLayoutEffect(() => {
-    targets.current = { previous, next }
+    targets.current = { previous, next, choices }
   })
 
-  useEffect(() => {
+  /**
+   * Registered in a layout effect, in the same commit as the DOM it acts on.
+   *
+   * A passive effect would attach the listener in a later task, so between the position
+   * appearing on screen and the keyboard becoming live there is a window in which a press
+   * is silently dropped. That window is normally sub-frame and was never noticed — until
+   * #9 put twelve preview boards at a branch point, which is a long enough commit that a
+   * key pressed the instant the page appears lands before anything is listening. A learner
+   * cannot type that fast, but the gap is real and it is the same reasoning `targets` above
+   * is written for: what the keyboard does and what is on the screen are one commit, or
+   * they are two things that disagree under load.
+   */
+  useLayoutEffect(() => {
     if (shortcuts === 'off') return
 
     const onKeyDown = (event: KeyboardEvent): void => {
@@ -107,10 +155,28 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
       )
         return
       if (belongsToSomethingElse(event.target)) return
-      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+
+      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+        event.preventDefault()
+        go(event.key === 'ArrowLeft' ? targets.current.previous : targets.current.next)
+        return
+      }
+
+      /*
+       * AC 6. `1`-`9` select the first nine branches, and only where there is a branch to
+       * select: a digit pressed at a node with one continuation must not become a second
+       * "next", or the key would mean two different things depending on where the learner
+       * happens to be standing. Past the ninth there is no key, by design — the rest are
+       * reached by tab and by click, and `ChoiceLink` prints a key cap only where one
+       * works, so nothing on screen promises a shortcut that does not exist.
+       */
+      const index = branchShortcutIndex(event.key)
+      if (index === null) return
+      const choice = targets.current.choices[index]
+      if (choice === undefined) return
 
       event.preventDefault()
-      go(event.key === 'ArrowLeft' ? targets.current.previous : targets.current.next)
+      go(choice.path)
     }
 
     window.addEventListener('keydown', onKeyDown)
@@ -134,6 +200,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
 
   const prose = node.annotation === undefined ? null : localiseAnnotation(node.annotation, locale)
   const label = node.ply === undefined ? null : plyLabel(node.ply, node.fen)
+  const dismissed = node.dismissed ?? []
   const announcement =
     node.ply === undefined
       ? ''
@@ -173,6 +240,45 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
 
       <div className="learning-surface__context">
         <AnnotationPanel label={label} prose={prose} headingRef={headingRef} />
+
+        {/*
+         * The answer to "what if my opponent plays something else?" (requirement F5).
+         *
+         * It sits below the annotation and outside the stage above, so it never competes
+         * with the rule that keeps the board and the navigator on screen together — a
+         * learner who has read the position scrolls to the replies, and a learner who has
+         * not is not made to scroll past them first.
+         *
+         * An opponent node renders `BranchChoices` whenever it has anything to say, which
+         * includes having *nothing modelled* but a catch-all: `dismissRest` is an answer to
+         * every reply left over, and a node with one modelled child and thirty-four covered
+         * by a catch-all is the ordinary case, not an edge one.
+         */}
+        {node.kind === 'opponent' &&
+          (choices.length > 0 || dismissed.length > 0 || node.dismissRest !== undefined) && (
+            <BranchChoices
+              choices={choices}
+              dismissed={dismissed}
+              dismissRest={node.dismissRest}
+              orientation={entry.side}
+              locale={locale}
+              judgement={entry.judgement}
+              shortcuts={shortcuts}
+            />
+          )}
+
+        {node.kind === 'learner' && choices.length > 1 && (
+          <PlanChoices choices={choices} orientation={entry.side} shortcuts={shortcuts} />
+        )}
+
+        {/*
+         * #11's slot. A leaf's outcome — `MateOutcome`, `AssessmentOutcome` or the "not yet
+         * mapped" state — and a `MateNet`'s shared board and SAN list belong here, between
+         * the choices and the move list. Nothing renders it yet: `node.outcome` is read by
+         * nothing in this file, and `branchChoices` already refuses to turn a mate net into
+         * preview boards, so #11 adds a component and a condition and changes nothing else.
+         */}
+
         <MoveList steps={steps} />
         <ShortcutToggle
           setting={shortcuts}

@@ -1,0 +1,73 @@
+/*
+ * The primary touch interaction on this page, so the floor is 44x44 rather than the 24x24
+ * the rest of the product works to (docs/design-system.md §5, acceptance criterion 8).
+ * `min-block-size` and `min-inline-size` are stated even though the preview inside already
+ * exceeds both: the floor must hold if the preview is ever removed, and a target size that
+ * depends on its own content is not a floor.
+ */
+.choice-link {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  min-block-size: var(--target-size-touch);
+  min-inline-size: var(--target-size-touch);
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.choice-link:hover {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
+}
+
+/*
+ * The one difference that is only a colour is deliberately doubled by a border weight: a
+ * plan is the learner's own move and reads as an action, a reply is the opponent's and
+ * reads as something to meet. Neither is distinguished from the other by hue alone (§2).
+ */
+.choice-link--plan {
+  border-inline-start: var(--focus-ring-width) solid var(--color-accent);
+}
+
+.choice-link__detail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-inline-size: 0;
+}
+
+.choice-link__ply {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+/*
+ * A key cap, sized to the smaller floor: it is not a target at all — the whole choice is —
+ * and it must not grow so large that it competes with the move it labels.
+ */
+.choice-link__shortcut {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: var(--target-size-min);
+  padding-inline: var(--space-1);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.choice-link__is-next {
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}

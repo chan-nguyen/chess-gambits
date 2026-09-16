@@ -11,7 +11,7 @@ import en from '../../locales/en.ts'
 import fr from '../../locales/fr.ts'
 import viCatalogue from '../../locales/vi.ts'
 import { GambitRoute } from '../../routes/gambit.tsx'
-import { MAIN_LINE, MAPPED_ENTRY } from './learn-fixtures.ts'
+import { EVANS_ENTRY, MAIN_LINE, MAPPED_ENTRY, PLAN_LINE, WIDE_ENTRY } from './learn-fixtures.ts'
 import { shortcutStorageKey } from './shortcuts.ts'
 
 /**
@@ -56,9 +56,21 @@ const serve = (entry: CompiledEntry | null): void => {
   )
 }
 
-type Options = { readonly locale?: Locale; readonly line?: readonly string[] }
+type Options = {
+  readonly locale?: Locale
+  readonly line?: readonly string[]
+  /**
+   * A fixture to serve in place of the default. The URL follows it, because `loadEntry`
+   * refuses a file that names a different entry — correctly, since that is a misconfigured
+   * host. Left out, the fetch stub `beforeEach` installed is the one that answers, which is
+   * what the tests that stub a *failure* depend on.
+   */
+  readonly entry?: CompiledEntry
+}
 
-const renderGambit = ({ locale = 'vi', line = [] }: Options = {}) => {
+const renderGambit = ({ locale = 'vi', line = [], entry }: Options = {}) => {
+  if (entry !== undefined) serve(entry)
+  const id = entry?.id ?? MAPPED_ENTRY.id
   const router = createMemoryRouter(
     [
       {
@@ -71,7 +83,7 @@ const renderGambit = ({ locale = 'vi', line = [] }: Options = {}) => {
         children: [{ path: 'gambits/:id', element: <GambitRoute /> }],
       },
     ],
-    { initialEntries: [`/${locale}/gambits/${MAPPED_ENTRY.id}${lineSearch(line)}`] },
+    { initialEntries: [`/${locale}/gambits/${id}${lineSearch(line)}`] },
   )
   render(<RouterProvider router={router} />)
   return router
@@ -547,5 +559,246 @@ describe('while the tree is still arriving, and when it never does', () => {
     await surface()
 
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(MAPPED_ENTRY.name)
+  })
+})
+
+/**
+ * The feature the product exists for, through the whole surface: the URL, the keyboard and
+ * the choices, wired to each other rather than each tested against a stub.
+ */
+const choice = (name: RegExp) => screen.getByRole('link', { name })
+
+describe('choosing a reply (AC 5)', () => {
+  it('renders every modelled reply at a branch point, not just the first', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    for (const ply of ['Ba5', 'Bc5', 'Be7', 'Bd6']) {
+      expect(choice(new RegExp(ply))).toBeVisible()
+    }
+  })
+
+  it('navigates into the branch and writes it into the URL', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    fireEvent.click(choice(/Be7/))
+
+    await waitFor(() => expect(router.state.location.search).toBe(lineSearch(['Be7'])))
+  })
+
+  it('moves focus to what changed, exactly as every other route to a node does', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    fireEvent.click(choice(/Bd6/))
+
+    await waitFor(() => expect(screen.getByRole('heading', { level: 2 })).toHaveFocus())
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent('5...Bd6')
+  })
+
+  it('agrees with next about which reply next leads to', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en' })
+    const marked = choice(/Ba5/)
+
+    expect(within(marked).getByText(EN.nextGoesHere)).toBeVisible()
+    fireEvent.click(control(EN.nextPly))
+
+    await waitFor(() => expect(router.state.location.search).toBe(lineSearch(['Ba5'])))
+  })
+
+  it('offers the omissions at a node with a single modelled reply, where there is no branch', async () => {
+    const singleReply: CompiledEntry = {
+      ...EVANS_ENTRY,
+      tree: {
+        ...EVANS_ENTRY.tree,
+        children: (EVANS_ENTRY.tree.children ?? []).slice(0, 1),
+      },
+    }
+    await surface({ entry: singleReply, locale: 'en' })
+
+    expect(screen.getAllByRole('link', { name: /Ba5/ })).toHaveLength(1)
+    // The catch-all is not a branch-point feature: this node has one reply and 28 answers.
+    expect(screen.getByText(EN.coveredReplies)).toBeInTheDocument()
+  })
+
+  it('says nothing about replies at a learner node with a single prescribed move', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en', line: ['Bc5'] })
+
+    expect(screen.queryByText(EN.branchHeading)).toBeNull()
+    expect(screen.queryByText(EN.planHeading)).toBeNull()
+  })
+})
+
+/**
+ * AC 6. Nine keys, and — the half that matters — the rest of the branches reachable
+ * without them. A numeric shortcut is never the only route to a branch.
+ */
+describe('the number keys (AC 6)', () => {
+  it('selects the first branch on 1 and the second on 2', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    fireEvent.keyDown(window, { key: '2' })
+
+    await waitFor(() => expect(router.state.location.search).toBe(lineSearch(['Bc5'])))
+  })
+
+  it('reaches the ninth and stops there', async () => {
+    const router = await surface({ entry: WIDE_ENTRY, locale: 'en' })
+
+    fireEvent.keyDown(window, { key: '9' })
+
+    await waitFor(() => expect(router.state.location.search).toBe(lineSearch(['d5'])))
+  })
+
+  it('leaves the tenth, eleventh and twelfth reachable by link, with a real href', async () => {
+    await surface({ entry: WIDE_ENTRY, locale: 'en' })
+
+    for (const ply of ['Bd4', 'Be3', 'Bxf2+']) {
+      const link = choice(new RegExp(ply.replace('+', '\\+')))
+      expect(link.tagName).toBe('A')
+      expect(link).toHaveAttribute('href')
+      expect(within(link).queryByText(/^\d+$/)).toBeNull()
+    }
+  })
+
+  it('draws a key cap on exactly the branches a key reaches', async () => {
+    await surface({ entry: WIDE_ENTRY, locale: 'en' })
+
+    const caps = [...document.querySelectorAll('.choice-link__shortcut')].map((k) => k.textContent)
+    expect(caps).toStrictEqual(['1', '2', '3', '4', '5', '6', '7', '8', '9'])
+    expect(document.querySelectorAll('.choice-link--reply')).toHaveLength(12)
+  })
+
+  it('does nothing on 0, which is not one of the nine', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    fireEvent.keyDown(window, { key: '0' })
+
+    expect(router.state.location.search).toBe('')
+  })
+
+  it('does nothing where there is no branch to choose', async () => {
+    const router = await surface({ line: ['fxe5'] })
+
+    fireEvent.keyDown(window, { key: '1' })
+
+    expect(router.state.location.search).toBe(lineSearch(['fxe5']))
+  })
+
+  /**
+   * WCAG 2.2 *2.1.4 Character Key Shortcuts* is Level A, and `1`-`9` are the character keys
+   * it is actually about — the arrow keys are not. So the switch has to reach them, and it
+   * has to take the key caps with it: a cap printed on a control that no key reaches is a
+   * promise the page does not keep.
+   */
+  it('is switched off by the same setting the arrow keys read, key caps and all', async () => {
+    window.localStorage.setItem(shortcutStorageKey, 'off')
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    fireEvent.keyDown(window, { key: '2' })
+
+    expect(router.state.location.search).toBe('')
+    expect(document.querySelectorAll('.choice-link__shortcut')).toHaveLength(0)
+    expect(choice(/Bc5/)).toHaveAttribute('href')
+  })
+
+  it('leaves the shortcut alone when focus is inside the board grid', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en' })
+    const cell = screen.getAllByRole('gridcell')[0]
+
+    fireEvent.keyDown(cell ?? window, { key: '2' })
+
+    expect(router.state.location.search).toBe('')
+  })
+
+  it('ignores a digit that carries a modifier, so browser tab-switching still works', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    fireEvent.keyDown(window, { key: '2', ctrlKey: true })
+    fireEvent.keyDown(window, { key: '2', metaKey: true })
+
+    expect(router.state.location.search).toBe('')
+  })
+})
+
+/**
+ * AC 7. The Evans after `5...Ba5`, where `6.d4` and `6.O-O` are both main lines.
+ *
+ * These are the learner's options, not the opponent's threats, and the difference is
+ * carried by the words and the markup rather than only by a colour.
+ */
+describe('a learner node with more than one plan (AC 7)', () => {
+  it('renders the plans', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en', line: PLAN_LINE })
+
+    expect(screen.getByText(EN.planHeading)).toBeVisible()
+    expect(choice(/6\.d4/)).toBeVisible()
+    expect(choice(/6\.O-O/)).toBeVisible()
+    expect(document.querySelectorAll('.choice-link--plan')).toHaveLength(2)
+  })
+
+  it('is not the opponent-replies region, and does not borrow its wording', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en', line: PLAN_LINE })
+
+    expect(screen.queryByText(EN.branchHeading)).toBeNull()
+    expect(document.querySelector('.branch-choices')).toBeNull()
+    expect(document.querySelectorAll('.choice-link--reply')).toHaveLength(0)
+    expect(screen.getByText(EN.planNote)).toBeVisible()
+  })
+
+  it('grades nothing: a prescribed move has no reply quality to show', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en', line: PLAN_LINE })
+
+    expect(document.querySelectorAll('.quality-badge')).toHaveLength(0)
+    expect(document.querySelectorAll('.frequency-tag')).toHaveLength(0)
+  })
+
+  it('navigates into the plan the learner picks', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en', line: PLAN_LINE })
+
+    fireEvent.click(choice(/6\.O-O/))
+
+    await waitFor(() => expect(router.state.location.search).toBe(lineSearch(['Ba5', 'O-O'])))
+  })
+
+  it('is reachable by its own number key', async () => {
+    const router = await surface({ entry: EVANS_ENTRY, locale: 'en', line: PLAN_LINE })
+
+    fireEvent.keyDown(window, { key: '2' })
+
+    await waitFor(() => expect(router.state.location.search).toBe(lineSearch(['Ba5', 'O-O'])))
+  })
+})
+
+/**
+ * AC 9. The choice control is in the tab order; the picture inside it is not.
+ *
+ * jsdom does not implement `inert`, so what is asserted here is that the attribute is on
+ * the element — the behaviour it produces is measured in a real browser by
+ * `e2e/branch-choices.spec.ts`, which tabs through the page and checks where focus lands.
+ */
+describe('preview boards are out of the way (AC 9)', () => {
+  it('marks every preview inert and hidden from assistive technology', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    const previews = [...document.querySelectorAll('.board-preview')]
+    expect(previews).toHaveLength(4)
+    for (const preview of previews) {
+      expect(preview).toHaveAttribute('inert')
+      expect(preview).toHaveAttribute('aria-hidden', 'true')
+    }
+  })
+
+  it('leaves exactly one board in the accessibility tree — the position being studied', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    expect(screen.getAllByRole('grid')).toHaveLength(1)
+    expect(screen.getAllByRole('gridcell')).toHaveLength(64)
+  })
+
+  it('puts the choice itself in the tab order instead', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en' })
+
+    const link = choice(/Ba5/)
+    link.focus()
+    expect(link).toHaveFocus()
   })
 })
