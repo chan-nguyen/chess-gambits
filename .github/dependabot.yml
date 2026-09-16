@@ -6,8 +6,18 @@ updates:
       interval: weekly
     open-pull-requests-limit: 5
     groups:
+      # Group only minor and patch updates. A major version is a decision, and grouping
+      # three of them into one pull request is how three decisions get merged as a chore.
       dev-dependencies:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # @types/node must track the runtime major in .nvmrc, never float ahead of it.
+      # Types describing APIs the runtime does not have let code type-check and then fail.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
   # Actions are pinned to commit SHAs, so Dependabot is how they get updated at all.
   - package-ecosystem: github-actions
     directory: /
