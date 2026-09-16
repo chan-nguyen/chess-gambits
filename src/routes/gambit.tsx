@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router'
 import './gambit.css'
 import { LearningSurface, PendingPosition } from '../components/learn/LearningSurface.tsx'
+import { GambitTree } from '../components/learn/GambitTree.tsx'
 import { GambitProgress } from '../components/progress/GambitProgress.tsx'
 import { ContentLoadError } from '../components/content/ContentLoadError.tsx'
 import type { CompiledEntry } from '../lib/content-types.ts'
@@ -126,6 +127,12 @@ export const GambitRoute = () => {
            * inserted above them is what pushes them apart on a 360px phone.
            */}
           <GambitProgress entry={state.entry} requested={plies} />
+          {/*
+           * #10's tree, a sibling rather than a third region inside the surface: from
+           * 1024px the surface is itself a two-column grid, so a region nested in it would
+           * land in one column instead of spanning the width §1 asks for.
+           */}
+          <GambitTree entry={state.entry} requested={plies} />
         </>
       )}
     </main>

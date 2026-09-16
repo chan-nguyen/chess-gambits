@@ -110,6 +110,21 @@ const en: PartialTranslations = {
     versionDiscarded:
       'Your saved progress came from an older version of this site, so it was discarded. You will need to mark your branches again.',
   },
+  tree: {
+    heading: 'The whole gambit',
+    label: 'Gambit tree',
+    show: 'Show the tree',
+    hide: 'Hide the tree',
+    close: 'Close the tree',
+    positions: 'Positions:',
+    lines: 'Lines:',
+    mateIn: 'Mate in',
+    assessment: 'Assessment',
+    unexplored: 'Not yet mapped',
+    transposes: 'Transposes',
+    showRefutation: 'Show the full refutation',
+    refutation: 'The proved refutation:',
+  },
 }
 
 export default en
