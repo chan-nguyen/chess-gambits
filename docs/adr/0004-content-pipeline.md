@@ -39,6 +39,15 @@ GUI eliminates.
   is large is how the content never gets written. `{ kind: 'unexplored' }` renders as an honest "not
   yet mapped" state and holds the gambit below Mapped in the tier derivation — the derived-tier
   machinery is exactly what makes this safe, because the content cannot lie about itself.
+- **`dismissRest` is one catch-all with a localised reason**, on an opponent node, answering every
+  legal reply that is neither modelled nor individually dismissed. Measured on the Evans Gambit
+  after `4.b4`: 35 legal replies, 34 of which say the same thing. Requiring those 34 to be written
+  out one at a time, at every opponent node in every entry, does not produce 34 dismissals — it
+  produces an author who stops modelling opponent nodes, which is strictly worse than the gap check
+  7 exists to close, and it collides with the register's standing risk that annotated depth is the
+  bottleneck and motivation on a personal project decays. Its reason is localised where
+  `dismissed.reason` is not, because this one is shown to the learner rather than read in a diff
+  (`CONTEXT.md`, Dismissal).
 - **`transposesTo`** — a node may point at another path instead of duplicating a subtree. Without it,
   the Italian, Two Knights and Evans move orders force duplicated subtrees with duplicated trilingual
   annotations that drift apart, and then check 9 punishes the author for a limitation of the schema.
@@ -67,13 +76,19 @@ Every check below blocks a merge. This list is the F12 gate.
    check that catches the reverse error, and it is what would have caught the Lasker and Elephant
    traps being published as mates.
 6. **Forced-mate proof** — per ADR-0005.
-7. **Reply completeness** — at every opponent node, every legal reply is either modelled as a child
-   or listed in a `dismissed` array with a one-line reason. The union must equal `chess.js`'s legal
-   move list. This is the check the product most needs and the one the first version of this ADR
-   lacked entirely: everything else verifies that what _was_ modelled is correct, and nothing
-   verified that it was _enough_. A learner who memorises a line, plays it, and meets a reply the
-   site never mentioned is failed by the product's core promise. `dismissed` keeps the omission
-   visible in the diff and countable in the tier derivation, without requiring an engine judgement.
+7. **Reply completeness** — at every opponent node, every legal reply is either modelled as a child,
+   listed in a `dismissed` array with a one-line reason, or answered by the node's single
+   `dismissRest` catch-all. The union must equal `chess.js`'s legal move list. This is the check the
+   product most needs and the one the first version of this ADR lacked entirely: everything else
+   verifies that what _was_ modelled is correct, and nothing verified that it was _enough_. A learner
+   who memorises a line, plays it, and meets a reply the site never mentioned is failed by the
+   product's core promise. `dismissed` keeps the omission visible in the diff and countable in the
+   tier derivation, without requiring an engine judgement.
+   The check is unchanged by the catch-all; only its authoring cost was wrong. `dismissRest` covers
+   the leftovers and nothing else, so `dismissed-also-modelled` still fires when one is present, and
+   the catch-all is refused where it covers nothing, where the node is a learner node, where the node
+   models no replies at all, and where its reason is empty or placeholder text. The validator prints
+   how many replies each one answers.
 8. **Cheap quality sanity check** — no reply marked `best` or `good` is mate-in-1 against the
    learner, and none loses material outright in one move. This is the sound, affordable fragment of
    a check that was originally written as "a `best` reply must not lose by force", which was both

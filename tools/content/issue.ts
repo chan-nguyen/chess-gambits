@@ -30,6 +30,7 @@ export type IssueCode =
   | 'dismissed-not-legal'
   | 'dismissed-also-modelled'
   | 'dismissed-without-children'
+  | 'dismiss-rest-covers-nothing'
   /* Duplicates and transpositions (ADR-0004 check 9) */
   | 'duplicate-san'
   | 'duplicate-position'

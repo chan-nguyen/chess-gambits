@@ -37,9 +37,10 @@ const summarise = (reports: readonly EntryReport[]): string => {
       fr: acc.fr + entry.coverage.fr,
       nodes: acc.nodes + entry.nodeCount,
       dismissed: acc.dismissed + entry.dismissedCount,
+      covered: acc.covered + entry.dismissRest.reduce((sum, rest) => sum + rest.covers.length, 0),
       issues: acc.issues + entry.issues.length,
     }),
-    { slots: 0, vi: 0, en: 0, fr: 0, nodes: 0, dismissed: 0, issues: 0 },
+    { slots: 0, vi: 0, en: 0, fr: 0, nodes: 0, dismissed: 0, covered: 0, issues: 0 },
   )
 
   const tiers = reports
@@ -49,7 +50,7 @@ const summarise = (reports: readonly EntryReport[]): string => {
 
   const lines = [
     '',
-    `files ${reports.length}   nodes ${total.nodes}   dismissed replies ${total.dismissed}   issues ${total.issues}`,
+    `files ${reports.length}   nodes ${total.nodes}   dismissed replies ${total.dismissed}   replies covered by dismissRest ${total.covered}   issues ${total.issues}`,
     '',
     'Translation coverage (Vietnamese is the source locale; en and fr fall back to it and are',
     'marked untranslated, so a gap here is a number to track and never a build failure):',
@@ -107,11 +108,20 @@ const run = (argv: readonly string[]): number => {
   )
 
   for (const report of reports) {
-    if (report.issues.length === 0) {
-      process.stdout.write(`ok   ${report.file}  (${report.entry?.tier ?? 'unknown'})\n`)
-      continue
+    const failing = report.issues.length > 0
+    process.stdout.write(
+      failing
+        ? `FAIL ${report.file}\n${formatIssues(report.issues)}\n`
+        : `ok   ${report.file}  (${report.entry?.tier ?? 'unknown'})\n`,
+    )
+    // One line of YAML stands in for any number of replies, so print the number back at
+    // the author. An omission they can see is the whole point of the check (issue #29).
+    for (const rest of report.dismissRest) {
+      process.stdout.write(
+        `     ${rest.nodePath}  dismissRest answers ${rest.covers.length} of ${rest.legalReplies} legal replies: ${rest.covers.join(', ')}\n`,
+      )
     }
-    process.stdout.write(`FAIL ${report.file}\n${formatIssues(report.issues)}\n\n`)
+    if (failing) process.stdout.write('\n')
   }
 
   const duplicates = duplicateIdIssues(reports)

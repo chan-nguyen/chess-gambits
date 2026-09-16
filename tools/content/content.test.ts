@@ -26,6 +26,17 @@ describe('valid content', () => {
     })
   }
 
+  it('answers all 35 Evans replies with one modelled child and one catch-all (issue #29)', () => {
+    const report = validate('tools/content/fixtures/valid/dismiss-rest-evans.yaml')
+    const [covered] = report.dismissRest
+    expect(report.entry?.tree.children.map((child) => child.ply)).toEqual(['Bxb4'])
+    expect(covered?.legalReplies).toBe(35)
+    expect(covered?.covers).toHaveLength(34)
+    // Including the one a learner would actually fear. It is answered, not omitted.
+    expect(covered?.covers).toContain('Bxf2+')
+    expect(report.entry?.tree.dismissRest?.reason.fr).toContain('c3 et d4')
+  })
+
   it('derives listed for an entry whose tree stops at the root', () => {
     const report = validate('tools/content/fixtures/valid/listed-entry.yaml')
     expect(report.entry?.tier).toBe('listed')

@@ -5,6 +5,7 @@ import { joinDataPath, joinNodePath } from './issue.ts'
 import { findDerivedFields } from './derived-fields.ts'
 import type {
   AuthoredAnnotation,
+  AuthoredDismissRest,
   AuthoredEntry,
   AuthoredNode,
   AuthoredOutcome,
@@ -14,6 +15,7 @@ import { parseEntry } from './schema.ts'
 import type {
   Annotation,
   ContentNode,
+  DismissRest,
   DismissedReply,
   Entry,
   NodeKind,
@@ -42,6 +44,21 @@ export type Coverage = {
   readonly fr: number
 }
 
+/**
+ * One accepted `dismissRest` and what it actually covers.
+ *
+ * The catch-all is one line of YAML standing in for any number of replies, so the validator
+ * states that number back at the author rather than letting the line hide it (issue #29,
+ * AC 4). It is not an issue: a counted, reasoned omission is what invariant 7a asks for.
+ */
+export type DismissRestReport = {
+  /** The node as a chess player reads it, e.g. `tree > Bxb4`. */
+  readonly nodePath: string
+  readonly dataPath: string
+  readonly covers: readonly string[]
+  readonly legalReplies: number
+}
+
 export type EntryReport = {
   readonly file: string
   readonly issues: readonly ContentIssue[]
@@ -50,6 +67,7 @@ export type EntryReport = {
   readonly coverage: Coverage
   readonly nodeCount: number
   readonly dismissedCount: number
+  readonly dismissRest: readonly DismissRestReport[]
 }
 
 type Walk = {
@@ -69,6 +87,7 @@ type Walk = {
   coverage: { slots: number; vi: number; en: number; fr: number }
   nodeCount: number
   dismissedCount: number
+  readonly dismissRest: DismissRestReport[]
 }
 
 const report = (
@@ -205,29 +224,49 @@ const checkCanonical = (
   )
 }
 
-/** ADR-0004 check 7. The check the product turns on. */
+/**
+ * ADR-0004 check 7. The check the product turns on.
+ *
+ * Returns the replies a `dismissRest` covers here — the leftovers after modelled children
+ * and individual dismissals — or nothing when there is no catch-all or it was refused.
+ */
 const checkReplyCompleteness = (
   walk: Walk,
   position: Position,
   modelled: ReadonlySet<string>,
   dismissed: ReadonlySet<string>,
+  dismissRest: AuthoredDismissRest | undefined,
   dataPath: readonly (string | number)[],
   sanPath: readonly string[],
-): void => {
+): readonly string[] => {
   const covered = new Set([...modelled, ...dismissed])
-  const missing = position.legalMoves.filter((move) => !covered.has(move))
+  const rest = position.legalMoves.filter((move) => !covered.has(move))
   const both = [...modelled].filter((move) => dismissed.has(move))
 
-  if (missing.length > 0) {
+  if (dismissRest === undefined) {
+    if (rest.length > 0) {
+      report(
+        walk,
+        'reply-incomplete',
+        dataPath,
+        sanPath,
+        `${rest.length} of ${position.legalMoves.length} legal replies are neither modelled nor dismissed: ${rest.join(', ')}. At an opponent node the learner controls nothing, so every legal reply must be answered or explicitly dismissed with a reason (docs/CONTEXT.md, invariant 7a). Where the honest answer is the same for all of them, one \`dismissRest\` with a reason covers the lot.`,
+      )
+    }
+  } else if (rest.length === 0) {
     report(
       walk,
-      'reply-incomplete',
-      dataPath,
+      'dismiss-rest-covers-nothing',
+      [...dataPath, 'dismissRest'],
       sanPath,
-      `${missing.length} of ${position.legalMoves.length} legal replies are neither modelled nor dismissed: ${missing.join(', ')}. At an opponent node the learner controls nothing, so every legal reply must be answered or explicitly dismissed with a reason (docs/CONTEXT.md, invariant 7a).`,
+      `\`dismissRest\` covers nothing here: all ${position.legalMoves.length} legal replies are already modelled or individually dismissed. A catch-all that answers no reply is decoration, and decoration is how it ends up pasted at every node whether it says anything or not. Remove it.`,
     )
   }
 
+  // Checked whether or not there is a catch-all. `dismissRest` covers only what is left
+  // over, so an overlap between `children` and `dismissed` is arithmetically invisible to
+  // it — and a catch-all that could silence this check would be a way to file a modelled
+  // reply as one of the replies nobody looked at.
   if (both.length > 0) {
     report(
       walk,
@@ -237,6 +276,8 @@ const checkReplyCompleteness = (
       `${both.join(', ')} ${both.length === 1 ? 'is' : 'are'} both modelled as a child and listed in \`dismissed\`. A reply is one or the other.`,
     )
   }
+
+  return dismissRest === undefined ? [] : rest
 }
 
 const walkNode = (
@@ -333,6 +374,33 @@ const walkNode = (
     })
   }
 
+  if (node.dismissRest !== undefined) {
+    // A learner reads this reason, so it is counted as translatable prose like any other
+    // learner-facing text. A catch-all left untranslated is a locale in which 34 replies
+    // are answered in Vietnamese.
+    countAnnotation(walk, node.dismissRest.reason)
+
+    if (kind !== 'opponent') {
+      report(
+        walk,
+        'kind-mismatch',
+        [...dataPath, 'dismissRest'],
+        sanPath,
+        `\`dismissRest\` answers the opponent replies that are not modelled, so it belongs only on an opponent node. Here it is ${walk.learnerSide}'s turn, and what ${walk.learnerSide} plays is the gambit's choice, not a reply to be covered (docs/CONTEXT.md, Node).`,
+      )
+    }
+
+    if (node.children === undefined) {
+      report(
+        walk,
+        'dismissed-without-children',
+        [...dataPath, 'dismissRest'],
+        sanPath,
+        '`dismissRest` answers the replies not modelled *beside* the ones that are. A node that models no replies is a leaf and states an `outcome` instead — a catch-all here would be silently ignored.',
+      )
+    }
+  }
+
   const children: ContentNode[] = []
   const modelled = new Set<string>()
   if (node.children !== undefined) {
@@ -386,8 +454,31 @@ const walkNode = (
     })
   }
 
-  if (kind === 'opponent' && node.children !== undefined) {
-    checkReplyCompleteness(walk, position, modelled, dismissedSet, dataPath, sanPath)
+  const covers =
+    kind === 'opponent' && node.children !== undefined
+      ? checkReplyCompleteness(
+          walk,
+          position,
+          modelled,
+          dismissedSet,
+          node.dismissRest,
+          dataPath,
+          sanPath,
+        )
+      : []
+
+  const dismissRest: DismissRest | undefined =
+    node.dismissRest === undefined
+      ? undefined
+      : { reason: toAnnotation(node.dismissRest.reason), covers }
+
+  if (covers.length > 0) {
+    walk.dismissRest.push({
+      nodePath: joinNodePath(sanPath),
+      dataPath: joinDataPath([...dataPath, 'dismissRest']),
+      covers,
+      legalReplies: position.legalMoves.length,
+    })
   }
 
   const outcome = node.outcome === undefined ? undefined : toOutcome(node.outcome)
@@ -427,6 +518,7 @@ const walkNode = (
     replyQuality: 'replyQuality' in node ? node.replyQuality : undefined,
     frequency: 'frequency' in node ? node.frequency : undefined,
     dismissed: dismissedReplies,
+    dismissRest,
     children,
     outcome,
     transposesTo: node.transposesTo,
@@ -520,6 +612,7 @@ const failed = (file: string, issues: readonly ContentIssue[]): EntryReport => (
   coverage: emptyCoverage,
   nodeCount: 0,
   dismissedCount: 0,
+  dismissRest: [],
 })
 
 const buildEntry = (source: YamlSource, authored: AuthoredEntry): EntryReport => {
@@ -533,6 +626,7 @@ const buildEntry = (source: YamlSource, authored: AuthoredEntry): EntryReport =>
     coverage: { slots: 0, vi: 0, en: 0, fr: 0 },
     nodeCount: 0,
     dismissedCount: 0,
+    dismissRest: [],
   }
 
   const opening = replay(authored.definingLine)
@@ -599,6 +693,7 @@ const buildEntry = (source: YamlSource, authored: AuthoredEntry): EntryReport =>
     coverage,
     nodeCount: walk.nodeCount,
     dismissedCount: walk.dismissedCount,
+    dismissRest: walk.dismissRest,
   }
 }
 

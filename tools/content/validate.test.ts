@@ -165,6 +165,94 @@ describe('reply completeness', () => {
   })
 })
 
+describe('a catch-all dismissal', () => {
+  const REST = [
+    '  dismissRest:',
+    "    reason: { vi: 'Không thách thức gambit; Trắng tiếp tục c3 và d4.' }",
+  ]
+
+  const withRest = (...tree: string[]): string => entry('white', DAMIANO, tree.join('\n'))
+
+  it('covers every reply left over, which is what keeps invariant 7a satisfied', () => {
+    const yaml = withRest(
+      'tree:',
+      '  children:',
+      '    - ply: Ke7',
+      '      outcome: { type: unexplored }',
+      ...REST,
+    )
+    expect(codes(yaml)).toEqual([])
+    expect(validateText('unit.yaml', yaml).entry?.tree.dismissRest?.covers).toEqual(['g6'])
+  })
+
+  it('states the count back, so one line of YAML cannot hide how many replies it answers', () => {
+    const report = validateText(
+      'unit.yaml',
+      withRest(
+        'tree:',
+        '  children:',
+        '    - ply: Ke7',
+        '      outcome: { type: unexplored }',
+        ...REST,
+      ),
+    )
+    expect(report.dismissRest).toEqual([
+      { nodePath: 'tree', dataPath: 'tree.dismissRest', covers: ['g6'], legalReplies: 2 },
+    ])
+  })
+
+  it('leaves the individual dismissals alone, and answers only what they do not', () => {
+    const yaml = withRest(
+      'tree:',
+      '  children:',
+      '    - ply: Ke7',
+      '      outcome: { type: unexplored }',
+      '  dismissed:',
+      "    - { ply: g6, reason: 'Blocks with the g-pawn.' }",
+      ...REST,
+    )
+    // Both replies are spoken for, so the catch-all answers nobody and is refused.
+    expect(codes(yaml)).toEqual(['dismiss-rest-covers-nothing'])
+  })
+
+  it('refuses an empty reason, because a reason is the entire price of covering 34 replies', () => {
+    const yaml = entry(
+      'white',
+      DAMIANO,
+      [
+        'tree:',
+        '  children:',
+        '    - ply: Ke7',
+        '      outcome: { type: unexplored }',
+        '  dismissRest:',
+        "    reason: { vi: '   ' }",
+      ].join('\n'),
+    )
+    expect(codes(yaml)).toEqual(['schema'])
+    expect(messages(yaml)).toContain('empty')
+  })
+
+  it('refuses one on a leaf, where it would answer nothing and be silently dropped', () => {
+    const yaml = withRest('tree:', '  outcome: { type: unexplored }', ...REST)
+    expect(codes(yaml)).toContain('dismissed-without-children')
+  })
+
+  it('counts its reason as learner-facing prose, so an untranslated one shows up as a gap', () => {
+    const report = validateText(
+      'unit.yaml',
+      withRest(
+        'tree:',
+        '  children:',
+        '    - ply: Ke7',
+        '      outcome: { type: unexplored }',
+        ...REST,
+      ),
+    )
+    // Two node annotation slots, both unwritten, plus the reason: Vietnamese only.
+    expect(report.coverage).toEqual({ slots: 3, vi: 1, en: 0, fr: 0 })
+  })
+})
+
 describe('transposition', () => {
   it('refuses a node that transposes into itself', () => {
     const yaml = entry(
