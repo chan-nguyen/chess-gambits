@@ -45,8 +45,16 @@ const VIOLATIONS = [
 /** The four trees the rule must cover (issue #28, AC 2). */
 const COVERED = ['src', 'tools', 'scripts', 'e2e'] as const
 
-/** Named so no test runner, bundler or tripwire scan picks it up while it briefly exists. */
-const FIXTURE = '__lint-gate-fixture__.ts'
+/**
+ * The fixture lands inside `src/`, `tools/`, `scripts/` and `e2e/` for a few milliseconds at a
+ * time, while fifty-odd other test files run in parallel — so its name has to make it invisible
+ * to all of them. `.test.` is this repository's established marker for "not application source":
+ * `src/lib/content.test.ts` and `src/styles/no-raw-values.test.ts` both glob `src/**` and both
+ * skip any path containing it, and `board-tripwire.test.ts` does the same. It is deliberately not
+ * `*.test.ts`, which is what vitest collects, and not `*.spec.ts`, which is what Playwright
+ * collects. `oxlint` cares only that it ends in `.ts`, so the gate still sees it.
+ */
+const FIXTURE = '__lint-gate__.test.fixture.ts'
 
 const withFixture = <T>(directory: string, source: string, body: (relative: string) => T): T => {
   const relative = join(directory, FIXTURE)
@@ -78,9 +86,14 @@ describe('the gate command itself', () => {
   it('passes on the repository as it stands', () => {
     // Without this, every "the gate rejects X" test below could be green because the gate
     // rejects everything.
+    //
+    // Only the exit status is asserted. Under `--deny-warnings` a zero exit already means zero
+    // errors and zero warnings, so nothing is added by also pinning the text — and the text is
+    // not the same everywhere: CI prints a `Found 0 warnings and 0 errors.` summary that a local
+    // run does not, which is exactly what an earlier, over-specified version of this assertion
+    // tripped on. The output is passed as the failure message so a future break is still legible.
     const result = runGate()
-    expect(result.stdout + result.stderr).toBe('')
-    expect(result.status).toBe(0)
+    expect(result.status, result.stdout + result.stderr).toBe(0)
   })
 })
 
