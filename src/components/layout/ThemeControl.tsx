@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './ThemeControl.css'
+import { Translated } from '../../i18n/Translated.tsx'
+import type { TranslationKey } from '../../i18n/translations.ts'
+import { useTranslated } from '../../i18n/useTranslated.ts'
 import {
   applyThemeSetting,
   readThemeSetting,
@@ -8,10 +11,11 @@ import {
   type ThemeSetting,
 } from '../../styles/theme.ts'
 
-const labels: Readonly<Record<ThemeSetting, string>> = {
-  system: 'System',
-  light: 'Light',
-  dark: 'Dark',
+/** A `Record` over the closed set, so a new appearance setting cannot ship unlabelled. */
+const labelKeys: Readonly<Record<ThemeSetting, TranslationKey>> = {
+  system: 'appearance.system',
+  light: 'appearance.light',
+  dark: 'appearance.dark',
 }
 
 /**
@@ -26,6 +30,7 @@ const labels: Readonly<Record<ThemeSetting, string>> = {
  */
 export const ThemeControl = () => {
   const [setting, setSetting] = useState<ThemeSetting>(readThemeSetting)
+  const translated = useTranslated()
 
   const choose = (next: ThemeSetting): void => {
     setSetting(next)
@@ -34,7 +39,7 @@ export const ThemeControl = () => {
   }
 
   return (
-    <div className="theme-control" role="group" aria-label="Appearance">
+    <div className="theme-control" role="group" aria-label={translated('appearance.label').text}>
       {themeSettings.map((candidate) => (
         <button
           key={candidate}
@@ -43,7 +48,7 @@ export const ThemeControl = () => {
           aria-pressed={candidate === setting}
           onClick={() => choose(candidate)}
         >
-          {labels[candidate]}
+          <Translated id={labelKeys[candidate]} />
         </button>
       ))}
     </div>

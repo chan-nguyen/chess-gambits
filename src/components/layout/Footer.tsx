@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import './Footer.css'
+import { Translated } from '../../i18n/Translated.tsx'
 import type { Locale } from '../../lib/locale.ts'
 import { routePath, routeSegments } from '../../lib/routes.ts'
 
@@ -14,25 +15,35 @@ const repository = 'https://github.com/chan-nguyen/chess-gambits'
  *
  * The opening dataset is CC0 and imposes no attribution requirement. It is credited
  * anyway — ADR-0008 says so in as many words, and it costs nothing.
+ *
+ * `MIT`, `CC BY-SA 4.0`, `CC0` and the repository name are identifiers, not prose, and are
+ * the same in every locale: a licence called something else in French would not be a
+ * licence anyone could look up. Only the words around them are translated, which also
+ * keeps every link's accessible name out of a translated string.
  */
 export const Footer = ({ locale }: FooterProps) => (
   <footer className="site-footer">
     <ul className="site-footer__list">
       <li>
-        <a href={repository}>Source on GitHub</a>
+        <a href={repository}>
+          <Translated id="footer.source" />
+        </a>
       </li>
       <li>
-        Code: <a href={`${repository}/blob/main/LICENSE`}>MIT</a>
+        <Translated id="footer.code" /> <a href={`${repository}/blob/main/LICENSE`}>MIT</a>
       </li>
       <li>
-        Content: <a href={`${repository}/blob/main/LICENSE-CONTENT`}>CC BY-SA 4.0</a>
+        <Translated id="footer.content" />{' '}
+        <a href={`${repository}/blob/main/LICENSE-CONTENT`}>CC BY-SA 4.0</a>
       </li>
       <li>
-        Opening names and ECO codes from{' '}
+        <Translated id="footer.openingData" />{' '}
         <a href="https://github.com/lichess-org/chess-openings">lichess-org/chess-openings</a>, CC0
       </li>
       <li>
-        <Link to={routePath(locale, routeSegments.about)}>How mate claims are proved</Link>
+        <Link to={routePath(locale, routeSegments.about)}>
+          <Translated id="footer.mateProof" />
+        </Link>
       </li>
     </ul>
   </footer>
