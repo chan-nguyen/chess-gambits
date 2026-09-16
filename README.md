@@ -53,9 +53,12 @@ Node version is pinned in `.nvmrc`.
 
 ### Configuration
 
-| Variable    | Default           | Why it exists                                                                                                                                                                       |
-| ----------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BASE_PATH` | `/chess-gambits/` | GitHub Pages serves a project site from a sub-path. Set to `/` when deploying to a custom domain. There are no other environment variables, and no secrets — the site has no server |
+| Variable      | Default                         | Why it exists                                                                                                                                                                                    |
+| ------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `BASE_PATH`   | `/chess-gambits/`               | GitHub Pages serves a project site from a sub-path. Set to `/` when deploying to a custom domain                                                                                                 |
+| `SITE_ORIGIN` | `https://chan-nguyen.github.io` | The scheme and host every route shell writes into its canonical URL and its `og:url` (#17). An unfurler reading `og:url` out of a crawled document has no page to resolve a relative one against |
+
+These two are the only environment variables, and there are no secrets — the site has no server.
 
 ## How it is built
 

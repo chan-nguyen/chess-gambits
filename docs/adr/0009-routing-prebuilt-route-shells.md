@@ -36,8 +36,8 @@ the compiled catalogue, so each shell is emitted with its own `lang`, `<title>`,
 **Why this one:** the route set is finite and known at build time — three locales × (home, catalogue,
 about) plus three locales × each gambit. Emitting a copy of `index.html` at each of those paths is
 file copying, not rendering: no framework, no dependency, no headless browser. It is the only option
-that gets clean URLs _and_ honest status codes, and at roughly 1–2KB per shell even a catalogue of
-several hundred gambits is a couple of megabytes against a 1GB limit.
+that gets clean URLs _and_ honest status codes, and at roughly 2–3KB per shell — a built `index.html`
+plus the per-shell head below — 700 gambits in three locales is about 5MB against a 1GB limit.
 
 **Why not the others:** the 404 trick publishes links that report themselves as broken, which is a
 poor fit for a project whose entire premise is not saying things that are untrue. Hash routing is
