@@ -11,7 +11,7 @@ import type { CatalogueEntryPayload, CataloguePayload } from './types.ts'
  * The branch count the catalogue bakes in, and the one thing that must be true of it: it
  * is the number the gambit page would compute, not a second answer to the same question.
  *
- * The catalogue deliberately downloads no entry tree — that is why 700 entries cost under
+ * The catalogue deliberately downloads no entry tree — that is why 1,003 entries cost under
  * 17KB gzipped — so a card cannot count branches itself, and a card that showed a
  * different total from the page it links to would be worse than a card that showed none.
  * The guarantee is structural rather than asserted: the build calls `countableBranches`
@@ -100,7 +100,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Three entries are authored (#15) and the other 697 are Tier 0. Each of the three is
+   * Three entries are authored (#15) and the other 1,000 are Tier 0. Each of the three is
    * named here with the number of root-to-leaf lines its tree actually has, rather than
    * the whole set being loosened to "at least zero" — which would assert nothing and would
    * keep passing if every tree in the repository disappeared.
@@ -115,13 +115,13 @@ describe('the catalogue this repository ships', () => {
     ['legals-mate', 7],
   ])
 
-  it('bakes a count on all 700 entries, and only the authored three are non-zero', () => {
-    expect(result.value.records).toHaveLength(700)
+  it('bakes a count on all 1003 entries, and only the authored three are non-zero', () => {
+    expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branches).toBe(AUTHORED.get(record.id) ?? 0)
     }
     // Every named entry is actually in the catalogue, so a typo in an id above cannot
-    // quietly turn this into a test that only checks 700 zeroes.
+    // quietly turn this into a test that only checks 1,003 zeroes.
     expect(result.value.records.filter((record) => AUTHORED.has(record.id))).toHaveLength(
       AUTHORED.size,
     )

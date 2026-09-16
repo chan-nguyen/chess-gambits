@@ -67,6 +67,19 @@ This is a research summary and not legal advice.
 - The dataset's notion of what counts as a "gambit" will not match ours exactly. A curated
   include/exclude list is maintained alongside the import so classification is a reviewed decision
   rather than a substring match on the word "Gambit".
+- **A curated rule names the sacrificing _ply_, not the side.** Issue #12 left 347 gambit-named rows
+  out because `side` could not be derived, and three heuristics were tried before that conclusion —
+  each failed on a line containing two offers, labelling every King's Gambit Declined row `white`.
+  Issue #36 split the problem where it actually splits: choosing which ply is the sacrifice is a
+  judgement a person makes and writes down, and everything after it is arithmetic. The build replays
+  the line, checks the move at that ply is the move named, proves the mover ends up materially worse
+  off once every capture the opponent has is played out, and **derives** the side from whose turn it
+  was. A rule carries `sacrifice` or `side`, never both — so an orientation is either proved or
+  visibly only claimed, and `tools/catalogue/review.test.ts` pins how many are still only claimed.
+- **The c4-pawn is not a sacrifice.** The same reasoning that makes the Queen's Gambit a misnomer
+  applies to every 1.d4 c4 line where the only material on offer is that pawn: Black cannot hold it.
+  The mechanical proof cannot tell that pawn from a real one — it only sees that nothing recaptures
+  immediately — so this stays a reviewed judgement, and several 1.d4 rows are excluded on it.
 - A licence and attribution file is required in the repository from bootstrap.
 - **The snapshot is vendored, not downloaded during the build.** `tools/catalogue/dataset/` holds
   the five TSV files and the upstream commit they came from; `npm run catalogue:fetch` refreshes

@@ -3,16 +3,19 @@ reviewedBy: fixture
 reviewedAt: '2026-01-01'
 basis: >-
   A fixture. It exists so the gates can be shown failing on inputs small enough to read in
-  one screen, rather than only passing on the real seven hundred.
+  one screen, rather than only passing on the real thousand. Both spellings of a rule are
+  represented: `Benko Gambit` proves its side by naming the ply that gives the pawn away,
+  and the rest assert one, because the real file still contains both.
 
 rules:
   - match: 'Benko Gambit'
     include: true
-    side: black
-    soundness: sound
+    sacrifice: { ply: 6, move: b5 }
+    soundness: { value: sound, by: fixture, at: '2026-01-01' }
     reason: >-
       A pawn for permanent pressure down the a- and b-files. Included so the fixture has a
-      family whose head is itself a gambit.
+      family whose head is itself a gambit, and spelt with a `sacrifice` so the fixture
+      exercises the side being proved rather than asserted.
   - match: "King's Gambit"
     include: true
     side: white
@@ -28,6 +31,7 @@ rules:
       the Giuoco Piano beside it.
   - match: "Queen's Gambit"
     include: false
+    code: misnomer
     reason: >-
       The misnomer. Excluded so the fixture proves a gambit-named row can be kept out by a
       written decision rather than by an accident of matching.

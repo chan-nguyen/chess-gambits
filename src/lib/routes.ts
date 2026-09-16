@@ -30,7 +30,7 @@ const staticRoutePaths: readonly string[] = ['', routeSegments.catalogue, routeS
  * are read off the built catalogue by `scripts/generate-shells.ts`.
  *
  * This used to be an empty constant waiting for #12 to fill it. A constant was the wrong
- * seam: 700 ids are generated data, so a committed copy of them would be a second source
+ * seam: 1,003 ids are generated data, so a committed copy of them would be a second source
  * of truth for which URLs exist, kept in step by hand and wrong the first time it was not.
  * The list the browser downloads is the list that gets shells, which is the only version
  * of that rule that cannot drift.

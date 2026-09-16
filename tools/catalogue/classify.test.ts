@@ -11,7 +11,9 @@ import type { Classification, ClassificationRule } from './source.ts'
  * and the dataset is wrong about it in both directions.
  */
 
-const rule = (match: string, extra: Partial<ClassificationRule> = {}): ClassificationRule => ({
+type IncludeRule = Extract<ClassificationRule, { include: true }>
+
+const rule = (match: string, extra: Partial<IncludeRule> = {}): ClassificationRule => ({
   match,
   include: true,
   side: 'white',
@@ -23,6 +25,7 @@ const rule = (match: string, extra: Partial<ClassificationRule> = {}): Classific
 const exclude = (match: string): ClassificationRule => ({
   match,
   include: false,
+  code: 'unassessable',
   reason: 'a fixture rule, long enough to be a reason',
 })
 
@@ -153,6 +156,137 @@ describe('what a rule carries', () => {
       [row("Queen's Gambit Declined: Orthodox Defense"), row('Benko Gambit')],
       [exclude("Queen's Gambit"), rule('Benko Gambit')],
     )
+    expect(classified.excluded).toBe(1)
+  })
+})
+
+/**
+ * Issue #36. A rule may prove its side instead of asserting one, and where it does the
+ * proof runs against **every** row the rule admits rather than a representative.
+ */
+describe('a rule that names the sacrifice instead of the side', () => {
+  const kgd = ['e4', 'e5', 'f4', 'd5']
+  const kga = ['e4', 'e5', 'f4', 'exf4']
+
+  const proved = (match: string, ply: number, move: string): ClassificationRule => ({
+    match,
+    include: true,
+    sacrifice: { ply, move },
+    soundness: 'dubious',
+    reason: 'a fixture rule, long enough to be a reason',
+  })
+
+  it('derives the side from whose turn it is at the named ply', () => {
+    const { classified, issues } = run(
+      [row("King's Gambit Declined: Falkbeer Countergambit", kgd)],
+      [proved("King's Gambit Declined: Falkbeer Countergambit", 4, 'd5')],
+    )
+
+    expect(issues).toEqual([])
+    expect(classified.included[0]?.side).toBe('black')
+  })
+
+  /** The same line, the other offer, and therefore the other side. */
+  it('derives the other side from the other offer in the same line', () => {
+    const { classified } = run(
+      [row("King's Gambit Declined: Falkbeer Countergambit", kgd)],
+      [proved("King's Gambit Declined: Falkbeer Countergambit", 3, 'f4')],
+    )
+
+    expect(classified.included[0]?.side).toBe('white')
+  })
+
+  it('fails when the named ply is not a sacrifice, and says so on the row', () => {
+    const { issues, classified } = run(
+      [row('Italian Game: Giuoco Piano Gambit', ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4', 'Bc5'])],
+      [proved('Italian Game: Giuoco Piano Gambit', 6, 'Bc5')],
+    )
+
+    expect(classified.included).toEqual([])
+    expect(issues.map((issue) => issue.message).join('\n')).toContain('nothing was offered')
+  })
+
+  /**
+   * The failure a broad rule exists to risk. `King's Gambit` admits both rows; ply 4 is
+   * `d5` in one and `exf4` in the other, and without this the second row would be published
+   * with a side nobody proved.
+   */
+  it('fails when the ply holds for one admitted row and not another', () => {
+    const { issues } = run(
+      [
+        row("King's Gambit Declined: Falkbeer Countergambit", kgd),
+        row("King's Gambit Accepted", kga),
+      ],
+      [proved("King's Gambit", 4, 'd5')],
+    )
+
+    expect(issues.map((issue) => issue.message).join('\n')).toContain('is `exf4`, not `d5`')
+  })
+
+  it('publishes no entry at all when the ply proves out for none of the rows', () => {
+    const { issues, classified } = run(
+      [row('Alpha Gambit', ['e4', 'e5', 'Nf3'])],
+      [proved('Alpha Gambit', 3, 'f4')],
+    )
+
+    expect(classified.included).toEqual([])
+    expect(issues).toHaveLength(1)
+  })
+})
+
+describe('where a soundness label comes from', () => {
+  it('inherits the file header when the rule states the value alone', () => {
+    const { classified } = run([row('Benko Gambit')], [rule('Benko Gambit')])
+
+    expect(classified.included[0]?.judgement).toStrictEqual({
+      value: 'dubious',
+      by: 'fixture',
+      at: '2026-01-01',
+    })
+  })
+
+  it('keeps the rule&apos;s own reviewer, date and source when it carries them', () => {
+    const { classified } = run(
+      [row('Benko Gambit')],
+      [
+        rule('Benko Gambit', {
+          soundness: { value: 'sound', by: 'chan', at: '2026-09-17', source: 'a published book' },
+        }),
+      ],
+    )
+
+    expect(classified.included[0]?.judgement.at).toBe('2026-09-17')
+    expect(classified.included[0]?.judgement.source).toBe('a published book')
+    expect(classified.included[0]?.soundness).toBe('sound')
+  })
+})
+
+/** Issue #36, AC 5. The exclusion list has to be countable, not just present. */
+describe('the exclusion list the build prints', () => {
+  it('groups the rows kept out by the rule that kept them out', () => {
+    const { classified } = run(
+      [
+        row("Queen's Gambit Declined: Orthodox Defense"),
+        row("Queen's Gambit Accepted"),
+        row('Benko Gambit'),
+      ],
+      [exclude("Queen's Gambit"), rule('Benko Gambit')],
+    )
+
+    expect(classified.exclusions).toStrictEqual([
+      { code: 'unassessable', match: "Queen's Gambit", rows: 2 },
+    ])
+  })
+
+  it('counts only the rows the dataset names a gambit, as the total does', () => {
+    const { classified } = run(
+      [row('Italian Game: Evans Gambit'), row('Italian Game: Giuoco Piano'), row('Benko Gambit')],
+      [exclude('Italian Game'), rule('Benko Gambit')],
+    )
+
+    expect(classified.exclusions).toStrictEqual([
+      { code: 'unassessable', match: 'Italian Game', rows: 1 },
+    ])
     expect(classified.excluded).toBe(1)
   })
 })

@@ -3,7 +3,7 @@ import { Translated } from '../../i18n/Translated.tsx'
 import type { CatalogueCounts } from '../../lib/catalogue.ts'
 
 /**
- * "700 listed · 0 mapped · 0 taught", at the top of the catalogue (AC 6).
+ * "1000 listed · 0 mapped · 3 taught", at the top of the catalogue (AC 6).
  *
  * **Per-entry badges make each page honest; only this makes the composition honest**
  * (docs/design-system.md §3). Every gambit page here tells the truth about itself, and a

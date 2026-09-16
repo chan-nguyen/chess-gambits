@@ -4,6 +4,7 @@ import { loadContent } from '../content/entries.ts'
 import type { Entry } from '../content/types.ts'
 import type { PayloadSize } from './budget.ts'
 import { checkBudget, measure } from './budget.ts'
+import type { Exclusion } from './classify.ts'
 import { classify } from './classify.ts'
 import type { DatasetSource } from './dataset.ts'
 import { foldByName, readDataset, readDatasetSource, replayLine } from './dataset.ts'
@@ -56,6 +57,8 @@ export type BuildOutput = {
   readonly datasetRows: number
   readonly foldedRows: number
   readonly excludedGambitRows: number
+  /** Every rule that kept a gambit-named row out, and how many (issue #36, criterion 5). */
+  readonly exclusions: readonly Exclusion[]
   readonly renamed: readonly Rename[]
 }
 
@@ -473,6 +476,7 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
       datasetRows: dataset.value.length,
       foldedRows: folded.length,
       excludedGambitRows: classified.excluded,
+      exclusions: classified.exclusions,
       renamed: renames(index, [...gambitIds.resolved, ...trapIds.resolved]),
     },
   }
