@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { locales } from './locale'
-import { publishedGambitIds, routePath, routeSegments, shellPaths } from './routes'
+import { routePath, routeSegments, shellPaths } from './routes'
 
 describe('route paths', () => {
   it('puts the locale first on every route', () => {
@@ -33,7 +33,7 @@ describe('the shells a build must emit', () => {
     expect(shellPaths([])).not.toContain('')
   })
 
-  it('adds one shell per gambit per locale — the seam #12 fills', () => {
+  it('adds one shell per gambit per locale', () => {
     const paths = shellPaths(['evans-gambit', 'kings-gambit'])
 
     expect(paths).toHaveLength(locales.length * 5)
@@ -41,8 +41,18 @@ describe('the shells a build must emit', () => {
     expect(paths).toContain('vi/gambits/kings-gambit')
   })
 
-  it('publishes no gambits yet, so gambit shells wait on the catalogue', () => {
-    expect(publishedGambitIds).toEqual([])
+  /**
+   * The shape of the real build, at the real size. 700 published entries is 2,100 gambit
+   * shells plus the nine static ones — and a link on the catalogue page to an id with no
+   * shell behind it is an HTTP 404 on the host while every test here passes, which is the
+   * failure this module exists to make impossible.
+   */
+  it('scales to the whole catalogue: three locales times every published id', () => {
+    const ids = Array.from({ length: 700 }, (_, index) => `gambit-${index}`)
+    const paths = shellPaths(ids)
+
+    expect(paths).toHaveLength(locales.length * (3 + ids.length))
+    expect(new Set(paths).size).toBe(paths.length)
   })
 
   it('emits no path that would escape the output directory', () => {

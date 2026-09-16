@@ -1,5 +1,6 @@
 import { expect, test } from '@playwright/test'
 import type { Page } from '@playwright/test'
+import viStrings from '../src/locales/vi.ts'
 
 /**
  * AC 4 and AC 6, against the built output on a real static host.
@@ -32,7 +33,10 @@ test('the catalogue route downloads no entry tree', async ({ page }) => {
   const seen = contentRequestsOf(page)
 
   await page.goto('vi/gambits')
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Catalogue')
+  // The real catalogue page since #13, so it is waited for by something it only shows once
+  // its own payload has arrived — a heading alone would be there before any of it had.
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText(viStrings.catalogue.heading)
+  await expect(page.getByRole('search')).toBeVisible()
   await page.waitForLoadState('networkidle')
 
   expect(seen).toEqual([])

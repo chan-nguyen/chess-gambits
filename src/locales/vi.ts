@@ -155,6 +155,107 @@ const vi = {
     versionDiscarded:
       'Tiến độ đã lưu thuộc một phiên bản cũ của trang nên đã bị xoá. Bạn cần đánh dấu lại.',
   },
+  /**
+   * Danh mục (#13). Bảy trăm mục, trong đó hôm nay chưa mục nào được dạy sâu — nên lời văn
+   * ở đây phải nói đúng điều đó thay vì để người đọc tự suy ra.
+   *
+   * `counts` và `showing` có chỗ trống vì trật tự từ không giống nhau giữa ba thứ tiếng;
+   * một câu ghép từ nhiều mảnh chỉ đúng trong thứ tiếng đã ghép ra nó.
+   */
+  catalogue: {
+    heading: 'Danh mục',
+    intro:
+      'Mọi gambit chúng tôi biết tên đều có ở đây. Phần lớn mới chỉ được liệt kê: có tên, mã ECO và nước đi mở đầu, chưa có cây biến.',
+    coverage: 'Mức độ bao phủ',
+    counts: '{{listed}} đã liệt kê · {{mapped}} đã dựng cây · {{taught}} đã dạy sâu',
+    search: 'Tìm theo tên hoặc mã ECO',
+    searchHint: 'Gõ không dấu vẫn tìm được.',
+    filters: 'Lọc danh mục',
+    side: 'Bên chơi gambit',
+    category: 'Loại',
+    soundness: 'Độ vững',
+    depth: 'Độ sâu',
+    any: 'Tất cả',
+    white: 'Trắng',
+    black: 'Đen',
+    gambit: 'Gambit',
+    trap: 'Bẫy',
+    depthTaught: 'Đã dạy sâu',
+    depthMapped: 'Đã dựng cây trở lên',
+    depthAll: 'Tất cả mục đã liệt kê',
+    showing: 'Đang hiện {{shown}} trong {{total}} mục',
+    loading: 'Đang tải danh mục…',
+    nothingHere: 'Không có mục nào khớp với bộ lọc này.',
+    nothingTaught:
+      'Chưa có gambit nào được dạy sâu. Danh mục vẫn liệt kê đầy đủ, kèm tên, mã ECO và nước đi mở đầu.',
+    showEverything: 'Hiện tất cả mục đã liệt kê',
+    clear: 'Xoá bộ lọc',
+    entriesInFamily: '{{entries}} mục',
+    eco: 'ECO',
+  },
+  /**
+   * Nhãn mức độ bao phủ. Mức độ được suy ra từ chính nội dung, không ai tự viết
+   * (docs/CONTEXT.md, bất biến 8), nên nhãn này là lời trang nói về chính nó.
+   */
+  tier: {
+    label: 'Mức độ bao phủ:',
+    listed: 'Mới liệt kê',
+    mapped: 'Đã dựng cây',
+    taught: 'Đã dạy sâu',
+  },
+  /**
+   * Nhãn độ vững, nói thẳng (docs/design-system.md §7). Một gambit không vững thì gọi là
+   * không vững, rồi mới giải thích giá trị thực chiến của nó — ở trang Giới thiệu.
+   */
+  soundness: {
+    label: 'Độ vững:',
+    sound: 'Vững',
+    dubious: 'Đáng ngờ',
+    unsound: 'Không vững',
+  },
+  /**
+   * Trang Giới thiệu, phần mà `TierBadge` và `SoundnessBadge` trỏ tới (F14, tiêu chí 9).
+   * Nhãn nào cũng phải giải thích được ở đâu đó, nếu không thì nó chỉ là một từ.
+   */
+  about: {
+    tiersHeading: 'Các mức độ bao phủ',
+    tiersIntro:
+      'Mức độ được suy ra từ chính nội dung, không ai tự gán. Một mục không thể tự nhận là đã dạy sâu; chỉ có nội dung của nó mới nói lên điều đó.',
+    tierListed:
+      'Mới liệt kê — có tên, mã ECO, bên chơi, nước đi mở đầu và nhãn độ vững. Chưa có cây biến.',
+    tierMapped: 'Đã dựng cây — cây biến đã có và không còn nhánh nào bỏ ngỏ.',
+    tierTaught: 'Đã dạy sâu — đã dựng cây, và có chú giải đủ cả tiếng Việt, tiếng Anh, tiếng Pháp.',
+    soundnessHeading: 'Độ vững nghĩa là gì',
+    soundnessIntro:
+      'Nhãn độ vững nói thẳng. Một gambit không vững thì gọi là không vững, rồi mới nói tới giá trị thực chiến của nó.',
+    soundnessSound: 'Vững — trụ được trước cách chơi đúng. Phần vật chất thí ra có đền bù.',
+    soundnessDubious:
+      'Đáng ngờ — nếu bên kia chơi đúng nhất thì họ hơn, nhưng cơ hội thực chiến là có thật và các cạm bẫy vẫn nguy hiểm.',
+    soundnessUnsound:
+      'Không vững — đã bị bác bỏ bằng cách chơi đúng đã biết. Học nó như một cái bẫy để giăng, và cũng để nhận ra khi bị giăng lại.',
+  },
+  /** Trạng thái Tier 0 (F15): không bao giờ là cây rỗng, vòng quay chờ hay 404. */
+  emptyTree: {
+    notTaught: 'Gambit này chưa được dạy sâu.',
+    explain:
+      'Ở đây có tên, mã ECO, bên chơi, nhãn độ vững và nước đi mở đầu. Cây biến — các nước trả lời, lời giải thích và kết cục — thì chưa có. Liệt kê đầy đủ để bạn biết gambit này tồn tại vẫn thật hơn là giả vờ rằng nó đã được dạy.',
+    definingLine: 'Nước đi mở đầu',
+    backToCatalogue: 'Về danh mục',
+    loading: 'Đang tra danh mục…',
+    unknown:
+      'Danh mục không có mục nào mang địa chỉ “{{id}}”. Liên kết này có thể đến từ một phiên bản cũ của trang.',
+  },
+  /** Trang chủ. Dẫn vào chiều sâu, không dẫn thẳng vào danh mục thô. */
+  home: {
+    tagline: 'Học gambit và bẫy khai cuộc như một cây biến.',
+    intro:
+      'Mỗi gambit là một cây nước đi: bạn đi nước của mình, đối thủ có vài cách trả lời, và mỗi cách dẫn tới một kết cục được nói rõ. Thế chiếu hết thì do máy chứng minh, không phải do người khẳng định.',
+    startHere: 'Bắt đầu ở đây',
+    nothingTaughtYet:
+      'Chưa có gambit nào được dạy sâu. Danh mục đã liệt kê đầy đủ tên, mã ECO và nước đi mở đầu, và mỗi trang đều tự nói rõ nó đang ở mức nào.',
+    browseCatalogue: 'Xem danh mục đầy đủ',
+    whatTiersMean: 'Các mức độ bao phủ nghĩa là gì',
+  },
   tree: {
     heading: 'Toàn bộ cây biến',
     label: 'Cây biến của gambit',

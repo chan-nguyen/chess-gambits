@@ -18,13 +18,13 @@ stack ADRs.
 
 Locale is the first path segment on every route, so every URL is shareable with its language intact.
 
-| Route                  | Purpose                                                                        | State in the URL                 |
-| ---------------------- | ------------------------------------------------------------------------------ | -------------------------------- |
-| `/:locale/`            | What this is, in one screen. Entry to the catalogue. Resume where you left off | —                                |
-| `/:locale/gambits`     | The full catalogue. Search and filter                                          | `q`, `side`, `soundness`, `tier` |
-| `/:locale/gambits/:id` | The learning surface: board, navigation, tree, annotation                      | `line` (SAN path), `flip`        |
-| `/:locale/about`       | What the coverage tiers mean, how mate claims are verified, credits, licences  | —                                |
-| `*`                    | Not found, with a route back to the catalogue                                  | —                                |
+| Route                  | Purpose                                                                        | State in the URL                             |
+| ---------------------- | ------------------------------------------------------------------------------ | -------------------------------------------- |
+| `/:locale/`            | What this is, in one screen. Entry to the catalogue. Resume where you left off | —                                            |
+| `/:locale/gambits`     | The full catalogue. Search and filter                                          | `q`, `side`, `category`, `soundness`, `tier` |
+| `/:locale/gambits/:id` | The learning surface: board, navigation, tree, annotation                      | `line` (SAN path), `flip`                    |
+| `/:locale/about`       | What the coverage tiers mean, how mate claims are verified, credits, licences  | —                                            |
+| `*`                    | Not found, with a route back to the catalogue                                  | —                                            |
 
 `/` with no locale resolves the visitor's preferred language and redirects once. The chosen locale
 is remembered in `localStorage` so the redirect is stable on return visits.

@@ -1,3 +1,5 @@
+import { countableBranches } from '../../src/components/progress/branches.ts'
+import { compileEntry } from '../content/compile.ts'
 import { loadContent } from '../content/entries.ts'
 import type { Entry } from '../content/types.ts'
 import type { PayloadSize } from './budget.ts'
@@ -212,6 +214,7 @@ const localisedPayload = (
         soundness: record.soundness,
         tier: record.tier,
         line: lineKey(record.definingLine),
+        branches: record.branches,
       })),
     })),
   }
@@ -324,6 +327,7 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
           soundness: row.soundness,
           tier: 'listed',
           definingLine: row.row.line,
+          branches: 0,
         },
       ]
     },
@@ -354,6 +358,7 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
         soundness: trap.soundness,
         tier: 'listed',
         definingLine: trap.line,
+        branches: 0,
       },
     ]
   })
@@ -399,7 +404,27 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
       const byId = new Map(untiered.map((record) => [record.id, record]))
       issues.push(...contentIssues(content.entries, byId))
       const tiers = new Map(content.entries.map(({ entry }) => [entry.id, entry.tier]))
-      records = untiered.map((record) => ({ ...record, tier: tiers.get(record.id) ?? record.tier }))
+      /**
+       * The branch count a catalogue card shows, counted here because the browser must not
+       * download a tree to learn it (`CatalogueEntryPayload.branches`).
+       *
+       * `countableBranches` is imported from the application rather than reimplemented, and
+       * it is fed the *compiled* tree rather than the authored one on purpose: the compiled
+       * tree is what the gambit page counts, so the two numbers come from one rule applied
+       * to one shape. A second implementation here would be a second answer to "how much is
+       * there to learn", and the card and the page would eventually give different ones.
+       */
+      const branches = new Map(
+        content.entries.map(({ entry }) => [
+          entry.id,
+          countableBranches(compileEntry(entry).tree).length,
+        ]),
+      )
+      records = untiered.map((record) => ({
+        ...record,
+        tier: tiers.get(record.id) ?? record.tier,
+        branches: branches.get(record.id) ?? record.branches,
+      }))
     }
   }
 

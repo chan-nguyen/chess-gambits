@@ -110,6 +110,108 @@ const en: PartialTranslations = {
     versionDiscarded:
       'Your saved progress came from an older version of this site, so it was discarded. You will need to mark your branches again.',
   },
+  /**
+   * The catalogue (#13). Seven hundred entries, none of them taught in depth today — so
+   * the wording here has to say that rather than leave a reader to work it out.
+   *
+   * `counts` and `showing` have holes in them because word order is not the same in the
+   * three languages; a sentence glued together from fragments is only ever right in the
+   * language it was glued together in.
+   */
+  catalogue: {
+    heading: 'Catalogue',
+    intro:
+      'Every gambit we know the name of is here. Most of them are only listed: a name, an ECO code and the opening moves, with no tree behind them yet.',
+    coverage: 'Coverage',
+    counts: '{{listed}} listed · {{mapped}} mapped · {{taught}} taught',
+    search: 'Search by name or ECO code',
+    searchHint: 'Typing without diacritics still matches.',
+    filters: 'Filter the catalogue',
+    side: 'Side playing the gambit',
+    category: 'Kind',
+    soundness: 'Soundness',
+    depth: 'Depth',
+    any: 'Any',
+    white: 'White',
+    black: 'Black',
+    gambit: 'Gambit',
+    trap: 'Trap',
+    depthTaught: 'Taught in depth',
+    depthMapped: 'Mapped or better',
+    depthAll: 'Everything listed',
+    showing: 'Showing {{shown}} of {{total}} entries',
+    loading: 'Loading the catalogue…',
+    nothingHere: 'No entry matches these filters.',
+    nothingTaught:
+      'No gambit is taught in depth yet. The catalogue still lists every one of them, with its name, ECO code and opening moves.',
+    showEverything: 'Show everything listed',
+    clear: 'Clear the filters',
+    entriesInFamily: '{{entries}} entries',
+    eco: 'ECO',
+  },
+  /**
+   * Coverage-tier labels. The tier is derived from the content itself and never written by
+   * hand (docs/CONTEXT.md, invariant 8), so this label is the page describing itself.
+   */
+  tier: {
+    label: 'Coverage:',
+    listed: 'Listed',
+    mapped: 'Mapped',
+    taught: 'Taught',
+  },
+  /**
+   * Soundness labels, stated without euphemism (docs/design-system.md §7). An unsound
+   * gambit is called unsound, and its practical value is then explained — on the About page.
+   */
+  soundness: {
+    label: 'Soundness:',
+    sound: 'Sound',
+    dubious: 'Dubious',
+    unsound: 'Unsound',
+  },
+  /**
+   * The About page sections the two badges link to (F14, AC 9). Every label has to be
+   * explained somewhere, or it is just a word.
+   */
+  about: {
+    tiersHeading: 'What the coverage tiers mean',
+    tiersIntro:
+      'A tier is derived from the content itself; nobody assigns one. An entry cannot claim to be taught in depth — only its content can say so.',
+    tierListed:
+      'Listed — a name, an ECO code, the side, the opening moves and a soundness label exist. There is no tree yet.',
+    tierMapped: 'Mapped — a tree exists and no leaf of it is left unexplored.',
+    tierTaught: 'Taught — mapped, plus complete annotation in Vietnamese, English and French.',
+    soundnessHeading: 'What soundness means',
+    soundnessIntro:
+      'The soundness label is blunt. An unsound gambit is called unsound, and its practical value is explained afterwards.',
+    soundnessSound: 'Sound — it holds up against correct play. The sacrifice is compensated.',
+    soundnessDubious:
+      'Dubious — with best play the defender comes out ahead, but the practical chances are real and the traps are dangerous.',
+    soundnessUnsound:
+      'Unsound — refuted by known correct play. Learned as a trap to spring, and equally as one to recognise when it is sprung on you.',
+  },
+  /** The Tier 0 state (F15): never an empty tree, never a spinner, never a 404. */
+  emptyTree: {
+    notTaught: 'This gambit is not taught in depth yet.',
+    explain:
+      'What is here is the name, the ECO code, the side, the soundness label and the opening moves. The tree — the replies, the explanations and the outcomes — is not. Listing it so you know it exists is still more honest than pretending it has been taught.',
+    definingLine: 'Opening moves',
+    backToCatalogue: 'Back to the catalogue',
+    loading: 'Looking this up in the catalogue…',
+    unknown:
+      'The catalogue has no entry at the address “{{id}}”. This link may be from an older version of the site.',
+  },
+  /** The home page. It leads into depth, never straight into the raw index. */
+  home: {
+    tagline: 'Learn gambits and opening traps as a branching move tree.',
+    intro:
+      'A gambit is a tree of moves: you play yours, your opponent has a handful of replies, and each one leads to an outcome that is spelled out. Checkmates are proved by machine, not asserted by a person.',
+    startHere: 'Start here',
+    nothingTaughtYet:
+      'No gambit is taught in depth yet. The catalogue lists every name, ECO code and opening line, and each page says for itself where it stands.',
+    browseCatalogue: 'Browse the full catalogue',
+    whatTiersMean: 'What the coverage tiers mean',
+  },
   tree: {
     heading: 'The whole gambit',
     label: 'Gambit tree',

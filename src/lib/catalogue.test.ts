@@ -28,6 +28,7 @@ const CATALOGUE = {
           soundness: 'sound',
           tier: 'listed',
           line: 'e4 e5 Nf3 Nc6 Bc4 Bc5 b4',
+          branches: 0,
         },
       ],
     },
@@ -75,6 +76,7 @@ describe('reading a name out of the catalogue', () => {
     soundness: 'sound',
     tier: 'listed',
     line: 'e4',
+    branches: 0,
   } as const
 
   it('folds the family and the variation back together', () => {
@@ -169,5 +171,41 @@ describe('the guard itself', () => {
 
   it('accepts the shape the build emits', () => {
     expect(isCatalogue(CATALOGUE)).toBe(true)
+  })
+})
+
+/**
+ * The baked branch count is the one field a card *divides by*, so it is checked harder
+ * than the strings around it. A card that read "3 of -1 branches" would be a visible
+ * defect on the one display whose whole purpose is to be believed, and the catalogue is
+ * fetched from a static host that can answer with something other than what we built.
+ */
+describe('the baked branch count', () => {
+  const withBranches = (branches: unknown): unknown => {
+    const [family] = CATALOGUE.families
+    const [entry] = family?.entries ?? []
+    return { ...CATALOGUE, families: [{ ...family, entries: [{ ...entry, branches }] }] }
+  }
+
+  it('is read back when it is a count', async () => {
+    respond(withBranches(12))
+    const result = await loadCatalogue('vi')
+
+    expect(result.ok).toBe(true)
+    if (!result.ok) return
+    expect(result.catalogue.families[0]?.entries[0]?.branches).toBe(12)
+  })
+
+  it('accepts zero, which is every entry today', async () => {
+    respond(withBranches(0))
+    await expect(loadCatalogue('vi')).resolves.toMatchObject({ ok: true })
+  })
+
+  it.each([-1, 1.5, Number.NaN, '12', null, undefined])('rejects %p', async (branches) => {
+    respond(withBranches(branches))
+    await expect(loadCatalogue('vi')).resolves.toEqual({
+      ok: false,
+      failure: { reason: 'malformed' },
+    })
   })
 })

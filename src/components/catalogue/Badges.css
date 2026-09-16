@@ -1,0 +1,59 @@
+/*
+ * A badge is a small bordered chip. It is sized to §5's 24px floor rather than the 44px
+ * one: several sit in a row on a card and the card's own name link is the primary target,
+ * so growing these to 44px would push the name off a 360px screen to make a secondary
+ * control easier to hit.
+ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-size-min);
+  padding-inline: var(--space-2);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-full);
+  color: var(--color-text);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.badge:hover,
+.badge:focus-visible {
+  text-decoration: underline;
+}
+
+/*
+ * The tints. Every one of them is redundant: the badge's own word already says which value
+ * it is, and `no information conveyed by colour alone` (§2) is satisfied before a single
+ * colour is applied here. What the tint buys is scanning speed down a column of cards.
+ */
+.badge--taught {
+  border-color: var(--color-advantage);
+  background-color: var(--color-surface-raised);
+}
+
+.badge--mapped {
+  background-color: var(--color-surface-raised);
+}
+
+.badge--listed {
+  color: var(--color-text-muted);
+}
+
+/*
+ * Soundness borrows the outcome palette rather than inventing a second one: `unsound`
+ * means the same kind of thing as an assessment against the learner, and using
+ * `--color-worse` for both is what keeps the product's colour vocabulary at one size.
+ */
+.badge--sound {
+  border-color: var(--color-advantage);
+}
+
+.badge--dubious {
+  border-color: var(--color-equal);
+}
+
+.badge--unsound {
+  border-color: var(--color-worse);
+}
