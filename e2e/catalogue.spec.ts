@@ -169,7 +169,15 @@ test('an entry links to a URL that the host actually answers', async ({ page, re
  */
 test('a listed entry opens on its identity and its moves, never an error', async ({ page }) => {
   await page.goto(`${gambits}?tier=all&q=benko`)
-  await page.getByRole('main').getByRole('link', { name: /Benko/ }).first().click()
+  /*
+   * The Benko itself is taught since #15, so the listed example here is its sibling, and
+   * it is addressed by id rather than by position in the list — "the first Benko row" is
+   * a different entry every time content lands, and this test is about the *listed* state.
+   */
+  await page
+    .getByRole('main')
+    .locator(`a[href$="/vi/${routeSegments.catalogue}/benko-gambit-accepted"]`)
+    .click()
 
   await expect(page.getByText('Gambit này chưa được dạy sâu.')).toBeVisible()
   await expect(page.getByText('1.d4')).toBeVisible()
