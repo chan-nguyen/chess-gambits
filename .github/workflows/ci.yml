@@ -41,6 +41,11 @@ jobs:
       - name: Test
         run: npm test
 
+      # The content gate (requirement F12). Required: this is the product's only
+      # correctness guarantee, so a failure here blocks the merge like any other.
+      - name: Validate content
+        run: npm run validate:content
+
       - name: Build
         run: npm run build
 
