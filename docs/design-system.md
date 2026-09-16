@@ -97,10 +97,53 @@ decoration:
 `mistake`, `blunder`.
 
 **Board colours**: `--color-board-light`, `--color-board-dark`, `--color-board-highlight-from`,
-`--color-board-highlight-to`, `--color-board-check`, `--color-board-legal`.
+`--color-board-highlight-to`, `--color-board-check`, `--color-board-legal`, `--color-board-mark`,
+`--color-board-coordinate`.
+
+**Piece colours**: `--color-piece-white-fill`, `--color-piece-white-stroke`,
+`--color-piece-black-fill`, `--color-piece-black-stroke`. A piece's role is carried by its
+silhouette and its colour by these four, so white and black survive greyscale (§5).
 
 Both themes must pass WCAG 2.2 AA. Dark mode follows the system preference and is overridable by the
 user; the override is persisted.
+
+#### Board and piece colour values
+
+Normative. Added by #4, which needed them to exist before it could assert §5's contrast floor over
+anything; the rest of the palette's values remain open. `src/styles/tokens.css` (#2) implements this
+table, and `board-contrast.test.ts` reads it directly — the doc is the source of truth, so a value
+edited here without re-checking contrast fails that test rather than shipping.
+
+| Token                          | Light     | Dark      | Role                               |
+| ------------------------------ | --------- | --------- | ---------------------------------- |
+| `--color-board-light`          | `#ebd9b8` | `#bcab94` | Light square                       |
+| `--color-board-dark`           | `#b58863` | `#927b66` | Dark square                        |
+| `--color-board-highlight-from` | `#c9ce6e` | `#a3a155` | Square the last ply left           |
+| `--color-board-highlight-to`   | `#e4c05a` | `#c2a24e` | Square the last ply arrived on     |
+| `--color-board-check`          | `#d14b3f` | `#c4544a` | Disc behind a king in check        |
+| `--color-board-mark`           | `#123a5e` | `#0f2e4a` | Ring on an arbitrary marked square |
+| `--color-board-coordinate`     | `#1f1a14` | `#14110c` | File letters and rank numbers      |
+| `--color-piece-white-fill`     | `#faf7f2` | `#e8e2d8` | White piece body                   |
+| `--color-piece-white-stroke`   | `#16120d` | `#14110c` | White piece outline                |
+| `--color-piece-black-fill`     | `#2a2520` | `#221e19` | Black piece body                   |
+| `--color-piece-black-stroke`   | `#f0eae0` | `#cfc7ba` | Black piece outline                |
+
+Three rules hold over this table in both themes, and each is asserted:
+
+1. **A piece is legible on every surface it can sit on.** For each piece and each of the six square
+   or highlight colours, the fill _or_ the stroke reaches 3:1. Neither alone can: a white piece's
+   body vanishes on a light square and a black piece's body vanishes on a dark one, which is exactly
+   what the outline is for.
+2. **White and black survive greyscale.** The two fills reach 4.5:1 of each other, and each fill
+   reaches 3:1 of its own stroke.
+3. **Coordinates are readable on both squares.** `--color-board-coordinate` reaches 4.5:1 against
+   both `--color-board-light` and `--color-board-dark`. One token rather than a per-square pair,
+   because a single dark value clears both and a light one cannot clear the light square.
+
+`--color-board-mark` is dark in both themes for the same reason: a mark ring must clear 3:1 on the
+light _and_ the dark square, and only the dark end of the range does.
+
+`--color-board-legal` has no value yet — v1 shows no legal moves, so nothing renders it.
 
 ### Colour is never the only signal
 
@@ -121,6 +164,8 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
   Chess notation renders in `--font-mono` so `Nf3` and `Bb5+` align in lists.
   Scale: `--text-xs` 12px through `--text-3xl` 32px. Line height 1.5 body, 1.2 headings.
 - **Radius**: `--radius-sm` 4px, `--radius-md` 8px, `--radius-lg` 12px, `--radius-full`.
+- **Focus ring**: `--focus-ring-width` 2px. §5 requires a visible focus ring everywhere and
+  never gave it a width, so without a token every component invents one and they disagree.
 - **Motion**: `--duration-fast` 120ms, `--duration-base` 200ms. Board transitions use
   `--duration-base`. **All motion is disabled under `prefers-reduced-motion: reduce`** — a piece
   that slides is decoration, and the position is the information.

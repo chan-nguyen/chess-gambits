@@ -17,5 +17,12 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     globals: true,
+    /**
+     * Vitest stubs CSS imports to an empty module by default, which also empties `?raw`
+     * and `?inline`. Components assert over their own stylesheets — that a board draws
+     * with design tokens rather than raw colours, for one — so the text has to survive
+     * the transform.
+     */
+    css: true,
   },
 })

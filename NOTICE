@@ -1,0 +1,39 @@
+# NOTICE
+
+Third-party and separately-licensed material in this repository, and where it came from.
+
+The application source is MIT (`LICENSE`). Chess content — annotations, assessments and the
+gambit trees — is licensed separately (`LICENSE-CONTENT`).
+
+---
+
+## Chess piece shapes
+
+`src/components/board/piece-sprite.tsx`
+
+**Origin:** original work, drawn for this repository.
+**Licence:** MIT, the same as the rest of the application source (`LICENSE`).
+**Third-party material:** none. No existing piece set is copied, traced or derived from.
+
+The six shapes — king, queen, rook, bishop, knight, pawn — are drawn as single SVG paths on the
+conventional 45x45 grid. Colour is not part of a shape: `<use>` supplies the fill and stroke, so
+each shape serves both its white and its black piece.
+
+### Why these are not from an existing set
+
+The ticket asked for a permissively licensed open set. Drawing them instead was a deliberate
+departure, for two reasons, and it satisfies the same underlying concerns more completely.
+
+- **Size.** ADR-0003 budgets roughly 2KB for the whole board. Detailed sets — Cburnett and its
+  descendants — carry one to three kilobytes of path data *per piece*, so twelve of them would
+  exceed the entire board's budget several times over before a single square is drawn. Simple
+  shapes are also more legible at the size a branch preview renders them.
+- **Licence.** The best-known open set, Cburnett, is multi-licensed and its options include
+  GPL-family terms. ADR-0003 already rejected `@lichess-org/chessground` over exactly that risk.
+  Original work under the repository's own licence removes the question rather than analysing it.
+
+### Inlining
+
+The shapes are inlined in the bundle at build time and are never fetched. There is no piece URL
+anywhere in the application, which is what makes requirement N8 — zero third-party requests at
+runtime — true by construction rather than by policy.

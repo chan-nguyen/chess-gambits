@@ -1,0 +1,138 @@
+/*
+ * Every colour, radius and duration here is a token from docs/design-system.md §2.
+ * The SVG draws in an 8x8 unit coordinate system, so its geometry carries no px at all —
+ * stroke widths are user units inside the 45-unit piece grid, not spacing values.
+ */
+
+.board {
+  position: relative;
+  inline-size: 100%;
+  /* Reserved before the SVG paints, so the board contributes nothing to CLS (§6). */
+  aspect-ratio: 1;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.board__canvas {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  /* The grid above handles every interaction; the drawing is decorative. */
+  pointer-events: none;
+}
+
+.board__square--light {
+  fill: var(--color-board-light);
+}
+
+.board__square--dark {
+  fill: var(--color-board-dark);
+}
+
+.board__square--from {
+  fill: var(--color-board-highlight-from);
+}
+
+.board__square--to {
+  fill: var(--color-board-highlight-to);
+}
+
+.board__square {
+  transition: fill var(--duration-base) ease;
+}
+
+/* Shape, not only tint: dashed for the square the ply left, solid for the one it reached. */
+.board__last-ply {
+  fill: none;
+  stroke-width: 0.045;
+}
+
+.board__last-ply--from {
+  stroke: var(--color-board-coordinate);
+  stroke-dasharray: 0.18 0.12;
+}
+
+.board__last-ply--to {
+  stroke: var(--color-board-coordinate);
+}
+
+/* A disc, so check is not a fourth tinted square. */
+.board__check {
+  fill: var(--color-board-check);
+}
+
+/* A ring, drawn over the piece so a marked occupied square still reads. */
+.board__mark {
+  fill: none;
+  stroke: var(--color-board-mark);
+  stroke-width: 0.06;
+}
+
+.board__piece {
+  stroke-width: 1.6;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.board__piece--white {
+  fill: var(--color-piece-white-fill);
+  stroke: var(--color-piece-white-stroke);
+}
+
+.board__piece--black {
+  fill: var(--color-piece-black-fill);
+  stroke: var(--color-piece-black-stroke);
+}
+
+.board__coordinate {
+  fill: var(--color-board-coordinate);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  user-select: none;
+}
+
+.board__coordinate--file {
+  text-anchor: end;
+}
+
+.board__grid {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.board__row {
+  display: flex;
+  flex: 1;
+}
+
+.board__cell {
+  flex: 1;
+}
+
+.board__cell:focus-visible {
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: calc(-1 * var(--focus-ring-width));
+}
+
+/*
+ * Visually hidden, but with a real box so screen readers still reach it. Sized from a
+ * token rather than the usual 1px, then clipped away to nothing.
+ */
+.board__announcement {
+  position: absolute;
+  inline-size: var(--space-1);
+  block-size: var(--space-1);
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* The position is the information; a square that fades is decoration (§2). */
+@media (prefers-reduced-motion: reduce) {
+  .board__square {
+    transition: none;
+  }
+}
