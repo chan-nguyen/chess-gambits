@@ -53,7 +53,7 @@ describe('valid content', () => {
   it('derives taught only when all three locales are complete', () => {
     const report = validate('tools/content/fixtures/valid/taught-entry.yaml')
     expect(report.entry?.tier).toBe('taught')
-    expect(report.coverage).toEqual({ slots: 10, vi: 10, en: 10, fr: 10 })
+    expect(report.coverage).toEqual({ slots: 11, vi: 11, en: 11, fr: 11 })
   })
 
   it('reports a missing translation as coverage rather than as a failure (AC 9)', () => {
@@ -64,21 +64,23 @@ describe('valid content', () => {
 
   it('derives kind from side to move and never from the file', () => {
     const report = validate('tools/content/fixtures/valid/taught-entry.yaml')
-    // The defining line ends with 10...Kf7, so it is White — the learner — to move at the root.
-    expect(report.entry?.tree.kind).toBe('learner')
-    expect(report.entry?.tree.children.map((child) => child.kind)).toEqual(['opponent'])
+    // The defining line ends with White's 5.Qxe5+, so it is Black — the opponent — to move
+    // at the root. A defining line always ends on the learner's own ply (invariant 5), so
+    // the root is always an opponent node and never a learner one.
+    expect(report.entry?.tree.kind).toBe('opponent')
+    expect(report.entry?.tree.children.map((child) => child.kind)).toEqual(['learner'])
   })
 
   it('derives a position for every node rather than reading one from the file', () => {
     const report = validate('tools/content/fixtures/valid/taught-entry.yaml')
-    expect(report.entry?.tree.fen).toMatch(/^[1-8pnbrqkPNBRQK/]+ w /)
+    expect(report.entry?.tree.fen).toMatch(/^[1-8pnbrqkPNBRQK/]+ b /)
   })
 
   it('resolves a transposition against the first four FEN fields', () => {
     const report = validate('tools/content/fixtures/valid/mapped-transposition.yaml')
-    const [first, second] = report.entry?.tree.children ?? []
+    const [first, second] = report.entry?.tree.children[0]?.children ?? []
     expect(first?.children[0]?.children[0]?.transposesTo).toBeUndefined()
-    expect(second?.children[0]?.children[0]?.transposesTo).toEqual(['Qe8+', 'Kf6', 'Qg6+'])
+    expect(second?.children[0]?.children[0]?.transposesTo).toEqual(['Kf7', 'Qe8+', 'Kf6', 'Qg6+'])
   })
 
   it('records that reply quality and frequency are an author judgement, never a measurement', () => {

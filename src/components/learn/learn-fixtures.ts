@@ -203,6 +203,14 @@ export const MATE_ENTRY: CompiledEntry = {
                               inMoves: 3,
                               sequence: ['Nxe5', 'Bxd1', 'Bxf7+', 'Ke7', 'Nd5#'],
                               provedBy: 'modelled-net',
+                              // #5 made every mate outcome carry where its proof came from.
+                              // A fixture is not exempt: the point of the field is that no mate
+                              // can be stated without naming the certificate behind it.
+                              basis: {
+                                basis: 'proved',
+                                by: 'certificate',
+                                certificate: 'fixture-legal-trap.Bxd1.mate.json',
+                              },
                             },
                           },
                         ],

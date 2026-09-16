@@ -5,7 +5,15 @@ import type {
   CompiledOutcome,
   CompiledProvenance,
 } from '../../src/lib/content-types.ts'
-import type { Annotation, ContentNode, Entry, Outcome, Provenance } from './types.ts'
+import type {
+  Annotation,
+  Assessment,
+  ContentNode,
+  Entry,
+  ForcedMate,
+  Outcome,
+  Provenance,
+} from './types.ts'
 import { assertNever } from './types.ts'
 
 /**
@@ -48,6 +56,7 @@ const outcome = (value: Outcome): CompiledOutcome => {
         inMoves: value.inMoves,
         sequence: [...value.sequence],
         provedBy: value.provedBy,
+        basis: { basis: 'proved', by: 'certificate', certificate: value.basis.certificate },
       }
     case 'position':
       return {
@@ -136,6 +145,22 @@ export type EveryNodeFieldIsCompiled = MustBeNever<
     | 'outcome'
     | 'transposesTo'
   >
+>
+
+/**
+ * The same guard, for the outcome shapes.
+ *
+ * `EveryNodeFieldIsCompiled` covers `ContentNode`, so it says nothing about a field added to
+ * an *outcome* — and `ForcedMate` grew one (#5). A property nobody reads is not a type error,
+ * so without this the field would compile, ship as absent, and reach a learner as a proof
+ * with no certificate to look up. Found the hard way; closed here.
+ */
+export type EveryMateFieldIsCompiled = MustBeNever<
+  Unhandled<ForcedMate, 'kind' | 'inMoves' | 'sequence' | 'provedBy' | 'basis'>
+>
+
+export type EveryAssessmentFieldIsCompiled = MustBeNever<
+  Unhandled<Assessment, 'kind' | 'evaluation' | 'plan' | 'basis'>
 >
 
 export type EveryEntryFieldIsCompiled = MustBeNever<

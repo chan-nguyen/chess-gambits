@@ -1,0 +1,45 @@
+# Fixture, not published content. The Blackburne Shilling Gambit, and a correction.
+#
+# The trap is widely published as beginning at 5.Nxf7, which is wrong: at the root of this
+# entry White is in check and has exactly **two** legal moves, and one of them holds. 7.Qe2!
+# leaves Black no mate at all — verified, not assumed. The trap begins at 7.Be2??.
+#
+# Two legal replies means `dismissRest` here answers exactly one of them, which is the
+# smallest a catch-all can honestly be.
+id: fixture-blackburne-shilling
+name: 'Fixture: Blackburne Shilling Gambit, the 7.Be2 blunder'
+eco: C50
+category: trap
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nd4, Nxe5, Qg5, Nxf7, Qxg2, Rf1, Qxe4+]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-16'
+  basis:
+    by: fixture-author
+    at: '2026-09-16'
+    source: 'Author impression; no engine and no published source. The mate below is proved.'
+judgement:
+  by: fixture-author
+  at: '2026-09-16'
+  source: 'The reply quality here is an author impression. The mate is not — it is proved.'
+tree:
+  annotation:
+    vi: Trắng đang bị chiếu và chỉ có đúng hai nước hợp lệ. Một nước cứu được, một nước thua ngay.
+    en: White is in check with exactly two legal moves. One holds; the other loses at once.
+    fr: Les Blancs sont en échec avec exactement deux coups légaux. L'un tient ; l'autre perd aussitôt.
+  dismissRest:
+    reason:
+      vi: 7.Qe2! là nước cứu. Đen đổi hậu và hơn một tốt, nhưng không có chiếu bí — đã kiểm chứng.
+      en: 7.Qe2! is the saving move. Black trades queens a pawn up, but there is no mate — verified.
+      fr: 7.Qe2 ! sauve la partie. Les Noirs échangent les dames avec un pion de plus, sans mat — vérifié.
+  children:
+    - ply: Be2
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Chặn bằng tượng. Tượng bị ghim vào vua theo cột e, nên nó không giữ được f3.
+        en: Blocking with the bishop. It is pinned against the king on the e-file, so it does not guard f3.
+        fr: Bloquer avec le fou. Cloué sur le roi dans la colonne e, il ne garde plus f3.
+      outcome:
+        type: trap

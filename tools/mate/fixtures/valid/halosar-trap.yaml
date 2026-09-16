@@ -1,0 +1,43 @@
+# Fixture, not published content. The Halosar Trap in the Blackmar-Diemer, Ryder Gambit.
+#
+# Reconstructed by search rather than copied: the line that mates was found by playing the
+# Ryder Gambit forward and asking which Bxf3 capture leaves White mate in one. It is
+# 8...Bxf3??, answered by 9.Nxc7#, and the king's own pawns on e7 and f7 are what take away
+# every flight square.
+id: fixture-halosar-trap
+name: 'Fixture: Halosar Trap, the 8...Bxf3 blunder'
+eco: D00
+category: trap
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3, exf3, Qxf3, Qxd4, Be3, Qb4, O-O-O, Bg4, Nb5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-16'
+  basis:
+    by: fixture-author
+    at: '2026-09-16'
+    source: 'Author impression; no engine and no published source. The mate below is proved.'
+judgement:
+  by: fixture-author
+  at: '2026-09-16'
+  source: 'The reply quality here is an author impression. The mate is not — it is proved.'
+tree:
+  annotation:
+    vi: Trắng thí hậu ở f3 để đổi lấy Nxc7. Đen có 42 nước hợp lệ, và chỉ một nước thua ngay.
+    en: White leaves the queen on f3 in exchange for Nxc7. Black has 42 legal moves and only one loses at once.
+    fr: Les Blancs laissent la dame en f3 en échange de Nxc7. Les Noirs ont 42 coups légaux, un seul perd sur-le-champ.
+  dismissRest:
+    reason:
+      vi: Không ăn hậu thì không có bẫy; Đen vẫn hơn quân và ván cờ nằm ngoài phạm vi bản mẫu này.
+      en: Anything but taking the queen leaves Black material up in a game this fixture does not model.
+      fr: Tout sauf prendre la dame laisse les Noirs avec du matériel, hors du champ de ce modèle.
+  children:
+    - ply: Bxf3
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Ăn hậu. Tốt e7 và f7 của chính Đen bịt hết đường chạy của vua.
+        en: Taking the queen. Black's own pawns on e7 and f7 seal every flight square for the king.
+        fr: Prendre la dame. Les pions noirs en e7 et f7 ferment toutes les cases de fuite du roi.
+      outcome:
+        type: trap

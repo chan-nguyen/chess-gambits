@@ -1,17 +1,28 @@
+# `replyQuality` says how bad the *opponent's* reply was, so it belongs only on a child of an
+# opponent node. Here it sits on `Qxe5+`, which is White's own prescribed move and White is
+# the learner — the gambit's choice, not a reply to be graded.
+#
+# The defining line ends with White's 4.Qh5+, the learner's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). That is what makes 4...Ke7 a legitimate place
+# for a quality and the ply after it not one.
 id: reply-quality-on-prescribed-move
 name: Adversarial fixture
 eco: C40
 category: trap
 side: white
-definingLine: [e4, e5, Nf3, f6, Nxe5, fxe5]
+definingLine: [e4, e5, Nf3, f6, Nxe5, fxe5, Qh5+]
 soundness:
   value: unsound
   reviewedAt: '2026-09-16'
   basis: { by: a, at: '2026-09-16' }
 judgement: { by: a, at: '2026-09-16' }
 tree:
+  dismissed:
+    - { ply: g6, reason: 'Blocks with the g-pawn; outside what this fixture models.' }
   children:
-    - ply: Qh5+
-      replyQuality: blunder
-      frequency: rare
-      outcome: { type: unexplored }
+    - ply: Ke7
+      children:
+        - ply: Qxe5+
+          replyQuality: blunder
+          frequency: rare
+          outcome: { type: unexplored }

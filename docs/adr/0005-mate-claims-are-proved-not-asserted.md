@@ -112,6 +112,48 @@ each be **rejected**, with the rejection reason asserted:
 - Certificates are regenerated on a schedule, not per pull request, so a slow oracle never gates a
   merge.
 
+## As built
+
+Recorded here because the ADR specified a pipeline and building it needed decisions the ADR did not
+make. Implemented in `tools/mate/`, with the content half in `tools/content/validate.ts`.
+
+**The author's claim is `outcome: { type: trap }`** and nothing else. No move count, no line, no
+certificate name: each of those is derived, and a file that can state a derived thing can lie about
+it. `type: mate` is refused earlier still, by `derived-fields.ts`.
+
+**A certificate is a replay script.** It stores `entry`, `node`, `line`, `inMoves` and the net — moves
+only, no position, so nothing in it can drift out of sync with the moves beside it. `line` is the
+whole game from the standard start position, which is what lets the verifier check repetition against
+real history rather than a fragment, and what makes the file checkable with no content file present.
+
+**Its name is derived, not stored**: `<entry>.<percent-encoded node path>.mate.json`, beside the
+content file. The encoding is the same one a `line` URL parameter uses and for the same reason — a
+proof of a mate is the likeliest file in this project to have a `#` in its name. The verifier checks
+the name against what the certificate says it proves, so a file copied to another entry fails.
+
+**Nine checks, not six.** The six above, plus three the pipeline needs to be sound at all: the depth
+the certificate claims must equal its longest line; the certificate must not be filed under the wrong
+entry; and the independent search must agree that a mate exists at all, because two methods over the
+same rules disagreeing is itself a refusal.
+
+**Set equality is on the multiset**, so a duplicated reply cannot pad the count while a real reply is
+missing.
+
+**The oracle is optional.** With no Stockfish installed, `prove:mates` searches to its own maximum
+depth and takes longer; the certificates come out identical, because nothing the oracle says is
+believed. `no-engine.test.ts` walks the import graph from `verify-cli.ts` and asserts the oracle is
+unreachable from it — the licensing boundary and the trust boundary are the same line, and neither is
+left to a comment.
+
+**Both directions of the corpus are checked.** A leaf claiming a trap with no certificate fails, and
+a certificate no leaf claims fails too: a proof of something the site has stopped saying verifies for
+ever without anyone reading it.
+
+Measurements reproduced on this implementation, `chess.js` 1.4.0: mate in 1 proved in 0.4–6ms, the
+Légal mate in 2 in 36ms; no mate to depth 3 in 0.08–6.0s; the Fishing Pole's mate in 4 still
+`unknown` after 3,000,000 nodes and 159 seconds, so it is refused, as predicted. A hundred-node cap
+on the Légal mate in 2 returns `unknown` and the claim is refused.
+
 ## What would change this
 
 Certificate size becoming a genuine repository problem, which would move generation into CI and

@@ -42,8 +42,8 @@ describe('what the build derives and the content may not state', () => {
   })
 
   it('gives every node its derived kind, alternating with the side to move', () => {
-    expect(taught.tree.kind).toBe('learner')
-    expect(taught.tree.children?.[0]?.kind).toBe('opponent')
+    expect(taught.tree.kind).toBe('opponent')
+    expect(taught.tree.children?.[0]?.kind).toBe('learner')
     expect(everyNode(taught.tree).every((node) => node.kind !== undefined)).toBe(true)
   })
 
@@ -70,7 +70,7 @@ describe('what it drops, because JSON cannot say it', () => {
   })
 
   it('keeps `dismissed`, `replyQuality` and `frequency` where they exist', () => {
-    const first = taught.tree.children?.[0]
+    const first = taught.tree.children?.[0]?.children?.[0]
 
     expect(first?.dismissed).toStrictEqual([
       {

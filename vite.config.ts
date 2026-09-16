@@ -19,6 +19,17 @@ export default defineConfig({
     // content gate. Naming only `src/` silently drops the gate's own tests, which is how
     // a suite reports green while the checks that matter most are not running at all.
     include: ['src/**/*.test.{ts,tsx}', 'tools/**/*.test.ts'],
+    /**
+     * Vitest's 5s default assumes tests do not compute anything. Several here do real work:
+     * proving a mate *absent* is exhaustive search and costs seconds by nature (ADR-0005), and
+     * the catalogue budget test generates 1,500 real entries through the real pipeline.
+     *
+     * Two of them measured 4.8s and 4.76s on a developer machine — under the default, and over
+     * it on a shared runner, so whether the build was green depended on which runner it drew.
+     * Raised once here rather than patched test by test; a genuinely hung test now takes 30s to
+     * fail instead of 5, which is the cost of not having a flaky gate.
+     */
+    testTimeout: 30_000,
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     globals: true,

@@ -39,6 +39,10 @@ export type IssueCode =
   | 'transposition-cycle'
   /* Side consistency (ADR-0004 check 12) */
   | 'kind-mismatch'
+  /* Mate proving (ADR-0005, docs/CONTEXT.md invariants 4 and 5) */
+  | 'defining-line-parity'
+  | 'mate-unproved'
+  | 'mate-not-through-blunder'
 
 export type SourceLocation = { readonly line: number; readonly col: number }
 

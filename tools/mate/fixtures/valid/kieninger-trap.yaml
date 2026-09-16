@@ -1,0 +1,41 @@
+# Fixture, not published content. The Kieninger Trap in the Budapest Gambit.
+#
+# 8.axb4?? Nd3# is a smothered mate the e2 pawn cannot answer: capturing with exd3 would
+# open the e-file onto White's own king, so it is not a legal move at all.
+id: fixture-kieninger-trap
+name: 'Fixture: Budapest Gambit, the Kieninger Trap'
+eco: A52
+category: trap
+side: black
+definingLine: [d4, Nf6, c4, e5, dxe5, Ng4, Bf4, Nc6, Nf3, Bb4+, Nbd2, Qe7, a3, Ngxe5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-16'
+  basis:
+    by: fixture-author
+    at: '2026-09-16'
+    source: 'Author impression; no engine and no published source. The mate below is proved.'
+judgement:
+  by: fixture-author
+  at: '2026-09-16'
+  source: 'The reply quality here is an author impression. The mate is not — it is proved.'
+tree:
+  annotation:
+    vi: Trắng vừa đẩy a3 và tưởng rằng ăn tượng b4 là tự nhiên. Đó là nước duy nhất thua ngay.
+    en: White has played a3 and taking the bishop on b4 looks automatic. It is the one move that loses at once.
+    fr: Les Blancs ont joué a3 et prendre le fou en b4 semble automatique. C'est le seul coup qui perd aussitôt.
+  dismissRest:
+    reason:
+      vi: Không ăn tượng thì không có bẫy; Đen đứng thoải mái nhưng ván cờ nằm ngoài phạm vi bản mẫu này.
+      en: Anything but taking the bishop leaves Black comfortable in a game this fixture does not model.
+      fr: Tout sauf prendre le fou laisse les Noirs à l'aise, hors du champ de ce modèle.
+  children:
+    - ply: axb4
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Ăn tượng. Tốt e2 bị ghim theo cột e, nên exd3 là nước không hợp lệ.
+        en: Taking the bishop. The e2 pawn is pinned along the e-file, so exd3 is not a legal move.
+        fr: Prendre le fou. Le pion e2 est cloué dans la colonne e, donc exd3 n'est pas légal.
+      outcome:
+        type: trap

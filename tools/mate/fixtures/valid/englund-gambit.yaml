@@ -1,0 +1,42 @@
+# Fixture, not published content. The Englund Gambit queen trap, and a correction.
+#
+# The blunder is published almost everywhere as 6.Bc3??. It is not: after 6.Bc3 Bb4 7.Qd2
+# Bxc3, White recaptures with **8.Nxc3!** and has no mate against them at all — verified.
+# The losing move is 8.Qxc3??, and only that one.
+id: fixture-englund-gambit
+name: 'Fixture: Englund Gambit, the 8.Qxc3 blunder'
+eco: A40
+category: trap
+side: black
+definingLine: [d4, e5, dxe5, Nc6, Nf3, Qe7, Bf4, Qb4+, Bd2, Qxb2, Bc3, Bb4, Qd2, Bxc3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-16'
+  basis:
+    by: fixture-author
+    at: '2026-09-16'
+    source: 'Author impression; no engine and no published source. The mate below is proved.'
+judgement:
+  by: fixture-author
+  at: '2026-09-16'
+  source: 'The reply quality here is an author impression. The mate is not — it is proved.'
+tree:
+  annotation:
+    vi: Trắng phải ăn lại trên c3. Ăn bằng mã thì ổn; ăn bằng hậu thì bỏ trống ô c1.
+    en: White must recapture on c3. The knight recapture holds; the queen recapture abandons c1.
+    fr: Les Blancs doivent reprendre en c3. Avec le cavalier, ça tient ; avec la dame, c1 est abandonnée.
+  dismissRest:
+    reason:
+      vi: 8.Nxc3! ăn lại bằng mã và hậu vẫn giữ c1. Đen hơn tốt nhưng không có chiếu bí — đã kiểm chứng.
+      en: 8.Nxc3! recaptures with the knight and the queen keeps guarding c1. Black is a pawn up with no mate — verified.
+      fr: 8.Nxc3 ! reprend du cavalier et la dame garde c1. Les Noirs ont un pion de plus, sans mat — vérifié.
+  children:
+    - ply: Qxc3
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Ăn lại bằng hậu. Hậu rời d2, và tốt c2 chặn đường hậu quay về c1.
+        en: Recapturing with the queen. It leaves d2, and White's own c2 pawn blocks the way back to c1.
+        fr: Reprendre de la dame. Elle quitte d2, et le pion c2 lui barre le retour en c1.
+      outcome:
+        type: trap

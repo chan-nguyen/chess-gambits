@@ -51,6 +51,13 @@ jobs:
       # build that passes every other check (docs/CONTEXT.md, invariant 9).
       - name: Build the catalogue
         run: npm run catalogue
+      # ADR-0005. Required, and deliberately *not* the step that finds the mates: this one
+      # replays every committed certificate with `chess.js` and nothing else, in
+      # milliseconds. `npm run prove:mates` may speak to Stockfish and may search for
+      # minutes, so it runs on a schedule and never on a merge path — no engine is ever
+      # installed on this job.
+      - name: Verify mate certificates
+        run: npm run verify:mates
 
       - name: Build
         run: npm run build
