@@ -64,20 +64,61 @@ export const resolvePath = (root: CompiledNode, requested: readonly string[]): R
 export const previousPath = (path: readonly string[]): readonly string[] | null =>
   path.length === 0 ? null : path.slice(0, -1)
 
+/** One modelled continuation: the ply, the node it reaches, and the URL that names it. */
+export type BranchChoice = {
+  readonly ply: string
+  /** The plies from the gambit root up to and including this one — a `line` parameter. */
+  readonly path: readonly string[]
+  readonly node: CompiledNode
+}
+
+/**
+ * Every modelled continuation from a node. **This is the seam #8 left for #9.**
+ *
+ * `nextPath` used to reach into `children[0]` directly, which meant the one place that knew
+ * a branch point existed was also the place that discarded it: the other replies were read,
+ * skipped, and never mentioned again. Everything ahead of the learner now comes through
+ * here, so `next`, the numeric shortcuts, `BranchChoices` and `PlanChoices` all answer
+ * "what can be played from this position?" from the same list and none of them can quietly
+ * answer it with a different one.
+ *
+ * Two kinds of node produce no choices at all, and the second is why this is a guard rather
+ * than a comment:
+ *
+ * - A node carrying an `outcome` or a `transposesTo` is a leaf of its own subtree
+ *   (docs/CONTEXT.md, invariant 3). What it holds is `OutcomeCard`'s (#11), not a choice.
+ * - **A proved mate net is never rendered as branch choices.** A net lives in its
+ *   certificate and is not expanded into `children`, so in well-formed content this cannot
+ *   arise — but a defender node inside a net can have 24 legal replies, and 24 preview
+ *   boards on a 360px phone is not a design (docs/design-system.md §3, `MateNet`). A node
+ *   carrying a mate is refused its children here, where one check covers every caller,
+ *   rather than in each component that would mount a board.
+ *
+ * A child with no ply is dropped rather than turned into a URL that names nothing.
+ */
+export const branchChoices = (
+  node: CompiledNode,
+  path: readonly string[],
+): readonly BranchChoice[] => {
+  if (node.outcome !== undefined || node.transposesTo !== undefined) return []
+
+  return (node.children ?? []).flatMap((child) =>
+    child.ply === undefined ? [] : [{ ply: child.ply, path: [...path, child.ply], node: child }],
+  )
+}
+
 /**
  * One ply forward, or null at a leaf, where next is disabled (AC 1).
  *
- * **The seam for #9.** At an opponent node with several modelled replies this takes the
- * first child, so the page is never dead-ended at a branch point. Choosing between them is
- * `BranchChoices`' job and this function is what it replaces: everything else here already
- * navigates by an arbitrary path, so #9 changes which ply is offered and nothing else.
+ * At a branch point this still follows the **first** modelled reply — the order the author
+ * wrote, and therefore the main line. What has changed is that it is no longer the only
+ * thing the learner is told: `BranchChoices` renders every reply beside it and marks this
+ * one, so next is a labelled choice among several rather than a silent one. Reaching the
+ * first child through `branchChoices` is what makes the mate-net and leaf guards above hold
+ * for the navigator too.
  */
-export const nextPath = (node: CompiledNode, path: readonly string[]): readonly string[] | null => {
-  const child = node.children?.[0]
-  if (child === undefined) return null
-  const { ply } = child
-  return ply === undefined ? null : [...path, ply]
-}
+export const nextPath = (node: CompiledNode, path: readonly string[]): readonly string[] | null =>
+  branchChoices(node, path)[0]?.path ?? null
 
 /**
  * The chess move number of the ply that produced a position, read off its own FEN.

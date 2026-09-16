@@ -90,11 +90,47 @@ const vi = {
     noAnnotation: 'Nước này chưa có giải thích.',
     plyList: 'Các nước trong biến',
     shortcuts: 'Phím tắt bàn phím',
-    shortcutsHint: 'Dùng phím mũi tên trái và phải để đi trong biến.',
+    shortcutsHint:
+      'Dùng phím mũi tên trái và phải để đi trong biến, và phím 1–9 để chọn một nước trả lời.',
     branchNotFound: 'Gambit này không có nước sau đây, nên trang hiển thị thế gần nhất:',
     capture: 'ăn quân',
     check: 'chiếu',
     checkmate: 'chiếu hết',
+
+    /**
+     * Các nước trả lời của đối thủ (#9). Ký hiệu nước đi không bao giờ được dịch
+     * (docs/design-system.md §7); cái được dịch là lời văn quanh nó.
+     *
+     * `otherReply` và `otherReplies` là hai khoá chứ không phải một, vì tiếng Anh và tiếng
+     * Pháp phân biệt số ít với số nhiều, còn `useTranslated` không nhận tham số `count` —
+     * và thêm tham số đó vào là việc của #7, không phải của phiếu này.
+     */
+    branchHeading: 'Những nước đối thủ có thể đi',
+    noRepliesModelled: 'Chưa có nước trả lời nào được dựng ở đây.',
+    nextGoesHere: 'Nút tiếp theo dẫn đến đây',
+    replyQuality: 'Chất lượng nước đi',
+    frequency: 'Mức độ thường gặp',
+    notStated: 'chưa ghi',
+    qualityBest: 'hay nhất',
+    qualityGood: 'tốt',
+    qualityInaccuracy: 'thiếu chính xác',
+    qualityMistake: 'sai lầm',
+    qualityBlunder: 'sai lầm nặng',
+    frequencyCommon: 'thường gặp',
+    frequencyOccasional: 'thỉnh thoảng',
+    frequencyRare: 'hiếm gặp',
+    judgementNote:
+      'Chất lượng và mức độ thường gặp ở đây là nhận định của người viết, không phải thống kê:',
+    provedBy: 'Được máy chứng minh, theo chứng chỉ',
+    otherReply: 'nước trả lời khác',
+    otherReplies: 'nước trả lời khác',
+    coveredReplies: 'Câu trả lời trên áp dụng cho đúng những nước sau:',
+    dismissedReply: 'nước không được dựng',
+    dismissedReplies: 'nước không được dựng',
+    maintainerNote:
+      'Ghi chú của người bảo trì, giữ nguyên ngôn ngữ đã viết. Đây không phải lời văn viết cho người học.',
+    planHeading: 'Gambit cho phép chọn kế hoạch ở đây',
+    planNote: 'Cả hai đều là biến chính. Đây là lựa chọn của bạn, không phải nước của đối thủ.',
   },
   /**
    * Progress (#14). A **count**, never a percentage (docs/design-system.md §3): a percentage

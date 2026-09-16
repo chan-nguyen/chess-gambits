@@ -1,9 +1,52 @@
 import { describe, expect, it } from 'vitest'
 import type { CompiledNode } from '../../lib/content-types.ts'
-import { MAIN_LINE, MAPPED_ENTRY, MATE_ENTRY, MATE_LINE } from './learn-fixtures.ts'
-import { moveNumberOf, nextPath, plyLabel, previousPath, resolvePath } from './tree-path.ts'
+import {
+  EVANS_ENTRY,
+  MAIN_LINE,
+  MAPPED_ENTRY,
+  MATE_ENTRY,
+  MATE_LINE,
+  PLAN_LINE,
+  WIDE_ENTRY,
+} from './learn-fixtures.ts'
+import {
+  branchChoices,
+  moveNumberOf,
+  nextPath,
+  plyLabel,
+  previousPath,
+  resolvePath,
+} from './tree-path.ts'
 
 const root = MAPPED_ENTRY.tree
+
+/** Twenty-four defender replies, which is the number §3 names as "not a design". */
+const DEFENDER_REPLIES: readonly string[] = [
+  'Kd8',
+  'Kd7',
+  'Kf8',
+  'Ke8',
+  'Qe7',
+  'Qf6',
+  'Qg5',
+  'Qh4',
+  'Nd4',
+  'Nb4',
+  'Na5',
+  'Nb8',
+  'Nge7',
+  'Nf6',
+  'Nh6',
+  'a6',
+  'a5',
+  'b6',
+  'b5',
+  'g6',
+  'g5',
+  'h6',
+  'h5',
+  'd5',
+]
 
 describe('following a path', () => {
   it('lands on the root when nothing is asked for', () => {
@@ -95,9 +138,13 @@ describe('where previous and next go', () => {
     expect(nextPath(root, [])).toStrictEqual(['fxe5'])
   })
 
-  it('takes the first child at a branch point, which is the seam #9 replaces', () => {
+  it('follows the first modelled reply at a branch point, and says which one that is', () => {
     expect(root.children).toHaveLength(2)
+    // Still the first child — but now read through `branchChoices`, so the other reply is
+    // a thing the page can render rather than a thing this function threw away (#9).
     expect(nextPath(root, [])).toStrictEqual(['fxe5'])
+    expect(branchChoices(root, []).map((choice) => choice.ply)).toStrictEqual(['fxe5', 'Qe7'])
+    expect(branchChoices(root, [])[0]?.path).toStrictEqual(nextPath(root, []))
   })
 
   it('walks a whole line one ply at a time and then stops', () => {
@@ -187,5 +234,143 @@ describe('the label a ply is shown under', () => {
 
     expect(steps.map((step) => step.ply)).toStrictEqual(MATE_LINE)
     expect(plyLabel('Nd5#', steps[5]?.node.fen ?? '')).toBe('8.Nd5#')
+  })
+})
+
+/**
+ * The seam #8 left and #9 replaces. Everything ahead of the learner comes through here, so
+ * these are the tests that decide what the page is allowed to offer.
+ */
+describe('the branches ahead', () => {
+  it('lists every modelled reply, in the order the author wrote them', () => {
+    expect(branchChoices(EVANS_ENTRY.tree, []).map((choice) => choice.ply)).toStrictEqual([
+      'Ba5',
+      'Bc5',
+      'Be7',
+      'Bd6',
+    ])
+  })
+
+  it('gives each one the URL that reaches it, from wherever the learner is standing', () => {
+    const { node, path } = resolvePath(EVANS_ENTRY.tree, PLAN_LINE)
+
+    expect(branchChoices(node, path).map((choice) => choice.path)).toStrictEqual([
+      ['Ba5', 'd4'],
+      ['Ba5', 'O-O'],
+    ])
+  })
+
+  it('carries the node, so a choice can render its own position and quality', () => {
+    const [first] = branchChoices(EVANS_ENTRY.tree, [])
+
+    expect(first?.node.fen).toContain('b3p3')
+    expect(first?.node.replyQuality).toBe('best')
+    expect(first?.node.frequency).toBe('common')
+  })
+
+  it('offers nothing at a leaf', () => {
+    const leaf = resolvePath(MAPPED_ENTRY.tree, MAIN_LINE)
+
+    expect(branchChoices(leaf.node, leaf.path)).toStrictEqual([])
+  })
+
+  it('drops a child with no ply rather than building a URL that names nothing', () => {
+    const malformed: CompiledNode = {
+      kind: 'opponent',
+      fen: MAPPED_ENTRY.tree.fen,
+      children: [
+        { kind: 'learner', fen: MAPPED_ENTRY.tree.fen, outcome: { kind: 'unexplored' } },
+        {
+          ply: 'Qe7',
+          kind: 'learner',
+          fen: MAPPED_ENTRY.tree.fen,
+          outcome: { kind: 'unexplored' },
+        },
+      ],
+    }
+
+    expect(branchChoices(malformed, []).map((choice) => choice.ply)).toStrictEqual(['Qe7'])
+  })
+
+  it('offers more than the nine a digit can reach, so tab and click have somewhere to go', () => {
+    expect(branchChoices(WIDE_ENTRY.tree, [])).toHaveLength(12)
+  })
+})
+
+/**
+ * **A mate net is never rendered as branch choices** (docs/design-system.md §3, and #9's
+ * technical notes). A defender node inside a net can have 24 legal replies, and 24 preview
+ * boards on a 360px phone is not a design.
+ *
+ * In well-formed content this cannot arise: a net lives in its certificate and is not
+ * expanded into `children` at all, which the first test here reads off the real compiled
+ * fixture rather than off a belief about it. The rest is the guard for content that is
+ * *not* well formed, and it is tested by building exactly the node invariant 3 forbids —
+ * because a guard that has never met the thing it guards against is a comment.
+ */
+describe('a proved mate', () => {
+  it('reaches the browser as a leaf: its net is in the certificate, not in children', () => {
+    const mate = resolvePath(MATE_ENTRY.tree, MATE_LINE)
+
+    expect(mate.node.outcome?.kind).toBe('mate')
+    expect(mate.node.children).toBeUndefined()
+    expect(branchChoices(mate.node, mate.path)).toStrictEqual([])
+  })
+
+  it('is refused its children even when a malformed node carries both', () => {
+    const net: CompiledNode = {
+      kind: 'opponent',
+      fen: MATE_ENTRY.tree.fen,
+      outcome: {
+        kind: 'mate',
+        inMoves: 3,
+        sequence: ['Nd5#'],
+        provedBy: 'modelled-net',
+        basis: {
+          basis: 'proved',
+          by: 'certificate',
+          certificate: 'fixture-legal-trap.Bxd1.mate.json',
+        },
+      },
+      children: DEFENDER_REPLIES.map((ply) => ({
+        ply,
+        kind: 'learner',
+        fen: MATE_ENTRY.tree.fen,
+        outcome: { kind: 'unexplored' },
+      })),
+    }
+
+    // The guard can fail: without it this is 24 choices and therefore 24 preview boards.
+    expect(net.children).toHaveLength(24)
+    expect(branchChoices(net, [])).toStrictEqual([])
+    expect(nextPath(net, [])).toBeNull()
+  })
+
+  it('and the same node without the outcome really would offer all 24', () => {
+    const withoutOutcome: CompiledNode = {
+      kind: 'opponent',
+      fen: MATE_ENTRY.tree.fen,
+      children: DEFENDER_REPLIES.map((ply) => ({
+        ply,
+        kind: 'learner',
+        fen: MATE_ENTRY.tree.fen,
+        outcome: { kind: 'unexplored' },
+      })),
+    }
+
+    expect(branchChoices(withoutOutcome, [])).toHaveLength(24)
+  })
+})
+
+describe('a transposition', () => {
+  it('is a leaf of its own subtree and offers no choices', () => {
+    const transposing: CompiledNode = {
+      kind: 'opponent',
+      fen: MAPPED_ENTRY.tree.fen,
+      transposesTo: ['fxe5', 'Qh5+'],
+    }
+
+    expect(branchChoices(transposing, [])).toStrictEqual([])
+    expect(nextPath(transposing, [])).toBeNull()
   })
 })

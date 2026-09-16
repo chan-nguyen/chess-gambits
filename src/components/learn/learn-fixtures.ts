@@ -1,4 +1,4 @@
-import type { CompiledEntry } from '../../lib/content-types.ts'
+import type { CompiledEntry, CompiledNode, ReplyQuality } from '../../lib/content-types.ts'
 
 /**
  * A mapped gambit tree, for the learning surface's tests. Test-only: nothing in the
@@ -229,3 +229,274 @@ export const MATE_ENTRY: CompiledEntry = {
 
 /** The trap branch, root to the mate. Every `+` and the `#` are load-bearing. */
 export const MATE_LINE: readonly string[] = ['Bh5', 'Nxe5', 'Bxd1', 'Bxf7+', 'Ke7', 'Nd5#']
+
+/**
+ * The Evans Gambit at its first branch point — the fixture #9 is written against, and the
+ * one entry that carries every shape of answer at once.
+ *
+ * The defining line ends with White's `5.c3`, the learner's own ply, so the root is an
+ * opponent node (docs/CONTEXT.md, invariant 5) and Black's fifth move is a modelled reply
+ * carrying a quality. Thirty-three replies are legal there; four are modelled, one is
+ * individually dismissed, and `dismissRest` answers the remaining twenty-eight. The count
+ * is not decoration — it is the arithmetic that makes the catch-all defensible, and the
+ * learner is shown it (acceptance criterion 4).
+ *
+ * `5...Ba5` is the acceptance criterion 7 fixture: after it White is to move, so the node
+ * is a **learner** node, and `6.d4` and `6.O-O` are both main lines. That is a genuine
+ * choice of plans rather than a reply to be ready for, and it renders as one.
+ *
+ * Every FEN here was produced by replaying the line through chess.js. A fabricated FEN
+ * would draw a position that cannot happen, and nothing downstream of this file would
+ * notice.
+ */
+export const EVANS_ENTRY: CompiledEntry = {
+  id: 'evans-gambit',
+  name: 'Evans Gambit, 5.c3',
+  eco: 'C51',
+  category: 'gambit',
+  side: 'white',
+  definingLine: ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4', 'Bc5', 'b4', 'Bxb4', 'c3'],
+  soundness: {
+    value: 'dubious',
+    reviewedAt: '2026-09-16',
+    basis: { basis: 'judgement', by: 'chan', at: '2026-09-16' },
+  },
+  judgement: {
+    basis: 'judgement',
+    by: 'chan',
+    at: '2026-09-16',
+    source: 'No engine and no opening explorer: these are one player’s impressions.',
+  },
+  tier: 'listed',
+  tree: {
+    kind: 'opponent',
+    fen: 'r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/2P2N2/P2P1PPP/RNBQK2R b KQkq - 0 5',
+    annotation: {
+      vi: 'Trắng đòi lại nhịp. Tượng đen phải rút về đâu đó, và mỗi chỗ là một biến khác.',
+      en: 'White claims the tempo back. The bishop has to go somewhere, and each square is a different game.',
+      fr: 'Les Blancs reprennent le tempo. Le fou doit partir, et chaque case est une autre partie.',
+    },
+    dismissed: [
+      {
+        ply: 'Bxc3',
+        reason:
+          'Tự nguyện trả tượng lấy tốt c3 rồi Nxc3 — Trắng phát triển miễn phí. Chưa dựng vì không ai chơi hai lần.',
+      },
+    ],
+    dismissRest: {
+      reason: {
+        vi: 'Không giữ được tốt và cũng không thách thức gambit; Trắng tiếp tục d4 theo kế hoạch.',
+        en: 'Neither keeps the pawn nor challenges the gambit; White continues with d4 as planned.',
+        fr: 'Ne garde pas le pion et ne conteste pas le gambit ; les Blancs poursuivent par d4.',
+      },
+      covers: [
+        'Rb8',
+        'Qe7',
+        'Qf6',
+        'Qg5',
+        'Qh4',
+        'Kf8',
+        'Ke7',
+        'Nh6',
+        'Nf6',
+        'Nge7',
+        'a6',
+        'a5',
+        'b6',
+        'b5',
+        'd6',
+        'd5',
+        'f6',
+        'f5',
+        'g6',
+        'g5',
+        'h6',
+        'h5',
+        'Nb8',
+        'Nce7',
+        'Nd4',
+        'Na5',
+        'Bf8',
+        'Ba3',
+      ],
+    },
+    children: [
+      {
+        ply: 'Ba5',
+        kind: 'learner',
+        replyQuality: 'best',
+        frequency: 'common',
+        fen: 'r1bqk1nr/pppp1ppp/2n5/b3p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6',
+        annotation: {
+          vi: 'Giữ tượng trên đường chéo và ghim tốt c3. Đây là biến chính.',
+          en: 'Keeps the bishop on the diagonal and pins the c3 pawn. This is the main line.',
+          fr: 'Garde le fou sur la diagonale et cloue le pion c3. C’est la ligne principale.',
+        },
+        /*
+         * Acceptance criterion 7, and the reason it has a fixture rather than an assertion:
+         * a learner node with two children is a *deliberate* act and the schema allows it,
+         * so the UI has to have met one.
+         */
+        children: [
+          {
+            ply: 'd4',
+            kind: 'opponent',
+            fen: 'r1bqk1nr/pppp1ppp/2n5/b3p3/2BPP3/2P2N2/P4PPP/RNBQK2R b KQkq - 0 6',
+            annotation: {
+              vi: 'Mở trung tâm ngay. Đây là cách chơi cổ điển của gambit.',
+              en: 'Opening the centre at once. This is the classical way to play the gambit.',
+              fr: 'Ouvrir le centre tout de suite. C’est la manière classique de jouer le gambit.',
+            },
+            outcome: { kind: 'unexplored' },
+          },
+          {
+            ply: 'O-O',
+            kind: 'opponent',
+            fen: 'r1bqk1nr/pppp1ppp/2n5/b3p3/2B1P3/2P2N2/P2P1PPP/RNBQ1RK1 b kq - 2 6',
+            annotation: {
+              vi: 'Nhập thành trước, để dành d4. Cũng là biến chính, chỉ khác thứ tự.',
+              en: 'Castling first and saving d4. Also a main line, and only the order differs.',
+              fr: 'Roquer d’abord et garder d4. Ligne principale également, seul l’ordre change.',
+            },
+            outcome: { kind: 'unexplored' },
+          },
+        ],
+      },
+      {
+        ply: 'Bc5',
+        kind: 'learner',
+        replyQuality: 'good',
+        frequency: 'occasional',
+        fen: 'r1bqk1nr/pppp1ppp/2n5/2b1p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6',
+        annotation: { vi: 'Rút về ô cũ. Trắng chơi d4 với nhịp.' },
+        outcome: { kind: 'unexplored' },
+      },
+      {
+        ply: 'Be7',
+        kind: 'learner',
+        replyQuality: 'inaccuracy',
+        frequency: 'occasional',
+        fen: 'r1bqk1nr/ppppbppp/2n5/4p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6',
+        annotation: { vi: 'An toàn nhưng thụ động: tượng không còn nhìn vào trung tâm.' },
+        outcome: { kind: 'unexplored' },
+      },
+      {
+        ply: 'Bd6',
+        kind: 'learner',
+        replyQuality: 'mistake',
+        fen: 'r1bqk1nr/pppp1ppp/2nb4/4p3/2B1P3/2P2N2/P2P1PPP/RNBQK2R w KQkq - 1 6',
+        annotation: { vi: 'Chặn chính tốt d của mình. Đây là nước đã có tên trong sách.' },
+        outcome: { kind: 'unexplored' },
+      },
+    ],
+  },
+}
+
+/** The learner node where the gambit offers a choice of plans (acceptance criterion 7). */
+export const PLAN_LINE: readonly string[] = ['Ba5']
+
+/**
+ * More replies than there are digits, which is the only way to check the second half of
+ * acceptance criterion 6: **a numeric shortcut is never the only route to a branch.**
+ *
+ * The position is the Evans one ply earlier, after `4.b4` — the case ADR-0003 names, where
+ * 35 replies are legal. Twelve are modelled here, so three of them have no key and have to
+ * be reachable by tab and by click, and twelve preview boards have to fit on a 360px phone
+ * without a sideways scroll.
+ */
+/**
+ * One modelled reply in `WIDE_ENTRY`. Twelve near-identical literals would bury the one
+ * thing that differs between them, which is the quality — and the qualities are what the
+ * greyscale and shortcut checks read.
+ */
+const wideReply = (ply: string, replyQuality: ReplyQuality, fen: string): CompiledNode => ({
+  ply,
+  kind: 'learner',
+  replyQuality,
+  frequency: 'rare',
+  fen,
+  outcome: { kind: 'unexplored' },
+})
+
+export const WIDE_ENTRY: CompiledEntry = {
+  id: 'evans-gambit-wide',
+  name: 'Evans Gambit, 4.b4 — twelve modelled replies',
+  eco: 'C51',
+  category: 'gambit',
+  side: 'white',
+  definingLine: ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4', 'Bc5', 'b4'],
+  soundness: {
+    value: 'dubious',
+    reviewedAt: '2026-09-16',
+    basis: { basis: 'judgement', by: 'chan', at: '2026-09-16' },
+  },
+  judgement: { basis: 'judgement', by: 'chan', at: '2026-09-16' },
+  tier: 'listed',
+  tree: {
+    kind: 'opponent',
+    fen: 'r1bqk1nr/pppp1ppp/2n5/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R b KQkq - 0 4',
+    annotation: { vi: 'Trắng thí tốt b. Đen có ba mươi lăm nước hợp lệ ở đây.' },
+    children: [
+      wideReply(
+        'Bxb4',
+        'best',
+        'r1bqk1nr/pppp1ppp/2n5/4p3/1bB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5',
+      ),
+      wideReply(
+        'Bb6',
+        'good',
+        'r1bqk1nr/pppp1ppp/1bn5/4p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 1 5',
+      ),
+      wideReply(
+        'Be7',
+        'good',
+        'r1bqk1nr/ppppbppp/2n5/4p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 1 5',
+      ),
+      wideReply(
+        'Bd6',
+        'inaccuracy',
+        'r1bqk1nr/pppp1ppp/2nb4/4p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 1 5',
+      ),
+      wideReply(
+        'Bf8',
+        'inaccuracy',
+        'r1bqkbnr/pppp1ppp/2n5/4p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 1 5',
+      ),
+      wideReply(
+        'Nxb4',
+        'inaccuracy',
+        'r1bqk1nr/pppp1ppp/8/2b1p3/1nB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5',
+      ),
+      wideReply(
+        'Nf6',
+        'good',
+        'r1bqk2r/pppp1ppp/2n2n2/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 1 5',
+      ),
+      wideReply(
+        'd6',
+        'good',
+        'r1bqk1nr/ppp2ppp/2np4/2b1p3/1PB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5',
+      ),
+      wideReply(
+        'd5',
+        'inaccuracy',
+        'r1bqk1nr/ppp2ppp/2n5/2bpp3/1PB1P3/5N2/P1PP1PPP/RNBQK2R w KQkq - 0 5',
+      ),
+      wideReply(
+        'Bd4',
+        'mistake',
+        'r1bqk1nr/pppp1ppp/2n5/4p3/1PBbP3/5N2/P1PP1PPP/RNBQK2R w KQkq - 1 5',
+      ),
+      wideReply(
+        'Be3',
+        'blunder',
+        'r1bqk1nr/pppp1ppp/2n5/4p3/1PB1P3/4bN2/P1PP1PPP/RNBQK2R w KQkq - 1 5',
+      ),
+      wideReply(
+        'Bxf2+',
+        'blunder',
+        'r1bqk1nr/pppp1ppp/2n5/4p3/1PB1P3/5N2/P1PP1bPP/RNBQK2R w KQkq - 0 5',
+      ),
+    ],
+  },
+}

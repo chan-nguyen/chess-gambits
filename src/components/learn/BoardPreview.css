@@ -1,0 +1,16 @@
+/*
+ * Small enough that a column of them fits a 360px phone without pushing the position they
+ * are about off the screen, and sized from the documented spacing scale rather than from a
+ * length of its own (docs/design-system.md §2).
+ *
+ * Deliberately not a custom property shared with the choice around it: `tokens.test.ts`
+ * requires every `var()` any stylesheet reads to be defined in `tokens.css`, so a local
+ * one would be a token in everything but name, defined where nothing else could see it.
+ */
+.board-preview {
+  flex: 0 0 auto;
+  inline-size: var(--space-10);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}

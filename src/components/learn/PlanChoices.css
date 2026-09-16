@@ -1,0 +1,45 @@
+/*
+ * Visually distinct from `BranchChoices`, and by more than a hue: the learner's own plans
+ * sit on a raised surface behind an accent rule, where the opponent's replies sit flat on
+ * the page (docs/design-system.md §2 — colour is never the only signal, and that applies to
+ * telling two *regions* apart as much as to telling two qualities apart).
+ */
+.plan-choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+}
+
+.plan-choices__heading {
+  margin-block: 0;
+  font-size: var(--text-lg);
+}
+
+.plan-choices__note {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.plan-choices__list {
+  display: grid;
+  gap: var(--space-2);
+  margin-block: 0;
+  padding-inline-start: 0;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .plan-choices__list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .plan-choices__list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
