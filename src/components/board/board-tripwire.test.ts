@@ -14,6 +14,16 @@ import manifestSource from '../../../package.json?raw'
  * tripwire nobody measures is a wish, so this file measures it.
  */
 
+/**
+ * `JSON.parse` returns `unknown`, and this file may not assert its way out of that — the
+ * repository bans the `as` operator and this test is subject to its own conventions. The
+ * guard checks the values it claims, so the narrowing is earned rather than asserted.
+ */
+const isStringRecord = (value: unknown): value is Record<string, string> =>
+  typeof value === 'object' &&
+  value !== null &&
+  Object.values(value).every((entry) => typeof entry === 'string')
+
 /** Everything the application ships. The rest of the directory is tests and fixtures. */
 const SHIPPED: Readonly<Record<string, string>> = {
   'Board.tsx': boardSource,
@@ -72,10 +82,11 @@ describe('the board does not know chess (AC 8)', () => {
 
   it('ships no board library, and no chess engine at runtime', () => {
     const manifest: unknown = JSON.parse(manifestSource)
-    const runtime =
+    const declared =
       typeof manifest === 'object' && manifest !== null && 'dependencies' in manifest
-        ? (manifest as { dependencies?: Record<string, string> }).dependencies
+        ? manifest.dependencies
         : undefined
+    const runtime = isStringRecord(declared) ? Object.keys(declared) : []
 
     // A board library is banned outright: adopting one reverses ADR-0003.
     for (const library of ['react-chessboard', 'chessground', 'cm-chessboard', 'kokopu']) {
@@ -87,7 +98,7 @@ describe('the board does not know chess (AC 8)', () => {
     // the rules engine run in CI and neither reaches a browser. An earlier version of this
     // test banned the string anywhere in the manifest, which made a legitimate build-time
     // dependency look like a violation the moment the content gate landed.
-    expect(Object.keys(runtime ?? {})).not.toContain('chess.js')
+    expect(runtime).not.toContain('chess.js')
   })
 
   it.each(MODULES)('$file wires up no drag and no move input', ({ text }) => {
