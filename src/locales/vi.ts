@@ -156,7 +156,7 @@ const vi = {
       'Tiến độ đã lưu thuộc một phiên bản cũ của trang nên đã bị xoá. Bạn cần đánh dấu lại.',
   },
   /**
-   * Danh mục (#13). Bảy trăm mục, trong đó hôm nay chưa mục nào được dạy sâu — nên lời văn
+   * Danh mục (#13). Một nghìn lẻ ba mục, trong đó hôm nay chưa mục nào được dạy sâu — nên lời văn
    * ở đây phải nói đúng điều đó thay vì để người đọc tự suy ra.
    *
    * `counts` và `showing` có chỗ trống vì trật tự từ không giống nhau giữa ba thứ tiếng;

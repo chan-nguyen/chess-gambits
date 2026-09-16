@@ -39,6 +39,7 @@ rules:
   # ---------------------------------------------------------------- the misnomer
   - match: "Queen's Gambit"
     include: false
+    code: misnomer
     reason: >-
       The most famous misnomer in chess. After 1.d4 d5 2.c4 Black cannot hold the pawn, so
       nothing is sacrificed; and most rows under this name are ordinary closed-opening
@@ -54,6 +55,7 @@ rules:
       which is exactly the case longest-prefix matching exists for.
   - match: "Zukertort Opening: Queen's Gambit Invitation"
     include: false
+    code: no-sacrifice
     reason: >-
       A move-order label for 1.Nf3 e6, naming a gambit that has not been played and may
       never be. Nothing is offered here.
@@ -644,266 +646,2459 @@ rules:
       1.Nc3 with twenty-one named pawn offers behind it. Every one is White's, which is why
       a single head-level rule is honest here.
 
-  # ---------------------------------------------------------------- deliberate exclusions
+  # ------------------------------------------------------------------ the #36 review: French
   #
-  # Each of these heads contains rows the dataset names a gambit. Most are real pawn offers
-  # and none is here because it is "not a gambit" — they are here because nobody has
-  # reviewed their side, their soundness or whether the site should carry them, and an
-  # entry whose board orientation nobody checked is worse than an entry that is missing.
-  # Adding one back is a rule, not a redesign.
-  - match: 'Alekhine Defense'
-    include: false
+  # Everything from here down was reviewed row by row on 2026-09-17, closing issue #36.
+  #
+  # Before that review this file held a head-level exclusion per opening — `French Defense`,
+  # `Sicilian Defense`, `Ruy Lopez` and fifty-five more — each saying, honestly, that nobody
+  # had checked the rows underneath. Those rules are **gone**, not amended. Every one of the
+  # 342 gambit-named rows they covered now has a rule of its own, in or out, and with no
+  # head-level default left a row upstream adds tomorrow fails the build instead of quietly
+  # inheriting somebody else's decision.
+  #
+  # An included rule names the **ply** that gives material away and never a side. The build
+  # replays the line, checks the move, proves the mover ends up materially worse off, and
+  # reads the side off the board — so the orientation of these 303 entries is a fact about a
+  # position rather than a claim in a file. Choosing which ply is still a judgement, and it
+  # is the only one: the King's Gambit Declined contains two proved offers and picking the
+  # earlier one would label every Falkbeer row white.
+  #
+  # `soundness` carries its own reviewer and date, and a `source` where the label was checked
+  # against something published. Thirty of them were; they are the spot-check sample issue #36
+  # asks for and they are findable by grepping this file for `source:`.
+  #
+  # The c4-pawn is never counted as a sacrifice. Black cannot hold it, which is the reason the
+  # Queen's Gambit is excluded at the top of this file, and several 1.d4 lines are out below
+  # for exactly that reason rather than for want of a name.
+  - match: 'French Defense: Advance Variation, Frenkel Gambit'
+    include: true
+    sacrifice: { ply: 7, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      Ten one-row novelties — Krejcik, Matsukevich, Mikenas, O'Sullivan, Spielmann — with no
-      settled assessment and no teaching material behind them. Unreviewed, so out.
-  - match: 'Caro-Kann Defense'
-    include: false
+      6.b4 is a wing gambit inside the Advance, aimed at the c5 break. 6...cxb4 keeps the
+      pawn and Black's position is the easier one to play, so this is a surprise weapon and
+      nothing more.
+  - match: 'French Defense: Advance Variation, Nimzowitsch Gambit'
+    include: true
+    sacrifice: { ply: 9, move: Nf3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      Seventeen named pawn offers against the Caro-Kann, almost all of them single rows from
-      correspondence practice. Real sacrifices, no reviewed assessment.
-  - match: 'French Defense'
-    include: false
+      7.Qg4 invites 7...cxd4 and 8.Nf3 declines to take it back, leaving the d4-pawn behind
+      for a lead in development and pressure on g7. Objectively Black is fine; over the
+      board it is sharp.
+  - match: 'French Defense: Advance Variation, Ruisdonk Gambit'
+    include: true
+    sacrifice: { ply: 9, move: Bd3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      The French gambits worth teaching are admitted above by name. The remaining twenty-odd
-      are one-row novelties nobody has assessed.
-  - match: 'Sicilian Defense'
-    include: false
+      The same bargain one move order across: 7.Nf3 cxd4 8.Bd3 leaves d4 alone and finishes
+      developing. Well known in the Advance and well met by returning the pawn at the right
+      moment.
+  - match: 'French Defense: Alekhine-Chatard Attack, Albin-Chatard Gambit'
+    include: true
+    sacrifice: { ply: 11, move: h4 }
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "French Defence" (retrieved 2026-09-17): gives 6.h4 Bxg5 7.hxg5 Qxg5, the
+        same line and the same ply, and says White "sacrificed a pawn to keep the black king in
+        the centre". Move order and sacrificing side confirmed; the sound label is this review's
+        own.
     reason: >-
-      The Smith-Morra and the Wing Gambit are admitted above. The rest of the Sicilian's
-      gambit-named rows are deep sub-variations where the sacrifice belongs to a specific line
-      rather than to a family, and the side differs row by row.
-  - match: 'Ruy Lopez'
-    include: false
+      6.h4 is the main line of the Chatard-Alekhine and the h-pawn is a genuine offer:
+      6...Bxg5 7.hxg5 Qxg5 wins it and hands White the open h-file and a big lead in
+      development. Mainstream theory, played at every level.
+  - match: 'French Defense: Baeuerle Gambit'
+    include: true
+    sacrifice: { ply: 4, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      The Spanish gambits worth a page are admitted above by name. The remaining twenty are
-      single rows deep inside mainstream variations.
-  - match: "Petrov's Defense"
-    include: false
+      3...b5 throws a pawn at the queenside for no development and no open line. White takes
+      and consolidates; the point is surprise.
+  - match: 'French Defense: Banzai-Leong Gambit'
+    include: true
+    sacrifice: { ply: 3, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      The Stafford and the Cochrane are admitted above. The rest are one-row sub-variations of
-      mainstream Petrov theory.
-  - match: 'Philidor Defense'
-    include: false
+      2.b4 is a wing gambit against the French, including the Pinova continuation 2...Bxb4
+      3.e5. Black takes, returns the pawn when convenient, and stands better.
+  - match: 'French Defense: Carlson Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nf3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      The two countergambits are admitted above. The remaining rows are sidelines with no
-      settled assessment.
-  - match: 'Four Knights Game'
-    include: false
+      3.Nf3 leaves e4 to be taken and 4.Ne5 follows. There is activity for the pawn and no
+      compensation a careful defender cannot neutralise.
+  - match: 'French Defense: Horwitz Attack, Papa-Ticulat Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Bb2 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      The Halloween, the Belgrade and the Krause are admitted above; the others are single
-      rows inside mainstream Four Knights theory.
-  - match: 'Nimzowitsch Defense'
-    include: false
+      3.b3 d5 4.Bb2 leaves e4 hanging on purpose, so that the long diagonal points at g7
+      while Black spends time on the pawn. Offbeat but coherent.
+  - match: 'French Defense: La Bourdonnais Variation, Reuter Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nf3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      The Colorado Countergambit is admitted above. The other fifteen are Kennedy and
-      Bogoljubow sidelines with no reviewed assessment.
-  - match: "King's Pawn Game"
-    include: false
+      2.f4 d5 3.Nf3 hands over e4 for development in a structure where White's king is the
+      loose one. Black takes and is better.
+  - match: 'French Defense: McCutcheon Variation, Wolf Gambit'
+    include: true
+    sacrifice: { ply: 9, move: Bg5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      A catch-all head whose twenty gambit-named rows belong to no single opening and split
-      unpredictably between the two sides. Needs row-by-row review, which nobody has done.
-  - match: "King's Pawn Opening"
-    include: false
+      5.Bg5 in the McCutcheon leaves e4 for the taking to provoke the pin-breaking
+      complications. Playable, and not something Black has to fear with accurate play.
+  - match: 'French Defense: Morphy Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nh3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      One unreviewed row, in the same catch-all head as above under a different spelling.
-  - match: 'Dutch Defense'
-    include: false
+      3.Nh3 develops to the rim and abandons e4. The knight reroutes to f4, which is not
+      enough for a pawn.
+  - match: 'French Defense: Orthoschnapp Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Qb3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      The Staunton Gambit is admitted above. The remaining dozen are one-row anti-Dutch
-      novelties with no assessment.
-  - match: 'Scandinavian Defense'
-    include: false
+      2.c4 d5 3.cxd5 exd5 4.Qb3 goes after b7 and d5 and lets e4 go. A real try for an
+      initiative against an unprepared French player.
+  - match: 'French Defense: Perseus Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nf3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      The Portuguese and the Icelandic-Palme are admitted above; the rest are single-row
-      sidelines with no reviewed assessment.
-  - match: 'Indian Defense'
-    include: false
+      3.Nf3 simply gives up e4 in the main French structure. Development is not worth the
+      pawn here and Black has several good ways to hold it.
+  - match: 'French Defense: Rubinstein Variation, Ellis Gambit'
+    include: true
+    sacrifice: { ply: 8, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      The Budapest is admitted above. The rest — Gibbins-Weidenhagen, Omega, Medusa and the
-      like — are 1.d4 Nf6 novelties nobody has assessed.
-  - match: 'Slav Defense'
-    include: false
+      4...e5 is Black's pawn offer in the Rubinstein, opening lines for the pieces at the
+      cost of the pawn White simply takes. A trap rather than a system.
+  - match: 'French Defense: St. George Defense'
+    include: true
+    sacrifice: { ply: 6, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      The Geller Gambit and the Winawer Countergambit are admitted above; the remainder are
-      single rows with no reviewed assessment.
-  - match: 'Semi-Slav Defense'
-    include: false
+      4...b5 is the St. George's queenside thrust, and the Sanky-George move order reaches
+      the same position. Both lose a pawn to 5.cxb5 and both rely on the opponent not
+      knowing the line.
+  - match: 'French Defense: Tarrasch Variation, Open System, Shaposhnikov Gambit'
+    include: true
+    sacrifice: { ply: 8, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      The Marshall Gambit is admitted above; the other five are deep sub-variations of
-      mainstream Semi-Slav theory.
-  - match: 'Tarrasch Defense'
-    include: false
+      5...Nf6 declines the recapture on d5 and develops with tempo instead. A recognised
+      gambit line of the Tarrasch and a sound-looking practical choice, though the pawn is
+      real.
+  - match: 'French Defense: Winawer Variation, Alekhine Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Ne2 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      The Schara and von Hennig gambits are admitted above; the other four are one-row
-      sidelines with no reviewed assessment.
-  - match: "Queen's Pawn Game"
-    include: false
+      4.Ne2 leaves e4 en prise so that a later a3 wins the bishop pair with the centre
+      intact. The Alatortsev and Kan continuations are the same offer, so one rule covers
+      all three.
+  - match: 'French Defense: Winawer Variation, Alekhine-Maróczy Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Ne2 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      Another catch-all head. Eleven gambit-named rows belonging to no shared family and
-      splitting between the two sides.
-  - match: 'Benoni Defense'
+      The same 4.Ne2 pawn offer under the dataset's other name for it. Kept as its own entry
+      because the name is the one a learner will meet, and excluded from the rule above only
+      because the dataset spells it differently.
+  - match: 'French Defense: Franco-Hiva Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Six one-row Benoni novelties with no settled assessment. The Benko, which is the Benoni
-      gambit that matters, has its own head and is included above.
-  - match: 'Nimzo-Indian Defense'
+      2...f5 is not a sacrifice: 3.exf5 exf5 gives the pawn straight back, and the build
+      finds no position in either the base line or the Accepted line where either side can
+      win material. A gambit name over an even trade.
+  - match: "French Defense: King's Indian Attack, Franco-Hiva Gambit"
     include: false
+    code: no-sacrifice
     reason: >-
-      Seven deep sub-variations where the pawn offer belongs to a specific line rather than to
-      a family.
-  - match: "Queen's Indian Defense"
+      The same 2...f5 under a different move order, and the same finding: after exf5 Black
+      recaptures with the e-pawn and material never changes.
+  - match: 'French Defense: Knight Variation, Franco-Hiva Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Three one-row sub-variations of mainstream theory, with no reviewed assessment.
-  - match: 'Grünfeld Defense'
+      Again 2...f5 with the e6-pawn covering the recapture. Nothing is given up, so there is
+      no sacrificing side to put the learner on.
+  - match: 'French Defense: Hoffmann Gambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      Five rows inside Brinckmann and Gibbon sidelines, with no reviewed assessment.
-  - match: "King's Indian Defense"
+      4...e5 offers a pawn and 5.f4 offers another back before the first is resolved. Both
+      sides are gambiting inside six plies and no reading of the line makes one of them the
+      learner.
+  - match: 'French Defense: Winawer Variation, Fingerslip Variation, Kunin Double Gambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      Four deep sub-variations; the sacrifice belongs to the line rather than to a family.
-  - match: 'Old Indian Defense'
+      The name says double and the board agrees: White gives e4 with 5.Bd2 and then d4 with
+      6.Qg4, and Black takes both. Which side a learner is being taught here is genuinely
+      unclear.
+  # ------------------------------------------------------------------ the #36 review: Sicilian
+  # The Smith-Morra and the Wing Gambit already have rules above. These are the rest, and the
+  # reason they were held back is that the offer sits deep inside a specific line rather than at
+  # the head of a family — which is exactly what naming a ply fixes.
+  - match: 'Sicilian Defense: Alapin Variation, Anti-Alapin Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nf6 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Sicilian Defence, Alapin Variation" (retrieved 2026-09-17): on 3.exd5 Nf6
+        says "it is not clear whether Black receives sufficient compensation for the pawn". Side
+        and the dubious label confirmed.
+    reason: >-
+      3...Nf6 declines to recapture on d5 and develops with tempo. Black usually gets the
+      pawn back, but not by force, so it is a real offer.
+  - match: 'Sicilian Defense: Brussels Gambit'
+    include: true
+    sacrifice: { ply: 4, move: f5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...f5 hands over a pawn and opens the diagonal towards Black's own king. White takes
+      and develops.
+  - match: 'Sicilian Defense: Coles Sicilian Gambit'
+    include: true
+    sacrifice: { ply: 9, move: Bc4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      After the queen retreats to d1, 5.Bc4 leaves e4 to be taken by the knight. A pawn for
+      a tempo and no attack yet.
+  - match: 'Sicilian Defense: Delayed Alapin Variation'
+    include: true
+    sacrifice: { ply: 11, move: cxd4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      The Basman-Palatnik: 6.cxd4 allows 6...Nxe4 and White plays for the initiative with
+      d5. The Double Gambit row carries on to a second offer, 8.Nc3, also White's, so one
+      rule speaks for both without changing sides mid-family.
+  - match: 'Sicilian Defense: Double-Dutch Gambit'
+    include: true
+    sacrifice: { ply: 4, move: f5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same 2...f5 as the Brussels with 3.exf5 Nh6 added. Black is a pawn down with a
+      hole on e6 and nothing forcing.
+  - match: 'Sicilian Defense: Dragon Variation, Classical Variation, Zollner Gambit'
+    include: true
+    sacrifice: { ply: 19, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      10.e5 in the Classical Dragon opens lines towards the black king and lets b2 go. Sharp
+      and well analysed; Black holds with care.
+  - match: 'Sicilian Defense: Euwe Attack, Prins Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Bb2 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.b3 d5 3.Bb2 abandons e4 for the long diagonal. Black takes and keeps the extra pawn.
+  - match: 'Sicilian Defense: Kotov Gambit'
+    include: true
+    sacrifice: { ply: 6, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...b5 in a King's Indian Attack set-up gives a pawn for queenside space that White
+      can simply decline to be pressured by.
+  - match: 'Sicilian Defense: Kronberger Variation, Nemeth Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Bc4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.d4 cxd4 4.Bc4 is a Danish-flavoured offer out of 2.Na3, and the knight on the rim is
+      exactly the development the pawn was meant to buy.
+  - match: 'Sicilian Defense: McDonnell Attack, Tal Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Nf6 leaves the d5-pawn and develops, the standard antidote to the McDonnell. A
+      well known gambit with real practical value.
+  - match: 'Sicilian Defense: Modern Variations, Ginsberg Gambit'
+    include: true
+    sacrifice: { ply: 9, move: Bc4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.Bc4 in the Open Sicilian hangs e4 to the knight. The bishop is well placed, which is
+      not a pawn's worth.
+  - match: 'Sicilian Defense: Morphy Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nf3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Nf3 in the Open Sicilian declines to recapture on d4 and plays for development, the
+      Andreaschek continuation 4.c3 included. An old and honest pawn offer.
+  - match: 'Sicilian Defense: Moscow Variation, Haag Gambit'
+    include: true
+    sacrifice: { ply: 13, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      7.d4 leaves e4 hanging to the bishop that has just been traded onto c6. A known way to
+      keep the Moscow sharp.
+  - match: 'Sicilian Defense: Moscow Variation, Moscow Gambit'
+    include: true
+    sacrifice: { ply: 15, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      8.d4 offers e4 to the c6-bishop and 9.Bg5 follows. Real compensation in development
+      and the half-open d-file.
+  - match: 'Sicilian Defense: Najdorf Variation, Dekker Gambit'
+    include: true
+    sacrifice: { ply: 11, move: g4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.g4 in the Najdorf is a straightforward pawn offer for space and an attack on the
+      kingside, and Black taking it is a real test of both players.
+  - match: 'Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, Fianchetto Variation, Gufeld Gambit'
+    include: true
+    sacrifice: { ply: 11, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.d4 in the Rossolimo fianchetto gives up a central pawn for the initiative against a
+      black king that has not castled. Respectable and double-edged.
+  - match: 'Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, Fianchetto Variation, Lutikov Gambit'
+    include: true
+    sacrifice: { ply: 11, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same 6.d4 break one move earlier for Black, leaving e4 to be taken. Sharp, and the
+      compensation is the open centre rather than a forced attack.
+  - match: 'Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, San Francisco Gambit'
+    include: true
+    sacrifice: { ply: 7, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.b4 against the loose knight on a5 is a wing gambit with the bishop already committed
+      to b5. Black takes and untangles.
+  - match: "Sicilian Defense: O'Kelly Variation, Normal System, Cortlever Gambit"
+    include: true
+    sacrifice: { ply: 7, move: Bc4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Bc4 declines the recapture on d4 in a line where Black's ...a6 is already useful. A
+      pawn for one tempo of development.
+  - match: "Sicilian Defense: O'Kelly Variation, Venice System, Gambit Line"
+    include: true
+    sacrifice: { ply: 8, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...Nf6 leaves d5 alone and develops, the same idea as the Anti-Alapin one move order
+      across. Black's play is natural and the pawn usually comes back.
+  - match: "Sicilian Defense: O'Kelly Variation, Wing Gambit"
+    include: true
+    sacrifice: { ply: 5, move: b4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Wing Gambit" (retrieved 2026-09-17): describes the Wing Gambit Deferred via
+        2.Nf3 and 3.b4, and says the Wing Gambit "is not generally considered one of White's
+        better choices against the Sicilian and it is virtually never seen at the professional
+        level". Side and the dubious label confirmed.
+    reason: >-
+      3.b4 is the Wing Gambit deferred until Black has spent a move on ...a6, which is
+      exactly the move that makes it worth a try.
+  - match: 'Sicilian Defense: Polish Gambit'
+    include: true
+    sacrifice: { ply: 4, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...b5 gives a pawn for queenside space with the king still in the middle. White takes
+      and is simply better.
+  - match: 'Sicilian Defense: Scheveningen Variation, Delayed Keres Attack, Perenyi Gambit'
+    include: true
+    sacrifice: { ply: 17, move: g5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikibooks, Chess Opening Theory, 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6
+        7.g4 (retrieved 2026-09-17): gives 7...e5 8.Nf5 g6 9.g5 and calls the result "very
+        complex and sharp", theoretically unclear with chances for both. This check moved the
+        label down from sound: a knight sacrifice the defender survives with best play is
+        dubious by this project's definition.
+    reason: >-
+      9.g5 gives up the knight on f5 for a devastating attack. One of the genuinely sound
+      modern piece sacrifices in opening theory, analysed deep into the middlegame at the
+      top level.
+  - match: 'Sicilian Defense: Taimanov Variation, Bastrikov Variation, Ponomariov Gambit'
+    include: true
+    sacrifice: { ply: 15, move: Bb6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      8.Bb6 leaves the b5-knight to be won and plays for the bind. Concrete, forcing and
+      well regarded, though Black has held it.
+  - match: 'Sicilian Defense: Taimanov Variation, Gary Gambit'
+    include: true
+    sacrifice: { ply: 16, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      8...d5 breaks in the centre and gives up a pawn to free Black's game in a Maroczy-
+      style bind. The standard freeing idea and a real offer.
+  - match: 'Sicilian Defense: Moscow Variation, Dorfman Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Two one-row novelties under the Old Indian, with no reviewed assessment.
-  - match: 'Catalan Opening'
+      6.e5 looks like an offer and the board says it is not: after 6...dxe5 the knight on f3
+      recaptures and material is level at every ply of the line. Nothing is given away, so
+      there is nothing to teach a side from.
+  # ------------------------------------------------------------------ the #36 review: Ruy Lopez
+  # Twenty-one rows, most of them one line deep inside a mainstream Spanish variation. Several
+  # prove out cleanly and four do not offer anything at all.
+  - match: 'Ruy Lopez: Alapin Defense, Alapin Gambit'
+    include: true
+    sacrifice: { ply: 10, move: dxc6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...dxc6 leaves e5 to be taken and Black plays for the bishop pair and the open
+      d-file. A genuine positional pawn offer rather than an attacking one.
+  - match: 'Ruy Lopez: Central Countergambit'
+    include: true
+    sacrifice: { ply: 10, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...d5 in the Morphy Defence strikes in the centre and gives up e5. An old
+      countergambit, refuted often enough to be respected rather than feared.
+  - match: 'Ruy Lopez: Classical Variation, Cordel Gambit'
+    include: true
+    sacrifice: { ply: 8, move: f5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...f5 is Black's Schliemann-style break in the Cordel, offering the f-pawn to blow
+      the centre open. Sharp and objectively better for White.
+  - match: 'Ruy Lopez: Classical Variation, Konikowski Gambit'
+    include: true
+    sacrifice: { ply: 8, move: d5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...d5 leaves e5 hanging without the piece activity the Cordel's ...f5 buys. White
+      takes and consolidates.
+  - match: 'Ruy Lopez: Classical Variation, Spanish Wing Gambit'
+    include: true
+    sacrifice: { ply: 7, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.b4 is a wing gambit aimed at the c5-bishop. Black takes and the bishop finds a
+      square; the pawn does not come back.
+  - match: 'Ruy Lopez: Classical Variation, Zukertort Gambit'
+    include: true
+    sacrifice: { ply: 9, move: c3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.c3 leaves e4 to be taken so that d4 comes with tempo. Ordinary Spanish compensation,
+      though here the pawn really can be held for a while.
+  - match: 'Ruy Lopez: Closed, Basque Gambit'
+    include: true
+    sacrifice: { ply: 15, move: c3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      8.d4 exd4 9.e5 Ne4 10.c3 abandons the d-pawn for the bind and the bishop pair, in both
+      the plain and the Center Attack move order. A long-known theoretical offer.
+  - match: 'Ruy Lopez: Closed, Chigorin Defense, Gajewski Gambit'
+    include: true
+    sacrifice: { ply: 20, move: d5 }
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Ruy Lopez" (retrieved 2026-09-17): states "10...d5 is the Gajewski Gambit,
+        sacrificing the e-pawn for open lines". Ply and side confirmed; no verdict is given
+        there and the sound label is this review's own.
+    reason: >-
+      10...d5 is Black's modern central pawn sacrifice in the Chigorin, worked out in
+      correspondence and top-level practice. The compensation is concrete and lasting.
+  - match: 'Ruy Lopez: Exchange Variation, Alapin Gambit'
+    include: true
+    sacrifice: { ply: 8, move: dxc6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...dxc6 leaves e5 for the taking and Black gets the bishop pair. The main reason
+      5.Nxe5 is not simply good is ...Qd4, which is the whole point of the line.
+  - match: 'Ruy Lopez: Morphy Defense, Jaffe Gambit'
+    include: true
+    sacrifice: { ply: 9, move: c3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.c3 leaves e4 alone before castling. Playable, and Black taking on e4 is a genuine
+      test rather than a mistake.
+  - match: 'Ruy Lopez: Morphy Defense, Norwegian Variation, Nightingale Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Bxf7+ }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.Bxf7+ throws a bishop at the king to punish the offside knight on a5. Spectacular,
+      and correct defence leaves Black a piece up.
+  - match: 'Ruy Lopez: Open, Harksen Gambit'
+    include: true
+    sacrifice: { ply: 15, move: c4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      8.c4 in the Open Spanish gives a pawn to prise open the queenside against Black's
+      extended pawn chain. A recognised sideline of Open Spanish theory.
+  - match: 'Ruy Lopez: Open, Karpov Gambit'
+    include: true
+    sacrifice: { ply: 21, move: Ng5 }
+    soundness: { value: sound, by: chan, at: '2026-09-17' }
+    reason: >-
+      11.Ng5 sacrifices the knight on f7 or e6 for a strong initiative in the Open Spanish.
+      Karpov's own line, tested at the highest level and still respected.
+  - match: 'Ruy Lopez: Open, Skipworth Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Re1 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.Re1 offers material to regain the knight on e4 by force, and Black's 6...d5 holds
+      everything together. Better known as a way to lose a pawn than to win one.
+  - match: 'Ruy Lopez: Steinitz Defense, Center Gambit'
+    include: true
+    sacrifice: { ply: 9, move: O-O }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.O-O leaves the d4-pawn taken and unrecovered so that the rook comes to e1 with
+      tempo. A classical central gambit against the Steinitz.
+  - match: 'Ruy Lopez: Closed, Alekhine Gambit'
+    include: true
+    sacrifice: { ply: 27, move: Qxf3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      14.Qxf3 leaves d4 hanging in a heavily analysed Closed Spanish tabiya, trading the
+      pawn for the two bishops and pressure. Deep theory rather than a surprise weapon.
+  - match: 'Ruy Lopez: Brentano Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Two rows deep inside mainstream Catalan theory, with no reviewed assessment.
-  - match: 'English Opening'
+      3...g5 is not a pawn offer: 4.Nxg5 loses a piece to 4...Qxg5, because Black's ...e5
+      has already opened the d8-h4 diagonal. The board says nothing is on offer here at any
+      ply.
+  - match: 'Ruy Lopez: Cozio Defense, Tartakower Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Eighteen scattered one-row gambits across unrelated English structures, with no shared
-      family and no reviewed side.
-  - match: 'English Defense'
+      Every capture available in this line is an even trade, at every ply. Whatever the name
+      refers to, it is not material that changes hands inside the line the catalogue would
+      publish.
+  - match: 'Ruy Lopez: Fianchetto Defense, Kevitz Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      Four one-row novelties under 1...b6, with no reviewed assessment.
-  - match: 'Modern Defense'
+      4...f5 is met by exf5 and gxf5, an even trade, and the line stops before anything else
+      can be given up. The gambit, if there is one, is past the end of the defining line.
+  - match: 'Ruy Lopez: Rotary-Albany Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Nine unrelated single rows; the sides differ and none of them has been assessed.
-  - match: 'Owen Defense'
+      3...b6 gives nothing away and the position after it is materially level with no
+      capture worth making. A name without an offer behind it.
+  - match: 'Ruy Lopez: Closed, Center Attack, Basque Gambit'
+    include: true
+    sacrifice: { ply: 15, move: c3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same 10.c3 offer as the Basque Gambit, with Black's reply 10...dxc3 attached. The
+      dataset names it separately and a learner meeting the name should find it, so it gets
+      its own entry and the same verified side.
+  # ------------------------------------------------------------------ the #36 review: King's Pawn Game and King's Pawn Opening
+  # The dataset files unnamed 1.e4 e5 sidelines under these two heads, and twenty-one of them
+  # carry the word gambit.
+  - match: "King's Pawn Game: Bavarian Gambit"
+    include: true
+    sacrifice: { ply: 4, move: d5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...d5 against 2.c4 gives up a pawn to open the centre before White has developed.
+      White takes and keeps it.
+  - match: "King's Pawn Game: Beyer Gambit"
+    include: true
+    sacrifice: { ply: 4, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.d4 d5 is Black's countergambit in the Centre Game move order, striking back
+      immediately. It is a real offer and the resulting positions are sharp.
+  - match: "King's Pawn Game: Busch-Gass Gambit"
+    include: true
+    sacrifice: { ply: 4, move: Bc5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...Bc5 invites 3.Nxe5, and the Chiodini continuation 3...Nc6 follows the same offer.
+      Fun, and a pawn down for nothing concrete after correct play.
+  - match: "King's Pawn Game: Clam Variation, King's Gambit Reversed"
+    include: true
+    sacrifice: { ply: 4, move: f5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...f5 with White having played the modest d3 is a King's Gambit a tempo down and on
+      the wrong side. White takes and Black's king is the exposed one.
+  - match: "King's Pawn Game: Clam Variation, Radisch Gambit"
+    include: true
+    sacrifice: { ply: 6, move: Bc5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Bc5 leaves e5 to be taken after White's f4. There is no lead in development to
+      show for it.
+  - match: "King's Pawn Game: Gunderam Defense, Gunderam Gambit"
+    include: true
+    sacrifice: { ply: 6, move: f5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...f5 with the queen already on e7 opens the file towards Black's own king. A pawn
+      for disorder, mostly Black's.
+  - match: "King's Pawn Game: Gunderam Gambit"
+    include: true
+    sacrifice: { ply: 4, move: c6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...c6 abandons e5 to build a broad centre. White takes the pawn and Black has to
+      prove something that will not be there.
+  - match: "King's Pawn Game: MacLeod Attack, Lasa Gambit"
+    include: true
+    sacrifice: { ply: 4, move: f5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...f5 against 2.c3 is the same offer as the Clam reversed and just as loose.
+      Practical chances only.
+  - match: "King's Pawn Game: Pachman Wing Gambit"
+    include: true
+    sacrifice: { ply: 5, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.b4 is a wing gambit before White has made a threat. Black takes and finishes
+      developing.
+  - match: "King's Pawn Game: Philidor Gambit"
+    include: true
+    sacrifice: { ply: 6, move: Bd7 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Bd7 leaves the e5-pawn already captured and unrecovered, which is Black's whole
+      idea. It is not enough: the pawn is simply gone.
+  - match: "King's Pawn Game: Schulze-Müller Gambit"
+    include: true
+    sacrifice: { ply: 5, move: Nxe5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Nxe5 Nxe5 4.d4 throws a piece at the centre. Black returns some of it and keeps the
+      rest.
+  - match: "King's Pawn Game: Tayler Opening, Basman Gambit"
+    include: true
+    sacrifice: { ply: 9, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.e5 in the Tayler leaves d4 gone and gains space with tempo against the knight. A
+      reasonable practical gambit for a quiet system.
+  - match: "King's Pawn Game: Wayward Queen Attack, Kiddie Countergambit"
+    include: true
+    sacrifice: { ply: 4, move: Nf6 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikibooks, Chess Opening Theory, 1.e4 e5 2.Qh5 Nf6 (retrieved 2026-09-17): 2...Nf6 is
+        "still playable" and Black gains development despite the material. Side and the dubious
+        label confirmed.
+    reason: >-
+      2...Nf6 ignores 2.Qh5 and lets e5 fall so that Black develops with tempo on the queen.
+      The critical reply to the Wayward Queen and worth knowing from both sides.
+  - match: "King's Pawn Game: Wayward Queen Attack, Mellon Gambit"
+    include: true
+    sacrifice: { ply: 12, move: d5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      6...d5 gives a pawn to open lines after Black has already spent moves chasing the
+      queen. The first offer in the line, 4...g6, drops a piece and is not what the name
+      refers to.
+  - match: "King's Pawn Game: Weber Gambit"
+    include: true
+    sacrifice: { ply: 6, move: c6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...c6 in a Scandinavian-flavoured line offers a second pawn to open the c-file and
+      the diagonal. White can take both.
+  - match: "King's Pawn Opening: Van Hooydoon Gambit"
+    include: true
+    sacrifice: { ply: 9, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.d4 offers the centre pawn to open lines for the queen on e2. Rare, coherent, and not
+      dangerous once Black returns material at the right moment.
+  - match: "King's Pawn Game: MacLeod Attack, Norwalde Gambit"
+    include: true
+    sacrifice: { ply: 5, move: Qh5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Qh5 leaves e4 for the taking to chase a cheap attack. Black defends and keeps the
+      pawn.
+  - match: "King's Pawn Game: La Bourdonnais Gambit"
+    include: true
+    sacrifice: { ply: 7, move: O-O }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.O-O leaves e4 en prise and hopes the queen sortie on g6 will cost Black more.
+      Against a defender who knows the line, it does not.
+  - match: "King's Pawn Game: Damiano Defense, Damiano Gambit"
     include: false
+    code: ambiguous-side
     reason: >-
-      Five one-row novelties under 1...b6, with no reviewed assessment.
-  - match: 'Hungarian Opening'
+      Both rows are White punishing 2...f6 with 3.Nxe5, and the material swings back and
+      forth — White is three down, then four up. This is the refutation of a bad defence
+      rather than a gambit anyone plays as one, and no side can honestly be called the
+      gambiteer.
+  # ------------------------------------------------------------------ the #36 review: English Opening and English Defense
+  # Mostly early e4 and g4 thrusts, which are easy to prove and easy to assess.
+  - match: 'English Opening: Achilles-Omega Gambit'
+    include: true
+    sacrifice: { ply: 3, move: e4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.e4 offers the pawn to build a big centre against a knight already on f6. Black takes
+      and White has to work for the rest of the game.
+  - match: 'English Opening: Anglo-Dutch Defense, Hickmann Gambit'
+    include: true
+    sacrifice: { ply: 3, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.e4 against 1...f5 is the Staunton idea a tempo up in spirit, opening the position
+      before Black is set. A real practical try.
+  - match: 'English Opening: Anglo-Dutch Variation, Chabanon Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 with ...d6 in gives Black the extra tempo to hold everything together.
+  - match: 'English Opening: Anglo-Dutch Variation, Ferenc Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 after ...Nf6 hands over the pawn to an already developed defender.
+  - match: 'English Opening: Anglo-Scandinavian Defense, Löhn Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e6 leaves the pawn on d5 and plays for rapid development, a Scandinavian idea in
+      English clothes. Sensible, and a pawn is a pawn.
+  - match: 'English Opening: Anglo-Scandinavian Defense, Schulz Gambit'
+    include: true
+    sacrifice: { ply: 4, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...Nf6 is the piece-play version of the same offer, going after the d5-pawn with the
+      knight rather than the e-pawn.
+  - match: 'English Opening: Jaenisch Gambit'
+    include: true
+    sacrifice: { ply: 2, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...b5 hits c4 immediately and loses a pawn to 2.cxb5. Nothing follows that is worth
+      it.
+  - match: "English Opening: King's English Variation, Adhiban Gambit"
+    include: true
+    sacrifice: { ply: 8, move: c6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...c6 leaves the e4-pawn to be won and opens lines for the queenside pieces. A modern
+      try in a sharp tabiya.
+  - match: "English Opening: King's English Variation, Bellon Gambit"
+    include: true
+    sacrifice: { ply: 8, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...b5 is the main gambit of this line, deflecting the c4-pawn so the e4-pawn
+      survives. Well established, with a body of theory behind it.
+  - match: "English Opening: King's English Variation, Kahiko-Hula Gambit"
+    include: true
+    sacrifice: { ply: 7, move: Nf3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Nf3 declines to recapture on f4 and plays for the initiative. A King's Gambit
+      structure with White's extra tempo spent on e3, which is not where it helps.
+  - match: "English Opening: King's English, Erbenheimer Gambit"
+    include: true
+    sacrifice: { ply: 8, move: Ng4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...Ng4 abandons e4 to harass the knight on g5. The pieces come back and the pawn does
+      not.
+  - match: 'English Opening: Myers Gambit'
+    include: true
+    sacrifice: { ply: 4, move: Bg7 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...g5 2.d4 Bg7 leaves the g-pawn to be taken and points the bishop down the long
+      diagonal. A provocation rather than a system.
+  - match: 'English Opening: Symmetrical Variation, Napolitano Gambit'
+    include: true
+    sacrifice: { ply: 5, move: b4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.b4 is a wing gambit in the Symmetrical English, deflecting the c5-pawn so that d4
+      comes with force. A known practical weapon.
+  - match: 'English Opening: Wade Gambit'
+    include: true
+    sacrifice: { ply: 3, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.g4 against 1...f5 rips open White's own king position for a tempo. Surprise value
+      only.
+  - match: 'English Opening: Wing Gambit'
+    include: true
+    sacrifice: { ply: 3, move: b4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.b4 in the Symmetrical is the direct version of the Napolitano and the same bargain:
+      the b-pawn for the d4 break and a lead in development.
+  - match: 'English Opening: Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...g5 2.d4 e5 offers a second pawn on top of the first. Ambitious, and losing.
+  - match: 'English Defense: Eastbourne Gambit'
+    include: true
+    sacrifice: { ply: 6, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...e5 gives up a pawn to open the long diagonal for the b7-bishop. The bishop is good
+      and the pawn is gone.
+  - match: 'English Defense: Hartlaub Gambit Accepted'
+    include: true
+    sacrifice: { ply: 10, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      After 5.exf5 Black develops rather than recapturing, which is the Hartlaub's point:
+      the f-file and the long diagonal for a pawn. Genuinely dangerous if White grabs and
+      dawdles.
+  - match: 'English Defense: Poli Gambit'
+    include: true
+    sacrifice: { ply: 10, move: Nh6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same structure with f3 thrown in: Black leaves f5 and brings the knight to h6.
+      Offbeat and playable.
+  - match: 'English Opening: Anglo-Indian Defense, Flohr-Mikenas-Carls Variation, Nei Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Nine one-row gambits under 1.g3, with no reviewed assessment.
-  - match: 'Polish Opening'
+      Nothing in this line can be won by either side at any ply: 4.e5 Ng8 is a retreat, not
+      a capture, and the material is level throughout.
+  - match: 'English Opening: Romanishin Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      Five one-row gambits under 1.b4, with no reviewed assessment.
-  - match: 'Polish Defense'
+      The line ends at 4...b5 with nothing yet takeable — cxb5 is answered by ...axb5.
+      Whatever is sacrificed in this system happens after the defining line stops.
+  - match: 'English Defense: Hartlaub Gambit Declined'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      One row under 1...b5, with no reviewed side and no assessment.
-  - match: 'Ware Opening'
+      White declines with 5.d5 and the pawn never changes hands, so the Accepted line is the
+      only one of the pair where anything is given up. The declined branch belongs under
+      that entry.
+  # ------------------------------------------------------------------ the #36 review: Caro-Kann
+  # Seventeen rows, sixteen of which put a pawn or a piece on the board to be taken.
+  - match: 'Caro-Kann Defense: Alekhine Gambit'
+    include: true
+    sacrifice: { ply: 9, move: Bd3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.Bd3 leaves d4 hanging so that the bishop takes aim at h7 at once. A real attacking
+      try in a main-line Caro-Kann.
+  - match: 'Caro-Kann Defense: Alien Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Nxf7 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.Nxf7 is a knight for two pawns and the black king dragged out. Spectacular, and
+      correct defence leaves Black clearly better.
+  - match: 'Caro-Kann Defense: Dinic Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Ng5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Ng5 goes after f7 and leaves e4 gone for good. Black consolidates and keeps the
+      pawn.
+  - match: 'Caro-Kann Defense: Hector Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Ng5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same 4.Ng5 with the knight on c3 rather than a pawn on d3, which makes it a
+      genuine attacking gambit rather than a hope.
+  - match: 'Caro-Kann Defense: Hillbilly Attack, Schaeffer Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Qh5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Qh5 in the Hillbilly leaves e4 behind and plays for f7. Black defends comfortably.
+  - match: 'Caro-Kann Defense: Labahn Attack, Double Gambit'
+    include: true
+    sacrifice: { ply: 5, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.b4 and 3.b5 both come from White, so the side is not in doubt, and neither is the
+      verdict: two queenside pawns for a half-open file is too much.
+  - match: 'Caro-Kann Defense: Martian Gambit'
+    include: true
+    sacrifice: { ply: 13, move: Ne6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      7.Ne6 throws a knight at the black king. Taking it is the move and the compensation is
+      not there.
+  - match: 'Caro-Kann Defense: Maróczy Variation, Maróczy Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Bc4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.Bc4 leaves d4 gone in the Fantasy Variation so that White develops fast on the
+      e-file. Black's own earlier ...e5 is a break rather than an offer; this is White's
+      gambit.
+  - match: 'Caro-Kann Defense: Mieses Attack, Landau Gambit'
+    include: true
+    sacrifice: { ply: 9, move: e6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.e6 wedges a pawn into Black's position and it simply drops. Disruptive for a move,
+      then over.
+  - match: 'Caro-Kann Defense: Mieses Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Be3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Be3 abandons e4 on move three for a developing move that is not even the best
+      square.
+  - match: 'Caro-Kann Defense: Panov Attack, Fianchetto Defense, Fianchetto Gambit'
+    include: true
+    sacrifice: { ply: 12, move: Bg7 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6...Bg7 leaves d5 unrecaptured and plays for pressure on the long diagonal against the
+      isolated centre. A respectable gambit inside the Panov.
+  - match: 'Caro-Kann Defense: Rasa-Studier Gambit'
+    include: true
+    sacrifice: { ply: 7, move: f3 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Chess.com openings, "Caro-Kann Defense: Rasa-Studier Gambit" (retrieved 2026-09-17):
+        gives the move order 1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.f3, matching the ply this rule names.
+        No verdict there.
+    reason: >-
+      4.f3 is the Blackmar-Diemer idea against the Caro-Kann and the most serious gambit in
+      this group: a pawn for the open f-file and fast development.
+  - match: 'Caro-Kann Defense: Scorpion-Horus Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Bg5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Bg5 leaves e4 gone for a pin that costs Black nothing to break.
+  - match: 'Caro-Kann Defense: Spike Variation, Scorpion-Grob Gambit'
+    include: true
+    sacrifice: { ply: 7, move: d3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.g4 followed by 4.d3 gives up e4 having already loosened the kingside. Two weaknesses
+      for one pawn, in the wrong direction.
+  - match: 'Caro-Kann Defense: Ulysses Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Ng5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Ng5 after 3.Nf3 is the same f7 lunge as the Dinic with d4 already committed. Black
+      holds.
+  - match: 'Caro-Kann Defense: von Hennig Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Bc4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Bc4 develops to the strongest diagonal and writes off e4. Sharper than it looks and
+      a real practical weapon at club level.
+  - match: 'Caro-Kann Defense: Toikkanen Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      Three rows under 1.a4, with no reviewed assessment.
-  - match: 'Kádas Opening'
+      3.e5 is a space-gaining advance and nothing is takeable at any ply of the line. The
+      pawn this name refers to is given later, past the end of the entry's defining line.
+  # ------------------------------------------------------------------ the #36 review: Indian, Old Indian, Mexican and Slav Indian
+  # 1.d4 Nf6 sidelines. The c4-pawn is not counted as an offer anywhere below: Black cannot hold
+  # it, which is the reason the Queen's Gambit itself is excluded at the top of this file.
+  - match: 'Indian Defense: Anti-Grünfeld, Adorjan Gambit'
+    include: true
+    sacrifice: { ply: 6, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...b5 is a Benko idea a move early, deflecting the c4-pawn to open the a6-f1 diagonal
+      and the b-file. A genuine sacrifice with genuine positional compensation.
+  - match: 'Indian Defense: Anti-Grünfeld, Alekhine Variation, Leko Gambit'
+    include: true
+    sacrifice: { ply: 6, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...e5 against 3.f3 offers the pawn to punish the loosening move before White is
+      developed. Sharp and theoretically respectable.
+  - match: 'Indian Defense: Devin Gambit'
+    include: true
+    sacrifice: { ply: 5, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.g4 throws the g-pawn at a knight that simply takes it. The bishop on g2 does not
+      come with enough.
+  - match: 'Indian Defense: Gibbins-Weidenhagen Gambit'
+    include: true
+    sacrifice: { ply: 3, move: g4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikibooks, Chess Opening Theory, 1.d4 Nf6 2.g4 (retrieved 2026-09-17): the engine
+        "evaluation only gives Black a slight edge" and it "scores well enough for White in club
+        level games". This check moved the label up from unsound: a slight edge is not a
+        refutation.
+    reason: >-
+      2.g4 is the purest version: the pawn goes, the knight takes, and White plays for the
+      centre with f3 and e4. The Accepted, Oshima, Maltese Falcon and Stummer rows are all
+      the same offer. Fun, thoroughly analysed, and losing against correct play.
+  - match: 'Indian Defense: Lazard Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 against 2.Nd2 is a Budapest with the knight misplaced, which is exactly why it
+      is worth knowing.
+  - match: 'Indian Defense: Maddigan Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 against 2.Nc3 gives the pawn where White is better placed to keep it than in
+      the Budapest proper.
+  - match: 'Indian Defense: Medusa Gambit'
+    include: true
+    sacrifice: { ply: 4, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...g5 hands over the g-pawn to make room for a fianchetto. White takes and develops.
+  - match: 'Indian Defense: Omega Gambit'
+    include: true
+    sacrifice: { ply: 3, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.e4 is a Blackmar-Diemer against the Indian move order, and the Arafat continuation
+      is the same pawn. Real development for it, and Black is better with care.
+  - match: 'Indian Defense: Paleface Attack, Blackmar-Diemer Gambit Deferred'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 reaches the Blackmar-Diemer by transposition with f3 already in. The same gambit
+      as the family already in this catalogue, under the move order a learner may actually
+      meet.
+  - match: 'Indian Defense: Pyrenees Gambit'
+    include: true
+    sacrifice: { ply: 4, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...b5 is a Benko without the preparation, and 3.cxb5 leaves Black with nothing to
+      show.
+  - match: 'Indian Defense: Schnepper Gambit'
+    include: true
+    sacrifice: { ply: 6, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...e5 with c3 played gives White the ideal recapture. A pawn for a tempo.
+  - match: 'Old Indian Defense: Aged Gibbon Gambit'
+    include: true
+    sacrifice: { ply: 5, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.g4 is the Gibbins thrust against the Old Indian set-up, with the same answer: take
+      it.
+  - match: 'Old Indian Defense: Janowski Variation, Grinberg Gambit'
+    include: true
+    sacrifice: { ply: 7, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.e4 leaves the pawn to the bishop on f5 and builds the big centre at once. A coherent
+      practical gambit.
+  - match: 'Mexican Defense: Horsefly Gambit'
+    include: true
+    sacrifice: { ply: 7, move: f4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.f4 chases the knight and abandons c4, which Black can hold here because the knight
+      on e5 covers the recapture squares. Not worth a pawn.
+  - match: 'Slav Indian: Kudischewitsch Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      Three rows under 1.h4, with no reviewed assessment.
-  - match: "Van't Kruijs Opening"
+      3...b5 arrives with cxb5 answered by ...cxb5, so nothing is given up inside the line.
+      The gambit, if it is one, begins after the defining line ends.
+  # ------------------------------------------------------------------ the #36 review: Dutch, Nimzowitsch and Queen’s Pawn Game
+  # Three heads with a lot of rows and a lot of early g4.
+  - match: 'Dutch Defense: Bellon Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 in a Classical Dutch structure is a Staunton with c4 thrown in, which makes the
+      centre break real. A serious practical gambit.
+  - match: "Dutch Defense: Blackmar's Second Gambit"
+    include: true
+    sacrifice: { ply: 3, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.e4 fxe4 3.Nc3 and 4.f3 is the Blackmar treatment of the Dutch: two tempi and the
+      f-file for a pawn. Long argued over and never refuted at club level.
+  - match: 'Dutch Defense: Janzen-Korchnoi Gambit'
+    include: true
+    sacrifice: { ply: 5, move: g4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.g4 after h3 is the prepared version of the Krejcik, and the preparation is the
+      point: the pawn comes with a threat rather than as a donation.
+  - match: 'Dutch Defense: Kingfisher Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 with ...d5 already in gives Black an extra defender of the centre and no reason
+      to return the pawn.
+  - match: 'Dutch Defense: Krejcik Gambit'
+    include: true
+    sacrifice: { ply: 3, move: g4 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikibooks, Chess Opening Theory, 1.d4 f5 2.g4 (retrieved 2026-09-17): "Against best play
+        the gambit doesn't work out that way and White doesn't get complete compensation for the
+        pawn." Side and the unsound label both confirmed.
+    reason: >-
+      2.g4 is the immediate offer, Tate continuation included. Black takes, holds, and White
+      has to find an attack that is not there.
+  - match: 'Dutch Defense: Manhattan Gambit'
+    include: true
+    sacrifice: { ply: 5, move: g4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Dutch Defence" (retrieved 2026-09-17): names 2.Qd3 the Alapin Variation and
+        lists g4 thrusts among White's aggressive tries. Confirms the move order; the dubious
+        label is this review's own.
+    reason: >-
+      3.Qd3 and 4.g4 is the Manhattan in all four of its anti-Classical, anti-Leningrad,
+      anti-Modern and anti-Stonewall move orders, one offer with four names. The queen on d3
+      supports the thrust, which is what makes it more than the Krejcik.
+  - match: 'Dutch Defense: Omega-Isis Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 is Black's own gambit against 2.Nf3, and White's knight is already covering the
+      recapture.
+  - match: 'Dutch Defense: Senechaud Gambit'
+    include: true
+    sacrifice: { ply: 5, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Bf4 and 4.g4 spends a move on the bishop before the thrust, which is a move Black
+      uses better.
+  - match: 'Dutch Defense: Spielmann Gambit'
+    include: true
+    sacrifice: { ply: 5, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Nc3 and 4.g4 against a developed knight. The pawn goes and the attack does not
+      arrive.
+  - match: 'Dutch Defense: Hevendehl Gambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      Three rows under 1.e3, with no reviewed assessment.
-  - match: 'Amar Opening'
+      2.g4 is White's offer and 2...e5 is Black's answer in kind, both proved on the board
+      inside four plies. The name attaches to Black's move and the line is White's gambit;
+      picking either would put half the learners on the wrong side.
+  - match: 'Nimzowitsch Defense: Hornung Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Be3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Be3 leaves e4 for the taking and develops to a square the bishop does not want.
+  - match: 'Nimzowitsch Defense: Kennedy Variation, Bielefelder Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Bc5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 3.dxe5 Bc5 leaves the pawn and develops at f2. The Kennedy's pawn is only
+      really given at this ply, because 3...Nxe5 would have taken it straight back.
+  - match: 'Nimzowitsch Defense: Kennedy Variation, Hammer Gambit'
+    include: true
+    sacrifice: { ply: 6, move: f6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...f6 attacks the pawn on e5 by opening the file in front of Black's own king. White
+      keeps the pawn and the better structure.
+  - match: 'Nimzowitsch Defense: Kennedy Variation, Herford Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Qh4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Qh4 brings the queen out instead of recapturing. It gets chased and the pawn stays
+      White's.
+  - match: 'Nimzowitsch Defense: Kennedy Variation, de Smet Gambit'
+    include: true
+    sacrifice: { ply: 6, move: d6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...d6 undermines the e5-pawn a move later and accepts being down material until it
+      comes back. The soundest of the four Kennedy tries and still a genuine offer.
+  - match: 'Nimzowitsch Defense: Scandinavian Variation, Aachen Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nb4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Nb4 leaves the d5-pawn alone and jumps at c2. The knight gets chased and the pawn
+      stays lost.
+  - match: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Brandics Gambit'
+    include: true
+    sacrifice: { ply: 6, move: a6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...a6 leaves the d5-pawn to be taken for a move that does nothing about it.
+  - match: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Erben Gambit'
+    include: true
+    sacrifice: { ply: 6, move: g6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...g6 abandons d5 for a fianchetto. The bishop will be good and the pawn is still
+      gone.
+  - match: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Heinola-Deppe Gambit'
+    include: true
+    sacrifice: { ply: 6, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...e5 offers a second pawn on top of d5 to blow the centre open. The most principled
+      of the Bogoljubow tries and the only one with an idea behind the material.
+  - match: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Nimzowitsch Gambit'
+    include: true
+    sacrifice: { ply: 7, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.d5 pushes past the knight and leaves e4 gone. Space for a pawn, and the knight has
+      awkward squares.
+  - match: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Richter Gambit'
+    include: true
+    sacrifice: { ply: 7, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same 4.d5 with 5.f3 behind it, which is the Blackmar-Diemer idea grafted on.
+      Coherent, and Black is still better.
+  - match: 'Nimzowitsch Defense: Scandinavian Variation, Exchange Variation, Marshall Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Nc3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Nc3 gains a tempo on the queen and leaves d4 to be taken. A normal gambit bargain.
+  - match: 'Nimzowitsch Defense: Wheeler Gambit'
+    include: true
+    sacrifice: { ply: 3, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.b4 is a wing gambit against a knight that is not attacking anything on the queenside
+      yet.
+  - match: 'Nimzowitsch Defense: El Columpio Defense, El Columpio Gambit'
+    include: true
+    sacrifice: { ply: 11, move: e6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.e6 wedges a pawn in front of the black king and it is taken. Disruptive and not
+      sufficient.
+  - match: "Queen's Pawn Game: Accelerated London System, Steinitz Countergambit"
+    include: true
+    sacrifice: { ply: 4, move: c5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikibooks, Chess Opening Theory, 1.d4 d5 2.Bf4 c5 (retrieved 2026-09-17): "c5, the
+        Steinitz countergambit, offering White their c-pawn", and accepting with 3.dxc5?! is
+        "unwise". Side and the dubious label confirmed.
+    reason: >-
+      2...c5 against the London bishop is Black's countergambit, Accepted line included: the
+      pawn goes for the initiative against a bishop that has left the queenside.
+  - match: "Queen's Pawn Game: Accelerated London System, Steinitz Countergambit, Morris Countergambit"
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikibooks, Chess Opening Theory, 1.d4 d5 2.Bf4 c5 (retrieved 2026-09-17): "The Rare
+        Morris Countergambit (3.e4): White reverses roles by sacrificing the e-pawn." This is
+        the direct check on a side call that could easily have gone the other way inside a Black
+        countergambit.
+    reason: >-
+      3.e4 is White's answer in kind, in both the plain and the Accepted row, and it is
+      White's pawn that goes. Two gambits in five plies is one too many for either to be
+      sound.
+  - match: "Queen's Pawn Game: Chandler Gambit"
+    include: true
+    sacrifice: { ply: 7, move: Bg2 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Bg2 declines to recapture on d4 and finishes the fianchetto. A quiet, positional way
+      to be a pawn down and an honest practical try.
+  - match: "Queen's Pawn Game: Chigorin Variation, Irish Gambit"
+    include: true
+    sacrifice: { ply: 4, move: c5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...c5 with the knight already on c3 gives White the better version of the Steinitz
+      Countergambit structure.
+  - match: "Queen's Pawn Game: Chigorin Variation, Shaviliuk Gambit"
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 offers the pawn to open the centre before White's knight is settled. It is
+      simply taken.
+  - match: "Queen's Pawn Game: Hübsch Gambit"
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Blackmar–Diemer Gambit" (retrieved 2026-09-17): in its assessment section
+        says "the closely related Hübsch Gambit gave an equal game", i.e. no advantage for the
+        gambiteer. Consistent with dubious.
+    reason: >-
+      3.e4 is the Blackmar-Diemer by a Nimzowitsch move order. The same gambit, the same
+      compensation, and a name a learner will meet on its own.
+  - match: "Queen's Pawn Game: Liedmann Gambit"
+    include: true
+    sacrifice: { ply: 5, move: e3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e3 declines to recapture on d4 and opens the bishop's diagonal instead. A Danish
+      idea in a queen's pawn opening.
+  - match: "Queen's Pawn Game: Zilbermints Countergambit"
+    include: true
+    sacrifice: { ply: 6, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...b5 is a Benko without the fianchetto or the open lines that make it work.
+  - match: "Queen's Pawn Game: Zurich Gambit"
+    include: true
+    sacrifice: { ply: 3, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.g4 against a solid centre. Black takes and White's kingside is the only thing that
+      has changed.
+  # ------------------------------------------------------------------ the #36 review: Alekhine, Scandinavian, Modern, Pirc, Rat, Owen and the other 1.e4 defences
+
+  - match: 'Alekhine Defense: Four Pawns Attack, Cambridge Gambit'
+    include: true
+    sacrifice: { ply: 10, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...g5 throws a pawn at the Four Pawns Attack to slow it down. White takes and the
+      attack carries on.
+  - match: 'Alekhine Defense: Hunt Variation, Lasker Simul Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Nc3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.Nc3 leaves the c5-pawn to be taken while White develops. Not enough in a line where
+      Black's knight already has good squares.
+  - match: 'Alekhine Defense: Hunt Variation, Matsukevich Gambit'
+    include: true
+    sacrifice: { ply: 13, move: Bg5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      7.Bg5 gives up the e5-pawn for a pin. Black takes and unpins at leisure.
+  - match: 'Alekhine Defense: Hunt Variation, Mikenas Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Nc3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      The Lasker Simul offer of the c5-pawn carried further into 9.Bxd5. White's play is
+      direct and Black's extra pawn survives it.
+  - match: 'Alekhine Defense: Krejcik Variation, Krejcik Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Bxf7+ }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Bxf7+ throws the bishop at the king after 2.Bc4 Nxe4. Well known and well refuted.
+  - match: "Alekhine Defense: O'Sullivan Gambit"
+    include: true
+    sacrifice: { ply: 6, move: b5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Alekhine's Defence" (retrieved 2026-09-17): gives 3.d4 b5 with 4.Bxb5 c5,
+        confirming the ply and that Black is the side offering. No verdict; the dubious label is
+        this review's own.
+    reason: >-
+      3...b5 deflects the c4-pawn so that the knight on b6 is not harassed. A Benko-
+      flavoured idea with a real point.
+  - match: 'Alekhine Defense: Scandinavian Variation, Geschev Gambit'
+    include: true
+    sacrifice: { ply: 6, move: c6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...c6 leaves the d5-pawn and opens lines for the queen and bishop. A Scandinavian
+      gambit reached through the Alekhine.
+  - match: 'Alekhine Defense: Scandinavian Variation, Myers Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Bg5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Bg5 abandons e4 for a pin on a knight that is not pinned to anything important.
+  - match: 'Alekhine Defense: Spielmann Gambit'
+    include: true
+    sacrifice: { ply: 7, move: e6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.e6 wedges the pawn in front of Black's king and wrecks the structure. It costs a
+      pawn and the damage is real.
+  - match: 'Alekhine Defense: Modern Variation, Alekhine Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      Two rows under 1.Nh3, with no reviewed assessment.
-  - match: 'Barnes Opening'
+      Nothing is takeable at any ply: 6.Be2 simply develops and the pawn this name refers to
+      goes later. The defining line stops short of the offer.
+  - match: 'Scandinavian Defense: Blackburne Gambit'
+    include: true
+    sacrifice: { ply: 4, move: c6 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Scandinavian Defense" (retrieved 2026-09-17): the same 2...c6 line carried
+        to 3.dxc6, described there as thought to be unsound. Confirms the label.
+    reason: >-
+      2...c6 offers the c-pawn on top of the one on d5 for an open file and fast
+      development. The Blackburne is a trap-hunting line and White keeps everything with
+      care.
+  - match: 'Scandinavian Defense: Blackburne-Kloosterboer Gambit'
+    include: true
+    sacrifice: { ply: 4, move: c6 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Scandinavian Defense" (retrieved 2026-09-17): says of 2...c6 that after
+        3.dxc6 it is "thought to be unsound, and it is almost never seen in master-level play".
+        This check moved the label down from dubious.
+    reason: >-
+      The same 2...c6 offer before White has taken again, which is the position the name
+      attaches to. Dangerous over the board.
+  - match: 'Scandinavian Defense: Boehnke Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 invites the en-passant capture and gives up a second pawn for the open e-file.
+  - match: 'Scandinavian Defense: Kloosterboer Gambit'
+    include: true
+    sacrifice: { ply: 4, move: c6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...c6 3.dxc6 e5 is two pawns for development against a defender with no weaknesses. A
+      gambler's line.
+  - match: 'Scandinavian Defense: Kádas Gambit'
+    include: true
+    sacrifice: { ply: 4, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...Nf6 is the Modern Scandinavian's own pawn offer, carried here into a second
+      sacrifice with ...c6 and ...e5. The first offer is the honest one to name.
+  - match: 'Scandinavian Defense: Main Line, Leonhardt Gambit'
+    include: true
+    sacrifice: { ply: 7, move: b4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Scandinavian Defense" (retrieved 2026-09-17): gives 4.b4!? and says "White
+        should not have sufficient compensation for the sacrificed pawn, but it can be difficult
+        to prove this over the board" — which is this catalogue's definition of dubious, word
+        for word.
+    reason: >-
+      4.b4 hits the queen on a5 and gives up the b-pawn to gain time and space. A real
+      practical try in a main line.
+  - match: 'Scandinavian Defense: Modern Variation, Wing Gambit'
+    include: true
+    sacrifice: { ply: 4, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...Nf6 leaves d5 and the later ...b5 offers another. Naming the first keeps the side
+      honest: it is Black's gambit throughout.
+  - match: 'Scandinavian Defense: Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 3, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.b4 declines to take on d5 and offers the b-pawn instead. Two pawns loose at once,
+      and Black can take either.
+  - match: 'Modern Defense: Bishop Attack, Bücker Gambit'
+    include: true
+    sacrifice: { ply: 6, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...b5 hits the bishop on c4 and drops a pawn to do it.
+  - match: 'Modern Defense: Lizard Defense, Mittenberger Gambit'
+    include: true
+    sacrifice: { ply: 6, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...d5 strikes the centre and gives up the pawn to open the game for the fianchettoed
+      bishop. A coherent Modern Defence gambit.
+  - match: 'Modern Defense: Lizard Defense, Pirc-Diemer Gambit'
+    include: true
+    sacrifice: { ply: 5, move: h5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.h5 pushes past and gives the pawn to open the h-file. Black takes and White has one
+      open file and one pawn less.
+  - match: 'Modern Defense: Masur Gambit'
+    include: true
+    sacrifice: { ply: 10, move: O-O }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...O-O leaves f5 gone after the bishop has already been traded on h6. The king is
+      safe and the pawn is not coming back.
+  - match: 'Modern Defense: Norwegian Defense, Norwegian Gambit'
+    include: true
+    sacrifice: { ply: 8, move: d6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...d6 leaves the knight on h5 to be won and undermines the e5-pawn instead.
+      Provocative and genuinely awkward to meet.
+  - match: 'Modern Defense: Two Knights Variation, Suttles Variation, Tal Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Qd2 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.Qd2 offers b2 to the queen on b6, the classic poisoned pawn bargain: time and the
+      open b-file against a pawn and a misplaced queen.
+  - match: 'Modern Defense: Westermann Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Bd2 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Bd2 leaves d4 to be taken for no reason the position supports.
+  - match: 'Modern Defense: Wind Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Bd3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Bd3 abandons d4 to place the bishop where it blocks the d-file. A pawn for a worse
+      square.
+  - match: 'Modern Defense: Fianchetto Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Two rows under 1.f3, with no reviewed assessment.
-  - match: "Anderssen's Opening"
+      2...f5 is met by exf5 and gxf5, an even trade, and the board finds nothing winnable at
+      any ply. The name promises a pawn the position never gives.
+  - match: 'Owen Defense: Hekili-Loa Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nc6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...c5 4.dxc5 Nc6 leaves the pawn and develops. Not enough against a defender who
+      returns it at the right moment.
+  - match: 'Owen Defense: Matovinsky Gambit'
+    include: true
+    sacrifice: { ply: 6, move: f5 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Owen's Defence" (retrieved 2026-09-17): gives 3.Bd3 f5 4.exf5 Bxg2 5.Qh5+ g6
+        6.fxg6 and calls the continuation "simply suicidal" for Black. Side and the unsound
+        label confirmed.
+    reason: >-
+      3...f5 opens the long diagonal and drops a pawn, and the follow-up ...Bxg2 gives the
+      exchange back into an attack that does not land.
+  - match: 'Owen Defense: Naselwaus Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Bg5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Bg5 leaves e4 to the b7-bishop for a pin on nothing.
+  - match: 'Owen Defense: Smith Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nf3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Nf3 develops and lets e4 go, which is the honest way to treat the Owen: the bishop
+      on b7 takes and White gets a lead in development.
+  - match: 'Owen Defense: Wind Gambit'
+    include: true
+    sacrifice: { ply: 6, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...e5 offers a pawn to open the centre when Black is the less developed side.
+  - match: 'Pirc Defense: Roscher Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nf3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Nf3 simply leaves e4 to the knight on f6. There is no compensation, only a name.
+  - match: 'Rat Defense: English Rat, Lisbon Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nc6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 3.dxe5 Nc6 leaves the pawn and hits it again at once. A respectable way to
+      fight for the centre from a modest set-up.
+  - match: 'Rat Defense: English Rat, Pounds Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Be6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Be6 develops rather than regaining the pawn, and the bishop is not worth it there.
+  - match: 'Rat Defense: Fuller Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nf6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...d5 3.exd5 Nf6 is a Scandinavian gambit out of a 1...d6 move order. Sharp and
+      playable.
+  - match: 'Carr Defense: Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...h6 2.d4 e5 gives a pawn from an opening that has already lost a tempo.
+  - match: 'St. George Defense: Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...a6 2.d4 e5 is the same idea behind a different wasted move. White takes.
+  - match: 'Horwitz Defense: Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...e6 2.c4 e5 offers the pawn immediately and White is simply up material with a good
+      game.
+  - match: 'Borg Defense: Borg Gambit'
+    include: true
+    sacrifice: { ply: 2, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...g5 is the Borg, the Grob reversed and a tempo worse. Taught because it appears in
+      blitz, not because it works.
+  - match: 'Borg Defense: Troon Gambit'
+    include: true
+    sacrifice: { ply: 6, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...g4 gives up a second pawn to open the g-file. A double Borg and doubly refuted.
+  - match: 'Borg Defense: Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 adds a central pawn to the g-pawn already loose. White takes both.
+  - match: 'Polish Defense: Spassky Gambit Accepted'
+    include: true
+    sacrifice: { ply: 4, move: Bb7 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...Bb7 leaves the b5-pawn and points the bishop at the long diagonal. A pawn for one
+      good bishop.
+  # ------------------------------------------------------------------ the #36 review: 1.d4 main lines and the flank openings
+
+  - match: 'Grünfeld Defense: Brinckmann Attack, Grünfeld Gambit Accepted'
+    include: true
+    sacrifice: { ply: 14, move: Qxd5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Grünfeld Defence" (retrieved 2026-09-17): gives 4.Bf4 Bg7 5.e3 0-0 6.cxd5
+        Nxd5 7.Nxd5 Qxd5 8.Bxc7 as the accepted line, which is this row exactly and is Black
+        giving the c7-pawn.
+    reason: >-
+      7...Qxd5 accepts that 8.Bxc7 will follow: Black gives the c-pawn for the centre and
+      the bishops. The genuine Grünfeld Gambit, and the only row of the group whose defining
+      line actually reaches the moment the pawn changes hands.
+  - match: 'Grünfeld Defense: Brinckmann Attack, Reshevsky Gambit'
+    include: true
+    sacrifice: { ply: 12, move: c5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6...c5 is the Reshevsky pawn offer, hitting the centre while White's rook is still
+      coming to c1. A real line with a real point.
+  - match: 'Grünfeld Defense: Gibbon Gambit'
+    include: true
+    sacrifice: { ply: 7, move: g4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.g4 offers the g-pawn to the knight on f6 — 4...Nxg4 is safe here, because White's
+      own pawn on e2 blocks the queen's route to g4. A pawn for a tempo.
+  - match: 'Grünfeld Defense: Brinckmann Attack, Grünfeld Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      One row under 1.a3, with no reviewed assessment.
-  - match: 'Clemenz Opening'
+      In the base, Botvinnik and Capablanca rows the c7-pawn falls several plies after the
+      defining line ends, and the only material the board offers inside these lines is the
+      c4-pawn, which Black cannot hold. The Accepted row, which does reach the offer, is
+      admitted separately.
+  - match: 'Grünfeld Defense: Zaitsev Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      One row under 1.h3, with no reviewed assessment.
-  - match: 'Sodium Attack'
+      The only thing takeable after 4.h4 is the c4-pawn, and Black holding that is the
+      Queen's Gambit misnomer this file already refuses at the top. Unlike the Gibbon, the
+      h-pawn itself is not on offer.
+  - match: 'Nimzo-Indian Defense: Classical Variation, Belyavsky Gambit'
+    include: true
+    sacrifice: { ply: 14, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      7...e5 opens the centre and gives the pawn to free Black's game. A named, analysed
+      line rather than an improvisation.
+  - match: 'Nimzo-Indian Defense: Classical Variation, Romanishin Gambit'
+    include: true
+    sacrifice: { ply: 12, move: c5 }
+    soundness: { value: sound, by: chan, at: '2026-09-17' }
+    reason: >-
+      6...c5 hits d4 after the bishop pair has been conceded, and the pawn is a standard
+      price for the initiative here. Mainstream Nimzo-Indian theory.
+  - match: 'Nimzo-Indian Defense: Classical Variation, Vitolins-Adorjan Gambit'
+    include: true
+    sacrifice: { ply: 12, move: b5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Nimzo-Indian Defence" (retrieved 2026-09-17): states "6...b5!? is a gambit
+        invented by Alvis Vītoliņš", which is the ply this rule names. Side confirmed.
+    reason: >-
+      6...b5 deflects the c4-pawn and opens the queenside while White's king is still
+      central. A sharp and respected line.
+  - match: 'Nimzo-Indian Defense: Dilworth Gambit'
+    include: true
+    sacrifice: { ply: 7, move: e4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.e4 throws the pawn forward before White is developed, and the pin on c3 means Black
+      can take it.
+  - match: 'Nimzo-Indian Defense: Leningrad Variation, Averbakh Gambit'
+    include: true
+    sacrifice: { ply: 12, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6...b5 is the Benko break inside the Leningrad Nimzo, opening lines against a White
+      king that has not castled.
+  - match: 'Nimzo-Indian Defense: Spielmann Variation, Romanovsky Gambit'
+    include: true
+    sacrifice: { ply: 10, move: Nc6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...Nc6 leaves the c5-pawn and develops against the queen on b3. Old, sound-looking
+      and double-edged.
+  - match: 'Nimzo-Indian Defense: Three Knights Variation, Shocron Gambit'
+    include: true
+    sacrifice: { ply: 10, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...b5 is the Blumenfeld idea in a Nimzo move order: the b-pawn for the centre.
+  - match: "Queen's Indian Defense: Classical Variation, Polugaevsky Gambit"
+    include: true
+    sacrifice: { ply: 13, move: d5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Queen's Indian Defence" (retrieved 2026-09-17): gives 7.d5!?, "introduced by
+        Arturo Pomar, and rejuvenated by Lev Polugaevsky's continuation 7...exd5 8.Nh4". The ply
+        this rule names, and White's.
+    reason: >-
+      7.d5 gives the d-pawn to open the long diagonal against the bishop on b7 and bring the
+      knight to h4. A sharp main-line try.
+  - match: "Queen's Indian Defense: Classical Variation, Taimanov Gambit"
+    include: true
+    sacrifice: { ply: 13, move: d5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Queen's Indian Defence" (retrieved 2026-09-17): the same 7.d5!? offer, with
+        the knight going to d4 instead of h4. Confirms that both dataset names sit on one White
+        pawn sacrifice.
+    reason: >-
+      The same 7.d5 offer with the knight going to d4 instead. Two names for one idea and
+      both are in the dataset, so both are here.
+  - match: "Queen's Indian Defense: Kasparov-Petrosian Variation, Polovodin Gambit"
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      One row under 1.Na3, with no reviewed assessment.
-  - match: 'Portuguese Opening'
+      Nothing is winnable at any ply of this line: 7.e4 is the last move and the pawn it
+      offers is taken after the defining line ends.
+  - match: "King's Indian Defense: Four Pawns Attack, Florentine Gambit"
+    include: true
+    sacrifice: { ply: 17, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      9.e5 gives the pawn back and more to keep the Four Pawns attack rolling. A known sharp
+      line.
+  - match: "King's Indian Defense: Orthodox Variation, Classical System, Kozul Gambit"
+    include: true
+    sacrifice: { ply: 27, move: c5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      14.c5 breaks on the queenside and gives the pawn while Black attacks on the other
+      wing. The race is the point, and it is a fair one.
+  - match: "King's Indian Defense: Sämisch Variation, Sämisch Gambit"
+    include: true
+    sacrifice: { ply: 12, move: c5 }
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "King's Indian Defence, Sämisch Variation" (retrieved 2026-09-17): gives
+        6...c5 7.dxc5 dxc5 8.Qxd8 Rxd8 9.Bxc5 and states "the line is now considered to give
+        Black full compensation". Side, ply and the sound label all confirmed.
+    reason: >-
+      6...c5 is the main gambit of the Sämisch, offering the pawn for the open d-file and
+      the squares around White's centre. Established theory, Accepted row included.
+  - match: 'Semi-Slav Defense: Anti-Moscow Gambit'
+    include: true
+    sacrifice: { ply: 11, move: Bh4 }
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Semi-Slav Defense" (retrieved 2026-09-17): gives "Anti-Moscow Variation:
+        5...h6 6.Bh4 dxc4", confirming that the point of 6.Bh4 is letting Black take on c4. No
+        verdict given there; the sound label is this review's own.
+    reason: >-
+      6.Bh4 lets Black take on c4 and hold it with ...b5, which is the whole content of the
+      line rather than an accident of the Queen's Gambit. Deeply analysed and played at the
+      very top.
+  - match: 'Semi-Slav Defense: Gunderam Gambit'
+    include: true
+    sacrifice: { ply: 9, move: f3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.f3 is the Blackmar-Diemer treatment of the Semi-Slav: the e-pawn for the open f-file
+      and a lead in development.
+  - match: 'Semi-Slav Defense: Noteboom Variation, Anti-Noteboom Gambit'
+    include: true
+    sacrifice: { ply: 9, move: g3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.g3 declines to chase the pawn on c4 and fianchettoes instead, accepting the material
+      deficit for the long diagonal. A mainstream way to meet the Noteboom.
+  - match: 'Slav Defense: Diemer Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 is the Blackmar-Diemer against the Slav. The same pawn, the same open lines, and
+      one of the better versions of the idea.
+  - match: 'Slav Defense: Slav Gambit, Alekhine Attack'
+    include: true
+    sacrifice: { ply: 7, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.e4 gives up on regaining c4 and takes the centre instead. An old main line.
+  - match: 'Slav Defense: Czech Variation, Krause Attack, Fazekas Gambit'
+    include: true
+    sacrifice: { ply: 13, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      7.e4 offers a second pawn in an already sharp Krause Attack. Concrete and well
+      analysed.
+  - match: 'Semi-Slav Defense: Anti-Noteboom, Stonewall Variation, Portisch Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      Two rows under 1.e4 e5 2.Bb5, with no reviewed assessment.
-  - match: 'Mexican Defense'
+      The only material this line puts on offer is the c4-pawn, which is the Queen's Gambit
+      pawn and not a sacrifice by this catalogue's definition. 5.g4 itself takes nothing and
+      gives nothing.
+  - match: 'Semi-Slav Defense: Meran Variation, Wade Variation, Kaidanov Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      One row under 1.d4 Nf6 2.c4 Nc6, with no reviewed assessment.
-  - match: 'Mikenas Defense'
+      Thirteen moves in, the last thing the line proves is a recapture on d4, not an offer.
+      The Kaidanov pawn goes after the defining line ends.
+  - match: 'Slav Defense: Bonet Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      One row under 1.d4 Nc6, with no reviewed assessment.
-  - match: 'Carr Defense'
+      4.Bg5 leaves only the c4-pawn takeable, which Black cannot hold and which this file
+      does not count as a sacrifice.
+  - match: 'Tarrasch Defense: Grünfeld Gambit'
+    include: true
+    sacrifice: { ply: 12, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6...d4 pushes past and gives the pawn to open lines for the pieces, with ...b5 to
+      follow. A named line of Tarrasch theory.
+  - match: 'Tarrasch Defense: Tarrasch Gambit'
+    include: true
+    sacrifice: { ply: 10, move: d4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Tarrasch Defense" (retrieved 2026-09-17): "5.dxc5 can be met with 5...d4,
+        kicking White's knight… It has been referred to as the Tarrasch Gambit." The ply this
+        rule names, and Black's.
+    reason: >-
+      5...d4 is the same break one move earlier, which is the position the name attaches to.
+  - match: 'Tarrasch Defense: Classical Variation, Classical Tarrasch Gambit'
+    include: true
+    sacrifice: { ply: 18, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      9...d4 is the Tarrasch push after both sides have castled, giving the isolated pawn
+      for piece activity. Standard theory.
+  - match: 'Tarrasch Defense: Marshall Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      One row under 1.e4 h6, with no reviewed assessment.
-  - match: 'Borg Defense'
+      5.e4 ends the line and the pawn only changes hands on the next ply, where the knight
+      on c3 recaptures. Nothing is proved inside the line the catalogue would publish.
+  - match: 'Catalan Opening: Closed, Spassky Gambit'
+    include: true
+    sacrifice: { ply: 20, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      10...b5 offers the b-pawn to break the Catalan bind on the queenside. A real line and
+      a real pawn.
+  - match: 'Catalan Opening: Hungarian Gambit'
+    include: true
+    sacrifice: { ply: 6, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...e5 hits the centre before White has fianchettoed and gives the pawn for fast
+      development. Sharp and playable.
+  - match: 'Richter-Veresov Attack: Malich Gambit'
+    include: true
+    sacrifice: { ply: 11, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.d5 pushes past and gives up the pawn to open lines against a king that has lost its
+      cover on g7. Direct and dangerous.
+  - match: 'Torre Attack: Classical Defense, Petrosian Gambit'
+    include: true
+    sacrifice: { ply: 9, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.d5 gives the pawn to open the centre while Black is uncastled. The Torre's sharpest
+      try.
+  - match: 'Torre Attack: Wagner Gambit'
+    include: true
+    sacrifice: { ply: 7, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.e4 builds the centre and hands over a pawn. An old attacking line of the Torre.
+  - match: 'Trompowsky Attack: Edge Variation, Hergert Gambit'
+    include: true
+    sacrifice: { ply: 11, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      6.e4 opens the centre against a bishop on f5 and gives the pawn to do it.
+  - match: 'Trompowsky Attack: Raptor Variation, Hergert Gambit'
+    include: true
+    sacrifice: { ply: 8, move: e5 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Trompowsky Attack" (retrieved 2026-09-17): "3.h4 (Raptor Variation) defends
+        the bishop, and Black should avoid 3...Nxg5 since that will open up a file for the white
+        rook." This check moved the label down from dubious.
+    reason: >-
+      4...e5 strikes back after 4.hxg5 and gives the pawn to open the centre against an
+      uncastled king. The critical test of the Raptor.
+  # ------------------------------------------------------------------ the #36 review: 1.e4 e5 sidelines, Benoni, and the irregular openings
+
+  - match: 'Benoni Defense: Benoni Gambit'
+    include: true
+    sacrifice: { ply: 2, move: c5 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Benoni Defense" (retrieved 2026-09-17): says of 1.d4 c5 that "2.dxc5 e6
+        leads to no advantage", which is the pawn being taken and not held onto. Supports
+        unsound for Black's offer.
+    reason: >-
+      1...c5 is the Benoni Gambit proper and 2.dxc5 takes it, Schlenker Defence included.
+      Black gets a tempo on the pawn and nothing else.
+  - match: 'Benoni Defense: Cormorant Gambit'
+    include: true
+    sacrifice: { ply: 2, move: c5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same 1...c5 offer followed by 2...b6, adding a second pawn to the first. Ambitious
+      and losing.
+  - match: 'Benoni Defense: Benoni-Staunton Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      After 2.d5 f5, 3.e4 is the Staunton idea in a Benoni structure — a pawn for the open
+      centre and fast development. The sharpest of the Benoni sidelines.
+  - match: 'Benoni Defense: Zilbermints-Benoni Gambit'
+    include: true
+    sacrifice: { ply: 3, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.b4 is a wing gambit on move two. Black takes and keeps it.
+  - match: 'Benoni Defense: Zilbermints-Benoni Gambit, Tamarkin Countergambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      Three rows under 1...g5, with no reviewed assessment.
-  - match: 'Rat Defense'
+      White's 3.b4 is a proved offer and the name points at Black's answer 3...e5, which the
+      board cannot prove is one. Orienting the entry by the only provable ply would put the
+      learner on the side the name does not name.
+  - match: 'Philidor Defense: Albin-Blackburne Gambit'
+    include: true
+    sacrifice: { ply: 8, move: Nd7 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Philidor Defence" (retrieved 2026-09-17): calls 3...Bg4 "Inferior" and notes
+        Black cannot recapture on e5. This check moved the label down from dubious.
+    reason: >-
+      4...Bg4 5.dxe5 Nd7 leaves the pawn and sets the trap that gives the line its name.
+      Sharp, well known, and objectively better for White.
+  - match: 'Philidor Defense: Bird Gambit'
+    include: true
+    sacrifice: { ply: 7, move: c3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.c3 declines to recapture on d4 and opens lines instead. An old Danish-style
+      treatment of the Philidor.
+  - match: 'Philidor Defense: Lion Variation, Shirov Gambit'
+    include: true
+    sacrifice: { ply: 9, move: g4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.g4 throws the g-pawn at the Lion set-up for space and an attack. A genuine modern
+      try.
+  - match: 'Philidor Defense: Morphy Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Bc4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Bc4 leaves d4 and develops at the bishop's best square, aiming at f7. Classical and
+      dangerous at club level.
+  - match: 'Philidor Defense: Philidor Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Bd7 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Bd7 leaves e5 to be taken. The bishop is passive and the pawn is gone.
+  - match: "Petrov's Defense: Classical Attack, Marshall Variation, Chinese Gambit"
+    include: true
+    sacrifice: { ply: 18, move: Bg4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      9...Bg4 gives up material in a heavily analysed Petrov tabiya for piece activity.
+      Black's earlier ...Nf6 is ordinary Petrov theory, not the gambit this name refers to.
+  - match: "Petrov's Defense: Damiano Variation, Kholmov Gambit"
+    include: true
+    sacrifice: { ply: 8, move: Qe7 }
+    soundness:
+      value: unsound
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Petrov's Defence" (retrieved 2026-09-17): on 3...Nxe4 4.Qe2 gives 4...Qe7 as
+        the best try and says "White has a moderate advantage". Side and the unsound label
+        confirmed.
+    reason: >-
+      4...Qe7 offers the knight rather than retreating it. A trap with a refutation.
+  - match: "Petrov's Defense: Modern Attack, Tal Gambit"
+    include: true
+    sacrifice: { ply: 9, move: Bb5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.Bb5 leaves d4 behind to develop with check-like pressure. Tal's own line and a real
+      practical weapon.
+  - match: "Petrov's Defense: Moody Gambit"
+    include: true
+    sacrifice: { ply: 7, move: d4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.d4 with the queen already on e2 blocks White's own development and drops a pawn.
+  - match: 'Four Knights Game: Italian Variation, Noa Gambit'
+    include: true
+    sacrifice: { ply: 9, move: Bxf7+ }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.Bxf7+ throws the bishop at the king after 4...Nxe4. Well known, and Black keeps the
+      piece with correct play.
+  - match: 'Four Knights Game: Spanish Variation, Rubinstein Variation, Marshall Gambit'
+    include: true
+    sacrifice: { ply: 12, move: O-O }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Four Knights Game" (retrieved 2026-09-17): says Black may continue "in
+        gambit fashion with 5...Bc5, a common line being 6.Nxe5 0-0" and that the line is
+        playable for Black. Side and the dubious label confirmed.
+    reason: >-
+      6...O-O leaves the e5-pawn taken and unrecovered so that Black finishes development
+      with a lead. Sound-looking and genuinely sharp.
+  - match: 'Four Knights Game: Scotch Variation, Oxford Gambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      Three rows under the Rat, with no reviewed assessment.
-  - match: 'Pterodactyl Defense'
+      Black's 4...Bb4, White's 5.d5 and Black's 5...Nd4 are all proved offers inside three
+      plies of each other. No reading of the line makes one side the gambiteer.
+  - match: 'Hungarian Opening: Asten Gambit'
+    include: true
+    sacrifice: { ply: 8, move: d4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...d4 pushes past and gives a pawn in a reversed structure where White is
+      comfortable.
+  - match: 'Hungarian Opening: Burk Gambit'
+    include: true
+    sacrifice: { ply: 9, move: d3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.d3 leaves the knight on h4 to be won. A pawn's worth of position for a piece's worth
+      of risk.
+  - match: 'Hungarian Opening: Bücker Gambit'
+    include: true
+    sacrifice: { ply: 5, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.b4 is a wing gambit out of a fianchetto. Black takes and completes development.
+  - match: 'Hungarian Opening: Pachman Gambit'
+    include: true
+    sacrifice: { ply: 3, move: e4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.e4 against 1...f5 offers the pawn for a queen check that leads nowhere.
+  - match: 'Hungarian Opening: Paris Gambit'
+    include: true
+    sacrifice: { ply: 9, move: O-O }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.O-O castles into a position already two pawns down. The most romantic line in the
+      dataset and the least sound.
+  - match: 'Hungarian Opening: Reversed Brooklyn Defense, Brooklyn Benko Gambit'
+    include: true
+    sacrifice: { ply: 7, move: b4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.b4 is the Benko idea with colours reversed and a tempo in hand, which is the one
+      thing that makes it more respectable than the Benko is for White.
+  - match: 'Hungarian Opening: Van Kuijk Gambit'
+    include: true
+    sacrifice: { ply: 4, move: h4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...h4 offers the h-pawn to open the file. Against a fianchetto it is not enough.
+  - match: 'Hungarian Opening: Wiedenhagen-Beta Gambit'
+    include: true
+    sacrifice: { ply: 4, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...g5 hands over the g-pawn to a knight that is already looking at it.
+  - match: 'Hungarian Opening: Winterberg Gambit'
+    include: true
+    sacrifice: { ply: 7, move: b3 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.c4 dxc4 5.b3 is the Benko treatment of the reversed Queen's Gambit: the pawn goes
+      for the long diagonal and the open b-file.
+  - match: 'Polish Opening: Birmingham Gambit'
+    include: true
+    sacrifice: { ply: 2, move: c5 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Polish Opening" (retrieved 2026-09-17): "1...c5 is a sharp gambit normally
+        used to avoid theory. After the capture Black will generally place pressure on the
+        c5-square and will develop an attack against White's weak queenside structure." This
+        check moved the label up from unsound.
+    reason: >-
+      1...c5 answers 1.b4 with a pawn offer of Black's own and 2.bxc5 takes it.
+  - match: 'Polish Opening: Outflank Variation, Schuehler Gambit'
+    include: true
+    sacrifice: { ply: 5, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.b5 pushes past and gives the pawn to open the queenside. The pawn does not come
+      back.
+  - match: 'Polish Opening: Schuehler Gambit'
+    include: true
+    sacrifice: { ply: 5, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      The same 3.b5 offer carried on with 4.e4. A second pawn on top of the first.
+  - match: 'Polish Opening: Tartakower Gambit'
+    include: true
+    sacrifice: { ply: 3, move: Bb2 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Polish Opening" (retrieved 2026-09-17): gives 1.b4 e5 2.Bb2 with 2...Bxb4
+        among Black's playable replies, confirming that the ply this rule names is where the
+        b-pawn goes.
+    reason: >-
+      2.Bb2 leaves the b4-pawn to be taken and points the bishop at e5. The classical Polish
+      bargain and a real one.
+  - match: 'Polish Opening: Wolferts Gambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      Two rows in a Pterodactyl move order, with no reviewed assessment.
-  - match: 'Pirc Defense'
+      White's b4-pawn is loose after 2.Bb2 and Black's 2...c5 offers another. Both are
+      proved offers and the name does not settle which side the entry is about.
+  - match: 'Réti Opening: Advance Variation, Michel Gambit'
+    include: true
+    sacrifice: { ply: 6, move: c5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...c5 in the Advance Réti holds the pawn chain together by giving one away. A named
+      line with a point.
+  - match: 'Réti Opening: Advance Variation, Navara Gambit'
+    include: true
+    sacrifice: { ply: 6, move: g5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...g5 is the modern, sharper answer to 3.b4, offering the g-pawn to undermine the
+      queenside advance.
+  - match: 'Réti Opening: Reversed Blumenfeld Gambit'
+    include: true
+    sacrifice: { ply: 7, move: b4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-09-17'
+      source: >-
+        Wikipedia, "Réti Opening" (retrieved 2026-09-17): on 2...d4 says 3.b4 is "the
+        interesting and sharper" try, "resembling a Benko Gambit with the colors reversed". Side
+        and framing confirmed.
+    reason: >-
+      4.b4 is the Blumenfeld with colours reversed. Coherent, and a tempo up on a line that
+      is already respectable for Black.
+  - match: 'Réti Opening: Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 4, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...b5 defends c4 by hanging the b-pawn. White takes and keeps it.
+  - match: 'Réti Opening: Réti Gambit, Keres Variation'
     include: false
+    code: no-sacrifice
     reason: >-
-      One row deep inside the Pirc, with no reviewed assessment.
-  - match: 'Lion Defense'
+      The only pawn on offer is the c4-pawn, which Black cannot hold — White regains it with
+      e3 and Bxc4. That is the Queen's Gambit misnomer under another name, and this file
+      refuses it there for the same reason.
+  - match: 'Kádas Opening: Kádas Gambit'
+    include: true
+    sacrifice: { ply: 3, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.b4 after 1.h4 is a wing gambit from an opening that has already wasted a move.
+  - match: 'Kádas Opening: Schneider Gambit'
+    include: true
+    sacrifice: { ply: 2, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...g5 meets 1.h4 with a pawn offer, and hxg5 is simply good.
+  - match: 'Kádas Opening: Steinbok Gambit'
+    include: true
+    sacrifice: { ply: 3, move: e4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2.e4 gives the pawn for a centre that Black can contest at once.
+  - match: 'Nimzo-Larsen Attack: Norfolk Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 breaks in the centre from a Larsen set-up and gives the pawn for the long
+      diagonal. A consistent way to play the opening.
+  - match: 'Nimzo-Larsen Attack: Pachman Gambit'
+    include: true
+    sacrifice: { ply: 5, move: f4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.f4 is a King's Gambit with the bishop already on b2 and Black already developed. Not
+      enough.
+  - match: 'Nimzo-Larsen Attack: Ringelbach Gambit'
+    include: true
+    sacrifice: { ply: 5, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.e4 against a Dutch set-up gives the pawn to open the centre before Black is ready.
+      The same idea as the Norfolk and about as good.
+  - match: "Van't Kruijs Opening: Keoni-Hiva Gambit"
+    include: true
+    sacrifice: { ply: 7, move: Nf3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.f4 exf4 4.Nf3 is a King's Gambit with White's extra move spent on e3, in all three
+      of the Akahi, Alua and Ekolu move orders. The tempo is spent on the wrong square and
+      the compensation is thinner than the real thing.
+  - match: 'Ware Opening: Cologne Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nd7 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Nd7 leaves d5 to be taken, which is a strange way to punish 1.a4.
+  - match: 'Ware Opening: Ware Gambit'
+    include: true
+    sacrifice: { ply: 7, move: a6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.a6 pushes the rook pawn to the sixth and loses it. The idea is disruption and it is
+      not worth a pawn.
+  - match: 'Ware Opening: Wing Gambit'
+    include: true
+    sacrifice: { ply: 2, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...b5 answers 1.a4 by hanging the b-pawn immediately. White takes.
+  - match: 'Amar Opening: Paris Gambit, Gent Gambit'
+    include: true
+    sacrifice: { ply: 9, move: O-O }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      5.O-O in the Amar is the Paris Gambit's continuation with a second pawn thrown in.
+      Famous, entertaining and refuted.
+  - match: 'Amar Opening: Paris Gambit'
     include: false
+    code: sacrifice-outside-line
     reason: >-
-      One row in the Lion's Cave, with no reviewed assessment.
-  - match: 'Horwitz Defense'
+      3.f4 takes nothing and gives nothing that the board can prove — the pawn goes on the
+      next ply, which is the Gent Gambit row. That row carries the offer and this one does
+      not.
+  - match: 'Portuguese Opening: Miguel Gambit'
+    include: true
+    sacrifice: { ply: 5, move: b4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.b4 is a wing gambit with the bishop already committed to b5. Black takes and is
+      better.
+  - match: 'Portuguese Opening: Portuguese Gambit'
+    include: true
+    sacrifice: { ply: 5, move: d4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.d4 leaves e4 behind and opens the centre with the bishop already on b5. A reasonable
+      attempt at a Scotch with an extra idea.
+  - match: 'Pterodactyl Defense: Central, Quetzalcoatlus Gambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      One row under 1.d4 e6, with no reviewed assessment.
-  - match: 'St. George Defense'
+      Black's 3...c5, White's 4.Nc3 and Black's 5...Qa5 are all proved offers, worth up to
+      two pawns, and they alternate sides. Nothing in the line settles who the learner is.
+  - match: 'Pterodactyl Defense: Sicilian, Benoni Gambit'
     include: false
+    code: ambiguous-side
     reason: >-
-      One row under 1.e4 a6, with no reviewed assessment.
-  - match: 'Slav Indian'
+      Black's 3...Bg7 leaves c5 and White's 5.d5 leaves c3, two offers on opposite sides
+      three plies apart. The name does not choose between them and neither can the board.
+  - match: 'Barnes Opening: Gedult Gambit'
+    include: true
+    sacrifice: { ply: 5, move: Nc3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3.Nc3 offers the e-pawn out of an opening whose first move already weakened the king.
+  - match: "King's Indian Attack: Omega-Delta Gambit"
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 gives the pawn to grab the centre against a knight that simply takes it.
+  - match: "Lion Defense: Anti-Philidor, Lion's Cave, Lion Claw Gambit"
+    include: true
+    sacrifice: { ply: 14, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      7...d5 breaks in the centre and gives the pawn back with interest to open lines at the
+      moment White's queen is exposed. The main point of the Lion's Cave.
+  - match: 'Mikenas Defense: Pozarek Gambit'
+    include: true
+    sacrifice: { ply: 7, move: Nc3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4.Nc3 leaves c4 to the knight on e5. A pawn for development that Black matches.
+  - match: 'Sodium Attack: Durkin Gambit'
+    include: true
+    sacrifice: { ply: 6, move: f5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...f5 offers the f-pawn against an opening that has already misplaced its knight. Two
+      bad ideas do not cancel.
+  - match: "Anderssen's Opening: Polish Gambit"
     include: false
+    code: no-sacrifice
     reason: >-
-      One row in a Slav Indian move order, with no reviewed assessment.
-  - match: 'Richter-Veresov Attack'
+      2.b4 axb4 3.axb4 Rxa1 is an even sequence and the board finds nothing winnable at any
+      ply. The name is not backed by material changing hands.
+  - match: 'Clemenz Opening: Spike Lee Gambit'
     include: false
+    code: no-sacrifice
     reason: >-
-      One row under the Veresov, with no reviewed assessment.
-  - match: 'Torre Attack'
-    include: false
-    reason: >-
-      Two rows deep inside mainstream Torre theory, with no reviewed assessment.
-  - match: 'Trompowsky Attack'
-    include: false
-    reason: >-
-      Three rows inside Edge and Raptor sidelines, with no reviewed assessment.
-  - match: 'Nimzo-Larsen Attack'
-    include: false
-    reason: >-
-      Three one-row gambits under 1.b3, with no reviewed assessment.
-  - match: 'Réti Opening'
-    include: false
-    reason: >-
-      Five one-row gambits under the Réti, with no reviewed assessment.
-  - match: "King's Indian Attack"
-    include: false
-    reason: >-
-      One row in a King's Indian Attack move order, with no reviewed assessment.
+      2.g4 hxg4 leaves White able to recapture, and nothing in the line is provably on
+      offer. A gambit name over an equal trade.
+
   # ---------------------------------------------------------------- named traps
   #
   # Four rows inside otherwise-included families are named traps rather than gambits. A
@@ -912,22 +3107,26 @@ rules:
   # id and the surrounding opening's ECO.
   - match: "Queen's Gambit Declined: Albin Countergambit, Lasker Trap"
     include: false
+    code: duplicate-trap
     reason: >-
       A named trap, carried by `traps.yaml` as `lasker-trap` with its own identifying line.
       Importing it as a gambit variation would publish the Lasker Trap twice under two ids.
   - match: 'Sicilian Defense: Smith-Morra Gambit Accepted, Siberian Variation, Siberian Trap'
     include: false
+    code: duplicate-trap
     reason: >-
       A named trap, carried by `traps.yaml` as `siberian-trap`. The dataset files it as a
       Smith-Morra sub-variation and codes it B21 with the gambit, which is the ECO problem
       traps are exempt from.
   - match: 'Vienna Game: Vienna Gambit, Wurzburger Trap'
     include: false
+    code: duplicate-trap
     reason: >-
       A named trap inside the Vienna Gambit. Nobody has hand-entered it yet, and a trap
       that arrives by import carries the surrounding opening's ECO rather than its own.
   - match: "Zukertort Opening: Tennison Gambit, Brigg's Trap"
     include: false
+    code: duplicate-trap
     reason: >-
       A named trap inside the Tennison Gambit, not yet hand-entered. Breadth is free for
       gambits and is not free for traps; this is what that costs.

@@ -17,7 +17,7 @@ import {
 } from './metadata.ts'
 
 /**
- * The head of 2,109 published documents.
+ * The head of 3,018 published documents.
  *
  * Nothing here is cosmetic. A shell that keeps the template's `lang` serves French and
  * English routes as Vietnamese until JavaScript runs — WCAG 3.1.1 at Level A — and a shell
@@ -132,7 +132,7 @@ describe('which shells get metadata', () => {
   })
 
   it('scales to the whole catalogue: three locales times every published id', () => {
-    const ids = Array.from({ length: 700 }, (_, index) => `gambit-${index}`)
+    const ids = Array.from({ length: 1003 }, (_, index) => `gambit-${index}`)
     const entries = new Map(ids.map((id) => [id, facts(id)]))
 
     const result = built({ gambitIds: ids, entries: { vi: entries, en: entries, fr: entries } })
@@ -273,7 +273,7 @@ describe('rendering a shell', () => {
 
   /**
    * The substitution is the whole ticket. A template that stopped carrying an anchor would
-   * otherwise be copied 2,109 times with the replacement silently doing nothing.
+   * otherwise be copied 3,018 times with the replacement silently doing nothing.
    */
   it.each([
     ['no title', '<html lang="en"><head></head></html>', '<title>'],
@@ -360,7 +360,7 @@ describe('the coverage assertion the build runs (AC 6)', () => {
 describe('the catalogue this repository builds', () => {
   /**
    * Run against the real generated files rather than fixtures, because the claim is that
-   * *this* build's three payloads name the same 700 entries in three languages. It is
+   * *this* build's three payloads name the same 1,003 entries in three languages. It is
    * generated, so a missing file means `npm run catalogue` has not run.
    */
   const read = (locale: Locale): string => {
@@ -378,8 +378,8 @@ describe('the catalogue this repository builds', () => {
     return result.entries
   }
 
-  it.each([...locales])('reads back 700 named entries from %s', (locale) => {
-    expect(parsed(locale).size).toBe(700)
+  it.each([...locales])('reads back 1003 named entries from %s', (locale) => {
+    expect(parsed(locale).size).toBe(1003)
   })
 
   it('names the same entry differently in each language, which is why it is read per locale', () => {

@@ -70,7 +70,7 @@ export type CatalogueEntryPayload = {
    * How many branches this entry has to learn, so a catalogue card can say "3 of 12"
    * without downloading a tree.
    *
-   * The catalogue downloads **no** entry tree — that is why 700 entries cost 16.7KB
+   * The catalogue downloads **no** entry tree — that is why 1,003 entries cost 25.7KB
    * instead of megabytes, and `e2e/content-loading.spec.ts` asserts it — so the only
    * honest way for a card to show a denominator is for the build to put one here.
    *

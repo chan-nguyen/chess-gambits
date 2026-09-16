@@ -42,13 +42,13 @@ describe('the shells a build must emit', () => {
   })
 
   /**
-   * The shape of the real build, at the real size. 700 published entries is 2,100 gambit
+   * The shape of the real build, at the real size. 1,003 published entries is 3,009 gambit
    * shells plus the nine static ones — and a link on the catalogue page to an id with no
    * shell behind it is an HTTP 404 on the host while every test here passes, which is the
    * failure this module exists to make impossible.
    */
   it('scales to the whole catalogue: three locales times every published id', () => {
-    const ids = Array.from({ length: 700 }, (_, index) => `gambit-${index}`)
+    const ids = Array.from({ length: 1003 }, (_, index) => `gambit-${index}`)
     const paths = shellPaths(ids)
 
     expect(paths).toHaveLength(locales.length * (3 + ids.length))

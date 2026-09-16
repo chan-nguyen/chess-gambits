@@ -12,8 +12,9 @@ import { siteName } from '../../src/lib/site.ts'
  * into Slack would say nothing about which gambit the link points at. On a product whose
  * headline feature is "copy this URL", that is the whole feature failing quietly.
  *
- * Everything here is **derived from the compiled catalogue** (AC 5). There are 700 entries
- * and there will be more; a committed copy of their names would be wrong within a week.
+ * Everything here is **derived from the compiled catalogue** (AC 5). There are 1,003 entries
+ * and there will be more — there were 700 until issue #36 reviewed the excluded rows — so a
+ * committed copy of their names would be wrong within a week.
  * The names are read per locale, because `catalogue.fr.json` calls an entry
  * `Partie italienne: Evans Gambit` and `catalogue.vi.json` calls it `Khai cuộc Ý: Evans
  * Gambit` — taking all three from `vi` would put the wrong language in the French title.
@@ -296,7 +297,7 @@ const occurrences = (pattern: RegExp, html: string): number => [...html.matchAll
  * title replaced by a real head.
  *
  * Both anchors are required to appear exactly once. A template that stopped carrying one
- * would otherwise be copied 2,109 times with the substitution silently doing nothing,
+ * would otherwise be copied 3,018 times with the substitution silently doing nothing,
  * which is precisely the failure this ticket closes.
  */
 export const shellHtml = (template: string, data: ShellMetadata): ShellRender => {
@@ -323,7 +324,7 @@ export const shellHtml = (template: string, data: ShellMetadata): ShellRender =>
  * Which pieces of `data` are **not** in `html`, named.
  *
  * AC 6's build assertion. Run against the bytes read back off disk rather than against the
- * string that was written, so it covers the write as well as the rendering: with 2,109
+ * string that was written, so it covers the write as well as the rendering: with 3,018
  * shells a spot check proves almost nothing, and "we meant to" is not a coverage claim.
  */
 export const metadataGaps = (html: string, data: ShellMetadata): readonly string[] => {

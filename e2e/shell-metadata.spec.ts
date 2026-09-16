@@ -13,7 +13,7 @@ import { catalogueEntries } from '../tools/shells/metadata.ts'
  * served claimed the wrong language — which is the WCAG 3.1.1 Level A failure this ticket
  * closes, and what a screen reader, a crawler and Slack's unfurler all actually see.
  *
- * The build assertion in `scripts/generate-shells.ts` is what covers all 2,111 documents;
+ * The build assertion in `scripts/generate-shells.ts` is what covers all 3,020 documents;
  * with that many, a spot check proves almost nothing on its own. This is the part that
  * cannot be checked from inside the build: that a real host, at both base paths, answers
  * a real deep link with those bytes.
@@ -101,7 +101,7 @@ test('the three locales of one gambit are three distinguishable pages', async ({
     locales.map(async (locale) => head(await (await request.get(deepLink(locale))).text()).title),
   )
 
-  // The failure this ticket closes was 2,109 shells sharing one title; three URLs for the
+  // The failure this ticket closes was 3,018 shells sharing one title; three URLs for the
   // same gambit are the smallest case where the names must still differ.
   expect(new Set(titles).size).toBe(locales.length)
 })

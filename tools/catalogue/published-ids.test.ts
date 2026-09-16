@@ -133,12 +133,12 @@ describe('the catalogue this repository builds', () => {
     throw new Error(`${path} is missing. Run \`npm run catalogue\` first.`)
   }
 
-  it('reads back 700 published ids', () => {
+  it('reads back 1003 published ids', () => {
     const result = publishedGambitIds(json)
 
     expect(result.ok).toBe(true)
     if (!result.ok) return
-    expect(result.ids).toHaveLength(700)
+    expect(result.ids).toHaveLength(1003)
     expect(result.ids).toContain('italian-game-evans-gambit')
   })
 })

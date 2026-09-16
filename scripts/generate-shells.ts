@@ -32,7 +32,7 @@ import {
  * **The gambit ids come from the built catalogue.** Until #13 nothing linked to a gambit,
  * so no shell for one had to exist and none was emitted. The catalogue page links to
  * every published entry, and on a static host a link to a path with no file behind it is
- * an HTTP 404 — so the moment that page shipped, 700 links would have become 700 broken
+ * an HTTP 404 — so the moment that page shipped, 1,003 links would have become 1,003 broken
  * ones. Reading the ids back off `dist/catalogue/` rather than from a committed list is
  * what makes the shells and the links the same set by construction.
  */
@@ -134,7 +134,7 @@ const byLocale = <T>(value: (locale: Locale) => T): Readonly<Record<Locale, T>> 
 })
 
 /**
- * AC 6, and the only check here that scales: 2,109 shells make a spot check meaningless,
+ * AC 6, and the only check here that scales: 3,018 shells make a spot check meaningless,
  * so every emitted file is read back off disk and every piece of its metadata is looked
  * for by value. Reading, not trusting the string that was written — that is what makes
  * this cover the write step too.
@@ -232,7 +232,7 @@ const main = async (): Promise<void> => {
   }
 
   /**
-   * Written concurrently rather than one at a time. At 700 entries this is 2,100 gambit
+   * Written concurrently rather than one at a time. At 1,003 entries this is 3,009 gambit
    * shells, and serially that is seconds of wall clock on every build, nearly all of it
    * spent waiting on the filesystem rather than doing anything.
    */
