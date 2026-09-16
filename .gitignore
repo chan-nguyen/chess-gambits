@@ -28,3 +28,12 @@ dist-ssr
 /playwright-report
 /blob-report
 /playwright/.cache
+
+# Compiled content. `npm run build` regenerates it from the YAML on every run, and the
+# YAML is the only source of truth (ADR-0004).
+/public/content/
+
+# `npm run export-pgn` output is generated for a round trip through a board GUI and is
+# never committed, for the same reason. The PGN fixtures under tools/ are test *inputs*.
+*.pgn
+!tools/content/fixtures/pgn/*.pgn

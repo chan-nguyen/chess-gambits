@@ -106,8 +106,12 @@ Every URL parameter is attacker-controlled, because a link can be sent to anyone
   closed sets. `line` is validated by replaying it against the actual gambit tree.
 - An invalid `line` recovers to the nearest valid node and says so. It never throws, never renders
   a blank screen, and never round-trips unvalidated text into the DOM.
-- No URL parameter is ever interpolated into HTML, used to build a URL for a request, or used to
-  choose a module to load.
+- No URL parameter is ever interpolated into HTML or used to choose a module to load.
+- **One parameter does build a URL for a request, and it is bounded rather than forbidden**: the
+  gambit id, which selects the compiled entry to fetch. Per-entry lazy loading is impossible
+  otherwise. The id is matched against the schema's slug shape and a 64-character bound **before any
+  fetch is issued**, so no dot, slash or percent survives, and a refused id makes no request at all
+  rather than a request that fails. Added by #6; asserted by test.
 
 ### B5 — Client storage
 
