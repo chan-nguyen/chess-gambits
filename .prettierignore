@@ -12,6 +12,10 @@ tools/content/fixtures/invalid
 # all. Formatting it would make it stop being that, and the test that pins it would fail.
 tools/content/fixtures/compiled
 
+# The frozen id map. One line per id, because that file is read as a diff: an entry in it is
+# a promise that a URL keeps working, and a reviewer should see one added line per new id
+# rather than eight. `npm run catalogue:freeze` writes it and nothing else may.
+tools/catalogue/source/ids.json
 # Proof certificates. These are written by `npm run prove:mates` and are byte for byte what
 # the generator emits; the scheduled job re-runs it and treats any difference as content
 # having changed under a proof. Reformatting them would make that alarm fire on whitespace

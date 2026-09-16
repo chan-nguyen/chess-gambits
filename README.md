@@ -41,6 +41,14 @@ npm run dev
 | `npm run e2e`        | End-to-end tests against the built output                                  |
 | `npm run serve:dist` | Serve `dist/` the way the host does, with no single-page fallback          |
 
+Catalogue commands. `npm run catalogue` runs inside `npm run build`; the other two are run by hand.
+
+| Command                    | What it does                                                                                                                                       |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run catalogue`        | Build `public/catalogue/catalogue.{vi,en,fr}.json` from the vendored dataset and the curated sources                                               |
+| `npm run catalogue:freeze` | Mint ids for new entries and append them to `tools/catalogue/source/ids.json`. Review that diff: an id in it is a promise that a URL keeps working |
+| `npm run catalogue:fetch`  | Refresh the vendored `lichess-org/chess-openings` snapshot. Expect the classification gate to fail afterwards if upstream added gambit-named rows  |
+
 Node version is pinned in `.nvmrc`.
 
 ### Configuration
