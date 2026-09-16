@@ -70,10 +70,24 @@ describe('the board does not know chess (AC 8)', () => {
     expect(text).not.toMatch(/require\(['"]chess\.js['"]\)/)
   })
 
-  it('declares no dependency on a chess library', () => {
-    for (const library of ['chess.js', 'react-chessboard', 'chessground', 'cm-chessboard']) {
+  it('ships no board library, and no chess engine at runtime', () => {
+    const manifest: unknown = JSON.parse(manifestSource)
+    const runtime =
+      typeof manifest === 'object' && manifest !== null && 'dependencies' in manifest
+        ? (manifest as { dependencies?: Record<string, string> }).dependencies
+        : undefined
+
+    // A board library is banned outright: adopting one reverses ADR-0003.
+    for (const library of ['react-chessboard', 'chessground', 'cm-chessboard', 'kokopu']) {
       expect(manifestSource).not.toContain(library)
     }
+
+    // chess.js is banned only from *runtime*. The content gate under tools/ uses it as a
+    // rules engine at build time, which is ADR-0004 working as designed — the parser and
+    // the rules engine run in CI and neither reaches a browser. An earlier version of this
+    // test banned the string anywhere in the manifest, which made a legitimate build-time
+    // dependency look like a violation the moment the content gate landed.
+    expect(Object.keys(runtime ?? {})).not.toContain('chess.js')
   })
 
   it.each(MODULES)('$file wires up no drag and no move input', ({ text }) => {
