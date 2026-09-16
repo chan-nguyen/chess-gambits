@@ -1,0 +1,81 @@
+.move-navigator {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/*
+ * One row at every width, including 360px in the longest of the three languages. Three
+ * controls each sized to their own label wrap onto a second row there, and a second row is
+ * 52px of the height AC 6 is trying to keep the board and these controls inside together.
+ * So they share the row instead, and a label too long for its share wraps inside its own
+ * control rather than pushing the next one down.
+ */
+.move-navigator__controls {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/*
+ * A link, styled as the primary thing on the page to press. Sized to §5's touch target
+ * rather than §5's 24px minimum: this is the control the whole product is built around.
+ */
+.move-navigator__control {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--target-size-touch);
+  min-inline-size: var(--target-size-touch);
+  padding-inline: var(--space-2);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color var(--duration-fast) ease;
+}
+
+.move-navigator__control--next {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.move-navigator__control:hover {
+  text-decoration: underline;
+}
+
+/*
+ * Unavailable, and said three ways: a flatter border, no underline on hover, and the
+ * sentence in `__edge` that the control points at. Never the colour alone (§2).
+ */
+.move-navigator__control--unavailable {
+  border-style: dashed;
+  border-color: var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.move-navigator__control--unavailable:hover {
+  text-decoration: none;
+}
+
+.move-navigator__edge {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* Room to breathe once there is room: the controls stop sharing and take their own size. */
+@media (min-width: 768px) {
+  .move-navigator__control {
+    flex: 0 1 auto;
+    padding-inline: var(--space-4);
+    font-size: var(--text-base);
+  }
+}

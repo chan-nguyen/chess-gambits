@@ -1,6 +1,9 @@
 import { expect, test, type Page } from '@playwright/test'
+import { MATE_ENTRY } from '../src/components/learn/learn-fixtures.ts'
+import { lineSearch } from '../src/lib/line.ts'
 import fr from '../src/locales/fr.ts'
 import vi from '../src/locales/vi.ts'
+import { serveEntry } from './learning-fixture.ts'
 
 /**
  * Three locales in a real browser, against the built output.
@@ -32,6 +35,8 @@ const required = (value: string | undefined, name: string): string => {
 const FRENCH_MENU = required(fr.nav?.menu, 'fr.nav.menu')
 const FRENCH_MARKER = required(fr.untranslated?.marker, 'fr.untranslated.marker')
 const FRENCH_MATE_PROOF = required(fr.footer?.mateProof, 'fr.footer.mateProof')
+const FRENCH_PLY_LIST = required(fr.learn?.plyList, 'fr.learn.plyList')
+const FRENCH_STARTING_POSITION = required(fr.learn?.startingPosition, 'fr.learn.startingPosition')
 
 test.describe('the locale in the route drives the language (AC 1, AC 5)', () => {
   for (const { locale, mateProof } of [
@@ -48,15 +53,23 @@ test.describe('the locale in the route drives the language (AC 1, AC 5)', () => 
 
   test('switching language keeps the route and the line parameter exactly', async ({ page }) => {
     await page.setViewportSize({ width: 1280, height: 800 })
-    await page.goto('vi/gambits/evans-gambit?line=e4_e5_Nf3')
+    /*
+     * #8 replaced the gambit route's placeholder with the learning surface, so the line is
+     * read back off the move list. That needs a tree with more than one ply in it, which
+     * `content/` does not publish yet (#13).
+     */
+    await serveEntry(page, MATE_ENTRY)
+    await page.goto(`vi/gambits/legal-mate${lineSearch(['Bh5', 'Nxe5'])}`)
 
     await page
       .getByRole('navigation', { name: vi.nav.language })
       .getByRole('link', { name: 'Français' })
       .click()
 
-    await expect(page).toHaveURL(/\/fr\/gambits\/evans-gambit\?line=e4_e5_Nf3$/)
-    await expect(page.getByTestId('line-plies')).toHaveText('e4 e5 Nf3')
+    await expect(page).toHaveURL(/\/fr\/gambits\/legal-mate\?line=Bh5_Nxe5$/)
+    await expect(
+      page.getByRole('navigation', { name: FRENCH_PLY_LIST }).getByRole('link'),
+    ).toHaveText([FRENCH_STARTING_POSITION, '5...Bh5', '6.Nxe5'])
     await expect(page.locator('html')).toHaveAttribute('lang', 'fr')
   })
 })
