@@ -24,9 +24,9 @@ export const AppShell = () => {
   const locale = localeOf(useLocation().pathname)
 
   /**
-   * WCAG 3.1.1: the document says which language it is in. The shells ship with
-   * `lang="en"` until #17 gives each one its own head, so until then this is the only
-   * thing telling a screen reader that a Vietnamese page is Vietnamese.
+   * WCAG 3.1.1: the document says which language it is in. Every shell now ships with its
+   * own `lang` already correct (#17), so this is what keeps it correct *after* a
+   * client-side navigation between locales, which replaces no document.
    *
    * This is the *active* locale, from the route. A single element showing fallback content
    * overrides it with its own `lang`, which is `Translated`'s job, not this one's.
