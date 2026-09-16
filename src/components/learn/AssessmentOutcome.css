@@ -1,0 +1,63 @@
+/*
+ * The ordinary end of a gambit line, given the weight that deserves.
+ *
+ * Same padding, same radius and the same type scale as the mate card, because this is the
+ * *normal* outcome and a smaller, quieter box would read as a consolation prize whatever the
+ * copy said. What differs is the geometry: a heavy rule along the inline start and a raised
+ * surface, against the mate card's full border and flat surface. Two silhouettes, not two
+ * hues — the colour here is the ordinary text colour, since nothing on the wire says which
+ * way this position goes (see the component).
+ */
+
+.assessment-outcome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-inline-start: var(--space-1) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+}
+
+.assessment-outcome__heading {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin-block: 0;
+  font-size: var(--text-lg);
+}
+
+.assessment-outcome__mark {
+  flex: 0 0 auto;
+  inline-size: var(--space-5);
+  block-size: var(--space-5);
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.assessment-outcome__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+/*
+ * Set apart by weight and letter-spacing rather than by size: at `--text-sm` these are
+ * labels above their prose, and a label that is larger than what it labels is a heading
+ * pretending to be one.
+ */
+.assessment-outcome__label {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.assessment-outcome__prose {
+  margin-block: 0;
+}

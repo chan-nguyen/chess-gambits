@@ -500,3 +500,161 @@ export const WIDE_ENTRY: CompiledEntry = {
     ],
   },
 }
+
+/**
+ * One entry carrying **all three** outcome shapes, for #11.
+ *
+ * Légal's Mate again, but modelled the way the content pipeline actually produces a mate
+ * rather than the way `MATE_ENTRY` above does. That difference is the reason this fixture
+ * exists and is worth stating: `tools/content/validate.ts` attaches the outcome to the leaf
+ * that *claims* the trap and fills `sequence` with the net's longest line **from** that
+ * leaf, so the plies in it have not been played yet. `MATE_ENTRY` instead hangs the outcome
+ * on the final `Nd5#` node with the moves that led to it, which is a shape the compiler
+ * never emits. Both are legal `CompiledEntry` values; only this one is what arrives over the
+ * wire, and it is what the outcome components are measured against.
+ *
+ * So the mate leaf here is `6...Bxd1` — White to move, mate in **2**, and the proved line is
+ * `7.Bxf7+ 7...Ke7 8.Nd5#`. Checked with chess.js 1.4.0: the final position reports
+ * `isCheckmate()`, and `7.Bxf7+` has exactly one legal reply, so the net has one defender
+ * node and `provedBy` is `modelled-net` rather than `search`.
+ *
+ * The three replies to `5.h3` are each a different ending, which is what makes this one
+ * fixture enough for every outcome test and for the greyscale review:
+ *
+ * - `5...Bh5` — a mistake, and the trap: it runs into the proved mate.
+ * - `5...Bxf3` — good, and an ordinary gambit ending: an `Assessment`, with material, the
+ *   imbalance, and a concrete plan with a pawn break in it.
+ * - `5...Be6` — an inaccuracy nobody has mapped: `Unexplored`.
+ *
+ * Invariant 5 holds: the mate is reached through `5...Bh5` (mistake) and `6...Bxd1`
+ * (blunder), so a `best` reply never leads to one.
+ */
+export const OUTCOMES_ENTRY: CompiledEntry = {
+  id: 'legal-mate-outcomes',
+  name: "Légal's Mate, 5.h3",
+  eco: 'C41',
+  category: 'trap',
+  side: 'white',
+  definingLine: ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4', 'd6', 'Nc3', 'Bg4', 'h3'],
+  soundness: {
+    value: 'unsound',
+    reviewedAt: '2026-09-16',
+    basis: { basis: 'judgement', by: 'chan', at: '2026-09-16' },
+  },
+  judgement: { basis: 'judgement', by: 'chan', at: '2026-09-16' },
+  tier: 'listed',
+  tree: {
+    kind: 'opponent',
+    fen: 'r2qkbnr/ppp2ppp/2np4/4p3/2B1P1b1/2N2N1P/PPPP1PP1/R1BQK2R b KQkq - 0 5',
+    annotation: {
+      vi: 'Tượng bị hỏi. Đen phải chọn: giữ tượng, đổi lấy mã, hay rút về.',
+      en: 'The bishop is questioned. Black chooses: keep it, trade it for the knight, or retreat.',
+      fr: 'Le fou est mis en question. Les Noirs choisissent : le garder, l’échanger, ou reculer.',
+    },
+    children: [
+      {
+        ply: 'Bh5',
+        kind: 'learner',
+        replyQuality: 'mistake',
+        frequency: 'common',
+        fen: 'r2qkbnr/ppp2ppp/2np4/4p2b/2B1P3/2N2N1P/PPPP1PP1/R1BQK2R w KQkq - 1 6',
+        annotation: {
+          vi: 'Giữ tượng trên đường chéo, và bỏ mặc ô e5.',
+          en: 'Keeps the bishop on the diagonal, and abandons e5.',
+        },
+        children: [
+          {
+            ply: 'Nxe5',
+            kind: 'opponent',
+            fen: 'r2qkbnr/ppp2ppp/2np4/4N2b/2B1P3/2N4P/PPPP1PP1/R1BQK2R b KQkq - 0 6',
+            annotation: { vi: 'Thí hậu.', en: 'The queen is offered.' },
+            children: [
+              {
+                ply: 'Bxd1',
+                kind: 'learner',
+                replyQuality: 'blunder',
+                frequency: 'common',
+                fen: 'r2qkbnr/ppp2ppp/2np4/4N3/2B1P3/2N4P/PPPP1PP1/R1BbK2R w KQkq - 0 7',
+                annotation: {
+                  vi: 'Ăn hậu — và đây là lý do biến này có tên.',
+                  en: 'Takes the queen — and this is why the line has a name.',
+                },
+                outcome: {
+                  kind: 'mate',
+                  inMoves: 2,
+                  sequence: ['Bxf7+', 'Ke7', 'Nd5#'],
+                  provedBy: 'modelled-net',
+                  basis: {
+                    basis: 'proved',
+                    by: 'certificate',
+                    certificate: 'legal-mate-outcomes.Bh5_Nxe5_Bxd1.mate.json',
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      },
+      {
+        ply: 'Bxf3',
+        kind: 'learner',
+        replyQuality: 'good',
+        frequency: 'common',
+        fen: 'r2qkbnr/ppp2ppp/2np4/4p3/2B1P3/2N2b1P/PPPP1PP1/R1BQK2R w KQkq - 0 6',
+        annotation: {
+          vi: 'Đổi tượng lấy mã trước khi bị hỏi thêm lần nữa.',
+          en: 'Trading the bishop for the knight before it is questioned again.',
+        },
+        children: [
+          {
+            ply: 'Qxf3',
+            kind: 'opponent',
+            fen: 'r2qkbnr/ppp2ppp/2np4/4p3/2B1P3/2N2Q1P/PPPP1PP1/R1B1K2R b KQkq - 0 6',
+            annotation: {
+              vi: 'Ăn lại bằng hậu. Không còn đòn thí nào ở đây.',
+              en: 'Recapturing with the queen. There is no sacrifice here any more.',
+            },
+            outcome: {
+              kind: 'position',
+              evaluation: {
+                vi: 'Quân số bằng nhau. Trắng có cặp tượng, Đen không; đổi lại Đen đã bỏ được thế ghim và cấu trúc tốt vẫn lành lặn.',
+                en: 'Material is level. White has the two bishops and Black does not; in exchange Black is out of the pin and the pawn structure is sound on both sides.',
+                fr: 'Matériel égal. Les Blancs ont la paire de fous, pas les Noirs ; en échange les Noirs sont sortis du clouage et la structure de pions reste saine.',
+              },
+              plan: {
+                vi: 'Trắng nhập thành ngắn, chơi d3 rồi Nd5 hoặc Ne2–g3, và chuẩn bị f2–f4 để mở đường cho cặp tượng. Đen giữ chắc e5 bằng Nf6 và Be7, và nhắm phản công bằng d6–d5 khi cột f đã mở.',
+                en: 'White castles short, plays d3 and Nd5 or Ne2–g3, and prepares the f2–f4 break to open lines for the bishop pair. Black holds e5 with Nf6 and Be7 and aims at d6–d5 once the f-file is open.',
+                fr: 'Les Blancs roquent court, jouent d3 puis Nd5 ou Ne2–g3, et préparent la poussée f2–f4 pour ouvrir des lignes à la paire de fous. Les Noirs tiennent e5 par Nf6 et Be7 et visent d6–d5 dès que la colonne f est ouverte.',
+              },
+              basis: {
+                basis: 'judgement',
+                by: 'chan',
+                at: '2026-09-16',
+                source: 'No engine and no opening explorer: this is one player’s reading.',
+              },
+            },
+          },
+        ],
+      },
+      {
+        ply: 'Be6',
+        kind: 'learner',
+        replyQuality: 'inaccuracy',
+        frequency: 'occasional',
+        fen: 'r2qkbnr/ppp2ppp/2npb3/4p3/2B1P3/2N2N1P/PPPP1PP1/R1BQK2R w KQkq - 1 6',
+        annotation: {
+          vi: 'Rút về và mời đổi tượng. Nhánh này chưa được dựng.',
+          en: 'Retreating and offering the trade. This branch is not mapped yet.',
+        },
+        outcome: { kind: 'unexplored' },
+      },
+    ],
+  },
+}
+
+/** The trap branch of `OUTCOMES_ENTRY`, root to the proved mate leaf. */
+export const OUTCOME_MATE_LINE: readonly string[] = ['Bh5', 'Nxe5', 'Bxd1']
+/** The ordinary branch: a gambit line that ends in an assessment, not in a mate. */
+export const OUTCOME_ASSESSMENT_LINE: readonly string[] = ['Bxf3', 'Qxf3']
+/** The branch nobody has mapped. */
+export const OUTCOME_UNEXPLORED_LINE: readonly string[] = ['Be6']

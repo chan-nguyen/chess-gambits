@@ -125,6 +125,30 @@ const en: PartialTranslations = {
     showRefutation: 'Show the full refutation',
     refutation: 'The proved refutation:',
   },
+  outcome: {
+    mateHeading: 'Forced mate in {{moves}}',
+    mateForced: 'The opponent is checkmated however they defend.',
+    netModelled:
+      'Every legal defence was enumerated and refuted. This is the line the defence holds out longest in:',
+    netImmediate: 'There is no defence to model: the mate is delivered at once.',
+
+    assessmentHeading: 'Where this line leaves you',
+    evaluation: 'Evaluation',
+    plan: 'Middlegame plan',
+
+    unexploredHeading: 'This branch is not mapped yet',
+    unexploredBody:
+      'The line stops here. This site has no evaluation and no plan for this position yet, and it will not guess one.',
+
+    proved: 'Machine-proved',
+    provedNote: 'The count and the line above were generated and replayed against certificate',
+    howProved: 'How a mate is proved',
+    judgement: 'One author’s judgement',
+    judgementNote:
+      'The evaluation and the plan above are one person’s judgement, checked by no machine:',
+    noClaim: 'Nothing claimed',
+    noClaimNote: 'Nobody has assessed this position, so there is nothing here to attribute.',
+  },
 }
 
 export default en

@@ -1,0 +1,38 @@
+/*
+ * A third silhouette: a dashed outline with no fill, against the mate card's solid border
+ * and the assessment card's heavy inline-start rule. Dashed because the branch is
+ * unfinished, which is a thing a border style can say and a hue cannot.
+ */
+
+.unexplored-outcome {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--border-width) dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+}
+
+.unexplored-outcome__heading {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  margin-block: 0;
+  font-size: var(--text-lg);
+}
+
+.unexplored-outcome__mark {
+  flex: 0 0 auto;
+  inline-size: var(--space-5);
+  block-size: var(--space-5);
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.unexplored-outcome__body {
+  margin-block: 0;
+}
