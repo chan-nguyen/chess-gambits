@@ -187,7 +187,17 @@ describe('the language switcher', () => {
     fireEvent.click(within(language).getByRole('link', { name: 'Français' }))
 
     expect(await screen.findByRole('button', { name: french.menu })).toBeVisible()
-    expect(screen.getByTestId('line-plies')).toHaveTextContent('e4 e5 Nf3')
+    /*
+     * #8 replaced the gambit route's placeholder with the learning surface, so the line is
+     * read back off the page's own links rather than off a `data-testid`. This is the same
+     * claim and a slightly stronger one: the switcher on the French page offers the way
+     * back to the *same node* in Vietnamese.
+     */
+    const switched = await screen.findByRole('navigation', { name: french.language })
+    expect(within(switched).getByRole('link', { name: 'Tiếng Việt' })).toHaveAttribute(
+      'href',
+      '/vi/gambits/evans-gambit?line=e4_e5_Nf3',
+    )
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('evans-gambit')
   })
 

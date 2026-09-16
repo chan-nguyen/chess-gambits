@@ -1,0 +1,25 @@
+.shortcut-toggle {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+/* §5's 24px floor, applied to a native control that ships smaller than it by default. */
+.shortcut-toggle__input {
+  inline-size: var(--target-size-min);
+  block-size: var(--target-size-min);
+  margin: 0;
+  accent-color: var(--color-accent);
+}
+
+.shortcut-toggle__label {
+  font-size: var(--text-sm);
+}
+
+.shortcut-toggle__hint {
+  grid-column: 1 / -1;
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

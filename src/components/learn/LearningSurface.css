@@ -1,0 +1,91 @@
+/*
+ * The gambit page layout (docs/design-system.md §1), and the one rule that outranks the
+ * rest of it: at every width the board and the previous/next controls are on screen
+ * together, with no scroll. `e2e/move-navigation.spec.ts` measures it at five viewports
+ * and carries a probe that proves the measurement can fail.
+ *
+ * The board is square and takes its size from whichever runs out first, the column or the
+ * viewport height. `svh` rather than `vh` because a mobile browser's dynamic toolbar makes
+ * `vh` the height the page has when the toolbar is *hidden*, which is not the height it
+ * has when the visitor arrives.
+ */
+
+.learning-surface {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.learning-surface__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/*
+ * The reserve subtracted here is the header, the page heading, the navigator and the gaps
+ * around them. It is composed of spacing tokens rather than a measured pixel count so it
+ * cannot drift from the scale the rest of the page is built on.
+ */
+.learning-surface__board {
+  inline-size: min(
+    100%,
+    calc(100svh - var(--space-10) - var(--space-10) - var(--space-10) - var(--space-8))
+  );
+  margin-inline: auto;
+}
+
+/*
+ * The same box the board will occupy, reserved before the tree arrives, so the swap is
+ * not a layout shift (docs/design-system.md §6, CLS).
+ */
+.learning-surface__board--pending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border: var(--border-width) dashed var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.learning-surface__pending-text {
+  margin-block: 0;
+}
+
+.learning-surface__context {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.learning-surface__recovered {
+  margin-block: 0;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface-raised);
+}
+
+.learning-surface__stray {
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+/*
+ * From 1024px: board left, move context right (§1). The tree across the full width below
+ * is #10's, and it lands underneath this grid without moving either column.
+ */
+@media (min-width: 1024px) {
+  .learning-surface {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-5);
+  }
+
+  .learning-surface__recovered {
+    grid-column: 1 / -1;
+  }
+}
