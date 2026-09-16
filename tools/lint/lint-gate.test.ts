@@ -84,14 +84,42 @@ describe('the gate command itself', () => {
   })
 })
 
+/**
+ * AC 1 asks that the message name the file and the line, and this predicate is how that is
+ * checked, because oxlint does not always say it the same way. Run by hand it uses its own
+ * reporter; run inside GitHub Actions it switches to the `::error file=...` workflow-command
+ * format. The first version of this test matched only the shape seen locally and went red on CI
+ * while the gate underneath was working exactly as intended — the assertion was wrong, not the
+ * rule. Both shapes end in `<path>:<line>:<column>:`, so that is what is matched, and the test
+ * below pins the predicate against a real line captured from each reporter.
+ */
+const namesFileAndLine = (output: string, path: string): boolean =>
+  new RegExp(`${path.replaceAll('.', '\\.')}:\\d+:\\d+:`).test(output)
+
+describe('reading what the gate reports', () => {
+  it('recognises the file and line under either reporter', () => {
+    const fromDefaultReporter =
+      'src/example.ts:1:51: error typescript(no-non-null-assertion): Forbidden non-null assertion.'
+    // Copied verbatim from the run that caught the first version of this file.
+    const fromGithubActions =
+      '::error file=src/example.ts,line=1,endLine=1,col=51,endColumn=63,' +
+      'title=typescript(no-non-null-assertion)::src/example.ts:1:51: Forbidden non-null assertion.'
+
+    expect(namesFileAndLine(fromDefaultReporter, 'src/example.ts')).toBe(true)
+    expect(namesFileAndLine(fromGithubActions, 'src/example.ts')).toBe(true)
+
+    // A pass, or a complaint about some other file, must not read as a hit.
+    expect(namesFileAndLine('Found 0 warnings and 0 errors.', 'src/example.ts')).toBe(false)
+    expect(namesFileAndLine(fromDefaultReporter, 'src/other.ts')).toBe(false)
+  })
+})
+
 describe.each(VIOLATIONS)('the gate rejects $what', ({ rule, source }) => {
   it.each(COVERED)('in %s/', (directory) => {
     const result = withFixture(directory, source, () => runGate())
 
     expect(result.status).not.toBe(0)
-    // AC 1: the message names the file and the line.
-    expect(result.stdout).toContain(`${directory}/${FIXTURE}:`)
-    expect(result.stdout).toMatch(new RegExp(`${FIXTURE}:\\d+:\\d+: error`))
+    expect(namesFileAndLine(result.stdout, `${directory}/${FIXTURE}`)).toBe(true)
     expect(result.stdout).toContain(rule)
   })
 })
