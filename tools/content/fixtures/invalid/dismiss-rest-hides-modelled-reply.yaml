@@ -1,0 +1,24 @@
+# `Ke7` is modelled as a child *and* listed in `dismissed`. With a catch-all present the
+# arithmetic still adds up — the catch-all covers only the leftovers, so nothing is missing
+# — and a reply the site does model is filed as one nobody looked at. The overlap check
+# must fire whether or not a `dismissRest` is there.
+id: dismiss-rest-hides-modelled-reply
+name: Adversarial fixture
+eco: C40
+category: trap
+side: white
+definingLine: [e4, e5, Nf3, f6, Nxe5, fxe5, Qh5+]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-16'
+  basis: { by: a, at: '2026-09-16' }
+judgement: { by: a, at: '2026-09-16' }
+tree:
+  dismissRest:
+    reason: { vi: 'Các nước còn lại không thách thức gambit.' }
+  dismissed:
+    - { ply: Ke7, reason: 'Walks the king; not modelled.' }
+  children:
+    - ply: Ke7
+      replyQuality: best
+      outcome: { type: unexplored }

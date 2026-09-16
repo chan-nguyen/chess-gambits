@@ -73,6 +73,18 @@ const dismissed = z.strictObject({
   reason: prose,
 })
 
+/**
+ * The catch-all for every remaining legal reply. Its reason is an `annotation` rather than
+ * a bare string because a learner reads it, so it is localised and falls back to Vietnamese
+ * like all other learner-facing prose — where `dismissed.reason` is a maintainer's note.
+ *
+ * `prose` is what makes an empty or placeholder reason a schema failure: a catch-all with
+ * a vacuous reason is the one shape that would genuinely weaken invariant 7a.
+ */
+const dismissRest = z.strictObject({
+  reason: annotation,
+})
+
 const replyQuality = z.enum(['best', 'good', 'inaccuracy', 'mistake', 'blunder'])
 const frequency = z.enum(['common', 'occasional', 'rare'])
 
@@ -82,6 +94,7 @@ const childNode = z.strictObject({
   replyQuality: replyQuality.optional(),
   frequency: frequency.optional(),
   dismissed: z.array(dismissed).min(1).optional(),
+  dismissRest: dismissRest.optional(),
   outcome: outcome.optional(),
   transposesTo: z.array(san).min(1).optional(),
   get children() {
@@ -96,6 +109,7 @@ const childNode = z.strictObject({
 const rootNode = z.strictObject({
   annotation: annotation.optional(),
   dismissed: z.array(dismissed).min(1).optional(),
+  dismissRest: dismissRest.optional(),
   outcome: outcome.optional(),
   transposesTo: z.array(san).min(1).optional(),
   get children() {
@@ -133,6 +147,7 @@ export type AuthoredOutcome = z.infer<typeof outcome>
 export type AuthoredAnnotation = z.infer<typeof annotation>
 export type AuthoredJudgement = z.infer<typeof judgement>
 export type AuthoredDismissal = z.infer<typeof dismissed>
+export type AuthoredDismissRest = z.infer<typeof dismissRest>
 
 export type ParseResult =
   | { readonly ok: true; readonly entry: AuthoredEntry }

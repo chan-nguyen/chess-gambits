@@ -33,6 +33,8 @@ describe('validate:content', () => {
     expect(result.status).toBe(0)
     expect(result.stdout).toContain('taught')
     expect(result.stdout).toContain('Translation coverage')
+    // The count is printed, so one line of YAML never hides how many replies it answers.
+    expect(result.stdout).toContain('dismissRest answers 34 of 35 legal replies')
   })
 
   it('exits 0 on the committed content and is what CI runs with no arguments', () => {
@@ -46,7 +48,7 @@ describe('validate:content', () => {
     expect(result.status).toBe(1)
     expect(result.stdout).toContain('tools/content/fixtures/invalid/missing-reply.yaml:')
     expect(result.stdout).toContain('[reply-incomplete]')
-    expect(result.stdout).toMatch(/27 file\(s\) rejected/)
+    expect(result.stdout).toMatch(/31 file\(s\) rejected/)
   })
 
   it('exits 1 when two entries share an id, because an id is a published URL', () => {
