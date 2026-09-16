@@ -1,12 +1,14 @@
 {
   "compilerOptions": {
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.e2e.tsbuildinfo",
     "target": "es2023",
-    "lib": ["ES2023"],
+    /* DOM, because `page.evaluate` bodies run in the browser. The Node project
+       deliberately does not have it, so a build script cannot reach for `window`. */
+    "lib": ["ES2023", "DOM"],
     "types": ["node"],
     "skipLibCheck": true,
 
-    /* Strictness — matches tsconfig.app.json; this project holds real code now */
+    /* Strictness — matches tsconfig.app.json */
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
@@ -26,5 +28,5 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts", "scripts"]
+  "include": ["playwright.config.ts", "e2e"]
 }

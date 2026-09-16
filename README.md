@@ -30,15 +30,16 @@ npm install
 npm run dev
 ```
 
-| Command             | What it does                                                               |
-| ------------------- | -------------------------------------------------------------------------- |
-| `npm run dev`       | Dev server, served at the deployed base path so sub-path bugs show up here |
-| `npm run build`     | Type-check then build to `dist/`                                           |
-| `npm test`          | Unit tests                                                                 |
-| `npm run typecheck` | Type-check only                                                            |
-| `npm run lint`      | Lint                                                                       |
-| `npm run format`    | Format                                                                     |
-| `npm run e2e`       | End-to-end tests against the built output                                  |
+| Command              | What it does                                                               |
+| -------------------- | -------------------------------------------------------------------------- |
+| `npm run dev`        | Dev server, served at the deployed base path so sub-path bugs show up here |
+| `npm run build`      | Type-check then build to `dist/`                                           |
+| `npm test`           | Unit tests                                                                 |
+| `npm run typecheck`  | Type-check only                                                            |
+| `npm run lint`       | Lint                                                                       |
+| `npm run format`     | Format                                                                     |
+| `npm run e2e`        | End-to-end tests against the built output                                  |
+| `npm run serve:dist` | Serve `dist/` the way the host does, with no single-page fallback          |
 
 Node version is pinned in `.nvmrc`.
 

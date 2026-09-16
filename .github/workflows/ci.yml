@@ -46,3 +46,31 @@ jobs:
 
       - name: Audit dependencies
         run: npm audit --audit-level=high
+
+  e2e:
+    name: e2e (base ${{ matrix.base-path }})
+    # Deep links and base-path resolution are claims about what a host answers for a URL,
+    # so they are checked against the built output on a static server, at both base paths
+    # the site can be published under (ADR-0007, ADR-0009).
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        base-path: ['/chess-gambits/', '/']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install from the lockfile
+        run: npm ci
+
+      - name: Install the browser
+        run: npx playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        run: npm run e2e
+        env:
+          BASE_PATH: ${{ matrix.base-path }}
