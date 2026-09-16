@@ -102,9 +102,22 @@ describe('what the search proves', () => {
     expect(searchMate(BLACKBURNE, { withinMoves: 1 })).toEqual({ kind: 'mate', inMoves: 1 })
   })
 
-  it('finds no mate after 7.Qe2, the move the published trap line leaves out', () => {
-    expect(searchMate(BLACKBURNE_SAVED, { withinMoves: 3 })).toEqual({ kind: 'no-mate' })
-  })
+  /**
+   * Proving a mate *absent* is the expensive direction — measured at 0.5-7.1s per position in
+   * Phase 2, and ADR-0005's whole design follows from that asymmetry. This one takes ~3.7s on a
+   * developer machine and more on a shared runner, where vitest's 5s default cut it off.
+   *
+   * The timeout is raised rather than the depth lowered. At `withinMoves: 2` the test would pass
+   * in milliseconds and stop proving the thing worth proving: that the move the published trap
+   * line omits really does save White. That claim is why this file exists.
+   */
+  it(
+    'finds no mate after 7.Qe2, the move the published trap line leaves out',
+    { timeout: 60_000 },
+    () => {
+      expect(searchMate(BLACKBURNE_SAVED, { withinMoves: 3 })).toEqual({ kind: 'no-mate' })
+    },
+  )
 
   it('never reads a stalemate as a mate', () => {
     // White can stalemate here in one. A search that scored "opponent has no legal move" as
