@@ -1,0 +1,29 @@
+.theme-control {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.theme-control__option {
+  min-block-size: var(--target-size-touch);
+  padding-inline: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+  transition: background-color var(--duration-fast) ease;
+}
+
+.theme-control__option:hover {
+  background-color: var(--color-surface-raised);
+}
+
+/* Border, weight and colour together, so the pressed option is not a hue difference. */
+.theme-control__option[aria-pressed='true'] {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text);
+  font-weight: 600;
+}

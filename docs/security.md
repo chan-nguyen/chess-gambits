@@ -116,6 +116,13 @@ Every URL parameter is attacker-controlled, because a link can be sent to anyone
   stored data degrades to "no saved progress" and never breaks the page.
 - Stored data is validated on read against the same schema as on write. Data that has been edited by
   hand is discarded rather than trusted.
+- **One documented exemption to "no `localStorage` access outside the wrapped helper"**: the
+  theme-override read in `index.html`, added by #2. It cannot go through `src/lib/storage.ts`,
+  because it has to run before any module does — a deferred module script would paint the wrong
+  theme and then correct it in front of the visitor. It is wrapped in the same `try`/`catch` the
+  helper uses, validates against the same closed set, degrades to the system preference on any
+  failure, and reads one key holding one of three words. `src/styles/theme.test.ts` asserts the key
+  and the attribute still match `src/styles/theme.ts`, so the two spellings cannot drift.
 
 ### Transport and browser-level controls
 
@@ -130,6 +137,10 @@ Every URL parameter is attacker-controlled, because a link can be sent to anyone
   _The exact set of headers the host does send is to be verified in Phase 2 and recorded here._
 - CSP is restrictive by default: no third-party origins are allowed at all, which is enforcement of
   requirement N8 rather than a separate rule.
+- **`script-src` has one inline script to account for**: the pre-paint theme read described under
+  B5. It must be allowed by its **hash**, never by `'unsafe-inline'` — a policy that permits inline
+  script wholesale gives away most of what a CSP buys, and one four-line script is not worth that.
+  Whoever writes the policy computes the hash at build time from the emitted HTML.
 - **`style-src` must be genuinely checked, not assumed.** A CSP that ends up needing
   `'unsafe-inline'` for styles has given away most of what a CSP buys, and inline `style` attributes
   are governed by `style-src`. Owning the board renderer (ADR-0003) is what makes a strict policy

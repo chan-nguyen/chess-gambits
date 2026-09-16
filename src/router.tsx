@@ -1,4 +1,5 @@
 import { type RouteObject } from 'react-router'
+import { AppShell } from './components/layout/AppShell.tsx'
 import { gambitIdParam, routeSegments } from './lib/routes.ts'
 import { AboutRoute } from './routes/about.tsx'
 import { CatalogueRoute } from './routes/catalogue.tsx'
@@ -19,6 +20,10 @@ import { RouteErrorRoute } from './routes/route-error.tsx'
  */
 export const routes: RouteObject[] = [
   {
+    // The shell #2 supplies: header, content, footer. Every route renders inside it, and
+    // the error element deliberately does not — a shell that threw cannot be trusted to
+    // frame the report of its own failure.
+    element: <AppShell />,
     errorElement: <RouteErrorRoute />,
     children: [
       { path: '/', element: <LocaleRedirect /> },

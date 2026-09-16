@@ -4,6 +4,21 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      Applies the persisted theme override before the first paint. Inline and blocking on
+      purpose: see src/styles/theme.ts for why, and theme.test.ts for what keeps the key
+      and the attribute below in step with it.
+    -->
+    <script>
+      try {
+        const choice = localStorage.getItem('chess-gambits.theme')
+        if (choice === 'light' || choice === 'dark') {
+          document.documentElement.setAttribute('data-theme', choice)
+        }
+      } catch {
+        // No storage, so no override. The system preference decides.
+      }
+    </script>
     <title>app</title>
   </head>
   <body>

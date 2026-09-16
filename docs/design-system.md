@@ -35,7 +35,9 @@ branch shareable and a bug reproducible.
 
 ### Navigation model
 
-**Header**, on every route: site name (links home) · Catalogue · About · language switcher. At
+**Header**, on every route: site name (links home) · Catalogue · About · language switcher ·
+the appearance control (system / light / dark), which is where §2's persisted dark-mode override is
+set. At
 narrow widths the links collapse behind a single menu button; the language switcher stays visible
 because it is the one control a visitor may need before they can read the menu.
 
@@ -110,8 +112,8 @@ user; the override is persisted.
 #### Board and piece colour values
 
 Normative. Added by #4, which needed them to exist before it could assert §5's contrast floor over
-anything; the rest of the palette's values remain open. `src/styles/tokens.css` (#2) implements this
-table, and `board-contrast.test.ts` reads it directly — the doc is the source of truth, so a value
+anything; the rest of the palette is given values below, by #2. `src/styles/tokens.css` implements
+this table, and `board-contrast.test.ts` reads it directly — the doc is the source of truth, so a value
 edited here without re-checking contrast fails that test rather than shipping.
 
 | Token                          | Light     | Dark      | Role                               |
@@ -145,6 +147,65 @@ light _and_ the dark square, and only the dark end of the range does.
 
 `--color-board-legal` has no value yet — v1 shows no legal moves, so nothing renders it.
 
+#### Interface, outcome and reply-quality colour values
+
+Normative, on the same terms as the board table above: the doc is the source of truth,
+`src/styles/tokens.css` implements it, and `src/styles/tokens.test.ts` reads both and fails on a
+disagreement or on a contrast regression.
+
+The palette is warm and low-chroma so that the board — which is wood-coloured and is the thing being
+looked at — is the most saturated object on the page.
+
+| Token                     | Light     | Dark      | Role                                       |
+| ------------------------- | --------- | --------- | ------------------------------------------ |
+| `--color-bg`              | `#fbfaf8` | `#14110c` | The page                                   |
+| `--color-surface`         | `#ffffff` | `#1e1a14` | A card                                     |
+| `--color-surface-raised`  | `#f1ece3` | `#2b251d` | An elevated card                           |
+| `--color-text`            | `#1f1a14` | `#ece5d9` | Body copy                                  |
+| `--color-text-muted`      | `#585043` | `#b0a493` | Secondary copy — still body text, still AA |
+| `--color-border`          | `#d6ccb9` | `#453d33` | Dividers                                   |
+| `--color-border-strong`   | `#79705f` | `#7d7365` | Input borders and other real components    |
+| `--color-accent`          | `#0c5f6f` | `#6fc9d6` | Primary action, links                      |
+| `--color-accent-contrast` | `#ffffff` | `#14110c` | Text that sits on the accent               |
+| `--color-focus`           | `#1a4fd0` | `#ffd166` | Focus ring, everywhere, never removed      |
+
+Outcome colours:
+
+| Token               | Light     | Dark      | Role                              |
+| ------------------- | --------- | --------- | --------------------------------- |
+| `--color-mate`      | `#6a2f8f` | `#d59ae8` | A proved forced mate              |
+| `--color-advantage` | `#1a6b2f` | `#7fce8c` | An assessed favourable position   |
+| `--color-equal`     | `#4a5563` | `#a9b6c6` | A balanced assessment             |
+| `--color-worse`     | `#a92d22` | `#ef9086` | An assessment against the learner |
+
+Reply-quality colours, one per member of the closed set in `CONTEXT.md`:
+
+| Token                        | Light     | Dark      |
+| ---------------------------- | --------- | --------- |
+| `--color-quality-best`       | `#0f6b3f` | `#6fd39a` |
+| `--color-quality-good`       | `#4a6b16` | `#b0d268` |
+| `--color-quality-inaccuracy` | `#7a5a00` | `#e0bc5a` |
+| `--color-quality-mistake`    | `#9c4a12` | `#eda06a` |
+| `--color-quality-blunder`    | `#a3231b` | `#f08a80` |
+
+Four rules hold over these three tables, in both themes, and each is asserted:
+
+1. **Anything that carries text clears 4.5:1** against `--color-bg`, `--color-surface` _and_
+   `--color-surface-raised`. Every outcome and quality colour is a text colour — §2's "colour is
+   never the only signal" rule means each one always appears next to a label — so none of them gets
+   the 3:1 large-text allowance.
+2. **`--color-accent-contrast` clears 4.5:1 against `--color-accent`**, which is the one pair where
+   the background is not a surface.
+3. **`--color-focus` clears 3:1 against all three surfaces.** Against a _control_ it cannot: a ring
+   bright enough to clear a dark accent button would disappear on the page behind it. So the ring is
+   drawn with `--focus-ring-offset`, which puts the page between the ring and the control and makes
+   the surface the adjacent colour that has to be cleared. That offset is the reason this rule is
+   satisfiable, not a decoration.
+4. **`--color-border-strong` clears 3:1** against all three surfaces, because it draws real
+   components (WCAG 1.4.11). `--color-border` is a divider, is not a component, and is held to a
+   perceptibility floor of 1.5:1 rather than to 3:1 — stated so that a later reviewer does not read
+   its absence as an oversight.
+
 ### Colour is never the only signal
 
 Binding rule, and the one most likely to be violated by an agent in a hurry.
@@ -169,6 +230,66 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
 - **Motion**: `--duration-fast` 120ms, `--duration-base` 200ms. Board transitions use
   `--duration-base`. **All motion is disabled under `prefers-reduced-motion: reduce`** — a piece
   that slides is decoration, and the position is the information.
+
+#### Scalar values
+
+Normative, and the same rule applies: a component may not spell any of these out. One row per token,
+because `tokens.test.ts` reads this table and a row it cannot parse is a value that stops being
+checked.
+
+| Token                      | Value                                                             |
+| -------------------------- | ----------------------------------------------------------------- |
+| `--space-1`                | `4px`                                                             |
+| `--space-2`                | `8px`                                                             |
+| `--space-3`                | `12px`                                                            |
+| `--space-4`                | `16px`                                                            |
+| `--space-5`                | `24px`                                                            |
+| `--space-6`                | `32px`                                                            |
+| `--space-7`                | `48px`                                                            |
+| `--space-8`                | `64px`                                                            |
+| `--space-9`                | `80px`                                                            |
+| `--space-10`               | `96px`                                                            |
+| `--font-sans`              | `system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif` |
+| `--font-mono`              | `ui-monospace, SFMono-Regular, Menlo, Consolas, monospace`        |
+| `--text-xs`                | `12px`                                                            |
+| `--text-sm`                | `14px`                                                            |
+| `--text-base`              | `16px`                                                            |
+| `--text-lg`                | `18px`                                                            |
+| `--text-xl`                | `22px`                                                            |
+| `--text-2xl`               | `26px`                                                            |
+| `--text-3xl`               | `32px`                                                            |
+| `--line-height-body`       | `1.5`                                                             |
+| `--line-height-heading`    | `1.2`                                                             |
+| `--radius-sm`              | `4px`                                                             |
+| `--radius-md`              | `8px`                                                             |
+| `--radius-lg`              | `12px`                                                            |
+| `--radius-full`            | `9999px`                                                          |
+| `--border-width`           | `1px`                                                             |
+| `--focus-ring-width`       | `2px`                                                             |
+| `--focus-ring-offset`      | `2px`                                                             |
+| `--duration-fast`          | `120ms`                                                           |
+| `--duration-base`          | `200ms`                                                           |
+| `--target-size-min`        | `24px`                                                            |
+| `--target-size-touch`      | `44px`                                                            |
+| `--layout-max-inline-size` | `1120px`                                                          |
+
+Five of these tokens are named here for the first time, because a shell cannot be built without
+them and inventing a value at implementation time is what this document exists to prevent:
+
+- `--border-width`, because §2 gives dividers a colour and no thickness. The board never needed one:
+  it draws in SVG user units.
+- `--focus-ring-offset`, for the reason given under the colour rules above — without it, rule 3 is
+  unsatisfiable rather than merely unmet.
+- `--target-size-min` and `--target-size-touch`, which are §5's existing 24×24 and 44×44 floors
+  given names so a component can honour them without re-reading §5.
+- `--layout-max-inline-size`, the width of the content column. §1 fixes the breakpoints but never
+  said where the text stops growing on a wide screen.
+
+**Breakpoints** are `768px` and `1024px`, exactly as §1's gambit-page layout describes them, and
+they are the only two in the product. They are the one thing on this page a stylesheet spells out
+as a raw value, because CSS custom properties are not valid inside a media condition — so the
+no-raw-values gate excludes media conditions and asserts instead that every breakpoint used is one
+of these two.
 
 ---
 
