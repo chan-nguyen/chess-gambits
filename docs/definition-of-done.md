@@ -10,7 +10,15 @@ instead of it.
 - [ ] `npm run lint`, `npm run format:check`, `npm run typecheck`, `npm test` and `npm run build`
       all pass locally before the pull request is opened
 - [ ] No new `any`, no `as` assertion, no non-null `!`, no new lint suppression. If the types are
-      fighting you, the model is wrong — say so in the pull request rather than silencing it
+      fighting you, the model is wrong — say so in the pull request rather than silencing it.
+      **`npm run lint` enforces this**, over `src/`, `tools/`, `scripts/` and `e2e/`, via the
+      `typescript/no-explicit-any`, `typescript/consistent-type-assertions` and
+      `typescript/no-non-null-assertion` rules in `.oxlintrc.json`. `as const` stays allowed. The
+      one escape hatch is `// oxlint-disable-next-line <rule> -- <why>` on the line directly above
+      the offending one; the `-- <why>` is required by `tools/lint/lint-gate.test.ts`, not by
+      `oxlint`, so that every exception argues for itself in the diff. This was hand-checked for the
+      first week of delivery and nothing caught it, which is why it is written down here rather than
+      assumed
 - [ ] No new runtime dependency without a stated reason in the pull request description. Adding one
       is outside an implementing agent's authority
 - [ ] Nothing in `docs/` contradicted. If a decision has to change, change the ADR in the same pull
