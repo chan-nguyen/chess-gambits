@@ -288,15 +288,25 @@ Wave 1 is not done because three pull requests merged. It is done when all of th
       e2e suite at both base paths
 - [x] One deep link returns HTTP 200 — verified on live GitHub Pages, not only locally:
       `/chess-gambits/fr/about` → 200, `/chess-gambits/xx/about` → 404
-- [ ] …with the correct `lang` and a distinct title — **open, #17.** Shells still carry `lang="en"`
-      and the scaffold title, which is the WCAG 3.1.1 Level A issue ADR-0009 names
+- [x] …with the correct `lang` and a distinct title — **closed 2026-09-16 by #17.** All 2,111
+      emitted documents carry their own `lang`, title, description, canonical, `og:*` and four
+      `hreflang` alternates, generated from the compiled catalogue. Counted over `dist/`: zero
+      wrong or missing `lang`, zero canonicals that do not describe their own document, zero
+      alternates pointing at a missing file or at a different gambit
 - [x] A `line` parameter containing `+` and `#` round-trips exactly — property test over 400
       generated paths
-- [ ] One proved mate certificate verifies in CI — **open, #5.** The content gate rejects a false
-      checkmate claim today; nothing yet proves a mate is _forced_
-- [x] The bundle is measured and recorded — **100.38KB gzipped of 200KB**
+- [x] One proved mate certificate verifies in CI — **closed by #5.** `npm run verify:mates`
+      replays every committed certificate with `chess.js` on the merge path; the search that
+      finds them never runs there and no engine is installed on that job (ADR-0005)
+- [x] The bundle is measured and recorded — **133.15KB gzipped of 200KB** on `main` @ 919f6e5,
+      with the board, the learning surface, i18n and the catalogue page all in. Measured at
+      100.38KB before any of them; React Router alone is ~32KB
 
-**Two of six remain open, both in later waves. Wave 1 is complete; the walking skeleton is not.**
+**All six hold as of 2026-09-16. The walking skeleton is complete.** What that buys is narrow and
+worth stating plainly: the architecture is proven end to end, not that the product is finished. The
+site lists 700 gambits and teaches **three** — the Evans, the Benko and Légal's Mate, delivered by
+#15. Breadth is complete; depth has barely started, and the coverage tiers exist so the catalogue
+can say so rather than imply otherwise.
 
 ## 6. Risks
 
@@ -351,6 +361,12 @@ Wave 1 is not done because three pull requests merged. It is done when all of th
 | 2026-09-16 | 3 — Planning     | Repository created public, CI green on the empty project, Pages live, `main` protected. 18 tickets across 9 epics on the board, waves sequenced by file ownership                                                                                                                                                                                                              | Phase 2 gate passed; Phase 3 bootstrap complete                                                                                                                                                                    |
 | 2026-09-16 | 2 — Architecture | **Adversarial review found 34 issues; the design was revised rather than defended.** Mate proving moved to engine-oracle-plus-committed-certificate; the board library was dropped for an own SVG board; reply completeness became a blocking check; `unexplored` became a real outcome; provenance extended to every claim; the `line` URL encoding was fixed                 | The review showed the first design never checked the one thing the product exists to do — that the opponent's replies are complete — and that a build-time engine was never actually forbidden, only assumed to be |
 | 2026-09-16 | 2 — Architecture | Ten ADRs written. Board library decided on **licence**, not merit; mate verification redesigned after measurement                                                                                                                                                                                                                                                              | chessground and chessops are GPL-3.0-or-later. Measurement showed searching every leaf for mates would take CI hours, so intent-plus-proof replaced discovery-by-search                                            |
+| 2026-09-16 | 4 — Delivery     | **Waves 2–5 delivered; the walking skeleton is complete.** Move navigation, branch choices, the whole-tree view, progress, outcome cards, the catalogue page, and per-shell metadata for 2,111 documents. 1,762 tests and 169 end-to-end tests green at both base paths, 133.15KB gzipped of the 200KB budget                                                                  | Every walking-skeleton exit criterion now holds. The architecture is proven end to end — which is not the same as the product being finished: 700 gambits are listed and none is taught until #15                  |
+| 2026-09-16 | 4 — Delivery     | **The no-`any`/`as`/`!` rule is enforced (#28).** `oxlint` covers all three natively, so no second toolchain was added. The whole repository already complied except one line, which was fixed rather than exempted                                                                                                                                                            | It had been checked by hand for a week while nothing enforced it. Deleting the three rules turns 13 of the gate's 18 tests red; exempting `tools/**` turns exactly the three `tools/` cases red                    |
+| 2026-09-16 | 4 — Delivery     | **Four defects found by review rather than by a failing gate**, and filed instead of fixed in place: a rendered mate claim under a non-mate position (#45), a fixture that hangs its outcome on the mating move (#46), a card that can claim progress the page it links to denies (#48), and a test file that occasionally fails to load, taking 14 tests with it (#50)        | The pattern holds: gates find what they were built to find, and reviews find what nobody thought to build a gate for. #48 and #50 are both latent today and both become real the day content lands                 |
+| 2026-09-17 | 4 — Delivery     | **The site teaches something.** #15 delivered the Evans Gambit (6 branches), the Benko (9) and Légal's Mate (7) — 57 nodes, 283 replies answered by catch-alls, 108 annotation slots in three languages, and a machine-proved mate in two. Tiers now read 697 listed · 0 mapped · 3 taught                                                                                     | The pipeline is proven on real content rather than fixtures. Légal's ECO is C41, not the C50 the ticket asked for: the frozen defining line is a Philidor move order, and the ticket was wrong                     |
+| 2026-09-17 | 4 — Delivery     | **The translation gate counted the wrong thing.** Coverage reported `en 100%` for a slot filled with a copy of the Vietnamese. A copy is worse than an empty slot: an empty one falls back with a visible marker and a copy does not                                                                                                                                           | Found by review, not by a gate — and closed by one. Every `en` and `fr` string must now differ from its `vi`. None in the current content did                                                                      |
+| 2026-09-17 | 4 — Delivery     | Eighteen of twenty-one tickets done. #18 in progress; #19 and #36 remain, with five review findings filed: #45, #46, #48, #50, and the ECO correction recorded on #15                                                                                                                                                                                                          | Recorded so the remaining work is visible without reading the board                                                                                                                                                |
 
 ## 9. Known issues at handover
 
