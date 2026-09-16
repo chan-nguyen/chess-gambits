@@ -33,6 +33,12 @@ dist-ssr
 # YAML is the only source of truth (ADR-0004).
 /public/content/
 
+# The generated catalogue. `npm run catalogue` rebuilds it from the vendored dataset and
+# the curated source files, all of which *are* committed. The frozen id map in
+# `tools/catalogue/source/ids.json` is committed too, and is the one thing here that is
+# neither generated nor regenerable (docs/CONTEXT.md, invariant 9).
+/public/catalogue/
+
 # `npm run export-pgn` output is generated for a round trip through a board GUI and is
 # never committed, for the same reason. The PGN fixtures under tools/ are test *inputs*.
 *.pgn

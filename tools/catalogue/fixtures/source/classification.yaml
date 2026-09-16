@@ -1,0 +1,33 @@
+# A miniature of the real classification file, for the tests. Same rules, five of them.
+reviewedBy: fixture
+reviewedAt: '2026-01-01'
+basis: >-
+  A fixture. It exists so the gates can be shown failing on inputs small enough to read in
+  one screen, rather than only passing on the real seven hundred.
+
+rules:
+  - match: 'Benko Gambit'
+    include: true
+    side: black
+    soundness: sound
+    reason: >-
+      A pawn for permanent pressure down the a- and b-files. Included so the fixture has a
+      family whose head is itself a gambit.
+  - match: "King's Gambit"
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The archetype, included so the fixture has a family with exactly one entry in it.
+  - match: 'Italian Game'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      A broad head rule, included so the fixture proves it admits the Evans Gambit and not
+      the Giuoco Piano beside it.
+  - match: "Queen's Gambit"
+    include: false
+    reason: >-
+      The misnomer. Excluded so the fixture proves a gambit-named row can be kept out by a
+      written decision rather than by an accident of matching.

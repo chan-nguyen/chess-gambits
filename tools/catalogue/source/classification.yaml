@@ -1,0 +1,933 @@
+# What counts as a gambit.
+#
+# A gambit is a deliberate material sacrifice for initiative, development or attack
+# (docs/CONTEXT.md). The dataset does not use the word that way, in either direction, so
+# this file exists: it is a reviewed decision per family and never a substring match on the
+# word "Gambit" (ADR-0008).
+#
+# The two directions it gets wrong:
+#
+#   False positive — the Queen's Gambit is the most famous misnomer in chess. 1.d4 d5 2.c4
+#   offers a pawn Black cannot hold, and every one of the 186 rows under "Queen's Gambit",
+#   "Queen's Gambit Accepted" and "Queen's Gambit Declined" would enter a gambit catalogue
+#   on the strength of a word. Most of them are not even that: "Queen's Gambit Declined:
+#   Orthodox Defense, Rubinstein Variation" is a mainstream closed opening.
+#
+#   False negative — the Marshall Attack is a pawn sacrifice, and so are the Traxler and
+#   the Fried Liver. The dataset never says "Gambit" for any of them. Rules that set
+#   `unnamed: true` admit those deliberately.
+#
+# `match` is a prefix of a dataset name taken at a name-segment boundary, and the **longest
+# matching rule wins** — which is how a blanket exclusion and a narrow exception sit beside
+# each other. A row the dataset names a gambit and no rule covers **fails the build**:
+# silence is not a decision.
+#
+# `side` is the side the learner plays, which for a gambit is the side that sacrifices.
+# `soundness` is a family-level summary and an honest one: soundness is genuinely a
+# property of a line rather than of a whole family (docs/CONTEXT.md, Soundness), and where
+# a branch diverges from the summary it is the branch's own annotation that says so.
+
+reviewedBy: chan
+reviewedAt: '2026-09-16'
+basis: >-
+  Long-established opening-theory consensus at club level. No engine was consulted and no
+  database was queried: these are judgements, recorded as judgements, and the site labels
+  them as such. Reviewed per family rather than per variation, because the entry-level
+  soundness label is a summary (docs/CONTEXT.md, Soundness).
+
+rules:
+  # ---------------------------------------------------------------- the misnomer
+  - match: "Queen's Gambit"
+    include: false
+    reason: >-
+      The most famous misnomer in chess. After 1.d4 d5 2.c4 Black cannot hold the pawn, so
+      nothing is sacrificed; and most rows under this name are ordinary closed-opening
+      theory that only inherited the word from the head. 186 rows, none of them a gambit
+      in the sense this catalogue uses.
+  - match: "Queen's Gambit Declined: Albin Countergambit"
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      Black really does sacrifice: 1.d4 d5 2.c4 e5 offers a pawn for the wedge on d4 and a
+      fast attack. It is a genuine countergambit sitting inside a name that is not one,
+      which is exactly the case longest-prefix matching exists for.
+  - match: "Zukertort Opening: Queen's Gambit Invitation"
+    include: false
+    reason: >-
+      A move-order label for 1.Nf3 e6, naming a gambit that has not been played and may
+      never be. Nothing is offered here.
+
+  # ---------------------------------------------------------------- the King's Gambit
+  - match: "King's Gambit"
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The archetype: 2.f4 offers the f-pawn for the centre and the open f-file. Objectively
+      it gives Black an edge with best play, and the practical chances are real enough that
+      it has never left club play. The whole complex is included, accepted and declined,
+      because a learner meets both.
+  - match: "King's Gambit Declined: Falkbeer Countergambit"
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      Black answers a gambit with a gambit: 2...d5 returns the pawn immediately for
+      development. The gambiteer here is Black, so the side flips inside the King's Gambit.
+  - match: "King's Gambit Declined: Panteldakis Countergambit"
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      2...f5 is Black's own gambit and a bad one — it weakens the same diagonal the King's
+      Gambit is trying to open. Taught as a thing to meet, not a thing to play.
+  - match: "King's Gambit Declined: Hobbs-Zilbermints Gambit"
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      3...g5 is Black offering material in a King's Gambit Declined, so the side is Black
+      even though every other line under this head is White's.
+
+  # ---------------------------------------------------------------- 1.d4 gambit families
+  - match: 'Blackmar-Diemer Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      1.d4 d5 2.e4 for a lead in development and the f-file. Long argued over and never
+      refuted at club level; the theory is deep enough to fill a family on its own.
+  - match: 'Blackmar-Diemer Gambit: Lemberger Countergambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      3...e5 hands the pawn straight back to break the attack before it starts. Black is
+      the one offering material here.
+  - match: 'Benko Gambit'
+    include: true
+    side: black
+    soundness: sound
+    reason: >-
+      The soundest pawn sacrifice in the modern repertoire: a pawn for permanent pressure
+      down the a- and b-files, played at every level.
+  - match: 'Englund Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      1.d4 e5 is objectively bad and is still worth teaching, because the traps after a
+      careless reply are sharp and common in blitz.
+  - match: 'Blumenfeld Countergambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      Black gives up a pawn for a big pawn centre after 4...b5. A genuine gambit, and the
+      dataset's own name for it already says so.
+  - match: 'Indian Defense: Budapest Gambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      2...e5 sacrifices a pawn to drag the d4-pawn forward and win the tempo back. Sound
+      enough for club play and the traps behind it are worth knowing.
+  - match: 'Dutch Defense: Staunton Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      2.e4 against the Dutch, a pawn for rapid development against a weakened kingside. The
+      classical anti-Dutch gambit.
+  - match: 'Semi-Slav Defense: Marshall Gambit'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      4.e4 is a mainstream pawn sacrifice in the Semi-Slav, played at the top level and
+      analysed to move thirty.
+  - match: 'Slav Defense: Geller Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      5.e4 gives up a pawn for the centre. Out of fashion rather than refuted.
+  - match: 'Slav Defense: Winawer Countergambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      3...e5 is Black's own pawn offer in the Slav, sharp and rarely met with the right
+      reply.
+  - match: 'Tarrasch Defense: Schara Gambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      The Schara-Hennig: 4...cxd4 sacrifices a pawn for piece play and an early initiative.
+  - match: 'Tarrasch Defense: von Hennig Gambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      The other half of the Schara-Hennig, named separately by the dataset and the same
+      sacrifice.
+
+  # ---------------------------------------------------------------- 1.e4 e5 families
+  - match: 'Italian Game: Evans Gambit'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      4.b4 for a tempo on the bishop and a full centre. The best of the classical gambits
+      and still played at the top level; the sacrifice is genuinely compensated.
+  - match: 'Italian Game: Scotch Gambit'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      4.d4 against the Giuoco, a pawn for the fastest development in the opening. Perfectly
+      respectable.
+  - match: 'Italian Game: Classical Variation, Greco Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The old main line of the Giuoco Piano, where White gives up material for a mating
+      attack against a king still in the centre.
+  - match: 'Italian Game: Rosentreter Gambit'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      4.d4 in the Giuoco, the same central pawn offer as the Scotch Gambit by a different
+      move order.
+  - match: 'Italian Game: Deutz Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      5.d4 after castling, a delayed central sacrifice with the same idea and a tempo less.
+  - match: 'Italian Game: Classical Variation, Albin Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      A quiet pawn offer in the Classical Italian, playable and unfashionable.
+  - match: 'Italian Game: Jerome Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      4.Bxf7+ is a piece for two pawns and is simply losing with correct play. It is here
+      because it is played constantly online and the refutation is worth knowing cold.
+  - match: 'Italian Game: Rousseau Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      3...f5 is Black's gambit and a bad one, but it is common enough at club level to be
+      worth a page.
+  - match: 'Italian Game: Blackburne-Kostić Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      The Blackburne Shilling: 3...Nd4 offers a pawn and invites one of the best-known
+      traps in chess. Objectively bad and enormously practical.
+  - match: 'Italian Game: Giuoco Pianissimo, Lucchini Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      4...f5 is Black's pawn offer against the quiet Italian, weakening the king for
+      activity.
+  - match: 'Italian Game: Two Knights Defense, Kloss Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      5...Nb4 is Black's sacrifice in the Two Knights, sharp and dubious.
+  - match: 'Italian Game: Two Knights Defense, Ponziani-Steinitz Gambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      4...Nxe4 answers 4.Ng5 by giving material back for activity rather than defending.
+  - match: 'Italian Game: Two Knights Defense, Fried Liver Attack'
+    include: true
+    unnamed: true
+    side: white
+    soundness: sound
+    reason: >-
+      6.Nxf7 sacrifices a knight to drag the black king out, and the dataset never calls it
+      a gambit. It is one of the most famous sacrifices in chess and the catalogue would
+      look absurd without it.
+  - match: 'Italian Game: Two Knights Defense, Traxler Counterattack'
+    include: true
+    unnamed: true
+    side: black
+    soundness: dubious
+    reason: >-
+      4...Bc5 ignores the attack on f7 and offers the rook. A real sacrifice under a name
+      that says "Counterattack" rather than "Gambit".
+  - match: 'Italian Game: Two Knights Defense, Traxler Variation, Trencianske-Teplice Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      A sub-line of the Traxler where Black gives up still more material. Included with the
+      Traxler because a learner meets it there.
+  - match: 'Italian Game: Two Knights Defense, Ulvestad Variation, Kurkin Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      7.Nxf7 is White's piece sacrifice deep inside the Ulvestad, and the side flips from
+      the surrounding Black-gambit lines.
+  - match: 'Scotch Game'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The Scotch Gambit and the Göring are White pawn sacrifices for development; the
+      handful of other named gambits under this head are the same idea by other move
+      orders.
+  - match: 'Scotch Game: Scotch Gambit'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      A pawn for development and an open centre, and one of the few classical gambits that
+      modern theory still respects.
+  - match: 'Scotch Game: Göring Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      3.c3 in the Scotch, one or two pawns for a lead in development. Dangerous and
+      objectively a little too generous.
+  - match: 'Four Knights Game: Halloween Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      4.Nxe5 gives up a knight for two pawns and a pawn phalanx. Refuted, and irresistible
+      to teach precisely because the refutation is hard to find at the board.
+  - match: 'Four Knights Game: Scotch Variation, Belgrade Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      5.Nd5 is a genuine pawn offer with real traps behind it and a sound answer for Black.
+  - match: 'Four Knights Game: Scotch Variation, Krause Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      Another central pawn offer in the Four Knights Scotch, in the same family as the
+      Belgrade.
+  - match: "Petrov's Defense: Stafford Gambit"
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      3...Nc6 is objectively losing a pawn for nothing concrete, and it is one of the most
+      played traps online. A textbook case of unsound and worth teaching.
+  - match: "Petrov's Defense: Cochrane Gambit"
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      4.Nxf7 is a knight for two pawns and a displaced king. Playable at club level, not
+      quite sound.
+  - match: 'Philidor Defense: Philidor Countergambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      3...f5 is Black's counter-sacrifice in the Philidor. Bad, sharp, and frequently seen.
+  - match: 'Philidor Defense: Lopez Countergambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      The same ...f5 idea a move earlier and no better, which is worth stating rather than
+      leaving a learner to assume the two are different.
+  - match: 'Elephant Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      2...d5 is unsound and surprises anyone who has not seen it. The catalogue is honest
+      about the first part and useful because of the second.
+  - match: 'Latvian Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      2...f5 is a King's Gambit a tempo down, which is as bad as it sounds. Deep theory
+      exists anyway and the traps are vicious.
+  - match: 'Danish Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      Two pawns for two raking bishops. Equalisable with accurate play and terrifying
+      without it.
+  - match: 'Center Game'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      Every named gambit under this head — the Halasz-McDonnell, the Lanc-Arnold, the Ross,
+      the von der Lasa — is White offering a pawn out of the 2.d4 centre.
+  - match: 'Irish Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      3.Nxe5 without preparation. A piece for a pawn, refuted by any accurate reply, and
+      still worth a page for the same reason the Jerome is.
+  - match: 'Duras Gambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      1...f5 against 1.e4, a pawn offered on the first move and the worst square to offer
+      it on.
+  - match: 'Vienna Game'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The Vienna is a gambit opening: f4 arrives a move later than in the King's Gambit and
+      with a knight already out. The named gambits under this head are all White's.
+  - match: 'Vienna Gambit'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      3.f4 with the knight already developed. Better than the King's Gambit proper, for
+      exactly that reason.
+  - match: 'Vienna Game: Philidor Countergambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      3...f5 is Black's own offer inside the Vienna, and a bad one.
+  - match: 'Vienna Game: Zhuravlev Countergambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      Black gives material for an early queen sortie. Refuted by development.
+  - match: 'Vienna Game: Frankenstein-Dracula Variation'
+    include: true
+    unnamed: true
+    side: black
+    soundness: dubious
+    reason: >-
+      3...Nxe4 grabs a pawn and invites a forced sequence where Black's queenside collapses
+      and Black is fine anyway. The dataset never says "Gambit"; it is one of the most
+      celebrated material imbalances in opening theory.
+  - match: "Bishop's Opening"
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      2.Bc4 is the classical gambiteer's move order and the head carries two dozen named
+      pawn offers — the Urusov, the McDonnell, the Boden-Kieseritzky and the rest — nearly
+      all of them White's.
+  - match: "Bishop's Opening: Urusov Gambit"
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      A pawn for a genuine attack, and the one gambit under this head that survives
+      accurate defence.
+  - match: "Bishop's Opening: Lewis Countergambit"
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      3...d5 is Black's counter-offer. The side flips from the rest of the head.
+  - match: "Bishop's Opening: Calabrese Countergambit"
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      2...f5 mirrors the King's Gambit at a tempo's loss and with the bishop already
+      pointing at f7.
+  - match: 'Ponziani Opening'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The named gambits under the Ponziani — Caro, Neumann, Vukovic, Nikitin — are White
+      pawn offers out of the c3-d4 centre.
+  - match: 'Ponziani Opening: Ponziani Countergambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      3...f5 is Black's, and it is the critical answer to the Ponziani rather than a
+      sideline.
+  - match: 'Ruy Lopez: Spanish Countergambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      3...d5 offers a pawn to break the Spanish bind immediately. Objectively too loose.
+  - match: 'Ruy Lopez: Berlin Defense, Rio Gambit Accepted'
+    include: true
+    side: white
+    soundness: sound
+    reason: >-
+      The Berlin open: White's e-pawn goes for the initiative, and the resulting positions
+      are mainstream theory.
+  - match: 'Ruy Lopez: Schliemann Defense'
+    include: true
+    unnamed: true
+    side: black
+    soundness: dubious
+    reason: >-
+      3...f5 is the Jaenisch Gambit — the dataset only says "Gambit" on one deep sub-line,
+      so the head needs an explicit rule. Sharp, respectable and well analysed.
+  - match: 'Ruy Lopez: Morphy Defense, Schliemann Defense Deferred'
+    include: true
+    unnamed: true
+    side: black
+    soundness: dubious
+    reason: >-
+      The same ...f5 pawn offer a move later, and the dataset names it a gambit only on one
+      sub-line.
+  - match: 'Ruy Lopez: Marshall Attack'
+    include: true
+    unnamed: true
+    side: black
+    soundness: sound
+    reason: >-
+      A pawn for a lasting kingside attack, prepared for decades and played at world
+      championship level — and the dataset calls it an Attack, never a Gambit. The clearest
+      false negative in the whole file.
+
+  # ---------------------------------------------------------------- 1.e4 against defences
+  - match: 'Sicilian Defense: Smith-Morra Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      A pawn for development and the c- and d-files, and the most popular anti-Sicilian
+      gambit at club level by a distance.
+  - match: 'Sicilian Defense: Wing Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      2.b4 deflects the c-pawn at the cost of a pawn White does not get back. Fun, and
+      known to be bad.
+  - match: 'Sicilian Defense: Halasz Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      An early f4 pawn offer against the Sicilian, in the same spirit as the Wing Gambit.
+  - match: 'Sicilian Defense: Portsmouth Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      A knight offered on b5 for speed. Refutable and occasionally seen.
+  - match: 'French Defense: Advance Variation, Milner-Barry Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The main gambit of the French Advance: a centre pawn for the light squares and an
+      attack on h7. Objectively equal with the right defence, which club players rarely
+      find.
+  - match: 'French Defense: Winawer Variation, Winckelmann-Reimer Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      A pawn for the half-open b-file against the Winawer, and a genuine sacrifice rather
+      than a transposition.
+  - match: 'French Defense: Diemer-Duhm Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      The Blackmar-Diemer idea applied to the French, and the same trade-off: development
+      for a pawn.
+  - match: 'French Defense: Alapin Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      3.Be3 invites ...dxe4 and gives up the centre pawn for piece play.
+  - match: 'French Defense: Marshall Gambit'
+    include: true
+    side: white
+    soundness: dubious
+    reason: >-
+      An early c-pawn offer in the French, distinct from the Semi-Slav gambit of the same
+      name.
+  - match: 'French Defense: Wing Gambit'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      The Sicilian Wing Gambit idea against the French, and it works even less well here.
+  - match: 'Scandinavian Defense: Portuguese Gambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      3...Bg4 offers a pawn to keep the initiative after 1.e4 d5. The most respectable
+      gambit in the Scandinavian.
+  - match: 'Scandinavian Defense: Icelandic-Palme Gambit'
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      3...e6 sacrifices the d-pawn for development and an open e-file. Sharp and playable.
+  - match: 'Nimzowitsch Defense: Colorado Countergambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      2...f5 in the Nimzowitsch Defence: a pawn for activity, on the worst possible
+      diagonal.
+
+  # ---------------------------------------------------------------- flank gambit families
+  - match: 'Grob Opening'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      1.g4 is bad and every named line under it is a pawn offer. It is a real gambit family
+      and the catalogue says plainly what it thinks of it.
+  - match: 'Grob Opening: Romford Countergambit'
+    include: true
+    side: black
+    soundness: unsound
+    reason: >-
+      Black returns the favour with a sacrifice of their own, so the side flips.
+  - match: 'Bird Opening'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      1.f4 with a long tail of named pawn offers. Objectively poor, genuinely gambits.
+  - match: "Bird Opening: From's Gambit"
+    include: true
+    side: black
+    soundness: dubious
+    reason: >-
+      1...e5 against the Bird is Black's gambit and the best-known line in the whole
+      opening. Dangerous enough that many Bird players avoid 1.f4 because of it.
+  - match: 'Zukertort Opening'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      The gambits under 1.Nf3 — Tennison, Lisitsyn, Vos and the rest — are White pawn
+      offers out of a quiet move order.
+  - match: 'Van Geet Opening'
+    include: true
+    side: white
+    soundness: unsound
+    reason: >-
+      1.Nc3 with twenty-one named pawn offers behind it. Every one is White's, which is why
+      a single head-level rule is honest here.
+
+  # ---------------------------------------------------------------- deliberate exclusions
+  #
+  # Each of these heads contains rows the dataset names a gambit. Most are real pawn offers
+  # and none is here because it is "not a gambit" — they are here because nobody has
+  # reviewed their side, their soundness or whether the site should carry them, and an
+  # entry whose board orientation nobody checked is worse than an entry that is missing.
+  # Adding one back is a rule, not a redesign.
+  - match: 'Alekhine Defense'
+    include: false
+    reason: >-
+      Ten one-row novelties — Krejcik, Matsukevich, Mikenas, O'Sullivan, Spielmann — with no
+      settled assessment and no teaching material behind them. Unreviewed, so out.
+  - match: 'Caro-Kann Defense'
+    include: false
+    reason: >-
+      Seventeen named pawn offers against the Caro-Kann, almost all of them single rows from
+      correspondence practice. Real sacrifices, no reviewed assessment.
+  - match: 'French Defense'
+    include: false
+    reason: >-
+      The French gambits worth teaching are admitted above by name. The remaining twenty-odd
+      are one-row novelties nobody has assessed.
+  - match: 'Sicilian Defense'
+    include: false
+    reason: >-
+      The Smith-Morra and the Wing Gambit are admitted above. The rest of the Sicilian's
+      gambit-named rows are deep sub-variations where the sacrifice belongs to a specific line
+      rather than to a family, and the side differs row by row.
+  - match: 'Ruy Lopez'
+    include: false
+    reason: >-
+      The Spanish gambits worth a page are admitted above by name. The remaining twenty are
+      single rows deep inside mainstream variations.
+  - match: "Petrov's Defense"
+    include: false
+    reason: >-
+      The Stafford and the Cochrane are admitted above. The rest are one-row sub-variations of
+      mainstream Petrov theory.
+  - match: 'Philidor Defense'
+    include: false
+    reason: >-
+      The two countergambits are admitted above. The remaining rows are sidelines with no
+      settled assessment.
+  - match: 'Four Knights Game'
+    include: false
+    reason: >-
+      The Halloween, the Belgrade and the Krause are admitted above; the others are single
+      rows inside mainstream Four Knights theory.
+  - match: 'Nimzowitsch Defense'
+    include: false
+    reason: >-
+      The Colorado Countergambit is admitted above. The other fifteen are Kennedy and
+      Bogoljubow sidelines with no reviewed assessment.
+  - match: "King's Pawn Game"
+    include: false
+    reason: >-
+      A catch-all head whose twenty gambit-named rows belong to no single opening and split
+      unpredictably between the two sides. Needs row-by-row review, which nobody has done.
+  - match: "King's Pawn Opening"
+    include: false
+    reason: >-
+      One unreviewed row, in the same catch-all head as above under a different spelling.
+  - match: 'Dutch Defense'
+    include: false
+    reason: >-
+      The Staunton Gambit is admitted above. The remaining dozen are one-row anti-Dutch
+      novelties with no assessment.
+  - match: 'Scandinavian Defense'
+    include: false
+    reason: >-
+      The Portuguese and the Icelandic-Palme are admitted above; the rest are single-row
+      sidelines with no reviewed assessment.
+  - match: 'Indian Defense'
+    include: false
+    reason: >-
+      The Budapest is admitted above. The rest — Gibbins-Weidenhagen, Omega, Medusa and the
+      like — are 1.d4 Nf6 novelties nobody has assessed.
+  - match: 'Slav Defense'
+    include: false
+    reason: >-
+      The Geller Gambit and the Winawer Countergambit are admitted above; the remainder are
+      single rows with no reviewed assessment.
+  - match: 'Semi-Slav Defense'
+    include: false
+    reason: >-
+      The Marshall Gambit is admitted above; the other five are deep sub-variations of
+      mainstream Semi-Slav theory.
+  - match: 'Tarrasch Defense'
+    include: false
+    reason: >-
+      The Schara and von Hennig gambits are admitted above; the other four are one-row
+      sidelines with no reviewed assessment.
+  - match: "Queen's Pawn Game"
+    include: false
+    reason: >-
+      Another catch-all head. Eleven gambit-named rows belonging to no shared family and
+      splitting between the two sides.
+  - match: 'Benoni Defense'
+    include: false
+    reason: >-
+      Six one-row Benoni novelties with no settled assessment. The Benko, which is the Benoni
+      gambit that matters, has its own head and is included above.
+  - match: 'Nimzo-Indian Defense'
+    include: false
+    reason: >-
+      Seven deep sub-variations where the pawn offer belongs to a specific line rather than to
+      a family.
+  - match: "Queen's Indian Defense"
+    include: false
+    reason: >-
+      Three one-row sub-variations of mainstream theory, with no reviewed assessment.
+  - match: 'Grünfeld Defense'
+    include: false
+    reason: >-
+      Five rows inside Brinckmann and Gibbon sidelines, with no reviewed assessment.
+  - match: "King's Indian Defense"
+    include: false
+    reason: >-
+      Four deep sub-variations; the sacrifice belongs to the line rather than to a family.
+  - match: 'Old Indian Defense'
+    include: false
+    reason: >-
+      Two one-row novelties under the Old Indian, with no reviewed assessment.
+  - match: 'Catalan Opening'
+    include: false
+    reason: >-
+      Two rows deep inside mainstream Catalan theory, with no reviewed assessment.
+  - match: 'English Opening'
+    include: false
+    reason: >-
+      Eighteen scattered one-row gambits across unrelated English structures, with no shared
+      family and no reviewed side.
+  - match: 'English Defense'
+    include: false
+    reason: >-
+      Four one-row novelties under 1...b6, with no reviewed assessment.
+  - match: 'Modern Defense'
+    include: false
+    reason: >-
+      Nine unrelated single rows; the sides differ and none of them has been assessed.
+  - match: 'Owen Defense'
+    include: false
+    reason: >-
+      Five one-row novelties under 1...b6, with no reviewed assessment.
+  - match: 'Hungarian Opening'
+    include: false
+    reason: >-
+      Nine one-row gambits under 1.g3, with no reviewed assessment.
+  - match: 'Polish Opening'
+    include: false
+    reason: >-
+      Five one-row gambits under 1.b4, with no reviewed assessment.
+  - match: 'Polish Defense'
+    include: false
+    reason: >-
+      One row under 1...b5, with no reviewed side and no assessment.
+  - match: 'Ware Opening'
+    include: false
+    reason: >-
+      Three rows under 1.a4, with no reviewed assessment.
+  - match: 'Kádas Opening'
+    include: false
+    reason: >-
+      Three rows under 1.h4, with no reviewed assessment.
+  - match: "Van't Kruijs Opening"
+    include: false
+    reason: >-
+      Three rows under 1.e3, with no reviewed assessment.
+  - match: 'Amar Opening'
+    include: false
+    reason: >-
+      Two rows under 1.Nh3, with no reviewed assessment.
+  - match: 'Barnes Opening'
+    include: false
+    reason: >-
+      Two rows under 1.f3, with no reviewed assessment.
+  - match: "Anderssen's Opening"
+    include: false
+    reason: >-
+      One row under 1.a3, with no reviewed assessment.
+  - match: 'Clemenz Opening'
+    include: false
+    reason: >-
+      One row under 1.h3, with no reviewed assessment.
+  - match: 'Sodium Attack'
+    include: false
+    reason: >-
+      One row under 1.Na3, with no reviewed assessment.
+  - match: 'Portuguese Opening'
+    include: false
+    reason: >-
+      Two rows under 1.e4 e5 2.Bb5, with no reviewed assessment.
+  - match: 'Mexican Defense'
+    include: false
+    reason: >-
+      One row under 1.d4 Nf6 2.c4 Nc6, with no reviewed assessment.
+  - match: 'Mikenas Defense'
+    include: false
+    reason: >-
+      One row under 1.d4 Nc6, with no reviewed assessment.
+  - match: 'Carr Defense'
+    include: false
+    reason: >-
+      One row under 1.e4 h6, with no reviewed assessment.
+  - match: 'Borg Defense'
+    include: false
+    reason: >-
+      Three rows under 1...g5, with no reviewed assessment.
+  - match: 'Rat Defense'
+    include: false
+    reason: >-
+      Three rows under the Rat, with no reviewed assessment.
+  - match: 'Pterodactyl Defense'
+    include: false
+    reason: >-
+      Two rows in a Pterodactyl move order, with no reviewed assessment.
+  - match: 'Pirc Defense'
+    include: false
+    reason: >-
+      One row deep inside the Pirc, with no reviewed assessment.
+  - match: 'Lion Defense'
+    include: false
+    reason: >-
+      One row in the Lion's Cave, with no reviewed assessment.
+  - match: 'Horwitz Defense'
+    include: false
+    reason: >-
+      One row under 1.d4 e6, with no reviewed assessment.
+  - match: 'St. George Defense'
+    include: false
+    reason: >-
+      One row under 1.e4 a6, with no reviewed assessment.
+  - match: 'Slav Indian'
+    include: false
+    reason: >-
+      One row in a Slav Indian move order, with no reviewed assessment.
+  - match: 'Richter-Veresov Attack'
+    include: false
+    reason: >-
+      One row under the Veresov, with no reviewed assessment.
+  - match: 'Torre Attack'
+    include: false
+    reason: >-
+      Two rows deep inside mainstream Torre theory, with no reviewed assessment.
+  - match: 'Trompowsky Attack'
+    include: false
+    reason: >-
+      Three rows inside Edge and Raptor sidelines, with no reviewed assessment.
+  - match: 'Nimzo-Larsen Attack'
+    include: false
+    reason: >-
+      Three one-row gambits under 1.b3, with no reviewed assessment.
+  - match: 'Réti Opening'
+    include: false
+    reason: >-
+      Five one-row gambits under the Réti, with no reviewed assessment.
+  - match: "King's Indian Attack"
+    include: false
+    reason: >-
+      One row in a King's Indian Attack move order, with no reviewed assessment.
+  # ---------------------------------------------------------------- named traps
+  #
+  # Four rows inside otherwise-included families are named traps rather than gambits. A
+  # named trap is `category: trap` and lives in `traps.yaml` with its own hand-entered ECO
+  # code (ADR-0008); importing it here would give the same trap a second entry, a second
+  # id and the surrounding opening's ECO.
+  - match: "Queen's Gambit Declined: Albin Countergambit, Lasker Trap"
+    include: false
+    reason: >-
+      A named trap, carried by `traps.yaml` as `lasker-trap` with its own identifying line.
+      Importing it as a gambit variation would publish the Lasker Trap twice under two ids.
+  - match: 'Sicilian Defense: Smith-Morra Gambit Accepted, Siberian Variation, Siberian Trap'
+    include: false
+    reason: >-
+      A named trap, carried by `traps.yaml` as `siberian-trap`. The dataset files it as a
+      Smith-Morra sub-variation and codes it B21 with the gambit, which is the ECO problem
+      traps are exempt from.
+  - match: 'Vienna Game: Vienna Gambit, Wurzburger Trap'
+    include: false
+    reason: >-
+      A named trap inside the Vienna Gambit. Nobody has hand-entered it yet, and a trap
+      that arrives by import carries the surrounding opening's ECO rather than its own.
+  - match: "Zukertort Opening: Tennison Gambit, Brigg's Trap"
+    include: false
+    reason: >-
+      A named trap inside the Tennison Gambit, not yet hand-entered. Breadth is free for
+      gambits and is not free for traps; this is what that costs.

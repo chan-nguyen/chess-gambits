@@ -11,3 +11,8 @@ tools/content/fixtures/invalid
 # A compiled-content fixture: byte for byte what the compile step emits, minification and
 # all. Formatting it would make it stop being that, and the test that pins it would fail.
 tools/content/fixtures/compiled
+
+# The frozen id map. One line per id, because that file is read as a diff: an entry in it is
+# a promise that a URL keeps working, and a reviewer should see one added line per new id
+# rather than eight. `npm run catalogue:freeze` writes it and nothing else may.
+tools/catalogue/source/ids.json
