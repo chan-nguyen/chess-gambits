@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import vi from '../src/locales/vi.ts'
 import { themeStorageKey } from '../src/styles/theme.ts'
 
 /**
@@ -59,31 +60,31 @@ test.describe('the header below 768px', () => {
   }) => {
     await page.goto('vi/about')
 
-    await expect(page.getByRole('button', { name: 'Menu' })).toBeVisible()
-    await expect(page.getByRole('navigation', { name: 'Language' })).toBeVisible()
-    await expect(page.getByRole('navigation', { name: 'Primary' })).toBeHidden()
+    await expect(page.getByRole('button', { name: vi.nav.menu })).toBeVisible()
+    await expect(page.getByRole('navigation', { name: vi.nav.language })).toBeVisible()
+    await expect(page.getByRole('navigation', { name: vi.nav.primary })).toBeHidden()
   })
 
   test('opens them, and closes again when one is followed', async ({ page }) => {
     await page.goto('vi/about')
 
-    await page.getByRole('button', { name: 'Menu' }).click()
-    const primary = page.getByRole('navigation', { name: 'Primary' })
+    await page.getByRole('button', { name: vi.nav.menu }).click()
+    const primary = page.getByRole('navigation', { name: vi.nav.primary })
     await expect(primary).toBeVisible()
-    await expect(page.getByRole('button', { name: 'Menu' })).toHaveAttribute(
+    await expect(page.getByRole('button', { name: vi.nav.menu })).toHaveAttribute(
       'aria-expanded',
       'true',
     )
 
-    await primary.getByRole('link', { name: 'Catalogue' }).click()
+    await primary.getByRole('link', { name: vi.nav.catalogue }).click()
     await expect(page).toHaveURL(/\/vi\/gambits$/)
     await expect(primary).toBeHidden()
   })
 
   test('still does not scroll sideways with the menu open', async ({ page }) => {
     await page.goto('vi/about')
-    await page.getByRole('button', { name: 'Menu' }).click()
-    await expect(page.getByRole('navigation', { name: 'Primary' })).toBeVisible()
+    await page.getByRole('button', { name: vi.nav.menu }).click()
+    await expect(page.getByRole('navigation', { name: vi.nav.primary })).toBeVisible()
 
     expect(await overflowingElements(page)).toEqual([])
   })
@@ -95,10 +96,10 @@ test.describe('the header from 768px', () => {
       await page.setViewportSize({ width, height: 800 })
       await page.goto('vi/about')
 
-      await expect(page.getByRole('navigation', { name: 'Primary' })).toBeVisible()
-      await expect(page.getByRole('navigation', { name: 'Language' })).toBeVisible()
-      await expect(page.getByRole('group', { name: 'Appearance' })).toBeVisible()
-      await expect(page.getByRole('button', { name: 'Menu' })).toBeHidden()
+      await expect(page.getByRole('navigation', { name: vi.nav.primary })).toBeVisible()
+      await expect(page.getByRole('navigation', { name: vi.nav.language })).toBeVisible()
+      await expect(page.getByRole('group', { name: vi.appearance.label })).toBeVisible()
+      await expect(page.getByRole('button', { name: vi.nav.menu })).toBeHidden()
     })
   }
 })
@@ -209,8 +210,8 @@ test.describe('the theme', () => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('vi/about')
 
-    const appearance = page.getByRole('group', { name: 'Appearance' })
-    await appearance.getByRole('button', { name: 'Dark' }).click()
+    const appearance = page.getByRole('group', { name: vi.appearance.label })
+    await appearance.getByRole('button', { name: vi.appearance.dark }).click()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 
     await recordFirstFrame(page)
@@ -218,7 +219,7 @@ test.describe('the theme', () => {
 
     const { dark } = await palette(page)
     expect((await firstFrame(page)).background).toBe(dark)
-    await expect(appearance.getByRole('button', { name: 'Dark' })).toHaveAttribute(
+    await expect(appearance.getByRole('button', { name: vi.appearance.dark })).toHaveAttribute(
       'aria-pressed',
       'true',
     )
@@ -232,7 +233,7 @@ test.describe('motion', () => {
 
   const menuButtonTransition = (page: Page): Promise<string> =>
     page
-      .getByRole('button', { name: 'Menu' })
+      .getByRole('button', { name: vi.nav.menu })
       .evaluate((element) => window.getComputedStyle(element).transitionDuration)
 
   /**
