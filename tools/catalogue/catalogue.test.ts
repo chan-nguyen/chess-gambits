@@ -270,8 +270,14 @@ describe('AC 7 — tier is derived from content and absent from every source fil
     }
   })
 
+  /**
+   * The Evans was the example here until it was authored (#15), and it is kept as the
+   * first half rather than swapped out: a tier follows the content and nothing else, so
+   * the entry with a file reads `taught` and its sibling without one still reads `listed`.
+   */
   it('defaults an imported entry to listed, which is all the dataset can support', () => {
-    expect(named('Italian Game: Evans Gambit')?.tier).toBe('listed')
+    expect(named('Italian Game: Evans Gambit')?.tier).toBe('taught')
+    expect(named('Italian Game: Evans Gambit Accepted')?.tier).toBe('listed')
   })
 
   it('takes the tier from the authored entry where one exists', () => {

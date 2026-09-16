@@ -137,7 +137,9 @@ describe('export-pgn (AC 2)', () => {
     const result = run('export-cli.ts', 'no-such-gambit')
 
     expect(result.status).toBe(1)
-    expect(result.stderr).toContain('Known ids: damiano-defence-refutation')
+    expect(result.stderr).toContain(
+      'Known ids: benko-gambit, damiano-defence-refutation, italian-game-evans-gambit, legals-mate.',
+    )
   })
 
   /** The export is generated; a `.pgn` committed beside its `.yaml` is a second source of truth. */
@@ -156,7 +158,12 @@ describe('compile (AC 3)', () => {
     const result = run('compile-cli.ts', '--out', out)
 
     expect(result.status).toBe(0)
-    expect(readdirSync(out)).toStrictEqual(['damiano-defence-refutation.json'])
+    expect([...readdirSync(out)].sort()).toStrictEqual([
+      'benko-gambit.json',
+      'damiano-defence-refutation.json',
+      'italian-game-evans-gambit.json',
+      'legals-mate.json',
+    ])
     const json = readFileSync(join(out, 'damiano-defence-refutation.json'), 'utf8')
     expect(json).not.toContain('\n')
     expect(json).toContain('"tier":"listed"')

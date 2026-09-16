@@ -100,14 +100,30 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Today every entry is Tier 0 and every count is zero, which is the honest answer and
-   * not a bug. Asserted so that the day a mapped entry lands, the number that appears here
-   * appeared because content changed rather than because this code did.
+   * Three entries are authored (#15) and the other 697 are Tier 0. Each of the three is
+   * named here with the number of root-to-leaf lines its tree actually has, rather than
+   * the whole set being loosened to "at least zero" — which would assert nothing and would
+   * keep passing if every tree in the repository disappeared.
+   *
+   * This is the assertion the previous version of this test was written to force: the day
+   * a mapped entry landed, the number that appeared here had to appear because content
+   * changed. It did, so these four lines changed with it, deliberately and by name.
    */
-  it('bakes a count on all 700 entries', () => {
+  const AUTHORED: ReadonlyMap<string, number> = new Map([
+    ['italian-game-evans-gambit', 6],
+    ['benko-gambit', 9],
+    ['legals-mate', 7],
+  ])
+
+  it('bakes a count on all 700 entries, and only the authored three are non-zero', () => {
     expect(result.value.records).toHaveLength(700)
     for (const record of result.value.records) {
-      expect(record.branches).toBe(0)
+      expect(record.branches).toBe(AUTHORED.get(record.id) ?? 0)
     }
+    // Every named entry is actually in the catalogue, so a typo in an id above cannot
+    // quietly turn this into a test that only checks 700 zeroes.
+    expect(result.value.records.filter((record) => AUTHORED.has(record.id))).toHaveLength(
+      AUTHORED.size,
+    )
   })
 })
