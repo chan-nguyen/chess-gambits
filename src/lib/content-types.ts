@@ -105,6 +105,23 @@ export type CompiledNode = {
   readonly transposesTo?: readonly string[]
 }
 
+/**
+ * One position of the **prelude**: the walk from the initial position through the defining
+ * line, ending at the gambit root (docs/CONTEXT.md, *Prelude*).
+ *
+ * Derived by the build and shipped because it cannot be derived here. A board is a
+ * position, positions are computed by replaying moves, and the thing that replays moves is
+ * chess.js — a build dependency that `board-tripwire.test.ts` keeps out of the bundle. So
+ * either these boards arrive over the wire or the defining line is not walkable at all.
+ *
+ * `ply` is absent on the first step, which is the initial position and was reached by no
+ * move, exactly as it is absent on the root node.
+ */
+export type CompiledPreludeStep = {
+  readonly ply?: string
+  readonly fen: string
+}
+
 export type CompiledSoundness = {
   readonly value: SoundnessValue
   readonly reviewedAt: string
@@ -118,6 +135,11 @@ export type CompiledEntry = {
   readonly category: Category
   readonly side: Side
   readonly definingLine: readonly string[]
+  /**
+   * The initial position and every position the defining line passes through, in order, so
+   * its length is `definingLine.length + 1` and its last entry is `tree`'s own position.
+   */
+  readonly prelude: readonly CompiledPreludeStep[]
   readonly soundness: CompiledSoundness
   readonly judgement: CompiledProvenance
   readonly tree: CompiledNode

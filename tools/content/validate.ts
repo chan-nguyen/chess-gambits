@@ -905,6 +905,16 @@ const buildEntry = (
     category: authored.category,
     side: authored.side,
     definingLine: opening.canonical,
+    /*
+     * Taken from the replay that just validated the line rather than walked again, so the
+     * boards a learner steps through on the way to the root and the boards the gate checked
+     * are one derivation (invariant 1). `positions` is one longer than `canonical`: index 0
+     * is the initial position, which no ply reached.
+     */
+    prelude: opening.positions.map((position, index) => ({
+      ply: index === 0 ? undefined : opening.canonical[index - 1],
+      fen: position.fen,
+    })),
     soundness: {
       value: authored.soundness.value,
       reviewedAt: authored.soundness.reviewedAt,

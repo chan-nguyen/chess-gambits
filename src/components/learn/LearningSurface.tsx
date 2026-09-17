@@ -6,7 +6,6 @@ import { useBoardLabels } from '../../i18n/board-labels.ts'
 import { Translated } from '../../i18n/Translated.tsx'
 import { useTranslated } from '../../i18n/useTranslated.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
-import { lineSearch } from '../../lib/line.ts'
 import { defaultLocale, isLocale } from '../../lib/locale.ts'
 import { Board } from '../board/Board.tsx'
 import { AnnotationPanel } from './AnnotationPanel.tsx'
@@ -24,14 +23,8 @@ import {
   readShortcutSetting,
   type ShortcutSetting,
 } from './shortcuts.ts'
-import {
-  branchChoices,
-  nextPath,
-  plyLabel,
-  previousPath,
-  resolvePath,
-  type BranchChoice,
-} from './tree-path.ts'
+import { branchChoices, plyLabel, type BranchChoice } from './tree-path.ts'
+import { addressKey, addressSearch, rootAddress, walkEntry, type Address } from './walk.ts'
 
 /**
  * The core loop: look at the position, press next.
@@ -46,6 +39,11 @@ export type LearningSurfaceProps = {
   readonly entry: CompiledEntry
   /** The plies the URL asked for. Already shape-checked by `parseLine`. */
   readonly requested: readonly string[]
+  /**
+   * How far into the defining line the URL asked for, or null for "at or past the gambit
+   * root" — which is every URL published before `?prelude=` existed (#70, AC 3).
+   */
+  readonly prelude: number | null
 }
 
 /**
@@ -64,7 +62,7 @@ const belongsToSomethingElse = (target: EventTarget | null): boolean => {
   return target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT'
 }
 
-export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
+export const LearningSurface = ({ entry, requested, prelude }: LearningSurfaceProps) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const { i18n } = useTranslation()
@@ -74,11 +72,17 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
   const [shortcuts, setShortcuts] = useState<ShortcutSetting>(readShortcutSetting)
 
   const locale = isLocale(i18n.language) ? i18n.language : defaultLocale
-  const resolved = useMemo(() => resolvePath(entry.tree, requested), [entry.tree, requested])
-  const { node, path, steps, strayedAt } = resolved
 
-  const previous = previousPath(path)
-  const next = nextPath(node, path)
+  /**
+   * One walk, from the initial position through the defining line and into the tree (#70).
+   *
+   * The two halves are still two halves — `walk.ts` joins `tree-path.ts` rather than
+   * replacing it — and everything below reads the join instead of the tree, so next and
+   * previous cross it without this component knowing where it is.
+   */
+  const walk = useMemo(() => walkEntry(entry, prelude, requested), [entry, prelude, requested])
+  const { node, next, previous, inPrelude } = walk
+  const { path, strayedAt } = walk.resolved
 
   /**
    * The continuations that are rendered as choices — and therefore, exactly, the ones the
@@ -97,14 +101,15 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
    * asymmetry*).
    */
   const choices = useMemo(() => {
+    if (node === null) return []
     const ahead = branchChoices(node, path)
     return node.kind === 'opponent' || ahead.length > 1 ? ahead : []
   }, [node, path])
 
   const go = useCallback(
-    (target: readonly string[] | null): void => {
+    (target: Address | null): void => {
       if (target === null) return
-      void navigate({ pathname, search: lineSearch(target) })
+      void navigate({ pathname, search: addressSearch(target) })
     },
     [navigate, pathname],
   )
@@ -122,8 +127,8 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
    * different things.
    */
   const targets = useRef<{
-    previous: readonly string[] | null
-    next: readonly string[] | null
+    previous: Address | null
+    next: Address | null
     choices: readonly BranchChoice[]
   }>({ previous, next, choices })
 
@@ -178,7 +183,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
       if (choice === undefined) return
 
       event.preventDefault()
-      go(choice.path)
+      go({ at: 'line', path: choice.path })
     }
 
     window.addEventListener('keydown', onKeyDown)
@@ -193,7 +198,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
    * The first render is skipped — arriving on a page is not navigating within it, and
    * stealing focus on load would drop a screen-reader user past the heading they came for.
    */
-  const pathKey = path.join('_')
+  const pathKey = addressKey(walk.here)
   const previousKey = useRef<string | null>(null)
   useEffect(() => {
     if (previousKey.current !== null && previousKey.current !== pathKey) headingRef.current?.focus()
@@ -212,18 +217,26 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
    * changed" for a highlight to answer, and marking the last ply of a line the page never
    * showed would point at a move the learner has not been told about.
    */
-  const previousNode =
-    steps.length === 0 ? undefined : (steps[steps.length - 2]?.node ?? entry.tree)
   const lastMove =
-    previousNode === undefined ? undefined : lastPlyBetween(previousNode.fen, node.fen)
+    walk.previousFen === null ? undefined : lastPlyBetween(walk.previousFen, walk.fen)
 
-  const prose = node.annotation === undefined ? null : localiseAnnotation(node.annotation, locale)
-  const label = node.ply === undefined ? null : plyLabel(node.ply, node.fen)
-  const dismissed = node.dismissed ?? []
+  /**
+   * Prose for the position. Inside the defining line there is no node and therefore no
+   * annotation to localise — the plies that reach a gambit are the gambit's address, not its
+   * lesson — so the panel says which half of the walk the learner is in rather than showing
+   * the "no explanation yet" state, which here would be a complaint about content that is
+   * not missing.
+   */
+  const prose =
+    node === null || node.annotation === undefined
+      ? null
+      : localiseAnnotation(node.annotation, locale)
+  const label = walk.ply === null ? null : plyLabel(walk.ply, walk.fen)
+  const dismissed = node?.dismissed ?? []
   const announcement =
-    node.ply === undefined
+    walk.ply === null
       ? ''
-      : announcementOf(node.ply, {
+      : announcementOf(walk.ply, {
           capture: translated('learn.capture').text,
           check: translated('learn.check').text,
           checkmate: translated('learn.checkmate').text,
@@ -248,18 +261,34 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
       <div className="learning-surface__stage">
         <div className="learning-surface__board">
           <Board
-            fen={node.fen}
+            fen={walk.fen}
             labels={labels}
             orientation={entry.side}
             announcement={announcement}
             lastMove={lastMove}
           />
         </div>
-        <MoveNavigator previous={previous} next={next} />
+        <MoveNavigator
+          start={walk.atStart ? null : walk.start}
+          root={walk.atRoot ? null : rootAddress}
+          previous={previous}
+          next={next}
+        />
       </div>
 
       <div className="learning-surface__context">
-        <AnnotationPanel label={label} prose={prose} headingRef={headingRef} />
+        {/*
+         * Inside the defining line the empty state says which half of the walk the learner
+         * is in, rather than "no explanation yet". These plies reach the gambit; they are
+         * its address rather than its lesson, and no annotation is coming for them — so the
+         * ordinary empty state would be a promise the content pipeline will never keep.
+         */}
+        <AnnotationPanel
+          label={label}
+          prose={prose}
+          empty={inPrelude ? 'learn.preludePly' : 'learn.noAnnotation'}
+          headingRef={headingRef}
+        />
 
         {/*
          * The answer to "what if my opponent plays something else?" (requirement F5).
@@ -274,7 +303,8 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
          * every reply left over, and a node with one modelled child and thirty-four covered
          * by a catch-all is the ordinary case, not an edge one.
          */}
-        {node.kind === 'opponent' &&
+        {node !== null &&
+          node.kind === 'opponent' &&
           (choices.length > 0 || dismissed.length > 0 || node.dismissRest !== undefined) && (
             <BranchChoices
               choices={choices}
@@ -288,7 +318,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
             />
           )}
 
-        {node.kind === 'learner' && choices.length > 1 && (
+        {node !== null && node.kind === 'learner' && choices.length > 1 && (
           <PlanChoices
             choices={choices}
             fen={node.fen}
@@ -312,7 +342,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
          * the longest line of the net and never the net itself, so that is the only board
          * there is to draw.
          */}
-        {node.outcome !== undefined && (
+        {node?.outcome !== undefined && (
           <OutcomeCard
             outcome={node.outcome}
             fen={node.fen}
@@ -321,7 +351,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
           />
         )}
 
-        <MoveList steps={steps} />
+        <MoveList steps={walk.steps} start={walk.start} />
         <ShortcutToggle
           setting={shortcuts}
           onChange={(setting) => {

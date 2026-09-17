@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import manifestSource from '../../package.json?raw'
 import compiledEntry from '../../tools/content/fixtures/compiled/taught-entry.json?raw'
 import provedMate from '../../tools/content/fixtures/compiled/proved-mate.json?raw'
+import type { CompiledEntry } from './content-types.ts'
 import { entryUrl, isCompiledEntry, isGambitId, loadEntry } from './content'
 
 /**
@@ -195,6 +196,18 @@ describe('the runtime guard', () => {
     ['a tree that is not a node', (value: Record<string, unknown>) => (value.tree = 'e4')],
     ['a missing id', (value: Record<string, unknown>) => delete value.id],
     ['a missing soundness', (value: Record<string, unknown>) => delete value.soundness],
+    // The prelude (#70). Without it the walk from move one has no boards to draw, and a
+    // field the guard does not check is a field a truncated response can arrive without.
+    ['a missing prelude', (value: Record<string, unknown>) => delete value.prelude],
+    ['a prelude that is not an array', (value: Record<string, unknown>) => (value.prelude = 'e4')],
+    [
+      'a prelude position with no board',
+      (value: Record<string, unknown>) => (value.prelude = [{ ply: 'e4' }]),
+    ],
+    [
+      'a prelude position whose ply is not SAN-shaped text',
+      (value: Record<string, unknown>) => (value.prelude = [{ ply: 4, fen: 'x' }]),
+    ],
   ])('rejects %s', (_name, damage) => {
     const parsed: unknown = JSON.parse(compiledEntry)
     if (typeof parsed !== 'object' || parsed === null) throw new Error('not an object')
@@ -252,6 +265,60 @@ describe('the content pipeline never reaches the browser (ADR-0004)', () => {
       .map(([path]) => path)
 
     expect(offenders).toStrictEqual([])
+  })
+})
+
+/**
+ * The walk's join, as the browser receives it (review addition, #70).
+ *
+ * `prelude` gives the learner move one; the tree takes over at the gambit root. Every other
+ * check in this file asks whether one field has the right shape, and a prelude of the wrong
+ * *length* has a perfectly good shape — every step is a record with a string `fen`.
+ *
+ * The scenario this is for is not a bad build, it is a stale one: the comment on
+ * `isCompiledEntry` already names a stale service worker and a truncated response as the
+ * things it defends against, and an entry whose defining line has since gained or lost a ply
+ * is exactly that. It would pass every other assertion here and then hand the walk a last
+ * prelude board that is not the root — so the final press of next would jump to a position
+ * the board before it never reached, with nothing on the page saying so.
+ */
+describe('the prelude meets the tree', () => {
+  const entry = (): CompiledEntry => {
+    const parsed: unknown = JSON.parse(compiledEntry)
+    if (!isCompiledEntry(parsed)) throw new Error('the fixture is not a compiled entry')
+    return parsed
+  }
+
+  it('is accepted when the last prelude board is the root, one step per ply plus the start', () => {
+    const fixture = entry()
+
+    expect(fixture.prelude.length).toBe(fixture.definingLine.length + 1)
+    expect(fixture.prelude.at(-1)?.fen).toBe(fixture.tree.fen)
+    expect(isCompiledEntry(fixture)).toBe(true)
+  })
+
+  it('is refused when the prelude stops one ply short of the root', () => {
+    const fixture = entry()
+
+    expect(isCompiledEntry({ ...fixture, prelude: fixture.prelude.slice(0, -1) })).toBe(false)
+  })
+
+  it('is refused when the prelude runs one ply past it', () => {
+    const fixture = entry()
+    const last = fixture.prelude.at(-1)
+    if (last === undefined) throw new Error('the fixture has no prelude')
+
+    expect(isCompiledEntry({ ...fixture, prelude: [...fixture.prelude, last] })).toBe(false)
+  })
+
+  /** The length can be right while the boards disagree, which is the stale-deploy shape. */
+  it('is refused when it ends on a board that is not the root', () => {
+    const fixture = entry()
+    const head = fixture.prelude.slice(0, -1)
+    const elsewhere = fixture.prelude[0]
+    if (elsewhere === undefined) throw new Error('the fixture has no prelude')
+
+    expect(isCompiledEntry({ ...fixture, prelude: [...head, elsewhere] })).toBe(false)
   })
 })
 

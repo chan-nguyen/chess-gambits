@@ -82,17 +82,34 @@ export const applyPly = (from: Position, san: string): PlyResult => {
 
 /** Replay a sequence of plies from the standard start position (invariant 1). */
 export type ReplayResult =
-  | { readonly ok: true; readonly position: Position; readonly canonical: readonly string[] }
+  | {
+      readonly ok: true
+      readonly position: Position
+      readonly canonical: readonly string[]
+      /**
+       * Every position the replay passed through, start included, so `positions` is one
+       * longer than `canonical` and `positions[i]` is the position after `i` plies.
+       *
+       * Kept here rather than re-derived by a caller that wants the intermediate boards.
+       * A second replay is a second chance to replay something slightly different, and the
+       * prelude of a gambit page (#70) draws those boards: a board derived by a different
+       * walk from the one that validated the line is exactly the drift invariant 1 exists
+       * to prevent.
+       */
+      readonly positions: readonly Position[]
+    }
   | { readonly ok: false; readonly index: number; readonly suggestions: readonly string[] }
 
 export const replay = (plies: readonly string[]): ReplayResult => {
   const canonical: string[] = []
   let position = startPosition()
+  const positions: Position[] = [position]
   for (const [index, ply] of plies.entries()) {
     const result = applyPly(position, ply)
     if (!result.ok) return { ok: false, index, suggestions: result.suggestions }
     canonical.push(result.canonical)
     position = result.position
+    positions.push(position)
   }
-  return { ok: true, position, canonical }
+  return { ok: true, position, canonical, positions }
 }

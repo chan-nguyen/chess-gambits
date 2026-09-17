@@ -5,6 +5,7 @@ import { I18nProvider } from '../../i18n/I18nProvider.tsx'
 import type { LocaleLoader } from '../../i18n/i18n.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
 import { lineSearch } from '../../lib/line.ts'
+import { preludeSearch } from '../../lib/prelude.ts'
 import viCatalogue from '../../locales/vi.ts'
 import { GambitRoute } from '../../routes/gambit.tsx'
 import { BRANCHING_ENTRY } from './tree-fixtures.ts'
@@ -43,12 +44,15 @@ const serve = (entry: CompiledEntry): void => {
 
 type Options = {
   readonly line?: readonly string[]
+  /** How many plies of the defining line to stand after (#70). Omitted means the root. */
+  readonly prelude?: number
   /** The viewport this test means. Defaults to the widest of §1's three layouts. */
   readonly width?: number
 }
 
-const renderGambit = ({ line = [], width = treeBreakpoints.wide }: Options = {}) => {
+const renderGambit = ({ line = [], prelude, width = treeBreakpoints.wide }: Options = {}) => {
   window.innerWidth = width
+  const search = prelude === undefined ? lineSearch(line) : preludeSearch(prelude)
 
   const router = createMemoryRouter(
     [
@@ -62,7 +66,7 @@ const renderGambit = ({ line = [], width = treeBreakpoints.wide }: Options = {})
         children: [{ path: 'gambits/:id', element: <GambitRoute /> }],
       },
     ],
-    { initialEntries: [`/vi/gambits/${BRANCHING_ENTRY.id}${lineSearch(line)}`] },
+    { initialEntries: [`/vi/gambits/${BRANCHING_ENTRY.id}${search}`] },
   )
   render(<RouterProvider router={router} />)
   return router
@@ -93,7 +97,7 @@ describe('the whole tree, with the current node highlighted (AC 1)', () => {
     await tree()
 
     expect(nodes().map((item) => item.textContent)).toStrictEqual([
-      LEARN.startingPosition,
+      LEARN.gambitRoot,
       `6...Bxd1#${VI.mateIn} 2`,
       '6...Nxe5',
       '7.Qxh5',
@@ -113,7 +117,26 @@ describe('the whole tree, with the current node highlighted (AC 1)', () => {
   it('marks the root when the URL names no line at all', async () => {
     await tree()
 
-    expect(node(LEARN.startingPosition)).toHaveAttribute('aria-current', 'true')
+    expect(node(LEARN.gambitRoot)).toHaveAttribute('aria-current', 'true')
+  })
+
+  /**
+   * AC 4, in the tree. The tree starts at the gambit root, so while the learner is inside the
+   * defining line they are not standing on any node in it — and marking the root `current`
+   * for nine plies during which the board shows something else would be telling a screen
+   * reader the wrong position, which is worse than a highlight in the wrong place.
+   */
+  it('marks nothing while the learner is inside the defining line', async () => {
+    await tree({ prelude: 2 })
+
+    expect(nodes().filter((item) => item.getAttribute('aria-current') === 'true')).toStrictEqual([])
+  })
+
+  /** And the tree keeps a tab stop, because a tree a keyboard cannot enter is not one. */
+  it('keeps the roving tab stop on the root while the learner is in the defining line', async () => {
+    await tree({ prelude: 2 })
+
+    expect(nodes().filter((item) => item.tabIndex === 0)).toStrictEqual([node(LEARN.gambitRoot)])
   })
 
   /**
@@ -152,10 +175,7 @@ describe('the nodes are links (AC 2)', () => {
       'href',
       `/vi/gambits/${BRANCHING_ENTRY.id}${lineSearch(['Bxd1'])}`,
     )
-    expect(node(LEARN.startingPosition)).toHaveAttribute(
-      'href',
-      `/vi/gambits/${BRANCHING_ENTRY.id}`,
-    )
+    expect(node(LEARN.gambitRoot)).toHaveAttribute('href', `/vi/gambits/${BRANCHING_ENTRY.id}`)
   })
 
   it('is an anchor, which is the whole reason a middle click works', async () => {
@@ -258,7 +278,7 @@ describe('the overlay never covers the focused element (AC 4)', () => {
   it('keeps Tab inside it', async () => {
     const overlay = await openOverlay()
     const close = within(overlay).getByRole('button', { name: VI.close })
-    const last = within(overlay).getByRole('treeitem', { name: LEARN.startingPosition })
+    const last = within(overlay).getByRole('treeitem', { name: LEARN.gambitRoot })
 
     fireEvent.keyDown(overlay, { key: 'Tab', shiftKey: true })
     expect(last).toHaveFocus()
@@ -336,7 +356,7 @@ describe('one tab stop, arrow keys inside (AC 7)', () => {
 
   it('moves focus between nodes, and moves the tab stop with it', async () => {
     await tree()
-    const root = node(LEARN.startingPosition)
+    const root = node(LEARN.gambitRoot)
     root.focus()
 
     fireEvent.keyDown(root, { key: 'ArrowDown' })
@@ -349,7 +369,7 @@ describe('one tab stop, arrow keys inside (AC 7)', () => {
 
   it('walks into a branch and back out of it', async () => {
     await tree()
-    const root = node(LEARN.startingPosition)
+    const root = node(LEARN.gambitRoot)
     root.focus()
 
     fireEvent.keyDown(root, { key: 'ArrowRight' })
@@ -366,7 +386,7 @@ describe('one tab stop, arrow keys inside (AC 7)', () => {
    */
   it('does not also step the line', async () => {
     const router = await tree()
-    const root = node(LEARN.startingPosition)
+    const root = node(LEARN.gambitRoot)
     root.focus()
 
     fireEvent.keyDown(root, { key: 'ArrowRight' })
@@ -399,7 +419,7 @@ describe('a tree with nothing in it yet', () => {
     await tree()
 
     expect(nodes()).toHaveLength(1)
-    expect(node(new RegExp(`^${LEARN.startingPosition}`))).toHaveTextContent(VI.unexplored)
+    expect(node(new RegExp(`^${LEARN.gambitRoot}`))).toHaveTextContent(VI.unexplored)
     const region = screen.getByRole('region', { name: VI.heading })
     expect(region).toHaveTextContent(`${VI.positions} 1`)
     expect(region).toHaveTextContent(`${VI.lines} 1`)

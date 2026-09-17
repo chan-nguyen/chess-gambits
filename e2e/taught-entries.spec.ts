@@ -114,8 +114,12 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
 
       await atGambit(page, entry.id, [])
       await expect(page.getByRole('navigation', { name: vi.learn.navigation })).toBeVisible()
-      // Issue #54: the root is the position after the defining line, so it marks no ply.
-      await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(0)
+      /*
+       * Issue #54 marked the ply that produced the position; #70 gave the root one. The root
+       * is the position after the defining line, whose last ply the page now walks through,
+       * so the two squares of that ply are marked here exactly as they are everywhere else.
+       */
+      await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(2)
 
       const entryPath = `${cataloguePath}/${entry.id}`
 

@@ -303,7 +303,7 @@ test.describe('the refutation control and the keyboard', () => {
 
   test('is one tab stop, and moves between nodes with the arrow keys', async ({ page }) => {
     await open(page)
-    await nodeAt(page, new RegExp(`^${vi.learn.startingPosition}`)).focus()
+    await nodeAt(page, new RegExp(`^${vi.learn.gambitRoot}`)).focus()
 
     await page.keyboard.press('ArrowDown')
     await expect(nodeAt(page, /^6\.\.\.Bxd1/)).toBeFocused()

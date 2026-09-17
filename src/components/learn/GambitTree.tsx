@@ -46,6 +46,17 @@ export type GambitTreeProps = {
   readonly entry: CompiledEntry
   /** The plies the URL asked for, already shape-checked by `parseLine`. */
   readonly requested: readonly string[]
+  /**
+   * True while the learner is inside the defining line, before the gambit root (#70).
+   *
+   * The tree is the tree from the root down, so the prelude is not in it and no item is
+   * current while the learner is walking it. Without this the root would be marked
+   * `aria-current` for nine plies during which the board shows something else, which is a
+   * screen reader being told the wrong position rather than a highlight in the wrong place.
+   * The roving tab stop is deliberately left on the root: a tree with no tab stop is a tree
+   * a keyboard cannot enter.
+   */
+  readonly inPrelude: boolean
 }
 
 const modeNow = (): TreeMode => {
@@ -80,7 +91,7 @@ const focusableIn = (root: HTMLElement): readonly HTMLElement[] =>
     (element): element is HTMLElement => element instanceof HTMLElement && element.tabIndex >= 0,
   )
 
-export const GambitTree = ({ entry, requested }: GambitTreeProps) => {
+export const GambitTree = ({ entry, requested, inPrelude }: GambitTreeProps) => {
   const { pathname } = useLocation()
   const translated = useTranslated()
   const mode = useTreeMode()
@@ -224,7 +235,7 @@ export const GambitTree = ({ entry, requested }: GambitTreeProps) => {
   }
 
   const node = (item: TreeItem): ReactNode => {
-    const current = item.key === currentKey
+    const current = !inPrelude && item.key === currentKey
     const { ply } = item.node
 
     return (
@@ -242,9 +253,13 @@ export const GambitTree = ({ entry, requested }: GambitTreeProps) => {
         onFocus={() => setFocusedKey(item.key)}
       >
         <span className="gambit-tree__ply">
-          {ply === undefined
-            ? translated('learn.startingPosition').text
-            : plyLabel(ply, item.node.fen)}
+          {/*
+           * The root, and it is the *gambit* root rather than the starting position. Those
+           * were the same place until #70 made the defining line walkable; now the starting
+           * position is a real, separate board on this page and a second thing labelled
+           * "starting position" would name two different positions in one view.
+           */}
+          {ply === undefined ? translated('learn.gambitRoot').text : plyLabel(ply, item.node.fen)}
         </span>
         {marker(item)}
         {proof(item)}

@@ -155,6 +155,23 @@ export type Soundness = {
   readonly basis: Provenance
 }
 
+/**
+ * One position of the **prelude**: the walk from the initial position through the defining
+ * line, ending at the gambit root.
+ *
+ * Derived, exactly like a node's FEN and for the same reason (invariant 1). The browser has
+ * no rules engine — chess.js is a build dependency and the board tripwire keeps it that way
+ * — so the only place these boards can come from is the same replay that validated the
+ * line.
+ *
+ * `ply` is absent on the first step, which is the initial position and was reached by no
+ * move. That mirrors `ContentNode.ply`, which is absent on the root for the same reason.
+ */
+export type PreludeStep = {
+  readonly ply: string | undefined
+  readonly fen: string
+}
+
 export type Entry = {
   readonly id: string
   readonly name: string
@@ -163,6 +180,11 @@ export type Entry = {
   /** The side the learner plays. Determines which nodes are learner nodes. */
   readonly side: Side
   readonly definingLine: readonly string[]
+  /**
+   * The initial position and every position the defining line passes through, in order, so
+   * its length is `definingLine.length + 1` and its last entry is the root's own position.
+   */
+  readonly prelude: readonly PreludeStep[]
   readonly soundness: Soundness
   /**
    * Provenance for every authored judgement in this entry that is not a leaf assessment:

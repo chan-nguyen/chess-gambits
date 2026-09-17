@@ -90,8 +90,14 @@ test.describe('the core loop', () => {
     await list.getByRole('link', { name: '4.Qh5+' }).click()
 
     await expect(page).toHaveURL(lineUrl(gambit, ['fxe5', 'Qh5+']))
+    // The defining line leads the list since #70: one walk from move one, not two (AC 1).
     await expect(list.getByRole('link')).toHaveText([
       vi.learn.startingPosition,
+      '1.e4',
+      '1...e5',
+      '2.Nf3',
+      '2...f6',
+      '3.Nxe5',
       '3...fxe5',
       '4.Qh5+',
     ])
@@ -317,8 +323,13 @@ test.describe('the last-ply highlight', () => {
     page,
   }) => {
     await open(page)
-    // The root is the position after the defining line; nothing has been stepped to.
-    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(0)
+    /*
+     * The root marks the defining line's last ply since #70. It used to mark nothing, on the
+     * reasoning that the move had never been shown — and the walk from move one is exactly
+     * what made that untrue. The unmarked board is now the initial position, asserted in
+     * `defining-line.spec.ts`.
+     */
+    await expect.poll(() => marked(page, BOARD)).toBe('f3-e5')
 
     // Polled rather than read once: `toHaveURL` resolves on the address bar, and the
     // commit that paints the new position lands a tick later.
@@ -332,8 +343,10 @@ test.describe('the last-ply highlight', () => {
     await previousControl(page).click()
     await expect.poll(() => marked(page, BOARD)).toBe('f6-e5')
 
+    // Back to the root, which since #70 marks the defining line's last ply rather than
+    // nothing: the walk continues behind it, so there is a "what just changed" to answer.
     await previousControl(page).click()
-    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(0)
+    await expect.poll(() => marked(page, BOARD)).toBe('f3-e5')
   })
 
   /**

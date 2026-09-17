@@ -8,6 +8,7 @@ import type {
   CompiledJudgement,
   CompiledNode,
   CompiledOutcome,
+  CompiledPreludeStep,
   CompiledProved,
   CompiledProvenance,
   CompiledSoundness,
@@ -157,6 +158,16 @@ const isNode = (value: unknown): value is CompiledNode =>
   optional(isOutcome)(value.outcome) &&
   optional(isStrings)(value.transposesTo)
 
+/**
+ * Shape only, like every guard here. What the *walk* needs beyond the shape — that the
+ * prelude is one longer than the defining line and ends where the tree begins — is asserted
+ * on the build side, where the boards are derived, rather than re-litigated on every fetch.
+ * `walk.ts` is written to be total against any array this accepts, including an empty one,
+ * so a truncated prelude costs a learner the walk and never a blank page.
+ */
+const isPreludeStep = (value: unknown): value is CompiledPreludeStep =>
+  isRecord(value) && isOptionalString(value.ply) && isString(value.fen)
+
 const isSoundness = (value: unknown): value is CompiledSoundness =>
   isRecord(value) &&
   isSoundnessValue(value.value) &&
@@ -169,6 +180,32 @@ const isSoundness = (value: unknown): value is CompiledSoundness =>
  * mobile connection, or a stale service worker all produce *something* that parses; none
  * of them produce an entry, and only this tells the difference between the two.
  */
+/**
+ * The prelude meets the tree where the tree begins (review addition, #70).
+ *
+ * Every other check on this page is about the shape of one field. This is about two fields
+ * agreeing, and it is here rather than only in the build because the build is not what the
+ * browser is defending against. The comment on `isCompiledEntry` names the cases: a stale
+ * service worker, a truncated response, a deploy-time 404 answered with something that
+ * parses. A prelude from an older revision of the defining line satisfies every shape check
+ * in this file and still lands the learner on a board that is not the root — so pressing
+ * next at the end of the walk would jump, silently, to a position the previous board never
+ * reached. That is the one thing the whole join is for.
+ *
+ * Both halves come free from the compiler: `validate.ts` derives the prelude from the same
+ * replay that checks the defining line, so a real file always has one board per ply plus the
+ * initial position, ending exactly on the root.
+ */
+const preludeMeetsTree = (
+  prelude: readonly CompiledPreludeStep[],
+  definingLine: readonly string[],
+  tree: CompiledNode,
+): boolean => {
+  const last = prelude.at(-1)
+
+  return prelude.length === definingLine.length + 1 && last !== undefined && last.fen === tree.fen
+}
+
 export const isCompiledEntry = (value: unknown): value is CompiledEntry =>
   isRecord(value) &&
   isString(value.id) &&
@@ -177,10 +214,12 @@ export const isCompiledEntry = (value: unknown): value is CompiledEntry =>
   isCategory(value.category) &&
   isSide(value.side) &&
   isStrings(value.definingLine) &&
+  arrayOf(isPreludeStep)(value.prelude) &&
   isSoundness(value.soundness) &&
   isProvenance(value.judgement) &&
   isNode(value.tree) &&
-  isTier(value.tier)
+  isTier(value.tier) &&
+  preludeMeetsTree(value.prelude, value.definingLine, value.tree)
 
 export const loadEntry = async (id: string): Promise<EntryLoad> => {
   if (!isGambitId(id)) return { ok: false, failure: { reason: 'unknown-id' } }

@@ -6,6 +6,7 @@ import type { LocaleLoader } from '../../i18n/i18n.ts'
 import type { PartialTranslations } from '../../i18n/translations.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
 import { lineSearch } from '../../lib/line.ts'
+import { preludeSearch } from '../../lib/prelude.ts'
 import { isLocale, type Locale } from '../../lib/locale.ts'
 import en from '../../locales/en.ts'
 import fr from '../../locales/fr.ts'
@@ -15,6 +16,8 @@ import {
   EVANS_ENTRY,
   MAIN_LINE,
   MAPPED_ENTRY,
+  MATE_ENTRY,
+  MATE_LINE,
   OUTCOMES_ENTRY,
   OUTCOME_ASSESSMENT_LINE,
   OUTCOME_MATE_LINE,
@@ -69,6 +72,8 @@ const serve = (entry: CompiledEntry | null): void => {
 type Options = {
   readonly locale?: Locale
   readonly line?: readonly string[]
+  /** How many plies of the defining line to stand after (#70). Omitted means the root. */
+  readonly prelude?: number
   /**
    * A fixture to serve in place of the default. The URL follows it, because `loadEntry`
    * refuses a file that names a different entry — correctly, since that is a misconfigured
@@ -78,9 +83,10 @@ type Options = {
   readonly entry?: CompiledEntry
 }
 
-const renderGambit = ({ locale = 'vi', line = [], entry }: Options = {}) => {
+const renderGambit = ({ locale = 'vi', line = [], prelude, entry }: Options = {}) => {
   if (entry !== undefined) serve(entry)
   const id = entry?.id ?? MAPPED_ENTRY.id
+  const search = prelude === undefined ? lineSearch(line) : preludeSearch(prelude)
   const router = createMemoryRouter(
     [
       {
@@ -93,7 +99,7 @@ const renderGambit = ({ locale = 'vi', line = [], entry }: Options = {}) => {
         children: [{ path: 'gambits/:id', element: <GambitRoute /> }],
       },
     ],
-    { initialEntries: [`/${locale}/gambits/${id}${lineSearch(line)}`] },
+    { initialEntries: [`/${locale}/gambits/${id}${search}`] },
   )
   render(<RouterProvider router={router} />)
   return router
@@ -136,13 +142,36 @@ describe('previous and next (AC 1)', () => {
     await waitFor(() => expect(router.state.location.search).toBe(''))
   })
 
-  it('disables previous at the root, and says so rather than only greying it', async () => {
-    await surface()
+  /**
+   * **What #70 moved.** Previous used to be disabled at the gambit root, because the root
+   * was the first position there was. It is now the fifth: the defining line is behind it
+   * and previous steps into it, which is the whole point of the ticket.
+   */
+  it('steps back into the defining line from the root', async () => {
+    const router = await surface()
+
+    fireEvent.click(control(VI.previousPly))
+
+    await waitFor(() => expect(router.state.location.search).toBe('?prelude=4'))
+  })
+
+  it('disables previous at the initial position, and says so rather than only greying it', async () => {
+    await surface({ prelude: 0 })
     const previous = control(VI.previousPly)
 
     expect(previous).toHaveAttribute('aria-disabled', 'true')
     expect(previous).not.toHaveAttribute('href')
     expect(previous).toHaveAccessibleDescription(VI.atStart)
+  })
+
+  /** AC 2's other half: the gambit root is still one control away, from anywhere. */
+  it('disables back-to-the-line only at the gambit root', async () => {
+    await surface()
+    const root = control(VI.toRoot)
+
+    expect(root).toHaveAttribute('aria-disabled', 'true')
+    expect(root).not.toHaveAttribute('href')
+    expect(root).toHaveAccessibleDescription(VI.atRoot)
   })
 
   it('disables next at a leaf, and says so', async () => {
@@ -157,8 +186,28 @@ describe('previous and next (AC 1)', () => {
     serve({ ...MAPPED_ENTRY, tree: { kind: 'opponent', fen: MAPPED_ENTRY.tree.fen } })
     await surface()
 
-    expect(control(VI.previousPly)).toHaveAccessibleDescription(`${VI.atStart} ${VI.atEnd}`)
-    expect(control(VI.nextPly)).toHaveAccessibleDescription(`${VI.atStart} ${VI.atEnd}`)
+    // The root of a one-node tree is the end of the line and the start of nothing: the
+    // defining line is still behind it, so previous and "back to the start" both work.
+    expect(control(VI.nextPly)).toHaveAccessibleDescription(`${VI.atRoot} ${VI.atEnd}`)
+    expect(control(VI.previousPly)).toHaveAttribute('href')
+    expect(control(VI.toStart)).toHaveAttribute('href')
+  })
+
+  /** AC 6: a Listed entry is walkable through its defining line and then says it is not mapped. */
+  it('walks a listed entry to the root and reports the unexplored outcome there', async () => {
+    serve({
+      ...MAPPED_ENTRY,
+      tier: 'listed',
+      tree: { kind: 'opponent', fen: MAPPED_ENTRY.tree.fen, outcome: { kind: 'unexplored' } },
+    })
+    const router = await surface({ prelude: 4 })
+
+    expect(screen.queryByText(viCatalogue.outcome.unexploredHeading)).toBeNull()
+
+    fireEvent.click(control(VI.nextPly))
+
+    await waitFor(() => expect(router.state.location.search).toBe(''))
+    await screen.findByText(viCatalogue.outcome.unexploredHeading)
   })
 
   it('enables both in the middle of a line', async () => {
@@ -170,12 +219,30 @@ describe('previous and next (AC 1)', () => {
     expect(screen.queryByText(VI.atEnd)).toBeNull()
   })
 
-  it('jumps back to the start from deep in a line', async () => {
+  /** AC 2: "back to the start" now reaches the initial position, not the gambit root. */
+  it('jumps back to the initial position from deep in a line', async () => {
     const router = await surface({ line: MAIN_LINE })
 
     fireEvent.click(control(VI.toStart))
 
+    await waitFor(() => expect(router.state.location.search).toBe('?prelude=0'))
+  })
+
+  /**
+   * AC 2's second half, and the reason there are two controls. The gambit root is what
+   * almost every published link points at, so the old destination stays one press away —
+   * from inside the defining line as well as from inside the tree.
+   */
+  it('jumps back to the gambit root from deep in a line and from the prelude', async () => {
+    const router = await surface({ line: MAIN_LINE })
+
+    fireEvent.click(control(VI.toRoot))
     await waitFor(() => expect(router.state.location.search).toBe(''))
+
+    cleanup()
+    const second = await surface({ prelude: 1 })
+    fireEvent.click(control(VI.toRoot))
+    await waitFor(() => expect(second.state.location.search).toBe(''))
   })
 })
 
@@ -199,6 +266,49 @@ describe('the controls are links', () => {
 
     expect(control(VI.nextPly)).toHaveAttribute('rel', 'next')
     expect(control(VI.previousPly)).toHaveAttribute('rel', 'prev')
+  })
+})
+
+/**
+ * **Acceptance criterion 5.** The denominator is countable branches in the tree, and the
+ * defining line adds none — so the count a learner reads must be the same number while they
+ * are walking the opening as it is at the root and as it is deep in a line.
+ *
+ * Asserted through the whole page rather than against `countableBranches`, which takes only
+ * the tree and therefore cannot see a prelude even if someone wanted it to. What could go
+ * wrong is a level up: the route handing the progress panel something derived from the walk.
+ */
+describe('progress counting is unaffected by the walk (AC 5)', () => {
+  const count = () =>
+    screen.getByRole('region', { name: viCatalogue.progress.heading }).textContent ?? ''
+
+  // The mate fixture, because it has exactly one countable branch: a denominator that is
+  // already zero could not show the defining line being added to it.
+  it('reads the same at the initial position, inside the defining line and at the root', async () => {
+    await surface({ entry: MATE_ENTRY, prelude: 0 })
+    const atStart = count()
+
+    cleanup()
+    await surface({ entry: MATE_ENTRY, prelude: 5 })
+    const inPrelude = count()
+
+    cleanup()
+    await surface({ entry: MATE_ENTRY })
+    const atRoot = count()
+
+    cleanup()
+    await surface({ entry: MATE_ENTRY, line: MATE_LINE })
+    const deep = count()
+
+    expect([inPrelude, atRoot]).toStrictEqual([atStart, atStart])
+    // The denominator is the part that must not move; deep in the line the *numerator*
+    // control appears, because that branch is markable and the others are not.
+    expect(atStart).toContain(
+      viCatalogue.progress.count.replace('{{learned}}', '0').replace('{{total}}', '1'),
+    )
+    expect(deep).toContain(
+      viCatalogue.progress.count.replace('{{learned}}', '0').replace('{{total}}', '1'),
+    )
   })
 })
 
@@ -252,11 +362,33 @@ describe('the arrow keys (AC 2)', () => {
   })
 
   it('does nothing at an edge rather than wrapping round', async () => {
-    const router = await surface()
+    // The initial position, which is where the edge moved to when #70 put the defining
+    // line in front of the root. Left at the root now steps back into it.
+    const router = await surface({ prelude: 0 })
 
     fireEvent.keyDown(window, { key: 'ArrowLeft' })
 
-    expect(router.state.location.search).toBe('')
+    expect(router.state.location.search).toBe('?prelude=0')
+  })
+
+  /** AC 1: next and previous are continuous across the join, with no reload and no mode. */
+  it('crosses the join between the defining line and the tree', async () => {
+    const router = await surface({ prelude: 3 })
+
+    fireEvent.keyDown(window, { key: 'ArrowRight' })
+    await waitFor(() => expect(router.state.location.search).toBe('?prelude=4'))
+
+    fireEvent.keyDown(window, { key: 'ArrowRight' })
+    await waitFor(() => expect(router.state.location.search).toBe(''))
+
+    fireEvent.keyDown(window, { key: 'ArrowRight' })
+    await waitFor(() => expect(router.state.location.search).toBe('?line=fxe5'))
+
+    fireEvent.keyDown(window, { key: 'ArrowLeft' })
+    await waitFor(() => expect(router.state.location.search).toBe(''))
+
+    fireEvent.keyDown(window, { key: 'ArrowLeft' })
+    await waitFor(() => expect(router.state.location.search).toBe('?prelude=4'))
   })
 
   it('leaves the arrow keys to the board when focus is inside it', async () => {
@@ -389,7 +521,7 @@ describe('the annotation panel (AC 4)', () => {
     await surface({ locale: 'en' })
 
     expect(screen.getByText(/White has just offered the knight/)).toBeVisible()
-    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(EN.startingPosition)
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(`${EN.after} 3.Nxe5`)
     expect(screen.getByRole('link', { name: EN.nextPly })).toBeVisible()
   })
 
@@ -420,10 +552,34 @@ describe('the annotation panel (AC 4)', () => {
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(`${VI.after} 4.Qh5+`)
   })
 
-  it('calls the root the starting position rather than showing a bare number', async () => {
+  /**
+   * **What #70 moved.** The root used to be headed "starting position", because it was the
+   * first position the page could show. It is now the position after the defining line's
+   * last ply — a ply the learner can have just played — so it is named like every other, and
+   * "starting position" is the heading of the position that actually is one.
+   */
+  it('names the root after the defining line s last ply', async () => {
     await surface()
 
+    expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(`${VI.after} 3.Nxe5`)
+  })
+
+  it('calls the initial position the starting position rather than showing a bare number', async () => {
+    await surface({ prelude: 0 })
+
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(VI.startingPosition)
+  })
+
+  /**
+   * AC 4, in the panel. A defining-line ply has no node, so it has no annotation, and the
+   * page says which half of the walk the learner is in rather than complaining about content
+   * that was never supposed to exist.
+   */
+  it('explains the defining line instead of showing the missing-annotation state', async () => {
+    await surface({ prelude: 2 })
+
+    expect(screen.getByText(VI.preludePly)).toBeVisible()
+    expect(screen.queryByText(VI.noAnnotation)).toBeNull()
   })
 })
 
@@ -439,12 +595,41 @@ describe('the move list (AC 8)', () => {
         .map((item) => item.textContent),
     ).toStrictEqual([
       VI.startingPosition,
+      // The defining line, which #70 put in front of the path: one walk, not two (AC 1).
+      '1.e4',
+      '1...e5',
+      '2.Nf3',
+      '2...f6',
+      '3.Nxe5',
       '3...fxe5',
       '4.Qh5+',
       '4...Ke7',
       '5.Qxe5+',
       '5...Kf7',
       '6.Bc4+',
+    ])
+  })
+
+  /**
+   * And the addresses under those labels, which is AC 3 in the move list: the defining line
+   * carries `?prelude=`, everything from the root down carries `?line=` and nothing else, and
+   * the root itself carries no parameter at all.
+   */
+  it('addresses the defining line by prelude and the tree by line', async () => {
+    await surface({ line: ['fxe5'] })
+
+    expect(
+      within(list())
+        .getAllByRole('link')
+        .map((link) => link.getAttribute('href')),
+    ).toStrictEqual([
+      '/vi/gambits/damiano-defence-refutation?prelude=0',
+      '/vi/gambits/damiano-defence-refutation?prelude=1',
+      '/vi/gambits/damiano-defence-refutation?prelude=2',
+      '/vi/gambits/damiano-defence-refutation?prelude=3',
+      '/vi/gambits/damiano-defence-refutation?prelude=4',
+      '/vi/gambits/damiano-defence-refutation',
+      '/vi/gambits/damiano-defence-refutation?line=fxe5',
     ])
   })
 
@@ -461,7 +646,7 @@ describe('the move list (AC 8)', () => {
   })
 
   it('marks the start when that is where the learner is', async () => {
-    await surface()
+    await surface({ prelude: 0 })
 
     expect(within(list()).getByRole('link', { name: VI.startingPosition })).toHaveAttribute(
       'aria-current',
@@ -538,8 +723,8 @@ describe('the board it puts in front of the learner', () => {
     expect(screen.getByRole('status')).toHaveTextContent(`Qh5+, ${VI.check}`)
   })
 
-  it('says nothing at the root, where no ply has been played', async () => {
-    await surface()
+  it('says nothing at the initial position, where no ply has been played', async () => {
+    await surface({ prelude: 0 })
 
     expect(screen.getByRole('status')).toHaveTextContent('')
   })
@@ -576,7 +761,17 @@ describe('while the tree is still arriving, and when it never does', () => {
  * The feature the product exists for, through the whole surface: the URL, the keyboard and
  * the choices, wired to each other rather than each tested against a stub.
  */
-const choice = (name: RegExp) => screen.getByRole('link', { name })
+/**
+ * Scoped to the replies rather than to the page since #70: the move list now shows the
+ * defining line, and the Evans defining line contains `Bc5` — the same SAN as one of the
+ * replies below it. An unscoped query matched both and failed on the ambiguity, which was
+ * the test noticing a real thing about the page rather than a bug in either.
+ */
+const choice = (name: RegExp) => {
+  const replies = document.querySelector('.branch-choices, .plan-choices')
+  if (!(replies instanceof HTMLElement)) throw new Error('no replies are on screen')
+  return within(replies).getByRole('link', { name })
+}
 
 describe('choosing a reply (AC 5)', () => {
   it('renders every modelled reply at a branch point, not just the first', async () => {
@@ -922,10 +1117,23 @@ describe('the ply that produced the position', () => {
     expect(board?.querySelectorAll('.board__last-ply')).toHaveLength(2)
   })
 
-  it('marks nothing at the root, where nothing has been stepped to (AC 2)', async () => {
-    await surface()
+  /**
+   * **What #70 moved.** The root used to be unmarked, on the reasoning that marking the
+   * defining line's last ply would point at a move the page had never shown. The page now
+   * shows it, and a learner can have just played it, so the root is marked like every other
+   * position and the unmarked board is the initial one.
+   */
+  it('marks nothing at the initial position, where nothing has been stepped to (AC 2)', async () => {
+    await surface({ prelude: 0 })
 
     expect(mainBoard()?.querySelectorAll('.board__last-ply')).toHaveLength(0)
+  })
+
+  it('marks the defining line s last ply at the root', async () => {
+    await surface()
+
+    // 3.Nxe5: the knight left f3 and took on e5, which is the last ply of the defining line.
+    expect(marks(mainBoard())).toBe('f3-e5')
   })
 
   it('marks the ply that produced *that* position when stepping back (AC 2)', async () => {
@@ -935,8 +1143,12 @@ describe('the ply that produced the position', () => {
     fireEvent.click(control(VI.previousPly))
     await waitFor(() => expect(marks(mainBoard())).toBe('f6-e5'))
 
+    // Back across the join, which is the step that did not exist before #70.
     fireEvent.click(control(VI.previousPly))
-    await waitFor(() => expect(mainBoard()?.querySelectorAll('.board__last-ply')).toHaveLength(0))
+    await waitFor(() => expect(marks(mainBoard())).toBe('f3-e5'))
+
+    fireEvent.click(control(VI.previousPly))
+    await waitFor(() => expect(marks(mainBoard())).toBe('f7-f6'))
   })
 
   /**

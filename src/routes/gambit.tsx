@@ -5,23 +5,27 @@ import { NotTaughtYet } from '../components/catalogue/EmptyTree.tsx'
 import { useCatalogue } from '../components/catalogue/useCatalogue.ts'
 import { LearningSurface, PendingPosition } from '../components/learn/LearningSurface.tsx'
 import { GambitTree } from '../components/learn/GambitTree.tsx'
+import { inPreludeAt } from '../components/learn/walk.ts'
 import { GambitProgress } from '../components/progress/GambitProgress.tsx'
 import { ContentLoadError } from '../components/content/ContentLoadError.tsx'
 import { findEntry, fullName } from '../lib/catalogue.ts'
 import type { CompiledEntry } from '../lib/content-types.ts'
 import { loadEntry, type EntryLoad, type EntryLoadFailure } from '../lib/content.ts'
 import { describeLineProblem, lineParam, parseLine } from '../lib/line.ts'
+import { describePreludeProblem, parsePrelude, preludeParam } from '../lib/prelude.ts'
 import { defaultLocale, isLocale } from '../lib/locale.ts'
 
 /**
  * The learning surface (#8): a position, its annotation, and the controls that step
  * through the line.
  *
- * Two attacker-controlled values arrive here and each is handled at its own boundary
+ * Three attacker-controlled values arrive here and each is handled at its own boundary
  * (docs/security.md, B4). The `line` parameter is parsed for *shape* by `parseLine` and
  * recovered to the longest prefix that reads as SAN; the plies that survive are then
  * walked against the real tree by `resolvePath`, which recovers again to the nearest node
- * that exists. Neither can throw, and neither produces a blank page — a bad link lands on
+ * that exists. The `prelude` parameter (#70) is parsed for shape by `parsePrelude` — a
+ * bounded whole number and nothing else — and clamped against the entry's own defining line
+ * by `walkEntry`. Neither can throw, and neither produces a blank page: a bad link lands on
  * a real position and says what it could not follow.
  *
  * The id is checked by `loadEntry` before it is put in a request path, so this route never
@@ -98,6 +102,11 @@ export const GambitRoute = () => {
   const [searchParams] = useSearchParams()
   const raw = searchParams.get(lineParam) ?? ''
   const { plies, problem } = useMemo(() => parseLine(raw), [raw])
+  const rawPrelude = searchParams.get(preludeParam) ?? ''
+  const { plies: prelude, problem: preludeProblem } = useMemo(
+    () => parsePrelude(rawPrelude),
+    [rawPrelude],
+  )
   const { state, retry } = useEntry(id)
 
   /**
@@ -132,6 +141,8 @@ export const GambitRoute = () => {
 
       {problem !== null && <p role="alert">{describeLineProblem(problem)}</p>}
 
+      {preludeProblem !== null && <p role="alert">{describePreludeProblem(preludeProblem)}</p>}
+
       {state.status === 'loading' && <PendingPosition />}
 
       {state.status === 'failed' &&
@@ -153,7 +164,7 @@ export const GambitRoute = () => {
 
       {state.status === 'loaded' && (
         <>
-          <LearningSurface entry={state.entry} requested={plies} />
+          <LearningSurface entry={state.entry} requested={plies} prelude={prelude} />
           {/*
            * #14's mount point, and it is here rather than inside the surface for two
            * reasons. The surface belongs to #9 and is being changed in parallel, and this
@@ -169,7 +180,11 @@ export const GambitRoute = () => {
            * 1024px the surface is itself a two-column grid, so a region nested in it would
            * land in one column instead of spanning the width §1 asks for.
            */}
-          <GambitTree entry={state.entry} requested={plies} />
+          <GambitTree
+            entry={state.entry}
+            requested={plies}
+            inPrelude={inPreludeAt(state.entry, prelude, plies)}
+          />
         </>
       )}
     </main>

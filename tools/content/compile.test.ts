@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { Chess } from 'chess.js'
 import { describe, expect, it } from 'vitest'
 import { compileEntry, compiledJson } from './compile.ts'
 import type { Entry } from './types.ts'
@@ -47,6 +48,42 @@ describe('what the build derives and the content may not state', () => {
     expect(everyNode(taught.tree).every((node) => node.kind !== undefined)).toBe(true)
   })
 
+  /**
+   * The prelude (#70): the boards for the walk from the initial position to the root.
+   *
+   * Derived here for the same reason every node's FEN is — the browser has no rules engine,
+   * so a position it is not handed is a position it cannot draw, and a position it is handed
+   * by anything other than the replay that validated the line is a position that can drift
+   * from the moves beside it.
+   */
+  it('gives the defining line a board per ply, plus the initial position', () => {
+    expect(taught.prelude).toHaveLength(taught.definingLine.length + 1)
+    expect(taught.prelude[0]).toStrictEqual({ fen: new Chess().fen() })
+    expect(taught.prelude.every((step) => step.fen.split(' ').length === 6)).toBe(true)
+  })
+
+  /**
+   * The join. The root *is* the position after the defining line, so if these two disagree
+   * the walk has a hole in it precisely where the two halves are supposed to meet — and a
+   * learner pressing next at the last defining-line ply would arrive at a different board
+   * from the one the ply produced.
+   */
+  it('ends the prelude exactly where the tree begins', () => {
+    for (const entry of [taught, listed, transposition]) {
+      expect(entry.prelude[entry.prelude.length - 1]?.fen).toBe(entry.tree.fen)
+    }
+  })
+
+  /** And every board in between is the board its own ply produces, replayed independently. */
+  it('derives each prelude board from the ply that reaches it', () => {
+    const board = new Chess()
+
+    for (const [index, ply] of taught.definingLine.entries()) {
+      board.move(ply)
+      expect(taught.prelude[index + 1]).toStrictEqual({ ply, fen: board.fen() })
+    }
+  })
+
   it('carries the derived tier', () => {
     expect(taught.tier).toBe('taught')
     expect(listed.tier).toBe('listed')
@@ -59,7 +96,15 @@ describe('what it drops, because JSON cannot say it', () => {
     const json = compiledJson(listed)
 
     expect(json).not.toContain('null')
-    expect(json).not.toContain('"ply"')
+
+    /*
+     * The *root* carries no ply, and the check is scoped to the tree since #70: the prelude
+     * is a list of plies and every one of them is present, so a whole-document search for
+     * `"ply"` stopped answering the question this test is asking. The prelude's own absent
+     * ply — the initial position, which no move reached — is asserted directly below.
+     */
+    expect(JSON.stringify(listed.tree)).not.toContain('"ply"')
+    expect(listed.prelude[0]).toStrictEqual({ fen: listed.prelude[0]?.fen })
   })
 
   it('omits an empty `dismissed` and an empty `children` on every leaf', () => {

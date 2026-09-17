@@ -80,12 +80,28 @@ const vi = {
   learn: {
     loading: 'Đang tải thế cờ…',
     navigation: 'Điều hướng trong biến',
-    toStart: 'Về đầu biến',
+    /**
+     * Two separate destinations since #70, and the labels have to keep them apart. Before it
+     * the walk began at the gambit root and "về đầu biến" was the only start there was; now
+     * the initial position is a real board on the same page, so one control names each.
+     *
+     * Both are short on purpose, and it is a layout constraint rather than taste. The
+     * navigator is one row at every width including 360px (`MoveNavigator.css`), and a fourth
+     * control takes the share of each from ~104px to ~60px — at which "Revenir à la position
+     * de départ" wrapped onto five lines and pushed the controls 15px below a 640px fold,
+     * breaking the one rule §1 will not bend. Measured, in French, by
+     * `e2e/move-navigation.spec.ts`.
+     */
+    toStart: 'Đầu ván',
+    toRoot: 'Đầu biến',
     previousPly: 'Nước trước',
     nextPly: 'Nước sau',
-    atStart: 'Đây là đầu biến.',
+    atStart: 'Đây là thế xuất phát.',
+    atRoot: 'Đây là đầu biến.',
     atEnd: 'Đây là cuối biến.',
     startingPosition: 'Thế xuất phát',
+    gambitRoot: 'Đầu biến',
+    preludePly: 'Nước này thuộc loạt nước mở đầu dẫn tới gambit. Phần giảng bắt đầu từ đầu biến.',
     after: 'Sau',
     noAnnotation: 'Nước này chưa có giải thích.',
     plyList: 'Các nước trong biến',
