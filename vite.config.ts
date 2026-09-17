@@ -1,6 +1,7 @@
 /// <reference types="vitest/config" />
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
+import { TestFileFloor } from './tools/test/vitest-floor.ts'
 
 /**
  * GitHub Pages serves a project site from /<repo>/ (ADR-0007), so the base path is
@@ -40,5 +41,35 @@ export default defineConfig({
      * the transform.
      */
     css: true,
+    /**
+     * `isolate` stays at its default, and so does `pool`, against the hint vitest prints under
+     * every run (issue #50, AC 3). The hint is honest about the arithmetic and wrong about the
+     * trade.
+     *
+     * Measured on this suite, three runs each: **10.80s** isolated, **9.30s** with
+     * `--no-isolate` — so the ~1.5s it promises is real, and it is 14% of a ten-second suite
+     * that runs inside a CI job dominated by `npm ci`, a build and Lighthouse. What it costs is
+     * one jsdom global and one module registry shared by every file that lands in the same
+     * worker. This project's recurring defect is precisely a test file quietly ceasing to be
+     * independent of its neighbours — i18next is a module singleton, and #50 itself was one
+     * file's side effect landing inside another file's import. Per-file isolation is the thing
+     * that makes those failures loud instead of intermittent, and 1.5s does not buy it back.
+     *
+     * `pool: 'vmThreads'` is not a trade at all: it fails `tools/content/content-cli.test.ts`
+     * on every run with `expected [] to strictly equal []` — arrays built in another VM realm
+     * are not the arrays the assertions compare against — and it measured no faster
+     * (8.50s, 10.67s, 11.55s).
+     *
+     * Vitest's default, written down so the next reader of that hint finds the answer rather
+     * than the question.
+     */
+    isolate: true,
+    /**
+     * The floor from issue #50: a run that collected fewer test files than exist on disk fails,
+     * however green its assertions were. `tools/test/floor.ts` says why it is a reporter and not
+     * a test. `default` is listed because naming any reporter replaces the list rather than
+     * adding to it.
+     */
+    reporters: ['default', new TestFileFloor()],
   },
 })

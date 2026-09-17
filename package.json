@@ -26,7 +26,7 @@
     "export-pgn": "node tools/content/export-cli.ts",
     "e2e": "playwright test",
     "perf:lighthouse": "npx --yes @lhci/cli@0.15.1 collect && npx --yes @lhci/cli@0.15.1 assert",
-    "review:greyscale": "playwright test e2e/greyscale-review.spec.ts",
+    "review:greyscale": "TEST_FLOOR=off playwright test e2e/greyscale-review.spec.ts",
     "prepare": "husky"
   },
   "dependencies": {

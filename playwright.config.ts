@@ -29,7 +29,11 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  reporter: 'list',
+  /**
+   * The floor from issue #50: a run that executed fewer tests than it collected, or collected
+   * fewer than the committed minimum, fails. `tools/test/floor.ts` says why.
+   */
+  reporter: [['list'], ['./tools/test/playwright-floor.ts']],
   use: {
     baseURL,
     trace: 'on-first-retry',
