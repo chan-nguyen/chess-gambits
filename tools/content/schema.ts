@@ -99,9 +99,54 @@ const dismissRest = z.strictObject({
 const replyQuality = z.enum(['best', 'good', 'inaccuracy', 'mistake', 'blunder'])
 const frequency = z.enum(['common', 'occasional', 'rare'])
 
+/**
+ * A counted claim about this node's position (ADR-0011).
+ *
+ * `count` names the question, `expect` is the author's answer to it, and the build replays
+ * the position to settle it. The number the *learner* sees is never this one: the prose
+ * carries a `{name}` placeholder and the build fills it with the figure it derived, so a
+ * count cannot be stated in one place and contradicted in another.
+ *
+ * `expect` is still required, and is the only part of this a person writes. It is what turns
+ * a wrong belief into a failed build: an author who has counted 25 and writes 25 is told the
+ * answer is 23, which is exactly the conversation that did not happen in #76.
+ */
+const countKind = z.discriminatedUnion('count', [
+  z.strictObject({
+    count: z.literal('legalReplies'),
+    expect: z.number().int().min(0),
+  }),
+  z.strictObject({
+    count: z.literal('matedBy'),
+    ply: san,
+    expect: z.number().int().min(0),
+  }),
+  z.strictObject({
+    count: z.literal('notMatedBy'),
+    ply: san,
+    expect: z.number().int().min(0),
+  }),
+])
+
+/**
+ * Names are lower camel case because `{Name}` is the capitalised spelling of `{name}` — a
+ * count that opens a sentence. An author writing `{Mated}` and a count called `Mated` would
+ * be two different things that look like one.
+ */
+const counts = z.record(
+  z
+    .string()
+    .regex(
+      /^[a-z][A-Za-z0-9]*$/,
+      'must be a lower camel case name, e.g. `mated`. `{Mated}` in prose is this count capitalised.',
+    ),
+  countKind,
+)
+
 const childNode = z.strictObject({
   ply: san,
   annotation: annotation.optional(),
+  counts: counts.optional(),
   replyQuality: replyQuality.optional(),
   frequency: frequency.optional(),
   dismissed: z.array(dismissed).min(1).optional(),
@@ -119,6 +164,7 @@ const childNode = z.strictObject({
  */
 const rootNode = z.strictObject({
   annotation: annotation.optional(),
+  counts: counts.optional(),
   dismissed: z.array(dismissed).min(1).optional(),
   dismissRest: dismissRest.optional(),
   outcome: outcome.optional(),
@@ -159,6 +205,8 @@ export type AuthoredAnnotation = z.infer<typeof annotation>
 export type AuthoredJudgement = z.infer<typeof judgement>
 export type AuthoredDismissal = z.infer<typeof dismissed>
 export type AuthoredDismissRest = z.infer<typeof dismissRest>
+export type AuthoredCounts = z.infer<typeof counts>
+export type AuthoredCount = z.infer<typeof countKind>
 
 export type ParseResult =
   | { readonly ok: true; readonly entry: AuthoredEntry }

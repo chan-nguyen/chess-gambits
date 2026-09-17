@@ -236,6 +236,9 @@ tree:
         fr: Les Noirs échangent aussitôt le fou contre le cavalier, sans attendre h3. Le piège s'arrête là, mais les Noirs offrent aussi la paire de fous aux Blancs et ouvrent la route de la dame blanche vers f3.
       children:
         - ply: Qxf3
+          counts:
+            legal: { count: legalReplies, expect: 28 }
+            stops: { count: notMatedBy, ply: 'Qxf7#', expect: 14 }
           annotation:
             vi: Hậu ăn lại và nhắm thẳng vào f7. Vì tượng c4 cũng nhắm vào f7 và chỉ có vua Đen đỡ ô đó, Trắng đang doạ chiếu bí ngay lập tức.
             en: The queen recaptures and looks straight at f7. Since the bishop on c4 also attacks f7 and only Black's king defends it, White is threatening mate at once.
@@ -243,9 +246,9 @@ tree:
           outcome:
             type: position
             evaluation:
-              vi: Quân số ngang nhau, Trắng có cặp tượng và một nước doạ chiếu bí Qxf7 phải được đỡ ngay. Đen chỉ có mười bốn nước hợp lệ ngăn được nó trong số hai mươi tám nước có thể, nên đây là chỗ dễ đi sai ở tốc độ nhanh. Về lâu dài, cấu trúc tốt hai bên ngang nhau và Trắng hơn ở cặp tượng cùng đôi chút không gian nhờ tốt e4.
-              en: Material is level, White has the bishop pair, and there is a Qxf7 mate threat that has to be met this move. Only fourteen of Black's twenty-eight legal moves stop it, which makes this an easy place to go wrong at speed. In the longer run the pawn structures are symmetrical and White's edge is the bishop pair plus a little space from the e4 pawn.
-              fr: Le matériel est égal, les Blancs ont la paire de fous, et il y a une menace de mat Qxf7 à parer sur-le-champ. Seuls quatorze des vingt-huit coups légaux noirs l'arrêtent, ce qui en fait un endroit où l'on se trompe facilement en partie rapide. À plus long terme les structures de pions sont symétriques et l'avantage blanc tient à la paire de fous et à un peu d'espace grâce au pion e4.
+              vi: Quân số ngang nhau, Trắng có cặp tượng và một nước doạ chiếu bí Qxf7 phải được đỡ ngay. Đen chỉ có {stops} nước hợp lệ ngăn được nó trong số {legal} nước có thể, nên đây là chỗ dễ đi sai ở tốc độ nhanh. Về lâu dài, cấu trúc tốt hai bên ngang nhau và Trắng hơn ở cặp tượng cùng đôi chút không gian nhờ tốt e4.
+              en: Material is level, White has the bishop pair, and there is a Qxf7 mate threat that has to be met this move. Only {stops} of Black's {legal} legal moves stop it, which makes this an easy place to go wrong at speed. In the longer run the pawn structures are symmetrical and White's edge is the bishop pair plus a little space from the e4 pawn.
+              fr: Le matériel est égal, les Blancs ont la paire de fous, et il y a une menace de mat Qxf7 à parer sur-le-champ. Seuls {stops} des {legal} coups légaux noirs l'arrêtent, ce qui en fait un endroit où l'on se trompe facilement en partie rapide. À plus long terme les structures de pions sont symétriques et l'avantage blanc tient à la paire de fous et à un peu d'espace grâce au pion e4.
             plan:
               vi: Trắng chơi d3, Be3 và O-O-O rồi đẩy g4 và h4 ở cánh vua, giữ cờ tương đối đóng để cặp tượng có giá về sau, và đưa mã c3 vào d5 khi mã Đen rời f6. Nước phá là f4 hoặc d3-d4. Đen đỡ f7 bằng ...Qf6 đổi hậu nếu được, vì đổi hậu vừa gỡ đe doạ vừa làm cặp tượng bớt nguy hiểm, rồi ...Nc6, ...Be7, ...O-O và ...Nd4 lấy nhịp. Nước phá của Đen là ...d5 sau khi đã chơi ...c6.
               en: White plays d3, Be3 and O-O-O, then pushes g4 and h4 on the kingside, keeps the position fairly closed so the bishops matter later, and brings the knight from c3 to d5 once Black's knight leaves f6. The breaks are f4 and d3-d4. Black covers f7 with ...Qf6 to offer a queen trade if that is available, since trading queens both answers the threat and takes the sting out of the bishop pair, then plays ...Nc6, ...Be7, ...O-O and ...Nd4 for a tempo. Black's break is ...d5 once ...c6 is in.

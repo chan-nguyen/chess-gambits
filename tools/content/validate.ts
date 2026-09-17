@@ -4,6 +4,8 @@ import { certificateFileName } from '../mate/certificate.ts'
 import { describeFailure, verifyCertificate } from '../mate/verify.ts'
 import type { Position } from './board.ts'
 import { applyPly, replay } from './board.ts'
+import { deriveCount, describeCount, fillProse } from './counts.ts'
+import { MAX_SPELLED, capitalise, spellNumber } from './numerals.ts'
 import type { ContentIssue, IssueCode, SourceLocation } from './issue.ts'
 import { joinDataPath, joinNodePath } from './issue.ts'
 import { findDerivedFields } from './derived-fields.ts'
@@ -23,6 +25,7 @@ import type {
   DismissedReply,
   Entry,
   ForcedMate,
+  Locale,
   NodeKind,
   Outcome,
   ReplyQuality,
@@ -165,11 +168,159 @@ const report = (
   })
 }
 
-const toAnnotation = (authored: AuthoredAnnotation): Annotation => ({
-  vi: authored.vi,
-  en: authored.en,
-  fr: authored.fr,
+const LOCALES: readonly Locale[] = ['vi', 'en', 'fr']
+
+/**
+ * The counted claims declared on one node, resolved (ADR-0011).
+ *
+ * `spellings` is per locale and holds both `{name}` and `{Name}`, because a count that opens
+ * a sentence is capitalised and the author writing the sentence is the only one who knows
+ * whether it does. A count that failed its check contributes no spelling and its placeholder
+ * is left standing; the file is refused anyway.
+ */
+type NodeCounts = {
+  readonly declared: ReadonlySet<string>
+  readonly spellings: ReadonlyMap<Locale, ReadonlyMap<string, string>>
+  /** Filled in as the node's prose is rendered, so a declared-but-unreferenced count is caught. */
+  readonly used: Set<string>
+}
+
+const noCounts = (): NodeCounts => ({
+  declared: new Set(),
+  spellings: new Map(),
+  used: new Set(),
 })
+
+const capitaliseName = (name: string): string => `${name.slice(0, 1).toUpperCase()}${name.slice(1)}`
+
+/**
+ * Settle every counted claim on this node by replaying the position (ADR-0011).
+ *
+ * The author states the figure they believe; this refutes it or accepts it. Accepting it
+ * produces the *derived* number, spelled out, which is what the prose will carry — the
+ * author's figure is never published, only checked.
+ */
+const deriveCounts = (
+  walk: Walk,
+  node: AuthoredRoot | AuthoredNode,
+  position: Position,
+  kind: NodeKind,
+  dataPath: readonly (string | number)[],
+  sanPath: readonly string[],
+): NodeCounts => {
+  if (node.counts === undefined) return noCounts()
+
+  if (kind !== 'opponent') {
+    report(
+      walk,
+      'kind-mismatch',
+      [...dataPath, 'counts'],
+      sanPath,
+      `A count is a claim about what the *opponent* can reply here, so it belongs only on an opponent node. Here it is ${walk.learnerSide}'s turn, and what ${walk.learnerSide} plays is the gambit's choice rather than a set of replies to count (docs/CONTEXT.md, Node).`,
+    )
+  }
+
+  const spellings = new Map<Locale, Map<string, string>>(
+    LOCALES.map((locale) => [locale, new Map<string, string>()]),
+  )
+
+  for (const [name, spec] of Object.entries(node.counts)) {
+    const at = [...dataPath, 'counts', name]
+    const actual = deriveCount(position, spec)
+
+    if (actual !== spec.expect) {
+      report(
+        walk,
+        'count-mismatch',
+        at,
+        sanPath,
+        `\`${name}\` claims ${spec.expect} ${describeCount(spec)}. Replayed, there are ${actual}. A number in a lesson is the one claim this pipeline used to take on trust (#77); write ${actual}, or work out why the position disagrees with you before you do.`,
+      )
+      continue
+    }
+
+    if (actual > MAX_SPELLED) {
+      report(
+        walk,
+        'count-unspellable',
+        at,
+        sanPath,
+        `\`${name}\` is ${actual}, and only 0 to ${MAX_SPELLED} can be written out in words for a learner. A three-digit count in an opening line is a sign the claim is about the wrong thing (tools/content/numerals.ts).`,
+      )
+      continue
+    }
+
+    for (const locale of LOCALES) {
+      const word = spellNumber(actual, locale)
+      const bucket = spellings.get(locale)
+      if (word === undefined || bucket === undefined) continue
+      bucket.set(name, word)
+      bucket.set(capitaliseName(name), capitalise(word, locale))
+    }
+  }
+
+  return { declared: new Set(Object.keys(node.counts)), spellings, used: new Set() }
+}
+
+/**
+ * Localised prose with its counted claims filled in.
+ *
+ * This is the only place a count becomes text, which is the point: there is exactly one
+ * number and the build derived it, so a sentence cannot go stale against the claim beside it.
+ */
+const toAnnotation = (
+  walk: Walk,
+  counts: NodeCounts,
+  authored: AuthoredAnnotation,
+  dataPath: readonly (string | number)[],
+  sanPath: readonly string[],
+): Annotation => {
+  const usedHere = new Map<Locale, ReadonlySet<string>>()
+
+  const fill = (text: string, locale: Locale): string => {
+    const filled = fillProse(text, counts.spellings.get(locale) ?? new Map(), counts.declared)
+    for (const name of filled.used) counts.used.add(name)
+    usedHere.set(locale, new Set(filled.used))
+    for (const name of filled.unknown) {
+      report(
+        walk,
+        'unknown-count',
+        [...dataPath, locale],
+        sanPath,
+        `\`{${name}}\` names a count this node does not declare. Declare it under \`counts\`, or remove the braces (ADR-0011).`,
+      )
+    }
+    return filled.text
+  }
+
+  const filled: Annotation = {
+    vi: fill(authored.vi, 'vi'),
+    en: authored.en === undefined ? undefined : fill(authored.en, 'en'),
+    fr: authored.fr === undefined ? undefined : fill(authored.fr, 'fr'),
+  }
+
+  /*
+   * A figure one language derives and another writes out by hand is the same bug in one
+   * locale, and it is the shape a rewrite of a single translation produces. Scoped to this
+   * one piece of prose, and to counts it already uses somewhere, so a translation that never
+   * mentions the figure at all is not what this is about.
+   */
+  const locales = [...usedHere.keys()]
+  const everywhere = new Set(locales.flatMap((locale) => [...(usedHere.get(locale) ?? [])]))
+  for (const name of [...everywhere].sort()) {
+    const missing = locales.filter((locale) => usedHere.get(locale)?.has(name) !== true)
+    if (missing.length === 0) continue
+    report(
+      walk,
+      'count-locale-gap',
+      [...dataPath, missing[0] ?? 'vi'],
+      sanPath,
+      `\`{${name}}\` is used here in ${locales.filter((locale) => !missing.includes(locale)).join(', ')} but not in ${missing.join(', ')}. A figure that one language derives and another spells out by hand is #77 in one locale — write \`{${name}}\` there too, or drop the count from this sentence in every language (ADR-0011).`,
+    )
+  }
+
+  return filled
+}
 
 /**
  * The two authored outcomes that mean what they say. A `trap` claim is not one of them: it
@@ -178,15 +329,27 @@ const toAnnotation = (authored: AuthoredAnnotation): Annotation => ({
  */
 type StatedOutcome = Exclude<AuthoredOutcome, { type: 'trap' }>
 
-const toOutcome = (authored: StatedOutcome): Outcome => {
+const toOutcome = (
+  walk: Walk,
+  counts: NodeCounts,
+  authored: StatedOutcome,
+  dataPath: readonly (string | number)[],
+  sanPath: readonly string[],
+): Outcome => {
   switch (authored.type) {
     case 'unexplored':
       return { kind: 'unexplored' }
     case 'position':
       return {
         kind: 'position',
-        evaluation: toAnnotation(authored.evaluation),
-        plan: toAnnotation(authored.plan),
+        evaluation: toAnnotation(
+          walk,
+          counts,
+          authored.evaluation,
+          [...dataPath, 'evaluation'],
+          sanPath,
+        ),
+        plan: toAnnotation(walk, counts, authored.plan, [...dataPath, 'plan'], sanPath),
         basis: {
           basis: 'judgement',
           by: authored.basis.by,
@@ -485,6 +648,8 @@ const walkNode = (
   // reached through one.
   const throughBlunder = reachedThroughBlunder || quality === 'mistake' || quality === 'blunder'
 
+  const counts = deriveCounts(walk, node, position, kind, dataPath, sanPath)
+
   const existing = walk.byPositionKey.get(position.key) ?? []
   if (node.transposesTo === undefined) {
     walk.byPositionKey.set(position.key, [...existing, joinNodePath(sanPath)])
@@ -664,7 +829,16 @@ const walkNode = (
   const dismissRest: DismissRest | undefined =
     node.dismissRest === undefined
       ? undefined
-      : { reason: toAnnotation(node.dismissRest.reason), covers }
+      : {
+          reason: toAnnotation(
+            walk,
+            counts,
+            node.dismissRest.reason,
+            [...dataPath, 'dismissRest', 'reason'],
+            sanPath,
+          ),
+          covers,
+        }
 
   if (covers.length > 0) {
     walk.dismissRest.push({
@@ -680,7 +854,7 @@ const walkNode = (
       ? undefined
       : node.outcome.type === 'trap'
         ? proveTrap(walk, sanPath, dataPath, kind, throughBlunder)
-        : toOutcome(node.outcome)
+        : toOutcome(walk, counts, node.outcome, [...dataPath, 'outcome'], sanPath)
   if (outcome !== undefined && outcome.kind === 'position') {
     walk.coverage.slots += 2
     walk.coverage.vi += 2
@@ -709,11 +883,29 @@ const walkNode = (
     })
   }
 
+  const annotation: Annotation | undefined =
+    node.annotation === undefined
+      ? undefined
+      : toAnnotation(walk, counts, node.annotation, [...dataPath, 'annotation'], sanPath)
+
+  // Every count is rendered by now, so a name nothing referenced is a check standing beside
+  // prose that still carries a hand-typed number — the exact arrangement #77 is about.
+  const unused = [...counts.declared].filter((name) => !counts.used.has(name))
+  if (unused.length > 0) {
+    report(
+      walk,
+      'count-unused',
+      [...dataPath, 'counts'],
+      sanPath,
+      `${unused.map((name) => `\`${name}\``).join(', ')} ${unused.length === 1 ? 'is declared and never used' : 'are declared and never used'}. A count is checked so that a sentence can be written from it; one no prose refers to means the number a learner reads is still typed by hand. Write \`{${unused[0] ?? 'name'}}\` where the figure belongs, or remove the count.`,
+    )
+  }
+
   return {
     ply,
     kind,
     fen: position.fen,
-    annotation: node.annotation === undefined ? undefined : toAnnotation(node.annotation),
+    annotation,
     replyQuality: quality,
     frequency: 'frequency' in node ? node.frequency : undefined,
     dismissed: dismissedReplies,
