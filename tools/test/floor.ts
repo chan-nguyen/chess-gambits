@@ -41,10 +41,16 @@ import { sep } from 'node:path'
 export const MINIMUM_UNIT_TEST_FILES = 74
 
 /**
- * `npx playwright test --list` reports `Total: 256 tests in 20 files`, at both base paths. Same
+ * `npx playwright test --list` reports `Total: 276 tests in 22 files`, at both base paths. Same
  * rule as above: this is the backstop for a short *collection*, not a count to keep in step.
+ *
+ * Raised from 256 when the gap reached twenty and the rule above started to bite: the four
+ * smallest spec files hold four to six tests each, so at 256 an entire file — `route-budgets`,
+ * or the `interaction-latency` gate #61 had just finished repairing — could have been deleted
+ * with the floor still green. That is the "no longer notice a directory going missing" case,
+ * not a count kept in step with every pull request.
  */
-export const MINIMUM_E2E_TESTS = 256
+export const MINIMUM_E2E_TESTS = 276
 
 /**
  * The one way out, for the runs that are a subset on purpose — `npm run review:greyscale`, or a

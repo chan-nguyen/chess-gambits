@@ -1,7 +1,7 @@
 /*
  * Every colour, radius and duration here is a token from docs/design-system.md §2.
  * The SVG draws in an 8x8 unit coordinate system, so its geometry carries no px at all —
- * stroke widths are user units inside the 45-unit piece grid, not spacing values.
+ * stroke widths are user units inside the 933-unit piece grid, not spacing values.
  */
 
 .board {
@@ -68,10 +68,30 @@
   stroke-width: 0.06;
 }
 
+/*
+ * The outline, in the piece grid's own user units. It carries the whole of the greyscale
+ * signal: a light body with a dark outline against a dark body with a light one is what
+ * separates the two sides once hue is gone (`board-contrast.test.ts`), and on a 96px
+ * preview it is most of what is left of a piece at all.
+ */
 .board__piece {
-  stroke-width: 1.6;
+  stroke-width: 20;
   stroke-linejoin: round;
   stroke-linecap: round;
+}
+
+/* As the artwork is drawn: the king's crown and the rook's crenellations are holes. */
+.board__piece-body {
+  fill-rule: evenodd;
+}
+
+/*
+ * The decorative line work, drawn in the outline colour so it inverts with the piece and
+ * held back so it reads as shading rather than as a second outline.
+ */
+.board__piece-detail {
+  fill: none;
+  opacity: 0.5;
 }
 
 .board__piece--white {
