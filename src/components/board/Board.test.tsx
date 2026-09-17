@@ -328,3 +328,56 @@ describe('the piece sprite is inlined (AC 11)', () => {
     expect(new Set(ids).size).toBe(ids.length)
   })
 })
+
+/**
+ * The static half of #72. Where a piece *travels* is a browser question and
+ * `e2e/piece-animation.spec.ts` answers it by watching pieces move; what jsdom can answer
+ * is the property that whole animation rests on — that the board with nothing running on it
+ * is the position, and nothing else.
+ */
+describe('a ply that moved a piece (#72)', () => {
+  /** `e4` with White at the bottom: the fifth column, four rows down from rank 8. */
+  const E4 = 'translate(4 4)'
+  const E2 = 'translate(4 6)'
+
+  const afterOpeningPly = 'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1'
+
+  it('draws the piece that moved on the square it reached, not the one it came from', () => {
+    const { container } = render(
+      <Board
+        fen={afterOpeningPly}
+        labels={VIETNAMESE_LABELS}
+        arrivedFrom={new Map([['e4', 'e2']])}
+      />,
+    )
+    const transforms = [...container.querySelectorAll('use')].map((use) =>
+      use.getAttribute('transform'),
+    )
+
+    expect(transforms, 'the pawn is drawn on e4').toContain(E4)
+    expect(transforms, 'the pawn is left standing on the square it came from').not.toContain(E2)
+  })
+
+  it('draws the piece the ply took, where it stood, over and above the position', () => {
+    const { container } = render(
+      <Board
+        fen={afterOpeningPly}
+        labels={VIETNAMESE_LABELS}
+        arrivedFrom={new Map([['e4', 'e2']])}
+        captured={new Map([['e4', 'blackPawn']])}
+      />,
+    )
+
+    const taken = container.querySelectorAll('.board__piece--gone')
+    expect(taken, 'one extra piece, the one that came off').toHaveLength(1)
+    expect(container.querySelectorAll('use')).toHaveLength(33)
+    expect(taken[0]?.getAttribute('transform')).toBe(E4)
+  })
+
+  it('draws no taken piece when the ply took nothing', () => {
+    const { container } = render(<Board fen={afterOpeningPly} labels={VIETNAMESE_LABELS} />)
+
+    expect(container.querySelectorAll('.board__piece--gone')).toHaveLength(0)
+    expect(container.querySelectorAll('use')).toHaveLength(32)
+  })
+})

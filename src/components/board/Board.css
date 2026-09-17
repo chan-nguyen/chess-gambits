@@ -69,6 +69,43 @@
 }
 
 /*
+ * The slide (#72).
+ *
+ * `Board` positions every piece with a transform and keeps the element that moved, so the
+ * only thing left for the stylesheet to do is interpolate between the two squares. The
+ * *resting* transform is always the square the FEN puts the piece on, which is what makes
+ * every way this can go wrong safe: a transition that never starts, one cancelled because
+ * the next ply arrived first, and the reduced-motion block in `global.css` all leave the
+ * piece on the square the position names. There is no other state it can be stranded in.
+ *
+ * `--duration-base` because §2 says board transitions use it, and the square tint above
+ * already does.
+ */
+.board__piece {
+  transition: transform var(--duration-base) ease;
+}
+
+/*
+ * A captured piece, held where it stood until the mover lands on it and not a frame longer.
+ *
+ * Hidden at rest and shown *by* the animation, which is the same rule the other way up: the
+ * board with nothing running on it is the position, so under `prefers-reduced-motion` and
+ * after the animation has finished there is nothing left over to remove. `step-end` holds
+ * it at full opacity for the whole slide rather than fading it out under the piece arriving
+ * — a capture is not a dissolve, and the implicit `to` keyframe is the `opacity: 0` above.
+ */
+.board__piece--gone {
+  opacity: 0;
+  animation: board-piece-gone var(--duration-base) step-end;
+}
+
+@keyframes board-piece-gone {
+  from {
+    opacity: 1;
+  }
+}
+
+/*
  * The outline, in the piece grid's own user units. It carries the whole of the greyscale
  * signal: a light body with a dark outline against a dark body with a light one is what
  * separates the two sides once hue is gone (`board-contrast.test.ts`), and on a 96px
@@ -150,7 +187,16 @@
   white-space: nowrap;
 }
 
-/* The position is the information; a square that fades is decoration (§2). */
+/*
+ * The position is the information; a square that fades is decoration (§2).
+ *
+ * **The piece slide is deliberately not listed here.** `global.css` switches every
+ * transition and every animation off under this query with `!important`, and the thing worth
+ * knowing is whether the new animation is actually covered by that rule rather than by a
+ * local copy of it. A second rule here would make that unanswerable: both would be switching
+ * it off and neither would be the one under test. `e2e/piece-animation.spec.ts` watches the
+ * pieces with the preference on, and deleting the block in `global.css` is what turns it red.
+ */
 @media (prefers-reduced-motion: reduce) {
   .board__square {
     transition: none;

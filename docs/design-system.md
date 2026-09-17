@@ -242,6 +242,13 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
 - **Motion**: `--duration-fast` 120ms, `--duration-base` 200ms. Board transitions use
   `--duration-base`. **All motion is disabled under `prefers-reduced-motion: reduce`** — a piece
   that slides is decoration, and the position is the information.
+  The board's own motion is exactly two things (#72), and both are `--duration-base`: the piece a
+  ply moved slides from the square it left to the square it reached, and a piece that was taken
+  stays where it stood until the mover lands on it. **Branch previews do not animate** — a branch
+  node draws one board per modelled reply, and a dozen of them sliding at once for a move the
+  learner did not make is the cost §6 exists to keep off the page. Both are written so that the
+  board with nothing running on it is the position: the reduced-motion rule, an interrupted
+  animation and a press that arrives first all leave every piece on the square the FEN names.
 
 #### Scalar values
 

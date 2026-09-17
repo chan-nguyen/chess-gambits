@@ -16,7 +16,7 @@ import {
   squareAt,
   squareLabel,
 } from './board-model'
-import type { BoardLabels, FocusedSquare, Orientation, Square } from './board-model'
+import type { BoardLabels, FocusedSquare, Orientation, PieceKey, Square } from './board-model'
 
 export type LastMove = { readonly from: Square; readonly to: Square }
 
@@ -34,6 +34,20 @@ export type BoardProps = {
    */
   readonly announcement?: string | undefined
   readonly lastMove?: LastMove | undefined
+  /**
+   * For each square a piece arrived on this ply, the square it came from, so the piece can
+   * be drawn sliding between the two (`learn/ply-motion.ts` derives it, and derives *every*
+   * piece the ply moved, which is not always the one piece the highlight names).
+   *
+   * Absent means nothing slides, which is what every branch preview passes: a dozen boards
+   * animating at once is the cost `docs/performance-budgets.md` exists to keep off this page.
+   */
+  readonly arrivedFrom?: ReadonlyMap<Square, Square> | undefined
+  /**
+   * The pieces this ply removed, still on the squares they stood on. They are drawn under
+   * the position and `Board.css` holds them there until the mover lands on them.
+   */
+  readonly captured?: ReadonlyMap<Square, PieceKey> | undefined
   /** The square of a king in check. */
   readonly check?: Square | undefined
   /** Arbitrary squares to mark. Teaching arrows are a later ticket. */
@@ -80,6 +94,8 @@ export const Board = ({
   orientation = 'white',
   announcement,
   lastMove,
+  arrivedFrom,
+  captured,
   check,
   marks,
   showCoordinates = true,
@@ -142,6 +158,39 @@ export const Board = ({
     return `board__square board__square--${light ? 'light' : 'dark'}${tint}`
   }
 
+  /*
+   * One piece, positioned by a transform rather than by `x`/`y`, and the whole of how a
+   * piece slides. Three things have to hold together for it, and they are here rather than
+   * beside the JSX because they are one mechanism and not three:
+   *
+   * 1. **The transform is what animates.** `Board.css` transitions it, and the *resting*
+   *    value is always the square the FEN puts the piece on. That is the whole safety
+   *    argument: a transition that never starts, one cancelled by the next ply, and
+   *    `global.css` switching every transition off under `prefers-reduced-motion: reduce`
+   *    all leave the piece exactly where the position says it is, because there is no other
+   *    state for it to be left in.
+   * 2. **The key is the square the piece came from**, which is the key it already had on the
+   *    render before, when it was standing there. React only animates an element it keeps,
+   *    and that is what makes it keep this one.
+   * 3. **The list is sorted by key**, which is what stops React *moving* the element while
+   *    it travels. A node moved in the DOM has its transition cancelled and snaps to the end
+   *    — measured in Chromium rather than assumed — and two sorted lists differing only by
+   *    insertions and deletions leave every surviving key in the same relative order, so
+   *    nothing is reordered around the piece in flight. A taken piece's key sorts before
+   *    every real one, so it is drawn under the mover landing on it and adding or removing
+   *    one never reorders them either.
+   */
+  const drawn = (key: string, piece: PieceKey, at: { x: number; y: number }, gone: boolean) => (
+    <use
+      key={key}
+      className={`board__piece board__piece--${colourOf(piece)}${gone ? ' board__piece--gone' : ''}`}
+      href={`#${shapeId(spriteId, roleOf(piece))}`}
+      transform={`translate(${at.x} ${at.y})`}
+      width="1"
+      height="1"
+    />
+  )
+
   const lastRowIndex = ranks.length - 1
 
   return (
@@ -191,21 +240,18 @@ export const Board = ({
             />
           ))}
 
-        {cells.map((cell) => {
-          const piece = position.get(cell.square)
-          if (piece === undefined) return null
-          return (
-            <use
-              key={`piece-${cell.square}`}
-              className={`board__piece board__piece--${colourOf(piece)}`}
-              href={`#${shapeId(spriteId, roleOf(piece))}`}
-              x={cell.x}
-              y={cell.y}
-              width="1"
-              height="1"
-            />
-          )
-        })}
+        {cells
+          .flatMap((cell) => {
+            // Keyed by where each piece came from, then sorted by it: see `drawn` above.
+            const gone = captured?.get(cell.square)
+            const here = position.get(cell.square)
+            const from = arrivedFrom?.get(cell.square) ?? cell.square
+            return [
+              ...(gone === undefined ? [] : [drawn(`gone${cell.square}${fen}`, gone, cell, true)]),
+              ...(here === undefined ? [] : [drawn(`at${from}`, here, cell, false)]),
+            ]
+          })
+          .sort((one, other) => ((one.key ?? '') < (other.key ?? '') ? -1 : 1))}
 
         {/* A ring, drawn above the pieces so a mark on an occupied square still reads. */}
         {cells
