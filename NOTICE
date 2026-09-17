@@ -11,29 +11,86 @@ gambit trees — is licensed separately (`LICENSE-CONTENT`).
 
 `src/components/board/piece-sprite.tsx`
 
-**Origin:** original work, drawn for this repository.
-**Licence:** MIT, the same as the rest of the application source (`LICENSE`).
-**Third-party material:** none. No existing piece set is copied, traced or derived from.
+**Origin:** the `celtic` set from [maurimo/chess-art](https://github.com/maurimo/chess-art) by
+Maurizio Monge, vendored from the copy lichess distributes at `public/piece/celtic` and listed as
+an MIT exception in that project's [`COPYING.md`](https://github.com/lichess-org/lila/blob/master/COPYING.md).
+**Licence:** MIT — the same licence as this application's own source, and the reason the set is
+usable here at all.
+**What the licence obliges us to do:** reproduce the copyright notice and the permission notice in
+all copies or substantial portions of the work. That is the text below, and it is also credited on
+the About page, because the deployed site distributes the artwork as much as this repository does.
+MIT asks for nothing else: no share-alike, no non-commercial restriction, no notice in the running
+interface beyond keeping that text with the work.
 
-The six shapes — king, queen, rook, bishop, knight, pawn — are drawn as single SVG paths on the
-conventional 45x45 grid. Colour is not part of a shape: `<use>` supplies the fill and stroke, so
-each shape serves both its white and its black piece.
+```
+MIT License
 
-### Why these are not from an existing set
+Copyright (c) Maurizio Monge
 
-The ticket asked for a permissively licensed open set. Drawing them instead was a deliberate
-departure, for two reasons, and it satisfies the same underlying concerns more completely.
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-- **Size.** ADR-0003 budgets roughly 2KB for the whole board. Detailed sets — Cburnett and its
-  descendants — carry one to three kilobytes of path data *per piece*, so twelve of them would
-  exceed the entire board's budget several times over before a single square is drawn. Simple
-  shapes are also more legible at the size a branch preview renders them.
-- **Licence.** The best-known open set, Cburnett, is multi-licensed and its options include
-  GPL-family terms. ADR-0003 already rejected `@lichess-org/chessground` over exactly that risk.
-  Original work under the repository's own licence removes the question rather than analysing it.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+### What was modified
+
+The set is **not** vendored verbatim, and the MIT licence permits the changes. Monge draws each
+piece three times over — a `boundary` path, a `main` path with identical geometry, and a blurred
+drop shadow — plus decorative line work, and the upstream source ships `#ff0000` and `#00ff00` as
+stroke and fill placeholders because the set is built to be recoloured. So:
+
+- `boundary` is dropped. It is the same geometry as `main` under a heavier stroke, and the board
+  already draws an outline of its own.
+- The drop shadow is dropped. It is a Gaussian blur filter, and requirement F5 mounts one preview
+  board per reply — thirty-two blurred pieces per board, twenty boards on a branch point.
+- Every colour is removed, so fill and stroke come from the design tokens and a piece's colour is
+  not part of its shape.
+- Each role's decorative paths are concatenated into one. A path that opens with a relative moveto
+  is prefixed with `M0 0` so that concatenation does not move it; uppercasing the `m` instead would
+  turn its implicit trailing linetos absolute and draw a scribble.
+
+The shapes are on Monge's 933-unit grid, not the conventional 45-unit one. Colour is not part of a
+shape: `<use>` supplies the fill and stroke, so each of the six shapes serves both its white and
+its black piece, and the two invert against each other in greyscale.
+
+### Which sets were considered, and why not those
+
+Every licence below was read from lichess's `COPYING.md` rather than from a summary, and the
+candidates were rendered on a real board at both sizes this application uses — the main board and
+the 96px branch preview, where a preview square is twelve pixels and detail collapses.
+
+| Set          | Licence           | Verdict                                                                                                                             |
+| ------------ | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **celtic**   | **MIT**           | **Chosen.** A conventional Staunton silhouette despite the name; one geometry per role for both colours; 3.6KB of path data in total |
+| `chessnut`   | Apache 2.0        | Usable, and the cleanest at full size. Its king and queen are both crowns, and at twelve pixels its bishop and king are one blob     |
+| `rhosgfx`    | CC0 1.0           | Usable, and asks nothing at all. A chunky game-asset style rather than a chess set; its king reads as a bottle                       |
+| `spatial`    | MIT, same author  | Usable. Hand-sketched; the queen reads as a tuft of grass and the white king nearly vanishes at preview size                         |
+| `fantasy`    | MIT, same author  | Usable. Illustrative, 71KB of source, and king and queen are again both crowns                                                       |
+| `kiwen-suwi` | CC BY 4.0         | Usable but attribution-bearing, and it is flat fills with no outline — the one thing the greyscale requirement cannot do without     |
+| `cburnett`   | **GPLv2+**        | Rejected. The lichess default, and the same copyleft risk ADR-0003 rejected chessground and chessops over                            |
+| `merida`     | **GPLv2+**        | Rejected, same reason                                                                                                               |
+| `letter`, `pirouetti`, `pixel` | **AGPLv3+** | Rejected, same reason and stronger                                                                                |
+| `mpchess`    | **GPLv3+**        | Rejected, same reason                                                                                                               |
+| `shapes`     | CC BY-SA 4.0      | Rejected. Share-alike on the artwork                                                                                                |
+| `maestro`, `caliente`, `fresca`, `gioco`, `staunty`, `dubrovny`, `cardinal`, `anarcandy`, `icpieces`, `california`, `cooke`, `horsey`, `tatiana`, `monarchy`, `minimal-warmth`, `disguised`, `xkcd` | **CC BY-NC-SA** | Rejected. Non-commercial, which this project does not accept |
+| chess.com's sets | proprietary   | Never an option                                                                                                                     |
 
 ### Inlining
 
 The shapes are inlined in the bundle at build time and are never fetched. There is no piece URL
 anywhere in the application, which is what makes requirement N8 — zero third-party requests at
-runtime — true by construction rather than by policy.
+runtime — true by construction rather than by policy. `Board.test.tsx` asserts it.

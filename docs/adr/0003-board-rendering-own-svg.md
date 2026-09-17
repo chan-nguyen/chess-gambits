@@ -49,6 +49,15 @@ is unremarkable.
 
 Roughly 2 KB shipped, and no runtime dependency.
 
+**Amended by #71: roughly 4 KB.** The 2 KB above was measured against six hand-drawn
+silhouettes, which #71 replaced with Maurizio Monge's `celtic` set (MIT — see `NOTICE`)
+because the hand-drawn ones did not look like a chess set to a learner. Measured on the
+built bundle, the vendored sprite costs **1.78 KB gzipped**, so the board is now about 4 KB
+rather than 2 KB. The comparison the table below rests on is unaffected — it is still a
+third of `cm-chessboard` and a fifth of `react-chessboard`, and it still buys the accessible
+grid neither of them provides — and the enforced number, the 200 KB route budget in
+`docs/performance-budgets.md`, moved from 132.5 KB to 134.9 KB.
+
 ## Considered options
 
 | Option                          | Licence              | gzip      | Gives us the accessible grid | Drag we do not need |

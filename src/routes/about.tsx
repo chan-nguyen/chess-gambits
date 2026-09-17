@@ -63,5 +63,22 @@ export const AboutRoute = () => (
       assessments and the soundness labels — is written here from scratch. Named traps are not in
       that dataset and are entered by hand, one at a time.
     </p>
+    <p>
+      The chess pieces are the <code>celtic</code> set by Maurizio Monge, from{' '}
+      <a href="https://github.com/maurimo/chess-art">maurimo/chess-art</a>, used and modified under
+      the MIT licence. Copyright (c) Maurizio Monge. Permission is hereby granted, free of charge,
+      to any person obtaining a copy of this software and associated documentation files (the
+      &ldquo;Software&rdquo;), to deal in the Software without restriction, including without
+      limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+      sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+      subject to the following conditions: the above copyright notice and this permission notice
+      shall be included in all copies or substantial portions of the Software. The Software is
+      provided &ldquo;as is&rdquo;, without warranty of any kind, express or implied, including but
+      not limited to the warranties of merchantability, fitness for a particular purpose and
+      noninfringement. In no event shall the authors or copyright holders be liable for any claim,
+      damages or other liability, whether in an action of contract, tort or otherwise, arising from,
+      out of or in connection with the Software or the use or other dealings in the Software. What
+      was changed, and which other sets were considered, is recorded in <code>NOTICE</code>.
+    </p>
   </main>
 )
