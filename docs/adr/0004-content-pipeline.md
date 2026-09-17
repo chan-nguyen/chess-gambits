@@ -111,6 +111,16 @@ Every check below blocks a merge. This list is the F12 gate.
     sits inside rather than to the trap (ADR-0008).
 12. **Side consistency** — the gambit's declared side matches whose moves the tree prescribes.
 13. **No published id disappears** — see ADR-0008.
+14. **Text encoding** — no string in a content file may be text that has been through the wrong
+    encoding and come out one character per byte. `content/kings-gambit.yaml` served `le mÃªme plan`
+    to production for as long as the file existed, in the locale nobody on this project reads, and
+    every check above had nothing to say about it because every check above is about the chess. The
+    test is structural rather than a search for one character: a run that looks like a UTF-8
+    sequence read byte-wise _and_ decodes cleanly when its characters are put back into bytes. It
+    has to be, because French and English accents degrade to a run leading with `Ã` while
+    Vietnamese — three bytes for most of its letters — degrades to one leading with an ordinary
+    French letter, so the obvious check would pass in the primary locale. The error names the file,
+    the line, the field and the text it should have been (issue #85).
 
 Anything requiring an engine — numeric evaluations, whether a position really is "good", soundness
 labels — stays **out of the blocking set**. Those are judgements, and dressing a judgement as a

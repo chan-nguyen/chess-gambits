@@ -9,6 +9,7 @@ import { MAX_SPELLED, capitalise, spellNumber } from './numerals.ts'
 import type { ContentIssue, IssueCode, SourceLocation } from './issue.ts'
 import { joinDataPath, joinNodePath } from './issue.ts'
 import { findDerivedFields } from './derived-fields.ts'
+import { findEncodingDamage } from './text-encoding.ts'
 import type {
   AuthoredAnnotation,
   AuthoredDismissRest,
@@ -1149,6 +1150,9 @@ export const validateText = (
 
   const derived = findDerivedFields(loaded.source)
   if (derived.length > 0) return failed(file, derived)
+
+  const damaged = findEncodingDamage(loaded.source)
+  if (damaged.length > 0) return failed(file, damaged)
 
   const parsed = parseEntry(loaded.source)
   if (!parsed.ok) return failed(file, parsed.issues)

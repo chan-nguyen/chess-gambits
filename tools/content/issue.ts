@@ -14,6 +14,8 @@ export type IssueCode =
   | 'yaml-syntax'
   /* Derived fields that a file may never state (invariants 1, 2, 8) */
   | 'derived-field'
+  /* Prose that has been through the wrong encoding */
+  | 'text-double-encoded'
   /* Shape */
   | 'schema'
   | 'node-shape'
