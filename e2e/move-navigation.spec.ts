@@ -280,3 +280,144 @@ test.describe('the viewport measurement itself', () => {
     expect(probe.bottom).toBeGreaterThan(probe.viewport)
   })
 })
+
+/**
+ * **The ply that produced the position, on the board (issue #54).**
+ *
+ * `Board` has drawn this since #4 and no caller passed it a move for four waves, so the
+ * assertions here are about the shipped surface: what a browser paints after a real click,
+ * at a real viewport, with the real stylesheet.
+ *
+ * The greyscale check is the reason it is here rather than only in a unit test. §2 requires
+ * a board highlight to carry "a shape or border difference, not only a tint", and in this
+ * palette that is the whole signal rather than a reinforcement of it: desaturated, the
+ * square a ply left and the square it reached are 1.05:1 apart, and either one is within
+ * 1.3:1 of an ordinary square (`board-contrast.test.ts` measures all three). So the dashed
+ * ring against the solid one is not a second cue. It is the only one.
+ */
+test.describe('the last-ply highlight', () => {
+  /** `f6-e5`: which two squares a board marks, read back off the rings' own geometry. */
+  const marked = (page: Page, scope: string): Promise<string> =>
+    page.evaluate((selector) => {
+      const board = document.querySelector(selector)
+      const square = (ring: Element | null): string => {
+        if (ring === null) return ''
+        const x = Math.round(Number(ring.getAttribute('x')) - 0.06)
+        const y = Math.round(Number(ring.getAttribute('y')) - 0.06)
+        return `${'abcdefgh'[x] ?? '?'}${8 - y}`
+      }
+      const from = square(board?.querySelector('.board__last-ply--from') ?? null)
+      const to = square(board?.querySelector('.board__last-ply--to') ?? null)
+      return from === '' || to === '' ? '' : `${from}-${to}`
+    }, scope)
+
+  const BOARD = '.learning-surface__board'
+
+  test('marks the two squares of the ply just played, and moves with the line', async ({
+    page,
+  }) => {
+    await open(page)
+    // The root is the position after the defining line; nothing has been stepped to.
+    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(0)
+
+    // Polled rather than read once: `toHaveURL` resolves on the address bar, and the
+    // commit that paints the new position lands a tick later.
+    await nextControl(page).click()
+    await expect(page).toHaveURL(lineUrl(gambit, ['fxe5']))
+    await expect.poll(() => marked(page, BOARD)).toBe('f6-e5')
+
+    await nextControl(page).click()
+    await expect.poll(() => marked(page, BOARD)).toBe('d1-h5')
+
+    await previousControl(page).click()
+    await expect.poll(() => marked(page, BOARD)).toBe('f6-e5')
+
+    await previousControl(page).click()
+    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(0)
+  })
+
+  /**
+   * The same mark, on the two ways of arriving that nobody walks a tree for.
+   *
+   * The test above steps there with the controls, so the surface has been through every
+   * position on the way and could have remembered the previous one. Neither of these does.
+   * A shared URL is this product's headline feature — "copy this and send it to someone" —
+   * and it lands the reader in the middle of a line having pressed nothing, which is the
+   * case a highlight is worth the most and the only one nothing was checking. Browser back
+   * and forward are the second: they restore a URL rather than walking, and this surface has
+   * already had one bug where a handler read navigation state a commit out of date.
+   *
+   * A wrong highlight has no symptom — it is a plausible-looking ring on the wrong square —
+   * so the positions are named rather than compared to each other.
+   */
+  test('marks the ply on a link that arrives mid-line, and through browser history', async ({
+    page,
+  }) => {
+    await open(page, ['fxe5', 'Qh5+'])
+    await expect.poll(() => marked(page, BOARD)).toBe('d1-h5')
+
+    await previousControl(page).click()
+    await expect.poll(() => marked(page, BOARD)).toBe('f6-e5')
+
+    await page.goBack()
+    await expect.poll(() => marked(page, BOARD)).toBe('d1-h5')
+
+    await page.goForward()
+    await expect.poll(() => marked(page, BOARD)).toBe('f6-e5')
+  })
+
+  /** What a desaturated screenshot still carries: the geometry of the two rings. */
+  const shapes = (page: Page): Promise<readonly string[]> =>
+    page.evaluate(() =>
+      ['.board__last-ply--from', '.board__last-ply--to'].map((selector) => {
+        const ring = document.querySelector(`.learning-surface__board ${selector}`)
+        if (ring === null) return ''
+        const style = window.getComputedStyle(ring)
+        return [style.strokeDasharray, style.strokeWidth, style.stroke].join('|')
+      }),
+    )
+
+  const greyscale = (page: Page) =>
+    page.evaluate(() => {
+      document.documentElement.style.filter = 'grayscale(1)'
+    })
+
+  test('tells the square left from the square reached with the colour gone', async ({ page }) => {
+    await open(page, ['fxe5'])
+    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(2)
+    await greyscale(page)
+
+    const rings = await shapes(page)
+    for (const ring of rings) expect(ring).not.toBe('')
+    expect(new Set(rings).size, `both rings read as ${rings[0]}`).toBe(2)
+  })
+
+  /**
+   * The probe. The assertion above compares two signals, so without this it would keep
+   * passing if the signal stopped carrying anything — which is exactly how a
+   * colour-alone check rots into a comment.
+   */
+  test('reports two rings that differ only in their fill as the same thing', async ({ page }) => {
+    await open(page, ['fxe5'])
+    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(2)
+    await greyscale(page)
+    expect(new Set(await shapes(page)).size).toBe(2)
+
+    /*
+     * Take the dashes off the from-ring and the two are one shape in two tints.
+     *
+     * Written through CSSOM rather than `setAttribute('style', …)`, which the Content
+     * Security Policy #19 introduced refuses without `'unsafe-inline'`. A refused attribute
+     * does not throw: the probe would have gone on running, changed nothing, and left this
+     * assertion failing for a reason that has nothing to do with the rings. Two other specs
+     * were caught the same way when the policy landed, and this is the third — it survived
+     * because this branch was written beside that one rather than after it.
+     */
+    await page.evaluate(() => {
+      const ring = document.querySelector('.learning-surface__board .board__last-ply--from')
+      if (ring instanceof SVGElement) ring.style.strokeDasharray = 'none'
+    })
+
+    expect(new Set(await shapes(page)).size).toBe(1)
+  })
+})

@@ -153,3 +153,49 @@ describe('the contrast maths', () => {
     expect(contrast('#767676', '#ffffff')).toBeCloseTo(4.54, 1)
   })
 })
+
+/**
+ * **The last-ply highlight, and why its shape is the whole signal.**
+ *
+ * §2: "Board highlights carry a shape or border difference, not only a tint." That rule
+ * had nothing to hold over until #54 wired `lastMove` to a caller, and it is not a
+ * belt-and-braces addition to the hue — measured with the contrast function above, which
+ * is hue-free by construction:
+ *
+ * | pair (light / dark)                         | greyscale contrast |
+ * | ------------------------------------------- | ------------------ |
+ * | `highlight-from` against `highlight-to`     | 1.05 / 1.10        |
+ * | `highlight-to` against the light square     | 1.26 / 1.10        |
+ * | `highlight-from` against the light square   | 1.21 / 1.21        |
+ *
+ * So with the colour removed a learner cannot tell the square a ply left from the square it
+ * reached, and can barely tell either from a square nothing happened on. Exactly the
+ * situation §5 records for the outcome and quality palettes: the shape is not reinforcing
+ * the colour, it is replacing it. The two assertions below are what that rule reduces to in
+ * a stylesheet.
+ */
+describe('the last-ply highlight is a shape difference', () => {
+  /** One rule's declarations, as written. */
+  const declarations = (selector: string): string =>
+    new RegExp(`${selector.replace(/\./g, '\\.')}\\s*\\{([^}]*)\\}`).exec(boardStyles)?.[1] ?? ''
+
+  const FROM = declarations('.board__last-ply--from')
+  const TO = declarations('.board__last-ply--to')
+
+  it('draws a ring on each of the two squares, in a token colour', () => {
+    expect(FROM).not.toBe('')
+    expect(TO).not.toBe('')
+    for (const rule of [FROM, TO]) expect(rule).toContain('var(--color-board-')
+  })
+
+  /**
+   * The rings must differ in something a greyscale screenshot keeps. Two class names that
+   * resolved to the same geometry would satisfy `Board.test.tsx`, which compares the class
+   * attributes, and would be a tint-only highlight on screen.
+   */
+  it('gives the two rings different geometry, not two names for the same one', () => {
+    expect(FROM.replace(/\s+/g, ' ').trim()).not.toBe(TO.replace(/\s+/g, ' ').trim())
+    const dashed = [FROM, TO].filter((rule) => rule.includes('stroke-dasharray'))
+    expect(dashed, 'one ring is dashed and the other solid').toHaveLength(1)
+  })
+})
