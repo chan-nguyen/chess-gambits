@@ -30,16 +30,16 @@ npm install
 npm run dev
 ```
 
-| Command              | What it does                                                               |
-| -------------------- | -------------------------------------------------------------------------- |
-| `npm run dev`        | Dev server, served at the deployed base path so sub-path bugs show up here |
-| `npm run build`      | Type-check then build to `dist/`                                           |
-| `npm test`           | Unit tests                                                                 |
-| `npm run typecheck`  | Type-check only                                                            |
-| `npm run lint`       | Lint                                                                       |
-| `npm run format`     | Format                                                                     |
-| `npm run e2e`        | End-to-end tests against the built output                                  |
-| `npm run serve:dist` | Serve `dist/` the way the host does, with no single-page fallback          |
+| Command              | What it does                                                                                                      |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`        | Dev server, served at the deployed base path so sub-path bugs show up here                                        |
+| `npm run build`      | Type-check then build to `dist/`                                                                                  |
+| `npm test`           | Unit tests, and the floor that fails a run which collected fewer test files than exist on disk                    |
+| `npm run typecheck`  | Type-check only                                                                                                   |
+| `npm run lint`       | Lint                                                                                                              |
+| `npm run format`     | Format                                                                                                            |
+| `npm run e2e`        | End-to-end tests against the built output, and the floor that fails a run which ran fewer tests than it collected |
+| `npm run serve:dist` | Serve `dist/` the way the host does, with no single-page fallback                                                 |
 
 Catalogue commands. `npm run catalogue` runs inside `npm run build`; the other two are run by hand.
 
@@ -57,6 +57,7 @@ Node version is pinned in `.nvmrc`.
 | ------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `BASE_PATH`   | `/chess-gambits/`               | GitHub Pages serves a project site from a sub-path. Set to `/` when deploying to a custom domain                                                                                                 |
 | `SITE_ORIGIN` | `https://chan-nguyen.github.io` | The scheme and host every route shell writes into its canonical URL and its `og:url` (#17). An unfurler reading `og:url` out of a crawled document has no page to resolve a relative one against |
+| `TEST_FLOOR`  | unset, and the floor is on      | `off` lifts the floor described in `tools/test/floor.ts`, for the runs that are a subset on purpose — `npm run review:greyscale`, or one file while you work on it. Nothing in CI sets it        |
 
 These two are the only environment variables, and there are no secrets — the site has no server.
 
