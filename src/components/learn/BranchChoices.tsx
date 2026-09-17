@@ -41,6 +41,8 @@ import type { BranchChoice } from './tree-path.ts'
  */
 export type BranchChoicesProps = {
   readonly choices: readonly BranchChoice[]
+  /** The position every reply below answers, so each preview can mark its own ply. */
+  readonly fen: string
   readonly dismissed: readonly CompiledDismissal[]
   readonly dismissRest: CompiledDismissRest | undefined
   /** The learner's side sits at the bottom of every preview, as on the main board. */
@@ -123,6 +125,7 @@ const ProvenanceNote = ({
 
 export const BranchChoices = ({
   choices,
+  fen,
   dismissed,
   dismissRest,
   orientation,
@@ -151,6 +154,7 @@ export const BranchChoices = ({
                 path={choice.path}
                 ply={choice.ply}
                 fen={choice.node.fen}
+                playedFrom={fen}
                 orientation={orientation}
                 variant="reply"
                 shortcut={shortcuts === 'on' && index < maxShortcutBranches ? index + 1 : null}

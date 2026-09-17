@@ -44,6 +44,37 @@ test.describe('the replies at a branch point', () => {
     await expect(choices(page).first()).toContainText('5...Ba5')
   })
 
+  /**
+   * Issue #54, AC 3: each preview marks its **own** candidate reply.
+   *
+   * Every reply to 5.c3 is the same bishop leaving the same square, so the four previews
+   * differ from one another by one piece on one square — and the marks say so: one origin,
+   * four destinations. Unmarked, this is the hardest find-the-difference on the site,
+   * repeated once per reply; that is the argument that settled AC 3 against showing none.
+   */
+  test('marks each preview with its own reply, not with the position’s (AC 3)', async ({
+    page,
+  }) => {
+    await open(page, EVANS_ENTRY)
+
+    const marks = await page.evaluate(() =>
+      [...document.querySelectorAll('.choice-link .board-preview')].map((preview) => {
+        const square = (ring: Element | null): string => {
+          if (ring === null) return ''
+          const x = Math.round(Number(ring.getAttribute('x')) - 0.06)
+          const y = Math.round(Number(ring.getAttribute('y')) - 0.06)
+          return `${'abcdefgh'[x] ?? '?'}${8 - y}`
+        }
+        return [
+          square(preview.querySelector('.board__last-ply--from')),
+          square(preview.querySelector('.board__last-ply--to')),
+        ].join('-')
+      }),
+    )
+
+    expect(marks).toEqual(['b4-a5', 'b4-c5', 'b4-e7', 'b4-d6'])
+  })
+
   test('navigates into a branch and puts it in the URL (AC 5)', async ({ page }) => {
     await open(page, EVANS_ENTRY)
 

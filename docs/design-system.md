@@ -315,12 +315,12 @@ Button; a Link navigates, a Button acts) · Badge · Tag · Input · Select · D
 | Component            | Responsibility                                        | Notes                                                                                                                                                                                                                                         |
 | -------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `Board`              | Render a position                                     | Own SVG (ADR-0003). `role="grid"`, 64 cells, roving tabindex, one polite live region. Position comes in as a derived FEN, never authored. **Display only in v1** — no piece is ever dragged                                                   |
-| `BoardPreview`       | Small static board for branch choices                 | Same renderer, no coordinates, not in the tab order — many mount at once                                                                                                                                                                      |
+| `BoardPreview`       | Small static board for branch choices                 | Same renderer, no coordinates, not in the tab order — many mount at once. Each marks its **own** candidate ply (#54): replies to one position differ by a single piece, so one mark per board is what tells them apart                        |
 | `MoveNavigator`      | Previous / next / jump to start                       | Previous disabled at root, next disabled at leaf                                                                                                                                                                                              |
 | `MoveList`           | Plies of the current path, current one marked         | Monospace; click to jump                                                                                                                                                                                                                      |
 | `BranchChoices`      | The replies at an opponent node                       | Each: preview, SAN, quality icon + label, frequency, provenance. Also renders `dismissed` replies, collapsed, with their reason — an omission the learner can see is honest; one they cannot is the product's core failure                    |
 | `PlanChoices`        | A **learner** node with more than one prescribed move | A genuine choice of plans, e.g. the Evans after 5...Ba5 where 6.d4 and 6.O-O are both main lines. Distinct from `BranchChoices`: these are the learner's options, not the opponent's threats                                                  |
-| `MateNet`            | The refutation of every defensive try                 | **One** shared board plus a SAN list, never one preview per reply — a defender node in a net can have 24 legal replies, and 24 board instances on a 360px phone is not a design                                                               |
+| `MateNet`            | The refutation of every defensive try                 | **One** shared board plus a SAN list, never one preview per reply — a defender node in a net can have 24 legal replies, and 24 board instances on a 360px phone is not a design. Its board marks no ply (#54)                                 |
 | `AnnotationPanel`    | The current node's prose                              | Shows the untranslated marker on fallback                                                                                                                                                                                                     |
 | `OutcomeCard`        | A leaf's outcome                                      | **Two distinct components**, not one with a flag                                                                                                                                                                                              |
 | `MateOutcome`        | Proved forced mate                                    | States the mate count, the forced sequence, and links to how it was proved                                                                                                                                                                    |
@@ -575,6 +575,36 @@ checklist above was written against.
 - **Not performed:** the screen-reader, zoom, reduced-motion and dual-theme rows. #18 wired the gate
   and wrote the checklist; it did not run the first manual pass, and recording that honestly is
   cheaper than an entry that implies otherwise.
+
+**2026-09-17 — #54, the last-ply highlight wired to its callers.** Not a release review either: it
+closes the one line the entry above records as not covered, and leaves the rest of that entry's
+"not performed" list standing.
+
+- **The gap, closed.** The highlight hung off an optional `lastMove` prop and no caller passed it.
+  `LearningSurface` and every branch and plan preview now do. The two squares are derived from the
+  positions either side of a ply rather than shipped on the wire, for the reason
+  `tools/content/derived-fields.ts` gives about FENs: a stored origin square is one more thing that
+  can drift out of sync with the moves beside it, and unlike a FEN nothing downstream would notice.
+  `last-ply.test.ts` holds the derivation against `chess.js` over four opening lines and forty
+  games, castling, _en passant_ and promotion included.
+- **Greyscale: the tint carries nothing, and that is now measured rather than assumed.**
+  `--color-board-highlight-from` against `--color-board-highlight-to` is **1.05:1** in light and
+  **1.10:1** in dark; either against `--color-board-light` is at most **1.27:1**. So with the hue
+  gone a learner cannot tell the square a ply left from the square it reached, nor either from a
+  square nothing happened on. The dashed ring and the solid one are the entire signal, exactly as
+  icon and label are for the nine colours measured above. `board-contrast.test.ts` records the
+  numbers, and `e2e/move-navigation.spec.ts` measures both rings on a genuinely desaturated page
+  with a probe that makes it fail.
+- **Preview boards mark their own candidate ply; `MateNet`'s board marks none.** Both decisions are
+  written into §3's component table rather than only into the code. The preview rings are stroked
+  thicker than the main board's, because the board's 0.045-unit stroke scales to half a CSS pixel on
+  a 96px preview, and two hairlines are not two shapes.
+- **axe: still 0 violations**, over the same sweep — including the published taught entries, which
+  now really draw a highlight. The rings sit inside the board's `aria-hidden` SVG and add no name,
+  role or value, and the run confirms that rather than leaving the reasoning to stand alone.
+- **Looked at by hand:** the highlight on the main board and on a column of previews, in both
+  themes at 375px, in colour and under `grayscale(1)`. **Not performed:** everything the entry above
+  lists as not performed — the screen-reader, zoom and reduced-motion rows are still unrun.
 
 ---
 

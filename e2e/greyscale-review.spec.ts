@@ -91,14 +91,16 @@ test.describe('the surfaces a release reviews in greyscale (AC 5)', () => {
    * black pieces carry an outline contrast that survives greyscale." Captured mid-line, so
    * both colours of piece are on both colours of square.
    *
-   * What is **not** in this frame, and the reviewer should not go looking for it: the
-   * last-ply highlight. `Board` implements it in full — the tinted squares, the dashed and
-   * solid rings that make it a shape difference rather than only a tint, the tokens and a
-   * unit test — behind an optional `lastMove` prop, and **no caller passes that prop**.
-   * `LearningSurface` does not, and neither does `BoardPreview`. So nothing highlights
-   * anything on the shipped site, §2's "board highlights carry a shape or border
-   * difference" has nothing yet to hold over, and this step covers it only once a caller
-   * supplies the move.
+   * The frame is taken mid-line, so it also carries the **last-ply highlight** — which it
+   * did not until #54, because `Board` implemented it in full behind an optional `lastMove`
+   * prop that no caller passed for four waves. What the reviewer is looking at is the
+   * dashed ring on the square 3...fxe5 left and the solid ring on the square it reached,
+   * and what they are deciding is whether those two read apart at this size once the hue is
+   * gone. They have to, because nothing else can: desaturated, the two highlight tints are
+   * 1.05:1 apart and either is within 1.3:1 of an ordinary square
+   * (`board-contrast.test.ts`). The machine-checkable half is not repeated here —
+   * `e2e/move-navigation.spec.ts`, "the last-ply highlight", measures the two rings on a
+   * desaturated page and carries a probe that makes it fail.
    */
   test('the board, mid-line, with both colours of piece on both colours of square', async ({
     page,

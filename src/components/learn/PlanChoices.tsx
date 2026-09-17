@@ -23,11 +23,13 @@ import type { BranchChoice } from './tree-path.ts'
  */
 export type PlanChoicesProps = {
   readonly choices: readonly BranchChoice[]
+  /** The position every plan below is played from, so each preview can mark its own ply. */
+  readonly fen: string
   readonly orientation: Orientation
   readonly shortcuts: ShortcutSetting
 }
 
-export const PlanChoices = ({ choices, orientation, shortcuts }: PlanChoicesProps) => {
+export const PlanChoices = ({ choices, fen, orientation, shortcuts }: PlanChoicesProps) => {
   const headingId = useId()
   const noteId = useId()
 
@@ -47,6 +49,7 @@ export const PlanChoices = ({ choices, orientation, shortcuts }: PlanChoicesProp
               path={choice.path}
               ply={choice.ply}
               fen={choice.node.fen}
+              playedFrom={fen}
               orientation={orientation}
               variant="plan"
               shortcut={shortcuts === 'on' && index < maxShortcutBranches ? index + 1 : null}

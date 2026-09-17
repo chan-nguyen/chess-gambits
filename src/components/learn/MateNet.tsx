@@ -54,7 +54,19 @@ export const MateNet = ({ fen, sequence, provedBy, orientation }: MateNetProps) 
       </p>
 
       <div className="mate-net__figure">
-        <BoardPreview fen={fen} orientation={orientation} />
+        {/*
+         * The one board on the site that marks no ply, and it is a decision rather than an
+         * omission (issue #54, AC 3).
+         *
+         * Every other board answers "what produced the position you are looking at". This
+         * one is an anchor for a line played *from* the position — the reader's eye goes
+         * from the board to `7.Bxf7+ 7...Ke7 8.Nd5#` and forward, and a mark on the ply
+         * that arrived would be the only thing on the card pointing the other way. It
+         * would also be a second copy of the mark the main board is already showing for
+         * the same position, which is exactly the duplication the preview is small to
+         * avoid.
+         */}
+        <BoardPreview fen={fen} orientation={orientation} lastMove={undefined} />
 
         {/*
          * An ordered list, because the order is the whole content: these plies are only a

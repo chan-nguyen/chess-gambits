@@ -48,6 +48,7 @@ const JUDGEMENT: CompiledProvenance = {
  */
 type Options = {
   readonly choices?: readonly BranchChoice[]
+  readonly fen?: string
   readonly dismissed?: readonly CompiledDismissal[]
   readonly dismissRest?: CompiledDismissRest | null
   readonly judgement?: CompiledProvenance
@@ -58,6 +59,7 @@ const EVANS_CHOICES = branchChoices(EVANS_ENTRY.tree, [])
 
 const show = async ({
   choices = EVANS_CHOICES,
+  fen = EVANS_ENTRY.tree.fen,
   dismissed = EVANS_ENTRY.tree.dismissed ?? [],
   dismissRest = EVANS_ENTRY.tree.dismissRest ?? null,
   judgement = JUDGEMENT,
@@ -71,6 +73,7 @@ const show = async ({
           <I18nProvider locale={locale} load={load}>
             <BranchChoices
               choices={choices}
+              fen={fen}
               dismissed={dismissed}
               dismissRest={dismissRest ?? undefined}
               orientation="white"

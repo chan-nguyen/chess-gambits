@@ -5,6 +5,7 @@ import { Translated } from '../../i18n/Translated.tsx'
 import { lineSearch } from '../../lib/line.ts'
 import type { Orientation } from '../board/board-model.ts'
 import { BoardPreview } from './BoardPreview.tsx'
+import { lastPlyBetween } from './last-ply.ts'
 import { plyLabel } from './tree-path.ts'
 
 /**
@@ -24,6 +25,16 @@ export type ChoiceLinkProps = {
   readonly path: readonly string[]
   readonly ply: string
   readonly fen: string
+  /**
+   * The position this continuation is played *from* — the node the learner is standing on.
+   *
+   * Two positions are what name a ply's two squares, so the preview needs the one behind it
+   * as well as its own (`last-ply.ts`). It is the same value for every choice in a list,
+   * which is why it arrives as one prop from the surface rather than being carried per
+   * choice: a list where one preview could be drawn against a different origin than its
+   * neighbours would be a bug with no symptom.
+   */
+  readonly playedFrom: string
   readonly orientation: Orientation
   readonly variant: 'reply' | 'plan'
   /**
@@ -50,6 +61,7 @@ export const ChoiceLink = ({
   path,
   ply,
   fen,
+  playedFrom,
   orientation,
   variant,
   shortcut,
@@ -65,7 +77,29 @@ export const ChoiceLink = ({
       to={{ pathname, search: lineSearch(path) }}
       aria-describedby={describedBy}
     >
-      <BoardPreview fen={fen} orientation={orientation} />
+      {/*
+       * Each preview marks its own candidate reply (issue #54, AC 3).
+       *
+       * The alternative was to leave every preview unmarked on the grounds that eight or
+       * twelve highlighted boards at once are noise. They are not, because the noise
+       * argument counts highlights per *screen* and a learner reads these one board at a
+       * time: each preview carries exactly one move's mark, which is the fewest a board
+       * showing a move can carry. What is genuinely hard here is the opposite problem —
+       * every reply to the same position differs from its siblings by one piece, so an
+       * unmarked column of previews is the worst find-the-difference task on the site, and
+       * it is repeated once per reply.
+       *
+       * The mark means the same thing on every board on this page: the ply that produced
+       * the position you are looking at. On the main board that position is the current
+       * one and on a preview it is a candidate one, and nothing about the mark has to
+       * carry that difference — the SAN beside it, the heading above it and the fact that
+       * it is inside a link already do.
+       */}
+      <BoardPreview
+        fen={fen}
+        orientation={orientation}
+        lastMove={lastPlyBetween(playedFrom, fen)}
+      />
 
       <span className="choice-link__detail">
         <span className="choice-link__ply">

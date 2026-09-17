@@ -864,3 +864,112 @@ describe('what the line ends in (#11)', () => {
     ])
   })
 })
+
+/**
+ * **What changed, on every board that shows a move (issue #54).**
+ *
+ * `Board` has drawn a last-ply highlight since #4 — tinted squares plus a dashed ring on
+ * the square the ply left and a solid one on the square it reached — behind an optional
+ * `lastMove` prop that no caller passed for four waves. So these assertions are deliberately
+ * about the *surface* and not about `Board`: a test that handed `Board` a move and checked
+ * it drew one would have passed on every day of those four waves.
+ *
+ * `last-ply.test.ts` holds the other end — that no board anywhere in `src/` is mounted
+ * without the prop, so a fifth wave cannot reopen the gap by adding a caller.
+ */
+describe('the ply that produced the position', () => {
+  const FILES = 'abcdefgh'
+
+  /**
+   * Which square a highlight sits on, read back off the rect's own geometry.
+   *
+   * Off its `x`/`y` rather than off its index among the 64 squares, because the index would
+   * agree with a board that drew the ring in the right slot of the wrong board — and
+   * because the arithmetic here is the inverse of the arithmetic the component does, so a
+   * ring drawn half a square out fails rather than rounding into the right answer. Both
+   * fixtures used below are White entries, so the board is unflipped: file a is at x=0 and
+   * rank 8 at y=0.
+   */
+  const squareOf = (rect: Element): string => {
+    const x = Math.round(Number(rect.getAttribute('x')) - 0.06)
+    const y = Math.round(Number(rect.getAttribute('y')) - 0.06)
+    return `${FILES[x] ?? '?'}${8 - y}`
+  }
+
+  /** `f6-e5`, or the empty string for a board that marks nothing. */
+  const marks = (board: Element | null | undefined): string => {
+    const from = board?.querySelector('.board__last-ply--from') ?? null
+    const to = board?.querySelector('.board__last-ply--to') ?? null
+    return from === null || to === null ? '' : `${squareOf(from)}-${squareOf(to)}`
+  }
+
+  const mainBoard = () => document.querySelector('.learning-surface__board')
+  const previews = () => [...document.querySelectorAll('.choice-link .board-preview')]
+
+  it('marks the two squares the ply used (AC 1)', async () => {
+    await surface({ line: ['fxe5'] })
+
+    // 3...fxe5: the pawn left f6 and arrived on e5, capturing the knight that was there.
+    expect(marks(mainBoard())).toBe('f6-e5')
+  })
+
+  it('tells the square left from the square reached, and not only by colour', async () => {
+    await surface({ line: ['fxe5'] })
+    const board = mainBoard()
+
+    expect(board?.querySelectorAll('.board__square--from')).toHaveLength(1)
+    expect(board?.querySelectorAll('.board__square--to')).toHaveLength(1)
+    expect(board?.querySelectorAll('.board__last-ply')).toHaveLength(2)
+  })
+
+  it('marks nothing at the root, where nothing has been stepped to (AC 2)', async () => {
+    await surface()
+
+    expect(mainBoard()?.querySelectorAll('.board__last-ply')).toHaveLength(0)
+  })
+
+  it('marks the ply that produced *that* position when stepping back (AC 2)', async () => {
+    await surface({ line: ['fxe5', 'Qh5+'] })
+    expect(marks(mainBoard())).toBe('d1-h5')
+
+    fireEvent.click(control(VI.previousPly))
+    await waitFor(() => expect(marks(mainBoard())).toBe('f6-e5'))
+
+    fireEvent.click(control(VI.previousPly))
+    await waitFor(() => expect(mainBoard()?.querySelectorAll('.board__last-ply')).toHaveLength(0))
+  })
+
+  /**
+   * AC 3, and the case that decided it. Every reply to 5.c3 is the same bishop leaving the
+   * same square, so four previews differ from one another by one piece on one square — the
+   * hardest find-the-difference on the site, repeated once per reply. Unmarked they are four
+   * near-identical pictures; marked, each says where its own bishop went.
+   */
+  it('marks each preview with its own candidate reply (AC 3)', async () => {
+    await surface({ entry: EVANS_ENTRY })
+
+    expect(previews().map(marks)).toStrictEqual(['b4-a5', 'b4-c5', 'b4-e7', 'b4-d6'])
+  })
+
+  it('marks a plan the same way, castling included', async () => {
+    await surface({ entry: EVANS_ENTRY, line: PLAN_LINE })
+
+    // 6.O-O moves two pieces; the highlight names the king's two squares, as SAN does.
+    expect(previews().map(marks)).toStrictEqual(['d2-d4', 'e1-g1'])
+  })
+
+  /**
+   * The one board that marks nothing on purpose. `MateNet`'s board is an anchor for a line
+   * played *from* the position, and it repeats the position the main board is already
+   * showing — so the decision there is "none", stated in the call rather than fallen into.
+   */
+  it('leaves the mate net’s board unmarked, and the main board marked', async () => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+    const net = document.querySelector('.mate-net .board-preview')
+
+    expect(net).not.toBeNull()
+    expect(net?.querySelectorAll('.board__last-ply')).toHaveLength(0)
+    // 6...Bxd1 — the bishop came from h5, where 4...Bh5 put it earlier in this line.
+    expect(marks(mainBoard())).toBe('h5-d1')
+  })
+})

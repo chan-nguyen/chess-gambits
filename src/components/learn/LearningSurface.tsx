@@ -17,6 +17,7 @@ import { OutcomeCard } from './OutcomeCard.tsx'
 import { PlanChoices } from './PlanChoices.tsx'
 import { ShortcutToggle } from './ShortcutToggle.tsx'
 import { announcementOf, localiseAnnotation } from './annotation.ts'
+import { lastPlyBetween } from './last-ply.ts'
 import {
   branchShortcutIndex,
   rememberShortcutSetting,
@@ -199,6 +200,23 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
     previousKey.current = pathKey
   }, [pathKey])
 
+  /**
+   * The ply that produced the position on screen, as two squares for `Board` to mark.
+   *
+   * Read between this node and the one before it rather than out of the node itself,
+   * because a `CompiledNode` carries SAN and a FEN and SAN names no origin square
+   * (`last-ply.ts` says why the pair is derived here rather than shipped on the wire).
+   *
+   * **The root is deliberately unmarked.** It is the position after the defining line —
+   * where the learner arrives, not somewhere they stepped to — so there is no "what just
+   * changed" for a highlight to answer, and marking the last ply of a line the page never
+   * showed would point at a move the learner has not been told about.
+   */
+  const previousNode =
+    steps.length === 0 ? undefined : (steps[steps.length - 2]?.node ?? entry.tree)
+  const lastMove =
+    previousNode === undefined ? undefined : lastPlyBetween(previousNode.fen, node.fen)
+
   const prose = node.annotation === undefined ? null : localiseAnnotation(node.annotation, locale)
   const label = node.ply === undefined ? null : plyLabel(node.ply, node.fen)
   const dismissed = node.dismissed ?? []
@@ -234,6 +252,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
             labels={labels}
             orientation={entry.side}
             announcement={announcement}
+            lastMove={lastMove}
           />
         </div>
         <MoveNavigator previous={previous} next={next} />
@@ -259,6 +278,7 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
           (choices.length > 0 || dismissed.length > 0 || node.dismissRest !== undefined) && (
             <BranchChoices
               choices={choices}
+              fen={node.fen}
               dismissed={dismissed}
               dismissRest={node.dismissRest}
               orientation={entry.side}
@@ -269,7 +289,12 @@ export const LearningSurface = ({ entry, requested }: LearningSurfaceProps) => {
           )}
 
         {node.kind === 'learner' && choices.length > 1 && (
-          <PlanChoices choices={choices} orientation={entry.side} shortcuts={shortcuts} />
+          <PlanChoices
+            choices={choices}
+            fen={node.fen}
+            orientation={entry.side}
+            shortcuts={shortcuts}
+          />
         )}
 
         {/*

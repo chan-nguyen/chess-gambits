@@ -2,6 +2,7 @@ import './BoardPreview.css'
 import { useBoardLabels } from '../../i18n/board-labels.ts'
 import type { Orientation } from '../board/board-model.ts'
 import { Board } from '../board/Board.tsx'
+import type { LastMove } from '../board/Board.tsx'
 
 /**
  * The small static board on a branch choice (docs/design-system.md §3, acceptance
@@ -26,14 +27,32 @@ import { Board } from '../board/Board.tsx'
 export type BoardPreviewProps = {
   readonly fen: string
   readonly orientation: Orientation
+  /**
+   * The ply that produced `fen`, or undefined where the caller has decided this board
+   * shows none.
+   *
+   * **Required although it may be undefined**, which is the point (issue #54). `Board` has
+   * carried a complete last-ply highlight — tinted squares, a dashed ring on the square the
+   * ply left and a solid one on the square it reached, tokens in both themes, contrast
+   * checked and unit tested — behind an *optional* prop since #4, and for four waves no
+   * caller passed it, so nothing on the site ever drew one. An optional prop is a decision
+   * a caller can skip without noticing; this one cannot be skipped, only made and stated.
+   */
+  readonly lastMove: LastMove | undefined
 }
 
-export const BoardPreview = ({ fen, orientation }: BoardPreviewProps) => {
+export const BoardPreview = ({ fen, orientation, lastMove }: BoardPreviewProps) => {
   const labels = useBoardLabels()
 
   return (
     <div className="board-preview" inert aria-hidden="true">
-      <Board fen={fen} labels={labels} orientation={orientation} showCoordinates={false} />
+      <Board
+        fen={fen}
+        labels={labels}
+        orientation={orientation}
+        lastMove={lastMove}
+        showCoordinates={false}
+      />
     </div>
   )
 }

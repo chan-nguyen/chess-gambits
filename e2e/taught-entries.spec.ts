@@ -114,6 +114,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
 
       await atGambit(page, entry.id, [])
       await expect(page.getByRole('navigation', { name: vi.learn.navigation })).toBeVisible()
+      // Issue #54: the root is the position after the defining line, so it marks no ply.
+      await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(0)
 
       const entryPath = `${cataloguePath}/${entry.id}`
 
@@ -141,6 +143,14 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
 
           await page.locator(`${control}[href$="${target}"]`).click()
           await atGambit(page, entry.id, leaf.slice(0, index + 1))
+
+          /*
+           * Issue #54, on published content rather than on a fixture. The highlight was
+           * complete and unreachable for four waves precisely because nothing asserted it
+           * anywhere a visitor actually goes, so every step of every taught line is asked
+           * for the two rings — the square the ply left and the square it reached.
+           */
+          await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(2)
         }
 
         const outcome = nodeAt(entry.tree, leaf).outcome
