@@ -84,12 +84,100 @@ libraries bought for the wrong problem.
   is straightforward on an SVG grid, and it is the interaction a touch device wants anyway.
 - Piece-name localisation is now ours to do, which is correct: `design-system.md` says SAN is never
   localised, but a screen reader saying "white knight on f3" must speak the learner's language.
-- **Tripwire:** if the board exceeds roughly 400 lines or starts growing rules logic, that is the
-  signal it was the wrong call. `cm-chessboard` (MIT, 8.4 KB) is the pre-selected fallback and
-  swapping it in is a single-component change.
+- **Tripwire, as amended by #79:** two conditions, and they are not the same kind of signal. **Any
+  rules logic** in `src/components/board/` — move generation, a legality test, check detection,
+  `chess.js` — means the bet was wrong; `cm-chessboard` (MIT, 8.4 KB) is the pre-selected fallback
+  and swapping it in is a single-component change. **Separately**, the board's shipped code passing
+  **450 lines** with comments and blanks stripped is a signal to measure and decide, not to swap.
+  `board-tripwire.test.ts` enforces both. The number was 400; the section below says why it moved
+  and why only the rules half is a swap trigger.
 - The licence question returns if an engine is ever _shipped_ to the browser: Stockfish is GPL-3.0
   and lichess's WASM build AGPL-3.0. ADR-0010 keeps that decision open; ADR-0005 shows the engine is
   useful in the build without shipping anything.
+
+## Amended by #79: the count was measuring the board's existence, not its growth
+
+The count arrived — 399 of 400 — and was spent on deciding rather than on whoever needed the next
+two lines. Three things were measured before deciding anything, with the tripwire's own
+`codeLineCount`, which strips comments and blanks.
+
+**The board has grown ten lines in its life.** Not the two features' worth of headroom the ticket
+assumed:
+
+| Commit    | What landed                     | Code lines    |
+| --------- | ------------------------------- | ------------- |
+| `666feac` | the board's first commit (#26)  | **389**       |
+| `5784491` | the `celtic` artwork (#71)      | 389 (+0)      |
+| `a3a03e4` | the slide between squares (#72) | **399** (+10) |
+
+The artwork cost nothing measurable: it replaced path data in place, and all of its growth was the
+comment block and `NOTICE`, which the tripwire strips by design. The motion cost ten lines for a
+full animation. So the board was _written_ at 389 against a limit of 400, and 400 was chosen before
+the board existed. A budget with eleven lines of resolution never measured growth; it reported that
+the thing had been built. That is what arrived, and it is not the signal this ADR wanted.
+
+**The rules half has not been tripped, checked rather than assumed.** There is no move generation,
+no legality test, no check detection — `check` is a `Square` the caller supplies — no SAN and no
+`chess.js`. `parseFen` reads the placement field and nothing else. `nextFocus` navigates an 8×8 grid
+and would work on a spreadsheet. And the condition is doing real work rather than sitting idle: #72
+put `plyMotionBetween` under `learn/` instead of `board/` _because_ of it, and its header says so.
+That is the tripwire changing a design, which is the most a tripwire can do.
+
+**The fallback would not relieve the count anyway.** About 72 of the 399 lines are the accessibility
+model — `squareOf`, the roving-tabindex state, `handleKeyDown`, `nextFocus`, `BoardLabels`,
+`squareLabel`, the `role="grid"` and the live region — which the table above already records that no
+candidate provides, so they survive any swap; the vendored sprite's 27 lines most likely survive it
+too. "Past 400 lines, swap to `cm-chessboard`" therefore asks us to take on a dependency and 8.4 KB
+to delete perhaps 150 lines of rendering while keeping around 100 and writing a wrapper. A number
+cannot be a swap trigger when the swap is not what it would fix.
+
+### The decision
+
+- **The own-SVG board stands**, reconsidered rather than assumed — see below.
+- **The line condition is now 450 code lines** across `Board.tsx`, `board-model.ts` and
+  `piece-sprite.tsx`, comments and blanks stripped, measured together because a limit on one file is
+  evaded by opening a second. **Why 450:** it is the board as built plus fifty, and fifty is five
+  times the most expensive change this board has ever absorbed (#72's motion, ten lines for a slide
+  animation). At the rate the board has actually grown, that is a great deal of presentation work.
+  Reaching it inside a few tickets would mean the _rate_ had changed, which is the thing worth being
+  told about. 400 could only ever tell us the board had been written.
+- **The line condition is a review trigger, not a swap trigger.** Tripping it means: measure again,
+  write down what grew and whether it is presentation or rules, and decide — which is what #79 is.
+  The swap trigger is the rules condition, unchanged and unqualified.
+- **No code changed.** The board renders exactly as it did; only the number and the words moved.
+
+The tripwire's second assertion, which measured `Board.tsx` alone by its lines _as written_, is
+retired with this amendment. Its only distinct failure mode was a long comment in that one file,
+which contradicts the rule the same test states three lines above it — that explaining a decision
+must never be the thing that trips the wire. ADR-0003 bounds the board's code, and one assertion now
+says so.
+
+### The library, reconsidered because this ADR asked for it
+
+- **Licences re-read from the npm registry on 2026-09-17, not recalled.**
+  `@lichess-org/chessground` is now **10.2.0 and still GPL-3.0-or-later**; `cm-chessboard` 8.14.0 and
+  `react-chessboard` 5.12.1 are both still MIT. The reason chessground was rejected is unchanged, and
+  a version bump did not change it.
+- **#71 found the same copyleft shape one layer down, in the artwork.** lichess's default `cburnett`
+  is GPLv2+ and the whole sadsnake1 family is CC BY-NC-SA, which is why the MIT `celtic` set was
+  vendored instead (`NOTICE`). **Not checked here, and to be checked before any swap:** which piece
+  set `cm-chessboard` ships and under what licence. Its _code_ is MIT; its _assets_ are a separate
+  question and this amendment does not pretend to have answered it.
+- **All three original reasons still hold.** Nothing in F1–F15 lets a learner move a piece, so the
+  drag machinery is still unused; the accessibility floor still has to be built by hand on top of any
+  of them; and F5 still mounts one board per reply. #71 and #72 do not weaken any of them — both were
+  presentation, and between them they cost ten lines.
+
+### What was rejected
+
+- **Refactor to buy headroom.** The tripwire names the shipped modules and asserts the directory
+  contains exactly those, so a fourth module in `board/` brings its own imports and props into the
+  same total and makes it worse. The only refactor that buys headroom is moving board code out of
+  `board/`, which evades a measurement rather than answering it — and #72 already moved everything
+  that honestly belonged under `learn/`. It would also have left the ADR's question unanswered.
+- **Leave 400 and let the next ticket trip it.** #80 edits `Board.tsx` next and may well make the
+  mark rendering simpler. Either way, discovering an architectural checkpoint mid-task, with other
+  work in hand, is the worst way to meet one.
 
 ## What would change this
 

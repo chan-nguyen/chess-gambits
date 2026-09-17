@@ -86,7 +86,9 @@ const COORDINATE_SIZE = 0.2
  * `role="grid"` of 64 cells on a single tab stop, each named with its square and
  * occupant in the learner's language, and one polite live region.
  *
- * Under 400 lines by ADR-0003's tripwire, which `board-tripwire.test.ts` measures.
+ * Under 450 lines by ADR-0003's tripwire, which `board-tripwire.test.ts` measures across the
+ * whole shipped board. The number was 400 until #79 measured what it had actually been
+ * detecting; that ADR's amendment says why it moved and why only the rules half swaps.
  */
 export const Board = ({
   fen,
