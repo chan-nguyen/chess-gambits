@@ -69,7 +69,10 @@ rules:
       The archetype: 2.f4 offers the f-pawn for the centre and the open f-file. Objectively
       it gives Black an edge with best play, and the practical chances are real enough that
       it has never left club play. The whole complex is included, accepted and declined,
-      because a learner meets both.
+      because a learner meets both. Two of the 151 rows are not White's f-pawn: the Mafia
+      Defense has its own rule below, and the Classical Svenonius Variation is the one row
+      this rule still only asserts — it is a declined line where c1 always recaptures on f4,
+      so no ply of its sixteen gives anything away (#56).
   - match: "King's Gambit Declined: Falkbeer Countergambit"
     include: true
     side: black
@@ -102,11 +105,14 @@ rules:
       refuted at club level; the theory is deep enough to fill a family on its own.
   - match: 'Blackmar-Diemer Gambit: Lemberger Countergambit'
     include: true
-    side: black
-    soundness: dubious
+    sacrifice: { ply: 3, move: e4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      3...e5 hands the pawn straight back to break the attack before it starts. Black is
-      the one offering material here.
+      The pawn in this line is White's. 2.e4 offers it, 2...dxe4 takes it and nothing
+      recaptures. Black's 3...e5 hands that same pawn *back* to break the attack before it
+      starts, which returns material rather than giving any — so no ply of Black's is
+      provable here, and filing these six rows as Black's sat the learner facing the wrong
+      way (#56).
   - match: 'Benko Gambit'
     include: true
     side: black
@@ -325,11 +331,14 @@ rules:
       5.Nd5 is a genuine pawn offer with real traps behind it and a sound answer for Black.
   - match: 'Four Knights Game: Scotch Variation, Krause Gambit'
     include: true
-    side: white
-    soundness: dubious
+    sacrifice: { ply: 8, move: Bb4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
     reason: >-
-      Another central pawn offer in the Four Knights Scotch, in the same family as the
-      Belgrade.
+      4...Bb4 leaves e5 to be taken, and 5.Nxe5 wins the pawn on the exchange — so the
+      offer is Black's and 5.Nxe5 is White accepting it. The Leonhardt Defense is the same
+      line one ply on. This is the hardest of the #56 rows to read: the dataset stops the
+      head row on White's capture, so the line ends with the accepting side's move, and it
+      is still Black who parted with the pawn.
   - match: "Petrov's Defense: Stafford Gambit"
     include: true
     side: black
@@ -356,7 +365,10 @@ rules:
     soundness: unsound
     reason: >-
       The same ...f5 idea a move earlier and no better, which is worth stating rather than
-      leaving a learner to assume the two are different.
+      leaving a learner to assume the two are different. `side` stays asserted on this rule
+      because the head row stops at 3...f5, where 4.exf5 Bxf5 and 4.Nxe5 dxe5 both come out
+      level: the pawn only goes after 4.d4, one ply past the line this entry publishes. The
+      side is Black's on the evidence of the whole variation and not of these six plies (#56).
   - match: 'Elephant Gambit'
     include: true
     side: black
@@ -405,7 +417,8 @@ rules:
     soundness: dubious
     reason: >-
       The Vienna is a gambit opening: f4 arrives a move later than in the King's Gambit and
-      with a knight already out. The named gambits under this head are all White's.
+      with a knight already out. Most of the named gambits under this head are White's; the
+      Erben, Mariotti, Pollock and Eifel are Black's and carry their own rules below.
   - match: 'Vienna Gambit'
     include: true
     side: white
@@ -467,8 +480,8 @@ rules:
     side: white
     soundness: dubious
     reason: >-
-      The named gambits under the Ponziani — Caro, Neumann, Vukovic, Nikitin — are White
-      pawn offers out of the c3-d4 centre.
+      The named gambits under the Ponziani — Neumann, Vukovic, Nikitin — are White pawn
+      offers out of the c3-d4 centre. The Caro is Black's and has its own rule below.
   - match: 'Ponziani Opening: Ponziani Countergambit'
     include: true
     side: black
@@ -513,7 +526,10 @@ rules:
     reason: >-
       A pawn for a lasting kingside attack, prepared for decades and played at world
       championship level — and the dataset calls it an Attack, never a Gambit. The clearest
-      false negative in the whole file.
+      false negative in the whole file. `side` stays asserted because the head row ends at
+      8...d5 and the pawn does not change hands until 11.Rxe5, five plies past it; the only
+      offer inside the published line is White's 5.O-O, which belongs to the Open Ruy and
+      not to this entry. Naming that ply would prove a side and print the wrong one (#56).
 
   # ---------------------------------------------------------------- 1.e4 against defences
   - match: 'Sicilian Defense: Smith-Morra Gambit'
@@ -522,7 +538,10 @@ rules:
     soundness: dubious
     reason: >-
       A pawn for development and the c- and d-files, and the most popular anti-Sicilian
-      gambit at club level by a distance.
+      gambit at club level by a distance. `side` stays asserted because the head row is
+      1.e4 c5 2.d4 and nothing is committed there — 2...cxd4 3.Qxd4 takes it straight back.
+      The Morra pawn is offered by 3.c3, one ply past the line this entry publishes, and
+      every deeper Smith-Morra row under this rule does prove White on its own moves (#56).
   - match: 'Sicilian Defense: Wing Gambit'
     include: true
     side: white
@@ -576,7 +595,9 @@ rules:
     soundness: dubious
     reason: >-
       An early c-pawn offer in the French, distinct from the Semi-Slav gambit of the same
-      name.
+      name. `side` stays asserted: inside 1.e4 e6 2.d4 d5 3.Nc3 c5 every capture comes out
+      level — 4.exd5 exd5, 4.dxc5 Bxc5 — so no ply of the published line gives anything
+      away for either side, and the offer this gambit is named for falls past it (#56).
   - match: 'French Defense: Wing Gambit'
     include: true
     side: white
@@ -614,16 +635,22 @@ rules:
       and the catalogue says plainly what it thinks of it.
   - match: 'Grob Opening: Romford Countergambit'
     include: true
-    side: black
-    soundness: unsound
+    sacrifice: { ply: 5, move: c4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
     reason: >-
-      Black returns the favour with a sacrifice of their own, so the side flips.
+      Black has already taken the g-pawn, so 3...d4 gives nothing away — it declines. It is
+      3.c4 that puts a second White pawn out, and the board finds both of them on White's
+      side of the ledger. The side does not flip here after all (#56).
   - match: 'Bird Opening'
     include: true
     side: white
     soundness: unsound
     reason: >-
-      1.f4 with a long tail of named pawn offers. Objectively poor, genuinely gambits.
+      1.f4 with a long tail of named pawn offers. Objectively poor, genuinely gambits. The
+      Hobbs, Hobbs-Zilbermints, Lasker, Platz and Schlechter are Black's and carry their own
+      rules below. The Thomas Gambit is the one row this rule still only asserts: 5.e3 dxe3
+      6.dxe3 recovers the pawn, so nothing is given inside the published line and no ply of
+      it proves anything for either side (#56).
   - match: "Bird Opening: From's Gambit"
     include: true
     side: black
@@ -636,15 +663,18 @@ rules:
     side: white
     soundness: unsound
     reason: >-
-      The gambits under 1.Nf3 — Tennison, Lisitsyn, Vos and the rest — are White pawn
-      offers out of a quiet move order.
+      The gambits under 1.Nf3 — Tennison, Lisitsyn and the rest — are White pawn offers out
+      of a quiet move order. The Herrstrom, Ross, Shabalov and Vos are Black's and carry
+      their own rules below.
   - match: 'Van Geet Opening'
     include: true
     side: white
     soundness: unsound
     reason: >-
-      1.Nc3 with twenty-one named pawn offers behind it. Every one is White's, which is why
-      a single head-level rule is honest here.
+      1.Nc3 with twenty-one named pawn offers behind it. Eleven are White's; the other ten
+      are Black's, which is what #56 found and what the rules below now prove one at a
+      time. "Every one is White's" is what this reason used to say, and it was the single
+      largest source of wrong board orientations in the catalogue.
 
   # ------------------------------------------------------------------ the #36 review: French
   #
@@ -3130,3 +3160,235 @@ rules:
     reason: >-
       A named trap inside the Tennison Gambit, not yet hand-entered. Breadth is free for
       gambits and is not free for traps; this is what that costs.
+  # ------------------------------------------------------------------ the #56 review: published entries whose side no board supported
+  #
+  # Issue #36 proved the side of every row it added and left the rows that were already
+  # published untouched. Pointed at those, the same prover found 45 entries whose declared
+  # side no ply of their own defining line supports, and 40 of them with a provable offer by
+  # the *other* side — ten Van Geet lines under a head rule that says in as many words
+  # "Every one is White's", the six Lemberger rows, and every Bird, Bishop's, Vienna and
+  # Zukertort line where it is the defender who puts a pawn out.
+  #
+  # Each rule below names the ply that gives the material away and lets the build read the
+  # side off a board, which is the only mechanism this file has for saying which way a board
+  # faces. Where the choice was between two plies that both prove — the Anderssen and the
+  # Thorold each offer a second pawn after ...b5, the Lasker a second after 1...e5 — the ply
+  # named is the one where the material actually leaves, not the one the variation is named
+  # after.
+  - match: 'Bird Opening: Hobbs Gambit'
+    include: true
+    sacrifice: { ply: 2, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...g5 is Black's pawn and 2.fxg5 simply takes it. The head rule reads 1.f4 as White's
+      gambit family; this row is the other side of it.
+  - match: 'Bird Opening: Hobbs-Zilbermints Gambit'
+    include: true
+    sacrifice: { ply: 4, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      The Hobbs pawn, prepared by 1...h6: 3.fxg5 hxg5 4.Nxg5 and White is a clean pawn up.
+      The h-pawn recapture does not change whose pawn it was.
+  - match: 'Bird Opening: Lasker Gambit'
+    include: true
+    sacrifice: { ply: 2, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...e5 is From's Gambit and the pawn is Black's; 2...f6 offers a second. The named ply
+      is the first one, because that is where the material goes.
+  - match: 'Bird Opening: Platz Gambit'
+    include: true
+    sacrifice: { ply: 2, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      A From's Gambit line: the pawn goes at 1...e5 and 2...Ne7 develops instead of taking
+      anything back. The sibling rule for From's Gambit has had this right all along.
+  - match: 'Bird Opening: Schlechter Gambit'
+    include: true
+    sacrifice: { ply: 2, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      Same pawn, same ply as the Platz: 1...e5 is the offer and 2...Nc6 plays on a pawn down.
+  - match: "Bishop's Opening: Anderssen Gambit"
+    include: true
+    sacrifice: { ply: 4, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...b5 is where the pawn leaves: 3.Bxb5 takes it and 3...c6 buys time rather than
+      material. Against the Bishop's Opening it is Black gambiting here, not White.
+  - match: "Bishop's Opening: Horwitz Gambit"
+    include: true
+    sacrifice: { ply: 6, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...b5 offers the b-pawn to the bishop on c4, and 4.Bxb5 holds it. The head rule's
+      "nearly all of them White's" does not stretch to this one.
+  - match: "Bishop's Opening: Khan Gambit"
+    include: true
+    sacrifice: { ply: 4, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...d5 3.exd5 is a straight pawn for the centre and the open file, offered by Black.
+  - match: "Bishop's Opening: Thorold Gambit"
+    include: true
+    sacrifice: { ply: 4, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      The Anderssen's 2...b5, with 3...f5 offering a second pawn on top. The first pawn is
+      the one the board can prove, and both are Black's.
+  - match: 'Grob Opening: Alessi Gambit'
+    include: true
+    sacrifice: { ply: 2, move: f5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...f5 2.gxf5 answers 1.g4 with a pawn of Black's own. Bad on both sides, and a real
+      offer by the defender.
+  - match: "King's Gambit Declined: Mafia Defense"
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 3.fxe5 is Black's pawn, with nothing to take it back. Filed under King's Gambit
+      Declined, where every other row is White's f-pawn — which is how it inherited the
+      wrong side.
+  - match: 'Ponziani Opening: Caro Gambit'
+    include: true
+    sacrifice: { ply: 8, move: Bd7 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...d5 is not yet an offer — 4.exd5 Qxd5 regains it — but 4...Bd7 leaves the pawn on
+      d5 for good in return for development. Black gives it, so the Caro is Black's.
+  - match: 'Van Geet Opening: Billockus-Johansen Gambit'
+    include: true
+    sacrifice: { ply: 4, move: Bc5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...Bc5 leaves e5 to the knight and 3.Nxe5 is a clean pawn. Black is buying the lead
+      in development, which is a gambit and is Black's.
+  - match: 'Van Geet Opening: Damhaug Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 3.fxe5 gives the e-pawn for the centre. The head rule for 1.Nc3 calls every
+      line White's and this is one of the ten it is wrong about.
+  - match: 'Van Geet Opening: Hergert Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nc6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      The pawn is already taken on e5 and 3...Nc6 declines to regain it with the d-pawn.
+      Choosing to stay a pawn down is the offer, and it is Black's choice.
+  - match: 'Van Geet Opening: Hulsemann Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Be6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Be6 develops and abandons e5 to the queen on h5, and 4.Qxe5 takes it. Black pays
+      the pawn for the tempi the queen loses afterwards.
+  - match: 'Van Geet Opening: Laroche Gambit'
+    include: true
+    sacrifice: { ply: 2, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...b5 2.Nxb5 and nothing on the board recaptures on b5. The pawn is simply given, by
+      Black, which is the plainest counter-example to this family's head rule.
+  - match: 'Van Geet Opening: Liebig Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Nf6 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Nf6 attacks the queen on h5 and gives up e5, which 4.Qxe5+ takes with check. The
+      Hulsemann one ply over, and Black's in the same way.
+  - match: 'Van Geet Opening: Melleby Gambit'
+    include: true
+    sacrifice: { ply: 6, move: c5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...c5 leaves the c-pawn to the knight on e4 and 4.Nxc5 wins it. Black is paying for
+      the wedge on d4.
+  - match: 'Van Geet Opening: Pfeiffer Gambit'
+    include: true
+    sacrifice: { ply: 6, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...e5 4.fxe5 is Black's pawn, given to hold the wedge on d4. The Melleby with the
+      e-pawn instead of the c-pawn.
+  - match: 'Van Geet Opening: Pfeiffer Gambit, Sleipnir Countergambit'
+    include: true
+    sacrifice: { ply: 7, move: Nf3 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      Both sides give a pawn in this line: Black's 3...e5 is the Pfeiffer, and 4.Nf3 lets the
+      f-pawn go to 4...exf4 with nothing taking back. Its own rule, at its own ply, so that
+      the Pfeiffer rule above cannot flip a row that ends with White's move and White's
+      offer.
+  - match: 'Van Geet Opening: Sleipnir Gambit'
+    include: true
+    sacrifice: { ply: 6, move: Bb4 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      3...Bb4 pins the knight and leaves e5 hanging, and 4.dxe5 takes it. A different gambit
+      from the Sleipnir Countergambit above, by the other side.
+  - match: 'Van Geet Opening: Warsteiner Gambit'
+    include: true
+    sacrifice: { ply: 4, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...g5 3.fxg5 is the Hobbs idea against 1.Nc3, and the pawn is Black's.
+  - match: 'Vienna Game: Mieses Variation, Erben Gambit'
+    include: true
+    sacrifice: { ply: 8, move: c6 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      White has taken on d5 and 4...c6 plays on without regaining it — 5.dxc6 Nxc6 leaves
+      Black a pawn down with the files. The head rule says the named gambits under the
+      Vienna are all White's, and these four are not.
+  - match: 'Vienna Game: Paulsen Variation, Mariotti Gambit'
+    include: true
+    sacrifice: { ply: 10, move: h4 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...h4 6.gxh4 is Black's pawn for the open h-file against the fianchetto. Black's
+      attack, so Black's board.
+  - match: 'Vienna Game: Paulsen Variation, Pollock Gambit'
+    include: true
+    sacrifice: { ply: 10, move: d5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      5...d5 offers the d-pawn and the exchange on that square ends a pawn up for White,
+      which is where the dataset line stops.
+  - match: 'Vienna Game: Stanley Variation, Eifel Gambit'
+    include: true
+    sacrifice: { ply: 8, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...b5 offers the b-pawn to the bishop on c4, and 5.Bxb5 holds it. The Horwitz idea in
+      the Vienna move order, and Black's there too.
+  - match: 'Zukertort Opening: Herrstrom Gambit'
+    include: true
+    sacrifice: { ply: 2, move: g5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...g5 2.Nxg5 is a pawn for the g-file against 1.Nf3. Black's, where the head rule
+      lists only White's.
+  - match: 'Zukertort Opening: Ross Gambit'
+    include: true
+    sacrifice: { ply: 2, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      1...e5 2.Nxe5 is simply a pawn, offered by Black on the first move.
+  - match: 'Zukertort Opening: Shabalov Gambit'
+    include: true
+    sacrifice: { ply: 8, move: b5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      4...b5 5.cxb5 is a queenside pawn for the initiative, and it is Black who parts with
+      it out of a Nimzo-English move order.
+  - match: 'Zukertort Opening: Vos Gambit'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-17' }
+    reason: >-
+      2...e5 and the exchange on e5 finishes a pawn up for White. The head rule names the
+      Vos among White's offers, which is exactly backwards.
