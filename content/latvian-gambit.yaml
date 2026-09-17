@@ -1,0 +1,191 @@
+# The Latvian Gambit. Frozen defining line 1.e4 e5 2.Nf3 f5, which ends on Black's own ply,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# Every leaf here is an assessment. The Latvian produces enormous complications and several
+# famous traps, but none of the lines below forces mate, and a claim the build cannot prove
+# is refused rather than written (ADR-0005).
+id: latvian-gambit
+name: Latvian Gambit
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-17'
+  basis:
+    by: chan
+    at: '2026-09-17'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. 3.Nxe5 Qf6 4.d4
+      keeps a clean extra pawn and a safer king in every line, and 3.Bc4 is at least as
+      unpleasant, so a prepared opponent is simply better. It is included because it is one
+      of the oldest openings still played, because a 1.e4 player who has never seen it can
+      go badly wrong in five moves, and because it teaches what an early ...f5 does to a
+      king. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-17'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi Gambit Vua đảo ngược, chậm hơn một nhịp và với con mã Trắng đã đứng ở f3 sẵn. Một nhịp trong một khai cuộc mở là rất nhiều, và đó là lý do nước này bị coi là không vững. Cái nó đem lại là một bàn cờ hỗn loạn ngay từ nước thứ ba.
+    en: Black plays a King's Gambit in reverse, a tempo down and with White's knight already on f3. A tempo in an open game is a great deal, and that is why this is considered unsound. What it buys is chaos from move three onwards.
+    fr: Les Noirs jouent un Gambit du Roi inversé, avec un temps de retard et le cavalier blanc déjà en f3. Un temps dans une partie ouverte, c'est beaucoup, et c'est pourquoi ce coup est jugé incorrect. Ce qu'il achète, c'est le chaos dès le troisième coup.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác. Nước 3.Nc3 là cách chơi bình tĩnh và tốt, Trắng phát triển và giữ nguyên căng thẳng ở trung tâm. Nước 3.d3 hoặc 3.Be2 cũng chơi được và cùng một tinh thần, đó là không cho Đen bất cứ thứ gì để tấn công. Nước 3.Nxe5 ăn tốt là nước mạnh nhất và được dựng thành nhánh riêng. Điều đáng nhớ là Trắng không bắt buộc phải ăn gì cả, vì con tốt f5 tự nó đã làm yếu vua Đen và nước e4 thì không hề bị mất.
+      en: White plays something else. 3.Nc3 is a calm and good treatment — White develops and keeps the tension in the centre. 3.d3 and 3.Be2 are playable in the same spirit, which is to give Black nothing to attack. 3.Nxe5, taking the pawn, is the strongest and has a branch of its own. The thing worth remembering is that White is under no obligation to take anything, because ...f5 has already weakened the black king and the e4 pawn is not actually lost.
+      fr: Les Blancs jouent autre chose. 3.Nc3 est un traitement calme et bon — les Blancs se développent et maintiennent la tension au centre. 3.d3 et 3.Be2 sont jouables dans le même esprit, qui est de ne rien donner à attaquer aux Noirs. 3.Nxe5, la prise du pion, est le plus fort et dispose de sa propre branche. Ce qu'il faut retenir, c'est que les Blancs ne sont tenus de rien prendre, car ...f5 a déjà affaibli le roi noir et le pion e4 n'est nullement perdu.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt e5, và đây là nước mạnh nhất. Con mã ở e5 rất khó chịu vì nó nhắm vào f7, g6 và d7 cùng lúc, đúng những ô mà nước f5 vừa làm yếu.
+        en: White takes the e5 pawn, and this is the strongest move. The knight on e5 is awkward to meet because it eyes f7, g6 and d7 at once — precisely the squares ...f5 has just loosened.
+        fr: Les Blancs prennent le pion e5, et c'est le coup le plus fort. Le cavalier en e5 est désagréable car il vise f7, g6 et d7 à la fois, précisément les cases que ...f5 vient d'affaiblir.
+      children:
+        - ply: Qf6
+          annotation:
+            vi: Nước bắt buộc về mặt thực tiễn. Hậu ra f6 đánh con mã e5 và giữ luôn con tốt e4 khỏi bị ăn mất theo nghĩa nó đòi lại vật chất. Đưa hậu ra sớm thế này là điểm yếu cố hữu của Gambit Latvia, nhưng không có nó thì Đen chỉ đơn giản là kém một tốt và kém cả cấu trúc.
+            en: Practically forced. The queen comes to f6, attacks the knight on e5 and keeps Black's claim on the material alive. Bringing the queen out this early is the Latvian's built-in defect, but without it Black is simply a pawn down with the worse structure as well.
+            fr: Pratiquement forcé. La dame vient en f6, attaque le cavalier e5 et maintient la revendication matérielle des Noirs. Sortir la dame si tôt est le défaut congénital du Gambit letton, mais sans cela les Noirs ont simplement un pion de moins et la moins bonne structure.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác. Con mã e5 đang bị hậu f6 đánh và không ai đỡ, nên Trắng phải hoặc đi nó, hoặc đỡ nó bằng d4 và f4, hoặc chiếu trước để được nhịp. Nước 4.Nf3 lui về là cách an toàn và Đen chơi fxe4 với thế cờ gần cân bằng, nhiều hơn những gì khai cuộc này xứng đáng. Nước 4.Qh5+ g6 5.Nxg6 là đòn thật và dẫn tới hỗn loạn hoàn toàn. Nước 4.Nxd7 và 4.Nc6 lấy vật chất nhưng trả lại thế chủ động. Còn nước nào bỏ mặc con mã e5 thì mất nó sau Qxe5.
+              en: White plays something else. The knight on e5 is attacked by the queen on f6 and defended by nothing, so White must either move it, prop it up with d4 or f4, or check first to gain a tempo. 4.Nf3 retreats and is the safe road — Black plays ...fxe4 with a nearly level game, which is more than this opening deserves. 4.Qh5+ g6 5.Nxg6 is a genuine try and leads to complete chaos. 4.Nxd7 and 4.Nc6 grab material and hand back the initiative. Anything that abandons the knight on e5 loses it to ...Qxe5.
+              fr: Les Blancs jouent autre chose. Le cavalier e5 est attaqué par la dame f6 et défendu par rien, si bien que les Blancs doivent soit le déplacer, soit l'étayer par d4 ou f4, soit faire échec d'abord pour gagner un temps. 4.Nf3 recule et constitue la voie sûre — les Noirs jouent ...fxe4 avec un jeu presque égal, ce qui est déjà plus que ne mérite cette ouverture. 4.Qh5+ g6 5.Nxg6 est un essai véritable et mène au chaos complet. 4.Nxd7 et 4.Nc6 ramassent du matériel et rendent l'initiative. Tout coup qui abandonne le cavalier e5 le perd après ...Qxe5.
+          children:
+            - ply: d4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng đỡ con mã bằng tốt và dựng trung tâm cùng lúc. Đây là nhánh chính và là cách chơi được đánh giá cao nhất, vì nó không nhượng gì cả, chỉ đơn giản là phát triển trong khi hơn một tốt.
+                en: White props the knight up with a pawn and builds the centre in the same move. This is the main line and the most highly regarded treatment, because it concedes nothing — it simply develops while a pawn up.
+                fr: Les Blancs étayent le cavalier avec un pion et bâtissent le centre du même coup. C'est la ligne principale et le traitement le plus estimé, car il ne concède rien — il se contente de développer avec un pion de plus.
+              children:
+                - ply: d6
+                  annotation:
+                    vi: Đen đánh con mã e5 lần thứ hai. Bây giờ mã bị hậu f6 và tốt d6 đánh hai lần trong khi chỉ có tốt d4 đỡ một lần, nên nó phải đi. Nước lui chuẩn là Nc4.
+                    en: Black attacks the knight on e5 a second time. It is now hit twice, by the queen on f6 and the d6 pawn, and defended once by the d4 pawn, so it has to move. The standard retreat is Nc4.
+                    fr: Les Noirs attaquent une seconde fois le cavalier e5. Il est désormais frappé deux fois, par la dame f6 et le pion d6, et défendu une seule par le pion d4, il doit donc bouger. Le recul habituel est Nc4.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng hơn một tốt. Con mã e5 phải lui, thường là về c4, và sau đó Đen chơi fxe4 để lấy lại con tốt và cân bằng vật chất. Cái Đen không lấy lại được là thời gian và sự an toàn của vua, vì con hậu ở f6 sẽ bị Nc3 và Bg5 hay Bf4 quấy rối, và cột f nửa mở của Đen lại quay lưng vào chính vua mình. Lý thuyết coi thế này là ưu thế bền vững cho Trắng.
+                      en: White is a pawn up. The knight on e5 has to retreat, usually to c4, after which Black plays ...fxe4 to recover the pawn and level the material. What Black cannot recover is the time and the king safety, because the queen on f6 will be harried by Nc3 and Bg5 or Bf4, and Black's half-open f-file points back at Black's own king. Theory regards this as a durable edge for White.
+                      fr: Les Blancs ont un pion de plus. Le cavalier e5 doit reculer, en général en c4, après quoi les Noirs jouent ...fxe4 pour reprendre le pion et égaliser le matériel. Ce que les Noirs ne peuvent pas récupérer, c'est le temps et la sécurité du roi, car la dame f6 sera harcelée par Nc3 et Bg5 ou Bf4, et la colonne f semi-ouverte noire se retourne contre leur propre roi. La théorie y voit un avantage durable pour les Blancs.
+                    plan:
+                      vi: Đen chơi fxe4 để lấy lại tốt, rồi Nc6 ép vào d4, Be7, Bf5 hoặc Be6 và O-O-O, vì nhập thành dài là chỗ duy nhất tương đối an toàn cho vua Đen trong khai cuộc này. Con hậu f6 phải được rút về sớm, thường là về f7 hay e7. Trắng lui mã về c4, rồi Nc3 đánh vào e4, Bf4 hoặc Bg5 quấy hậu, Qe2 hay Qd2 và O-O-O, và nước phá là d5 để mở trung tâm khi vua Đen còn chưa yên chỗ.
+                      en: Black plays ...fxe4 to win the pawn back, then ...Nc6 to press d4, ...Be7, ...Bf5 or ...Be6 and castles queenside, which is the only relatively safe home for the black king in this opening. The queen on f6 has to be brought back early, usually to f7 or e7. White retreats the knight to c4, then Nc3 against the e4 pawn, Bf4 or Bg5 to harry the queen, Qe2 or Qd2 and O-O-O, and the break is d5 to open the centre while the black king is still homeless.
+                      fr: Les Noirs jouent ...fxe4 pour reprendre le pion, puis ...Nc6 pour peser sur d4, ...Be7, ...Bf5 ou ...Be6 et roquent du grand côté, seul abri relativement sûr pour le roi noir dans cette ouverture. La dame f6 doit être ramenée tôt, en général en f7 ou e7. Les Blancs reculent le cavalier en c4, puis Nc3 contre le pion e4, Bf4 ou Bg5 pour harceler la dame, Qe2 ou Qd2 et O-O-O, la rupture étant d5 pour ouvrir le centre tant que le roi noir n'a pas trouvé de refuge.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+            - ply: Nc4
+              replyQuality: good
+              frequency: occasional
+              annotation:
+                vi: Trắng lui mã ngay mà không chơi d4 trước. Nước này chắc chắn và tránh mọi rắc rối, nhưng nó cho Đen thêm một nhịp so với nhánh chính, và Đen dùng nhịp ấy để lấy lại con tốt e4.
+                en: White retreats the knight at once without inserting d4. It is solid and avoids all complications, but it gives Black one more tempo than the main line does, and Black spends it recovering the e4 pawn.
+                fr: Les Blancs reculent le cavalier tout de suite sans intercaler d4. C'est solide et cela évite toute complication, mais cela donne aux Noirs un temps de plus que la ligne principale, et les Noirs l'emploient à récupérer le pion e4.
+              children:
+                - ply: fxe4
+                  annotation:
+                    vi: Đen ăn lại con tốt và vật chất trở lại cân bằng. Con tốt e4 cắm sâu và nó chặn đường chéo của tượng f1, nhưng nó cũng không có tốt nào đỡ và sẽ là mục tiêu ngay lập tức.
+                    en: Black takes the pawn back and the material is level again. The pawn on e4 is advanced and blocks the f1 bishop's diagonal, but it is also unsupported by any pawn and will be a target at once.
+                    fr: Les Noirs reprennent le pion et le matériel redevient égal. Le pion e4 est avancé et barre la diagonale du fou f1, mais il n'est soutenu par aucun pion et deviendra aussitôt une cible.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Quân số ngang nhau và Đen đã đạt được điều gambit hứa, đó là lấy lại con tốt. Vấn đề còn lại là con hậu ở f6 và con tốt e4. Trắng chơi Nc3 đánh vào e4 và Đen chưa có quân nào đỡ nó, nên Đen thường phải chơi Qg6 hoặc Qf7 rồi c6 và d5 để giữ. Trắng đứng dễ chịu hơn nhưng không còn hơn tốt, và đây là kết quả tốt nhất mà Gambit Latvia có thể đòi hỏi.
+                      en: Material is level and Black has achieved what the gambit promises, which is the pawn back. What remains is the queen on f6 and the pawn on e4. White plays Nc3 against e4 and Black has no piece defending it, so Black usually has to play ...Qg6 or ...Qf7 and then ...c6 and ...d5 to hold it. White is the more comfortable side but no longer a pawn up, and this is the best result the Latvian can ask for.
+                      fr: Le matériel est égal et les Noirs ont obtenu ce que promet le gambit, la reprise du pion. Restent la dame en f6 et le pion e4. Les Blancs jouent Nc3 contre e4 et les Noirs n'ont aucune pièce pour le défendre, si bien qu'ils doivent en général jouer ...Qg6 ou ...Qf7 puis ...c6 et ...d5 pour le tenir. Les Blancs sont le camp le plus à l'aise mais n'ont plus de pion de plus, et c'est le meilleur résultat que puisse espérer le Gambit letton.
+                    plan:
+                      vi: Đen chơi Qg6 hoặc Qf7 để đưa hậu ra khỏi cột f, rồi d5 đuổi con mã c4 và giữ con tốt e4, Nc6, Bd6 và O-O hoặc O-O-O tuỳ tình hình. Nếu giữ được con tốt e4 thì Đen có không gian thật. Trắng chơi Nc3 đánh vào e4, d3 để phá nó, Be2 hoặc Bc4, O-O và Re1 trên cột e. Kế hoạch đơn giản là xoá con tốt e4 rồi khai thác cột e cùng ô e5 khi hậu Đen còn lang thang.
+                      en: Black plays ...Qg6 or ...Qf7 to get the queen off the f-file, then ...d5 to chase the knight on c4 and hold the e4 pawn, ...Nc6, ...Bd6 and castles on whichever side looks safer. If the e4 pawn survives, Black has real space. White plays Nc3 against e4, d3 to undermine it, Be2 or Bc4, castles and puts a rook on e1. The plan is simply to liquidate the e4 pawn and then use the e-file and the e5 square while the black queen is still wandering.
+                      fr: Les Noirs jouent ...Qg6 ou ...Qf7 pour dégager la dame de la colonne f, puis ...d5 pour chasser le cavalier c4 et tenir le pion e4, ...Nc6, ...Bd6 et roquent du côté qui paraît le plus sûr. Si le pion e4 survit, les Noirs ont un espace réel. Les Blancs jouent Nc3 contre e4, d3 pour le saper, Be2 ou Bc4, roquent et posent une tour en e1. Le plan est simplement de liquider le pion e4 puis d'exploiter la colonne e et la case e5 tant que la dame noire erre encore.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+    - ply: exf5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng ăn bằng tốt thay vì bằng mã. Nước này để lại con tốt f5 trên bàn cờ như một con tốt thừa nhưng cũng như một mục tiêu, và nó mời Đen đẩy e4 để đuổi con mã f3.
+        en: White takes with the pawn instead of the knight. This leaves a pawn on f5 that is both an extra pawn and a target, and it invites Black to push ...e4 and kick the knight on f3.
+        fr: Les Blancs prennent avec le pion plutôt qu'avec le cavalier. Cela laisse un pion en f5 qui est à la fois un pion de plus et une cible, et invite les Noirs à pousser ...e4 pour chasser le cavalier f3.
+      children:
+        - ply: e4
+          annotation:
+            vi: Đen đẩy tốt lên và đuổi con mã. Đây là ý đồ đằng sau cả nhánh này, vì nếu không có nước e4 thì Đen chỉ đơn giản là kém một tốt mà chẳng có gì. Con mã thường đi Ne5, và đó là ô tốt nhất cho nó.
+            en: Black pushes on and chases the knight. This is the whole point of the branch — without ...e4 Black is simply a pawn down with nothing for it. The knight usually goes to e5, which is its best square.
+            fr: Les Noirs poussent et chassent le cavalier. C'est tout l'intérêt de cette branche — sans ...e4, les Noirs ont simplement un pion de moins sans contrepartie. Le cavalier va d'ordinaire en e5, sa meilleure case.
+          outcome:
+            type: position
+            evaluation:
+              vi: Trắng hơn một tốt, đó là con tốt f5. Đen có con tốt e4 chiếm chỗ nhưng nó không có tốt nào đỡ, và Trắng lui mã về e5 chứ không về d4 hay g1, vì ở e5 con mã đứng vững và nhắm vào g6, d7 cùng f7. Đen sẽ chơi Nf6 rồi d6 để đuổi nó, và có thể lấy lại con tốt f5 về sau. Trắng đứng hơn, nhưng thế cờ không đơn giản.
+              en: White is a pawn up — the pawn on f5. Black has a space-gaining pawn on e4 that no pawn supports, and White retreats the knight to e5 rather than d4 or g1, because on e5 it is stable and eyes g6, d7 and f7. Black will play ...Nf6 and ...d6 to chase it and may well win the f5 pawn back later. White is better, but the position is not simple.
+              fr: Les Blancs ont un pion de plus, celui de f5. Les Noirs ont un pion en e4 qui prend de l'espace mais qu'aucun pion ne soutient, et les Blancs reculent le cavalier en e5 plutôt qu'en d4 ou g1, car en e5 il est stable et vise g6, d7 et f7. Les Noirs joueront ...Nf6 et ...d6 pour le chasser et pourront fort bien récupérer le pion f5 plus tard. Les Blancs sont mieux, mais la position n'est pas simple.
+            plan:
+              vi: Đen chơi Nf6 rồi d6 để đuổi con mã e5, Bxf5 hoặc Qe7 để lấy lại con tốt, Nc6, Bd6 và O-O. Con tốt e4 là tài sản chính, hãy đỡ nó bằng d5 nếu có thể. Trắng chơi Ne5 rồi d3 để đánh vào con tốt e4, Nc3, Be2 hay Bc4 và O-O, giữ con tốt f5 chừng nào còn giữ được và nếu không thì trả nó lại để đổi lấy việc phá con tốt e4. Ai thắng cuộc giằng co quanh e4 thì bên đó thắng ván cờ.
+              en: Black plays ...Nf6 and ...d6 to chase the knight off e5, ...Bxf5 or ...Qe7 to win the pawn back, then ...Nc6, ...Bd6 and castles. The e4 pawn is the main asset and should be supported with ...d5 if possible. White plays Ne5, then d3 against the e4 pawn, Nc3, Be2 or Bc4 and castles, holds the f5 pawn as long as it can be held and otherwise gives it back in exchange for liquidating e4. Whoever wins the argument about e4 wins the game.
+              fr: Les Noirs jouent ...Nf6 et ...d6 pour chasser le cavalier d'e5, ...Bxf5 ou ...Qe7 pour reprendre le pion, puis ...Nc6, ...Bd6 et roquent. Le pion e4 est l'atout principal et doit être soutenu par ...d5 si possible. Les Blancs jouent Ne5, puis d3 contre le pion e4, Nc3, Be2 ou Bc4 et roquent, gardent le pion f5 tant que c'est possible et le rendent sinon contre la liquidation d'e4. Celui qui gagne la discussion autour d'e4 gagne la partie.
+            basis:
+              by: chan
+              at: '2026-09-17'
+    - ply: Bc4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Tấn công Mayet. Trắng chưa ăn gì cả mà đưa tượng ra c4, nhắm thẳng vào f7 và g8, đúng những ô mà nước f5 vừa bỏ ngỏ. Đây là cách trả lời sắc nhất và nhiều người cho là khó chịu nhất.
+        en: The Mayet Attack. White takes nothing and puts the bishop on c4, straight at f7 and g8 — exactly the squares ...f5 has just abandoned. It is the sharpest answer and many consider it the most unpleasant.
+        fr: L'Attaque Mayet. Les Blancs ne prennent rien et posent le fou en c4, droit sur f7 et g8, précisément les cases que ...f5 vient d'abandonner. C'est la réponse la plus tranchante et beaucoup la jugent la plus désagréable.
+      children:
+        - ply: fxe4
+          annotation:
+            vi: Đen ăn con tốt e4 và mở cột f cho xe của mình, dù cái cột ấy hiện đang chĩa vào chính vua mình. Nước tiếp theo của Trắng gần như luôn là Nxe5, và sau đó Đen có nước Qg5 rất hỗn loạn.
+            en: Black takes the e4 pawn and opens the f-file for the rook, even though that file currently points at Black's own king. White's next move is almost always Nxe5, and Black then has the extremely messy ...Qg5.
+            fr: Les Noirs prennent le pion e4 et ouvrent la colonne f pour leur tour, même si cette colonne vise pour l'instant leur propre roi. Le coup suivant des Blancs est presque toujours Nxe5, et les Noirs disposent alors du très chaotique ...Qg5.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn một tốt ngay lúc này, nhưng chỉ trong đúng một nước, vì con tốt e5 đang bị mã f3 đánh và không ai đỡ. Sau Nxe5 thì vật chất cân bằng và Đen phải quyết định. Nước Qg5 đánh cả mã e5 lẫn tốt g2 và dẫn tới những biến hoá mà cả hai bên đều phải nhớ chính xác. Đây là thế cờ nguy hiểm cho người không chuẩn bị, bất kể ngồi bên nào.
+              en: Black is a pawn up at this instant, but only for one move, because the pawn on e5 is attacked by the knight on f3 and defended by nothing. After Nxe5 the material is level and Black must decide. ...Qg5 hits both the knight on e5 and the pawn on g2 and leads into lines both sides have to remember exactly. This is a dangerous position for whoever is unprepared, on either side of the board.
+              fr: Les Noirs ont un pion de plus à cet instant, mais pour un coup seulement, car le pion e5 est attaqué par le cavalier f3 et défendu par rien. Après Nxe5, le matériel est égal et les Noirs doivent choisir. ...Qg5 frappe à la fois le cavalier e5 et le pion g2 et conduit à des lignes que les deux camps doivent retenir exactement. C'est une position dangereuse pour qui n'est pas préparé, de quelque côté qu'il soit.
+            plan:
+              vi: Đen chơi Qg5 để đánh hai chỗ cùng lúc, chấp nhận rằng con hậu sẽ đi lang thang, và sau đó phải tính từng nước một, vì nhánh này không chơi được bằng nguyên tắc chung. Cách an toàn hơn là d5 để chặn con tượng c4 rồi mới phát triển. Trắng chơi Nxe5 rồi d4 hoặc Qh5+ tuỳ theo Đen làm gì, giữ con tượng c4 trên đường chéo a2-g8, và nhớ rằng mọi đòn của Trắng đều xoay quanh ô f7.
+              en: Black plays ...Qg5 to hit two things at once, accepts that the queen will be wandering, and then has to calculate move by move, because this branch cannot be played on general principles. The safer treatment is ...d5 to block the c4 bishop before developing. White plays Nxe5 and then d4 or Qh5+ depending on what Black does, keeps the bishop on the a2-g8 diagonal, and remembers that every White tactic here runs through f7.
+              fr: Les Noirs jouent ...Qg5 pour frapper deux choses à la fois, acceptent que la dame se promène, puis doivent calculer coup par coup, car cette branche ne se joue pas sur des principes généraux. Le traitement plus sûr est ...d5 pour barrer le fou c4 avant de se développer. Les Blancs jouent Nxe5 puis d4 ou Qh5+ selon la réaction noire, gardent le fou sur la diagonale a2-g8, et retiennent que toute la tactique blanche passe par f7.
+            basis:
+              by: chan
+              at: '2026-09-17'
+    - ply: d4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phản gambit Mason. Trắng đánh vào con tốt e5 bằng tốt d4 thay vì ăn nó bằng mã, và giữ nguyên căng thẳng ở cả hai ô e5 và f5. Đây là cách chơi theo nguyên tắc, đó là trả lời một đòn đánh ở cánh bằng một đòn ở trung tâm.
+        en: The Mason Countergambit. White hits the e5 pawn with d4 instead of taking it with the knight, keeping the tension on both e5 and f5. It is the principled treatment — answer a flank thrust with a blow in the centre.
+        fr: Le Contre-gambit Mason. Les Blancs frappent le pion e5 par d4 au lieu de le prendre du cavalier, en maintenant la tension sur e5 et f5. C'est le traitement de principe — répondre à une poussée d'aile par un coup au centre.
+      children:
+        - ply: fxe4
+          annotation:
+            vi: Đen ăn ở e4 và mở cột f. Con tốt e5 bây giờ bị cả mã f3 lẫn tốt d4 đánh, nên nó sẽ rơi ngay ở nước sau, và vật chất trở lại cân bằng sau Nxe5.
+            en: Black takes on e4 and opens the f-file. The e5 pawn is now attacked by both the knight on f3 and the d4 pawn, so it falls next move and the material is level again after Nxe5.
+            fr: Les Noirs prennent en e4 et ouvrent la colonne f. Le pion e5 est désormais attaqué par le cavalier f3 et le pion d4, il tombera donc au coup suivant et le matériel redeviendra égal après Nxe5.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn một tốt trong đúng một nước, vì con tốt e5 bị đánh hai lần và không ai đỡ. Sau Nxe5 thì vật chất cân bằng, Trắng có con mã đứng ở e5 và một trung tâm với tốt d4, còn Đen có con tốt e4 cắm sâu mà không có tốt nào đỡ cùng một cột f mở nhìn vào vua mình. Đây là dạng thế cờ mà Gambit Latvia thua dần chứ không thua ngay.
+              en: Black is a pawn up for exactly one move, because the e5 pawn is attacked twice and defended not at all. After Nxe5 the material is level, White has a knight on e5 and a centre with the d4 pawn, while Black has an unsupported pawn on e4 and an open f-file pointing at his own king. This is the sort of position in which the Latvian loses slowly rather than quickly.
+              fr: Les Noirs ont un pion de plus pendant exactement un coup, car le pion e5 est attaqué deux fois et défendu pas du tout. Après Nxe5, le matériel est égal, les Blancs ont un cavalier en e5 et un centre avec le pion d4, tandis que les Noirs ont un pion e4 sans soutien et une colonne f ouverte braquée sur leur propre roi. C'est le genre de position où le Gambit letton perd lentement plutôt que vite.
+            plan:
+              vi: Đen chơi Nf6 hoặc d6 để đuổi con mã e5, rồi Nc6 ép vào d4, Be7, Be6 và O-O, và cố giữ con tốt e4 bằng d5. Nếu con tốt e4 rơi mà không được gì thì Đen chỉ còn một cột f hỏng. Trắng chơi Nxe5 rồi Nc3 đánh vào e4, Bf4 hay Be3, Qd2 hoặc Be2 và nhập thành, và nước phá là d5 hay f3 để mở thêm đường vào vua Đen.
+              en: Black plays ...Nf6 or ...d6 to chase the knight off e5, then ...Nc6 to press d4, ...Be7, ...Be6 and castles, and tries to hold the e4 pawn with ...d5. If the e4 pawn falls for nothing, all Black has left is a damaged f-file. White plays Nxe5, then Nc3 against e4, Bf4 or Be3, Qd2 or Be2 and castles, and the break is d5 or f3 to open more lines at the black king.
+              fr: Les Noirs jouent ...Nf6 ou ...d6 pour chasser le cavalier d'e5, puis ...Nc6 pour peser sur d4, ...Be7, ...Be6 et roquent, en tentant de tenir le pion e4 par ...d5. Si le pion e4 tombe pour rien, il ne reste aux Noirs qu'une colonne f abîmée. Les Blancs jouent Nxe5, puis Nc3 contre e4, Bf4 ou Be3, Qd2 ou Be2 et roquent, la rupture étant d5 ou f3 pour ouvrir davantage de lignes vers le roi noir.
+            basis:
+              by: chan
+              at: '2026-09-17'

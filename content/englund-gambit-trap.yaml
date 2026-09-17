@@ -1,0 +1,233 @@
+# The Englund Gambit Trap. The defining line is the one the catalogue has frozen for this id
+# — 1.d4 e5 2.dxe5 Nc6 3.Nf3 Qe7 4.Bf4 Qb4+ — and it ends on Black's own ply, so the root is
+# an opponent node and White's losing recapture can carry `blunder` (invariant 5).
+#
+# ECO is A40 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
+# records. The mate after 8.Qxc3 is claimed with `type: trap` and nothing else; the move
+# count, the line and the certificate come from `npm run prove:mates` and are replayed by
+# `npm run verify:mates` (ADR-0005). Every other line here was replayed with chess.js.
+id: englund-gambit-trap
+name: Englund Gambit Trap
+eco: A40
+category: trap
+side: black
+definingLine: [d4, e5, dxe5, Nc6, Nf3, Qe7, Bf4, 'Qb4+']
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-17'
+  basis:
+    by: chan
+    at: '2026-09-17'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. It is about the Englund Gambit
+      that produces the position, not about the trap springing — after 5.Bd2 Qxb2 6.Nc3
+      White is simply a pawn up with the better game, and Black's queen is stranded. The
+      mate itself is not a judgement; it is proved. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-17'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa chiếu ở b4 và Trắng chỉ có sáu nước hợp lệ, tất cả đều là chắn. Nước chiếu này không phải để ăn con tốt e5 mà để ăn con tốt b2, và quan trọng hơn là để dụ con tượng Trắng đi tới c3. Nếu tượng đến c3 thì cả một lưới chiếu bí xuất hiện chỉ sau bốn nước nữa.
+    en: Black has just checked on b4 and White has exactly six legal answers, all of them blocks. The check is not about the e5 pawn but about the b2 pawn, and more than that about luring White's bishop to c3. If the bishop goes there, a whole mating net appears four moves later.
+    fr: Les Noirs viennent de faire échec en b4 et les Blancs n'ont que six réponses légales, toutes des interpositions. Cet échec ne vise pas le pion e5 mais le pion b2, et surtout il cherche à attirer le fou blanc en c3. Si le fou s'y rend, tout un filet de mat apparaît quatre coups plus tard.
+  dismissRest:
+    reason:
+      vi: Trắng chắn chiếu bằng một trong ba cách còn lại. Nước 5.c3 chắn và đánh luôn con hậu b4, đó là cách gọn gàng nhất. Nước 5.Nc3 chắn bằng một quân mà con tốt b2 đỡ, nên Qxc3 chỉ mất hậu sau bxc3. Nước 5.Nfd2 chắn bằng chính con mã vừa phát triển và đi lùi một nhịp. Trong cả ba trường hợp con tượng Trắng không bao giờ tới c3, nên lưới chiếu bí bên dưới không hình thành, và Đen chỉ còn một ván Englund bình thường, kém một tốt.
+      en: White blocks the check in one of the other three ways. 5.c3 blocks and attacks the queen on b4 at the same time, which is the tidiest of them. 5.Nc3 blocks with a piece the b2 pawn defends, so ...Qxc3 merely loses the queen to bxc3. 5.Nfd2 blocks with the knight that had just developed and takes a step backwards. In all three cases White's bishop never reaches c3, so the mating net below never forms, and Black is left with an ordinary Englund, a pawn down.
+      fr: Les Blancs parent l'échec de l'une des trois autres façons. 5.c3 bloque et attaque en même temps la dame en b4, ce qui est le plus net. 5.Nc3 bloque avec une pièce que le pion b2 défend, si bien que ...Qxc3 ne fait que perdre la dame après bxc3. 5.Nfd2 bloque avec le cavalier qui venait de se développer et recule d'un pas. Dans les trois cas, le fou blanc n'atteint jamais c3, le filet de mat ci-dessous ne se forme pas, et les Noirs se retrouvent avec un Englund ordinaire, un pion de moins.
+  children:
+    - ply: Bd2
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chắn bằng tượng, và đây là nước tự nhiên nhất vì nó giữ con tốt b2 được một quân đỡ và không làm hỏng cấu trúc. Nó cũng là nước đưa con tượng tới gần ô c3, tức là đúng chỗ Đen muốn nó tới.
+        en: White blocks with the bishop, which is the most natural answer because it keeps a defender near b2 and spoils no pawns. It is also the move that brings the bishop within one step of c3, which is exactly where Black wants it.
+        fr: Les Blancs bloquent avec le fou, la réponse la plus naturelle car elle garde un défenseur près de b2 et n'abîme aucun pion. C'est aussi le coup qui amène le fou à un pas de c3, précisément là où les Noirs le veulent.
+      children:
+        - ply: Qxb2
+          annotation:
+            vi: Hậu ăn con tốt b2 và lao vào góc bàn cờ. Từ b2 nó đánh xe a1 và mã b1 cùng lúc, và con xe a1 thì không ai đỡ. Đây là nước làm cho cả gambit có lý do tồn tại, dù về khách quan nó vẫn không đủ.
+            en: The queen takes on b2 and dives into the corner. From b2 it attacks the rook on a1 and the knight on b1 at once, and the rook on a1 has no defender. This is the move that gives the whole gambit a reason to exist, even though objectively it is still not enough.
+            fr: La dame prend en b2 et plonge dans le coin. De b2 elle attaque à la fois la tour a1 et le cavalier b1, et la tour a1 n'a aucun défenseur. C'est le coup qui donne au gambit entier sa raison d'être, même s'il reste objectivement insuffisant.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác, và gần như nước nào cũng mất con xe a1. Con hậu Đen đã nhắm vào nó và không quân nào đỡ, nên 6.e3, 6.e4 hay 6.Qc1 đều bị 6...Qxa1, và vì con mã vẫn còn ở b1 nên hậu Trắng không tới được góc để trừng phạt. Hai nước thật sự giữ được a1 là 6.Bc1, tức là trả con tượng về chỗ cũ, và 6.Na3. Nước duy nhất giải quyết vấn đề một cách đàng hoàng là 6.Nc3 ở dưới, vì sau đó 6...Qxa1 mất hậu vì 7.Qxa1.
+              en: White plays something else, and nearly all of it drops the rook on a1. Black's queen already attacks it and nothing defends it, so 6.e3, 6.e4 and 6.Qc1 are all met by 6...Qxa1 — and with the knight still on b1 White's queen cannot reach the corner to punish it. The two moves that really do hold a1 are 6.Bc1, putting the bishop back where it started, and 6.Na3. The only move that solves the problem properly is 6.Nc3 below, after which 6...Qxa1 loses the queen to 7.Qxa1.
+              fr: Les Blancs jouent autre chose, et presque tout perd la tour a1. La dame noire l'attaque déjà et rien ne la défend, si bien que 6.e3, 6.e4 et 6.Qc1 se heurtent tous à 6...Qxa1 — et, le cavalier étant encore en b1, la dame blanche ne peut atteindre le coin pour punir. Les deux coups qui tiennent réellement a1 sont 6.Bc1, qui remet le fou à son point de départ, et 6.Na3. Le seul coup qui règle vraiment le problème est 6.Nc3 ci-dessous, après quoi 6...Qxa1 perd la dame après 7.Qxa1.
+          children:
+            - ply: Bc3
+              replyQuality: mistake
+              frequency: common
+              annotation:
+                vi: Trắng đuổi con hậu bằng tượng và đồng thời đỡ con xe a1. Nhìn thì hợp lý đến mức khó tin là nó sai. Vấn đề là con tượng ở c3 chỉ có mã b1 đỡ, và Đen có đúng một nước để khai thác chuyện đó.
+                en: White chases the queen with the bishop and defends the rook on a1 at the same time. It looks so reasonable that it is hard to believe it is wrong. The problem is that the bishop on c3 has only the knight on b1 defending it, and Black has exactly one move that exploits that.
+                fr: Les Blancs chassent la dame avec le fou tout en défendant la tour a1. Cela paraît si raisonnable qu'on peine à croire que ce soit une erreur. L'ennui est que le fou c3 n'a que le cavalier b1 pour le défendre, et les Noirs disposent d'un coup exactement pour en profiter.
+              children:
+                - ply: Bb4
+                  annotation:
+                    vi: Đen đưa con tượng ra và đánh con tượng c3 lần thứ hai. Bây giờ c3 bị đánh hai lần, bởi tượng b4 và hậu b2, mà chỉ được đỡ một lần bởi mã b1. Con hậu Đen không hề chạy, nó chỉ đứng yên và gọi thêm quân.
+                    en: Black develops the bishop and attacks the one on c3 a second time. Now c3 is attacked twice, by the bishop on b4 and the queen on b2, and defended once, by the knight on b1. Black's queen has not run anywhere; it has stood still and called for help.
+                    fr: Les Noirs développent le fou et attaquent une seconde fois celui de c3. Désormais c3 est attaquée deux fois, par le fou b4 et la dame b2, et défendue une seule, par le cavalier b1. La dame noire n'a pas fui, elle est restée en place et a appelé du renfort.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi một nước khác. Con tượng c3 đang bị đánh hai lần và chỉ được đỡ một lần, nên nó không thể cứ đứng đó. Nước 7.Bd2 lui về và thừa nhận rằng nước trước là sai, đó là cách rẻ nhất. Các nước 7.a3, 7.e3 hay 7.h3 để mặc con tượng và mất nó sau Bxc3 rồi Nxc3 Qxc3+, tức là Đen hơn một quân. Nước 7.Bxb4 là cách xử lý đúng và được dựng thành nhánh riêng, còn 7.Qd2 là nước đi thua và cũng ở dưới.
+                      en: White plays something else. The bishop on c3 is attacked twice and defended once, so it cannot simply stay there. 7.Bd2 retreats and admits the previous move was wrong, which is the cheapest way out. 7.a3, 7.e3 and 7.h3 leave the bishop and lose it after ...Bxc3 Nxc3 ...Qxc3+, a clear piece. 7.Bxb4 is the correct handling and has a branch of its own, and 7.Qd2 is the losing move, also below.
+                      fr: Les Blancs jouent autre chose. Le fou c3 est attaqué deux fois et défendu une seule, il ne peut donc pas rester là. 7.Bd2 recule et reconnaît que le coup précédent était mauvais, c'est la sortie la moins coûteuse. 7.a3, 7.e3 et 7.h3 abandonnent le fou et le perdent après ...Bxc3 Nxc3 ...Qxc3+, soit une pièce nette. 7.Bxb4 est le traitement correct et dispose de sa propre branche, et 7.Qd2 est le coup perdant, également ci-dessous.
+                  children:
+                    - ply: Qd2
+                      replyQuality: blunder
+                      frequency: occasional
+                      annotation:
+                        vi: Trắng đỡ con tượng c3 bằng hậu. Bây giờ c3 bị đánh hai lần và được đỡ hai lần, nên về số học thì ổn. Về chiến thuật thì không, vì con hậu ở d2 đứng đúng trên đường chéo b4-e1 và nó sẽ bị ghim ngay ở nước sau.
+                        en: White defends the bishop on c3 with the queen. Now c3 is attacked twice and defended twice, so the arithmetic works. The tactics do not, because the queen on d2 has placed itself on the b4-e1 diagonal and will be pinned there next move.
+                        fr: Les Blancs défendent le fou c3 avec la dame. Désormais c3 est attaquée deux fois et défendue deux fois, l'arithmétique tient donc. La tactique, non, car la dame en d2 s'est placée sur la diagonale b4-e1 et s'y trouvera clouée dès le coup suivant.
+                      children:
+                        - ply: Bxc3
+                          annotation:
+                            vi: Đen ăn con tượng. Bây giờ con tượng Đen đứng ở c3 và nó ghim con hậu d2 vào vua e1, nên con hậu Trắng không đi đâu được ngoài việc ăn lại ở c3. Trong mười tám nước hợp lệ của Trắng, chỉ có đúng một nước hậu, và đó chính là cái bẫy.
+                            en: Black takes the bishop. The black bishop now stands on c3 and pins the queen on d2 against the king on e1, so the white queen cannot go anywhere except back to c3. Of White's eighteen legal moves exactly one is a queen move, and that is the trap.
+                            fr: Les Noirs prennent le fou. Le fou noir se tient désormais en c3 et cloue la dame d2 sur le roi e1, si bien que la dame blanche ne peut aller nulle part sinon reprendre en c3. Des dix-huit coups légaux blancs, un seul est un coup de dame, et c'est là le piège.
+                          dismissRest:
+                            reason:
+                              vi: Trắng chơi một nước khác, và nước nào cũng để Đen hơn hẳn một quân, vì con tượng ở c3 vừa ăn một con tượng và chưa bị ăn lại. Con hậu d2 bị ghim nên không có nước hậu nào khác ngoài Qxc3. Nước 8.Kd1 bước ra khỏi ghim và nhường luôn con tượng, còn mọi nước phát triển khác cũng vậy.
+                              en: White plays something else, and every one of them leaves Black a clear piece up, because the bishop on c3 has just taken a bishop and has not been taken back. The queen on d2 is pinned, so there is no queen move other than Qxc3. 8.Kd1 steps out of the pin and concedes the piece; every other developing move concedes it just the same.
+                              fr: Les Blancs jouent autre chose, et chacun de ces coups laisse les Noirs avec une pièce nette de plus, car le fou en c3 vient de prendre un fou sans être repris. La dame d2 est clouée, il n'existe donc aucun coup de dame hormis Qxc3. 8.Kd1 sort du clouage et concède la pièce ; tout autre coup de développement la concède tout autant.
+                          children:
+                            - ply: Qxc3
+                              replyQuality: blunder
+                              frequency: common
+                              annotation:
+                                vi: Trắng ăn lại bằng hậu và cân bằng vật chất. Đây là nước thua, và phần còn lại do máy chứng minh chứ không do người khẳng định.
+                                en: White recaptures with the queen and restores the material. This is the losing move, and what follows is proved by machine rather than asserted by a person.
+                                fr: Les Blancs reprennent avec la dame et rétablissent le matériel. C'est le coup perdant, et la suite est prouvée par la machine plutôt qu'affirmée par un humain.
+                              outcome:
+                                type: trap
+                            - ply: Nxc3
+                              replyQuality: best
+                              frequency: occasional
+                              annotation:
+                                vi: Trắng ăn lại bằng mã, và đây là nước đúng trong số những nước đã thua. Nó tránh được chiếu bí, nhưng nó đưa con mã ra khỏi b1 và con xe a1 thì lập tức trơ trọi.
+                                en: White recaptures with the knight, which is the right move among losing ones. It avoids the mate, but it takes the knight off b1 and leaves the rook on a1 completely bare.
+                                fr: Les Blancs reprennent avec le cavalier, ce qui est le bon coup parmi des coups perdants. Cela évite le mat, mais retire le cavalier de b1 et laisse la tour a1 entièrement à nu.
+                              outcome:
+                                type: position
+                                evaluation:
+                                  vi: Quân số ngang nhau, nhưng chỉ trong đúng một nước. Con hậu Đen ở b2 đang đánh con xe a1 mà không quân nào đỡ, và lần này Qxa1 còn là nước chiếu, vì hậu Trắng đã rời d1. Sau 8...Qxa1+ 9.Qd1 Qxd1+ 10.Kxd1 thì Đen hơn hẳn một con xe. Đây là kết cục tốt nhất mà Trắng còn có sau nước 7.Qd2.
+                                  en: Material is level, but only for one move. Black's queen on b2 attacks the rook on a1 and nothing defends it, and this time ...Qxa1 comes with check, because the white queen has left d1. After 8...Qxa1+ 9.Qd1 Qxd1+ 10.Kxd1 Black is a whole rook up. This is the best outcome still available to White after 7.Qd2.
+                                  fr: Le matériel est égal, mais pour un coup seulement. La dame noire en b2 attaque la tour a1 que rien ne défend, et cette fois ...Qxa1 arrive avec échec, car la dame blanche a quitté d1. Après 8...Qxa1+ 9.Qd1 Qxd1+ 10.Kxd1, les Noirs ont une tour entière de plus. C'est le meilleur résultat qui reste aux Blancs après 7.Qd2.
+                                plan:
+                                  vi: Đen chơi Qxa1+ ngay, đổi hậu nếu Trắng mời, rồi Nxe5 hoặc d6 để lấy lại con tốt và phát triển nốt với Nf6, Be7 và O-O. Với một con xe hơn thì kế hoạch là đổi hết quân và không làm gì phức tạp. Trắng chỉ còn cách giữ hậu trên bàn cờ và tìm cơ hội quấy rối, nhưng thế cờ đã hỏng từ nước thứ bảy.
+                                  en: Black plays ...Qxa1+ at once, trades queens if White offers, then takes the pawn back with ...Nxe5 or ...d6 and finishes developing with ...Nf6, ...Be7 and ...O-O. A rook up, the plan is to trade everything and do nothing clever. White's only try is to keep the queens on and hope for harassment, but the position was ruined on move seven.
+                                  fr: Les Noirs jouent ...Qxa1+ aussitôt, échangent les dames si les Blancs le proposent, puis reprennent le pion par ...Nxe5 ou ...d6 et achèvent leur développement par ...Nf6, ...Be7 et ...O-O. Avec une tour de plus, le plan est de tout échanger et de ne rien tenter d'astucieux. Le seul espoir blanc est de garder les dames et de harceler, mais la position est perdue depuis le septième coup.
+                                basis:
+                                  by: chan
+                                  at: '2026-09-17'
+                    - ply: Bxb4
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Trắng đổi con tượng đi thay vì cố giữ nó. Đây là cách xử lý đúng, vì nó xoá cả con tượng đang bị đánh hai lần lẫn cái ghim sắp tới trên đường chéo b4-e1.
+                        en: White exchanges the bishop off instead of trying to hold it. This is the correct handling, because it removes both the twice-attacked bishop and the pin that was about to appear on the b4-e1 diagonal.
+                        fr: Les Blancs échangent le fou au lieu de chercher à le conserver. C'est le traitement correct, car il supprime à la fois le fou attaqué deux fois et le clouage qui s'annonçait sur la diagonale b4-e1.
+                      children:
+                        - ply: Nxb4
+                          annotation:
+                            vi: Đen ăn lại bằng mã. Con mã ở b4 nhắm vào c2 và a2, và con hậu b2 vẫn đang đánh xe a1 cùng mã b1. Cả cánh hậu của Trắng đang dính vào nhau và Trắng phải gỡ nó ra.
+                            en: Black recaptures with the knight. On b4 it eyes c2 and a2, and the queen on b2 is still attacking the rook on a1 and the knight on b1. White's entire queenside is tangled and has to be untangled.
+                            fr: Les Noirs reprennent avec le cavalier. En b4 il vise c2 et a2, et la dame b2 attaque toujours la tour a1 et le cavalier b1. Toute l'aile dame blanche est emmêlée et doit être démêlée.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Quân số ngang nhau. Đen đã đổi mất con tượng đen ô nhưng con hậu vẫn ở b2 và con xe a1 vẫn không ai đỡ, còn mã b4 thì thêm một mũi nhắm vào c2. Trắng phải mất ít nhất một nhịp để gỡ, đơn giản nhất là 8.Nc3, vì sau đó 8...Qxa1 mất hậu do 9.Qxa1. Khi Trắng gỡ xong thì phần phát triển nhiều hơn của Trắng mới có tiếng nói. Thế cờ cân bằng, nhưng Trắng có nhiều cách đi sai hơn.
+                              en: Material is level. Black has traded off the dark-squared bishop but the queen is still on b2, the rook on a1 is still undefended, and the knight on b4 adds a hit on c2. White has to spend at least a move untangling, most simply with 8.Nc3, after which 8...Qxa1 loses the queen to 9.Qxa1. Once White is untangled the extra development starts to count. The position is balanced, but White has more ways to go wrong.
+                              fr: Le matériel est égal. Les Noirs ont échangé le fou de cases noires mais la dame est toujours en b2, la tour a1 toujours sans défense, et le cavalier b4 ajoute une frappe sur c2. Les Blancs doivent consacrer au moins un coup à se démêler, le plus simplement par 8.Nc3, après quoi 8...Qxa1 perd la dame après 9.Qxa1. Une fois démêlés, leur avance de développement commence à compter. La position est équilibrée, mais les Blancs ont plus de façons de se tromper.
+                            plan:
+                              vi: Đen chơi Qc3+ hoặc Qb6 để rút hậu về an toàn đúng lúc, rồi Nxe5 hay Qxe5 lấy lại con tốt và phát triển với Nf6, d6 và O-O. Đừng để con hậu bị nhốt ở góc. Trắng chơi Nc3 để đỡ a1, rồi Rb1 đuổi hậu, e3, Be2 và O-O, và sau khi con hậu Đen phải rút thì Trắng hơn về phát triển với cấu trúc lành.
+                              en: Black plays ...Qc3+ or ...Qb6 to get the queen back to safety at the right moment, then ...Nxe5 or ...Qxe5 to recover the pawn and develops with ...Nf6, ...d6 and ...O-O. The one thing to avoid is letting the queen be shut in the corner. White plays Nc3 to cover a1, then Rb1 to chase the queen, e3, Be2 and castles, and once the black queen has had to retreat White is ahead in development with a sound structure.
+                              fr: Les Noirs jouent ...Qc3+ ou ...Qb6 pour ramener la dame en sécurité au bon moment, puis ...Nxe5 ou ...Qxe5 pour reprendre le pion et se développent par ...Nf6, ...d6 et ...O-O. La seule chose à éviter est de laisser la dame enfermée dans le coin. Les Blancs jouent Nc3 pour couvrir a1, puis Rb1 pour chasser la dame, e3, Be2 et roquent, et une fois la dame noire contrainte de reculer, les Blancs sont en avance de développement avec une structure saine.
+                            basis:
+                              by: chan
+                              at: '2026-09-17'
+            - ply: Nc3
+              replyQuality: best
+              frequency: occasional
+              annotation:
+                vi: Trắng phát triển mã và đó là nước đúng. Con xe a1 bây giờ vẫn chưa ai đỡ, nhưng ô b1 đã trống, nên nếu Đen chơi Qxa1 thì Qxa1 ăn lại con hậu ngay. Con tượng thì ở yên tại d2 và không bao giờ tới c3.
+                en: White develops the knight, and this is the move. The rook on a1 is still undefended, but b1 is now empty, so if Black plays ...Qxa1 then Qxa1 simply takes the queen. The bishop stays on d2 and never goes to c3.
+                fr: Les Blancs développent le cavalier, et c'est le bon coup. La tour a1 reste sans défense, mais b1 est désormais vide, si bien que si les Noirs jouent ...Qxa1, Qxa1 reprend simplement la dame. Le fou reste en d2 et ne va jamais en c3.
+              children:
+                - ply: Bb4
+                  annotation:
+                    vi: Đen ghim con mã c3 và giữ con hậu ở b2 thêm một chút. Đây là nhánh chính của cả khai cuộc, và nó là chỗ mà Englund kết thúc một cách tỉnh táo chứ không phải bằng một nước chiếu bí.
+                    en: Black pins the knight on c3 and keeps the queen on b2 a little longer. This is the main line of the whole opening, and it is where the Englund ends soberly rather than with a mate.
+                    fr: Les Noirs clouent le cavalier c3 et maintiennent la dame en b2 un peu plus longtemps. C'est la ligne principale de toute l'ouverture, et c'est là que l'Englund se termine sobrement plutôt que par un mat.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Quân số ngang nhau, vì con tốt b2 của Đen bù lại con tốt e5 mà Trắng ăn ở nước hai. Vấn đề của Đen là con hậu, nó đứng ở b2 và không có đường về dễ dàng. Trắng chơi 7.Rb1 đuổi nó, con hậu phải đi a3 và ở đó nó đứng ngoài cuộc chơi trong nhiều nước. Trắng phát triển nhanh hơn, vua an toàn hơn, và đây chính là lý do Englund bị gọi là không vững.
+                      en: Material is level, because Black's capture on b2 balances the e5 pawn White took on move two. Black's problem is the queen — it sits on b2 with no easy route home. White plays 7.Rb1 to chase it, the queen has to go to a3, and there it is out of the game for several moves. White develops faster, the white king is safer, and this is precisely why the Englund is called unsound.
+                      fr: Le matériel est égal, car la prise noire en b2 compense le pion e5 pris par les Blancs au deuxième coup. Le problème des Noirs est la dame, posée en b2 sans chemin facile pour rentrer. Les Blancs jouent 7.Rb1 pour la chasser, la dame doit aller en a3, et elle y reste hors jeu plusieurs coups. Les Blancs se développent plus vite, leur roi est plus sûr, et c'est précisément pourquoi l'Englund est dit incorrect.
+                    plan:
+                      vi: Đen phải tìm đường về cho con hậu, nghĩa là Qa3 sau Rb1 rồi Qa5 hoặc Qb6 khi có dịp, và trong lúc đó chơi Nxe5 hay Qxe5 để lấy lại tốt, rồi Nf6, d6 và O-O càng nhanh càng tốt. Trắng chơi Rb1 đuổi hậu, rồi Nd5 hoặc a3 để hỏi con tượng b4, e3, Be2 và O-O, và tìm cách nhốt con hậu ở a3 bằng Rb3 với Nd5. Nếu Trắng bắt được con hậu thì ván cờ kết thúc, còn nếu không thì Trắng vẫn đứng dễ chịu hơn.
+                      en: Black has to find a road home for the queen — ...Qa3 after Rb1, and then ...Qa5 or ...Qb6 when the chance comes — and meanwhile recover the pawn with ...Nxe5 or ...Qxe5 and play ...Nf6, ...d6 and ...O-O as quickly as possible. White plays Rb1 to chase the queen, then Nd5 or a3 to question the bishop on b4, e3, Be2 and castles, and looks to shut the queen in on a3 with Rb3 and Nd5. If White catches the queen the game is over; if not, White is still the more comfortable side.
+                      fr: Les Noirs doivent trouver un chemin de retour pour la dame — ...Qa3 après Rb1, puis ...Qa5 ou ...Qb6 dès que possible — et entre-temps récupérer le pion par ...Nxe5 ou ...Qxe5 et jouer ...Nf6, ...d6 et ...O-O au plus vite. Les Blancs jouent Rb1 pour chasser la dame, puis Nd5 ou a3 pour interroger le fou b4, e3, Be2 et roquent, en cherchant à enfermer la dame en a3 par Rb3 et Nd5. Si les Blancs attrapent la dame, la partie est finie ; sinon, ils restent le camp le plus à l'aise.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+    - ply: Qd2
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chắn bằng hậu và mời đổi luôn. Đây là cách chơi thực dụng, vì không có hậu thì không có đột kích nào cả, và Đen mất luôn thứ duy nhất khai cuộc này có.
+        en: White blocks with the queen and offers the trade straight away. It is the practical approach — with no queens there is no raid, and Black loses the only thing this opening has.
+        fr: Les Blancs bloquent avec la dame et proposent aussitôt l'échange. C'est l'approche pratique — sans dames, pas de raid, et les Noirs perdent la seule chose que possède cette ouverture.
+      children:
+        - ply: Qxb2
+          annotation:
+            vi: Đen vẫn ăn con tốt b2 chứ không đổi hậu, vì đổi hậu là thừa nhận đã hỏng. Con xe a1 lại một lần nữa không ai đỡ, và đó là điều Trắng phải xử lý ngay.
+            en: Black takes the b2 pawn rather than trading queens, because trading is an admission that the opening has failed. Once again the rook on a1 has no defender, and that is what White has to deal with immediately.
+            fr: Les Noirs prennent le pion b2 plutôt que d'échanger les dames, car échanger reviendrait à reconnaître l'échec de l'ouverture. De nouveau la tour a1 n'a aucun défenseur, et c'est ce dont les Blancs doivent s'occuper immédiatement.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau. Con xe a1 đang bị hậu b2 đánh và không ai đỡ, nên Trắng chỉ có đúng một nước thoải mái, đó là 6.Qc3, vừa đánh con hậu vừa mời đổi. Sau 6...Qxc3+ 7.Nxc3 thì hậu rời bàn cờ, cánh hậu của Trắng yên ổn, và thế cờ cân bằng với cấu trúc lành cho cả hai. Điều Trắng không được làm là chơi một nước chậm, vì Qxa1 đang chờ.
+              en: Material is level. The rook on a1 is attacked by the queen on b2 and defended by nothing, so White has exactly one comfortable move — 6.Qc3, which attacks the queen and offers the trade. After 6...Qxc3+ 7.Nxc3 the queens are off, White's queenside is safe and the position is level with a sound structure for both sides. What White must not do is play something slow, because ...Qxa1 is waiting.
+              fr: Le matériel est égal. La tour a1 est attaquée par la dame b2 et défendue par rien, si bien que les Blancs n'ont qu'un coup confortable — 6.Qc3, qui attaque la dame et propose l'échange. Après 6...Qxc3+ 7.Nxc3, les dames quittent l'échiquier, l'aile dame blanche est en sûreté et la position est égale avec une structure saine des deux côtés. Ce que les Blancs ne doivent pas faire, c'est jouer lentement, car ...Qxa1 attend.
+            plan:
+              vi: Đen tránh đổi hậu nếu còn tránh được, chơi Qb6 hoặc Qc3+ tuỳ thế, rồi Nxe5 lấy lại tốt, Nf6, d6, Be7 và O-O. Nếu buộc phải đổi hậu thì tàn cuộc cân bằng và đó vẫn là kết quả chấp nhận được cho một khai cuộc thí tốt. Trắng chơi Qc3 ngay, đổi hậu, rồi Nc3 hoặc Nbd2, e3, Be2 và O-O, và về sau dùng cột b nửa mở cùng đôi tượng nếu còn.
+              en: Black avoids the queen trade while that is still possible, playing ...Qb6 or ...Qc3+ as the position allows, then recovers the pawn with ...Nxe5 and plays ...Nf6, ...d6, ...Be7 and ...O-O. If the trade is forced, the endgame is level, which is still an acceptable result for a pawn sacrifice. White plays Qc3 at once, trades queens, then Nc3 or Nbd2, e3, Be2 and castles, and later uses the half-open b-file and the bishop pair if it survives.
+              fr: Les Noirs évitent l'échange des dames tant que c'est possible, en jouant ...Qb6 ou ...Qc3+ selon la position, puis récupèrent le pion par ...Nxe5 et jouent ...Nf6, ...d6, ...Be7 et ...O-O. Si l'échange est forcé, la finale est égale, ce qui reste acceptable pour un sacrifice de pion. Les Blancs jouent Qc3 tout de suite, échangent les dames, puis Nc3 ou Nbd2, e3, Be2 et roquent, et exploitent ensuite la colonne b semi-ouverte et la paire de fous si elle subsiste.
+            basis:
+              by: chan
+              at: '2026-09-17'
+    - ply: Nbd2
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chắn bằng con mã cánh hậu. Nước này có một ưu điểm cụ thể mà hai nước kia không có, đó là ô b1 được dọn trống cho con xe.
+        en: White blocks with the queenside knight. This has one concrete point the other blocks do not — it clears b1 for the rook.
+        fr: Les Blancs bloquent avec le cavalier de l'aile dame. Cela présente un avantage concret que les autres interpositions n'ont pas — la case b1 est dégagée pour la tour.
+      children:
+        - ply: Qxb2
+          annotation:
+            vi: Đen ăn con tốt b2 như thường lệ. Lần này con hậu sẽ bị đuổi ngay bằng Rb1, vì con mã đã rời b1, nên cuộc đột kích ngắn hơn hẳn.
+            en: Black takes on b2 as usual. This time the queen will be chased at once by Rb1, because the knight has left b1, so the raid is a good deal shorter.
+            fr: Les Noirs prennent en b2 comme d'habitude. Cette fois la dame sera chassée aussitôt par Rb1, puisque le cavalier a quitté b1, si bien que le raid est nettement plus court.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau. Con xe a1 không ai đỡ, nhưng chính vì con mã đã rời b1 mà Trắng có nước 6.Rb1, vừa đuổi con hậu vừa đưa xe ra cột nửa mở. Đó là lý do nước chắn này hợp lý. Con hậu Đen sẽ phải đi và mỗi nước hậu đi là một nhịp cho Trắng. Thế cờ cân bằng về vật chất và dễ chơi hơn cho Trắng.
+              en: Material is level. The rook on a1 has no defender, but precisely because the knight has left b1 White has 6.Rb1, which chases the queen and puts the rook on a half-open file in the same move. That is what justifies this block. Black's queen has to move and every queen move is a tempo for White. Materially balanced, easier to play for White.
+              fr: Le matériel est égal. La tour a1 n'a aucun défenseur, mais c'est justement parce que le cavalier a quitté b1 que les Blancs disposent de 6.Rb1, qui chasse la dame et place la tour sur une colonne semi-ouverte dans le même coup. C'est ce qui justifie cette interposition. La dame noire doit bouger, et chaque coup de dame est un temps pour les Blancs. Matériellement équilibré, plus facile à jouer pour les Blancs.
+            plan:
+              vi: Đen chơi Qc3 hoặc Qa3 khi bị đuổi, tìm đường đưa hậu về qua a5 hoặc b6, đồng thời Nxe5 để lấy lại tốt rồi Nf6, d6 và O-O. Đừng để hậu bị nhốt. Trắng chơi Rb1 đuổi hậu, rồi e3, Be2, O-O và Rb3 hoặc Nb3 để tiếp tục quấy con hậu, và dùng nhịp thừa để chiếm trung tâm bằng c4 hay e4.
+              en: Black plays ...Qc3 or ...Qa3 when chased, looks for a way home via a5 or b6, and meanwhile takes the pawn back with ...Nxe5 and plays ...Nf6, ...d6 and ...O-O. The queen must not get shut in. White plays Rb1 to chase the queen, then e3, Be2, O-O and Rb3 or Nb3 to keep harassing it, and uses the spare tempi to take the centre with c4 or e4.
+              fr: Les Noirs jouent ...Qc3 ou ...Qa3 quand ils sont chassés, cherchent un retour par a5 ou b6, et entre-temps reprennent le pion par ...Nxe5 puis jouent ...Nf6, ...d6 et ...O-O. La dame ne doit pas se faire enfermer. Les Blancs jouent Rb1 pour chasser la dame, puis e3, Be2, O-O et Rb3 ou Nb3 pour continuer de la harceler, et emploient les temps gagnés à prendre le centre par c4 ou e4.
+            basis:
+              by: chan
+              at: '2026-09-17'

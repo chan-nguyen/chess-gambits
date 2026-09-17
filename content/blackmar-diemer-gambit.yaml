@@ -1,0 +1,210 @@
+# The Blackmar-Diemer Gambit. Frozen defining line 1.d4 d5 2.e4, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# The gambit's famous forced mate lives one entry along, in `halosar-trap`, where it is
+# machine-proved and carries a certificate. Nothing here claims a mate: every leaf below is
+# an assessment (ADR-0005).
+id: blackmar-diemer-gambit
+name: Blackmar-Diemer Gambit
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-17'
+  basis:
+    by: chan
+    at: '2026-09-17'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. The Lemberger
+      Countergambit 3...e5 takes the queens off and leaves White with nothing to show for
+      the pawn, and the Vienna and Teichmann defences are comfortable for Black, so the
+      gambit does not hold up against a prepared opponent. What it does have is a single
+      set-up that wins a great many club games. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-17'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng cho không con tốt e4 ngay ở nước thứ hai. Kế hoạch luôn luôn giống nhau, đó là Nc3 rồi f3, mời Đen ăn thêm một lần nữa, sau đó ăn lại ở f3 để có cột f mở, hai mã đã ra và con tốt d4 đứng giữa. Đây là một trong số ít gambit mà người chơi chỉ cần nhớ đúng một sơ đồ.
+    en: White gives the e4 pawn away on move two. The plan is always the same — Nc3 then f3, inviting a second capture, and recapturing on f3 to get an open f-file, both knights out and a pawn on d4. It is one of the few gambits where the player only has to remember a single set-up.
+    fr: Les Blancs donnent le pion e4 dès le deuxième coup. Le plan est toujours le même — Nc3 puis f3, en invitant une seconde prise, et reprendre en f3 pour obtenir une colonne f ouverte, les deux cavaliers sortis et un pion en d4. C'est l'un des rares gambits où il suffit de retenir un seul dispositif.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ở e4 và cũng không chơi e6. Các nước 2...c6 và 2...Nf6 đưa ván cờ về Phòng thủ Caro-Kann hoặc về một thế cờ mà Trắng chơi e5 được nhịp, và trong cả hai trường hợp Trắng không mất gì cả. Nước 2...e5 thì dxe5 và 2...c5 thì exd5, Trắng đứng bình thường hoặc hơn tốt. Không nước nào ở đây bác bỏ gambit, chúng chỉ đưa ván cờ sang một khai cuộc khác.
+      en: Black neither takes on e4 nor plays ...e6. 2...c6 and 2...Nf6 send the game into a Caro-Kann, or into a position where White plays e5 with gain of time, and in both cases White has given nothing away. 2...e5 is met by dxe5 and 2...c5 by exd5, with White either normal or a pawn up. Nothing here refutes the gambit; these moves simply change the opening.
+      fr: Les Noirs ne prennent pas en e4 et ne jouent pas ...e6. 2...c6 et 2...Nf6 orientent la partie vers une Caro-Kann, ou vers une position où les Blancs jouent e5 avec gain de temps, et dans les deux cas les Blancs n'ont rien cédé. 2...e5 se traite par dxe5 et 2...c5 par exd5, les Blancs étant normaux ou avec un pion de plus. Rien ici ne réfute le gambit, ces coups changent simplement d'ouverture.
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhận con tốt. Đây là nước đúng về nguyên tắc, vì từ chối một gambit mà không có lý do thì chỉ tặng không đối thủ một thế cờ tốt.
+        en: Black takes the pawn. It is right in principle — declining a gambit without a reason simply hands the opponent a good position for free.
+        fr: Les Noirs prennent le pion. C'est juste en principe, car refuser un gambit sans raison revient à offrir gratuitement une bonne position à l'adversaire.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng phát triển và đánh vào con tốt e4. Chưa phải là f3 vội, vì mã ở c3 sẽ ăn lại được ở e4 nếu Đen bỏ mặc con tốt, và nó cũng giữ ô d5. Đây là nước bắt buộc của sơ đồ.
+            en: White develops and attacks the e4 pawn. Not f3 yet, because the knight on c3 can recapture on e4 if Black abandons the pawn, and it also covers d5. This move is fixed in the set-up.
+            fr: Les Blancs se développent et attaquent le pion e4. Pas encore f3, car le cavalier en c3 pourra reprendre en e4 si les Noirs abandonnent le pion, et il couvre aussi d5. Ce coup est imposé par le dispositif.
+          dismissRest:
+            reason:
+              vi: Đen không chơi Nf6, e5 hay Bf5. Nước 3...Qxd4 chỉ mất hậu, vì con hậu ở d4 không ai đỡ và 4.Qxd4 ăn đứt. Nước 3...e3 trả tốt lại ngay và Trắng chơi Bxe3, phát triển miễn phí một quân. Nước 3...Bg4 định ngăn f3 nhưng không ngăn được, sau 4.f3 exf3 5.Qxf3 thì con hậu đánh cả tượng g4 lẫn tốt b7. Các nước còn lại như c6, e6, Nc6 hay Be6 đều dẫn về cùng một cuộc giằng co quanh con tốt e4, và Trắng vẫn chơi f3.
+              en: Black plays neither ...Nf6, ...e5 nor ...Bf5. 3...Qxd4 simply loses the queen — nothing defends it on d4 and 4.Qxd4 collects it. 3...e3 hands the pawn straight back and White answers Bxe3, developing a piece for nothing. 3...Bg4 means to stop f3 and does not — after 4.f3 exf3 5.Qxf3 the queen hits the bishop on g4 and the pawn on b7 at the same time. The rest — ...c6, ...e6, ...Nc6, ...Be6 — lead back to the same fight over the e4 pawn, and White plays f3 anyway.
+              fr: Les Noirs ne jouent ni ...Nf6, ni ...e5, ni ...Bf5. 3...Qxd4 perd tout simplement la dame, rien ne la défend en d4 et 4.Qxd4 la ramasse. 3...e3 rend le pion aussitôt et les Blancs répondent Bxe3, développant une pièce gratuitement. 3...Bg4 veut empêcher f3 et n'y parvient pas — après 4.f3 exf3 5.Qxf3, la dame frappe le fou g4 et le pion b7 en même temps. Le reste, ...c6, ...e6, ...Nc6, ...Be6, ramène à la même lutte autour du pion e4, et les Blancs jouent f3 de toute façon.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Nước phổ biến nhất và cũng là nước tự nhiên nhất. Đen phát triển và giữ con tốt e4 bằng quân. Nó cũng là nước dẫn thẳng vào nhánh chính mà người chơi gambit này thuộc nhất.
+                en: The most common reply and the most natural one. Black develops and defends the e4 pawn with a piece. It also walks straight into the main line the gambit player knows best.
+                fr: La réponse la plus fréquente et la plus naturelle. Les Noirs se développent et défendent le pion e4 avec une pièce. Elle mène aussi tout droit dans la ligne principale que le joueur de gambit connaît le mieux.
+              children:
+                - ply: f3
+                  annotation:
+                    vi: Đây là nước làm nên Gambit Blackmar-Diemer. Trắng mời Đen ăn con tốt f3, và nếu Đen ăn thì cột f mở ra trong khi Trắng lấy lại quân bằng một nước phát triển. Nếu Đen không ăn thì Trắng chơi fxe4 và có một trung tâm tốt to.
+                    en: This is the move that makes it a Blackmar-Diemer. White invites Black to take on f3, and if Black does, the f-file opens while White recaptures with a developing move. If Black declines, White plays fxe4 and owns a big pawn centre.
+                    fr: Voici le coup qui fait le Gambit Blackmar-Diemer. Les Blancs invitent la prise en f3, et si les Noirs acceptent, la colonne f s'ouvre tandis que les Blancs reprennent par un coup de développement. Si les Noirs refusent, les Blancs jouent fxe4 et possèdent un gros centre de pions.
+                  dismissRest:
+                    reason:
+                      vi: Đen không ăn ở f3 và cũng không chơi e6. Nước 4...Qxd4 vẫn mất hậu sau 5.Qxd4. Nước 4...e3 trả tốt lại và 5.Bxe3 cho Trắng đúng thế trận mong muốn mà không mất gì. Các cách từ chối đáng nể là 4...Bf5 kiểu Vienna, 4...c6 và 4...Nc6, nhưng với tất cả chúng Trắng chỉ việc chơi fxe4 và có trung tâm e4 cộng d4 cùng nhịp phát triển, tức là đúng thứ mà gambit muốn mua.
+                      en: Black neither takes on f3 nor plays ...e6. 4...Qxd4 still loses the queen to 5.Qxd4. 4...e3 gives the pawn back and 5.Bxe3 leaves White with exactly the set-up wanted and nothing lost. The respectable declines are the Vienna 4...Bf5, and 4...c6 and 4...Nc6, but against all of them White simply plays fxe4 with the e4 and d4 centre and the lead in development the gambit was played for.
+                      fr: Les Noirs ne prennent pas en f3 et ne jouent pas ...e6. 4...Qxd4 perd toujours la dame après 5.Qxd4. 4...e3 rend le pion et 5.Bxe3 laisse aux Blancs exactement le dispositif souhaité, sans rien perdre. Les refus sérieux sont la Vienne 4...Bf5, ainsi que 4...c6 et 4...Nc6, mais contre tous, les Blancs jouent simplement fxe4 avec le centre e4 et d4 et l'avance de développement pour laquelle le gambit se joue.
+                  children:
+                    - ply: exf3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen ăn con tốt thứ hai. Gambit Blackmar-Diemer được chấp nhận, và từ đây trở đi Trắng có một sơ đồ tấn công rõ ràng mà Đen phải biết cách chống.
+                        en: Black takes the second pawn. The Blackmar-Diemer Accepted, and from here White has a clear attacking scheme that Black has to know how to meet.
+                        fr: Les Noirs prennent le second pion. Le Blackmar-Diemer accepté, et à partir d'ici les Blancs disposent d'un schéma d'attaque clair que les Noirs doivent savoir contrer.
+                      children:
+                        - ply: Nxf3
+                          annotation:
+                            vi: Ăn lại bằng mã chứ không bằng hậu. Nước Qxf3 là Gambit Ryder, sắc hơn và đáng ngờ hơn, và nó là nước dẫn tới bẫy Halosar nằm ở mục riêng. Nxf3 là cách chơi chính, an toàn và đủ nguy hiểm.
+                            en: Recapture with the knight, not the queen. Qxf3 is the Ryder Gambit, sharper and more dubious, and it is the move that leads to the Halosar Trap, which has an entry of its own. Nxf3 is the main treatment — safe and dangerous enough.
+                            fr: Reprendre du cavalier, non de la dame. Qxf3 est le Gambit Ryder, plus tranchant et plus douteux, et c'est le coup qui mène au Piège Halosar, qui dispose de sa propre entrée. Nxf3 est le traitement principal, sûr et suffisamment dangereux.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Trắng kém một tốt và đổi lại có tất cả những gì đã hứa, đó là cột f nửa mở, hai mã đã ra ở c3 và f3, con tốt d4 giữ trung tâm, và một kế hoạch tấn công vua rất thẳng. Đen hoàn toàn khoẻ về cấu trúc và không có điểm yếu tốt nào, nên nếu Đen phòng thủ đúng thì con tốt thừa sẽ nói chuyện ở tàn cuộc. Vấn đề là phòng thủ đúng ở đây khó hơn tấn công.
+                              en: White is a pawn down and has everything that was promised in return — a half-open f-file, both knights out on c3 and f3, a pawn on d4 holding the centre, and a very direct attacking plan. Black's structure is perfectly healthy with no pawn weakness, so accurate defence means the extra pawn tells in the endgame. The trouble is that defending accurately here is harder than attacking.
+                              fr: Les Blancs ont un pion de moins et tout ce qui avait été promis en échange — une colonne f semi-ouverte, les deux cavaliers sortis en c3 et f3, un pion en d4 qui tient le centre, et un plan d'attaque très direct. La structure noire est parfaitement saine, sans faiblesse de pions, si bien qu'une défense précise fait parler le pion en plus en finale. L'ennui est que défendre avec précision est ici plus difficile qu'attaquer.
+                            plan:
+                              vi: Trắng chơi Bd3 hoặc Bc4, O-O, Qe1 rồi Qh4 để dồn hậu sang cánh vua, Be3 và Rae1 hoặc Rad1. Nếu Đen nhập thành ngắn thì Bg5 và Ne5 cùng Qh4 là bộ ba quen thuộc. Nhớ rằng con tốt d4 phải được giữ, vì mất nó là mất luôn ô e5 cho con mã. Đen nên chọn một trong các phòng thủ đã có tên là Bf5, Bg4, e6 hoặc g6, phát triển cho xong rồi đổi quân, và tuyệt đối không ăn thêm tốt nào ở cánh hậu khi vua còn ở giữa.
+                              en: White plays Bd3 or Bc4, castles, Qe1 and then Qh4 to swing the queen across, Be3, and rooks to e1 and d1. If Black castles short, Bg5, Ne5 and Qh4 are the familiar trio. Remember that the d4 pawn has to be held, because losing it also loses the e5 square for the knight. Black should choose one of the named defences — ...Bf5, ...Bg4, ...e6 or ...g6 — finish developing, trade pieces, and take no further queenside pawns while the king is still in the centre.
+                              fr: Les Blancs jouent Bd3 ou Bc4, roquent, Qe1 puis Qh4 pour transférer la dame, Be3, et les tours en e1 et d1. Si les Noirs roquent du petit côté, Bg5, Ne5 et Qh4 forment le trio familier. Il faut se rappeler que le pion d4 doit être tenu, car le perdre, c'est perdre aussi la case e5 pour le cavalier. Les Noirs choisiront l'une des défenses répertoriées — ...Bf5, ...Bg4, ...e6 ou ...g6 — achèveront leur développement, échangeront des pièces, et ne prendront aucun autre pion à l'aile dame tant que le roi est au centre.
+                            basis:
+                              by: chan
+                              at: '2026-09-17'
+                    - ply: e6
+                      replyQuality: good
+                      frequency: occasional
+                      annotation:
+                        vi: Phòng thủ Weinsbach. Đen không ăn thêm mà mở đường cho tượng f8 và chuẩn bị Bb4 ghim mã c3. Đây là cách từ chối lành mạnh nhất và nó biến ván cờ thành một thế trận kiểu Pháp.
+                        en: The Weinsbach Defence. Black takes no more, opens the f8 bishop's diagonal and prepares ...Bb4 to pin the knight on c3. It is the healthiest decline and it turns the game into a French-like structure.
+                        fr: La Défense Weinsbach. Les Noirs ne prennent plus rien, ouvrent la diagonale du fou f8 et préparent ...Bb4 pour clouer le cavalier c3. C'est le refus le plus sain et il transforme la partie en une structure de type française.
+                      children:
+                        - ply: fxe4
+                          annotation:
+                            vi: Trắng lấy lại con tốt và bây giờ có hai con tốt ở e4 và d4. Không còn gambit nữa, nhưng Trắng đã dùng nước f3 để đổi lấy trung tâm, và cột f dù sao cũng đã nửa mở.
+                            en: White takes the pawn back and now has pawns on e4 and d4. There is no gambit left, but White has spent f3 on a centre and the f-file is half-open all the same.
+                            fr: Les Blancs reprennent le pion et disposent désormais de pions en e4 et d4. Il n'y a plus de gambit, mais les Blancs ont échangé f3 contre un centre et la colonne f est de toute façon semi-ouverte.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Quân số ngang nhau. Trắng có trung tâm e4 và d4 cùng cột f nửa mở, Đen có cấu trúc kiểu Pháp với con tốt e6 và con tượng c8 bị chôn tạm thời. Nước phá quen thuộc của Đen là c5 và Bb4, và nếu Đen kịp làm cả hai thì thế cờ cân bằng. Trắng đã bỏ nhịp f3 nhưng nhận lại đúng cái trung tâm mà biến Pháp thường phải tranh giành.
+                              en: Material is level. White has the e4 and d4 centre and a half-open f-file; Black has a French-style structure with a pawn on e6 and the c8 bishop temporarily buried. Black's familiar breaks are ...c5 and ...Bb4, and if Black gets both in the position is balanced. White has spent a tempo on f3 and received in return the very centre a French player usually has to fight for.
+                              fr: Le matériel est égal. Les Blancs ont le centre e4 et d4 et une colonne f semi-ouverte ; les Noirs ont une structure à la française avec un pion en e6 et le fou c8 temporairement enterré. Les ruptures habituelles des Noirs sont ...c5 et ...Bb4, et s'ils obtiennent les deux la position est équilibrée. Les Blancs ont dépensé un temps en f3 et reçu en retour le centre même qu'un joueur de française doit d'ordinaire conquérir.
+                            plan:
+                              vi: Trắng chơi Nf3, Bd3, O-O hoặc Be3 và Qd2 với O-O-O, rồi đẩy e5 khi con mã f6 không còn chỗ tốt, và dùng cột f cùng đường chéo b1-h7. Đen chơi Bb4 để ghim mã c3, c5 để đánh vào d4, Nc6 hoặc Nbd7 rồi O-O, và tìm cách đổi con tượng trắng ô của Trắng vì nó là quân tấn công nguy hiểm nhất. Ai chiếm được ô e5 thì bên đó chơi dễ hơn.
+                              en: White plays Nf3, Bd3, and either O-O or Be3 with Qd2 and O-O-O, pushes e5 when the f6 knight has nowhere good to go, and uses the f-file together with the b1-h7 diagonal. Black plays ...Bb4 to pin the c3 knight, ...c5 against d4, ...Nc6 or ...Nbd7 and castles, and looks to trade off White's light-squared bishop, which is the most dangerous attacker. Whoever wins the e5 square has the easier game.
+                              fr: Les Blancs jouent Nf3, Bd3, puis O-O ou Be3 avec Qd2 et O-O-O, poussent e5 quand le cavalier f6 n'a plus de bonne case, et exploitent la colonne f avec la diagonale b1-h7. Les Noirs jouent ...Bb4 pour clouer le cavalier c3, ...c5 contre d4, ...Nc6 ou ...Nbd7 et roquent, en cherchant à échanger le fou de cases claires blanc, l'attaquant le plus dangereux. Celui qui gagne la case e5 a le jeu le plus facile.
+                            basis:
+                              by: chan
+                              at: '2026-09-17'
+            - ply: e5
+              replyQuality: best
+              frequency: occasional
+              annotation:
+                vi: Phản gambit Lemberger, và đây là cách đáng sợ nhất đối với người chơi Trắng. Đen thí lại một con tốt để ép đổi hậu ngay lập tức, và một khi hậu rời bàn cờ thì toàn bộ ý tưởng tấn công của Trắng không còn chỗ bám.
+                en: The Lemberger Countergambit, and the reply White least wants to see. Black offers a pawn back to force the queens off at once, and once the queens are gone White's whole attacking idea has nothing left to attach to.
+                fr: Le Contre-gambit Lemberger, et la réponse que les Blancs redoutent le plus. Les Noirs rendent un pion pour forcer aussitôt l'échange des dames, et une fois les dames parties, toute l'idée d'attaque blanche n'a plus rien à quoi s'accrocher.
+              children:
+                - ply: dxe5
+                  annotation:
+                    vi: Trắng ăn và biết rằng Đen sẽ chơi Qxd1+ ngay sau đó. Các nước khác như Nxe4, Nge2 hay Qh5 đều có người chơi, nhưng dxe5 là nước đơn giản và trung thực nhất, và nó cho thấy vì sao nhãn của gambit này là đáng ngờ.
+                    en: White takes, knowing that ...Qxd1+ is coming. The alternatives — Nxe4, Nge2 and Qh5 — all have adherents, but dxe5 is the simplest and most honest, and it shows why this gambit is labelled dubious.
+                    fr: Les Blancs prennent, sachant que ...Qxd1+ arrive. Les alternatives — Nxe4, Nge2 et Qh5 — ont toutes leurs partisans, mais dxe5 est la plus simple et la plus honnête, et elle montre pourquoi ce gambit est étiqueté douteux.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Quân số ngang nhau và hậu sắp được đổi bằng Qxd1+, sau đó Trắng ăn lại bằng vua hoặc bằng mã và mất quyền nhập thành hoặc mất nhịp. Con tốt e5 của Trắng và con tốt e4 của Đen đều cắm sâu và cả hai đều sẽ rơi. Không còn tấn công, không còn cột f, không còn gì ngoài một tàn cuộc sớm cân bằng, và với người chơi Blackmar-Diemer thì đó là kết quả tệ nhất.
+                      en: Material is level and the queens are about to come off with ...Qxd1+, after which White recaptures with the king or the knight and loses either the right to castle or a tempo. White's pawn on e5 and Black's on e4 are both advanced and both will fall. There is no attack, no f-file and nothing but an early level endgame, which for a Blackmar-Diemer player is the worst possible result.
+                      fr: Le matériel est égal et les dames vont s'échanger par ...Qxd1+, après quoi les Blancs reprennent du roi ou du cavalier et perdent soit le droit de roquer, soit un temps. Le pion blanc en e5 et le pion noir en e4 sont tous deux avancés et tomberont tous deux. Pas d'attaque, pas de colonne f, rien qu'une finale égale précoce, ce qui, pour un joueur de Blackmar-Diemer, est le pire résultat possible.
+                    plan:
+                      vi: Trắng ăn lại bằng Nxd1 chứ đừng Kxd1 nếu muốn giữ quyền nhập thành, rồi Be3, Nc3 lại hoặc Ne3, và chơi để lấy lại con tốt e4 bằng Nc3 và Bf4. Đây là cờ tàn, hãy chơi như cờ tàn. Đen chơi Qxd1+ rồi Nc6 đánh vào e5, Bf5 hoặc Be6 giữ con tốt e4, Nge7 hay Nh6 và O-O-O, rồi đơn giản là đưa vua vào trung tâm và ép hai con tốt lẻ của Trắng.
+                      en: White should recapture with Nxd1 rather than Kxd1 to keep the right to castle, then Be3, bring the knight back to c3 or e3, and play to win the e4 pawn back with Nc3 and Bf4. This is an endgame; play it as one. Black plays ...Qxd1+, then ...Nc6 against e5, ...Bf5 or ...Be6 to hold the e4 pawn, ...Nge7 or ...Nh6 and ...O-O-O, and simply walks the king towards the centre and presses White's loose pawns.
+                      fr: Les Blancs reprendront par Nxd1 plutôt que Kxd1 pour conserver le droit de roquer, puis Be3, ramèneront le cavalier en c3 ou e3, et joueront pour récupérer le pion e4 par Nc3 et Bf4. C'est une finale, elle se joue comme telle. Les Noirs jouent ...Qxd1+, puis ...Nc6 contre e5, ...Bf5 ou ...Be6 pour tenir le pion e4, ...Nge7 ou ...Nh6 et ...O-O-O, et conduisent simplement le roi vers le centre en pressant les pions isolés blancs.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+            - ply: Bf5
+              replyQuality: good
+              frequency: occasional
+              annotation:
+                vi: Phòng thủ Zeller. Đen đưa tượng ra ngoài dãy tốt trước khi chơi e6, đúng theo nguyên tắc chống mọi khai cuộc kiểu Pháp. Con tượng ở f5 cũng giữ thêm con tốt e4 một cách gián tiếp.
+                en: The Zeller Defence. Black gets the bishop outside the pawn chain before playing ...e6, which is the standard principle against every French-like structure. The bishop on f5 also gives the e4 pawn indirect support.
+                fr: La Défense Zeller. Les Noirs sortent le fou hors de la chaîne de pions avant de jouer ...e6, ce qui est le principe habituel contre toute structure de type française. Le fou en f5 soutient aussi indirectement le pion e4.
+              children:
+                - ply: f3
+                  annotation:
+                    vi: Trắng vẫn chơi f3. Sơ đồ không đổi vì con tượng f5 không ngăn được nó, và nếu Đen ăn exf3 thì Nxf3 hoặc Qxf3 đều cho Trắng thế trận quen thuộc, lần này kèm theo khả năng Bd3 đổi con tượng f5 đi.
+                    en: White plays f3 anyway. The set-up does not change, because the bishop on f5 cannot stop it, and if Black takes with ...exf3 then either Nxf3 or Qxf3 gives White the familiar position, this time with Bd3 available to trade the f5 bishop off.
+                    fr: Les Blancs jouent f3 malgré tout. Le dispositif ne change pas, car le fou f5 ne peut l'empêcher, et si les Noirs prennent par ...exf3, Nxf3 comme Qxf3 donnent aux Blancs la position habituelle, cette fois avec Bd3 disponible pour échanger le fou f5.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đen hơn một tốt và con tượng trắng ô đã ra được chỗ tốt, đó là hai thứ mà phòng thủ này mua được bằng một nước. Trắng vẫn có sơ đồ cũ, và thêm một chi tiết là nước Bd3 sẽ hỏi con tượng f5 một câu khó. Về khách quan Đen đứng ít nhất là ngang bằng, nhưng thế cờ vẫn còn nhiều nhựa và người chơi Trắng vẫn ở trong lãnh thổ quen thuộc.
+                      en: Black is a pawn up and has the light-squared bishop out on a good square, which is the two things this defence buys with one move. White still has the same scheme, plus the detail that Bd3 will ask the bishop on f5 an awkward question. Objectively Black is at least equal, but the position is still full of life and the White player is still on familiar ground.
+                      fr: Les Noirs ont un pion de plus et le fou de cases claires sorti sur une bonne case, ce sont les deux choses que cette défense achète en un coup. Les Blancs gardent le même schéma, avec ce détail que Bd3 posera au fou f5 une question embarrassante. Objectivement les Noirs sont au moins à égalité, mais la position reste pleine de sève et le joueur blanc demeure en terrain connu.
+                    plan:
+                      vi: Trắng chơi fxe4 nếu Đen bỏ mặc con tốt, hoặc Nxf3 sau exf3, rồi Bd3 đổi con tượng f5, Nge2 hay Nf3, Be3 và Qd2 với O-O-O. Ý là đổi con tượng phòng thủ của Đen rồi đánh vào ô h7. Đen chơi e6 để nối tốt, rồi Bb4 hoặc Be7, Nf6, Nbd7 và O-O, giữ con tượng f5 khỏi bị đổi nếu được bằng cách lui về g6, và trả lại con tốt thừa nếu việc đó giúp hoàn tất phát triển.
+                      en: White plays fxe4 if Black abandons the pawn, or Nxf3 after ...exf3, then Bd3 to trade the f5 bishop, Nge2 or Nf3, Be3 and Qd2 with O-O-O. The idea is to exchange Black's defending bishop and then attack h7. Black plays ...e6 to link the pawns, then ...Bb4 or ...Be7, ...Nf6, ...Nbd7 and ...O-O, keeps the f5 bishop from being traded by dropping it to g6 if possible, and gives the extra pawn back if that is what finishes development.
+                      fr: Les Blancs jouent fxe4 si les Noirs abandonnent le pion, ou Nxf3 après ...exf3, puis Bd3 pour échanger le fou f5, Nge2 ou Nf3, Be3 et Qd2 avec O-O-O. L'idée est d'échanger le fou défenseur noir puis d'attaquer h7. Les Noirs jouent ...e6 pour relier les pions, puis ...Bb4 ou ...Be7, ...Nf6, ...Nbd7 et ...O-O, évitent l'échange du fou f5 en le repliant en g6 si possible, et rendent le pion en plus si cela achève le développement.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+    - ply: e6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen từ chối bằng cách chuyển ván cờ sang Phòng thủ Pháp. Đây là cách né gambit hiệu quả nhất nếu bạn vốn đã chơi Pháp, vì Trắng không còn gì để thí và cũng không còn sơ đồ nào để thuộc lòng.
+        en: Black declines by turning the game into a French Defence. This is the most effective way to dodge the gambit if you already play the French, because White has nothing left to sacrifice and no memorised scheme left to use.
+        fr: Les Noirs refusent en transformant la partie en Défense française. C'est la façon la plus efficace d'esquiver le gambit si l'on joue déjà la française, car les Blancs n'ont plus rien à sacrifier ni de schéma appris à dérouler.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng phát triển và bàn cờ bây giờ là một thế Pháp bình thường sau 1.e4 e6 2.d4 d5 3.Nc3. Không có con tốt nào bị thí và cũng không có cột f nào mở. Người chơi Blackmar-Diemer phải chấp nhận chơi cờ như mọi người.
+            en: White develops and the board is now an ordinary French after 1.e4 e6 2.d4 d5 3.Nc3. No pawn has been sacrificed and no f-file has been opened. The Blackmar-Diemer player has to play chess like everybody else.
+            fr: Les Blancs se développent et l'échiquier montre désormais une française ordinaire après 1.e4 e6 2.d4 d5 3.Nc3. Aucun pion n'a été sacrifié et aucune colonne f n'a été ouverte. Le joueur de Blackmar-Diemer doit jouer aux échecs comme tout le monde.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau và thế cờ là Phòng thủ Pháp với mã c3, một trong những khai cuộc được nghiên cứu kỹ nhất. Đen chọn giữa Bb4 kiểu Winawer, Nf6 kiểu Cổ điển và dxe4 kiểu Rubinstein. Trắng không có gì đặc biệt, nhưng cũng không kém gì, và đó đã là một thành công đối với Đen vì Đen đã tránh được toàn bộ phần chuẩn bị của đối thủ.
+              en: Material is level and the position is a French Defence with Nc3, one of the most thoroughly studied openings there is. Black chooses between the Winawer ...Bb4, the Classical ...Nf6 and the Rubinstein ...dxe4. White has nothing special, but nothing worse either — and for Black that already counts as a success, because the opponent's entire preparation has been sidestepped.
+              fr: Le matériel est égal et la position est une Défense française avec Nc3, l'une des ouvertures les plus étudiées qui soient. Les Noirs choisissent entre la Winawer ...Bb4, la Classique ...Nf6 et la Rubinstein ...dxe4. Les Blancs n'ont rien de spécial, mais rien de pire non plus, et pour les Noirs c'est déjà un succès, puisque toute la préparation adverse a été contournée.
+            plan:
+              vi: Trắng chọn e5 để chiếm chỗ, Bg5 để ghim mã f6, hoặc exd5 để đơn giản hoá, và sau đó chơi Pháp một cách bình thường với Nf3, Bd3 và O-O. Đen chọn sơ đồ quen thuộc nhất của mình, và nếu là Winawer thì Bb4 rồi c5 là nước phá, còn nếu là Cổ điển thì Nf6, c5 và Nc6. Ai hiểu cấu trúc tốt Pháp hơn thì bên đó thắng, chứ không còn ai thuộc gambit hơn ai.
+              en: White chooses between e5 for space, Bg5 to pin the f6 knight, and exd5 to simplify, then plays the French normally with Nf3, Bd3 and O-O. Black picks whichever scheme is most familiar — with the Winawer it is ...Bb4 and then ...c5 as the break, with the Classical it is ...Nf6, ...c5 and ...Nc6. The game is decided by who understands French pawn structures better, not by who has memorised more of a gambit.
+              fr: Les Blancs choisissent entre e5 pour l'espace, Bg5 pour clouer le cavalier f6 et exd5 pour simplifier, puis jouent la française normalement avec Nf3, Bd3 et O-O. Les Noirs prennent le schéma qui leur est le plus familier — en Winawer, ...Bb4 puis ...c5 comme rupture ; en Classique, ...Nf6, ...c5 et ...Nc6. La partie se décide sur la compréhension des structures de pions françaises, non sur la mémoire d'un gambit.
+            basis:
+              by: chan
+              at: '2026-09-17'

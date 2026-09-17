@@ -1,0 +1,165 @@
+# The Scotch Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Bc4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# Every leaf here is an assessment. The Scotch Gambit leads to the Max Lange Attack and to
+# some of the sharpest tactics in the open games, but none of the lines below forces mate,
+# and an unproved mate claim is refused rather than written (ADR-0005).
+id: scotch-game-scotch-gambit
+name: 'Scotch Game: Scotch Gambit'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, Bc4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-17'
+  basis:
+    by: chan
+    at: '2026-09-17'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. White is not
+      really a pawn down for long — Nxd4 or c3 regains it in most lines — so what is being
+      offered is time rather than material, and the resulting positions are respectable at
+      every level. Black equalises with accurate play after 4...Nf6 5.e5 d5, which is why
+      this is called sound rather than winning. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-17'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chưa vội lấy lại con tốt d4 mà đưa tượng ra c4, nhắm thẳng vào f7. Đây là điểm khác nhau giữa Gambit Scotch và Khai cuộc Scotch bình thường, ở đó Trắng chơi Nxd4 và ván cờ lắng xuống. Ở đây Trắng giữ con tốt d4 của Đen làm con tin và đổi lấy hai nhịp phát triển cùng nước O-O sớm.
+    en: White does not hurry to take the d4 pawn back and puts the bishop on c4, straight at f7. That is the difference between the Scotch Gambit and the ordinary Scotch, where Nxd4 is played and the game calms down. Here White leaves Black's pawn on d4 as a hostage and takes two tempi and an early O-O instead.
+    fr: Les Blancs ne se hâtent pas de reprendre le pion d4 et posent le fou en c4, droit sur f7. C'est là toute la différence entre le Gambit écossais et la Partie écossaise ordinaire, où Nxd4 se joue et où la partie s'apaise. Ici, les Blancs laissent le pion noir en d4 comme otage et prennent deux temps et un roque rapide à la place.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác. Nước 4...Ne5 đánh vào tượng nhưng con mã ở e5 không ai đỡ, nên 5.Nxe5 ăn đứt một quân. Nước 4...d3 trả tốt lại ngay và Trắng lấy lại bằng cxd3 hoặc Qxd3, được một ván cờ thoải mái mà chẳng thí gì. Các nước 4...Be7, 4...Nge7 hay 4...Qf6 đều chơi được nhưng thụ động, Trắng đáp O-O rồi Nxd4 hoặc c3 và có thế trận dễ chơi hơn hẳn. Không nước nào ở đây trừng phạt được nước Bc4.
+      en: Black plays something else. 4...Ne5 attacks the bishop, but the knight on e5 is defended by nothing and 5.Nxe5 simply wins a piece. 4...d3 gives the pawn straight back and White recaptures with cxd3 or Qxd3 for a comfortable game with nothing sacrificed. 4...Be7, 4...Nge7 and 4...Qf6 are all playable but passive, and White answers O-O followed by Nxd4 or c3 with much the easier position. Nothing here punishes Bc4.
+      fr: Les Noirs jouent autre chose. 4...Ne5 attaque le fou, mais le cavalier en e5 n'est défendu par rien et 5.Nxe5 gagne simplement une pièce. 4...d3 rend le pion aussitôt et les Blancs reprennent par cxd3 ou Qxd3, avec un jeu confortable et rien de sacrifié. 4...Be7, 4...Nge7 et 4...Qf6 sont jouables mais passifs, et les Blancs répondent O-O puis Nxd4 ou c3 avec une position bien plus facile. Rien ici ne punit Bc4.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Nước tự nhiên nhất và cũng là nước đúng nhất. Đen phát triển và đánh vào con tốt e4 cùng lúc, buộc Trắng phải quyết định ngay.
+        en: The most natural move and also the best one. Black develops and attacks the e4 pawn at the same time, forcing White to decide at once.
+        fr: Le coup le plus naturel et aussi le meilleur. Les Noirs se développent et attaquent le pion e4 en même temps, obligeant les Blancs à trancher immédiatement.
+      children:
+        - ply: e5
+          annotation:
+            vi: Trắng đẩy tốt lên thay vì đỡ nó. Con mã f6 bị đuổi, và nếu Đen lùi mã thì Trắng được nhịp còn con tốt e5 chiếm chỗ. Nước O-O cũng chơi được và dẫn tới Tấn công Max Lange, nhưng e5 là cách trực tiếp nhất.
+            en: White pushes past instead of defending. The f6 knight is attacked, and if it retreats White gains a tempo and the e5 pawn takes space. Castling is also good and leads to the Max Lange Attack, but e5 is the most direct treatment.
+            fr: Les Blancs poussent au lieu de défendre. Le cavalier f6 est attaqué, et s'il recule les Blancs gagnent un temps tandis que le pion e5 prend de l'espace. Le roque est également bon et mène à l'Attaque Max Lange, mais e5 est le traitement le plus direct.
+          dismissRest:
+            reason:
+              vi: Đen không chơi d5. Nước 5...Ne4 đưa mã ra chỗ không ai giữ, Trắng đáp Qe2 hoặc Bd5 và con mã gặp rắc rối. Nước 5...Ng4 để mã bị h3 đuổi. Nước 5...Qe7 giữ mã bằng cách ghim tốt e5 và là nước phòng thủ nghiêm túc nhất trong nhóm này, nhưng nó chôn con tượng f8 và Trắng chơi O-O rồi Re1 với sức ép trên cột e. Còn mọi nước bỏ mặc con mã f6 thì exf6 ăn đứt một quân.
+              en: Black does not play ...d5. 5...Ne4 puts the knight where nothing defends it, and Qe2 or Bd5 leaves it in trouble. 5...Ng4 invites h3. 5...Qe7 defends the knight by pinning the e5 pawn and is the most serious of these, but it buries the f8 bishop and White plays O-O and Re1 with pressure down the e-file. And anything that abandons the f6 knight loses a piece to exf6.
+              fr: Les Noirs ne jouent pas ...d5. 5...Ne4 place le cavalier là où rien ne le défend, et Qe2 ou Bd5 le met en difficulté. 5...Ng4 invite h3. 5...Qe7 défend le cavalier en clouant le pion e5 et reste le plus sérieux de ces coups, mais il enterre le fou f8 et les Blancs jouent O-O puis Re1 avec une pression sur la colonne e. Et tout coup qui abandonne le cavalier f6 perd une pièce après exf6.
+          children:
+            - ply: d5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Nước đúng, và nó là một đòn trung gian. Đen không lùi con mã mà đánh vào tượng c4 trước, để khi tượng phải đi thì Đen mới tính tiếp chuyện con mã. Đây là cách duy nhất giữ được thăng bằng.
+                en: Correct, and it is an in-between move. Instead of retreating the knight, Black attacks the bishop on c4 first, so that the knight question is only answered after the bishop has had to move. This is the one way to keep the balance.
+                fr: Correct, et c'est un coup intermédiaire. Au lieu de reculer le cavalier, les Noirs attaquent d'abord le fou en c4, de sorte que la question du cavalier ne se pose qu'après le déplacement du fou. C'est la seule façon de maintenir l'équilibre.
+              children:
+                - ply: Bb5
+                  annotation:
+                    vi: Tượng lùi về b5 chứ không về b3 hay d3, vì ở b5 nó đánh con mã c6 và vẫn giữ được ý đồ exf6. Đây là ngã rẽ chính của cả biến, và nước trả lời chuẩn của Đen là Ne4.
+                    en: The bishop goes to b5 rather than b3 or d3, because on b5 it hits the knight on c6 while exf6 is still in the air. This is the main crossroads of the variation, and Black's standard answer is 6...Ne4.
+                    fr: Le fou va en b5 plutôt qu'en b3 ou d3, car en b5 il frappe le cavalier c6 tandis que exf6 reste dans l'air. C'est le carrefour principal de la variante, et la réponse habituelle des Noirs est 6...Ne4.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đen hơn một tốt, đó là con tốt d4 vẫn còn nguyên. Đổi lại con mã f6 đang bị tốt e5 đánh, con mã c6 đang bị tượng b5 đánh, và con tốt d5 thì bị tượng b5 nhìn xuyên qua sau khi mã c6 rời chỗ. Đen phải chơi Ne4 để thoát mã và giữ mọi thứ, còn Trắng thì có Nxd4 lấy lại tốt bất cứ lúc nào. Thế cờ cân bằng nhưng rất dễ đi sai cho cả hai bên.
+                      en: Black is a pawn up — the d4 pawn is still there. Against that, the f6 knight is attacked by the e5 pawn, the c6 knight is attacked by the bishop on b5, and the d5 pawn sits on the b5 bishop's diagonal once the knight leaves c6. Black has to play ...Ne4 to save the knight and hold everything together, while White has Nxd4 to recover the pawn whenever it suits. The position is balanced and very easy for either side to get wrong.
+                      fr: Les Noirs ont un pion de plus, le pion d4 est toujours là. En contrepartie, le cavalier f6 est attaqué par le pion e5, le cavalier c6 par le fou b5, et le pion d5 se trouve sur la diagonale du fou b5 dès que le cavalier quitte c6. Les Noirs doivent jouer ...Ne4 pour sauver le cavalier et tout tenir, tandis que les Blancs ont Nxd4 pour reprendre le pion quand cela leur convient. La position est équilibrée et très facile à mal jouer des deux côtés.
+                    plan:
+                      vi: Trắng chơi Nxd4 để lấy lại tốt và đưa mã vào trung tâm, rồi Bxc6 nếu cần, O-O, f3 đuổi con mã e4 và Re1. Con tốt e5 là tài sản chính, nó cắt bàn cờ làm đôi và giữ mã Đen khỏi f6. Đen chơi Ne4 rồi Bd7 hoặc Bc5, O-O thật nhanh, và nước phá là f6 để xoá con tốt e5. Nếu Đen phá được e5 mà vẫn giữ tốt thừa thì Đen hơn, còn nếu không thì Trắng có thế công trên cột e và đường chéo a2-g8.
+                      en: White plays Nxd4 to regain the pawn and centralise, then Bxc6 if it is useful, castles, plays f3 to chase the e4 knight and puts a rook on e1. The e5 pawn is the main asset — it cuts the board in half and keeps Black's knight out of f6. Black plays ...Ne4, then ...Bd7 or ...Bc5, castles quickly, and the break is ...f6 to remove the e5 pawn. If Black dissolves e5 while keeping the extra pawn, Black is better; if not, White has an attack on the e-file and the a2-g8 diagonal.
+                      fr: Les Blancs jouent Nxd4 pour reprendre le pion et centraliser, puis Bxc6 si c'est utile, roquent, jouent f3 pour chasser le cavalier e4 et placent une tour en e1. Le pion e5 est l'atout principal, il coupe l'échiquier en deux et interdit f6 au cavalier noir. Les Noirs jouent ...Ne4, puis ...Bd7 ou ...Bc5, roquent vite, et la rupture est ...f6 pour supprimer le pion e5. Si les Noirs dissolvent e5 en gardant le pion en plus, ils sont mieux ; sinon les Blancs ont une attaque sur la colonne e et la diagonale a2-g8.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+    - ply: Bc5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen giữ con tốt d4 và phát triển tượng ra ô tốt nhất của nó. Nước này dẫn tới Tấn công Max Lange nếu Trắng chơi O-O, hoặc tới một gambit thứ hai nếu Trắng chơi c3.
+        en: Black holds the d4 pawn and develops the bishop to its best square. This leads to the Max Lange Attack if White castles, or to a second gambit offer if White plays c3.
+        fr: Les Noirs conservent le pion d4 et développent le fou sur sa meilleure case. Cela mène à l'Attaque Max Lange si les Blancs roquent, ou à une seconde offre de gambit si les Blancs jouent c3.
+      children:
+        - ply: c3
+          annotation:
+            vi: Trắng mời thêm một con tốt nữa. Nếu Đen ăn dxc3 thì Nxc3 cho Trắng mã ra trung tâm, tượng c4 nhắm f7 và cột d mở, tức là đúng thế trận kiểu Gambit Göring. Nếu Đen không ăn thì Trắng chơi cxd4 và có trung tâm e4 cộng d4 đàng hoàng.
+            en: White offers another pawn. If Black takes with ...dxc3, Nxc3 gives White a centralised knight, the bishop on c4 against f7 and an open d-file — the Göring Gambit set-up. If Black declines, White plays cxd4 and owns a proper e4 and d4 centre.
+            fr: Les Blancs offrent un pion de plus. Si les Noirs prennent par ...dxc3, Nxc3 donne aux Blancs un cavalier centralisé, le fou c4 contre f7 et une colonne d ouverte, soit le dispositif du Gambit Göring. Si les Noirs refusent, les Blancs jouent cxd4 et possèdent un vrai centre e4 et d4.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn một tốt và sắp được mời con thứ hai. Con tượng c5 đứng đẹp nhưng nó sẽ bị chính con tốt c3 và d4 đẩy đi khi Trắng lấy lại trung tâm, nên Đen thường chơi Nf6 hoặc d3 để giữ nhịp. Thế cờ sắc và hai bên đều có tài nguyên, nhưng ai thuộc nhánh này sẽ chơi nhanh hơn nhiều.
+              en: Black is a pawn up and about to be offered a second. The bishop on c5 is well placed, but it is exactly what the c3 and d4 pawns will push around once White rebuilds the centre, so Black usually plays ...Nf6 or ...d3 to keep the tempo. The position is sharp and both sides have resources, but whoever knows this branch will play it much faster.
+              fr: Les Noirs ont un pion de plus et s'en voient offrir un second. Le fou en c5 est bien placé, mais c'est précisément lui que les pions c3 et d4 chasseront dès que les Blancs auront reconstruit le centre, si bien que les Noirs jouent d'ordinaire ...Nf6 ou ...d3 pour garder le tempo. La position est acérée et les deux camps ont des ressources, mais celui qui connaît cette branche la jouera bien plus vite.
+            plan:
+              vi: Trắng chơi cxd4 nếu Đen không ăn, hoặc Nxc3 nếu Đen ăn, rồi O-O, Nc3, Bg5 và Rc1 hoặc Re1. Nước phá là d5 hoặc e5 để mở trung tâm khi vua Đen chưa nhập thành. Đen nên chơi d3 để chặn đường chéo và làm Trắng phải mất nhịp nhặt lại con tốt, hoặc Nf6 rồi d6 và O-O. Nếu Đen kịp nhập thành và giữ thêm một tốt thì thế cờ là của Đen.
+              en: White plays cxd4 if Black declines, or Nxc3 if Black accepts, then castles, Nc3, Bg5 and a rook to c1 or e1. The break is d5 or e5 to open the centre while the black king is still in it. Black should consider ...d3, which blocks the diagonal and makes White spend time collecting the pawn, or ...Nf6 followed by ...d6 and ...O-O. If Black castles in time and keeps an extra pawn, the position is Black's.
+              fr: Les Blancs jouent cxd4 si les Noirs refusent, ou Nxc3 s'ils acceptent, puis roquent, Nc3, Bg5 et une tour en c1 ou e1. La rupture est d5 ou e5 pour ouvrir le centre tant que le roi noir y demeure. Les Noirs peuvent envisager ...d3, qui barre la diagonale et oblige les Blancs à perdre du temps pour récupérer le pion, ou ...Nf6 suivi de ...d6 et ...O-O. Si les Noirs roquent à temps en gardant un pion de plus, la position est à eux.
+            basis:
+              by: chan
+              at: '2026-09-17'
+    - ply: Bb4+
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ London. Đen chiếu để ép Trắng phải trả lời, và nước trả lời tự nhiên nhất lại chính là nước Trắng muốn chơi. Đây là kiểu chiếu không đem lại gì, nhưng nó cũng không làm hỏng gì.
+        en: The London Defense. Black checks to force a reply, and the most natural reply is the one White wanted to play anyway. It is a check that gains nothing, though it spoils nothing either.
+        fr: La Défense londonienne. Les Noirs font échec pour forcer une réponse, et la réponse la plus naturelle est justement celle que les Blancs voulaient jouer. C'est un échec qui ne rapporte rien, mais qui ne gâte rien non plus.
+      children:
+        - ply: c3
+          annotation:
+            vi: Trắng chắn bằng tốt, và con tốt này vừa đỡ chiếu vừa đánh vào tốt d4. Con tượng b4 bây giờ phải quyết định, đổi ở c3 để cho Trắng một cấu trúc tốt mạnh hơn ở trung tâm, hay lùi về e7 hoặc a5 và mất nhịp.
+            en: White blocks with the pawn, and that pawn both answers the check and attacks d4. The bishop on b4 now has to decide — take on c3 and hand White a stronger pawn centre, or retreat to e7 or a5 having lost time.
+            fr: Les Blancs bloquent avec le pion, et ce pion pare l'échec tout en attaquant d4. Le fou b4 doit maintenant choisir — prendre en c3 et offrir aux Blancs un centre de pions plus fort, ou reculer en e7 ou a5 après avoir perdu du temps.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn một tốt trên danh nghĩa, nhưng con tốt d4 đang bị c3 đánh và sẽ không sống lâu. Con tượng b4 là quân duy nhất đang bị hỏi, và mọi câu trả lời của nó đều tốn nhịp hoặc cải thiện cấu trúc của Trắng. Đây là một trong những nhánh dễ chịu nhất cho Trắng trong cả biến, và nó cho thấy vì sao nước chiếu ở b4 không phải là nước đáng chơi.
+              en: Black is nominally a pawn up, but the pawn on d4 is attacked by c3 and will not live long. The bishop on b4 is the one piece being questioned, and every answer it has either costs time or improves White's structure. This is one of the most comfortable branches for White in the whole variation, and it shows why the check on b4 is not a move worth playing.
+              fr: Les Noirs ont nominalement un pion de plus, mais le pion d4 est attaqué par c3 et ne vivra pas longtemps. Le fou b4 est la seule pièce mise en question, et toutes ses réponses coûtent du temps ou améliorent la structure blanche. C'est l'une des branches les plus confortables pour les Blancs dans toute la variante, et elle montre pourquoi l'échec en b4 ne vaut pas la peine d'être joué.
+            plan:
+              vi: Trắng lấy lại con tốt bằng cxd4 hoặc bxc3 tuỳ theo Đen làm gì, rồi O-O, Nc3, Bg5 hay Be3 và Re1. Nếu Đen chơi dxc3 thì bxc3 cho Trắng trung tâm e4 cộng d4 và cột b nửa mở, đó là cách ăn lại đáng chọn. Đen nên lùi tượng về e7 rồi chơi Nf6, d6 và O-O, tránh đổi ở c3, và tìm cách phá trung tâm Trắng bằng d5 sau khi đã an toàn.
+              en: White recovers the pawn with cxd4 or bxc3 depending on what Black does, then castles, Nc3, Bg5 or Be3 and Re1. If Black plays ...dxc3, recapturing bxc3 gives White the e4 and d4 centre plus a half-open b-file, and that is the recapture to prefer. Black should retreat the bishop to e7, then play ...Nf6, ...d6 and ...O-O, avoid the exchange on c3, and aim to break up White's centre with ...d5 once safe.
+              fr: Les Blancs récupèrent le pion par cxd4 ou bxc3 selon ce que font les Noirs, puis roquent, Nc3, Bg5 ou Be3 et Re1. Si les Noirs jouent ...dxc3, reprendre par bxc3 donne aux Blancs le centre e4 et d4 plus une colonne b semi-ouverte, et c'est la reprise à préférer. Les Noirs feraient bien de reculer le fou en e7, puis de jouer ...Nf6, ...d6 et ...O-O, d'éviter l'échange en c3 et de viser ...d5 pour casser le centre blanc une fois en sécurité.
+            basis:
+              by: chan
+              at: '2026-09-17'
+    - ply: d6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Janowski. Đen củng cố trước khi làm gì khác, mở đường cho tượng c8 và chuẩn bị Nf6 mà không sợ e5. Chắc chắn nhưng chậm.
+        en: The Janowski Defense. Black shores things up before doing anything else, opens the c8 bishop's diagonal and prepares ...Nf6 without fearing e5. Solid but slow.
+        fr: La Défense Janowski. Les Noirs consolident avant toute autre chose, ouvrent la diagonale du fou c8 et préparent ...Nf6 sans craindre e5. Solide mais lent.
+      children:
+        - ply: O-O
+          annotation:
+            vi: Trắng nhập thành và để con tốt d4 lại đó. Xe f1 vào cột f, vua an toàn, và Trắng vẫn còn cả c3 lẫn Nxd4 để lấy lại tốt vào lúc thích hợp. Đây chính là thứ mà gambit mua được, đó là thời gian.
+            en: White castles and leaves the d4 pawn where it is. The rook comes to the f-file, the king is safe, and White still has both c3 and Nxd4 to recover the pawn at a convenient moment. This is exactly what the gambit buys, which is time.
+            fr: Les Blancs roquent et laissent le pion d4 où il est. La tour vient sur la colonne f, le roi est en sûreté, et les Blancs gardent à la fois c3 et Nxd4 pour reprendre le pion au bon moment. C'est précisément ce que le gambit achète, du temps.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn một tốt và không có điểm yếu nào, nhưng Đen cũng chưa nhập thành và mới ra một quân. Trắng đã nhập thành xong, tượng đã ở c4 và mã đã ở f3, và con tốt d4 thì không chạy đi đâu được. Thực tế đây là một thế cờ Scotch bình thường mà Trắng đã được tặng thêm hai nhịp.
+              en: Black is a pawn up with no weaknesses, but Black has not castled and has only one piece out. White has castled, the bishop is on c4, the knight is on f3, and the d4 pawn is not going anywhere. In practice this is an ordinary Scotch in which White has been given two extra tempi.
+              fr: Les Noirs ont un pion de plus sans aucune faiblesse, mais ils n'ont pas roqué et n'ont sorti qu'une pièce. Les Blancs ont roqué, le fou est en c4, le cavalier en f3, et le pion d4 n'ira nulle part. En pratique, c'est une écossaise ordinaire dans laquelle les Blancs ont reçu deux temps de plus.
+            plan:
+              vi: Trắng chơi c3 để mời đổi hoặc lấy lại tốt, rồi Nbd2 hay Nc3, Re1 và Qb3 nhắm vào f7 và b7 cùng lúc. Nếu Đen chơi Nf6 thì e5 lại là nước phá. Đen chơi Nf6 hoặc Be7 rồi O-O thật nhanh, sau đó Be6 để đổi con tượng c4 và Re8. Nếu Đen đổi được cặp tượng trắng ô và giữ thêm tốt thì ván cờ nghiêng về Đen, còn nếu chậm thì cột e và đường chéo a2-g8 sẽ nói chuyện.
+              en: White plays c3 to invite the exchange or regain the pawn, then Nbd2 or Nc3, Re1 and Qb3, hitting f7 and b7 at once. If Black plays ...Nf6, e5 is again the break. Black plays ...Nf6 or ...Be7 and castles quickly, then ...Be6 to trade the c4 bishop off, and ...Re8. If Black trades the light-squared bishops and keeps the extra pawn, the game tilts Black's way; if Black is slow, the e-file and the a2-g8 diagonal will have something to say.
+              fr: Les Blancs jouent c3 pour inviter l'échange ou reprendre le pion, puis Nbd2 ou Nc3, Re1 et Qb3, qui frappe f7 et b7 à la fois. Si les Noirs jouent ...Nf6, e5 est de nouveau la rupture. Les Noirs jouent ...Nf6 ou ...Be7 et roquent vite, puis ...Be6 pour échanger le fou c4, et ...Re8. Si les Noirs échangent les fous de cases claires en gardant le pion, la partie penche de leur côté ; s'ils tardent, la colonne e et la diagonale a2-g8 auront leur mot à dire.
+            basis:
+              by: chan
+              at: '2026-09-17'

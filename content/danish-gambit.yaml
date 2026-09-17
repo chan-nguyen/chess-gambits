@@ -1,0 +1,164 @@
+# The Danish Gambit. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# No leaf here claims a mate. The Danish wins games by development and by the two bishops,
+# not by force, and a mate the build cannot prove is refused rather than written (ADR-0005).
+id: danish-gambit
+name: Danish Gambit
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-17'
+  basis:
+    by: chan
+    at: '2026-09-17'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. The Schlechter
+      Defence 4...d5 is the reason — Black gives one pawn back at the right moment, keeps
+      the other and emerges a pawn up with a sound structure, so the two-pawn version does
+      not hold against correct play. Below master level the bishops on c4 and b2 are worth
+      far more than the arithmetic suggests. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-17'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng mời con tốt c3. Nếu Đen ăn thì Trắng chưa ăn lại vội mà chơi Bc4, và nếu Đen ăn tiếp ở b2 thì Bxb2 cho Trắng hai con tượng chĩa thẳng vào f7 và g7 khi Đen còn chưa phát triển quân nào. Hai con tốt đổi lấy hai đường chéo, đó là toàn bộ ý tưởng.
+    en: White offers the c3 pawn. If Black takes it White does not recapture but plays Bc4, and if Black takes on b2 as well, Bxb2 gives White two bishops pointing straight at f7 and g7 while Black has not developed a single piece. Two pawns for two diagonals is the whole idea.
+    fr: Les Blancs offrent le pion c3. Si les Noirs le prennent, les Blancs ne reprennent pas mais jouent Bc4, et si les Noirs prennent aussi en b2, Bxb2 donne aux Blancs deux fous braqués sur f7 et g7 alors que les Noirs n'ont pas développé une seule pièce. Deux pions contre deux diagonales, toute l'idée est là.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ở c3 và cũng không chơi d5. Khi đó Trắng chỉ việc chơi cxd4 và có sẵn trung tâm e4 cộng d4 mà không mất gì cả, tức là đúng thứ mà Khai cuộc Scotch phải tốn công mới có. Nếu Đen đã chơi Nf6 thì Trắng còn có thêm e5 đuổi mã. Nước 3...d3 đẩy tốt đi tiếp để khỏi bị ăn lại thì Trắng chơi Bxd3, phát triển một quân và coi như đã trả xong. Không nước nào trong nhóm này trừng phạt gambit, chúng chỉ từ chối nó.
+      en: Black neither takes on c3 nor plays ...d5. White then simply recaptures with cxd4 and owns the e4 and d4 centre for nothing — exactly what the Scotch has to work for. If Black has played ...Nf6, White also has e5 to chase the knight. 3...d3, pushing the pawn on so that it cannot be recaptured, is met by Bxd3, which develops a piece and settles the account. None of these moves punishes the gambit; they only decline it.
+      fr: Les Noirs ne prennent pas en c3 et ne jouent pas ...d5. Les Blancs reprennent alors simplement par cxd4 et possèdent gratuitement le centre e4 et d4, c'est-à-dire ce que la Partie écossaise doit gagner à la sueur. Si les Noirs ont joué ...Nf6, les Blancs disposent en plus de e5 pour chasser le cavalier. 3...d3, qui pousse le pion plus loin pour échapper à la reprise, se traite par Bxd3, qui développe une pièce et solde le compte. Aucun de ces coups ne punit le gambit, ils se contentent de le refuser.
+  children:
+    - ply: dxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhận con tốt đầu tiên. Đây là nước tự nhiên và không có gì sai, nhưng nó mở đúng những đường mà Trắng muốn mở.
+        en: Black accepts the first pawn. It is natural and there is nothing wrong with it, but it opens exactly the lines White wants opened.
+        fr: Les Noirs acceptent le premier pion. C'est naturel et il n'y a rien à y redire, mais cela ouvre précisément les lignes que les Blancs veulent ouvrir.
+      children:
+        - ply: Bc4
+          annotation:
+            vi: Đây là nước làm nên Gambit Đan Mạch. Trắng không vội lấy lại con tốt c3 mà đặt tượng vào c4 nhắm f7, và mời tiếp con tốt b2. Nếu Trắng chơi Nxc3 ngay thì đó chỉ là Gambit Göring, một thứ khác và ít tham vọng hơn.
+            en: This is the move that makes it the Danish. White does not hurry to win the c3 pawn back but puts the bishop on c4 against f7 and offers the b2 pawn as well. Recapturing at once with Nxc3 would be the Göring Gambit, a different and less ambitious animal.
+            fr: Voici le coup qui fait le Gambit danois. Les Blancs ne se hâtent pas de reprendre le pion c3 mais posent le fou en c4 contre f7 et offrent en prime le pion b2. Reprendre tout de suite par Nxc3 donnerait le Gambit Göring, autre chose et moins ambitieux.
+          dismissRest:
+            reason:
+              vi: Đen không ăn b2, không chơi d5 và cũng không chơi Nf6. Khi đó Trắng chơi Nxc3 và có một thế cờ trong mơ, hơn hẳn về phát triển, tượng c4 nhắm f7, mã c3 nhắm d5, và chỉ kém đúng một tốt. Nước 4...c2 đẩy tốt thêm một bước thì Trắng chỉ việc Qxc2, lấy lại tốt và đưa hậu ra cột c. Các nước như Bb4 hay Nc6 đều chơi được nhưng không giải quyết được vấn đề chính của Đen, là vua vẫn đứng giữa bàn cờ.
+              en: Black does not take on b2, does not play ...d5 and does not play ...Nf6. White then answers Nxc3 and has a dream position — well ahead in development, the bishop on c4 against f7, the knight on c3 eyeing d5, and only one pawn behind. 4...c2, pushing the pawn one square further, is answered by Qxc2, which takes the pawn back and puts the queen on the c-file. Moves like ...Bb4 and ...Nc6 are playable but do not address Black's real problem, which is a king still sitting in the centre.
+              fr: Les Noirs ne prennent pas en b2, ne jouent pas ...d5 et ne jouent pas ...Nf6. Les Blancs répondent alors Nxc3 et obtiennent une position de rêve, largement en avance de développement, le fou en c4 contre f7, le cavalier c3 lorgnant d5, et un seul pion de retard. 4...c2, qui pousse le pion d'une case de plus, se traite par Qxc2, qui reprend le pion et place la dame sur la colonne c. Des coups comme ...Bb4 ou ...Nc6 sont jouables mais ne règlent pas le vrai problème noir, un roi resté au centre.
+          children:
+            - ply: cxb2
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen ăn nốt con tốt thứ hai. Về mặt vật chất thì đây là nước đúng, hai tốt là hai tốt. Về mặt thực chiến thì đây là nước Trắng mong chờ, vì nó mở đường chéo a1-h8 cho tượng Trắng và tốn thêm một nhịp nữa của Đen.
+                en: Black takes the second pawn too. Materially this is correct — two pawns are two pawns. Practically it is what White is hoping for, because it opens the a1-h8 diagonal for White's bishop and costs Black another tempo.
+                fr: Les Noirs prennent aussi le second pion. Matériellement c'est correct, deux pions valent deux pions. Pratiquement, c'est ce que les Blancs espèrent, car cela ouvre la diagonale a1-h8 pour leur fou et coûte encore un temps aux Noirs.
+              children:
+                - ply: Bxb2
+                  annotation:
+                    vi: Bây giờ thế cờ đã đầy đủ. Tượng c4 nhắm f7, tượng b2 nhắm g7 và cả hai đường chéo đều thông. Trắng kém hai tốt và có đúng một thứ để đổi lại, là thời gian.
+                    en: Now the position is complete. The bishop on c4 looks at f7, the bishop on b2 looks at g7, and both diagonals are clear. White is two pawns down and has exactly one thing in return, which is time.
+                    fr: La position est maintenant complète. Le fou c4 vise f7, le fou b2 vise g7, et les deux diagonales sont dégagées. Les Blancs ont deux pions de moins et une seule chose en échange, le temps.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng kém hai tốt. Đổi lại Trắng có hai con tượng trên hai đường chéo dài, con tốt e4 ở trung tâm, và Đen chưa đưa được quân nào ra khỏi hàng cuối. Nước đúng của Đen ở đây là d5, trả lại một tốt để chặn cả hai con tượng cùng lúc, và nếu Đen tìm ra nó thì Trắng chỉ còn cân bằng. Nếu Đen chơi Nf6 hay Bb4 kiểu tự nhiên thì Trắng đứng rất nguy hiểm.
+                      en: White is two pawns down. In return White has two bishops on two long diagonals, a pawn on e4 in the centre, and Black has not got a piece off the back rank. Black's correct move here is ...d5, giving one pawn back to block both bishops at once, and if Black finds it White has no more than equality. If Black plays something natural like ...Nf6 or ...Bb4, White is genuinely dangerous.
+                      fr: Les Blancs ont deux pions de moins. En échange, ils ont deux fous sur deux grandes diagonales, un pion en e4 au centre, et les Noirs n'ont pas sorti une pièce de la rangée initiale. Le bon coup noir est ici ...d5, rendre un pion pour barrer les deux fous d'un coup, et si les Noirs le trouvent, les Blancs n'ont rien de plus que l'égalité. Si les Noirs jouent naturellement ...Nf6 ou ...Bb4, les Blancs sont réellement dangereux.
+                    plan:
+                      vi: Trắng chơi Nf3 hoặc Qb3 kèm Bxf7 nếu có, rồi Ne2 chứ không phải Nc3 để giữ đường chéo a1-h8 thông, O-O và Rad1 cùng Rfe1 nhắm vào vua Đen còn ở giữa. Phải đánh nhanh, vì mỗi lần đổi quân là hai con tốt thừa của Đen lại có giá hơn. Đen chơi d5 ngay, rồi Nf6, Be7 và O-O, đổi một cặp tượng nếu được, và sau khi vua an toàn thì đơn giản là đếm tốt.
+                      en: White plays Nf3, or Qb3 with Bxf7 if it is available, then Ne2 rather than Nc3 so the a1-h8 diagonal stays clear, castles, and puts rooks on d1 and e1 against the black king still in the centre. Speed is everything, because every exchange makes Black's two extra pawns worth more. Black plays ...d5 immediately, then ...Nf6, ...Be7 and ...O-O, trades a pair of bishops if allowed, and once the king is safe simply counts pawns.
+                      fr: Les Blancs jouent Nf3, ou Qb3 avec Bxf7 si c'est possible, puis Ne2 plutôt que Nc3 pour garder la diagonale a1-h8 libre, roquent, et placent les tours en d1 et e1 face au roi noir resté au centre. La vitesse est tout, car chaque échange augmente la valeur des deux pions noirs. Les Noirs jouent ...d5 immédiatement, puis ...Nf6, ...Be7 et ...O-O, échangent une paire de fous si on les laisse faire, et une fois le roi en sécurité se contentent de compter les pions.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+            - ply: d5
+              replyQuality: best
+              frequency: occasional
+              annotation:
+                vi: Phòng thủ Schlechter, và đây là lời đáp đúng. Đen không tham con tốt b2 mà trả lại một tốt để chặn con tượng c4 và mở đường cho quân mình. Biết nước này là biết cách chơi chống Gambit Đan Mạch.
+                en: The Schlechter Defence, and the correct answer. Black leaves the b2 pawn alone and gives one pawn back to shut the c4 bishop out and open lines for the pieces. Knowing this move is knowing how to meet the Danish.
+                fr: La Défense Schlechter, et la bonne réponse. Les Noirs laissent le pion b2 tranquille et rendent un pion pour fermer la route au fou c4 et ouvrir des lignes à leurs pièces. Connaître ce coup, c'est savoir jouer contre le Gambit danois.
+              children:
+                - ply: Bxd5
+                  annotation:
+                    vi: Trắng ăn lại bằng tượng. Con tượng bây giờ đứng ở d5 thay vì c4, và nó sẽ bị mã f6 đuổi ngay ở nước sau. Trắng vẫn còn con tốt c3 của Đen trên bàn cờ, nghĩa là vẫn kém một tốt.
+                    en: White recaptures with the bishop. It now stands on d5 instead of c4 and will be chased by ...Nf6 next move. Black's pawn on c3 is still on the board, so White is still a pawn down.
+                    fr: Les Blancs reprennent du fou. Il se tient désormais en d5 plutôt qu'en c4 et sera chassé par ...Nf6 au coup suivant. Le pion noir en c3 est toujours sur l'échiquier, donc les Blancs ont toujours un pion de moins.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng kém một tốt, đó là con tốt c3 của Đen mà Trắng vẫn chưa ăn lại. Con tượng d5 đứng đẹp nhưng sẽ phải lùi sau Nf6, và Đen kịp phát triển với Nf6 rồi Be6 hoặc c6 đuổi tượng. Đây là chỗ mà lý thuyết nói Đen đứng hơn, và cũng là lý do nhãn của cả gambit này là đáng ngờ chứ không phải vững.
+                      en: White is a pawn down — Black's pawn on c3, which White has still not recaptured. The bishop on d5 looks good but has to retreat once ...Nf6 comes, and Black gets developed with ...Nf6 followed by ...Be6 or ...c6 hitting the bishop. This is where theory says Black is better, and it is why the whole gambit is labelled dubious rather than sound.
+                      fr: Les Blancs ont un pion de moins, le pion noir en c3 qu'ils n'ont toujours pas repris. Le fou en d5 est joliment placé mais devra reculer après ...Nf6, et les Noirs se développent par ...Nf6 suivi de ...Be6 ou ...c6 pour chasser le fou. C'est ici que la théorie donne l'avantage aux Noirs, et c'est pourquoi l'ensemble du gambit est étiqueté douteux et non sain.
+                    plan:
+                      vi: Trắng chơi Nxc3 để lấy lại tốt và phát triển cùng lúc, rồi Nf3, O-O và Re1, chấp nhận một thế cờ cân bằng chứ đừng cố tấn công cho bằng được. Đen chơi Nf6 đuổi tượng, rồi Nc6, Be7 hoặc Bd6 và O-O, giữ con tốt c3 nếu giữ được và nếu không thì đổi nó lấy nhịp phát triển. Nước phá của Đen về sau là c5 hoặc Bg4 ghim mã f3.
+                      en: White plays Nxc3 to win the pawn back and develop in the same move, then Nf3, castles and Re1, accepting a level game rather than forcing an attack that is not there. Black plays ...Nf6 to chase the bishop, then ...Nc6, ...Be7 or ...Bd6 and ...O-O, keeps the c3 pawn if it can be kept and otherwise trades it for development. Black's later breaks are ...c5 and ...Bg4 pinning the f3 knight.
+                      fr: Les Blancs jouent Nxc3 pour reprendre le pion et se développer du même coup, puis Nf3, roquent et Re1, en acceptant une partie égale plutôt que de forcer une attaque qui n'existe pas. Les Noirs jouent ...Nf6 pour chasser le fou, puis ...Nc6, ...Be7 ou ...Bd6 et ...O-O, gardent le pion c3 si c'est possible et sinon l'échangent contre du développement. Les ruptures noires ultérieures sont ...c5 et ...Bg4 clouant le cavalier f3.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+            - ply: Nf6
+              replyQuality: inaccuracy
+              frequency: occasional
+              annotation:
+                vi: Đen phát triển và không ăn thêm. Nước này hợp lý về nguyên tắc nhưng nó bỏ lỡ đúng cái mà Đen cần, là nước d5. Mã f6 không cản được con tượng c4 và cũng không mở đường nào cho quân Đen.
+                en: Black develops and takes no more. It is reasonable on principle but it misses the one move Black needs, which is ...d5. The knight on f6 neither blocks the c4 bishop nor opens a line for anything else.
+                fr: Les Noirs se développent sans rien prendre de plus. C'est raisonnable en principe, mais cela manque le seul coup dont les Noirs ont besoin, ...d5. Le cavalier f6 ne bloque pas le fou c4 et n'ouvre de ligne pour rien.
+              children:
+                - ply: Nxc3
+                  annotation:
+                    vi: Trắng lấy lại con tốt bằng nước phát triển. Mã c3 nhắm vào d5 và e4 được giữ, Trắng chỉ còn kém một tốt và đi trước hẳn về phát triển. Đây là kiểu thế cờ mà Gambit Đan Mạch muốn có.
+                    en: White recovers the pawn with a developing move. The knight on c3 eyes d5 and holds e4, White is only one pawn behind and is clearly ahead in development. This is the sort of position the Danish is aiming for.
+                    fr: Les Blancs récupèrent le pion par un coup de développement. Le cavalier c3 lorgne d5 et tient e4, les Blancs n'ont qu'un pion de retard et sont nettement en avance de développement. C'est le genre de position que vise le Gambit danois.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng kém một tốt. Trắng có mã c3, tượng c4, cột d nửa mở sau khi tốt d biến mất, và Đen mới ra được mỗi con mã f6 trong khi vua vẫn ở e8. Thế cờ này dễ chơi cho Trắng hơn nhiều so với con số vật chất, nhưng nó vẫn là kém một tốt và Đen không có điểm yếu cấu trúc nào.
+                      en: White is a pawn down. White has the knight on c3, the bishop on c4, a half-open d-file now that the d-pawns are gone, and Black has only the f6 knight out with the king still on e8. This is far easier to play for White than the material count suggests, but it is still a pawn, and Black has no structural weakness.
+                      fr: Les Blancs ont un pion de moins. Ils disposent du cavalier c3, du fou c4, d'une colonne d semi-ouverte maintenant que les pions d ont disparu, et les Noirs n'ont sorti que le cavalier f6 avec le roi encore en e8. C'est bien plus facile à jouer pour les Blancs que ne le dit le décompte matériel, mais cela reste un pion, et les Noirs n'ont aucune faiblesse de structure.
+                    plan:
+                      vi: Trắng chơi Nf3, O-O rồi Re1 và Qb3 hoặc Qe2, nhắm vào f7 và cột e. Nước phá là e5 đuổi mã f6, và ô d5 là chỗ cho mã c3 nhảy vào khi Đen chơi Nc6. Đen phải chơi d5 hoặc d6 để thở, rồi Be7, O-O thật nhanh và đổi bớt quân. Sau khi vua Đen an toàn và hậu bị đổi thì con tốt thừa mới có nghĩa.
+                      en: White plays Nf3, castles, then Re1 and Qb3 or Qe2 against f7 and the e-file. The break is e5 to chase the f6 knight, and d5 is the square for the c3 knight once Black plays ...Nc6. Black must play ...d5 or ...d6 to breathe, then ...Be7, castle quickly and trade pieces. The extra pawn only begins to count once the black king is safe and the queens are off.
+                      fr: Les Blancs jouent Nf3, roquent, puis Re1 et Qb3 ou Qe2 contre f7 et la colonne e. La rupture est e5 pour chasser le cavalier f6, et d5 est la case du cavalier c3 dès que les Noirs jouent ...Nc6. Les Noirs doivent jouer ...d5 ou ...d6 pour respirer, puis ...Be7, roquer vite et échanger des pièces. Le pion en plus ne compte qu'une fois le roi noir en sécurité et les dames échangées.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+    - ply: d5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Sørensen, tức là từ chối gambit bằng cách phản công ngay giữa bàn. Đen không lấy con tốt c3 mà thí lại một tốt để mở đường cho hậu và tượng, đúng theo nguyên tắc chống mọi gambit.
+        en: The Sørensen Defence — declining by counter-striking in the centre. Black leaves the c3 pawn and offers one back to open lines for the queen and bishop, which is the standard principle against any gambit.
+        fr: La Défense Sørensen, autrement dit refuser en contre-attaquant au centre. Les Noirs laissent le pion c3 et en rendent un pour ouvrir des lignes à la dame et au fou, ce qui est le principe habituel contre tout gambit.
+      children:
+        - ply: exd5
+          annotation:
+            vi: Trắng ăn lại và bây giờ mỗi bên có một con tốt đi lạc, tốt d5 của Trắng và tốt d4 của Đen. Đen thường chơi Nf6 hoặc Qxd5 để lấy lại, và Trắng lấy lại tốt d4 bằng cxd4.
+            en: White takes back, and now each side has one stray pawn — White's on d5 and Black's on d4. Black usually plays ...Nf6 or ...Qxd5 to regain it, and White recovers the d4 pawn with cxd4.
+            fr: Les Blancs reprennent, et chaque camp a désormais un pion égaré, celui des Blancs en d5 et celui des Noirs en d4. Les Noirs jouent d'ordinaire ...Nf6 ou ...Qxd5 pour le récupérer, et les Blancs reprennent le pion d4 par cxd4.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau và cả hai con tốt lẻ đều sẽ biến mất trong vài nước. Trắng không còn hai con tượng chĩa vào vua Đen nữa, và đổi lại Đen cũng không hơn tốt. Đây là cách từ chối lành nhất, và nó biến Gambit Đan Mạch thành một ván cờ mở bình thường, hơi thoải mái hơn cho Đen vì Trắng đã tiêu mất nước c3 cho một cấu trúc không còn tồn tại.
+              en: Material is level and both loose pawns will come off within a few moves. White no longer has two bishops aimed at the black king, and in exchange Black is not a pawn up either. This is the healthiest way to decline, and it turns the Danish into an ordinary open game, marginally more comfortable for Black because White has spent c3 on a structure that no longer exists.
+              fr: Le matériel est égal et les deux pions isolés disparaîtront en quelques coups. Les Blancs n'ont plus deux fous braqués sur le roi noir, et en contrepartie les Noirs n'ont pas de pion en plus. C'est la façon la plus saine de refuser, et elle transforme le Gambit danois en partie ouverte ordinaire, légèrement plus agréable pour les Noirs puisque les Blancs ont dépensé c3 pour une structure qui n'existe plus.
+            plan:
+              vi: Trắng chơi cxd4 để lấy lại tốt, rồi Nf3, Bc4 hoặc Be2, Nc3 và O-O, chơi một ván cờ có con tốt cô ở d4 cần được giữ bằng quân. Đen chơi Nf6 đánh vào d5, Qxd5 nếu thuận, rồi Nc6 ép vào d4, Be7 và O-O. Nước phá của Đen là ép vào con tốt d4 cô lập bằng Nc6, Bg4 và Rd8, còn Trắng thì muốn đẩy d5 để đổi nó đi đúng lúc.
+              en: White plays cxd4 to win the pawn back, then Nf3, Bc4 or Be2, Nc3 and castles, playing a game with an isolated d4 pawn that pieces have to defend. Black plays ...Nf6 against d5, takes with ...Qxd5 when convenient, then ...Nc6 to press d4, ...Be7 and ...O-O. Black's method is to pile on the isolated pawn with ...Nc6, ...Bg4 and ...Rd8; White wants to push d5 and trade it off at the right moment.
+              fr: Les Blancs jouent cxd4 pour reprendre le pion, puis Nf3, Bc4 ou Be2, Nc3 et roquent, avec une partie à pion isolé en d4 que les pièces doivent défendre. Les Noirs jouent ...Nf6 contre d5, reprennent par ...Qxd5 quand cela convient, puis ...Nc6 pour peser sur d4, ...Be7 et ...O-O. La méthode noire est d'accumuler les pressions sur le pion isolé par ...Nc6, ...Bg4 et ...Rd8 ; les Blancs veulent pousser d5 et l'échanger au bon moment.
+            basis:
+              by: chan
+              at: '2026-09-17'
