@@ -18,13 +18,17 @@
 /*
  * The last-ply rings, at the one size they are not legible at.
  *
- * `Board` draws them 0.045 user units thick, which scales with the board: on the main board
- * that is around 3px and on a 96px preview it is **half a CSS pixel** — a hairline the
- * antialiaser turns into a smudge, so the dashed ring and the solid one stop being two
- * shapes. That matters more here than a thin line usually would, because the tint is not a
- * fallback: desaturated, the two highlight colours are 1.05:1 apart and either is within
- * 1.3:1 of an ordinary square (`board-contrast.test.ts`), so the ring is the entire signal
- * and §2's "a shape or border difference, not only a tint" rests on it being visible.
+ * `Board` draws them 0.016 user units thick, which scales with the board: on the main board
+ * that is a little over one CSS pixel and on a 96px preview it would be **a fifth of one** —
+ * a hairline the antialiaser turns into a smudge, so the dashed ring and the solid one stop
+ * being two shapes. That matters more here than a thin line usually would, because the tint
+ * is not a fallback: desaturated, the highlight tint is within 1.3:1 of an ordinary square
+ * (`board-contrast.test.ts`), so the ring is the entire signal and §2's "a shape or border
+ * difference, not only a tint" rests on it being visible.
+ *
+ * The number below is unchanged by #80, which made the main board's stroke a third of what
+ * it was. It stays right for the same reason it was chosen: a preview square is about a
+ * sixth of a main-board square, so 0.1 here and 0.016 there are the same line on screen.
  *
  * A user unit rather than a token, on the same terms as every other value in the board's
  * geometry (see the header of `Board.css`): the drawing has no px in it and this is a

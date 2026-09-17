@@ -83,8 +83,11 @@ const COLOURS = documentedColours()
 const SCALARS = documentedScalars()
 
 describe('the tokens the design system documents', () => {
+  // A floor under the regexes, not a count of the palette: it fails when a table stops
+  // being parsed, not when a token is retired. #80 retired one, `--color-board-highlight-from`,
+  // and the number moved from 30 to 29 with it.
   it('finds both tables, so this file is asserting something', () => {
-    expect(COLOURS.size).toBeGreaterThanOrEqual(30)
+    expect(COLOURS.size).toBeGreaterThanOrEqual(29)
     expect(SCALARS.size).toBeGreaterThanOrEqual(30)
   })
 
