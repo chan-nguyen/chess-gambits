@@ -47,6 +47,47 @@ describe('the defining line', () => {
     expect(codes(yaml)).toEqual(['san-not-canonical'])
     expect(messages(yaml)).toContain('Write `e4`')
   })
+
+  /**
+   * The prelude it derives (#70): one position per ply plus the initial one, ending exactly
+   * where the tree begins. Asserted on the validator's own output rather than on the
+   * compiler's, because this is where the replay happens and where a drift would start.
+   */
+  it('derives a board for every ply of it, ending at the root', () => {
+    const { entry: validated } = validateText(
+      'unit.yaml',
+      entry('white', DAMIANO, 'tree:\n  outcome: { type: unexplored }'),
+    )
+    if (validated === undefined) throw new Error('the fixture did not validate')
+
+    expect(validated.prelude.map((step) => step.ply)).toStrictEqual([
+      undefined,
+      ...validated.definingLine,
+    ])
+    expect(validated.prelude[0]?.fen).toBe(startPosition().fen)
+    expect(validated.prelude[validated.prelude.length - 1]?.fen).toBe(validated.tree.fen)
+    expect(validated.prelude.map((step) => step.fen)).toStrictEqual(
+      validated.definingLine
+        .map((_, index) => {
+          const played = replay(validated.definingLine.slice(0, index))
+          return played.ok ? played.position.fen : 'not replayable'
+        })
+        .concat(validated.tree.fen),
+    )
+  })
+
+  /**
+   * And an author cannot write one. It is derived, so a file able to state it is a file able
+   * to lie about where its own moves lead (invariant 1) — and the failure has to name the
+   * reason rather than "unrecognized key", which is what `findDerivedFields` running before
+   * the schema is for.
+   */
+  it('refuses a hand-authored prelude', () => {
+    const yaml = `${entry('white', DAMIANO, 'tree:\n  outcome: { type: unexplored }')}\nprelude:\n  - fen: rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1`
+
+    expect(codes(yaml)).toContain('derived-field')
+    expect(messages(yaml)).toContain('invariant 1')
+  })
 })
 
 describe('reply completeness', () => {

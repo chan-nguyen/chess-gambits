@@ -3,6 +3,7 @@ import { expect, test, type Page } from '@playwright/test'
 import { EVANS_ENTRY, MAIN_LINE, MAPPED_ENTRY } from '../src/components/learn/learn-fixtures.ts'
 import { shortcutStorageKey } from '../src/components/learn/shortcuts.ts'
 import { lineSearch, parseLine } from '../src/lib/line.ts'
+import { preludeSearch } from '../src/lib/prelude.ts'
 import { locales } from '../src/lib/locale.ts'
 import { compileEntry } from '../tools/content/compile.ts'
 import { loadContent } from '../tools/content/entries.ts'
@@ -136,18 +137,26 @@ test.describe('the axe sweep (AC 1)', () => {
    * markup, which is locale-independent.
    */
   const fixtureStates = [
-    { name: 'a branch point, with previews and quality badges', line: [] },
-    { name: 'a learner node offering a choice of plans', line: ['Ba5'] },
-    { name: 'a leaf, with its outcome card', line: ['Ba5', 'd4'] },
+    { name: 'a branch point, with previews and quality badges', search: lineSearch([]) },
+    { name: 'a learner node offering a choice of plans', search: lineSearch(['Ba5']) },
+    { name: 'a leaf, with its outcome card', search: lineSearch(['Ba5', 'd4']) },
+    /*
+     * Inside the defining line (#70, AC 7). A different screen from all three above: no
+     * branch choices, no outcome card, a fourth control in the navigator and an empty state
+     * in the annotation panel that says something else. None of those are reachable from a
+     * `?line=` value, so without this row the walk the ticket adds is never swept.
+     */
+    { name: 'a position inside the defining line', search: preludeSearch(2) },
+    { name: 'the initial position, where previous is at its edge', search: preludeSearch(0) },
   ]
 
-  for (const { name, line } of fixtureStates) {
+  for (const { name, search } of fixtureStates) {
     test(`${name} has no WCAG 2.2 AA violation axe can see`, async ({ page }) => {
       await serveEntry(page, EVANS_ENTRY)
-      await page.goto(`vi/${routeSegments.catalogue}/${EVANS_ENTRY.id}${lineSearch(line)}`)
+      await page.goto(`vi/${routeSegments.catalogue}/${EVANS_ENTRY.id}${search}`)
       await expect(page.getByRole('navigation', { name: vi.learn.navigation })).toBeVisible()
 
-      expectNoViolations(await scan(page), `${EVANS_ENTRY.id} at [${line.join(' ')}] fails axe:`)
+      expectNoViolations(await scan(page), `${EVANS_ENTRY.id} at "${search}" fails axe:`)
     })
   }
 
@@ -416,7 +425,12 @@ test.describe('the live region (AC 3)', () => {
 
   test('is polite, and present before there is anything to announce', async ({ page }) => {
     await serveEntry(page, MAPPED_ENTRY)
-    await page.goto(`vi/${routeSegments.catalogue}/${MAPPED_ENTRY.id}`)
+    /*
+     * The initial position, which is where "nothing has been announced yet" lives since #70.
+     * The gambit root is no longer that place: the defining line's last ply reaches it and is
+     * announced like any other, which is the point of making the line walkable.
+     */
+    await page.goto(`vi/${routeSegments.catalogue}/${MAPPED_ENTRY.id}${preludeSearch(0)}`)
     await expect(page.getByRole('navigation', { name: vi.learn.navigation })).toBeVisible()
 
     /*

@@ -29,8 +29,18 @@ const gambit = MAPPED_ENTRY.id
 const plies = (page: Page) =>
   page.getByRole('navigation', { name: vi.learn.plyList }).getByRole('link')
 
+/**
+ * The defining line, which #70 put in front of every path: the move list now starts at the
+ * initial position and walks to the gambit root before the `?line=` plies begin. The `line`
+ * parameter itself is unchanged — these five plies are addressed by `?prelude=` and by
+ * nothing else, which is what `defining-line.spec.ts` asserts and what keeps every link
+ * below resolving where it always did.
+ */
+const DEFINING = ['1.e4', '1...e5', '2.Nf3', '2...f6', '3.Nxe5']
+
 const NUMBERED = [
   vi.learn.startingPosition,
+  ...DEFINING,
   '3...fxe5',
   '4.Qh5+',
   '4...Ke7',
@@ -66,7 +76,7 @@ test('an unencoded link is corrupted, and the page says exactly how', async ({ p
   // `Qh5 ` — the plus is gone, and the parser names the segment rather than guessing.
   await expect(page.getByRole('alert').first()).toContainText('"Qh5 "')
   // The tail after the `#` was never sent, so the line stops at the one ply that parsed.
-  await expect(plies(page)).toHaveText([vi.learn.startingPosition, '3...fxe5'])
+  await expect(plies(page)).toHaveText([vi.learn.startingPosition, ...DEFINING, '3...fxe5'])
   await expect(page.getByRole('grid')).toBeVisible()
 })
 
@@ -77,15 +87,22 @@ test('a hostile line neither throws nor blanks the page', async ({ page }) => {
   await page.goto(`vi/gambits/${gambit}?line=%3Cscript%3Ealert(1)%3C%2Fscript%3E`)
 
   await expect(page.getByRole('heading', { level: 1, name: MAPPED_ENTRY.name })).toBeVisible()
-  await expect(plies(page)).toHaveText([vi.learn.startingPosition])
+  await expect(plies(page)).toHaveText([vi.learn.startingPosition, ...DEFINING])
   await expect(page.getByRole('alert').first()).toBeVisible()
   expect(errors).toEqual([])
 })
 
+/**
+ * **The link this whole parameter exists for, and the one #70 could have broken silently.**
+ * A bare gambit URL is what the catalogue links to and what a reader shares, and it still
+ * means the gambit root — the end of the defining line — rather than the initial position at
+ * the other end of it.
+ */
 test('a missing line parameter reads as the gambit root', async ({ page }) => {
   await page.goto(`vi/gambits/${gambit}`)
 
-  await expect(plies(page)).toHaveText([vi.learn.startingPosition])
-  await expect(plies(page).first()).toHaveAttribute('aria-current', 'true')
+  await expect(plies(page)).toHaveText([vi.learn.startingPosition, ...DEFINING])
+  await expect(plies(page).last()).toHaveAttribute('aria-current', 'true')
+  await expect(plies(page).first()).not.toHaveAttribute('aria-current', 'true')
   await expect(page.getByRole('alert')).toHaveCount(0)
 })

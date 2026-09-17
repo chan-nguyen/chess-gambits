@@ -14,6 +14,7 @@ import type {
   ForcedMate,
   Judgement,
   Outcome,
+  PreludeStep,
   Provenance,
 } from './types.ts'
 import { assertNever } from './types.ts'
@@ -106,6 +107,16 @@ export const compileEntry = (entry: Entry): CompiledEntry => ({
   category: entry.category,
   side: entry.side,
   definingLine: [...entry.definingLine],
+  /*
+   * The prelude ships because nothing in the browser can derive it: chess.js is a build
+   * dependency and `board-tripwire.test.ts` keeps it out of the bundle, so a position the
+   * wire does not carry is a position the page cannot draw. The first step's `ply` is
+   * dropped the same way every other absent optional is — JSON has no `undefined`.
+   */
+  prelude: entry.prelude.map((step) => ({
+    ...(step.ply === undefined ? {} : { ply: step.ply }),
+    fen: step.fen,
+  })),
   soundness: {
     value: entry.soundness.value,
     reviewedAt: entry.soundness.reviewedAt,
@@ -167,6 +178,8 @@ export type EveryAssessmentFieldIsCompiled = MustBeNever<
   Unhandled<Assessment, 'kind' | 'evaluation' | 'plan' | 'basis'>
 >
 
+export type EveryPreludeStepFieldIsCompiled = MustBeNever<Unhandled<PreludeStep, 'ply' | 'fen'>>
+
 export type EveryEntryFieldIsCompiled = MustBeNever<
   Unhandled<
     Entry,
@@ -176,6 +189,7 @@ export type EveryEntryFieldIsCompiled = MustBeNever<
     | 'category'
     | 'side'
     | 'definingLine'
+    | 'prelude'
     | 'soundness'
     | 'judgement'
     | 'tree'

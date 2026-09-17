@@ -69,7 +69,22 @@ test.describe('the locale in the route drives the language (AC 1, AC 5)', () => 
     await expect(page).toHaveURL(/\/fr\/gambits\/legal-mate\?line=Bh5_Nxe5$/)
     await expect(
       page.getByRole('navigation', { name: FRENCH_PLY_LIST }).getByRole('link'),
-    ).toHaveText([FRENCH_STARTING_POSITION, '5...Bh5', '6.Nxe5'])
+    ).toHaveText([
+      FRENCH_STARTING_POSITION,
+      // The defining line, which #70 put in front of the `?line=` path. The parameter in the
+      // URL asserted above is unchanged, which is the half that had to stay true.
+      '1.e4',
+      '1...e5',
+      '2.Nf3',
+      '2...Nc6',
+      '3.Bc4',
+      '3...d6',
+      '4.Nc3',
+      '4...Bg4',
+      '5.h3',
+      '5...Bh5',
+      '6.Nxe5',
+    ])
     await expect(page.locator('html')).toHaveAttribute('lang', 'fr')
   })
 })

@@ -3,7 +3,7 @@
 The vocabulary this project uses. Code, content files, URLs, ticket titles and UI copy all draw from
 here. If a word is not in this document, it should not appear in an identifier.
 
-Last updated: 2026-09-16
+Last updated: 2026-09-17
 
 ---
 
@@ -46,6 +46,7 @@ The aggregate root, and the unit a learner selects, a URL names, and a pull requ
 | `category`     | `gambit` — a deliberate material sacrifice — or `trap` — a named opening trap taught for the trap itself. Several of the best forced-mate traps are not gambits |
 | `side`         | `white` or `black` — the side the **learner** plays. Determines board orientation and which nodes are learner nodes                                             |
 | `definingLine` | The ply sequence that identifies the gambit, in SAN. This is the root path of the tree                                                                          |
+| `prelude`      | **Derived.** The initial position and every position the defining line passes through. Never authored, for the same reason a node's FEN is not. See **Prelude** |
 | `soundness`    | `sound` \| `dubious` \| `unsound`. See below — this is an honesty requirement, not decoration                                                                   |
 | `tree`         | The root **node**                                                                                                                                               |
 
@@ -239,6 +240,46 @@ thing the site produces.
 SAN is still chosen over child indices, because it survives a branch being reordered or a sibling
 inserted. Encoding costs some of the human readability that argued for it, which is the trade.
 
+`line` counts from the gambit root and always will. The positions _before_ the root are addressed by
+a second parameter — see **Prelude** below — rather than by widening this one, because widening it
+would leave every published link resolving to a different position while still resolving. A link
+that breaks is noticed; a link that quietly moves is not.
+
+### Prelude
+
+The walk from the initial position through the **defining line**, ending at the gambit root. It is
+how a learner sees the opening being reached rather than only what happens once it has been.
+
+It is not part of the tree and is not a **branch**: it has no nodes, no children, no annotations and
+no outcomes. It is a fixed sequence of positions derived by the build from the defining line, shipped
+on the compiled entry as `prelude`, one entry per ply plus the initial position, so that
+`prelude[i]` is the position after `i` plies and the last one is the tree root's own position. It has
+to be shipped rather than computed: chess.js is a build dependency and `board-tripwire.test.ts` keeps
+it out of the browser, so a position the wire does not carry is a position the page cannot draw.
+
+Addressed in the URL by `prelude`, a **count** of plies played:
+
+```
+?prelude=3     the position after the first three plies of the defining line
+?prelude=0     the initial position
+(absent)       at or past the gambit root — which is every URL published before this existed
+```
+
+Three rules hold, and each is what keeps invariant 9's promise about published URLs:
+
+- **Absent means "at or past the gambit root".** The last prelude position _is_ the root and is
+  written as the root — no parameter at all — so `?prelude=` never names a position a published link
+  already names.
+- **`line` wins.** A URL asking for plies is asking for a position past the root, so a `prelude`
+  beside it is contradictory and is dropped. An old link therefore resolves through exactly the code
+  it always resolved through.
+- **A count, not SAN.** The argument above for SAN over indices is about surviving a reordered branch
+  or an inserted sibling, and the defining line is one fixed sequence with neither. What a count buys
+  is that the only malformed value is "not a small whole number", where a SAN prelude would be an
+  attacker-supplied move list to walk and recover in order to name positions the entry already
+  enumerates. A count past the end of a short defining line is not an error: it names the gambit
+  root, which is a real position and the one a link with no `prelude` has always resolved to.
+
 ### Family
 
 A group of related entries sharing an opening ancestor — "Blackmar-Diemer", "Queen's Gambit". The
@@ -279,7 +320,8 @@ Never leaves the device, never sent anywhere, and its loss is an accepted, non-c
 These hold for all content at all times, and each is enforced by CI. They are the reason a learner
 can trust what this site says.
 
-1. Every node's position is reachable from the standard starting position by legal moves only.
+1. Every node's position is reachable from the standard starting position by legal moves only, and
+   so is every position of the **prelude**, which is derived by the same replay.
 2. `kind` is derived from side to move; it is never authored and never stored in a content file.
    **In an authored file the outcome discriminant is spelled `type`, not `kind`.** The two collided:
    this invariant bans `kind` from content, while the `Outcome` shapes above use `kind` as their
@@ -321,7 +363,12 @@ can trust what this site says.
 8. `tier` is derived at build time and absent from content files.
 9. A gambit `id` is never reused or renamed after publication — published URLs must keep working.
 10. Nothing in the running application makes a network request to a third party.
-11. A `line` URL parameter round-trips exactly: encode, put in a URL, parse, compare.
+11. A `line` URL parameter round-trips exactly: encode, put in a URL, parse, compare. The same
+    holds for `prelude`, and one further thing holds between them: a URL carrying no `prelude`
+    resolves to exactly the position it resolved to before that parameter existed. This is frozen
+    as a table of published values in `src/components/learn/published-links.test.ts` rather than
+    argued from the code, because a `line` that quietly changed meaning still parses and still
+    draws a board.
 12. Transposition comparison uses the **first four FEN fields only**, scoped within one gambit.
     Halfmove clock and fullmove number count how a position was reached, not what it is, and they
     differ between transposed paths.

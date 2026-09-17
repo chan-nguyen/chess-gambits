@@ -2,6 +2,7 @@ import { useId, type RefObject } from 'react'
 import './AnnotationPanel.css'
 import { Translated } from '../../i18n/Translated.tsx'
 import { UntranslatedNotice } from '../../i18n/UntranslatedNotice.tsx'
+import type { TranslationKey } from '../../i18n/translations.ts'
 import type { LocalisedProse } from './annotation.ts'
 
 /**
@@ -19,10 +20,17 @@ export type AnnotationPanelProps = {
   readonly label: string | null
   /** Null when this node has no annotation — a real state, not an impossible one. */
   readonly prose: LocalisedProse | null
+  /**
+   * What the empty state says, because there are now two reasons to be in it and they are
+   * not the same news (#70). A tree node with no annotation is content that has not been
+   * written; a ply of the defining line has no node to annotate and never will, so telling
+   * a learner it "has no explanation yet" would promise one that is not coming.
+   */
+  readonly empty: TranslationKey
   readonly headingRef: RefObject<HTMLHeadingElement | null>
 }
 
-export const AnnotationPanel = ({ label, prose, headingRef }: AnnotationPanelProps) => {
+export const AnnotationPanel = ({ label, prose, empty, headingRef }: AnnotationPanelProps) => {
   const headingId = useId()
 
   return (
@@ -43,7 +51,7 @@ export const AnnotationPanel = ({ label, prose, headingRef }: AnnotationPanelPro
 
       {prose === null ? (
         <p className="annotation-panel__empty">
-          <Translated id="learn.noAnnotation" />
+          <Translated id={empty} />
         </p>
       ) : (
         <p

@@ -163,6 +163,23 @@ describe('the line parameter on a gambit route', () => {
       .map((link) => link.textContent)
   }
 
+  /** Which entry in the move list is marked current — that is, which position is on screen. */
+  const currentPly = async (): Promise<string | null> => {
+    const list = await screen.findByRole('navigation', { name: viCatalogue.learn.plyList })
+    const marked = within(list)
+      .getAllByRole('link')
+      .filter((link) => link.getAttribute('aria-current') === 'true')
+    expect(marked).toHaveLength(1)
+    return marked[0]?.textContent ?? null
+  }
+
+  /**
+   * The defining line of the entry served as `evans-gambit` here, as the move list numbers
+   * it. Since #70 the list starts at the initial position and walks the defining line before
+   * the `?line=` path, so these five labels precede every path below (AC 1).
+   */
+  const DEFINING = ['1.e4', '1...e5', '2.Nf3', '2...f6', '3.Nxe5']
+
   /*
    * The Damiano refutation rather than the mate fixture, since #46. A `+` is the form encoding
    * for a space, so a path carrying one is the path that proves the parameter is encoded and
@@ -176,6 +193,7 @@ describe('the line parameter on a gambit route', () => {
 
     expect(await plies()).toStrictEqual([
       viCatalogue.learn.startingPosition,
+      ...DEFINING,
       '3...fxe5',
       '4.Qh5+',
       '4...Ke7',
@@ -191,16 +209,43 @@ describe('the line parameter on a gambit route', () => {
 
     // `e4` and `e5` read as SAN, so the parser keeps them and stops at the third segment;
     // the tree then rejects `e4` as well, and the page says both things rather than one.
-    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition])
+    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition, ...DEFINING])
     const alerts = screen.getAllByRole('alert').map((alert) => alert.textContent ?? '')
     expect(alerts.join(' ')).toContain('not-a-move')
     expect(alerts.join(' ')).toContain(viCatalogue.learn.branchNotFound)
   })
 
+  /**
+   * **AC 3, at the router.** A URL with no parameters is every published link to a gambit's
+   * own page, and it still names the gambit root: the move list now shows the defining line
+   * that reaches it, and the position marked current is the end of that line, not its start.
+   */
   it('reads a missing parameter as the gambit root', async () => {
     renderAt('/vi/gambits/evans-gambit')
 
-    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition])
+    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition, ...DEFINING])
+    expect(await currentPly()).toBe('3.Nxe5')
     expect(screen.queryByRole('alert')).toBeNull()
+  })
+
+  /** And the new half: a `prelude` count stands inside the defining line, not at its end. */
+  it('reads a prelude count as a position inside the defining line', async () => {
+    renderAt('/vi/gambits/evans-gambit?prelude=2')
+
+    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition, '1.e4', '1...e5'])
+    expect(await currentPly()).toBe('1...e5')
+    expect(screen.queryByRole('alert')).toBeNull()
+  })
+
+  /**
+   * A `prelude` that is not a count is reported and the page falls back to the root, which is
+   * where a link with no `prelude` has always landed. It never becomes a blank page.
+   */
+  it('reports a prelude that is not a count and shows the gambit root', async () => {
+    renderAt('/vi/gambits/evans-gambit?prelude=../../etc')
+
+    expect(await plies()).toStrictEqual([viCatalogue.learn.startingPosition, ...DEFINING])
+    expect(await currentPly()).toBe('3.Nxe5')
+    expect(screen.getByRole('alert').textContent ?? '').toContain('../../etc')
   })
 })

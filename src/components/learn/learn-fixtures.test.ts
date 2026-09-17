@@ -220,18 +220,43 @@ describe('a mate leaf states a line that can be played from it', () => {
  */
 const boardProblems = (entry: CompiledEntry): readonly string[] => {
   const opening = new Chess()
-  for (const ply of entry.definingLine) {
+  /**
+   * The prelude (#70), checked against the same replay rather than against itself. These are
+   * the boards a learner now walks on the way to the root, and a fixture writes them by hand
+   * — so without this they could draw any position at all and every test using the fixture
+   * would still pass, which is exactly the hole this file was written to close one level up.
+   */
+  const prelude: string[] = []
+  if (entry.prelude.length !== entry.definingLine.length + 1) {
+    prelude.push(
+      `the prelude has ${entry.prelude.length} positions for ${entry.definingLine.length} plies`,
+    )
+  }
+  if (entry.prelude[0]?.fen !== opening.fen()) {
+    prelude.push('the prelude does not begin at the initial position')
+  }
+  if (entry.prelude[0]?.ply !== undefined) {
+    prelude.push('the prelude s first position claims a ply reached it')
+  }
+
+  for (const [index, ply] of entry.definingLine.entries()) {
     try {
       opening.move(ply)
     } catch {
-      return [`the defining line stops being legal at ${ply}`]
+      return [...prelude, `the defining line stops being legal at ${ply}`]
+    }
+
+    const step = entry.prelude[index + 1]
+    if (step?.ply !== ply) prelude.push(`the prelude names ${step?.ply ?? '(nothing)'} for ${ply}`)
+    if (step?.fen !== opening.fen()) {
+      prelude.push(`the prelude s board after ${ply} is not the position ${ply} produces`)
     }
   }
 
   const problems: string[] =
     opening.fen() === entry.tree.fen
-      ? []
-      : ['the root is not the position the defining line reaches']
+      ? [...prelude]
+      : [...prelude, 'the root is not the position the defining line reaches']
 
   if (boardAt(entry.tree.fen) === null) {
     return [...problems, `the root fen does not parse: ${entry.tree.fen}`]
@@ -295,7 +320,40 @@ describe('the board walk fails on a fixture that is wrong', () => {
   it('reports a defining line that stops being legal', () => {
     expect(
       boardProblems({ ...MATE_ENTRY, definingLine: [...MATE_ENTRY.definingLine, 'Qxh8'] }),
-    ).toStrictEqual(['the defining line stops being legal at Qxh8'])
+    ).toStrictEqual([
+      `the prelude has ${MATE_ENTRY.prelude.length} positions for ${MATE_ENTRY.definingLine.length + 1} plies`,
+      'the defining line stops being legal at Qxh8',
+    ])
+  })
+
+  /** And the prelude's own boards, which nothing else in the suite looks at (#70). */
+  it('reports a prelude board that is not the position its own ply produces', () => {
+    const [first, second, ...rest] = MATE_ENTRY.prelude
+    if (first === undefined || second === undefined) throw new Error('MATE_ENTRY has no prelude')
+
+    expect(
+      boardProblems({ ...MATE_ENTRY, prelude: [first, { ...second, fen: START }, ...rest] }),
+    ).toStrictEqual([
+      `the prelude s board after ${second.ply ?? ''} is not the position ${second.ply ?? ''} produces`,
+    ])
+  })
+
+  it('reports a prelude that does not begin at the initial position', () => {
+    const [, ...rest] = MATE_ENTRY.prelude
+
+    expect(
+      boardProblems({ ...MATE_ENTRY, prelude: [{ fen: MATE_ENTRY.tree.fen }, ...rest] }),
+    ).toStrictEqual(['the prelude does not begin at the initial position'])
+  })
+
+  it('reports a prelude that is the wrong length for its defining line', () => {
+    expect(
+      boardProblems({ ...MATE_ENTRY, prelude: MATE_ENTRY.prelude.slice(0, -1) }),
+    ).toStrictEqual([
+      `the prelude has ${MATE_ENTRY.prelude.length - 1} positions for ${MATE_ENTRY.definingLine.length} plies`,
+      `the prelude names (nothing) for ${MATE_ENTRY.definingLine[MATE_ENTRY.definingLine.length - 1] ?? ''}`,
+      `the prelude s board after ${MATE_ENTRY.definingLine[MATE_ENTRY.definingLine.length - 1] ?? ''} is not the position ${MATE_ENTRY.definingLine[MATE_ENTRY.definingLine.length - 1] ?? ''} produces`,
+    ])
   })
 
   it('reports a node whose board is not what its own ply produces', () => {
