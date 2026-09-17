@@ -47,14 +47,26 @@ const COVERED = ['src', 'tools', 'scripts', 'e2e'] as const
 
 /**
  * The fixture lands inside `src/`, `tools/`, `scripts/` and `e2e/` for a few milliseconds at a
- * time, while fifty-odd other test files run in parallel — so its name has to make it invisible
- * to all of them. `.test.` is this repository's established marker for "not application source":
- * `src/lib/content.test.ts` and `src/styles/no-raw-values.test.ts` both glob `src/**` and both
- * skip any path containing it, and `board-tripwire.test.ts` does the same. It is deliberately not
- * `*.test.ts`, which is what vitest collects, and not `*.spec.ts`, which is what Playwright
- * collects. `oxlint` cares only that it ends in `.ts`, so the gate still sees it.
+ * time, while seventy other test files are being transformed and run in parallel. Its extension
+ * is what keeps that safe, and the reason is not the one the first version of this comment gave.
+ *
+ * That version named it `__lint-gate__.test.fixture.ts`, reasoning that `.test.` is this
+ * repository's marker for "not application source" and that the files globbing `src/**` all skip
+ * it. They do — at *assertion* time. But `src/styles/no-raw-values.test.ts` and
+ * `src/lib/content.test.ts` reach those files through `import.meta.glob(..., { eager: true })`,
+ * which Vite resolves and **imports** when it transforms the importing file, long before any
+ * filter in the test body runs. Catch the fixture in that window and the import fails, the whole
+ * file fails to load, and its fourteen tests vanish from a suite that still exits 0.
+ *
+ * That is issue #50 — "one test file occasionally fails to load, taking 14 tests with it" — and
+ * the cause was this, not the worker-startup contention it was filed on. Three agents lost time
+ * to it.
+ *
+ * `.mts` closes it properly: `oxlint` lints it like any other TypeScript file, and none of the
+ * globs match it, because `*.{ts,tsx}` needs a literal `.ts` and `.mts` does not have one. The
+ * fixture is never a module any of those files can try to import.
  */
-const FIXTURE = '__lint-gate__.test.fixture.ts'
+const FIXTURE = '__lint-gate__.fixture.mts'
 
 const withFixture = <T>(directory: string, source: string, body: (relative: string) => T): T => {
   const relative = join(directory, FIXTURE)
