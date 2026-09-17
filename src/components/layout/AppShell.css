@@ -7,13 +7,41 @@
 #root {
   display: flex;
   flex-direction: column;
-  min-block-size: 100svh;
 }
 
+/*
+ * The content region reserves a viewport, on every route and in every state (#57).
+ *
+ * `min-block-size: 100svh` used to sit on `#root`, with `flex: 1` here to fill what was
+ * left over. That is the sticky-footer pattern, and it parks `footer.site-footer` at the
+ * bottom of the *viewport* whenever the content is shorter than one — which is every route
+ * for as long as its JSON is in flight. The footer therefore painted inside the viewport
+ * and was then pushed a full screen down when the list or the tree arrived: measured 0.278
+ * at 360px on `/:locale/gambits` and 0.124 at 1280px on a taught gambit, against a budget
+ * of 0.1.
+ *
+ * Moving the floor down one level puts the footer's top edge below the fold from the first
+ * paint onwards, so content arriving pushes it further out of sight instead of out of the
+ * viewport, and nothing a visitor can see moves.
+ *
+ * The reservation is **unconditional** rather than a placeholder that exists only while
+ * loading, and that is the half worth arguing for. A reservation released once the content
+ * turns out to be shorter than it would pull the footer back up the screen — the same
+ * shift in the other direction, and the one a filtered catalogue or a Tier 0 gambit page
+ * would produce (#57 AC 4). A floor that is always there cannot be released.
+ *
+ * `svh` rather than `dvh`: the dynamic viewport changes height as a mobile browser
+ * retracts its toolbar, and a reservation that changes height is a reservation that
+ * shifts. `svh` is fixed for the session, which is why the rule it replaces used it too.
+ *
+ * The footer is **not** hidden until the data lands. It is rendered from the first paint,
+ * one scroll below the fold, because it carries the CC BY-SA attribution that
+ * `LICENSE-CONTENT` requires to stay visible — trading a shift for a flash is not a fix.
+ */
 .app-shell__content {
-  flex: 1;
   inline-size: 100%;
   max-inline-size: var(--layout-max-inline-size);
+  min-block-size: 100svh;
   margin-inline: auto;
   padding: var(--space-5) var(--space-4);
 }

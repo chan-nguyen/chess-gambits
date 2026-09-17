@@ -65,14 +65,16 @@ jobs:
       # The Lighthouse gate (#19, AC 2), on Lighthouse's default profile, which *is* the
       # mid-tier mobile one — a Moto G Power, 4x CPU slowdown and simulated slow 4G.
       #
-      # **LCP blocks at 2.5s. CLS is measured at 0.1 and reported rather than blocking**,
-      # because it is the one budget this site does not meet today: the footer shifts a full
-      # viewport on `/:locale/gambits` when the route's JSON lands after first paint, and the
-      # median of three reads 0.216. The threshold was not widened to fit — the number stays
-      # at 0.1 and stays printed — and the step was not left blocking and permanently red,
-      # which would teach everyone to ignore this job. `docs/performance-budgets.md` records
-      # the reasoning, and the assertion goes back to `error` in the pull request that fixes
-      # the shift, as an acceptance criterion of that ticket rather than an intention.
+      # **Both assertions block.** CLS spent from #19 to #57 at `warn`, because the footer
+      # shifted a full viewport on `/:locale/gambits` when the route's JSON landed after
+      # first paint and the median of three read 0.216. The threshold was never widened to
+      # fit; #57 fixed the shift and put the assertion back to `error`, which is what
+      # `tools/perf/lighthouse-budget.test.ts` now keeps it at.
+      #
+      # Lighthouse is not the only CLS instrument, and that is deliberate. It measures one
+      # width and whichever side of the paint/fetch race it happens to land on;
+      # `e2e/layout-stability.spec.ts` measures 360px and 1280px with the route's data held
+      # back so the loading state always paints first. `docs/performance-budgets.md` says why.
       #
       # Thresholds and URLs live in `lighthouserc.json`,
       # which also sets `aggregationMethod: median` — LHCI's default is `optimistic`, which

@@ -1,17 +1,22 @@
 # Performance budgets
 
 Every number here is measured against the **built** output on a static host that gzips, and
-every one of them can fail a pull request — except one, which is named below with the reason.
+every one of them can fail a pull request.
 
-| Budget                       | Threshold | Enforced by                                     |
-| ---------------------------- | --------- | ----------------------------------------------- |
-| Initial JavaScript per route | < 200KB   | `e2e/route-budgets.spec.ts`                     |
-| Per-route incremental JS     | < 50KB    | `e2e/route-budgets.spec.ts`                     |
-| Route data payload           | ≤ 100KB   | `e2e/route-budgets.spec.ts`                     |
-| Pressing next, throttled     | < 200ms   | `e2e/interaction-latency.spec.ts`, two measures |
-| LCP, mid-tier mobile         | < 2.5s    | `lighthouserc.json`, blocking                   |
-| CLS, mid-tier mobile         | < 0.1     | `lighthouserc.json`, **reported, not blocking** |
-| Third-party requests, fonts  | 0         | `e2e/route-budgets.spec.ts`, and the CSP        |
+| Budget                       | Threshold | Enforced by                                                       |
+| ---------------------------- | --------- | ----------------------------------------------------------------- |
+| Initial JavaScript per route | < 200KB   | `e2e/route-budgets.spec.ts`                                       |
+| Per-route incremental JS     | < 50KB    | `e2e/route-budgets.spec.ts`                                       |
+| Route data payload           | ≤ 100KB   | `e2e/route-budgets.spec.ts`                                       |
+| Pressing next, throttled     | < 200ms   | `e2e/interaction-latency.spec.ts`, two measures                   |
+| LCP, mid-tier mobile         | < 2.5s    | `lighthouserc.json`, blocking                                     |
+| CLS, mid-tier mobile         | < 0.1     | `lighthouserc.json`, blocking, and `e2e/layout-stability.spec.ts` |
+| Third-party requests, fonts  | 0         | `e2e/route-budgets.spec.ts`, and the CSP                          |
+
+`tools/perf/lighthouse-budget.test.ts` reads the two Lighthouse rows back out of
+`lighthouserc.json` and fails if a threshold has moved or an assertion has stopped blocking.
+The CLS row is why it exists: that assertion sat at `warn` from #19 until #57 fixed the shift
+under it, and nothing but a ticket was holding it there.
 
 ## Why pressing next is measured twice
 
@@ -52,25 +57,46 @@ deterministic span rather than a worst-of sample, and it reads 28–31ms on the 
 instrument, as its acceptance criterion 2 required, and proved the result can fail by making
 the interaction genuinely slow and watching both assertions go red.
 
-## Why CLS is reported rather than blocking
+## How CLS is measured, and why Lighthouse is not the only instrument
 
-It is the one budget this site does not currently meet: `footer.site-footer` shifts a full
-viewport on `/:locale/gambits` when the route's JSON lands after first paint, and the median of
-three runs reads **0.216** against a limit of 0.1.
+It was the one budget this site did not meet, and the story is worth keeping because the
+_measurement_ was the harder half.
 
-Three things were considered and rejected before settling on this:
+`#root { min-block-size: 100svh }` parked `footer.site-footer` at the bottom of the viewport
+whenever the content was shorter than one — which is every route for as long as its JSON is
+in flight. The footer painted inside the viewport and was then pushed a full screen down
+when the list or the tree arrived. The fix (#57) moves that floor down one level onto the
+content region, so the footer's top edge starts below the fold and content arriving pushes
+it further out of sight instead of out of the viewport. It is deliberately unconditional:
+a reservation released when the content turns out to be shorter than it would pull the
+footer back up, which is the same shift in the other direction.
 
-- **Widening the budget to 0.25 so it passes.** A budget adjusted to whatever the site happens to
-  do is not a budget. The threshold stays at 0.1 and the measured number stays visible.
-- **Landing it blocking and red.** A step that is always red teaches everyone to ignore CI, and
-  then the first real regression reads as one more known failure. That is worse than not
-  measuring at all.
-- **Fixing the shift inside the budgets ticket.** It needs a loading state that reserves its own
-  height, which is user-facing design work; #19 scopes optimisation out by name, and mixing the
-  two would make neither reviewable.
+The number was **intermittent in the measurement and not in the site**. Over ten Lighthouse
+runs of `/:locale/gambits` it read 0.216 five times and 0.000 five times: the shift always
+happened, and whether it landed inside the measured window depended on whether the JSON
+resolved before or after the first paint. A median of three therefore failed roughly half of
+pull requests on identical code, which is why the assertion sat at `warn` until the shift
+itself was fixed.
 
-So the assertion stays in the config at its real value and at `warn`, which prints the number on
-every run without blocking. **It goes back to `error` in the pull request that fixes the shift** — issue #57, where that is
-acceptance criterion 2 rather than a good intention.
+Two things follow, and both are in the suite rather than in this paragraph:
+
+- **Lighthouse cannot be the only instrument.** It measures one width — its own mid-tier
+  mobile profile — and it measures whichever of the two races it happens to win.
+  `e2e/layout-stability.spec.ts` measures at 360px and 1280px with every request for route
+  data **held** until the loading state has painted, so the loading state is always what
+  paints first. That is the worst case rather than a sample of it.
+- **Cumulative layout shift is not the assertion with teeth.** On the broken build the home
+  page measured 0.037 at 360px and the catalogue 0.069 at 1280px: real shifts of a real
+  footer, both under a 0.1 budget. So the spec asserts the thing that actually stopped
+  happening — the footer's top edge is at or below the fold while the data is in flight and
+  once it has landed, and never moves back up the page — and asserts the budget as well.
+
+The footer is **not** hidden while the data is in flight, and the spec asserts that too. It
+carries the CC BY-SA attribution `LICENSE-CONTENT` requires to stay visible, so trading a
+shift for a flash would not have been a fix.
+
+**The threshold never moved.** Widening the budget to 0.25 so that the site passed was
+considered and rejected in #19: a budget adjusted to whatever the site happens to do is not a
+budget. 0.1 is the Core Web Vitals figure and it is what both instruments read.
 
 LCP is unaffected and blocks today at 2.5s; it measures 2106ms on the worst route.
