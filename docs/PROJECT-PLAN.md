@@ -400,25 +400,32 @@ Eleven entries, all reaching **Taught**: `kings-gambit`, `danish-gambit`,
 `halosar-trap`, `indian-defense-budapest-gambit`, `kieninger-trap`, `englund-gambit`,
 `englund-gambit-trap`, `latvian-gambit`. Six White, five Black; eight `gambit`, three `trap`.
 
-| Measure                                   | Value                                              |
-| ----------------------------------------- | -------------------------------------------------- |
-| Entries                                   | 11                                                 |
-| Tree nodes                                | 137 (12.5 per entry)                               |
-| Annotation slots                          | 256 (23.3 per entry)                               |
-| Localised strings written                 | 768 (256 × vi/en/fr)                               |
-| Words of prose                            | 44,732 — vi 15,478, en 14,298, fr 14,956           |
-| Words per entry                           | 4,066 across three locales; 1,407 in Vietnamese    |
-| Replies answered by a `dismissRest`       | 715 (65 per entry)                                 |
-| Individual `dismissed` entries            | 0                                                  |
-| Mate certificates generated and committed | 4                                                  |
-| Mate claims refused by the prover         | 0                                                  |
-| Derived tiers, before → after             | 1,000 listed · 0 mapped · 3 taught → 989 · 0 · 14  |
-| Catalogue payload, vi, gzipped            | 26.3KB → 26.8KB, against a 100KB budget            |
-| Largest per-route content payload         | `englund-gambit-trap.json`, 34.7KB raw / 12.0KB gz |
+| Measure                                      | Value                                              |
+| -------------------------------------------- | -------------------------------------------------- |
+| Entries                                      | 11                                                 |
+| Tree nodes                                   | 137 (12.5 per entry)                               |
+| Annotation slots                             | 256 (23.3 per entry)                               |
+| Localised strings written                    | 768 (256 × vi/en/fr)                               |
+| Words of prose                               | 44,732 — vi 15,478, en 14,298, fr 14,956           |
+| Words per entry                              | 4,066 across three locales; 1,407 in Vietnamese    |
+| Replies answered by a `dismissRest`          | 715 (65 per entry)                                 |
+| Individual `dismissed` entries               | 0                                                  |
+| Mate certificates generated and committed    | 4                                                  |
+| Mate claims refused by the prover            | 0                                                  |
+| Derived tiers, before → after                | 1,000 listed · 0 mapped · 3 taught → 989 · 0 · 14  |
+| Catalogue payload, vi, gzipped               | 26.3KB → 26.8KB, against a 100KB budget            |
+| Largest per-route content payload            | `englund-gambit-trap.json`, 34.7KB raw / 12.0KB gz |
+| Largest per-route content payload, after #81 | `benko-gambit.json`, 51.4KB raw / 16.6KB gz        |
 
 **Wall clock: 2,815 seconds — 47 minutes — from the first file written to the full content gate
 passing on all fifteen files. That is 4.3 minutes per entry**, by an agent, with the repository
 already read and the tooling already built.
+
+> **This rate was measured at a tree depth the project has since ruled out.** Those eleven entries
+> average four plies below the gambit root, which is the shallowness #81 was filed about. Every
+> minute-per-entry figure below is the rate for trees that stop there. §6.7 measures what the
+> stopping rule in `docs/CONTEXT.md` costs instead, and the batch table in §6.5 is re-costed
+> against it.
 
 What that figure does **not** include, and what it is therefore not safe to extrapolate from: the
 time spent reading `CONTEXT.md`, the definition of done, ADR-0004 and ADR-0005, the authored schema
@@ -509,8 +516,9 @@ The first batch saw this only once (the Budapest points at `kieninger-trap` and 
 - 989 entries remain. At the measured 23.3 slots and 4,066 words per entry, all of them at Taught is
   **≈ 23,000 annotation slots, ≈ 69,000 localised strings and ≈ 4.0 million words** of chess prose
   in three languages.
-- At the measured 4.3 minutes per entry that is ~71 hours of agent wall clock. The minutes are not
-  the constraint and quoting them as if they were is how this plan would become dishonest.
+- At the measured 4.3 minutes per entry that is ~71 hours of agent wall clock — or ~150 hours at
+  the 9.1 minutes per entry §6.7 projects for a tree that satisfies the stopping rule. The minutes
+  are not the constraint and quoting them as if they were is how this plan would become dishonest.
 - The constraint is **review**, because of invariant 7b. Every one of those 4 million words is a
   judgement that carries a named author and a date. If the author is an agent and no person has read
   it, the provenance is not a record of who stands behind the claim — it is decoration, and this
@@ -522,9 +530,15 @@ The first batch saw this only once (the Budapest points at `kieninger-trap` and 
   High.
 - The payload survives the arithmetic, which is worth knowing: a taught entry costs **42 bytes
   gzipped** in the catalogue index (measured — 14 taught entries carry 72 branch keys between them).
-  All 1,003 taught at this tree size projects to ~67KB against the 100KB budget. That holds only at
-  this tree size: an average tree three times deeper would put the index over the budget, and the
-  tripwire in §8 is the thing that would catch it.
+  All 1,003 taught at this tree size projects to ~67KB against the 100KB budget.
+- **Depth turned out not to threaten that figure, which the earlier wording assumed it would.** The
+  sentence here used to say an average tree three times deeper would put the index over budget. #81
+  made six trees two to three times deeper and the vi index moved from **26.8KB to 26.9KB gzipped**.
+  The reason is structural rather than lucky: the index carries branch **keys**, one per
+  root-to-leaf line, and deepening a line lengthens its key without adding a key. Sixty branches
+  ten plies long cost the index far less than a hundred branches four plies long. What depth does
+  multiply is the **per-route** payload, measured in §6.7, and that budget has room. The §8
+  tripwire still belongs to branch count, not to depth.
 
 So the honest target is a **Taught core with the rest properly Listed**, in three named states:
 
@@ -543,18 +557,88 @@ What should change is the wording anywhere that implies it will arrive.
 Sized by the measured rate, not by ambition. Each batch is one pull request touching `content/` and
 nothing else (S2), and each is reviewable in one sitting.
 
-| Batch | Entries  | Content                                                                                                                                      | Measured cost at the batch-1 rate  |
-| ----- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| 1     | 11       | Done — the eleven above                                                                                                                      | 47 min, 44,732 words               |
-| 2     | 7        | The remaining `traps.yaml` rows: Fishing Pole, Elephant, Lasker, Noah's Ark, Mortimer, Siberian, and a tree for `damiano-defence-refutation` | ~30 min, ~28,000 words             |
-| 3     | 12       | Ruy Lopez, Vienna, Two Knights and Italian family heads                                                                                      | ~52 min, ~49,000 words             |
-| 4     | 12       | 1.d4 family heads: Albin, Benoni, Blumenfeld, Staunton, Icelandic                                                                            | ~52 min, ~49,000 words             |
-| 5     | 12       | Sicilian, French, Caro-Kann and Scandinavian family heads                                                                                    | ~52 min, ~49,000 words             |
-| 6+    | 12/batch | Mapped-only tier for the short lines of §6.3 step 3                                                                                          | ~18 min per batch, Vietnamese only |
+Re-costed at the §6.7 rate of **9.1 minutes per entry**, which is what an entry costs when its
+lines run to a position the stopping rule accepts. The batch-1 column is kept beside it because the
+difference between the two is the whole content of #81.
+
+| Batch | Entries  | Content                                                                                                                                      | At the batch-1 rate                | At the §6.7 depth       |
+| ----- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------------- |
+| 1     | 11       | Done — the eleven above, at four plies                                                                                                       | 47 min, 44,732 words               | —                       |
+| 1b    | 6        | Done — the six lines #81 carried to a resolved position                                                                                      | —                                  | 23 min, 13,785 words    |
+| 2     | 7        | The remaining `traps.yaml` rows: Fishing Pole, Elephant, Lasker, Noah's Ark, Mortimer, Siberian, and a tree for `damiano-defence-refutation` | ~30 min, ~28,000 words             | ~64 min, ~44,000 words  |
+| 3     | 12       | Ruy Lopez, Vienna, Two Knights and Italian family heads                                                                                      | ~52 min, ~49,000 words             | ~109 min, ~76,000 words |
+| 4     | 12       | 1.d4 family heads: Albin, Benoni, Blumenfeld, Staunton, Icelandic                                                                            | ~52 min, ~49,000 words             | ~109 min, ~76,000 words |
+| 5     | 12       | Sicilian, French, Caro-Kann and Scandinavian family heads                                                                                    | ~52 min, ~49,000 words             | ~109 min, ~76,000 words |
+| 6+    | 12/batch | Mapped-only tier for the short lines of §6.3 step 3                                                                                          | ~18 min per batch, Vietnamese only | ~37 min per batch       |
+| —     | 9        | The nine entries still at four to seven plies, brought up to the rule                                                                        | —                                  | ~53 min, ~19,000 words  |
 
 Batch 2 is next because the traps are where the proved mates live and they are short. Eleven
 entries produced four new certificates in `content/`, and all four came from the three trap
 entries among them — the density is nowhere else in the catalogue.
+
+### 6.7 What depth costs, measured by #81
+
+`docs/CONTEXT.md` **Where a line may stop** replaced "stop when the author feels the point is made"
+with a rule. Six branches were carried to a position that satisfies it, and everything here was
+measured on that batch rather than estimated from the one before it.
+
+| Measure                                  | Before  | After   |
+| ---------------------------------------- | ------- | ------- |
+| Tree nodes, all fifteen files            | 194     | 233     |
+| Annotation slots                         | 364     | 423     |
+| Words of prose, three locales            | 61,308  | 75,093  |
+| Deepest path in plies, `benko-gambit`    | 4       | 9       |
+| `danish-gambit`                          | 4       | 14      |
+| `italian-game-evans-gambit`              | 6       | 10      |
+| `kings-gambit`                           | 6       | 12      |
+| `scotch-game-scotch-gambit`              | 4       | 10      |
+| `sicilian-defense-smith-morra-gambit`    | 4       | 10      |
+| Entries whose deepest path is 4 plies    | 9 of 14 | 4 of 14 |
+| Largest per-route payload, gzipped       | 13.4KB  | 16.6KB  |
+| Catalogue index, vi, gzipped             | 26.8KB  | 26.9KB  |
+| Root-to-leaf branches, all fifteen files | 72      | 72      |
+
+**Wall clock: 1,364 seconds — 23 minutes — from the first content edit to the gate passing on all
+fifteen files.** That covers the six extensions and the fifteen `unsettled` notes that
+remain after the new gate found sixteen leaves stopping over a free capture and one of them was
+extended away instead. It excludes what the 4.3-minute figure also excluded: reading the
+repository, designing the rule, and writing the scratch scripts that replay a line and list a
+position's legal replies and free captures.
+
+Three rates come out of it, and only the first is a measurement of the thing that changed:
+
+- **35 seconds per new node**, against 20.5 seconds per node in batch 1. Deepening costs **1.7× per
+  node**, and the reason is visible in the diff: a node added below an existing leaf usually turns
+  that leaf into an opponent node, which then needs a `dismissRest` covering thirty-odd replies in
+  three languages. The plies are cheap; the catch-alls they create are not.
+- **10.1 words per second**, against 15.9 in batch 1 — the same order of slowdown, on the other
+  axis.
+- **9.1 minutes per entry**, which is a **projection and not a measurement**: 12.5 nodes at the
+  batch-1 rate plus the ~8 further nodes a resolved line needs, at 35 seconds each. The six
+  extended entries now average 20.8 nodes, which is where the ~8 comes from. Nobody has yet
+  authored a whole entry to this rule from nothing, so this number should be replaced the first
+  time somebody does.
+
+**The review constraint roughly doubles, and it was already the binding one.** §6.4 assumes 15
+minutes for a person to genuinely read one entry at the old depth. An entry with 1.7× the nodes and
+1.7× the words is not 1.7× harder to read — the deep lines are forcing, so they read faster per ply
+than a branch point does — but it is not cheaper either. Call it **25 minutes**, stated as an
+assumption. Sixty Taught entries then costs ~25 hours of reading rather than ~15, against a solo
+maintainer the risk register already rates High for motivation decay. The honest conclusion is that
+**the Taught target should shrink as the depth rule bites**, not that the rule should. A shorter
+list of lessons that end somewhere a learner recognises is the product; sixty that end on "White
+has the initiative" is not.
+
+**Payload is not the constraint, and it was the one this ticket expected to find.** The per-route
+budget is 100KB gzipped and the largest entry in the repository now costs **16.6KB**. Six routes
+grew — 13.4→16.6 (`benko-gambit`), 8.7→16.3 (`danish-gambit`), 9.9→13.5
+(`italian-game-evans-gambit`), 11.3→15.8 (`kings-gambit`), 8.9→13.1
+(`scotch-game-scotch-gambit`), 8.9→12.7 (`sicilian-defense-smith-morra-gambit`) — and the
+Danish's twelve new nodes, which carry the deepest line the rule has produced, cost 7.6KB
+gzipped between them. A route would need roughly six times the depth of the Danish to reach the budget, and no
+opening resolves that slowly. What would reach it is **width**: a tree modelling four replies at
+each of five opponent nodes, each carried to a resolved leaf. That is the shape to measure before
+authoring, and it is not the shape any entry has today.
 
 ### 6.6 What would change this
 
@@ -567,8 +651,9 @@ entries among them — the density is nowhere else in the catalogue.
 - **Frequency data arriving in scope.** It is out of scope by design, and if that ever changes the
   ordering in §6.3 stops being a proxy and becomes a measurement.
 - **The catalogue index approaching 100KB gzipped.** Already a tripwire in §8. The measured 42
-  bytes per taught entry says it will not be reached by this plan, and would be reached by a
-  substantially deeper average tree.
+  bytes per taught entry says it will not be reached by this plan. It would **not** be reached by a
+  deeper average tree either — #81 measured that and §6.4 now records it — but it would be reached
+  by a wider one, because the index carries one key per root-to-leaf branch.
 
 ## 7. Risks
 

@@ -1,0 +1,29 @@
+# An `unsettled` note on a node that states no assessment. The root here has children, so there
+# is no stopping point on it at all and the note describes nothing (docs/CONTEXT.md, invariant
+# 14).
+#
+# Without this check the note would be a free-floating field an author could scatter anywhere,
+# and a field that means nothing where it sits is a field nobody reads where it does.
+id: unsettled-misplaced
+name: Adversarial fixture
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-17'
+  basis: { by: a, at: '2026-09-17' }
+judgement: { by: a, at: '2026-09-17' }
+tree:
+  unsettled: The pawn on e5 is hanging in several of these lines.
+  dismissRest:
+    reason: { vi: 'Đen chơi nước khác thì Trắng chơi Bc4 và d4.' }
+  children:
+    - ply: Nc6
+      replyQuality: best
+      outcome:
+        type: position
+        evaluation: { vi: 'Quân số ngang nhau và thế cờ cân bằng.' }
+        plan: { vi: 'Trắng chơi d4 rồi Bb5 hoặc Bc4.' }
+        basis: { by: a, at: '2026-09-17' }

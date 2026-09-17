@@ -1,0 +1,27 @@
+# A line that stops while the learner is in check. After 1.e4 e5 2.f4 Qh4+ every legal white
+# move answers the check, so there is no middlegame to plan and the leaf has stopped inside a
+# sequence rather than at the end of one (docs/CONTEXT.md, invariant 14).
+#
+# A check is the one half of the stopping rule `unsettled` may not excuse.
+id: leaf-in-check
+name: Adversarial fixture
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-17'
+  basis: { by: a, at: '2026-09-17' }
+judgement: { by: a, at: '2026-09-17' }
+tree:
+  dismissRest:
+    reason: { vi: 'Đen không chiếu ngay thì Trắng chơi Nf3 và d4.' }
+  children:
+    - ply: Qh4+
+      replyQuality: inaccuracy
+      outcome:
+        type: position
+        evaluation: { vi: 'Trắng kém một tốt và hậu Đen đứng hớ.' }
+        plan: { vi: 'Trắng chơi g3 rồi Nf3 đuổi hậu.' }
+        basis: { by: a, at: '2026-09-17' }

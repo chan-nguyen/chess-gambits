@@ -1,0 +1,29 @@
+# An `unsettled` note on a leaf where nothing is going free. After 1.e4 e5 2.Nf3 Nc6 the e5
+# pawn is defended, so there is no stopping point left for the note to acknowledge and the note
+# is refused (docs/CONTEXT.md, invariant 14).
+#
+# This is what stops the set of acknowledged leaves from rotting into a list nobody re-reads: a
+# branch extended past its old stopping point has to delete its own note in order to compile.
+id: unsettled-stale
+name: Adversarial fixture
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-17'
+  basis: { by: a, at: '2026-09-17' }
+judgement: { by: a, at: '2026-09-17' }
+tree:
+  dismissRest:
+    reason: { vi: 'Đen chơi nước khác thì Trắng chơi Bc4 và d4.' }
+  children:
+    - ply: Nc6
+      replyQuality: best
+      unsettled: Nxe5 is going free here, so stopping is honest.
+      outcome:
+        type: position
+        evaluation: { vi: 'Quân số ngang nhau và thế cờ cân bằng.' }
+        plan: { vi: 'Trắng chơi d4 rồi Bb5 hoặc Bc4.' }
+        basis: { by: a, at: '2026-09-17' }

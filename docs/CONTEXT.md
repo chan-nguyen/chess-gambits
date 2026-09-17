@@ -55,19 +55,20 @@ The aggregate root, and the unit a learner selects, a URL names, and a pull requ
 A position in the tree, reached by one **ply** from its parent. The root node is the position after
 the gambit's defining line.
 
-| Field          | Meaning                                                                                                                                                    |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ply`          | The single move in SAN that reached this node from its parent                                                                                              |
-| `kind`         | `learner` \| `opponent` — derived from side to move and the gambit's `side`, never authored                                                                |
-| `annotation`   | Localised explanation. See **Annotation**                                                                                                                  |
-| `children`     | Ordered child nodes. Empty means this is a **leaf**                                                                                                        |
-| `outcome`      | Present **only** on a leaf. See **Outcome**                                                                                                                |
-| `replyQuality` | Only on a **child of an opponent node** — that is, a move the opponent played. See below                                                                   |
-| `frequency`    | Only on a child of an opponent node: `common` \| `occasional` \| `rare`                                                                                    |
-| `counts`       | Only on an **opponent node**: **counted claims** about the legal replies here, which the prose renders from. See below                                     |
-| `dismissed`    | Only on an **opponent node**: legal replies deliberately not modelled, each with a reason. A maintainer's note, read in a diff                             |
-| `dismissRest`  | Only on an **opponent node** that models replies: one catch-all answering every legal reply that is neither modelled nor individually dismissed. See below |
-| `transposesTo` | Instead of children: a path elsewhere in this gambit that this position transposes into                                                                    |
+| Field          | Meaning                                                                                                                                                     |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ply`          | The single move in SAN that reached this node from its parent                                                                                               |
+| `kind`         | `learner` \| `opponent` — derived from side to move and the gambit's `side`, never authored                                                                 |
+| `annotation`   | Localised explanation. See **Annotation**                                                                                                                   |
+| `children`     | Ordered child nodes. Empty means this is a **leaf**                                                                                                         |
+| `outcome`      | Present **only** on a leaf. See **Outcome**                                                                                                                 |
+| `replyQuality` | Only on a **child of an opponent node** — that is, a move the opponent played. See below                                                                    |
+| `frequency`    | Only on a child of an opponent node: `common` \| `occasional` \| `rare`                                                                                     |
+| `counts`       | Only on an **opponent node**: **counted claims** about the legal replies here, which the prose renders from. See below                                      |
+| `dismissed`    | Only on an **opponent node**: legal replies deliberately not modelled, each with a reason. A maintainer's note, read in a diff                              |
+| `dismissRest`  | Only on an **opponent node** that models replies: one catch-all answering every legal reply that is neither modelled nor individually dismissed. See below  |
+| `unsettled`    | Only on a leaf carrying an `Assessment`: a maintainer's note acknowledging that the line stops while a capture is going free. See **Where a line may stop** |
+| `transposesTo` | Instead of children: a path elsewhere in this gambit that this position transposes into                                                                     |
 
 Note what is _not_ stored: the FEN. A node's position is always derived by replaying plies from the
 standard starting position. Storing a FEN would let content drift out of sync with its own moves, and
@@ -165,6 +166,71 @@ every stopping point in a partially modelled tree demands a full assessment befo
 accept it, which makes the smallest unit of content work large — and a solo maintainer with a large
 minimum unit writes nothing. It renders as an honest "not yet mapped" state and holds the gambit
 below `Mapped` in the tier derivation.
+
+### Where a line may stop
+
+The outcome shapes above say what a leaf may _claim_. This says where a leaf may _be_, and it is the
+rule a reviewer applies to a branch without asking the author what they meant.
+
+A leaf is a promise that there is nothing further a learner needs to be shown here. Exactly four
+things discharge it:
+
+1. **A proved mate.** The game is over and a certificate says so (ADR-0005).
+2. **A resolution.** An `Assessment`, which is the normal case and the one this rule exists to
+   tighten. Both conditions below hold.
+3. **A transposition**, into a line this entry has already resolved.
+4. **`Unexplored`**, which discharges nothing and says so. It is the honest way to stop early, and
+   it holds the entry below `Mapped` until someone finishes the work.
+
+**Condition one — the board has finished moving.** Checked by the build, in
+`tools/content/resolution.ts`:
+
+- The side to move is **not in check**. There is no middlegame plan for a position whose legal moves
+  are all answers to a check; a leaf here has stopped mid-sequence, and the fix is a ply.
+- The side to move **does not mate in one**. This is the gap between the other two and the worst
+  place in the file to be wrong: `1.f3 e5 2.g4` leaves Black to move with `Qh4#`, and nobody is in
+  check, the game is not over, and there is no capture on the board at all — so a leaf there
+  published a lesson calling it a comfortable middlegame one ply before White is mated, and passed
+  every chess check in ADR-0004 while doing it. Depth one only; a real mate still needs a
+  certificate (ADR-0005).
+- **No capture is going free** — no capture whose destination square the opponent cannot recapture
+  on. If one is, the material count the leaf states is not the count the position has.
+
+A check and a mate in one are **unconditional** — `unsettled` cannot excuse either, because a reason
+for stopping one ply before the game ends is not a reason, it is the missing ply.
+
+"Free" means _nobody can take back_, and nothing else. Piece values are deliberately absent, because
+weighing an exchange would be a second, weaker rules engine living beside `chess.js`. The cost of
+that choice is a small class of false positives — a capture that loses a piece to a fork one move
+later is still "free" by this definition — and those are acknowledged on the node with `unsettled`,
+a plain maintainer's note that argues in the diff for why stopping there is honest. The build
+refuses an `unsettled` on a leaf where nothing is in fact going free, so the notes cannot outlive
+the positions that earned them, and a branch extended past its old stopping point has to delete its
+own note in order to compile.
+
+**Condition two — the advantage is a feature, not a verdict.** Read by a reviewer, against the
+board, and carried in `docs/definition-of-done.md`. The `evaluation` must name at least one item
+from this closed list, and it must be true of the derived position:
+
+- a **material count** — how many pawns each side has, and whether the sacrifice came back;
+- a **pawn-structure defect that cannot be repaired** — a doubled, isolated or backward pawn, or a
+  broken shield in front of a king;
+- an **open or half-open file, rank or diagonal bearing on a king** that has lost the right to
+  castle, or has already committed to a square;
+- a **square no pawn can defend again**, together with the piece that is going to sit on it;
+- a **piece with no good square** — offside, entombed, or permanently worse than its counterpart;
+- a **rook out of play**, with the number of tempi it will cost to bring in.
+
+"White has the initiative", "White is better" and "the attack plays itself" name nothing on that
+list. They are the sentences fourteen taught entries ended on before this rule existed, and they are
+what a line that stopped two moves past the gambit had left to say.
+
+**Depth is a consequence of this rule and never the rule.** A fixed floor would be the obvious
+mechanism and it is the wrong one in both directions: the Danish declined by `3...d5 4.exd5 Qxd5
+5.cxd4` is resolved at four plies, because material is square and the isolated pawn is on the board,
+while a line that is still liquidating at ten plies is not. What the rule does produce, in practice,
+is depth — the six branches extended under it run from nine plies to fourteen, because that is how
+long a real gambit takes to answer its own question.
 
 ### Provenance
 
@@ -408,3 +474,11 @@ can trust what this site says.
     refused, and so is a count one language of a sentence uses and another does not. This covers counts
     of the legal replies to a position and nothing else — arithmetic downstream of one is prose, and
     is reviewed as prose (ADR-0011).
+14. A leaf carrying an `Assessment` stops at a position where the side to move is **not in check**,
+    **does not mate in one**, and where **no capture is going free** — a capture whose destination square the opponent cannot
+    recapture on. A check and a mate in one are unconditional. A free capture may be acknowledged on the node with
+    `unsettled`, a maintainer's note giving the reason, and an `unsettled` on a leaf with nothing
+    going free is refused so the notes cannot rot. This is the machine-checkable half of **Where a
+    line may stop**; the half that requires the evaluation to name a feature on the board rather
+    than state a verdict is a reviewer's item in `docs/definition-of-done.md`, because no check
+    reads a sentence.

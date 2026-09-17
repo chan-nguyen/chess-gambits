@@ -143,6 +143,23 @@ const counts = z.record(
   countKind,
 )
 
+/**
+ * An acknowledgement that this leaf stops while a capture is going free — the half of the
+ * stopping rule a machine settles (docs/CONTEXT.md, **Where a line may stop**;
+ * `resolution.ts`).
+ *
+ * A **maintainer's note**, like `dismissed.reason` and for the same reason: it is read in a
+ * diff by the person deciding whether the stopping point is defensible, never by a learner,
+ * so it is a plain string in whatever language the maintainer thinks in and it is not
+ * shipped to the browser.
+ *
+ * It is not an opt-out an author reaches for quietly. The validator refuses it on a node
+ * that is not an assessment leaf, and refuses it on a leaf where nothing is in fact going
+ * free — so the set of acknowledged leaves cannot rot into a list nobody has re-read, and a
+ * line extended past its old stopping point has to delete its own note to compile.
+ */
+const unsettled = prose
+
 const childNode = z.strictObject({
   ply: san,
   annotation: annotation.optional(),
@@ -152,6 +169,7 @@ const childNode = z.strictObject({
   dismissed: z.array(dismissed).min(1).optional(),
   dismissRest: dismissRest.optional(),
   outcome: outcome.optional(),
+  unsettled: unsettled.optional(),
   transposesTo: z.array(san).min(1).optional(),
   get children() {
     return z.array(childNode).min(1).optional()
@@ -168,6 +186,7 @@ const rootNode = z.strictObject({
   dismissed: z.array(dismissed).min(1).optional(),
   dismissRest: dismissRest.optional(),
   outcome: outcome.optional(),
+  unsettled: unsettled.optional(),
   transposesTo: z.array(san).min(1).optional(),
   get children() {
     return z.array(childNode).min(1).optional()
