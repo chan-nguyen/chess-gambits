@@ -631,7 +631,7 @@ Concrete numbers a CI job fails against.
 | A single gambit tree            | Lazy-loaded; never bundled into the initial payload                                                        |
 | LCP                             | < 2.5s, mid-tier mobile, 4G                                                                                |
 | INP pressing next               | < 200ms — measured with Playwright and `PerformanceObserver`, **not** Lighthouse, which cannot measure INP |
-| CLS                             | < 0.1 — the board reserves its aspect ratio before it renders                                              |
+| CLS                             | < 0.1 — the board reserves its aspect ratio, and the content region reserves a viewport                    |
 | Third-party requests at runtime | **Zero**                                                                                                   |
 | Fonts                           | Zero downloaded                                                                                            |
 
@@ -646,7 +646,8 @@ which job fails when one is exceeded, so a budget is never only a sentence in a 
 | Initial JavaScript          | `e2e/route-budgets.spec.ts`, per route, in the browser, on the built output                    |
 | Per-route incremental JS    | `e2e/route-budgets.spec.ts`, against the JavaScript the entry route already downloaded         |
 | Catalogue payload           | `e2e/catalogue-payload.spec.ts` over the whole file, and `e2e/route-budgets.spec.ts` per route |
-| LCP, CLS                    | `lighthouserc.json` via `npm run perf:lighthouse`, on Lighthouse's own mid-tier mobile profile |
+| LCP                         | `lighthouserc.json` via `npm run perf:lighthouse`, on Lighthouse's own mid-tier mobile profile |
+| CLS                         | `lighthouserc.json` as above, and `e2e/layout-stability.spec.ts` at 360px and 1280px           |
 | INP pressing next           | `e2e/interaction-latency.spec.ts`, on the widest branch node in published content              |
 | Third-party requests, fonts | `e2e/route-budgets.spec.ts`, and the Content Security Policy itself (`docs/security.md`)       |
 

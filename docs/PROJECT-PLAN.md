@@ -256,34 +256,58 @@ data is the half that grows.
 
 Catalogue files, whole: `vi` 17.0KB · `en` 16.7KB · `fr` 16.8KB gzipped, of 100KB.
 
-| Metric                                | Measured                                  | Budget  | Enforced by                                                                        |
-| ------------------------------------- | ----------------------------------------- | ------- | ---------------------------------------------------------------------------------- |
-| Initial JavaScript, worst route       | **135.8KB**                               | < 200KB | `e2e/route-budgets.spec.ts`                                                        |
-| Per-route incremental JS, worst route | **3.6KB**                                 | < 50KB  | `e2e/route-budgets.spec.ts`                                                        |
-| Route data payload, worst route       | **17.0KB**                                | ≤ 100KB | `e2e/route-budgets.spec.ts`, and the whole file in `e2e/catalogue-payload.spec.ts` |
-| INP pressing next, throttled 4×       | **64ms** published · 40ms fixture         | < 200ms | `e2e/interaction-latency.spec.ts`                                                  |
-| LCP, mid-tier mobile, median of 3     | **2106ms** worst route                    | < 2.5s  | `lighthouserc.json`, `npm run perf:lighthouse`                                     |
-| CLS, mid-tier mobile, median of 3     | **0.216 on `/gambits`** · 0.000 elsewhere | < 0.1   | `lighthouserc.json` — **failing, see below**                                       |
-| Third-party requests at runtime       | **0** over eight routes                   | 0       | `e2e/route-budgets.spec.ts`, and the policy itself                                 |
-| Fonts downloaded                      | **0**, none declared                      | 0       | `e2e/route-budgets.spec.ts`, `font-src 'none'`                                     |
+| Metric                                | Measured                           | Budget  | Enforced by                                                                        |
+| ------------------------------------- | ---------------------------------- | ------- | ---------------------------------------------------------------------------------- |
+| Initial JavaScript, worst route       | **135.8KB**                        | < 200KB | `e2e/route-budgets.spec.ts`                                                        |
+| Per-route incremental JS, worst route | **3.6KB**                          | < 50KB  | `e2e/route-budgets.spec.ts`                                                        |
+| Route data payload, worst route       | **17.0KB**                         | ≤ 100KB | `e2e/route-budgets.spec.ts`, and the whole file in `e2e/catalogue-payload.spec.ts` |
+| INP pressing next, throttled 4×       | **64ms** published · 40ms fixture  | < 200ms | `e2e/interaction-latency.spec.ts`                                                  |
+| LCP, mid-tier mobile, median of 3     | **2106ms** worst route             | < 2.5s  | `lighthouserc.json`, `npm run perf:lighthouse`                                     |
+| CLS, mid-tier mobile, ten runs of 10  | **0.000 on `/gambits`**, every run | < 0.1   | `lighthouserc.json`, blocking, and `e2e/layout-stability.spec.ts` at 360 and 1280  |
+| Third-party requests at runtime       | **0** over eight routes            | 0       | `e2e/route-budgets.spec.ts`, and the policy itself                                 |
+| Fonts downloaded                      | **0**, none declared               | 0       | `e2e/route-budgets.spec.ts`, `font-src 'none'`                                     |
 
-**The CLS budget fails on its first run, and the failure is real.** Lighthouse names the
-element: `footer.site-footer`, shifting a full viewport on `/:locale/gambits` and, at some
-widths, on a taught gambit page. The cause is structural rather than mysterious —
-`#root { min-block-size: 100svh }` parks the footer at the bottom of the viewport while the
-route's JSON is still in flight, and the footer then moves down when the list or the tree
-renders. Reproduced outside Lighthouse: 0.085 on `/gambits` and 0.1375 on
-`/gambits/benko-gambit` at 1280px, every run, larger on a 412px mobile emulation.
+**The CLS budget failed on its first run, and #57 fixed the site rather than the number.**
+Lighthouse named the element: `footer.site-footer`, shifting a full viewport on
+`/:locale/gambits` and, at some widths, on a taught gambit page. The cause was structural
+rather than mysterious — `#root { min-block-size: 100svh }` parked the footer at the bottom
+of the viewport while the route's JSON was still in flight, and the footer then moved down
+when the list or the tree rendered. The floor now sits on the content region instead, so the
+footer's top edge starts below the fold and never re-enters the viewport.
 
-**And it is intermittent, which is worse than red.** Over ten Lighthouse runs of
+Measured on the built output in Chromium at 4x CPU throttling and a simulated 1.6Mbps /
+150ms link, median of three runs — all three identical in every cell below:
+
+| Route                                             | 360px before | 360px after | 1280px before | 1280px after |
+| ------------------------------------------------- | ------------ | ----------- | ------------- | ------------ |
+| `vi/gambits`                                      | 0.278        | **0.000**   | 0.069         | **0.000**    |
+| `vi/gambits/benko-gambit` (Taught)                | 0.138        | **0.000**   | 0.124         | **0.000**    |
+| `vi/gambits/alekhine-…-cambridge-gambit` (Listed) | 0.213        | **0.000**   | 0.000         | **0.000**    |
+| `vi/gambits?q=cambridge+gambit` (one result)      | 0.278        | **0.000**   | 0.027         | **0.000**    |
+| `vi/`                                             | 0.037        | **0.019**   | 0.007         | **0.007**    |
+
+The home page keeps a small shift and it is not the footer: the "start here" link is
+inserted above two paragraphs when the catalogue lands, which moves them 90px. It is under
+budget by a factor of five and is a separate piece of design work — reserving space for a
+block that may legitimately render nothing would put a permanent gap on the page.
+
+**And it was intermittent, which is worse than red.** Over ten Lighthouse runs of
 `/:locale/gambits` the measurement came back 0.216 five times and 0.000 five times: the
-shift always happens, but whether it lands inside the measured window depends on whether
-the route's JSON resolves before or after the first paint. A median of three therefore
-fails roughly half of pull requests and passes the other half, on identical code. Fixing it means
-designing a loading state that reserves its own height, which is user-facing work and a
-separate ticket — #19 scopes optimisation out by name. **Until that lands, CI is red on this
-step.** The alternative was to widen the budget to fit the site, which is the one thing a
-budget may never do.
+shift always happened, but whether it landed inside the measured window depended on whether
+the route's JSON resolved before or after the first paint. A median of three therefore
+failed roughly half of pull requests and passed the other half, on identical code, which is
+why the assertion sat at `warn` from #19 until #57.
+
+Ten consecutive runs on the fixed build now read **0.000, 0.000, 0.000, 0.000, 0.000, 0.000,
+0.000, 0.000, 0.000, 0.000**. The same ten runs on the reverted stylesheet read 0.216 four
+times and 0.000 six times, which is the coin flip reproducing itself — so the agreement above
+is the shift stopping and not the window moving.
+
+That reproduction is also why Lighthouse is no longer the only instrument. Ten runs of a
+coin flip have a clean _median_, so an LHCI median would have passed the broken build.
+`e2e/layout-stability.spec.ts` holds the route's data until the loading state has painted,
+which makes the loading state always win the race, and it asserts the footer's position
+directly rather than only the derived metric.
 
 A second thing worth knowing: LHCI's default `aggregationMethod` is `optimistic`, which for
 a `maxNumericValue` assertion takes the **lowest** of the three runs. Under that default the

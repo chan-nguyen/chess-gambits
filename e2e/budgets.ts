@@ -28,4 +28,18 @@ export const BUDGET_BYTES = {
  */
 export const INP_BUDGET_MS = 200
 
+/**
+ * `< 0.1` cumulative layout shift, the Core Web Vitals figure, from §6.
+ *
+ * Two things enforce it and they measure different runs of the same site, which is why the
+ * number lives here rather than in either of them. `lighthouserc.json` reads it on
+ * Lighthouse's mid-tier mobile profile at Lighthouse's own width; `e2e/layout-stability.spec.ts`
+ * reads it at 360px and 1280px with the route's data deliberately held back, so the loading
+ * state is guaranteed to paint first rather than winning a race half the time (#57).
+ * `tools/perf/lighthouse-budget.test.ts` is what keeps the two in step.
+ *
+ * It is `<` and not `≤`: §6 writes it that way, and 0.1 exactly is a failure.
+ */
+export const CLS_BUDGET = 0.1
+
 export const asKb = (bytes: number): string => `${(bytes / 1024).toFixed(1)}KB`
