@@ -37,3 +37,22 @@
 .board-preview .board__last-ply--from {
   stroke-dasharray: 0.22 0.15;
 }
+
+/*
+ * **A preview never animates** (#72, AC 3).
+ *
+ * A branch node mounts one of these per modelled reply — twelve at `WIDE_ENTRY`'s node —
+ * and a dozen boards sliding at once for a move the learner has not made is exactly the
+ * cost `docs/performance-budgets.md` budgets against. Nothing here passes `arrivedFrom`, so
+ * a preview's pieces are keyed by their own squares and their transforms cannot change.
+ *
+ * So this is the second lock, and today it is a lock on a door nothing opens: removing it
+ * changes nothing observable, because no preview board survives a navigation holding a
+ * different position — an opponent node's children are learner nodes, so the choices always
+ * unmount between one branch point and the next, and a fresh mount has no previous transform
+ * to animate from. It is here for the day one does survive, and because it is the half of
+ * this a reader can see without reconciling React by hand.
+ */
+.board-preview .board__piece {
+  transition: none;
+}

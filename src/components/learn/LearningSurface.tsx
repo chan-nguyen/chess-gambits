@@ -17,6 +17,7 @@ import { PlanChoices } from './PlanChoices.tsx'
 import { ShortcutToggle } from './ShortcutToggle.tsx'
 import { announcementOf, localiseAnnotation } from './annotation.ts'
 import { lastPlyBetween } from './last-ply.ts'
+import { plyMotionBetween } from './ply-motion.ts'
 import {
   branchShortcutIndex,
   rememberShortcutSetting,
@@ -221,6 +222,25 @@ export const LearningSurface = ({ entry, requested, prelude }: LearningSurfacePr
     walk.previousFen === null ? undefined : lastPlyBetween(walk.previousFen, walk.fen)
 
   /**
+   * The same ply again, as every piece it moved and every piece it took, for the board to
+   * animate (#72). Read from the same two positions and for the same reason the pair above
+   * is, and separately from it because the two answers differ where it matters: at a castle
+   * the highlight names the king's two squares by convention, and the animation has to move
+   * the rook as well.
+   *
+   * **Stepping back animates without being told it is stepping back.** This is always the
+   * ply that *reached* the position on screen, never the direction the learner travelled —
+   * and it does not need to be. The piece that returns to its origin kept the key it was
+   * given when it left, so React keeps the element and the board reads the move backwards
+   * on its own. Nothing here knows which way the press went, which is why the two controls,
+   * the arrow keys, the move list and browser back all behave the same.
+   */
+  const motion = useMemo(
+    () => (walk.previousFen === null ? undefined : plyMotionBetween(walk.previousFen, walk.fen)),
+    [walk.previousFen, walk.fen],
+  )
+
+  /**
    * Prose for the position. Inside the defining line there is no node and therefore no
    * annotation to localise — the plies that reach a gambit are the gambit's address, not its
    * lesson — so the panel says which half of the walk the learner is in rather than showing
@@ -266,6 +286,8 @@ export const LearningSurface = ({ entry, requested, prelude }: LearningSurfacePr
             orientation={entry.side}
             announcement={announcement}
             lastMove={lastMove}
+            arrivedFrom={motion?.arrivedFrom}
+            captured={motion?.captured}
           />
         </div>
         <MoveNavigator
