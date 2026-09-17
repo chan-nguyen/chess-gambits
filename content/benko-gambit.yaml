@@ -71,19 +71,72 @@ tree:
                     vi: Tượng ăn lại và đi thẳng ra a6, nơi nó nhìn vào tượng f1 của Trắng. Trắng sẽ phải đổi con tượng ấy hoặc chịu mất quyền nhập thành để giữ nó.
                     en: The bishop recaptures and lands on a6, where it stares at White's bishop on f1. White will either trade that bishop off or give up castling to keep it.
                     fr: Le fou reprend et se pose en a6, où il fixe le fou blanc en f1. Les Blancs devront soit échanger ce fou, soit renoncer au roque pour le garder.
-                  outcome:
-                    type: position
-                    evaluation:
-                      vi: Đen kém đúng một tốt và không định lấy lại. Đổi lại Đen có hai cột a và b nửa mở chĩa thẳng vào a2 và b2, một cấu trúc tốt không có điểm yếu nào, và con tượng a6 đang buộc tượng f1 phải tính chuyện. Đường đi quen thuộc của Trắng là Nc3, e4, rồi ...Bxf1 Kxf1 và vua đi bộ g1-g2, tức là Trắng mất quyền nhập thành và xe h1 phải chờ. Trắng hơn một tốt và có trung tâm rộng hơn.
-                      en: Black is exactly one pawn down and has no intention of winning it back. In return Black has the half-open a- and b-files pointing straight at a2 and b2, a pawn structure with no weakness in it, and the bishop on a6 forcing White to deal with the bishop on f1. White's usual road is Nc3 and e4, and after ...Bxf1 Kxf1 the king walks to g2 by hand, which costs the right to castle and leaves the h1 rook waiting. White has the extra pawn and the bigger centre.
-                      fr: Les Noirs ont exactement un pion de moins et n'ont pas l'intention de le reprendre. En échange, ils ont les colonnes a et b semi-ouvertes braquées sur a2 et b2, une structure de pions sans la moindre faiblesse, et le fou en a6 qui oblige les Blancs à régler le sort du fou f1. La route habituelle des Blancs est Nc3 puis e4, et après ...Bxf1 Kxf1 le roi marche à pied jusqu'en g2, ce qui coûte le roque et laisse la tour h1 en attente. Les Blancs ont le pion de plus et le centre le plus large.
-                    plan:
-                      vi: Đen chơi ...g6, ...Bg7, ...d6 và ...O-O, rồi đưa xe vào ...Rfb8 và ...Ra7-b7 để chồng xe ở cột b, mã ra ...Nbd7 và hậu ra ...Qa5 hoặc ...Qb6 để nhòm b2. Tượng g7 ăn suốt đường chéo dài tới b2, nên Trắng phải giữ ô đó bằng Ra3, Rb1 hay Qc2. Nước phá của Đen là ...c4 rồi ...Nc5 vào ô mạnh, hoặc ...e6 đánh vào tốt d5. Trắng thì e4 rồi f4 hoặc e4-e5 để đẩy quân Đen lùi, a4 và Ra3 để đỡ cánh hậu, và cố đổi hết quân nặng để tốt hơn có giá trong tàn cuộc. Điều đáng nhớ là nếu Đen đổi hết quân mà vẫn giữ được áp lực thì tàn cuộc thường vẫn dễ chơi cho Đen, dù kém tốt.
-                      en: Black plays ...g6, ...Bg7, ...d6 and ...O-O, then brings the rooks to ...Rfb8 and ...Ra7-b7 to double on the b-file, develops with ...Nbd7 and puts the queen on ...Qa5 or ...Qb6 to look at b2. The bishop on g7 rakes the long diagonal all the way to b2, so White has to guard that square with Ra3, Rb1 or Qc2. Black's breaks are ...c4 followed by ...Nc5 into the hole, and ...e6 against the d5 pawn. White plays e4 and then f4 or e4-e5 to push the black pieces back, a4 and Ra3 to prop up the queenside, and tries to trade the heavy pieces so the extra pawn counts in the endgame. The thing to remember is the reverse — if Black gets the pieces off while the pressure survives, the endgame is usually still comfortable for Black, pawn or no pawn.
-                      fr: Les Noirs jouent ...g6, ...Bg7, ...d6 et ...O-O, puis amènent les tours en ...Rfb8 et ...Ra7-b7 pour doubler sur la colonne b, développent par ...Nbd7 et posent la dame en ...Qa5 ou ...Qb6 pour viser b2. Le fou en g7 balaie la grande diagonale jusqu'en b2, si bien que les Blancs doivent garder cette case par Ra3, Rb1 ou Qc2. Les ruptures noires sont ...c4 suivi de ...Nc5 dans le trou, et ...e6 contre le pion d5. Les Blancs jouent e4 puis f4 ou e4-e5 pour repousser les pièces noires, a4 et Ra3 pour étayer l'aile dame, et cherchent à échanger les pièces lourdes pour que le pion en plus compte en finale. À retenir, l'inverse est vrai aussi, si les Noirs échangent les pièces en conservant la pression, la finale leur reste en général confortable, pion en moins ou non.
-                    basis:
-                      by: chan
-                      at: '2026-09-16'
+                  dismissRest:
+                    reason:
+                      vi: Trắng không chơi Nc3. Câu hỏi về con tượng f1 vẫn treo đó và Đen không cần đổi cách chơi. Đen vẫn ...g6, ...Bg7, ...d6 và ...O-O, rồi ...Nbd7, ...Qa5 hoặc ...Qb6 và chồng xe ở cột a và b. Nước 6.d6 trả lại tốt để bịt đường chéo dài thì ...exd6 là xong, Đen hết kém tốt mà hai cột vẫn mở nguyên. Nước 6.Qa4 đưa hậu lên cột a nhắm con tượng a6, nhưng xe a8 đã đỡ sẵn con tượng ấy, và Đen có ...Qa5+ đề nghị đổi hậu kèm chiếu. Nước 6.e4 mà chưa Nc3 thì ...Bxf1 vẫn ăn tượng và vua Trắng vẫn phải đi bộ.
+                      en: White does not play Nc3. The question about the f1 bishop is still hanging and Black has no reason to change anything. Black plays ...g6, ...Bg7, ...d6 and ...O-O, then ...Nbd7, ...Qa5 or ...Qb6, and doubles rooks on the a- and b-files. 6.d6, giving the pawn back to block the long diagonal, is answered by ...exd6 — Black is no longer a pawn down and both files are still open. 6.Qa4 puts the queen on the a-file against the bishop on a6, but the rook on a8 already defends it, and ...Qa5+ offers a queen trade with check. 6.e4 without Nc3 first still runs into ...Bxf1, and the white king still walks.
+                      fr: Les Blancs ne jouent pas Nc3. La question du fou f1 reste posée et les Noirs n'ont aucune raison de changer quoi que ce soit. Ils jouent ...g6, ...Bg7, ...d6 et ...O-O, puis ...Nbd7, ...Qa5 ou ...Qb6, et doublent les tours sur les colonnes a et b. 6.d6, qui rend le pion pour boucher la grande diagonale, se traite par ...exd6 — les Noirs ne sont plus en retard d'un pion et les deux colonnes restent ouvertes. 6.Qa4 place la dame sur la colonne a face au fou a6, mais la tour a8 le défend déjà, et ...Qa5+ propose l'échange des dames avec échec. 6.e4 sans Nc3 permet toujours ...Bxf1, et le roi blanc marche quand même.
+                  children:
+                    - ply: Nc3
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Trắng phát triển và chuẩn bị e4. Mã c3 giữ e4 trước khi con tốt ấy đi lên, và nó cũng canh hai ô b5 và d5. Đây là cách xếp quân chuẩn của Trắng trong nhánh nhận hoàn toàn.
+                        en: White develops and prepares e4. The knight guards e4 before the pawn goes there, and it covers b5 and d5 as well. This is White's standard set-up in the fully accepted line.
+                        fr: Les Blancs développent et préparent e4. Le cavalier garde e4 avant que le pion n'y aille, et il couvre aussi b5 et d5. C'est le dispositif blanc habituel dans la ligne pleinement acceptée.
+                      children:
+                        - ply: d6
+                          annotation:
+                            vi: Đen đóng cột d lại và chống nước d5-d6. Con tốt d6 đỡ c5, giữ ô e5 và để tượng a6 tiếp tục nhìn f1. Đen chưa vội ...g6 vì việc cần làm trước là buộc Trắng trả lời câu hỏi về con tượng.
+                            en: Black shuts the d-file and stops d5-d6. The pawn on d6 props up c5, holds e5 and leaves the a6 bishop looking at f1. ...g6 can wait, because the first job is to make White answer the question about the bishop.
+                            fr: Les Noirs ferment la colonne d et empêchent d5-d6. Le pion d6 étaie c5, tient e5 et laisse le fou a6 braqué sur f1. ...g6 peut attendre, car la première tâche est d'obliger les Blancs à répondre à la question du fou.
+                          dismissRest:
+                            reason:
+                              vi: Trắng tránh e4 và do đó tránh luôn câu hỏi về con tượng f1. Đó là một lựa chọn thật, và cái giá là Trắng không có được trung tâm rộng. Đen cứ ...g6, ...Bg7, ...Nbd7, ...O-O rồi ...Qa5 hoặc ...Qb6, ...Rfb8 và ...Ra7-b7. Nước 7.Qa4+ chỉ có năm nước đáp và ...Qd7 hay ...Nbd7 là đủ, hậu Trắng sẽ phải rời cột a. Nước 7.Nf3 hoặc 7.g3 rồi Bg2 là cách chơi vững nhất của Trắng, giữ được quyền nhập thành, và đổi lại tượng a6 sống yên trên đường chéo của nó.
+                              en: White sidesteps e4 and with it the question about the f1 bishop. That is a real choice and it has a price, which is that White does not get the big centre. Black carries on with ...g6, ...Bg7, ...Nbd7, ...O-O, then ...Qa5 or ...Qb6, ...Rfb8 and ...Ra7-b7. 7.Qa4+ has only five answers and ...Qd7 or ...Nbd7 is enough — the queen has to leave the a-file again. 7.Nf3 or 7.g3 followed by Bg2 is White's soundest handling, keeps the right to castle, and in exchange lets the a6 bishop live quietly on its diagonal.
+                              fr: Les Blancs esquivent e4 et, avec lui, la question du fou f1. C'est un vrai choix, et il a un prix, celui de ne pas obtenir le grand centre. Les Noirs poursuivent par ...g6, ...Bg7, ...Nbd7, ...O-O, puis ...Qa5 ou ...Qb6, ...Rfb8 et ...Ra7-b7. 7.Qa4+ n'a que cinq réponses et ...Qd7 ou ...Nbd7 suffit — la dame devra de nouveau quitter la colonne a. 7.Nf3 ou 7.g3 suivi de Bg2 est le traitement le plus sain, conserve le droit de roquer et, en échange, laisse le fou a6 vivre tranquillement sur sa diagonale.
+                          children:
+                            - ply: e4
+                              replyQuality: best
+                              frequency: common
+                              annotation:
+                                vi: Trắng chiếm trung tâm và chấp nhận điều đi kèm. Hai con tốt d5 và e4 cho Trắng khoảng không, nhưng con tượng f1 bây giờ không còn ô nào an toàn để đi ra mà không bị đổi.
+                                en: White takes the centre and accepts what comes with it. The pawns on d5 and e4 give White space, but the bishop on f1 now has no safe way out that does not end in a trade.
+                                fr: Les Blancs prennent le centre et acceptent ce qui va avec. Les pions d5 et e4 leur donnent de l'espace, mais le fou f1 n'a plus de sortie sûre qui ne finisse pas par un échange.
+                              children:
+                                - ply: Bxf1
+                                  annotation:
+                                    vi: Đen đổi ngay, và đây là thời điểm duy nhất đúng. Trắng chỉ có một cách ăn lại là bằng vua, vì xe h1 bị mã g1 chắn. Đen đổi con tượng lấy quyền nhập thành của Trắng.
+                                    en: Black trades at once, and this is the only right moment. White has exactly one way to take back — with the king, because the rook on h1 is shut in by the knight on g1. Black gives a bishop for White's right to castle.
+                                    fr: Les Noirs échangent immédiatement, et c'est le seul bon moment. Les Blancs n'ont qu'une façon de reprendre, avec le roi, car la tour h1 est enfermée par le cavalier g1. Les Noirs donnent un fou contre le droit de roquer des Blancs.
+                                  counts:
+                                    legal: { count: legalReplies, expect: 36 }
+                                  dismissRest:
+                                    reason:
+                                      vi: Trắng có {legal} nước đáp hợp lệ ở đây và chỉ một nước là nước cờ. Xe h1 không tới được f1 vì mã g1 chắn đường, nên mọi nước khác Kxf1 đều để Đen ăn không cả một con tượng, tức là Đen từ kém một tốt thành hơn hẳn một quân nhẹ. Không có nước nào trong nhóm này đáng gọi là phương án.
+                                      en: White has {legal} legal answers here and only one of them is a move. The rook on h1 cannot reach f1 with the knight on g1 in the way, so everything except Kxf1 hands Black a whole bishop for nothing — one pawn down becomes a clear piece up. Nothing in this group is an alternative.
+                                      fr: Les Blancs disposent de {legal} réponses légales et une seule est un coup. La tour h1 ne peut atteindre f1, le cavalier g1 barrant la route, si bien que tout sauf Kxf1 offre un fou entier aux Noirs — un pion de retard devient une pièce nette d'avance. Rien dans ce groupe n'est une option.
+                                  children:
+                                    - ply: Kxf1
+                                      replyQuality: best
+                                      frequency: common
+                                      annotation:
+                                        vi: Vua ăn lại và đứng ở f1. Trắng vẫn hơn một tốt, nhưng từ giờ vua phải tự đi bộ về chỗ an toàn và xe h1 phải chờ đến lúc đó mới ra được. Đây là thế cờ mà Đen nhắm tới từ nước thí đầu tiên.
+                                        en: The king recaptures and sits on f1. White is still a pawn up, but from here the king has to walk to safety by hand and the h1 rook waits until it gets there. This is the position Black has been aiming at since the first sacrifice.
+                                        fr: Le roi reprend et se tient en f1. Les Blancs ont toujours un pion de plus, mais le roi doit désormais marcher à pied vers un abri et la tour h1 attend qu'il y soit arrivé. C'est la position que les Noirs visent depuis le premier sacrifice.
+                                      outcome:
+                                        type: position
+                                        evaluation:
+                                          vi: Đếm tốt thì Trắng bảy, Đen sáu, đúng một tốt như lúc thí. Đổi lại, trên bàn cờ có ba thứ nhìn thấy được. Thứ nhất, Đen không còn tốt nào ở cột a và cột b, nên cả hai cột ấy là của xe Đen và chúng chĩa thẳng vào a2 và b2, hai con tốt Trắng đang đứng đó không ai đỡ ngoài quân. Thứ hai, vua Trắng ở f1 đã mất quyền nhập thành vĩnh viễn và phải mất hai nhịp g3 rồi Kg2 mới yên, trong lúc đó xe h1 không tham gia gì. Thứ ba, cấu trúc tốt Đen không có một điểm yếu nào, không tốt chồng, không tốt cô, nên áp lực ở hai cột kia không tan đi khi đổi quân. Tượng ô trắng đã đổi hết, mỗi bên còn một tượng ô đen.
+                                          en: Count the pawns and it is seven to six, exactly the one Black gave up. In return there are three things on the board. First, Black has no pawn left on the a- or b-file, so both files belong to Black's rooks and both point at a2 and b2, which nothing but pieces can defend. Second, White's king on f1 has permanently lost the right to castle and needs two tempi, g3 and Kg2, to be safe, and the h1 rook does nothing until it gets there. Third, Black's pawn structure has no weakness in it at all — nothing doubled, nothing isolated — so the pressure on those two files survives every exchange. The light-squared bishops are gone; each side has one dark-squared bishop left.
+                                          fr: Comptez les pions, sept contre six, exactement celui que les Noirs ont donné. En échange, trois choses sont visibles sur l'échiquier. D'abord, les Noirs n'ont plus de pion sur les colonnes a et b, si bien que les deux colonnes appartiennent à leurs tours et visent a2 et b2, que seules des pièces peuvent défendre. Ensuite, le roi blanc en f1 a définitivement perdu le droit de roquer et lui faut deux temps, g3 puis Kg2, pour être à l'abri, pendant lesquels la tour h1 ne sert à rien. Enfin, la structure de pions noire n'a pas la moindre faiblesse — rien de doublé, rien d'isolé — si bien que la pression sur ces deux colonnes survit à tous les échanges. Les fous de cases blanches ont disparu ; chaque camp garde un fou de cases noires.
+                                        plan:
+                                          vi: Đen chơi ...g6 và ...Bg7 để tượng ăn suốt đường chéo dài đến b2, rồi ...Nbd7, ...O-O, sau đó ...Qa5 hoặc ...Qb6, ...Rfb8 và ...Ra7-b7 chồng xe ở cột b. Ba quân nhắm vào b2 là con số cần đạt. Nước phá là ...c4 mở đường cho tượng g7 và cho mã vào ô c5, hoặc ...e6 đánh vào d5 khi Trắng đã phải dồn quân giữ cánh hậu. Đen không cần lấy lại tốt và cũng không nên cố. Trắng phải chơi g3 rồi Kg2 ngay, nối hai xe, giữ b2 bằng Ra3, Rb1 hoặc Qc2, rồi đổi càng nhiều quân nặng càng tốt và đẩy e5 hoặc f4 để giành lại thế chủ động ở cánh kia. Nếu Trắng đổi hết xe mà giữ được tốt thì tàn cuộc là của Trắng.
+                                          en: Black plays ...g6 and ...Bg7 so the bishop rakes the long diagonal all the way to b2, then ...Nbd7 and ...O-O, and afterwards ...Qa5 or ...Qb6, ...Rfb8 and ...Ra7-b7 to double on the b-file. Three attackers on b2 is the number to reach. The breaks are ...c4, which clears the diagonal for the g7 bishop and gives a knight the c5 square, and ...e6 against d5 once White has tied pieces to the queenside. Black neither needs the pawn back nor should try for it. White must play g3 and Kg2 straight away to connect the rooks, hold b2 with Ra3, Rb1 or Qc2, then trade as many heavy pieces as possible and push e5 or f4 for counterplay on the other wing. If White gets the rooks off while keeping the pawn, the endgame belongs to White.
+                                          fr: Les Noirs jouent ...g6 et ...Bg7 pour que le fou balaie la grande diagonale jusqu'en b2, puis ...Nbd7 et ...O-O, avant ...Qa5 ou ...Qb6, ...Rfb8 et ...Ra7-b7 pour doubler sur la colonne b. Trois attaquants sur b2 est le chiffre à atteindre. Les ruptures sont ...c4, qui dégage la diagonale du fou g7 et offre la case c5 à un cavalier, et ...e6 contre d5 une fois les pièces blanches liées à l'aile dame. Les Noirs n'ont pas besoin de reprendre le pion et ne doivent pas le chercher. Les Blancs doivent jouer g3 et Kg2 sans tarder pour relier les tours, tenir b2 par Ra3, Rb1 ou Qc2, puis échanger le plus de pièces lourdes possible et pousser e5 ou f4 pour du contre-jeu sur l'autre aile. Si les Blancs échangent les tours en gardant le pion, la finale leur appartient.
+                                        basis:
+                                          by: chan
+                                          at: '2026-09-17'
             - ply: b6
               replyQuality: good
               frequency: occasional
@@ -123,6 +176,8 @@ tree:
                     vi: Đen ăn lại. Cột a mở ra cho xe a8 và con tốt b5 bây giờ đứng cạnh c5 thành một cặp tốt cánh hậu.
                     en: Black takes back. The a-file opens for the rook on a8 and the pawn on b5 now stands beside c5 as a queenside pair.
                     fr: Les Noirs reprennent. La colonne a s'ouvre pour la tour en a8 et le pion b5 se place à côté de c5 pour former un duo à l'aile dame.
+                  unsettled: >-
+                    Nxb5 is going free and the evaluation is built on it — the tempo Black wants is the ...Qa5+ that answers the recapture. Stopping one ply earlier keeps that answer where a learner meets it.
                   outcome:
                     type: position
                     evaluation:
@@ -149,6 +204,8 @@ tree:
                     vi: Đen ăn lại và mở cột a. Tượng f1 sẽ ăn ở b5, và đó chính là lúc ...Qa5+ có tác dụng.
                     en: Black takes back and opens the a-file. The f1 bishop will recapture on b5, and that is exactly when ...Qa5+ has its say.
                     fr: Les Noirs reprennent et ouvrent la colonne a. Le fou f1 reprendra en b5, et c'est précisément là que ...Qa5+ a son mot à dire.
+                  unsettled: >-
+                    Bxb5 is going free and the evaluation is built on it — the tempo Black wants is the ...Qa5+ that answers the recapture. Stopping one ply earlier keeps that answer where a learner meets it.
                   outcome:
                     type: position
                     evaluation:
@@ -201,6 +258,8 @@ tree:
             vi: Đen cũng không vội. Nước ...g6 là nước Đen sẽ chơi trong mọi biến của gambit này, nên nó không bao giờ phí.
             en: Black is in no hurry either. ...g6 is a move Black plays in every line of this gambit, so it is never a wasted one.
             fr: Les Noirs ne sont pas pressés non plus. ...g6 est un coup que les Noirs jouent dans toutes les lignes de ce gambit, il n'est donc jamais perdu.
+          unsettled: >-
+            cxb5 is going free because White has simply not taken yet. That is the whole point of the leaf. Whenever White does take, ...a6 returns the game to the accepted lines modelled above, so the pawn is still offered rather than hanging.
           outcome:
             type: position
             evaluation:
@@ -253,6 +312,8 @@ tree:
             vi: Đen ăn tốt. Trắng sẽ lấy lại bằng Bxc4 và có trung tâm d5-e4 đúng như ý, còn Đen thì đã đổi được con tốt b lấy con tốt c của Trắng.
             en: Black takes. White will collect it back with Bxc4 and gets exactly the d5-e4 centre it wanted, while Black has traded a b-pawn for White's c-pawn.
             fr: Les Noirs prennent. Les Blancs le récupéreront par Bxc4 et obtiennent exactement le centre d5-e4 souhaité, tandis que les Noirs ont échangé un pion b contre le pion c blanc.
+          unsettled: >-
+            Bxc4 is going free and the evaluation says so in its first clause — the leaf is about the Modern Benoni structure that the recapture produces, not about the one ply where the pawn is still on c4.
           outcome:
             type: position
             evaluation:

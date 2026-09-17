@@ -27,6 +27,12 @@ export type IssueCode =
   | 'false-mate-claim'
   | 'unclaimed-mate'
   | 'assessment-is-terminal'
+  /* Where a line is allowed to stop (docs/CONTEXT.md, invariant 14) */
+  | 'leaf-in-check'
+  | 'leaf-mate-in-one'
+  | 'leaf-unsettled'
+  | 'unsettled-stale'
+  | 'unsettled-misplaced'
   /* Reply completeness (ADR-0004 check 7) — the check the product turns on */
   | 'reply-incomplete'
   | 'dismissed-not-legal'

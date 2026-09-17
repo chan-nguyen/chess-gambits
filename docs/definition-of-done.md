@@ -45,6 +45,17 @@ instead of it.
       the prose by hand is the failure #77 exists for. The gate refuses a count whose `expect` is
       wrong and a count no prose uses, so this line is about _reaching_ for the mechanism, not about
       the mechanism working
+- [ ] **Every `Assessment` leaf names a feature that is on the board**, from the closed list in
+      `docs/CONTEXT.md` **Where a line may stop** — a material count, an unrepairable pawn defect, a
+      file or diagonal bearing on a king that cannot castle, a square no pawn defends again, a piece
+      with no good square, a rook out of play. "White has the initiative" and "White is better" name
+      nothing on that list. The build settles only that the board has finished moving — not in
+      check, nothing going free — so this line is the half a reviewer has to read, and it is the
+      half the lesson is actually made of
+- [ ] **Every `unsettled` note argues for itself.** It is read in the diff like a `dismissed`
+      reason. A note that repeats the message the gate printed is not a reason; a note that says
+      which capture, why playing it out would add nothing, and where the evaluation already accounts
+      for it, is
 - [ ] **Any other number in learner-facing prose is read against the board, by the reviewer.** The
       gate covers counts of the reply set and nothing beyond it — arithmetic done on top of a count
       ("the other sixteen leave b7 bare"), hedged quantities ("roughly half"), and SAN written inside

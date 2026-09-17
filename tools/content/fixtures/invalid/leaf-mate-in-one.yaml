@@ -1,0 +1,32 @@
+# A line that stops one move before it is over.
+#
+# The defining line is the Fool's Mate setup — 1.f3 e5 2.g4 — and the root is the position
+# after it, with Black to move and 2...Qh4# on the board. The leaf calls that a middlegame.
+#
+# It is here because it slips between both halves of condition one (docs/CONTEXT.md,
+# invariant 14). Nobody is in check, so `leaf-in-check` does not fire. There is no capture on
+# the board at all, let alone a free one, so `leaf-unsettled` does not fire. The game is not
+# over yet, so `assessment-is-terminal` does not fire either. Every chess check in ADR-0004
+# passes, and the entry publishes a lesson that says White is comfortable in a position where
+# White is mated next move — which is the exact claim this project exists not to make.
+#
+# The mate is deliberately **not a capture**: a capturing mate would be caught as a free
+# capture by accident, and a fixture that passes for the wrong reason proves nothing.
+id: leaf-mate-in-one
+name: Adversarial fixture
+eco: A00
+category: gambit
+side: white
+definingLine: [f3, e5, g4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-17'
+  basis: { by: a, at: '2026-09-17' }
+judgement: { by: a, at: '2026-09-17' }
+tree:
+  outcome:
+    type: position
+    evaluation:
+      vi: 'Vật chất bằng nhau, Trắng có thêm không gian ở cánh vua và hai cột nửa mở.'
+    plan: { vi: 'Trắng chơi Nc3 rồi d4 và nhập thành dài.' }
+    basis: { by: a, at: '2026-09-17' }

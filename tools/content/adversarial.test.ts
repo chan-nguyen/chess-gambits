@@ -66,6 +66,38 @@ const MUST_BE_REJECTED: Readonly<Record<string, Expectation>> = {
     at: 'tree.children[0].outcome',
   },
   'missing-reply.yaml': { code: 'reply-incomplete', says: 'g6', at: 'tree' },
+  'leaf-in-check.yaml': {
+    code: 'leaf-in-check',
+    says: 'stopped in the middle of a sequence',
+    at: 'tree.children[0].outcome',
+  },
+  /*
+   * The gap between the other two halves of condition one, and the only fixture here whose
+   * position is legal, quiet and one ply from over. Every chess check in ADR-0004 passed it
+   * before `matesInOne` existed: nobody is in check, the game is not finished, and the
+   * position contains no capture at all, so neither `leaf-in-check` nor `leaf-unsettled`
+   * had anything to say about a lesson calling it a comfortable middlegame.
+   */
+  'leaf-mate-in-one.yaml': {
+    code: 'leaf-mate-in-one',
+    says: 'Qh4#',
+    at: 'tree.outcome',
+  },
+  'leaf-over-free-capture.yaml': {
+    code: 'leaf-unsettled',
+    says: 'Nxe5',
+    at: 'tree.children[0].outcome',
+  },
+  'unsettled-stale.yaml': {
+    code: 'unsettled-stale',
+    says: 'Nothing is going free',
+    at: 'tree.children[0].unsettled',
+  },
+  'unsettled-misplaced.yaml': {
+    code: 'unsettled-misplaced',
+    says: 'states no assessment',
+    at: 'tree.unsettled',
+  },
   'dismissed-not-legal.yaml': {
     code: 'dismissed-not-legal',
     says: '`Nf6` is dismissed',

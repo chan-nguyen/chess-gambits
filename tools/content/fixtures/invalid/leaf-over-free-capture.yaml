@@ -1,0 +1,28 @@
+# A line that stops while a capture is going free. After 1.e4 e5 2.Nf3 Nf6 the pawn on e5 has
+# no defender and nothing recaptures on e5, so Nxe5 changes the material count by force and the
+# count this leaf states is not the count the position has (docs/CONTEXT.md, invariant 14).
+#
+# The node carries no `unsettled`, which is what makes this a failure rather than an
+# acknowledged stopping point.
+id: leaf-over-free-capture
+name: Adversarial fixture
+eco: C42
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-17'
+  basis: { by: a, at: '2026-09-17' }
+judgement: { by: a, at: '2026-09-17' }
+tree:
+  dismissRest:
+    reason: { vi: 'Đen chơi nước khác thì Trắng chơi Bc4 và d4.' }
+  children:
+    - ply: Nf6
+      replyQuality: best
+      outcome:
+        type: position
+        evaluation: { vi: 'Quân số ngang nhau và thế cờ cân bằng.' }
+        plan: { vi: 'Trắng chơi d4 rồi Bd3 và O-O.' }
+        basis: { by: a, at: '2026-09-17' }

@@ -26,6 +26,12 @@ export type Position = {
   readonly key: string
   readonly turn: Side
   readonly legalMoves: readonly string[]
+  /**
+   * The side to move is in check. Distinct from `isCheckmate`, and needed separately: a
+   * leaf may not stop here either, because every legal reply is answering a check rather
+   * than following a plan (docs/CONTEXT.md, invariant 14).
+   */
+  readonly isCheck: boolean
   readonly isCheckmate: boolean
   readonly isStalemate: boolean
 }
@@ -42,6 +48,7 @@ const describe = (chess: Chess): Position => ({
   key: positionKey(chess.fen()),
   turn: chess.turn() === 'w' ? 'white' : 'black',
   legalMoves: chess.moves(),
+  isCheck: chess.isCheck(),
   isCheckmate: chess.isCheckmate(),
   isStalemate: chess.isStalemate(),
 })

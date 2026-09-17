@@ -19,6 +19,7 @@ import type {
   AuthoredRoot,
 } from './schema.ts'
 import { parseEntry } from './schema.ts'
+import { freeCaptures, matesInOne } from './resolution.ts'
 import type {
   Annotation,
   ContentNode,
@@ -631,6 +632,85 @@ const checkReplyCompleteness = (
   return dismissRest === undefined ? [] : rest
 }
 
+/**
+ * **Where a line is allowed to stop** (docs/CONTEXT.md, invariant 14), in the half of that
+ * rule a machine can settle.
+ *
+ * The other half — that the evaluation names a feature a learner can point at rather than a
+ * verdict — is a reviewer's item in `docs/definition-of-done.md`, because no check reads a
+ * sentence. What these two settle is the precondition underneath it: that the board has
+ * finished moving, so the position the plan is written for is the position a learner is
+ * looking at.
+ *
+ * **In check is not acknowledgeable.** There is no such thing as a middlegame plan for a
+ * position whose only legal moves answer a check; a leaf here has stopped mid-sequence and
+ * the fix is a ply, never a note.
+ *
+ * **A free capture is acknowledgeable, with a reason.** `freeCaptures` reads the legal move
+ * list and nothing else, so it fires on the occasional capture no player would make
+ * (`resolution.ts` says which). Refusing those outright would push authors toward a check
+ * they route around; `unsettled` makes the stopping point argue for itself in the diff
+ * instead, and a note on a leaf where nothing is going free is refused so the notes cannot
+ * outlive the positions that earned them.
+ */
+const checkStoppingPoint = (
+  walk: Walk,
+  position: Position,
+  node: AuthoredRoot | AuthoredNode,
+  dataPath: readonly (string | number)[],
+  sanPath: readonly string[],
+): void => {
+  if (position.isCheckmate || position.isStalemate) return
+
+  if (position.isCheck) {
+    report(
+      walk,
+      'leaf-in-check',
+      [...dataPath, 'outcome'],
+      sanPath,
+      `This leaf assesses a position in which ${position.turn === 'white' ? 'White' : 'Black'} is in check, so the line has stopped in the middle of a sequence rather than at the end of one. Play the reply and assess the position that follows (docs/CONTEXT.md, invariant 14).`,
+    )
+    return
+  }
+
+  const mates = matesInOne(position.fen)
+  if (mates.length > 0) {
+    report(
+      walk,
+      'leaf-mate-in-one',
+      [...dataPath, 'outcome'],
+      sanPath,
+      `This leaf assesses a position in which ${position.turn === 'white' ? 'White' : 'Black'} mates in one — ${mates.join(', ')}. The board has not finished moving, and no note excuses it: a reason for stopping one ply before the game ends is the missing ply. Play it, and the leaf becomes a mate claim with a certificate (ADR-0005) or it disappears (docs/CONTEXT.md, invariant 14).`,
+    )
+    return
+  }
+
+  const free = freeCaptures(position.fen)
+
+  if (free.length === 0) {
+    if (node.unsettled !== undefined) {
+      report(
+        walk,
+        'unsettled-stale',
+        [...dataPath, 'unsettled'],
+        sanPath,
+        'Nothing is going free at this leaf, so this note acknowledges a stopping point the position no longer has. Delete it — a list of acknowledged leaves that nobody has to re-read is a list that stops being true (docs/CONTEXT.md, invariant 14).',
+      )
+    }
+    return
+  }
+
+  if (node.unsettled === undefined) {
+    report(
+      walk,
+      'leaf-unsettled',
+      [...dataPath, 'outcome'],
+      sanPath,
+      `This leaf assesses a position where ${free.length === 1 ? 'a capture is' : `${free.length} captures are`} going free — ${free.join(', ')} — so the material count the assessment states is not the count this position has. Either play the capture out, or record on the node why stopping here is honest with \`unsettled: <reason>\` (docs/CONTEXT.md, invariant 14).`,
+    )
+  }
+}
+
 const walkNode = (
   walk: Walk,
   node: AuthoredRoot | AuthoredNode,
@@ -873,6 +953,18 @@ const walkNode = (
         `This leaf is assessed as a playable position, but the game is over here — it is ${position.isCheckmate ? 'checkmate' : 'stalemate'}. This is the reverse of a false mate claim, and it is what mislabels a finished game as a middlegame (ADR-0004, check 5).`,
       )
     }
+
+    checkStoppingPoint(walk, position, node, dataPath, sanPath)
+  }
+
+  if (node.unsettled !== undefined && (outcome === undefined || outcome.kind !== 'position')) {
+    report(
+      walk,
+      'unsettled-misplaced',
+      [...dataPath, 'unsettled'],
+      sanPath,
+      '`unsettled` acknowledges where an *assessment* stops while a capture is going free. This node states no assessment, so there is no stopping point for it to acknowledge (docs/CONTEXT.md, Where a line may stop).',
+    )
   }
 
   if (node.transposesTo !== undefined) {
