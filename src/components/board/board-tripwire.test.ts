@@ -9,9 +9,12 @@ import manifestSource from '../../../package.json?raw'
  * ADR-0003's tripwire, measured.
  *
  * The ADR accepted a real maintenance obligation on the condition that it stays bounded:
- * "if the board exceeds roughly 400 lines or starts growing rules logic, that is the
- * signal it was the wrong call", with `cm-chessboard` pre-selected as the fallback. A
- * tripwire nobody measures is a wish, so this file measures it.
+ * no rules logic, and a line count. A tripwire nobody measures is a wish, so this file
+ * measures both. The two are not the same signal and #79 amended the ADR to say so: rules
+ * logic means the bet was wrong and `cm-chessboard` is the pre-selected fallback, while
+ * passing the line count means measure again and decide. That count is **450** code lines
+ * across the shipped board, raised from 400 because the board was *written* at 389 and has
+ * grown ten lines since, so 400 reported that the board existed rather than that it grew.
  */
 
 /**
@@ -36,8 +39,6 @@ const MODULES = Object.entries(SHIPPED)
   .filter(([file]) => !file.endsWith('.css'))
   .map(([file, text]) => ({ file, text }))
 
-const lineCount = (text: string): number => text.split('\n').length
-
 /**
  * Lines of code, with comments and blanks removed. The tripwire is aimed at complexity,
  * so explaining a decision must never be the thing that trips it.
@@ -48,19 +49,19 @@ const codeLineCount = (text: string): number =>
     .split('\n')
     .filter((line) => line.trim() !== '' && !line.trim().startsWith('//')).length
 
-describe('the board stays under 400 lines (AC 9)', () => {
-  it('holds the component itself under the limit', () => {
-    expect(lineCount(boardSource)).toBeLessThan(400)
-  })
-
+describe('the board stays under 450 lines (AC 9)', () => {
   /**
-   * Counted together as well as separately, because a limit on one file is trivially
-   * evaded by opening a second. ADR-0003 bounds "the board", not one file of it, so the
-   * component, the model and the sprite have to fit the budget between them.
+   * Counted together, because a limit on one file is trivially evaded by opening a second.
+   * ADR-0003 bounds "the board", not one file of it, so the component, the model and the
+   * sprite have to fit the budget between them.
+   *
+   * One assertion, not two. #79 retired a second one that measured `Board.tsx` alone by its
+   * lines *as written*: the only thing it could fail on that this one does not is a long
+   * comment in that one file, which is exactly what the rule above it forbids counting.
    */
   it('holds the whole shipped board under the limit', () => {
     const total = MODULES.map(({ text }) => codeLineCount(text)).reduce((sum, n) => sum + n, 0)
-    expect(total).toBeLessThan(400)
+    expect(total).toBeLessThan(450)
   })
 
   /** So a fourth module cannot appear and quietly carry the overflow. */
@@ -114,6 +115,66 @@ describe('the board does not know chess (AC 8)', () => {
     ]) {
       expect(text).not.toContain(forbidden)
     }
+  })
+
+  /**
+   * **The denylist, in its positive form** (review addition, #79).
+   *
+   * The five forbidden substrings below are a denylist, and a denylist is whack-a-mole:
+   * `isAttacked`, `pseudoLegal`, `applyMove` and `enPassant` all pass it while being exactly
+   * the thing it exists to forbid. That was survivable while the line count was the louder
+   * of the two conditions. #79 made it the quieter one — passing 450 lines now means measure
+   * again, while rules logic means the bet was wrong and the fallback is pre-selected — so
+   * the rules half is the trigger now, and a five-word denylist is thin for that job.
+   *
+   * This is the same claim stated the other way round. The board's whole surface is
+   * geometry, labels, focus and the placement field of a FEN; nothing here can answer a
+   * question about chess. A new export is a new capability, and it fails this test whatever
+   * it is called — which is the part the denylist cannot do.
+   *
+   * Widening the list is a normal thing to do. Doing it in the same commit as the code is
+   * the point: it makes "the board learned something new" a line in a diff a reviewer sees.
+   */
+  const SURFACE: readonly string[] = [
+    'Board',
+    'BoardLabels',
+    'BoardProps',
+    'FILES',
+    'FileLetter',
+    'FocusedSquare',
+    'LastMove',
+    'Orientation',
+    'PIECE_ROLES',
+    'PieceColour',
+    'PieceKey',
+    'PieceRole',
+    'PieceSprite',
+    'Position',
+    'RANKS',
+    'RankNumber',
+    'Square',
+    'colourOf',
+    'isLightSquare',
+    'nextFocus',
+    'orientedFiles',
+    'orientedRanks',
+    'parseFen',
+    'roleOf',
+    'shapeId',
+    'squareAt',
+    'squareLabel',
+  ]
+
+  const exportsOf = (text: string): readonly string[] =>
+    [
+      ...text.matchAll(/^export\s+(?:const|type|function|class|interface)\s+([A-Za-z0-9_$]+)/gm),
+    ].flatMap((found) => (found[1] === undefined ? [] : [found[1]]))
+
+  it('exports exactly the surface it is allowed to have', () => {
+    const found = MODULES.flatMap(({ text }) => exportsOf(text)).sort()
+
+    expect(found.length, 'the extractor found nothing, so this asserts nothing').toBeGreaterThan(20)
+    expect(found).toStrictEqual([...SURFACE].sort())
   })
 
   it.each(MODULES)('$file carries no rules logic', ({ text }) => {
