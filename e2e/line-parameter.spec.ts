@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
-import { MATE_ENTRY, MATE_LINE } from '../src/components/learn/learn-fixtures.ts'
+import { MAIN_LINE, MAPPED_ENTRY } from '../src/components/learn/learn-fixtures.ts'
 import { lineSearch } from '../src/lib/line.ts'
 import vi from '../src/locales/vi.ts'
 import { serveEntry } from './learning-fixture.ts'
@@ -14,32 +14,37 @@ import { serveEntry } from './learning-fixture.ts'
  * application and routes correctly. That is ADR-0009 working: the status is honest about
  * the page not existing, and the visitor still gets a page.
  *
- * The line under test is Légal's Mate, because it is the case CONTEXT.md singles out: its
- * plies carry `+` and `#`, so the links that break unencoded are exactly the links to
- * proved checkmates, which are the most shareable thing this site produces.
+ * The line under test is the Damiano refutation, and it is the mapped fixture rather than the
+ * mate one for a reason worth writing down (issue #46). CONTEXT.md names `+` and `#`
+ * together, but only one of them can ever be *in* a path: a mate is claimed on the leaf before
+ * the mating move and its `sequence` runs from there, so `Nd5#` is a ply in a proof and never
+ * a node anything can link to. What a link to a proved checkmate actually carries is the
+ * checks played on the way to it, and this line has three — `4.Qh5+`, `5.Qxe5+` and `6.Bc4+`.
+ * The `#` still gets its test below, as the corruption it causes when a link is pasted
+ * unencoded, which is the only form in which it reaches a URL at all.
  */
 
-const gambit = 'legal-mate'
+const gambit = MAPPED_ENTRY.id
 
 const plies = (page: Page) =>
   page.getByRole('navigation', { name: vi.learn.plyList }).getByRole('link')
 
 const NUMBERED = [
   vi.learn.startingPosition,
-  '5...Bh5',
-  '6.Nxe5',
-  '6...Bxd1',
-  '7.Bxf7+',
-  '7...Ke7',
-  '8.Nd5#',
+  '3...fxe5',
+  '4.Qh5+',
+  '4...Ke7',
+  '5.Qxe5+',
+  '5...Kf7',
+  '6.Bc4+',
 ]
 
 test.beforeEach(async ({ page }) => {
-  await serveEntry(page, MATE_ENTRY)
+  await serveEntry(page, MAPPED_ENTRY)
 })
 
-test('a link to a proved checkmate restores its exact line', async ({ page }) => {
-  await page.goto(`vi/gambits/${gambit}${lineSearch(MATE_LINE)}`)
+test('a link whose plies carry checks restores its exact line', async ({ page }) => {
+  await page.goto(`vi/gambits/${gambit}${lineSearch(MAIN_LINE)}`)
 
   await expect(plies(page)).toHaveText(NUMBERED)
   await expect(plies(page).last()).toHaveAttribute('aria-current', 'true')
@@ -47,19 +52,21 @@ test('a link to a proved checkmate restores its exact line', async ({ page }) =>
 })
 
 test('the encoded line survives a full page reload', async ({ page }) => {
-  await page.goto(`vi/gambits/${gambit}${lineSearch(MATE_LINE)}`)
+  await page.goto(`vi/gambits/${gambit}${lineSearch(MAIN_LINE)}`)
   await page.reload()
 
   await expect(plies(page)).toHaveText(NUMBERED)
 })
 
 test('an unencoded link is corrupted, and the page says exactly how', async ({ page }) => {
-  // Exactly the corruption CONTEXT.md documents: `+` arrives as a space and everything
-  // from `#` onwards never reaches the server at all.
-  await page.goto(`vi/gambits/${gambit}?line=Bh5_Nxe5_Bxd1_Bxf7+_Ke7_Nd5#`)
+  // Exactly the corruption CONTEXT.md documents, and both halves of it: `+` arrives as a
+  // space, and everything from the `#` onwards never leaves the browser.
+  await page.goto(`vi/gambits/${gambit}?line=fxe5_Qh5+_Ke7#_Qxe5+_Kf7_Bc4+`)
 
-  // `Bxf7 ` — the plus is gone, and the parser names the segment rather than guessing.
-  await expect(page.getByRole('alert').first()).toContainText('"Bxf7 "')
+  // `Qh5 ` — the plus is gone, and the parser names the segment rather than guessing.
+  await expect(page.getByRole('alert').first()).toContainText('"Qh5 "')
+  // The tail after the `#` was never sent, so the line stops at the one ply that parsed.
+  await expect(plies(page)).toHaveText([vi.learn.startingPosition, '3...fxe5'])
   await expect(page.getByRole('grid')).toBeVisible()
 })
 
@@ -69,7 +76,7 @@ test('a hostile line neither throws nor blanks the page', async ({ page }) => {
 
   await page.goto(`vi/gambits/${gambit}?line=%3Cscript%3Ealert(1)%3C%2Fscript%3E`)
 
-  await expect(page.getByRole('heading', { level: 1, name: MATE_ENTRY.name })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: MAPPED_ENTRY.name })).toBeVisible()
   await expect(plies(page)).toHaveText([vi.learn.startingPosition])
   await expect(page.getByRole('alert').first()).toBeVisible()
   expect(errors).toEqual([])

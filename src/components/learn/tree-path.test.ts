@@ -229,11 +229,18 @@ describe('the label a ply is shown under', () => {
     expect(plyLabel('Nf3', 'not a fen')).toBe('Nf3')
   })
 
+  /*
+   * The mating move is no longer a node to label (#46): a mate leaf claims the trap and its
+   * `sequence` runs *from* there, so `8.Nd5#` is numbered by `numberSequence` and checked in
+   * `mate-sequence.test.ts`. What is still this function's to get right on the trap branch is
+   * the numbering of the leaf itself — the label `MateNet`'s board is read against — and the
+   * check glyph, which the scoresheet test above holds over `MAIN_LINE`'s three of them.
+   */
   it('never localises the notation itself', () => {
     const { steps } = resolvePath(MATE_ENTRY.tree, MATE_LINE)
 
     expect(steps.map((step) => step.ply)).toStrictEqual(MATE_LINE)
-    expect(plyLabel('Nd5#', steps[5]?.node.fen ?? '')).toBe('8.Nd5#')
+    expect(plyLabel('Bxd1', steps[2]?.node.fen ?? '')).toBe('6...Bxd1')
   })
 })
 

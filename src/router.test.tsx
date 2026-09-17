@@ -1,7 +1,7 @@
 import { render, screen, waitFor, within } from '@testing-library/react'
 import { RouterProvider, createMemoryRouter } from 'react-router'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { MATE_ENTRY, MATE_LINE } from './components/learn/learn-fixtures'
+import { MAIN_LINE, MAPPED_ENTRY } from './components/learn/learn-fixtures'
 import { storedLocaleKey } from './lib/locale'
 import { lineSearch } from './lib/line'
 import viCatalogue from './locales/vi'
@@ -145,7 +145,7 @@ describe('the line parameter on a gambit route', () => {
       'fetch',
       vi.fn(() =>
         Promise.resolve(
-          new Response(JSON.stringify({ ...MATE_ENTRY, id: 'evans-gambit' }), {
+          new Response(JSON.stringify({ ...MAPPED_ENTRY, id: 'evans-gambit' }), {
             status: 200,
             headers: { 'content-type': 'application/json' },
           }),
@@ -163,17 +163,25 @@ describe('the line parameter on a gambit route', () => {
       .map((link) => link.textContent)
   }
 
-  it('restores a path that contains a check and a mate', async () => {
-    renderAt(`/vi/gambits/evans-gambit${lineSearch(MATE_LINE)}`)
+  /*
+   * The Damiano refutation rather than the mate fixture, since #46. A `+` is the form encoding
+   * for a space, so a path carrying one is the path that proves the parameter is encoded and
+   * decoded rather than merely passed along — and this line carries three. A `#` cannot appear
+   * in any path at all: a mate is claimed on the leaf *before* the mating move, so the mating
+   * move is a ply in the proof and never a node with a URL. The unencoded `#` is still covered,
+   * as the corruption it causes, by `line.test.ts` and `e2e/line-parameter.spec.ts`.
+   */
+  it('restores a path whose plies carry checks', async () => {
+    renderAt(`/vi/gambits/evans-gambit${lineSearch(MAIN_LINE)}`)
 
     expect(await plies()).toStrictEqual([
       viCatalogue.learn.startingPosition,
-      '5...Bh5',
-      '6.Nxe5',
-      '6...Bxd1',
-      '7.Bxf7+',
-      '7...Ke7',
-      '8.Nd5#',
+      '3...fxe5',
+      '4.Qh5+',
+      '4...Ke7',
+      '5.Qxe5+',
+      '5...Kf7',
+      '6.Bc4+',
     ])
     expect(screen.queryByRole('alert')).toBeNull()
   })
