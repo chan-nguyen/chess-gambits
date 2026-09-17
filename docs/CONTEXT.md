@@ -64,6 +64,7 @@ the gambit's defining line.
 | `outcome`      | Present **only** on a leaf. See **Outcome**                                                                                                                |
 | `replyQuality` | Only on a **child of an opponent node** — that is, a move the opponent played. See below                                                                   |
 | `frequency`    | Only on a child of an opponent node: `common` \| `occasional` \| `rare`                                                                                    |
+| `counts`       | Only on an **opponent node**: **counted claims** about the legal replies here, which the prose renders from. See below                                     |
 | `dismissed`    | Only on an **opponent node**: legal replies deliberately not modelled, each with a reason. A maintainer's note, read in a diff                             |
 | `dismissRest`  | Only on an **opponent node** that models replies: one catch-all answering every legal reply that is neither modelled nor individually dismissed. See below |
 | `transposesTo` | Instead of children: a path elsewhere in this gambit that this position transposes into                                                                    |
@@ -99,6 +100,29 @@ covers nothing, and one whose reason is empty or placeholder text. The validator
 many replies each catch-all answers, so the number stays visible rather than hidden behind one
 line, and the UI renders it as "34 other replies — \<reason\>". An omission a learner can see is
 honest; one they cannot see is the failure this whole check exists to prevent.
+
+### Counted claim
+
+A number a lesson states about the legal replies to a position — "twenty-three of the forty-two
+legal replies here are mated at once by `Nxc7#`" — **derived by the build and never typed into the
+sentence**. ADR-0011.
+
+The author declares it under `counts`, names it, and writes `{name}` where the figure belongs in the
+prose; `{Name}` is the same figure capitalised, for a claim that opens a sentence. Three kinds exist,
+which are the three questions the content actually asks: `legalReplies`, `matedBy` a given ply, and
+`notMatedBy` it. The author also states `expect`, the figure they believe, and the build **refutes**
+it — that number is checked and then thrown away, never published.
+
+It exists because this was the one claim in the model that nothing verified. Every ply is checked for
+legality, every position is derived, every mate is replayed from a certificate — and a number in a
+paragraph was checked by whoever typed it, which is how a lesson came to say twenty-five where the
+board says twenty-three. It sits on an opponent node for the same reason `dismissRest` does: it is a
+claim about what the opponent can do, and what the learner plays is the gambit's choice rather than a
+set of moves to count.
+
+It does not cover every number in every sentence, and does not pretend to. Arithmetic done on top of
+a count, and claims about something other than the reply set, stay prose and stay a review item in
+`docs/definition-of-done.md`.
 
 ### Outcome
 
@@ -378,3 +402,9 @@ can trust what this site says.
     available**, so field 4 carries real information and belongs in the key. And comparing on more
     fields can only ever make matching stricter, so it can miss a real transposition but can never
     invent a false one.
+13. A **counted claim** in learner-facing prose is derived by replaying the position, never written
+    into the sentence. The author states the figure they believe and the build refutes it; the
+    sentence carries a placeholder the build fills. A count declared and never used by any prose is
+    refused, and so is a count one language of a sentence uses and another does not. This covers counts
+    of the legal replies to a position and nothing else — arithmetic downstream of one is prose, and
+    is reviewed as prose (ADR-0011).

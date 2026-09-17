@@ -39,6 +39,12 @@ export type IssueCode =
   | 'transposition-cycle'
   /* Side consistency (ADR-0004 check 12) */
   | 'kind-mismatch'
+  /* Counted claims in prose (ADR-0011) */
+  | 'count-mismatch'
+  | 'count-unspellable'
+  | 'count-unused'
+  | 'count-locale-gap'
+  | 'unknown-count'
   /* Mate proving (ADR-0005, docs/CONTEXT.md invariants 4 and 5) */
   | 'defining-line-parity'
   | 'mate-unproved'

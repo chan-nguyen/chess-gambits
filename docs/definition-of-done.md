@@ -40,6 +40,15 @@ instead of it.
 - [ ] No chess claim is authored by a human where the build could prove it
 - [ ] Content validation still fails on the adversarial fixtures, and the failure message names the
       file and the node
+- [ ] **Every number a lesson states about the legal replies to a position is a `count`**, declared
+      under `counts` and rendered into the sentence by the build (ADR-0011). Writing the figure into
+      the prose by hand is the failure #77 exists for. The gate refuses a count whose `expect` is
+      wrong and a count no prose uses, so this line is about _reaching_ for the mechanism, not about
+      the mechanism working
+- [ ] **Any other number in learner-facing prose is read against the board, by the reviewer.** The
+      gate covers counts of the reply set and nothing beyond it — arithmetic done on top of a count
+      ("the other sixteen leave b7 bare"), hedged quantities ("roughly half"), and SAN written inside
+      a sentence are all unverified. Keep them rare, and replay the ones that stay
 
 ## When the change touches the build or CI
 
