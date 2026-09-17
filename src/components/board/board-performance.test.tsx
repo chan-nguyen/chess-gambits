@@ -7,6 +7,32 @@ import { FEN_FIXTURES, VIETNAMESE_LABELS } from './board-fixtures'
  * AC 10. An opponent node renders one preview board per candidate reply (F5), so many
  * boards mount in one go — the compounding cost ADR-0003 says the first answer missed.
  *
+ * **This file no longer times anything, and that is the point.**
+ *
+ * It used to assert that mounting 24 boards cost less than 24 times one board, on the
+ * reasoning that a per-instance blow-up — a shared id collision, a listener per square, a
+ * layout read in a loop — is superlinear and would clear that by an order of magnitude. The
+ * reasoning was right and the instrument was not. Measured on an idle machine the ratio is
+ * already 22x for previews and 27x for full boards, against a limit of 48, because React and
+ * jsdom charge a fixed cost per render that one board pays alone and 24 amortise. Under a
+ * loaded machine it read 50.6, 57.9 and 73.0, so it failed two runs in three while the
+ * component was fine — and #15's and #18's agents both lost time to it.
+ *
+ * Widening the limit was the obvious repair and it was wrong. Injecting the exact defect the
+ * test claims to catch — a document-wide `querySelectorAll` on every one of the 1,536 squares,
+ * which is quadratic in the number of boards — moved the ratio from 27.2 to 27.0. It cannot
+ * see the thing it was written to see. A gate that cannot fail for the right reason, and does
+ * fail for the wrong one, is worse than no gate: it teaches people to re-run until green, and
+ * then a real failure reads as one more flake.
+ *
+ * The real budget is INP under 200ms, measured by `PerformanceObserver` in a real browser on
+ * CPU-throttled hardware against the built output, and #19 enforces it — 64ms today on the
+ * widest branch node the published content has. That measurement can both fail correctly and
+ * pass reliably, which is the whole of what was wanted here.
+ *
+ * What remains is the claim jsdom can actually answer: that 24 boards really do render, in
+ * full, all 1,536 squares of them.
+ *
  * What this asserts is **scaling**, not wall-clock time. The first version of this test
  * asserted 24 boards mount in under 100ms; that passed at 52ms on a developer machine and
  * failed at 341ms on a shared CI runner. A wall-clock number in jsdom measures jsdom and
@@ -28,73 +54,7 @@ afterEach(cleanup)
 
 const positions = FEN_FIXTURES.slice(0, COUNT).map((fixture) => fixture.fen)
 
-/**
- * The least-interrupted of several runs, which is the standard answer to a noisy
- * microbenchmark: scheduling can only ever make a measurement slower, never faster, so the
- * minimum is the closest reading to the real cost.
- *
- * The first version of this test took one sample of each. Alone that passed; under the full
- * suite, with fifty files in parallel, a single-board sample of a fraction of a millisecond
- * got distorted enough to make the ratio explode, and the gate failed intermittently. An
- * intermittent gate is worse than no gate — it teaches people to re-run until it is green.
- */
-const fastestOf = (runs: number, measure: () => number): number => {
-  let best = Number.POSITIVE_INFINITY
-  for (let i = 0; i < runs; i += 1) {
-    best = Math.min(best, measure())
-    cleanup()
-  }
-  return best
-}
-
-const mountOne = (showCoordinates: boolean): number => {
-  const started = performance.now()
-  render(
-    <Board fen={positions[0] ?? ''} labels={VIETNAMESE_LABELS} showCoordinates={showCoordinates} />,
-  )
-  return performance.now() - started
-}
-
-const mountMany = (showCoordinates: boolean): number => {
-  const started = performance.now()
-  render(
-    <>
-      {positions.map((fen, index) => (
-        <Board key={index} fen={fen} labels={VIETNAMESE_LABELS} showCoordinates={showCoordinates} />
-      ))}
-    </>,
-  )
-  return performance.now() - started
-}
-
 describe(`mounting ${COUNT} boards`, () => {
-  it('warms the module up first, so the measurement is not a cold start', () => {
-    mountMany(false)
-    cleanup()
-    expect(true).toBe(true)
-  })
-
-  it.each([
-    ['previews', false],
-    ['full boards', true],
-  ])('scales linearly across twenty-four %s', (label, showCoordinates) => {
-    mountMany(showCoordinates)
-    cleanup()
-    const one = fastestOf(7, () => mountOne(showCoordinates))
-    const many = fastestOf(3, () => mountMany(showCoordinates))
-    const ratio = many / Math.max(one, 0.01)
-
-    console.info(
-      `24 ${label}: ${many.toFixed(1)}ms total, ${(many / COUNT).toFixed(1)}ms each ` +
-        `(one alone: ${one.toFixed(1)}ms, ratio ${ratio.toFixed(1)}x for ${COUNT} boards)`,
-    )
-
-    // Generous, because React and jsdom both add fixed per-render overhead that a single
-    // board pays in full and twenty-four amortise. Anything quadratic clears this by an
-    // order of magnitude, which is the failure worth catching.
-    expect(ratio).toBeLessThan(COUNT * 2)
-  })
-
   it('really did render them all', () => {
     const { container } = render(
       <>

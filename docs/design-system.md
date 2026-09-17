@@ -597,6 +597,21 @@ Concrete numbers a CI job fails against.
 The catalogue budget is the one that will bite as coverage grows toward "every named gambit". It is
 a tripwire in `PROJECT-PLAN.md`, not an afterthought.
 
+**Where each of these is enforced** (#19). The values above stay the source of truth; this says
+which job fails when one is exceeded, so a budget is never only a sentence in a document.
+
+| Budget                      | Fails in                                                                                       |
+| --------------------------- | ---------------------------------------------------------------------------------------------- |
+| Initial JavaScript          | `e2e/route-budgets.spec.ts`, per route, in the browser, on the built output                    |
+| Per-route incremental JS    | `e2e/route-budgets.spec.ts`, against the JavaScript the entry route already downloaded         |
+| Catalogue payload           | `e2e/catalogue-payload.spec.ts` over the whole file, and `e2e/route-budgets.spec.ts` per route |
+| LCP, CLS                    | `lighthouserc.json` via `npm run perf:lighthouse`, on Lighthouse's own mid-tier mobile profile |
+| INP pressing next           | `e2e/interaction-latency.spec.ts`, on the widest branch node in published content              |
+| Third-party requests, fonts | `e2e/route-budgets.spec.ts`, and the Content Security Policy itself (`docs/security.md`)       |
+
+The numbers each one currently measures are recorded in `docs/PROJECT-PLAN.md` §4, so drift is
+visible without running anything.
+
 ---
 
 ## 7. Content and copy voice

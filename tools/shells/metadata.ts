@@ -117,6 +117,14 @@ export type ShellMetadata = {
   /** Absolute, because `og:url` resolved by an unfurler has no page to resolve against. */
   readonly canonical: string
   readonly alternates: readonly Alternate[]
+  /**
+   * The Content Security Policy, identical on every document (#19, AC 6). It names the
+   * emitted inline script by hash, so it is computed from the built template by
+   * `tools/shells/csp.ts` and threaded through here rather than written down. It rides on
+   * `ShellMetadata` so that `metadataGaps` checks it on all 2,111 documents alongside
+   * everything else, instead of on a spot check.
+   */
+  readonly csp: string
 }
 
 export type MetadataInput = {
@@ -128,6 +136,8 @@ export type MetadataInput = {
   readonly basePath: string
   /** Scheme and host, without a trailing slash. */
   readonly origin: string
+  /** From `contentSecurityPolicy` in `tools/shells/csp.ts`, over the built template. */
+  readonly csp: string
 }
 
 export type ShellSet =
@@ -160,7 +170,7 @@ const alternatesFor = (
 ]
 
 export const shellMetadata = (input: MetadataInput): ShellSet => {
-  const { basePath, origin, copy, entries } = input
+  const { basePath, origin, copy, csp, entries } = input
   const alternates = (route: (locale: Locale) => string): readonly Alternate[] =>
     alternatesFor(origin, basePath, route)
 
@@ -178,6 +188,7 @@ export const shellMetadata = (input: MetadataInput): ShellSet => {
       description: words.tagline,
       canonical: url(origin, basePath, at()),
       alternates: alternates((other) => routePath(other)),
+      csp,
     })
 
     shells.set(`${locale}/${routeSegments.catalogue}`, {
@@ -187,6 +198,7 @@ export const shellMetadata = (input: MetadataInput): ShellSet => {
       description: words.catalogueIntro,
       canonical: url(origin, basePath, at(routeSegments.catalogue)),
       alternates: alternates((other) => routePath(other, routeSegments.catalogue)),
+      csp,
     })
 
     shells.set(`${locale}/${routeSegments.about}`, {
@@ -198,6 +210,7 @@ export const shellMetadata = (input: MetadataInput): ShellSet => {
       description: words.tagline,
       canonical: url(origin, basePath, at(routeSegments.about)),
       alternates: alternates((other) => routePath(other, routeSegments.about)),
+      csp,
     })
 
     for (const id of input.gambitIds) {
@@ -225,6 +238,7 @@ export const shellMetadata = (input: MetadataInput): ShellSet => {
         description: `${facts.name} — ECO ${facts.eco}. ${facts.line}`,
         canonical: url(origin, basePath, at(routeSegments.catalogue, id)),
         alternates: alternates((other) => routePath(other, routeSegments.catalogue, id)),
+        csp,
       })
     }
   }
@@ -245,6 +259,7 @@ export const shellMetadata = (input: MetadataInput): ShellSet => {
       description: words.tagline,
       canonical: url(origin, basePath, '/'),
       alternates: alternates((other) => routePath(other)),
+      csp,
     },
     shells,
   }
@@ -264,6 +279,15 @@ export const escapeHtml = (value: string): string =>
 
 const meta = (attribute: string, key: string, value: string): string =>
   `<meta ${attribute}="${key}" content="${escapeHtml(value)}" />`
+
+/**
+ * The policy element. Emitted at the very top of the head, immediately after the charset,
+ * because a `<meta>` policy governs only what the parser reads **after** it — placed
+ * after the inline theme script it would leave that script ungoverned and its hash
+ * decorative.
+ */
+const cspMeta = (policy: string): string =>
+  `<meta http-equiv="Content-Security-Policy" content="${escapeHtml(policy)}" />`
 
 /** The head this ticket adds, in the order a reader of the built file would want it. */
 const headTags = (data: ShellMetadata): readonly string[] => [
@@ -289,15 +313,17 @@ export type ShellRender =
 
 const HTML_OPEN = /<html lang="[^"]*">/g
 const TITLE = /<title>[^<]*<\/title>/g
+/** The earliest element in the head, and therefore where the policy has to go. */
+const CHARSET = /<meta charset="[^"]*"\s*\/?>/g
 
 const occurrences = (pattern: RegExp, html: string): number => [...html.matchAll(pattern)].length
 
 /**
- * One shell's bytes: the built `index.html` with its `lang` corrected and its placeholder
- * title replaced by a real head.
+ * One shell's bytes: the built `index.html` with its `lang` corrected, a Content Security
+ * Policy inserted at the top of its head, and its placeholder title replaced by a real one.
  *
- * Both anchors are required to appear exactly once. A template that stopped carrying one
- * would otherwise be copied 3,018 times with the substitution silently doing nothing,
+ * All three anchors are required to appear exactly once. A template that stopped carrying
+ * one would otherwise be copied 3,018 times with the substitution silently doing nothing,
  * which is precisely the failure this ticket closes.
  */
 export const shellHtml = (template: string, data: ShellMetadata): ShellRender => {
@@ -311,10 +337,16 @@ export const shellHtml = (template: string, data: ShellMetadata): ShellRender =>
     return { ok: false, reason: `has ${titles} \`<title>\` elements, and needs exactly 1` }
   }
 
+  const charsets = occurrences(CHARSET, template)
+  if (charsets !== 1) {
+    return { ok: false, reason: `has ${charsets} \`<meta charset>\` elements, and needs exactly 1` }
+  }
+
   // Replacer functions, not replacement strings: a name containing `$&` or `$1` would
   // otherwise be interpreted rather than written.
   const html = template
     .replace(HTML_OPEN, () => `<html lang="${data.lang}">`)
+    .replace(CHARSET, (charset) => `${charset}\n    ${cspMeta(data.csp)}`)
     .replace(TITLE, () => headTags(data).join('\n    '))
 
   return { ok: true, html }
@@ -330,6 +362,7 @@ export const shellHtml = (template: string, data: ShellMetadata): ShellRender =>
 export const metadataGaps = (html: string, data: ShellMetadata): readonly string[] => {
   const required: readonly (readonly [string, string])[] = [
     ['lang', `<html lang="${data.lang}">`],
+    ['content-security-policy', cspMeta(data.csp)],
     ['title', `<title>${escapeHtml(data.title)}</title>`],
     ['description', meta('name', 'description', data.description)],
     ['canonical', `<link rel="canonical" href="${escapeHtml(data.canonical)}" />`],

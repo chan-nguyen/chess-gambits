@@ -1,5 +1,6 @@
 import { gzipSync } from 'node:zlib'
 import { expect, test } from '@playwright/test'
+import { BUDGET_BYTES, asKb } from './budgets.ts'
 
 /**
  * AC 6 and AC 8, against the built output on a real static host.
@@ -10,8 +11,6 @@ import { expect, test } from '@playwright/test'
  * downloads is inside its budget, measured on the bytes that shipped rather than on the
  * build's own report of them.
  */
-
-const BUDGET_BYTES = 100 * 1024
 
 const catalogueUrl = (locale: string): string => {
   const base = test.info().project.use.baseURL
@@ -88,14 +87,17 @@ test('the catalogue payload stays inside its budget over the whole file', async 
     const response = await page.request.get(catalogueUrl(locale))
     const body = await response.body()
 
-    // Compressed here rather than read off a `content-encoding` header: the static server
-    // these tests run against does not compress, and the budget is about what a host that
-    // does would send. Measured over the whole shipped file, never a sample.
+    /*
+     * Compressed here rather than read off a `content-encoding` header. The static server
+     * does now negotiate gzip, as GitHub Pages does — #19 taught it to, because Lighthouse
+     * measures LCP from the bytes that crossed the wire — but `page.request` decodes the
+     * response transparently, so this measures the file itself rather than whatever
+     * encoding this run happened to negotiate. Over the whole shipped file, never a sample.
+     */
     const gzipped = gzipSync(body).byteLength
 
-    expect(
-      gzipped,
-      `catalogue.${locale}.json is ${(gzipped / 1024).toFixed(1)}KB gzipped`,
-    ).toBeLessThanOrEqual(BUDGET_BYTES)
+    expect(gzipped, `catalogue.${locale}.json is ${asKb(gzipped)} gzipped`).toBeLessThanOrEqual(
+      BUDGET_BYTES.routePayload,
+    )
   }
 })
