@@ -1,0 +1,165 @@
+# The Smith-Morra Gambit. Frozen defining line 1.e4 c5 2.d4, which ends on White's own ply,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# No mate is claimed anywhere. The Morra is a development gambit and its famous trap — the
+# Siberian, ...Qc7 and ...Nd4 — wins the queen rather than mating, so it is described in a
+# plan and not asserted as a forced line.
+id: sicilian-defense-smith-morra-gambit
+name: 'Sicilian Defense: Smith-Morra Gambit'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-17'
+  basis:
+    by: chan
+    at: '2026-09-17'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Black has
+      several ways to reach a sound extra pawn — the Chicago and Siberian set-ups, or
+      simply returning the pawn with 3...d3 — so the gambit does not hold against a
+      prepared opponent. Against an unprepared one it is among the most effective openings
+      in club chess, which is why it is taught rather than dismissed. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-17'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đẩy d4 ngay ở nước thứ hai. Nếu Đen ăn thì Trắng sẽ chơi c3 và mời thêm một con tốt nữa, để đổi lấy hai cột nửa mở c và d cùng một thế trận phát triển rất nhanh. Người chơi Sicily quen với việc Trắng chơi Nf3 rồi mới d4, nên nước này tự nó đã là một bất ngờ.
+    en: White plays d4 on move two. If Black takes, White follows with c3 and offers a second pawn, in exchange for the half-open c- and d-files and a very fast development scheme. Sicilian players expect Nf3 before d4, so the move order alone is already a surprise.
+    fr: Les Blancs jouent d4 dès le deuxième coup. Si les Noirs prennent, les Blancs enchaînent c3 et offrent un second pion, contre les colonnes c et d semi-ouvertes et un schéma de développement très rapide. Les joueurs de sicilienne attendent Nf3 avant d4, si bien que l'ordre de coups est à lui seul une surprise.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ở d4 và cũng không chơi d6. Trắng không bắt buộc phải thí gì cả, con tốt d4 giữ được bằng Nf3 và c3 theo nhịp của Trắng, và ván cờ trở lại thành Sicily bình thường. Nước 2...c4 thì đơn giản là mất tốt sau Bxc4. Nước 2...Qa5+ có vẻ khó chịu nhưng Trắng chỉ việc chắn bằng Nc3 hay Bd2 rồi đuổi con hậu sau đó. Không nước nào ở đây bác bỏ gambit, chúng chỉ tránh nó.
+      en: Black neither takes on d4 nor plays ...d6. White is under no obligation to sacrifice anything — the d4 pawn can be held with Nf3 and c3 in White's own time and the game returns to ordinary Sicilian paths. 2...c4 simply drops a pawn to Bxc4. 2...Qa5+ looks annoying but White just blocks with Nc3 or Bd2 and chases the queen later. Nothing here refutes the gambit; these moves avoid it.
+      fr: Les Noirs ne prennent pas en d4 et ne jouent pas ...d6. Les Blancs ne sont tenus à aucun sacrifice, le pion d4 se garde par Nf3 et c3 au rythme des Blancs et la partie revient à une sicilienne ordinaire. 2...c4 perd simplement un pion après Bxc4. 2...Qa5+ semble gênant, mais les Blancs bloquent par Nc3 ou Bd2 et chassent la dame plus tard. Rien ici ne réfute le gambit, ces coups l'évitent.
+  children:
+    - ply: cxd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn, đúng như bình thường. Đây không phải sai lầm, đây là nước mà mọi người chơi Sicily sẽ chơi, và nó là điểm bắt đầu thật sự của gambit.
+        en: Black takes, as one normally would. This is not a mistake — it is what every Sicilian player plays, and it is where the gambit actually begins.
+        fr: Les Noirs prennent, comme il est normal. Ce n'est pas une faute, c'est ce que joue tout joueur de sicilienne, et c'est là que le gambit commence réellement.
+      children:
+        - ply: c3
+          annotation:
+            vi: Đây là Gambit Smith-Morra. Trắng mời con tốt thứ hai để lấy cột c. Nếu Đen ăn thì mã Trắng vào c3 và con tốt c bay mất, cột c mở thẳng tới c7, còn cột d thì mở sẵn từ trước. Trắng sẽ dựng đúng một thế trận giống nhau trong hầu hết các nhánh, đó là Nc3, Nf3, Bc4, O-O, Qe2, Rfd1 và Rac1.
+            en: This is the Smith-Morra. White offers the second pawn for the c-file. If Black takes, the knight comes to c3, White's c-pawn is gone and the c-file runs straight to c7, while the d-file is already open. White builds the same set-up in almost every line — Nc3, Nf3, Bc4, O-O, Qe2, rooks to d1 and c1.
+            fr: Voici le Smith-Morra. Les Blancs offrent le second pion pour la colonne c. Si les Noirs prennent, le cavalier va en c3, le pion c blanc disparaît et la colonne c file droit sur c7, tandis que la colonne d est déjà ouverte. Les Blancs construisent presque toujours le même dispositif — Nc3, Nf3, Bc4, O-O, Qe2, tours en d1 et c1.
+          dismissRest:
+            reason:
+              vi: Đen từ chối theo một cách khác và tạm giữ con tốt d4. Nước 3...d5 4.exd5 Qxd5 5.cxd4 trả trung tâm lại cho Trắng và Nc3 sẽ đuổi con hậu ngay sau đó. Các nước 3...e5 và 3...Qa5 giữ được tốt thêm một lúc nhưng để Đen chậm phát triển. Còn 3...Nc6, 3...e6 hay 3...d6 thì phần lớn chỉ là đổi thứ tự nước đi, vì Đen vẫn sẽ ăn ở c3 một nước sau. Trong mọi trường hợp Trắng lấy lại ở c3 hoặc d4 và vẫn có đúng hai cột nửa mở mà gambit cần.
+              en: Black declines in another way and hangs on to the d4 pawn for now. 3...d5 4.exd5 Qxd5 5.cxd4 gives White the centre back and Nc3 will hit the queen next. 3...e5 and 3...Qa5 keep the pawn a little longer at the cost of Black's development. 3...Nc6, 3...e6 and 3...d6 are mostly move-order, because Black still takes on c3 a move later. In every case White recaptures on c3 or d4 and still has the two half-open files the gambit is played for.
+              fr: Les Noirs refusent autrement et conservent pour l'instant le pion d4. 3...d5 4.exd5 Qxd5 5.cxd4 rend le centre aux Blancs et Nc3 frappera la dame ensuite. 3...e5 et 3...Qa5 gardent le pion un peu plus longtemps au prix du développement noir. 3...Nc6, 3...e6 et 3...d6 relèvent surtout de l'ordre des coups, car les Noirs prendront en c3 un coup plus tard. Dans tous les cas les Blancs reprennent en c3 ou en d4 et disposent toujours des deux colonnes semi-ouvertes pour lesquelles le gambit se joue.
+          children:
+            - ply: dxc3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen nhận con tốt thứ hai. Đây là Gambit Smith-Morra được chấp nhận, và cũng là nhánh chiếm phần lớn các ván cờ thật.
+                en: Black accepts the second pawn. This is the Smith-Morra Accepted, and it is the branch most real games go down.
+                fr: Les Noirs acceptent le second pion. C'est le Smith-Morra accepté, et c'est la branche que suivent la plupart des parties réelles.
+              children:
+                - ply: Nxc3
+                  annotation:
+                    vi: Lấy lại bằng mã chứ không bằng tốt. Mã ra c3 là một nhịp phát triển, và quan trọng hơn là cột c của Trắng bây giờ trống hoàn toàn. Trắng kém một tốt và có đổi lại ba nhịp phát triển cùng hai cột.
+                    en: Recapture with the knight, not the pawn. Nc3 is a developing move, and more to the point White's c-file is now completely empty. White is one pawn down for three tempi and two files.
+                    fr: Reprendre du cavalier, non du pion. Nc3 est un coup de développement et, plus important encore, la colonne c blanche est désormais entièrement dégagée. Les Blancs ont un pion de moins contre trois temps et deux colonnes.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng kém một tốt. Đổi lại Trắng có cột c và cột d nửa mở, mã đã ra c3, và một kế hoạch rõ ràng mà Trắng thuộc lòng còn Đen thì thường không. Điểm yếu lâu dài của Đen là ô d6 và con tốt d7, cùng với đường chéo a2-g8 sau khi tượng Trắng vào c4. Về mặt khách quan Đen hơn tốt và đứng ổn nếu biết cách, nhưng con đường đúng của Đen hẹp hơn của Trắng rất nhiều.
+                      en: White is a pawn down. In return White has the half-open c- and d-files, a knight already on c3, and a plan White knows by heart and Black usually does not. Black's long-term soft spots are the d6 square and the d7 pawn, together with the a2-g8 diagonal once the bishop reaches c4. Objectively Black is a pawn up and fine with accurate play, but Black's path is a great deal narrower than White's.
+                      fr: Les Blancs ont un pion de moins. En échange, ils ont les colonnes c et d semi-ouvertes, un cavalier déjà en c3 et un plan qu'ils connaissent par cœur alors que les Noirs, en général, non. Les points faibles durables des Noirs sont la case d6 et le pion d7, ainsi que la diagonale a2-g8 une fois le fou arrivé en c4. Objectivement les Noirs ont un pion de plus et s'en tirent bien avec précision, mais leur chemin est bien plus étroit que celui des Blancs.
+                    plan:
+                      vi: Trắng chơi Nf3, Bc4, O-O, Qe2, rồi Rfd1 và Rac1. Xe c1 ép vào c7, xe d1 ép vào d7, hậu e2 giữ e4 và chuẩn bị Bf4 hay Bg5. Nước cần nhớ là Nd5 và Nb5 mỗi khi Đen chơi e6 hay d6 mà bỏ trống một ô. Cạm bẫy phải thuộc là bẫy Siberia, khi Đen chơi Qc7 rồi Ng4 thì đừng chơi h3, vì Nd4 sau đó bắt hậu. Đen nên chơi Nc6, d6, Nf6, a6 và e6, không tham thêm tốt nào nữa, đổi quân bất cứ lúc nào được, và chỉ khi hậu đã rời bàn cờ thì con tốt thừa mới thành ưu thế.
+                      en: White plays Nf3, Bc4, castles, Qe2, then rooks to d1 and c1. The c-rook presses c7, the d-rook presses d7, the queen on e2 holds e4 and prepares Bf4 or Bg5. The moves to remember are Nd5 and Nb5 whenever Black's ...e6 or ...d6 leaves a square loose. The trap to know is the Siberian — when Black has played ...Qc7 and then ...Ng4, do not play h3, because ...Nd4 wins the queen. Black should play ...Nc6, ...d6, ...Nf6, ...a6 and ...e6, take no further pawns, trade pieces at every opportunity, and only once the queens are off does the extra pawn become an advantage.
+                      fr: Les Blancs jouent Nf3, Bc4, roquent, Qe2, puis amènent les tours en d1 et c1. La tour c pèse sur c7, la tour d sur d7, la dame en e2 tient e4 et prépare Bf4 ou Bg5. Les coups à retenir sont Nd5 et Nb5 dès que ...e6 ou ...d6 laisse une case faible. Le piège à connaître est le Sibérien — quand les Noirs ont joué ...Qc7 puis ...Ng4, ne jouez pas h3, car ...Nd4 gagne la dame. Les Noirs doivent jouer ...Nc6, ...d6, ...Nf6, ...a6 et ...e6, ne prendre aucun autre pion, échanger dès que possible, et ce n'est qu'une fois les dames hors du plateau que le pion en plus devient un avantage.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+            - ply: d3
+              replyQuality: good
+              frequency: occasional
+              annotation:
+                vi: Đen đẩy con tốt đi tiếp thay vì ăn. Đây là cách từ chối gọn gàng nhất, gọi là biến Push. Đen trả lại con tốt ngay và không cho Trắng có cột c, đổi lại Trắng được một nhịp phát triển miễn phí.
+                en: Black pushes the pawn on instead of taking. This is the tidiest way to decline, the Push Variation. Black gives the pawn straight back and denies White the c-file; in exchange White gets a free developing move.
+                fr: Les Noirs poussent le pion au lieu de prendre. C'est la façon la plus nette de refuser, la variante Push. Les Noirs rendent le pion aussitôt et privent les Blancs de la colonne c ; en échange, les Blancs obtiennent un coup de développement gratuit.
+              children:
+                - ply: Bxd3
+                  annotation:
+                    vi: Trắng ăn bằng tượng. Con tượng đứng ngay ở d3, một ô rất tự nhiên, nên Trắng coi như đã phát triển miễn phí một quân. Cấu trúc tốt bây giờ là e4 và c3 của Trắng chống lại d7 và e7 của Đen, tức là gần giống biến Alapin.
+                    en: White takes with the bishop. It lands on d3, a square it wanted anyway, so White has developed a piece for free. The structure is now White's e4 and c3 against Black's d7 and e7, which is close to an Alapin.
+                    fr: Les Blancs prennent du fou. Il arrive en d3, une case qu'il visait de toute façon, si bien que les Blancs ont développé une pièce gratuitement. La structure oppose désormais e4 et c3 blancs à d7 et e7 noirs, ce qui ressemble fort à une Alapin.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Quân số ngang nhau và không còn gambit nào cả. Trắng có tượng ở d3, con tốt e4 và con tốt c3 giữ ô d4, tức là thêm một chút không gian và một nhịp phát triển. Đen hoàn toàn khoẻ mạnh và không có điểm yếu nào, chỉ là ván cờ không còn sắc như Sicily thường. Đây là kết quả tốt nhất mà Đen có thể đòi hỏi từ một nước đi duy nhất.
+                      en: Material is level and there is no gambit left. White has the bishop on d3, a pawn on e4 and a pawn on c3 covering d4, which amounts to a little space and one tempo. Black is perfectly healthy with no weakness; the game is simply less sharp than a normal Sicilian. This is the best result Black can ask of a single move.
+                      fr: Le matériel est égal et il n'y a plus de gambit. Les Blancs ont le fou en d3, un pion en e4 et un pion en c3 qui couvre d4, soit un peu d'espace et un temps. Les Noirs sont parfaitement sains, sans faiblesse ; la partie est simplement moins tranchante qu'une sicilienne ordinaire. C'est le meilleur résultat que les Noirs puissent tirer d'un seul coup.
+                    plan:
+                      vi: Trắng chơi Nf3, O-O, Qe2 hoặc Re1, Bc2 và Nbd2, rồi chuẩn bị đẩy e5 hoặc chơi Bf4 và Rad1. Kế hoạch là dùng không gian chứ không phải tấn công. Đen chơi Nc6, d6 hoặc g6, Nf6, Bg7 hoặc e6 với Be7 và O-O, rồi phá bằng d5 khi đã phát triển xong. Ai hiểu cấu trúc Alapin hơn thì bên đó chơi dễ hơn.
+                      en: White plays Nf3, castles, Qe2 or Re1, Bc2 and Nbd2, and prepares e5 or Bf4 with Rad1. The plan is to use the space, not to attack. Black plays ...Nc6, ...d6 or ...g6, ...Nf6, ...Bg7 or ...e6 with ...Be7 and ...O-O, and breaks with ...d5 once developed. Whoever understands the Alapin structure better has the easier game.
+                      fr: Les Blancs jouent Nf3, roquent, Qe2 ou Re1, Bc2 et Nbd2, et préparent e5 ou Bf4 avec Rad1. Le plan est d'exploiter l'espace, non d'attaquer. Les Noirs jouent ...Nc6, ...d6 ou ...g6, ...Nf6, ...Bg7 ou ...e6 avec ...Be7 et ...O-O, et cassent par ...d5 une fois développés. Celui qui comprend le mieux la structure Alapin a le jeu le plus facile.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+            - ply: Nf6
+              replyQuality: good
+              frequency: occasional
+              annotation:
+                vi: Đen phát triển và đánh vào e4 thay vì ăn tốt. Đây là cách từ chối theo kiểu Alapin, và nó buộc Trắng phải làm gì đó với con tốt e4 ngay lập tức.
+                en: Black develops and hits e4 instead of taking. This is the Alapin way of declining, and it forces White to do something about the e4 pawn at once.
+                fr: Les Noirs se développent et frappent e4 au lieu de prendre. C'est la manière Alapin de refuser, et elle oblige les Blancs à s'occuper immédiatement du pion e4.
+              children:
+                - ply: e5
+                  annotation:
+                    vi: Trắng đẩy tốt lên và đuổi con mã. Mã phải đi d5, và sau đó Trắng lấy lại con tốt d4 bằng cxd4. Thế cờ vừa chuyển thẳng sang biến Alapin của Sicily, nơi Trắng không thí gì hết.
+                    en: White pushes past and chases the knight. It has to go to d5, and White then wins the d4 pawn back with cxd4. The game has transposed straight into the Alapin Sicilian, where White has sacrificed nothing.
+                    fr: Les Blancs poussent et chassent le cavalier. Il doit aller en d5, et les Blancs récupèrent ensuite le pion d4 par cxd4. La partie a transposé directement dans la sicilienne Alapin, où les Blancs n'ont rien sacrifié.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đen đang hơn một con tốt nhưng chỉ trong một nước, vì con tốt d4 sẽ rơi sau cxd4. Con mã f6 bị đánh và phải lui về d5, ở đó nó sẽ bị Nf3 và c4 hoặc Bc4 quấy rối. Kết quả là một thế cờ Alapin bình thường, Trắng có chút không gian nhờ tốt e5 và Đen chơi ngược lại bằng d6 hoặc e6 cùng d6.
+                      en: Black is a pawn up, but only for one move, because the d4 pawn falls to cxd4. The knight on f6 is attacked and must retreat to d5, where Nf3 and c4, or Bc4, will keep asking it questions. The result is an ordinary Alapin, White with a little space thanks to the e5 pawn and Black hitting back with ...d6, or ...e6 and ...d6.
+                      fr: Les Noirs ont un pion de plus, mais pour un coup seulement, car le pion d4 tombera après cxd4. Le cavalier f6 est attaqué et doit reculer en d5, où Nf3 et c4, ou Bc4, continueront de le harceler. Il en résulte une Alapin ordinaire, les Blancs avec un peu d'espace grâce au pion e5 et les Noirs contre-attaquant par ...d6, ou ...e6 et ...d6.
+                    plan:
+                      vi: Trắng chơi cxd4 lấy lại tốt, rồi Nf3, Bc4 đánh vào mã d5, Nc3 hoặc O-O, và giữ con tốt e5 càng lâu càng tốt vì nó là toàn bộ không gian của Trắng. Đen chơi Nd5 rồi d6 hoặc e6, Nc6 ép vào d4, Be7 và O-O, và nước phá là d6 để xoá con tốt e5. Nếu con tốt e5 biến mất mà Trắng chưa làm được gì thì Đen đứng thoải mái.
+                      en: White plays cxd4 to recover the pawn, then Nf3, Bc4 against the d5 knight, Nc3 or castling, and keeps the e5 pawn as long as possible because it is all of White's space. Black plays ...Nd5, then ...d6 or ...e6, ...Nc6 to press d4, ...Be7 and ...O-O, and the break is ...d6 to remove the e5 pawn. If that pawn disappears before White has achieved anything, Black is comfortable.
+                      fr: Les Blancs jouent cxd4 pour reprendre le pion, puis Nf3, Bc4 contre le cavalier d5, Nc3 ou le roque, et gardent le pion e5 le plus longtemps possible car il constitue tout leur espace. Les Noirs jouent ...Nd5, puis ...d6 ou ...e6, ...Nc6 pour peser sur d4, ...Be7 et ...O-O, la rupture étant ...d6 pour supprimer le pion e5. Si ce pion disparaît avant que les Blancs n'aient rien obtenu, les Noirs sont à l'aise.
+                    basis:
+                      by: chan
+                      at: '2026-09-17'
+    - ply: d6
+      replyQuality: good
+      frequency: rare
+      annotation:
+        vi: Đen tránh gambit bằng cách không ăn gì cả và chấp nhận đổi hậu. Nước này ít gặp nhưng hoàn toàn chơi được, và nó là cách nhanh nhất để đưa ván cờ ra khỏi lý thuyết mà Trắng đã học.
+        en: Black sidesteps the gambit by taking nothing and agreeing to a queen trade. It is uncommon but entirely playable, and it is the quickest way to take the game out of the theory White has studied.
+        fr: Les Noirs esquivent le gambit en ne prenant rien et en acceptant l'échange des dames. C'est peu courant mais tout à fait jouable, et c'est le moyen le plus rapide de sortir la partie de la théorie que les Blancs ont apprise.
+      children:
+        - ply: dxc5
+          annotation:
+            vi: Trắng ăn và mời đổi hậu. Đen chơi dxc5 rồi Qxd8+ Kxd8, vua Đen mất quyền nhập thành nhưng bàn cờ cũng không còn hậu để trừng phạt điều đó. Trắng không được gì ngoài một nhịp.
+            en: White takes and invites the queen trade. Black replies ...dxc5 and after Qxd8+ Kxd8 the black king has lost the right to castle, but there is no queen left on the board to punish that. White has gained nothing but a tempo.
+            fr: Les Blancs prennent et proposent l'échange des dames. Les Noirs répondent ...dxc5 et après Qxd8+ Kxd8, le roi noir a perdu le droit de roquer, mais il ne reste plus de dame pour le lui faire payer. Les Blancs n'ont gagné qu'un temps.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau sau khi Đen ăn lại ở c5. Hậu sẽ được đổi ngay và vua Đen phải đứng ở d8 một lúc, đó là phiền toái duy nhất của Đen. Không bên nào có điểm yếu tốt, và cấu trúc hoàn toàn đối xứng ở cánh vua. Đây là một thế cờ hoà nhiều hơn là một ván cờ, và với một người chơi Morra thì đó chính là điều khó chịu nhất.
+              en: Material is level once Black recaptures on c5. Queens come off immediately and the black king stands on d8 for a while, which is Black's only inconvenience. Neither side has a pawn weakness and the kingside is symmetrical. This is closer to a draw than to a game, and for a Morra player that is the most annoying thing about it.
+              fr: Le matériel est égal une fois que les Noirs reprennent en c5. Les dames s'échangent aussitôt et le roi noir reste un moment en d8, ce qui est le seul désagrément noir. Aucun camp n'a de faiblesse de pions et l'aile roi est symétrique. C'est plus proche d'une nulle que d'une partie, et pour un joueur de Morra c'est bien là le plus agaçant.
+            plan:
+              vi: Trắng chơi Qxd8+ rồi Nc3, Bf4 hoặc Be3 và O-O-O, dùng cột d và tìm cách ép vào ô d6 cùng con tốt c5 hay b7. Đen chơi dxc5 rồi Kxd8, sau đó Nc6, Nf6, Be6 hoặc e5 để chiếm trung tâm, đưa vua về c7 và nối hai xe. Nước phá của Trắng là e5 hoặc f4 rồi e5, còn Đen thì muốn đổi hết quân nhẹ và về một tàn cuộc cân bằng.
+              en: White plays Qxd8+, then Nc3, Bf4 or Be3 and O-O-O, uses the d-file and looks to press d6, c5 or b7. Black recaptures with ...dxc5 and ...Kxd8, then ...Nc6, ...Nf6, ...Be6 or ...e5 for the centre, walks the king to c7 and connects the rooks. White's break is e5, or f4 and then e5; Black simply wants to trade the minor pieces off and reach a level endgame.
+              fr: Les Blancs jouent Qxd8+, puis Nc3, Bf4 ou Be3 et O-O-O, exploitent la colonne d et cherchent à peser sur d6, c5 ou b7. Les Noirs reprennent par ...dxc5 et ...Kxd8, puis ...Nc6, ...Nf6, ...Be6 ou ...e5 pour le centre, conduisent le roi en c7 et relient les tours. La rupture blanche est e5, ou f4 puis e5 ; les Noirs veulent simplement échanger les pièces mineures et atteindre une finale égale.
+            basis:
+              by: chan
+              at: '2026-09-17'

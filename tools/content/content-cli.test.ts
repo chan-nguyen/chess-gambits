@@ -138,7 +138,10 @@ describe('export-pgn (AC 2)', () => {
 
     expect(result.status).toBe(1)
     expect(result.stderr).toContain(
-      'Known ids: benko-gambit, damiano-defence-refutation, italian-game-evans-gambit, legals-mate.',
+      'Known ids: benko-gambit, blackmar-diemer-gambit, damiano-defence-refutation, danish-gambit, ' +
+        'englund-gambit, englund-gambit-trap, halosar-trap, indian-defense-budapest-gambit, ' +
+        'italian-game-evans-gambit, kieninger-trap, kings-gambit, latvian-gambit, legals-mate, ' +
+        'scotch-game-scotch-gambit, sicilian-defense-smith-morra-gambit.',
     )
   })
 
@@ -160,9 +163,20 @@ describe('compile (AC 3)', () => {
     expect(result.status).toBe(0)
     expect([...readdirSync(out)].sort()).toStrictEqual([
       'benko-gambit.json',
+      'blackmar-diemer-gambit.json',
       'damiano-defence-refutation.json',
+      'danish-gambit.json',
+      'englund-gambit-trap.json',
+      'englund-gambit.json',
+      'halosar-trap.json',
+      'indian-defense-budapest-gambit.json',
       'italian-game-evans-gambit.json',
+      'kieninger-trap.json',
+      'kings-gambit.json',
+      'latvian-gambit.json',
       'legals-mate.json',
+      'scotch-game-scotch-gambit.json',
+      'sicilian-defense-smith-morra-gambit.json',
     ])
     const json = readFileSync(join(out, 'damiano-defence-refutation.json'), 'utf8')
     expect(json).not.toContain('\n')

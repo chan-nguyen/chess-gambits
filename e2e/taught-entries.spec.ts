@@ -76,11 +76,22 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are three of them, and they are the ones this ticket authored', () => {
+  test('there are fourteen of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'benko-gambit',
+      'blackmar-diemer-gambit',
+      'danish-gambit',
+      'englund-gambit',
+      'englund-gambit-trap',
+      'halosar-trap',
+      'indian-defense-budapest-gambit',
       'italian-game-evans-gambit',
+      'kieninger-trap',
+      'kings-gambit',
+      'latvian-gambit',
       'legals-mate',
+      'scotch-game-scotch-gambit',
+      'sicilian-defense-smith-morra-gambit',
     ])
   })
 
