@@ -231,10 +231,19 @@ describe('highlights (AC 6)', () => {
       />,
     ).container
 
-  it('tints the squares a ply left and reached, differently from each other', () => {
+  /**
+   * #80: only the square the ply *reached* is tinted. A fill behind the square it left is a
+   * surface with nothing standing on it, which is what made an empty square read as
+   * occupied. Read off the class attribute in full rather than by the absence of one name,
+   * so a differently-spelled tint fails here too.
+   */
+  it('tints the square a ply reached, and leaves the one it left its own wood', () => {
     const container = highlighted()
-    expect(container.querySelectorAll('.board__square--from')).toHaveLength(1)
     expect(container.querySelectorAll('.board__square--to')).toHaveLength(1)
+
+    // e2 is the square this ply left: file e is x=4, rank 2 is y=6, so 6 * 8 + 4.
+    const left = container.querySelectorAll('.board__square')[52]
+    expect(left?.getAttribute('class')).toBe('board__square board__square--light')
   })
 
   // The binding rule: colour is never the only signal (design-system.md §2).

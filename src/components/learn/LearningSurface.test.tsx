@@ -1112,7 +1112,8 @@ describe('the ply that produced the position', () => {
     await surface({ line: ['fxe5'] })
     const board = mainBoard()
 
-    expect(board?.querySelectorAll('.board__square--from')).toHaveLength(1)
+    // Two rings, and one tint: the square the ply left is empty, so #80 stopped filling it.
+    expect(board?.querySelectorAll('.board__square--from')).toHaveLength(0)
     expect(board?.querySelectorAll('.board__square--to')).toHaveLength(1)
     expect(board?.querySelectorAll('.board__last-ply')).toHaveLength(2)
   })

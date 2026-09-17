@@ -110,9 +110,8 @@ decoration:
 **Reply-quality colours** map to the closed set in `CONTEXT.md`: `best`, `good`, `inaccuracy`,
 `mistake`, `blunder`.
 
-**Board colours**: `--color-board-light`, `--color-board-dark`, `--color-board-highlight-from`,
-`--color-board-highlight-to`, `--color-board-check`, `--color-board-legal`, `--color-board-mark`,
-`--color-board-coordinate`.
+**Board colours**: `--color-board-light`, `--color-board-dark`, `--color-board-highlight-to`,
+`--color-board-check`, `--color-board-legal`, `--color-board-mark`, `--color-board-coordinate`.
 
 **Piece colours**: `--color-piece-white-fill`, `--color-piece-white-stroke`,
 `--color-piece-black-fill`, `--color-piece-black-stroke`. A piece's role is carried by its
@@ -128,19 +127,18 @@ anything; the rest of the palette is given values below, by #2. `src/styles/toke
 this table, and `board-contrast.test.ts` reads it directly — the doc is the source of truth, so a value
 edited here without re-checking contrast fails that test rather than shipping.
 
-| Token                          | Light     | Dark      | Role                               |
-| ------------------------------ | --------- | --------- | ---------------------------------- |
-| `--color-board-light`          | `#ebd9b8` | `#bcab94` | Light square                       |
-| `--color-board-dark`           | `#b58863` | `#927b66` | Dark square                        |
-| `--color-board-highlight-from` | `#c9ce6e` | `#a3a155` | Square the last ply left           |
-| `--color-board-highlight-to`   | `#e4c05a` | `#c2a24e` | Square the last ply arrived on     |
-| `--color-board-check`          | `#d14b3f` | `#c4544a` | Disc behind a king in check        |
-| `--color-board-mark`           | `#123a5e` | `#0f2e4a` | Ring on an arbitrary marked square |
-| `--color-board-coordinate`     | `#1f1a14` | `#14110c` | File letters and rank numbers      |
-| `--color-piece-white-fill`     | `#faf7f2` | `#e8e2d8` | White piece body                   |
-| `--color-piece-white-stroke`   | `#16120d` | `#14110c` | White piece outline                |
-| `--color-piece-black-fill`     | `#2a2520` | `#221e19` | Black piece body                   |
-| `--color-piece-black-stroke`   | `#f0eae0` | `#cfc7ba` | Black piece outline                |
+| Token                        | Light     | Dark      | Role                               |
+| ---------------------------- | --------- | --------- | ---------------------------------- |
+| `--color-board-light`        | `#ebd9b8` | `#bcab94` | Light square                       |
+| `--color-board-dark`         | `#b58863` | `#927b66` | Dark square                        |
+| `--color-board-highlight-to` | `#e4c05a` | `#c2a24e` | Square the last ply arrived on     |
+| `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check        |
+| `--color-board-mark`         | `#123a5e` | `#0f2e4a` | Ring on an arbitrary marked square |
+| `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers      |
+| `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                   |
+| `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                |
+| `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                   |
+| `--color-piece-black-stroke` | `#f0eae0` | `#cfc7ba` | Black piece outline                |
 
 Three rules hold over this table in both themes, and each is asserted:
 
@@ -158,6 +156,12 @@ Three rules hold over this table in both themes, and each is asserted:
 light _and_ the dark square, and only the dark end of the range does.
 
 `--color-board-legal` has no value yet — v1 shows no legal moves, so nothing renders it.
+
+**There is no `--color-board-highlight-from`, and #80 is why.** A tint is a surface — something a
+piece sits on — and the square a ply left has nothing sitting on it. Filling it made the emptiest
+square on the board one of the most solid objects on it. The square a ply left now keeps its own
+wood and is named by a line instead; the square it reached is still tinted, because a piece really
+is standing there. What the two squares are told apart by is unchanged, and is below.
 
 #### Interface, outcome and reply-quality colour values
 
@@ -225,7 +229,10 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
 - Reply quality carries an **icon and a text label**, not just a colour.
 - Outcome type carries **distinct components and distinct wording** — a mate leaf and an assessment
   leaf do not differ only in hue.
-- Board highlights carry a **shape or border difference**, not only a tint.
+- Board highlights carry a **shape or border difference**, not only a tint. Concretely, for the last
+  ply: the square it left carries a **dashed** outline and the square it reached a **solid** one. The
+  weight of those two outlines is a separate question from the shape of them, and #80 answered it —
+  the mark says which piece moved, so it must be quieter than the piece (§5).
 - Every colour-coded element passes a greyscale screenshot review. This is a review step, not a
   suggestion.
 
@@ -628,6 +635,58 @@ closes the one line the entry above records as not covered, and leaves the rest 
 - **Looked at by hand:** the highlight on the main board and on a column of previews, in both
   themes at 375px, in colour and under `grayscale(1)`. **Not performed:** everything the entry above
   lists as not performed — the screen-reader, zoom and reduced-motion rows are still unrun.
+
+**2026-09-17 — #80, the last-ply highlight given its weight back.** Not a release review; it changes
+one thing the two entries above recorded as passing, and says what it changed it to.
+
+- **The measure.** Every number here is one quantity: how much **darker** a square is than its own
+  plain colour, averaged over its pixels — `e2e/board-ink.ts`, which decodes a screenshot of the
+  board. It is normalised to the square underneath, so it reads the same in both themes and at any
+  board size, and it is hue-free for the same reason the ratios above are: luminance carries no hue.
+  A square with nothing on it measures 0%.
+- **The defect, measured rather than described.** On `kings-gambit?line=exf4_Nf3` the knight has gone
+  g1→f3 and g1 is **empty**. It measured **12.1%** in the light theme and **12.2%** in the dark —
+  against **11.2%** and **9.9%** for the knight standing on b1, and **4.9%** / **4.7%** for the
+  faintest piece in the same frame. The empty square was darker than a piece. That is the issue's
+  "it reads as though something is still there", in a number, and the tint is not even counted in it:
+  12.1% is the ring alone. It was a 0.045-unit near-black line, thicker than anything the artwork
+  draws inside a piece, around an olive block.
+- **What ships instead.** The tint on the departed square is gone and `--color-board-highlight-from`
+  with it (§2 says why a tint is a surface). Both rings are now **0.016** units rather than 0.045,
+  and the dashed one is dashed more sparsely. The same square now measures **3.9%** / **4.0%** — a
+  third of what it was, under the 4.9% / 4.7% of the faintest piece on the board, which is the bar
+  an empty square has to clear to stop reading as an occupied one. At a 360px phone it is 3.7% /
+  3.8%, so the reading does not depend on the board being large.
+- **Greyscale: still a shape difference, and still the only one.** Nothing about the dashed-versus-
+  solid distinction changed, and the #54 entry's measurements still stand — desaturated, the tint on
+  the arrival square is within 1.3:1 of an ordinary square, so the outlines carry it. Counted on a
+  desaturated screenshot rather than on a computed style: the departed square's top edge breaks into
+  **3** runs of ink and the arrival square's into **1**.
+- **Without motion, which is the case the marks exist for.** #72's slide does not run on a directly
+  opened `?line=` URL and is switched off entirely by `prefers-reduced-motion: reduce`. Every number
+  above was taken under **both** conditions at once — a fresh load of the deep link, in a context
+  with the reduced-motion preference on — because that is the learner the mark is the only channel
+  for. `e2e/last-ply-weight.spec.ts` holds all of it, in both themes, with a probe per measurement.
+- **axe: still 0 violations** over the same sweep as the entries above. The marks are geometry inside
+  the board's `aria-hidden` SVG and were before.
+- **The 96px choice previews, which are the hard case and were measured separately.** A preview
+  cannot animate — `BoardPreview.css` pins `transition: none` on its pieces — so its rings are not a
+  fallback for motion, they are all there is, and the departed square has no tint and no piece
+  either. They survive at that size only because `BoardPreview.css` overrides the stroke to 0.1
+  units, and #80 made that override load-bearing: against the old 0.045 base it was 2.2x, against
+  0.016 it is 6.25x, so on screen the two lines are the same weight (1.2px on a 96px preview, 1.3px
+  on a 646px board — measured, not intended). Removing the override leaves a fifth of a pixel and no
+  dashes, and before this entry every test in the repository stayed green when it was removed.
+  `e2e/last-ply-weight.spec.ts` now measures the preview's departed square too: desaturated, its
+  dashes reach **86%** darker with the gaps at **0%**, and the ring breaks into 2 runs along the
+  edge that is counted. **One number is worth recording and is not a regression:** at 96px the
+  _arrival_ ring lands as a single antialiased row about **20%** darker than what is under it —
+  much fainter than the departed square's. It is pre-existing, unchanged by #80, and that square
+  has a tint and a piece on it as well, so nothing here rests on it; it is not measured, because a
+  count at that weight would be reading the instrument rather than the board.
+- **Looked at by hand:** the main board and a column of previews, both themes, 360px and desktop, in
+  colour and under `grayscale(1)`. **Not performed:** the screen-reader and zoom rows, still.
+  Reduced motion is now covered for the board specifically, and nowhere else in the product.
 
 ---
 

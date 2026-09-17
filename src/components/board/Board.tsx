@@ -150,15 +150,10 @@ export const Board = ({
     setFocused(target)
   }
 
-  const squareClassName = (square: Square, light: boolean) => {
-    const tint =
-      square === lastMove?.from
-        ? ' board__square--from'
-        : square === lastMove?.to
-          ? ' board__square--to'
-          : ''
-    return `board__square board__square--${light ? 'light' : 'dark'}${tint}`
-  }
+  // Only the square the ply arrived on is tinted; the one it left keeps its wood (#80).
+  const squareClassName = (square: Square, light: boolean) =>
+    `board__square board__square--${light ? 'light' : 'dark'}` +
+    (square === lastMove?.to ? ' board__square--to' : '')
 
   /*
    * One piece, positioned by a transform rather than by `x`/`y`, and the whole of how a

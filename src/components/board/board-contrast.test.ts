@@ -55,7 +55,6 @@ const valueOf = (token: string, theme: keyof TokenValues): string => {
 const EXPECTED_TOKENS: readonly string[] = [
   '--color-board-light',
   '--color-board-dark',
-  '--color-board-highlight-from',
   '--color-board-highlight-to',
   '--color-board-check',
   '--color-board-mark',
@@ -66,11 +65,16 @@ const EXPECTED_TOKENS: readonly string[] = [
   '--color-piece-black-stroke',
 ]
 
-/** Everything a piece can be drawn on top of. */
+/**
+ * Everything a piece can be drawn on top of.
+ *
+ * The square a ply *left* is not on the list and has not been since #80, because it is not a
+ * surface any more: it has nothing standing on it, so it keeps its own wood and there is no
+ * `--color-board-highlight-from` for a piece to be legible against.
+ */
 const SURFACES: readonly string[] = [
   '--color-board-light',
   '--color-board-dark',
-  '--color-board-highlight-from',
   '--color-board-highlight-to',
   '--color-board-check',
 ]
@@ -164,15 +168,18 @@ describe('the contrast maths', () => {
  *
  * | pair (light / dark)                         | greyscale contrast |
  * | ------------------------------------------- | ------------------ |
- * | `highlight-from` against `highlight-to`     | 1.05 / 1.10        |
  * | `highlight-to` against the light square     | 1.26 / 1.10        |
- * | `highlight-from` against the light square   | 1.21 / 1.21        |
  *
- * So with the colour removed a learner cannot tell the square a ply left from the square it
- * reached, and can barely tell either from a square nothing happened on. Exactly the
- * situation §5 records for the outcome and quality palettes: the shape is not reinforcing
- * the colour, it is replacing it. The two assertions below are what that rule reduces to in
- * a stylesheet.
+ * So with the colour removed a learner cannot tell the square a ply reached from a square
+ * nothing happened on, and until #80 the same was true of the square it left — the two
+ * tints were 1.05:1 apart. Exactly the situation §5 records for the outcome and quality
+ * palettes: the shape is not reinforcing the colour, it is replacing it. The two assertions
+ * below are what that rule reduces to in a stylesheet.
+ *
+ * **What they do not measure, and what does.** These read declarations. They cannot see that
+ * a ring is three pixels of near-black around an empty square, which is the defect #80 fixed
+ * and which every assertion in this file passed throughout. `e2e/last-ply-weight.spec.ts`
+ * counts ink in a rendered screenshot and is where that claim lives.
  */
 describe('the last-ply highlight is a shape difference', () => {
   /** One rule's declarations, as written. */
