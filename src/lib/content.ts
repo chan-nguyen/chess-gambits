@@ -5,6 +5,7 @@ import type {
   CompiledDismissal,
   CompiledDismissRest,
   CompiledEntry,
+  CompiledJudgement,
   CompiledNode,
   CompiledOutcome,
   CompiledProved,
@@ -103,16 +104,15 @@ const isProved = (value: unknown): value is CompiledProved =>
   value.by === 'certificate' &&
   isString(value.certificate)
 
-const isProvenance = (value: unknown): value is CompiledProvenance => {
-  if (!isRecord(value)) return false
-  if (value.basis === 'proved') return isProved(value)
-  return (
-    value.basis === 'judgement' &&
-    isString(value.by) &&
-    isString(value.at) &&
-    isOptionalString(value.source)
-  )
-}
+const isJudgement = (value: unknown): value is CompiledJudgement =>
+  isRecord(value) &&
+  value.basis === 'judgement' &&
+  isString(value.by) &&
+  isString(value.at) &&
+  isOptionalString(value.source)
+
+const isProvenance = (value: unknown): value is CompiledProvenance =>
+  isProved(value) || isJudgement(value)
 
 const isOutcome = (value: unknown): value is CompiledOutcome => {
   if (!isRecord(value)) return false
@@ -127,7 +127,9 @@ const isOutcome = (value: unknown): value is CompiledOutcome => {
         isProved(value.basis)
       )
     case 'position':
-      return isAnnotation(value.evaluation) && isAnnotation(value.plan) && isProvenance(value.basis)
+      // And the mirror of it: a certificate proves a mate, so an assessment carrying one is
+      // either a mate mislabelled or a claim with nothing behind it. Neither gets rendered.
+      return isAnnotation(value.evaluation) && isAnnotation(value.plan) && isJudgement(value.basis)
     case 'unexplored':
       return true
     default:

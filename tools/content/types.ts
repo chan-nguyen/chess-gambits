@@ -82,12 +82,18 @@ export type ForcedMate = {
   readonly basis: Proved
 }
 
-/** The opponent defended adequately. The normal outcome for a gambit, not a consolation prize. */
+/**
+ * The opponent defended adequately. The normal outcome for a gambit, not a consolation prize.
+ *
+ * `basis` is the narrow `Judgement` and not the full union, for the mirror image of
+ * `ForcedMate`'s reason: `Proved` names a mate certificate (ADR-0005) and a merely winning
+ * position has none to name, so a proved assessment is not expressible either.
+ */
 export type Assessment = {
   readonly kind: 'position'
   readonly evaluation: Annotation
   readonly plan: Annotation
-  readonly basis: Provenance
+  readonly basis: Judgement
 }
 
 /** Not mapped yet. Exists so half-finished work is committable; holds the entry below Mapped. */

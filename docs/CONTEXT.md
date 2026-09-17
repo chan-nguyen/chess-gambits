@@ -121,12 +121,17 @@ and a one-ply exhaustive search settles it (`search`). Minimality is established
 both cases. `basis` is the narrow `Proved` provenance and not the full union, so a hand-judged mate is
 not expressible: there is no way to construct the type without naming a certificate.
 
-**`Assessment`** — `{ kind: 'position', evaluation: ..., plan: ..., basis: Provenance }`
+**`Assessment`** — `{ kind: 'position', evaluation: ..., plan: ..., basis: Judgement }`
 
 The opponent defended adequately, so there is no mate. The leaf states a material and positional
 evaluation and a written middlegame plan: what to aim at, which pieces matter, what the pawn
 structure implies. This is the _normal_ outcome for a gambit, and the UI must not present it as a
 consolation prize.
+
+`basis` is the narrow `Judgement` and not the full union, which is the mirror image of `ForcedMate`'s
+narrowing: `Proved` names a mate certificate a reader can fetch and replay (ADR-0005), and a position
+that is merely winning has none to name. A proved assessment is therefore not expressible, and a file
+that arrives claiming one is refused at the runtime boundary rather than rendered.
 
 **`Unexplored`** — `{ kind: 'unexplored' }`
 

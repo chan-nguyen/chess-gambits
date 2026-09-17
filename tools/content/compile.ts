@@ -1,6 +1,7 @@
 import type {
   CompiledAnnotation,
   CompiledEntry,
+  CompiledJudgement,
   CompiledNode,
   CompiledOutcome,
   CompiledProvenance,
@@ -11,6 +12,7 @@ import type {
   ContentNode,
   Entry,
   ForcedMate,
+  Judgement,
   Outcome,
   Provenance,
 } from './types.ts'
@@ -36,16 +38,18 @@ const annotation = (value: Annotation): CompiledAnnotation => ({
   ...(value.fr === undefined ? {} : { fr: value.fr }),
 })
 
+const judgement = (value: Judgement): CompiledJudgement => ({
+  basis: 'judgement',
+  by: value.by,
+  at: value.at,
+  ...(value.source === undefined ? {} : { source: value.source }),
+})
+
 const provenance = (value: Provenance): CompiledProvenance => {
   if (value.basis === 'proved') {
     return { basis: 'proved', by: 'certificate', certificate: value.certificate }
   }
-  return {
-    basis: 'judgement',
-    by: value.by,
-    at: value.at,
-    ...(value.source === undefined ? {} : { source: value.source }),
-  }
+  return judgement(value)
 }
 
 const outcome = (value: Outcome): CompiledOutcome => {
@@ -63,7 +67,7 @@ const outcome = (value: Outcome): CompiledOutcome => {
         kind: 'position',
         evaluation: annotation(value.evaluation),
         plan: annotation(value.plan),
-        basis: provenance(value.basis),
+        basis: judgement(value.basis),
       }
     case 'unexplored':
       return { kind: 'unexplored' }
