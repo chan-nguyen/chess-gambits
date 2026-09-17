@@ -2,6 +2,7 @@ import { readFile, stat } from 'node:fs/promises'
 import { createServer, type IncomingMessage, type ServerResponse } from 'node:http'
 import { dirname, extname, join, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { gzipSync } from 'node:zlib'
 
 /**
  * A static file server for the end-to-end tests, standing in for GitHub Pages.
@@ -12,7 +13,15 @@ import { fileURLToPath } from 'node:url'
  * emitted there. Here a 200 means a file exists at that path, which is exactly the claim
  * ADR-0009 makes.
  *
- * It is deliberately dependency-free. A static file server is fifty lines, and this
+ * The other thing it must do is **compress**, which was added by #19 and is not a
+ * convenience. GitHub Pages serves text assets gzipped, and Lighthouse computes LCP from
+ * the bytes that actually crossed the wire: against an uncompressed stand-in the bundle
+ * is 425KB rather than 132KB, and the measured LCP was 4.2s for a site that ships 1.5s.
+ * A budget measured against a host that behaves differently from the real one is not a
+ * budget, it is a number. `content-encoding` is negotiated from `accept-encoding` like a
+ * real host's, so a client that asks for identity still gets identity.
+ *
+ * It is deliberately dependency-free. A static file server is sixty lines, and this
  * project's dependency count is a design goal rather than an accident
  * (docs/security.md, B2).
  */
@@ -36,6 +45,37 @@ const mimeTypes: Readonly<Record<string, string>> = {
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
   '.txt': 'text/plain; charset=utf-8',
+}
+
+/**
+ * What GitHub Pages compresses: text, and nothing already compressed. An SVG is text and
+ * this site's favicon is 9KB of it, so it belongs on the list.
+ */
+const compressible = new Set(['.html', '.js', '.css', '.json', '.svg', '.txt'])
+
+/**
+ * Compressed bytes, remembered — which is not an optimisation for its own sake but the
+ * other half of behaving like the host this stands in for.
+ *
+ * Compressing at all was #19's change, and without a cache it makes every request re-gzip
+ * the file: tens of milliseconds of blocking work before the first byte of the 165KB
+ * catalogue goes out, on a server that answers a few thousand requests per suite run. A
+ * CDN compresses once, so that delay would be this server's invention and would land in
+ * every latency number measured against it.
+ *
+ * Keyed by size and modification time, so a rebuilt file is never served from a stale
+ * entry: `reuseExistingServer` means a developer's server outlives several builds.
+ */
+const compressed = new Map<string, Buffer>()
+
+const gzipOnce = (file: string, raw: Buffer, stamp: string): Buffer => {
+  const key = `${file}:${stamp}`
+  const remembered = compressed.get(key)
+  if (remembered !== undefined) return remembered
+
+  const bytes = gzipSync(raw)
+  compressed.set(key, bytes)
+  return bytes
 }
 
 const isFile = async (path: string): Promise<boolean> => {
@@ -90,9 +130,22 @@ const handle = async (req: IncomingMessage, res: ServerResponse): Promise<void> 
     return
   }
 
-  const contentType = mimeTypes[extname(file)] ?? 'application/octet-stream'
-  const body = await readFile(file)
-  res.writeHead(200, { 'content-type': contentType })
+  const extension = extname(file)
+  const contentType = mimeTypes[extension] ?? 'application/octet-stream'
+  const [raw, stats] = await Promise.all([readFile(file), stat(file)])
+
+  const wanted = req.headers['accept-encoding'] ?? ''
+  const gzip = compressible.has(extension) && wanted.includes('gzip')
+  const body = gzip ? gzipOnce(file, raw, `${stats.size}:${stats.mtimeMs}`) : raw
+
+  res.writeHead(200, {
+    'content-type': contentType,
+    'content-length': String(body.byteLength),
+    // Always, whether or not this response was compressed: the representation depends on
+    // the request header, and a cache that did not know that would serve the wrong one.
+    vary: 'accept-encoding',
+    ...(gzip ? { 'content-encoding': 'gzip' } : {}),
+  })
   res.end(req.method === 'HEAD' ? undefined : body)
 }
 

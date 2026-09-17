@@ -141,16 +141,36 @@ Every URL parameter is attacker-controlled, because a link can be sent to anyone
   _The exact set of headers the host does send is to be verified in Phase 2 and recorded here._
 - CSP is restrictive by default: no third-party origins are allowed at all, which is enforcement of
   requirement N8 rather than a separate rule.
+- **In place since #19.** `tools/shells/csp.ts` builds the policy from the emitted `index.html` and
+  `scripts/generate-shells.ts` stamps it into all 2,111 documents, immediately after `<meta charset>`
+  — a `<meta>` policy governs only what the parser reads after it, so one emitted lower in the head
+  would leave the inline script below ungoverned. The policy as published:
+
+  ```
+  default-src 'none'; script-src 'self' 'sha256-…'; style-src 'self'; img-src 'self';
+  connect-src 'self'; font-src 'none'; base-uri 'none'; form-action 'none'
+  ```
+
+  `font-src 'none'` is redundant under `default-src` and written out anyway: `docs/design-system.md`
+  §6 budgets zero downloaded fonts, and a budget in the policy is enforced on every visitor rather
+  than only on CI. `frame-ancestors` is absent because a `<meta>` policy cannot express it, which is
+  the acceptance recorded above rather than an omission.
+
 - **`script-src` has one inline script to account for**: the pre-paint theme read described under
   B5. It must be allowed by its **hash**, never by `'unsafe-inline'` — a policy that permits inline
   script wholesale gives away most of what a CSP buys, and one four-line script is not worth that.
-  Whoever writes the policy computes the hash at build time from the emitted HTML.
+  Whoever writes the policy computes the hash at build time from the emitted HTML. Done: the hash is
+  computed from `dist/index.html`, never written down, and **a second inline script stops the
+  build** rather than earning itself a second hash. `e2e/content-security-policy.spec.ts` shows the
+  distinction is real — an injected inline script with different bytes does not run.
 - **`style-src` must be genuinely checked, not assumed.** A CSP that ends up needing
   `'unsafe-inline'` for styles has given away most of what a CSP buys, and inline `style` attributes
   are governed by `style-src`. Owning the board renderer (ADR-0003) is what makes a strict policy
   reachable — a third-party board setting inline transforms would have forced the exemption. The
   policy is asserted by a test, so a future inline style fails the build rather than quietly
-  widening the policy.
+  widening the policy. Checked, not assumed: the application sets no `style` attribute and injects
+  no `<style>` element, `style-src 'self'` ships, and every published route is walked under the real
+  policy and required to render _and_ report zero violations.
 - No cookies are set. No cookie banner is needed, because there is nothing to consent to.
 
 ---

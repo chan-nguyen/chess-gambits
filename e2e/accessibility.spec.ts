@@ -386,7 +386,18 @@ test.describe('the keyboard-only walk (AC 2)', () => {
     await page.keyboard.press('Tab')
     expectFocusVisible(await focusedStop(page), ring, 'before the stylesheet is edited')
 
-    await page.addStyleTag({ content: ':focus-visible { outline: none; }' })
+    /*
+     * Inserted through CSSOM rather than as a `<style>` element. The site ships a Content
+     * Security Policy with `style-src 'self'` (#19), which refuses an injected inline
+     * stylesheet outright and makes `page.addStyleTag` throw. A rule appended to a
+     * stylesheet the page already loaded is the same edit, arrives last and therefore wins,
+     * and is governed by nothing.
+     */
+    await page.evaluate(() => {
+      const sheet = document.styleSheets[0]
+      if (sheet === undefined) throw new Error('the page has no stylesheet to edit')
+      sheet.insertRule(':focus-visible { outline: none }', sheet.cssRules.length)
+    })
 
     const stripped = await focusedStop(page)
     expect(stripped.outlineStyle).toBe('none')

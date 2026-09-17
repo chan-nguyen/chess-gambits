@@ -43,3 +43,7 @@ dist-ssr
 # never committed, for the same reason. The PGN fixtures under tools/ are test *inputs*.
 *.pgn
 !tools/content/fixtures/pgn/*.pgn
+
+# Lighthouse CI run artefacts. `npm run perf:lighthouse` regenerates them and nothing
+# reads them back: the assertions run in the same command that collected them.
+/.lighthouseci

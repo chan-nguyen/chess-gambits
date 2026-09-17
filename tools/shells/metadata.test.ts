@@ -44,8 +44,12 @@ const NAMES: Readonly<Record<Locale, string>> = {
   fr: 'Partie italienne: Evans Gambit',
 }
 
+/** A policy shaped like the real one, without recomputing a hash in every test. */
+const CSP = "default-src 'none'; script-src 'self' 'sha256-abc='"
+
 const input = (overrides: Partial<MetadataInput> = {}): MetadataInput => ({
   gambitIds: ['evans-gambit'],
+  csp: CSP,
   entries: {
     vi: new Map([['evans-gambit', facts(NAMES.vi)]]),
     en: new Map([['evans-gambit', facts(NAMES.en)]]),
@@ -236,7 +240,8 @@ describe('canonical and alternates (AC 4)', () => {
 })
 
 const TEMPLATE =
-  '<!doctype html>\n<html lang="en">\n  <head>\n    <title>app</title>\n  </head>\n</html>\n'
+  '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n' +
+  '    <title>app</title>\n  </head>\n</html>\n'
 
 const render = (data: ShellMetadata, template = TEMPLATE): string => {
   const result = shellHtml(template, data)
@@ -272,16 +277,43 @@ describe('rendering a shell', () => {
   })
 
   /**
+   * **Where the policy sits is the whole of whether it works.** A `<meta>` policy governs
+   * only what the parser reads after it, so one emitted with the rest of the head — after
+   * `index.html`'s inline theme script — would leave that script ungoverned and its hash
+   * ornamental, and the first person to read the file would reasonably believe otherwise.
+   */
+  it('puts the policy above the inline script whose hash it carries', () => {
+    const template =
+      '<!doctype html>\n<html lang="en">\n  <head>\n    <meta charset="UTF-8" />\n' +
+      '    <script>theme()</script>\n    <title>app</title>\n  </head>\n</html>\n'
+
+    const html = render(shellAt('vi'), template)
+
+    expect(html.indexOf('Content-Security-Policy')).toBeGreaterThan(-1)
+    expect(html.indexOf('Content-Security-Policy')).toBeLessThan(html.indexOf('<script>'))
+  })
+
+  /**
    * The substitution is the whole ticket. A template that stopped carrying an anchor would
    * otherwise be copied 3,018 times with the replacement silently doing nothing.
    */
   it.each([
-    ['no title', '<html lang="en"><head></head></html>', '<title>'],
-    ['no html lang', '<!doctype html><head><title>app</title></head>', '<html lang'],
+    ['no title', '<html lang="en"><head><meta charset="UTF-8" /></head></html>', '<title>'],
+    [
+      'no html lang',
+      '<!doctype html><head><meta charset="UTF-8" /><title>app</title></head>',
+      '<html lang',
+    ],
     [
       'two titles',
-      '<html lang="en"><head><title>a</title><title>b</title></head></html>',
+      '<html lang="en"><head><meta charset="UTF-8" /><title>a</title><title>b</title></head></html>',
       '<title>',
+    ],
+    ['no charset', '<html lang="en"><head><title>app</title></head></html>', '<meta charset>'],
+    [
+      'two charsets',
+      '<html lang="en"><head><meta charset="UTF-8" /><meta charset="utf-8" /><title>a</title></head></html>',
+      '<meta charset>',
     ],
   ])('refuses a template with %s', (_what, template, reason) => {
     const result = shellHtml(template, shellAt('vi'))
@@ -339,6 +371,7 @@ describe('the coverage assertion the build runs (AC 6)', () => {
     ['title', `<title>${NAMES.fr} · ${siteName}</title>`, '<title>app</title>'],
     ['og:url', 'property="og:url"', 'property="og:nothing"'],
     ['hreflang en', 'hreflang="en"', 'hreflang="de"'],
+    ['content-security-policy', `content="${CSP}"`, 'content="default-src *"'],
   ])('reports a missing %s', (what, present, replacement) => {
     const data = shellAt('fr/gambits/evans-gambit')
     const damaged = render(data).replace(present, () => replacement)

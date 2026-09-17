@@ -9,6 +9,11 @@ import fr from '../src/locales/fr.ts'
 import vi from '../src/locales/vi.ts'
 import { publishedGambitIds } from '../tools/catalogue/published-ids.ts'
 import {
+  ALLOWED_INLINE_SCRIPTS,
+  contentSecurityPolicy,
+  inlineScriptHashes,
+} from '../tools/shells/csp.ts'
+import {
   catalogueEntries,
   metadataGaps,
   shellHtml,
@@ -189,6 +194,28 @@ const main = async (): Promise<void> => {
     )
   }
 
+  /**
+   * The Content Security Policy (#19, AC 6), computed from the bytes Vite emitted rather
+   * than written down: it names the one inline script by hash, and a literal would keep
+   * passing here on the day that script changed while the browser refused to run it in
+   * production.
+   *
+   * A second inline script stops the build. That is the gate: `docs/security.md` allows
+   * exactly one documented exemption (B5, the pre-paint theme read), and a generator that
+   * quietly hashed a second would widen the policy without anybody deciding to.
+   */
+  const scriptHashes = inlineScriptHashes(template)
+  if (scriptHashes.length !== ALLOWED_INLINE_SCRIPTS) {
+    throw new Error(
+      `dist/index.html has ${scriptHashes.length} inline <script> elements and the policy ` +
+        `allows ${ALLOWED_INLINE_SCRIPTS}. The one exemption is the pre-paint theme read ` +
+        '(docs/security.md B5). Anything else belongs in a module, or the exemption has to ' +
+        'be argued for in docs/security.md first — this build will not widen the policy on ' +
+        'its own.',
+    )
+  }
+  const csp = contentSecurityPolicy(scriptHashes)
+
   const [viJson, enJson, frJson] = await Promise.all([
     readCatalogue('vi'),
     readCatalogue('en'),
@@ -203,6 +230,7 @@ const main = async (): Promise<void> => {
     copy: byLocale(copyFor),
     basePath,
     origin,
+    csp,
   })
   if (!metadata.ok) throw new Error(metadata.reason)
 
@@ -275,9 +303,9 @@ const main = async (): Promise<void> => {
   process.stdout.write(
     `Emitted ${paths.length} route shells for ${ids.length} published gambits, plus the site ` +
       `root and 404.html, and verified .nojekyll — ${written.size} documents, each with its ` +
-      `own lang, title, description, og:* and ${locales.length + 1} hreflang alternates, all ` +
-      `canonical under ${origin}${basePath} — ${(bytes / 1024 / 1024).toFixed(2)}MB of HTML ` +
-      `in ${seconds}s\n`,
+      `own lang, title, description, og:*, ${locales.length + 1} hreflang alternates and the ` +
+      `same Content Security Policy, all canonical under ${origin}${basePath} — ` +
+      `${(bytes / 1024 / 1024).toFixed(2)}MB of HTML in ${seconds}s\n`,
   )
 }
 

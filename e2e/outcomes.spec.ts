@@ -204,21 +204,27 @@ test.describe('the greyscale review', () => {
     await greyscale(page)
     const before = await signal(page)
 
-    // Strip the words and the outlines and match the border, leaving only the hue.
-    await page.evaluate(() => {
-      const note = document.querySelector('.provenance')
-      if (note === null) return
-      note.textContent = 'provenance'
-      note.setAttribute('style', 'border-inline-start: 1px dashed currentColor')
-    })
+    /*
+     * Strip the words and the outlines and match the border, leaving only the hue.
+     *
+     * Through `style.cssText`, not `setAttribute('style', …)`. Since #19 the site ships a
+     * Content Security Policy with `style-src 'self'`, which refuses a `style` **attribute**
+     * — so the attribute form applied nothing, and this probe went on passing on the text
+     * change alone while proving nothing whatever about colour. CSSOM is not governed by
+     * `style-src` and is the same edit. Found by the policy, which is the argument for it.
+     */
+    const paintBorder = (colour: string): Promise<void> =>
+      page.evaluate((hue) => {
+        const note = document.querySelector('.provenance')
+        if (!(note instanceof HTMLElement)) return
+        note.textContent = 'provenance'
+        note.style.cssText = `border-inline-start: 1px dashed ${hue}`
+      }, colour)
+
+    await paintBorder('currentColor')
     const stripped = await signal(page)
 
-    await page.evaluate(() => {
-      const note = document.querySelector('.provenance')
-      if (note === null) return
-      note.textContent = 'provenance'
-      note.setAttribute('style', 'border-inline-start: 1px dashed red')
-    })
+    await paintBorder('red')
 
     expect(stripped).not.toBe(before)
     expect(await signal(page)).toBe(stripped)
