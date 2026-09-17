@@ -28,7 +28,7 @@ const CATALOGUE = {
           soundness: 'sound',
           tier: 'listed',
           line: 'e4 e5 Nf3 Nc6 Bc4 Bc5 b4',
-          branches: 0,
+          branchKeys: [],
         },
       ],
     },
@@ -76,7 +76,7 @@ describe('reading a name out of the catalogue', () => {
     soundness: 'sound',
     tier: 'listed',
     line: 'e4',
-    branches: 0,
+    branchKeys: [],
   } as const
 
   it('folds the family and the variation back together', () => {
@@ -175,37 +175,48 @@ describe('the guard itself', () => {
 })
 
 /**
- * The baked branch count is the one field a card *divides by*, so it is checked harder
- * than the strings around it. A card that read "3 of -1 branches" would be a visible
- * defect on the one display whose whole purpose is to be believed, and the catalogue is
- * fetched from a static host that can answer with something other than what we built.
+ * The baked branch keys are the one field a card both *counts against* and *divides by*, so
+ * they are checked harder than the strings around them. A card handed something other than a
+ * list of keys would print a taught entry as having nothing to learn — a visible defect on
+ * the one display whose whole purpose is to be believed, and the catalogue is fetched from a
+ * static host that can answer with something other than what we built.
  */
-describe('the baked branch count', () => {
-  const withBranches = (branches: unknown): unknown => {
+describe('the baked branch keys', () => {
+  const withBranchKeys = (branchKeys: unknown): unknown => {
     const [family] = CATALOGUE.families
     const [entry] = family?.entries ?? []
-    return { ...CATALOGUE, families: [{ ...family, entries: [{ ...entry, branches }] }] }
+    return { ...CATALOGUE, families: [{ ...family, entries: [{ ...entry, branchKeys }] }] }
   }
 
-  it('is read back when it is a count', async () => {
-    respond(withBranches(12))
+  it('is read back when it is a list of keys', async () => {
+    respond(withBranchKeys(['Bxb4_c3_Ba5', 'Bb6_a4']))
     const result = await loadCatalogue('vi')
 
     expect(result.ok).toBe(true)
     if (!result.ok) return
-    expect(result.catalogue.families[0]?.entries[0]?.branches).toBe(12)
+    expect(result.catalogue.families[0]?.entries[0]?.branchKeys).toStrictEqual([
+      'Bxb4_c3_Ba5',
+      'Bb6_a4',
+    ])
   })
 
-  it('accepts zero, which is every entry today', async () => {
-    respond(withBranches(0))
+  it('accepts the empty list, which is 1,000 of the 1,003 entries today', async () => {
+    respond(withBranchKeys([]))
     await expect(loadCatalogue('vi')).resolves.toMatchObject({ ok: true })
   })
 
-  it.each([-1, 1.5, Number.NaN, '12', null, undefined])('rejects %p', async (branches) => {
-    respond(withBranches(branches))
-    await expect(loadCatalogue('vi')).resolves.toEqual({
-      ok: false,
-      failure: { reason: 'malformed' },
-    })
-  })
+  /**
+   * Each case is wrapped in its own array, because `it.each` spreads a bare array into
+   * arguments — and half of what has to be rejected here *is* an array.
+   */
+  it.each([[12], ['Bb6_a4'], [['Bb6_a4', 3]], [[null]], [{}], [null], [undefined]])(
+    'rejects %p',
+    async (branchKeys) => {
+      respond(withBranchKeys(branchKeys))
+      await expect(loadCatalogue('vi')).resolves.toEqual({
+        ok: false,
+        failure: { reason: 'malformed' },
+      })
+    },
+  )
 })

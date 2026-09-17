@@ -99,7 +99,7 @@ export const CatalogueList = ({
                     locale={locale}
                     name={indexed.name}
                     entry={indexed.entry}
-                    marked={progress[indexed.entry.id]?.length ?? 0}
+                    marked={progress[indexed.entry.id] ?? []}
                   />
                 ))}
             </ul>

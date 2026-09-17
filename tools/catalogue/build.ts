@@ -217,7 +217,7 @@ const localisedPayload = (
         soundness: record.soundness,
         tier: record.tier,
         line: lineKey(record.definingLine),
-        branches: record.branches,
+        branchKeys: record.branchKeys,
       })),
     })),
   }
@@ -330,7 +330,7 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
           soundness: row.soundness,
           tier: 'listed',
           definingLine: row.row.line,
-          branches: 0,
+          branchKeys: [],
         },
       ]
     },
@@ -361,7 +361,7 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
         soundness: trap.soundness,
         tier: 'listed',
         definingLine: trap.line,
-        branches: 0,
+        branchKeys: [],
       },
     ]
   })
@@ -408,25 +408,28 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
       issues.push(...contentIssues(content.entries, byId))
       const tiers = new Map(content.entries.map(({ entry }) => [entry.id, entry.tier]))
       /**
-       * The branch count a catalogue card shows, counted here because the browser must not
-       * download a tree to learn it (`CatalogueEntryPayload.branches`).
+       * The branch keys a catalogue card counts against, collected here because the browser
+       * must not download a tree to get them (`CatalogueEntryPayload.branchKeys`).
+       *
+       * **Keys rather than a count**, which is the whole of issue #48: a card holding only a
+       * total can do no better than clamp the marks it finds in storage against it, while
+       * the page intersects them with the keys its tree has. The two disagree the moment a
+       * mark outlives the branch it was made against. Shipping the keys makes both sides run
+       * `learnedCount` over the same set.
        *
        * `countableBranches` is imported from the application rather than reimplemented, and
        * it is fed the *compiled* tree rather than the authored one on purpose: the compiled
-       * tree is what the gambit page counts, so the two numbers come from one rule applied
-       * to one shape. A second implementation here would be a second answer to "how much is
-       * there to learn", and the card and the page would eventually give different ones.
+       * tree is what the gambit page counts, so both sides come from one rule applied to one
+       * shape. A second implementation here would be a second answer to "how much is there
+       * to learn", and the card and the page would eventually give different ones.
        */
-      const branches = new Map(
-        content.entries.map(({ entry }) => [
-          entry.id,
-          countableBranches(compileEntry(entry).tree).length,
-        ]),
+      const branchKeys = new Map(
+        content.entries.map(({ entry }) => [entry.id, countableBranches(compileEntry(entry).tree)]),
       )
       records = untiered.map((record) => ({
         ...record,
         tier: tiers.get(record.id) ?? record.tier,
-        branches: branches.get(record.id) ?? record.branches,
+        branchKeys: branchKeys.get(record.id) ?? record.branchKeys,
       }))
     }
   }

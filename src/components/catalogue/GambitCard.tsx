@@ -6,6 +6,7 @@ import type { CatalogueEntry } from '../../lib/catalogue.ts'
 import type { Category, Side } from '../../lib/content-types.ts'
 import type { Locale } from '../../lib/locale.ts'
 import { routePath, routeSegments } from '../../lib/routes.ts'
+import { learnedCount } from '../progress/branches.ts'
 import { SoundnessBadge, TierBadge } from './Badges.tsx'
 
 /**
@@ -26,15 +27,22 @@ export type GambitCardProps = {
   readonly name: string
   readonly entry: CatalogueEntry
   /**
-   * How many branches of this entry this browser has marked learned.
+   * The branch keys this browser has stored against this entry — **as stored**, stale ones
+   * included. Not a count, and not a list anyone has filtered on the way in.
    *
-   * Clamped to the total by the caller's own arithmetic below rather than intersected with
-   * the real branch keys, because the catalogue downloads no tree and therefore has no
-   * keys to intersect with. The clamp is what stops a mark left behind by renamed content
-   * from rendering "21 of 20" — a number that is not merely wrong but visibly impossible.
-   * The gambit page does the exact intersection, against the tree it has.
+   * Raw on purpose. The filtering is the part that has to match the gambit page, so it
+   * happens here, with `learnedCount`, against the keys the build baked into the entry. A
+   * caller that pre-counted would be a second answer to the question this card and that
+   * page have to answer identically.
+   *
+   * This was a number until issue #48, clamped to the total with `Math.min`. The clamp
+   * stopped the visibly impossible "21 of 20" that a mark outliving its branch would print,
+   * and the cost it never named is what it printed instead: one stale key against one real
+   * branch, and the card read "1 of 1" where the page read "0 of 1" — wrong, and with
+   * nothing about it to notice. Intersecting cannot exceed the total either, and it is the
+   * page's arithmetic rather than an approximation of it.
    */
-  readonly marked: number
+  readonly marked: readonly string[]
 }
 
 const sideKeys: Readonly<Record<Side, TranslationKey>> = {
@@ -83,15 +91,22 @@ export const GambitCard = ({ locale, name, entry, marked }: GambitCardProps) => 
      * `progress.count` is one string used in both places, so a card and the page it links
      * to cannot word the same fact differently.
      *
-     * Suppressed entirely at zero branches, which is every entry today: a Tier 0 entry's
-     * whole tree is one `unexplored` root and "0 of 0 branches learned" reads as a defect.
-     * The tier badge beside it already says why there is nothing to count.
+     * Suppressed entirely at zero branches, which is 1,000 of the 1,003 entries: a Tier 0
+     * entry's whole tree is one `unexplored` root and "0 of 0 branches learned" reads as a
+     * defect. The tier badge beside it already says why there is nothing to count.
+     *
+     * `learnedCount` is the gambit page's own numerator, run here over the keys the build
+     * baked in — which is what makes "the same sentence" true of the numbers and not only
+     * of the wording (`card-and-page-agree.test.tsx`).
      */}
-    {entry.branches > 0 && (
+    {entry.branchKeys.length > 0 && (
       <p className="gambit-card__progress">
         <Translated
           id="progress.count"
-          values={{ learned: Math.min(marked, entry.branches), total: entry.branches }}
+          values={{
+            learned: learnedCount(entry.branchKeys, new Set(marked)),
+            total: entry.branchKeys.length,
+          }}
         />
       </p>
     )}
