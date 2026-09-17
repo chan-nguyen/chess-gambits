@@ -385,8 +385,8 @@ placeholder that lets half-finished work be committed, so there is nothing at it
 annotation says so. Counting it would make the denominator a measure of content nobody has written,
 and a learner who had learned everything that exists would read "3 of 7" with no way to tell that from
 having four branches left — which is the failure the percentage was rejected for, arriving by the
-other door. The consequence is visible today and is the right one: every entry is at the _Listed_
-tier, whose whole tree is one unexplored root, so every entry shows "no branches to mark yet" rather
+other door. The consequence is visible and is the right one: a _Listed_ entry's whole tree is one
+unexplored root, so it shows "no branches to mark yet" rather
 than "0 of 1".
 
 ### Catalogue chunking
@@ -397,8 +397,19 @@ largest field by three for no benefit, since a visitor reads one language.
 
 **The catalogue is built per locale**: `catalogue.vi.json`, `catalogue.en.json`, `catalogue.fr.json`.
 A visitor downloads one. Locale-independent fields (ECO, side, category, soundness, tier, defining
-line) are identical across the three, which is accepted duplication — it costs a few KB and avoids a
-second request and a join on the critical path.
+line, branch keys) are identical across the three, which is accepted duplication — it costs a few KB
+and avoids a second request and a join on the critical path.
+
+**Branch keys are the one field that grows with depth rather than with breadth**, and they are there
+because a card has to reach the same number the gambit page reaches. It cannot: the catalogue carries
+no tree, so a card given only a total can clamp the marks it finds in storage against it while the
+page intersects them with the keys its tree has, and a mark that outlives its branch makes the two
+disagree — "1 of 1" on the card against "0 of 1" on the page (#48). Shipping the keys is what makes
+the agreement structural. Measured: **+223 bytes gzipped over 1,003 entries, 26.0KB → 26.3KB** of the
+100KB budget. Still no tree — no FENs, no annotations, no outcomes, only the line identifiers `?line=`
+already carries. Extrapolated to every entry taught it reads about 62KB at seven branches each and
+about 92KB at fifteen, which is the tripwire in `PROJECT-PLAN.md` doing its job rather than a number
+to be surprised by later.
 
 ## 4. Interaction rules
 
@@ -616,7 +627,7 @@ Concrete numbers a CI job fails against.
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | Initial JavaScript              | < 200KB gzipped                                                                                            |
 | Per-route incremental JS        | < 50KB gzipped                                                                                             |
-| Catalogue payload               | < 100KB gzipped, regardless of catalogue size                                                              |
+| Catalogue payload               | ≤ 100KB gzipped, regardless of catalogue size                                                              |
 | A single gambit tree            | Lazy-loaded; never bundled into the initial payload                                                        |
 | LCP                             | < 2.5s, mid-tier mobile, 4G                                                                                |
 | INP pressing next               | < 200ms — measured with Playwright and `PerformanceObserver`, **not** Lighthouse, which cannot measure INP |

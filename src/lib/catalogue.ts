@@ -40,16 +40,17 @@ export type CatalogueEntry = {
   /** Space-joined SAN from the standard start position. */
   readonly line: string
   /**
-   * How many branches this entry has to learn, baked in by the build.
+   * Every branch of this entry a learner can mark, as path keys, baked in by the build.
    *
-   * The catalogue downloads no tree, so a card cannot count them itself. The build counts
-   * them with `countableBranches` — the same function `GambitProgress` uses — so the card
-   * and the page cannot disagree about the denominator (`tools/catalogue/types.ts`).
+   * The catalogue downloads no tree, so a card cannot walk one itself. The build walks it
+   * with `countableBranches` — the same function `GambitProgress` uses — so the card and
+   * the page cannot disagree about either half of "3 of 12" (`tools/catalogue/types.ts`,
+   * which carries the reason these are keys rather than a count, and what they cost).
    *
-   * Zero is a real answer and today it is every entry's: a Tier 0 entry's whole tree is
-   * one `unexplored` root, and an `unexplored` leaf is not a branch.
+   * The empty array is a real answer and today it is 1,000 entries': a Tier 0 entry's
+   * whole tree is one `unexplored` root, and an `unexplored` leaf is not a branch.
    */
-  readonly branches: number
+  readonly branchKeys: readonly string[]
 }
 
 export type CatalogueFamily = {
@@ -159,13 +160,14 @@ const isSoundnessValue = oneOf<SoundnessValue>(['sound', 'dubious', 'unsound'])
 const isTier = oneOf<Tier>(['listed', 'mapped', 'taught'])
 
 /**
- * A count, so a negative or fractional one is not a count. Checked rather than trusted for
- * the same reason as every other field here: the thing that produces a number the page
- * would divide by is our build, and the thing that answers the request is a static host
- * that can also answer with a truncated file or a stale one.
+ * A list of keys, so anything that is not one is not a branch list. Checked rather than
+ * trusted for the same reason as every other field here: the thing that produces the keys
+ * a card counts against is our build, and the thing that answers the request is a static
+ * host that can also answer with a truncated file or a stale one. A card that accepted a
+ * malformed list would count marks against nothing and print a taught entry as having no
+ * branches at all.
  */
-const isBranchCount = (value: unknown): value is number =>
-  isNumber(value) && Number.isInteger(value) && value >= 0
+const isBranchKeys = arrayOf(isString)
 
 const isEntry = (value: unknown): value is CatalogueEntry =>
   isRecord(value) &&
@@ -177,7 +179,7 @@ const isEntry = (value: unknown): value is CatalogueEntry =>
   isSoundnessValue(value.soundness) &&
   isTier(value.tier) &&
   isString(value.line) &&
-  isBranchCount(value.branches)
+  isBranchKeys(value.branchKeys)
 
 const isFamily = (value: unknown): value is CatalogueFamily =>
   isRecord(value) && isString(value.id) && isString(value.name) && arrayOf(isEntry)(value.entries)

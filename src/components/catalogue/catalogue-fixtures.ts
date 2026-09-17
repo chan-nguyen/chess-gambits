@@ -8,6 +8,15 @@ import type { Catalogue, CatalogueEntry, CatalogueFamily } from '../../lib/catal
  * search folds them, so a fixture written in ASCII would let that break unnoticed.
  */
 
+/**
+ * However many branch keys a fixture needs, spelled as the real ones are — underscore-joined
+ * plies, which is what `encodeLine` produces and what `?line=` carries. Generated rather than
+ * written out, so a fixture that wants twelve cannot quietly hold eleven; and distinct from
+ * each other, because a card counts them into a set.
+ */
+export const fixtureBranchKeys = (count: number): readonly string[] =>
+  Array.from({ length: count }, (_, index) => `e4_e5_Nf3_Nc6_v${index + 1}`)
+
 export const fixtureEntry = (over: Partial<CatalogueEntry> = {}): CatalogueEntry => ({
   id: 'italian-game-evans-gambit',
   variation: 'Gambit Evans',
@@ -17,7 +26,7 @@ export const fixtureEntry = (over: Partial<CatalogueEntry> = {}): CatalogueEntry
   soundness: 'sound',
   tier: 'listed',
   line: 'e4 e5 Nf3 Nc6 Bc4 Bc5 b4',
-  branches: 0,
+  branchKeys: [],
   ...over,
 })
 
@@ -30,7 +39,7 @@ const families: readonly CatalogueFamily[] = [
         id: 'italian-game-evans-gambit',
         variation: 'Gambit Evans',
         tier: 'taught',
-        branches: 12,
+        branchKeys: fixtureBranchKeys(12),
       }),
       fixtureEntry({
         id: 'italian-game-fried-liver',
@@ -39,7 +48,7 @@ const families: readonly CatalogueFamily[] = [
         category: 'trap',
         soundness: 'dubious',
         tier: 'mapped',
-        branches: 4,
+        branchKeys: fixtureBranchKeys(4),
       }),
     ],
   },
@@ -106,7 +115,7 @@ export const nothingTaughtCatalogue = (): Catalogue =>
   fixtureCatalogue({
     families: families.map((family) => ({
       ...family,
-      entries: family.entries.map((entry) => ({ ...entry, tier: 'listed', branches: 0 })),
+      entries: family.entries.map((entry) => ({ ...entry, tier: 'listed', branchKeys: [] })),
     })),
   })
 

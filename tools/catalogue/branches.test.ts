@@ -1,6 +1,6 @@
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
-import { countableBranches } from '../../src/components/progress/branches.ts'
+import { branchKey, countableBranches } from '../../src/components/progress/branches.ts'
 import { compileEntry } from '../content/compile.ts'
 import { loadContent } from '../content/entries.ts'
 import { build } from './build.ts'
@@ -8,15 +8,21 @@ import { makeWorkspace } from './fixture-workspace.ts'
 import type { CatalogueEntryPayload, CataloguePayload } from './types.ts'
 
 /**
- * The branch count the catalogue bakes in, and the one thing that must be true of it: it
- * is the number the gambit page would compute, not a second answer to the same question.
+ * The branch keys the catalogue bakes in, and the one thing that must be true of them: they
+ * are the keys the gambit page would compute, not a second answer to the same question.
  *
- * The catalogue deliberately downloads no entry tree — that is why 1,003 entries cost under
- * 17KB gzipped — so a card cannot count branches itself, and a card that showed a
+ * The catalogue deliberately downloads no entry tree — that is why 1,003 entries cost 26.3KB
+ * gzipped, keys included — so a card cannot walk one itself, and a card that showed a
  * different total from the page it links to would be worse than a card that showed none.
  * The guarantee is structural rather than asserted: the build calls `countableBranches`
  * from `src/components/progress/branches.ts`. These tests are what keeps that structure
  * from being quietly replaced by a copy.
+ *
+ * **Keys rather than a count** since issue #48. A count is enough for the denominator and
+ * not for the numerator: a card holding only a total can clamp the marks it finds in storage
+ * against it, where the page intersects them with the keys its tree has, and the two part
+ * company the moment a mark outlives its branch. So what is pinned here is the list, in
+ * order, and not merely its length.
  */
 
 const entriesOf = (payload: CataloguePayload): readonly CatalogueEntryPayload[] =>
@@ -58,13 +64,25 @@ describe('the baked branch count', () => {
     if (!content.ok) return
 
     for (const { entry } of content.entries) {
-      const expected = countableBranches(compileEntry(entry).tree).length
-      expect(findEntry(payload, entry.id).branches).toBe(expected)
+      const expected = countableBranches(compileEntry(entry).tree)
+      expect(findEntry(payload, entry.id).branchKeys).toStrictEqual(expected)
     }
   })
 
   it('counts the fixture Evans as one branch, not zero and not two', () => {
-    expect(findEntry(payload, 'italian-game-evans-gambit').branches).toBe(1)
+    expect(findEntry(payload, 'italian-game-evans-gambit').branchKeys).toHaveLength(1)
+  })
+
+  /**
+   * The keys are the ones a learner's marks are written in, so they have to be the strings
+   * `?line=` carries rather than any other spelling of the same path (`branchKey`). A card
+   * intersecting against a differently-spelled list would count every mark as stale and
+   * print a taught entry as untouched.
+   */
+  it('bakes the key the URL carries, not some other spelling of the path', () => {
+    expect(findEntry(payload, 'italian-game-evans-gambit').branchKeys).toStrictEqual([
+      branchKey(['Bxb4']),
+    ])
   })
 
   /**
@@ -74,18 +92,18 @@ describe('the baked branch count', () => {
    * that had forked the rule — or counted leaves instead of lines — would show a one here
    * on all 699 of them.
    */
-  it('is zero for an entry with no authored tree', () => {
+  it('is empty for an entry with no authored tree', () => {
     const listed = entriesOf(payload).filter((entry) => entry.tier === 'listed')
 
     expect(listed.length).toBeGreaterThan(0)
-    for (const entry of listed) expect(entry.branches).toBe(0)
+    for (const entry of listed) expect(entry.branchKeys).toStrictEqual([])
   })
 
   it('is on every entry of every locale, so no locale shows a card without a total', () => {
     for (const { payload: localised } of output.payloads) {
       for (const entry of entriesOf(localised)) {
-        expect(Number.isInteger(entry.branches)).toBe(true)
-        expect(entry.branches).toBeGreaterThanOrEqual(0)
+        expect(Array.isArray(entry.branchKeys)).toBe(true)
+        for (const key of entry.branchKeys) expect(typeof key).toBe('string')
       }
     }
   })
@@ -115,10 +133,13 @@ describe('the catalogue this repository ships', () => {
     ['legals-mate', 7],
   ])
 
-  it('bakes a count on all 1003 entries, and only the authored three are non-zero', () => {
+  it('bakes keys on all 1003 entries, and only the authored three have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
-      expect(record.branches).toBe(AUTHORED.get(record.id) ?? 0)
+      expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
+      // Distinct, because a card counts them into a set: a duplicate would make the
+      // denominator larger than the number of branches a learner can ever mark.
+      expect(new Set(record.branchKeys).size).toBe(record.branchKeys.length)
     }
     // Every named entry is actually in the catalogue, so a typo in an id above cannot
     // quietly turn this into a test that only checks 1,003 zeroes.

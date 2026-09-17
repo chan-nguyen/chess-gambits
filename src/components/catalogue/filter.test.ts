@@ -28,7 +28,7 @@ const entry = (over: Partial<CatalogueEntry> = {}): CatalogueEntry => ({
   soundness: 'sound',
   tier: 'listed',
   line: 'e4 e5 Nf3 Nc6 Bc4 Bc5 b4',
-  branches: 0,
+  branchKeys: [],
   ...over,
 })
 

@@ -41,8 +41,8 @@ export type CatalogueRecord = {
   readonly soundness: SoundnessValue
   readonly tier: Tier
   readonly definingLine: readonly string[]
-  /** Countable branches in the compiled tree. See `CatalogueEntryPayload.branches`. */
-  readonly branches: number
+  /** Countable branch keys of the compiled tree. See `CatalogueEntryPayload.branchKeys`. */
+  readonly branchKeys: readonly string[]
 }
 
 /**
@@ -67,23 +67,38 @@ export type CatalogueEntryPayload = {
   /** Space-joined SAN, from the standard start position. */
   readonly line: string
   /**
-   * How many branches this entry has to learn, so a catalogue card can say "3 of 12"
-   * without downloading a tree.
+   * **The branch keys themselves, not a count of them** — so a catalogue card can say
+   * "3 of 12" without downloading a tree, and reach the 3 by the arithmetic the gambit
+   * page uses rather than by an approximation of it.
    *
-   * The catalogue downloads **no** entry tree — that is why 1,003 entries cost 25.7KB
-   * instead of megabytes, and `e2e/content-loading.spec.ts` asserts it — so the only
-   * honest way for a card to show a denominator is for the build to put one here.
+   * This used to be `branches: number`, and a number is not enough. A card handed a total
+   * can only clamp the marks it finds in storage against it (`Math.min`), while the page
+   * *intersects* those marks with the keys its tree actually has. One stale key in storage
+   * — which is what content churn leaves behind — and the card read "1 of 1" where the
+   * page read "0 of 1" (issue #48). Clamping stops the visibly impossible "21 of 20" and
+   * replaces it with a wrong number that looks right, on the one display whose whole
+   * purpose is to be believed.
    *
-   * It is counted by `countableBranches` in `src/components/progress/branches.ts`, the
-   * same function the gambit page uses, imported rather than reimplemented. A card and a
-   * page disagreeing about how much there is to learn would be worse than neither showing
-   * a number, and the only way to guarantee they agree is for there to be one rule.
+   * Keys make both sides run `learnedCount` over the same set, so they agree by
+   * construction rather than by two rules that happen to coincide.
    *
-   * Zero is the honest answer for an entry with no authored tree, which is every entry
-   * today: a Tier 0 entry's whole tree is one `unexplored` root and there is nothing in it
-   * to have learned.
+   * **What that costs, measured rather than assumed.** Still no tree: no FENs, no
+   * annotations, no outcomes — only the line identifiers, which are the same strings
+   * `?line=` already carries. Over the 1,003 shipped entries it is **+223 bytes gzipped,
+   * 26.0KB → 26.3KB of the 100KB budget** (§6). `budget.ts` measures every build and
+   * `e2e/catalogue-payload.spec.ts` measures what ships. The growth axis is real and worth
+   * watching: extrapolated to *every* entry taught at seven branches each the payload
+   * reads about 62KB, and about 92KB at fifteen — inside the budget, with the headroom
+   * the tripwire in `docs/PROJECT-PLAN.md` exists to defend.
+   *
+   * Counted by `countableBranches` in `src/components/progress/branches.ts`, imported
+   * rather than reimplemented: one rule, applied once.
+   *
+   * The empty array is the honest answer for an entry with no authored tree, which is
+   * 1,000 of them today: a Tier 0 entry's whole tree is one `unexplored` root and there is
+   * nothing in it to have learned.
    */
-  readonly branches: number
+  readonly branchKeys: readonly string[]
 }
 
 export type CatalogueFamilyPayload = {

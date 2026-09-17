@@ -1,5 +1,11 @@
 import { expect, test } from '@playwright/test'
+import { z } from 'zod'
+import {
+  progressSchemaVersion,
+  progressStorageKey,
+} from '../src/components/progress/progress-storage.ts'
 import { routeSegments } from '../src/lib/routes.ts'
+import vi from '../src/locales/vi.ts'
 
 const basePath = process.env.BASE_PATH ?? '/chess-gambits/'
 
@@ -15,6 +21,23 @@ const basePath = process.env.BASE_PATH ?? '/chess-gambits/'
  */
 
 const gambits = `${basePath}vi/${routeSegments.catalogue}`
+
+/**
+ * The part of the shipped payload the stale-mark test below reads, and it is read through a
+ * schema rather than poked at: a file that shipped with the keys missing would otherwise be
+ * indistinguishable from an entry with nothing to learn, and the test would pass on it.
+ *
+ * `isCatalogue` from `src/lib/catalogue.ts` says the same thing and is not importable here —
+ * it reaches `import.meta.env` through `base-path.ts`, and the end-to-end project has no Vite
+ * types. `src/lib/catalogue.test.ts` is where that guard is held to this shape.
+ */
+const shippedEntries = z.object({
+  families: z.array(
+    z.object({
+      entries: z.array(z.object({ id: z.string(), branchKeys: z.array(z.string()) })),
+    }),
+  ),
+})
 
 test('the page states the aggregate coverage before it states anything else', async ({ page }) => {
   await page.goto(gambits)
@@ -188,6 +211,82 @@ test('a listed entry opens on its identity and its moves, never an error', async
   await expect(page.locator('#tiers')).toBeVisible()
 })
 
+/**
+ * **Issue #48, in a real browser and against the payload that actually shipped.**
+ *
+ * A card and the gambit page it links to have to print the same count, and the case they
+ * used to differ on is a mark that outlived its branch — which content churn produces and
+ * which nothing in the product prevents. The card clamped the number of keys in storage to
+ * the total it was given; the page intersected with the keys its tree has. One stale key and
+ * the card said "2 of 9" where the page said "1 of 9".
+ *
+ * `card-and-page-agree.test.tsx` pins the same thing over a fixture. This is the half a unit
+ * test cannot reach: that the built catalogue really carries the keys, in the spelling a
+ * stored mark is written in, for an entry the site actually publishes. A build that emitted
+ * an empty list, or the path spelled some other way, would pass every unit test in the repo
+ * and print every taught entry as untouched here.
+ *
+ * The real key is read out of the shipped file rather than recomputed from `content/`, on
+ * purpose: what a learner's browser intersects against is the file, so the file is what has
+ * to be right.
+ */
+test('a stale mark leaves the card and the page saying the same thing', async ({
+  page,
+  request,
+}) => {
+  const payload: unknown = await (
+    await request.get(`${basePath}catalogue/catalogue.vi.json`)
+  ).json()
+
+  const entry = shippedEntries
+    .parse(payload)
+    .families.flatMap((family) => family.entries)
+    .find((candidate) => candidate.id === 'benko-gambit')
+  if (entry === undefined) throw new Error('no benko-gambit in the shipped catalogue')
+
+  const keys = entry.branchKeys
+  expect(keys.length, 'the Benko ships no branch keys, so there is nothing to intersect').toBe(9)
+
+  const [real] = keys
+  if (real === undefined) throw new Error('unreachable: the length is asserted above')
+
+  /*
+   * A key shaped like the others and named by none of them — a branch that was renamed away
+   * after the learner marked it. Asserted absent rather than assumed, so a content change
+   * that happened to create this line turns this test red instead of quietly neutering it.
+   */
+  const stale = `${real}_Kd8`
+  expect(keys).not.toContain(stale)
+
+  await page.addInitScript(
+    ([key, blob]) => window.localStorage.setItem(key ?? '', blob ?? ''),
+    [
+      progressStorageKey,
+      JSON.stringify({
+        version: progressSchemaVersion,
+        entries: { 'benko-gambit': [real, stale] },
+      }),
+    ],
+  )
+
+  const expected = vi.progress.count
+    .replace('{{learned}}', '1')
+    .replace('{{total}}', String(keys.length))
+
+  await page.goto(`${gambits}?q=benko`)
+  const card = page
+    .getByRole('main')
+    .locator('li.gambit-card')
+    .filter({ has: page.locator(`a[href$="/vi/${routeSegments.catalogue}/benko-gambit"]`) })
+
+  await expect(card).toHaveCount(1)
+  await expect(card).toContainText(expected)
+
+  await card.getByRole('link', { name: /Benko/ }).click()
+
+  await expect(page.getByRole('region', { name: vi.progress.heading })).toContainText(expected)
+})
+
 test('a filtered view is a link, and the language switcher carries it', async ({ page }) => {
   await page.goto(`${gambits}?tier=all&side=black&q=benko`)
 
@@ -209,4 +308,57 @@ test('the page has no horizontal scroll at 360px', async ({ page }) => {
     () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
   )
   expect(overflow, 'the catalogue overflows a 360px viewport').toBeLessThanOrEqual(0)
+})
+
+/**
+ * The round trip nothing else makes: the page **writes** a key, the card **reads** one.
+ *
+ * The stale-mark test above seeds storage with a key taken out of the shipped payload, so it
+ * proves the card reads what the build wrote. It cannot prove the other half — that what the
+ * *page* writes when a learner presses the marker is spelled the same way. Seed both sides
+ * from the same source and a mismatch between them is invisible by construction: every card
+ * on the site would read "0 of 9" for a learner who had marked nine branches, and every test
+ * in the repo would still be green.
+ *
+ * So nothing is seeded here. A branch is marked the way a learner marks it, and the catalogue
+ * is asked what it thinks afterwards.
+ */
+test('a branch marked on the page is the one the card counts', async ({ page, request }) => {
+  const payload: unknown = await (
+    await request.get(`${basePath}catalogue/catalogue.vi.json`)
+  ).json()
+
+  const entry = shippedEntries
+    .parse(payload)
+    .families.flatMap((family) => family.entries)
+    .find((candidate) => candidate.id === 'benko-gambit')
+  if (entry === undefined) throw new Error('no benko-gambit in the shipped catalogue')
+
+  const [branch] = entry.branchKeys
+  if (branch === undefined) throw new Error('the Benko ships no branch keys')
+
+  // The key is the URL spelling of the line, which is what makes it addressable at all.
+  await page.goto(`${basePath}vi/${routeSegments.catalogue}/benko-gambit?line=${branch}`)
+
+  const panel = page.getByRole('region', { name: vi.progress.heading })
+  await expect(panel).toBeVisible()
+
+  const marker = page.getByRole('button', { name: vi.progress.learned })
+  await expect(marker, `${branch} is not a markable branch end`).toBeVisible()
+  await marker.click()
+
+  const expected = vi.progress.count
+    .replace('{{learned}}', '1')
+    .replace('{{total}}', String(entry.branchKeys.length))
+
+  await expect(panel).toContainText(expected)
+
+  await page.goto(`${gambits}?q=benko`)
+  const card = page
+    .getByRole('main')
+    .locator('li.gambit-card')
+    .filter({ has: page.locator(`a[href$="/vi/${routeSegments.catalogue}/benko-gambit"]`) })
+
+  await expect(card).toHaveCount(1)
+  await expect(card).toContainText(expected)
 })
