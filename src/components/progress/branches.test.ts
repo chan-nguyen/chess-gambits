@@ -77,9 +77,25 @@ describe('a branch is a root-to-leaf line', () => {
     expect(countableBranches(root([transposing]))).toStrictEqual([branchKey(['d4'])])
   })
 
-  it('keys a branch as the URL spells it, so `+` and `#` survive', () => {
+  it('keys a real entry by the path that reaches its one countable branch', () => {
     expect(countableBranches(MATE_ENTRY.tree)).toStrictEqual([branchKey(MATE_LINE)])
-    expect(branchKey(MATE_LINE)).toBe('Bh5_Nxe5_Bxd1_Bxf7%2B_Ke7_Nd5%23')
+    expect(branchKey(MATE_LINE)).toBe('Bh5_Nxe5_Bxd1')
+  })
+
+  /**
+   * The literal is the whole test: `branchKey` on both sides of an assertion agrees with
+   * itself whatever it does. `+` is the character that makes a key and a URL disagree when the
+   * encoding is dropped — raw, it is the form encoding for a space — and since #46 it cannot
+   * come from a mate leaf's own path, because the mating move lives in the proof rather than
+   * in the tree. So it comes from a check played on the way to the leaf, which is ordinary
+   * content and is what `MAPPED_ENTRY` and `e2e/line-parameter.spec.ts` navigate.
+   */
+  it('percent-encodes a check in the path, so a key stays a link', () => {
+    const tree = root([
+      { ply: 'Qh5+', kind: 'opponent', fen: FEN, children: [leaf('Ke7', POSITION)] },
+    ])
+
+    expect(countableBranches(tree)).toStrictEqual(['Qh5%2B_Ke7'])
   })
 
   it('has no branch at the root of a tree that is only a root', () => {

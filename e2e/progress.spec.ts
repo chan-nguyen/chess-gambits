@@ -21,11 +21,13 @@ import { serveEntry } from './learning-fixture.ts'
  * - **AC 7**, that nothing is sent anywhere. Only a browser can be watched for everything a
  *   browser is able to send.
  *
- * Légal's Mate is the fixture, and it is the right one twice over: its single countable
- * branch is a proved mate, which is the branch this product exists to teach, and the path to
- * it carries `+` and `#` — the two characters that corrupt a path when it is not encoded
- * (docs/CONTEXT.md, *Path*). A branch is keyed exactly as the URL spells it, so if that
- * encoding were wrong anywhere, the mark would not come back.
+ * Légal's Mate is the fixture, because it has exactly **one** countable branch and that branch
+ * is a proved mate — the branch this product exists to teach, and a denominator of 1 that says
+ * what it means in every count below. Since #46 the mate is claimed on `6...Bxd1` and the
+ * mating move lives in the proof, so the path carries no `+` and no `#`; the encoding of those
+ * is held where they are real, by `branches.test.ts` and `e2e/line-parameter.spec.ts`. What
+ * this file still depends on is that a branch is keyed exactly as the URL spells it, because a
+ * key that disagreed with the path would mean a mark that never came back.
  */
 
 const gambit = MATE_ENTRY.id

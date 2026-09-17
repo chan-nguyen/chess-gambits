@@ -128,16 +128,27 @@ export const MAPPED_ENTRY: CompiledEntry = {
 export const MAIN_LINE: readonly string[] = ['fxe5', 'Qh5+', 'Ke7', 'Qxe5+', 'Kf7', 'Bc4+']
 
 /**
- * A trap branch ending in a proved mate, for the one claim the `line` parameter exists to
- * protect: a link to a checkmate. Its plies carry `+` and `#`, which are exactly the two
- * characters that corrupt a URL when it is not percent-encoded as a whole
- * (docs/CONTEXT.md, *Path*), so the most shareable thing this site produces is also the
- * most fragile link it produces.
+ * The smallest entry with something to learn in it: one modelled line, ending in a proved
+ * mate, and therefore **exactly one countable branch**. That is what the progress panel, the
+ * router and the i18n specs are measured against — a denominator of 1 that stays 1 however
+ * the outcome fixtures below grow.
  *
- * Légal's Mate, and it is a real mate: chess.js reports checkmate on the final FEN. The
- * defining line ends with White's `5.h3` — the learner's own ply — so the root is an
- * opponent node and the losing reply is modelled, which is what CONTEXT.md invariant 5
- * requires for a trap branch to be expressible at all.
+ * Légal's Mate, and it is a real mate: replaying `6...Bxd1`'s `sequence` from that node's FEN
+ * through chess.js reaches checkmate on the last ply, which `learn-fixtures.test.ts` asserts
+ * rather than this comment claiming it. The defining line ends with White's `5.h3` — the
+ * learner's own ply — so the root is an opponent node and the losing reply is modelled, which
+ * is what CONTEXT.md invariant 5 requires for a trap branch to be expressible at all.
+ *
+ * **Why the path stops at `6...Bxd1` and carries no `#`** (issue #46). A mate outcome is
+ * claimed on the leaf that walks into the trap, and its `sequence` runs *from* that leaf
+ * (docs/CONTEXT.md, *Outcome*), so the mating move is a ply in the proof rather than a node in
+ * the tree. It follows that no well-formed path can end in `#` at all: a node spelled `Nd5#`
+ * is checkmate (invariant 6), a checkmate node is a leaf and must carry an outcome
+ * (invariant 3), and no outcome is sayable at a position where the game is already over.
+ * This fixture used to end on that node and taught the renderer the wrong shape. The `+` and
+ * `#` encoding it used to stand for is covered where it is real: `src/lib/line.test.ts` for
+ * the encoder, `MAIN_LINE` above — three checks in six plies — for a path through the router
+ * and through a real browser, and `e2e/line-parameter.spec.ts` for the raw, unencoded URL.
  */
 export const MATE_ENTRY: CompiledEntry = {
   id: 'legal-mate',
@@ -180,44 +191,23 @@ export const MATE_ENTRY: CompiledEntry = {
                   vi: 'Ăn hậu, và bị chiếu hết.',
                   en: 'Takes the queen, and is mated.',
                 },
-                children: [
-                  {
-                    ply: 'Bxf7+',
-                    kind: 'opponent',
-                    fen: 'r2qkbnr/ppp2Bpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R b KQkq - 0 7',
-                    annotation: { vi: 'Chiếu.', en: 'Check.' },
-                    children: [
-                      {
-                        ply: 'Ke7',
-                        kind: 'learner',
-                        fen: 'r2q1bnr/ppp1kBpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R w KQ - 1 8',
-                        annotation: { vi: 'Nước duy nhất.', en: 'The only move.' },
-                        children: [
-                          {
-                            ply: 'Nd5#',
-                            kind: 'opponent',
-                            fen: 'r2q1bnr/ppp1kBpp/2np4/3NN3/4P3/7P/PPPP1PP1/R1BbK2R b KQ - 2 8',
-                            annotation: { vi: 'Chiếu hết.', en: 'Checkmate.' },
-                            outcome: {
-                              kind: 'mate',
-                              inMoves: 3,
-                              sequence: ['Nxe5', 'Bxd1', 'Bxf7+', 'Ke7', 'Nd5#'],
-                              provedBy: 'modelled-net',
-                              // #5 made every mate outcome carry where its proof came from.
-                              // A fixture is not exempt: the point of the field is that no mate
-                              // can be stated without naming the certificate behind it.
-                              basis: {
-                                basis: 'proved',
-                                by: 'certificate',
-                                certificate: 'fixture-legal-trap.Bxd1.mate.json',
-                              },
-                            },
-                          },
-                        ],
-                      },
-                    ],
+                outcome: {
+                  kind: 'mate',
+                  inMoves: 2,
+                  // From this node, not to it: `7.Bxf7+ 7...Ke7 8.Nd5#`, which is `2N - 1`
+                  // plies for a mate in two. `Bxf7+` has exactly one legal reply, so the net
+                  // has a defender node to model and `provedBy` is not `search`.
+                  sequence: ['Bxf7+', 'Ke7', 'Nd5#'],
+                  provedBy: 'modelled-net',
+                  // #5 made every mate outcome carry where its proof came from.
+                  // A fixture is not exempt: the point of the field is that no mate
+                  // can be stated without naming the certificate behind it.
+                  basis: {
+                    basis: 'proved',
+                    by: 'certificate',
+                    certificate: 'fixture-legal-trap.Bxd1.mate.json',
                   },
-                ],
+                },
               },
             ],
           },
@@ -227,8 +217,8 @@ export const MATE_ENTRY: CompiledEntry = {
   },
 }
 
-/** The trap branch, root to the mate. Every `+` and the `#` are load-bearing. */
-export const MATE_LINE: readonly string[] = ['Bh5', 'Nxe5', 'Bxd1', 'Bxf7+', 'Ke7', 'Nd5#']
+/** The trap branch, root to the leaf that claims the mate. The mating move is in its proof. */
+export const MATE_LINE: readonly string[] = ['Bh5', 'Nxe5', 'Bxd1']
 
 /**
  * The Evans Gambit at its first branch point — the fixture #9 is written against, and the
@@ -504,14 +494,18 @@ export const WIDE_ENTRY: CompiledEntry = {
 /**
  * One entry carrying **all three** outcome shapes, for #11.
  *
- * Légal's Mate again, but modelled the way the content pipeline actually produces a mate
- * rather than the way `MATE_ENTRY` above does. That difference is the reason this fixture
- * exists and is worth stating: `tools/content/validate.ts` attaches the outcome to the leaf
- * that *claims* the trap and fills `sequence` with the net's longest line **from** that
- * leaf, so the plies in it have not been played yet. `MATE_ENTRY` instead hangs the outcome
- * on the final `Nd5#` node with the moves that led to it, which is a shape the compiler
- * never emits. Both are legal `CompiledEntry` values; only this one is what arrives over the
- * wire, and it is what the outcome components are measured against.
+ * Légal's Mate again, and since #46 its trap branch is shaped exactly like `MATE_ENTRY`'s:
+ * `tools/content/validate.ts` attaches the outcome to the leaf that *claims* the trap and
+ * fills `sequence` with the net's longest line **from** that leaf, so the plies in it have
+ * not been played yet. `MATE_ENTRY` used to hang the outcome on the final `Nd5#` node with
+ * the moves that led to it, which is a shape the compiler never emits; this fixture was added
+ * in #11 alongside it rather than correcting it, and #46 corrected it.
+ *
+ * The two are kept apart because they are measured for different things, not because they
+ * disagree any more. `MATE_ENTRY` is the one-countable-branch entry the progress and routing
+ * tests count against; this one carries **all three** outcome shapes at once, so its branch
+ * count is free to change whenever an outcome needs a new case — which it could not be if the
+ * progress denominator were reading the same tree.
  *
  * So the mate leaf here is `6...Bxd1` — White to move, mate in **2**, and the proved line is
  * `7.Bxf7+ 7...Ke7 8.Nd5#`. Checked with chess.js 1.4.0: the final position reports

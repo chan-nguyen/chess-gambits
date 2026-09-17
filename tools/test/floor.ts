@@ -38,7 +38,7 @@ import { sep } from 'node:path'
  * enough that the old number would no longer notice a directory going missing; it never needs
  * touching to make a green run green.
  */
-export const MINIMUM_UNIT_TEST_FILES = 73
+export const MINIMUM_UNIT_TEST_FILES = 74
 
 /**
  * `npx playwright test --list` reports `Total: 256 tests in 20 files`, at both base paths. Same

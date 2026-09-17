@@ -177,14 +177,32 @@ describe('marking a branch (AC 1)', () => {
     })
   })
 
-  it('keys a branch as the URL spells it, so `+` and `#` survive the round trip', async () => {
+  /*
+   * Written out rather than built with `branchKey`, because `branchKey` on both sides of the
+   * assertion agrees with itself whatever it does — and what is being claimed is that storage
+   * spells a branch exactly as the URL does. `+` is the form encoding for a space, so it is the
+   * character that breaks that agreement first. Since #46 it cannot come from a mate leaf's own
+   * path: the mating move belongs to the proof, not to the tree.
+   */
+  it('keys a branch as the URL spells it, so a check survives the round trip', async () => {
+    await show(ENTRY, ['fxe5', 'Qh5+'])
+
+    fireEvent.click(toggle())
+
+    expect(storedEnvelope()).toStrictEqual({
+      version: progressSchemaVersion,
+      entries: { 'test-gambit': ['fxe5_Qh5%2B'] },
+    })
+  })
+
+  it('marks a real compiled entry under its own id and its own branch', async () => {
     await show(MATE_ENTRY, MATE_LINE)
 
     fireEvent.click(toggle())
 
     expect(storedEnvelope()).toStrictEqual({
       version: progressSchemaVersion,
-      entries: { 'legal-mate': [branchKey(MATE_LINE)] },
+      entries: { 'legal-mate': ['Bh5_Nxe5_Bxd1'] },
     })
   })
 
