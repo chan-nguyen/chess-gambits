@@ -34,6 +34,8 @@ import { atLine, serveEntry } from './learning-fixture.ts'
 declare global {
   interface Window {
     interactionDurations?: number[]
+    /** Resolves with the milliseconds a press took to put the next node on screen. */
+    settled?: Promise<number>
   }
 
   /**
@@ -140,6 +142,73 @@ const observeInteractions = (page: Page): Promise<void> =>
 const observed = (page: Page): Promise<readonly number[]> =>
   page.evaluate(() => [...(window.interactionDurations ?? [])])
 
+/**
+ * **What the observer above cannot see** (#61 AC 3).
+ *
+ * `next` is a `<Link>`, so pressing it is a route navigation and React renders it in a
+ * transition. The browser paints, the interaction ends, and the render happens *after* —
+ * outside the event-timing entry. Measured: a 300ms block injected into `LearningSurface`,
+ * which re-renders on every navigation, left the worst interaction entry reading 32.0ms and
+ * this file green, while the page took 311, 338 and 315ms to show the next node.
+ *
+ * So the entries are collected as before and are still asserted, and this measures the other
+ * half: from the real click to the frame after the next control points somewhere new. `t0`
+ * comes from a capture listener on the click itself rather than from the test process, so no
+ * part of the number is Playwright's round trip.
+ *
+ * Deliberately a deterministic span rather than a worst-of sample, which is also why it is
+ * the quieter of the two: 28-31ms against a 200ms budget on the same machine where the
+ * worst-entry number needs a calibrated throttle to stay put.
+ */
+const armSettleTimer = (page: Page): Promise<void> =>
+  page.evaluate(() => {
+    const control = (): Element | null => document.querySelector('a[rel="next"]')
+    const before = control()?.getAttribute('href') ?? null
+
+    window.settled = new Promise<number>((resolve) => {
+      let started: number | undefined
+
+      document.addEventListener(
+        'click',
+        () => {
+          started = performance.now()
+        },
+        { capture: true, once: true },
+      )
+
+      const deadline = performance.now() + 10_000
+      const tick = (): void => {
+        if (started !== undefined && (control()?.getAttribute('href') ?? null) !== before) {
+          const took = performance.now() - started
+          requestAnimationFrame(() => resolve(took))
+          return
+        }
+        if (performance.now() > deadline) {
+          resolve(Number.NaN)
+          return
+        }
+        requestAnimationFrame(tick)
+      }
+      requestAnimationFrame(tick)
+    })
+  })
+
+const settledMs = (page: Page): Promise<number> =>
+  page.evaluate(() => window.settled ?? Promise.resolve(Number.NaN))
+
+/** The slowest press, reported like the worst entry is, and NaN-guarded so a timed-out
+ * wait fails loudly rather than comparing false against the budget. */
+const slowestSettle = (what: string, settles: readonly number[]): number => {
+  if (settles.length === 0 || settles.some(Number.isNaN)) {
+    throw new Error(`the next control never moved on during ${what}`)
+  }
+  const slowest = Math.max(...settles)
+  process.stdout.write(
+    `\n  [INP] ${what}: ${settles.length} presses, slowest ${slowest.toFixed(1)}ms to the next node\n`,
+  )
+  return slowest
+}
+
 const report = (what: string, durations: readonly number[]): number => {
   const worst = durations.length === 0 ? 0 : Math.max(...durations)
   process.stdout.write(
@@ -157,9 +226,12 @@ test.describe('pressing next (AC 7)', () => {
     await observeInteractions(page)
 
     const next = page.getByRole('link', { name: vi.learn.nextPly })
+    const settles: number[] = []
     for (const [index] of MAIN_LINE.entries()) {
+      await armSettleTimer(page)
       await next.click()
       await expect(page).toHaveURL(atLine(MAPPED_ENTRY.id, MAIN_LINE.slice(0, index + 1)), SETTLE)
+      settles.push(await settledMs(page))
     }
 
     /*
@@ -183,6 +255,9 @@ test.describe('pressing next (AC 7)', () => {
     const worst = report('next, 6 clicks and 1 arrow key', await observed(page))
 
     expect(worst, 'worst interaction latency pressing next').toBeLessThan(INP_BUDGET_MS)
+    expect(slowestSettle('the fixture line', settles), 'slowest press to next node').toBeLessThan(
+      INP_BUDGET_MS,
+    )
   })
 
   /**
@@ -329,12 +404,15 @@ test.describe('pressing next on the widest published branch node (#19 AC 3)', ()
     await observeInteractions(page)
 
     const next = page.getByRole('link', { name: vi.learn.nextPly })
+    const settles: number[] = []
     for (const [index] of continuation.entries()) {
+      await armSettleTimer(page)
       await next.click()
       await expect(page).toHaveURL(
         atLine(id, [...line, ...continuation.slice(0, index + 1)]),
         SETTLE,
       )
+      settles.push(await settledMs(page))
     }
 
     await page.evaluate(
@@ -349,5 +427,9 @@ test.describe('pressing next on the widest published branch node (#19 AC 3)', ()
     expect(worst, 'worst interaction latency pressing next on published content').toBeLessThan(
       INP_BUDGET_MS,
     )
+    expect(
+      slowestSettle('published content', settles),
+      'slowest press to next node on published content',
+    ).toBeLessThan(INP_BUDGET_MS)
   })
 })
