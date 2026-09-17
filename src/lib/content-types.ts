@@ -38,14 +38,15 @@ export type CompiledProved = {
   readonly certificate: string
 }
 
-export type CompiledProvenance =
-  | CompiledProved
-  | {
-      readonly basis: 'judgement'
-      readonly by: string
-      readonly at: string
-      readonly source?: string
-    }
+/** An author's opinion, attributed to the author who holds it and to the day they held it. */
+export type CompiledJudgement = {
+  readonly basis: 'judgement'
+  readonly by: string
+  readonly at: string
+  readonly source?: string
+}
+
+export type CompiledProvenance = CompiledProved | CompiledJudgement
 
 export type CompiledOutcome =
   | {
@@ -64,7 +65,14 @@ export type CompiledOutcome =
       readonly kind: 'position'
       readonly evaluation: CompiledAnnotation
       readonly plan: CompiledAnnotation
-      readonly basis: CompiledProvenance
+      /**
+       * Narrow for the mirror-image reason. `CompiledProved` names a mate certificate a
+       * reader can fetch and replay (ADR-0005), and a position that is merely winning has
+       * no such thing — so a proved basis here would render "the count and the line above"
+       * under a card that has neither, and link "How a mate is proved" for something that
+       * is not a mate. Nothing produces it; now nothing can express it either.
+       */
+      readonly basis: CompiledJudgement
     }
   | { readonly kind: 'unexplored' }
 

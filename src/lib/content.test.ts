@@ -256,6 +256,46 @@ describe('the content pipeline never reaches the browser (ADR-0004)', () => {
 })
 
 /**
+ * An assessment, as the browser receives it — and the basis it may not carry (#45).
+ *
+ * The compile-time half of this lives in `outcome-distinction.test.ts`: `CompiledOutcome`'s
+ * `position` arm takes a `CompiledJudgement` and nothing else, so no component can be handed
+ * a proved assessment to render. This is the half that is actually reachable. A certificate
+ * proves a *mate* (ADR-0005), so a position that is merely winning has none to name, and a
+ * hand-edited or future-compiled file claiming one is either a mate mislabelled or a claim
+ * with nothing behind it. Either way it is a file to refuse at the boundary rather than a
+ * card that says "the count and the line above" with neither above it.
+ */
+describe('an assessment over the wire', () => {
+  const ASSESSMENT = {
+    kind: 'position',
+    evaluation: { vi: 'Đen hơn một tốt và giữ được thế.' },
+    plan: { vi: 'Đổi hậu rồi đẩy tốt thông.' },
+  }
+
+  const withRootOutcome = (outcome: unknown): unknown => {
+    const parsed: unknown = JSON.parse(compiledEntry)
+    if (!isCompiledEntry(parsed)) throw new Error('the fixture is not a compiled entry')
+    return { ...parsed, tree: { ...parsed.tree, outcome } }
+  }
+
+  it('is accepted when it names the author who judged it', () => {
+    const judged = { ...ASSESSMENT, basis: { basis: 'judgement', by: 'chan', at: '2026-09-16' } }
+
+    expect(isCompiledEntry(withRootOutcome(judged))).toBe(true)
+  })
+
+  it('is refused when it claims a certificate proves it', () => {
+    const proved = {
+      ...ASSESSMENT,
+      basis: { basis: 'proved', by: 'certificate', certificate: 'taught-entry.Nf3.mate.json' },
+    }
+
+    expect(isCompiledEntry(withRootOutcome(proved))).toBe(false)
+  })
+})
+
+/**
  * A proved mate, as the browser receives it (ADR-0005).
  *
  * The payload below is byte for byte what the compiler emits from a content file whose leaf

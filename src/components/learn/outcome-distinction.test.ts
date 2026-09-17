@@ -2,8 +2,16 @@ import { describe, expect, it } from 'vitest'
 import assessmentSource from './AssessmentOutcome.tsx?raw'
 import mateSource from './MateOutcome.tsx?raw'
 import cardSource from './OutcomeCard.tsx?raw'
+import provenanceSource from './OutcomeProvenance.tsx?raw'
+import type { AssessmentOutcomeProps } from './AssessmentOutcome.tsx'
 import type { MateOutcomeProps } from './MateOutcome.tsx'
-import type { CompiledOutcome, CompiledProvenance } from '../../lib/content-types.ts'
+import type {
+  CompiledAnnotation,
+  CompiledJudgement,
+  CompiledOutcome,
+  CompiledProved,
+  CompiledProvenance,
+} from '../../lib/content-types.ts'
 import { locales, type Locale } from '../../lib/locale.ts'
 import en from '../../locales/en.ts'
 import fr from '../../locales/fr.ts'
@@ -32,8 +40,16 @@ const withoutComments = (text: string): string =>
 const CARD = withoutComments(cardSource)
 const MATE = withoutComments(mateSource)
 const ASSESSMENT = withoutComments(assessmentSource)
+const PROVENANCE = withoutComments(provenanceSource)
 
 /** What a module imports from `OutcomeProvenance`, as the names it actually asked for. */
+/**
+ * `true` only when every `From` is a `To`. Written as a type so that a widening in
+ * `content-types.ts` flips it and stops the file type-checking — a compile-time gate wearing
+ * a runtime assertion's clothes.
+ */
+type Assignable<From, To> = [From] extends [To] ? true : false
+
 const provenanceImports = (source: string): readonly string[] => {
   const found = /import\s*\{([^}]*)\}\s*from\s*'\.\/OutcomeProvenance\.tsx'/.exec(source)
   return (found?.[1] ?? '')
@@ -99,12 +115,10 @@ describe('a hand-judged mate is not expressible', () => {
   })
 
   type Judgement = Extract<CompiledProvenance, { basis: 'judgement' }>
-  type Assignable<From, To> = [From] extends [To] ? true : false
 
   /**
-   * A compile-time gate wearing a runtime assertion's clothes. Widen `basis` to the full
-   * provenance union and this stops type-checking, because the conditional resolves to
-   * `true` and `true` is not assignable to `false`.
+   * Widen `basis` to the full provenance union and this stops type-checking, because the
+   * conditional resolves to `true` and `true` is not assignable to `false`.
    */
   it('refuses a judgement where a mate’s basis is asked for', () => {
     const judgementIsNotAMateBasis: Assignable<Judgement, MateOutcomeProps['basis']> = false
@@ -117,6 +131,118 @@ describe('a hand-judged mate is not expressible', () => {
     const certificateIsAMateBasis: Assignable<Proved, MateOutcomeProps['basis']> = true
 
     expect(certificateIsAMateBasis).toBe(true)
+  })
+})
+
+/**
+ * **And the mirror of it: a merely winning position is not machine-proved (#45).**
+ *
+ * `CompiledProved` is a *mate certificate* — a file a reader can fetch and replay (ADR-0005).
+ * A position that is only winning has no such file, so a `position` outcome carrying a proved
+ * basis is not a state this project has copy for: `ProvedNote` would say "the count and the
+ * line above" under a card that has neither, and link "How a mate is proved" for something
+ * that is not a mate. Until #45 the type admitted it, which is why there was a `proved` arm
+ * to render at all.
+ *
+ * These gates are the reason there is no longer one. Widen `basis` back to the full union and
+ * the three constants below flip, and the file stops type-checking.
+ */
+describe('a proved assessment is not expressible', () => {
+  type ProvedPosition = {
+    readonly kind: 'position'
+    readonly evaluation: CompiledAnnotation
+    readonly plan: CompiledAnnotation
+    readonly basis: CompiledProved
+  }
+
+  it('refuses a position outcome whose basis is a certificate', () => {
+    const provedPositionIsNotAnOutcome: Assignable<ProvedPosition, CompiledOutcome> = false
+
+    expect(provedPositionIsNotAnOutcome).toBe(false)
+  })
+
+  it('accepts the same shape carrying a judgement, so the gate above is not vacuous', () => {
+    type JudgedPosition = Omit<ProvedPosition, 'basis'> & { readonly basis: CompiledJudgement }
+    const judgedPositionIsAnOutcome: Assignable<JudgedPosition, CompiledOutcome> = true
+
+    expect(judgedPositionIsAnOutcome).toBe(true)
+  })
+
+  /**
+   * And the component asks for the narrowed thing rather than re-widening it at the prop,
+   * which is where the rendering of the impossible state actually lived.
+   */
+  it('and AssessmentOutcome will not take a certificate either', () => {
+    const certificateIsNotAnAssessmentBasis: Assignable<
+      CompiledProved,
+      AssessmentOutcomeProps['basis']
+    > = false
+
+    expect(certificateIsNotAnAssessmentBasis).toBe(false)
+  })
+
+  it('but does take the judgement the wire carries', () => {
+    type PositionArm = Extract<CompiledOutcome, { kind: 'position' }>
+    const theWireFitsTheProp: Assignable<PositionArm['basis'], AssessmentOutcomeProps['basis']> =
+      true
+
+    expect(theWireFitsTheProp).toBe(true)
+  })
+})
+
+/**
+ * **`ProvedNote` has exactly one caller (#45, AC 3).**
+ *
+ * The import list in `MateOutcome` says what that component can render. This says the other
+ * direction — that nothing else in the shipped source can render it — which is the claim
+ * that would quietly stop being true if a second outcome grew a proved arm again.
+ */
+describe('the proof note is reachable from one component only', () => {
+  const SOURCES: Readonly<Record<string, string>> = import.meta.glob('/src/**/*.{ts,tsx}', {
+    query: '?raw',
+    import: 'default',
+    eager: true,
+  })
+
+  /** The note's own module defines it; every other mention is a caller. */
+  const CALLERS = Object.entries(SOURCES)
+    .filter(([path]) => !path.includes('.test.') && !path.endsWith('/OutcomeProvenance.tsx'))
+    .filter(([, text]) => /\bProvedNote\b/.test(withoutComments(text)))
+    .map(([path]) => path.replace(/^\//, ''))
+
+  it('finds the source it claims to scan', () => {
+    expect(Object.keys(SOURCES).length).toBeGreaterThan(10)
+    expect(Object.keys(SOURCES)).toContain('/src/components/learn/OutcomeProvenance.tsx')
+  })
+
+  it('and that component is MateOutcome', () => {
+    expect(CALLERS).toStrictEqual(['src/components/learn/MateOutcome.tsx'])
+  })
+})
+
+/**
+ * **And the module that owns both notes can no longer choose between them (#45).**
+ *
+ * The scan above deliberately skips `OutcomeProvenance.tsx`, because that file *defines*
+ * `ProvedNote` and would match itself. That exemption is also a blind spot, and it is
+ * pointed at exactly the code #45 deleted: `AssessmentProvenance` lived in this module and
+ * branched on `basis` to pick a note, so a future tidy-up that reintroduces a chooser here
+ * — the single most likely way this regresses — restores the rendering of the impossible
+ * state with every gate on this page still green.
+ *
+ * So the rule for this one file is stronger than "has no second caller": it may not know
+ * what a basis is. Which note a leaf gets is now settled by the type at the call site,
+ * where `CompiledProved` and `CompiledJudgement` make the wrong one unrepresentable, and a
+ * component that re-decided it at render time could only ever disagree with that.
+ */
+describe('the notes are told which one to be', () => {
+  it('so their module never mentions a basis', () => {
+    expect(PROVENANCE).not.toContain('basis')
+  })
+
+  it('and it is still the module that defines them both, so this is not an empty file passing', () => {
+    expect(PROVENANCE).toContain('export const ProvedNote')
+    expect(PROVENANCE).toContain('export const JudgementNote')
   })
 })
 
@@ -154,11 +280,10 @@ describe('the wire carries a line, not a net', () => {
  * caught whether or not a test happens to render that string.
  *
  * Scope, stated rather than left implicit: the mate keys below are the ones only
- * `MateOutcome` renders. `howProved` is among them, and it is also reachable from the
- * `proved` arm of `AssessmentProvenance` — a shape `CompiledOutcome` admits and
- * `tools/content/validate.ts` never emits, since it writes `basis: 'judgement'` on every
- * `position` outcome it compiles. If that ever changes, this scope is wrong and the copy
- * needs a sentence of its own.
+ * `MateOutcome` renders, and since #45 that is the whole story — `howProved` was also
+ * reachable from the `proved` arm of `AssessmentProvenance`, and there is no such arm, no
+ * such component, and no such shape for `CompiledOutcome` to admit any more. The describes
+ * above hold each half of that.
  */
 describe('no catalogue calls a merely winning position a mate', () => {
   const MATE_KEYS: ReadonlySet<string> = new Set([

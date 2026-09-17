@@ -1,7 +1,6 @@
 import { Link } from 'react-router'
 import './OutcomeProvenance.css'
 import { Translated } from '../../i18n/Translated.tsx'
-import type { CompiledProvenance } from '../../lib/content-types.ts'
 import type { Locale } from '../../lib/locale.ts'
 import { routePath, routeSegments } from '../../lib/routes.ts'
 
@@ -13,8 +12,11 @@ import { routePath, routeSegments } from '../../lib/routes.ts'
  * not make the opinion trustworthy: it makes it *look* trustworthy, which is worse than
  * proving nothing at all (docs/CONTEXT.md, *Provenance*). So these are **two components**,
  * not one with a flag, for the same reason `MateOutcome` and `AssessmentOutcome` are — and
- * `MateOutcome` imports only `ProvedNote`, because its `basis` is typed `CompiledProved`
- * and a hand-judged mate is not expressible.
+ * each outcome imports exactly the one note its own `basis` type can be. `MateOutcome` takes
+ * `CompiledProved` and imports only `ProvedNote`; `AssessmentOutcome` takes
+ * `CompiledJudgement` and imports only `JudgementNote`. Neither has the other's note to
+ * render even if something handed it the wrong basis, and nothing here dispatches on
+ * `basis` at all, because no outcome's basis is a union any more (#45).
  *
  * Four signals separate them, and **none of them is the hue**:
  *
@@ -143,26 +145,3 @@ export const NoClaimNote = () => (
     <Translated id="outcome.noClaimNote" />
   </p>
 )
-
-/**
- * The two arms of `CompiledProvenance`, for the one outcome whose basis is the full union.
- *
- * `AssessmentOutcome` is the only caller. The `proved` arm is not dead code kept for
- * symmetry: the type admits it, and a component that refused to render half of its own
- * input type would be a blank line on the page whose entire argument is that it never hides
- * where a claim came from. Today's build only ever emits the judgement arm for an
- * assessment (`tools/content/validate.ts`), which is a narrowing `CompiledOutcome` could
- * express and does not.
- */
-export const AssessmentProvenance = ({
-  provenance,
-  locale,
-}: {
-  readonly provenance: CompiledProvenance
-  readonly locale: Locale
-}) =>
-  provenance.basis === 'proved' ? (
-    <ProvedNote certificate={provenance.certificate} locale={locale} />
-  ) : (
-    <JudgementNote by={provenance.by} at={provenance.at} source={provenance.source} />
-  )

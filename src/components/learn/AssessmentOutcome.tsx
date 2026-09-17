@@ -2,10 +2,10 @@ import { useId } from 'react'
 import './AssessmentOutcome.css'
 import { UntranslatedNotice } from '../../i18n/UntranslatedNotice.tsx'
 import { Translated } from '../../i18n/Translated.tsx'
-import type { CompiledAnnotation, CompiledProvenance } from '../../lib/content-types.ts'
+import type { CompiledAnnotation, CompiledJudgement } from '../../lib/content-types.ts'
 import type { Locale } from '../../lib/locale.ts'
 import { localiseAnnotation, type LocalisedProse } from './annotation.ts'
-import { AssessmentProvenance } from './OutcomeProvenance.tsx'
+import { JudgementNote } from './OutcomeProvenance.tsx'
 
 /**
  * Where a line leaves the learner when the opponent defended (docs/design-system.md §3,
@@ -39,7 +39,12 @@ export type AssessmentOutcomeProps = {
   readonly evaluation: CompiledAnnotation
   /** What to aim at, which pieces matter, what the pawn structure implies. */
   readonly plan: CompiledAnnotation
-  readonly basis: CompiledProvenance
+  /**
+   * A judgement and never a proof. `CompiledProved` names a mate certificate (ADR-0005), and
+   * there is no certificate for "Black is a pawn down with the initiative" — so the type
+   * refuses one here, and this component imports only `JudgementNote` (#45).
+   */
+  readonly basis: CompiledJudgement
   readonly locale: Locale
 }
 
@@ -98,7 +103,7 @@ export const AssessmentOutcome = ({ evaluation, plan, basis, locale }: Assessmen
       <Block label="outcome.evaluation" prose={localiseAnnotation(evaluation, locale)} />
       <Block label="outcome.plan" prose={localiseAnnotation(plan, locale)} />
 
-      <AssessmentProvenance provenance={basis} locale={locale} />
+      <JudgementNote by={basis.by} at={basis.at} source={basis.source} />
     </section>
   )
 }
