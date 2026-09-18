@@ -190,6 +190,8 @@ describe('the catalogue this repository ships', () => {
     ['latvian-gambit-accepted', 1],
     ['legals-mate', 7],
     ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
+    ['mexican-defense-horsefly-gambit', 1],
+    ['mikenas-defense-pozarek-gambit', 1],
     ['modern-defense-lizard-defense-pirc-diemer-gambit', 1],
     ['mortimer-trap', 1],
     ['nimzo-indian-defense-dilworth-gambit', 1],
@@ -200,6 +202,8 @@ describe('the catalogue this repository ships', () => {
     ['owen-defense-naselwaus-gambit', 1],
     ['petrovs-defense-stafford-gambit', 1],
     ['philidor-defense-lopez-countergambit', 2],
+    ['pirc-defense-roscher-gambit', 1],
+    ['polish-defense-spassky-gambit-accepted', 1],
     ['polish-opening-birmingham-gambit', 1],
     ['ponziani-opening-ponziani-countergambit', 1],
     ['portuguese-opening-miguel-gambit', 1],
@@ -208,14 +212,25 @@ describe('the catalogue this repository ships', () => {
     ['queens-pawn-game-zurich-gambit', 1],
     ['rat-defense-english-rat-lisbon-gambit', 1],
     ['reti-opening-zilbermints-gambit', 1],
+    ['richter-veresov-attack-malich-gambit', 2],
     ['ruy-lopez-schliemann-defense', 1],
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scotch-game-goring-gambit', 2],
     ['scotch-game-scotch-gambit', 4],
     ['semi-slav-defense-marshall-gambit', 1],
     ['siberian-trap', 1],
+    ['sicilian-defense-brussels-gambit', 1],
+    ['sicilian-defense-euwe-attack-prins-gambit', 1],
+    ['sicilian-defense-halasz-gambit', 1],
+    ['sicilian-defense-morphy-gambit', 1],
+    ['sicilian-defense-okelly-variation-wing-gambit', 1],
+    ['sicilian-defense-polish-gambit', 1],
+    ['sicilian-defense-portsmouth-gambit', 1],
     ['sicilian-defense-smith-morra-gambit', 4],
+    ['sicilian-defense-wing-gambit', 1],
     ['slav-defense-diemer-gambit', 1],
+    ['sodium-attack-durkin-gambit', 1],
+    ['st-george-defense-zilbermints-gambit', 1],
     ['tarrasch-defense-schara-gambit', 1],
     ['torre-attack-wagner-gambit', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
@@ -227,7 +242,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored ninety-four have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored one hundred and nine have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

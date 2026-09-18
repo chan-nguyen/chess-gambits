@@ -1,0 +1,61 @@
+# Sicilian Defense: Halasz Gambit. Frozen defining line 1.e4 c5 2.d4 cxd4 3.f4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-halasz-gambit
+name: 'Sicilian Defense: Halasz Gambit'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, f4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. White is already a pawn down after 2...cxd4, and 3.f4
+      does not win it back — it only offers a second pawn without forcing anything, so a simple
+      developing reply leaves White down material with nothing concrete to show for it.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã kém một tốt sau 2...cxd4 và giờ chơi tiếp 3.f4, mời thêm một con tốt nữa hoặc chuẩn bị đẩy trung tâm bằng e5, thay vì lấy lại con tốt ngay bằng Qxd4. Đây là Halasz Gambit của Khai cuộc Sicilia.
+    en: White is already a pawn down after 2...cxd4 and now plays 3.f4, offering a second pawn or preparing to push the centre with e5, rather than winning the first pawn straight back with Qxd4. This is the Sicilian Halasz Gambit.
+    fr: Les Blancs ont déjà un pion de moins après 2...cxd4 et jouent maintenant 3.f4, offrant un second pion ou préparant à pousser le centre par e5, plutôt que de reprendre tout de suite le premier pion par Qxd4. C'est le Gambit Halasz de la Sicilienne.
+  dismissRest:
+    reason:
+      vi: Đen không chơi ...Nc6. Các nước khác (đưa hậu ra sớm bằng Qa5+, đẩy tốt cánh vua, hay đẩy tiếp ...d3) đều là những cách phát triển khác dẫn tới cùng kết luận — Trắng vẫn kém một tốt và chưa có gì bù lại — nên không cần xét riêng từng nước.
+      en: Black does not play ...Nc6. The other tries (bringing the queen out early with ...Qa5+, pushing a kingside pawn, or pushing on with ...d3) are just different ways of playing that reach the same conclusion — White is still down a pawn with nothing yet to show for it — so they do not need separate treatment.
+      fr: Les Noirs ne jouent pas ...Nc6. Les autres essais (sortir la dame tôt par ...Qa5+, avancer un pion de l'aile roi, ou pousser encore par ...d3) sont juste d'autres façons de jouer qui mènent à la même conclusion — les Blancs restent un pion en moins sans rien à montrer — ils n'ont donc pas besoin d'un traitement séparé.
+  children:
+    - ply: Nc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã tự nhiên, không vội vàng, và giữ nguyên con tốt d4 đã ăn được. Con tốt f4 của Trắng chưa đe doạ được gì cụ thể.
+        en: Black simply develops the knight, unhurried, and keeps the d4 pawn already won. White's f4 pawn is not threatening anything concrete yet.
+        fr: Les Noirs se contentent de développer le cavalier, sans hâte, et gardent le pion d4 déjà gagné. Le pion f4 blanc ne menace encore rien de concret.
+      children:
+        - ply: Nf3
+          annotation:
+            vi: Trắng phát triển mã, nhắm vào con tốt d4 nhưng chưa có cách ăn lại nó ngay vì mã c6 của Đen đang bảo vệ ô đó.
+            en: White develops the knight, eyeing the d4 pawn, but there is no way to win it back at once since Black's c6 knight is guarding that square.
+            fr: Les Blancs développent le cavalier, en visant le pion d4, mais il n'y a pas moyen de le reprendre tout de suite, le cavalier c6 noir défendant cette case.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn đúng một tốt sạch — con tốt d4 ăn được từ nước hai và chưa hề bị đòi lại, vì mã c6 đang canh giữ ô đó. Đổi lại, con tốt f4 mà Trắng vừa đẩy không tạo ra được mối đe doạ nào — chưa có đường chéo hay cột nào mở ra nhắm vào vua Đen, và về phát triển thì mỗi bên mới ra đúng một quân (mã c6 và mã f3), tức là ngang nhau chứ không phải Trắng vượt lên. Một con tốt kèm theo lời hứa suông về một trung tâm tương lai không phải là thứ gambit này cần để được coi là ổn.
+              en: Black is a clean pawn up — the d4 pawn won on move two and never recovered, since the c6 knight is guarding it. In return, the f4 pawn White just pushed creates no threat at all — no diagonal or file has opened toward the black king, and in development each side has brought out exactly one piece (the c6 and f3 knights), which is even rather than a White lead. A pawn plus a bare promise of a future centre is not enough for this gambit to be called sound.
+              fr: Les Noirs ont un pion net d'avance — le pion d4 gagné au deuxième coup et jamais repris, le cavalier c6 le surveillant. En échange, le pion f4 que les Blancs viennent de pousser ne crée aucune menace — aucune diagonale ni colonne ne s'est ouverte vers le roi noir, et côté développement chaque camp n'a sorti qu'une seule pièce (les cavaliers c6 et f3), ce qui est égal et non une avance blanche. Un pion contre une simple promesse de futur centre ne suffit pas pour que ce gambit soit jugé sain.
+            plan:
+              vi: Trắng chơi Bc4 hoặc Bd3, O-O và cố đẩy e5 hoặc f5 để mở cờ tấn công, chấp nhận chơi bù một tốt chứ chưa có đòn cụ thể. Đen chơi d6 hoặc e6, phát triển tượng, nhập thành và chỉ cần tránh mở cờ trước khi hoàn thiện phát triển để giữ nguyên con tốt thừa.
+              en: White plays Bc4 or Bd3, castles and tries to push e5 or f5 to open lines for an attack, essentially playing a game down a pawn without a concrete blow yet. Black plays ...d6 or ...e6, develops the bishop, castles, and only needs to avoid opening the position before development is finished in order to keep the extra pawn.
+              fr: Les Blancs jouent Bc4 ou Bd3, roquent et tentent de pousser e5 ou f5 pour ouvrir des lignes d'attaque, jouant en somme une partie avec un pion de moins sans coup décisif encore. Les Noirs jouent ...d6 ou ...e6, développent le fou, roquent et doivent seulement éviter d'ouvrir la position avant d'avoir fini leur développement pour garder le pion supplémentaire.
+            basis:
+              by: chan
+              at: '2026-09-18'

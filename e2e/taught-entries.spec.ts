@@ -45,6 +45,7 @@ const taught = content.entries
     return {
       id: entry.id,
       name: entry.name,
+      eco: entry.eco,
       tree: compiled.tree,
       leaves: countableBranches(compiled.tree).map(
         (key) => parseLine(decodeURIComponent(key)).plies,
@@ -76,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are ninety-four of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred and nine of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -137,6 +138,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'latvian-gambit-accepted',
       'legals-mate',
       'lion-defense-anti-philidor-lions-cave-lion-claw-gambit',
+      'mexican-defense-horsefly-gambit',
+      'mikenas-defense-pozarek-gambit',
       'modern-defense-lizard-defense-pirc-diemer-gambit',
       'mortimer-trap',
       'nimzo-indian-defense-dilworth-gambit',
@@ -147,6 +150,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'owen-defense-naselwaus-gambit',
       'petrovs-defense-stafford-gambit',
       'philidor-defense-lopez-countergambit',
+      'pirc-defense-roscher-gambit',
+      'polish-defense-spassky-gambit-accepted',
       'polish-opening-birmingham-gambit',
       'ponziani-opening-ponziani-countergambit',
       'portuguese-opening-miguel-gambit',
@@ -155,14 +160,25 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'queens-pawn-game-zurich-gambit',
       'rat-defense-english-rat-lisbon-gambit',
       'reti-opening-zilbermints-gambit',
+      'richter-veresov-attack-malich-gambit',
       'ruy-lopez-schliemann-defense',
       'scandinavian-defense-zilbermints-gambit',
       'scotch-game-goring-gambit',
       'scotch-game-scotch-gambit',
       'semi-slav-defense-marshall-gambit',
       'siberian-trap',
+      'sicilian-defense-brussels-gambit',
+      'sicilian-defense-euwe-attack-prins-gambit',
+      'sicilian-defense-halasz-gambit',
+      'sicilian-defense-morphy-gambit',
+      'sicilian-defense-okelly-variation-wing-gambit',
+      'sicilian-defense-polish-gambit',
+      'sicilian-defense-portsmouth-gambit',
       'sicilian-defense-smith-morra-gambit',
+      'sicilian-defense-wing-gambit',
       'slav-defense-diemer-gambit',
+      'sodium-attack-durkin-gambit',
+      'st-george-defense-zilbermints-gambit',
       'tarrasch-defense-schara-gambit',
       'torre-attack-wagner-gambit',
       'trompowsky-attack-raptor-variation-hergert-gambit',
@@ -183,11 +199,19 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
 
       /*
        * The default catalogue view is the taught tier, and a narrowed view under the
-       * auto-expand limit opens its families — so an entry this ticket taught is one click
-       * from `/gambits` with no filtering at all. That is the claim: a visitor who opens
-       * the catalogue can reach this.
+       * auto-expand limit opens its families — which covered every taught entry
+       * unnarrowed through issue #103's batch, but the taught tier itself passed
+       * `autoExpandLimit` (100, `filter.ts`) once #109 brought it to one hundred and
+       * five. Past that line the index renders as forty-seven collapsed family buttons
+       * (`CatalogueList.tsx`), which is the intended behaviour for the unfiltered view —
+       * so this walk narrows by the entry's own ECO code rather than by name: the
+       * catalogue this test drives is the Vietnamese one, and a name is translated while
+       * an ECO code is not, so it is the one needle guaranteed to match regardless of
+       * locale. Each of this repository's ECO codes matches at most a few dozen taught
+       * entries (`sicilian-defense-*` tops out at ten), comfortably under the limit, and
+       * the href-based locator below still finds the one card that is this entry's.
        */
-      await page.goto(cataloguePath)
+      await page.goto(`${cataloguePath}?q=${encodeURIComponent(entry.eco)}`)
       /*
        * Waited for by the result count rather than by the heading. The catalogue payload
        * is a separate request, and the heading is on the page before any of it has
