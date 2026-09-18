@@ -11,6 +11,7 @@ const fr: PartialTranslations = {
     primary: 'Principale',
     menu: 'Menu',
     catalogue: 'Catalogue',
+    traps: 'Pièges',
     about: 'À propos',
     language: 'Langue',
   },
