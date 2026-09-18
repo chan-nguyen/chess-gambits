@@ -1,0 +1,83 @@
+# Queen's Gambit Declined: Albin Countergambit. Frozen defining line 1.d4 d5 2.c4 e5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. Nothing here attempts
+# the Lasker Trap, which is its own published entry rather than part of this one.
+id: queens-gambit-declined-albin-countergambit
+name: "Queen's Gambit Declined: Albin Countergambit"
+eco: D08
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. The main line, 3.dxe5 d4 4.Nf3 Nc6, leaves White a genuine extra pawn;
+      Black's actual asset is the wedge on d4 denying c3 and e3, which is real long-term
+      pressure but not proven enough to call the whole pawn sound. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì nhận hay từ chối Gambit Hậu theo cách thường thấy, Đen phản công thẳng vào giữa bàn cờ bằng 2...e5. Nếu Trắng ăn, con tốt d5 của Đen sẽ đẩy lên d4, chiếm một cái nêm ngay giữa lòng Trắng và tước mất hai ô c3, e3 của các quân nhẹ Trắng.
+    en: Rather than accepting or declining the Queen's Gambit the usual way, Black strikes straight back in the centre with 2...e5. If White takes, Black's d5 pawn pushes on to d4, driving a wedge deep in White's position and taking the c3 and e3 squares away from White's minor pieces.
+    fr: Plutôt que d'accepter ou de refuser le Gambit Dame de la manière habituelle, les Noirs contre-attaquent directement au centre par 2...e5. Si les Blancs prennent, le pion d5 noir avance en d4, plantant un coin au cœur de la position blanche et retirant les cases c3 et e3 aux pièces mineures blanches.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e5. Mọi nước khác, kể cả cxd5 ăn tốt d5 trước hay các nước phát triển bình thường, để nguyên căng thẳng ở trung tâm và cho Đen thời gian giải quyết nó theo ý mình, nghĩa là chưa hề chạm đến câu hỏi mà 2...e5 thực sự đặt ra.
+      en: White does not take the e5 pawn. Anything else, including cxd5 to take the d5 pawn first or a plain developing move, leaves the central tension standing and gives Black time to resolve it on Black's own terms, meaning the question 2...e5 actually asks has not been touched at all.
+      fr: Les Blancs ne prennent pas le pion e5. Tout le reste, y compris cxd5 pour prendre d'abord le pion d5 ou un simple coup de développement, laisse la tension centrale debout et donne aux Noirs le temps de la régler à leur façon, ce qui veut dire que la question réellement posée par 2...e5 n'a pas encore été touchée.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt e5. Đây là nước thử thách nhất, vì nó buộc Đen phải chứng minh ngay sự bù đắp cho con tốt trung tâm đã mất.
+        en: White takes the e5 pawn. This is the most testing choice, because it forces Black to prove the compensation for the lost central pawn right away.
+        fr: Les Blancs prennent le pion e5. C'est le choix le plus exigeant, car il force les Noirs à prouver tout de suite la compensation du pion central perdu.
+      children:
+        - ply: d4
+          annotation:
+            vi: Đen đẩy tốt lên d4 thay vì đòi lại con tốt e5 ngay. Con tốt này chiếm mất hai ô c3 và e3 của các quân nhẹ Trắng, và đó chính là toàn bộ ý tưởng của Gambit Albin.
+            en: Black pushes the pawn to d4 rather than trying to win the e5 pawn back at once. This pawn takes the c3 and e3 squares away from White's minor pieces, and that is the whole idea of the Albin Countergambit.
+            fr: Les Noirs poussent le pion en d4 plutôt que de chercher à reprendre tout de suite le pion e5. Ce pion retire les cases c3 et e3 aux pièces mineures blanches, et c'est toute l'idée du Contre-gambit Albin.
+          dismissRest:
+            reason:
+              vi: Trắng không phát triển bằng Nf3. Nước 4.e3 đánh thẳng vào con tốt d4 ngay lập tức dẫn vào những cạm bẫy riêng đã được phân tích kỹ ở nơi khác, nằm ngoài phạm vi mục này; Nf3 là cách chơi vững chắc và cũng là điều mục này trình bày.
+              en: White does not develop with Nf3. 4.e3, striking at the d4 pawn immediately, leads into its own well-analysed tricks covered elsewhere and outside the scope of this entry; Nf3 is the solid approach and the one this entry presents.
+              fr: Les Blancs ne développent pas par Nf3. 4.e3, qui frappe immédiatement le pion d4, mène à ses propres pièges bien analysés ailleurs et hors du cadre de cette fiche ; Nf3 est l'approche solide et celle que présente cette fiche.
+          children:
+            - ply: Nf3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng phát triển mã, để con tốt d4 của Đen đứng nguyên đó cho lúc khác và tập trung vào việc đưa quân ra trước. Con tốt ấy vẫn chiếm mất hai ô c3, e3 mà con mã và tượng Trắng đều muốn dùng.
+                en: White develops the knight, leaving Black's d4 pawn for another time and focusing on getting pieces out first. That pawn still denies both c3 and e3, squares both a knight and a bishop of White's would like to use.
+                fr: Les Blancs développent le cavalier, laissant le pion noir en d4 pour plus tard et se concentrant d'abord sur la sortie des pièces. Ce pion continue de priver les Blancs des cases c3 et e3, que voudraient utiliser aussi bien un cavalier qu'un fou.
+              children:
+                - ply: Nc6
+                  annotation:
+                    vi: Đen phát triển mã, đỡ thêm con tốt d4 và chuẩn bị đưa các quân còn lại ra để đòi lại con tốt e5. Đây là cách chơi tự nhiên nhất trong thế cờ mà Gambit Albin dẫn tới.
+                    en: Black develops the knight, adds another defender to the d4 pawn, and prepares to bring the rest of the pieces out to go after the e5 pawn. This is the most natural way to play the position the Albin leads to.
+                    fr: Les Noirs développent le cavalier, ajoutent un défenseur au pion d4 et préparent à sortir le reste des pièces pour aller chercher le pion e5. C'est la manière la plus naturelle de jouer la position à laquelle mène le Gambit Albin.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, con tốt e5 đã ăn ở nước 3, và chưa có gì đòi lại được nó. Đổi lại, con tốt d4 của Đen đứng như một cái nêm ngay giữa bàn cờ, chiếm mất vĩnh viễn hai ô c3 và e3 của các quân nhẹ Trắng — hai ô mà một mã hay một tượng Trắng bình thường vẫn muốn đứng vào. Đây chính là toàn bộ nội dung của Gambit Albin ở giai đoạn này, một tốt đổi lấy một ô mà đối phương không bao giờ dùng lại được.
+                      en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, the e5 pawn taken on move three, and nothing has won it back yet. In return, Black's pawn on d4 sits as a wedge in the middle of the board, permanently denying White's minor pieces the c3 and e3 squares — squares a knight or bishop would ordinarily want to stand on. This is the whole content of the Albin at this stage, a pawn traded for a square the opponent can never use again.
+                      fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus bien réel, le pion e5 pris au troisième coup, et rien ne l'a encore récupéré. En échange, le pion noir en d4 se tient en coin au milieu de l'échiquier, privant définitivement les pièces mineures blanches des cases c3 et e3 — des cases qu'un cavalier ou un fou voudrait normalement occuper. Voilà tout le contenu du Gambit Albin à ce stade, un pion échangé contre une case que l'adversaire ne pourra plus jamais utiliser.
+                    plan:
+                      vi: Trắng chơi g3 rồi Bg2, nhắm vào con tốt d4 từ đường chéo dài mà không cần đụng đến các ô c3, e3 đã mất, sau đó O-O, Nbd2 và tìm cách đổi hoặc bao vây con tốt d4 khi có dịp. Đen chơi Bb4+ hoặc Bg4 ghim mã f3, rồi Nge7 hay Qe7, O-O-O hoặc O-O tuỳ thế trận, dùng cột e nửa mở và cái nêm d4 để giữ áp lực lâu dài, cố gắng biến ưu thế không gian thành một cuộc tấn công trước khi Trắng kịp gỡ tốt thừa thành thắng thế rõ ràng.
+                      en: White plays g3 and Bg2, aiming at the d4 pawn from the long diagonal without needing the c3 and e3 squares that are already gone, then castles, plays Nbd2 and looks to trade off or surround the d4 pawn when the chance comes. Black plays Bb4+ or Bg4 to pin the f3 knight, then Nge7 or Qe7, castling either side depending on how the game goes, using the half-open e-file and the d4 wedge to keep long-term pressure and trying to turn the space into an attack before White can turn the extra pawn into a clear advantage.
+                      fr: Les Blancs jouent g3 et Bg2, visant le pion d4 depuis la grande diagonale sans avoir besoin des cases c3 et e3 déjà perdues, puis roquent, jouent Nbd2 et cherchent à échanger ou encercler le pion d4 le moment venu. Les Noirs jouent Bb4+ ou Bg4 pour clouer le cavalier f3, puis Nge7 ou Qe7, en roquant d'un côté ou de l'autre selon la tournure de la partie, en utilisant la colonne e semi-ouverte et le coin d4 pour maintenir une pression à long terme, en essayant de transformer l'espace en attaque avant que les Blancs ne changent le pion supplémentaire en avantage net.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

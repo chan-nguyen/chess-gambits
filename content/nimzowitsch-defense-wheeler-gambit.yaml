@@ -1,0 +1,103 @@
+# Nimzowitsch Defense: Wheeler Gambit. Frozen defining line 1.e4 Nc6 2.b4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Both
+# branches below were replayed with chess.js before being annotated.
+id: nimzowitsch-defense-wheeler-gambit
+name: 'Nimzowitsch Defense: Wheeler Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, Nc6, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black's simple retreat after 3.a3, ...Nc6, keeps the extra pawn with
+      no drawback found for it. The gambit's only real content is a pair of traps —
+      ...Nd3+ and ...Nxc2+ — that only work if Black grabs at forks that are not really
+      there; a learner who does not fall for them is simply a clean pawn ahead. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng thí tốt b4 ngay sau khi Đen chơi 1...Nc6 kiểu Nimzowitsch. Nếu Đen ăn, con mã đứng ở b4 sẽ bị đuổi ngay và phải tìm đường về, và chính lúc đó hai cái bẫy của gambit này mới xuất hiện.
+    en: White offers the b4 pawn right after Black's Nimzowitsch-style 1...Nc6. If Black takes, the knight lands on b4 and gets chased at once, and that is exactly the moment this gambit's two traps appear.
+    fr: Les Blancs offrent le pion b4 juste après le 1...Nc6 façon Nimzowitsch des Noirs. Si les Noirs le prennent, le cavalier atterrit en b4 et se fait aussitôt chasser, et c'est précisément à ce moment que les deux pièges de ce gambit apparaissent.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt b4. Mọi nước khác, từ ...e5 kiểu cổ điển đến ...d5 hay các nước phát triển, để nguyên con tốt b4 trên bàn cờ mà Đen chẳng được gì thêm, nên đây chỉ là Trắng chiếm đất ở cánh hậu chứ chưa hề mất một con tốt nào cả.
+      en: Black does not take the b4 pawn. Anything else, from the classical ...e5 to ...d5 or a plain developing move, leaves the b4 pawn sitting there for nothing gained, so this is simply White taking queenside space rather than actually losing a pawn.
+      fr: Les Noirs ne prennent pas le pion b4. Tout le reste, du classique ...e5 à ...d5 ou un simple coup de développement, laisse le pion b4 en place sans rien gagner, donc ceci n'est encore que les Blancs prenant de l'espace à l'aile dame plutôt que de réellement perdre un pion.
+  children:
+    - ply: Nxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt bằng mã. Đây là nước tự nhiên và cũng là nước đúng, vì chưa có gì bắt mã phải trả giá cho việc này.
+        en: Black takes the pawn with the knight. This is the natural move and also the correct one, because nothing yet makes the knight pay for it.
+        fr: Les Noirs prennent le pion avec le cavalier. C'est le coup naturel et aussi le bon, car rien ne fait encore payer ce choix au cavalier.
+      children:
+        - ply: a3
+          annotation:
+            vi: Trắng đuổi mã bằng tốt a. Con mã ở b4 phải rời đi ngay lập tức, và đây chính là nơi cả nhánh chính lẫn hai cái bẫy của gambit này rẽ ra.
+            en: White chases the knight with the a-pawn. The knight on b4 must move at once, and this is exactly where both the main line and the gambit's two traps branch off.
+            fr: Les Blancs chassent le cavalier avec le pion a. Le cavalier en b4 doit bouger sur-le-champ, et c'est précisément ici que se séparent la ligne principale et les deux pièges de ce gambit.
+          dismissRest:
+            reason:
+              vi: Đen không lùi mã về c6 và cũng không thử bẫy ở c2. Các ô lùi khác như a6, d5 hay a2 đều hợp lệ và giữ được con mã, nhưng chúng không tốt hơn c6 ở chỗ nào cả, còn nước Nd3+ chiếu thì đơn giản bị cxd3 hoặc Bxd3 ăn mất, biến bẫy thành một nước mất quân không bù đắp.
+              en: Black neither retreats the knight to c6 nor tries the trick on c2. Other retreats such as a6, d5 or a2 are all legal and keep the knight, but none of them is any better than c6, while ...Nd3+ simply walks into cxd3 or Bxd3, turning the intended trick into a piece lost for nothing.
+              fr: Les Noirs ne reculent pas le cavalier en c6 et n'essaient pas non plus le coup en c2. D'autres retraits comme a6, d5 ou a2 sont tous légaux et gardent le cavalier, mais aucun ne vaut mieux que c6, tandis que ...Nd3+ se heurte simplement à cxd3 ou Bxd3, transformant le piège voulu en une pièce perdue pour rien.
+          children:
+            - ply: Nc6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Mã lùi về ô tự nhiên nhất của nó. Đen giữ trọn con tốt đã ăn mà không phải mạo hiểm gì thêm.
+                en: The knight retreats to its most natural square. Black keeps the pawn won without taking on any further risk.
+                fr: Le cavalier recule sur sa case la plus naturelle. Les Noirs gardent le pion gagné sans prendre le moindre risque supplémentaire.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, con tốt b đã thí ở nước 2, và không có gì bù lại được nó — cả hai bên đã chơi đúng ba nước, đều đưa được một mã ra, và không ai có điểm yếu cấu trúc hay đường mở nào cho đối phương khai thác. Đây chính là câu trả lời trung thực cho tên gọi "gambit" — con tốt chỉ đơn giản là mất.
+                  en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, the one offered on move two, and nothing compensates for it — both sides have played exactly three moves, each has one knight out, and neither side has a structural weakness or an open line for the other to exploit. This is the honest answer to the name "gambit" — the pawn is simply gone.
+                  fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion de plus bien réel, celui offert au deuxième coup, et rien ne le compense — les deux camps ont joué exactement trois coups, chacun a sorti un cavalier, et ni l'un ni l'autre n'a de faiblesse structurelle ou de ligne ouverte à exploiter. Voilà la réponse honnête au nom « gambit » — le pion est tout simplement perdu.
+                plan:
+                  vi: Trắng chơi Nf3, Bc4 hoặc Bb2, O-O rồi Re1, cố dùng nhịp phát triển nhỏ để tạo sức ép trước khi Đen ổn định, nhưng không có nước phá cụ thể nào để đòi lại con tốt. Đen chơi e5 hoặc d5 chiếm trung tâm, Nf6, Be7 hay Bc5 và O-O, giữ chắc con tốt thừa và hướng ván cờ về tàn cuộc.
+                  en: White plays Nf3, Bc4 or Bb2, castles and follows with Re1, trying to use the small development lead to create pressure before Black settles, but there is no concrete break that wins the pawn back. Black plays e5 or d5 to take the centre, Nf6, Be7 or Bc5 and castles, holding the extra pawn firmly and steering for an endgame.
+                  fr: Les Blancs jouent Nf3, Bc4 ou Bb2, roquent puis Re1, en essayant d'utiliser le petit temps de développement pour créer de la pression avant que les Noirs ne s'installent, mais il n'existe aucune rupture concrète pour reprendre le pion. Les Noirs jouent e5 ou d5 pour prendre le centre, Nf6, Be7 ou Bc5 et roquent, en gardant fermement le pion supplémentaire et en visant la finale.
+                basis:
+                  by: chan
+                  at: '2026-09-18'
+            - ply: Nxc2+
+              replyQuality: blunder
+              frequency: occasional
+              annotation:
+                vi: Mã ăn tốt c2 và chiếu, nhìn như một chĩa ăn cả vua lẫn xe a1. Đây chính là cái bẫy mà Wheeler Gambit được đặt tên vì nó, nhưng chĩa này không có thật.
+                en: The knight takes the c2 pawn with check, looking like a fork on the king and the rook on a1. This is the trick the Wheeler Gambit is named for, except the fork is not really there.
+                fr: Le cavalier prend le pion c2 avec échec, ayant l'air de fourchetter le roi et la tour en a1. C'est le piège qui a donné son nom au Gambit Wheeler, sauf que la fourchette n'existe pas vraiment.
+              children:
+                - ply: Qxc2
+                  annotation:
+                    vi: Hậu Trắng đang đỡ sẵn ô c2, nên đơn giản ăn lại con mã. Chĩa tưởng như ăn được xe hoá ra chỉ là ăn một con mã bằng cái giá hai con tốt.
+                    en: White's queen was already guarding c2, so it simply takes the knight. The fork that looked like it would win the rook turns out to win nothing more than a knight for two pawns.
+                    fr: La dame blanche gardait déjà c2, elle prend donc simplement le cavalier. La fourchette qui semblait devoir gagner la tour ne rapporte finalement qu'un cavalier contre deux pions.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì Trắng vẫn còn đủ hai mã, hai tượng, hai xe và hậu, còn Đen đã mất hẳn con mã vừa nhảy vào c2. Đếm tốt thì Đen tám, Trắng sáu — Đen hơn hai tốt sạch, nhưng một con mã có giá trị hơn hai tốt trong hầu hết các thế cờ, nên đây là Trắng hơn quân đổi lấy hai tốt chứ không phải Đen hơn. Xe a1 mà cái bẫy nhắm tới chưa từng bị đụng tới.
+                      en: Count the pieces and White still has both knights, both bishops, both rooks and the queen, while Black has lost the knight that jumped into c2 outright. Count the pawns and it is eight for Black, six for White — two clean pawns up, but a knight is worth more than two pawns in almost any position, so this is White ahead a piece for two pawns rather than Black ahead at all. The rook on a1 that the trick was aimed at was never actually touched.
+                      fr: Comptez les pièces, les Blancs ont encore leurs deux cavaliers, leurs deux fous, leurs deux tours et la dame, tandis que les Noirs ont purement perdu le cavalier qui a sauté en c2. Comptez les pions, huit pour les Noirs, six pour les Blancs — deux pions de plus bien réels, mais un cavalier vaut plus que deux pions dans presque toutes les positions, donc ce sont les Blancs qui ont une pièce de plus contre deux pions, et non les Noirs qui sont devant. La tour en a1 que le coup visait n'a jamais été touchée.
+                    plan:
+                      vi: Trắng chơi Nf3, Bc4 hay Bd3, O-O rồi Re1, dùng con mã hơn để tấn công thẳng vào vị trí còn kém phát triển của Đen. Đen chơi Nf6, e6 hay g6 và O-O càng nhanh càng tốt, chấp nhận thế cờ kém quân và tìm cách hoạt động hoá hai con tốt thừa ở tàn cuộc thay vì tấn công ở trung cuộc.
+                      en: White plays Nf3, Bc4 or Bd3, castles and follows with Re1, using the extra piece to attack Black's still-undeveloped position directly. Black plays Nf6, e6 or g6 and castles as fast as possible, accepting the material deficit and looking to make the two extra pawns count in an endgame rather than fighting for a middlegame attack.
+                      fr: Les Blancs jouent Nf3, Bc4 ou Bd3, roquent puis Re1, en utilisant la pièce en plus pour attaquer directement la position encore sous-développée des Noirs. Les Noirs jouent Nf6, e6 ou g6 et roquent aussi vite que possible, en acceptant le déficit matériel et en cherchant à faire valoir les deux pions supplémentaires en finale plutôt que de se battre pour une attaque au milieu de partie.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

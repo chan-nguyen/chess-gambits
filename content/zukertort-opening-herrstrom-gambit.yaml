@@ -1,0 +1,75 @@
+# Zukertort Opening: Herrstrom Gambit. Frozen defining line 1.Nf3 g5, which ends on Black's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below
+# was replayed with chess.js before being annotated.
+id: zukertort-opening-herrstrom-gambit
+name: 'Zukertort Opening: Herrstrom Gambit'
+eco: A04
+category: gambit
+side: black
+definingLine: [Nf3, g5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White simply takes the pawn with Nxg5, retreats safely to f3 once
+      chased by h6, and keeps a clean extra pawn with nothing found for Black beyond a
+      slow fianchetto plan. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đáp lại 1.Nf3, Đen chơi ngay 1...g5, mời con mã Trắng ăn tốt để đổi lấy nhịp đuổi mã bằng h6 sau đó và hy vọng khai thác đường chéo dài về lâu dài.
+    en: Answering 1.Nf3, Black plays 1...g5 at once, inviting the knight to take the pawn in exchange for a tempo gained by chasing it with h6 afterwards, and a long-term hope on the long diagonal.
+    fr: En réponse à 1.Nf3, les Noirs jouent aussitôt 1...g5, invitant le cavalier à prendre le pion en échange d'un temps gagné en le chassant ensuite par h6, et d'un espoir à long terme sur la grande diagonale.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt g5. Con tốt này chưa đi đâu cả, nên các nước khác như d4 hay c4 không mất gì, chỉ đơn giản là chưa nhận lời mời và để dành việc ăn tốt cho một lúc thuận tiện hơn.
+      en: White does not take the g5 pawn. That pawn is not going anywhere, so other moves such as d4 or c4 lose nothing at all — they simply have not accepted the offer and save the capture for a more convenient moment.
+      fr: Les Blancs ne prennent pas le pion g5. Ce pion ne va nulle part, donc d'autres coups comme d4 ou c4 ne perdent rien du tout, ils n'ont simplement pas encore accepté l'offre et gardent la prise pour un moment plus opportun.
+  children:
+    - ply: Nxg5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt ngay lập tức. Không có gì phức tạp ở đây, con tốt g5 chỉ đơn giản là bị treo và không quân nào của Đen đỡ được nó.
+        en: White simply takes the pawn at once. There is nothing complicated here — the g5 pawn is simply hanging and nothing of Black's defends it.
+        fr: Les Blancs prennent simplement le pion tout de suite. Il n'y a rien de compliqué ici, le pion g5 est simplement en prise et rien du côté noir ne le défend.
+      children:
+        - ply: h6
+          annotation:
+            vi: Đen đuổi mã bằng tốt h, thu lại một nhịp coi như bù cho con tốt đã mất. Mã Trắng phải rời g5 ngay bây giờ.
+            en: Black chases the knight with the h-pawn, winning back one tempo as a small return for the lost pawn. White's knight must leave g5 right now.
+            fr: Les Noirs chassent le cavalier avec le pion h, regagnant un temps en petite compensation du pion perdu. Le cavalier blanc doit quitter g5 sur-le-champ.
+          dismissRest:
+            reason:
+              vi: Trắng không lùi mã về một ô an toàn. Nước Nxf7 hy sinh quân để chĩa vào hậu d8 và xe h8, nhưng vua Đen ăn lại ngay và Trắng mất hẳn một mã chỉ để đổi lấy hai tốt, một cuộc trao đổi tệ hơn nhiều so với việc đơn giản lùi mã về f3 và giữ nguyên con tốt đã ăn được từ đầu.
+              en: White does not retreat the knight to a safe square. Nxf7 sacrifices the piece to fork the queen on d8 and the rook on h8, but Black's king simply recaptures at once and White ends up a full knight down for two pawns, a far worse deal than simply retreating to f3 and keeping the pawn already won from the start.
+              fr: Les Blancs ne reculent pas le cavalier sur une case sûre. Nxf7 sacrifie la pièce pour fourchetter la dame en d8 et la tour en h8, mais le roi noir reprend aussitôt et les Blancs se retrouvent un cavalier entier de moins pour deux pions, un bien plus mauvais marché que de simplement reculer en f3 en gardant le pion déjà gagné depuis le début.
+          children:
+            - ply: Nf3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Mã lùi về f3, ô tự nhiên nhất của nó. Trắng giữ nguyên con tốt đã ăn được và chỉ mất đúng một nhịp cho việc đó.
+                en: The knight retreats to f3, its most natural square. White keeps the pawn already won and has spent exactly one tempo for it.
+                fr: Le cavalier recule en f3, sa case la plus naturelle. Les Blancs gardent le pion déjà gagné et n'ont dépensé qu'un seul temps pour cela.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, con tốt g đã mất ngay từ nước đầu tiên, và chưa có gì đòi lại được nó. Cái Đen có để bù lại chỉ là một nhịp đã dùng để đuổi mã, không phải điều gì đáng kể so với một tốt sạch, và tiềm năng đặt tượng vào g7 nhắm đường chéo dài vẫn còn là một kế hoạch chưa thực hiện chứ không phải điều gì bắt buộc ngay lúc này.
+                  en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, the g-pawn lost on the very first move, and nothing has won it back yet. All Black has to show for it is one tempo spent chasing the knight, not much against a clean pawn, and the potential of a bishop on g7 aiming down the long diagonal remains an unfulfilled plan rather than anything forced right now.
+                  fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus bien réel, le pion g perdu dès le tout premier coup, et rien ne l'a encore récupéré. Tout ce que les Noirs ont à montrer pour cela est un temps dépensé à chasser le cavalier, pas grand-chose face à un pion net, et le potentiel d'un fou en g7 visant la grande diagonale reste un projet non réalisé plutôt que quoi que ce soit de forcé pour l'instant.
+                plan:
+                  vi: Trắng chơi d4, c4 hoặc Bg2, O-O rồi Nc3, dùng con tốt thừa và phát triển nhanh để giữ vững ưu thế trước khi Đen kịp hoạt động hoá tượng g7. Đen chơi Bg7, Nc6 hay d6, và tìm cách nhập thành hoặc chơi Rg8 để tận dụng cột g nửa mở, cố bù cho con tốt đã mất bằng áp lực trên đường chéo dài và cột g.
+                  en: White plays d4, c4 or Bg2, castles and follows with Nc3, using the extra pawn and quick development to keep the edge before Black can activate the bishop on g7. Black plays Bg7, Nc6 or d6, and looks to castle or play Rg8 to make use of the half-open g-file, trying to compensate for the lost pawn with pressure on the long diagonal and the g-file.
+                  fr: Les Blancs jouent d4, c4 ou Bg2, roquent puis Nc3, en utilisant le pion supplémentaire et un développement rapide pour garder l'avantage avant que les Noirs ne puissent activer le fou en g7. Les Noirs jouent Bg7, Nc6 ou d6, et cherchent à roquer ou à jouer Rg8 pour profiter de la colonne g semi-ouverte, en essayant de compenser le pion perdu par une pression sur la grande diagonale et la colonne g.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

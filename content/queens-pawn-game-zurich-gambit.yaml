@@ -1,0 +1,75 @@
+# Queen's Pawn Game: Zurich Gambit. Frozen defining line 1.d4 d5 2.g4, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below
+# was replayed with chess.js before being annotated.
+id: queens-pawn-game-zurich-gambit
+name: "Queen's Pawn Game: Zurich Gambit"
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply takes the pawn with Bxg4, gets chased once by h3 for a
+      single tempo, and keeps a clean extra pawn with an actively placed bishop and no
+      drawback found for it. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Ngay sau khi đổi tốt trung tâm, Trắng chơi 2.g4, mời tượng c8 của Đen ra ăn con tốt này, đổi lấy một nhịp đuổi sau này bằng h3. Đây là bản đảo màu của chính ý tưởng Grob, nhưng đến chậm một nước.
+    en: Right after the central pawns face off, White plays 2.g4, inviting Black's c8 bishop to take it in exchange for a later tempo gained with h3. This is the exact idea of the Grob with the colours swapped, arriving one move late.
+    fr: Juste après la mise en présence des pions centraux, les Blancs jouent 2.g4, invitant le fou c8 noir à le prendre en échange d'un temps gagné plus tard par h3. C'est exactement l'idée du Grob avec les couleurs inversées, arrivant avec un coup de retard.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt g4. Con tốt này chưa đi đâu cả và có thể bị ăn vào một lúc thuận tiện hơn, nên các nước phát triển bình thường như Nf6 hay e5 không mất gì cả, chỉ đơn giản là chưa nhận lời mời.
+      en: Black does not take the g4 pawn. That pawn is not going anywhere and can be taken at a more convenient moment, so a normal developing move such as Nf6 or e5 loses nothing at all — it simply has not accepted the offer yet.
+      fr: Les Noirs ne prennent pas le pion g4. Ce pion ne va nulle part et pourra être pris à un moment plus opportun, donc un coup de développement normal comme Nf6 ou e5 ne perd rien du tout, il n'a simplement pas encore accepté l'offre.
+  children:
+    - ply: Bxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức bằng tượng, quân duy nhất có thể với tới nó. Không có gì phức tạp, con tốt g4 chỉ đơn giản là bị treo.
+        en: Black takes the pawn at once with the bishop, the only piece that reaches it. There is nothing complicated here — the g4 pawn is simply hanging.
+        fr: Les Noirs prennent aussitôt le pion avec le fou, la seule pièce qui l'atteigne. Il n'y a rien de compliqué ici, le pion g4 est simplement en prise.
+      children:
+        - ply: h3
+          annotation:
+            vi: Trắng đuổi tượng bằng tốt h, thu lại một nhịp coi như bù cho con tốt đã mất. Tượng Đen phải rời ô g4 ngay bây giờ.
+            en: White chases the bishop with the h-pawn, winning back one tempo as a small return for the lost pawn. Black's bishop must leave g4 right now.
+            fr: Les Blancs chassent le fou avec le pion h, regagnant un temps en petite compensation du pion perdu. Le fou noir doit quitter g4 sur-le-champ.
+          dismissRest:
+            reason:
+              vi: Đen không lùi tượng về một ô an toàn. Ăn tiếp ở h3 hay ở e2 chỉ đổi tượng lấy một con tốt, một cuộc trao đổi tệ hơn nhiều so với việc đơn giản lùi về và giữ nguyên con tốt đã ăn được trước đó, vì cả hai con tốt ấy đều được đỡ và ăn lại ngay lập tức.
+              en: Black does not retreat the bishop to a safe square. Taking on h3 or on e2 instead only trades the bishop for a single pawn, a far worse deal than simply retreating and keeping the pawn already won, since both those pawns are guarded and recaptured at once.
+              fr: Les Noirs ne reculent pas le fou sur une case sûre. Prendre en h3 ou en e2 à la place n'échange le fou que contre un seul pion, un bien plus mauvais marché que de simplement reculer en gardant le pion déjà gagné, puisque ces deux pions sont gardés et repris aussitôt.
+          children:
+            - ply: Bf5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Tượng lùi về f5, một ô hoạt động nhìn sang cánh vua Trắng. Đen giữ nguyên con tốt đã ăn được và chỉ mất đúng một nhịp cho việc đó.
+                en: The bishop retreats to f5, an active square looking towards White's kingside. Black keeps the pawn already won and has spent exactly one tempo for it.
+                fr: Le fou recule en f5, une case active regardant vers l'aile roi blanche. Les Noirs gardent le pion déjà gagné et n'ont dépensé qu'un seul temps pour cela.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, con tốt g đã mất ngay từ nước 2, và chưa có gì đòi lại được nó. Cái Trắng có để bù lại chỉ là một nhịp đã dùng để đuổi tượng, không phải điều gì đáng kể so với một tốt sạch, và tượng Đen giờ còn đứng ở một ô hoạt động thay vì bị nhốt sau hàng tốt như khi chưa được đổi lấy tốt g4.
+                  en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, the g-pawn lost as early as move two, and nothing has won it back yet. All White has to show for it is one tempo spent chasing the bishop, not much against a clean pawn, and Black's bishop now stands on an active square rather than being boxed in behind the pawns the way it would be without having taken on g4.
+                  fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion de plus bien réel, le pion g perdu dès le deuxième coup, et rien ne l'a encore récupéré. Tout ce que les Blancs ont à montrer pour cela est un temps dépensé à chasser le fou, pas grand-chose face à un pion net, et le fou noir se tient désormais sur une case active plutôt que d'être enfermé derrière les pions comme il le serait sans avoir pris en g4.
+                plan:
+                  vi: Trắng chơi Nf3, Bg2 hoặc Nc3, O-O rồi c4, cố dùng cặp tượng còn lại và trung tâm để bù cho con tốt đã mất, và tìm cách đuổi tiếp tượng f5 bằng Nh4 khi có dịp. Đen chơi e6, Nf6 và Be7 hay Bd6, O-O, giữ chắc con tốt thừa và tìm cách đổi bớt quân để nó có giá trị hơn ở tàn cuộc.
+                  en: White plays Nf3, Bg2 or Nc3, castles and follows with c4, trying to use the remaining bishop and the centre to compensate for the lost pawn, and looks to chase the f5 bishop again with Nh4 when the chance comes. Black plays e6, Nf6 and Be7 or Bd6, castles, holds the extra pawn firmly and looks to trade pieces so it counts for more in an endgame.
+                  fr: Les Blancs jouent Nf3, Bg2 ou Nc3, roquent puis c4, en essayant d'utiliser le fou restant et le centre pour compenser le pion perdu, et cherchent à chasser de nouveau le fou f5 par Nh4 le moment venu. Les Noirs jouent e6, Nf6 et Be7 ou Bd6, roquent, gardent fermement le pion supplémentaire et cherchent à échanger des pièces pour qu'il compte davantage en finale.
+                basis:
+                  by: chan
+                  at: '2026-09-18'
