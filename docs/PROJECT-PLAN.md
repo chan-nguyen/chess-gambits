@@ -513,28 +513,36 @@ The first batch saw this only once (the Budapest points at `kieninger-trap` and 
 
 **Not 1,003 at Taught.** The arithmetic that decides it:
 
-- 989 entries remain. At the measured 23.3 slots and 4,066 words per entry, all of them at Taught is
-  **≈ 23,000 annotation slots, ≈ 69,000 localised strings and ≈ 4.0 million words** of chess prose
-  in three languages.
-- At the measured 4.3 minutes per entry that is ~71 hours of agent wall clock — or ~150 hours at
+- 959 entries remain (was 989 before #93/#94/#95 — see §6.8). At the batch-1 rate of 23.3 slots and
+  4,066 words per entry, all of them at Taught would be **≈ 22,000 annotation slots, ≈ 67,000
+  localised strings and ≈ 3.9 million words**. §6.8 measured a lower real rate on thirty entries
+  authored to the full stopping rule — 13.1 slots and 2,076 words per entry — because most family
+  heads settle in one to three branches rather than the eleven originally sampled; at that rate the
+  same 959 entries is **≈ 12,600 annotation slots and ≈ 2.0 million words**. Both figures are kept
+  because the true rate for the entries still to come depends on which of them turn out short like
+  a family head and which turn out long like a Danish Gambit, and nothing in the catalogue predicts
+  that in advance.
+- At the measured 4.3 minutes per entry that is ~69 hours of agent wall clock — or ~146 hours at
   the 9.1 minutes per entry §6.7 projects for a tree that satisfies the stopping rule. The minutes
   are not the constraint and quoting them as if they were is how this plan would become dishonest.
-- The constraint is **review**, because of invariant 7b. Every one of those 4 million words is a
+- The constraint is **review**, because of invariant 7b. Every one of those words is a
   judgement that carries a named author and a date. If the author is an agent and no person has read
   it, the provenance is not a record of who stands behind the claim — it is decoration, and this
   project has already retired two instruments for exactly that reason.
 - **Assumption, not a measurement:** a human reviewer who genuinely reads one entry — replays the
-  lines, checks the qualities, reads three languages — needs on the order of 15 minutes. On that
-  assumption, 989 entries is ~250 hours of reading, or six full working weeks of nothing else. No
-  solo maintainer does that, and the register already rates motivation decay on this project as
-  High.
-- The payload survives the arithmetic, which is worth knowing: a taught entry costs **42 bytes
-  gzipped** in the catalogue index (measured — 14 taught entries carry 72 branch keys between them).
-  All 1,003 taught at this tree size projects to ~67KB against the 100KB budget.
+  lines, checks the qualities, reads three languages — needs on the order of 15–25 minutes (§6.7
+  raised the low end of this once trees got deeper). On that assumption, 959 entries is somewhere
+  between six and ten full working weeks of nothing else. No solo maintainer does that, and the
+  register already rates motivation decay on this project as High.
+- The payload survives the arithmetic, which is worth knowing: §6.8 measured the vi catalogue index
+  at **27.6KB gzipped** carrying all 44 taught entries and 121 branch keys between them — still far
+  under the 100KB budget, and growing more slowly than entry count because deeper lines lengthen an
+  existing key rather than add one (§6.4's next bullet).
 - **Depth turned out not to threaten that figure, which the earlier wording assumed it would.** The
   sentence here used to say an average tree three times deeper would put the index over budget. #81
-  made six trees two to three times deeper and the vi index moved from **26.8KB to 26.9KB gzipped**.
-  The reason is structural rather than lucky: the index carries branch **keys**, one per
+  made six trees two to three times deeper and the vi index moved from **26.8KB to 26.9KB gzipped**;
+  #93/#94/#95 then added thirty whole entries, mostly shallow, and it moved to **27.6KB**. The
+  reason is structural rather than lucky: the index carries branch **keys**, one per
   root-to-leaf line, and deepening a line lengthens its key without adding a key. Sixty branches
   ten plies long cost the index far less than a hundred branches four plies long. What depth does
   multiply is the **per-route** payload, measured in §6.7, and that budget has room. The §8
@@ -548,9 +556,10 @@ So the honest target is a **Taught core with the rest properly Listed**, in thre
 | **Mapped** | ~120 further entries | A complete tree with Vietnamese only. Measured cost: 1,407 words per entry, roughly a third of a Taught entry                                                                                |
 | **Listed** | the remaining ~820   | Exactly what they are today: identity, ECO, side, defining line, soundness. The catalogue already says so, and the tier is derived so it cannot lie                                          |
 
-Fourteen of the ~60 are done. **S5 is already satisfied** — the catalogue is exhaustive and never
-pretends a thin entry is a deep one — and nothing in the scope contract promises depth everywhere.
-What should change is the wording anywhere that implies it will arrive.
+Forty-four of the ~60 are done, up from fourteen after #93/#94/#95 (§6.8). **S5 is already
+satisfied** — the catalogue is exhaustive and never pretends a thin entry is a deep one — and
+nothing in the scope contract promises depth everywhere. What should change is the wording anywhere
+that implies it will arrive.
 
 ### 6.5 Batches
 
@@ -561,20 +570,19 @@ Re-costed at the §6.7 rate of **9.1 minutes per entry**, which is what an entry
 lines run to a position the stopping rule accepts. The batch-1 column is kept beside it because the
 difference between the two is the whole content of #81.
 
-| Batch | Entries  | Content                                                                                                                                      | At the batch-1 rate                | At the §6.7 depth       |
-| ----- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------------- |
-| 1     | 11       | Done — the eleven above, at four plies                                                                                                       | 47 min, 44,732 words               | —                       |
-| 1b    | 6        | Done — the six lines #81 carried to a resolved position                                                                                      | —                                  | 23 min, 13,785 words    |
-| 2     | 7        | The remaining `traps.yaml` rows: Fishing Pole, Elephant, Lasker, Noah's Ark, Mortimer, Siberian, and a tree for `damiano-defence-refutation` | ~30 min, ~28,000 words             | ~64 min, ~44,000 words  |
-| 3     | 12       | Ruy Lopez, Vienna, Two Knights and Italian family heads                                                                                      | ~52 min, ~49,000 words             | ~109 min, ~76,000 words |
-| 4     | 12       | 1.d4 family heads: Albin, Benoni, Blumenfeld, Staunton, Icelandic                                                                            | ~52 min, ~49,000 words             | ~109 min, ~76,000 words |
-| 5     | 12       | Sicilian, French, Caro-Kann and Scandinavian family heads                                                                                    | ~52 min, ~49,000 words             | ~109 min, ~76,000 words |
-| 6+    | 12/batch | Mapped-only tier for the short lines of §6.3 step 3                                                                                          | ~18 min per batch, Vietnamese only | ~37 min per batch       |
-| —     | 9        | The nine entries still at four to seven plies, brought up to the rule                                                                        | —                                  | ~53 min, ~19,000 words  |
+| Batch | Entries  | Content                                                                                                                                                                                                                     | At the batch-1 rate                | At the §6.7 depth             |
+| ----- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- | ----------------------------- |
+| 1     | 11       | Done — the eleven above, at four plies                                                                                                                                                                                      | 47 min, 44,732 words               | —                             |
+| 1b    | 6        | Done — the six lines #81 carried to a resolved position                                                                                                                                                                     | —                                  | 23 min, 13,785 words          |
+| 2     | 6 of 7   | Done, via #93 — six of the seven remaining `traps.yaml` rows (Fishing Pole, Elephant, Lasker, Noah's Ark, Mortimer, Siberian); `damiano-defence-refutation` still has no tree                                               | ~30 min, ~28,000 words             | See §6.8 for the real numbers |
+| 3–5   | 24       | Superseded by #92's dispatch (#93/#94/#95) — twenty-four family heads chosen by §6.3 step 1's shortest-defining-line rule across all 87 families, rather than the named openings this row originally listed. Done. See §6.8 | ~104 min, ~98,000 words            | See §6.8 for the real numbers |
+| 6+    | 12/batch | Mapped-only tier for the short lines of §6.3 step 3                                                                                                                                                                         | ~18 min per batch, Vietnamese only | ~37 min per batch             |
+| —     | 9        | The nine entries still at four to seven plies, brought up to the rule                                                                                                                                                       | —                                  | ~53 min, ~19,000 words        |
 
-Batch 2 is next because the traps are where the proved mates live and they are short. Eleven
-entries produced four new certificates in `content/`, and all four came from the three trap
-entries among them — the density is nowhere else in the catalogue.
+Batch 2 was next because the traps are where the proved mates live and they are short — six of
+the seven landed via #93, producing three new certificates. Batches 3–5 as originally scoped were
+overtaken by #92, which dispatched three parallel groups against the §6.3 ordering directly instead
+of the named-opening lists below; §6.8 records what that batch actually cost.
 
 ### 6.7 What depth costs, measured by #81
 
@@ -654,6 +662,67 @@ authoring, and it is not the shape any entry has today.
   bytes per taught entry says it will not be reached by this plan. It would **not** be reached by a
   deeper average tree either — #81 measured that and §6.4 now records it — but it would be reached
   by a wider one, because the index carries one key per root-to-leaf branch.
+
+### 6.8 What thirty parallel-authored entries cost (#92, via #93/#94/#95)
+
+The first batch authored to the full #81 stopping rule from nothing rather than deepened into it —
+§6.7's closing line asked for exactly this measurement. Three groups (six named traps plus four
+King's/Ruy Lopez/Italian family heads; ten further family heads, French through Scandinavian; ten
+more, Caro-Kann through Zukertort) were dispatched in parallel as background agents against three
+worktrees, each briefed with the #81 stopping rule, the #85 encoding gate, and a full replay-before-
+writing requirement. All numbers below are measured on `main` before and after, not estimated.
+
+| Measure                                   | Before (post-#87) | After (post-#98) |
+| ----------------------------------------- | ----------------- | ---------------- |
+| Content files                             | 15                | 45               |
+| Taught entries                            | 14                | 44               |
+| Listed (Tier 0) entries                   | 989               | 959              |
+| Tree nodes                                | 233               | 452              |
+| Annotation slots (one count, all locales) | 423               | 815              |
+| Words of prose, three locales             | 75,093            | 137,378          |
+| Root-to-leaf branch keys                  | 72                | 121              |
+| Mate certificates                         | 10                | 13               |
+| Catalogue index, vi, gzipped              | 26.9KB            | 27.6KB           |
+
+**Real rate for a whole entry at full depth: 13.1 annotation slots and 2,076 words** — the
+`(815-423)/30` and `(137,378-75,093)/30` this batch actually produced. Both are well below the
+9.1-minutes/23.3-slot projection §6.7 made from _deepening_ eleven existing entries, because most
+of the 87 families resolve in one to three branches at their shortest defining line — a family
+head is usually a smaller tree than the eleven hand-picked, deliberately branchy openings batch 1
+sampled. §6.4's arithmetic now carries both rates rather than replacing one with the other, since
+neither is known to hold for the entries still to come.
+
+**No comparable minutes-per-entry rate is reported.** Batch 1 and #81 were each one agent working
+serially, so wall clock divided cleanly by entry count. This batch was three agents authoring in
+parallel, overlapped with the independent review, rebase and merge-conflict resolution that landed
+each one — the wall clock any single number would imply is not the wall clock anything actually
+took. What is comparable, and is reported above, is the output: nodes, words and branch keys, each
+counted the same way as in §6.1 and §6.7.
+
+**Every claim was independently replayed a second time before merging, not just gated.** Beyond the
+agents' own `chess.js` replay and the committed gates (lint, format, typecheck, `validate:content`,
+`verify:mates`, unit tests, build, Playwright), the merging session wrote its own `chess.js` scripts
+against each of the thirty new files — legality of every ply, and at every leaf either a proved mate
+or a clean resolution (not in check, no mate-in-one left on the board, no free capture) per
+`docs/CONTEXT.md`'s stopping rule — and hand-verified several material and mate claims against raw
+FEN output. One real defect surfaced this way during the batch itself (not after merge): a
+`dismissRest` in `vienna-game-fyfe-gambit.yaml` claimed only one knight retreat lost the queen to a
+pin when four others did too, caught and fixed by the authoring agent's own second pass before its
+PR was opened.
+
+**Three parallel PRs editing the same generated-looking-but-hand-maintained rosters cost a real,
+recurring merge conflict.** `tools/content/content-cli.test.ts`'s known-ids fixture,
+`tools/catalogue/branches.test.ts`'s `AUTHORED` map and `e2e/taught-entries.spec.ts`'s id list are
+each a hardcoded, alphabetically-sorted list that every content-adding PR must extend by hand (§6.1
+already flagged this as the "golden list" pattern). Three PRs adding to the same three lists
+produced the same conflict twice — #94 against #95, then #93 against the result — resolved by
+hand each time, once catching a corrupted string literal an automatic merge had produced. **A
+generated fixture, or a test that reads `content/*.yaml` directly instead of naming every id, would
+remove this cost the next time three batches land together**; flagged here rather than fixed,
+since fixing it is out of scope for a content batch.
+
+Tracking issue #92 and its three sub-issues (#93, #94, #95) are closed. §6.4's Taught count and
+§6.5's batch table both reflect the merged state.
 
 ## 7. Risks
 
