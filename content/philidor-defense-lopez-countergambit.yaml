@@ -1,0 +1,102 @@
+# Philidor Defense: Lopez Countergambit. Frozen defining line 1.e4 e5 2.Nf3 d6 3.Bc4 f5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5). Both branches below were replayed with chess.js before being annotated.
+id: philidor-defense-lopez-countergambit
+name: 'Philidor Defense: Lopez Countergambit'
+eco: C41
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d6, Bc4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Both principled tries for White, exf5 and d4, return the position to
+      level material with Black's king still uncastled and the kingside already loosened
+      by ...f5 — real risk for a countergambit that has not actually won anything back. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trong thế Philidor sau 3.Bc4, Đen phản công ngay bằng 3...f5 thay vì phát triển bình thường, mở đường chéo cho tượng c8 và tấn công thẳng vào trung tâm Trắng, nhưng cũng làm yếu đi các ô e6, g6 quanh vị trí vua của chính mình.
+    en: In the Philidor after 3.Bc4, Black strikes back at once with 3...f5 rather than developing normally, opening the diagonal for the c8 bishop and hitting White's centre directly, but also weakening the e6 and g6 squares around Black's own king.
+    fr: Dans le Philidor après 3.Bc4, les Noirs contre-attaquent aussitôt par 3...f5 plutôt que de se développer normalement, ouvrant la diagonale au fou c8 et frappant directement le centre blanc, mais affaiblissant du même coup les cases e6 et g6 autour de leur propre roi.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn ở f5 và cũng không chơi d4. Các nước khác như O-O, Nc3 hay Nxe5 đều hợp lệ và không tệ, nhưng chúng để nguyên căng thẳng ở trung tâm và cho Đen thời gian giải quyết theo ý mình, còn hai nước exf5 và d4 mới thực sự chất vấn con tốt vừa tiến lên.
+      en: White neither takes on f5 nor plays d4. Other moves such as O-O, Nc3 or Nxe5 are all legal and not bad, but they leave the central tension standing and give Black time to resolve it on Black's own terms, while exf5 and d4 are what actually put the advancing pawn to the test.
+      fr: Les Blancs ne prennent pas en f5 et ne jouent pas non plus d4. D'autres coups comme O-O, Nc3 ou Nxe5 sont tous légaux et pas mauvais, mais ils laissent la tension centrale debout et donnent aux Noirs le temps de la régler à leur façon, tandis que exf5 et d4 sont ce qui met réellement à l'épreuve le pion qui vient d'avancer.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt f5 ngay lập tức. Đây là cách chơi tự nhiên nhất, đơn giản nhận lời mời và để Đen phải chứng minh sự bù đắp.
+        en: White takes the f5 pawn at once. This is the most natural response, simply accepting the offer and leaving Black to prove the compensation.
+        fr: Les Blancs prennent aussitôt le pion f5. C'est la réponse la plus naturelle, qui accepte simplement l'offre et laisse aux Noirs le soin de prouver la compensation.
+      children:
+        - ply: Bxf5
+          annotation:
+            vi: Đen ăn lại bằng tượng, đưa quân này ra một ô hoạt động sau khi con tốt f đã mở đường cho nó. Số tốt trở lại cân bằng, nhưng Đen vẫn chưa nhập thành trong khi Trắng còn nguyên quyền ấy.
+            en: Black recaptures with the bishop, bringing it out to an active square now that the f-pawn has opened the way. The pawn count is level again, but Black still has not castled while White still has that right intact.
+            fr: Les Noirs reprennent du fou, l'amenant sur une case active maintenant que le pion f a ouvert la voie. Le compte de pions redevient égal, mais les Noirs n'ont toujours pas roqué alors que les Blancs conservent ce droit intact.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì bảy đều hai bên. Con tốt e đã mất của Trắng đổi ngang với con tốt f đã mất của Đen, nên phần vật chất đã trở lại như cũ và gambit coi như đã được trả đủ. Điều còn lại là vị trí vua, Trắng đã nhập thành ngắn còn Đen thì chưa, và các ô e6 cùng g6 quanh vua Đen đã yếu đi vĩnh viễn vì chính nước 3...f5.
+              en: Count the pawns and it is seven each. White's lost e-pawn has traded evenly against Black's lost f-pawn, so material has come back to where it started and the gambit counts as fully returned. What is left is the kings — White has castled short and Black has not, and the e6 and g6 squares around Black's king have been permanently weakened by the very move 3...f5.
+              fr: Comptez les pions, sept de chaque côté. Le pion e perdu par les Blancs s'est échangé à égalité contre le pion f perdu par les Noirs, donc le matériel est revenu à son point de départ et le gambit compte pour intégralement rendu. Ce qui reste, ce sont les rois — les Blancs ont roqué côté roi et les Noirs non, et les cases e6 et g6 autour du roi noir ont été affaiblies de façon permanente par le coup même de 3...f5.
+            plan:
+              vi: Trắng chơi Nc3, O-O rồi d4 chiếm trung tâm và mở thêm đường cho các quân, nhắm các nước Ng5 hay Qh5+ vào những ô yếu quanh vua Đen còn chưa nhập thành. Đen chơi Nf6, Be7 hay Bd7 và O-O thật nhanh để vua an toàn, sau đó Nc6 và c6, tìm cách hoạt động hoá con tượng vừa đổi được và giữ vững phần trung tâm còn lại.
+              en: White plays Nc3, castles and follows with d4 to take the centre and open more lines for the pieces, aiming ideas like Ng5 or Qh5+ at the weak squares around Black's still-uncastled king. Black plays Nf6, Be7 or Bd7 and castles quickly to get the king safe, then Nc6 and c6, trying to make the newly-traded bishop count and hold on to what is left of the centre.
+              fr: Les Blancs jouent Nc3, roquent puis d4 pour prendre le centre et ouvrir davantage de lignes aux pièces, en visant des idées comme Ng5 ou Qh5+ vers les cases faibles autour du roi noir toujours pas roqué. Les Noirs jouent Nf6, Be7 ou Bd7 et roquent vite pour mettre le roi à l'abri, puis Nc6 et c6, en essayant de faire valoir le fou tout juste échangé et de tenir ce qui reste du centre.
+            basis:
+              by: chan
+              at: '2026-09-18'
+    - ply: d4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Thay vì ăn ngay, Trắng đánh thẳng vào giữa bàn cờ bằng d4, đe doạ cả tốt e5 lẫn việc mở toang trung tâm trước khi Đen kịp nhập thành.
+        en: Instead of capturing right away, White strikes at the very centre with d4, threatening the e5 pawn and the chance to blow the centre open before Black can castle.
+        fr: Plutôt que de prendre tout de suite, les Blancs frappent au cœur même du centre par d4, menaçant le pion e5 et la possibilité d'ouvrir le centre avant que les Noirs ne puissent roquer.
+      children:
+        - ply: exd4
+          annotation:
+            vi: Đen ăn lại ở trung tâm thay vì tham lam ăn tiếp tốt e4 bằng ...fxe4, một nước mở toang cột f và cả cột e ngay trước một vị vua còn đứng giữa bàn. Đây là cách chơi thận trọng hơn.
+            en: Black recaptures in the centre rather than greedily grabbing the e4 pawn with ...fxe4, a move that would fling open both the f-file and the e-file in front of a king still stuck in the middle. This is the more careful choice.
+            fr: Les Noirs reprennent au centre plutôt que de saisir avidement le pion e4 par ...fxe4, un coup qui ouvrirait grand à la fois la colonne f et la colonne e devant un roi encore coincé au centre. C'est le choix le plus prudent.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn lại bằng mã ở d4. Nước Nxd4 đưa mã vào một ô mà không quân Đen nào với tới được ngay, nhưng Qxd4 làm đúng việc đó mà còn giữ luôn con tốt e4 được đỡ chắc, khiến nước fxe4 sau đó của Đen không còn free nữa — đó là điều làm cho Qxd4 là lựa chọn chính xác hơn Nxd4 ở vị trí này.
+              en: White does not recapture on d4 with the knight. Nxd4 puts the knight on a square nothing of Black's reaches at once, but Qxd4 does the same job while also keeping the e4 pawn solidly guarded, so Black's ...fxe4 afterwards is no longer free — that is what makes Qxd4 the more accurate choice here.
+              fr: Les Blancs ne reprennent pas en d4 avec le cavalier. Nxd4 place le cavalier sur une case que rien du côté noir n'atteint aussitôt, mais Qxd4 fait le même travail tout en gardant le pion e4 solidement défendu, si bien que le ...fxe4 noir qui suivrait ne serait plus gratuit — c'est ce qui rend Qxd4 le choix plus précis ici.
+          children:
+            - ply: Qxd4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Hậu ăn lại và đứng giữa bàn cờ sớm, nhưng lần này con tốt e4 phía sau được chính con hậu đỡ, nên Đen không còn ăn nó miễn phí được nữa.
+                en: The queen recaptures and comes out early to the centre, but this time the e4 pawn behind it is guarded by the queen itself, so Black can no longer take it for free.
+                fr: La dame reprend et sort tôt au centre, mais cette fois le pion e4 derrière elle est gardé par la dame elle-même, donc les Noirs ne peuvent plus le prendre gratuitement.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì bảy đều hai bên. Con tốt d của Trắng đã đổi ngang với con tốt e5 ban đầu của Đen, nên phần vật chất đã trở lại như cũ. Con hậu Trắng đứng ở d4 hơi sớm và có thể bị đuổi bằng một nước Nc6 sau này, nhưng Trắng đã sẵn sàng nhập thành trong khi vua Đen còn ở e8 và các ô e6, g6 quanh nó đã yếu đi vì chính nước 3...f5.
+                  en: Count the pawns and it is seven each. White's d-pawn has traded evenly against Black's original e5 pawn, so material has come back to where it started. White's queen on d4 is a little early and can be chased later by ...Nc6, but White is ready to castle while Black's king is still on e8 with the e6 and g6 squares around it already weakened by 3...f5.
+                  fr: Comptez les pions, sept de chaque côté. Le pion d blanc s'est échangé à égalité contre le pion e5 originel des Noirs, donc le matériel est revenu à son point de départ. La dame blanche en d4 est un peu précoce et pourra être chassée plus tard par ...Nc6, mais les Blancs sont prêts à roquer alors que le roi noir est encore en e8, avec les cases e6 et g6 déjà affaiblies par 3...f5.
+                plan:
+                  vi: Trắng chơi Nc3 đuổi hậu đi trong lúc phát triển, rồi O-O và Re1, nhắm các ô yếu quanh vua Đen còn chưa nhập thành với các nước Ng5 hay Qh4 khi có dịp. Đen chơi Nf6 hoặc Nc6, Be7 hay Be6 và O-O thật nhanh để vua an toàn, sau đó c6 và Qc7, cố hoàn thiện thế trận trước khi Trắng khai thác được sự chậm trễ ấy.
+                  en: White plays Nc3 to chase the queen while developing, then castles and follows with Re1, aiming at the weak squares around Black's still-uncastled king with ideas like Ng5 or Qh4 when the chance comes. Black plays Nf6 or Nc6, Be7 or Be6 and castles quickly to get the king safe, then c6 and Qc7, trying to finish developing before White can exploit the delay.
+                  fr: Les Blancs jouent Nc3 pour chasser la dame tout en se développant, puis roquent et enchaînent par Re1, en visant les cases faibles autour du roi noir toujours pas roqué avec des idées comme Ng5 ou Qh4 le moment venu. Les Noirs jouent Nf6 ou Nc6, Be7 ou Be6 et roquent vite pour mettre le roi à l'abri, puis c6 et Qc7, en essayant de finir de se développer avant que les Blancs n'exploitent ce retard.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

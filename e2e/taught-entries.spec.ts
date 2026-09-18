@@ -76,13 +76,16 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are fourteen of them, and they are the ones the content tickets authored', () => {
+  test('there are twenty-four of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'benko-gambit',
       'blackmar-diemer-gambit',
+      'caro-kann-defense-labahn-attack-double-gambit',
       'danish-gambit',
+      'english-opening-jaenisch-gambit',
       'englund-gambit',
       'englund-gambit-trap',
+      'grob-opening-alessi-gambit',
       'halosar-trap',
       'indian-defense-budapest-gambit',
       'italian-game-evans-gambit',
@@ -90,8 +93,15 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'kings-gambit',
       'latvian-gambit',
       'legals-mate',
+      'nimzowitsch-defense-wheeler-gambit',
+      'philidor-defense-lopez-countergambit',
+      'queens-gambit-declined-albin-countergambit',
+      'queens-pawn-game-zurich-gambit',
+      'scotch-game-goring-gambit',
       'scotch-game-scotch-gambit',
       'sicilian-defense-smith-morra-gambit',
+      'vienna-gambit-with-max-lange-defense',
+      'zukertort-opening-herrstrom-gambit',
     ])
   })
 

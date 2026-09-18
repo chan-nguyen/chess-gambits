@@ -1,0 +1,115 @@
+# Vienna Gambit, with Max Lange Defense. Frozen defining line 1.e4 e5 2.Nc3 Nc6 3.f4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Both branches below were replayed with chess.js before being annotated.
+id: vienna-gambit-with-max-lange-defense
+name: 'Vienna Gambit, with Max Lange Defense'
+eco: C25
+category: gambit
+side: white
+definingLine: [e4, e5, Nc3, Nc6, f4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Whether Black grabs the f4 pawn or answers with the Max Lange idea of
+      3...Bc5, White's development and central control give real, lasting compensation
+      rather than a passing initiative, and no line found here shows Black keeping an edge.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.f4, Gambit Vienna, thí một tốt để mở cột f cho xe và dựng một trung tâm tốt lớn với e4 cùng f4. Đen có hai cách đáp trả chính là ăn tốt ngay hoặc bỏ qua nó bằng 3...Bc5 theo lối chơi Max Lange, phát triển trước và tính chuyện trung tâm sau.
+    en: White plays 3.f4, the Vienna Gambit, offering a pawn to open the f-file for the rook and build a broad pawn centre with e4 and f4. Black has two main replies — take the pawn at once, or ignore it with the Max Lange idea of 3...Bc5, developing first and settling the centre later.
+    fr: Les Blancs jouent 3.f4, le Gambit Vienne, offrant un pion pour ouvrir la colonne f à la tour et bâtir un large centre de pions avec e4 et f4. Les Noirs ont deux réponses principales, prendre le pion tout de suite, ou l'ignorer avec l'idée Max Lange de 3...Bc5, en se développant d'abord et en réglant le centre plus tard.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ở f4 và cũng không chơi Bc5. Nước 3...Qh4+ chỉ ép Trắng chơi 4.g3, một nước mà Trắng cũng muốn chơi để đỡ tốt f4, nên chiếu này chẳng đổi được gì ngoài việc mất một nhịp của chính con hậu Đen. Các nước khác như Bb4, d5 hay các nước phát triển bình thường cũng để nguyên tốt f4 trên bàn cờ mà Đen không thu được gì thêm.
+      en: Black neither takes on f4 nor plays Bc5. 3...Qh4+ only forces 4.g3, a move White is happy to play anyway to support the f4 pawn, so the check changes nothing except costing Black's own queen a tempo. Other tries such as Bb4, d5 or a plain developing move also leave the f4 pawn sitting on the board for nothing gained.
+      fr: Les Noirs ne prennent pas en f4 et ne jouent pas non plus Bc5. 3...Qh4+ ne force que 4.g3, un coup que les Blancs sont de toute façon contents de jouer pour soutenir le pion f4, si bien que l'échec ne change rien sinon coûter un temps à la dame noire elle-même. D'autres essais comme Bb4, d5 ou un simple coup de développement laissent eux aussi le pion f4 sur l'échiquier sans rien gagner.
+  children:
+    - ply: exf4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt f4. Đây là cách chơi thử thách nhất, buộc Trắng phải chứng minh sự bù đắp ngay từ bây giờ thay vì chỉ đe doạ suông.
+        en: Black takes the f4 pawn. This is the most testing choice, forcing White to prove the compensation right away rather than only threatening it.
+        fr: Les Noirs prennent le pion f4. C'est le choix le plus exigeant, forçant les Blancs à prouver tout de suite la compensation plutôt que de seulement la menacer.
+      children:
+        - ply: Nf3
+          annotation:
+            vi: Trắng phát triển mã, giữ ô h4 để con hậu Đen không thể chiếu, và chuẩn bị đưa tượng ra hay nhập thành. Con tốt f4 của Đen vẫn còn trên bàn cờ, đứng sâu trong phần đất Trắng mà chưa ai đụng tới.
+            en: White develops the knight, covers h4 so Black's queen cannot check there, and prepares to bring out a bishop or castle. Black's pawn on f4 is still on the board, sitting deep in White's territory, untouched so far.
+            fr: Les Blancs développent le cavalier, couvrent h4 pour empêcher tout échec de la dame noire, et préparent à sortir un fou ou à roquer. Le pion noir en f4 est toujours sur l'échiquier, planté profondément en territoire blanc, intact pour l'instant.
+          dismissRest:
+            reason:
+              vi: Đen không chơi d6. Nước ...g5 giữ chắc con tốt f4 nhưng dẫn vào loại thế cờ sắc bén và được phân tích sâu nhất của cả gambit này, nằm ngoài phạm vi mục này; các nước bình thường khác như Be7, Nf6 hay Bc5 đơn giản nhường cho Trắng nhịp phát triển và trung tâm mà gambit nhắm tới, đổi lấy đúng một tốt.
+              en: Black does not play d6. Holding the pawn with ...g5 leads into the sharpest, most heavily analysed branch of this whole gambit, which is beyond the scope of this entry; other quiet tries such as Be7, Nf6 or Bc5 simply hand White the development lead and the centre the gambit is played for, in exchange for exactly one pawn.
+              fr: Les Noirs ne jouent pas d6. Garder le pion par ...g5 mène à la branche la plus tranchante et la plus analysée de tout ce gambit, ce qui dépasse le cadre de cette fiche ; d'autres essais tranquilles comme Be7, Nf6 ou Bc5 donnent simplement aux Blancs l'avance de développement et le centre visés par le gambit, contre exactement un pion.
+          children:
+            - ply: d6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen chơi thật chắc chắn, chuẩn bị phát triển tượng và mã mà chưa mạo hiểm giữ tốt f4 bằng g5. Trắng chưa đòi lại được con tốt nhưng có toàn quyền chọn cách phát triển.
+                en: Black plays solidly, preparing to develop the bishop and knight without yet risking g5 to hold the f4 pawn. White has not won the pawn back, but has a completely free hand in how to develop.
+                fr: Les Noirs jouent solidement, en préparant à développer le fou et le cavalier sans encore risquer g5 pour garder le pion f4. Les Blancs n'ont pas repris le pion, mais ont totalement les mains libres pour se développer.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, và con tốt ấy đang đứng ở f4, sâu trong phần đất Trắng và không có con tốt nào của Đen đứng sau lưng đỡ nó, nghĩa là nó có thể trở thành mục tiêu cho một nước g3 sau này. Đổi lại, Trắng đã đưa được hai mã ra (c3 và f3), có tốt e4 làm chủ trung tâm, và toàn quyền chọn nơi đặt hai tượng, trong khi Đen mới chỉ chơi đúng một nước không phải phát triển quân.
+                  en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and that pawn sits on f4, deep in White's territory with no black pawn behind it to defend it, which makes it a long-term target for a future g3. In return, White has two knights out, on c3 and f3, a pawn on e4 commanding the centre, and a completely free choice of where to put both bishops, while Black has played only the one non-developing move.
+                  fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion de plus bien réel, et ce pion se tient en f4, profondément en territoire blanc, sans aucun pion noir derrière lui pour le défendre, ce qui en fait une cible à long terme pour un futur g3. En échange, les Blancs ont deux cavaliers sortis, en c3 et f3, un pion en e4 dominant le centre, et un choix totalement libre pour placer leurs deux fous, alors que les Noirs n'ont joué qu'un seul coup qui ne développe rien.
+                plan:
+                  vi: Trắng chơi d4, Bc4 hoặc Bd3, O-O rồi g3 đúng lúc để vây bắt con tốt f4, dùng cột f nửa mở cho xe f1 và trung tâm lớn để gây sức ép. Đen chơi Nf6, Be7 hay g6 và Bg7, O-O thật nhanh, cố giữ con tốt f4 càng lâu càng tốt hoặc đổi nó lấy nhịp phát triển khi cần.
+                  en: White plays d4, Bc4 or Bd3, castles and follows with g3 at the right moment to surround the f4 pawn, using the half-open f-file for the rook and the big centre to build pressure. Black plays Nf6, Be7 or g6 and Bg7, castles quickly, and tries to hold the f4 pawn as long as possible or trade it for a tempo when needed.
+                  fr: Les Blancs jouent d4, Bc4 ou Bd3, roquent puis g3 au bon moment pour encercler le pion f4, en utilisant la colonne f semi-ouverte pour la tour et le grand centre pour créer de la pression. Les Noirs jouent Nf6, Be7 ou g6 et Bg7, roquent vite, et essaient de garder le pion f4 aussi longtemps que possible ou de l'échanger contre un temps le moment venu.
+                basis:
+                  by: chan
+                  at: '2026-09-18'
+    - ply: Bc5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đây là Max Lange Defense đặt tên cho cả nhóm này. Đen bỏ qua con tốt f4, phát triển tượng ra ô tốt nhất của nó trước, và tính chuyện đáp trả căng thẳng trung tâm sau.
+        en: This is the Max Lange Defense the whole family is named for. Black ignores the f4 pawn, develops the bishop to its best square first, and leaves the answer to the central tension for later.
+        fr: Voici la Défense Max Lange qui donne son nom à toute cette famille. Les Noirs ignorent le pion f4, développent d'abord le fou sur sa meilleure case, et remettent à plus tard la réponse à la tension centrale.
+      children:
+        - ply: fxe5
+          annotation:
+            vi: Trắng ăn luôn con tốt e5 trung tâm, vì tượng c5 vừa rời khỏi việc đỡ nó và mã c6 không đỡ nổi một mình. Trắng có ngay một tốt và một cặp tốt e chồng nhưng đã kiểm soát cả e4 lẫn e5.
+            en: White simply takes the central e5 pawn, since the bishop's move to c5 stopped defending it and the knight on c6 cannot hold it alone. White is a pawn up at once, with doubled e-pawns but control of both e4 and e5.
+            fr: Les Blancs prennent simplement le pion central e5, puisque le coup du fou en c5 a cessé de le défendre et que le cavalier c6 ne peut le tenir seul. Les Blancs ont aussitôt un pion de plus, avec des pions e doublés mais le contrôle à la fois de e4 et de e5.
+          dismissRest:
+            reason:
+              vi: Đen không ăn lại bằng mã ở e5. Nước Qh4+ chiếu chỉ lặp lại đúng tình huống đã gặp ở nhánh trước, bị 5.g3 trả lời và mất nhịp. Nước Bxg1 đổi tượng lấy xe thì Rxg1 ăn lại và Trắng vẫn hơn hẳn về quân, còn các nước phát triển khác để mặc con tốt e5 của Trắng đứng vững, đơn giản là hơn hẳn một tốt.
+              en: Black does not recapture on e5 with the knight. Qh4+ only repeats the same situation met in the other branch, answered by 5.g3 at the cost of a tempo. Bxg1, trading the bishop for the rook, is met by Rxg1 recapturing with White still clearly ahead in material, and any other developing move leaves White's pawn on e5 standing, simply a clean pawn up.
+              fr: Les Noirs ne reprennent pas en e5 avec le cavalier. Qh4+ ne fait que répéter la même situation rencontrée dans l'autre branche, à laquelle 5.g3 répond au prix d'un temps. Bxg1, qui échange le fou contre la tour, se traite par Rxg1 qui reprend avec les Blancs toujours nettement devant au matériel, et tout autre coup de développement laisse le pion blanc en e5 debout, simplement un pion de plus pour les Blancs.
+          children:
+            - ply: Nxe5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Mã ăn lại con tốt và đứng ngay giữa bàn cờ. Số quân trở lại cân bằng, nhưng con mã ở e5 sẽ sớm bị hỏi thăm bởi một nước d4.
+                en: The knight recaptures the pawn and lands right in the centre. Material is level again, but the knight on e5 will soon be asked a question by a d4 push.
+                fr: Le cavalier reprend le pion et se retrouve en plein centre. Le matériel redevient égal, mais le cavalier en e5 va bientôt être interrogé par une poussée d4.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì bảy đều hai bên. Con tốt e5 đã đổi ngang với con tốt f4 mà Trắng thí ban đầu, nên đây là gambit đã được trả lại đầy đủ. Cái Trắng còn giữ được là quyền chủ động, một tốt e4 chắc chắn ở trung tâm, và một nước d4 sẵn sàng đánh cùng lúc vào cả mã e5 lẫn tượng c5, buộc Đen phải chọn quân nào rút trước.
+                  en: Count the pawns and it is seven each. The e5 pawn has traded off evenly against the f4 pawn White offered at the start, so this is the gambit fully returned. What White keeps is the initiative, a solid pawn on e4 in the centre, and a d4 push ready to hit the knight on e5 and the bishop on c5 at the same time, forcing Black to choose which piece moves first.
+                  fr: Comptez les pions, sept de chaque côté. Le pion e5 s'est échangé à égalité contre le pion f4 offert au départ par les Blancs, donc le gambit a été intégralement rendu. Ce que gardent les Blancs, c'est l'initiative, un pion solide en e4 au centre, et une poussée d4 prête à frapper à la fois le cavalier en e5 et le fou en c5, obligeant les Noirs à choisir quelle pièce bouger en premier.
+                plan:
+                  vi: Trắng chơi d4 đánh đồng thời mã e5 và tượng c5, rồi Nf3 hoặc Bd3, O-O và Re1, dùng nhịp thu được từ nước d4 để phát triển nhanh hơn. Đen lùi tượng về b6 hoặc b4, đưa mã e5 về c6 hay g6, rồi Nf6, d6 và O-O, cố đuổi kịp nhịp phát triển trước khi Trắng khai thác được ưu thế chủ động.
+                  en: White plays d4, hitting the knight on e5 and the bishop on c5 at the same time, then Nf3 or Bd3, castles and follows with Re1, using the tempo won from d4 to develop faster. Black retreats the bishop to b6 or b4, brings the knight back from e5 to c6 or g6, then plays Nf6, d6 and castles, trying to catch up in development before White can cash in the initiative.
+                  fr: Les Blancs jouent d4, frappant à la fois le cavalier en e5 et le fou en c5, puis Nf3 ou Bd3, roquent et enchaînent par Re1, en utilisant le temps gagné par d4 pour se développer plus vite. Les Noirs reculent le fou en b6 ou b4, ramènent le cavalier de e5 vers c6 ou g6, puis jouent Nf6, d6 et roquent, en essayant de rattraper le développement avant que les Blancs ne monnaient l'initiative.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

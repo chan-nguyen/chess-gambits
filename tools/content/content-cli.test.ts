@@ -138,10 +138,14 @@ describe('export-pgn (AC 2)', () => {
 
     expect(result.status).toBe(1)
     expect(result.stderr).toContain(
-      'Known ids: benko-gambit, blackmar-diemer-gambit, damiano-defence-refutation, danish-gambit, ' +
-        'englund-gambit, englund-gambit-trap, halosar-trap, indian-defense-budapest-gambit, ' +
+      'Known ids: benko-gambit, blackmar-diemer-gambit, caro-kann-defense-labahn-attack-double-gambit, ' +
+        'damiano-defence-refutation, danish-gambit, english-opening-jaenisch-gambit, englund-gambit, ' +
+        'englund-gambit-trap, grob-opening-alessi-gambit, halosar-trap, indian-defense-budapest-gambit, ' +
         'italian-game-evans-gambit, kieninger-trap, kings-gambit, latvian-gambit, legals-mate, ' +
-        'scotch-game-scotch-gambit, sicilian-defense-smith-morra-gambit.',
+        'nimzowitsch-defense-wheeler-gambit, philidor-defense-lopez-countergambit, ' +
+        'queens-gambit-declined-albin-countergambit, queens-pawn-game-zurich-gambit, ' +
+        'scotch-game-goring-gambit, scotch-game-scotch-gambit, sicilian-defense-smith-morra-gambit, ' +
+        'vienna-gambit-with-max-lange-defense, zukertort-opening-herrstrom-gambit.',
     )
   })
 
@@ -164,10 +168,13 @@ describe('compile (AC 3)', () => {
     expect([...readdirSync(out)].sort()).toStrictEqual([
       'benko-gambit.json',
       'blackmar-diemer-gambit.json',
+      'caro-kann-defense-labahn-attack-double-gambit.json',
       'damiano-defence-refutation.json',
       'danish-gambit.json',
+      'english-opening-jaenisch-gambit.json',
       'englund-gambit-trap.json',
       'englund-gambit.json',
+      'grob-opening-alessi-gambit.json',
       'halosar-trap.json',
       'indian-defense-budapest-gambit.json',
       'italian-game-evans-gambit.json',
@@ -175,8 +182,15 @@ describe('compile (AC 3)', () => {
       'kings-gambit.json',
       'latvian-gambit.json',
       'legals-mate.json',
+      'nimzowitsch-defense-wheeler-gambit.json',
+      'philidor-defense-lopez-countergambit.json',
+      'queens-gambit-declined-albin-countergambit.json',
+      'queens-pawn-game-zurich-gambit.json',
+      'scotch-game-goring-gambit.json',
       'scotch-game-scotch-gambit.json',
       'sicilian-defense-smith-morra-gambit.json',
+      'vienna-gambit-with-max-lange-defense.json',
+      'zukertort-opening-herrstrom-gambit.json',
     ])
     const json = readFileSync(join(out, 'damiano-defence-refutation.json'), 'utf8')
     expect(json).not.toContain('\n')
