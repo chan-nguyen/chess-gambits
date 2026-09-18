@@ -1,0 +1,63 @@
+# Trompowsky Attack: Raptor Variation, Hergert Gambit. Frozen defining line 1.d4 Nf6 2.Bg5
+# Ne4 3.h4 Nxg5 4.hxg5 e5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated.
+id: trompowsky-attack-raptor-variation-hergert-gambit
+name: 'Trompowsky Attack: Raptor Variation, Hergert Gambit'
+eco: A45
+category: gambit
+side: black
+definingLine: [d4, Nf6, Bg5, Ne4, h4, Nxg5, hxg5, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. After 5.dxe5 Qxg5, material comes back level with both sides on seven
+      pawns, and Black's case for the exchange of minor pieces earlier is the bishop pair
+      rather than anything forced. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã đổi mã lấy tượng, Đen chơi 4...e5, một con tốt không được quân nào đỡ, mời Trắng ăn nó để mở đường cho hậu Đen giành lại con tốt g5 ngay sau đó.
+    en: Having already traded knight for bishop, Black plays 4...e5, an undefended pawn, offering it to open the way for Black's own queen to win back the g5 pawn right after.
+    fr: Ayant déjà échangé cavalier contre fou, les Noirs jouent 4...e5, un pion non défendu, l'offrant pour ouvrir la voie à leur propre dame afin de regagner le pion g5 aussitôt après.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e5. Các nước khác như Nc3 hay e3 để nguyên con tốt e5 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: White does not take the e5 pawn. Anything else, such as Nc3 or e3, leaves the e5 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Blancs ne prennent pas le pion e5. Tout le reste, comme Nc3 ou e3, laisse le pion e5 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt ngay lập tức bằng tốt d, quân duy nhất có thể ăn tại đó. Con tốt e5 không được quân Đen nào đỡ nên đây đơn giản là ăn một tốt miễn phí, nhưng lại để hở con tốt g5 mà hậu Đen đang nhắm tới.
+        en: White takes the pawn at once with the d-pawn, the only piece that can capture there. The e5 pawn is defended by nothing of Black's, but taking it exposes the g5 pawn that Black's queen is already eyeing.
+        fr: Les Blancs prennent aussitôt le pion avec le pion d, la seule pièce pouvant capturer là. Le pion e5 n'est défendu par rien du côté noir, mais le prendre expose le pion g5 déjà visé par la dame noire.
+      children:
+        - ply: Qxg5
+          annotation:
+            vi: Hậu ăn lại con tốt g5, quân duy nhất còn có thể ăn tại đó sau khi mã và tượng đã đổi nhau. Đây là cách rõ ràng nhất để đưa vật chất trở lại mức cân bằng.
+            en: The queen recaptures the g5 pawn, the only piece left that can capture there once the knight and bishop have traded. This is the most direct way to bring material back to level.
+            fr: La dame reprend le pion g5, la seule pièce restante pouvant capturer là une fois le cavalier et le fou échangés. C'est la façon la plus directe de ramener le matériel à l'équilibre.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì mỗi bên còn đúng bảy quân, vật chất đã trở lại cân bằng hoàn toàn sau các cuộc đổi quân. Đen có cặp tượng còn nguyên trong khi Trắng chỉ còn một tượng và hai mã, nhưng hậu Đen trên g5 hiện đứng khá lộ liễu và có thể bị Trắng đuổi bằng một nước phát triển bình thường.
+              en: Count the pawns and each side has exactly seven, material is fully level again after the trades. Black keeps both bishops while White has only one bishop and two knights, but Black's queen on g5 stands rather exposed and can be chased by an ordinary developing move from White.
+              fr: Comptez les pions, chaque camp en a exactement sept, le matériel est redevenu tout à fait équilibré après les échanges. Les Noirs gardent leurs deux fous tandis que les Blancs n'ont plus qu'un fou et deux cavaliers, mais la dame noire en g5 est plutôt exposée et peut être chassée par un coup de développement ordinaire des Blancs.
+            plan:
+              vi: Trắng chơi Nf3 đuổi hậu giành thêm nhịp, rồi Nc3 và g3, cố tận dụng nhịp độ đó để phát triển nhanh hơn Đen. Đen chơi Qe7 hay Qd8 lùi hậu về nơi an toàn, rồi Nc6 và Bc5 hoặc Bb4, phát huy cặp tượng trong một thế cờ đã thoáng.
+              en: White plays Nf3 to chase the queen and gain a tempo, then Nc3 and g3, trying to use that tempo to develop faster than Black. Black plays Qe7 or Qd8 to retreat the queen to safety, then Nc6 and Bc5 or Bb4, putting the bishop pair to work in an already-open position.
+              fr: Les Blancs jouent Nf3 pour chasser la dame et gagner un temps, puis Nc3 et g3, en essayant d'utiliser ce temps pour se développer plus vite que les Noirs. Les Noirs jouent Qe7 ou Qd8 pour ramener la dame en sécurité, puis Nc6 et Bc5 ou Bb4, mettant la paire de fous au travail dans une position déjà ouverte.
+            basis:
+              by: chan
+              at: '2026-09-18'

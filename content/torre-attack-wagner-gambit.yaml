@@ -1,0 +1,76 @@
+# Torre Attack: Wagner Gambit. Frozen defining line 1.d4 Nf6 2.Nf3 e6 3.Bg5 c5 4.e4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated.
+id: torre-attack-wagner-gambit
+name: 'Torre Attack: Wagner Gambit'
+eco: A46
+category: gambit
+side: white
+definingLine: [d4, Nf6, Nf3, e6, Bg5, c5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply declines the pawn and White has nothing beyond the usual
+      Torre pull on f6. Grabbing the pawn with Nxe4, on the other hand, walks straight into a
+      queen-trapping bishop move, which is the entire point of naming this a gambit. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3...c5, Trắng chơi luôn 4.e4, một con tốt không được quân nào đỡ, mời mã f6 ăn nó. Cái bẫy nằm ở đường chéo g5-d8 mà tượng Trắng đang chiếm giữ, ngay khi mã rời khỏi f6.
+    en: After 3...c5, White plays 4.e4 right away, an undefended pawn, offering it to the f6 knight. The trap lies in the g5-d8 diagonal that White's bishop already occupies, the moment the knight leaves f6.
+    fr: Après 3...c5, les Blancs jouent d'emblée 4.e4, un pion non défendu, l'offrant au cavalier f6. Le piège tient à la diagonale g5-d8 déjà occupée par le fou blanc, dès que le cavalier quitte f6.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước khác như cxd4 hay Be7 để nguyên con tốt e4 trên bàn cờ và không mở đường chéo g5-d8, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the e4 pawn. Anything else, such as cxd4 or Be7, leaves the e4 pawn sitting on the board and does not open the g5-d8 diagonal, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme cxd4 ou Be7, laisse le pion e4 sur l'échiquier et n'ouvre pas la diagonale g5-d8, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: Nxe4
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Mã ăn con tốt e4, có vẻ như một tốt miễn phí. Nhưng nước đi này rời khỏi f6, mở toang đường chéo g5-d8 mà tượng Trắng đang chiếm giữ, và hậu Đen trên d8 giờ chỉ còn được vua e8 đỡ.
+        en: The knight takes the e4 pawn, seemingly a free pawn. But this move vacates f6, throwing open the g5-d8 diagonal that White's bishop already occupies, and Black's queen on d8 is now defended only by the king on e8.
+        fr: Le cavalier prend le pion e4, apparemment un pion gratuit. Mais ce coup libère f6, ouvrant en grand la diagonale g5-d8 déjà occupée par le fou blanc, et la dame noire en d8 n'est plus défendue que par le roi en e8.
+      children:
+        - ply: Bxd8
+          annotation:
+            vi: Tượng ăn thẳng hậu Đen dọc đường chéo vừa được mở ra. Đây là nước duy nhất khai thác đúng điểm yếu mà Đen vừa để hở, đổi một tượng lấy nguyên một hậu.
+            en: The bishop takes Black's queen straight down the diagonal that has just opened. This is the one move that exploits exactly the weakness Black has left, trading a bishop for an entire queen.
+            fr: Le fou prend directement la dame noire le long de la diagonale qui vient de s'ouvrir. C'est le seul coup qui exploite exactement la faiblesse que les Noirs viennent de laisser, échangeant un fou contre une dame entière.
+          dismissRest:
+            reason:
+              vi: Đen không ăn lại bằng vua. Không quân nào khác của Đen với tới ô d8 vì mã b8 còn chắn đường xe a8, nên Kxd8 là cách duy nhất lấy lại được quân, và mọi nước khác đơn giản là bỏ mất nguyên một hậu mà không đổi lại được gì.
+              en: Black does not recapture with the king. Nothing else of Black's reaches d8, since the knight on b8 still blocks the a8 rook, so Kxd8 is the only way to win back the piece, and anything else simply forfeits an entire queen for nothing in return.
+              fr: Les Noirs ne reprennent pas avec le roi. Rien d'autre chez les Noirs n'atteint d8, puisque le cavalier b8 bloque encore la tour a8, donc Kxd8 est la seule façon de regagner la pièce, et tout le reste abandonne simplement une dame entière sans rien en retour.
+          children:
+            - ply: Kxd8
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Vua buộc phải ăn lại tượng, mất luôn quyền nhập thành. Đây là cách duy nhất không để mất trắng cả một hậu.
+                en: The king is forced to recapture the bishop, losing castling rights for good. This is the only way not to lose an entire queen for nothing.
+                fr: Le roi est forcé de reprendre le fou, perdant définitivement le droit au roque. C'est la seule façon de ne pas perdre une dame entière pour rien.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm quân thì Trắng còn nguyên hậu, Đen đã mất hậu từ hai nước trước và chỉ đổi lại được một tượng. Vua Đen cũng đã mất quyền nhập thành và đứng giữa bàn cờ. Đây là một ưu thế vật chất áp đảo, gần như quyết định ván đấu ngay từ khai cuộc.
+                  en: Count the pieces and White still has the queen, while Black lost the queen two moves ago and got only a bishop back for it. Black's king has also lost castling rights and stands in the middle of the board. This is an overwhelming material edge that all but decides the game straight out of the opening.
+                  fr: Comptez les pièces, les Blancs ont toujours leur dame, tandis que les Noirs ont perdu la leur deux coups plus tôt et n'ont regagné qu'un fou en retour. Le roi noir a aussi perdu le droit au roque et se tient au milieu de l'échiquier. C'est un avantage matériel écrasant qui décide presque la partie dès la sortie de l'ouverture.
+                plan:
+                  vi: Trắng chơi Nc3, O-O-O hoặc Qd2 và Ne5, đưa quân vào cuộc tấn công trực diện nhắm vào vua Đen còn kẹt giữa bàn cờ, tận dụng ưu thế hậu ăn được. Đen chơi Kc7 hay Ke8 tìm chỗ trú an toàn hơn cho vua, và cố đổi bớt quân để kéo dài ván đấu dù vật chất đã mất quá nhiều.
+                  en: White plays Nc3, O-O-O or Qd2 and Ne5, bringing pieces into a direct attack on Black's king still stuck in the centre, making the most of the queen won. Black plays Kc7 or Ke8 looking for a safer spot for the king, and tries to trade down pieces to prolong the game despite the crushing material loss.
+                  fr: Les Blancs jouent Nc3, O-O-O ou Qd2 et Ne5, amenant leurs pièces dans une attaque directe contre le roi noir encore coincé au centre, tirant le meilleur parti de la dame gagnée. Les Noirs jouent Kc7 ou Ke8 à la recherche d'un abri plus sûr pour le roi, et cherchent à échanger des pièces pour prolonger la partie malgré la perte matérielle écrasante.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

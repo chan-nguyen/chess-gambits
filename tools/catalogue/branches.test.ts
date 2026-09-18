@@ -175,9 +175,33 @@ describe('the catalogue this repository ships', () => {
     ['vienna-gambit-with-max-lange-defense', 2],
     ['vienna-game-fyfe-gambit', 3],
     ['zukertort-opening-herrstrom-gambit', 1],
+    ['amar-opening-paris-gambit-gent-gambit', 1],
+    ['barnes-opening-gedult-gambit', 1],
+    ['blumenfeld-countergambit-accepted', 1],
+    ['carr-defense-zilbermints-gambit', 1],
+    ['catalan-opening-hungarian-gambit', 1],
+    ['danish-gambit-declined-sorensen-defense', 1],
+    ['duras-gambit', 1],
+    ['english-defense-eastbourne-gambit', 1],
+    ['grunfeld-defense-gibbon-gambit', 1],
+    ['horwitz-defense-zilbermints-gambit', 1],
+    ['irish-gambit', 1],
+    ['kadas-opening-schneider-gambit', 1],
+    ['kings-indian-attack-omega-delta-gambit', 1],
+    ['kings-pawn-opening-van-hooydoon-gambit', 1],
+    ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
+    ['nimzo-larsen-attack-norfolk-gambit', 1],
+    ['old-indian-defense-aged-gibbon-gambit', 1],
+    ['portuguese-opening-miguel-gambit', 1],
+    ['queens-indian-defense-classical-variation-polugaevsky-gambit', 1],
+    ['rat-defense-english-rat-lisbon-gambit', 1],
+    ['torre-attack-wagner-gambit', 1],
+    ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
+    ['vant-kruijs-opening-keoni-hiva-gambit-akahi-variation', 1],
+    ['ware-opening-wing-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored forty-four have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored sixty-eight have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

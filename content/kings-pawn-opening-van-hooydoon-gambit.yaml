@@ -1,0 +1,77 @@
+# King's Pawn Opening: Van Hooydoon Gambit. Frozen defining line 1.e4 e5 2.Qe2 Nc6 3.c3
+# Nf6 4.Nf3 Bc5 5.d4 exd4 6.cxd4, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js
+# before being annotated.
+id: kings-pawn-opening-van-hooydoon-gambit
+name: "King's Pawn Opening: Van Hooydoon Gambit"
+eco: C20
+category: gambit
+side: white
+definingLine: [e4, e5, Qe2, Nc6, c3, Nf6, Nf3, Bc5, d4, exd4, cxd4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. After 6...Nxd4 7.Nxd4 Bxd4, Black settles a clean pawn up with even
+      minor-piece counts, and White's case is the centre pawn on e4 and a lead in
+      development rather than anything forced. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 6.cxd4, con tốt d4 vừa ăn lại của Trắng không được quân nào đỡ, và mã Đen trên c6 đang chĩa thẳng vào nó. Đây là cách bố trí đặc trưng của Van Hooydoon Gambit, hy sinh tốt để hậu ra sớm ở e2 hỗ trợ phát triển nhanh.
+    en: After 6.cxd4, White's freshly recaptured d4 pawn is defended by nothing, and Black's knight on c6 already aims straight at it. This is the characteristic Van Hooydoon Gambit set-up, sacrificing a pawn for the early queen on e2 to support rapid development.
+    fr: Après 6.cxd4, le pion d4 des Blancs, tout juste repris, n'est défendu par rien, et le cavalier noir en c6 le vise déjà directement. C'est la mise en place caractéristique du Van Hooydoon Gambit, sacrifiant un pion pour que la dame sortie tôt en e2 soutienne un développement rapide.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ngay con tốt d4. Các nước khác như O-O hay Re8 phát triển bình thường để nguyên con tốt d4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the d4 pawn at once. Anything else, such as the natural O-O or Re8, leaves the d4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas aussitôt le pion d4. Tout le reste, comme le naturel O-O ou Re8, laisse le pion d4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: Nxd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Mã ăn con tốt ngay lập tức, quân đã sẵn sàng nhắm vào d4 từ trước. Con tốt d4 không được quân Trắng nào đỡ nên đây đơn giản là ăn một tốt miễn phí.
+        en: The knight takes the pawn at once, already lined up on d4 from before. The d4 pawn is defended by nothing of White's, so this is simply picking up a free pawn.
+        fr: Le cavalier prend aussitôt le pion, déjà aligné sur d4. Le pion d4 n'est défendu par rien du côté blanc, il s'agit donc simplement de ramasser un pion gratuit.
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Mã từ f3 ăn lại con mã Đen ở d4, quân duy nhất còn có thể ăn tại đó. Đây là cách đơn giản và trực tiếp nhất để lấy lại một phần vật chất.
+            en: The knight from f3 recaptures Black's knight on d4, the only piece left that can capture there. This is the simplest and most direct way to win back part of the material.
+            fr: Le cavalier de f3 reprend le cavalier noir en d4, la seule pièce restante pouvant capturer là. C'est la façon la plus simple et la plus directe de regagner une partie du matériel.
+          dismissRest:
+            reason:
+              vi: Đen không ăn lại bằng tượng c5. Các nước khác như O-O hay Re8 phát triển bình thường bỏ luôn con mã vừa mất mà không đòi lại được gì, một cuộc trao đổi tệ hơn nhiều so với việc ăn lại ngay bằng tượng, nên phần lớn trường hợp cụ thể ấy được gộp vào đây thay vì phân tích riêng.
+              en: Black does not recapture with the c5 bishop. Anything else, such as the natural O-O or Re8, simply abandons the knight just lost with nothing won back for it, a far worse deal than recapturing at once with the bishop, so those specific cases are folded in here rather than analysed separately.
+              fr: Les Noirs ne reprennent pas avec le fou c5. Tout le reste, comme le naturel O-O ou Re8, abandonne simplement le cavalier qui vient d'être perdu sans rien regagner en retour, un bien plus mauvais marché que de reprendre aussitôt avec le fou, donc ces cas précis sont regroupés ici plutôt qu'analysés séparément.
+          children:
+            - ply: Bxd4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Tượng ăn lại con mã Trắng ở d4, quân duy nhất còn có thể ăn tại đó. Đây là cách rõ ràng nhất để không mất thêm vật chất sau cuộc đổi chác.
+                en: The bishop recaptures White's knight on d4, the only piece left that can capture there. This is the most direct way not to lose further material after the exchange.
+                fr: Le fou reprend le cavalier blanc en d4, la seule pièce restante pouvant capturer là. C'est la façon la plus directe de ne pas perdre davantage de matériel après l'échange.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì Đen bảy, Trắng sáu. Đen hơn đúng một tốt sạch sau toàn bộ chuỗi hy sinh và đòi lại ở trung tâm, còn số lượng quân nhẹ hai bên bằng nhau sau cuộc đổi mã lấy mã, đổi tượng lấy tượng. Cái Trắng có để bù lại là con tốt e4 kiểm soát trung tâm và hậu đã ra sớm ở e2 hỗ trợ phát triển, nhưng chưa phải điều gì đáng kể so với một tốt sạch.
+                  en: Count the pawns and it is seven for Black, six for White. Black is a clean pawn up after the whole sequence of central sacrifice and recapture, and the minor-piece count is level on both sides after knight traded for knight in effect and bishop recaptured for knight. What White has to show for it is the e4 pawn controlling the centre and the queen already out on e2 supporting development, not much against a clean pawn.
+                  fr: Comptez les pions, sept pour les Noirs, six pour les Blancs. Les Noirs ont un pion de plus bien réel après toute la séquence de sacrifice et de reprise au centre, et le compte des pièces mineures est égal des deux côtés après l'échange de cavaliers et le fou reprenant le cavalier. Ce que les Blancs ont à montrer pour cela, c'est le pion e4 contrôlant le centre et la dame déjà sortie en e2 pour soutenir le développement, pas grand-chose face à un pion net.
+                plan:
+                  vi: Trắng chơi Nc3, O-O và Rd1 hay Be3 đuổi tượng, cố dùng trung tâm và sự phát triển nhanh để bù cho con tốt đã mất. Đen chơi O-O, d6 và Re8, giữ chắc con tốt thừa và hoàn tất phát triển trước khi Trắng kịp khai thác trung tâm.
+                  en: White plays Nc3, O-O and Rd1 or Be3 to chase the bishop, trying to use the centre and quick development to compensate for the lost pawn. Black plays O-O, d6 and Re8, holding the extra pawn firmly and completing development before White can exploit the centre.
+                  fr: Les Blancs jouent Nc3, O-O et Rd1 ou Be3 pour chasser le fou, en essayant d'utiliser le centre et un développement rapide pour compenser le pion perdu. Les Noirs jouent O-O, d6 et Re8, gardant fermement le pion supplémentaire et achevant leur développement avant que les Blancs ne puissent exploiter le centre.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

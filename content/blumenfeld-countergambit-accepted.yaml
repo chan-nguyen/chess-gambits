@@ -1,0 +1,63 @@
+# Blumenfeld Countergambit Accepted. Frozen defining line 1.d4 Nf6 2.c4 e6 3.Nf3 c5 4.d5 b5
+# 5.dxe6 fxe6 6.cxb5 d5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated.
+id: blumenfeld-countergambit-accepted
+name: Blumenfeld Countergambit Accepted
+eco: E10
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nf3, c5, d5, b5, dxe6, fxe6, cxb5, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. After 7.e4 dxe4, material comes back level, and Black's case for the whole
+      pawn sacrifice is the big centre and open lines rather than anything forced. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã hy sinh một tốt để có được trung tâm rộng và cột f mở, Đen vừa chơi 6...d5, dựng lên hàng tốt trung tâm to lớn ở e6-d5. Trắng được mời thách thức trung tâm đó ngay lập tức bằng e4.
+    en: Having already sacrificed a pawn for a big centre and an open f-file, Black has just played 6...d5, building the large e6-d5 pawn duo. White is invited to challenge that centre right away with e4.
+    fr: Ayant déjà sacrifié un pion pour un grand centre et une colonne f ouverte, les Noirs viennent de jouer 6...d5, bâtissant le grand duo de pions e6-d5. Les Blancs sont invités à défier immédiatement ce centre par e4.
+  dismissRest:
+    reason:
+      vi: Trắng không thách thức trung tâm bằng e4. Các nước khác như g3 hay Nc3 phát triển bình thường để nguyên hàng tốt trung tâm của Đen đứng vững, nghĩa là lời thách thức vẫn chưa được đưa ra.
+      en: White does not challenge the centre with e4. Anything else, such as the natural developing g3 or Nc3, leaves Black's central pawn duo standing firm, meaning the challenge has still not actually been made.
+      fr: Les Blancs ne défient pas le centre par e4. Tout le reste, comme le développement naturel g3 ou Nc3, laisse le duo de pions central des Noirs bien en place, ce qui veut dire que le défi n'a pas encore été lancé.
+  children:
+    - ply: e4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng thách thức ngay trung tâm của Đen bằng tốt e, tấn công thẳng vào con tốt d5. Đây là cách trực diện nhất để không cho Đen yên ổn với hàng tốt lớn ấy.
+        en: White challenges Black's centre at once with the e-pawn, attacking the d5 pawn directly. This is the most direct way to deny Black a comfortable ride with that big pawn duo.
+        fr: Les Blancs défient aussitôt le centre noir avec le pion e, attaquant directement le pion d5. C'est la façon la plus directe de refuser aux Noirs une tranquillité avec ce grand duo de pions.
+      children:
+        - ply: dxe4
+          annotation:
+            vi: Đen ăn lại bằng tốt d, quân duy nhất còn có thể ăn tại đó. Vật chất trở lại mức cân bằng sau toàn bộ chuỗi hy sinh và đòi lại.
+            en: Black recaptures with the d-pawn, the only piece left that can capture there. Material returns to level after the whole sequence of sacrifice and recapture.
+            fr: Les Noirs reprennent avec le pion d, la seule pièce restante pouvant capturer là. Le matériel redevient égal après toute la séquence de sacrifice et de reprise.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì mỗi bên còn đúng sáu quân, vật chất đã trở lại cân bằng hoàn toàn. Tốt e6 của Đen giờ đứng cô lập không còn tốt d hay f nào bên cạnh để bảo vệ, một điểm yếu lâu dài trên bàn cờ dù cột f nửa mở vẫn còn đó để bù lại phần nào.
+              en: Count the pawns and each side has exactly six, material is fully level again. Black's e6 pawn now stands isolated, with no d- or f-pawn left beside it to shield it, a lasting weakness on the board even though the half-open f-file still offers some compensation.
+              fr: Comptez les pions, chaque camp en a exactement six, le matériel est redevenu tout à fait équilibré. Le pion e6 des Noirs se retrouve désormais isolé, sans pion d ou f à ses côtés pour le protéger, une faiblesse durable sur l'échiquier même si la colonne f semi-ouverte offre encore une certaine compensation.
+            plan:
+              vi: Trắng chơi Nc3 hay Bg5 gây sức ép lên con tốt e6 cô lập, và O-O, cố khai thác điểm yếu lâu dài đó. Đen chơi Bd6 hay Bc5, O-O và Rxf3 nếu có cơ hội đổi chất lượng lấy hoạt động, tận dụng cột f mở để bù cho con tốt yếu.
+              en: White plays Nc3 or Bg5 to pressure the isolated e6 pawn, and O-O, trying to exploit that lasting weakness. Black plays Bd6 or Bc5, O-O, and looks to use the open f-file to generate activity that offsets the weak pawn.
+              fr: Les Blancs jouent Nc3 ou Bg5 pour faire pression sur le pion e6 isolé, et O-O, en essayant d'exploiter cette faiblesse durable. Les Noirs jouent Bd6 ou Bc5, O-O, et cherchent à utiliser la colonne f ouverte pour générer une activité compensant le pion faible.
+            basis:
+              by: chan
+              at: '2026-09-18'

@@ -1,0 +1,56 @@
+# Duras Gambit. Frozen defining line 1.e4 f5, which ends on Black's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). The line below was replayed with
+# chess.js before being annotated.
+id: duras-gambit
+name: Duras Gambit
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White simply takes the pawn with exf5 and it stays taken — Black's case is
+      the open f-file and a lead in central influence, real but not shown to be worth a full
+      pawn yet. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đáp lại 1.e4 bằng 1...f5 ngay lập tức, Đen mời Trắng ăn con tốt này để đổi lấy cột f mở và một nhịp phát triển nào đó bù lại về sau.
+    en: Answering 1.e4 with 1...f5 straight away, Black invites White to take the pawn in exchange for an open f-file and some development to show for it later.
+    fr: En réponse à 1.e4 par 1...f5 d'emblée, les Noirs invitent les Blancs à prendre le pion en échange d'une colonne f ouverte et d'un peu de développement à montrer plus tard.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt f5. Các nước khác như Nc3 hay d4 để nguyên con tốt f5 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: White does not take the f5 pawn. Anything else, such as Nc3 or d4, leaves the f5 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Blancs ne prennent pas le pion f5. Tout le reste, comme Nc3 ou d4, laisse le pion f5 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt ngay lập tức bằng tốt e, quân duy nhất có thể ăn tại đó. Không có gì phức tạp, con tốt f5 chỉ đơn giản là bị treo.
+        en: White takes the pawn at once with the e-pawn, the only piece that can capture there. There is nothing complicated here — the f5 pawn is simply hanging.
+        fr: Les Blancs prennent aussitôt le pion avec le pion e, la seule pièce pouvant capturer là. Il n'y a rien de compliqué ici, le pion f5 est simplement en prise.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, con tốt f đã mất ngay từ nước đầu tiên, và chưa có gì đòi lại được nó. Cái Đen có để bù lại chỉ là cột f nửa mở, chưa phải điều gì đáng kể so với một tốt sạch.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, the f-pawn lost on the very first move, and nothing has won it back yet. What Black has to show for it is only the half-open f-file, not much against a clean pawn.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus bien réel, le pion f perdu dès le tout premier coup, et rien ne l'a encore récupéré. Ce que les Noirs ont à montrer pour cela n'est que la colonne f semi-ouverte, pas grand-chose face à un pion net.
+        plan:
+          vi: Trắng chơi d4, Nf3 và Bd3 hay Bc4, phát triển nhanh và giữ vững con tốt thừa trước khi Đen kịp khai thác cột f. Đen chơi Nf6, g6 và Bg7 hay d6, cố mở cột f và tìm cách gây sức ép bù cho con tốt đã mất.
+          en: White plays d4, Nf3 and Bd3 or Bc4, developing quickly and holding the extra pawn before Black can exploit the f-file. Black plays Nf6, g6 and Bg7 or d6, trying to open the f-file and build pressure to compensate for the lost pawn.
+          fr: Les Blancs jouent d4, Nf3 et Bd3 ou Bc4, se développant rapidement et gardant fermement le pion supplémentaire avant que les Noirs ne puissent exploiter la colonne f. Les Noirs jouent Nf6, g6 et Bg7 ou d6, essayant d'ouvrir la colonne f et de construire une pression pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-18'

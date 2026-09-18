@@ -1,0 +1,57 @@
+# Lion Defense: Anti-Philidor, Lion's Cave, Lion Claw Gambit. Frozen defining line 1.e4 d6
+# 2.d4 Nf6 3.Nc3 Nbd7 4.f4 e5 5.Nf3 exd4 6.Qxd4 c6 7.Bc4 d5, which ends on Black's own ply,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below was
+# replayed with chess.js before being annotated.
+id: lion-defense-anti-philidor-lions-cave-lion-claw-gambit
+name: "Lion Defense: Anti-Philidor, Lion's Cave, Lion Claw Gambit"
+eco: B07
+category: gambit
+side: black
+definingLine: [e4, d6, d4, Nf6, Nc3, Nbd7, f4, e5, Nf3, exd4, Qxd4, c6, Bc4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White simply takes the pawn with exd5 and it stays taken — Black's case is
+      quick piece play against a White queen that came out early, real but not shown to be
+      worth a full pawn yet. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã chơi c6 chuẩn bị, Đen chơi 7...d5, một con tốt không được quân nào đỡ, mời tượng c4 hoặc tốt e4 ăn nó để đổi lấy nhịp độ tấn công vào hậu Trắng đang đứng khá lộ liễu ở d4.
+    en: Having prepared with c6, Black plays 7...d5, an undefended pawn, offering it to the c4 bishop or the e4 pawn in exchange for tempo attacking White's queen, which stands rather exposed on d4.
+    fr: Ayant préparé par c6, les Noirs jouent 7...d5, un pion non défendu, l'offrant au fou c4 ou au pion e4 en échange d'un temps attaquant la dame blanche, plutôt exposée en d4.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt d5. Các nước khác như O-O hay Bb3 lùi tượng để nguyên con tốt d5 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: White does not take the d5 pawn. Anything else, such as O-O or retreating with Bb3, leaves the d5 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Blancs ne prennent pas le pion d5. Tout le reste, comme O-O ou la retraite Bb3, laisse le pion d5 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt ngay lập tức bằng tốt e, quân duy nhất có thể ăn tại đó mà không phải rời tượng c4 sang một ô khác. Con tốt d5 không được quân Đen nào đỡ nên đây đơn giản là ăn một tốt miễn phí.
+        en: White takes the pawn at once with the e-pawn, the only piece that can capture there without moving the c4 bishop elsewhere. The d5 pawn is defended by nothing of Black's, so this is simply picking up a free pawn.
+        fr: Les Blancs prennent aussitôt le pion avec le pion e, la seule pièce pouvant capturer là sans déplacer le fou c4 ailleurs. Le pion d5 n'est défendu par rien du côté noir, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen sáu. Trắng hơn đúng một tốt sạch, con tốt d đã mất ngay từ nước 7, và chưa có gì đòi lại được nó. Cái Đen có để bù lại chỉ là khả năng đưa quân vào tấn công hậu Trắng đang đứng ở d4, chưa phải điều gì đáng kể so với một tốt sạch.
+          en: Count the pawns and it is seven for White, six for Black. White is a clean pawn up, the d-pawn lost as early as move seven, and nothing has won it back yet. What Black has to show for it is only the chance to bring pieces against White's queen standing on d4, not much against a clean pawn.
+          fr: Comptez les pions, sept pour les Blancs, six pour les Noirs. Les Blancs ont un pion de plus bien réel, le pion d perdu dès le septième coup, et rien ne l'a encore récupéré. Ce que les Noirs ont à montrer pour cela n'est que la possibilité d'amener des pièces contre la dame blanche postée en d4, pas grand-chose face à un pion net.
+        plan:
+          vi: Trắng chơi O-O, Bg5 hay Re1, hoàn tất phát triển và đưa hậu về nơi an toàn hơn nếu cần, giữ vững con tốt thừa. Đen chơi Nb6 hay Qa5, dồn quân gây sức ép lên hậu Trắng và cố giành lại con tốt trước khi Trắng hoàn tất phát triển.
+          en: White plays O-O, Bg5 or Re1, completing development and moving the queen to safety if needed, holding the extra pawn firmly. Black plays Nb6 or Qa5, piling pressure onto White's queen and trying to win the pawn back before White finishes developing.
+          fr: Les Blancs jouent O-O, Bg5 ou Re1, achevant leur développement et mettant la dame en sécurité si besoin, gardant fermement le pion supplémentaire. Les Noirs jouent Nb6 ou Qa5, faisant pression sur la dame blanche et cherchant à regagner le pion avant que les Blancs n'achèvent leur développement.
+        basis:
+          by: chan
+          at: '2026-09-18'
