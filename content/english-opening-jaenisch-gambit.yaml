@@ -1,0 +1,83 @@
+# English Opening: Jaenisch Gambit. Frozen defining line 1.c4 b5, which ends on Black's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below was
+# replayed with chess.js before being annotated.
+id: english-opening-jaenisch-gambit
+name: 'English Opening: Jaenisch Gambit'
+eco: A10
+category: gambit
+side: black
+definingLine: [c4, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White has nothing better than to take the pawn, and after the most
+      natural try to win it back, ...a6, White simply keeps it and reaches a clean extra
+      pawn with an actively placed bishop against it — a real long-term try for Black in
+      the style of the Benko Gambit, but not enough on its own to call the whole pawn sound.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen thí ngay con tốt b để đổi lấy đất và đường chéo dài. Nếu Trắng ăn, con tốt c4 mất bạn đồng hành và Đen định chơi ...a6 để đòi lại nó, giống hệt ý tưởng của Gambit Benko nhưng đảo màu quân đi trước một tempo.
+    en: Black offers the b-pawn at once for space and the long diagonal. If White takes, the c4 pawn loses its partner and Black plans ...a6 to win it back, exactly the Benko Gambit idea with the colours swapped and a tempo down.
+    fr: Les Noirs offrent aussitôt le pion b contre de l'espace et la grande diagonale. Si les Blancs prennent, le pion c4 perd son compagnon et les Noirs prévoient ...a6 pour le regagner, exactement l'idée du Gambit Benko avec les couleurs inversées et un temps de moins.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt b5. Mọi nước khác, kể cả đẩy tốt lên c5 hay phát triển bình thường, để nguyên con tốt b5 trên bàn cờ, và Đen tiếp tục với ...Bb7 nhắm đường chéo dài hoặc ...a6 chống đỡ, coi như nước ...b5 chỉ là một nước chiếm đất bình thường chứ chưa hề là một gambit thật sự.
+      en: White does not take the b5 pawn. Anything else, including pushing to c5 or developing normally, leaves the b5 pawn right where it is, and Black continues with ...Bb7 aiming down the long diagonal or ...a6 to support it — at which point ...b5 was just a normal space-gaining move, not yet a real gambit at all.
+      fr: Les Blancs ne prennent pas le pion b5. Tout le reste, y compris pousser en c5 ou développer normalement, laisse le pion b5 exactement où il est, et les Noirs poursuivent par ...Bb7 visant la grande diagonale ou ...a6 pour le soutenir — auquel cas ...b5 n'aura été qu'un coup normal de gain d'espace, pas encore un vrai gambit.
+  children:
+    - ply: cxb5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng nhận con tốt. Đây là nước thử thách nhất, vì nó buộc Đen phải chứng minh sự bù đắp ngay lập tức thay vì chỉ đe doạ suông.
+        en: White accepts the pawn. This is the most testing choice, because it forces Black to prove the compensation at once rather than only threatening it.
+        fr: Les Blancs acceptent le pion. C'est le choix le plus exigeant, car il force les Noirs à prouver tout de suite la compensation plutôt que de seulement la menacer.
+      children:
+        - ply: a6
+          annotation:
+            vi: Đen đẩy tốt a để mở đường cho xe a8 và chuẩn bị ăn lại ở a6 hoặc b5. Con tốt b5 của Trắng hiện đang bị chính con tốt a6 này đánh, vì không quân nào của Trắng đỡ nó.
+            en: Black pushes the a-pawn to open the a8 rook's file and prepare to recapture on a6 or b5. White's pawn on b5 is now attacked by this very pawn, since nothing of White's defends it.
+            fr: Les Noirs poussent le pion a pour ouvrir la colonne de la tour a8 et préparer une reprise en a6 ou b5. Le pion blanc en b5 est désormais attaqué par ce même pion, car rien du côté blanc ne le défend.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn lại ở a6 và cũng không đỡ con tốt b5. Con tốt ấy đang bị ...axb5 đánh trực tiếp và không ai đỡ nó, nên bất kỳ nước nào khác, kể cả phát triển bình thường, đều để Đen ăn lại miễn phí ở nước sau và Trắng coi như chưa từng thí được con tốt nào cả.
+              en: White neither recaptures on a6 nor defends the b5 pawn. That pawn is directly attacked by ...axb5 and nothing guards it, so anything else, including a normal developing move, lets Black simply take it back next move for free, and White ends up never having kept the sacrificed pawn at all.
+              fr: Les Blancs ne reprennent pas en a6 et ne défendent pas non plus le pion b5. Ce pion est directement attaqué par ...axb5 et rien ne le garde, donc tout le reste, y compris un coup de développement normal, laisse les Noirs le reprendre gratuitement au coup suivant, et les Blancs n'auront finalement jamais gardé le pion sacrifié.
+          children:
+            - ply: bxa6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại và giữ chắc con tốt thừa. Con tốt a6 bây giờ đứng lẻ loi và sẽ bị tượng c8 ăn ngay, nhưng Trắng đã có thời gian để chuẩn bị.
+                en: White recaptures and keeps the extra pawn firmly. The pawn on a6 now stands alone and will be taken by the c8 bishop at once, but White has had time to prepare for it.
+                fr: Les Blancs reprennent et gardent fermement le pion supplémentaire. Le pion en a6 se retrouve isolé et sera pris aussitôt par le fou c8, mais les Blancs ont eu le temps de s'y préparer.
+              children:
+                - ply: Bxa6
+                  annotation:
+                    vi: Tượng ăn lại con tốt a6 và đứng ngay trên đường chéo a6-f1, nhìn thẳng vào chỗ tượng f1 của Trắng còn chưa đi. Đây là kiểu bù đắp mà Gambit Benko nổi tiếng vì nó.
+                    en: The bishop recaptures on a6 and stands on the a6-f1 diagonal, looking straight at the square White's own f1 bishop has not yet left. This is the exact kind of compensation the Benko Gambit is famous for.
+                    fr: Le fou reprend en a6 et se place sur la diagonale a6-f1, visant directement la case où le fou blanc en f1 n'a pas encore bougé. C'est précisément le genre de compensation qui a rendu célèbre le Gambit Benko.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm tốt thì Trắng bảy, Đen sáu. Trắng hơn đúng một tốt sạch, con tốt b đã thí ở nước đầu, và chưa có gì đòi lại được nó. Đổi lại, Đen có tượng a6 đang nhắm thẳng vào ô f1, nơi tượng Trắng còn đứng nguyên, và cả cột a lẫn cột b đều mở hoặc nửa mở cho xe a8 trong khi Trắng còn chưa động đến quân nào ở cánh hậu. Đây đúng là cấu trúc kiểu Benko nhưng Đen đã mất thêm một tempo so với bản gốc, vì ở đây đến lượt Trắng đi trước.
+                      en: Count the pawns and it is seven for White, six for Black. White is a clean pawn up, the one offered on the first move, and nothing has won it back yet. In return, Black has the bishop on a6 aiming straight at f1, where White's own bishop still sits, and both the a-file and the b-file are open or half-open for the rook on a8 while White has not touched a queenside piece yet. This is genuinely the Benko structure, except Black has spent one more tempo than in the original, since here it is White who gets to move first.
+                      fr: Comptez les pions, sept pour les Blancs, six pour les Noirs. Les Blancs ont un pion de plus bien réel, celui offert au premier coup, et rien ne l'a encore récupéré. En échange, les Noirs ont le fou en a6 qui vise directement f1, où le fou blanc se tient encore, et les colonnes a et b sont toutes deux ouvertes ou semi-ouvertes pour la tour a8 alors que les Blancs n'ont touché aucune pièce à l'aile dame. C'est réellement la structure du Benko, sauf que les Noirs ont dépensé un temps de plus que dans l'original, puisque ce sont ici les Blancs qui ont le trait.
+                    plan:
+                      vi: Trắng chơi Nf3, e3 hoặc g3 để tượng f1 có đường ra an toàn, rồi Be2 hay Bg2 và O-O, cố giữ nguyên con tốt thừa và đổi bớt quân nhẹ khi có dịp. Đen chơi Nf6, g6, Bg7 và O-O, đưa xe a8 và hậu vào cột a-b, và nhắm các nước phá như ...c5 hay ...Qa5 để giữ áp lực dài hạn lên cánh hậu Trắng thay vì đòi lại tốt ngay lập tức.
+                      en: White plays Nf3, e3 or g3 to give the f1 bishop a safe way out, then Be2 or Bg2 and castles, trying to keep the extra pawn and trade off minor pieces when the chance comes. Black plays Nf6, g6, Bg7 and castles, brings the a8 rook and the queen onto the a- and b-files, and aims at breaks like ...c5 or ...Qa5 to keep long-term pressure on White's queenside rather than trying to win the pawn back immediately.
+                      fr: Les Blancs jouent Nf3, e3 ou g3 pour donner au fou f1 une sortie sûre, puis Be2 ou Bg2 et roquent, en essayant de garder le pion supplémentaire et d'échanger des pièces mineures dès que l'occasion se présente. Les Noirs jouent Nf6, g6, Bg7 et roquent, amènent la tour a8 et la dame sur les colonnes a et b, et visent des ruptures comme ...c5 ou ...Qa5 pour maintenir une pression à long terme sur l'aile dame blanche plutôt que de chercher à reprendre le pion tout de suite.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

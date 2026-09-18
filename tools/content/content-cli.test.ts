@@ -138,14 +138,20 @@ describe('export-pgn (AC 2)', () => {
 
     expect(result.status).toBe(1)
     expect(result.stderr).toContain(
-      'Known ids: benko-gambit, bird-opening-froms-gambit, bishops-opening-calabrese-countergambit, ' +
-        'blackmar-diemer-gambit, blackmar-diemer-gambit-accepted, damiano-defence-refutation, ' +
-        'danish-gambit, dutch-defense-krejcik-gambit, englund-gambit, englund-gambit-trap, ' +
-        'french-defense-banzai-leong-gambit, halosar-trap, indian-defense-budapest-gambit, ' +
-        'indian-defense-gibbins-weidenhagen-gambit, italian-game-evans-gambit, kieninger-trap, ' +
-        'kings-gambit, kings-pawn-game-bavarian-gambit, latvian-gambit, legals-mate, ' +
-        'scandinavian-defense-zilbermints-gambit, scotch-game-scotch-gambit, ' +
-        'sicilian-defense-smith-morra-gambit, van-geet-opening-laroche-gambit, vienna-game-fyfe-gambit.',
+      'Known ids: benko-gambit, bird-opening-froms-gambit, ' +
+        'bishops-opening-calabrese-countergambit, blackmar-diemer-gambit, ' +
+        'blackmar-diemer-gambit-accepted, caro-kann-defense-labahn-attack-double-gambit, ' +
+        'damiano-defence-refutation, danish-gambit, dutch-defense-krejcik-gambit, ' +
+        'english-opening-jaenisch-gambit, englund-gambit, englund-gambit-trap, ' +
+        'french-defense-banzai-leong-gambit, grob-opening-alessi-gambit, halosar-trap, ' +
+        'indian-defense-budapest-gambit, indian-defense-gibbins-weidenhagen-gambit, ' +
+        'italian-game-evans-gambit, kieninger-trap, kings-gambit, kings-pawn-game-bavarian-gambit, ' +
+        'latvian-gambit, legals-mate, nimzowitsch-defense-wheeler-gambit, ' +
+        'philidor-defense-lopez-countergambit, queens-gambit-declined-albin-countergambit, ' +
+        'queens-pawn-game-zurich-gambit, scandinavian-defense-zilbermints-gambit, ' +
+        'scotch-game-goring-gambit, scotch-game-scotch-gambit, sicilian-defense-smith-morra-gambit, ' +
+        'van-geet-opening-laroche-gambit, vienna-gambit-with-max-lange-defense, ' +
+        'vienna-game-fyfe-gambit, zukertort-opening-herrstrom-gambit.',
     )
   })
 
@@ -171,12 +177,15 @@ describe('compile (AC 3)', () => {
       'bishops-opening-calabrese-countergambit.json',
       'blackmar-diemer-gambit-accepted.json',
       'blackmar-diemer-gambit.json',
+      'caro-kann-defense-labahn-attack-double-gambit.json',
       'damiano-defence-refutation.json',
       'danish-gambit.json',
       'dutch-defense-krejcik-gambit.json',
+      'english-opening-jaenisch-gambit.json',
       'englund-gambit-trap.json',
       'englund-gambit.json',
       'french-defense-banzai-leong-gambit.json',
+      'grob-opening-alessi-gambit.json',
       'halosar-trap.json',
       'indian-defense-budapest-gambit.json',
       'indian-defense-gibbins-weidenhagen-gambit.json',
@@ -186,11 +195,18 @@ describe('compile (AC 3)', () => {
       'kings-pawn-game-bavarian-gambit.json',
       'latvian-gambit.json',
       'legals-mate.json',
+      'nimzowitsch-defense-wheeler-gambit.json',
+      'philidor-defense-lopez-countergambit.json',
+      'queens-gambit-declined-albin-countergambit.json',
+      'queens-pawn-game-zurich-gambit.json',
       'scandinavian-defense-zilbermints-gambit.json',
+      'scotch-game-goring-gambit.json',
       'scotch-game-scotch-gambit.json',
       'sicilian-defense-smith-morra-gambit.json',
       'van-geet-opening-laroche-gambit.json',
+      'vienna-gambit-with-max-lange-defense.json',
       'vienna-game-fyfe-gambit.json',
+      'zukertort-opening-herrstrom-gambit.json',
     ])
     const json = readFileSync(join(out, 'damiano-defence-refutation.json'), 'utf8')
     expect(json).not.toContain('\n')

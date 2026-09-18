@@ -1,0 +1,135 @@
+# Caro-Kann Defense: Labahn Attack, Double Gambit. Frozen defining line 1.e4 c6 2.b4 d5
+# 3.b5, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Both branches below were replayed with chess.js before being annotated.
+id: caro-kann-defense-labahn-attack-double-gambit
+name: 'Caro-Kann Defense: Labahn Attack, Double Gambit'
+eco: B10
+category: gambit
+side: white
+definingLine: [e4, c6, b4, d5, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black's simplest reply, 3...dxe4, just wins a clean pawn with nothing
+      found in return; the immediate 3...cxb5 only trades pawns back and forth to a level
+      position. Neither branch shows White anything beyond a small, temporary lead in
+      development, which is not enough to call two pawns a real sacrifice. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã đẩy tốt b lên hai nước liền, b2-b4 rồi b4-b5, và bây giờ con tốt b5 vừa đánh vào con tốt c6 của Đen. Đây là ý tưởng của Labahn Attack. Đen phải quyết định ngay — ăn ở b5, ăn ở e4, hay bỏ qua cả hai và đi tiếp.
+    en: White has pushed the b-pawn twice in a row, b2-b4 and then b4-b5, and the pawn on b5 now attacks the pawn on c6. This is the whole idea of the Labahn Attack. Black must decide at once — take on b5, take on e4, or ignore both and carry on.
+    fr: Les Blancs ont poussé le pion b deux fois de suite, b2-b4 puis b4-b5, et le pion en b5 attaque maintenant le pion c6. C'est toute l'idée de l'attaque Labahn. Les Noirs doivent décider tout de suite — prendre en b5, prendre en e4, ou ignorer les deux et poursuivre.
+  dismissRest:
+    reason:
+      vi: Đen không ăn quân nào cả. Nếu Đen chơi một nước phát triển bình thường hay đẩy tốt c lên c5 để tránh bị ăn, chưa có gì thực sự bị mất hay bị thí — cả hai con tốt b5 và e4 vẫn còn nguyên trên bàn cờ, vì lời mời chỉ trở thành một ván cờ thật khi có quân bị ăn. Trắng cứ tiếp tục phát triển với Nf3, Bd3 hay Bc4.
+      en: Black takes nothing at all. A normal developing move, or pushing the c-pawn on to c5 to dodge the attack, has not actually cost or won anything yet — both the b5 and e4 pawns are still sitting on the board, since the offer only becomes a real gambit once something is captured. White simply continues developing with Nf3, Bd3 or Bc4.
+      fr: Les Noirs ne prennent rien du tout. Un coup de développement normal, ou pousser le pion c jusqu'en c5 pour éviter l'attaque, n'a en réalité rien coûté ni rien gagné pour l'instant — les pions b5 et e4 sont tous deux encore sur l'échiquier, car l'offre ne devient un vrai gambit qu'une fois qu'une prise a réellement eu lieu. Les Blancs continuent simplement à se développer par Nf3, Bd3 ou Bc4.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn ngay con tốt e4 đang bỏ ngỏ và tạm thời để mặc con tốt c6. Đây là cách chơi tham lam nhất và cũng là cách chơi đúng nhất, vì con tốt c6 chưa mất, nó chỉ đang bị đánh.
+        en: Black takes the loose e4 pawn at once and leaves the c6 pawn for later. This is the greediest response and also the correct one, because the c6 pawn is not lost yet — it is only under attack.
+        fr: Les Noirs prennent aussitôt le pion e4 laissé sans défense et remettent le pion c6 à plus tard. C'est la réponse la plus gourmande et aussi la bonne, car le pion c6 n'est pas encore perdu, il est seulement attaqué.
+      children:
+        - ply: bxc6
+          annotation:
+            vi: Trắng ăn lại con tốt c6, và con tốt này đồng thời đánh vào tượng c8 lẫn ô b7 ở nước tiếp theo. Trắng không đòi lại được con tốt e4 nhưng lại đe doạ ăn thêm.
+            en: White recaptures the c6 pawn, which now attacks both the bishop on c8 and the b7 square next move. White has not won the e4 pawn back, but is threatening to win more.
+            fr: Les Blancs reprennent le pion c6, qui attaque désormais à la fois le fou en c8 et la case b7 au coup suivant. Les Blancs n'ont pas repris le pion e4, mais menacent de gagner davantage.
+          dismissRest:
+            reason:
+              vi: Đen không ăn lại con tốt c6 bằng mã. Con tốt ấy đang đánh thẳng vào tượng c8, nên bất kỳ nước nào khác, kể cả ăn lại bằng tốt b7, đều để lại đúng số quân như khi ăn bằng mã — khác biệt duy nhất là mã có phát triển còn tốt thì không, và nếu Đen phớt lờ hẳn thì Trắng ăn tiếp cxb7 lấy thêm một tốt nữa.
+              en: Black does not recapture the c6 pawn with the knight. That pawn is attacking the bishop on c8 directly, so anything else — including recapturing with the b7 pawn instead — reaches the identical material balance, the only difference being that the knight develops a piece and the pawn does not, and ignoring it altogether allows cxb7 to pick up a second pawn.
+              fr: Les Noirs ne reprennent pas le pion c6 avec le cavalier. Ce pion attaque directement le fou en c8, donc tout le reste — y compris reprendre avec le pion b7 — mène au même bilan matériel, la seule différence étant que le cavalier développe une pièce alors que le pion non, et l'ignorer complètement permet cxb7 de gagner un second pion.
+          children:
+            - ply: Nxc6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Mã ăn lại và phát triển cùng lúc. Đen đã ăn xong hai con tốt được thí, e4 và tốt vừa đứng ở c6, mà không phải trả lại gì.
+                en: The knight recaptures and develops in the same move. Black has now collected both offered pawns, on e4 and the one that stood on c6, without giving anything back.
+                fr: Le cavalier reprend et se développe du même coup. Les Noirs ont désormais récupéré les deux pions offerts, en e4 et celui qui se tenait en c6, sans rien rendre.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì Trắng sáu, Đen bảy. Trắng đã kém đúng một tốt sạch, vì con tốt e4 mất hẳn còn con tốt b đã đổi ngang với con tốt c6 của Đen qua nước bxc6 và Nxc6. Đây chính là câu trả lời cho cái tên "Double Gambit" — cả hai con tốt bị thí không hề mua lại được gì cụ thể, Trắng chỉ hơn đúng một nhịp phát triển nhỏ (mã c6 của Đen phải mất một nước để ăn lại) mà không có đường mở, không có tượng nhắm vào đâu và không có cột nào thông cho xe.
+                  en: Count the pawns and it is six for White, seven for Black. White is down a clean pawn, because the e4 pawn is simply gone and the b-pawn traded evenly for Black's c6 pawn through bxc6 and Nxc6. This is the real answer to the name "Double Gambit" — both sacrificed pawns bought nothing concrete. White is only a small development tempo ahead, since Black's knight needed one extra move to recapture, and there is no open line, no bishop aiming at anything and no file open for a rook.
+                  fr: Comptez les pions, six pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de moins bien réel, car le pion e4 a purement disparu et le pion b s'est échangé à égalité contre le pion c6 noir via bxc6 et Nxc6. Voilà la vraie réponse au nom « Double Gambit » — les deux pions sacrifiés n'ont rien acheté de concret. Les Blancs n'ont qu'un petit temps de développement d'avance, le cavalier noir ayant dû jouer un coup de plus pour reprendre, et il n'y a ni ligne ouverte, ni fou pointé sur quoi que ce soit, ni colonne ouverte pour une tour.
+                plan:
+                  vi: Trắng chơi Nf3, Bc4 hoặc Bd3, O-O rồi Re1, cố gắng dùng nhịp phát triển nhỏ để gây sức ép trước khi Đen kịp hoàn thiện thế trận, nhưng không có nước phá rõ ràng nào để đòi lại con tốt. Đen chơi Nf6, e6 hoặc g6, Bg7 hay Be7 và O-O, giữ chắc con tốt thừa và hướng ván cờ về một tàn cuộc dễ chịu.
+                  en: White plays Nf3, Bc4 or Bd3, castles and follows with Re1, trying to use the small development lead to create pressure before Black finishes untangling, but there is no clear break that wins the pawn back. Black plays Nf6, e6 or g6, Bg7 or Be7 and castles, holding the extra pawn firmly and steering for a comfortable endgame.
+                  fr: Les Blancs jouent Nf3, Bc4 ou Bd3, roquent puis Re1, en essayant d'utiliser le petit temps de développement pour créer de la pression avant que les Noirs n'achèvent de se démêler, mais il n'existe aucune rupture claire pour reprendre le pion. Les Noirs jouent Nf6, e6 ou g6, Bg7 ou Be7 et roquent, en gardant fermement le pion supplémentaire et en visant une finale confortable.
+                basis:
+                  by: chan
+                  at: '2026-09-18'
+    - ply: cxb5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen ăn ngay con tốt thứ hai bằng chính con tốt bị đánh, thay vì ăn ở e4 trước. Đây là nước an toàn, nhưng nó mở đường chéo cho tượng f1 của Trắng ăn lại ngay với chiếu.
+        en: Black takes the second pawn at once with the pawn under attack, rather than grabbing on e4 first. It is the safe choice, but it opens the diagonal for White's bishop to recapture immediately with check.
+        fr: Les Noirs prennent aussitôt le second pion avec le pion attaqué, plutôt que de saisir d'abord en e4. C'est le choix prudent, mais il ouvre la diagonale permettant au fou blanc de reprendre aussitôt avec échec.
+      children:
+        - ply: Bxb5+
+          annotation:
+            vi: Trắng ăn lại bằng tượng và chiếu luôn. Đây là nước làm nên toàn bộ ý nghĩa của nhánh này — Đen không có thời gian nghĩ đến chuyện phát triển, phải lo chặn chiếu trước đã.
+            en: White recaptures with the bishop and gives check in the same move. This is the whole point of this branch — Black has no time to think about development and must deal with the check first.
+            fr: Les Blancs reprennent du fou et donnent échec du même coup. C'est tout l'intérêt de cette branche — les Noirs n'ont pas le temps de penser au développement et doivent d'abord parer l'échec.
+          dismissRest:
+            reason:
+              vi: Đen không chặn chiếu bằng tượng. Nước Nc6 hay Nd7 đưa mã vào chặn cũng hợp lệ và giữ được số quân y như nhau, còn Qd7 đưa hậu ra chặn thì sớm muộn cũng phải đổi hậu hoặc lùi lại, không có gì lợi hơn so với chặn bằng tượng.
+              en: Black does not block the check with the bishop. Blocking with the knight, either Nc6 or Nd7, is equally legal and reaches the same material balance, while blocking with the queen on d7 sooner or later has to trade queens or retreat, gaining nothing over the bishop block.
+              fr: Les Noirs ne parent pas l'échec avec le fou. Interposer le cavalier, par Nc6 ou Nd7, est tout aussi légal et mène au même bilan matériel, tandis qu'interposer la dame en d7 doit tôt ou tard échanger les dames ou reculer, sans rien gagner de plus que l'interposition du fou.
+          children:
+            - ply: Bd7
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Tượng chặn chiếu và đồng thời mời đổi tượng. Đây là cách chặn tích cực nhất, vì nó không chiếm mất ô phát triển nào của mã.
+                en: The bishop blocks the check and offers a trade in the same move. This is the most active way to block, because it does not take up a square either knight would want.
+                fr: Le fou pare l'échec et propose un échange du même coup. C'est la façon la plus active de parer, car elle n'occupe aucune case dont un cavalier aurait besoin.
+              children:
+                - ply: Bxd7+
+                  annotation:
+                    vi: Trắng đổi tượng và chiếu tiếp. Đen buộc phải ăn lại ngay, không có nước nào khác giải quyết được chiếu.
+                    en: White trades bishops and checks again. Black has to recapture at once — nothing else answers the check.
+                    fr: Les Blancs échangent les fous et redonnent échec. Les Noirs doivent reprendre aussitôt, rien d'autre ne pare l'échec.
+                  dismissRest:
+                    reason:
+                      vi: Đen không ăn lại bằng hậu. Ăn bằng mã b8 giữ được hậu ở vị trí tự nhiên nhưng đưa mã vào một ô bị động, còn ăn bằng vua thì mất vĩnh viễn quyền nhập thành — cả hai đều tệ hơn so với đưa hậu ra ăn lại.
+                      en: Black does not recapture with the queen. Recapturing with the b8 knight keeps the queen on its natural square but sends the knight to a passive square, and recapturing with the king loses the right to castle for good — both are worse than taking back with the queen.
+                      fr: Les Noirs ne reprennent pas de la dame. Reprendre du cavalier b8 garde la dame sur sa case naturelle mais envoie le cavalier sur une case passive, et reprendre du roi perd définitivement le droit de roquer — les deux sont pires que reprendre de la dame.
+                  children:
+                    - ply: Qxd7
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Hậu ăn lại tượng và chuỗi bắt buộc kết thúc ở đây. Không còn quân nào bị treo và cả hai bên đều có thể thở.
+                        en: The queen recaptures the bishop and the forcing sequence ends here. Nothing is hanging for either side any more.
+                        fr: La dame reprend le fou et la séquence forcée s'arrête ici. Plus rien n'est en prise d'un côté ni de l'autre.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Đếm tốt thì bảy đều hai bên. Con tốt b4-b5 của Trắng và con tốt c6 của Đen đã đổi ngang nhau qua nước cxb5 và Bxb5, nên "double gambit" ở nhánh này thực ra chưa từng thí một con tốt nào cả — đó chính là câu trả lời trung thực cho câu hỏi mà 3.b5 đặt ra khi Đen chọn ăn ngay lập tức. Điểm khác biệt duy nhất là con hậu Đen đứng ở d7, một ô hơi chắn đường phát triển của tượng f8 và xe a8, còn Trắng đã đổi xong một cặp tượng và có tốt e4 đứng giữa bàn cờ.
+                          en: Count the pawns and it is seven each. White's b4-b5 pawn and Black's c6 pawn have traded off evenly through cxb5 and Bxb5, so this branch of the "double gambit" never actually sacrificed a pawn at all — that is the honest answer to the question 3.b5 asked once Black chose to capture right away. The only real difference is that Black's queen stands on d7, a square that gets slightly in the way of the f8 bishop and the a8 rook, while White has traded off a pair of bishops and keeps a pawn on e4 in the centre.
+                          fr: Comptez les pions, sept de chaque côté. Le pion b4-b5 blanc et le pion c6 noir se sont échangés à égalité via cxb5 et Bxb5, si bien que cette branche du « double gambit » n'a en réalité jamais sacrifié le moindre pion — voilà la réponse honnête à la question posée par 3.b5 quand les Noirs choisissent de prendre tout de suite. La seule vraie différence est que la dame noire se tient en d7, une case qui gêne un peu le développement du fou f8 et de la tour a8, tandis que les Blancs ont échangé une paire de fous et conservent un pion en e4 au centre.
+                        plan:
+                          vi: Trắng chơi Nf3, O-O rồi Re1, và cân nhắc d4 để mở thêm trung tâm khi đã sẵn sàng. Đen chơi Ngf6 hoặc Nc6 để giải phóng con hậu khỏi d7, rồi e6 hoặc g6 và Be7 hay Bg7, sau đó O-O. Cả hai bên đều chơi một ván cờ mở, không ai có ưu thế vật chất hay cấu trúc nào để bám vào.
+                          en: White plays Nf3, castles and follows with Re1, and considers d4 to open the centre further once ready. Black plays Ngf6 or Nc6 to free the queen from d7, then e6 or g6 and Be7 or Bg7, followed by castling. Both sides are playing an open game with no material or structural edge to hold on to.
+                          fr: Les Blancs jouent Nf3, roquent puis Re1, et envisagent d4 pour ouvrir davantage le centre une fois prêts. Les Noirs jouent Ngf6 ou Nc6 pour libérer la dame de d7, puis e6 ou g6 et Be7 ou Bg7, avant de roquer. Les deux camps jouent une partie ouverte, sans avantage matériel ni structurel auquel se raccrocher.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'

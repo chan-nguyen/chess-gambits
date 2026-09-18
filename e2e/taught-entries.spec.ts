@@ -76,18 +76,21 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are twenty-four of them, and they are the ones the content tickets authored', () => {
+  test('there are thirty-four of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'benko-gambit',
       'bird-opening-froms-gambit',
       'bishops-opening-calabrese-countergambit',
       'blackmar-diemer-gambit',
       'blackmar-diemer-gambit-accepted',
+      'caro-kann-defense-labahn-attack-double-gambit',
       'danish-gambit',
       'dutch-defense-krejcik-gambit',
+      'english-opening-jaenisch-gambit',
       'englund-gambit',
       'englund-gambit-trap',
       'french-defense-banzai-leong-gambit',
+      'grob-opening-alessi-gambit',
       'halosar-trap',
       'indian-defense-budapest-gambit',
       'indian-defense-gibbins-weidenhagen-gambit',
@@ -97,11 +100,18 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'kings-pawn-game-bavarian-gambit',
       'latvian-gambit',
       'legals-mate',
+      'nimzowitsch-defense-wheeler-gambit',
+      'philidor-defense-lopez-countergambit',
+      'queens-gambit-declined-albin-countergambit',
+      'queens-pawn-game-zurich-gambit',
       'scandinavian-defense-zilbermints-gambit',
+      'scotch-game-goring-gambit',
       'scotch-game-scotch-gambit',
       'sicilian-defense-smith-morra-gambit',
       'van-geet-opening-laroche-gambit',
+      'vienna-gambit-with-max-lange-defense',
       'vienna-game-fyfe-gambit',
+      'zukertort-opening-herrstrom-gambit',
     ])
   })
 

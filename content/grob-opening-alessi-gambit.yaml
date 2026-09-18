@@ -1,0 +1,63 @@
+# Grob Opening: Alessi Gambit. Frozen defining line 1.g4 f5, which ends on Black's own ply,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below was
+# replayed with chess.js before being annotated.
+id: grob-opening-alessi-gambit
+name: 'Grob Opening: Alessi Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [g4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White simply takes the offered pawn with gxf5 and keeps it; Black's only
+      asset afterwards is a long-term idea on the dark squares that the g4 push weakened,
+      which is real but far too slow to call a whole pawn sound this early. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đáp lại 1.g4 kiểu Grob, Đen phản công thẳng bằng 1...f5, mời Trắng ăn tốt để đổi lấy hy vọng khai thác các ô đen quanh vua Trắng về sau, nơi tốt g4 vừa mới bỏ trống.
+    en: Answering the Grob's 1.g4 with a counterattack, Black offers 1...f5, inviting White to take the pawn in exchange for a hope of exploiting the dark squares around White's king later on, exactly where the g4 push has just left a hole.
+    fr: En réponse au 1.g4 du Grob, les Noirs contre-attaquent par 1...f5, invitant les Blancs à prendre le pion en échange d'un espoir d'exploiter plus tard les cases noires autour du roi blanc, exactement là où la poussée g4 vient de laisser un trou.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt f5. Mọi nước khác, kể cả g5 đẩy tiếp hay các nước phát triển như Bg2, để nguyên con tốt f5 trên bàn cờ và Đen tiếp tục theo ý mình với e5 hay Nf6, nghĩa là con tốt được mời vẫn chưa hề bị lấy đi.
+      en: White does not take the f5 pawn. Anything else, including pushing on with g5 or developing with Bg2, leaves the f5 pawn sitting on the board and lets Black carry on as planned with e5 or Nf6, meaning the offered pawn has still not actually been taken.
+      fr: Les Blancs ne prennent pas le pion f5. Tout le reste, y compris pousser en g5 ou développer par Bg2, laisse le pion f5 sur l'échiquier et permet aux Noirs de poursuivre comme prévu par e5 ou Nf6, ce qui veut dire que le pion offert n'a toujours pas été pris.
+  children:
+    - ply: gxf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt ngay lập tức. Không có gì phức tạp ở đây, con tốt f5 chỉ đơn giản là bị treo và không quân nào của Đen đỡ được nó.
+        en: White simply takes the pawn at once. There is nothing complicated here — the f5 pawn is simply hanging and nothing of Black's defends it.
+        fr: Les Blancs prennent simplement le pion tout de suite. Il n'y a rien de compliqué ici, le pion f5 est simplement en prise et rien du côté noir ne le défend.
+      children:
+        - ply: g6
+          annotation:
+            vi: Đen chấp nhận mất tốt và chuẩn bị fianchetto tượng đồng thời chuẩn bị ăn lại nếu Trắng cố giữ tốt f5 bằng cách đẩy nó tiếp. Đây là cách phát triển hợp lý nhất sau khi con tốt đã mất.
+            en: Black accepts the pawn loss and prepares to fianchetto the bishop, while also being ready to recapture should White try to hold the f5 pawn by pushing it on. This is the most sensible way to develop once the pawn is gone.
+            fr: Les Noirs acceptent la perte du pion et préparent le fianchetto du fou, tout en restant prêts à reprendre si les Blancs tentent de garder le pion f5 en le poussant plus loin. C'est la façon la plus sensée de se développer une fois le pion perdu.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, con tốt f đã mất từ nước đầu tiên, và chưa có gì đòi lại được nó. Cái Đen có để bù lại chỉ là tiềm năng đặt tượng vào g7 nhắm đường chéo dài, nơi các ô đen quanh vua Trắng đã yếu đi vì nước g4, nhưng đó là một kế hoạch dài hạn chứ không phải điều gì bắt buộc ngay lúc này.
+              en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, the f-pawn lost on the very first move, and nothing has won it back yet. What Black has to show for it is only the potential of a bishop on g7 aiming down the long diagonal, where the dark squares around White's king have been weakened by g4, but that is a long-term plan rather than anything forced right now.
+              fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus bien réel, le pion f perdu dès le premier coup, et rien ne l'a encore récupéré. Ce que les Noirs ont à montrer pour cela n'est que le potentiel d'un fou en g7 visant la grande diagonale, là où les cases noires autour du roi blanc ont été affaiblies par g4, mais c'est un projet à long terme plutôt que quoi que ce soit de forcé pour l'instant.
+            plan:
+              vi: Trắng chơi Nf3, Bg2 hoặc d4, O-O rồi Re1, cố dùng con tốt thừa và phát triển nhanh để giữ vững ưu thế trước khi Đen kịp hoạt động hoá tượng g7. Đen chơi Bg7, Nf6, d5 hoặc d6 và O-O, cố mở đường chéo dài và cột f nửa mở của mình để bù cho con tốt đã mất, nhắm vào các ô yếu quanh vua Trắng khi có dịp.
+              en: White plays Nf3, Bg2 or d4, castles and follows with Re1, using the extra pawn and quick development to keep the edge before Black can activate the bishop on g7. Black plays Bg7, Nf6, d5 or d6 and castles, trying to open the long diagonal and Black's own half-open f-file to compensate for the lost pawn, aiming at the weak squares around White's king when the chance comes.
+              fr: Les Blancs jouent Nf3, Bg2 ou d4, roquent puis Re1, en utilisant le pion supplémentaire et un développement rapide pour garder l'avantage avant que les Noirs ne puissent activer le fou en g7. Les Noirs jouent Bg7, Nf6, d5 ou d6 et roquent, en essayant d'ouvrir la grande diagonale et leur propre colonne f semi-ouverte pour compenser le pion perdu, en visant les cases faibles autour du roi blanc le moment venu.
+            basis:
+              by: chan
+              at: '2026-09-18'
