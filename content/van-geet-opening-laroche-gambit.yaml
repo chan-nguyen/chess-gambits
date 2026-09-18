@@ -1,0 +1,124 @@
+# The Van Geet Opening: Laroche Gambit. Frozen defining line 1.Nc3 b5, which ends on
+# Black's own ply, so the root is an opponent node and White's replies carry qualities
+# (invariant 5).
+#
+# No forced mate is claimed anywhere in this entry. Both resolved branches end in an
+# Assessment; nothing here is a trap branch (ADR-0005).
+id: van-geet-opening-laroche-gambit
+name: 'Van Geet Opening: Laroche Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Nc3, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. The pawn on b5 is simply undefended, so 2.Nxb5 is a completely free
+      capture with no tactical cost. If White then retreats calmly with 3.Nc3 rather than
+      reaching further, White keeps a clean extra pawn while Black's only concrete asset
+      is the long diagonal for the c8 bishop, which the closed centre keeps out of the
+      game for the moment. The greedy tries — 3.Nxc7+, 3.Nxa7, 3.Nd6+ — all hand the
+      material straight back or worse, but that is a case against overreaching, not a case
+      for the gambit: the calm refutation asks nothing difficult of White. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đáp lại 1.Nc3 bằng một phản gambit ở cánh hậu, thí ngay con tốt b để mở đường chéo cho tượng c8 và giành không gian cánh hậu trước khi Trắng kịp ổn định. Con tốt b5 không có quân nào đỡ, nên nếu Trắng ăn thì đây mới là lúc gambit thật sự bắt đầu; nếu Trắng bỏ qua thì Đen chỉ đơn giản có thêm không gian mà chưa mất gì.
+    en: Black answers 1.Nc3 with a queenside countergambit, offering the b-pawn at once to open the long diagonal for the c8 bishop and grab queenside space before White settles in. Nothing defends the b5 pawn, so if White takes it the gambit truly begins; if White ignores it, Black simply has extra space for nothing yet spent.
+    fr: Les Noirs répondent à 1.Nc3 par un contre-gambit à l'aile dame, en offrant d'emblée le pion b pour ouvrir la grande diagonale au fou c8 et prendre de l'espace à l'aile dame avant que les Blancs ne s'installent. Rien ne défend le pion b5, donc si les Blancs le prennent, le gambit commence vraiment ; s'ils l'ignorent, les Noirs ont simplement de l'espace en plus sans rien avoir dépensé.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác và để nguyên con tốt b5. Không nước nào trong số này đụng đến nó ngay, nên Đen đơn giản giữ nguyên không gian cánh hậu đã chiếm được mà chưa phải trả giá gì; nước duy nhất thật sự thử thách con tốt thí này là 2.Nxb5.
+      en: White plays something else and leaves the b5 pawn alone. None of these moves touches it at once, so Black simply keeps the queenside space already gained without having paid for it yet; the only move that actually tests the sacrificed pawn is 2.Nxb5.
+      fr: Les Blancs jouent autre chose et laissent le pion b5 tranquille. Aucun de ces coups ne le touche immédiatement, si bien que les Noirs conservent simplement l'espace déjà gagné à l'aile dame sans encore l'avoir payé ; le seul coup qui met vraiment le pion sacrifié à l'épreuve est 2.Nxb5.
+  children:
+    - ply: Nxb5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng nhận con tốt. Đây là nước đúng về nguyên tắc, một con tốt không ai đỡ thì cứ ăn, và Đen phải chứng minh có gì bù lại.
+        en: White takes the pawn. This is correct in principle — an undefended pawn should simply be taken, and Black has to prove there is anything to show for it.
+        fr: Les Blancs prennent le pion. C'est juste en principe, un pion non défendu se prend tout simplement, et les Noirs doivent prouver qu'ils ont quelque chose en échange.
+      children:
+        - ply: Bb7
+          annotation:
+            vi: Đen đưa tượng ra b7, mở đường chéo dài a8-h1 và chuẩn bị a6 để đuổi con mã đang đứng lẻ loi ở b5. Con tượng chưa đụng trực tiếp vào con mã, vì b7 và b5 không cùng đường chéo, nhưng nó nắm cả đường chéo một khi Trắng dọn đường, và nó buộc Trắng phải quyết định ngay bây giờ nên rút mã đi đâu.
+            en: Black brings the bishop to b7, opening the long a8-h1 diagonal and preparing ...a6 to chase the knight that is standing alone on b5. The bishop does not attack the knight directly — b7 and b5 are not on the same diagonal — but it commands the whole diagonal once the way clears, and it forces White to decide right now where the knight should retreat.
+            fr: Les Noirs amènent le fou en b7, ouvrant la grande diagonale a8-h1 et préparant ...a6 pour chasser le cavalier resté seul en b5. Le fou n'attaque pas directement le cavalier, car b7 et b5 ne sont pas sur la même diagonale, mais il contrôle toute la diagonale dès que la voie se dégage, et il oblige les Blancs à décider dès maintenant où reculer le cavalier.
+          dismissed:
+            - ply: Na3
+              reason: Retreats to a passive corner square; objectively the same extra pawn as after 3.Nc3 but the knight is worse placed on the rim.
+            - ply: Nd4
+              reason: Retreats centrally but blocks White's own d-pawn for no independent gain over 3.Nc3.
+            - ply: Nxa7
+              reason: Grabs a second pawn but hangs the knight to 3...Rxa7, handing back more than was won — a knight for two pawns, strictly worse than the simple retreat.
+            - ply: Nd6+
+              reason: Checks but the knight is simply captured for nothing by 3...cxd6 or 3...exd6 — loses a full piece for the earlier pawn and nothing else.
+          dismissRest:
+            reason:
+              vi: Trắng để nguyên con mã ở b5 và chơi một nước khác. Sau a6 của Đen, con mã vẫn phải lui đúng như sau 3.Nc3, chỉ khác là Đen đã tranh thủ thêm được một nhịp; không nước nào ở đây làm tốt hơn việc rút mã ngay.
+              en: White leaves the knight on b5 and plays something else. After Black's ...a6 the knight still has to retreat exactly as after 3.Nc3, only now Black has won an extra tempo doing it; nothing here does better than retreating the knight at once.
+              fr: Les Blancs laissent le cavalier en b5 et jouent autre chose. Après ...a6 des Noirs, le cavalier doit de toute façon reculer comme après 3.Nc3, sauf que les Noirs ont gagné un temps supplémentaire au passage ; rien ici ne vaut mieux que de reculer le cavalier tout de suite.
+          children:
+            - ply: Nc3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng rút mã về c3, nước lui an toàn nhất và cũng là nước tốt nhất. Con tốt b5 đã ăn được vẫn còn nguyên, con mã trở lại một ô đã phát triển, và Đen chưa có gì cụ thể để bù lại ngoài đường chéo b7 và một chút chủ động.
+                en: White retreats the knight to c3, the safest square and also the best one. The captured b5 pawn stays banked, the knight is back on a developed square, and Black still has nothing concrete to show for it beyond the b7 diagonal and a little activity.
+                fr: Les Blancs replient le cavalier en c3, la case la plus sûre et aussi la meilleure. Le pion b5 gagné reste au tableau, le cavalier retrouve une case développée, et les Noirs n'ont toujours rien de concret en échange, hormis la diagonale du fou b7 et un peu d'activité.
+              children:
+                - ply: e6
+                  annotation:
+                    vi: Đen mở đường cho tượng f8 và mã g8, chuẩn bị nhập thành bình thường. Đây là cách chơi thực tế nhất, Đen không còn cách nào lấy lại con tốt ngay, nên tốt nhất là phát triển đầy đủ và tìm chủ động ở trung tâm hoặc cánh hậu về sau.
+                    en: Black opens the diagonal for the f8 bishop and a route out for the g8 knight, preparing to castle normally. This is the most practical choice — there is no way to win the pawn back immediately, so the best plan is to finish developing and look for activity in the centre or on the queenside later.
+                    fr: Les Noirs ouvrent la diagonale du fou f8 et une voie de sortie pour le cavalier g8, en préparant de roquer normalement. C'est le choix le plus réaliste, il n'existe aucun moyen de reprendre le pion tout de suite, alors mieux vaut achever le développement et chercher de l'activité au centre ou à l'aile dame plus tard.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng hơn đúng một con tốt sạch và Đen chưa lấy lại được gì cả. Quân số hai bên bằng nhau ngoài con tốt b, cấu trúc tốt của Trắng không có điểm yếu nào, và con tượng b7 dù đứng đẹp cũng chưa nhắm được vào mục tiêu cụ thể nào vì trung tâm còn đóng bởi các tốt e và d chưa động. Đây là cái giá thật của gambit này khi Trắng chơi đơn giản.
+                      en: White is exactly one clean pawn up and Black has recovered nothing. Apart from the b-pawn the material is level, White's pawn structure has no weakness, and the bishop on b7, however nicely placed, has no concrete target yet because the centre is still closed by the unmoved d- and e-pawns. This is the real price of the gambit once White answers it simply.
+                      fr: Les Blancs ont exactement un pion propre de plus et les Noirs n'ont rien récupéré. En dehors du pion b, le matériel est égal, la structure de pions blanche n'a aucune faiblesse, et le fou b7, si bien placé soit-il, n'a encore aucune cible concrète car le centre reste fermé par les pions d et e qui n'ont pas bougé. C'est le prix réel de ce gambit quand les Blancs répondent simplement.
+                    plan:
+                      vi: Đen chơi Nf6, Be7 (hoặc Bc5 nếu Trắng chơi e3), O-O rồi d5 hoặc c5 để mở trung tâm cho con tượng b7 lên tiếng, và tìm cách đổi quân nhẹ để con tốt thừa của Trắng bớt giá trị trong tàn cuộc. Trắng chơi Nf3, e3 (hoặc e4 nếu muốn mạo hiểm hơn), Be2 hoặc Bd3, và O-O, đơn giản là hoàn thành phát triển rồi dùng con tốt thừa; không có lý do gì để Trắng vội vàng, thời gian đứng về phía Trắng.
+                      en: Black plays ...Nf6, ...Be7 (or ...Bc5 if White plays e3), castles and then ...d5 or ...c5 to open the centre so the b7 bishop finally has something to bite on, and looks to trade minor pieces so the extra pawn matters less in a simplified endgame. White plays Nf3, e3 (or the more ambitious e4), Be2 or Bd3, and castles — simply finishing development and then nursing the extra pawn; there is no reason for White to rush, since time favours the side with the pawn.
+                      fr: Les Noirs jouent ...Nf6, ...Be7 (ou ...Bc5 si les Blancs jouent e3), roquent puis ...d5 ou ...c5 pour ouvrir le centre afin que le fou b7 ait enfin une cible, et cherchent à échanger les pièces mineures pour que le pion en plus pèse moins dans une finale simplifiée. Les Blancs jouent Nf3, e3 (ou e4, plus ambitieux), Be2 ou Bd3, et roquent, achevant simplement leur développement avant de faire fructifier le pion en plus ; rien ne presse les Blancs, le temps joue pour le camp qui a le pion.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
+            - ply: Nxc7+
+              replyQuality: blunder
+              frequency: rare
+              annotation:
+                vi: Trắng tham lam ăn thêm một tốt và chiếu luôn, tưởng như bắt được cả xe a8 lẫn vua. Nhưng đây là nước chỉ đẹp trên bề mặt, Đen chỉ có đúng một cách đáp trả, và cách đó lấy lại toàn bộ con mã.
+                en: White greedily grabs a second pawn with check, looking as if it forks the king and the rook on a8. But it only looks good on the surface — Black has exactly one legal reply, and that reply wins the knight straight back.
+                fr: Les Blancs s'emparent avidement d'un second pion avec échec, donnant l'impression de fourchetter le roi et la tour a8. Mais ce n'est qu'une apparence, les Noirs n'ont qu'une seule réponse légale, et celle-ci reprend aussitôt le cavalier.
+              children:
+                - ply: Qxc7
+                  annotation:
+                    vi: Nước bắt buộc duy nhất, hậu ăn lại con mã và đỡ luôn nước chiếu. Đen mất thêm con tốt c nhưng đổi lại bắt được nguyên con mã, một cuộc đổi chác hoàn toàn có lợi cho Đen.
+                    en: The only legal move — the queen recaptures the knight and answers the check in one go. Black loses the c-pawn as well but wins the whole knight for it, a trade that clearly favours Black.
+                    fr: Le seul coup légal, la dame reprend le cavalier et répond à l'échec du même coup. Les Noirs perdent aussi le pion c, mais gagnent le cavalier entier en échange, un troc nettement favorable aux Noirs.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đen hơn hẳn về quân, mất hai tốt b và c nhưng bắt được nguyên một con mã, tức là hơn chất lượng một mã đổi hai tốt. Cấu trúc tốt của Đen bị sứt một chút ở cánh hậu vì không còn tốt b lẫn tốt c, nhưng vua vẫn an toàn ở giữa vì chưa quân nào của Trắng có thể khai thác được cột b hay c ngay. Đây chính là lý do khiến Nxc7+ là một sai lầm chứ không phải một mối đe doạ thật.
+                      en: Black is clearly ahead in material — two pawns, b and c, are gone, but a whole knight has been won in return, which is a knight for two pawns in Black's favour. Black's queenside pawns are gone, but the king is not in any danger from it yet, since nothing White has can open the b- or c-file with effect right now. This is exactly why Nxc7+ is a mistake rather than a real threat.
+                      fr: Les Noirs sont nettement en tête au matériel, les pions b et c ont disparu, mais un cavalier entier a été gagné en retour, soit un cavalier contre deux pions en faveur des Noirs. Les pions de l'aile dame noire ont disparu, mais le roi n'en souffre pas encore, car rien chez les Blancs ne peut ouvrir efficacement la colonne b ou c dans l'immédiat. C'est exactement pourquoi Nxc7+ est une erreur et non une vraie menace.
+                    plan:
+                      vi: Đen chơi Nf6, e6 rồi Be7 và O-O để đưa vua vào nơi an toàn, sau đó dùng ưu thế quân để đơn giản hoá và thắng ở tàn cuộc; các cột b và c bỏ trống thậm chí có thể trở thành lợi thế cho xe Đen về sau. Trắng chơi Nf3, e3, Be2 và O-O, cố gắng dùng hai con tốt còn thiếu để lấy lại ít nhất một quân nhẹ trước khi tàn cuộc, nhưng không có cách nào cụ thể để làm việc đó.
+                      en: Black plays ...Nf6, ...e6, ...Be7 and castles to bring the king to safety, then simply uses the extra piece to trade down and win the endgame; the open b- and c-files may even end up helping Black's own rook later. White plays Nf3, e3, Be2 and castles, hoping the two extra pawns will eventually buy back a minor piece before the endgame, but there is no concrete way to make that happen.
+                      fr: Les Noirs jouent ...Nf6, ...e6, ...Be7 et roquent pour mettre le roi à l'abri, puis utilisent simplement la pièce en plus pour simplifier et gagner la finale ; les colonnes b et c ouvertes pourraient même servir à la tour noire plus tard. Les Blancs jouent Nf3, e3, Be2 et roquent, en espérant que les deux pions supplémentaires finiront par racheter une pièce mineure avant la finale, mais il n'existe aucun moyen concret d'y parvenir.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
