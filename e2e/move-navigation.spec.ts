@@ -294,12 +294,13 @@ test.describe('the viewport measurement itself', () => {
  * assertions here are about the shipped surface: what a browser paints after a real click,
  * at a real viewport, with the real stylesheet.
  *
- * **The greyscale check, and what it now measures (2026-09-18).** §2's "a shape or border
- * difference, not only a tint" carries a documented exception for exactly this highlight:
- * both squares are a plain background colour and nothing is drawn on top of either. So the
- * greyscale check here is no longer "is there a second, shape-based cue" — there is not,
- * and the doc says so — it is "does the one cue that remains, luminance, actually survive
- * desaturation", which is a real and checkable claim rather than a rhetorical one.
+ * **The greyscale check, and what it now measures (2026-09-18, then 2026-09-18 again).**
+ * §2's "a shape or border difference, not only a tint" carries a documented exception for
+ * exactly this highlight: both squares are a plain background colour and nothing is drawn
+ * on top of either. The two squares were briefly distinguishable by luminance alone; they
+ * are now the same token, by product decision, so the greyscale check below is "do the two
+ * squares read as one identical fill" rather than "are they still two" — the opposite claim
+ * from before, and just as checkable.
  */
 test.describe('the last-ply highlight', () => {
   /** `f6-e5`: which two squares a board marks, read back off the tinted squares' geometry. */
@@ -405,7 +406,9 @@ test.describe('the last-ply highlight', () => {
         document.documentElement.style.filter = 'grayscale(1)'
       })
 
-    test('tells the square left from the square reached with the colour gone', async ({ page }) => {
+    test('reads both last-ply squares as the identical fill, with the colour gone', async ({
+      page,
+    }) => {
       await open(page, ['fxe5'])
       await expect(page.locator(`${BOARD} .board__square--from`)).toHaveCount(1)
       await expect(page.locator(`${BOARD} .board__square--to`)).toHaveCount(1)
@@ -413,25 +416,24 @@ test.describe('the last-ply highlight', () => {
 
       const resolved = await fills(page)
       for (const fill of resolved) expect(fill).not.toBe('')
-      expect(new Set(resolved).size, `both squares read as ${resolved[0]}`).toBe(2)
+      expect(new Set(resolved).size, `squares read as ${resolved.join(' / ')}`).toBe(1)
     })
 
     /**
      * The probe. The assertion above compares two signals, so without this it would keep
-     * passing if the signal stopped carrying anything — which is exactly how a
+     * passing if the selectors stopped resolving anything — which is exactly how a
      * colour-alone check rots into a comment.
      */
-    test('reports two squares of the same fill as the same thing', async ({ page }) => {
+    test('reports two squares of different fills as different things', async ({ page }) => {
       await open(page, ['fxe5'])
       await expect(page.locator(`${BOARD} .board__square--from`)).toHaveCount(1)
       await greyscale(page)
-      expect(new Set(await fills(page)).size).toBe(2)
+      expect(new Set(await fills(page)).size).toBe(1)
 
       /*
-       * Paint the departed square with the arrival square's own tint and the two collapse
-       * to one fill — exactly the failure mode this highlight now has no second channel
-       * to catch, which is the point of asserting it explicitly rather than trusting the
-       * design.
+       * Paint the departed square a colour the arrival square does not have and the two
+       * stop reading as one fill — exactly the failure mode a regression back to the old
+       * two-tint design would look like.
        *
        * Written through CSSOM rather than `setAttribute('style', …)`, which the Content
        * Security Policy #19 introduced refuses without `'unsafe-inline'`. A refused
@@ -440,13 +442,12 @@ test.describe('the last-ply highlight', () => {
        */
       await page.evaluate(() => {
         const from = document.querySelector('.learning-surface__board .board__square--from')
-        const to = document.querySelector('.learning-surface__board .board__square--to')
-        if (from instanceof SVGElement && to !== null) {
-          from.style.fill = window.getComputedStyle(to).fill
+        if (from instanceof SVGElement) {
+          from.style.fill = 'rgb(0, 0, 0)'
         }
       })
 
-      expect(new Set(await fills(page)).size).toBe(1)
+      expect(new Set(await fills(page)).size).toBe(2)
     })
   })
 })

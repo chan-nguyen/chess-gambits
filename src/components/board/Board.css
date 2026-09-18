@@ -30,26 +30,26 @@
 }
 
 /*
- * Both squares of the last ply are tinted, and neither carries a border (2026-09-18,
- * reversing #80's ring). #80 argued a tint is a surface and the departed square has
- * nothing standing on it — a fill *there* is what made an empty square read as occupied,
- * and that argument is still correct about a fill on its own. What made it loud, measured,
- * was the 0.045-unit near-black ring drawn on top of it, not the tint underneath: g1 alone
- * (no ring) is barely darker than a plain square. With no ring on either square, the same
- * fill this ticket restores no longer has anything to be loud with.
+ * Both squares of the last ply are tinted the same gold, and neither carries a border
+ * (2026-09-18, reversing #80's ring, then 2026-09-18 again to drop the two-tint signal).
+ * #80 argued a tint is a surface and the departed square has nothing standing on it — a
+ * fill *there* is what made an empty square read as occupied, and that argument is still
+ * correct about a fill on its own. What made it loud, measured, was the 0.045-unit
+ * near-black ring drawn on top of it, not the tint underneath: g1 alone (no ring) is
+ * barely darker than a plain square. With no ring on either square, the same fill this
+ * ticket restores no longer has anything to be loud with.
  *
- * The two tints are chosen to differ in **luminance**, not only in hue: `--highlight-from`
- * is a cool, darker slate and `--highlight-to` a warm, lighter gold, so the two squares
- * stay apart under `grayscale(1)` (`board-contrast.test.ts`) even without §2's usual "shape
- * or border" requirement, which this pair is now the one documented exception to
- * (docs/design-system.md §2).
+ * A single `--color-board-highlight` colours both squares, by product decision — the
+ * highlight now marks "the last move happened here" as a pair, not "which end is which".
+ * `--color-board-highlight-from` and its luminance-difference exception in
+ * docs/design-system.md §2 are retired; see the dated entry there.
  */
 .board__square--from {
-  fill: var(--color-board-highlight-from);
+  fill: var(--color-board-highlight);
 }
 
 .board__square--to {
-  fill: var(--color-board-highlight-to);
+  fill: var(--color-board-highlight);
 }
 
 .board__square {
