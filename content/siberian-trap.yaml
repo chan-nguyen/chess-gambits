@@ -1,0 +1,64 @@
+# The Siberian Trap, the standard refutation of a careless Smith-Morra Gambit. The defining
+# line is the one frozen in `tools/catalogue/source/traps.yaml` — 1.e4 c5 2.d4 cxd4 3.c3
+# dxc3 4.Nxc3 Nc6 5.Nf3 e6 6.Bc4 Qc7 7.O-O Nf6 8.Qe2 Ng4 — and it ends on Black's own ply, so
+# the root is an opponent node and White's replies can carry a quality (docs/CONTEXT.md,
+# invariant 5).
+#
+# ECO is B21, matching `traps.yaml` (a trap carries the ECO of the opening it sits inside,
+# ADR-0008; the dataset's own row for this trap is excluded there since this entry is the
+# only one for it).
+#
+# The mate at the root is claimed with `type: trap` and nothing else; the move count and the
+# certificate are produced by `npm run prove:mates` and replayed by `npm run verify:mates`
+# (ADR-0005). Replayed with chess.js: the knight on f3 is the only thing guarding h2, and
+# Black's queen on c7 already bears on h2 along the completely open c7-h2 diagonal, with the
+# knight on g4 also covering that exact square, which is what stops the king from ever
+# recapturing there.
+id: siberian-trap
+name: Siberian Trap
+eco: B21
+category: trap
+side: black
+definingLine: [e4, c5, d4, cxd4, c3, dxc3, Nxc3, Nc6, Nf3, e6, Bc4, Qc7, 'O-O', Nf6, Qe2, Ng4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. The mate does not need Black to
+      provoke anything further — the queen on c7 and the knight on g4 are already aimed at
+      h2 the moment the position is reached, and White simply cannot move the f3 knight
+      without losing at once. A defender who leaves that knight alone is fine; the trap
+      punishes the single most common way to meet an attacked knight, moving it. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa chơi Ng4. Nước này trông giống một cách đe doạ tốt f2 bình thường, nhưng thực chất nó đang đóng vai trò thứ hai đứng canh ô h2 cùng với con hậu ở c7 — con hậu ấy đã nhìn thẳng vào h2 suốt từ đường chéo c7-h2 hoàn toàn thông thoáng, và điều duy nhất còn giữ ô đó lại là con mã f3 của Trắng.
+    en: Black has just played Ng4. It looks like an ordinary threat against f2, but it is really playing a second role, guarding h2 alongside the queen on c7 — a queen that has been staring straight down the completely open c7-h2 diagonal the whole time, with the only thing still holding that square being White's own knight on f3.
+    fr: Les Noirs viennent de jouer Ng4. Cela ressemble à une menace ordinaire contre f2, mais ce coup joue en réalité un second rôle, gardant h2 aux côtés de la dame en c7 — une dame qui fixe depuis le début la diagonale c7-h2 totalement dégagée, la seule chose retenant encore cette case étant le propre cavalier blanc en f3.
+  counts:
+    legal: { count: legalReplies, expect: 40 }
+    mated: { count: matedBy, ply: 'Qxh2#', expect: 5 }
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác. {Mated} trong {legal} nước hợp lệ ở đây đều là những nước đưa chính con mã f3 rời khỏi ô của nó, và mỗi lần như vậy hậu Đen lập tức chiếu bí bằng Qxh2#, vì không còn quân nào canh ô ấy và vua g1 không thể ăn hậu do chính con mã g4 cũng đang nhìn vào h2. Những nước còn lại đều giữ nguyên con mã trên f3 — chẳng hạn phát triển bình thường bằng Bd2 hay Nb1 — và ở đó cái bẫy chưa nổ ra ngay, nhưng con mã c6 vẫn còn ý định nhảy vào d4 để tiếp tục quấy rối con hậu và con mã f3 cùng lúc.
+      en: White plays anything else. {Mated} of the {legal} legal replies here move the very knight on f3 off its square, and every time that happens Black mates at once with Qxh2#, because nothing is left guarding that square and the king on g1 cannot capture the queen since the knight on g4 covers h2 too. The remaining replies all keep the knight on f3 in place — ordinary development such as Bd2 or Nb1, for instance — and there the trap does not spring immediately, though the knight on c6 still has ...Nd4 in reserve to keep hunting the queen and the f3 knight together.
+      fr: Les Blancs jouent autre chose. {Mated} des {legal} réponses légales ici déplacent précisément le cavalier f3 de sa case, et chaque fois cela arrive, les Noirs matent aussitôt par Qxh2#, car plus personne ne garde cette case et le roi en g1 ne peut pas prendre la dame puisque le cavalier g4 couvre aussi h2. Les réponses restantes gardent toutes le cavalier en place sur f3 — un développement ordinaire comme Bd2 ou Nb1, par exemple — et là le piège ne se déclenche pas immédiatement, bien que le cavalier c6 garde en réserve ...Nd4 pour continuer à traquer ensemble la dame et le cavalier f3.
+  children:
+    - ply: Ng5
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Trắng đưa mã ra g5, một nước trông như đang tấn công (nhắm vào f7 hay h7) và hoàn toàn không nghĩ gì đến ô h2 vừa bị bỏ trống. Đây chính là kiểu nước tự nhiên nhất mà cái bẫy Siberia chờ đợi.
+        en: White brings the knight to g5, a move that looks aggressive (eyeing f7 or h7) and gives no thought at all to the square h2 it just abandoned. This is exactly the kind of natural-looking move the Siberian Trap is waiting for.
+        fr: Les Blancs amènent le cavalier en g5, un coup qui paraît agressif (visant f7 ou h7) et qui ne songe pas du tout à la case h2 qu'il vient d'abandonner. C'est exactement le genre de coup d'apparence naturelle qu'attend le piège sibérien.
+      outcome:
+        type: trap

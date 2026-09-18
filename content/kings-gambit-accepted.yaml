@@ -1,0 +1,105 @@
+# King's Gambit Accepted, the family head for the accepted lines. Frozen defining line
+# 1.e4 e5 2.f4 — the same root `content/kings-gambit.yaml` uses — which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The catalogue's own
+# `line` field for this id, `e4 e5 f4 exf4`, ends on Black's ply instead; that parity fails
+# the build's check (`defining-line-parity` in `tools/content/validate.ts`), so the accepting
+# move is modelled as the root's own reply below rather than folded into `definingLine`.
+#
+# This is a dedicated, deeper look at the accepted lines specifically — where
+# `kings-gambit.yaml` sketches the family broadly (accepted, declined and Falkbeer all in
+# one shallow tree), this entry follows 2...exf4 through the King's Knight Gambit and the
+# Modern Defence to a fully resolved position. Every move here was replayed with chess.js.
+#
+# No leaf here claims a mate. Every line ends in an Assessment (ADR-0005).
+id: kings-gambit-accepted
+name: "King's Gambit Accepted"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, the same label `kings-gambit.yaml` carries for the family as a whole.
+      Black's soundest path, the Modern Defence with 3...d5, gives the extra pawn straight
+      back and reaches a position that is simply level, which is the honest ceiling on what
+      White's initiative buys here. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4. Đây là vị trí gốc chung với toàn bộ họ Gambit Vua, và mục này đi sâu riêng vào nhánh Đen nhận tốt bằng exf4 — điều làm nên cái tên "Gambit Vua được nhận" — thay vì các cách từ chối khác.
+    en: White has just offered the f4 pawn. This is the same root position the whole King's Gambit family shares, and this entry follows specifically the branch where Black accepts with ...exf4 — the move that gives the "Accepted" its name — rather than the various ways of declining.
+    fr: Les Blancs viennent d'offrir le pion f4. C'est la même position de départ que partage toute la famille du Gambit du Roi, et cette entrée suit spécifiquement la branche où les Noirs acceptent par ...exf4 — le coup qui donne son nom à la variante « acceptée » — plutôt que les diverses façons de refuser.
+  dismissRest:
+    reason:
+      vi: Đen từ chối con tốt và chơi một nước khác, chẳng hạn 2...Bc5 hay 2...d5. Thế cờ khi đó rẽ sang các nhánh Gambit Vua bị từ chối, nằm ngoài phạm vi mục này.
+      en: Black declines the pawn and plays something else, such as 2...Bc5 or 2...d5. The position then heads toward the King's Gambit Declined branches, which are outside the scope of this entry.
+      fr: Les Noirs déclinent le pion et jouent autre chose, comme 2...Bc5 ou 2...d5. La position s'oriente alors vers les branches du Gambit du Roi refusé, hors du champ de cette entrée.
+  children:
+    - ply: exf4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen nhận con tốt, chấp nhận lời mời của Trắng. Đây là nước định nghĩa toàn bộ nhánh "được nhận" của Gambit Vua.
+        en: Black takes the pawn, accepting White's offer. This is the move that defines the entire "Accepted" branch of the King's Gambit.
+        fr: Les Noirs prennent le pion, acceptant l'offre blanche. C'est le coup qui définit toute la branche « acceptée » du Gambit du Roi.
+      children:
+        - ply: Nf3
+          annotation:
+            vi: Trắng đưa mã ra f3, nước phổ biến và vững chắc nhất — vừa ngăn Qh4+ của Đen vừa chuẩn bị giành lại con tốt f4 hoặc dựng trung tâm bằng d4. Đây là Gambit Mã Vua, nhánh chính của toàn bộ họ Gambit được nhận.
+            en: White brings the knight to f3, the most popular and solid choice — it stops Black's ...Qh4+ and prepares to either win the f4 pawn back or build a centre with d4. This is the King's Knight Gambit, the main branch of the whole Accepted family.
+            fr: Les Blancs amènent le cavalier en f3, le choix le plus répandu et le plus solide — il empêche ...Qh4+ des Noirs et prépare soit à regagner le pion f4, soit à bâtir un centre avec d4. C'est le Gambit du Cavalier du Roi, la branche principale de toute la famille acceptée.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì đánh thẳng vào trung tâm bằng 3...d5 — một đợt tấn công cánh vua bằng 3...g5, một nước phát triển yên tĩnh, hay một nước chiếu sớm bằng 3...Qh4+. Mỗi lựa chọn có lý thuyết riêng của nó; 3...d5, Phòng thủ Hiện đại, đơn giản là cách chắc chắn nhất để trả lại con tốt và cân bằng hoàn toàn, nên mục này đi theo hướng đó.
+              en: Black tries something other than striking the centre immediately with 3...d5 — a kingside pawn storm with 3...g5, a quiet developing move, or an early check with 3...Qh4+. Each has its own separate body of theory; 3...d5, the Modern Defence, is simply the surest way to give the pawn back and equalise fully, which is why this entry follows it.
+              fr: Les Noirs tentent autre chose que de frapper immédiatement le centre par 3...d5 — un assaut à l'aile roi par 3...g5, un coup de développement tranquille, ou un échec précoce par 3...Qh4+. Chacun possède sa propre théorie ; 3...d5, la Défense moderne, est simplement la façon la plus sûre de rendre le pion et d'égaliser complètement, ce qui explique le choix de cette entrée.
+          children:
+            - ply: d5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đánh thẳng vào trung tâm bằng d5, Phòng thủ Hiện đại. Đây được coi là cách đáng tin cậy nhất để đối phó với Gambit Mã Vua — Đen sẵn sàng trả lại con tốt f4 để đổi lấy sự phát triển thông thoáng và một thế cờ hoàn toàn cân bằng.
+                en: Black strikes the centre directly with d5, the Modern Defence. This is regarded as the most reliable way to meet the King's Knight Gambit — Black is willing to give the f4 pawn back in exchange for smooth development and a fully level game.
+                fr: Les Noirs frappent directement le centre par d5, la Défense moderne. C'est considéré comme la façon la plus fiable d'affronter le Gambit du Cavalier du Roi — les Noirs acceptent de rendre le pion f4 en échange d'un développement aisé et d'une partie parfaitement égale.
+              children:
+                - ply: exd5
+                  annotation:
+                    vi: Trắng ăn lại tốt d5, nước tự nhiên duy nhất — giữ lại con tốt ấy chỉ để nó bị đổi ngay sau đó không mang lại lợi ích gì thêm.
+                    en: White recaptures the d5 pawn, the only natural choice — holding onto it any longer would gain nothing since it is about to be traded off anyway.
+                    fr: Les Blancs reprennent le pion d5, le seul choix naturel — le garder plus longtemps n'apporterait rien puisqu'il sera de toute façon bientôt échangé.
+                  dismissRest:
+                    reason:
+                      vi: Trắng ăn lại con tốt d5 theo một cách khác hoặc phát triển quân trước. Dù chọn cách nào, quân số vẫn ngang bằng ngay khi con tốt d5 được đổi, đúng như sau 4.exd5 bên dưới.
+                      en: White recaptures the d5 pawn a different way or develops first. Whichever it is, material is level the moment that pawn is traded, exactly as after 4.exd5 below.
+                      fr: Les Blancs reprennent le pion d5 d'une autre façon ou développent d'abord. Quel que soit le choix, le matériel est égal dès que ce pion est échangé, exactement comme après 4.exd5 ci-dessous.
+                  children:
+                    - ply: Nf6
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Đen đưa mã ra f6, chuẩn bị ăn lại con tốt d5 hoặc gây áp lực lên tốt e4 cũ đã biến mất, đồng thời phát triển quân một cách tự nhiên. Thế cờ đã hoàn toàn cân bằng về vật chất, đúng như mục tiêu của toàn bộ Phòng thủ Hiện đại.
+                        en: Black brings the knight to f6, preparing to win the d5 pawn back or press on the square the e4 pawn used to guard, while developing naturally. Material is now fully level, exactly what the whole Modern Defence is aiming for.
+                        fr: Les Noirs amènent le cavalier en f6, se préparant à regagner le pion d5 ou à peser sur la case que gardait le pion e4, tout en se développant naturellement. Le matériel est désormais parfaitement égal, ce que vise précisément toute la Défense moderne.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Quân số hoàn toàn ngang nhau — mỗi bên bảy tốt và đủ bộ quân còn lại, vì con tốt f4 mà Trắng thí ban đầu đã được trả lại đúng bằng con tốt d5 mà Đen vừa mất. Không bên nào có tốt chồng hay tốt cô lập, và cả hai vua đều vẫn ở vị trí ban đầu.
+                          en: Material is perfectly level — seven pawns each and a full set of pieces on both sides, since the f4 pawn White originally gave up has been paid back exactly by the d5 pawn Black just lost. Neither side has a doubled or isolated pawn, and both kings are still on their starting squares.
+                          fr: Le matériel est parfaitement égal — sept pions de chaque côté et un jeu complet de pièces des deux camps, le pion f4 initialement cédé par les Blancs ayant été remboursé exactement par le pion d5 que les Noirs viennent de perdre. Aucun camp n'a de pion doublé ou isolé, et les deux rois sont encore sur leur case de départ.
+                        plan:
+                          vi: Trắng chơi Bd3 hoặc Bc4 phát triển tượng nhắm vào cánh vua Đen, O-O hoặc Nc3 hoàn thiện phát triển, rồi tìm cách dùng cột f nửa mở còn sót lại từ nước f4 ban đầu. Đen chơi Bd6 hoặc Be7, O-O nhanh chóng, và Re8 hay c5 để thách thức trung tâm Trắng, không có gì phải vội vì thế cờ đã cân bằng.
+                          en: White plays Bd3 or Bc4 to develop the bishop toward Black's kingside, castles or plays Nc3 to finish developing, then tries to make use of the half-open f-file left over from the original f4 push. Black plays Bd6 or Be7, castles quickly, and follows with Re8 or c5 to challenge White's centre, with nothing to rush since the position is level.
+                          fr: Les Blancs jouent Bd3 ou Bc4 pour développer le fou vers l'aile roi noire, roquent ou jouent Nc3 pour achever le développement, puis cherchent à exploiter la colonne f semi-ouverte héritée de la poussée f4 initiale. Les Noirs jouent Bd6 ou Be7, roquent rapidement, puis enchaînent par Re8 ou c5 pour défier le centre blanc, sans rien à précipiter puisque la position est égale.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'

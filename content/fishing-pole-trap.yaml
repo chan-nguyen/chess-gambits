@@ -1,0 +1,152 @@
+# The Fishing Pole Trap, in the Ruy Lopez (Berlin move order). The defining line is the one
+# frozen in `tools/catalogue/source/traps.yaml` — 1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.O-O Ng4 — and
+# it ends on Black's own ply, so the root is an opponent node and White's replies can carry a
+# quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is C65, the code of the Berlin/Anti-Berlin group this line sits inside, matching
+# `traps.yaml` (a trap carries the ECO of the opening it sits inside, ADR-0008).
+#
+# The mate at 9...d4 is claimed with `type: trap` and nothing else; the move count and the
+# certificate are produced by `npm run prove:mates` and replayed by `npm run verify:mates`
+# (ADR-0005). Every other line here was replayed with chess.js, including the counted claim
+# at the Qh4 node (ADR-0011): 21 of White's 24 replies there walk into 9...Qh2# because the
+# knight that used to sit on f3 defended h2, and the rook on h8 — behind the queen on the
+# open h-file the whole sequence just opened — means the king can never recapture.
+id: fishing-pole-trap
+name: Fishing Pole Trap
+eco: C65
+category: trap
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, Nf6, 'O-O', Ng4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. Black is offering a whole knight
+      for an attack; with the only two accurate defences (9.f3 or 9.f4, opening f2 for the
+      king) White is simply up a piece for a pawn, so this does not hold against a defender
+      who finds them. Against anything else it wins on the spot, which is the practical case
+      that earns the name. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa chơi Ng4, nhắm vào tốt f2 và chuẩn bị hy sinh cả con mã đó để mở cột h. Đây chính là "cần câu" đặt tên cho cái bẫy — con mã là mồi, và con tốt h sắp tới sẽ là sợi dây kéo cột h mở ra sau lưng con hậu và xe h8.
+    en: Black has just played Ng4, eyeing f2 and preparing to give up that very knight to open the h-file. This is the "fishing pole" the trap is named for — the knight is the bait, and the h-pawn is about to be the line that reels the h-file open behind the queen and the rook on h8.
+    fr: Les Noirs viennent de jouer Ng4, visant f2 et se préparant à sacrifier ce cavalier même pour ouvrir la colonne h. C'est la « canne à pêche » qui donne son nom au piège — le cavalier est l'appât, et le pion h va bientôt être le fil qui ouvre la colonne h derrière la dame et la tour h8.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác và không hỏi gì con mã g4 cả. Con mã ấy chưa đe doạ gì ngay lập tức, nên Trắng cứ phát triển bình thường — d4, Nc3 hay Re1 đều ổn — và cái bẫy này chưa có cơ hội nào để xảy ra.
+      en: White plays anything else and never questions the knight on g4. It is not threatening anything yet, so White simply develops normally — d4, Nc3 or Re1 are all fine — and this trap never gets the chance to happen.
+      fr: Les Blancs jouent autre chose et ne questionnent jamais le cavalier g4. Il ne menace encore rien, si bien que les Blancs se développent normalement — d4, Nc3 ou Re1 conviennent tous — et ce piège n'a jamais l'occasion de se produire.
+  children:
+    - ply: h3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng hỏi thẳng con mã g4 bằng con tốt h. Đây là nước tự nhiên nhất trên bàn cờ và không có gì sai với nó — vấn đề chỉ xuất hiện nếu Trắng ăn con mã ấy sau khi Đen trả lời.
+        en: White asks the g4 knight the direct question with the h-pawn. It is the most natural move on the board and nothing is wrong with it by itself — the trouble only starts if White takes the knight after Black's reply.
+        fr: Les Blancs interrogent directement le cavalier g4 avec le pion h. C'est le coup le plus naturel de l'échiquier et rien n'y est fautif en soi — le problème ne commence que si les Blancs prennent le cavalier après la réponse noire.
+      children:
+        - ply: h5
+          annotation:
+            vi: Đây là "cần câu" thật sự. Đen không rút mã về mà đẩy tiếp con tốt h, mời Trắng ăn mã bằng hxg4 để rồi hxg4 đáp lại, mở toang cột h ngay sau lưng xe h8 và sắp tới là hậu.
+            en: This is the fishing pole itself. Black does not retreat the knight but pushes the h-pawn one more square, inviting White to take the knight with hxg4 so that hxg4 answers back, tearing the h-file wide open right behind the rook on h8 and, soon, the queen.
+            fr: Voici la canne à pêche elle-même. Les Noirs ne reculent pas le cavalier mais poussent le pion h d'une case de plus, invitant les Blancs à prendre le cavalier par hxg4 pour que hxg4 réponde aussitôt, ouvrant grand la colonne h juste derrière la tour h8 et, bientôt, la dame.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn con mã ngay. Con mã g4 vẫn đang bị tốt h3 đánh, nhưng chưa gì bắt buộc Trắng phải giải quyết nó ngay lượt này, nên các nước phát triển khác đều chơi được như bình thường.
+              en: White does not take the knight straight away. It is still attacked by the h3 pawn, but nothing forces the issue this very move, so any other developing move is fine here too.
+              fr: Les Blancs ne prennent pas le cavalier tout de suite. Il est toujours attaqué par le pion h3, mais rien n'oblige à régler l'affaire ce coup-ci, donc tout autre coup de développement convient également.
+          children:
+            - ply: hxg4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng nhận lời mời và ăn con mã. Về vật chất đây là nước đúng — một con mã đổi lấy một con tốt là lãi — nhưng nó mở đúng cột h mà Đen muốn mở, và phần khó của việc phòng thủ chỉ mới bắt đầu.
+                en: White accepts the offer and takes the knight. Materially this is the correct capture — a knight for a pawn is a good trade — but it opens exactly the file Black wanted opened, and the hard part of the defence is only just starting.
+                fr: Les Blancs acceptent l'offre et prennent le cavalier. Matériellement, c'est la bonne prise — un cavalier contre un pion est un bon échange — mais cela ouvre exactement la colonne que les Noirs voulaient ouvrir, et la partie difficile de la défense ne fait que commencer.
+              children:
+                - ply: hxg4
+                  annotation:
+                    vi: Đen ăn lại bằng tốt h5, và cột h giờ hoàn toàn mở với xe h8 đứng sau lưng. Con mã f3 của Trắng lại đang bị chính con tốt g4 mới này đánh, nên nó buộc phải nhảy đi.
+                    en: Black recaptures with the h5 pawn, and the h-file is now completely open with the rook on h8 standing behind it. White's knight on f3 is attacked by this very g4 pawn and has to jump somewhere.
+                    fr: Les Noirs reprennent avec le pion h5, et la colonne h est désormais totalement ouverte, la tour h8 se tenant derrière. Le cavalier blanc en f3 est attaqué par ce même pion g4 et doit sauter quelque part.
+                  dismissed:
+                    - ply: Nd4
+                      reason: Also abandons f3 but lands the knight somewhere black can just take it for free (Nxd4 or exd4); strictly worse than Ne1, not modelled separately.
+                    - ply: Nxe5
+                      reason: Grabs a second pawn but the knight is then simply recaptured for free by Nxe5; loses the piece outright rather than merely losing the initiative.
+                    - ply: Ng5
+                      reason: Walks the knight straight into Qxg5, hanging it for nothing.
+                    - ply: Nh4
+                      reason: Hangs the knight to Qxh4 or Rxh4; no better than the other stray squares.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi một nước khác, kể cả lùi mã về h2 thay vì e1. Con mã rời khỏi f3 theo cách nào cũng để lại cùng một lỗ hổng ở h2, và phần còn lại của cái bẫy diễn ra y hệt như sau 9.Ne1 bên dưới.
+                      en: White plays anything else, including retreating the knight to h2 instead of e1. However the knight leaves f3, it leaves the same hole on h2, and the rest of the trap plays out exactly as after 9.Ne1 below.
+                      fr: Les Blancs jouent autre chose, y compris reculer le cavalier en h2 plutôt qu'en e1. Quelle que soit la façon dont le cavalier quitte f3, il laisse le même trou en h2, et la suite du piège se déroule exactement comme après 9.Ne1 ci-dessous.
+                  children:
+                    - ply: Ne1
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Trắng lùi mã về e1, ô duy nhất (cùng h2) không để con mã bị ăn không. Nhưng lùi về đây thôi chưa đủ — ô h2 vừa bị bỏ trống không người canh, và Đen sắp khai thác đúng chỗ đó.
+                        en: White retreats the knight to e1, one of only two squares (with h2) that does not simply hang it. But the retreat alone is not enough — the square h2 is left with nobody guarding it, and Black is about to exploit exactly that.
+                        fr: Les Blancs reculent le cavalier en e1, l'une des deux seules cases (avec h2) qui ne le laisse pas simplement en prise. Mais ce recul seul ne suffit pas — la case h2 se retrouve sans personne pour la garder, et les Noirs vont exploiter précisément cela.
+                      children:
+                        - ply: Qh4
+                          annotation:
+                            vi: Hậu Đen ra h4, và bây giờ ba thứ cùng nhắm vào ô h2 — hậu theo cột h, mã g4 theo đường chéo ngắn, và không con tốt hay quân Trắng nào còn đứng đó để canh nó. Đây là nước quyết định của cả mục này.
+                            en: The black queen comes to h4, and now three things point at h2 at once — the queen down the h-file, the knight on g4 by its own short hop, and nothing white left standing on that square or defending it. This is the decisive move of the whole entry.
+                            fr: La dame noire vient en h4, et désormais trois éléments visent h2 à la fois — la dame sur la colonne h, le cavalier g4 par son propre saut, et plus aucune pièce blanche postée sur cette case ou la défendant. C'est le coup décisif de toute cette entrée.
+                          counts:
+                            legal: { count: legalReplies, expect: 24 }
+                            mated: { count: matedBy, ply: 'Qh2#', expect: 21 }
+                          dismissed:
+                            - ply: Nf3
+                              reason: Puts the knight back on f3 but this still does not defend h1, and Black mates one square over with 10...Qh1# instead of Qh2#; excluded from the Qh2# count for that reason, not modelled separately.
+                            - ply: f4
+                              reason: Defends in the same spirit as f3 below, closing the long diagonal from the other side and opening f2 for the king; not modelled separately since the resulting assessment is identical.
+                          dismissRest:
+                            reason:
+                              vi: Trắng chơi một nước khác, và gần như tất cả đều thua ngay. {Mated} trong {legal} nước hợp lệ ở đây bị 10...Qh2# chiếu bí tức khắc, vì không quân nào của Trắng còn canh ô h2 hay ô h1 phía sau nó, và vua g1 không thể ăn hậu vì vẫn còn bị xe h8 chiếu xuyên qua. Chỉ có việc mở ô f2 cho vua, bằng 10.f3 hoặc 10.f4, mới thực sự giải quyết được vấn đề.
+                              en: White plays anything else, and almost all of it loses on the spot. {Mated} of the {legal} legal replies here are mated at once by 10...Qh2#, because nothing white is left guarding h2 or the square behind it, and the king on g1 cannot capture the queen since it would still be in check from the rook on h8. Only opening f2 for the king, with 10.f3 or 10.f4, actually solves the problem.
+                              fr: Les Blancs jouent autre chose, et presque tout perd sur-le-champ. {Mated} des {legal} réponses légales ici sont matées aussitôt par 10...Qh2#, car plus aucune pièce blanche ne garde h2 ni la case derrière elle, et le roi en g1 ne peut pas prendre la dame puisqu'il resterait en échec de la tour h8. Seul le fait d'ouvrir f2 au roi, par 10.f3 ou 10.f4, règle vraiment le problème.
+                          children:
+                            - ply: d4
+                              replyQuality: blunder
+                              frequency: common
+                              annotation:
+                                vi: Trắng chơi một nước phát triển hoàn toàn tự nhiên ở trung tâm, không nghĩ gì đến ô h2. Đây chính là nước mà cái bẫy Fishing Pole chờ đợi nhất, vì nó trông vô hại hơn bất kỳ nước nào khác trong danh sách.
+                                en: White plays a perfectly natural central developing move, giving no thought to h2. This is exactly the move the Fishing Pole Trap is waiting for, because it looks more harmless than anything else on the list.
+                                fr: Les Blancs jouent un coup de développement central parfaitement naturel, sans songer à h2. C'est exactement le coup qu'attend le piège de la canne à pêche, car il paraît plus inoffensif que tout autre de la liste.
+                              outcome:
+                                type: trap
+                            - ply: f3
+                              replyQuality: best
+                              frequency: rare
+                              annotation:
+                                vi: Nước phòng thủ chính xác duy nhất còn lại được xét riêng ở đây (cùng với 10.f4, không dựng thành nhánh riêng vì đánh giá giống hệt). Con tốt f mở ô f2 cho vua, nên dù 10...Qh2+ vẫn chiếu, vua chạy được sang f2 và cái bẫy dừng lại.
+                                en: The one precise defence modelled here on its own (alongside 10.f4, not given a branch of its own since the assessment is identical). The f-pawn opens f2 for the king, so even though 10...Qh2+ is still check, the king escapes to f2 and the trap stops there.
+                                fr: L'unique défense précise modélisée ici séparément (avec 10.f4, qui ne reçoit pas de branche propre puisque l'évaluation est identique). Le pion f ouvre f2 au roi, si bien que même si 10...Qh2+ reste échec, le roi s'échappe en f2 et le piège s'arrête là.
+                              outcome:
+                                type: position
+                                evaluation:
+                                  vi: Trắng hơn một con mã, kém một con tốt so với lúc bắt đầu ván — Đen đã thí trọn con mã g4 để đổi lấy cột h và áp lực, và áp lực ấy vừa bị chặn đứng. Vua Trắng đứng ở g1 với tốt f3 và g2 còn nguyên, có thể chạy sang f2 nếu bị chiếu tiếp, còn xe h8 và hậu h4 của Đen vẫn còn đó nhưng không còn mục tiêu cụ thể nào để đánh vào ngay.
+                                  en: White is up a full knight for a pawn — Black sacrificed the whole g4 knight for the h-file and the attack, and that attack has just been stopped. The white king stands on g1 with the f3 and g2 pawns intact and an escape to f2 if checked again, while Black's rook on h8 and queen on h4 are still there but with no concrete target left to hit right away.
+                                  fr: Les Blancs ont un cavalier entier d'avance pour un pion — les Noirs ont sacrifié tout le cavalier g4 pour la colonne h et l'attaque, et cette attaque vient d'être stoppée. Le roi blanc se tient en g1 avec les pions f3 et g2 intacts et une case d'évasion en f2 en cas de nouvel échec, tandis que la tour noire en h8 et la dame en h4 sont toujours là mais sans cible concrète à frapper dans l'immédiat.
+                                plan:
+                                  vi: Trắng chơi Kf2 nếu bị chiếu tiếp, rồi Nd3 hoặc Ng2 đưa mã e1 trở lại cuộc chơi, Be3 và Qf1 để phối hợp phòng thủ quanh vua, giữ chắc con mã thừa và từ từ giải toả áp lực. Đen chơi d5 mở đường cho tượng c8, Bd6 hoặc Bc5 nhắm vào cánh vua, và Rh6-f6 hay Rh6-g6 tiếp tục tận dụng cột h đã mở, cố tìm bù đắp thực chiến cho con mã đã mất.
+                                  en: White plays Kf2 if checked again, then Nd3 or Ng2 to bring the e1 knight back into the game, Be3 and Qf1 to coordinate the defence around the king, keeping the extra knight safe and slowly untangling. Black plays ...d5 to free the c8 bishop, ...Bd6 or ...Bc5 aiming at the kingside, and ...Rh6-f6 or ...Rh6-g6 to keep using the open h-file, hunting for practical compensation for the lost knight.
+                                  fr: Les Blancs jouent Kf2 en cas de nouvel échec, puis Nd3 ou Ng2 pour ramener le cavalier e1 dans la partie, Be3 et Qf1 pour coordonner la défense autour du roi, en gardant le cavalier supplémentaire à l'abri et en se démêlant lentement. Les Noirs jouent ...d5 pour libérer le fou c8, ...Bd6 ou ...Bc5 en direction de l'aile roi, et ...Rh6-f6 ou ...Rh6-g6 pour continuer à exploiter la colonne h ouverte, cherchant une compensation pratique au cavalier perdu.
+                                basis:
+                                  by: chan
+                                  at: '2026-09-18'

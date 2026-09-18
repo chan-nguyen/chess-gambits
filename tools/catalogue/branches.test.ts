@@ -118,14 +118,15 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Fourteen entries are authored — three from #15 and eleven from #73 — and the other 989
-   * are Tier 0. Each authored entry is named here with the number of root-to-leaf lines its
-   * tree actually has, rather than the whole set being loosened to "at least zero", which
-   * would assert nothing and would keep passing if every tree in the repository disappeared.
+   * Twenty-four entries are authored — three from #15, eleven from #73 and ten from #93 —
+   * and the other 979 are Tier 0. Each authored entry is named here with the number of
+   * root-to-leaf lines its tree actually has, rather than the whole set being loosened to
+   * "at least zero", which would assert nothing and would keep passing if every tree in the
+   * repository disappeared.
    *
    * This is the assertion the test was written to force: the day a mapped entry lands, the
-   * number that appears here has to appear because content changed. It did twice, and both
-   * times these lines changed with it, deliberately and by name.
+   * number that appears here has to appear because content changed. It has three times now,
+   * and every time these lines changed with it, deliberately and by name.
    */
   const AUTHORED: ReadonlyMap<string, number> = new Map([
     ['italian-game-evans-gambit', 6],
@@ -142,9 +143,19 @@ describe('the catalogue this repository ships', () => {
     ['englund-gambit', 5],
     ['englund-gambit-trap', 6],
     ['latvian-gambit', 5],
+    ['fishing-pole-trap', 2],
+    ['elephant-trap', 1],
+    ['lasker-trap', 1],
+    ['noahs-ark-trap', 1],
+    ['mortimer-trap', 1],
+    ['siberian-trap', 1],
+    ['kings-gambit-accepted', 1],
+    ['italian-game-blackburne-kostic-gambit', 2],
+    ['kings-gambit-declined-classical-variation', 1],
+    ['ruy-lopez-schliemann-defense', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored fourteen have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored twenty-four have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

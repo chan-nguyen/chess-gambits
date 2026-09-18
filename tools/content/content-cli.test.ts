@@ -139,9 +139,12 @@ describe('export-pgn (AC 2)', () => {
     expect(result.status).toBe(1)
     expect(result.stderr).toContain(
       'Known ids: benko-gambit, blackmar-diemer-gambit, damiano-defence-refutation, danish-gambit, ' +
-        'englund-gambit, englund-gambit-trap, halosar-trap, indian-defense-budapest-gambit, ' +
-        'italian-game-evans-gambit, kieninger-trap, kings-gambit, latvian-gambit, legals-mate, ' +
-        'scotch-game-scotch-gambit, sicilian-defense-smith-morra-gambit.',
+        'elephant-trap, englund-gambit, englund-gambit-trap, fishing-pole-trap, halosar-trap, ' +
+        'indian-defense-budapest-gambit, italian-game-blackburne-kostic-gambit, ' +
+        'italian-game-evans-gambit, kieninger-trap, kings-gambit, kings-gambit-accepted, ' +
+        'kings-gambit-declined-classical-variation, lasker-trap, latvian-gambit, legals-mate, ' +
+        'mortimer-trap, noahs-ark-trap, ruy-lopez-schliemann-defense, scotch-game-scotch-gambit, ' +
+        'siberian-trap, sicilian-defense-smith-morra-gambit.',
     )
   })
 
@@ -166,16 +169,26 @@ describe('compile (AC 3)', () => {
       'blackmar-diemer-gambit.json',
       'damiano-defence-refutation.json',
       'danish-gambit.json',
+      'elephant-trap.json',
       'englund-gambit-trap.json',
       'englund-gambit.json',
+      'fishing-pole-trap.json',
       'halosar-trap.json',
       'indian-defense-budapest-gambit.json',
+      'italian-game-blackburne-kostic-gambit.json',
       'italian-game-evans-gambit.json',
       'kieninger-trap.json',
+      'kings-gambit-accepted.json',
+      'kings-gambit-declined-classical-variation.json',
       'kings-gambit.json',
+      'lasker-trap.json',
       'latvian-gambit.json',
       'legals-mate.json',
+      'mortimer-trap.json',
+      'noahs-ark-trap.json',
+      'ruy-lopez-schliemann-defense.json',
       'scotch-game-scotch-gambit.json',
+      'siberian-trap.json',
       'sicilian-defense-smith-morra-gambit.json',
     ])
     const json = readFileSync(join(out, 'damiano-defence-refutation.json'), 'utf8')

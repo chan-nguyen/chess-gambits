@@ -1,0 +1,106 @@
+# King's Gambit Declined: Classical Variation, the family head for declining with 2...Bc5.
+# Frozen defining line 1.e4 e5 2.f4 — the same root `content/kings-gambit.yaml` and
+# `content/kings-gambit-accepted.yaml` use — which ends on White's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). The catalogue's own `line` field for this
+# id, `e4 e5 f4 Bc5`, ends on Black's ply instead; that parity fails the build's check
+# (`defining-line-parity` in `tools/content/validate.ts`), so the declining move is modelled
+# as the root's own reply below rather than folded into `definingLine`.
+#
+# A dedicated look at the classical decline specifically, developing the bishop to its most
+# active square and daring White to weaken the long e1-h4 diagonal any further. Every move
+# here was replayed with chess.js. No leaf claims a mate — the line settles into an ordinary
+# position where Black has simply won the gambit pawn back, and an unproved mate claim is
+# refused rather than written (ADR-0005).
+id: kings-gambit-declined-classical-variation
+name: "King's Gambit Declined: Classical Variation"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, matching the label the catalogue's own listing already carries for this
+      id. Declining solidly with 2...Bc5 sidesteps every sharp accepted line and hands White
+      nothing beyond the ordinary chances of the opening move, so the honest verdict on the
+      whole King's Gambit line is unaffected by how Black chooses not to take the pawn. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4. Mục này đi theo cách từ chối cổ điển nhất — Đen bỏ qua con tốt và đưa tượng ra ô hoạt động nhất ngay lập tức, thay vì nhận tốt hay phản công ở trung tâm.
+    en: White has just offered the f4 pawn. This entry follows the most classical way to decline it — Black ignores the pawn and develops the bishop to its most active square at once, rather than accepting it or counter-striking in the centre.
+    fr: Les Blancs viennent d'offrir le pion f4. Cette entrée suit la façon la plus classique de le refuser — les Noirs ignorent le pion et développent aussitôt le fou sur sa case la plus active, plutôt que de l'accepter ou de contre-attaquer au centre.
+  dismissRest:
+    reason:
+      vi: Đen nhận con tốt hoặc phản công bằng d5, và thế cờ rẽ sang các nhánh khác của họ Gambit Vua, nằm ngoài phạm vi mục này.
+      en: Black accepts the pawn or counters with 2...d5, and the position heads toward different branches of the King's Gambit family, outside the scope of this entry.
+      fr: Les Noirs acceptent le pion ou contre-attaquent par 2...d5, et la position s'oriente vers d'autres branches de la famille du Gambit du Roi, hors du champ de cette entrée.
+  children:
+    - ply: Bc5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen đưa tượng ra c5, nhắm thẳng vào ô f2 vừa yếu đi vì tốt f đã rời chỗ. Đây là Biến Cổ điển, cách từ chối tự nhiên và được đánh giá cao nhất.
+        en: Black brings the bishop to c5, aiming straight at the square f2, which the f-pawn's departure has just weakened. This is the Classical Variation, the most natural and highly regarded way to decline.
+        fr: Les Noirs amènent le fou en c5, visant directement la case f2, affaiblie par le départ du pion f. C'est la Variante classique, la façon la plus naturelle et la mieux considérée de refuser.
+      children:
+        - ply: Nf3
+          annotation:
+            vi: Trắng đưa mã ra f3, nước phát triển vững chắc nhất — nó không cố ăn ngay tốt e5 (fxe5 để lại nhiều biến phức tạp với Qh4+ và các nước tượng chiếu) mà chuẩn bị nhập thành và hoàn thiện các quân còn lại một cách an toàn.
+            en: White brings the knight to f3, the soundest developing move — it does not try to grab the e5 pawn right away (fxe5 leaves several complications with ...Qh4+ and bishop checks) but instead prepares to castle and finish development safely.
+            fr: Les Blancs amènent le cavalier en f3, le coup de développement le plus sain — il ne cherche pas à capturer tout de suite le pion e5 (fxe5 laisse plusieurs complications avec ...Qh4+ et des échecs de fou) mais prépare plutôt à roquer et à achever le développement en sécurité.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì phát triển mã ngay — ăn tốt f4 bằng exf4, chiếu sớm bằng Qh4+, hay chơi thận trọng bằng d6. Mỗi lựa chọn có lý thuyết riêng; phát triển tự nhiên bằng 3...Nc6 vẫn giữ được nhiều khả năng nhất và là cách phổ biến nhất để tiếp tục.
+              en: Black tries something else instead of developing the knight right away — taking on f4 with exf4, an early check with Qh4+, or the cautious 3...d6. Each has its own theory; natural development with 3...Nc6 keeps the most options open and is the most common way to continue.
+              fr: Les Noirs tentent autre chose plutôt que de développer aussitôt le cavalier — prendre en f4 par exf4, un échec précoce par Qh4+, ou le prudent 3...d6. Chacun a sa propre théorie ; le développement naturel par 3...Nc6 garde le plus d'options ouvertes et demeure la façon la plus courante de poursuivre.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã ra c6, bảo vệ tốt e5 và chuẩn bị các quân còn lại một cách tự nhiên. Thế cờ vẫn giữ nguyên mọi lựa chọn cho cả hai bên.
+                en: Black develops the knight to c6, defending the e5 pawn and preparing the rest of the pieces naturally. The position keeps every option open for both sides.
+                fr: Les Noirs développent le cavalier en c6, défendant le pion e5 et préparant naturellement le reste des pièces. La position garde toutes les options ouvertes pour les deux camps.
+              children:
+                - ply: Nc3
+                  annotation:
+                    vi: Trắng phát triển mã ra c3, hoàn thiện quân một cách chắc chắn và chuẩn bị nhập thành. Cả hai bên đều đã phát triển tự nhiên, nhưng con tốt f4 giờ đây không còn được quân nào đỡ nữa.
+                    en: White develops the knight to c3, completing development soundly and preparing to castle. Both sides have developed naturally, but the pawn on f4 is now left with nothing defending it.
+                    fr: Les Blancs développent le cavalier en c3, achevant sainement le développement et préparant le roque. Les deux camps se sont développés naturellement, mais le pion f4 se retrouve désormais sans aucune défense.
+                  dismissRest:
+                    reason:
+                      vi: Đen phát triển hoặc chuẩn bị nhập thành theo một cách khác thay vì ăn ngay con tốt f4. Con tốt ấy vẫn đứng đó không ai đỡ, nên bất kỳ nước nào khác chỉ đơn giản để dành việc ăn nó lại cho nước sau.
+                      en: Black develops or prepares to castle a different way instead of taking the f4 pawn right away. That pawn is still standing there undefended, so any other move simply leaves the capture for later.
+                      fr: Les Noirs se développent ou préparent le roque autrement plutôt que de prendre tout de suite le pion f4. Ce pion reste sans défense, si bien que tout autre coup se contente de reporter la capture à plus tard.
+                  children:
+                    - ply: exf4
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen ăn lại con tốt f4, thu hồi đúng con tốt mà Trắng đã thí ở nước đi thứ hai. Đây là điểm dừng hợp lý để đếm lại quân số.
+                        en: Black recaptures the f4 pawn, winning back exactly the pawn White offered on move two. This is a sensible point to count up the material.
+                        fr: Les Noirs reprennent le pion f4, regagnant exactement le pion offert par les Blancs au deuxième coup. C'est un point raisonnable pour faire le compte du matériel.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Đen hơn một tốt sạch. Trắng còn bảy tốt vì đã mất hẳn con tốt f; Đen còn đủ tám tốt, trong đó con tốt e cũ giờ đứng ở f4. Không quân nào khác bị đổi hay mất trên bàn cờ.
+                          en: Black is a clean pawn up. White has seven pawns left, having lost the f-pawn outright; Black still has all eight, with the former e-pawn now sitting on f4. No other piece has been traded or lost on either side.
+                          fr: Les Noirs ont un pion net de plus. Les Blancs n'ont plus que sept pions, ayant perdu définitivement le pion f ; les Noirs en gardent huit, l'ancien pion e se trouvant désormais en f4. Aucune autre pièce n'a été échangée ni perdue d'un côté ou de l'autre.
+                        plan:
+                          vi: Trắng chơi O-O, Qe2 hay Re1 gây áp lực lên cột e và tìm hoạt động bù đắp cho con tốt đã mất, tránh đổi hết quân vì tàn cuộc kém tốt là tàn cuộc khó. Đen chơi d6 củng cố tốt e5, Nf6 hoàn thiện phát triển, O-O nhanh chóng, rồi giữ chắc con tốt thừa và tìm cách đổi bớt quân khi có cơ hội thuận lợi.
+                          en: White plays O-O, Qe2 or Re1 to press on the e-file and look for activity to compensate for the lost pawn, avoiding trading everything off since an endgame down a pawn is a hard one. Black plays d6 to shore up the e5 pawn, Nf6 to finish developing, castles quickly, then nurses the extra pawn home and looks to trade pieces when a favourable moment appears.
+                          fr: Les Blancs jouent le roque, Qe2 ou Re1 pour peser sur la colonne e et chercher de l'activité en compensation du pion perdu, en évitant de tout échanger puisqu'une finale à un pion de moins est difficile. Les Noirs jouent d6 pour étayer le pion e5, Nf6 pour achever le développement, roquent rapidement, puis conduisent le pion supplémentaire vers la victoire et cherchent à échanger les pièces au moment favorable.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'
