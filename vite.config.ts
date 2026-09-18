@@ -29,8 +29,16 @@ export default defineConfig({
      * it on a shared runner, so whether the build was green depended on which runner it drew.
      * Raised once here rather than patched test by test; a genuinely hung test now takes 30s to
      * fail instead of 5, which is the cost of not having a flaky gate.
+     *
+     * Raised again, 30s → 90s, by the Fishing Pole Trap's mate-in-3 certificate (2026-09-18):
+     * `verify:mates`' minimality check runs an independent, exhaustive search up to the claimed
+     * depth (ADR-0005) to confirm no *shorter* mate exists, and a wide first ply (26 replies)
+     * at three plies deep costs far more than the mate-in-1/mate-in-2 claims that set the
+     * previous number. Measured 24s for `verify:mates` alone and up to 48.7s for the single
+     * `content.test.ts` case that validates this one file, both on a developer machine — so a
+     * shared runner needed real headroom, not another value picked to just clear one measurement.
      */
-    testTimeout: 30_000,
+    testTimeout: 90_000,
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     globals: true,

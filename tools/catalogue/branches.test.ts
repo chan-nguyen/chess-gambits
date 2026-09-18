@@ -163,7 +163,7 @@ describe('the catalogue this repository ships', () => {
     ['englund-gambit', 5],
     ['englund-gambit-declined', 1],
     ['englund-gambit-trap', 6],
-    ['fishing-pole-trap', 2],
+    ['fishing-pole-trap', 3],
     ['four-knights-game-halloween-gambit', 1],
     ['french-defense-banzai-leong-gambit', 3],
     ['grob-opening-alessi-gambit', 1],
