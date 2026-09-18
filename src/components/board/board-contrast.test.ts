@@ -55,8 +55,7 @@ const valueOf = (token: string, theme: keyof TokenValues): string => {
 const EXPECTED_TOKENS: readonly string[] = [
   '--color-board-light',
   '--color-board-dark',
-  '--color-board-highlight-from',
-  '--color-board-highlight-to',
+  '--color-board-highlight',
   '--color-board-check',
   '--color-board-mark',
   '--color-board-coordinate',
@@ -69,15 +68,15 @@ const EXPECTED_TOKENS: readonly string[] = [
 /**
  * Everything a piece can be drawn on top of.
  *
- * `--color-board-highlight-from` is back on this list as of 2026-09-18: no board state ever
- * draws a piece on the square a ply left, but every other surface here is checked whether or
- * not the realistic case arises, and this one is cheap to hold to the same bar.
+ * `--color-board-highlight` covers the square a ply left as well as the one it reached
+ * (2026-09-18): no board state ever draws a piece on the square a ply left, but every
+ * other surface here is checked whether or not the realistic case arises, and this one is
+ * cheap to hold to the same bar.
  */
 const SURFACES: readonly string[] = [
   '--color-board-light',
   '--color-board-dark',
-  '--color-board-highlight-from',
-  '--color-board-highlight-to',
+  '--color-board-highlight',
   '--color-board-check',
 ]
 
@@ -161,41 +160,35 @@ describe('the contrast maths', () => {
 })
 
 /**
- * **The last-ply highlight, and why it is a documented exception to §2 (2026-09-18).**
+ * **The last-ply highlight, and why it is a documented exception to §2 (2026-09-18, then
+ * 2026-09-18 again).**
  *
  * §2's binding rule is "a shape or border difference, not only a tint" — and from #54
- * through #80 the last-ply mark held it with a ring. This ticket removes the ring: the
- * product decision is a plain background colour on both the square a ply left and the
- * square it reached, nothing drawn on top.
+ * through #80 the last-ply mark held it with a ring. #88 removed the ring and kept the two
+ * squares apart by luminance alone, as a narrower exception. This ticket removes that
+ * distinction too, by product decision: both squares now share one gold token, so nothing
+ * on the board says which end of the last move is which — only that a move happened
+ * across these two squares.
  *
- * That is a real narrowing of the signal a fully colour-blind or fully desaturated reader
- * gets — there is no second channel any more. What is not true is that the two squares
- * collapse to the same grey the way they would have before #80: the two tokens are chosen
- * so their **luminance**, not their hue, tells them apart, on the same terms §2 already
- * uses for "distinguishes the two board squares from each other". Measured with the
- * contrast function above, which is hue-free by construction:
- *
- * | pair (light / dark)                          | greyscale contrast |
- * | --------------------------------------------- | ------------------ |
- * | `highlight-from` against `highlight-to`       | see below          |
- *
- * This is weaker than a shape channel and the doc says so. It is the one place on the board
- * where colour is the only signal, and it is there because the person who owns the product
- * asked for exactly this look.
+ * This is a further narrowing of the signal, on top of the one #88 already recorded: a
+ * reader can no longer tell departure from arrival by any channel, colour or otherwise.
+ * What survives is the same as #88 recorded — the `aria-live` move announcement never
+ * depended on the visual highlight, so a screen-reader user is unaffected — and the two
+ * squares are still distinguishable from a plain square (checked below), just not from
+ * each other.
  */
 describe('the last-ply highlight is a documented exception to the shape rule', () => {
-  it.each(THEMES)('tells the two tints apart by luminance alone, in the %s theme', (theme) => {
-    expect(
-      contrast(
-        valueOf('--color-board-highlight-from', theme),
-        valueOf('--color-board-highlight-to', theme),
-      ),
-    ).toBeGreaterThan(1.5)
+  it.each(THEMES)('is the same token colour on both squares, in the %s theme', (theme) => {
+    const highlight = valueOf('--color-board-highlight', theme)
+    const plain = valueOf('--color-board-light', theme)
+    expect(highlight).not.toBe(plain)
   })
 
-  it('draws both squares in a token colour, and neither with a border', () => {
-    expect(boardStyles).toContain('var(--color-board-highlight-from)')
-    expect(boardStyles).toContain('var(--color-board-highlight-to)')
+  it('draws both squares in the one highlight token, and neither with a border', () => {
+    const fromRule = boardStyles.match(/\.board__square--from\s*{[^}]*}/)?.[0] ?? ''
+    const toRule = boardStyles.match(/\.board__square--to\s*{[^}]*}/)?.[0] ?? ''
+    expect(fromRule).toContain('var(--color-board-highlight)')
+    expect(toRule).toContain('var(--color-board-highlight)')
     expect(boardStyles).not.toContain('board__last-ply')
   })
 })

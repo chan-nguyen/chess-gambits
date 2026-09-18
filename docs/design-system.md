@@ -110,9 +110,8 @@ decoration:
 **Reply-quality colours** map to the closed set in `CONTEXT.md`: `best`, `good`, `inaccuracy`,
 `mistake`, `blunder`.
 
-**Board colours**: `--color-board-light`, `--color-board-dark`, `--color-board-highlight-from`,
-`--color-board-highlight-to`, `--color-board-check`, `--color-board-legal`, `--color-board-mark`,
-`--color-board-coordinate`.
+**Board colours**: `--color-board-light`, `--color-board-dark`, `--color-board-highlight`,
+`--color-board-check`, `--color-board-legal`, `--color-board-mark`, `--color-board-coordinate`.
 
 **Piece colours**: `--color-piece-white-fill`, `--color-piece-white-stroke`,
 `--color-piece-black-fill`, `--color-piece-black-stroke`. A piece's role is carried by its
@@ -128,23 +127,22 @@ anything; the rest of the palette is given values below, by #2. `src/styles/toke
 this table, and `board-contrast.test.ts` reads it directly — the doc is the source of truth, so a value
 edited here without re-checking contrast fails that test rather than shipping.
 
-| Token                          | Light     | Dark      | Role                               |
-| ------------------------------ | --------- | --------- | ---------------------------------- |
-| `--color-board-light`          | `#ebd9b8` | `#bcab94` | Light square                       |
-| `--color-board-dark`           | `#b58863` | `#927b66` | Dark square                        |
-| `--color-board-highlight-from` | `#8496a3` | `#526270` | Square the last ply left           |
-| `--color-board-highlight-to`   | `#e4c05a` | `#c2a24e` | Square the last ply arrived on     |
-| `--color-board-check`          | `#d14b3f` | `#c4544a` | Disc behind a king in check        |
-| `--color-board-mark`           | `#123a5e` | `#0f2e4a` | Ring on an arbitrary marked square |
-| `--color-board-coordinate`     | `#1f1a14` | `#14110c` | File letters and rank numbers      |
-| `--color-piece-white-fill`     | `#faf7f2` | `#e8e2d8` | White piece body                   |
-| `--color-piece-white-stroke`   | `#16120d` | `#14110c` | White piece outline                |
-| `--color-piece-black-fill`     | `#2a2520` | `#221e19` | Black piece body                   |
-| `--color-piece-black-stroke`   | `#f0eae0` | `#cfc7ba` | Black piece outline                |
+| Token                        | Light     | Dark      | Role                               |
+| ---------------------------- | --------- | --------- | ---------------------------------- |
+| `--color-board-light`        | `#ebd9b8` | `#bcab94` | Light square                       |
+| `--color-board-dark`         | `#b58863` | `#927b66` | Dark square                        |
+| `--color-board-highlight`    | `#e4c05a` | `#c2a24e` | Both squares of the last ply       |
+| `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check        |
+| `--color-board-mark`         | `#123a5e` | `#0f2e4a` | Ring on an arbitrary marked square |
+| `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers      |
+| `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                   |
+| `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                |
+| `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                   |
+| `--color-piece-black-stroke` | `#f0eae0` | `#cfc7ba` | Black piece outline                |
 
 Three rules hold over this table in both themes, and each is asserted:
 
-1. **A piece is legible on every surface it can sit on.** For each piece and each of the six square
+1. **A piece is legible on every surface it can sit on.** For each piece and each of the four square
    or highlight colours, the fill _or_ the stroke reaches 3:1. Neither alone can: a white piece's
    body vanishes on a light square and a black piece's body vanishes on a dark one, which is exactly
    what the outline is for.
@@ -159,15 +157,15 @@ light _and_ the dark square, and only the dark end of the range does.
 
 `--color-board-legal` has no value yet — v1 shows no legal moves, so nothing renders it.
 
-**`--color-board-highlight-from` is back, as of 2026-09-18, and it does not have a ring beside it
-any more.** #80 removed the token: a tint is a surface — something a piece sits on — and the
-square a ply left has nothing sitting on it, so filling it made an empty square read as occupied.
-That argument still holds about a fill _on its own_; what actually made it loud, measured in #80,
-was the 0.045-unit ring drawn on top of the fill, not the fill underneath. This ticket removes the
-ring from both squares (§2's binding rule, exception below) rather than the tint, which is a
-different fix for the same complaint: g1 with a plain background colour and no ring is barely
-darker than an ordinary square. The square a ply left is tinted again, and so is the square it
-reached; nothing is drawn on top of either.
+**`--color-board-highlight` marks both squares of the last ply, as of 2026-09-18, and neither has a
+ring beside it.** #80 removed the departed-square token: a tint is a surface — something a piece
+sits on — and the square a ply left has nothing sitting on it, so filling it made an empty square
+read as occupied. That argument still holds about a fill _on its own_; what actually made it loud,
+measured in #80, was the 0.045-unit ring drawn on top of the fill, not the fill underneath. #88
+removed the ring from both squares (§2's binding rule, exception below) rather than the tint, and
+kept the two squares apart by giving them different, luminance-distinct tokens. This entry drops
+that distinction too, by product decision: both squares now share the one token above, so the
+highlight marks the last move as a pair of squares rather than telling departure from arrival.
 
 #### Interface, outcome and reply-quality colour values
 
@@ -237,11 +235,14 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
   leaf do not differ only in hue.
 - Board highlights carry a **shape or border difference**, not only a tint — **with one documented
   exception.** The last-ply mark (the square a ply left and the square it reached) is a plain
-  background colour on both squares and nothing else, as of 2026-09-18, by the product owner's
-  explicit decision. The two tokens are chosen so their **luminance**, not their hue, keeps them
-  apart under `grayscale(1)` (`board-contrast.test.ts`), which is weaker than a shape channel and
-  is stated as weaker rather than dressed up as equivalent. Every other colour-coded element on the
-  site still holds the rule with no exception.
+  background colour, the same `--color-board-highlight` token on both squares, and nothing else, as
+  of 2026-09-18, by the product owner's explicit decision. Squares of two different plain colours
+  (light, dark) still hold the rule normally — light and dark stay apart in `grayscale(1)`. The
+  exception is narrower than it once was: an earlier revision (#88) gave the two last-ply squares
+  distinct tokens chosen so their **luminance** told them apart under `grayscale(1)`; this revision
+  removes that distinction too, so nothing on the board says which square a ply left and which it
+  reached — only that a move happened across this pair. `board-contrast.test.ts` records this.
+  Every other colour-coded element on the site still holds the rule with no exception.
 - Every colour-coded element passes a greyscale screenshot review. This is a review step, not a
   suggestion.
 
@@ -728,6 +729,35 @@ requires everywhere, and says exactly what was traded away.
   reads as a visibly darker grey than the arrival square once desaturated, and both are plainly
   distinct from the plain wood around them; nothing was drawn on top of either at any size. **Not
   performed:** the screen-reader row.
+
+**2026-09-18 — the two last-ply tints merged into one, at the product owner's request.** Not a
+release review; it narrows the exception the entry above just recorded, and says exactly what was
+traded away this time.
+
+- **What changed.** `--color-board-highlight-from` and `--color-board-highlight-to` are replaced by
+  one token, `--color-board-highlight`, at the arrival square's former gold value in both themes.
+  `.board__square--from` and `.board__square--to` both draw it. Nothing else about the mark changed
+  — no ring, no border, same two classes, same squares.
+- **What is genuinely given up, on top of #88's luminance-only exception.** A learner could
+  previously tell which square a ply left from which it reached by brightness alone, even without
+  hue. That is gone: the two squares are now the identical token, so nothing on the board says
+  which end of the last move is which — only that a move happened across this pair of squares. This
+  is a real narrowing beyond #88, not a repaint at the same strength.
+- **A weaker case was already true and is now load-bearing.** The gold token's contrast against a
+  **light** square in the **dark theme** is **1.10:1** (`board-contrast.test.ts` does not assert a
+  floor here — only that highlight and plain-light are unequal hex values). This is not new: it is
+  the value `--color-board-highlight-to` already carried, and the arrival square already lived with
+  it. What is new is that the departed square now carries it too, in place of the slate token's
+  **1.74:1** against the same pairing. On a light square in dark mode, a fully desaturated viewer's
+  best case for spotting the departed square is a fifth of what it was.
+- **What is not affected.** The `aria-live` move announcement still carries the move in words and
+  never depended on the visual highlight — true before #80, still true now. axe stays clean: the
+  marks are geometry inside the board's `aria-hidden` SVG, as before.
+- **Looked at by hand, both themes:** a live gambit page at desktop, in colour and under
+  `grayscale(1)`. Both squares read as the same grey, as intended; both are still visibly distinct
+  from the plain wood around them at every theme and square-colour combination tried, including the
+  1.10:1 case above, which is faint but not absent. **Not performed:** 360px, the choice previews,
+  and the screen-reader row.
 
 ---
 
