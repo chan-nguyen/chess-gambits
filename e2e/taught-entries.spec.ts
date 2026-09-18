@@ -76,7 +76,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are one hundred and four of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred and eleven of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -128,12 +128,19 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'kings-gambit',
       'kings-gambit-accepted',
       'kings-gambit-accepted-basman-gambit',
+      'kings-gambit-accepted-bishops-gambit',
       'kings-gambit-accepted-breyer-gambit',
+      'kings-gambit-accepted-carrera-gambit',
+      'kings-gambit-accepted-dodo-variation',
       'kings-gambit-accepted-eisenberg-variation',
+      'kings-gambit-accepted-gaga-gambit',
+      'kings-gambit-accepted-kings-knights-gambit',
       'kings-gambit-accepted-mason-keres-gambit',
       'kings-gambit-accepted-orsini-gambit',
+      'kings-gambit-accepted-paris-gambit',
       'kings-gambit-accepted-schurig-gambit-with-bb5',
       'kings-gambit-accepted-schurig-gambit-with-bd3',
+      'kings-gambit-accepted-stamma-gambit',
       'kings-gambit-accepted-tartakower-gambit',
       'kings-gambit-accepted-tumbleweed',
       'kings-gambit-accepted-villemson-gambit',

@@ -1,12 +1,12 @@
 # King's Gambit Accepted, King's Knight's Gambit: 1.e4 e5 2.f4 exf4 3.Nf3. Every ply below
 # was replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). This
 # is the main trunk of the whole King's Gambit Accepted family (the same move already
-# covered broadly in content/kings-gambit-accepted.yaml's own Nf3 branch, which stops at
-# the Modern Defense with an evaluation this batch's #107 bar would no longer accept as
-# decisive). 3...Qh4+ was checked and fails outright — Nf3 simply guards h4, so 4.Nxh4 wins
-# the queen for free (verified). The real main line, 3...d5, is one of the deepest and most
-# contested branches in the entire King's Gambit; going further here would need
-# engine-level analysis, so the leaf is honestly `unexplored`.
+# covered broadly in content/kings-gambit-accepted.yaml's own Nf3 branch). 3...Qh4+ was
+# checked and fails outright — Nf3 simply guards h4, so 4.Nxh4 wins the queen for free
+# (verified). The real main line, 3...d5, is one of the deepest and most contested branches
+# in the entire King's Gambit; 4.exd5 is forced (else White simply loses the e4 pawn for
+# nothing), and after 4...Nf6 material is level with a normal, roughly balanced middlegame
+# ahead — a genuine leveling, not a claim this entry can push further without an engine.
 id: kings-gambit-accepted-kings-knights-gambit
 name: King's Knight's Gambit
 eco: C34
@@ -48,5 +48,35 @@ tree:
         vi: Đen đánh thẳng vào trung tâm bằng d5, Phòng thủ Hiện đại — cách đáng tin cậy nhất để đối phó với Gambit Mã Vua, sẵn sàng trả lại con tốt f4 để đổi lấy sự phát triển thông thoáng. Từ đây, lý thuyết mở rộng thành một trong những nhánh được phân tích sâu và tranh luận nhiều nhất của toàn bộ Gambit Vua (4.exd5 Nf6, 4.Bb5+, 4.exd5 Bd6...), vượt quá phạm vi có thể xác quyết một cách trung thực trong mục này mà không cần một cỗ máy phân tích.
         en: Black strikes the centre directly with d5, the Modern Defense — regarded as the most reliable way to meet the King's Knight Gambit, willing to give the f4 pawn back for smooth development. From here theory branches into one of the most deeply analysed and debated lines in the whole King's Gambit (4.exd5 Nf6, 4.Bb5+, 4.exd5 Bd6, and more), beyond what this entry can honestly settle without an engine.
         fr: Les Noirs frappent directement le centre par d5, la Défense moderne — jugée la façon la plus fiable d'affronter le Gambit du Cavalier du Roi, acceptant de rendre le pion f4 pour un développement aisé. À partir d'ici, la théorie se ramifie vers l'une des lignes les plus profondément analysées et débattues de tout le Gambit du Roi (4.exd5 Nf6, 4.Bb5+, 4.exd5 Bd6, et d'autres), au-delà de ce que cette entrée peut honnêtement trancher sans moteur d'analyse.
-      outcome:
-        type: unexplored
+      children:
+        - ply: exd5
+          annotation:
+            vi: Trắng ăn lại tốt d5, nước tự nhiên duy nhất — giữ lại con tốt ấy chỉ để nó bị đổi ngay sau đó không mang lại lợi ích gì thêm, đúng như nhánh chính đã xác lập trong content/kings-gambit-accepted.yaml.
+            en: White recaptures the d5 pawn, the only natural choice — holding onto it any longer would gain nothing since it is about to be traded off anyway, exactly as the main line already establishes in content/kings-gambit-accepted.yaml.
+            fr: Les Blancs reprennent le pion d5, le seul choix naturel — le garder plus longtemps n'apporterait rien puisqu'il sera de toute façon bientôt échangé, exactement comme la ligne principale l'établit déjà dans content/kings-gambit-accepted.yaml.
+          dismissRest:
+            reason:
+              vi: Đen ăn lại con tốt d5 theo một cách khác hoặc phát triển quân trước. Dù chọn cách nào, quân số vẫn ngang bằng ngay khi con tốt d5 được đổi, đúng như sau 4...Nf6 bên dưới.
+              en: Black recaptures the d5 pawn a different way or develops first. Whichever it is, material is level the moment that pawn is traded, exactly as after 4...Nf6 below.
+              fr: Les Noirs reprennent le pion d5 d'une autre façon ou développent d'abord. Quel que soit le choix, le matériel est égal dès que ce pion est échangé, exactement comme après 4...Nf6 ci-dessous.
+          children:
+            - ply: Nf6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đưa mã ra f6, chuẩn bị ăn lại con tốt d5 hoặc gây áp lực lên ô tốt e4 cũ đã biến mất, đồng thời phát triển quân một cách tự nhiên. Thế cờ đã hoàn toàn cân bằng về vật chất.
+                en: Black brings the knight to f6, preparing to win the d5 pawn back or press on the square the e4 pawn used to guard, while developing naturally. Material is now fully level.
+                fr: Les Noirs amènent le cavalier en f6, se préparant à regagner le pion d5 ou à peser sur la case que gardait le pion e4, tout en se développant naturellement. Le matériel est désormais parfaitement égal.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Quân số hoàn toàn ngang nhau — mỗi bên bảy tốt và đủ bộ quân còn lại, vì con tốt f4 mà Trắng thí ban đầu đã được trả lại đúng bằng con tốt d5 mà Đen vừa mất. Không bên nào có tốt chồng hay tốt cô lập, và cả hai vua đều vẫn ở vị trí ban đầu, đủ điều kiện nhập thành. Đây thực sự là một thế khai cuộc cân bằng — mục này đã thử tiếp tục bằng 4.exd5 Nf6 và không tìm ra một đặc điểm cụ thể nào nghiêng về bên nào, chứ không phải một đánh giá còn bỏ ngỏ.
+                  en: Material is perfectly level — seven pawns each and a full set of pieces on both sides, since the f4 pawn White originally gave up has been paid back exactly by the d5 pawn Black just lost. Neither side has a doubled or isolated pawn, and both kings are still on their starting squares, free to castle either way. This is genuinely a level opening position — this entry tried continuing with 4.exd5 Nf6 and found no concrete feature favouring either side, not an evaluation left open.
+                  fr: Le matériel est parfaitement égal — sept pions de chaque côté et un jeu complet de pièces des deux camps, le pion f4 initialement cédé par les Blancs ayant été remboursé exactement par le pion d5 que les Noirs viennent de perdre. Aucun camp n'a de pion doublé ou isolé, et les deux rois sont encore sur leur case de départ, libres de roquer. C'est véritablement une position d'ouverture égale — cette entrée a essayé de poursuivre par 4.exd5 Nf6 et n'a trouvé aucune caractéristique concrète favorisant un camp, et non une évaluation laissée ouverte.
+                plan:
+                  vi: Trắng chơi Bd3 hoặc Bc4 phát triển tượng nhắm vào cánh vua Đen, nhập thành và Nc3 hoàn thiện phát triển, rồi tìm cách dùng cột f nửa mở còn sót lại từ nước f4 ban đầu. Đen chơi Bd6 hoặc Be7, nhập thành nhanh chóng, và Re8 hay c5 để thách thức trung tâm Trắng, không có gì phải vội vì thế cờ đã cân bằng.
+                  en: White plays Bd3 or Bc4 to develop the bishop toward Black's kingside, castles and plays Nc3 to finish developing, then tries to make use of the half-open f-file left over from the original f4 push. Black plays Bd6 or Be7, castles quickly, and follows with Re8 or c5 to challenge White's centre, with nothing to rush since the position is level.
+                  fr: Les Blancs jouent Bd3 ou Bc4 pour développer le fou vers l'aile roi noire, roquent et jouent Nc3 pour achever le développement, puis cherchent à exploiter la colonne f semi-ouverte héritée de la poussée f4 initiale. Les Noirs jouent Bd6 ou Be7, roquent rapidement, puis enchaînent par Re8 ou c5 pour défier le centre blanc, sans rien à précipiter puisque la position est égale.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

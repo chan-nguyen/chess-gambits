@@ -3,8 +3,8 @@
 # hard for a way to keep Black's extra pawn: 3...g5 was tried and it allows 4.Qxg5 Qxg5,
 # trading down to dead-equal material; 3...Nf6 lets White simply recapture with 4.Qxf4,
 # which also reaches exact material equality (Nxe4 in reply loses the knight to Qxe4+,
-# verified). Every honest try levels the material, so the leaf here is `unexplored` rather
-# than an invented verdict for either side.
+# verified). Every honest try levels the material, so the leaf states plainly that the
+# position is level rather than inventing an advantage for either side.
 id: kings-gambit-accepted-dodo-variation
 name: Dodo Variation
 eco: C33
@@ -53,4 +53,15 @@ tree:
             en: White recaptures the f4 pawn, bringing material back to exact equality. If Black tries to grab the e4 pawn as well with Nxe4, the queen on f4 simply recaptures the knight (Qxe4+) since it still guards that square — so there is nothing further for Black to exploit right now, and the position has genuinely levelled rather than settling into a small edge for either side.
             fr: Les Blancs reprennent le pion f4, ramenant le matériel à une égalité exacte. Si les Noirs tentent de gagner aussi le pion e4 par Nxe4, la dame en f4 reprend simplement le cavalier (Qxe4+) puisqu'elle garde encore cette case — il n'y a donc rien de plus à exploiter pour les Noirs pour l'instant, et la position s'est réellement égalisée plutôt que de se stabiliser sur un léger avantage pour l'un ou l'autre camp.
           outcome:
-            type: unexplored
+            type: position
+            evaluation:
+              vi: Đếm tốt, mỗi bên còn đúng bảy tốt và đầy đủ bộ quân còn lại — quân số hoàn toàn cân bằng, không bên nào hơn kém. Trắng đã dùng hai nước liên tiếp chỉ để di chuyển hậu (Qg4 rồi Qxf4) mà chưa phát triển thêm quân nào khác, trong khi Đen đã đưa được một mã ra f6; nhưng phát triển sớm đó chưa chuyển hóa thành bất kỳ điểm yếu cụ thể nào của Trắng — không tốt chồng, không tốt cô lập, và vua Trắng vẫn còn nguyên quyền nhập thành. Đây thực sự là một thế cờ cân bằng, không phải một đánh giá còn bỏ ngỏ.
+              en: Count the pawns — seven each, with a full set of pieces on both sides, exactly level, neither side ahead. White has spent two moves in a row just moving the queen (Qg4, then Qxf4) without developing anything else, while Black has brought a knight to f6; but that early development has not yet turned into any concrete weakness of White's — no doubled pawn, no isolated pawn, and White's king still keeps full castling rights. This is genuinely a level position, not an evaluation left open.
+              fr: Comptez les pions — sept de chaque côté, avec un jeu complet de pièces des deux camps, parfaitement égal, aucun camp en avance. Les Blancs ont passé deux coups d'affilée à simplement déplacer la dame (Qg4, puis Qxf4) sans rien développer d'autre, tandis que les Noirs ont amené un cavalier en f6 ; mais ce développement précoce ne s'est pas encore transformé en la moindre faiblesse concrète des Blancs — pas de pion doublé, pas de pion isolé, et le roi blanc conserve pleinement le roque. C'est véritablement une position égale, pas une évaluation laissée ouverte.
+            plan:
+              vi: Trắng chơi Nf3, Bc4 hoặc Bd3 và nhập thành để hoàn thiện phát triển, cố dùng nửa tempo còn lại từ việc Đen phải bỏ tốt để bắt kịp. Đen chơi d5 hoặc Bc5, nhập thành, và Re8 để hoàn thiện phát triển bình thường, không có gì phải vội vì thế cờ đã cân bằng.
+              en: White plays Nf3, Bc4 or Bd3 and castles to finish developing, trying to make use of the half a tempo left over from Black having had to give the pawn back. Black plays d5 or Bc5, castles, and follows with Re8 to complete ordinary development, with nothing to rush since the position is level.
+              fr: Les Blancs jouent Nf3, Bc4 ou Bd3 et roquent pour achever leur développement, cherchant à exploiter le demi-temps restant du fait que les Noirs ont dû rendre le pion. Les Noirs jouent d5 ou Bc5, roquent, puis enchaînent par Re8 pour achever un développement ordinaire, sans rien à précipiter puisque la position est égale.
+            basis:
+              by: chan
+              at: '2026-09-18'
