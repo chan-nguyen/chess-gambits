@@ -1,0 +1,56 @@
+# Ware Opening: Wing Gambit. Frozen defining line 1.a4 b5 2.axb5 Bb7, which ends on Black's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below
+# was replayed with chess.js before being annotated.
+id: ware-opening-wing-gambit
+name: 'Ware Opening: Wing Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [a4, b5, axb5, Bb7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White simply develops with Nf3, keeps the extra pawn, and the long
+      diagonal behind Bb7 is not yet aimed at anything concrete. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã mất tốt b vào tay Trắng, Đen chơi 2...Bb7, fianchetto tượng nhắm vào đường chéo dài a8-h1, mời Trắng bỏ qua việc phát triển an toàn để đổi lấy áp lực lâu dài trên đường chéo đó.
+    en: Having already lost the b-pawn to White, Black plays 2...Bb7, fianchettoing the bishop onto the long a8-h1 diagonal, hoping White's development proves less safe than it looks in exchange for lasting pressure on that diagonal.
+    fr: Ayant déjà perdu le pion b au profit des Blancs, les Noirs jouent 2...Bb7, fianchettant le fou sur la grande diagonale a8-h1, espérant que le développement des Blancs se révèle moins sûr qu'il n'y paraît en échange d'une pression durable sur cette diagonale.
+  dismissRest:
+    reason:
+      vi: Trắng không phát triển bằng Nf3. Các nước khác như e3 hay d4 cũng giữ vững con tốt thừa và không mở đường chéo dài của Đen theo cách khác biệt đáng kể, nên phần lớn trường hợp cụ thể ấy được gộp vào đây thay vì phân tích riêng.
+      en: White does not develop with Nf3. Anything else, such as e3 or d4, also holds the extra pawn firmly and does not open Black's long diagonal in any significantly different way, so those specific cases are folded in here rather than analysed separately.
+      fr: Les Blancs ne développent pas par Nf3. Tout le reste, comme e3 ou d4, garde aussi fermement le pion supplémentaire et n'ouvre pas la grande diagonale des Noirs de façon significativement différente, donc ces cas précis sont regroupés ici plutôt qu'analysés séparément.
+  children:
+    - ply: Nf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã, vừa đưa quân ra vừa chắn tạm đường chéo dài của tượng b7. Đây là cách phát triển tự nhiên nhất, không cần lo lắng gì về con tốt đã ăn được ở b5.
+        en: White develops the knight, bringing out a piece while also temporarily blocking Black's long diagonal. This is the most natural developing move, with nothing to worry about regarding the pawn already won on b5.
+        fr: Les Blancs développent le cavalier, sortant une pièce tout en bloquant temporairement la grande diagonale noire. C'est le coup de développement le plus naturel, sans rien à craindre au sujet du pion déjà gagné en b5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, con tốt b của Đen đã mất từ nước đầu tiên, và chưa có gì đòi lại được nó. Cái Đen có để bù lại chỉ là tượng b7 trên đường chéo dài, nhưng đường chéo ấy hiện bị chính mã f3 của Trắng chắn lại, nên chưa phải mối đe dọa cụ thể nào.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, Black's b-pawn lost on the very first move, and nothing has won it back yet. What Black has to show for it is only the bishop on the long diagonal, but that diagonal is currently blocked by White's own f3 knight, so it is not yet a concrete threat.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus bien réel, le pion b des Noirs perdu dès le tout premier coup, et rien ne l'a encore récupéré. Ce que les Noirs ont à montrer pour cela n'est que le fou sur la grande diagonale, mais cette diagonale est actuellement bloquée par le propre cavalier f3 des Blancs, donc ce n'est pas encore une menace concrète.
+        plan:
+          vi: Trắng chơi e3, d4 và Be2 hay Bd3, hoàn tất phát triển và giữ vững con tốt thừa, sẵn sàng đổi bớt quân khi đường chéo dài của Đen mở ra nguy hiểm. Đen chơi e6, Nf6 và Be7 hay Bd6, O-O, cố mở đường chéo dài bằng d5 hoặc c5 về sau và tìm cách gây sức ép bù lại vật chất đã mất.
+          en: White plays e3, d4 and Be2 or Bd3, completing development and holding the extra pawn firmly, ready to trade pieces once Black's long diagonal opens up dangerously. Black plays e6, Nf6 and Be7 or Bd6, castles, trying to open the long diagonal later with d5 or c5 and looking to build pressure to compensate for the lost material.
+          fr: Les Blancs jouent e3, d4 et Be2 ou Bd3, achevant leur développement et gardant fermement le pion supplémentaire, prêts à échanger des pièces une fois la grande diagonale noire dangereusement ouverte. Les Noirs jouent e6, Nf6 et Be7 ou Bd6, roquent, essayant d'ouvrir la grande diagonale plus tard par d5 ou c5 et cherchant à construire une pression pour compenser le matériel perdu.
+        basis:
+          by: chan
+          at: '2026-09-18'

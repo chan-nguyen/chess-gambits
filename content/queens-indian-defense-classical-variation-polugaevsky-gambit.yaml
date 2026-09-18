@@ -1,0 +1,64 @@
+# Queen's Indian Defense: Classical Variation, Polugaevsky Gambit. Frozen defining line
+# 1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.d5 exd5 8.Nh4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated.
+id: queens-indian-defense-classical-variation-polugaevsky-gambit
+name: "Queen's Indian Defense: Classical Variation, Polugaevsky Gambit"
+eco: E17
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, e6, Nf3, b6, g3, Bb7, Bg2, Be7, O-O, O-O, d5, exd5, Nh4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply takes the second pawn with dxc4, and after Bxb7 White has won
+      back a whole minor piece for one pawn — a real material edge, but by no means a proof
+      that the whole gambit is objectively sound. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 8.Nh4, mã Trắng nhắm vào con tốt d5 mà Đen vừa ăn được, nhưng chưa đòi lại ngay. Đen được mời tiếp tục ăn thêm ở c4, và cái bẫy nằm ở đường chéo a8-h1 hiện đang bỏ ngỏ cho tượng g2 của Trắng.
+    en: After 8.Nh4, the White knight eyes the d5 pawn Black has just won, without recapturing it yet. Black is invited to grab a second pawn on c4, and the trap lies in the a8-h1 diagonal now left open for White's own bishop on g2.
+    fr: Après 8.Nh4, le cavalier blanc vise le pion d5 que les Noirs viennent de gagner, sans le reprendre tout de suite. Les Noirs sont invités à saisir un second pion en c4, et le piège tient à la diagonale a8-h1 désormais ouverte pour le propre fou blanc en g2.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tiếp con tốt c4. Các nước khác như Nc6 hay c6 giữ con tốt d5 đã ăn được ở đó và không mở đường chéo dài cho tượng g2 tấn công tượng b7, nên phần lớn trường hợp cụ thể ấy được gộp vào đây thay vì phân tích riêng.
+      en: Black does not grab the c4 pawn as well. Anything else, such as Nc6 or c6, keeps the already-won d5 pawn where it is and does not open the long diagonal for the g2 bishop to hit the b7 bishop, so those specific cases are folded in here rather than analysed separately.
+      fr: Les Noirs ne saisissent pas aussi le pion c4. Tout le reste, comme Nc6 ou c6, garde le pion d5 déjà gagné où il est et n'ouvre pas la grande diagonale pour que le fou g2 attaque le fou b7, donc ces cas précis sont regroupés ici plutôt qu'analysés séparément.
+  children:
+    - ply: dxc4
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Đen ăn thêm con tốt c4, có vẻ như đang dẫn trước hai tốt sạch. Nhưng nước đi này rời khỏi ô d5, mở toang đường chéo a8-h1 mà tượng b7 và tượng g2 của Trắng cùng nằm trên đó, và đến lượt Trắng đi trước.
+        en: Black grabs the c4 pawn as well, seemingly two clean pawns ahead. But this move vacates d5, throwing open the a8-h1 diagonal that both the b7 bishop and White's own g2 bishop sit on, with White to move.
+        fr: Les Noirs saisissent aussi le pion c4, apparemment deux pions nets devant. Mais ce coup libère d5, ouvrant en grand la diagonale a8-h1 sur laquelle se trouvent à la fois le fou b7 et le propre fou g2 des Blancs, les Blancs ayant le trait.
+      children:
+        - ply: Bxb7
+          annotation:
+            vi: Tượng g2 ăn thẳng tượng b7 dọc đường chéo dài vừa được mở ra. Đây là nước duy nhất khai thác đúng điểm yếu mà Đen vừa để hở, đổi một tượng lấy một tượng nhưng đồng thời đe dọa ăn luôn xe a8.
+            en: The g2 bishop takes the b7 bishop straight down the long diagonal that has just opened. This is the one move that exploits exactly the weakness Black has left, trading bishop for bishop while also threatening to win the a8 rook.
+            fr: Le fou g2 prend directement le fou b7 le long de la grande diagonale qui vient de s'ouvrir. C'est le seul coup qui exploite exactement la faiblesse que les Noirs viennent de laisser, échangeant fou contre fou tout en menaçant de gagner la tour a8.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Trắng còn hai tượng, Đen chỉ còn một. Trắng vừa đổi tượng g2 lấy tượng b7 và đồng thời đang đe dọa ăn xe a8 dọc đường chéo dài đó, nên trên thực tế Trắng hơn hẳn một quân nhẹ đổi lấy một tốt duy nhất mà Đen còn giữ được từ hai con tốt đã ăn.
+              en: Count the minor pieces and White still has two bishops, Black only one. White has just traded the g2 bishop for the b7 bishop while also threatening the a8 rook along that same long diagonal, so in effect White is up a clean minor piece for the single pawn Black still holds out of the two it grabbed.
+              fr: Comptez les pièces mineures, les Blancs ont encore deux fous, les Noirs un seul. Les Blancs viennent d'échanger le fou g2 contre le fou b7 tout en menaçant la tour a8 le long de cette même grande diagonale, si bien qu'en pratique les Blancs ont une pièce mineure de plus pour le seul pion que les Noirs conservent des deux qu'ils avaient saisis.
+            plan:
+              vi: Trắng chơi Bxa8 ăn luôn xe nếu Đen không kịp cứu, hoặc Nxc4 dọn nốt con tốt còn lại, giữ vững ưu thế quân đã giành được. Đen chơi Qc8 hay Nc6 cố cứu vãn tình hình và tranh thủ con tốt c4 còn giữ được để bù đắp phần nào cho quân đã mất.
+              en: White plays Bxa8 to win the rook outright if Black cannot save it in time, or Nxc4 to mop up the remaining pawn, holding onto the material edge already won. Black plays Qc8 or Nc6 trying to salvage the situation and make the most of the c4 pawn still held to offset some of the lost material.
+              fr: Les Blancs jouent Bxa8 pour gagner directement la tour si les Noirs ne peuvent la sauver à temps, ou Nxc4 pour ramasser le pion restant, conservant l'avantage matériel déjà acquis. Les Noirs jouent Qc8 ou Nc6 en essayant de sauver la situation et de tirer parti du pion c4 encore conservé pour compenser un peu le matériel perdu.
+            basis:
+              by: chan
+              at: '2026-09-18'

@@ -139,43 +139,47 @@ describe('export-pgn (AC 2)', () => {
     expect(result.status).toBe(1)
     expect(result.stderr).toContain(
       'Known ids: alekhine-defense-krejcik-variation-krejcik-gambit, ' +
-        'benko-gambit, benko-gambit-accepted, ' +
-        'benko-gambit-declined-bishop-attack, benko-gambit-fianchetto-variation, ' +
-        'benoni-defense-benoni-gambit-accepted, bird-opening-froms-gambit, ' +
-        'bishops-opening-calabrese-countergambit, blackmar-diemer-gambit, ' +
-        'blackmar-diemer-gambit-accepted, ' +
-        'blackmar-diemer-gambit-declined-brombacher-countergambit, ' +
-        'blumenfeld-countergambit, borg-defense-borg-gambit, ' +
-        'caro-kann-defense-labahn-attack-double-gambit, ' +
-        'center-game-halasz-mcdonnell-gambit, damiano-defence-refutation, ' +
-        'danish-gambit, danish-gambit-accepted, dutch-defense-krejcik-gambit, ' +
-        'elephant-gambit, elephant-trap, english-opening-jaenisch-gambit, ' +
-        'englund-gambit, englund-gambit-declined, englund-gambit-trap, ' +
-        'fishing-pole-trap, four-knights-game-halloween-gambit, ' +
+        'amar-opening-paris-gambit-gent-gambit, barnes-opening-gedult-gambit, benko-gambit, ' +
+        'benko-gambit-accepted, benko-gambit-declined-bishop-attack, ' +
+        'benko-gambit-fianchetto-variation, benoni-defense-benoni-gambit-accepted, ' +
+        'bird-opening-froms-gambit, bishops-opening-calabrese-countergambit, blackmar-diemer-gambit, ' +
+        'blackmar-diemer-gambit-accepted, blackmar-diemer-gambit-declined-brombacher-countergambit, ' +
+        'blumenfeld-countergambit, blumenfeld-countergambit-accepted, borg-defense-borg-gambit, ' +
+        'caro-kann-defense-labahn-attack-double-gambit, carr-defense-zilbermints-gambit, ' +
+        'catalan-opening-hungarian-gambit, center-game-halasz-mcdonnell-gambit, ' +
+        'damiano-defence-refutation, danish-gambit, danish-gambit-accepted, ' +
+        'danish-gambit-declined-sorensen-defense, duras-gambit, dutch-defense-krejcik-gambit, ' +
+        'elephant-gambit, elephant-trap, english-defense-eastbourne-gambit, ' +
+        'english-opening-jaenisch-gambit, englund-gambit, englund-gambit-declined, ' +
+        'englund-gambit-trap, fishing-pole-trap, four-knights-game-halloween-gambit, ' +
         'french-defense-banzai-leong-gambit, grob-opening-alessi-gambit, ' +
-        'halosar-trap, hungarian-opening-van-kuijk-gambit, ' +
-        'indian-defense-budapest-gambit, ' +
-        'indian-defense-gibbins-weidenhagen-gambit, ' +
+        'grunfeld-defense-gibbon-gambit, halosar-trap, horwitz-defense-zilbermints-gambit, ' +
+        'hungarian-opening-van-kuijk-gambit, indian-defense-budapest-gambit, ' +
+        'indian-defense-gibbins-weidenhagen-gambit, irish-gambit, ' +
         'italian-game-blackburne-kostic-gambit, italian-game-evans-gambit, ' +
-        'kieninger-trap, kings-gambit, kings-gambit-accepted, ' +
-        'kings-gambit-declined-classical-variation, ' +
-        'kings-indian-defense-samisch-variation-samisch-gambit, ' +
-        'kings-pawn-game-bavarian-gambit, lasker-trap, latvian-gambit, ' +
+        'kadas-opening-schneider-gambit, kieninger-trap, kings-gambit, kings-gambit-accepted, ' +
+        'kings-gambit-declined-classical-variation, kings-indian-attack-omega-delta-gambit, ' +
+        'kings-indian-defense-samisch-variation-samisch-gambit, kings-pawn-game-bavarian-gambit, ' +
+        'kings-pawn-opening-van-hooydoon-gambit, lasker-trap, latvian-gambit, ' +
         'latvian-gambit-accepted, legals-mate, ' +
+        'lion-defense-anti-philidor-lions-cave-lion-claw-gambit, ' +
         'modern-defense-lizard-defense-pirc-diemer-gambit, mortimer-trap, ' +
-        'nimzo-indian-defense-dilworth-gambit, ' +
-        'nimzowitsch-defense-wheeler-gambit, noahs-ark-trap, ' +
+        'nimzo-indian-defense-dilworth-gambit, nimzo-larsen-attack-norfolk-gambit, ' +
+        'nimzowitsch-defense-wheeler-gambit, noahs-ark-trap, old-indian-defense-aged-gibbon-gambit, ' +
         'owen-defense-naselwaus-gambit, petrovs-defense-stafford-gambit, ' +
         'philidor-defense-lopez-countergambit, polish-opening-birmingham-gambit, ' +
-        'ponziani-opening-ponziani-countergambit, ' +
+        'ponziani-opening-ponziani-countergambit, portuguese-opening-miguel-gambit, ' +
         'queens-gambit-declined-albin-countergambit, ' +
-        'queens-pawn-game-zurich-gambit, reti-opening-zilbermints-gambit, ' +
-        'ruy-lopez-schliemann-defense, scandinavian-defense-zilbermints-gambit, ' +
-        'scotch-game-goring-gambit, scotch-game-scotch-gambit, ' +
-        'semi-slav-defense-marshall-gambit, siberian-trap, ' +
+        'queens-indian-defense-classical-variation-polugaevsky-gambit, ' +
+        'queens-pawn-game-zurich-gambit, rat-defense-english-rat-lisbon-gambit, ' +
+        'reti-opening-zilbermints-gambit, ruy-lopez-schliemann-defense, ' +
+        'scandinavian-defense-zilbermints-gambit, scotch-game-goring-gambit, ' +
+        'scotch-game-scotch-gambit, semi-slav-defense-marshall-gambit, siberian-trap, ' +
         'sicilian-defense-smith-morra-gambit, slav-defense-diemer-gambit, ' +
-        'tarrasch-defense-schara-gambit, van-geet-opening-laroche-gambit, ' +
-        'vienna-gambit-with-max-lange-defense, vienna-game-fyfe-gambit, ' +
+        'tarrasch-defense-schara-gambit, torre-attack-wagner-gambit, ' +
+        'trompowsky-attack-raptor-variation-hergert-gambit, van-geet-opening-laroche-gambit, ' +
+        'vant-kruijs-opening-keoni-hiva-gambit-akahi-variation, ' +
+        'vienna-gambit-with-max-lange-defense, vienna-game-fyfe-gambit, ware-opening-wing-gambit, ' +
         'zukertort-opening-herrstrom-gambit.',
     )
   })
@@ -198,6 +202,8 @@ describe('compile (AC 3)', () => {
     expect(result.status).toBe(0)
     expect([...readdirSync(out)].sort()).toStrictEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit.json',
+      'amar-opening-paris-gambit-gent-gambit.json',
+      'barnes-opening-gedult-gambit.json',
       'benko-gambit-accepted.json',
       'benko-gambit-declined-bishop-attack.json',
       'benko-gambit-fianchetto-variation.json',
@@ -208,16 +214,22 @@ describe('compile (AC 3)', () => {
       'blackmar-diemer-gambit-accepted.json',
       'blackmar-diemer-gambit-declined-brombacher-countergambit.json',
       'blackmar-diemer-gambit.json',
+      'blumenfeld-countergambit-accepted.json',
       'blumenfeld-countergambit.json',
       'borg-defense-borg-gambit.json',
       'caro-kann-defense-labahn-attack-double-gambit.json',
+      'carr-defense-zilbermints-gambit.json',
+      'catalan-opening-hungarian-gambit.json',
       'center-game-halasz-mcdonnell-gambit.json',
       'damiano-defence-refutation.json',
       'danish-gambit-accepted.json',
+      'danish-gambit-declined-sorensen-defense.json',
       'danish-gambit.json',
+      'duras-gambit.json',
       'dutch-defense-krejcik-gambit.json',
       'elephant-gambit.json',
       'elephant-trap.json',
+      'english-defense-eastbourne-gambit.json',
       'english-opening-jaenisch-gambit.json',
       'englund-gambit-declined.json',
       'englund-gambit-trap.json',
@@ -226,34 +238,46 @@ describe('compile (AC 3)', () => {
       'four-knights-game-halloween-gambit.json',
       'french-defense-banzai-leong-gambit.json',
       'grob-opening-alessi-gambit.json',
+      'grunfeld-defense-gibbon-gambit.json',
       'halosar-trap.json',
+      'horwitz-defense-zilbermints-gambit.json',
       'hungarian-opening-van-kuijk-gambit.json',
       'indian-defense-budapest-gambit.json',
       'indian-defense-gibbins-weidenhagen-gambit.json',
+      'irish-gambit.json',
       'italian-game-blackburne-kostic-gambit.json',
       'italian-game-evans-gambit.json',
+      'kadas-opening-schneider-gambit.json',
       'kieninger-trap.json',
       'kings-gambit-accepted.json',
       'kings-gambit-declined-classical-variation.json',
       'kings-gambit.json',
+      'kings-indian-attack-omega-delta-gambit.json',
       'kings-indian-defense-samisch-variation-samisch-gambit.json',
       'kings-pawn-game-bavarian-gambit.json',
+      'kings-pawn-opening-van-hooydoon-gambit.json',
       'lasker-trap.json',
       'latvian-gambit-accepted.json',
       'latvian-gambit.json',
       'legals-mate.json',
+      'lion-defense-anti-philidor-lions-cave-lion-claw-gambit.json',
       'modern-defense-lizard-defense-pirc-diemer-gambit.json',
       'mortimer-trap.json',
       'nimzo-indian-defense-dilworth-gambit.json',
+      'nimzo-larsen-attack-norfolk-gambit.json',
       'nimzowitsch-defense-wheeler-gambit.json',
       'noahs-ark-trap.json',
+      'old-indian-defense-aged-gibbon-gambit.json',
       'owen-defense-naselwaus-gambit.json',
       'petrovs-defense-stafford-gambit.json',
       'philidor-defense-lopez-countergambit.json',
       'polish-opening-birmingham-gambit.json',
       'ponziani-opening-ponziani-countergambit.json',
+      'portuguese-opening-miguel-gambit.json',
       'queens-gambit-declined-albin-countergambit.json',
+      'queens-indian-defense-classical-variation-polugaevsky-gambit.json',
       'queens-pawn-game-zurich-gambit.json',
+      'rat-defense-english-rat-lisbon-gambit.json',
       'reti-opening-zilbermints-gambit.json',
       'ruy-lopez-schliemann-defense.json',
       'scandinavian-defense-zilbermints-gambit.json',
@@ -264,9 +288,13 @@ describe('compile (AC 3)', () => {
       'sicilian-defense-smith-morra-gambit.json',
       'slav-defense-diemer-gambit.json',
       'tarrasch-defense-schara-gambit.json',
+      'torre-attack-wagner-gambit.json',
+      'trompowsky-attack-raptor-variation-hergert-gambit.json',
       'van-geet-opening-laroche-gambit.json',
+      'vant-kruijs-opening-keoni-hiva-gambit-akahi-variation.json',
       'vienna-gambit-with-max-lange-defense.json',
       'vienna-game-fyfe-gambit.json',
+      'ware-opening-wing-gambit.json',
       'zukertort-opening-herrstrom-gambit.json',
     ])
     const json = readFileSync(join(out, 'damiano-defence-refutation.json'), 'utf8')

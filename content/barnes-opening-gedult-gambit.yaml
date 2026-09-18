@@ -1,0 +1,62 @@
+# Barnes Opening: Gedult Gambit. Frozen defining line 1.f3 f5 2.e4 fxe4 3.Nc3, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated.
+id: barnes-opening-gedult-gambit
+name: 'Barnes Opening: Gedult Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [f3, f5, e4, fxe4, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply grabs the second pawn with exf3 and keeps it — White's case is
+      a full tempo of development for each pawn spent, real but not shown to be worth two
+      pawns yet. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã mất tốt e vào tay Đen, Trắng chơi 3.Nc3, phát triển và nhắm vào con tốt e4 mà Đen vừa ăn được, thay vì đòi lại nó ngay lập tức.
+    en: Having already lost the e-pawn to Black, White plays 3.Nc3, developing and eyeing the e4 pawn Black has just won, rather than trying to recapture it right away.
+    fr: Ayant déjà perdu le pion e au profit des Noirs, les Blancs jouent 3.Nc3, développant et visant le pion e4 que les Noirs viennent de gagner, plutôt que de tenter de le reprendre tout de suite.
+  dismissRest:
+    reason:
+      vi: Đen không ăn thêm con tốt f3. Các nước khác như d5 hay Nf6 phát triển bình thường giữ nguyên con tốt e4 đã ăn được và không mở thêm mục tiêu mới nào cho Trắng, nên phần lớn trường hợp cụ thể ấy được gộp vào đây thay vì phân tích riêng.
+      en: Black does not grab the f3 pawn as well. Anything else, such as d5 or the natural developing Nf6, keeps the already-won e4 pawn where it is and opens no further target for White, so those specific cases are folded in here rather than analysed separately.
+      fr: Les Noirs ne saisissent pas aussi le pion f3. Tout le reste, comme d5 ou le développement naturel Nf6, garde le pion e4 déjà gagné où il est et n'ouvre aucune cible supplémentaire pour les Blancs, donc ces cas précis sont regroupés ici plutôt qu'analysés séparément.
+  children:
+    - ply: exf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thêm con tốt f3, có vẻ như đang dẫn trước hai tốt sạch. Con tốt này không được quân Trắng nào đỡ vào lúc này nên đây đơn giản là một tốt miễn phí nữa.
+        en: Black grabs the f3 pawn as well, seemingly two clean pawns ahead. That pawn is defended by nothing of White's right now, so this is simply another free pawn.
+        fr: Les Noirs saisissent aussi le pion f3, apparemment deux pions nets devant. Ce pion n'est défendu par rien du côté blanc pour l'instant, il s'agit donc simplement d'un autre pion gratuit.
+      children:
+        - ply: Nxf3
+          annotation:
+            vi: Mã từ g1 ăn lại con tốt f3, vừa lấy lại vật chất vừa hoàn tất phát triển quân mã thứ hai. Đây là cách rõ ràng nhất để đưa vật chất trở lại mức chỉ còn kém một tốt.
+            en: The knight from g1 recaptures the f3 pawn, both winning back material and completing the development of the second knight. This is the most direct way to bring material back to only one pawn behind.
+            fr: Le cavalier de g1 reprend le pion f3, regagnant du matériel tout en achevant le développement du second cavalier. C'est la façon la plus directe de ramener le matériel à un seul pion de retard.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen bảy, Trắng sáu. Đen còn hơn đúng một tốt sạch sau khi Trắng vừa ăn lại một trong hai tốt đã mất. Cái Trắng có để bù lại là cả hai mã đã phát triển xong trong khi Đen chưa đưa ra được quân nào, một khoảng cách phát triển đáng kể so với chỉ một tốt.
+              en: Count the pawns and it is seven for Black, six for White. Black is still a clean pawn up after White has just won back one of the two lost pawns. What White has to show for it is both knights fully developed while Black has not brought out a single piece, a meaningful development gap against only one pawn.
+              fr: Comptez les pions, sept pour les Noirs, six pour les Blancs. Les Noirs ont encore un pion net de plus après que les Blancs viennent de regagner l'un des deux pions perdus. Ce que les Blancs ont à montrer pour cela, ce sont les deux cavaliers pleinement développés alors que les Noirs n'ont sorti aucune pièce, un écart de développement notable pour un seul pion.
+            plan:
+              vi: Trắng chơi d4, Bc4 hay Bd3 và O-O, tận dụng lợi thế phát triển để gây sức ép nhanh trước khi Đen kịp bắt kịp. Đen chơi d5 hoặc Nf6, e6 và Be7, cố bắt kịp phát triển trong khi vẫn giữ vững con tốt thừa đã có.
+              en: White plays d4, Bc4 or Bd3 and O-O, using the development lead to build quick pressure before Black can catch up. Black plays d5 or Nf6, e6 and Be7, trying to catch up in development while still holding the extra pawn already won.
+              fr: Les Blancs jouent d4, Bc4 ou Bd3 et O-O, utilisant l'avance de développement pour construire rapidement une pression avant que les Noirs ne puissent rattraper leur retard. Les Noirs jouent d5 ou Nf6, e6 et Be7, essayant de rattraper leur développement tout en gardant le pion supplémentaire déjà gagné.
+            basis:
+              by: chan
+              at: '2026-09-18'

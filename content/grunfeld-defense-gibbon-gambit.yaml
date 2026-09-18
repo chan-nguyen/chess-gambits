@@ -1,0 +1,56 @@
+# Grünfeld Defense: Gibbon Gambit. Frozen defining line 1.d4 Nf6 2.c4 g6 3.Nc3 d5 4.g4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated.
+id: grunfeld-defense-gibbon-gambit
+name: 'Grünfeld Defense: Gibbon Gambit'
+eco: D80
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, g6, Nc3, d5, g4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply takes the pawn with Nxg4 and it stays taken — White's case is
+      the extra space and the half-open h-file, which is real but has not been shown to be
+      worth a whole pawn this early. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì cxd5 theo lý thuyết Grunfeld thông thường, Trắng chơi 4.g4, một con tốt không được quân nào đỡ, mời mã f6 hoặc tượng c8 ăn nó để đổi lấy nhịp độ và không gian sau này.
+    en: Instead of the usual Grünfeld 4.cxd5, White plays 4.g4, an undefended pawn, offering it to the f6 knight or the c8 bishop in exchange for tempo and space later on.
+    fr: Au lieu du 4.cxd5 habituel du Grünfeld, les Blancs jouent 4.g4, un pion non défendu, l'offrant au cavalier f6 ou au fou c8 en échange de temps et d'espace par la suite.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt g4. Các nước khác như dxc4 theo đúng ý tưởng Grunfeld hay Bg7 phát triển bình thường để nguyên con tốt g4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the g4 pawn. Anything else, such as the thematic Grünfeld dxc4 or simply developing with Bg7, leaves the g4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion g4. Tout le reste, comme le thématique dxc4 du Grünfeld ou le développement normal par Bg7, laisse le pion g4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: Nxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt bằng mã, quân phát triển sẵn có gần đó nhất. Con tốt g4 không được quân Trắng nào đỡ nên đây đơn giản là ăn một tốt miễn phí.
+        en: Black takes the pawn with the knight, the developed piece closest to it. The g4 pawn is defended by nothing of White's, so this is simply picking up a free pawn.
+        fr: Les Noirs prennent le pion avec le cavalier, la pièce développée la plus proche. Le pion g4 n'est défendu par rien du côté blanc, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, con tốt g đã mất ngay từ nước 4, và chưa có gì đòi lại được nó. Cái Trắng có để bù lại chỉ là cột h nửa mở và không gian cánh vua, nhưng vua Đen còn chưa nhập thành nên chưa có mục tiêu cụ thể nào trên cột đó.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, the g-pawn lost as early as move four, and nothing has won it back yet. What White has to show for it is only the half-open h-file and some kingside space, but Black's king has not castled yet, so there is no concrete target on that file.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion de plus bien réel, le pion g perdu dès le quatrième coup, et rien ne l'a encore récupéré. Ce que les Blancs ont à montrer pour cela n'est que la colonne h semi-ouverte et un peu d'espace à l'aile roi, mais le roi noir n'a pas encore roqué, donc il n'y a pas encore de cible concrète sur cette colonne.
+        plan:
+          vi: Trắng chơi Bg2 hoặc h4-h5 tiếp tục đẩy tốt cánh vua, cố dùng cột h nửa mở và không gian để bù cho con tốt đã mất, tránh cho Đen nhập thành an toàn. Đen chơi Nf6 lùi mã về nơi an toàn hoặc giữ mã ở g4 thêm một nhịp, rồi Bg7, O-O và c5, giữ chắc con tốt thừa và mở cuộc chơi ở trung tâm.
+          en: White plays Bg2 or pushes on with h4-h5 on the kingside, trying to use the half-open h-file and the space to compensate for the lost pawn, and to stop Black castling comfortably. Black plays Nf6 to retreat the knight to safety, or holds it on g4 for one more tempo, then Bg7, O-O and c5, holding the extra pawn firmly and opening the game in the centre.
+          fr: Les Blancs jouent Bg2 ou poussent par h4-h5 à l'aile roi, en essayant d'utiliser la colonne h semi-ouverte et l'espace pour compenser le pion perdu, et d'empêcher les Noirs de roquer confortablement. Les Noirs jouent Nf6 pour ramener le cavalier en sécurité, ou le maintiennent en g4 un temps de plus, puis Bg7, O-O et c5, gardant fermement le pion supplémentaire et ouvrant la partie au centre.
+        basis:
+          by: chan
+          at: '2026-09-18'

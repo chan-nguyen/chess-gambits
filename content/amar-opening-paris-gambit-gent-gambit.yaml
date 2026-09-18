@@ -1,0 +1,58 @@
+# Amar Opening: Paris Gambit, Gent Gambit. Frozen defining line 1.Nh3 d5 2.g3 e5 3.f4 Bxh3
+# 4.Bxh3 exf4 5.O-O fxg3 6.hxg3, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before
+# being annotated.
+id: amar-opening-paris-gambit-gent-gambit
+name: 'Amar Opening: Paris Gambit, Gent Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [Nh3, d5, g3, e5, f4, Bxh3, Bxh3, exf4, O-O, fxg3, hxg3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply develops with Nc6 and keeps the extra pawn from the whole
+      sequence of trades — White's case is the bishop pair and the open h-file in front of a
+      castled king, real but not shown to be worth a full pawn yet. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau một loạt đổi quân ở cánh vua, Trắng vừa ăn lại bằng 6.hxg3, mở cột h ngay trước vua đã nhập thành. Đến lượt Đen, vật chất hiện đang nghiêng nhẹ về phía Đen sau toàn bộ các cuộc đổi chác đó.
+    en: After a whole sequence of kingside trades, White has just recaptured with 6.hxg3, opening the h-file right in front of the already-castled king. With Black to move, material currently leans slightly Black's way after all that exchanging.
+    fr: Après toute une série d'échanges à l'aile roi, les Blancs viennent de reprendre par 6.hxg3, ouvrant la colonne h juste devant le roi déjà roqué. Au trait, les Noirs ont un léger avantage matériel après tous ces échanges.
+  dismissRest:
+    reason:
+      vi: Đen không phát triển bằng Nc6. Các nước khác như d4 đẩy tốt hay Nf6 phát triển theo cách khác cũng giữ vững con tốt thừa và không thay đổi đáng kể bức tranh vật chất, nên phần lớn trường hợp cụ thể ấy được gộp vào đây thay vì phân tích riêng.
+      en: Black does not develop with Nc6. Anything else, such as pushing with d4 or developing differently with Nf6, also holds the extra pawn firmly and does not meaningfully change the material picture, so those specific cases are folded in here rather than analysed separately.
+      fr: Les Noirs ne développent pas par Nc6. Tout le reste, comme la poussée d4 ou un développement différent par Nf6, garde aussi fermement le pion supplémentaire et ne change pas sensiblement le tableau matériel, donc ces cas précis sont regroupés ici plutôt qu'analysés séparément.
+  children:
+    - ply: Nc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã, quân bình thường nhất trong thế cờ này, giữ nguyên con tốt thừa đã có và không cho Trắng thêm cơ hội nào để lấy lại vật chất ngay lập tức.
+        en: Black develops the knight, the most ordinary move in this position, keeping the extra pawn already in hand and giving White no immediate chance to win material back.
+        fr: Les Noirs développent le cavalier, le coup le plus ordinaire dans cette position, gardant le pion supplémentaire déjà en main et ne laissant aux Blancs aucune chance immédiate de regagner du matériel.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen bảy, Trắng sáu, sau toàn bộ các cuộc đổi chác ở cánh vua. Đen hơn đúng một tốt sạch. Cái Trắng có để bù lại là cặp tượng còn nguyên và cột h nửa mở ngay trước vua Đen chưa nhập thành, nhưng chưa có mục tiêu cụ thể nào trên cột đó lúc này.
+          en: Count the pawns and it is seven for Black, six for White, after the whole sequence of kingside trades. Black is a clean pawn up. What White has to show for it is the intact bishop pair and the half-open h-file, though Black's king has not castled there, so there is no concrete target on that file yet.
+          fr: Comptez les pions, sept pour les Noirs, six pour les Blancs, après toute la série d'échanges à l'aile roi. Les Noirs ont un pion de plus bien réel. Ce que les Blancs ont à montrer pour cela, c'est la paire de fous intacte et la colonne h semi-ouverte, mais le roi noir n'y a pas roqué, donc il n'y a pas encore de cible concrète sur cette colonne.
+        plan:
+          vi: Trắng chơi d4, Nc3 và Qd3 hay Rxh7 nếu có cơ hội, cố dùng cặp tượng và cột h để tạo sức ép bù cho con tốt đã mất. Đen chơi Nf6, Be7 và O-O-O hay giữ vua ở giữa thêm một lúc để tránh cột h, giữ chắc con tốt thừa và hoàn tất phát triển.
+          en: White plays d4, Nc3 and Qd3 or Rxh7 if the chance comes, trying to use the bishop pair and the h-file to build pressure to compensate for the lost pawn. Black plays Nf6, Be7 and O-O-O, or keeps the king in the centre a while longer to stay off the h-file, holding the extra pawn firmly and completing development.
+          fr: Les Blancs jouent d4, Nc3 et Qd3 ou Rxh7 si l'occasion se présente, en essayant d'utiliser la paire de fous et la colonne h pour construire une pression compensant le pion perdu. Les Noirs jouent Nf6, Be7 et O-O-O, ou gardent le roi au centre un moment de plus pour éviter la colonne h, gardant fermement le pion supplémentaire et achevant leur développement.
+        basis:
+          by: chan
+          at: '2026-09-18'

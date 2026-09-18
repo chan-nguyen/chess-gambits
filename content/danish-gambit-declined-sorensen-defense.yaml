@@ -1,0 +1,82 @@
+# Danish Gambit Declined: Sörensen Defense. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3 d5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+id: danish-gambit-declined-sorensen-defense
+name: 'Danish Gambit Declined: Sörensen Defense'
+eco: C21
+category: gambit
+side: black
+definingLine: [e4, e5, d4, exd4, c3, d5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the standard verdict on this defence: giving the extra pawn straight
+      back with 4.exd5 Qxd5 5.cxd4 leaves Black with a perfectly sound isolated-pawn position
+      against White, having sidestepped the sharper accepted lines entirely. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn thêm tốt c3 theo đúng ý đồ của Danish Gambit, Đen chơi 3...d5, đánh trả ngay ở trung tâm và mời đổi hậu qua lại con tốt d4 đang giữ.
+    en: Instead of grabbing the c3 pawn as the Danish Gambit intends, Black plays 3...d5, striking back in the centre at once and offering to trade down the d4 pawn Black is holding.
+    fr: Au lieu de saisir le pion c3 comme le prévoit le Gambit Danois, les Noirs jouent 3...d5, ripostant aussitôt au centre et proposant d'échanger le pion d4 qu'ils conservent.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn lại bằng tốt e. Các nước khác như Nf3 hay cxd4 đổi ngay không đi qua chuỗi đổi hậu này, nên phần lớn trường hợp cụ thể ấy được gộp vào đây thay vì phân tích riêng.
+      en: White does not recapture with the e-pawn. Anything else, such as Nf3 or trading immediately with cxd4, does not go through this queen-trading sequence, so those specific cases are folded in here rather than analysed separately.
+      fr: Les Blancs ne reprennent pas avec le pion e. Tout le reste, comme Nf3 ou l'échange immédiat par cxd4, ne passe pas par cette séquence d'échange de dames, donc ces cas précis sont regroupés ici plutôt qu'analysés séparément.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt d5 bằng tốt e, quân duy nhất có thể ăn tại đó. Hậu Đen giờ là quân duy nhất ăn lại được, nên nước đi tiếp theo gần như bắt buộc.
+        en: White takes the d5 pawn with the e-pawn, the only piece that can capture there. Black's queen is now the only piece that can recapture, so the next move is close to forced.
+        fr: Les Blancs prennent le pion d5 avec le pion e, la seule pièce pouvant capturer là. La dame noire est désormais la seule pièce capable de reprendre, le coup suivant est donc quasiment forcé.
+      children:
+        - ply: Qxd5
+          annotation:
+            vi: Hậu ăn lại con tốt, quân duy nhất còn có thể ăn tại d5. Hậu ra sớm nhưng chưa gặp nguy hiểm cụ thể nào, vì Trắng còn chưa phát triển mã để đuổi nó.
+            en: The queen recaptures the pawn, the only piece left that can capture on d5. The queen comes out early but faces no concrete danger yet, since White has not developed a knight to chase it.
+            fr: La dame reprend le pion, la seule pièce restante pouvant capturer en d5. La dame sort tôt mais ne fait face à aucun danger concret pour l'instant, les Blancs n'ayant pas développé de cavalier pour la chasser.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn lại con tốt d4 ngay. Các nước khác như Nf3 hay Bc4 phát triển bình thường để nguyên con tốt d4 mà Đen đã giữ từ nước 2 trên bàn cờ, nghĩa là vật chất vẫn chưa trở lại cân bằng.
+              en: White does not recapture the d4 pawn at once. Anything else, such as the natural developing Nf3 or Bc4, leaves the d4 pawn Black has held since move two sitting on the board, meaning material has still not returned to level.
+              fr: Les Blancs ne reprennent pas aussitôt le pion d4. Tout le reste, comme le développement naturel Nf3 ou Bc4, laisse le pion d4 que les Noirs conservent depuis le deuxième coup sur l'échiquier, ce qui veut dire que le matériel n'est toujours pas revenu à l'équilibre.
+          children:
+            - ply: cxd4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại con tốt d4 mà Đen đã giữ từ nước 2, đưa vật chất trở lại cân bằng. Con tốt này giờ đứng đơn độc ở d4, không còn tốt c hay e nào bên cạnh để bảo vệ.
+                en: White recaptures the d4 pawn that Black had held since move two, bringing material back to level. That pawn now stands alone on d4, with no c- or e-pawn left beside it to shield it.
+                fr: Les Blancs reprennent le pion d4 que les Noirs conservaient depuis le deuxième coup, ramenant le matériel à l'équilibre. Ce pion se retrouve désormais seul en d4, sans pion c ou e à ses côtés pour le protéger.
+              children:
+                - ply: Nf6
+                  annotation:
+                    vi: Đen phát triển mã thay vì ăn tốt d4 ngay, dồn hậu vào việc phát triển các quân còn lại trước khi tính đến việc ăn con tốt cô lập đó.
+                    en: Black develops the knight instead of grabbing the d4 pawn at once, focusing on bringing out the remaining pieces before worrying about winning that isolated pawn.
+                    fr: Les Noirs développent le cavalier au lieu de saisir aussitôt le pion d4, se concentrant sur la sortie des pièces restantes avant de songer à gagner ce pion isolé.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm tốt thì mỗi bên còn đúng sáu quân, vật chất đã cân bằng hoàn toàn sau chuỗi đổi chác ở trung tâm. Con tốt d4 của Trắng đứng cô lập, không còn tốt c hay e nào bên cạnh để bảo vệ, một điểm yếu lâu dài trên bàn cờ dù chưa bị tấn công ngay lập tức.
+                      en: Count the pawns and each side has exactly six, material is fully level after the central trades. White's d4 pawn stands isolated, with no c- or e-pawn left beside it to shield it, a lasting weakness on the board even though it is not under immediate attack.
+                      fr: Comptez les pions, chaque camp en a exactement six, le matériel est totalement équilibré après les échanges centraux. Le pion d4 des Blancs se retrouve isolé, sans pion c ou e à ses côtés pour le protéger, une faiblesse durable sur l'échiquier même s'il n'est pas encore attaqué directement.
+                    plan:
+                      vi: Trắng chơi Nf3, Bc4 hay Bd3 và O-O, cố dùng hoạt động của các quân để bù cho điểm yếu ở d4. Đen chơi Be7 hay Bb4+, O-O và Nc6, dồn quân gây sức ép lên con tốt d4 cô lập đó về lâu dài.
+                      en: White plays Nf3, Bc4 or Bd3 and O-O, trying to use piece activity to compensate for the weakness on d4. Black plays Be7 or Bb4+, O-O and Nc6, building long-term pressure on that isolated d4 pawn.
+                      fr: Les Blancs jouent Nf3, Bc4 ou Bd3 et O-O, en essayant d'utiliser l'activité des pièces pour compenser la faiblesse en d4. Les Noirs jouent Be7 ou Bb4+, O-O et Nc6, construisant une pression à long terme sur ce pion d4 isolé.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
