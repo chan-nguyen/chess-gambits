@@ -200,10 +200,15 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       test.setTimeout(120_000)
 
       /*
-       * The default catalogue view is the taught tier, and a narrowed view under the
-       * auto-expand limit opens its families — so an entry this ticket taught is one click
-       * from `/gambits` with no filtering at all. That is the claim: a visitor who opens
-       * the catalogue can reach this.
+       * The default catalogue view is the taught tier. That alone auto-expands families
+       * only while the taught set as a whole is under `autoExpandLimit` (measured at 100,
+       * `src/components/catalogue/filter.ts`) — a ceiling the taught tier itself crossed
+       * once #110 landed, and will cross again as more entries are taught, so relying on it
+       * here would make this test's passing depend on how much content happens to exist
+       * rather than on whether the entry is reachable. Typing the entry's own name into the
+       * search box narrows the match count to (at most) a handful, which is always under
+       * the limit regardless of how large the taught tier grows, and is also a more
+       * realistic way for a visitor to find one specific gambit than scrolling every family.
        */
       await page.goto(cataloguePath)
       /*
@@ -214,6 +219,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
        * empty list is a payload that did not arrive, not a catalogue with nothing in it.
        */
       await expect(page.getByRole('main').getByRole('status')).toContainText(/Đang hiện [1-9]/)
+
+      await page.getByRole('searchbox').fill(entry.name)
 
       const card = page
         .getByRole('main')
