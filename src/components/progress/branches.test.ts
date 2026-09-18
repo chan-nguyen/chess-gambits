@@ -17,6 +17,7 @@ const MATE: CompiledOutcome = {
   kind: 'mate',
   inMoves: 3,
   sequence: ['Nd5#'],
+  sequenceFens: [FEN],
   provedBy: 'modelled-net',
   basis: { basis: 'proved', by: 'certificate', certificate: 'fixture.mate.json' },
 }

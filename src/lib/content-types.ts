@@ -53,6 +53,13 @@ export type CompiledOutcome =
       readonly kind: 'mate'
       readonly inMoves: number
       readonly sequence: readonly string[]
+      /**
+       * The FEN after each ply of `sequence`, same length and same order — so the browser
+       * can draw every position the line passes through, ending on the actual checkmated
+       * one, without holding a chess engine of its own (ADR-0003). Computed at build time
+       * by `tools/content/compile.ts`, the same way `prelude` is.
+       */
+      readonly sequenceFens: readonly string[]
       readonly provedBy: 'search' | 'modelled-net'
       /**
        * Narrow on purpose: a mate that arrived over the wire carrying a *judgement* is not a

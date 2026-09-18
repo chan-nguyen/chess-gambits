@@ -393,8 +393,39 @@ const outcomeReachesTier = (outcome: Outcome): { mapped: boolean; taught: boolea
  * never carried as a warning: the leaf goes back to the author, who writes what is actually
  * true about the position.
  */
+/**
+ * The FEN after each ply of a proved mate sequence, played from the leaf's own position.
+ *
+ * `sequence` was already replayed once, inside `verifyCertificate`, to prove the mate
+ * exists. Replaying it here is a second walk from the same start rather than a second
+ * chance to disagree with the first — it is the same technique `board.ts`'s `replay`
+ * already uses for an entry's prelude, applied to the leaf's line instead of the game's
+ * opening. The browser draws these positions without ever holding a chess engine of its own
+ * (ADR-0003); `chess.js` runs here, at build time, and nowhere near the bundle.
+ *
+ * Every ply in `sequence` has already been proved legal, so a replay failure here means the
+ * prover and the verifier disagree about the same line — a bug in this codebase, not in the
+ * content — and it is thrown rather than silently reported as a content issue.
+ */
+const sequenceFens = (leaf: Position, sequence: readonly string[]): readonly string[] => {
+  const fens: string[] = []
+  let position = leaf
+  for (const san of sequence) {
+    const played = applyPly(position, san)
+    if (!played.ok) {
+      throw new Error(
+        `A proved mate sequence replayed \`${san}\` from \`${position.fen}\` and it was not legal. The certificate verifier proved this line, so this is a bug in the replay, not in the content.`,
+      )
+    }
+    position = played.position
+    fens.push(position.fen)
+  }
+  return fens
+}
+
 const proveTrap = (
   walk: Walk,
+  position: Position,
   sanPath: readonly string[],
   dataPath: readonly (string | number)[],
   kind: NodeKind,
@@ -496,6 +527,7 @@ const proveTrap = (
     kind: 'mate',
     inMoves: proof.inMoves,
     sequence: proof.sequence,
+    sequenceFens: sequenceFens(position, proof.sequence),
     // A net with no defender node is a mate the attacker delivers at once: there is nothing
     // modelled, and a one-ply exhaustive search is the whole proof.
     provedBy: proof.defenderNodes === 0 ? 'search' : 'modelled-net',
@@ -934,7 +966,7 @@ const walkNode = (
     node.outcome === undefined
       ? undefined
       : node.outcome.type === 'trap'
-        ? proveTrap(walk, sanPath, dataPath, kind, throughBlunder)
+        ? proveTrap(walk, position, sanPath, dataPath, kind, throughBlunder)
         : toOutcome(walk, counts, node.outcome, [...dataPath, 'outcome'], sanPath)
   if (outcome !== undefined && outcome.kind === 'position') {
     walk.coverage.slots += 2

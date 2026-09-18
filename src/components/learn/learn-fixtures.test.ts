@@ -379,6 +379,9 @@ describe('the replay fails on a claim that is wrong', () => {
     kind: 'mate',
     inMoves,
     sequence,
+    // Not what this suite is about: every case here is wrong for a reason `mateProblems`
+    // finds by replaying `sequence`, and none of them reach a check that reads this field.
+    sequenceFens: sequence.map(() => 'irrelevant'),
     provedBy: 'modelled-net',
     basis: {
       basis: 'proved',

@@ -72,6 +72,18 @@ export type ForcedMate = {
    */
   readonly sequence: readonly string[]
   /**
+   * The FEN reached after each ply of `sequence`, aligned index for index — so
+   * `sequenceFens[sequenceFens.length - 1]` is the actual checkmated position.
+   *
+   * The browser has no chess engine (ADR-0003) and `sequence` is bare SAN, which is a
+   * position the wire does not carry and therefore a position the page cannot draw. This is
+   * the same problem `Entry.prelude` already solves for the entry's own opening moves, and
+   * the same fix: replay the line once, at build time, with `chess.js` (a build dependency
+   * that never reaches the browser), and ship the resulting FENs instead of the engine that
+   * produced them.
+   */
+  readonly sequenceFens: readonly string[]
+  /**
    * Which half of the proof carries "mate within N". A net with defender branching is
    * proved by set equality against the legal move list (`modelled-net`); where the attacker
    * mates at once there is no net to model and a one-ply exhaustive search settles it

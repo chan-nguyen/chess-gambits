@@ -218,6 +218,11 @@ export const MATE_ENTRY: CompiledEntry = {
                   // plies for a mate in two. `Bxf7+` has exactly one legal reply, so the net
                   // has a defender node to model and `provedBy` is not `search`.
                   sequence: ['Bxf7+', 'Ke7', 'Nd5#'],
+                  sequenceFens: [
+                    'r2qkbnr/ppp2Bpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R b KQkq - 0 7',
+                    'r2q1bnr/ppp1kBpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R w KQ - 1 8',
+                    'r2q1bnr/ppp1kBpp/2np4/3NN3/4P3/7P/PPPP1PP1/R1BbK2R b KQ - 2 8',
+                  ],
                   provedBy: 'modelled-net',
                   // #5 made every mate outcome carry where its proof came from.
                   // A fixture is not exempt: the point of the field is that no mate
@@ -631,6 +636,11 @@ export const OUTCOMES_ENTRY: CompiledEntry = {
                   kind: 'mate',
                   inMoves: 2,
                   sequence: ['Bxf7+', 'Ke7', 'Nd5#'],
+                  sequenceFens: [
+                    'r2qkbnr/ppp2Bpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R b KQkq - 0 7',
+                    'r2q1bnr/ppp1kBpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R w KQ - 1 8',
+                    'r2q1bnr/ppp1kBpp/2np4/3NN3/4P3/7P/PPPP1PP1/R1BbK2R b KQ - 2 8',
+                  ],
                   provedBy: 'modelled-net',
                   basis: {
                     basis: 'proved',

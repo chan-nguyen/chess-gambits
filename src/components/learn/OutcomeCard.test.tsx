@@ -1,4 +1,4 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { RouterProvider, createMemoryRouter } from 'react-router'
 import { afterEach, describe, expect, it } from 'vitest'
 import assessmentCss from './AssessmentOutcome.css?raw'
@@ -170,7 +170,13 @@ describe('a proved forced mate', () => {
   it('says something else where there was no defence to model', async () => {
     const mate = provedMate()
     await show({
-      outcome: { ...mate, provedBy: 'search', inMoves: 1, sequence: mate.sequence.slice(-1) },
+      outcome: {
+        ...mate,
+        provedBy: 'search',
+        inMoves: 1,
+        sequence: mate.sequence.slice(-1),
+        sequenceFens: mate.sequenceFens.slice(-1),
+      },
     })
 
     expect(screen.getByText(EN.netImmediate)).toBeVisible()
@@ -221,7 +227,13 @@ describe('the mate net', () => {
   it('still draws one board when the line is a single ply', async () => {
     const mate = provedMate()
     const { container } = await show({
-      outcome: { ...mate, provedBy: 'search', inMoves: 1, sequence: mate.sequence.slice(-1) },
+      outcome: {
+        ...mate,
+        provedBy: 'search',
+        inMoves: 1,
+        sequence: mate.sequence.slice(-1),
+        sequenceFens: mate.sequenceFens.slice(-1),
+      },
     })
 
     expect(container.querySelectorAll('.mate-net__ply')).toHaveLength(1)
@@ -232,6 +244,109 @@ describe('the mate net', () => {
     const { container } = await show()
 
     expect(container.querySelector('.mate-net__plies')?.tagName).toBe('OL')
+  })
+})
+
+/**
+ * Issue #121: the board no longer freezes one ply short of the mate it claims. Every check
+ * here reads `aria-current="step"` off the SAN list rather than the board's own markup,
+ * because that is the one place "which frame is on screen" is stated in the DOM without
+ * decoding an SVG position back into a FEN.
+ */
+describe('stepping the board to the real final position', () => {
+  const currentStep = (container: HTMLElement): string | null =>
+    container.querySelector('.mate-net__ply-button[aria-current="step"]')?.textContent ?? null
+
+  it('starts on the leaf, one ply short of the first move — not on the mate itself', async () => {
+    const { container } = await show()
+
+    expect(currentStep(container)).toBeNull()
+    expect(screen.queryByText(EN.mateReached)).toBeNull()
+    expect(screen.getByRole('button', { name: EN.stepPrevious })).toBeDisabled()
+    expect(screen.getByRole('button', { name: EN.stepNext })).toBeEnabled()
+  })
+
+  it('walks the forced line ply by ply, ending on the actual checkmated position', async () => {
+    const { container } = await show()
+    const next = screen.getByRole('button', { name: EN.stepNext })
+
+    fireEvent.click(next)
+    expect(currentStep(container)).toBe('7.Bxf7+')
+    expect(screen.queryByText(EN.mateReached)).toBeNull()
+
+    fireEvent.click(next)
+    expect(currentStep(container)).toBe('7...Ke7')
+    expect(screen.queryByText(EN.mateReached)).toBeNull()
+
+    fireEvent.click(next)
+    expect(currentStep(container)).toBe('8.Nd5#')
+    expect(screen.getByText(EN.mateReached)).toBeVisible()
+    expect(next).toBeDisabled()
+  })
+
+  it('steps back with previous, and the checkmate flag goes with it', async () => {
+    const { container } = await show()
+    const next = screen.getByRole('button', { name: EN.stepNext })
+    const previous = screen.getByRole('button', { name: EN.stepPrevious })
+
+    fireEvent.click(next)
+    fireEvent.click(next)
+    fireEvent.click(next)
+    expect(screen.getByText(EN.mateReached)).toBeVisible()
+
+    fireEvent.click(previous)
+
+    expect(screen.queryByText(EN.mateReached)).toBeNull()
+    expect(currentStep(container)).toBe('7...Ke7')
+  })
+
+  it('jumps straight to a ply by clicking it in the list', async () => {
+    const { container } = await show()
+    const plies = container.querySelectorAll('.mate-net__ply-button')
+    const last = plies[plies.length - 1]
+    if (!(last instanceof HTMLElement)) throw new Error('the fixture has no third ply')
+
+    fireEvent.click(last)
+
+    expect(screen.getByText(EN.mateReached)).toBeVisible()
+  })
+
+  /**
+   * The main board's own arrow keys are wired to the URL (`LearningSurface`), and this
+   * board's are wired to local state — the two must not both react to one press. Firing the
+   * event on `.mate-net` itself, rather than through `window`, is what proves this control
+   * owns it rather than merely also hearing it.
+   */
+  it('steps with the arrow keys, scoped to this control', async () => {
+    const { container } = await show()
+    const widget = container.querySelector('.mate-net')
+    if (widget === null) throw new Error('the mate net did not render')
+
+    fireEvent.keyDown(widget, { key: 'ArrowRight' })
+    expect(currentStep(container)).toBe('7.Bxf7+')
+
+    fireEvent.keyDown(widget, { key: 'ArrowLeft' })
+    expect(currentStep(container)).toBeNull()
+  })
+
+  /** A mate in one: no defender node, so the first and only press reaches checkmate. */
+  it('reaches checkmate in a single press for a mate in one', async () => {
+    const mate = provedMate()
+    await show({
+      outcome: {
+        ...mate,
+        provedBy: 'search',
+        inMoves: 1,
+        sequence: mate.sequence.slice(-1),
+        sequenceFens: mate.sequenceFens.slice(-1),
+      },
+    })
+
+    expect(screen.queryByText(EN.mateReached)).toBeNull()
+
+    fireEvent.click(screen.getByRole('button', { name: EN.stepNext }))
+
+    expect(screen.getByText(EN.mateReached)).toBeVisible()
   })
 })
 

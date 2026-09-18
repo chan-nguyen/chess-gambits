@@ -131,7 +131,7 @@ Attached only to leaves, and exactly one of **three** shapes. Keeping these as d
 one shape with optional fields is the type-level expression of the project's core honesty rule.
 
 **`ForcedMate`** —
-`{ kind: 'mate', inMoves: N, sequence: [...], provedBy: 'search' | 'modelled-net', basis: Proved }`
+`{ kind: 'mate', inMoves: N, sequence: [...], sequenceFens: [...], provedBy: 'search' | 'modelled-net', basis: Proved }`
 
 The opponent is checkmated in `N` **moves** regardless of how they defend. This shape may **never be
 hand-authored**. The author marks a leaf `outcome: { type: trap }` — a bare claim with no move count,
@@ -146,6 +146,12 @@ the legal move list (`modelled-net`), and where the attacker mates at once there
 and a one-ply exhaustive search settles it (`search`). Minimality is established by bounded search in
 both cases. `basis` is the narrow `Proved` provenance and not the full union, so a hand-judged mate is
 not expressible: there is no way to construct the type without naming a certificate.
+
+`sequenceFens` is the FEN after each ply of `sequence`, same length and same order (#121). The
+browser has no chess engine (ADR-0003) and `sequence` is bare SAN, so without it there would be no
+position for the page to draw past the leaf — the same problem `prelude` solves for the entry's own
+opening moves, solved the same way: replayed once with `chess.js` at build time, and shipped as data
+rather than as the engine that produced it.
 
 **`Assessment`** — `{ kind: 'position', evaluation: ..., plan: ..., basis: Judgement }`
 
