@@ -12,6 +12,15 @@
 # at the Qh4 node (ADR-0011): 21 of White's 24 replies there walk into 9...Qh2# because the
 # knight that used to sit on f3 defended h2, and the rook on h8 — behind the queen on the
 # open h-file the whole sequence just opened — means the king can never recapture.
+#
+# The two replies once thought to hold — 10.f3 and 10.f4, opening f2 for the king — do not.
+# `tools/mate/search.ts` was run against both by hand (2026-09-18, per a product-owner
+# instruction to check every `position` leaf for a missed forced mate) and both are also
+# forced mate: 10...g3! next, opening the long diagonal onto g1 and cutting the queen's
+# only flight square, and every one of White's replies afterwards — including 11.Qh5,
+# which merely hangs the queen to 11...Rxh5 on the open h-file — walks into 12...Qh1# or
+# 12...Qh2#. Both are now `type: trap` and machine-proved like every other mate here;
+# `soundness` moved from `dubious` to `sound` because of it.
 id: fishing-pole-trap
 name: Fishing Pole Trap
 eco: C65
@@ -19,17 +28,19 @@ category: trap
 side: black
 definingLine: [e4, e5, Nf3, Nc6, Bb5, Nf6, 'O-O', Ng4]
 soundness:
-  value: dubious
+  value: sound
   reviewedAt: '2026-09-18'
   basis:
     by: chan
     at: '2026-09-18'
     source: >-
-      A judgement, and the same label `traps.yaml` carries. Black is offering a whole knight
-      for an attack; with the only two accurate defences (9.f3 or 9.f4, opening f2 for the
-      king) White is simply up a piece for a pawn, so this does not hold against a defender
-      who finds them. Against anything else it wins on the spot, which is the practical case
-      that earns the name. No engine was consulted and no database was queried.
+      A judgement, and a correction of one made on the same date. Black is offering a whole
+      knight, and the trap was first recorded as `dubious` on the belief that 9.f3 or 9.f4
+      let White escape a piece up. Checking both with a forced-mate search shows neither
+      does — White has no defence anywhere in this line once the knight is recaptured on
+      g4, only mates of different lengths, so this is now `sound` rather than a sacrifice
+      that fails against best play. No engine was consulted for the judgement in the prose;
+      the mate claims are machine-proved and replayed by CI, not judged.
 judgement:
   by: chan
   at: '2026-09-18'
@@ -113,13 +124,11 @@ tree:
                           dismissed:
                             - ply: Nf3
                               reason: Puts the knight back on f3 but this still does not defend h1, and Black mates one square over with 10...Qh1# instead of Qh2#; excluded from the Qh2# count for that reason, not modelled separately.
-                            - ply: f4
-                              reason: Defends in the same spirit as f3 below, closing the long diagonal from the other side and opening f2 for the king; not modelled separately since the resulting assessment is identical.
                           dismissRest:
                             reason:
-                              vi: Trắng chơi một nước khác, và gần như tất cả đều thua ngay. {Mated} trong {legal} nước hợp lệ ở đây bị 10...Qh2# chiếu bí tức khắc, vì không quân nào của Trắng còn canh ô h2 hay ô h1 phía sau nó, và vua g1 không thể ăn hậu vì vẫn còn bị xe h8 chiếu xuyên qua. Chỉ có việc mở ô f2 cho vua, bằng 10.f3 hoặc 10.f4, mới thực sự giải quyết được vấn đề.
-                              en: White plays anything else, and almost all of it loses on the spot. {Mated} of the {legal} legal replies here are mated at once by 10...Qh2#, because nothing white is left guarding h2 or the square behind it, and the king on g1 cannot capture the queen since it would still be in check from the rook on h8. Only opening f2 for the king, with 10.f3 or 10.f4, actually solves the problem.
-                              fr: Les Blancs jouent autre chose, et presque tout perd sur-le-champ. {Mated} des {legal} réponses légales ici sont matées aussitôt par 10...Qh2#, car plus aucune pièce blanche ne garde h2 ni la case derrière elle, et le roi en g1 ne peut pas prendre la dame puisqu'il resterait en échec de la tour h8. Seul le fait d'ouvrir f2 au roi, par 10.f3 ou 10.f4, règle vraiment le problème.
+                              vi: Trắng chơi một nước khác, và gần như tất cả đều thua ngay. {Mated} trong {legal} nước hợp lệ ở đây bị 10...Qh2# chiếu bí tức khắc, vì không quân nào của Trắng còn canh ô h2 hay ô h1 phía sau nó, và vua g1 không thể ăn hậu vì vẫn còn bị xe h8 chiếu xuyên qua. Hai nước còn lại, 10.f3 và 10.f4, trông như mở ô f2 cho vua chạy thoát — nhưng con tốt g3! của Đen ở nước sau đóng sập luôn đường chéo đó, và ván cờ vẫn kết thúc bằng chiếu bí, chỉ chậm hơn một hoặc hai nước.
+                              en: White plays anything else, and almost all of it loses on the spot. {Mated} of the {legal} legal replies here are mated at once by 10...Qh2#, because nothing white is left guarding h2 or the square behind it, and the king on g1 cannot capture the queen since it would still be in check from the rook on h8. The two replies that look like they open an escape square, 10.f3 and 10.f4, are dealt with below — Black's follow-up 10...g3! shuts that same escape and the game still ends in mate, only a move or two later.
+                              fr: Les Blancs jouent autre chose, et presque tout perd sur-le-champ. {Mated} des {legal} réponses légales ici sont matées aussitôt par 10...Qh2#, car plus aucune pièce blanche ne garde h2 ni la case derrière elle, et le roi en g1 ne peut pas prendre la dame puisqu'il resterait en échec de la tour h8. Les deux réponses qui semblent ouvrir une case d'évasion, 10.f3 et 10.f4, sont traitées ci-dessous — la suite noire 10...g3! referme cette même case, et la partie se termine quand même par un mat, seulement un ou deux coups plus tard.
                           children:
                             - ply: d4
                               replyQuality: blunder
@@ -131,22 +140,20 @@ tree:
                               outcome:
                                 type: trap
                             - ply: f3
-                              replyQuality: best
+                              replyQuality: mistake
                               frequency: rare
                               annotation:
-                                vi: Nước phòng thủ chính xác duy nhất còn lại được xét riêng ở đây (cùng với 10.f4, không dựng thành nhánh riêng vì đánh giá giống hệt). Con tốt f mở ô f2 cho vua, nên dù 10...Qh2+ vẫn chiếu, vua chạy được sang f2 và cái bẫy dừng lại.
-                                en: The one precise defence modelled here on its own (alongside 10.f4, not given a branch of its own since the assessment is identical). The f-pawn opens f2 for the king, so even though 10...Qh2+ is still check, the king escapes to f2 and the trap stops there.
-                                fr: L'unique défense précise modélisée ici séparément (avec 10.f4, qui ne reçoit pas de branche propre puisque l'évaluation est identique). Le pion f ouvre f2 au roi, si bien que même si 10...Qh2+ reste échec, le roi s'échappe en f2 et le piège s'arrête là.
+                                vi: 'Nước trông có vẻ chính xác nhất, mở ô f2 cho vua tương lai. Nhưng đây chỉ là hoãn binh: Đen còn nước g3! để đóng sập luôn đường chéo dài g1-a7, cắt nốt ô h1, và hậu Đen chiếu bí bằng Qh1# hoặc Qh2# bất kể Trắng đi gì tiếp theo, vì chính con tốt f3 vừa tự chặn mất đường lui của vua mình.'
+                                en: "The move that looks the most precise, opening f2 for the king to use later. But it is only a delay: Black still has 10...g3!, sealing the long g1-a7 diagonal and cutting off h1 too, after which the black queen mates with Qh1# or Qh2# whatever White plays next, because White's own f3 pawn has just blocked its own king's escape route."
+                                fr: "Le coup qui semble le plus précis, ouvrant f2 pour le roi plus tard. Mais ce n'est qu'un sursis : les Noirs ont encore 10...g3!, refermant la grande diagonale g1-a7 et coupant aussi h1, après quoi la dame noire mate par Qh1# ou Qh2# quoi que jouent les Blancs ensuite, car leur propre pion f3 vient de bloquer l'échappatoire de leur roi."
                               outcome:
-                                type: position
-                                evaluation:
-                                  vi: Trắng hơn một con mã, kém một con tốt so với lúc bắt đầu ván — Đen đã thí trọn con mã g4 để đổi lấy cột h và áp lực, và áp lực ấy vừa bị chặn đứng. Vua Trắng đứng ở g1 với tốt f3 và g2 còn nguyên, có thể chạy sang f2 nếu bị chiếu tiếp, còn xe h8 và hậu h4 của Đen vẫn còn đó nhưng không còn mục tiêu cụ thể nào để đánh vào ngay.
-                                  en: White is up a full knight for a pawn — Black sacrificed the whole g4 knight for the h-file and the attack, and that attack has just been stopped. The white king stands on g1 with the f3 and g2 pawns intact and an escape to f2 if checked again, while Black's rook on h8 and queen on h4 are still there but with no concrete target left to hit right away.
-                                  fr: Les Blancs ont un cavalier entier d'avance pour un pion — les Noirs ont sacrifié tout le cavalier g4 pour la colonne h et l'attaque, et cette attaque vient d'être stoppée. Le roi blanc se tient en g1 avec les pions f3 et g2 intacts et une case d'évasion en f2 en cas de nouvel échec, tandis que la tour noire en h8 et la dame en h4 sont toujours là mais sans cible concrète à frapper dans l'immédiat.
-                                plan:
-                                  vi: Trắng chơi Kf2 nếu bị chiếu tiếp, rồi Nd3 hoặc Ng2 đưa mã e1 trở lại cuộc chơi, Be3 và Qf1 để phối hợp phòng thủ quanh vua, giữ chắc con mã thừa và từ từ giải toả áp lực. Đen chơi d5 mở đường cho tượng c8, Bd6 hoặc Bc5 nhắm vào cánh vua, và Rh6-f6 hay Rh6-g6 tiếp tục tận dụng cột h đã mở, cố tìm bù đắp thực chiến cho con mã đã mất.
-                                  en: White plays Kf2 if checked again, then Nd3 or Ng2 to bring the e1 knight back into the game, Be3 and Qf1 to coordinate the defence around the king, keeping the extra knight safe and slowly untangling. Black plays ...d5 to free the c8 bishop, ...Bd6 or ...Bc5 aiming at the kingside, and ...Rh6-f6 or ...Rh6-g6 to keep using the open h-file, hunting for practical compensation for the lost knight.
-                                  fr: Les Blancs jouent Kf2 en cas de nouvel échec, puis Nd3 ou Ng2 pour ramener le cavalier e1 dans la partie, Be3 et Qf1 pour coordonner la défense autour du roi, en gardant le cavalier supplémentaire à l'abri et en se démêlant lentement. Les Noirs jouent ...d5 pour libérer le fou c8, ...Bd6 ou ...Bc5 en direction de l'aile roi, et ...Rh6-f6 ou ...Rh6-g6 pour continuer à exploiter la colonne h ouverte, cherchant une compensation pratique au cavalier perdu.
-                                basis:
-                                  by: chan
-                                  at: '2026-09-18'
+                                type: trap
+                            - ply: f4
+                              replyQuality: mistake
+                              frequency: rare
+                              annotation:
+                                vi: 'Cùng ý tưởng với 10.f3 — mở ô f2 cho vua từ phía bên kia. Kết cục giống hệt: 10...g3! đóng sập đường chéo g1-a7 y như trước. Trắng có thêm đúng một nước tạm hoãn ở đây so với nhánh f3, đẩy hậu lên h5 để chắn đường, nhưng con hậu ấy chỉ đơn giản bị xe h8 ăn mất, và ván cờ vẫn kết thúc bằng chiếu bí y hệt.'
+                                en: 'The same idea as 10.f3 — opening f2 for the king from the other side. The result is identical: 10...g3! seals the g1-a7 diagonal exactly as before. White has exactly one extra try here compared with the f3 branch, pushing the queen to h5 to block, but that queen is simply captured by the rook on h8, and the game still ends in the same mate.'
+                                fr: "La même idée que 10.f3 — ouvrir f2 pour le roi depuis l'autre côté. Le résultat est identique : 10...g3! referme la diagonale g1-a7 tout comme avant. Les Blancs disposent ici d'un essai supplémentaire par rapport à la branche f3, poussant la dame en h5 pour bloquer, mais cette dame est simplement prise par la tour en h8, et la partie se termine par le même mat."
+                              outcome:
+                                type: trap
