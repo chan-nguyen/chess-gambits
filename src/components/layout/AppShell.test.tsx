@@ -31,6 +31,7 @@ const required = (value: string | undefined, name: string): string => {
 const french = {
   menu: required(fr.nav?.menu, 'fr.nav.menu'),
   catalogue: required(fr.nav?.catalogue, 'fr.nav.catalogue'),
+  traps: required(fr.nav?.traps, 'fr.nav.traps'),
   about: required(fr.nav?.about, 'fr.nav.about'),
   primary: required(fr.nav?.primary, 'fr.nav.primary'),
   language: required(fr.nav?.language, 'fr.nav.language'),
@@ -92,7 +93,7 @@ describe('the header', () => {
     expect(within(await header()).getByRole('navigation', { name: french.language })).toBeVisible()
   })
 
-  it('offers the two destinations once expanded', async () => {
+  it('offers the three destinations once expanded', async () => {
     renderAt('/fr/about')
     const button = await openMenu(french.menu)
 
@@ -101,6 +102,10 @@ describe('the header', () => {
     expect(within(primary).getByRole('link', { name: french.catalogue })).toHaveAttribute(
       'href',
       '/fr/gambits',
+    )
+    expect(within(primary).getByRole('link', { name: french.traps })).toHaveAttribute(
+      'href',
+      '/fr/gambits?category=trap',
     )
     expect(within(primary).getByRole('link', { name: french.about })).toHaveAttribute(
       'href',

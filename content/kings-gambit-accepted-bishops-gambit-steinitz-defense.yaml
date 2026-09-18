@@ -1,0 +1,65 @@
+# King's Gambit Accepted, Bishop's Gambit, Steinitz Defense. One of eighteen entries tracked
+# by issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...Ne7 is a rare, passive try — the knight blocks the f8-bishop's natural diagonal to e7
+# before relocating, at the cost of tempo. A first draft of this entry checked the resulting
+# piece mobility with chess.js and initially misread it (a scripting error queried the wrong
+# side to move); once corrected, the bishop and rook were found to retain reasonable squares
+# a few moves later — e.g. after 4.Nf3 Ng6 named in the evaluation below, also replayed with
+# chess.js — so no clean structural catastrophe can be honestly certified by hand without an
+# engine. The leaf states the real, calmer position that is actually there instead of either
+# asserting a verdict the reviewer could not stand behind or reverting to `unexplored`.
+id: kings-gambit-accepted-bishops-gambit-steinitz-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Steinitz Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...Ne7, Phòng thủ Steinitz.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...Ne7, the Steinitz Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...Ne7, la Défense Steinitz.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...Ne7 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển mã kia bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...Ne7 — holding the pawn with 3...g5, striking the centre with 3...d5, or developing the other knight with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...Ne7 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou développer l'autre cavalier par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Ne7
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Phòng thủ Steinitz. Đen đưa mã ra e7, một ô tạm thời và ít hoạt động, tạm thời án ngữ đường chéo của tượng f8 trong lúc chuẩn bị đưa mã ra vị trí tốt hơn như g6.
+        en: The Steinitz Defense. Black places the knight on e7, a modest and inactive square that temporarily blocks the f8 bishop's own diagonal while preparing to reroute the knight to a better square such as g6.
+        fr: La Défense Steinitz. Les Noirs placent le cavalier en e7, une case modeste et peu active qui bloque temporairement la diagonale du fou f8, en préparant un repositionnement du cavalier vers une meilleure case comme g6.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.Nf3 (phát triển) Ng6 (mã chuyển sang ô hoạt động hơn, nhắm vào tốt f4), vật chất không đổi. Mã đã rời e7 nên tượng f8 không còn bị chặn nữa và có thể phát triển bình thường ở nước tiếp theo — đây là một thế cờ cân bằng, tuy Đen đã mất một nhịp so với việc đưa mã thẳng ra một ô tốt ngay từ đầu.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.Nf3 (developing) Ng6 (the knight moves to a more active square, eyeing the f4 pawn) was tried; material is unchanged. The knight has left e7, so the f8 bishop is no longer blocked and can develop normally next — this is a level position, though Black has spent a tempo compared with placing the knight on a good square directly.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.Nf3 (développement) Ng6 (le cavalier se déplace vers une case plus active, visant le pion f4) a été essayé ; le matériel est inchangé. Le cavalier a quitté e7, donc le fou f8 n'est plus bloqué et peut se développer normalement ensuite — c'est une position égale, bien que les Noirs aient dépensé un temps par rapport à placer directement le cavalier sur une bonne case.
+        plan:
+          vi: Trắng chơi O-O và d4, dựng trung tâm lớn trong khi Đen còn đang sắp xếp lại quân. Đen chơi Bc5 hay Be7, hoàn thiện phát triển và cố giành lại nhịp đã mất bằng cách gây áp lực lên tốt f4 hoặc trung tâm Trắng.
+          en: White plays O-O and d4, building a big centre while Black is still rearranging pieces. Black plays Bc5 or Be7, completing development and trying to win back the lost tempo by pressuring the f4 pawn or White's centre.
+          fr: Les Blancs jouent O-O et d4, bâtissant un grand centre pendant que les Noirs réorganisent encore leurs pièces. Les Noirs jouent Bc5 ou Be7, achevant leur développement et cherchant à regagner le temps perdu en faisant pression sur le pion f4 ou le centre blanc.
+        basis:
+          by: chan
+          at: '2026-09-18'

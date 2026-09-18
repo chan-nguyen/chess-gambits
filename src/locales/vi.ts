@@ -24,6 +24,7 @@ const vi = {
     primary: 'Điều hướng chính',
     menu: 'Trình đơn',
     catalogue: 'Danh mục',
+    traps: 'Bẫy',
     about: 'Giới thiệu',
     /** Accessible name of the language switcher landmark. */
     language: 'Ngôn ngữ',

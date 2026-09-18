@@ -6,13 +6,14 @@ import { useTranslated } from '../../i18n/useTranslated.ts'
 import type { Locale } from '../../lib/locale.ts'
 import { routePath, routeSegments } from '../../lib/routes.ts'
 import { siteName } from '../../lib/site.ts'
+import { filterParams } from '../catalogue/filter-url.ts'
 import { LanguageSwitcher } from './LanguageSwitcher.tsx'
 import { ThemeControl } from './ThemeControl.tsx'
 
 type HeaderProps = { readonly locale: Locale }
 
 /**
- * Site name, the two destinations, the language switcher and the appearance control
+ * Site name, the three destinations, the language switcher and the appearance control
  * (docs/design-system.md §1).
  *
  * Below 768px the destinations and the appearance control collapse behind one button and
@@ -52,6 +53,12 @@ export const Header = ({ locale }: HeaderProps) => {
           <nav className="site-header__nav" aria-label={translated('nav.primary').text}>
             <Link to={routePath(locale, routeSegments.catalogue)} onClick={close}>
               <Translated id="nav.catalogue" />
+            </Link>
+            <Link
+              to={`${routePath(locale, routeSegments.catalogue)}?${filterParams.category}=trap`}
+              onClick={close}
+            >
+              <Translated id="nav.traps" />
             </Link>
             <Link to={routePath(locale, routeSegments.about)} onClick={close}>
               <Translated id="nav.about" />

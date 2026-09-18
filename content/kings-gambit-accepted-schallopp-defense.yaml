@@ -1,0 +1,63 @@
+# King's Gambit Accepted, Schallopp Defense. One of eighteen entries tracked by issue #111
+# (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with `kings-gambit-accepted.yaml`
+# and group G (#110). Defining line ends on White's 3.Nf3 (invariant 5). Every move replayed
+# with a scratch chess.js script (deleted before commit).
+#
+# 3...Nf6 develops a piece and attacks e4 directly, a well-regarded, sound defense. The
+# tried continuation named in the evaluation, 4.e5 Nh5, was replayed with a scratch chess.js
+# script (deleted before commit) confirming legality and material at each ply. Under the
+# stricter #107 bar this genuinely does not resolve to a decisive edge for either side at
+# this depth, so the leaf states that plainly instead of forcing a verdict or reverting to
+# `unexplored`.
+id: kings-gambit-accepted-schallopp-defense
+name: "King's Gambit Accepted: Schallopp Defense"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, Gambit Mã Vua. Mục này đi sâu riêng vào 3...Nf6, Phòng thủ Schallopp.
+    en: White has just played the knight to f3, the King's Knight Gambit. This entry follows specifically 3...Nf6, the Schallopp Defense.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le Gambit du Cavalier du Roi. Cette entrée suit spécifiquement 3...Nf6, la Défense Schallopp.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Nf3 bằng một nước khác ngoài 3...Nf6 — đánh trung tâm bằng 3...d5, tấn công cánh vua bằng 3...g5, hay phát triển mã kia bằng 3...Nc6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Nf3 with something other than 3...Nf6 — striking the centre with 3...d5, a kingside storm with 3...g5, or developing the other knight with 3...Nc6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Nf3 par autre chose que 3...Nf6 — une frappe centrale par 3...d5, un assaut à l'aile roi par 3...g5, ou développer l'autre cavalier par 3...Nc6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Schallopp. Đen phát triển mã và tấn công thẳng vào tốt e4, buộc Trắng phải phản ứng ngay — một trong những cách đáp trả vững chắc và được đánh giá cao trước Gambit Mã Vua.
+        en: The Schallopp Defense. Black develops a knight and attacks the e4 pawn directly, forcing White to react at once — one of the sound, well-regarded replies to the King's Knight Gambit.
+        fr: La Défense Schallopp. Les Noirs développent un cavalier et attaquent directement le pion e4, forçant les Blancs à réagir aussitôt — l'une des réponses solides et bien considérées au Gambit du Cavalier du Roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.e5 (đẩy tốt, giành không gian và đuổi mã) Nh5 (mã lui về một ô hơi lệch hướng nhưng vẫn nhắm vào tốt f4), vật chất không đổi. Trắng có thêm không gian trung tâm nhờ e5 nhưng chưa đòi lại được con tốt f4, còn mã Đen ở h5 không thật sự hoạt động — đây là một thế cờ cân bằng, còn nhiều khả năng cho cả hai bên.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.e5 (pushing the pawn, gaining space and chasing the knight) Nh5 (the knight retreats to a slightly awkward square but still eyes the f4 pawn) was tried; material is unchanged. White gains central space with e5 but still has not won the f4 pawn back, while Black's knight on h5 is not truly active — this is a level position with real chances for both sides.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.e5 (poussant le pion, gagnant de l'espace et chassant le cavalier) Nh5 (le cavalier se replie sur une case un peu maladroite mais vise toujours le pion f4) a été essayé ; le matériel est inchangé. Les Blancs gagnent de l'espace central avec e5 mais n'ont toujours pas regagné le pion f4, tandis que le cavalier noir en h5 n'est pas vraiment actif — c'est une position égale avec de réelles chances pour les deux camps.
+        plan:
+          vi: Trắng chơi d4 và Bc4, hoàn thiện trung tâm lớn rồi tìm cách giành lại con tốt f4 hoặc đẩy lùi mã h5 bằng g4 khi thời điểm thích hợp. Đen chơi d6 để thách thức tốt e5, hay Bc5, giữ áp lực lên tốt f4 và cố đưa mã h5 trở lại cuộc chơi.
+          en: White plays d4 and Bc4, completing a big centre and then looking for a way to win the f4 pawn back or chase the h5 knight with g4 when the moment is right. Black plays d6 to challenge the e5 pawn, or Bc5, keeping the pressure on the f4 pawn and trying to bring the h5 knight back into the game.
+          fr: Les Blancs jouent d4 et Bc4, complétant un grand centre puis cherchant un moyen de regagner le pion f4 ou de chasser le cavalier h5 par g4 au bon moment. Les Noirs jouent d6 pour défier le pion e5, ou Bc5, maintenant la pression sur le pion f4 et essayant de ramener le cavalier h5 dans le jeu.
+        basis:
+          by: chan
+          at: '2026-09-18'

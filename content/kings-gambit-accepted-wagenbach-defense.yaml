@@ -1,0 +1,65 @@
+# King's Gambit Accepted, Wagenbach Defense. One of eighteen entries tracked by issue #111
+# (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with `kings-gambit-accepted.yaml`
+# and group G (#110). Defining line ends on White's 3.Nf3 (invariant 5). Every move replayed
+# with a scratch chess.js script (deleted before commit).
+#
+# 3...h5 is a rare try that does not even achieve the Becker Defense's stated purpose of
+# ruling out Ng5 — it neither develops a piece nor fights for the centre. A chess.js mobility
+# check (after correcting an earlier side-to-move scripting error found while auditing this
+# batch) showed Black's queenside and kingside minor pieces still retain reasonable squares
+# a few moves later — the tried continuation 4.Bc4 d6 named in the evaluation below, also
+# replayed with chess.js — so no clean structural catastrophe can be honestly certified at
+# short depth without an engine. The leaf states the real, calmer position instead of
+# reverting to `unexplored`.
+id: kings-gambit-accepted-wagenbach-defense
+name: "King's Gambit Accepted: Wagenbach Defense"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, Gambit Mã Vua. Mục này đi sâu riêng vào 3...h5, Phòng thủ Wagenbach.
+    en: White has just played the knight to f3, the King's Knight Gambit. This entry follows specifically 3...h5, the Wagenbach Defense.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le Gambit du Cavalier du Roi. Cette entrée suit spécifiquement 3...h5, la Défense Wagenbach.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Nf3 bằng một nước khác ngoài 3...h5 — đánh trung tâm bằng 3...d5, tấn công cánh vua bằng 3...g5, hay phát triển mã bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Nf3 with something other than 3...h5 — striking the centre with 3...d5, a kingside storm with 3...g5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Nf3 par autre chose que 3...h5 — une frappe centrale par 3...d5, un assaut à l'aile roi par 3...g5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: h5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Phòng thủ Wagenbach. Đen đẩy tốt lên h5, một nước hiếm gặp không phát triển quân nào và không tranh chấp trung tâm — thậm chí không đạt được mục đích ngăn Ng5 như tốt h6 trong Phòng thủ Becker.
+        en: The Wagenbach Defense. Black pushes the pawn to h5, a rare move that develops no piece and fights for no central square — it does not even achieve the Becker Defense's stated purpose of ruling out Ng5.
+        fr: La Défense Wagenbach. Les Noirs poussent le pion en h5, un coup rare qui ne développe aucune pièce et ne dispute aucune case centrale — il n'atteint même pas le but affiché de la Défense Becker, qui est d'exclure Ng5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.Bc4 (nhắm vào f7) d6 (Đen mở đường cho tượng c8, một nước phòng ngự bình thường), vật chất không đổi và cả hai vua đều chưa nhập thành. Nước h5 chưa mang lại điều gì cụ thể — không quân nào được phát triển và không ô trung tâm nào được tranh chấp — nhưng cũng chưa quân Trắng nào thực sự khai thác được điểm yếu đó; đây là một thế cờ cân bằng, không phải một lợi thế rõ ràng cho ai.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.Bc4 (aiming at f7) d6 (Black opens a path for the c8 bishop, an ordinary defensive move) was tried; material is unchanged and neither king has castled. The h5 push has not accomplished anything concrete yet — no piece developed, no central square contested — but no White piece has actually exploited that weakness either; this is a level position, not a clear edge for either side.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.Bc4 (visant f7) d6 (les Noirs ouvrent une voie pour le fou c8, un coup défensif ordinaire) a été essayé ; le matériel est inchangé et aucun roi n'a roqué. La poussée h5 n'a encore rien accompli de concret — aucune pièce développée, aucune case centrale disputée — mais aucune pièce blanche n'a non plus réellement exploité cette faiblesse ; c'est une position égale, pas un avantage net pour l'un ou l'autre.
+        plan:
+          vi: Trắng chơi O-O và d4, dựng trung tâm lớn và tìm cách khai thác cột h đã bị Đen tự làm suy yếu. Đen chơi Nf6 hay Be7, hoàn thiện phát triển và cố bù lại nhịp đã mất bằng cách giữ chắc con tốt thừa.
+          en: White plays O-O and d4, building a big centre and looking for a way to exploit the h-file Black has weakened for itself. Black plays Nf6 or Be7, completing development and trying to make up for the lost tempo by holding on to the extra pawn.
+          fr: Les Blancs jouent O-O et d4, bâtissant un grand centre et cherchant un moyen d'exploiter la colonne h que les Noirs ont eux-mêmes affaiblie. Les Noirs jouent Nf6 ou Be7, achevant leur développement et essayant de compenser le temps perdu en conservant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-18'

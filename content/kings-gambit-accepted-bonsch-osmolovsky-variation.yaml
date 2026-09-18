@@ -1,0 +1,64 @@
+# King's Gambit Accepted, Bonsch-Osmolovsky Variation. One of eighteen entries tracked by
+# issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Nf3
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...Ne7 is a rare, passive try, the Nf3-trunk mirror of the Bishop's Gambit's Steinitz
+# Defense. The same chess.js mobility check run for the Steinitz Defense entry (after
+# correcting an earlier side-to-move scripting error) found the bishop and rook retain
+# reasonable squares once the knight relocates to g6 — the tried continuation 4.d4 Ng6 named
+# in the evaluation below, also replayed with chess.js — so no clean structural catastrophe
+# can be honestly certified by hand without an engine. The leaf states the real, calmer
+# position instead of reverting to `unexplored`.
+id: kings-gambit-accepted-bonsch-osmolovsky-variation
+name: "King's Gambit Accepted: Bonsch-Osmolovsky Variation"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, Gambit Mã Vua. Mục này đi sâu riêng vào 3...Ne7, Biến thể Bonsch-Osmolovsky.
+    en: White has just played the knight to f3, the King's Knight Gambit. This entry follows specifically 3...Ne7, the Bonsch-Osmolovsky Variation.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le Gambit du Cavalier du Roi. Cette entrée suit spécifiquement 3...Ne7, la Variante Bonsch-Osmolovsky.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Nf3 bằng một nước khác ngoài 3...Ne7 — đánh trung tâm bằng 3...d5, tấn công cánh vua bằng 3...g5, hay phát triển mã kia bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Nf3 with something other than 3...Ne7 — striking the centre with 3...d5, a kingside storm with 3...g5, or developing the other knight with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Nf3 par autre chose que 3...Ne7 — une frappe centrale par 3...d5, un assaut à l'aile roi par 3...g5, ou développer l'autre cavalier par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Ne7
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Biến thể Bonsch-Osmolovsky. Đen đưa mã ra e7, một ô tạm thời án ngữ đường chéo tượng f8, dự định chuyển mã sang g6 để gây áp lực lên tốt f4.
+        en: The Bonsch-Osmolovsky Variation. Black places the knight on e7, a modest square that blocks the f8 bishop's own diagonal, intending to reroute the knight to g6 to pressure the f4 pawn.
+        fr: La Variante Bonsch-Osmolovsky. Les Noirs placent le cavalier en e7, une case modeste qui bloque la diagonale du fou f8, avec l'idée de le réorienter vers g6 pour peser sur le pion f4.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.d4 (dựng trung tâm) Ng6 (mã chuyển sang ô hoạt động hơn, nhắm vào tốt f4), vật chất không đổi. Mã đã rời e7 nên tượng f8 không còn bị chặn và có thể phát triển ở nước tiếp theo — đây là một thế cờ cân bằng, tuy Đen đã mất một nhịp so với việc đưa mã ra một ô tốt ngay từ đầu.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.d4 (building the centre) Ng6 (the knight moves to a more active square, eyeing the f4 pawn) was tried; material is unchanged. The knight has left e7, so the f8 bishop is no longer blocked and can develop next — this is a level position, though Black has spent a tempo compared with placing the knight on a good square directly.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.d4 (bâtissant le centre) Ng6 (le cavalier se déplace vers une case plus active, visant le pion f4) a été essayé ; le matériel est inchangé. Le cavalier a quitté e7, donc le fou f8 n'est plus bloqué et peut se développer ensuite — c'est une position égale, bien que les Noirs aient dépensé un temps par rapport à placer directement le cavalier sur une bonne case.
+        plan:
+          vi: Trắng chơi Bc4 và O-O, tận dụng trung tâm lớn d4-e4 trong khi Đen còn đang sắp xếp lại quân. Đen chơi Be7 hay c6, hoàn thiện phát triển và cố giành lại nhịp đã mất bằng cách gây áp lực lên tốt f4.
+          en: White plays Bc4 and castles, making use of the big d4-e4 centre while Black is still rearranging pieces. Black plays Be7 or c6, completing development and trying to win back the lost tempo by pressuring the f4 pawn.
+          fr: Les Blancs jouent Bc4 et roquent, profitant du grand centre d4-e4 pendant que les Noirs réorganisent encore leurs pièces. Les Noirs jouent Be7 ou c6, achevant leur développement et cherchant à regagner le temps perdu en faisant pression sur le pion f4.
+        basis:
+          by: chan
+          at: '2026-09-18'
