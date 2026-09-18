@@ -1,0 +1,61 @@
+# Modern Defense: Lizard Defense, Pirc-Diemer Gambit. Frozen defining line 1.d4 g6 2.h4 Nf6
+# 3.h5, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js: 3...Bg7 declines the pawn (taking it with 3...Nxh5
+# opens the h-file straight onto the knight for White's rook on h1, a check this entry does
+# not need to model further since the declining reply is what is taught here) and nothing
+# is hanging after it. searchMate at 4 moves from this position returns unknown, which the
+# stopping rule treats the same as no-mate, so no forced mate is claimed.
+id: modern-defense-lizard-defense-pirc-diemer-gambit
+name: 'Modern Defense: Lizard Defense, Pirc-Diemer Gambit'
+eco: A40
+category: gambit
+side: white
+definingLine: [d4, g6, h4, Nf6, h5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. The h-pawn rush gains space and half-opens the h-file for White's rook
+      at the cost of weakening the kingside pawns White has not yet decided where to castle
+      behind. It is a reasonable practical try rather than an established main line. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...Nf6, Trắng đẩy tiếp 3.h5, mời Đen ăn tốt bằng Nxh5 để đổi lấy việc mở cột h ngay trước con mã đó, nơi xe h1 của Trắng đã sẵn sàng nhắm vào.
+    en: After 2...Nf6, White pushes on with 3.h5, inviting Black to take the pawn with Nxh5 in exchange for opening the h-file right in front of that knight, exactly where White's rook on h1 is ready to aim.
+    fr: Après 2...Nf6, les Blancs poussent par 3.h5, invitant les Noirs à prendre le pion par Nxh5 en échange de l'ouverture de la colonne h juste devant ce cavalier, là où la tour blanche en h1 est prête à viser.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt h5 bằng mã. Bất kỳ nước nào khác ngoài Bg7 — chẳng hạn c5 hay d6 trước — cũng để nguyên tình huống ở cánh vua chưa được giải quyết, và Đen vẫn phải chọn ăn tốt hay bỏ qua nó ở một nước sau.
+      en: Black does not take the h5 pawn with the knight. Anything other than Bg7 — c5 or d6 first, for instance — also leaves the kingside situation unresolved, and Black still has to choose whether to take the pawn or leave it alone on some later move.
+      fr: Les Noirs ne prennent pas le pion h5 avec le cavalier. Tout ce qui n'est pas Bg7 — c5 ou d6 en premier, par exemple — laisse également la situation à l'aile roi non résolue, et les Noirs devront encore choisir de prendre le pion ou de le laisser plus tard.
+  children:
+    - ply: Bg7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen từ chối con tốt và tiếp tục fianchetto tượng theo đúng kế hoạch ban đầu, để mặc con tốt h5 và cột h nửa mở lại cho Trắng lo liệu sau này.
+        en: Black declines the pawn and continues the bishop fianchetto as originally planned, leaving the h5 pawn and the half-open h-file for White to worry about later.
+        fr: Les Noirs refusent le pion et poursuivent le fianchetto du fou comme prévu initialement, laissant le pion h5 et la colonne h semi-ouverte comme un souci pour les Blancs plus tard.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, mỗi bên còn đủ tám quân, vật chất hoàn toàn cân bằng và chưa có gì bị mất ở cả hai phía. Trắng đã giành thêm không gian cánh vua nhưng cấu trúc tốt g2-h2 hiện chỉ còn một tốt g, còn Đen vẫn giữ nguyên bộ khung fianchetto dự định.
+          en: Count the pawns, eight apiece, material is fully level and nothing has been lost on either side. White has gained extra kingside space, but the pawn structure there is now down to a single g-pawn, while Black keeps the fianchetto setup as intended.
+          fr: Comptez les pions, huit de chaque côté, le matériel est parfaitement égal et rien n'a été perdu d'un côté ou de l'autre. Les Blancs ont gagné de l'espace supplémentaire à l'aile roi, mais la structure de pions n'y compte plus qu'un pion g, tandis que les Noirs conservent le dispositif de fianchetto prévu.
+        plan:
+          vi: Trắng chơi Nc3, e4 và Be3, cố dựng trung tâm lớn và tận dụng không gian đã giành được ở cánh vua. Đen chơi d6, O-O hay c5, hoàn thiện phát triển bình thường và chờ thời điểm thích hợp để phản công vào trung tâm hoặc cánh hậu của Trắng.
+          en: White plays Nc3, e4 and Be3, trying to build a big centre and make use of the space gained on the kingside. Black plays d6, castles or c5, completing ordinary development and waiting for the right moment to strike back at White's centre or queenside.
+          fr: Les Blancs jouent Nc3, e4 et Be3, cherchant à construire un grand centre et à profiter de l'espace gagné à l'aile roi. Les Noirs jouent d6, roquent ou c5, achevant un développement ordinaire et attendant le bon moment pour contre-attaquer au centre ou à l'aile dame blanche.
+        basis:
+          by: chan
+          at: '2026-09-18'

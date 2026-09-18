@@ -1,0 +1,63 @@
+# Four Knights Game: Halloween Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6
+# 4.Nxe5, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js: 4...Nxe5 is the only sound recapture (nothing else
+# challenges the knight or the point of the gambit), and after it White has given up a
+# knight for a pawn with nothing hanging on the board. searchMate at 4 moves from this
+# position returns unknown, which the stopping rule treats the same as no-mate, so no
+# forced mate is claimed.
+id: four-knights-game-halloween-gambit
+name: 'Four Knights Game: Halloween Gambit'
+eco: C47
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Nc3, Nf6, Nxe5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White gives up a whole knight for one pawn on the promise of a big pawn
+      centre and a lead in development, but accurate defence — simply retreating the
+      recaptured knight when it is attacked, rather than trying to hold on to every extra
+      pawn — leaves Black a piece up with no real compensation. It scores well against
+      unprepared opponents, which is not the same thing. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 4.Nxe5, hy sinh nguyên một con mã để ăn một tốt trung tâm, đặt cược vào việc dựng được một trung tâm tốt lớn bằng d4 và f4 trước khi Đen kịp phối hợp các quân của mình.
+    en: White plays 4.Nxe5, sacrificing an entire knight for one central pawn, betting on building a big pawn centre with d4 and f4 before Black can coordinate its pieces.
+    fr: Les Blancs jouent 4.Nxe5, sacrifiant un cavalier entier contre un seul pion central, misant sur la construction d'un grand centre de pions par d4 et f4 avant que les Noirs ne puissent coordonner leurs pièces.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại bằng mã c6. Việc bỏ qua con mã bị ăn — chẳng hạn chơi d6 trước — chỉ khiến Trắng có thời gian củng cố thêm mà không phải trả lại bất cứ thứ gì, trong khi Nxe5 lấy lại ngay quân đã mất và không có rủi ro nào đi kèm.
+      en: Black does not recapture with the c6 knight. Ignoring the missing knight — playing d6 first, for instance — only gives White more time to consolidate without giving anything back, while Nxe5 wins the piece back immediately and carries no risk of its own.
+      fr: Les Noirs ne reprennent pas avec le cavalier c6. Ignorer le cavalier manquant — en jouant d6 en premier, par exemple — ne fait que donner aux Blancs plus de temps pour se consolider sans rien rendre, alors que Nxe5 récupère aussitôt la pièce sans aucun risque.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại ngay bằng mã, thu hồi quân đã mất mà không mất thêm tốt hay tempo nào.
+        en: Black recaptures at once with the knight, winning back the lost piece without giving up any further pawns or tempo.
+        fr: Les Noirs reprennent aussitôt avec le cavalier, récupérant la pièce perdue sans céder de pion ni de temps supplémentaire.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân, Trắng còn tám tốt nhưng thiếu nguyên một mã so với Đen, còn Đen chỉ mất một tốt và vẫn đủ bộ quân nhẹ. Nói cách khác, Trắng bỏ ra một mã để đổi lấy đúng một tốt, một cuộc trao đổi lỗ vốn nếu không có gì bù đắp cụ thể ngay lập tức.
+          en: Counting pieces, White still has eight pawns but is missing a whole knight compared with Black, while Black has lost only one pawn and still has every minor piece. In other words White has spent a knight for exactly one pawn, a losing trade unless something concrete makes up for it right away.
+          fr: En comptant les pièces, les Blancs ont encore huit pions mais il leur manque un cavalier entier par rapport aux Noirs, tandis que les Noirs n'ont perdu qu'un pion et conservent toutes leurs pièces mineures. Autrement dit, les Blancs ont dépensé un cavalier contre un seul pion, un échange perdant sans compensation concrète immédiate.
+        plan:
+          vi: Trắng chơi d4, Bc4 và f4 cố dựng trung tâm tốt lớn và mở đường tấn công nhanh trước khi Đen kịp phát triển hết quân. Đen chơi Bb4, d6 hay Nf6 lui về chỗ an toàn khi bị tấn công, giữ chắc quân thừa và chỉ cần hoàn thiện phát triển bình thường để quy đổi ưu thế vật chất thành thắng lợi.
+          en: White plays d4, Bc4 and f4, trying to build the big pawn centre and open lines for a quick attack before Black finishes developing. Black plays Bb4, d6 or retreats the knight back to f6 when attacked, holding onto the extra piece and needing only ordinary development to convert the material edge.
+          fr: Les Blancs jouent d4, Bc4 et f4, essayant de construire le grand centre de pions et d'ouvrir des lignes pour une attaque rapide avant que les Noirs ne terminent leur développement. Les Noirs jouent Bb4, d6 ou replacent le cavalier en f6 lorsqu'il est attaqué, conservant la pièce supplémentaire et n'ayant besoin que d'un développement ordinaire pour convertir l'avantage matériel.
+        basis:
+          by: chan
+          at: '2026-09-18'

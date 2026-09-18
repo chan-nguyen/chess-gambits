@@ -1,0 +1,61 @@
+# Nimzo-Indian Defense: Dilworth Gambit. Frozen defining line 1.d4 Nf6 2.c4 e6 3.Nc3 Bb4
+# 4.e4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js: the bishop on b4 pins the c3 knight to the king on
+# e1, so the knight cannot recapture on e4, and 4...Nxe4 wins the pawn cleanly with nothing
+# hanging afterwards. searchMate at 4 moves from this position returns unknown, which the
+# stopping rule treats the same as no-mate, so no forced mate is claimed.
+id: nimzo-indian-defense-dilworth-gambit
+name: 'Nimzo-Indian Defense: Dilworth Gambit'
+eco: E20
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, e6, Nc3, Bb4, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White offers the e4 pawn to open lines quickly while Black's king is
+      still in the centre, trusting that the tempo gained from Black taking time to grab
+      the pawn is worth more than the pawn itself. It is a sharp practical try rather than a
+      position engines would call clearly good for White. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 4.e4, đẩy tốt lên và bỏ mặc nó không được bảo vệ, vì mã c3 đang bị ghim bởi tượng b4 vào vua e1 nên không thể ăn lại nếu Đen ăn tốt e4.
+    en: White plays 4.e4, pushing the pawn forward and leaving it undefended, since the knight on c3 is pinned by the bishop on b4 against the king on e1 and cannot recapture if Black takes the e4 pawn.
+    fr: Les Blancs jouent 4.e4, poussant le pion et le laissant sans défense, car le cavalier en c3 est cloué par le fou en b4 contre le roi en e1 et ne peut pas reprendre si les Noirs prennent le pion e4.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4 bằng mã. Các nước khác như O-O hay d5 để nguyên con tốt e4 trên bàn cờ, và Trắng có thêm thời gian để giải quyết thế ghim hoặc củng cố trung tâm trước khi Đen kịp ăn.
+      en: Black does not take the e4 pawn with the knight. Other moves such as castling or d5 leave the e4 pawn sitting on the board, and White gets more time to sort out the pin or reinforce the centre before Black can take it.
+      fr: Les Noirs ne prennent pas le pion e4 avec le cavalier. D'autres coups comme le roque ou d5 laissent le pion e4 sur l'échiquier, et les Blancs gagnent du temps pour régler le clouage ou renforcer le centre avant que les Noirs ne puissent le prendre.
+  children:
+    - ply: Nxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt ngay lập tức, tận dụng thế ghim tuyệt đối của tượng b4 khiến mã c3 hoàn toàn không thể động đậy để ăn lại.
+        en: Black takes the pawn at once, making use of the absolute pin from the bishop on b4 that leaves the c3 knight completely unable to move to recapture.
+        fr: Les Noirs prennent le pion tout de suite, profitant du clouage absolu du fou en b4 qui empêche totalement le cavalier c3 de bouger pour reprendre.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng bảy, Đen tám, Đen hơn đúng một tốt sạch, các quân nhẹ và nặng còn lại vẫn bằng nhau ở cả hai bên. Đổi lại, Trắng có quyền chủ động phát triển trước và vua Đen vẫn chưa nhập thành, nhưng chưa quân nào của Trắng thực sự nhắm vào đó ngay lúc này.
+          en: Count the pawns, seven for White, eight for Black, a clean extra pawn for Black, with the remaining minor and major pieces still level on both sides. In return White has the initiative to develop first and Black's king has not castled yet, but nothing of White's is actually aiming at it right now.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion net de plus pour les Noirs, les pièces mineures et majeures restantes étant encore égales des deux côtés. En échange, les Blancs ont l'initiative de développer en premier et le roi noir n'a pas encore roqué, mais rien du côté blanc ne le vise réellement pour l'instant.
+        plan:
+          vi: Trắng chơi Qg4, Bd3 hay Nf3, cố nhanh chóng đưa quân ra và tạo sức ép lên vị trí vua Đen còn ở giữa bàn cờ trước khi Đen kịp nhập thành. Đen chơi Bxc3+, d5 hay O-O, giải quyết thế ghim theo hướng có lợi và củng cố vị trí trước khi tính đến việc giữ con tốt thừa lâu dài.
+          en: White plays Qg4, Bd3 or Nf3, trying to bring pieces out quickly and press against Black's king still in the centre before Black can castle. Black plays Bxc3+, d5 or castles, resolving the pin on favourable terms and consolidating the position before thinking about holding the extra pawn long-term.
+          fr: Les Blancs jouent Qg4, Bd3 ou Nf3, cherchant à développer rapidement et à faire pression sur la position du roi noir encore au centre avant que les Noirs ne roquent. Les Noirs jouent Bxc3+, d5 ou roquent, résolvant le clouage à leur avantage et consolidant la position avant de songer à garder le pion supplémentaire à long terme.
+        basis:
+          by: chan
+          at: '2026-09-18'

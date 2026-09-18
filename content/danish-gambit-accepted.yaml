@@ -1,0 +1,68 @@
+# Danish Gambit Accepted. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3...dxc3 4.Bc4: White has given up two pawns for the two
+# bishops aimed at f7 and g7 while Black has not developed a single piece, and nothing is
+# hanging for either side. searchMate at 4 moves from this position returns unknown, which
+# the stopping rule treats the same as no-mate, so no forced mate is claimed.
+id: danish-gambit-accepted
+name: Danish Gambit Accepted
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Taking both
+      pawns is the sternest test of the gambit — the Schlechter Defence giving one back with
+      3...d5 is generally judged the safer path for Black, which is why the fully accepted
+      line here is rated a notch below that declined line's own soundness. Below master
+      level the two bishops are worth more than the arithmetic suggests. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.c3, mời con tốt d4 tiếp tục lún sâu hơn. Nếu Đen ăn nốt tốt này, Trắng chưa vội ăn lại mà đưa tượng ra c4 ngay, đổi hai tốt lấy hai đường chéo nhắm vào f7 và g7.
+    en: White plays 3.c3, inviting the d4 pawn to sink in even deeper. If Black takes this pawn too, White does not recapture at once but brings the bishop straight to c4, trading two pawns for two diagonals aimed at f7 and g7.
+    fr: Les Blancs jouent 3.c3, invitant le pion d4 à s'enfoncer plus profondément encore. Si les Noirs prennent aussi ce pion, les Blancs ne reprennent pas tout de suite mais amènent directement le fou en c4, échangeant deux pions contre deux diagonales visant f7 et g7.
+  dismissRest:
+    reason:
+      vi: Đen không ăn nốt tốt c3. Đẩy trả bằng 3...d5 theo lối Schlechter Defence trả lại một tốt để giữ tốt kia và có cấu trúc lành mạnh, còn các nước khác để nguyên tốt d4 chưa bị Trắng ăn lại.
+      en: Black does not take the c3 pawn as well. Pushing back with 3...d5 in Schlechter Defence style gives one pawn back to keep the other with a healthy structure, while other moves leave the d4 pawn still unrecaptured by White.
+      fr: Les Noirs ne prennent pas aussi le pion c3. Pousser par 3...d5 à la manière de la Défense Schlechter rend un pion pour garder l'autre avec une structure saine, tandis que d'autres coups laissent le pion d4 encore non repris par les Blancs.
+  children:
+    - ply: dxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn nốt con tốt thứ hai, chấp nhận thử thách gắt gao nhất của gambit và giữ nguyên hai tốt thừa trong tay ít nhất là tạm thời.
+        en: Black takes the second pawn as well, accepting the sternest test of the gambit and holding two extra pawns in hand, at least for the time being.
+        fr: Les Noirs prennent aussi le second pion, acceptant le test le plus sévère du gambit et gardant deux pions supplémentaires en main, du moins pour l'instant.
+      children:
+        - ply: Bc4
+          annotation:
+            vi: Trắng chưa vội ăn lại tốt c3 mà đưa tượng ra c4 ngay, nhắm thẳng vào f7 trong khi Đen còn chưa phát triển quân nào.
+            en: White does not rush to recapture the c3 pawn but brings the bishop to c4 at once, aiming straight at f7 while Black has not developed a single piece yet.
+            fr: Les Blancs ne se pressent pas de reprendre le pion c3 mais amènent aussitôt le fou en c4, visant directement f7 alors que les Noirs n'ont encore développé aucune pièce.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, Trắng sáu, Đen tám, Trắng thiếu hẳn hai tốt. Bù lại, tượng c4 đã nhắm thẳng vào f7 và Đen vẫn chưa đưa ra được quân nào, nghĩa là Trắng đổi vật chất lấy tốc độ phát triển và một mục tiêu cụ thể.
+              en: Count the pawns, six for White, eight for Black, White fully two pawns down. In return the bishop on c4 already aims straight at f7 and Black has not brought out a single piece yet, meaning White has traded material for speed of development and a concrete target.
+              fr: Comptez les pions, six pour les Blancs, huit pour les Noirs, les Blancs ont deux pions de moins. En échange, le fou en c4 vise déjà directement f7 et les Noirs n'ont encore sorti aucune pièce, ce qui signifie que les Blancs ont échangé du matériel contre de la rapidité de développement et une cible concrète.
+            plan:
+              vi: Trắng chơi Nxc3 hay Qb3, tiếp tục phát triển nhanh và gây sức ép lên f7 cùng cánh hậu Đen trước khi Đen kịp nhập thành. Đen chơi d6, Nf6 hay Qe7, che chắn f7 và hoàn thiện phát triển càng sớm càng tốt để tận dụng số tốt đang có trong tay.
+              en: White plays Nxc3 or Qb3, continuing rapid development and pressing on f7 and Black's queenside before Black can castle. Black plays d6, Nf6 or Qe7, shielding f7 and completing development as quickly as possible to make use of the extra pawns in hand.
+              fr: Les Blancs jouent Nxc3 ou Qb3, poursuivant un développement rapide et faisant pression sur f7 et l'aile dame noire avant que les Noirs ne puissent roquer. Les Noirs jouent d6, Nf6 ou Qe7, protégeant f7 et achevant leur développement aussi vite que possible pour profiter des pions supplémentaires en main.
+            basis:
+              by: chan
+              at: '2026-09-18'

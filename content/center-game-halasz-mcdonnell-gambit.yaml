@@ -1,0 +1,68 @@
+# Center Game: Halasz-McDonnell Gambit. Frozen defining line 1.e4 e5 2.d4 exd4 3.f4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js: 3...Qh4+ is check, and only three replies are legal — g3, Kd2 and
+# Ke2 — so the catch-all at that node covers exactly those two king moves. After 4.g3
+# nothing is hanging for either side (the queen has safe retreat squares, so it is not a
+# free capture sitting on the board). searchMate at 4 moves from this position returns
+# unknown, which the stopping rule treats the same as no-mate, so no forced mate is
+# claimed.
+id: center-game-halasz-mcdonnell-gambit
+name: 'Center Game: Halasz-McDonnell Gambit'
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, f4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White offers a second pawn to open the centre even faster than the
+      Danish Gambit, but 3...Qh4+ answers it immediately with check, costing White the right
+      to castle kingside comfortably and leaving the extra pawn still on the board for
+      Black to worry about only later. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.f4, dâng thêm một tốt nữa để mở toang trung tâm ngay từ đầu ván, đi trước cả Danish Gambit về mức độ liều lĩnh.
+    en: White plays 3.f4, offering a second pawn to blow the centre open even earlier in the game, more reckless even than the Danish Gambit.
+    fr: Les Blancs jouent 3.f4, offrant un second pion pour ouvrir le centre encore plus tôt dans la partie, plus téméraire encore que le Gambit Danois.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 3...Qh4+. Ăn thêm tốt f4 hay các nước phát triển khác để Trắng có thêm thời gian hoàn thiện trung tâm bằng Nf3 và Bc4 mà không phải lo lắng về vị trí vua ngay lập tức.
+      en: Black does not play 3...Qh4+. Taking the f4 pawn as well, or other developing moves, gives White more time to complete the centre with Nf3 and Bc4 without having to worry about king safety right away.
+      fr: Les Noirs ne jouent pas 3...Qh4+. Prendre aussi le pion f4, ou d'autres coups de développement, donne aux Blancs plus de temps pour achever le centre par Nf3 et Bc4 sans se soucier immédiatement de la sécurité du roi.
+  children:
+    - ply: Qh4+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi ngay 3...Qh4+, chiếu tướng và buộc Trắng phải trả lời trước khi tính đến việc phát triển thêm quân nào khác.
+        en: Black plays 3...Qh4+ at once, giving check and forcing White to answer before thinking about developing anything else.
+        fr: Les Noirs jouent aussitôt 3...Qh4+, donnant l'échec et forçant les Blancs à répondre avant de songer à développer quoi que ce soit d'autre.
+      children:
+        - ply: g3
+          annotation:
+            vi: Trắng chặn chiếu bằng tốt g3, đồng thời tấn công luôn con hậu Đen và buộc nó phải rút lui ngay ở nước sau.
+            en: White blocks the check with the g3 pawn, which also attacks the Black queen and forces it to retreat on the very next move.
+            fr: Les Blancs bloquent l'échec avec le pion g3, qui attaque du même coup la dame noire et la force à reculer dès le coup suivant.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, Trắng bảy, Đen tám, Đen hơn hai tốt sạch tính đến lúc này. Đổi lại, hậu Đen đang bị tấn công và phải lùi ngay, còn cấu trúc tốt cánh vua của Trắng đã bị xáo trộn với tốt g3 mới đẩy lên.
+              en: Count the pawns, seven for White, eight for Black, Black two clean pawns up at this point. In return, Black's queen is under attack and must retreat at once, while White's kingside pawn structure has been disturbed by the newly pushed g3 pawn.
+              fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, les Noirs ont deux pions nets de plus à ce stade. En échange, la dame noire est attaquée et doit reculer aussitôt, tandis que la structure de pions à l'aile roi blanche a été perturbée par le pion g3 tout juste poussé.
+            plan:
+              vi: Trắng chơi Nf3, Bc4 và O-O, cố nhanh chóng phát triển và tận dụng cột f cùng đường chéo mở để tấn công bù lại hai tốt đã mất. Đen chơi Qe7 hay Qf6, rút hậu về nơi an toàn rồi tiếp tục d6 và Nc6 để củng cố và giữ chắc số tốt thừa.
+              en: White plays Nf3, Bc4 and castles, trying to develop quickly and use the open f-file and diagonals to attack in compensation for the two lost pawns. Black plays Qe7 or Qf6, retreating the queen to safety and following with d6 and Nc6 to consolidate and hold onto the extra pawns.
+              fr: Les Blancs jouent Nf3, Bc4 et roquent, cherchant à développer rapidement et à utiliser la colonne f et les diagonales ouvertes pour attaquer en compensation des deux pions perdus. Les Noirs jouent Qe7 ou Qf6, retirant la dame en sécurité puis poursuivant par d6 et Nc6 pour consolider et garder les pions supplémentaires.
+            basis:
+              by: chan
+              at: '2026-09-18'

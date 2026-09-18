@@ -1,0 +1,60 @@
+# Tarrasch Defense: Schara Gambit. Frozen defining line 1.d4 d5 2.c4 e6 3.Nc3 c5 4.cxd5
+# cxd4, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js: 5.Qxd4 recaptures with the queen, since nothing
+# else can, and the queen is not currently capturable by anything of Black's for free.
+# searchMate at 4 moves from this position returns unknown, which the stopping rule treats
+# the same as no-mate, so no forced mate is claimed.
+id: tarrasch-defense-schara-gambit
+name: 'Tarrasch Defense: Schara Gambit'
+eco: D32
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e6, Nc3, c5, cxd5, cxd4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Black gives up a
+      pawn to draw White's queen out early with tempo-gaining moves such as Nc6 still to
+      come, and this countergambit has held up well across a long history of established
+      practice at a high level. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 4...cxd4, dâng thêm một tốt để mời hậu Trắng ra sớm, trước khi Đen bắt đầu tấn công nó bằng những nước như Nc6.
+    en: Black plays 4...cxd4, offering an extra pawn to draw White's queen out early, before Black starts hunting it with moves such as Nc6.
+    fr: Les Noirs jouent 4...cxd4, offrant un pion supplémentaire pour attirer tôt la dame blanche, avant que les Noirs ne commencent à la chasser par des coups comme Nc6.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn lại bằng hậu ở nước này. Không quân nào khác của Trắng có thể ăn tốt d4, nên bất kỳ nước nào khác đều để nguyên con tốt đó trên bàn cờ cho Đen giữ lấy.
+      en: White does not recapture with the queen at this point. Nothing else of White's can take the d4 pawn, so any other move leaves that pawn sitting on the board for Black to keep.
+      fr: Les Blancs ne reprennent pas avec la dame à ce stade. Rien d'autre chez les Blancs ne peut prendre le pion d4, donc tout autre coup laisse ce pion sur l'échiquier pour les Noirs.
+  children:
+    - ply: Qxd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn lại bằng hậu, quân duy nhất có thể làm việc đó, chấp nhận đưa hậu ra sớm để đổi lấy con tốt.
+        en: White recaptures with the queen, the only piece that can, accepting an early queen excursion in exchange for the pawn.
+        fr: Les Blancs reprennent avec la dame, la seule pièce qui le peut, acceptant une sortie précoce de la dame en échange du pion.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng bảy, Đen sáu, Trắng hơn đúng một tốt sạch, các quân nhẹ và nặng còn lại vẫn bằng nhau ở cả hai bên. Đổi lại, hậu Trắng đã phải ra sớm giữa bàn cờ và sẽ là mục tiêu cho những nước tấn công tempo sắp tới của Đen.
+          en: Count the pawns, seven for White, six for Black, a clean extra pawn for White, with the remaining minor and major pieces still level on both sides. In return White's queen has come out early into the middle of the board and will be a target for Black's upcoming tempo-gaining moves.
+          fr: Comptez les pions, sept pour les Blancs, six pour les Noirs, un pion net de plus pour les Blancs, les pièces mineures et majeures restantes étant encore égales des deux côtés. En échange, la dame blanche est sortie tôt au milieu de l'échiquier et sera la cible des coups à gain de temps que les Noirs s'apprêtent à jouer.
+        plan:
+          vi: Trắng chơi Qd1, Qd3 hay e4, tìm chỗ an toàn cho hậu và cố giữ chắc con tốt thừa. Đen chơi Nc6, Nf6 và Be7 hoặc Bb4, liên tục đe doạ con hậu để tranh thủ phát triển nhanh bù lại con tốt đã mất.
+          en: White plays Qd1, Qd3 or e4, finding a safe square for the queen and trying to hold onto the extra pawn. Black plays Nc6, Nf6 and Be7 or Bb4, repeatedly threatening the queen to gain rapid development in compensation for the lost pawn.
+          fr: Les Blancs jouent Qd1, Qd3 ou e4, cherchant une case sûre pour la dame et essayant de garder le pion supplémentaire. Les Noirs jouent Nc6, Nf6 et Be7 ou Bb4, menaçant sans cesse la dame pour gagner un développement rapide en compensation du pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-18'

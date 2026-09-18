@@ -1,0 +1,98 @@
+# Benko Gambit Declined: Bishop Attack. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 4.Bg5 h6 5.Bxf6 exf6 6.cxb5: at every stopping point
+# checked, no capture was left going free until the position after 6.cxb5, where material
+# settles at eight pawns for White against seven for Black with the bishops already traded
+# off. searchMate at 4 moves returns unknown at every leaf here, which the stopping rule
+# treats the same as no-mate, so no forced mate is claimed anywhere in this entry.
+id: benko-gambit-declined-bishop-attack
+name: 'Benko Gambit Declined: Bishop Attack'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. White sidesteps
+      the immediate capture on b5 to pin the f6 knight instead, but Black meets it with the
+      normal Benko resources — the pawn on b5 is real compensation once it does fall, and
+      Black's position holds up across established practice. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 3...b5, dâng tốt cánh hậu theo đúng tinh thần Benko Gambit và mời Trắng ăn nó bằng cxb5 ngay lập tức.
+    en: Black plays 3...b5, offering the queenside pawn in true Benko Gambit style and inviting White to take it at once with cxb5.
+    fr: Les Noirs jouent 3...b5, offrant le pion de l'aile dame dans le pur style du Gambit Benko et invitant les Blancs à le prendre aussitôt par cxb5.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Bg5. Ăn tốt ngay bằng 4.cxb5 dẫn vào các nhánh Benko Gambit đã được chấp nhận, còn các nước phát triển khác như Nc3 hay e4 để nguyên tốt b5 nằm đó cho Trắng ăn sau.
+      en: White does not play 4.Bg5. Taking the pawn at once with 4.cxb5 leads into the accepted Benko Gambit branches, while other developing moves such as Nc3 or e4 leave the b5 pawn sitting there for White to take later.
+      fr: Les Blancs ne jouent pas 4.Bg5. Prendre le pion tout de suite par 4.cxb5 mène vers les branches acceptées du Gambit Benko, tandis que d'autres coups de développement comme Nc3 ou e4 laissent le pion b5 en place pour une prise ultérieure.
+  children:
+    - ply: Bg5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Thay vì ăn ngay tốt b5, Trắng chơi 4.Bg5, ghim mã f6 vào hậu d8 và trì hoãn việc ăn tốt để trước tiên gây khó dễ cho sự phối hợp của Đen.
+        en: Instead of taking the b5 pawn at once, White plays 4.Bg5, pinning the f6 knight against the queen on d8 and delaying the capture to make life awkward for Black's coordination first.
+        fr: Au lieu de prendre immédiatement le pion b5, les Blancs jouent 4.Bg5, clouant le cavalier f6 contre la dame en d8 et retardant la capture pour d'abord gêner la coordination noire.
+      children:
+        - ply: h6
+          annotation:
+            vi: Đen hỏi thẳng con tượng, buộc Trắng phải quyết định giữa việc đổi tượng lấy mã hay lùi về, trước khi tính đến việc ăn tốt b5.
+            en: Black asks the bishop directly, forcing White to decide between trading it for the knight or retreating it, before ever getting round to taking the b5 pawn.
+            fr: Les Noirs interrogent directement le fou, forçant les Blancs à choisir entre l'échanger contre le cavalier ou le reculer, avant même de songer à prendre le pion b5.
+          dismissRest:
+            reason:
+              vi: Trắng không đổi tượng lấy mã bằng Bxf6. Việc lùi tượng — chẳng hạn Bh4, Bd2 hay Be3 — giữ lại cặp tượng nhưng để mã f6 tiếp tục đứng nguyên, và Đen vẫn còn thời gian để hoàn thiện phát triển trước khi Trắng quay lại ăn tốt b5.
+              en: White does not trade the bishop for the knight with Bxf6. Retreating the bishop instead — Bh4, Bd2 or Be3, for instance — keeps the bishop pair but leaves the f6 knight standing, and Black still gets time to finish developing before White comes back to take the b5 pawn.
+              fr: Les Blancs n'échangent pas le fou contre le cavalier par Bxf6. Reculer le fou à la place — Bh4, Bd2 ou Be3, par exemple — garde la paire de fous mais laisse le cavalier f6 en place, et les Noirs ont encore le temps de finir leur développement avant que les Blancs ne reviennent prendre le pion b5.
+          children:
+            - ply: Bxf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng đổi tượng lấy mã, giải quyết dứt điểm thế ghim và để lại cho Đen một cấu trúc tốt hơi khác thường ở cánh vua sau khi ăn lại.
+                en: White trades the bishop for the knight, settling the pin once and for all and leaving Black with a slightly unusual pawn structure on the kingside after the recapture.
+                fr: Les Blancs échangent le fou contre le cavalier, réglant définitivement le clouage et laissant aux Noirs une structure de pions un peu inhabituelle à l'aile roi après la reprise.
+              children:
+                - ply: exf6
+                  annotation:
+                    vi: Đen ăn lại bằng tốt e, chấp nhận tốt f bị chia đôi để đổi lấy cột e nửa mở và cặp tượng còn nguyên vẹn.
+                    en: Black recaptures with the e-pawn, accepting doubled f-pawns in exchange for a half-open e-file and keeping the bishop pair intact.
+                    fr: Les Noirs reprennent avec le pion e, acceptant des pions f doublés en échange d'une colonne e semi-ouverte et en gardant la paire de fous intacte.
+                  dismissRest:
+                    reason:
+                      vi: Trắng không ăn tốt b5 ngay ở nước này. Việc phát triển trước — chẳng hạn Nc3 hay Nf3 — vẫn để tốt b5 nằm đó chưa bị ăn, và Đen có thể tranh thủ củng cố nó bằng a6 nếu Trắng chậm trễ.
+                      en: White does not take the b5 pawn right away here. Developing first instead — Nc3 or Nf3, for instance — still leaves the b5 pawn untaken, and Black can use the time to shore it up with a6 if White delays.
+                      fr: Les Blancs ne prennent pas le pion b5 tout de suite ici. Développer d'abord — Nc3 ou Nf3, par exemple — laisse encore le pion b5 non pris, et les Noirs peuvent profiter du temps pour le renforcer par a6 si les Blancs tardent.
+                  children:
+                    - ply: cxb5
+                      annotation:
+                        vi: Trắng cuối cùng ăn con tốt b5 đã bị bỏ ngỏ từ đầu, hoàn tất phần vật chất của kế hoạch từ chối gambit.
+                        en: White finally takes the b5 pawn that has been left hanging since the start, completing the material side of the declining plan.
+                        fr: Les Blancs prennent enfin le pion b5 laissé en suspens depuis le début, complétant le volet matériel du plan de refus.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Đếm tốt, Trắng tám, Đen bảy, hơn đúng một tốt sạch, các quân nhẹ và nặng còn lại bằng nhau sau khi đã đổi cặp tượng-mã. Đổi lại, Đen có cột e nửa mở cho xe và cặp tượng, nhưng tốt f bị chia đôi vẫn là một điểm yếu lâu dài trong cấu trúc.
+                          en: Count the pawns, eight for White, seven for Black, a clean extra pawn, with the remaining minor and major pieces level after the bishop-for-knight trade. In return Black has a half-open e-file for the rook and the bishop pair, but the doubled f-pawns remain a long-term structural weakness.
+                          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, un pion net de plus, les pièces mineures et majeures restantes étant égales après l'échange fou contre cavalier. En échange, les Noirs ont une colonne e semi-ouverte pour la tour et la paire de fous, mais les pions f doublés restent une faiblesse structurelle durable.
+                        plan:
+                          vi: Trắng chơi Nc3, e4 và Nf3, cố hoàn thiện phát triển và giữ chắc con tốt thừa. Đen chơi d6, g6 và Bg7, xây dựng lại cấu trúc quanh cặp tượng và tận dụng cột e nửa mở để bù lại con tốt đã mất.
+                          en: White plays Nc3, e4 and Nf3, trying to complete development and hold onto the extra pawn. Black plays d6, g6 and Bg7, rebuilding the structure around the bishop pair and using the half-open e-file to compensate for the lost pawn.
+                          fr: Les Blancs jouent Nc3, e4 et Nf3, cherchant à achever leur développement et à garder le pion supplémentaire. Les Noirs jouent d6, g6 et Bg7, reconstruisant autour de la paire de fous et utilisant la colonne e semi-ouverte pour compenser le pion perdu.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'

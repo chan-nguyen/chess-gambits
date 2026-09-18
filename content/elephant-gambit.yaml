@@ -1,0 +1,66 @@
+# Elephant Gambit. Frozen defining line 1.e4 e5 2.Nf3 d5, which ends on Black's own ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js
+# through 3.exd5 Qxd5: the pawn trade is even and White's knight on f3 attacks the queen
+# next move, but nothing is hanging for either side right now. searchMate at 4 moves from
+# this position returns unknown, which the stopping rule treats the same as no-mate, so no
+# forced mate is claimed.
+id: elephant-gambit
+name: Elephant Gambit
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black offers a pawn to open the centre at once, but recapturing with the
+      queen brings it out too early, where White's knight on f3 attacks it with tempo next
+      move, and White is left simply better developed for no material cost. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 2...d5, đẩy trung tâm lên ngay và mời Trắng ăn tốt để đổi lấy một cuộc mở cờ nhanh và trực tiếp.
+    en: Black plays 2...d5, striking the centre at once and inviting White to take the pawn in exchange for a quick, direct opening of the position.
+    fr: Les Noirs jouent 2...d5, frappant aussitôt le centre et invitant les Blancs à prendre le pion en échange d'une ouverture rapide et directe de la position.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt d5. Các nước khác như Nxe5 hay Bb5+ để nguyên căng thẳng ở trung tâm chưa được giải quyết, và Đen vẫn có quyền chọn ăn lại tốt e4 hoặc đẩy tiếp theo ý mình.
+      en: White does not take the d5 pawn. Other moves such as Nxe5 or Bb5+ leave the central tension unresolved, and Black still gets to choose between recapturing on e4 or pushing on as planned.
+      fr: Les Blancs ne prennent pas le pion d5. D'autres coups comme Nxe5 ou Bb5+ laissent la tension centrale non résolue, et les Noirs peuvent encore choisir de reprendre en e4 ou de pousser comme prévu.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt trung tâm bằng tốt e, một cuộc đổi tốt sòng phẳng vì không quân nào của Trắng có thể ăn lại nếu Đen dùng hậu.
+        en: White takes the central pawn with the e-pawn, an even pawn trade since nothing else of White's can recapture if Black uses the queen.
+        fr: Les Blancs prennent le pion central avec le pion e, un échange de pions équitable puisque rien d'autre chez les Blancs ne peut reprendre si les Noirs utilisent la dame.
+      children:
+        - ply: Qxd5
+          annotation:
+            vi: Đen ăn lại ngay bằng hậu, cách duy nhất để lấy lại con tốt vừa mất mà không phải chờ thêm nước nào khác.
+            en: Black recaptures at once with the queen, the only way to win the pawn straight back without waiting for another move.
+            fr: Les Noirs reprennent aussitôt avec la dame, la seule façon de récupérer immédiatement le pion perdu sans attendre un autre coup.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, mỗi bên còn bảy quân, vật chất hoàn toàn cân bằng sau cuộc đổi tốt trung tâm. Tuy nhiên hậu Đen đã ra giữa bàn cờ quá sớm, và mã f3 của Trắng sẽ tấn công nó ngay ở nước tiếp theo bằng Nc3.
+              en: Count the pawns, seven apiece, material is fully level after the central pawn trade. However, Black's queen has come out into the middle of the board too early, and White's knight will attack it at once next move with Nc3.
+              fr: Comptez les pions, sept de chaque côté, le matériel est parfaitement égal après l'échange de pions centraux. Cependant, la dame noire est sortie trop tôt au milieu de l'échiquier, et le cavalier blanc l'attaquera aussitôt au coup suivant par Nc3.
+            plan:
+              vi: Trắng chơi Nc3, tấn công hậu Đen ngay với tempo rồi tiếp tục d4 và Be2 để phát triển nhanh và giành lợi thế không gian. Đen chơi Qe6, Qa5 hay Qd8, rút hậu về nơi an toàn rồi cố hoàn thiện phát triển bình thường để bù lại thời gian đã mất.
+              en: White plays Nc3, attacking Black's queen at once with tempo, then follows with d4 and Be2 to develop quickly and gain a space advantage. Black plays Qe6, Qa5 or Qd8, retreating the queen to safety and trying to complete ordinary development to make up for the lost time.
+              fr: Les Blancs jouent Nc3, attaquant aussitôt la dame noire avec gain de temps, puis poursuivent par d4 et Be2 pour développer rapidement et gagner de l'espace. Les Noirs jouent Qe6, Qa5 ou Qd8, retirant la dame en sécurité et essayant d'achever un développement ordinaire pour compenser le temps perdu.
+            basis:
+              by: chan
+              at: '2026-09-18'

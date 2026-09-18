@@ -1,0 +1,56 @@
+# Alekhine Defense: Krejcik Variation, Krejcik Gambit. Frozen defining line 1.e4 Nf6 2.Bc4
+# Nxe4 3.Bxf7+, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js: 3.Bxf7+ is check, and the only
+# reasonable reply is 3...Kxf7, since nothing else defends f7 and no other piece can capture
+# the bishop. After 3...Kxf7 White is down a bishop for a pawn and nothing is hanging for
+# either side, so the leaf is a resolution, not a mate (searchMate at 4 moves returns
+# unknown, which the stopping rule treats the same as no-mate — no forced mate is claimed).
+id: alekhine-defense-krejcik-variation-krejcik-gambit
+name: 'Alekhine Defense: Krejcik Variation, Krejcik Gambit'
+eco: B02
+category: gambit
+side: white
+definingLine: [e4, Nf6, Bc4, Nxe4, Bxf7+]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White gives up a whole bishop for one pawn and the king that is forced to
+      f7. That king is not easy to attack again quickly, since Black has not castled yet and
+      has no weaknesses for White to aim at beyond the one exposed square, so the material
+      lost is not made up for. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...Nxe4, Trắng chơi 3.Bxf7+, hy sinh tượng để buộc vua Đen phải rời khỏi vị trí ban đầu. Đây là toàn bộ ý tưởng của Krejcik Gambit — đổi một quân lấy một tốt và quyền nhập thành của Đen.
+    en: After 2...Nxe4, White plays 3.Bxf7+, giving up the bishop to force Black's king off its starting square. This is the whole idea of the Krejcik Gambit — a piece for a pawn and Black's castling rights.
+    fr: Après 2...Nxe4, les Blancs jouent 3.Bxf7+, sacrifiant le fou pour forcer le roi noir à quitter sa case de départ. C'est toute l'idée du Gambit Krejcik — une pièce contre un pion et le droit au roque des Noirs.
+  children:
+    - ply: Kxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại con tượng bằng vua, cách duy nhất hợp lý để giải quyết tình huống chiếu tướng và đồng thời không để mất thêm gì.
+        en: Black recaptures the bishop with the king, the only sensible way to deal with the check without losing anything further.
+        fr: Les Noirs reprennent le fou avec le roi, la seule façon sensée de répondre à l'échec sans rien perdre de plus.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân, Trắng mất một tượng để đổi lấy một tốt, nghĩa là thiệt khoảng hai điểm giá trị quân. Bù lại, vua Đen đã rời ô xuất phát và mất quyền nhập thành, nhưng hiện tại chưa có quân nào của Trắng thực sự nhắm vào ô f7 hay các ô xung quanh, nên đây chỉ là một lợi thế tiềm năng chứ chưa phải điều gì cụ thể.
+          en: Counting material, White has given up a bishop for a pawn, roughly two points of value down. In return, Black's king has left its starting square and lost the right to castle, but nothing of White's is actually bearing on f7 or the squares around it yet, so this is only a potential asset rather than anything concrete right now.
+          fr: En comptant le matériel, les Blancs ont sacrifié un fou contre un pion, soit environ deux points de valeur en moins. En échange, le roi noir a quitté sa case de départ et perdu le droit au roque, mais rien du côté blanc ne vise réellement f7 ou les cases voisines pour l'instant, donc ce n'est qu'un atout potentiel plutôt que quelque chose de concret.
+        plan:
+          vi: Trắng chơi Nc3, Qh5+ hoặc d4 và O-O, cố gắng nhanh chóng đưa quân ra để khai thác vị trí vua Đen trước khi Đen kịp che chắn. Đen chơi d5, Nc6 hoặc g6, đưa vua về nơi an toàn hơn qua Kg8 và củng cố trung tâm để biện minh cho quân thừa đang có.
+          en: White plays Nc3, Qh5+ or d4 and castles, trying to bring pieces out quickly to exploit Black's king position before Black can shore it up. Black plays d5, Nc6 or g6, tucking the king away more safely with Kg8 and consolidating the center to justify the extra piece in hand.
+          fr: Les Blancs jouent Nc3, Qh5+ ou d4 puis roquent, essayant de développer rapidement pour exploiter la position du roi noir avant que les Noirs ne puissent la consolider. Les Noirs jouent d5, Nc6 ou g6, mettant le roi plus en sécurité par Kg8 et consolidant le centre pour justifier la pièce supplémentaire en main.
+        basis:
+          by: chan
+          at: '2026-09-18'

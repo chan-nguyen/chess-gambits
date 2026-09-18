@@ -195,11 +195,16 @@ test('a listed entry opens on its identity and its moves, never an error', async
   /*
    * The Benko itself is taught since #15, so the listed example here is its sibling, and
    * it is addressed by id rather than by position in the list — "the first Benko row" is
-   * a different entry every time content lands, and this test is about the *listed* state.
+   * a different entry every time content lands, and this test is about the *listed* state,
+   * which needs a sibling with **no content file at all** (a missing file is what routes to
+   * `EmptyTree`, docs/CONTEXT.md — an authored-but-unmapped file instead renders its own,
+   * different "branch not mapped" state). `benko-gambit-accepted` and
+   * `benko-gambit-declined-bishop-attack` were this sibling until #102 mapped them, so
+   * `benko-gambit-mutkin-countergambit`, still unauthored, is the one addressed here now.
    */
   await page
     .getByRole('main')
-    .locator(`a[href$="/vi/${routeSegments.catalogue}/benko-gambit-accepted"]`)
+    .locator(`a[href$="/vi/${routeSegments.catalogue}/benko-gambit-mutkin-countergambit"]`)
     .click()
 
   await expect(page.getByText('Gambit này chưa được dạy sâu.')).toBeVisible()

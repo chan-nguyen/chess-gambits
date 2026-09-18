@@ -1,0 +1,67 @@
+# Semi-Slav Defense: Marshall Gambit. Frozen defining line 1.d4 d5 2.c4 e6 3.Nc3 c6 4.e4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 4...dxe4 5.Nxe4: material is level at seven
+# pawns each once White recaptures, and nothing is hanging afterwards. searchMate at 4
+# moves from this position returns unknown, which the stopping rule treats the same as
+# no-mate, so no forced mate is claimed.
+id: semi-slav-defense-marshall-gambit
+name: 'Semi-Slav Defense: Marshall Gambit'
+eco: D31
+category: gambit
+side: white
+definingLine: [d4, d5, c4, e6, Nc3, c6, e4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. White gives up
+      the e4 pawn only for a single move before winning it straight back with the knight,
+      so calling it a real material sacrifice overstates what is actually offered — the real
+      point is the open position and lead in development that follow. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 4.e4, đẩy tốt trung tâm lên và mời Đen ăn nó, đặt cược vào việc ăn lại ngay bằng mã để mở đường phát triển nhanh hơn bất kỳ ai trong hệ Slav thông thường.
+    en: White plays 4.e4, pushing the central pawn forward and inviting Black to take it, betting on recapturing at once with the knight to open lines faster than either side would in an ordinary Slav.
+    fr: Les Blancs jouent 4.e4, poussant le pion central et invitant les Noirs à le prendre, misant sur une reprise immédiate avec le cavalier pour ouvrir les lignes plus vite que dans une Slave ordinaire.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4. Các nước khác như Nf6 hay dxc4 để nguyên căng thẳng trung tâm chưa được giải quyết, và Trắng vẫn còn nguyên lựa chọn đẩy tiếp e5 hoặc chơi exd5 sau đó.
+      en: Black does not take the e4 pawn. Other moves such as Nf6 or dxc4 leave the central tension unresolved, and White still has the option of pushing on with e5 or playing exd5 later.
+      fr: Les Noirs ne prennent pas le pion e4. D'autres coups comme Nf6 ou dxc4 laissent la tension centrale non résolue, et les Blancs conservent l'option de pousser par e5 ou de jouer exd5 plus tard.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt trung tâm, chấp nhận thử thách trực tiếp và để Trắng ăn lại ngay bằng mã ở nước tiếp theo.
+        en: Black takes the central pawn, accepting the challenge head-on and letting White recapture at once with the knight next move.
+        fr: Les Noirs prennent le pion central, acceptant le défi de front et laissant les Blancs reprendre aussitôt avec le cavalier au coup suivant.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Trắng ăn lại bằng mã, con mã này giờ đứng ở trung tâm bàn cờ, sẵn sàng nhảy tiếp lên f6 hay g5 để gây rối ở cánh vua Đen.
+            en: White recaptures with the knight, which now stands in the centre of the board, ready to jump on to f6 or g5 to stir up trouble around Black's kingside.
+            fr: Les Blancs reprennent avec le cavalier, qui se retrouve maintenant au centre de l'échiquier, prêt à bondir vers f6 ou g5 pour semer le trouble à l'aile roi noire.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, mỗi bên còn bảy quân, vật chất hoàn toàn cân bằng sau khi đổi tốt trung tâm. Trắng đã có mã hoạt động tích cực ngay giữa bàn cờ, còn Đen vẫn chưa phát triển thêm quân nào so với Trắng.
+              en: Count the pawns, seven apiece, material is fully level after the central pawn trade. White already has an actively placed knight right in the middle of the board, while Black has not developed any further pieces than White has.
+              fr: Comptez les pions, sept de chaque côté, le matériel est parfaitement égal après l'échange du pion central. Les Blancs disposent déjà d'un cavalier activement placé au beau milieu de l'échiquier, tandis que les Noirs n'ont pas développé plus de pièces que les Blancs.
+            plan:
+              vi: Trắng chơi Nf3, Bd3 và O-O, tiếp tục phát triển nhanh và tận dụng con mã trung tâm để gây sức ép lên cánh vua Đen. Đen chơi Nd7, Be7 và O-O, hoàn thiện phát triển an toàn và chuẩn bị đổi bớt quân trước khi Trắng kịp tổ chức tấn công.
+              en: White plays Nf3, Bd3 and castles, continuing rapid development and using the centralized knight to pressure Black's kingside. Black plays Nd7, Be7 and castles, completing safe development and preparing to trade off some pieces before White can organize an attack.
+              fr: Les Blancs jouent Nf3, Bd3 et roquent, poursuivant un développement rapide et utilisant le cavalier centralisé pour presser l'aile roi noire. Les Noirs jouent Nd7, Be7 et roquent, achevant un développement sûr et se préparant à échanger quelques pièces avant que les Blancs ne puissent organiser une attaque.
+            basis:
+              by: chan
+              at: '2026-09-18'

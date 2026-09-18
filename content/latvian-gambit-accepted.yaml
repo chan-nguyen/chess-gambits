@@ -1,0 +1,66 @@
+# Latvian Gambit Accepted. Frozen defining line 1.e4 e5 2.Nf3 f5, which ends on Black's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 3.exf5 e4: after White accepts, the knight on f3 is attacked and must
+# move, and nothing is hanging for either side. searchMate at 4 moves from this position
+# returns unknown, which the stopping rule treats the same as no-mate, so no forced mate is
+# claimed.
+id: latvian-gambit-accepted
+name: Latvian Gambit Accepted
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black is a clean pawn down for an immediate attack on the f3 knight and
+      quick piece activity, but the position opens up fastest around Black's own king, and
+      accurate play is generally judged to favour White's extra material over Black's
+      initiative. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 2...f5, tấn công thẳng vào tốt e4 ngay từ nước thứ hai và mời Trắng ăn lại để đổi lấy tốc độ phát triển sau này.
+    en: Black plays 2...f5, striking directly at the e4 pawn as early as move two and inviting White to take it in exchange for faster development later.
+    fr: Les Noirs jouent 2...f5, frappant directement le pion e4 dès le deuxième coup et invitant les Blancs à le prendre en échange d'un développement plus rapide par la suite.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f5. Các nước khác như Nxe5 hay Nc3 để nguyên căng thẳng ở trung tâm chưa được giải quyết, và Đen vẫn có thể chọn ăn lại tốt e4 hoặc đẩy tiếp theo ý mình.
+      en: White does not take the f5 pawn. Other moves such as Nxe5 or Nc3 leave the central tension unresolved, and Black still gets to choose between recapturing on e4 or pushing on as planned.
+      fr: Les Blancs ne prennent pas le pion f5. D'autres coups comme Nxe5 ou Nc3 laissent la tension centrale non résolue, et les Noirs peuvent encore choisir de reprendre en e4 ou de pousser comme prévu.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay lập tức, chấp nhận lời mời và đặt cược vào việc con tốt f5 sẽ khó bị Đen giành lại một cách dễ dàng.
+        en: White takes the pawn at once, accepting the invitation and betting that the f5 pawn will not be easy for Black to win back cleanly.
+        fr: Les Blancs prennent le pion tout de suite, acceptant l'invitation et misant sur le fait que le pion f5 ne sera pas facile à récupérer proprement pour les Noirs.
+      children:
+        - ply: e4
+          annotation:
+            vi: Đen ưu tiên tốc độ hơn là ăn lại tốt ngay, đẩy tốt e lên để giành tempo trước khi nghĩ đến Nf6 hay Bc5 sau này.
+            en: Black prioritizes speed over recapturing at once, pushing the e-pawn to gain a tempo before thinking about Nf6 or Bc5 later.
+            fr: Les Noirs privilégient la rapidité plutôt que de reprendre immédiatement, poussant le pion e pour gagner un temps avant de songer à Nf6 ou Bc5 plus tard.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, Trắng tám, Đen bảy, Trắng hơn đúng một tốt. Con mã f3 hiện bị tấn công và phải di chuyển ngay, nhưng đó chỉ là một nước bị ép chứ chưa phải điều gì đổi lại được con tốt đã mất.
+              en: Count the pawns, eight for White, seven for Black, White exactly one pawn up. The knight on f3 is attacked right now and has to move, but that is only a forced reply, not anything that wins the lost pawn back yet.
+              fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, les Blancs ont exactement un pion de plus. Le cavalier en f3 est attaqué dès maintenant et doit bouger, mais ce n'est qu'une réponse forcée, pas encore de quoi récupérer le pion perdu.
+            plan:
+              vi: Trắng chơi Nd4, Ne5 hay Ng1 lui mã về nơi an toàn, rồi tiếp tục d4 và Nc3 để giữ chắc con tốt thừa và phát triển bình thường. Đen chơi Nf6, Bc5 hay d5, cố dựng nhanh một cuộc tấn công nhắm vào vị trí vua Trắng còn ở giữa bàn cờ để bù lại con tốt đã mất.
+              en: White plays Nd4, Ne5 or retreats with Ng1, then follows with d4 and Nc3 to hold onto the extra pawn and develop normally. Black plays Nf6, Bc5 or d5, trying to build a quick attack against White's king still sitting in the centre to compensate for the lost pawn.
+              fr: Les Blancs jouent Nd4, Ne5 ou reculent par Ng1, puis poursuivent par d4 et Nc3 pour garder le pion supplémentaire et se développer normalement. Les Noirs jouent Nf6, Bc5 ou d5, essayant de monter rapidement une attaque contre le roi blanc encore au centre pour compenser le pion perdu.
+            basis:
+              by: chan
+              at: '2026-09-18'

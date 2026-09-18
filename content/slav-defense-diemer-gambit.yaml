@@ -1,0 +1,59 @@
+# Slav Defense: Diemer Gambit. Frozen defining line 1.d4 d5 2.c4 c6 3.e4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js: 3...dxe4 simply takes the offered pawn, and nothing is hanging for either
+# side afterwards. searchMate at 4 moves from this position returns unknown, which the
+# stopping rule treats the same as no-mate, so no forced mate is claimed.
+id: slav-defense-diemer-gambit
+name: 'Slav Defense: Diemer Gambit'
+eco: D10
+category: gambit
+side: white
+definingLine: [d4, d5, c4, c6, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White offers the e4 pawn to open the centre before Black finishes the
+      usual Slav setup, betting on a lead in development making up for the pawn. It is a
+      sharp practical try rather than an established main line. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.e4, đẩy tốt trung tâm lên và mời Đen ăn nó bằng dxe4, đặt cược vào việc mở nhanh các đường chéo và cột trước khi Đen hoàn thiện hệ thống Slav quen thuộc.
+    en: White plays 3.e4, pushing the central pawn forward and inviting Black to take it with dxe4, betting on quickly opening diagonals and files before Black completes the usual Slav setup.
+    fr: Les Blancs jouent 3.e4, poussant le pion central et invitant les Noirs à le prendre par dxe4, misant sur une ouverture rapide des diagonales et des colonnes avant que les Noirs n'achèvent le dispositif slave habituel.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4. Các nước khác như Nf6 hay dxc4 để nguyên căng thẳng trung tâm chưa được giải quyết, và Trắng vẫn còn lựa chọn đẩy tiếp e5 hoặc chơi cxd5 sau đó.
+      en: Black does not take the e4 pawn. Other moves such as Nf6 or dxc4 leave the central tension unresolved, and White still has the option of pushing on with e5 or playing cxd5 later.
+      fr: Les Noirs ne prennent pas le pion e4. D'autres coups comme Nf6 ou dxc4 laissent la tension centrale non résolue, et les Blancs conservent l'option de pousser par e5 ou de jouer cxd5 plus tard.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt trung tâm, chấp nhận thử thách trực tiếp và giữ con tốt thừa trong tay ít nhất là tạm thời.
+        en: Black takes the central pawn, accepting the challenge head-on and holding the extra pawn in hand, at least for the time being.
+        fr: Les Noirs prennent le pion central, acceptant le défi de front et gardant le pion supplémentaire en main, du moins pour l'instant.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng bảy, Đen tám, Đen hơn đúng một tốt sạch, các quân nhẹ và nặng còn lại vẫn bằng nhau ở cả hai bên. Đổi lại, Trắng có quyền chủ động phát triển trước, nhưng chưa quân nào thực sự nhắm vào một mục tiêu cụ thể ngay lúc này.
+          en: Count the pawns, seven for White, eight for Black, a clean extra pawn for Black, with the remaining minor and major pieces still level on both sides. In return White has the initiative to develop first, but nothing of White's is actually aiming at a concrete target right now.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion net de plus pour les Noirs, les pièces mineures et majeures restantes étant encore égales des deux côtés. En échange, les Blancs ont l'initiative de développer en premier, mais rien ne vise encore une cible concrète pour l'instant.
+        plan:
+          vi: Trắng chơi Nc3, Bc4 và Nf3, cố nhanh chóng đưa quân ra và tạo sức ép trước khi Đen kịp củng cố con tốt thừa. Đen chơi Nf6, Bf5 hay e6, hoàn thiện phát triển an toàn và chuẩn bị trả lại con tốt vào thời điểm thuận lợi nếu cần.
+          en: White plays Nc3, Bc4 and Nf3, trying to bring pieces out quickly and build pressure before Black can consolidate the extra pawn. Black plays Nf6, Bf5 or e6, completing safe development and preparing to give the pawn back at a convenient moment if needed.
+          fr: Les Blancs jouent Nc3, Bc4 et Nf3, cherchant à développer rapidement et à créer de la pression avant que les Noirs ne consolident le pion supplémentaire. Les Noirs jouent Nf6, Bf5 ou e6, achevant un développement sûr et se préparant à rendre le pion au bon moment si nécessaire.
+        basis:
+          by: chan
+          at: '2026-09-18'

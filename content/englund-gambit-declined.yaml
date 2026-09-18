@@ -1,0 +1,67 @@
+# Englund Gambit Declined. Frozen defining line 1.d4 e5, which ends on Black's own ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js
+# through 2.d5 Nf6: declining with 2.d5 closes the centre instead of taking the pawn with
+# 2.dxe5, and after 2...Nf6, attacking the d5 pawn, nothing is hanging for either side.
+# searchMate at 4 moves from this position returns unknown, which the stopping rule treats
+# the same as no-mate, so no forced mate is claimed.
+id: englund-gambit-declined
+name: Englund Gambit Declined
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and it is White's choice here that is being assessed as much as Black's:
+      declining the pawn with 2.d5 sidesteps every trick the accepted lines are built
+      around, and Black is left with an ordinary position and no compensation for anything,
+      because nothing has actually been given up yet. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen mời Trắng ăn tốt e5 ngay từ nước đầu tiên. Đây là điểm khởi đầu của toàn bộ Englund Gambit, nơi Trắng phải chọn giữa ăn tốt hay từ chối nó.
+    en: Black offers the e5 pawn as early as the first reply. This is the starting point of the whole Englund Gambit, where White has to choose between taking the pawn or declining it.
+    fr: Les Noirs offrent le pion e5 dès la première réponse. C'est le point de départ de tout le Gambit Englund, où les Blancs doivent choisir entre prendre le pion ou le refuser.
+  dismissRest:
+    reason:
+      vi: Trắng không đẩy 2.d5. Ăn tốt bằng 2.dxe5 dẫn vào các nhánh Englund Gambit đã được chấp nhận, còn các nước khác như Nf3 hay c4 để nguyên tốt e5 chưa bị thách thức.
+      en: White does not push 2.d5. Taking the pawn with 2.dxe5 leads into the accepted Englund Gambit branches, while other moves such as Nf3 or c4 leave the e5 pawn unchallenged.
+      fr: Les Blancs ne poussent pas 2.d5. Prendre le pion par 2.dxe5 mène vers les branches acceptées du Gambit Englund, tandis que d'autres coups comme Nf3 ou c4 laissent le pion e5 sans être défié.
+  children:
+    - ply: d5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng từ chối ăn tốt và thay vào đó đẩy 2.d5, đóng cửa trung tâm và tránh toàn bộ những cái bẫy quen thuộc của Englund Gambit đã được chấp nhận.
+        en: White declines the pawn and pushes 2.d5 instead, closing the centre and sidestepping every familiar trick of the accepted Englund Gambit.
+        fr: Les Blancs refusent le pion et poussent 2.d5 à la place, fermant le centre et évitant tous les pièges familiers du Gambit Englund accepté.
+      children:
+        - ply: Nf6
+          annotation:
+            vi: Đen phát triển mã ra ô tự nhiên nhất, đồng thời gây sức ép ngay lên tốt d5 và buộc Trắng phải quyết định bảo vệ nó bằng cách nào.
+            en: Black develops the knight to its most natural square, immediately putting pressure on the d5 pawn and forcing White to decide how to defend it.
+            fr: Les Noirs développent le cavalier vers sa case la plus naturelle, mettant aussitôt la pression sur le pion d5 et forçant les Blancs à décider comment le défendre.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, mỗi bên còn đủ tám quân, vật chất hoàn toàn cân bằng vì chưa có cuộc đổi quân nào xảy ra. Không bên nào có ưu thế phát triển hay cấu trúc tốt rõ rệt ở giai đoạn này, và tốt d5 của Trắng hiện đang bị tấn công.
+              en: Count the pawns, eight apiece, material is fully level since no exchange has happened yet. Neither side has a clear development or pawn-structure edge at this stage, and White's d5 pawn is under attack right now.
+              fr: Comptez les pions, huit de chaque côté, le matériel est parfaitement égal puisqu'aucun échange n'a encore eu lieu. Aucun camp n'a d'avantage clair de développement ou de structure de pions à ce stade, et le pion d5 blanc est actuellement attaqué.
+            plan:
+              vi: Trắng chơi c4, Nc3 và e4, cố bảo vệ và củng cố con tốt d5 để giữ lợi thế không gian ở trung tâm. Đen chơi c6 hoặc b5, tìm cách phá vỡ trung tâm Trắng hoặc mở đường cho các quân của mình hoạt động tích cực hơn.
+              en: White plays c4, Nc3 and e4, trying to defend and consolidate the d5 pawn to keep the central space advantage. Black plays c6 or b5, looking to break up White's centre or open lines for more active piece play.
+              fr: Les Blancs jouent c4, Nc3 et e4, cherchant à défendre et consolider le pion d5 pour garder l'avantage d'espace central. Les Noirs jouent c6 ou b5, cherchant à briser le centre blanc ou à ouvrir des lignes pour une activité de pièces plus vive.
+            basis:
+              by: chan
+              at: '2026-09-18'

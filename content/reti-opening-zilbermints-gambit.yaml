@@ -1,0 +1,60 @@
+# Réti Opening: Zilbermints Gambit. Frozen defining line 1.Nf3 d5 2.c4 b5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js: 3.cxb5 simply takes the offered pawn, since nothing of Black's recaptures
+# on b5 for free, and nothing else is hanging afterwards. searchMate at 4 moves from this
+# position returns unknown, which the stopping rule treats the same as no-mate, so no
+# forced mate is claimed.
+id: reti-opening-zilbermints-gambit
+name: 'Réti Opening: Zilbermints Gambit'
+eco: A09
+category: gambit
+side: black
+definingLine: [Nf3, d5, c4, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black offers a second wing pawn to keep the centre intact and open lines
+      for the queenside pieces, but the b5 pawn is simply hanging with nothing recapturing
+      it, and White ends up a clean pawn up with an ordinary, healthy position. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 2...b5, dâng thêm một tốt cánh hậu để giữ nguyên tốt d5 ở trung tâm và mở đường cho tượng c8 hoạt động sớm.
+    en: Black plays 2...b5, offering an extra queenside pawn to keep the d5 pawn intact in the centre and open a line for the c8 bishop early.
+    fr: Les Noirs jouent 2...b5, offrant un pion supplémentaire à l'aile dame pour garder intact le pion d5 au centre et ouvrir tôt une ligne pour le fou c8.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt b5. Các nước khác như cxd5 hay Nc3 để nguyên tốt b5 chưa bị ăn, và Đen vẫn có thể chọn củng cố nó bằng a6 hoặc tiếp tục phát triển.
+      en: White does not take the b5 pawn. Other moves such as cxd5 or Nc3 leave the b5 pawn untaken, and Black can still choose to shore it up with a6 or continue developing.
+      fr: Les Blancs ne prennent pas le pion b5. D'autres coups comme cxd5 ou Nc3 laissent le pion b5 non pris, et les Noirs peuvent encore choisir de le renforcer par a6 ou de continuer à se développer.
+  children:
+    - ply: cxb5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay lập tức. Con tốt b5 không được quân nào của Đen bảo vệ, nên đây đơn giản chỉ là ăn một quân đang bị treo.
+        en: White takes the pawn at once. Nothing of Black's defends the b5 pawn, so this is simply taking a piece that is hanging.
+        fr: Les Blancs prennent le pion tout de suite. Rien du côté noir ne défend le pion b5, donc il s'agit simplement de prendre une pièce en prise.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng tám, Đen bảy, hơn đúng một tốt sạch. Trung tâm vẫn đang giữ nguyên với tốt d5 của Đen, nhưng Đen chưa có gì cụ thể để bù lại con tốt cánh hậu đã mất.
+          en: Count the pawns, eight for White, seven for Black, a clean extra pawn. The centre is still holding with Black's d5 pawn, but Black has nothing concrete yet to compensate for the lost queenside pawn.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, un pion net de plus. Le centre tient toujours avec le pion d5 noir, mais les Noirs n'ont encore rien de concret pour compenser le pion perdu à l'aile dame.
+        plan:
+          vi: Trắng chơi g3, Bg2 và O-O, hoàn thiện fianchetto tiêu chuẩn và giữ chắc con tốt thừa. Đen chơi a6, Bxb5 hay Nf6, cố lấy lại con tốt hoặc tận dụng đường chéo mở cho tượng c8 để bù lại vật chất đã mất.
+          en: White plays g3, Bg2 and castles, completing the standard fianchetto and holding onto the extra pawn. Black plays a6, Bxb5 or Nf6, trying to win back the pawn or make use of the open diagonal for the c8 bishop to compensate for the lost material.
+          fr: Les Blancs jouent g3, Bg2 et roquent, achevant le fianchetto standard et gardant le pion supplémentaire. Les Noirs jouent a6, Bxb5 ou Nf6, essayant de récupérer le pion ou de profiter de la diagonale ouverte pour le fou c8 afin de compenser le matériel perdu.
+        basis:
+          by: chan
+          at: '2026-09-18'

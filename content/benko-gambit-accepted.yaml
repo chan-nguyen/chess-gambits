@@ -1,0 +1,67 @@
+# Benko Gambit Accepted. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 5.bxa6 Bxa6: material settles at White eight minus one
+# pawn against Black's six-plus-two-fianchetto-diagonal count of seven — that is, White
+# seven pawns to Black's six, one pawn up, everything else level. searchMate at 4 moves
+# returns unknown at every leaf checked here, which the stopping rule treats the same as
+# no-mate, so no forced mate is claimed anywhere in this entry.
+id: benko-gambit-accepted
+name: Benko Gambit Accepted
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5, cxb5, a6]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. This is one of the best-tested pawn sacrifices in opening theory. Black's
+      single pawn buys the a- and b-files for the rooks and a long-term bishop on the long
+      diagonal, and that compensation has held up across decades of grandmaster practice.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 4.cxb5, Đen chơi tiếp 4...a6, mời Trắng ăn thêm một tốt nữa. Đây chính là điểm khởi đầu của Benko Gambit đã được chấp nhận — Đen sẵn sàng đổi tốt lấy các cột mở cho xe và đường chéo dài cho tượng.
+    en: After 4.cxb5, Black continues with 4...a6, inviting White to take a second pawn. This is the starting point of the Benko Gambit once accepted — Black is ready to trade the pawn for open files for the rooks and the long diagonal for the bishop.
+    fr: Après 4.cxb5, les Noirs poursuivent par 4...a6, invitant les Blancs à prendre un second pion. C'est le point de départ du Gambit Benko une fois accepté — les Noirs sont prêts à échanger le pion contre des colonnes ouvertes pour les tours et la grande diagonale pour le fou.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt a6. Các nước như Nc3, e4 hay g3 bỏ qua lời mời và để nguyên tình huống chưa được giải quyết ở cánh hậu, nghĩa là Trắng vẫn phải chọn ăn tốt hoặc từ chối nó ở một nước sau đó.
+      en: White does not take the a6 pawn. Moves such as Nc3, e4 or g3 ignore the invitation and leave the queenside situation unresolved, meaning White still has to choose whether to take the pawn or decline it on some later move.
+      fr: Les Blancs ne prennent pas le pion a6. Des coups comme Nc3, e4 ou g3 ignorent l'invitation et laissent la situation à l'aile dame non résolue, ce qui signifie que les Blancs devront encore choisir de prendre le pion ou de le refuser plus tard.
+  children:
+    - ply: bxa6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn nốt con tốt thứ hai. Đây là nhánh chấp nhận hoàn toàn, thử thách gắt gao nhất đối với sự đền bù của Đen.
+        en: White takes the second pawn as well. This is the fully accepted branch, the sternest test of Black's compensation.
+        fr: Les Blancs prennent aussi le second pion. C'est la branche pleinement acceptée, le test le plus sévère pour la compensation noire.
+      children:
+        - ply: Bxa6
+          annotation:
+            vi: Đen ăn lại bằng tượng từ c8, đưa quân này vào việc ngay lập tức trên đường chéo a6-f1, nhắm vào ô f1 nơi vua Trắng còn có thể phải đi qua nếu chưa nhập thành.
+            en: Black recaptures with the bishop from c8, putting that piece to work at once on the a6-f1 diagonal, aiming at f1, a square White's king may still have to cross before castling.
+            fr: Les Noirs reprennent avec le fou depuis c8, mettant aussitôt cette pièce au travail sur la diagonale a6-f1, visant f1, une case que le roi blanc pourrait encore devoir traverser avant de roquer.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, Trắng bảy, Đen sáu — đúng một tốt chênh lệch, không hơn. Đổi lại, tượng Đen đã hoạt động ngay trên đường chéo dài và cột a đã mở sẵn cho xe, trong khi Trắng còn chưa phát triển quân nào ngoài con tốt vừa ăn được.
+              en: Count the pawns, seven for White, six for Black, exactly one pawn's difference and nothing more. In return, Black's bishop is already active on the long diagonal and the a-file is already open for the rook, while White has not developed a single piece beyond the pawn just captured.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs, exactement un pion d'écart et rien de plus. En échange, le fou noir est déjà actif sur la grande diagonale et la colonne a est déjà ouverte pour la tour, tandis que les Blancs n'ont encore développé aucune pièce au-delà du pion qui vient d'être pris.
+            plan:
+              vi: Trắng chơi Nc3, e4 và Nf3, cố hoàn thiện phát triển và giữ chắc tốt thừa trước khi Đen kịp gây sức ép. Đen chơi g6, Bg7 và O-O, đưa tượng còn lại vào đường chéo dài kia và đặt cả hai xe lên các cột nửa mở a và b để gây áp lực lâu dài lên cánh hậu của Trắng.
+              en: White plays Nc3, e4 and Nf3, trying to finish development and hold onto the extra pawn before Black can pile up pressure. Black plays g6, Bg7 and castles, putting the other bishop on the long diagonal too and placing both rooks on the half-open a- and b-files to keep long-term pressure on White's queenside.
+              fr: Les Blancs jouent Nc3, e4 et Nf3, cherchant à terminer le développement et à garder le pion supplémentaire avant que les Noirs ne fassent pression. Les Noirs jouent g6, Bg7 et roquent, plaçant l'autre fou sur la grande diagonale aussi et postant les deux tours sur les colonnes semi-ouvertes a et b pour maintenir une pression durable sur l'aile dame blanche.
+            basis:
+              by: chan
+              at: '2026-09-18'

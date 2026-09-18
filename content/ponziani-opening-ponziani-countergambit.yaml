@@ -1,0 +1,60 @@
+# Ponziani Opening: Ponziani Countergambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.c3 f5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js: 4.exf5 simply takes the offered pawn, since nothing
+# of Black's recaptures on f5 for free, and nothing else is hanging afterwards. searchMate
+# at 4 moves from this position returns unknown, which the stopping rule treats the same as
+# no-mate, so no forced mate is claimed.
+id: ponziani-opening-ponziani-countergambit
+name: 'Ponziani Opening: Ponziani Countergambit'
+eco: C44
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, c3, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black strikes back at the centre instead of developing normally, but the
+      f5 pawn is simply hanging with no immediate recapture, and White is left a clean pawn
+      up with a healthy position and nothing forced against the king. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì phát triển bình thường, Đen chơi phản gambit 3...f5, tấn công thẳng vào tốt e4 và mở đường chéo cho tượng f8 cùng lúc.
+    en: Instead of developing normally, Black plays the countergambit 3...f5, striking directly at the e4 pawn while opening a diagonal for the f8 bishop at the same time.
+    fr: Au lieu de développer normalement, les Noirs jouent le contre-gambit 3...f5, frappant directement le pion e4 tout en ouvrant une diagonale pour le fou f8.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f5. Các nước khác như d4 hay Bc4 để nguyên căng thẳng ở trung tâm chưa được giải quyết, và Đen vẫn có thể chọn ăn lại tốt e4 hoặc đẩy tiếp fxe4.
+      en: White does not take the f5 pawn. Other moves such as d4 or Bc4 leave the central tension unresolved, and Black still gets to choose between recapturing on e4 or pushing on with fxe4.
+      fr: Les Blancs ne prennent pas le pion f5. D'autres coups comme d4 ou Bc4 laissent la tension centrale non résolue, et les Noirs peuvent encore choisir de reprendre en e4 ou de pousser par fxe4.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay lập tức. Con tốt f5 không được quân nào của Đen bảo vệ, nên đây đơn giản chỉ là ăn một quân đang bị treo.
+        en: White takes the pawn at once. Nothing of Black's defends the f5 pawn, so this is simply taking a piece that is hanging.
+        fr: Les Blancs prennent le pion tout de suite. Rien du côté noir ne défend le pion f5, donc il s'agit simplement de prendre une pièce en prise.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng tám, Đen bảy, hơn đúng một tốt sạch. Đen chưa phát triển thêm quân nào so với Trắng và vua Trắng vẫn hoàn toàn an toàn ở trung tâm chưa bị đe doạ gì.
+          en: Count the pawns, eight for White, seven for Black, a clean extra pawn. Black has not developed any further pieces than White has, and White's king remains completely safe in the centre with no threat against it.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, un pion net de plus. Les Noirs n'ont pas développé plus de pièces que les Blancs, et le roi blanc reste tout à fait en sécurité au centre, sans aucune menace contre lui.
+        plan:
+          vi: Trắng chơi d4, Bc4 và O-O, hoàn thiện phát triển bình thường và giữ chắc con tốt thừa. Đen chơi Nf6, d5 hay Bc5, cố lấy lại con tốt hoặc xây dựng một cuộc tấn công vào trung tâm để bù lại vật chất đã mất.
+          en: White plays d4, Bc4 and castles, completing ordinary development and holding onto the extra pawn. Black plays Nf6, d5 or Bc5, trying to win back the pawn or build an attack on the centre to compensate for the lost material.
+          fr: Les Blancs jouent d4, Bc4 et roquent, achevant un développement ordinaire et gardant le pion supplémentaire. Les Noirs jouent Nf6, d5 ou Bc5, essayant de récupérer le pion ou de monter une attaque sur le centre pour compenser le matériel perdu.
+        basis:
+          by: chan
+          at: '2026-09-18'

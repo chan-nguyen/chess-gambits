@@ -1,0 +1,66 @@
+# Benoni Defense: Benoni Gambit Accepted. Frozen defining line 1.d4 c5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 2.dxc5 e5: White accepts the pawn and Black strikes back in the
+# centre at once, and nothing is hanging for either side. searchMate at 4 moves from this
+# position returns unknown, which the stopping rule treats the same as no-mate, so no
+# forced mate is claimed.
+id: benoni-defense-benoni-gambit-accepted
+name: 'Benoni Defense: Benoni Gambit Accepted'
+eco: A43
+category: gambit
+side: black
+definingLine: [d4, c5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black offers the c-pawn to strike back in the centre with e5 next,
+      trusting the resulting activity to be worth more than the pawn, but White can simply
+      hold onto the extra material with ordinary development if Black cannot follow up
+      concretely. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen mời Trắng ăn tốt c5 ngay từ nước đầu tiên. Đây là điểm khởi đầu của Benoni Gambit, nơi Trắng phải chọn giữa ăn tốt hay từ chối nó.
+    en: Black offers the c5 pawn as early as the first reply. This is the starting point of the Benoni Gambit, where White has to choose between taking the pawn or declining it.
+    fr: Les Noirs offrent le pion c5 dès la première réponse. C'est le point de départ du Gambit Benoni, où les Blancs doivent choisir entre prendre le pion ou le refuser.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt bằng 2.dxc5. Đẩy tiếp d5 hay các nước phát triển khác như Nf3 để nguyên tốt c5 chưa bị ăn, và Đen được chơi bình thường theo một hệ Benoni khác.
+      en: White does not take the pawn with 2.dxc5. Pushing on with d5, or other developing moves such as Nf3, leaves the c5 pawn untaken, and Black gets to play on normally in a different Benoni structure.
+      fr: Les Blancs ne prennent pas le pion par 2.dxc5. Pousser par d5, ou d'autres coups de développement comme Nf3, laisse le pion c5 non pris, et les Noirs jouent normalement dans une autre structure benoni.
+  children:
+    - ply: dxc5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay lập tức, chấp nhận thử thách và đặt cược vào việc giữ được con tốt thừa này lâu dài.
+        en: White takes the pawn at once, accepting the challenge and betting on holding onto this extra pawn for the long run.
+        fr: Les Blancs prennent le pion tout de suite, acceptant le défi et misant sur la conservation de ce pion supplémentaire à long terme.
+      children:
+        - ply: e5
+          annotation:
+            vi: Đen đáp lại bằng 2...e5, chiếm trung tâm ngay lập tức và chuẩn bị lấy lại con tốt c5 bằng Bxc5 hoặc Qa5+ ở những nước sau.
+            en: Black answers with 2...e5, seizing the centre at once and preparing to win back the c5 pawn with Bxc5 or Qa5+ on a later move.
+            fr: Les Noirs répondent par 2...e5, occupant aussitôt le centre et se préparant à récupérer le pion c5 par Bxc5 ou Qa5+ plus tard.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, Trắng tám, Đen bảy, Trắng hơn đúng một tốt sạch. Đổi lại, Đen đã chiếm trung tâm bằng tốt e5 và có thể lấy lại con tốt c5 ở nước sau, nhưng ngay lúc này Trắng vẫn đang giữ vật chất hơn.
+              en: Count the pawns, eight for White, seven for Black, White exactly one pawn up. In return Black has claimed the centre with the e5 pawn and can win back the c5 pawn on a later move, but right now White is still the one holding the material edge.
+              fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, les Blancs ont exactement un pion de plus. En échange, les Noirs ont pris le centre avec le pion e5 et peuvent récupérer le pion c5 plus tard, mais pour l'instant ce sont les Blancs qui détiennent l'avantage matériel.
+            plan:
+              vi: Trắng chơi Nf3, g3 hay Nc3, cố giữ chắc con tốt thừa bằng cách phát triển an toàn và chuẩn bị trả lại tốt vào thời điểm thuận lợi nếu cần. Đen chơi Bxc5, Nf6 hay Nc6, lấy lại con tốt hoặc xây dựng áp lực lên trung tâm để bù lại vật chất.
+              en: White plays Nf3, g3 or Nc3, trying to hold onto the extra pawn with safe development and being ready to hand it back at a convenient moment if needed. Black plays Bxc5, Nf6 or Nc6, winning back the pawn or building pressure on the centre to compensate for the material.
+              fr: Les Blancs jouent Nf3, g3 ou Nc3, cherchant à garder le pion supplémentaire par un développement sûr et prêts à le rendre au bon moment si nécessaire. Les Noirs jouent Bxc5, Nf6 ou Nc6, récupérant le pion ou construisant une pression sur le centre pour compenser le matériel.
+            basis:
+              by: chan
+              at: '2026-09-18'
