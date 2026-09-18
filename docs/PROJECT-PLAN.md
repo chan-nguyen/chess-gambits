@@ -513,7 +513,7 @@ The first batch saw this only once (the Budapest points at `kieninger-trap` and 
 
 **Not 1,003 at Taught.** The arithmetic that decides it:
 
-- 959 entries remain (was 989 before #93/#94/#95 — see §6.8). At the batch-1 rate of 23.3 slots and
+- 859 entries remain (was 989 before #93/#94/#95, 909 before #108–#111 — see §6.8 and §6.9). At the batch-1 rate of 23.3 slots and
   4,066 words per entry, all of them at Taught would be **≈ 22,000 annotation slots, ≈ 67,000
   localised strings and ≈ 3.9 million words**. §6.8 measured a lower real rate on thirty entries
   authored to the full stopping rule — 13.1 slots and 2,076 words per entry — because most family
@@ -556,7 +556,10 @@ So the honest target is a **Taught core with the rest properly Listed**, in thre
 | **Mapped** | ~120 further entries | A complete tree with Vietnamese only. Measured cost: 1,407 words per entry, roughly a third of a Taught entry                                                                                |
 | **Listed** | the remaining ~820   | Exactly what they are today: identity, ECO, side, defining line, soundness. The catalogue already says so, and the tier is derived so it cannot lie                                          |
 
-Forty-four of the ~60 are done, up from fourteen after #93/#94/#95 (§6.8). **S5 is already
+One hundred and forty-four are done, up from fourteen after #93/#94/#95 (§6.8) and ninety-four
+after #108–#111 (§6.9) — the original "~60" target is itself superseded, since authoring by
+family/frequency priority (§6.3) rather than a fixed named-opening list kept finding more
+cheap, short-line family heads worth teaching than the original estimate assumed. **S5 is already
 satisfied** — the catalogue is exhaustive and never pretends a thin entry is a deep one — and
 nothing in the scope contract promises depth everywhere. What should change is the wording anywhere
 that implies it will arrive.
@@ -723,6 +726,81 @@ since fixing it is out of scope for a content batch.
 
 Tracking issue #92 and its three sub-issues (#93, #94, #95) are closed. §6.4's Taught count and
 §6.5's batch table both reflect the merged state.
+
+### 6.9 What fixing an ambiguous stopping rule and fifty more entries cost (#107, via #108/#109/#110/#111)
+
+A product-owner review of two live entries found lines stopping after a few plies with neither a
+mate nor a clearly decisive position — the depth bar from §6.7/#81 admitted "roughly balanced" as a
+valid stop, and that reads as unfinished rather than honest. #107 tightened the rule: a `position`
+leaf is only acceptable at a genuine material edge, a won endgame, a decisive attack or a structural
+catastrophe — and asked for two things in parallel: deepen the twenty-four entries a keyword sweep
+found reading as murky (#108), and teach fifty more entries under the tightened rule, split by
+family/frequency priority into three groups (#109: seven remaining family heads plus eight Sicilian
+short lines; #110 and #111: seventeen and eighteen King's Gambit Accepted sub-variations
+respectively, #111 also carrying the Rousseau Gambit). All four were dispatched as background
+agents against isolated worktrees. All numbers below are measured directly on `main` before and
+after, not estimated.
+
+| Measure                                                                                                                                                                                             | Before (post-#106) | After (post-#108/9/10/11) |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ | ------------------------- |
+| Content files                                                                                                                                                                                       | 95                 | 145                       |
+| Taught entries                                                                                                                                                                                      | 94                 | 144                       |
+| Listed (Tier 0) entries                                                                                                                                                                             | 909                | 859                       |
+| Tree nodes                                                                                                                                                                                          | 589                | 763                       |
+| Annotation slots (one count, all locales)                                                                                                                                                           | 1,110              | 1,461                     |
+| Words in `content/*.yaml`, all three locales combined (`cat content/*.yaml \| wc -w`, so YAML structure is counted along with prose — consistent across both measurements, not a prose-only figure) | 203,252            | 273,225                   |
+| Root-to-leaf branch keys                                                                                                                                                                            | 173                | 224                       |
+| Mate certificates                                                                                                                                                                                   | 15                 | 15                        |
+| Catalogue index, vi, gzipped                                                                                                                                                                        | 28.0KB             | 28.3KB                    |
+
+No new mate certificate was needed: the fifty new entries are almost entirely family heads and
+King's Gambit Accepted sub-variations whose defining line resolves to a clear material or
+positional verdict rather than a forced mate, and #108's deepening pass reached the same kind of
+conclusion on the twenty-four entries it revisited (docs/CONTEXT.md's _resolution_ stopping point,
+not its _mate_ one).
+
+**The tightened rule's phrasing was ambiguous in one specific, costly way.** Three independently
+dispatched agents (groups F, G and H — #109, #110, #111), which never saw each other's work, all
+made the identical wrong call when honest analysis did not support a decisive verdict: they wrote
+`outcome: {type: unexplored}` rather than an honest `type: position` leaf. `unexplored`
+(`docs/CONTEXT.md`) is the zero-content state an entry starts in — "not mapped yet" — not a
+substitute for "I looked and it's genuinely level." This was caught the same way §6.8's defect
+was: by reading the actual authored files rather than trusting each group's own completion report,
+which is what surfaced that the same misreading had happened three times rather than once. Each
+was corrected in place, on the same branch, via a targeted follow-up message pointing at the one
+group (the #108 deepening batch) that had modelled it correctly — and two of the three corrections
+also caught genuine independent chess errors while redoing the analysis properly (a hung knight
+fork in `mexican-defense-horsefly-gambit.yaml`; a bishop check that didn't actually escape a pin in
+`richter-veresov-attack-malich-gambit.yaml`; a free capture in each of
+`kings-gambit-accepted-modern-defense.yaml` and `italian-game-rousseau-gambit.yaml`).
+
+**The golden-list merge conflict §6.8 flagged and left unfixed cost again, worse.** Three PRs
+landing against the same three hardcoded rosters produced the conflict twice more (#110 against
+#109's merge, then #111 against the result), each time larger than the last as the taught count
+climbed — and one of those merges required regenerating a JSON-filename array by hand because
+`readdirSync().sort()` orders `"kings-gambit-accepted.json"` **after**
+`"kings-gambit-accepted-becker-defense.json"` (`-` sorts before `.` in ASCII), which is the
+opposite of how the bare ids sort without the extension. Getting this wrong fails the test on
+ordering, not content, which is a confusing failure to debug from the diff alone. Flagged again,
+still not fixed, because a content batch remains the wrong place to fix it — but three
+occurrences across two batches is the point at which the generated-fixture alternative §6.8
+proposed should be picked up as its own ticket rather than re-flagged a third time.
+
+**Growing the taught tier past `autoExpandLimit` (100) broke the e2e suite twice, not once.**
+#109 crossed the limit and switched the catalogue-search strategy in `e2e/taught-entries.spec.ts`
+from relying on auto-expand to searching by the entry's ECO code — correct, and it shipped clean.
+#110's independent attempt at the same fix searched by the entry's own **English content name**
+instead, which fails specifically because the e2e suite drives the **Vietnamese** catalogue, where
+names are translated (`"Lasker Trap"` renders as `"Bẫy Lasker"`) and ECO codes are not. GitHub
+Actions reported this as 44–112 failing tests with `"card resolved to 0 elements"`, initially
+mistaken for a stalled CI runner (a genuinely stalled job — 40+ minutes against a normal 5–13 —
+had just been diagnosed and cancelled minutes earlier on the same PR, via `gh run view --job` and
+`gh api .../actions/runs/<id>`). Reproduced locally and root-caused from the failing test's own
+page snapshot rather than assumed to be flakiness; fixed by copying #109's already-correct
+ECO-code approach.
+
+Tracking issue #107 and its three sub-issues (#109, #110, #111; #108 closed earlier via #112) are
+closed. §6.4's Taught count and §6.5's batch table both reflect the merged state.
 
 ## 7. Risks
 
