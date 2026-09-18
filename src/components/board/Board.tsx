@@ -73,7 +73,6 @@ const squareOf = (element: EventTarget | null): FocusedSquare | undefined => {
 const SQUARE_CENTRE = 0.5
 const CHECK_RADIUS = 0.45
 const MARK_RADIUS = 0.39
-const HIGHLIGHT_INSET = 0.06
 // Unitless SVG user units, so no px reaches the stylesheet (see Board.css).
 const COORDINATE_SIZE = 0.2
 
@@ -150,10 +149,17 @@ export const Board = ({
     setFocused(target)
   }
 
-  // Only the square the ply arrived on is tinted; the one it left keeps its wood (#80).
-  const squareClassName = (square: Square, light: boolean) =>
-    `board__square board__square--${light ? 'light' : 'dark'}` +
-    (square === lastMove?.to ? ' board__square--to' : '')
+  // Both squares of the last ply are tinted, and neither carries a ring or border any
+  // more (2026-09-18): a background colour is the whole signal, by product decision.
+  const squareClassName = (square: Square, light: boolean) => {
+    const tint =
+      square === lastMove?.from
+        ? ' board__square--from'
+        : square === lastMove?.to
+          ? ' board__square--to'
+          : ''
+    return `board__square board__square--${light ? 'light' : 'dark'}${tint}`
+  }
 
   /*
    * One piece, positioned by a transform rather than by `x`/`y`, and the whole of how a
@@ -208,21 +214,6 @@ export const Board = ({
             height="1"
           />
         ))}
-
-        {/* Highlights differ by border or shape, never by tint alone (design-system.md §2):
-            the square a ply left is dashed, the square it reached is solid. */}
-        {cells
-          .filter((cell) => cell.square === lastMove?.from || cell.square === lastMove?.to)
-          .map((cell) => (
-            <rect
-              key={`move-${cell.square}`}
-              className={`board__last-ply board__last-ply--${cell.square === lastMove?.from ? 'from' : 'to'}`}
-              x={cell.x + HIGHLIGHT_INSET}
-              y={cell.y + HIGHLIGHT_INSET}
-              width={1 - HIGHLIGHT_INSET * 2}
-              height={1 - HIGHLIGHT_INSET * 2}
-            />
-          ))}
 
         {/* Check is a disc behind the king — a different shape from a tinted square. */}
         {cells

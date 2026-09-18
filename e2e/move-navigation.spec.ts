@@ -294,26 +294,26 @@ test.describe('the viewport measurement itself', () => {
  * assertions here are about the shipped surface: what a browser paints after a real click,
  * at a real viewport, with the real stylesheet.
  *
- * The greyscale check is the reason it is here rather than only in a unit test. §2 requires
- * a board highlight to carry "a shape or border difference, not only a tint", and in this
- * palette that is the whole signal rather than a reinforcement of it: desaturated, the
- * square a ply left and the square it reached are 1.05:1 apart, and either one is within
- * 1.3:1 of an ordinary square (`board-contrast.test.ts` measures all three). So the dashed
- * ring against the solid one is not a second cue. It is the only one.
+ * **The greyscale check, and what it now measures (2026-09-18).** §2's "a shape or border
+ * difference, not only a tint" carries a documented exception for exactly this highlight:
+ * both squares are a plain background colour and nothing is drawn on top of either. So the
+ * greyscale check here is no longer "is there a second, shape-based cue" — there is not,
+ * and the doc says so — it is "does the one cue that remains, luminance, actually survive
+ * desaturation", which is a real and checkable claim rather than a rhetorical one.
  */
 test.describe('the last-ply highlight', () => {
-  /** `f6-e5`: which two squares a board marks, read back off the rings' own geometry. */
+  /** `f6-e5`: which two squares a board marks, read back off the tinted squares' geometry. */
   const marked = (page: Page, scope: string): Promise<string> =>
     page.evaluate((selector) => {
       const board = document.querySelector(selector)
-      const square = (ring: Element | null): string => {
-        if (ring === null) return ''
-        const x = Math.round(Number(ring.getAttribute('x')) - 0.06)
-        const y = Math.round(Number(ring.getAttribute('y')) - 0.06)
+      const square = (tinted: Element | null): string => {
+        if (tinted === null) return ''
+        const x = Math.round(Number(tinted.getAttribute('x')))
+        const y = Math.round(Number(tinted.getAttribute('y')))
         return `${'abcdefgh'[x] ?? '?'}${8 - y}`
       }
-      const from = square(board?.querySelector('.board__last-ply--from') ?? null)
-      const to = square(board?.querySelector('.board__last-ply--to') ?? null)
+      const from = square(board?.querySelector('.board__square--from') ?? null)
+      const to = square(board?.querySelector('.board__square--to') ?? null)
       return from === '' || to === '' ? '' : `${from}-${to}`
     }, scope)
 
@@ -379,58 +379,74 @@ test.describe('the last-ply highlight', () => {
     await expect.poll(() => marked(page, BOARD)).toBe('f6-e5')
   })
 
-  /** What a desaturated screenshot still carries: the geometry of the two rings. */
-  const shapes = (page: Page): Promise<readonly string[]> =>
-    page.evaluate(() =>
-      ['.board__last-ply--from', '.board__last-ply--to'].map((selector) => {
-        const ring = document.querySelector(`.learning-surface__board ${selector}`)
-        if (ring === null) return ''
-        const style = window.getComputedStyle(ring)
-        return [style.strokeDasharray, style.strokeWidth, style.stroke].join('|')
-      }),
-    )
-
-  const greyscale = (page: Page) =>
-    page.evaluate(() => {
-      document.documentElement.style.filter = 'grayscale(1)'
-    })
-
-  test('tells the square left from the square reached with the colour gone', async ({ page }) => {
-    await open(page, ['fxe5'])
-    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(2)
-    await greyscale(page)
-
-    const rings = await shapes(page)
-    for (const ring of rings) expect(ring).not.toBe('')
-    expect(new Set(rings).size, `both rings read as ${rings[0]}`).toBe(2)
-  })
-
   /**
-   * The probe. The assertion above compares two signals, so without this it would keep
-   * passing if the signal stopped carrying anything — which is exactly how a
-   * colour-alone check rots into a comment.
+   * Reduced motion for this pair of tests only: `Board.css` transitions `fill` over
+   * `--duration-base` (200ms), and setting a square's fill from a probe would otherwise be
+   * read back mid-transition — an interpolated colour that is neither the old value nor the
+   * new one, and single-handedly the reason the first version of this probe failed with a
+   * `false negative` (colours it had itself just made equal still read as two). The global
+   * stylesheet turns every transition off under this preference (`!important`), which is
+   * the same mechanism a real reduced-motion visitor gets, not a test-only shortcut.
    */
-  test('reports two rings that differ only in their fill as the same thing', async ({ page }) => {
-    await open(page, ['fxe5'])
-    await expect(page.locator(`${BOARD} .board__last-ply`)).toHaveCount(2)
-    await greyscale(page)
-    expect(new Set(await shapes(page)).size).toBe(2)
+  test.describe('read without a colour transition in flight', () => {
+    test.use({ reducedMotion: 'reduce' })
 
-    /*
-     * Take the dashes off the from-ring and the two are one shape in two tints.
-     *
-     * Written through CSSOM rather than `setAttribute('style', …)`, which the Content
-     * Security Policy #19 introduced refuses without `'unsafe-inline'`. A refused attribute
-     * does not throw: the probe would have gone on running, changed nothing, and left this
-     * assertion failing for a reason that has nothing to do with the rings. Two other specs
-     * were caught the same way when the policy landed, and this is the third — it survived
-     * because this branch was written beside that one rather than after it.
-     */
-    await page.evaluate(() => {
-      const ring = document.querySelector('.learning-surface__board .board__last-ply--from')
-      if (ring instanceof SVGElement) ring.style.strokeDasharray = 'none'
+    /** What a desaturated screenshot still carries: each square's resolved fill. */
+    const fills = (page: Page): Promise<readonly string[]> =>
+      page.evaluate(() =>
+        ['.board__square--from', '.board__square--to'].map((selector) => {
+          const square = document.querySelector(`.learning-surface__board ${selector}`)
+          return square === null ? '' : window.getComputedStyle(square).fill
+        }),
+      )
+
+    const greyscale = (page: Page) =>
+      page.evaluate(() => {
+        document.documentElement.style.filter = 'grayscale(1)'
+      })
+
+    test('tells the square left from the square reached with the colour gone', async ({ page }) => {
+      await open(page, ['fxe5'])
+      await expect(page.locator(`${BOARD} .board__square--from`)).toHaveCount(1)
+      await expect(page.locator(`${BOARD} .board__square--to`)).toHaveCount(1)
+      await greyscale(page)
+
+      const resolved = await fills(page)
+      for (const fill of resolved) expect(fill).not.toBe('')
+      expect(new Set(resolved).size, `both squares read as ${resolved[0]}`).toBe(2)
     })
 
-    expect(new Set(await shapes(page)).size).toBe(1)
+    /**
+     * The probe. The assertion above compares two signals, so without this it would keep
+     * passing if the signal stopped carrying anything — which is exactly how a
+     * colour-alone check rots into a comment.
+     */
+    test('reports two squares of the same fill as the same thing', async ({ page }) => {
+      await open(page, ['fxe5'])
+      await expect(page.locator(`${BOARD} .board__square--from`)).toHaveCount(1)
+      await greyscale(page)
+      expect(new Set(await fills(page)).size).toBe(2)
+
+      /*
+       * Paint the departed square with the arrival square's own tint and the two collapse
+       * to one fill — exactly the failure mode this highlight now has no second channel
+       * to catch, which is the point of asserting it explicitly rather than trusting the
+       * design.
+       *
+       * Written through CSSOM rather than `setAttribute('style', …)`, which the Content
+       * Security Policy #19 introduced refuses without `'unsafe-inline'`. A refused
+       * attribute does not throw: the probe would have gone on running, changed nothing,
+       * and left this assertion failing for a reason that has nothing to do with the fills.
+       */
+      await page.evaluate(() => {
+        const from = document.querySelector('.learning-surface__board .board__square--from')
+        const to = document.querySelector('.learning-surface__board .board__square--to')
+        if (from instanceof SVGElement && to !== null) {
+          from.style.fill = window.getComputedStyle(to).fill
+        }
+      })
+
+      expect(new Set(await fills(page)).size).toBe(1)
+    })
   })
 })

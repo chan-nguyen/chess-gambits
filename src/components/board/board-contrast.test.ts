@@ -55,6 +55,7 @@ const valueOf = (token: string, theme: keyof TokenValues): string => {
 const EXPECTED_TOKENS: readonly string[] = [
   '--color-board-light',
   '--color-board-dark',
+  '--color-board-highlight-from',
   '--color-board-highlight-to',
   '--color-board-check',
   '--color-board-mark',
@@ -68,13 +69,14 @@ const EXPECTED_TOKENS: readonly string[] = [
 /**
  * Everything a piece can be drawn on top of.
  *
- * The square a ply *left* is not on the list and has not been since #80, because it is not a
- * surface any more: it has nothing standing on it, so it keeps its own wood and there is no
- * `--color-board-highlight-from` for a piece to be legible against.
+ * `--color-board-highlight-from` is back on this list as of 2026-09-18: no board state ever
+ * draws a piece on the square a ply left, but every other surface here is checked whether or
+ * not the realistic case arises, and this one is cheap to hold to the same bar.
  */
 const SURFACES: readonly string[] = [
   '--color-board-light',
   '--color-board-dark',
+  '--color-board-highlight-from',
   '--color-board-highlight-to',
   '--color-board-check',
 ]
@@ -159,50 +161,41 @@ describe('the contrast maths', () => {
 })
 
 /**
- * **The last-ply highlight, and why its shape is the whole signal.**
+ * **The last-ply highlight, and why it is a documented exception to §2 (2026-09-18).**
  *
- * §2: "Board highlights carry a shape or border difference, not only a tint." That rule
- * had nothing to hold over until #54 wired `lastMove` to a caller, and it is not a
- * belt-and-braces addition to the hue — measured with the contrast function above, which
- * is hue-free by construction:
+ * §2's binding rule is "a shape or border difference, not only a tint" — and from #54
+ * through #80 the last-ply mark held it with a ring. This ticket removes the ring: the
+ * product decision is a plain background colour on both the square a ply left and the
+ * square it reached, nothing drawn on top.
  *
- * | pair (light / dark)                         | greyscale contrast |
- * | ------------------------------------------- | ------------------ |
- * | `highlight-to` against the light square     | 1.26 / 1.10        |
+ * That is a real narrowing of the signal a fully colour-blind or fully desaturated reader
+ * gets — there is no second channel any more. What is not true is that the two squares
+ * collapse to the same grey the way they would have before #80: the two tokens are chosen
+ * so their **luminance**, not their hue, tells them apart, on the same terms §2 already
+ * uses for "distinguishes the two board squares from each other". Measured with the
+ * contrast function above, which is hue-free by construction:
  *
- * So with the colour removed a learner cannot tell the square a ply reached from a square
- * nothing happened on, and until #80 the same was true of the square it left — the two
- * tints were 1.05:1 apart. Exactly the situation §5 records for the outcome and quality
- * palettes: the shape is not reinforcing the colour, it is replacing it. The two assertions
- * below are what that rule reduces to in a stylesheet.
+ * | pair (light / dark)                          | greyscale contrast |
+ * | --------------------------------------------- | ------------------ |
+ * | `highlight-from` against `highlight-to`       | see below          |
  *
- * **What they do not measure, and what does.** These read declarations. They cannot see that
- * a ring is three pixels of near-black around an empty square, which is the defect #80 fixed
- * and which every assertion in this file passed throughout. `e2e/last-ply-weight.spec.ts`
- * counts ink in a rendered screenshot and is where that claim lives.
+ * This is weaker than a shape channel and the doc says so. It is the one place on the board
+ * where colour is the only signal, and it is there because the person who owns the product
+ * asked for exactly this look.
  */
-describe('the last-ply highlight is a shape difference', () => {
-  /** One rule's declarations, as written. */
-  const declarations = (selector: string): string =>
-    new RegExp(`${selector.replace(/\./g, '\\.')}\\s*\\{([^}]*)\\}`).exec(boardStyles)?.[1] ?? ''
-
-  const FROM = declarations('.board__last-ply--from')
-  const TO = declarations('.board__last-ply--to')
-
-  it('draws a ring on each of the two squares, in a token colour', () => {
-    expect(FROM).not.toBe('')
-    expect(TO).not.toBe('')
-    for (const rule of [FROM, TO]) expect(rule).toContain('var(--color-board-')
+describe('the last-ply highlight is a documented exception to the shape rule', () => {
+  it.each(THEMES)('tells the two tints apart by luminance alone, in the %s theme', (theme) => {
+    expect(
+      contrast(
+        valueOf('--color-board-highlight-from', theme),
+        valueOf('--color-board-highlight-to', theme),
+      ),
+    ).toBeGreaterThan(1.5)
   })
 
-  /**
-   * The rings must differ in something a greyscale screenshot keeps. Two class names that
-   * resolved to the same geometry would satisfy `Board.test.tsx`, which compares the class
-   * attributes, and would be a tint-only highlight on screen.
-   */
-  it('gives the two rings different geometry, not two names for the same one', () => {
-    expect(FROM.replace(/\s+/g, ' ').trim()).not.toBe(TO.replace(/\s+/g, ' ').trim())
-    const dashed = [FROM, TO].filter((rule) => rule.includes('stroke-dasharray'))
-    expect(dashed, 'one ring is dashed and the other solid').toHaveLength(1)
+  it('draws both squares in a token colour, and neither with a border', () => {
+    expect(boardStyles).toContain('var(--color-board-highlight-from)')
+    expect(boardStyles).toContain('var(--color-board-highlight-to)')
+    expect(boardStyles).not.toContain('board__last-ply')
   })
 })

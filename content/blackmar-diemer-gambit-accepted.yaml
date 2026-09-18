@@ -1,0 +1,80 @@
+# The Blackmar-Diemer Gambit Accepted. The catalogue's dataset line for this family head is
+# `d4 d5 e4 dxe4 Nc3 Nf6 f3 exf3`, which ends on Black's own ply and would make the root a
+# learner node — invalid under invariant 5. The authored `definingLine` below is a one-ply
+# PREFIX of that dataset line, `d4 d5 e4 dxe4 Nc3 Nf6 f3`, ending on White's own f3 instead,
+# so the root is an opponent node and Black's acceptance, 4...exf3, is a modelled reply
+# carrying a quality. This is the same device `docs/CONTEXT.md` describes for the Damiano
+# Defense, and `tools/catalogue/build.ts` explicitly allows it.
+#
+# This entry picks up one ply deeper than `blackmar-diemer-gambit.yaml`, whose own defining
+# line is only `1.d4 d5 2.e4`. Nothing here overlaps it: that entry stops modelling the
+# accepted line at exactly the position this entry's single child reaches, and this entry
+# exists to give that specific "Accepted" branch its own home with a fresh assessment.
+#
+# No mate is claimed anywhere below: every leaf is an assessment (ADR-0005). The gambit's
+# own famous forced mate, the Halosar Trap, has its own certificate in `halosar-trap.yaml`
+# and is not duplicated here.
+id: blackmar-diemer-gambit-accepted
+name: Blackmar-Diemer Gambit Accepted
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, inherited from the same family label the dataset gives the whole
+      Blackmar-Diemer complex. After 4...exf3 5.Nxf3, Black keeps the extra pawn with a
+      perfectly healthy structure, and accurate defence — one of the named set-ups, ...Bf5,
+      ...Bg4, ...e6 or ...g6, followed by trading off the attackers — should hold the
+      pawn. What keeps the label at dubious rather than unsound is that the position stays
+      sharp and full of practical chances for the attacker at club level, which is exactly
+      why the acceptance is worth its own entry. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đây là thời điểm Đen phải quyết định có ăn con tốt f3 thứ hai hay không. Trắng đã chơi đúng sơ đồ Nc3 rồi f3, và lời mời đã được đưa ra trên bàn cờ. Ăn bằng exf3 chính là Gambit Blackmar-Diemer được chấp nhận — cách chơi phổ biến nhất và cũng là phép thử thật sự của cả gambit.
+    en: This is the moment Black decides whether to take the second pawn on f3. White has followed the set-up — Nc3, then f3 — and the invitation is now on the board. Taking with ...exf3 is the Blackmar-Diemer Gambit Accepted, the most common choice and the real test of the whole gambit.
+    fr: C'est le moment où les Noirs décident de prendre ou non le second pion en f3. Les Blancs ont suivi le dispositif — Nc3 puis f3 — et l'invitation est maintenant sur l'échiquier. Prendre par ...exf3 constitue le Gambit Blackmar-Diemer accepté, le choix le plus courant et le véritable test du gambit.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ở f3. Nước 4...Bf5, phòng thủ Vienna, đưa tượng ra trước khi tính đến e6, và Trắng chỉ việc ăn lại bằng fxe4, được thêm một nhịp vì con tượng bị đuổi. Nước 4...e3 trả tốt lại ngay, và sau 5.Bxe3 Trắng phát triển một quân mà không mất gì. Nước 4...e6 đưa ván cờ sang một sơ đồ kiểu Weinsbach, còn 4...c6 và 4...Nc6 chỉ trì hoãn quyết định. Nước 4...Qxd4 mất hậu ngay lập tức trước 5.Qxd4 trên cột d đang mở. Mọi nước khác — lùi quân, đẩy tốt biên, hay một nước phát triển chậm hơn — đều để nguyên con tốt f3 cho Trắng ăn lại bằng fxe4, đạt đúng trung tâm e4-d4 mà sơ đồ này nhắm tới. Không nước nào ở đây bác bỏ được gambit, chúng chỉ từ chối con tốt thứ hai theo những cách khác nhau.
+      en: Black does not take on f3. 4...Bf5, the Vienna, develops the bishop before committing to ...e6, and White simply recaptures with fxe4, gaining a tempo because the bishop is attacked. 4...e3 gives the pawn straight back, and after 5.Bxe3 White has developed a piece for nothing. 4...e6 steers the game into a Weinsbach-style set-up instead, while 4...c6 and 4...Nc6 merely postpone the decision. 4...Qxd4 loses the queen outright to 5.Qxd4 on the open d-file. Every other reply — a retreat, a wing pawn push, a slower developing move — leaves the f3 pawn on the board for White to recapture with fxe4, reaching the same e4-and-d4 centre the set-up was played for. Nothing here refutes the gambit; these moves simply decline the second pawn in different ways.
+      fr: Les Noirs ne prennent pas en f3. 4...Bf5, la Vienne, développe le fou avant de s'engager avec ...e6, et les Blancs reprennent simplement par fxe4, gagnant un temps puisque le fou est attaqué. 4...e3 rend le pion aussitôt, et après 5.Bxe3 les Blancs ont développé une pièce gratuitement. 4...e6 oriente la partie vers un dispositif de type Weinsbach, tandis que 4...c6 et 4...Nc6 ne font que reporter la décision. 4...Qxd4 perd la dame sur-le-champ face à 5.Qxd4 sur la colonne d ouverte. Tout autre coup — un repli, une poussée de pion à l'aile, un développement plus lent — laisse le pion f3 sur l'échiquier, que les Blancs reprennent par fxe4, pour atteindre le même centre e4-d4 que le dispositif visait. Rien ici ne réfute le gambit, ces coups refusent simplement le second pion de différentes manières.
+  children:
+    - ply: exf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt thứ hai. Đây chính là Gambit Blackmar-Diemer được chấp nhận. Đen tạm thời giữ cả hai tốt thừa trong khi Trắng chuẩn bị ăn lại bằng một nước phát triển, mở cột f và hoàn tất đúng sơ đồ Nc3-f3.
+        en: Black takes the second pawn. This is the Blackmar-Diemer Gambit Accepted. Black holds both extra pawns for the moment while White prepares to recapture with a developing move, opening the f-file and completing exactly the Nc3-f3 set-up.
+        fr: Les Noirs prennent le second pion. C'est le Gambit Blackmar-Diemer accepté. Les Noirs conservent pour l'instant les deux pions supplémentaires pendant que les Blancs se préparent à reprendre par un coup de développement, ouvrant la colonne f et achevant exactement le dispositif Nc3-f3.
+      children:
+        - ply: Nxf3
+          annotation:
+            vi: Trắng ăn lại bằng mã chứ không bằng hậu. Nxf3 phát triển quân, mở cột f nửa mở ngay dưới ô vua tương lai của Đen, và giữ hậu ở nhà, tránh xa mọi đòn ép nhịp. Nước Qxf3 là Gambit Ryder, sắc hơn nhiều và cũng đáng ngờ hơn, và chính nó dẫn tới bẫy Halosar đã có mục riêng trong danh mục này.
+            en: White recaptures with the knight rather than the queen. Nxf3 develops a piece, opens the half-open f-file right under Black's future king position, and keeps the queen at home, out of reach of any tempo-gaining attack. Qxf3 is the Ryder Gambit, considerably sharper and more dubious, and it is the move that leads to the Halosar Trap, which has an entry of its own in this catalogue.
+            fr: Les Blancs reprennent du cavalier plutôt que de la dame. Nxf3 développe une pièce, ouvre la colonne f semi-ouverte juste sous la future position du roi noir, et garde la dame à la maison, hors de portée de toute attaque gagnant un temps. Qxf3 est le Gambit Ryder, nettement plus tranchant et plus douteux, et c'est ce coup qui mène au Piège Halosar, qui dispose de sa propre entrée dans ce catalogue.
+          outcome:
+            type: position
+            evaluation:
+              vi: Trắng kém đúng một tốt, vì đã thí hai tốt cho Đen (ở e4 và f3) và mới ăn lại được một. Đổi lại, Trắng đã hoàn thành sơ đồ đã hứa — hai mã ra ở c3 và f3, con tốt d4 giữ trung tâm, và cột f nửa mở đã mở sẵn trước khi Đen kịp nhập thành. Đen hoàn toàn khoẻ mạnh về cấu trúc tốt, không để lại điểm yếu nào sau khi ăn liền hai tốt, nên nếu phòng thủ chính xác thì con tốt thừa sẽ có tiếng nói ở tàn cuộc.
+              en: White is down exactly one pawn — two pawns were offered, on e4 and f3, and only one has come back. In return White has completed the promised set-up — both knights out on c3 and f3, a pawn on d4 holding the centre, and a half-open f-file already open before Black has had time to castle. Black's pawn structure is perfectly healthy, with no weakness left behind by taking two pawns in a row, so accurate defence should make the extra pawn count in the endgame.
+              fr: Les Blancs ont exactement un pion de moins — deux pions ont été offerts, en e4 et en f3, et un seul est revenu. En échange, les Blancs ont accompli le dispositif promis — les deux cavaliers sortis en c3 et f3, un pion en d4 tenant le centre, et une colonne f semi-ouverte déjà ouverte avant même que les Noirs n'aient eu le temps de roquer. La structure de pions noire est parfaitement saine, sans faiblesse laissée par la prise de deux pions d'affilée, si bien qu'une défense précise devrait faire parler le pion supplémentaire en finale.
+            plan:
+              vi: Trắng chơi Bc4 hoặc Bd3, nhập thành ngắn, rồi Qe1 và Qh4 để chuyển hậu sang cánh vua, thêm Be3 và một xe ra e1 hoặc d1, tận dụng cột f nửa mở cùng đường chéo b1-h7. Đen nên chọn ngay một trong các sơ đồ phòng thủ đã biết — Bf5, Bg4, e6 hoặc g6 — hoàn tất phát triển, đổi bớt các quân tấn công, và tuyệt đối không ăn thêm tốt cánh hậu khi vua còn ở giữa.
+              en: White plays Bc4 or Bd3, castles short, then swings the queen across with Qe1 and Qh4, adds Be3 and a rook to e1 or d1, and uses the half-open f-file together with the b1-h7 diagonal. Black should pick one of the known defensive set-ups at once — ...Bf5, ...Bg4, ...e6 or ...g6 — finish developing, trade off the attacking pieces, and take no further queenside pawns while the king is still in the centre.
+              fr: Les Blancs jouent Bc4 ou Bd3, roquent du petit côté, puis transfèrent la dame par Qe1 et Qh4, ajoutent Be3 et une tour en e1 ou d1, et exploitent la colonne f semi-ouverte avec la diagonale b1-h7. Les Noirs choisiront aussitôt l'un des dispositifs défensifs connus — ...Bf5, ...Bg4, ...e6 ou ...g6 — achèveront leur développement, échangeront les pièces attaquantes, et ne prendront plus aucun pion à l'aile dame tant que le roi reste au centre.
+            basis:
+              by: chan
+              at: '2026-09-18'

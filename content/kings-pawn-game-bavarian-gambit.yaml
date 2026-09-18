@@ -1,0 +1,95 @@
+# The Bavarian Gambit. Frozen defining line 1.e4 e5 2.c4 d5, which ends on Black's own ply,
+# so the root is an opponent node and White's replies carry qualities (invariant 5).
+#
+# No leaf here claims a mate. Both principled captures simply leave White a genuine pawn up,
+# with the surviving central pawn permanently guarding d5; a mate the build cannot prove is
+# refused rather than written (ADR-0005).
+id: kings-pawn-game-bavarian-gambit
+name: "King's Pawn Game: Bavarian Gambit"
+eco: C20
+category: gambit
+side: black
+definingLine: [e4, e5, c4, d5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Whichever pawn White uses to capture on d5, the surviving central pawn
+      (e4 after ...cxd5, or c4 after ...exd5) permanently guards that square, so Black cannot
+      win the pawn back at once without losing more material than it gets back, and an
+      immediate queen recapture is an outright blunder that loses the queen to the survivor.
+      Black gets no concrete return for the pawn in either case — no lead in development, no
+      open lines, no weakness in White's structure — which is why this is labelled unsound
+      rather than merely dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen phản công ngay giữa bàn bằng d5, tấn công cùng lúc cả hai con tốt c4 và e4 của Trắng. Đây chính là điểm của Gambit Bavaria, một con tốt đâm thẳng vào hai mục tiêu. Nhưng cái bẫy nằm ở chỗ này, dù Trắng ăn bằng tốt nào thì con tốt còn lại vẫn đứng nguyên và tiếp tục kiểm soát chính ô d5, nên Đen tuyệt đối không được ăn lại ngay bằng hậu, Qxd5 sẽ mất hậu ngay lập tức vào tay con tốt còn sống sót. Đó là lý do khiến gambit này bị coi là không vững.
+    en: Black counterattacks in the centre at once with 2...d5, hitting both the c4 and e4 pawns in one move. That double attack is the whole point of the Bavarian Gambit — one pawn aimed at two targets. But the trap is built into the position itself — whichever pawn White captures with, the other one stays exactly where it is and keeps guarding the d5 square, so Black must never recapture there at once with the queen — ...Qxd5 loses the queen outright to whichever pawn survives. That is the main reason this gambit is labelled unsound.
+    fr: Les Noirs contre-attaquent aussitôt au centre par 2...d5, visant en un seul coup les pions c4 et e4. Cette double attaque est toute l'idée du Gambit bavarois, un pion qui vise deux cibles à la fois. Mais le piège est inscrit dans la position elle-même, quel que soit le pion avec lequel les Blancs prennent, l'autre reste en place et continue de garder la case d5, si bien que les Noirs ne doivent jamais reprendre aussitôt de la dame — ...Qxd5 perd la dame purement et simplement au profit du pion survivant. C'est la raison principale pour laquelle ce gambit est jugé non sain.
+  dismissRest:
+    reason:
+      vi: Trắng có thể từ chối cả hai lần ăn quân. Các nước 3.d3, 3.Bd3, 3.Qc2 và 3.Qe2 đều đỡ cùng lúc cả hai con tốt c4 và e4 mà không cần ăn gì, nhưng chúng chỉ tiêu tốn một nước vào việc phòng thủ thay vì đặt câu hỏi thẳng cho Đen. Mọi nước khác, phát triển một quân ở nơi khác, đẩy tốt cánh, hay đưa hậu ra ngoài hàng cuối, đều để hở ít nhất một trong hai con tốt bị tấn công, và Đen chỉ việc ăn nó, một con tốt hoàn toàn miễn phí. Không nước nào trong nhóm này thử thách được gambit, đó là lý do vì sao chỉ hai nước ăn quân thật sự được xem xét ở đây.
+      en: White can decline both captures. 3.d3, 3.Bd3, 3.Qc2 and 3.Qe2 all defend c4 and e4 at once without taking anything, but each spends a whole move on prophylaxis instead of putting the question to Black directly. Everything else — developing a piece elsewhere, pushing a wing pawn, or bringing the queen off the back rank — leaves at least one of the two attacked pawns with no defender at all, and Black simply takes it, a completely free pawn. None of this group tests the gambit, which is why only the two real captures are examined here.
+      fr: Les Blancs peuvent refuser les deux prises. 3.d3, 3.Bd3, 3.Qc2 et 3.Qe2 défendent tous à la fois c4 et e4 sans rien prendre, mais chacun consacre un coup entier à la prophylaxie au lieu de poser directement la question aux Noirs. Tout le reste, développer une pièce ailleurs, avancer un pion d'aile, ou sortir la dame de sa rangée, laisse au moins l'un des deux pions attaqués sans aucun défenseur, et les Noirs n'ont qu'à le prendre, un pion entièrement gratuit. Aucun coup de ce groupe ne met le gambit à l'épreuve, c'est pourquoi seules les deux vraies prises sont examinées ici.
+  children:
+    - ply: cxd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn bằng tốt c, giữ lại con tốt e4 quý giá ở giữa bàn cờ. Đây là lựa chọn mạnh nhất vì nó giữ con tốt trung tâm quan trọng hơn, và chính con tốt e4 ấy sẽ đứng canh ô d5 mãi mãi. Đen tuyệt đối không được ăn lại ngay bằng Qxd5, vì tốt e4 sẽ ăn hậu ngay lập tức.
+        en: White recaptures with the c-pawn, keeping the more valuable e4 pawn in the centre. This is the strongest choice because it is the central pawn that matters more, and that very e4 pawn will now guard the d5 square indefinitely. Black must never recapture at once with ...Qxd5 — the e4 pawn simply takes the queen.
+        fr: Les Blancs reprennent du pion c, en gardant le pion e4, plus précieux, au centre. C'est le choix le plus fort car c'est le pion central qui compte le plus, et ce même pion e4 va désormais garder la case d5 indéfiniment. Les Noirs ne doivent jamais reprendre aussitôt par ...Qxd5, le pion e4 prend simplement la dame.
+      children:
+        - ply: Nf6
+          annotation:
+            vi: Đen phát triển mã ra f6, nước tự nhiên nhất, nhắm vào ô d5 cho có lệ. Nhưng con tốt d5 vẫn được tốt e4 đỡ, nên nếu Đen đổi Nxd5 thì exd5 ăn lại và Trắng thắng hẳn một quân đổi lấy tốt. Mã f6 vì vậy chỉ đơn thuần là một nước phát triển, không phải một lời đe dọa thật sự, và Đen chấp nhận chơi tiếp mà chưa đòi lại được con tốt.
+            en: Black develops the knight to f6, the most natural move, nominally eyeing the d5 square. But the pawn on d5 is still defended by the e4 pawn, so if Black ever plays ...Nxd5, exd5 recaptures and White simply wins a piece for a pawn. The knight on f6 is therefore just a developing move rather than a real threat, and Black carries on without having won the pawn back.
+            fr: Les Noirs développent le cavalier en f6, le coup le plus naturel, en visant nominalement la case d5. Mais le pion d5 reste défendu par le pion e4, donc si les Noirs jouent un jour ...Nxd5, exd5 reprend et les Blancs gagnent tout simplement une pièce contre un pion. Le cavalier en f6 n'est donc qu'un coup de développement et non une vraie menace, et les Noirs poursuivent la partie sans avoir récupéré le pion.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Trắng có tám tốt, Đen chỉ còn bảy, tức là Trắng hơn đúng một tốt sạch sẽ. Con tốt thừa ấy đứng ở d5 và được tốt e4 đỡ vững, nên Đen chưa tìm được cách nào để lấy lại nó mà không mất thêm quân. Trắng chưa phát triển gì trong khi Đen đã ra một mã, nhưng đó chỉ là một nhịp, không phải sự đền bù cho cả một con tốt.
+              en: Count the pawns — White has eight and Black has seven, so White is up one clean pawn. That extra pawn sits on d5 and is solidly held by the e4 pawn, so Black has not found any way to win it back without losing further material. White has not developed anything yet while Black has brought out one knight, but that is a single tempo, not compensation for an entire pawn.
+              fr: Comptez les pions, les Blancs en ont huit, les Noirs seulement sept, les Blancs ont donc un pion de plus, net. Ce pion supplémentaire se trouve en d5 et reste solidement tenu par le pion e4, si bien que les Noirs n'ont trouvé aucun moyen de le reprendre sans perdre davantage. Les Blancs n'ont encore rien développé alors que les Noirs ont sorti un cavalier, mais ce n'est qu'un temps, pas la compensation d'un pion entier.
+            plan:
+              vi: Trắng chơi Nf3, Nc3, d4 và Bc4 hoặc Bd3 rồi O-O, phát triển đơn giản và giữ chặt con tốt thừa, tránh mọi nước làm yếu đi con tốt e4 đang canh d5. Đen chơi Nc6 hoặc Bc5, Bd6, O-O nhanh và Re8, tìm cách gây sức ép lên tốt e4 và trung tâm Trắng, chấp nhận kém một tốt để đổi lấy sự phát triển tự do hơn, hy vọng vào các cơ hội chiến thuật khi Trắng chưa nhập thành.
+              en: White plays Nf3, Nc3, d4 and Bc4 or Bd3 followed by O-O, developing simply and holding on to the extra pawn, avoiding anything that weakens the e4 pawn guarding d5. Black plays ...Nc6 or ...Bc5, ...Bd6, castles quickly and follows with ...Re8, looking for pressure against e4 and White's centre, accepting the pawn deficit in exchange for freer development and hoping for tactical chances while White has not yet castled.
+              fr: Les Blancs jouent Nf3, Nc3, d4 et Bc4 ou Bd3 puis le roque, se développent simplement et gardent le pion supplémentaire, en évitant tout ce qui affaiblirait le pion e4 qui garde d5. Les Noirs jouent ...Nc6 ou ...Bc5, ...Bd6, roquent vite et enchaînent ...Re8, en cherchant à peser sur e4 et le centre blanc, acceptant le déficit d'un pion contre un développement plus libre et espérant des chances tactiques tant que les Blancs n'ont pas roqué.
+            basis:
+              by: chan
+              at: '2026-09-18'
+    - ply: exd5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng ăn bằng tốt e, cũng lấy được con tốt d5 nhưng lần này con tốt còn lại để canh d5 là c4 chứ không phải e4. Về vật chất kết quả giống hệt bên kia, Trắng hơn một tốt, nhưng trung tâm của Trắng bây giờ kém vững hơn vì con tốt trung tâm e4 đã biến mất, và tốt e5 của Đen trở nên có giá trị hơn một chút. Ở đây cũng vậy, Đen tuyệt đối không được ăn lại ngay bằng Qxd5, vì tốt c4 sẽ ăn hậu ngay lập tức.
+        en: White recaptures with the e-pawn, also winning the d5 pawn, but this time it is the c4 pawn that stays behind to guard d5, not e4. Materially the result is identical to the other capture — White is a pawn up — but White's centre is less solid now that the central e4 pawn is gone, and Black's e5 pawn is worth a little more by comparison. Here too, Black must never recapture at once with ...Qxd5 — the c4 pawn simply takes the queen.
+        fr: Les Blancs reprennent du pion e, gagnant eux aussi le pion d5, mais cette fois c'est le pion c4 qui reste en arrière pour garder d5, et non e4. Matériellement le résultat est identique à l'autre prise, les Blancs ont un pion de plus, mais leur centre est moins solide maintenant que le pion central e4 a disparu, et le pion e5 des Noirs vaut un peu plus par comparaison. Là aussi, les Noirs ne doivent jamais reprendre aussitôt par ...Qxd5, le pion c4 prend simplement la dame.
+      children:
+        - ply: Nf6
+          annotation:
+            vi: Đen lại phát triển mã ra f6. Con tốt d5 giờ được tốt c4 đỡ thay vì e4, nhưng ý tưởng giống hệt, Nxd5 sẽ bị cxd5 ăn lại và Đen mất quân đổi lấy tốt. Mã f6 vẫn chỉ là một nước phát triển bình thường.
+            en: Black again develops the knight to f6. The pawn on d5 is now guarded by c4 instead of e4, but the idea is identical — ...Nxd5 is met by cxd5, and Black loses a piece for a pawn. The knight on f6 is again just an ordinary developing move.
+            fr: Les Noirs développent de nouveau le cavalier en f6. Le pion d5 est maintenant gardé par c4 au lieu de e4, mais l'idée est identique, ...Nxd5 se heurte à cxd5, et les Noirs perdent une pièce contre un pion. Le cavalier en f6 n'est là encore qu'un coup de développement ordinaire.
+          outcome:
+            type: position
+            evaluation:
+              vi: Trắng vẫn hơn đúng một tốt, tám chọi bảy, và con tốt ấy vẫn được canh giữ chắc chắn, lần này bởi tốt c4. Khác biệt duy nhất so với nhánh kia là con tốt trung tâm e4 của Trắng đã biến mất, nên tốt e5 của Đen không còn bị chèn ép và Đen có phần thoải mái hơn một chút để phát triển quân, dù vẫn kém vật chất.
+              en: White is still exactly one pawn up, eight against seven, and that pawn is still firmly guarded, this time by c4. The only difference from the other branch is that White's central e4 pawn is gone, so Black's e5 pawn is no longer cramped and Black has a slightly freer time developing, even while still down material.
+              fr: Les Blancs ont toujours exactement un pion de plus, huit contre sept, et ce pion reste solidement gardé, cette fois par c4. La seule différence avec l'autre branche est que le pion central e4 des Blancs a disparu, si bien que le pion e5 des Noirs n'est plus à l'étroit et que les Noirs se développent un peu plus librement, même s'ils restent en retard de matériel.
+            plan:
+              vi: Trắng chơi Nf3, Nc3, d4 và Bd3 rồi O-O như bên kia, giữ con tốt thừa và hoàn thiện phát triển. Đen chơi Nc6, Bc5 hoặc Bd6, O-O và Re8, dùng con tốt e5 tự do hơn để tranh chấp trung tâm và tìm cơ hội chiến thuật, dù về khách quan vẫn kém một tốt.
+              en: White plays Nf3, Nc3, d4 and Bd3 followed by O-O just as in the other branch, keeping the extra pawn and completing development. Black plays ...Nc6, ...Bc5 or ...Bd6, castles and follows with ...Re8, using the freer e5 pawn to contest the centre and look for tactical chances, though objectively still a pawn down.
+              fr: Les Blancs jouent Nf3, Nc3, d4 et Bd3 puis le roque comme dans l'autre branche, gardant le pion supplémentaire et achevant leur développement. Les Noirs jouent ...Nc6, ...Bc5 ou ...Bd6, roquent et enchaînent ...Re8, utilisant leur pion e5 plus libre pour disputer le centre et chercher des chances tactiques, tout en restant objectivement un pion en retard.
+            basis:
+              by: chan
+              at: '2026-09-18'

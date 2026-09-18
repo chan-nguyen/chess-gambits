@@ -76,32 +76,52 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are twenty-four of them, and they are the ones the content tickets authored', () => {
+  test('there are forty-four of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'benko-gambit',
+      'bird-opening-froms-gambit',
+      'bishops-opening-calabrese-countergambit',
       'blackmar-diemer-gambit',
+      'blackmar-diemer-gambit-accepted',
+      'caro-kann-defense-labahn-attack-double-gambit',
       'danish-gambit',
+      'dutch-defense-krejcik-gambit',
       'elephant-trap',
+      'english-opening-jaenisch-gambit',
       'englund-gambit',
       'englund-gambit-trap',
       'fishing-pole-trap',
+      'french-defense-banzai-leong-gambit',
+      'grob-opening-alessi-gambit',
       'halosar-trap',
       'indian-defense-budapest-gambit',
+      'indian-defense-gibbins-weidenhagen-gambit',
       'italian-game-blackburne-kostic-gambit',
       'italian-game-evans-gambit',
       'kieninger-trap',
       'kings-gambit',
       'kings-gambit-accepted',
       'kings-gambit-declined-classical-variation',
+      'kings-pawn-game-bavarian-gambit',
       'lasker-trap',
       'latvian-gambit',
       'legals-mate',
       'mortimer-trap',
+      'nimzowitsch-defense-wheeler-gambit',
       'noahs-ark-trap',
+      'philidor-defense-lopez-countergambit',
+      'queens-gambit-declined-albin-countergambit',
+      'queens-pawn-game-zurich-gambit',
       'ruy-lopez-schliemann-defense',
+      'scandinavian-defense-zilbermints-gambit',
+      'scotch-game-goring-gambit',
       'scotch-game-scotch-gambit',
       'siberian-trap',
       'sicilian-defense-smith-morra-gambit',
+      'van-geet-opening-laroche-gambit',
+      'vienna-gambit-with-max-lange-defense',
+      'vienna-game-fyfe-gambit',
+      'zukertort-opening-herrstrom-gambit',
     ])
   })
 
@@ -138,9 +158,14 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       /*
        * Issue #54 marked the ply that produced the position; #70 gave the root one. The root
        * is the position after the defining line, whose last ply the page now walks through,
-       * so the two squares of that ply are marked here exactly as they are everywhere else.
+       * so the two squares of that ply are tinted here exactly as they are everywhere else
+       * (2026-09-18: two tinted squares, no ring on either).
        */
-      await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(2)
+      await expect(
+        page.locator(
+          '.learning-surface__board .board__square--from, .learning-surface__board .board__square--to',
+        ),
+      ).toHaveCount(2)
 
       const entryPath = `${cataloguePath}/${entry.id}`
 
@@ -173,9 +198,13 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
            * Issue #54, on published content rather than on a fixture. The highlight was
            * complete and unreachable for four waves precisely because nothing asserted it
            * anywhere a visitor actually goes, so every step of every taught line is asked
-           * for the two rings — the square the ply left and the square it reached.
+           * for the two tinted squares — the square the ply left and the square it reached.
            */
-          await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(2)
+          await expect(
+            page.locator(
+              '.learning-surface__board .board__square--from, .learning-surface__board .board__square--to',
+            ),
+          ).toHaveCount(2)
         }
 
         const outcome = nodeAt(entry.tree, leaf).outcome

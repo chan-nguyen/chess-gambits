@@ -1,0 +1,89 @@
+# Scotch Game: Göring Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.c3, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Both branches below were replayed with chess.js before being annotated.
+id: scotch-game-goring-gambit
+name: 'Scotch Game: Göring Gambit'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Accepting with 4...dxc3 leaves White a genuine pawn down after 5.Nxc3,
+      paid for with real development and an open d-file rather than a mating attack, which
+      is the standard reading of the Göring at club level. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đổi tốt ở d4, Trắng chơi thêm 4.c3, mời con tốt d4 của Đen ăn thêm một tốt nữa để đổi lấy nhịp phát triển và trung tâm. Đây chính là Gambit Göring, khác với Gambit Đan Mạch ở chỗ Trắng định ăn lại bằng mã chứ không phải dùng cả hai tượng.
+    en: After the trade on d4, White plays 4.c3, offering Black's pawn on d4 a second pawn to take in exchange for development and the centre. This is the Göring Gambit, which differs from the Danish in that White plans to recapture with the knight rather than with both bishops.
+    fr: Après l'échange en d4, les Blancs jouent 4.c3, offrant au pion noir en d4 un second pion à prendre contre du développement et le centre. C'est le Gambit Göring, qui diffère du Gambit danois en ce que les Blancs prévoient de reprendre du cavalier plutôt qu'avec les deux fous.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ở c3 và cũng không đẩy tốt xuống d3. Con tốt d4 của Đen đang bị chính tốt c3 đánh, nên mọi nước khác, kể cả Nf6, Bb4 hay d5, để Trắng ăn lại tự do bằng cxd4 ở nước sau và có đủ cả hai tốt trung tâm d4-e4 mà không mất một tốt nào cả.
+      en: Black neither takes on c3 nor pushes the pawn to d3. Black's pawn on d4 is directly attacked by that very c3 pawn, so anything else, including Nf6, Bb4 or d5, lets White simply recapture with cxd4 next move and own the full d4-e4 centre without having spent a pawn at all.
+      fr: Les Noirs ne prennent pas en c3 et ne poussent pas non plus le pion en d3. Le pion noir en d4 est directement attaqué par ce même pion c3, donc tout le reste, y compris Nf6, Bb4 ou d5, laisse les Blancs reprendre librement par cxd4 au coup suivant et posséder tout le centre d4-e4 sans avoir dépensé le moindre pion.
+  children:
+    - ply: dxc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn nốt con tốt thứ hai. Đây là nước thử thách nhất, chấp nhận Gambit Göring và buộc Trắng phải chứng minh sự bù đắp ngay từ bây giờ.
+        en: Black takes the second pawn. This is the most testing choice, accepting the Göring and forcing White to prove the compensation right away.
+        fr: Les Noirs prennent le second pion. C'est le choix le plus exigeant, qui accepte le Gambit Göring et force les Blancs à prouver tout de suite la compensation.
+      children:
+        - ply: Nxc3
+          annotation:
+            vi: Trắng ăn lại bằng mã thay vì bằng tốt b, đưa quân ra và nhắm vào ô d5 cùng b5. Đây chính là điều làm nên tên gọi Gambit Göring, khác với Gambit Đan Mạch chuyển sang thí cả tốt b2 để lấy cặp tượng.
+            en: White recaptures with the knight rather than the b-pawn, developing a piece and eyeing d5 and b5. This is what earns the gambit its own name, rather than sliding into a Danish-style sacrifice of the b2 pawn for the bishop pair.
+            fr: Les Blancs reprennent du cavalier plutôt que du pion b, développant une pièce et visant d5 et b5. C'est ce qui vaut son propre nom à ce gambit, plutôt que de glisser vers un sacrifice à la danoise du pion b2 pour la paire de fous.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng sáu, Đen bảy. Trắng kém đúng một tốt sạch, con tốt c đã thí ở nước 4, và chưa có gì đòi lại được nó. Đổi lại, Trắng đã đưa được hai mã ra (c3 và f3) trong khi Đen mới chỉ có một mã ở c6, cột d đang nửa mở dưới mắt một hậu Trắng sắp đứng ở đó, và Đen còn phải quyết định làm gì với con tốt e của Trắng đang đứng giữa bàn.
+              en: Count the pawns and it is six for White, seven for Black. White is a clean pawn down, the one spent on move four, and nothing has won it back yet. In return, White has two knights out, on c3 and f3, while Black has only the one on c6, the d-file is half-open under a white queen that is about to stand on it, and Black still has to decide what to do about White's e-pawn sitting in the centre.
+              fr: Comptez les pions, six pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de moins bien réel, celui dépensé au quatrième coup, et rien ne l'a encore récupéré. En échange, les Blancs ont deux cavaliers sortis, en c3 et f3, alors que les Noirs n'en ont qu'un en c6, la colonne d est semi-ouverte sous une dame blanche qui va bientôt s'y placer, et les Noirs doivent encore décider quoi faire du pion e blanc planté au centre.
+            plan:
+              vi: Trắng chơi Bc4 nhắm f7, O-O rồi Qd3 hoặc Re1, dùng cột d và nhịp phát triển để gây sức ép trước khi Đen kịp hoàn thiện thế trận, và cân nhắc Nd5 khi có dịp. Đen chơi d6 hoặc Nf6 trước, rồi Be7 hay Bc5 và O-O thật nhanh, giữ chắc con tốt thừa và tìm cách đổi bớt quân để con tốt ấy có giá trị hơn ở tàn cuộc.
+              en: White plays Bc4 aiming at f7, castles and follows with Qd3 or Re1, using the d-file and the development lead to create pressure before Black finishes untangling, and considers Nd5 when the chance comes. Black plays d6 or Nf6 first, then Be7 or Bc5 and castles quickly, holding the extra pawn firmly and looking to trade pieces so it counts for more in an endgame.
+              fr: Les Blancs jouent Bc4 visant f7, roquent puis Qd3 ou Re1, en utilisant la colonne d et l'avance de développement pour créer de la pression avant que les Noirs ne finissent de se démêler, et envisagent Nd5 le moment venu. Les Noirs jouent d6 ou Nf6 d'abord, puis Be7 ou Bc5 et roquent vite, en gardant fermement le pion supplémentaire et en cherchant à échanger des pièces pour qu'il compte davantage en finale.
+            basis:
+              by: chan
+              at: '2026-09-18'
+    - ply: d3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Thay vì ăn, Đen đẩy tốt d4 lên d3 để tránh bị ăn ngay. Con tốt này sẽ bị tượng f1 ăn lại ở nước sau, nhưng Đen giữ được cả hai tốt trung tâm của Trắng thay vì để Trắng có luôn d4-e4.
+        en: Instead of capturing, Black pushes the d4 pawn on to d3 to dodge the capture. That pawn will be taken by the f1 bishop next move, but Black keeps White from ever owning both central pawns on d4 and e4 together.
+        fr: Au lieu de prendre, les Noirs poussent le pion d4 jusqu'en d3 pour éviter la capture. Ce pion sera pris par le fou f1 au coup suivant, mais les Noirs empêchent les Blancs de jamais posséder ensemble les deux pions centraux d4 et e4.
+      children:
+        - ply: Bxd3
+          annotation:
+            vi: Tượng ăn lại con tốt và đứng ngay trên đường chéo b1-h7, nhắm vào cánh vua của Đen. Trắng lấy lại đúng con tốt mà Đen vừa đẩy đi, không hơn không kém.
+            en: The bishop recaptures the pawn and lands on the b1-h7 diagonal, aimed at Black's kingside. White has won back exactly the pawn Black just pushed forward, no more and no less.
+            fr: Le fou reprend le pion et se place sur la diagonale b1-h7, visé vers l'aile roi noire. Les Blancs ont juste regagné le pion que les Noirs venaient de pousser, ni plus ni moins.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì bảy đều hai bên. Con tốt c3 chưa từng bị mất, vì Đen đã chọn đẩy tốt d4 đi thay vì ăn nó, nên đây là một Gambit Göring bị từ chối chứ không phải bị nhận, và số tốt đã trở lại như cũ. Cái Trắng đổi lấy được là một tượng đang đứng chủ động ở d3 nhắm vào h7, còn Đen mới chỉ đưa ra được một mã ở c6.
+              en: Count the pawns and it is seven each. The c3 pawn was never actually lost, since Black chose to push the d4 pawn on rather than take it, so this is the Göring declined rather than accepted, and the pawn count has come back to where it started. What White has to show for it is a bishop actively posted on d3 aiming at h7, while Black has developed only the one knight on c6.
+              fr: Comptez les pions, sept de chaque côté. Le pion c3 n'a en réalité jamais été perdu, puisque les Noirs ont choisi de pousser le pion d4 plutôt que de le prendre, donc ceci est le Gambit Göring refusé plutôt qu'accepté, et le compte de pions est revenu à son point de départ. Ce que les Blancs ont à montrer pour cela est un fou activement posté en d3 visant h7, tandis que les Noirs n'ont développé que le seul cavalier c6.
+            plan:
+              vi: Trắng chơi O-O, Re1 và Nbd2 hoặc Qc2, giữ nguyên áp lực của tượng d3 lên cánh vua Đen và chuẩn bị e5 khi có dịp để giành thêm không gian. Đen chơi Nf6, Be7 hay Bc5 và O-O thật nhanh để trung hoà đường chéo ấy, sau đó d6 hoặc d5 để giải phóng các quân còn lại.
+              en: White plays O-O, Re1 and Nbd2 or Qc2, keeping up the bishop's pressure on Black's kingside and preparing e5 for extra space when the chance comes. Black plays Nf6, Be7 or Bc5 and castles quickly to neutralise that diagonal, then d6 or d5 to free the remaining pieces.
+              fr: Les Blancs jouent O-O, Re1 et Nbd2 ou Qc2, en maintenant la pression du fou sur l'aile roi noire et en préparant e5 pour de l'espace supplémentaire le moment venu. Les Noirs jouent Nf6, Be7 ou Bc5 et roquent vite pour neutraliser cette diagonale, puis d6 ou d5 pour libérer les pièces restantes.
+            basis:
+              by: chan
+              at: '2026-09-18'
