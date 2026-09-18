@@ -1,0 +1,223 @@
+# The Calabrese Countergambit. Frozen defining line 1.e4 e5 2.Bc4 f5, which ends on Black's
+# own ply, so the root is an opponent node and White's replies carry qualities (invariant 5).
+#
+# No mate is claimed anywhere in this entry. The sharp-looking tries after 3.exf5 and 3.Bxg8
+# were checked by hand with chess.js for hanging pieces and checks; none of them produces a
+# forced mate, so every leaf below is a plain assessment (ADR-0005).
+id: bishops-opening-calabrese-countergambit
+name: "Bishop's Opening: Calabrese Countergambit"
+eco: C23
+category: gambit
+side: black
+definingLine: [e4, e5, Bc4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      This is a judgement, and it lands close to the 'unsound' label the source dataset
+      already gives this whole family. All three of White's main replies examined here —
+      taking on f5, trading the bishop for the knight on g8, or simply shoring up e4 with
+      d3 — lead to a position where White keeps a genuine edge, whether a clean extra pawn
+      or a lasting structural defect on f7, without taking any real risk. Black does not
+      find real dynamic compensation for the sacrificed pawn in any of the lines examined
+      here. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đây là Phản gambit Calabrese: thay vì phát triển bình thường, Đen đẩy ngay con tốt f để tấn công con tốt e4 và mời Trắng ăn lại con tốt f5. Ý tưởng giống hệt một Gambit Vua chơi ngược màu, chỉ khác là chính Đen là bên thí tốt, và con tượng Trắng vừa ra ở c4 chưa kịp làm gì đã bị hỏi ngay một câu khó.'
+    en: "This is the Calabrese Countergambit: instead of developing normally, Black immediately pushes the f-pawn, attacking e4 and inviting White to take on f5. The idea is a King's Gambit with the colours reversed — except here it is Black doing the sacrificing, and White's bishop, barely out on c4, is asked an awkward question before it has done anything at all."
+    fr: "Voici le Contre-gambit Calabrese : au lieu de se développer normalement, les Noirs poussent aussitôt le pion f, attaquant e4 et invitant les Blancs à prendre en f5. L'idée est celle d'un Gambit du Roi aux couleurs inversées, à ceci près que ce sont ici les Noirs qui sacrifient, et le fou blanc, à peine sorti en c4, se voit poser une question embarrassante avant d'avoir rien fait du tout."
+  dismissRest:
+    reason:
+      vi: 'Trắng không ăn ở f5 và cũng không ăn ở g8. Nước 3.Bf7+ chỉ mất không con tượng, vì sau Kxf7 không có gì bắt vua phải đi đâu cả và Trắng không lấy lại được gì. Nước 3.Qh5+ g6 chỉ đuổi hậu về h3, h4 hay d1 mà không đạt được gì hơn ba nước exf5, Bxg8 hay d3 đã cho. Các nước lui tượng như Ba6, Bd5, Be6, Bd3, Be2, Bf1, Bb3 đều vô nghĩa vì chưa có gì tấn công con tượng ở c4 cả, còn các nước phát triển hay đẩy tốt còn lại như Nc3, Nf3, Na3, Qe2, d4 và các nước tốt hay vua khác chỉ để dành cùng một lựa chọn giữa ăn tốt và ăn mã cho một nước sau.'
+      en: 'White neither takes on f5 nor on g8. 3.Bf7+ simply gives the bishop away for nothing — after Kxf7 there is nothing forcing the king anywhere useful and White gets nothing back for it. 3.Qh5+ g6 only chases the queen to h3, h4 or d1 without achieving anything that exf5, Bxg8 or d3 does not already achieve. The bishop retreats — Ba6, Bd5, Be6, Bd3, Be2, Bf1, Bb3 — are pointless since nothing yet attacks the bishop on c4, and the remaining developing and pawn moves — Nc3, Nf3, Na3, Qe2, d4, and the rest of the pawn and king moves — simply save the same choice between the pawn on f5 and the knight on g8 for a later move.'
+      fr: "Les Blancs ne prennent ni en f5 ni en g8. 3.Bf7+ donne simplement le fou pour rien — après Kxf7, rien n'oblige le roi à aller où que ce soit d'utile et les Blancs n'y gagnent rien. 3.Qh5+ g6 ne fait que chasser la dame vers h3, h4 ou d1 sans rien obtenir de plus que ce que donnent déjà exf5, Bxg8 ou d3. Les reculs du fou — Ba6, Bd5, Be6, Bd3, Be2, Bf1, Bb3 — sont inutiles puisque rien n'attaque encore le fou en c4, et le reste des coups de développement et de pions — Nc3, Nf3, Na3, Qe2, d4, ainsi que les autres coups de pion ou de roi — se contentent de reporter à plus tard le même choix entre le pion f5 et le cavalier g8."
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng nhận lời mời và ăn con tốt f5. Đây là cách kiểm tra gay gắt nhất phản gambit, vì nó buộc Đen phải chứng minh ngay có gì bù lại cho con tốt đã mất.'
+        en: 'White accepts the offer and takes on f5. This is the sharpest test of the countergambit, because it forces Black to show at once what there is to show for the missing pawn.'
+        fr: "Les Blancs acceptent l'offre et prennent en f5. C'est le test le plus tranchant du contre-gambit, car il oblige aussitôt les Noirs à montrer ce qu'ils obtiennent en échange du pion perdu."
+      children:
+        - ply: e4
+          annotation:
+            vi: 'Đen đẩy tiếp con tốt e lên e4, không ăn lại gì cả mà chiếm không gian và cắt đường ra của mã trắng ở f3. Đây chính là điểm của phản gambit: Đen chấp nhận kém một tốt để đổi lấy thế chủ động tạm thời.'
+            en: "Black pushes the e-pawn on to e4 instead of recapturing anything, taking space and cutting off the White knight's route to f3. This is the whole point of the countergambit — Black accepts being a pawn down for a temporary lead in activity."
+            fr: "Les Noirs poussent le pion e jusqu'en e4 au lieu de reprendre quoi que ce soit, prenant de l'espace et coupant la route du cavalier blanc vers f3. C'est tout le sens du contre-gambit : les Noirs acceptent d'être un pion derrière contre une activité momentanée."
+          dismissRest:
+            reason:
+              vi: 'd3 không phải là cách duy nhất để hỏi con tốt e4. Nc3, Qe2 và f3 đều tấn công nó theo cách riêng và dẫn tới thế cờ tương tự, còn Bxg8 lặp lại đúng ý tưởng đổi quân đã có ở nhánh khác nhưng muộn hơn một nước. Nước 4.Qh5+ g6 chỉ đuổi hậu lui về mà không đòi lại được gì hơn d3 đã có, còn 4.Bf7+ Kxf7 lại cho không con tượng như mọi khi. Không nước nào trong số các nước phát triển hay đẩy tốt còn lại đòi lại con tốt e4 tốt hơn d3.'
+              en: 'd3 is not the only way to ask the e4 pawn a question. Nc3, Qe2 and f3 each attack it in their own way and lead to comparable positions, while Bxg8 repeats the very trade already seen in the other branch, just a move later. 4.Qh5+ g6 only drives the queen back without winning anything d3 does not already win, and 4.Bf7+ Kxf7 gives the bishop away for nothing, as always. None of the remaining developing or pawn moves recovers the e4 pawn any better than d3 does.'
+              fr: "d3 n'est pas la seule façon d'interroger le pion e4. Nc3, Qe2 et f3 l'attaquent chacun à leur manière et mènent à des positions comparables, tandis que Bxg8 répète exactement l'échange déjà vu dans l'autre branche, avec un coup de retard. 4.Qh5+ g6 ne fait que repousser la dame sans rien gagner de plus que ce que d3 gagne déjà, et 4.Bf7+ Kxf7 donne le fou pour rien, comme toujours. Aucun des coups de développement ou de pion restants ne récupère le pion e4 mieux que d3."
+          children:
+            - ply: d3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Trắng hỏi thẳng con tốt e4 bằng d3. Đây là cách đơn giản nhất để bắt Đen phải quyết định ngay: đổi con tốt hay tìm cách giữ nó.'
+                en: 'White asks the e4 pawn a direct question with d3. It is the simplest way to force Black to decide at once whether to trade the pawn or try to hold it.'
+                fr: "Les Blancs interrogent directement le pion e4 par d3. C'est la façon la plus simple d'obliger les Noirs à décider tout de suite s'il faut échanger ce pion ou tenter de le garder."
+              children:
+                - ply: exd3
+                  annotation:
+                    vi: 'Đen đổi ngay con tốt e4 lấy con tốt d3, không để nó bị đẩy lùi hay bị bắt sau này. Đây là cách đơn giản nhất, giữ thế cờ rõ ràng thay vì cố bám lấy một con tốt sẽ khó giữ.'
+                    en: 'Black trades the e4 pawn for the d3 pawn at once, rather than let it be pushed back or picked off later. This is the simplest approach, keeping the position clear instead of clinging to a pawn that would be hard to hold.'
+                    fr: "Les Noirs échangent aussitôt le pion e4 contre le pion d3, plutôt que de le laisser repousser ou ramasser plus tard. C'est l'approche la plus simple, qui garde la position claire au lieu de s'accrocher à un pion difficile à tenir."
+                  dismissRest:
+                    reason:
+                      vi: 'cxd3 và Bxd3 ăn lại đúng con tốt đó bằng một quân khác, cho cùng một quân số nhưng bố trí quân khác đi. Bỏ mặc con tốt ở d3 để chơi nước khác, như Bxg8 hay Qh5+, chỉ trả lại chính con tốt mà Đen vừa nhượng lại, nên không có lý do gì để làm vậy.'
+                      en: 'cxd3 and Bxd3 take back the very same pawn with a different piece, reaching the same material with a different arrangement. Leaving the pawn on d3 to play something else, such as Bxg8 or Qh5+, simply hands back the pawn Black has just given up, so there is no reason to do it.'
+                      fr: 'cxd3 et Bxd3 reprennent ce même pion avec une autre pièce, aboutissant au même matériel avec un déploiement différent. Laisser le pion en d3 pour jouer autre chose, comme Bxg8 ou Qh5+, revient simplement à rendre le pion que les Noirs viennent de céder, ce qui ne présente aucun intérêt.'
+                  children:
+                    - ply: Qxd3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: 'Trắng ăn lại bằng hậu. Hai cách khác là cxd3 và Bxd3 cho cùng một quân số, nhưng hậu ở d3 đứng giữa bàn cờ và sẵn sàng nhảy sang cánh hậu hay giữ cột d, nên đây là lựa chọn tự nhiên nhất.'
+                        en: 'White recaptures with the queen. The other two ways, cxd3 and Bxd3, reach the same material, but the queen on d3 sits centrally and is ready to swing to the queenside or hold the d-file, which makes it the most natural choice.'
+                        fr: "Les Blancs reprennent de la dame. Les deux autres façons, cxd3 et Bxd3, aboutissent au même matériel, mais la dame en d3 occupe une case centrale et peut basculer à l'aile dame ou tenir la colonne d, ce qui en fait le choix le plus naturel."
+                      children:
+                        - ply: Nf6
+                          annotation:
+                            vi: 'Đen phát triển mã, hoàn tất một quân và chuẩn bị nhập thành hay chơi d5 sau này. Không còn quân nào bị treo và ván cờ đã đến lúc dừng lại để đánh giá.'
+                            en: 'Black develops the knight, brings out a piece and prepares to castle or play ...d5 later. Nothing is hanging any more, and the game has reached a point worth stopping to assess.'
+                            fr: "Les Noirs développent le cavalier, sortent une pièce et se préparent à roquer ou à jouer ...d5 plus tard. Plus rien n'est en prise, et la partie a atteint un point qui mérite qu'on s'arrête pour l'évaluer."
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: "Trắng hơn đúng một tốt và quân số còn lại ngang nhau. Con tốt f7 của Đen đã biến mất vĩnh viễn, nghĩa là ô f7 sẽ không bao giờ được một con tốt nào đỡ nữa, và con tượng Trắng ở c4 đã nhắm sẵn vào đúng ô đó trên đường chéo c4-f7. Đây là một lợi thế nhỏ nhưng lâu dài, không phải một câu 'Trắng có thế chủ động' chung chung."
+                              en: "White is up exactly one pawn and the rest of the material is level. Black's f7 pawn is gone for good, meaning the f7 square can never again be defended by a pawn, and White's bishop on c4 already bears on that exact square along the c4-f7 diagonal. This is a small but lasting edge, not a vague claim of 'White has the initiative.'"
+                              fr: "Les Blancs ont exactement un pion de plus et le reste du matériel est égal. Le pion f7 des Noirs a disparu pour de bon, ce qui signifie que la case f7 ne pourra plus jamais être défendue par un pion, et le fou blanc en c4 vise déjà précisément cette case le long de la diagonale c4-f7. C'est un avantage modeste mais durable, pas une vague affirmation d'« initiative blanche »."
+                            plan:
+                              vi: 'Trắng chơi Nf3, O-O, Re1 và giữ con tốt thừa, sẵn sàng chơi Bb3 nếu Đen đẩy d5 đuổi tượng, và luôn để mắt tới ô f7 cùng cột e nửa mở làm mục tiêu lâu dài. Đen bù lại bằng cách phát triển thật nhanh, chơi d5 để tranh trung tâm và đuổi tượng, Bd6 hoặc Bc5, và nhập thành dù ô f7 đã yếu, vì càng để lâu không phát triển thì con tốt thừa của Trắng càng có giá trị.'
+                              en: 'White plays Nf3, castles, puts a rook on e1 and holds on to the extra pawn, ready to meet ...d5 with Bb3 if the bishop is challenged, and keeps an eye on f7 and the half-open e-file as long-term targets. Black compensates by developing quickly, playing ...d5 to fight for the centre and chase the bishop, ...Bd6 or ...Bc5, and castling despite the hole on f7, because the longer development is delayed the more the extra pawn is worth to White.'
+                              fr: 'Les Blancs jouent Nf3, roquent, placent une tour en e1 et conservent le pion supplémentaire, prêts à répondre à ...d5 par Bb3 si le fou est chassé, tout en gardant un œil sur f7 et la colonne e semi-ouverte comme cibles à long terme. Les Noirs compensent en se développant rapidement, en jouant ...d5 pour disputer le centre et chasser le fou, ...Bd6 ou ...Bc5, et en roquant malgré le trou en f7, car plus le développement tarde, plus le pion supplémentaire prend de valeur pour les Blancs.'
+                            basis:
+                              by: chan
+                              at: '2026-09-18'
+    - ply: Bxg8
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: 'Trắng đổi ngay tượng lấy mã thay vì ăn tốt f5. Đây là cách tránh mọi rắc rối xung quanh con tốt e4 và đơn giản hoá thế cờ bằng một cuộc đổi quân sòng phẳng trước khi tính đến việc ăn tốt.'
+        en: 'White trades the bishop for the knight at once instead of taking on f5. This sidesteps every complication around the e4 pawn and simplifies with a fair exchange before even thinking about the pawn.'
+        fr: 'Les Blancs échangent aussitôt le fou contre le cavalier plutôt que de prendre en f5. Cela évite toute complication autour du pion e4 et simplifie la position par un échange équitable avant même de songer au pion.'
+      children:
+        - ply: Rxg8
+          annotation:
+            vi: 'Đen bắt buộc phải ăn lại bằng xe, vì không ăn thì mất không một quân mã. Con xe đứng ở g8 hơi lệch nhưng không có gì đáng lo.'
+            en: 'Black has to recapture with the rook — not doing so simply loses a knight for nothing. The rook is a little off its usual square on g8, but there is nothing to worry about there.'
+            fr: "Les Noirs doivent reprendre de la tour — ne pas le faire perdrait simplement un cavalier pour rien. La tour est un peu décalée en g8, mais rien d'inquiétant."
+          dismissRest:
+            reason:
+              vi: 'Con tốt f5 vẫn đứng đó chờ ăn và không có nước nào khác đáng chơi hơn việc ăn nó ngay. Mọi nước phát triển hay đẩy tốt khác (Nc3, Nf3, d3, d4, Qe2, Qh5+ và các nước còn lại) chỉ để dành đúng lựa chọn này cho một nước sau, mà không thu được gì thêm trong lúc chờ.'
+              en: 'The f5 pawn is still sitting there for the taking and nothing else here is worth more than grabbing it at once. Every other developing or pawn move — Nc3, Nf3, d3, d4, Qe2, Qh5+ and the rest — simply saves this exact choice for a later move, without gaining anything in the meantime.'
+              fr: "Le pion f5 est toujours là, à prendre, et rien d'autre ici ne vaut mieux que de le saisir tout de suite. Tout autre coup de développement ou de pion — Nc3, Nf3, d3, d4, Qe2, Qh5+ et le reste — se contente de reporter exactement ce choix à un coup ultérieur, sans rien gagner entre-temps."
+          children:
+            - ply: exf5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Trắng ăn nốt con tốt f5. Sau một cuộc đổi mã lấy tượng sòng phẳng, đây là con tốt thật sự dư ra, và không có quân nào của Đen đủ gần để ăn lại nó.'
+                en: "White scoops up the f5 pawn too. After a fair trade of knight for bishop, this is the pawn that is genuinely spare, and nothing of Black's is close enough to take it back."
+                fr: "Les Blancs ramassent aussi le pion f5. Après un échange équitable de cavalier contre fou, c'est ce pion qui reste réellement en trop, et rien chez les Noirs n'est assez proche pour le reprendre."
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Quân nhẹ đã đổi sòng phẳng (tượng lấy mã), và trên bàn cờ chỉ còn lại một quân số chênh lệch duy nhất: Trắng hơn đúng một tốt. Không có quân nào bị treo và không ai bị chiếu, nên đây là lúc hợp lý để dừng lại.'
+                  en: 'The minor pieces have traded off evenly, bishop for knight, and the only remaining material difference is clean: White is up exactly one pawn. Nothing is hanging and nobody is in check, so this is a sensible place to stop and assess.'
+                  fr: "Les pièces mineures se sont échangées équitablement, fou contre cavalier, et il ne reste qu'une seule différence matérielle, nette : les Blancs ont exactement un pion de plus. Rien n'est en prise et personne n'est en échec, ce qui en fait un point raisonnable pour s'arrêter et évaluer."
+                plan:
+                  vi: 'Trắng chơi Nf3, d4, O-O và dùng con tốt f5 để chèn ép cấu trúc tốt cánh vua của Đen, có thể đẩy f6 vào lúc thích hợp để phá vỡ g7 và h7. Đen chơi d5 hoặc d6, Nc6, Bd6 hay Be7 và g6 để chuẩn bị Bg7, tìm cách vây bắt hoặc đổi con tốt f5 trước khi nó gây hại thêm.'
+                  en: "White plays Nf3, d4, castles, and uses the f5 pawn to cramp Black's kingside pawns, with f6 available at the right moment to disrupt g7 and h7. Black plays ...d5 or ...d6, ...Nc6, ...Bd6 or ...Be7 and ...g6 to prepare ...Bg7, looking to blockade or trade off the f5 pawn before it causes more damage."
+                  fr: "Les Blancs jouent Nf3, d4, roquent, et utilisent le pion f5 pour gêner les pions noirs à l'aile roi, avec f6 disponible au bon moment pour désorganiser g7 et h7. Les Noirs jouent ...d5 ou ...d6, ...Nc6, ...Bd6 ou ...Be7 et ...g6 pour préparer ...Bg7, cherchant à bloquer ou à échanger le pion f5 avant qu'il ne cause plus de dégâts."
+                basis:
+                  by: chan
+                  at: '2026-09-18'
+    - ply: d3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: 'Trắng từ chối ăn tốt và chỉ đơn giản đỡ con tốt e4 đang bị tốt f5 nhắm tới. Đây là cách chơi điềm tĩnh nhất, không tham vọng gì hơn ngoài phát triển bình thường.'
+        en: 'White declines the pawn and simply defends the e4 pawn, which the f5 pawn is aiming at. This is the calmest way to meet the countergambit, with no ambition beyond normal development.'
+        fr: "Les Blancs refusent le pion et se contentent de défendre le pion e4, visé par le pion f5. C'est la façon la plus calme de répondre au contre-gambit, sans autre ambition qu'un développement normal."
+      children:
+        - ply: Nf6
+          annotation:
+            vi: 'Đen phát triển mã một cách tự nhiên. Con tốt f5 vẫn treo đó, nhưng Đen chấp nhận điều đó để đổi lấy nhịp phát triển, tính sẽ giải quyết tình hình ở trung tâm sau.'
+            en: 'Black develops the knight naturally. The f5 pawn is still hanging, but Black accepts that in exchange for a developing tempo, planning to settle the centre next.'
+            fr: "Les Noirs développent naturellement le cavalier. Le pion f5 reste en prise, mais les Noirs l'acceptent en échange d'un temps de développement, comptant régler la question du centre par la suite."
+          dismissRest:
+            reason:
+              vi: '4.exf5 vẫn nằm đó và vẫn tốt như hồi nước ba, chỉ đưa ván cờ về đúng cấu trúc mà nhánh chấp nhận đã xét tới. Nc3 được chọn ở đây để cho thấy con đường điềm tĩnh không đụng đến tốt chút nào. Nước 4.Bf7+ Kxf7 lại cho không con tượng như mọi lần, và mọi nước phát triển hay đẩy tốt còn lại chỉ trì hoãn đúng lựa chọn giữa Nc3 và exf5.'
+              en: '4.exf5 is still sitting there and is just as good as it was on move three, simply steering the game into the very structure the accepted lines already cover. Nc3 is chosen here to show the calm route that never touches the pawns at all. 4.Bf7+ Kxf7 again gives the bishop away for nothing, and every other developing or pawn move only postpones the same choice between Nc3 and exf5.'
+              fr: "4.exf5 est toujours disponible et tout aussi bon qu'au troisième coup, menant simplement la partie vers la structure même que les lignes d'acceptation ont déjà couverte. Nc3 est choisi ici pour montrer la voie calme qui ne touche jamais aux pions. 4.Bf7+ Kxf7 donne encore une fois le fou pour rien, et tout autre coup de développement ou de pion ne fait que retarder ce même choix entre Nc3 et exf5."
+          children:
+            - ply: Nc3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Trắng phát triển mã và chuẩn bị đối phó với sức ép của con tốt f5 lên con tốt e4 mà không cần vội đẩy hay đổi gì cả.'
+                en: 'White develops the knight and gets ready to deal with the pressure the f5 pawn puts on e4, without needing to rush any pawn move or trade.'
+                fr: 'Les Blancs développent le cavalier et se préparent à gérer la pression du pion f5 sur e4, sans avoir besoin de précipiter un coup de pion ou un échange.'
+              children:
+                - ply: fxe4
+                  annotation:
+                    vi: 'Đen chủ động đổi luôn thay vì để nguyên sức ép, ăn con tốt e4 bằng con tốt f5. Đây là cách đơn giản hoá tình hình trước khi nó tự giải quyết theo hướng bất lợi hơn.'
+                    en: 'Black takes the initiative and trades at once rather than leave the tension standing, capturing the e4 pawn with the f5 pawn. This settles matters before they resolve themselves in a less favourable way.'
+                    fr: "Les Noirs prennent l'initiative et échangent tout de suite plutôt que de laisser la tension en place, capturant le pion e4 avec le pion f5. Cela règle la question avant qu'elle ne se résolve d'elle-même de façon moins favorable."
+                  dismissRest:
+                    reason:
+                      vi: 'Con tốt cũng có thể ăn lại bằng dxe4, giữ thêm một đôi mã trên bàn cờ thay vì đổi tiếp, và cho cùng một quân số. Để nguyên con tốt e4 mà chơi nước khác (lui mã, lui tượng, đẩy tốt cánh hậu) chỉ để mất không đúng con tốt mà Nc3 vừa được chơi để đòi lại.'
+                      en: 'The pawn can just as well be won back with dxe4, keeping an extra pair of knights on the board instead of trading further, for the same material. Leaving the e4 pawn alone to play something else — a knight retreat, a bishop retreat, a queenside pawn push — simply gives away for nothing the very pawn Nc3 was played to recover.'
+                      fr: "Le pion peut tout aussi bien être repris par dxe4, gardant une paire de cavaliers supplémentaire sur l'échiquier plutôt que de continuer les échanges, pour le même matériel. Laisser le pion e4 tranquille pour jouer autre chose — un recul de cavalier, un recul de fou, une poussée de pion à l'aile dame — abandonne simplement pour rien le pion même que Nc3 avait été joué pour récupérer."
+                  children:
+                    - ply: Nxe4
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: 'Trắng ăn lại bằng mã, đổi luôn một cặp mã và lấy lại đúng con tốt đã mất.'
+                        en: 'White recaptures with the knight, trading off a pair of knights and winning back the exact pawn that was lost.'
+                        fr: 'Les Blancs reprennent du cavalier, échangeant une paire de cavaliers et récupérant exactement le pion perdu.'
+                      children:
+                        - ply: Nxe4
+                          annotation:
+                            vi: 'Đen ăn lại con mã, hoàn tất cuộc đổi quân sòng phẳng.'
+                            en: 'Black recaptures the knight, completing an even trade.'
+                            fr: 'Les Noirs reprennent le cavalier, achevant un échange équitable.'
+                          dismissRest:
+                            reason:
+                              vi: 'Con mã Đen vừa đổi xong đang đứng trơ trọi ở e4 mà không ai đỡ, nên bất cứ nước nào khác ngoài dxe4 cũng chỉ là biếu không một quân mã.'
+                              en: "Black's knight, having just made the capture, stands alone on e4 with nothing defending it, so anything other than dxe4 simply hands back a whole knight for free."
+                              fr: 'Le cavalier noir, qui vient de capturer, se retrouve seul en e4 sans aucune protection, si bien que tout autre coup que dxe4 offrirait simplement un cavalier entier pour rien.'
+                          children:
+                            - ply: dxe4
+                              replyQuality: good
+                              frequency: common
+                              annotation:
+                                vi: 'Trắng ăn lại con mã. Quân số trở lại hoàn toàn ngang nhau và ván cờ đã đủ lắng để đánh giá.'
+                                en: 'White takes the knight back. Material is completely level again and the position has settled enough to assess.'
+                                fr: "Les Blancs reprennent le cavalier. Le matériel redevient totalement égal et la position s'est suffisamment stabilisée pour être évaluée."
+                              outcome:
+                                type: position
+                                evaluation:
+                                  vi: 'Quân số ngang nhau tuyệt đối: bảy tốt mỗi bên và một cặp mã đã bị đổi hết. Nhưng cấu trúc tốt của Đen mang một khiếm khuyết không thể sửa được, đó là con tốt f đã biến mất hẳn, nên ô f7 sẽ không bao giờ được một con tốt nào che chắn nữa. Con tượng Trắng ở c4 đã nhắm sẵn vào đúng ô đó, và nếu Đen nhập thành ngắn thì con vua sẽ đứng ngay cạnh cái lỗ hổng ấy.'
+                                  en: "Material is perfectly level — seven pawns each and one full pair of knights traded off. But Black's pawn structure carries a defect that cannot be repaired: the f-pawn is gone for good, so the f7 square can never again be shielded by a pawn. White's bishop on c4 already aims at that exact square, and if Black castles short the king will sit right next to that hole."
+                                  fr: 'Le matériel est parfaitement égal, sept pions de chaque côté et une paire complète de cavaliers échangée. Mais la structure de pions noire porte un défaut irréparable : le pion f a disparu pour de bon, si bien que la case f7 ne pourra plus jamais être protégée par un pion. Le fou blanc en c4 vise déjà précisément cette case, et si les Noirs roquent du petit côté, le roi se retrouvera juste à côté de ce trou.'
+                                plan:
+                                  vi: 'Trắng chơi Nf3, Be3 hoặc Bg5, Qf3 và O-O, luôn giữ con tượng trên đường chéo c4-f7 và chờ Đen nhập thành ngắn để nhắm vào đúng chỗ yếu đó, có thể kèm theo Ng5 nhảy vào e6. Đen nên cân nhắc trì hoãn nhập thành ngắn, chơi d5 để đẩy lùi hoặc đổi con tượng nguy hiểm đó trước, rồi mới tính đến an toàn cho vua, và dùng cặp tượng còn nguyên để bù lại cho cái lỗ ở f7.'
+                                  en: 'White plays Nf3, Be3 or Bg5, Qf3 and castles, keeping the bishop on the c4-f7 diagonal and waiting for Black to castle short before aiming at that exact weakness, possibly with Ng5 jumping into e6. Black should think about delaying castling short, playing ...d5 to push back or trade off that dangerous bishop first, and only then worrying about king safety, relying on the intact bishop pair to make up for the hole on f7.'
+                                  fr: "Les Blancs jouent Nf3, Be3 ou Bg5, Qf3 et roquent, gardant le fou sur la diagonale c4-f7 et attendant que les Noirs roquent du petit côté pour viser précisément cette faiblesse, éventuellement avec Ng5 sautant en e6. Les Noirs devraient envisager de retarder le petit roque, jouer ...d5 pour repousser ou échanger ce fou dangereux en premier lieu, et ne se soucier de la sécurité du roi qu'ensuite, en comptant sur la paire de fous intacte pour compenser le trou en f7."
+                                basis:
+                                  by: chan
+                                  at: '2026-09-18'

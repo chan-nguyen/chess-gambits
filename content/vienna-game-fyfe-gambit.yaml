@@ -1,0 +1,186 @@
+# The Vienna Game: Fyfe Gambit. Frozen defining line 1.e4 e5 2.Nc3 Nc6 3.d4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# The trap after 4...Nf6 5.Bg5 Nxd5?? 6.Bxd8 wins a queen for a bishop and a pawn outright,
+# not by mating, so every leaf here is an assessment; nothing claims a mate (ADR-0005).
+id: vienna-game-fyfe-gambit
+name: 'Vienna Game: Fyfe Gambit'
+eco: C25
+category: gambit
+side: white
+definingLine: [e4, e5, Nc3, Nc6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, not a database label. The gambit's real trap only bites if Black plays the
+      natural-looking 4...Nf6 5.Bg5 Nxd5?? without noticing the pin behind its own knight — a
+      genuine practical chance, and a costly one if it lands, since 6.Bxd8 wins a queen for a
+      bishop and a pawn. But accurate defence exists and is not hard to find: 5...Be7 breaks
+      the pin cleanly, and after 6.Bxf6 Black recaptures either way and keeps a clean extra
+      pawn, with White's only real compensation appearing in the sharper 6...gxf6 structure.
+      That is the profile of a dubious gambit rather than a sound one — real venom against an
+      unprepared opponent, none against a prepared one. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi d4, thách thức con tốt e5 của Đen ngay từ nước thứ ba. Đây chưa phải là Gambit Fyfe — cái tên đó chỉ xuất hiện nếu Đen ăn tốt và Trắng đáp lại bằng Nd5. Nếu Đen bỏ qua con tốt d4 thì ván cờ đơn giản trở lại thành một cuộc đổi tốt bình thường.
+    en: White has just played d4, challenging Black's e5 pawn on move three. This is not yet the Fyfe Gambit — that name only applies once Black takes the pawn and White answers with Nd5. If Black ignores the tension, the game simply settles into an ordinary pawn trade.
+    fr: Les Blancs viennent de jouer d4, défiant le pion e5 noir dès le troisième coup. Ce n'est pas encore le Gambit Fyfe — ce nom ne s'applique qu'une fois que les Noirs prennent le pion et que les Blancs répondent par Nd5. Si les Noirs ignorent la tension, la partie se réduit simplement à un échange de pions ordinaire.
+  dismissRest:
+    reason:
+      vi: Đen không ăn bằng tốt. Nước 3...Nxd4 cũng ăn luôn con tốt d4 và hiện tại chưa quân Trắng nào bắt lại được nó, nên đó chỉ là một cách khác để thắng chính con tốt ấy, không dẫn tới Gambit Fyfe. Mọi nước còn lại — phát triển, đẩy tốt cánh, chiếu bằng Bb4+ hay Qh4 — đều để nguyên thế găng ở trung tâm, và Trắng đơn giản đổi bằng dxe5, đưa ván cờ về một thế cờ cân bằng, phẳng lặng mà không có nội dung lý thuyết đặc biệt. Mục này chỉ nói về những gì xảy ra sau 3...exd4.
+      en: Black does not take with the pawn. 3...Nxd4 also wins the d4 pawn, and nothing White has can recapture it right now, so it is simply another way to win the same pawn rather than a route into the Fyfe Gambit. Everything else — developing, pushing a wing pawn, checking with Bb4+ or Qh4 — leaves the central tension on the board, and White simply trades with dxe5, reaching a level, quiet position with no special theory. This entry is only about what follows 3...exd4.
+      fr: Les Noirs ne prennent pas du pion. 3...Nxd4 gagne lui aussi le pion d4, et rien chez les Blancs ne peut le reprendre pour l'instant, si bien que c'est simplement une autre façon de gagner ce même pion plutôt qu'une entrée dans le Gambit Fyfe. Tout le reste — développer, pousser un pion d'aile, faire échec par Bb4+ ou Qh4 — laisse la tension centrale sur l'échiquier, et les Blancs échangent simplement par dxe5, aboutissant à une position égale et calme, sans théorie particulière. Cette entrée ne traite que de ce qui suit 3...exd4.
+  children:
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhận con tốt tự do. Không có gì bắt lại được ngay — nếu Trắng thử Qxd4 thì con mã c6 ăn đứt hậu, nên Trắng phải tìm cách khác để lấy lại quân, và đó chính là điều Gambit Fyfe định làm.
+        en: Black takes the free pawn. Nothing recaptures it at once — if White tries Qxd4, the knight on c6 simply wins the queen — so White has to find another way to get compensation, and that is exactly what the Fyfe Gambit tries to do.
+        fr: Les Noirs prennent le pion libre. Rien ne le reprend aussitôt — si les Blancs tentent Qxd4, le cavalier en c6 gagne tout simplement la dame — les Blancs doivent donc trouver une autre voie vers la compensation, et c'est précisément ce que tente le Gambit Fyfe.
+      children:
+        - ply: Nd5
+          annotation:
+            vi: Đây là Gambit Fyfe. Thay vì lấy lại tốt ngay (điều không an toàn vì mã c6 canh giữ ô d4), Trắng nhảy mã vào d5, một ô mạnh mà không tốt nào của Đen đuổi được. Ý đồ chưa lộ ra ngay — nếu Đen đưa mã ra f6 để đuổi con mã d5, Trắng sẽ đáp Bg5 ghim con mã ấy vào hậu d8.
+            en: This is the Fyfe Gambit. Rather than recapture the pawn at once, which is unsafe because the c6 knight guards d4, White jumps the knight to d5, a strong square no black pawn can ever challenge. The idea is not obvious yet — if Black chases the knight away with 4...Nf6, White answers Bg5, pinning that knight to the queen on d8.
+            fr: Voici le Gambit Fyfe. Plutôt que de reprendre aussitôt le pion, ce qui n'est pas sûr puisque le cavalier c6 garde la case d4, les Blancs sautent le cavalier en d5, une case forte qu'aucun pion noir ne pourra jamais contester. L'idée n'est pas encore visible — si les Noirs chassent le cavalier par 4...Nf6, les Blancs répondent Bg5, clouant ce cavalier contre la dame en d8.
+          dismissRest:
+            reason:
+              vi: Đen không đuổi mã bằng ...Nf6. Nước ...Bb4+ chỉ ép Trắng chặn bằng c3, được đúng thế trận Trắng muốn mà lại bỏ luôn cơ hội gặp thế ghim sau này. Nước ...d3 đẩy tốt đi tiếp thì Trắng ăn lại bất cứ lúc nào bằng cxd3 hay Qxd3, chẳng thiệt gì. Các nước phát triển khác như ...Nge7, ...Bc5 hay ...Nb4 không đụng đến con mã d5 và không ngăn được Bg5 xuất hiện ở nước sau; Trắng cứ tiếp tục phát triển với con mã trung tâm mạnh mẽ ấy và tính chuyện đòi lại con tốt sau. Chỉ có ...Nf6 mới thực sự chạm vào ý tưởng của gambit.
+              en: Black does not chase the knight with ...Nf6. ...Bb4+ only forces c3 in reply, giving White exactly the pawn structure it wants while giving up the chance to meet ...Nf6 with the pin later. ...d3, pushing the pawn on, is met by cxd3 or Qxd3 whenever White likes, at no cost. Other developing tries such as ...Nge7, ...Bc5 or ...Nb4 do not touch the knight on d5 and do not stop Bg5 appearing next; White simply continues developing behind that strong central knight and looks to win the pawn back later. Only ...Nf6 actually meets the gambit's real idea.
+              fr: Les Noirs ne chassent pas le cavalier par ...Nf6. ...Bb4+ ne fait que forcer c3 en réponse, donnant aux Blancs exactement la structure de pions qu'ils souhaitent tout en renonçant à répondre plus tard à ...Nf6 par le clouage. ...d3, qui pousse le pion plus loin, se traite par cxd3 ou Qxd3 quand les Blancs le souhaitent, sans aucun coût. D'autres tentatives de développement comme ...Nge7, ...Bc5 ou ...Nb4 ne touchent pas au cavalier en d5 et n'empêchent pas Bg5 d'apparaître au coup suivant ; les Blancs continuent simplement leur développement derrière ce cavalier central puissant et cherchent à regagner le pion plus tard. Seul ...Nf6 répond réellement à l'idée du gambit.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Nước tự nhiên và cũng là nước phổ biến nhất — Đen đuổi con mã mạnh ở d5 bằng chính con mã của mình. Nhưng đây cũng chính là nước duy nhất mở ra ý đồ thật sự của Trắng.
+                en: The natural move and also the most common one — Black chases the strong knight on d5 with a knight of its own. But this is also the one move that opens the door to White's real idea.
+                fr: Le coup naturel et aussi le plus fréquent — les Noirs chassent le cavalier fort en d5 avec leur propre cavalier. Mais c'est aussi le seul coup qui ouvre la porte à la véritable idée des Blancs.
+              children:
+                - ply: Bg5
+                  annotation:
+                    vi: Trắng không lùi mã, không đổi mã, mà đưa tượng ra g5. Đường chéo g5-d8 đi qua đúng ô f6, nên con mã Đen ở đó bị ghim vào hậu. Nếu Đen bất cẩn đổi mã bằng ...Nxd5, đường chéo ấy mở ra ngay và Trắng ăn hậu bằng Bxd8.
+                    en: White neither retreats nor trades the knight, but brings the bishop to g5 instead. The diagonal from g5 to d8 runs straight through f6, so Black's knight there is pinned to the queen. If Black carelessly trades on d5 with ...Nxd5, that diagonal opens at once and White wins the queen with Bxd8.
+                    fr: Les Blancs ne reculent ni n'échangent le cavalier, mais amènent le fou en g5. La diagonale de g5 à d8 passe justement par f6, si bien que le cavalier noir qui s'y trouve est cloué contre la dame. Si les Noirs échangent imprudemment en d5 par ...Nxd5, cette diagonale s'ouvre aussitôt et les Blancs gagnent la dame par Bxd8.
+                  dismissRest:
+                    reason:
+                      vi: Đen không phá ghim bằng ...Be7. Con mã f6 đang bị ghim vào hậu d8, nên bất cứ nước nào tự di chuyển chính con mã ấy đi nơi khác — không chỉ ...Nxd5 mà cả ...Nxe4, ...Ng4, ...Nh5 và ...Ng8 — đều mở toang đường chéo và thua hậu vào Bxd8 giống hệt nhau, vì con mã chính là thứ duy nhất đang chắn đường chéo đó. Nước ...h6 hay ...Rg8 gây sức ép lên tượng nhưng không di chuyển con mã nên chưa thua ngay — Trắng chỉ cần lùi tượng về h4 và áp lực vẫn còn y như cũ. Mọi nước khác không đụng đến con mã f6 (đưa mã kia đi, đẩy tốt, đi hậu hay xe) cũng chưa thua ngay vì lý do tương tự, nhưng cũng chẳng giải quyết được gì. Chỉ có ...Be7 mới thực sự phá được thế ghim.
+                      en: Black does not break the pin with ...Be7. The knight on f6 is pinned to the queen on d8, so any move that moves that very knight away — not just ...Nxd5 but also ...Nxe4, ...Ng4, ...Nh5 and ...Ng8 — opens the diagonal wide and loses the queen to Bxd8 in exactly the same way, because the knight is the one thing blocking that diagonal. ...h6 and ...Rg8 pressure the bishop without moving the knight, so they do not lose outright — White simply retreats to h4 and the pressure is unchanged. Everything else that leaves the f6 knight alone (moving the other knight, a pawn push, a queen or rook move) does not lose outright either, for the same reason, but it does not solve anything either. Only ...Be7 actually breaks the pin for good.
+                      fr: Les Noirs ne brisent pas le clouage par ...Be7. Le cavalier en f6 est cloué contre la dame en d8, donc tout coup qui déplace ce même cavalier — pas seulement ...Nxd5 mais aussi ...Nxe4, ...Ng4, ...Nh5 et ...Ng8 — ouvre grand la diagonale et perd la dame par Bxd8 exactement de la même façon, car ce cavalier est la seule chose qui bloque cette diagonale. ...h6 et ...Rg8 pressent le fou sans déplacer le cavalier, donc ils ne perdent pas sur-le-champ — les Blancs reculent simplement en h4 et la pression reste la même. Tout le reste qui laisse le cavalier f6 tranquille (déplacer l'autre cavalier, une poussée de pion, un coup de dame ou de tour) ne perd pas non plus sur-le-champ, pour la même raison, mais ne règle rien non plus. Seul ...Be7 brise réellement le clouage.
+                  children:
+                    - ply: Nxd5
+                      replyQuality: blunder
+                      frequency: occasional
+                      annotation:
+                        vi: Một sai lầm nghiêm trọng. Đen đổi mã mà quên mất con mã f6 đang giữ đường chéo trước chính con hậu của mình. Ngay khi con mã rời khỏi f6, tượng g5 nhìn thẳng xuống d8.
+                        en: A serious mistake. Black trades the knight and forgets that the f6 knight was the one thing holding the diagonal shut in front of its own queen. The moment the knight leaves f6, the bishop on g5 looks straight down to d8.
+                        fr: Une erreur grave. Les Noirs échangent le cavalier en oubliant que ce cavalier en f6 était ce qui tenait fermée la diagonale devant leur propre dame. Dès que le cavalier quitte f6, le fou en g5 voit directement jusqu'en d8.
+                      children:
+                        - ply: Bxd8
+                          annotation:
+                            vi: Trắng ăn hậu ngay lập tức. Đây không phải chiếu — vua Đen ở e8 không nằm trên đường chéo của tượng — nên Đen được chọn cách ăn lại, nhưng dù chọn cách nào thì con mã Đen vừa đứng ở d5 cũng không còn ai giữ.
+                            en: White wins the queen at once. It is not check — the king on e8 is not on the bishop's diagonal — so Black gets to choose how to recapture, but whichever way Black chooses, the knight now sitting on d5 is left with nothing defending it.
+                            fr: Les Blancs gagnent la dame sur-le-champ. Ce n'est pas échec — le roi en e8 n'est pas sur la diagonale du fou — les Noirs choisissent donc comment reprendre, mais quel que soit leur choix, le cavalier désormais en d5 se retrouve sans aucune défense.
+                          dismissRest:
+                            reason:
+                              vi: Đen ăn lại tượng bằng cách khác, ví dụ ...Nxd8 bằng con mã c6, hoặc không ăn lại chút nào. Đổi bằng mã cũng dẫn tới đúng nước 7.exd5 tiếp theo và mất y hệt con mã ấy. Không ăn lại thì Đen mất trắng cả một con hậu mà chẳng được gì bù lại. Không có cách nào vừa lấy lại con tượng vừa cứu được con mã đang bị bỏ rơi ở d5.
+                              en: Black recaptures the bishop some other way, for instance ...Nxd8 with the c6 knight, or does not recapture at all. Recapturing with the knight walks into the very same 7.exd5 next and loses that knight all the same. Not recapturing at all leaves Black down a whole queen for nothing in return. There is no way to win the bishop back and also save the knight abandoned on d5.
+                              fr: Les Noirs reprennent le fou autrement, par exemple ...Nxd8 avec le cavalier c6, ou ne reprennent pas du tout. Reprendre du cavalier tombe sur ce même 7.exd5 au coup suivant et perd ce cavalier tout autant. Ne pas reprendre laisse les Noirs avec une dame de moins sans aucune contrepartie. Il n'existe aucun moyen de regagner le fou tout en sauvant le cavalier abandonné en d5.
+                          children:
+                            - ply: Kxd8
+                              replyQuality: best
+                              frequency: common
+                              annotation:
+                                vi: Vua ăn lại tượng, cách tự nhiên nhất vì không còn quyền nhập thành để tiếc nữa. Nhưng con mã Đen ở d5 vẫn chưa ai giữ, và đến lượt Trắng.
+                                en: The king recaptures, the most natural choice since there is no castling right left to worry about losing. But Black's knight on d5 is still undefended, and it is White to move.
+                                fr: Le roi reprend, le choix le plus naturel puisqu'il n'y a plus de droit de roque à ménager. Mais le cavalier noir en d5 reste sans défense, et c'est aux Blancs de jouer.
+                              children:
+                                - ply: exd5
+                                  annotation:
+                                    vi: Trắng ăn nốt con mã lạc lõng ấy bằng chính con tốt e4. Cả cuộc phiêu lưu của Đen — đổi mã, mất hậu, mất mã — kết thúc ở đây.
+                                    en: White scoops up the stray knight with the e4 pawn. Black's whole adventure — trading the knight, losing the queen, losing the knight as well — ends right here.
+                                    fr: Les Blancs ramassent le cavalier égaré avec le pion e4. Toute l'aventure noire — échanger le cavalier, perdre la dame, perdre aussi le cavalier — s'arrête ici.
+                                  outcome:
+                                    type: position
+                                    evaluation:
+                                      vi: Đếm quân — Trắng có hậu, hai xe, một tượng và một mã; Đen có hai xe, hai tượng và một mã nhưng không còn hậu. Nói cách khác Trắng có nguyên một hậu đổi lấy một tượng và một tốt, một khoản lời quyết định và không gì bù lại được cho Đen.
+                                      en: Count the material — White has a queen, two rooks, a bishop and a knight; Black has two rooks, two bishops and a knight but no queen at all. In other words White has a whole queen for a bishop and a pawn — a decisive material gain with nothing on the board to compensate Black for it.
+                                      fr: Comptez le matériel — les Blancs ont une dame, deux tours, un fou et un cavalier ; les Noirs ont deux tours, deux fous et un cavalier, mais plus aucune dame. Autrement dit, les Blancs ont une dame entière contre un fou et un pion — un gain matériel décisif, sans rien sur l'échiquier pour compenser les Noirs.
+                                    plan:
+                                      vi: Trắng chỉ cần chơi những nước đơn giản — Nf3, Bc4 hay Be2, rồi nhập thành — giữ chặt khoản lời vật chất và tránh mọi biến phức tạp không cần thiết vì phần thắng đã nằm chắc trong tay. Đen có thể thử kiếm chác bằng cặp tượng và một chút hoạt động của xe, nhưng không có kế hoạch nào bù lại được một con hậu, và mục tiêu thực tế nhất của Đen chỉ còn là cầm cự.
+                                      en: White simply needs to play natural moves — Nf3, Bc4 or Be2, then castle — banking the material gain and avoiding needless complications, because the win is already secured. Black can try to generate some activity with the bishop pair and the rooks, but no plan makes up for a missing queen, and the most realistic aim left is simply to hold on.
+                                      fr: Les Blancs n'ont qu'à jouer des coups naturels — Nf3, Bc4 ou Be2, puis roquer — en engrangeant le gain matériel et en évitant toute complication inutile, la victoire étant déjà acquise. Les Noirs peuvent tenter de créer un peu d'activité avec la paire de fous et les tours, mais aucun plan ne compense une dame manquante, et le seul objectif réaliste qui reste est de tenir le coup.
+                                    basis:
+                                      by: chan
+                                      at: '2026-09-18'
+                    - ply: Be7
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Cách chơi đúng. Đen chen tượng vào giữa, phá thế ghim một cách vững chắc — bây giờ nếu con mã f6 rời đi thì Bxe7+ chỉ đổi tượng lấy tượng chứ không ăn được hậu, vì vua e8 và hậu d8 đều giữ ô e7.
+                        en: The correct approach. Black inserts the bishop, breaking the pin solidly — now if the f6 knight ever leaves, Bxe7+ only trades bishop for bishop rather than winning the queen, since both the king on e8 and the queen on d8 defend e7.
+                        fr: La bonne approche. Les Noirs interposent le fou, brisant solidement le clouage — désormais, si le cavalier f6 venait à partir, Bxe7+ n'échangerait qu'un fou contre un fou, sans gagner la dame, puisque le roi en e8 comme la dame en d8 défendent tous deux la case e7.
+                      children:
+                        - ply: Bxf6
+                          annotation:
+                            vi: Trắng đổi lấy chính con mã đã từng bị ghim, trước khi Đen có thể củng cố thêm. Đây là lúc Đen phải chọn ăn lại bằng gì, và lựa chọn ấy quyết định cấu trúc tốt cho phần còn lại của ván cờ.
+                            en: White trades off the very knight that was pinned, before Black can reinforce the point any further. This is where Black has to choose how to recapture, and that choice decides the pawn structure for the rest of the game.
+                            fr: Les Blancs échangent précisément le cavalier qui était cloué, avant que les Noirs ne puissent renforcer davantage ce point. C'est là que les Noirs doivent choisir comment reprendre, et ce choix détermine la structure de pions pour le reste de la partie.
+                          dismissRest:
+                            reason:
+                              vi: Đen không ăn lại con tượng đang đứng ở f6. Bất cứ nước nào khác — phát triển, nhập thành, đẩy tốt cánh hậu — đều bỏ mặc con tượng đó, và không quân nào của Đen lấy lại được nó bằng cách khác, nên Đen cứ thế kém hẳn một quân mà chẳng đổi được gì.
+                              en: Black does not recapture the bishop sitting on f6. Anything else — developing, castling, pushing a queenside pawn — simply abandons that bishop, and nothing else Black has can win it back, so Black would just be down a clean piece for nothing.
+                              fr: Les Noirs ne reprennent pas le fou posé en f6. Tout le reste — développer, roquer, pousser un pion à l'aile dame — abandonne tout simplement ce fou, et rien d'autre chez les Noirs ne peut le regagner, si bien que les Noirs se retrouveraient avec une pièce de moins pour rien.
+                          children:
+                            - ply: Bxf6
+                              replyQuality: good
+                              frequency: common
+                              annotation:
+                                vi: Đen ăn lại bằng tượng, giữ nguyên cấu trúc tốt và chấp nhận nhường lại cặp tượng. Đây là cách chơi gọn gàng và an toàn nhất.
+                                en: Black recaptures with the bishop, keeping the pawn structure intact and giving up the bishop pair in exchange. This is the tidiest and safest way to handle the position.
+                                fr: Les Noirs reprennent du fou, gardant la structure de pions intacte et cédant en échange la paire de fous. C'est la manière la plus nette et la plus sûre de traiter la position.
+                              outcome:
+                                type: position
+                                evaluation:
+                                  vi: Đếm tốt — bảy đều đối với các quân còn lại, nhưng Đen vẫn giữ con tốt d4 mà chưa ai đòi lại được, vì con mã c6 vẫn canh đúng ô ấy y như từ đầu. Quân nhẹ ngang nhau về số lượng dù đã đổi khác loại, và không bên nào có điểm yếu cấu trúc nào cả. Nói ngắn gọn, Đen hơn đúng một tốt sạch.
+                                  en: Count the pawns — level everywhere else, but Black still holds the d4 pawn, which nothing has managed to win back, because the c6 knight still guards that square exactly as it did from the start. The minor pieces are equal in number even though their types have swapped, and neither side has a structural weakness. In short, Black is up one clean pawn.
+                                  fr: Comptez les pions — à égalité partout ailleurs, mais les Noirs conservent le pion d4, que rien n'est parvenu à reprendre, car le cavalier c6 garde toujours cette case exactement comme au départ. Les pièces mineures sont égales en nombre même si leur nature a changé, et aucun camp n'a de faiblesse structurelle. En bref, les Noirs ont exactement un pion propre de plus.
+                                plan:
+                                  vi: Trắng phải giải quyết con mã c6 trước khi mơ tới việc đòi lại con tốt d4 — Nf3 tấn công nó, hoặc Bb5 ghim nó, là hai cách thường dùng — rồi mới tính Qxd4. Song song đó Trắng nhập thành và đưa xe ra cột trung tâm để bù lại nhịp đã mất. Đen nên hoàn tất phát triển bằng O-O và Re8 thay vì cố ôm chặt con tốt d4 bằng mọi giá, chấp nhận trả lại tốt nếu điều đó giúp hoàn thành phát triển an toàn hơn.
+                                  en: White has to deal with the c6 knight before dreaming of the d4 pawn — Nf3 attacking it, or Bb5 pinning it, are the usual ways — and only then think about Qxd4. Alongside that, White castles and brings a rook to a central file to make up for the lost tempo. Black should finish developing with O-O and Re8 rather than clinging to the d4 pawn at all costs, and should be ready to give it back if that buys a smoother, safer development.
+                                  fr: Les Blancs doivent régler le cavalier c6 avant de songer au pion d4 — Nf3 pour l'attaquer, ou Bb5 pour le clouer, sont les deux méthodes habituelles — et ce n'est qu'ensuite qu'ils pensent à Qxd4. En parallèle, les Blancs roquent et amènent une tour sur une colonne centrale pour compenser le temps perdu. Les Noirs devraient achever leur développement par O-O et Re8 plutôt que de s'accrocher au pion d4 à tout prix, quitte à le rendre si cela permet un développement plus sûr.
+                                basis:
+                                  by: chan
+                                  at: '2026-09-18'
+                            - ply: gxf6
+                              replyQuality: good
+                              frequency: occasional
+                              annotation:
+                                vi: Đen ăn lại bằng tốt g, giữ được cặp tượng nhưng phải trả giá bằng cấu trúc tốt cánh vua. Đây là lựa chọn tham vọng hơn, đổi sự an toàn của vua lấy hai con tượng.
+                                en: Black recaptures with the g-pawn, keeping the bishop pair at the cost of the kingside pawn structure. This is the more ambitious choice, trading king safety for the two bishops.
+                                fr: Les Noirs reprennent du pion g, conservant la paire de fous au prix de la structure de pions du roque. C'est le choix le plus ambitieux, échangeant la sécurité du roi contre les deux fous.
+                              outcome:
+                                type: position
+                                evaluation:
+                                  vi: Đen vẫn hơn một tốt sạch giống hệt nhánh kia, nhưng lần này phải trả một cái giá thấy rõ trên bàn cờ — hai tốt f chồng lên nhau ở f6 và f7, cột g mở toang, và nếu Đen còn định nhập thành cánh vua thì trước mặt vua sẽ chẳng còn tốt g để che. Đổi lại Đen giữ được cặp tượng, nhưng cấu trúc bị hỏng là thứ không sửa được.
+                                  en: Black is still up the same clean pawn as in the other branch, but this time at a cost that is plainly visible on the board — doubled f-pawns on f6 and f7, a wide-open g-file, and no g-pawn left to shelter the king if Black still means to castle short. In exchange Black keeps the bishop pair, but the broken structure is not something that can be repaired.
+                                  fr: Les Noirs conservent le même pion propre de plus que dans l'autre branche, mais cette fois au prix d'un défaut bien visible sur l'échiquier — des pions f doublés en f6 et f7, une colonne g grande ouverte, et plus aucun pion g pour abriter le roi si les Noirs comptent toujours roquer du petit côté. En échange, les Noirs gardent la paire de fous, mais la structure abîmée ne se répare pas.
+                                plan:
+                                  vi: Trắng nhắm ngay vào cột g và vua Đen — Qd3 hoặc Qh5 rồi O-O-O và g4-g5 mở thêm đường, hoặc đơn giản là Nf3-h4 nhắm ô f5 và g6. Trắng cũng chưa quên món nợ ở d4, và Nf3 vẫn là bước chuẩn bị hợp lý cho Qxd4 sau này. Đen nên tránh nhập thành cánh vua khi cột g đã mở sẵn cho đối phương, chơi Rg8 để phòng thủ cột ấy, và tìm cách đổi bớt quân nặng trước khi vua phải quyết định về đâu.
+                                  en: White aims straight at the g-file and Black's king — Qd3 or Qh5, then O-O-O and g4-g5 to prise things open further, or simply Nf3-h4 eyeing f5 and g6. White has not forgotten the debt on d4 either, and Nf3 is still a sensible way to prepare Qxd4 later. Black should avoid castling into the open g-file, play ...Rg8 to defend it, and look to trade off some heavy pieces before the king has to decide where to go.
+                                  fr: Les Blancs visent directement la colonne g et le roi noir — Qd3 ou Qh5, puis O-O-O et g4-g5 pour ouvrir davantage, ou tout simplement Nf3-h4 en direction de f5 et g6. Les Blancs n'ont pas non plus oublié la dette en d4, et Nf3 reste une préparation raisonnable pour Qxd4 plus tard. Les Noirs devraient éviter de roquer du côté où la colonne g est déjà ouverte, jouer ...Rg8 pour la défendre, et chercher à échanger quelques pièces lourdes avant que le roi ne doive choisir où aller.
+                                basis:
+                                  by: chan
+                                  at: '2026-09-18'

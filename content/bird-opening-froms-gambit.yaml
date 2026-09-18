@@ -1,0 +1,128 @@
+# Bird Opening: From's Gambit. Frozen defining line 1.f4 e5, which ends on Black's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# No mate is claimed anywhere in this entry: every leaf below is an assessment (ADR-0005).
+# The danger around White's missing f-pawn after 2.fxe5 d6 3.exd6 Bxd6 is real, but nothing
+# in either branch modelled here is a forced mate, and none was invented to make the story
+# tidier.
+id: bird-opening-froms-gambit
+name: "Bird Opening: From's Gambit"
+eco: A02
+category: gambit
+side: black
+definingLine: [f4, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A genuine, respected surprise weapon rather than a curiosity — it has been played by
+      strong players as a practical try, and it is dangerous if White simply grabs pawns
+      without care. But White has a clear antidote in 3.d4, holding the extra pawn while
+      denying Black the f8 bishop's developing recapture that makes the main line dangerous;
+      without that recapture Black is just a pawn down with nothing concrete to point to.
+      That is enough to keep the label at dubious rather than sound. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đáp lại Khai cuộc Bird bằng chính một gambit khác, thí ngay con tốt e vừa tiến lên. Đây là Gambit From, một phản gambit hiếm khi được Trắng chuẩn bị kỹ, và nếu Trắng ăn tốt một cách vô tư thì Đen sẽ đổi con tốt đó lấy một nhịp phát triển lớn và một cuộc tấn công thẳng vào cánh vua Trắng.
+    en: Black meets the Bird's Opening with a gambit of its own, immediately offering the e-pawn that has just advanced. This is From's Gambit, a countergambit White rarely prepares for, and if White simply takes the pawn, Black trades it for a large lead in development and a direct attack on White's kingside.
+    fr: Les Noirs répondent à l'Ouverture Bird par un gambit de leur côté, offrant aussitôt le pion qui vient d'avancer. C'est le Gambit From, un contre-gambit que les Blancs préparent rarement, et si les Blancs se contentent de prendre le pion, les Noirs l'échangent contre une grosse avance de développement et une attaque directe sur l'aile roi blanche.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5 ngay. Nước 2.f5 chỉ đẩy qua mà không ăn gì, con tốt e5 của Đen vẫn đứng nguyên và Đen được một nhịp miễn phí. Các nước phát triển hay đi tốt khác — a3, a4, b3, b4, c3, c4, d3, d4, e3, e4, g3, g4, h3, h4, Na3, Nc3, Kf2, Nf3, Nh3 — cũng đều bỏ qua cơ hội ăn tốt ngay lập tức; ván cờ sẽ sớm quay lại thế bình thường của Khai cuộc Bird một khi Trắng ăn tốt ở một nước sau, và cho tới lúc đó Đen chưa hề mất gì vì chưa có gì bị hy sinh cả.
+      en: White does not take the e5 pawn at once. 2.f5 simply pushes past without capturing, so Black's e5 pawn stays exactly where it is and Black gets a free move. Every other developing or pawn move — a3, a4, b3, b4, c3, c4, d3, d4, e3, e4, g3, g4, h3, h4, Na3, Nc3, Kf2, Nf3, Nh3 — likewise passes up the immediate capture; the game simply returns to an ordinary Bird's Opening once White does capture on some later move, and until then Black has lost nothing, because nothing has actually been sacrificed yet.
+      fr: Les Blancs ne prennent pas le pion e5 tout de suite. 2.f5 avance simplement sans prendre, si bien que le pion e5 noir reste exactement où il est et les Noirs gagnent un coup gratuit. Tout autre coup de développement ou de pion — a3, a4, b3, b4, c3, c4, d3, d4, e3, e4, g3, g4, h3, h4, Na3, Nc3, Kf2, Nf3, Nh3 — renonce lui aussi à la prise immédiate ; la partie redevient simplement une Ouverture Bird ordinaire dès que les Blancs prennent à un coup ultérieur, et jusque-là les Noirs n'ont rien perdu, puisque rien n'a réellement été sacrifié.
+  children:
+    - ply: fxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt. Đây là cách kiểm tra gambit một cách trực diện nhất, vì từ chối ăn thì Đen chưa hề mất gì và Trắng cũng chẳng được lợi thêm.
+        en: White takes the pawn. This is the most direct way to test the gambit — declining costs Black nothing yet and gives White nothing extra either.
+        fr: Les Blancs prennent le pion. C'est la façon la plus directe de tester le gambit — refuser ne coûte encore rien aux Noirs et n'apporte rien de plus aux Blancs.
+      children:
+        - ply: d6
+          annotation:
+            vi: Nước đi làm nên Gambit From. Đen không vội lấy lại con tốt bằng cách khác mà chuẩn bị đổi nó lấy nhịp — nếu Trắng ăn ở d6 thì con tượng f8 sẽ ra được ô d6 bằng một nước phát triển nhắm thẳng vào cánh vua.
+            en: The move that makes it From's Gambit. Black is in no hurry to win the pawn back some other way, and instead prepares to trade it for tempo — if White captures on d6, the f8 bishop comes out to d6 with a developing move aimed straight at White's kingside.
+            fr: Le coup qui fait le Gambit From. Les Noirs ne sont pas pressés de regagner le pion autrement et se préparent au contraire à l'échanger contre un temps de développement — si les Blancs prennent en d6, le fou f8 sort en d6 par un coup de développement braqué droit sur l'aile roi blanche.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn ở d6 và cũng không chơi d4 để đỡ tốt e5. Nước 3.e6 đẩy tốt xuyên qua tuyến phòng ngự nhưng bỏ nó lại một mình giữa bàn cờ, Đen ăn lại dễ dàng bằng fxe6 và có một cấu trúc tốt khoẻ cùng cột f mở y như trong đường chính. Mọi nước còn lại — các nước phát triển như Nf3, Nc3, Na3, Nh3 và Kf2, cùng mọi nước tốt như d3, e3, e4, c3, c4, g3, g4, a3, a4, b3, b4, h3, h4 — đều bỏ mặc con tốt e5 đang bị tốt d6 đánh trực tiếp, nên Đen ăn lại ngay bằng dxe5, lấy lại quân số ngang bằng và giữ nguyên thế phát triển thoải mái.
+              en: White neither captures on d6 nor plays d4 to support the e5 pawn. 3.e6 pushes the pawn through the defensive line but leaves it alone in the middle of the board, and Black recaptures comfortably with fxe6, getting a healthy pawn structure and the same open f-file the main line offers. Everything else — developing moves such as Nf3, Nc3, Na3, Nh3 and Kf2, and every pawn move such as d3, e3, e4, c3, c4, g3, g4, a3, a4, b3, b4, h3, h4 — simply abandons the e5 pawn to the attack of the d6 pawn, so Black recaptures at once with dxe5, restores material equality and keeps a comfortable, effortless development.
+              fr: Les Blancs ne prennent pas en d6 et ne jouent pas non plus d4 pour soutenir le pion e5. 3.e6 pousse le pion à travers la ligne de défense mais le laisse seul au milieu de l'échiquier, et les Noirs reprennent facilement par fxe6, obtenant une structure de pions saine et la même colonne f ouverte que dans la ligne principale. Tout le reste — les coups de développement comme Nf3, Nc3, Na3, Nh3 et Kf2, et tous les coups de pions comme d3, e3, e4, c3, c4, g3, g4, a3, a4, b3, b4, h3, h4 — abandonne simplement le pion e5 à l'attaque du pion d6, si bien que les Noirs reprennent aussitôt par dxe5, rétablissent l'égalité matérielle et gardent un développement confortable et sans effort.
+          children:
+            - ply: exd6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn tiếp. Đây là cách chơi phổ biến nhất và cũng là cách khiến Gambit From trở nên nguy hiểm, vì nó mở đường ngay lập tức cho con tượng f8 vào bàn cờ với một nước chiếm ô đẹp.
+                en: White captures again. This is the most common continuation and also the one that makes From's Gambit dangerous, because it opens the way at once for the f8 bishop to enter the game on a fine square.
+                fr: Les Blancs reprennent. C'est la suite la plus courante et aussi celle qui rend le Gambit From dangereux, car elle ouvre aussitôt la voie au fou f8 pour entrer en jeu sur une belle case.
+              children:
+                - ply: Bxd6
+                  annotation:
+                    vi: Đen ăn lại bằng tượng chứ không bằng hậu hay bằng tốt c. Từ d6, con tượng nhắm thẳng vào đường chéo dẫn tới h2, đúng lúc con tốt f của Trắng đã biến mất vĩnh viễn khỏi bàn cờ.
+                    en: Black recaptures with the bishop rather than the queen or the c-pawn. From d6, the bishop points straight down the diagonal towards h2, at exactly the moment White's f-pawn has vanished from the board for good.
+                    fr: Les Noirs reprennent avec le fou plutôt qu'avec la dame ou le pion c. Depuis d6, le fou vise directement la diagonale menant à h2, au moment même où le pion f blanc a définitivement disparu de l'échiquier.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng hơn một tốt, nhưng con tốt f đã biến mất hoàn toàn khỏi bàn cờ, nghĩa là một khi vua Trắng nhập thành ngắn thì không còn con tốt nào có thể đứng lại che chắn ở f2 hay hỗ trợ g3 nữa. Con tượng d6 đã nhắm sẵn vào đường chéo tới h2, hậu Đen có thể ra h4 để hỏi thẳng ô f2 và g3, còn mọi quân nhẹ và hậu của Trắng vẫn còn nguyên ở hàng một. Một tốt là một tốt, nhưng ở đây nó là cái giá của một cuộc tấn công có thật chứ không phải một lời hứa suông.
+                      en: White is a pawn up, but the f-pawn has vanished from the board entirely, which means that once White's king castles short there is no pawn left that can ever stand on f2 again to shelter it or support g3. The bishop on d6 already points down the diagonal towards h2, the queen can swing to h4 to question f2 and g3 directly, and every one of White's minor pieces and the queen are still sitting on the back rank. A pawn is a pawn, but here it is the price of a real attack rather than an empty promise.
+                      fr: Les Blancs ont un pion de plus, mais le pion f a complètement disparu de l'échiquier, ce qui signifie qu'une fois les Blancs roqués du petit côté, plus aucun pion ne pourra jamais se tenir en f2 pour l'abriter ou soutenir g3. Le fou en d6 vise déjà la diagonale menant à h2, la dame peut se rendre en h4 pour interroger directement f2 et g3, et toutes les pièces mineures et la dame des Blancs sont encore sur la rangée de départ. Un pion reste un pion, mais ici c'est le prix d'une attaque bien réelle, non d'une simple promesse.
+                    plan:
+                      vi: Đen chơi Nf6 rồi O-O, Qe7 hoặc Nc6, và tìm thời điểm cho Ng4 hay Qh4 để ép f2 và g3 trong khi Trắng còn chưa kịp phát triển xong. Nếu Trắng nhập thành ngắn một cách vội vàng thì g3 và f2 là chỗ để nhắm vào; nếu Trắng nhập thành dài thì Đen chuyển hướng sang cánh hậu bằng a5 và b5. Trắng nên chơi Nf3 sớm để chặn đường chéo b8-h2 hoặc che nước Qh4, tránh nhập thành ngắn cho tới khi phát triển xong, và tìm cách đổi bớt quân nhẹ của Đen — nhất là con tượng d6 — để giảm sức ép trước khi tính đến việc thu hồi con tốt đã bỏ ra.
+                      en: Black plays Nf6, then castles, Qe7 or Nc6, and looks for a moment for Ng4 or Qh4 to press f2 and g3 while White is still behind in development. If White castles short too quickly, g3 and f2 are the squares to aim at; if White castles long, Black switches to the queenside with a5 and b5. White should play Nf3 early to block the b8-h2 diagonal or cover Qh4, avoid castling short until fully developed, and look to trade off Black's minor pieces — especially the bishop on d6 — to ease the pressure before thinking about winning the pawn back.
+                      fr: Les Noirs jouent Nf6, puis roquent, Qe7 ou Nc6, et cherchent le bon moment pour Ng4 ou Qh4 afin de peser sur f2 et g3 pendant que les Blancs sont encore en retard de développement. Si les Blancs roquent du petit côté trop vite, g3 et f2 sont les cases à viser ; s'ils roquent du grand côté, les Noirs basculent à l'aile dame avec a5 et b5. Les Blancs devraient jouer Nf3 tôt pour couper la diagonale b8-h2 ou couvrir Qh4, éviter de roquer du petit côté tant qu'ils ne sont pas développés, et chercher à échanger les pièces mineures noires — en particulier le fou en d6 — pour soulager la pression avant de songer à regagner le pion cédé.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
+            - ply: d4
+              replyQuality: best
+              frequency: occasional
+              annotation:
+                vi: Trắng không đổi tốt mà đỡ luôn con tốt e5 bằng tốt d, giữ chặt phần thưởng vật chất và không cho con tượng f8 cơ hội ra ô d6 với nhịp. Đây được xem là cách thử nghiêm túc nhất chống lại Gambit From.
+                en: White does not trade pawns and instead supports the e5 pawn with the d-pawn, holding on to the material gain and denying the f8 bishop the chance to come out to d6 with tempo. This is regarded as the most serious test of From's Gambit.
+                fr: Les Blancs n'échangent pas les pions et soutiennent au contraire le pion e5 avec le pion d, conservant le gain matériel et refusant au fou f8 la possibilité de sortir en d6 avec gain de temps. C'est considéré comme le test le plus sérieux contre le Gambit From.
+              children:
+                - ply: dxe5
+                  annotation:
+                    vi: Đen ăn lại ngay, vì để nguyên con tốt e5 đứng đó chỉ giúp Trắng thêm thời gian củng cố. Sau nước này quân số trở lại ngang bằng tạm thời, và ván cờ sẽ được quyết định bởi việc Trắng có ăn lại đúng cách hay không.
+                    en: Black recaptures at once, since leaving the e5 pawn standing only gives White more time to consolidate. After this move material is briefly level again, and the game will be decided by whether White recaptures correctly.
+                    fr: Les Noirs reprennent aussitôt, car laisser le pion e5 en place ne ferait que donner aux Blancs plus de temps pour se consolider. Après ce coup, le matériel est brièvement à nouveau égal, et la partie se décidera selon que les Blancs reprennent correctement ou non.
+                  dismissRest:
+                    reason:
+                      vi: Trắng không ăn lại ở e5 ngay. Nước 4.d5 đẩy qua và bỏ hẳn con tốt e5 cho Đen giữ vĩnh viễn, khiến Trắng chẳng còn gì bù cho con tốt đã mất ở nước hai. Mọi nước phát triển hay đi tốt khác — Nf3, Nc3, Nd2, Bd2, Be3, Bf4, Bg5, Bh6, Qd2, Qd3, Kd2, Kf2, Na3, Nh3, cùng các nước tốt a3, a4, b3, b4, c3, c4, e3, e4, g3, g4, h3, h4 — đều để mặc con tốt e5 đứng đó không ai đỡ và có thể bị ăn ở một nước sau bất cứ lúc nào, nên trong mọi trường hợp này Trắng cuối cùng vẫn kém tốt mà không được gì cả. Ăn lại ngay bằng dxe5 là cách duy nhất giữ được thế cân bằng quân số mà nước 3.d4 nhắm tới.
+                      en: White does not recapture on e5 at once. 4.d5 pushes past and gives up the e5 pawn to Black for good, leaving White with nothing at all to show for the pawn lost on move two. Every other developing or pawn move — Nf3, Nc3, Nd2, Bd2, Be3, Bf4, Bg5, Bh6, Qd2, Qd3, Kd2, Kf2, Na3, Nh3, and pawn moves such as a3, a4, b3, b4, c3, c4, e3, e4, g3, g4, h3, h4 — all leave the e5 pawn standing undefended and available to be captured on some later move anyway, so in every one of these lines White ends up a pawn down for nothing. Recapturing at once with dxe5 is the only way to keep the material balance that 3.d4 was played for.
+                      fr: Les Blancs ne reprennent pas en e5 tout de suite. 4.d5 pousse et abandonne définitivement le pion e5 aux Noirs, laissant les Blancs sans la moindre compensation pour le pion perdu au deuxième coup. Tout autre coup de développement ou de pion — Nf3, Nc3, Nd2, Bd2, Be3, Bf4, Bg5, Bh6, Qd2, Qd3, Kd2, Kf2, Na3, Nh3, ou des coups de pions comme a3, a4, b3, b4, c3, c4, e3, e4, g3, g4, h3, h4 — laisse le pion e5 sans défenseur et capturable à tout moment plus tard, si bien que dans chacun de ces cas, les Blancs finissent avec un pion de moins pour rien. Reprendre aussitôt par dxe5 est la seule façon de conserver l'équilibre matériel que 3.d4 cherchait à obtenir.
+                  children:
+                    - ply: dxe5
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Trắng ăn lại bằng tốt d, đúng như nước 3.d4 đã nhắm tới. Đây là cách duy nhất giữ được phần tốt hơn mà không mất thêm gì.
+                        en: White recaptures with the d-pawn, exactly what 3.d4 was played for. This is the only way to keep the extra pawn without losing anything else.
+                        fr: Les Blancs reprennent avec le pion d, exactement ce pour quoi 3.d4 avait été joué. C'est la seule façon de garder le pion supplémentaire sans rien perdre d'autre.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Trắng hơn một tốt, và lần này khác hẳn nhánh chính — con tượng f8 của Đen vẫn còn ở nhà, chưa có nước phát triển nào kèm nhịp, và Trắng chưa hề mất khả năng che chắn cho vua về sau vì con tốt biến mất là con tốt e của Đen bỏ ra từ nước một, chứ không phải một con tốt trước mặt vua Trắng. Đen chỉ còn lại một quân số kém hơn mà không có sự đền bù rõ ràng nào để bám vào, đúng là lý do khiến gambit này bị coi là đáng ngờ một khi Trắng tìm ra 3.d4.
+                          en: White is a pawn up, and this time it is very different from the main line — Black's f8 bishop is still at home with no developing move to show for it, and White has not lost any ability to shelter the king later, because the pawn that is missing is the e-pawn Black gave up on move one, not a pawn in front of White's own king. Black is simply left a pawn down with no clear compensation to point to, which is exactly why this gambit is rated dubious once White finds 3.d4.
+                          fr: Les Blancs ont un pion de plus, et cette fois c'est très différent de la ligne principale — le fou f8 noir est encore chez lui, sans aucun coup de développement à montrer, et les Blancs n'ont perdu aucune capacité à abriter leur roi plus tard, car le pion manquant est le pion e cédé par les Noirs au premier coup, pas un pion devant leur propre roi. Les Noirs se retrouvent simplement avec un pion de moins et sans compensation claire à quoi se raccrocher, ce qui explique précisément pourquoi ce gambit est jugé douteux une fois que les Blancs trouvent 3.d4.
+                        plan:
+                          vi: Đen chơi Nf6, Be7 hoặc Bc5, O-O và c5 hoặc Nc6, cố gắng dùng cặp tượng và sự linh hoạt của quân nhẹ để bù lại con tốt đã mất, nhưng phải chấp nhận rằng đây là một cuộc chơi khó khăn hơn hẳn so với khi Trắng ăn ở d6. Trắng chơi Nf3, Bd3 hoặc Bc4, O-O, và đơn giản hoá bằng cách đổi quân khi có thể, vì mỗi lần đổi quân đều làm giảm cơ hội bù đắp của Đen trong khi con tốt thừa vẫn còn nguyên.
+                          en: Black plays Nf6, Be7 or Bc5, castles, and c5 or Nc6, trying to use the bishop pair and piece activity to make up for the missing pawn, but has to accept that this is a much harder game than the one after White captures on d6. White plays Nf3, Bd3 or Bc4, castles, and simplifies by trading pieces whenever possible, since every trade reduces Black's chances of compensation while the extra pawn stays on the board.
+                          fr: Les Noirs jouent Nf6, Be7 ou Bc5, roquent, puis c5 ou Nc6, en essayant d'utiliser la paire de fous et l'activité des pièces pour compenser le pion manquant, mais doivent admettre que la partie est bien plus difficile qu'après une prise en d6. Les Blancs jouent Nf3, Bd3 ou Bc4, roquent, et simplifient en échangeant les pièces dès que possible, car chaque échange réduit les chances de compensation noires alors que le pion supplémentaire reste sur l'échiquier.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'

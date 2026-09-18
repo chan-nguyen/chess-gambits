@@ -118,10 +118,11 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Fourteen entries are authored — three from #15 and eleven from #73 — and the other 989
-   * are Tier 0. Each authored entry is named here with the number of root-to-leaf lines its
-   * tree actually has, rather than the whole set being loosened to "at least zero", which
-   * would assert nothing and would keep passing if every tree in the repository disappeared.
+   * Twenty-four entries are authored — three from #15, eleven from #73, and ten more from
+   * #94's group B (French through Scandinavian) — and the other 979 are Tier 0. Each authored
+   * entry is named here with the number of root-to-leaf lines its tree actually has, rather
+   * than the whole set being loosened to "at least zero", which would assert nothing and
+   * would keep passing if every tree in the repository disappeared.
    *
    * This is the assertion the test was written to force: the day a mapped entry lands, the
    * number that appears here has to appear because content changed. It did twice, and both
@@ -142,9 +143,19 @@ describe('the catalogue this repository ships', () => {
     ['englund-gambit', 5],
     ['englund-gambit-trap', 6],
     ['latvian-gambit', 5],
+    ['french-defense-banzai-leong-gambit', 3],
+    ['indian-defense-gibbins-weidenhagen-gambit', 3],
+    ['bishops-opening-calabrese-countergambit', 3],
+    ['blackmar-diemer-gambit-accepted', 1],
+    ['van-geet-opening-laroche-gambit', 2],
+    ['vienna-game-fyfe-gambit', 3],
+    ['dutch-defense-krejcik-gambit', 1],
+    ['bird-opening-froms-gambit', 2],
+    ['kings-pawn-game-bavarian-gambit', 2],
+    ['scandinavian-defense-zilbermints-gambit', 2],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored fourteen have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored twenty-four have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

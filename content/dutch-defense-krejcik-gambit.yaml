@@ -1,0 +1,87 @@
+# The Dutch Defense: Krejcik Gambit. Frozen defining line 1.d4 f5 2.g4, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# No forced mate is claimed anywhere in this entry: the critical line was checked by hand for
+# a tactical shot and none was found within reach without an engine, so every leaf below is a
+# plain assessment (ADR-0005).
+id: dutch-defense-krejcik-gambit
+name: 'Dutch Defense: Krejcik Gambit'
+eco: A80
+category: gambit
+side: white
+definingLine: [d4, f5, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 2.g4 hands over a pawn with no lasting follow-up: even in the critical line,
+      2...fxg4 3.h3 gxh3 4.Bxh3, White has spent three tempi — two pawn moves and a bishop move
+      — for one developed piece and two half-open files, while Black's structure has no
+      weakness anywhere and is still a full pawn up. Black can also simply decline by defending
+      f5 with ...e6, ...d6, ...g6 or ...Nh6, or sidestep it with ...f4, and White has nothing to
+      show for the lost tempo either way. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 2.g4 ngay lập tức tấn công con tốt f5 vừa tiến, một cách chơi hiếm và liều lĩnh gọi là Gambit Krejcik. Nếu Đen bỏ mặc con tốt f5 thì 3.gxf5 đơn giản ăn không, nên Đen buộc phải phản ứng — ăn lại bằng fxg4, đỡ con tốt f5 bằng e6, d6, g6 hay Nh6, hoặc né bằng f4. Ý tưởng của Trắng, nếu con tốt được ăn, là mở nhanh các cột và đường chéo cánh vua, đổi tốt lấy nhịp phát triển, giống như một ván Gambit Vua bị đảo ngược.
+    en: White plays 2.g4, attacking the just-advanced f5 pawn at once — a rare and reckless try called the Krejcik Gambit. If Black ignores the f5 pawn, 3.gxf5 simply wins it for nothing, so Black has to react — recapture with ...fxg4, defend f5 with ...e6, ...d6, ...g6 or ...Nh6, or sidestep it with ...f4. White's idea, if the pawn is taken, is to open the kingside files and diagonals quickly, trading the pawn for development much like a reversed King's Gambit.
+    fr: Les Blancs jouent 2.g4, attaquant aussitôt le pion f5 qui vient d'avancer — un essai rare et risqué appelé le Gambit Krejcik. Si les Noirs négligent le pion f5, 3.gxf5 le gagne tout simplement pour rien, si bien que les Noirs doivent réagir — reprendre par ...fxg4, défendre f5 par ...e6, ...d6, ...g6 ou ...Nh6, ou l'esquiver par ...f4. L'idée des Blancs, si le pion est pris, est d'ouvrir rapidement les colonnes et diagonales de l'aile roi, échangeant le pion contre du développement, un peu comme un Gambit Roi inversé.
+  dismissRest:
+    reason:
+      vi: Rất nhiều nước khác của Đen không giải quyết được câu hỏi mà 2.g4 đặt ra. Các nước d5, d6, g6 và Nh6 đều giữ được con tốt f5 — hoặc đỡ trực tiếp hoặc mở đường chéo cho tượng c8 tới nó — nhưng chúng chỉ chuyển ván cờ sang một thế cờ chậm mà Trắng vẫn phát triển bình thường và không mất gì. Nước f4 đẩy con tốt tránh xa mà không mất gì, nhưng bỏ luôn trung tâm và ô e4 cho Trắng. Các nước còn lại — Nc6, Na6, Kf7, Nf6, a6, a5, b6, b5, c6, c5, e5, g5, h6 và h5 — bỏ mặc con tốt f5 không ai đỡ, và 3.gxf5 đơn giản ăn lại nó kèm thêm một nhịp phát triển miễn phí cho Trắng. Không nước nào trong nhóm này bác bỏ được gambit.
+      en: Many other replies fail to answer the question 2.g4 asks. ...d5, ...d6, ...g6 and ...Nh6 all keep the f5 pawn — either defending it directly or opening the c8-bishop's diagonal to it — but they simply steer the game into a slow position where White develops normally and has lost nothing. ...f4 pushes the pawn out of reach without loss, but hands White the centre and the e4 square for free. Everything else — ...Nc6, ...Na6, ...Kf7, ...Nf6, ...a6, ...a5, ...b6, ...b5, ...c6, ...c5, ...e5, ...g5, ...h6 and ...h5 — leaves the f5 pawn undefended, and 3.gxf5 simply wins it back with a free developing tempo. Nothing in this group refutes the gambit.
+      fr: Beaucoup d'autres réponses ne répondent pas à la question posée par 2.g4. ...d5, ...d6, ...g6 et ...Nh6 conservent tous le pion f5 — soit en le défendant directement, soit en ouvrant la diagonale du fou c8 vers lui — mais elles orientent simplement la partie vers une position lente où les Blancs se développent normalement sans rien perdre. ...f4 pousse le pion hors de portée sans perte, mais cède le centre et la case e4 aux Blancs gratuitement. Tout le reste — ...Nc6, ...Na6, ...Kf7, ...Nf6, ...a6, ...a5, ...b6, ...b5, ...c6, ...c5, ...e5, ...g5, ...h6 et ...h5 — laisse le pion f5 sans défense, et 3.gxf5 le regagne tout simplement avec un temps de développement gratuit. Rien dans ce groupe ne réfute le gambit.
+  children:
+    - ply: fxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt g4. Đây là cách chơi trực diện và đúng về nguyên tắc nhất — nhận thí tốt rồi buộc Trắng phải chứng minh có đủ đền bù, thay vì tốn nhịp chỉ để đỡ một con tốt vốn có thể bị ăn miễn phí nếu bỏ mặc.
+        en: Black takes the g4 pawn. This is the most direct and principled reply — accept the sacrifice and make White prove there is enough compensation, rather than spending a tempo just to defend a pawn that could otherwise be taken for free.
+        fr: Les Noirs prennent le pion g4. C'est la réponse la plus directe et la plus conforme aux principes — accepter le sacrifice et obliger les Blancs à prouver qu'ils ont une compensation suffisante, plutôt que de perdre un temps à défendre un pion qui pourrait sinon être pris gratuitement.
+      children:
+        - ply: h3
+          annotation:
+            vi: Trắng thử lấy lại con tốt ngay bằng h3, tấn công thẳng vào con tốt g4. Đây là ý tưởng chính của gambit — nếu Đen ăn lại bằng gxh3 thì Trắng dùng một nước phát triển để ăn lại con tốt, còn nếu Đen đẩy g3 thì Trắng ăn lại bằng fxg3, mở cột f giống hệt kiểu Gambit Vua. Nước 3.h3 là nước duy nhất đáng chơi ở đây.
+            en: White tries to win the pawn back at once with h3, attacking the g4 pawn directly. This is the gambit's whole idea — if Black recaptures with ...gxh3, White uses a developing move to take it back, and if Black pushes ...g3 instead, White recaptures with fxg3, opening the f-file exactly the way a King's Gambit does. 3.h3 is the only move worth playing here.
+            fr: Les Blancs tentent de regagner le pion aussitôt par h3, attaquant directement le pion g4. C'est toute l'idée du gambit — si les Noirs reprennent par ...gxh3, les Blancs le regagnent par un coup de développement, et si les Noirs poussent ...g3 à la place, les Blancs reprennent par fxg3, ouvrant la colonne f exactement comme dans un Gambit Roi. 3.h3 est le seul coup qui vaille la peine d'être joué ici.
+          dismissRest:
+            reason:
+              vi: Phần lớn các nước khác của Đen bỏ qua hoàn toàn sự căng thẳng ở g4. Các nước a5, a6, b5, b6, c5, c6, e5, e6, g5, g6, h6, Kf7, Na6 và Nc6 không đụng gì đến con tốt g4 cả, và 4.hxg4 đơn giản đưa quân số trở lại cân bằng. Các nước Nh6, Nf6, d5, d6 và h5 vẫn giữ một quân hoặc tốt nhắm vào g4 và đáp lại 4.hxg4 bằng một nước ăn lại, nhưng kết quả cũng chỉ là cùng một cuộc giằng co quanh nhịp thừa chứ không bác bỏ được gì. Nước g3 là một lựa chọn nghiêm túc hơn — nó trả lại con tốt ngay để lấy quân số ngang nhau sau 4.fxg3 — nhưng khi làm vậy Đen từ bỏ chính lợi thế vật chất mà 2...fxg4 đã giành được, nên gxh3 vẫn là cách chơi đòi hỏi nhiều hơn ở Trắng.
+              en: Most other Black replies ignore the tension on g4 completely. ...a5, ...a6, ...b5, ...b6, ...c5, ...c6, ...e5, ...e6, ...g5, ...g6, ...h6, ...Kf7, ...Na6 and ...Nc6 do nothing about the g4 pawn, and 4.hxg4 simply restores material equality. ...Nh6, ...Nf6, ...d5, ...d6 and ...h5 keep a piece or pawn aimed at g4 and meet 4.hxg4 with a recapture, but the result is only the same fight over the extra tempo, refuting nothing. ...g3 is a more serious try — it gives the pawn straight back for level material after 4.fxg3 — but in doing so Black gives up the very material edge that ...fxg4 had won, so ...gxh3 is still the move that asks the most of White.
+              fr: La plupart des autres réponses noires ignorent complètement la tension sur g4. ...a5, ...a6, ...b5, ...b6, ...c5, ...c6, ...e5, ...e6, ...g5, ...g6, ...h6, ...Kf7, ...Na6 et ...Nc6 ne font rien contre le pion g4, et 4.hxg4 rétablit simplement l'égalité matérielle. ...Nh6, ...Nf6, ...d5, ...d6 et ...h5 gardent une pièce ou un pion braqué sur g4 et répondent à 4.hxg4 par une reprise, mais le résultat n'est que la même lutte autour du temps en plus, sans rien réfuter. ...g3 est un essai plus sérieux — il rend aussitôt le pion pour un matériel égal après 4.fxg3 — mais ce faisant, les Noirs abandonnent l'avantage matériel même que ...fxg4 avait gagné, si bien que ...gxh3 reste le coup qui exige le plus des Blancs.
+          children:
+            - ply: gxh3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen giữ luôn con tốt thứ hai thay vì trả lại bằng g3. Đây là cách chơi đòi hỏi nhất — Đen chấp nhận để Trắng ăn lại một lần bằng tượng, nhưng vẫn hơn đúng một tốt sau khi đổi xong.
+                en: Black keeps the second pawn rather than giving it straight back with ...g3. This is the most demanding continuation — Black accepts that White will recapture once with the bishop, but still comes out exactly one pawn up once the dust settles.
+                fr: Les Noirs gardent le second pion plutôt que de le rendre aussitôt par ...g3. C'est la continuation la plus exigeante — les Noirs acceptent que les Blancs reprennent une fois avec le fou, mais restent tout de même exactement un pion devant une fois la poussière retombée.
+              children:
+                - ply: Bxh3
+                  annotation:
+                    vi: Trắng ăn lại bằng tượng, phát triển kèm nhịp và đặt tượng lên đường chéo c8-h3. Đây là cách ăn lại duy nhất đáng chơi — Nxh3 đặt mã sai chỗ vì nó thuộc về f3, còn Rxh3 chỉ đưa xe ra sớm mà không giải quyết được gì thêm.
+                    en: White recaptures with the bishop, developing with tempo and putting it on the c8-h3 diagonal. This is the only recapture worth playing — Nxh3 puts the knight on the wrong square, since it belongs on f3, and Rxh3 only brings the rook out early without achieving anything more.
+                    fr: Les Blancs reprennent avec le fou, se développant avec gain de temps et le plaçant sur la diagonale c8-h3. C'est la seule reprise qui vaille la peine d'être jouée — Nxh3 place le cavalier sur la mauvaise case, puisqu'il appartient à f3, et Rxh3 ne fait que sortir la tour tôt sans rien accomplir de plus.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng kém đúng một tốt và chưa đòi lại được. Bù lại là con tượng đã phát triển với nhịp trên đường chéo c8-h3, và hai cột g cùng h đều nửa mở cho xe của Trắng, trong khi cấu trúc tốt của Đen hoàn toàn nguyên vẹn và không có điểm yếu nào. Một tốt cộng với sự nguyên vẹn tuyệt đối của Đen là nhiều hơn một con tượng đã ra và hai cột nửa mở, nên phần đền bù ở đây là không đủ.
+                      en: White is down exactly one pawn and has not won it back. In return the bishop has developed with tempo onto the c8-h3 diagonal, and both the g- and h-files are half-open for White's rooks, while Black's pawn structure is completely intact with no weakness at all. A pawn plus Black's total structural health outweighs one developed bishop and two half-open files, so the compensation here falls short.
+                      fr: Les Blancs sont exactement un pion en moins et ne l'ont pas regagné. En échange, le fou s'est développé avec gain de temps sur la diagonale c8-h3, et les colonnes g et h sont toutes deux semi-ouvertes pour les tours blanches, tandis que la structure de pions noire reste totalement intacte, sans la moindre faiblesse. Un pion plus la parfaite santé structurelle des Noirs pèse plus lourd qu'un fou développé et deux colonnes semi-ouvertes, si bien que la compensation est ici insuffisante.
+                    plan:
+                      vi: Trắng chơi Nf3, Nc3 hoặc Nd2, e3 và Qf3 hay Qd3, nhập thành ngắn nếu an toàn hoặc dài để tận dụng cột g và h, và tìm cách gây rối trước khi Đen kịp hoàn thiện phát triển. Đen chơi Nf6, d5 hoặc g6 rồi Bg7, e6 và O-O, đổi bớt quân nhẹ khi có cơ hội, và đơn giản là chơi một ván cờ bình thường với một tốt dư — không cần mạo hiểm gì thêm.
+                      en: White plays Nf3, Nc3 or Nd2, e3 and Qf3 or Qd3, castles short if it is safe or long to make use of the g- and h-files, and looks to stir up trouble before Black finishes developing. Black plays ...Nf6, ...d5 or ...g6 followed by ...Bg7, ...e6 and ...O-O, trades off minor pieces when the chance comes, and simply plays a normal game with an extra pawn — no further risk is needed.
+                      fr: Les Blancs jouent Nf3, Nc3 ou Nd2, e3 et Qf3 ou Qd3, roquent du petit côté si c'est sûr ou du grand côté pour exploiter les colonnes g et h, et cherchent à créer des problèmes avant que les Noirs n'achèvent leur développement. Les Noirs jouent ...Nf6, ...d5 ou ...g6 suivi de ...Bg7, ...e6 et ...O-O, échangent les pièces mineures dès que l'occasion se présente, et jouent simplement une partie normale avec un pion de plus — aucun risque supplémentaire n'est nécessaire.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

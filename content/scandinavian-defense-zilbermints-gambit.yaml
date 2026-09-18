@@ -1,0 +1,130 @@
+# The Scandinavian Defense: Zilbermints Gambit. Frozen defining line 1.e4 d5 2.b4, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# Nothing in this entry claims a mate: every leaf below is a plain assessment (ADR-0005).
+id: scandinavian-defense-zilbermints-gambit
+name: 'Scandinavian Defense: Zilbermints Gambit'
+eco: B01
+category: gambit
+side: white
+definingLine: [e4, d5, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      This is a personal judgement, at the same level the catalogue's family rule gives it.
+      The b4 pawn is defended by nothing from the start, and Black has two independent ways
+      to exploit that — simply taking the still-hanging e4 pawn, or hitting b4 directly with
+      ...a5 — without needing to know any theory in advance. In both cases the only thing
+      White gets in return is a bishop on b2, which creates no concrete threat in either line
+      examined. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng thí ngay con tốt b4 ở nước thứ hai, trước khi Đen kịp làm gì với con tốt e4 đang bị treo. Ý đồ là mở đường cho tượng c1 ra b2 chiếm đường chéo dài a1-h8 với một nhịp phát triển sớm. Nhưng con tốt b4 không được quân nào bảo vệ, và con tốt e4 vẫn treo y như cũ từ sau nước 1...d5, nên Đen có tới hai cách trừng phạt độc lập — ăn luôn con tốt e4 đang có sẵn, hoặc đánh thẳng vào con tốt b4 bằng a5.
+    en: White gives away the b4 pawn on move two, before Black has even touched the e4 pawn that has been hanging since 1...d5. The idea is to clear c1 for the bishop to reach b2 and the long a1-h8 diagonal with an extra tempo. But the b4 pawn is defended by nothing, and the e4 pawn is still hanging exactly as it was, so Black has two independent ways to punish it — simply take the free e4 pawn, or attack b4 directly with ...a5.
+    fr: Les Blancs abandonnent le pion b4 dès le deuxième coup, avant même que les Noirs n'aient touché au pion e4 qui pendait depuis 1...d5. L'idée est de libérer c1 pour que le fou rejoigne b2 et la grande diagonale a1-h8 avec un temps d'avance. Mais le pion b4 n'est défendu par rien, et le pion e4 pend toujours exactement comme avant, si bien que les Noirs disposent de deux façons indépendantes de punir ce coup — prendre simplement le pion e4 qui est gratuit, ou attaquer b4 de front par ...a5.
+  dismissRest:
+    reason:
+      vi: Mọi nước khác đều để cả hai điểm yếu nguyên vẹn trên bàn cờ mà không khai thác điểm nào. Các nước phát triển như Nf6, Nc6, e6 hay c6 chỉ đơn giản cho phép Trắng tiếp tục đúng kế hoạch với Bb2, hoặc đổi bằng exd5 để quay về một thế Scandinavian bình thường, chỉ khác là Trắng đã phí thêm một nước b4 vô ích. Các nước cánh như a6, b6, g5 hay h5 không đụng đến con tốt e4 lẫn con tốt b4. Không nước nào ở đây tốt hơn việc ăn ngay con tốt e4 hoặc đánh thẳng vào b4 bằng a5, và Đen luôn có thể quay lại một trong hai ý đó ở nước sau.
+      en: Every other reply leaves both weaknesses standing without touching either. Developing moves such as ...Nf6, ...Nc6, ...e6 or ...c6 simply let White continue the plan with Bb2, or trade with exd5 into an ordinary Scandinavian where White has additionally, and pointlessly, spent a move on b4. Flank moves such as ...a6, ...b6, ...g5 or ...h5 touch neither the e4 pawn nor the b4 pawn. Nothing here does better than taking the free e4 pawn at once or hitting b4 directly with ...a5, and Black can always return to one of those two ideas next move.
+      fr: Toute autre réponse laisse les deux faiblesses intactes sans en exploiter aucune. Des coups de développement comme ...Nf6, ...Nc6, ...e6 ou ...c6 laissent simplement les Blancs poursuivre leur plan par Bb2, ou échanger par exd5 pour revenir à une Scandinave ordinaire, à ceci près que les Blancs ont en plus dépensé un coup inutile en b4. Les coups d'aile comme ...a6, ...b6, ...g5 ou ...h5 ne touchent ni le pion e4 ni le pion b4. Rien ici ne vaut mieux que prendre aussitôt le pion e4 gratuit ou attaquer b4 de front par ...a5, et les Noirs peuvent toujours revenir à l'une de ces deux idées au coup suivant.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn luôn con tốt e4 đang bị treo từ sau nước 1...d5. Đây là nước đúng theo nguyên tắc, không có lý do gì để từ chối một con tốt cho không, và Đen vẫn giữ nguyên khả năng đánh thêm vào con tốt b4 bằng a5 ở một nước sau.
+        en: Black simply takes the e4 pawn, which has been hanging since 1...d5. This is correct in principle — there is no reason to decline a pawn given away for nothing, and Black still keeps the option of hitting the b4 pawn with ...a5 later.
+        fr: Les Noirs prennent tout simplement le pion e4, qui pendait depuis 1...d5. C'est juste en principe, il n'y a aucune raison de refuser un pion offert pour rien, et les Noirs gardent intacte la possibilité d'attaquer ensuite le pion b4 par ...a5.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng phát triển mã và đe doạ ăn lại ngay con tốt e4 bằng Ncxe4, vì hiện tại chỉ có một mã tấn công mà chưa ai phòng thủ. Đây là cách thử duy nhất có ý nghĩa, thay vì đơn giản là mất một tốt miễn phí.
+            en: White develops the knight and threatens to win the e4 pawn straight back with Ncxe4, since it is currently attacked once and defended by nobody. This is the only try that means anything, rather than simply being a pawn down for free.
+            fr: Les Blancs développent le cavalier et menacent de reprendre aussitôt le pion e4 par Ncxe4, puisqu'il est pour l'instant attaqué une fois et défendu par personne. C'est le seul essai qui ait un sens, plutôt que d'être simplement un pion en moins pour rien.
+          dismissRest:
+            reason:
+              vi: Vài nước đi mất quân ngay lập tức, Qd5 bị Nxd5 ăn hậu, Qd3 bị cxd3 hoặc Bxd3, còn Qxd2+ đơn giản là biếu không con hậu cho Bxd2 (hay Qxd2, Kxd2). Nước Qd4 trông lạ nhưng cũng giữ được con tốt, chỉ có điều đưa hậu ra sớm để ăn thêm nhịp mà Nf6 đã làm tốt hơn. Mọi nước còn lại — Nc6, Bd7, Be6, e6, c6 và tương tự — đều bỏ mặc con tốt e4 không ai đỡ, nên Trắng chỉ việc chơi Ncxe4 ở nước sau và lấy lại đúng con tốt trung tâm đã mất, chỉ còn lại con tốt b4 kẹt lại vĩnh viễn để nhắc về cả ý tưởng này.
+              en: Several tries lose material at once — ...Qd5 hangs the queen to Nxd5, ...Qd3 falls to cxd3 or Bxd3, and ...Qxd2+ simply gives the queen away to Bxd2 (or Qxd2, or Kxd2). The odd-looking ...Qd4 does hold the pawn too, but walks the queen out early for a tempo gain that ...Nf6 already provides better. Everything else — ...Nc6, ...Bd7, ...Be6, ...e6, ...c6 and the like — leaves the e4 pawn defended by nobody, so White simply plays Ncxe4 next and wins back exactly the central pawn that was lost, leaving only the permanently stranded b4 pawn to remember the whole idea by.
+              fr: Plusieurs essais perdent du matériel sur-le-champ — ...Qd5 offre la dame à Nxd5, ...Qd3 tombe sur cxd3 ou Bxd3, et ...Qxd2+ donne tout simplement la dame à Bxd2 (ou Qxd2, ou Kxd2). Le coup étrange ...Qd4 tient aussi le pion, mais sort la dame tôt pour un gain de temps que ...Nf6 assure déjà mieux. Tout le reste — ...Nc6, ...Bd7, ...Be6, ...e6, ...c6 et autres — laisse le pion e4 sans aucun défenseur, si bien que les Blancs jouent simplement Ncxe4 au coup suivant et récupèrent exactement le pion central perdu, ne laissant que le pion b4 durablement égaré pour se souvenir de toute l'idée.
+          children:
+            - ply: Nf6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã và đồng thời phòng thủ con tốt e4 trong cùng một nước, đơn giản và hiệu quả nhất trong số các cách giữ tốt.
+                en: Black develops the knight and defends the e4 pawn in the same move — the simplest and most efficient way to hold onto it.
+                fr: Les Noirs développent le cavalier tout en défendant le pion e4 en un seul coup, la façon la plus simple et la plus efficace de le conserver.
+              children:
+                - ply: Bb2
+                  annotation:
+                    vi: Trắng hoàn thành đúng ý đồ ban đầu của cả gambit, đưa tượng ra b2 để kiểm soát đường chéo dài. Đây là tất cả những gì con tốt e4 đã mất mua được.
+                    en: White completes the whole gambit's original idea, putting the bishop on b2 to control the long diagonal. This is all that the lost e4 pawn has actually bought.
+                    fr: Les Blancs achèvent l'idée originelle de tout le gambit, plaçant le fou en b2 pour contrôler la grande diagonale. C'est tout ce que le pion e4 perdu a réellement acheté.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Quân số, Trắng kém đúng một tốt, và không có gì bù lại ngay lập tức. Con tượng b2 nhắm vào đường chéo dài nhưng ô g7 hiện được vua và các quân đã triển khai của Đen che chắn tốt, còn các quân khác của Trắng chưa nói lên được điều gì đặc biệt. Con tốt e4 của Đen tuy trùng cột với tốt e7 nhưng không quân Trắng nào còn với tới được nó nữa, nên đó không phải là một điểm yếu thật sự.
+                      en: Material — White is down exactly one pawn, with no immediate return. The bishop on b2 aims at the long diagonal, but g7 is currently well covered by the king and Black's developed pieces, and White's other pieces have nothing special to show yet. Black's pawn on e4 does double the e7 pawn on the same file, but no White piece can still reach it, so it is not a real weakness.
+                      fr: Matériel — les Blancs ont exactement un pion de moins, sans compensation immédiate. Le fou en b2 vise la grande diagonale, mais g7 est pour l'instant bien couvert par le roi et les pièces déjà développées des Noirs, et les autres pièces blanches n'ont encore rien de spécial à montrer. Le pion noir en e4 double certes le pion e7 sur la même colonne, mais aucune pièce blanche ne peut plus l'atteindre, ce qui n'en fait pas une vraie faiblesse.
+                    plan:
+                      vi: Trắng chơi Nf3, e3 rồi Be2 hoặc Bd3, nhập thành và cố tìm sức ép ở trung tâm hoặc cánh vua để bù lại con tốt, nhớ rằng con tốt b4 cũng sẽ cần được để mắt tới bằng một nước a3 nào đó. Đen chơi e6 hoặc g6 rồi nhập thành, giữ chắc con tốt thừa, và chỉ cần đổi quân dần dần để con tốt lên tiếng ở tàn cuộc, không có nước phá nào cần vội vì thời gian đang đứng về phía Đen.
+                      en: White plays Nf3, e3 and then Be2 or Bd3, castles, and looks for pressure in the centre or on the kingside to make up for the pawn, keeping in mind that the b4 pawn will also need attention with an eventual a3. Black plays ...e6 or ...g6 and castles, holds the extra pawn, and simply trades pieces at leisure so that the pawn tells in the endgame — there is no rush for any particular break, because time is on Black's side.
+                      fr: Les Blancs jouent Nf3, e3 puis Be2 ou Bd3, roquent, et cherchent une pression au centre ou à l'aile roi pour compenser le pion, en gardant à l'esprit que le pion b4 demandera lui aussi une attention par un futur a3. Les Noirs jouent ...e6 ou ...g6 et roquent, conservent le pion supplémentaire, et se contentent d'échanger les pièces à loisir pour faire parler ce pion en finale ; aucune rupture n'est urgente, car le temps joue pour les Noirs.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
+    - ply: a5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đánh thẳng vào chính con tốt đã được thí ra, thay vì bận tâm tới con tốt e4 trước. Nước a5 buộc Trắng phải quyết định ngay, đỡ con tốt, đẩy nó lên, hay để nó bị ăn.
+        en: Black attacks the very pawn that was offered, instead of bothering with the e4 pawn first. The move ...a5 forces White to decide at once — defend the pawn, push it on, or let it be taken.
+        fr: Les Noirs attaquent directement le pion qui a été offert, plutôt que de s'occuper d'abord du pion e4. Le coup ...a5 oblige les Blancs à trancher immédiatement, défendre le pion, le pousser, ou le laisser prendre.
+      children:
+        - ply: c3
+          annotation:
+            vi: Trắng đỡ con tốt b4 một cách chắc chắn nhất, đồng thời vẫn giữ nguyên ô b2 trống cho con tượng. Đẩy b5 thì mất đi sự linh hoạt, còn để mất tốt bằng bxa5 thì gambit coi như chưa từng xảy ra.
+            en: White defends the b4 pawn in the most solid way, while still leaving b2 empty for the bishop. Pushing on with b5 gives up flexibility, and simply losing the pawn to ...axb4 would mean the gambit never happened.
+            fr: Les Blancs défendent le pion b4 de la façon la plus solide, tout en laissant b2 libre pour le fou. Pousser par b5 sacrifie la souplesse, et laisser filer le pion par ...axb4 reviendrait à annuler le gambit.
+          dismissRest:
+            reason:
+              vi: Nước axb4 rồi cxb4 chỉ đổi tốt ngang giá và trả lại thế chủ động miễn phí, trong khi ăn luôn con tốt e4 đang treo giữ nguyên mọi lựa chọn, kể cả axb4, để dùng sau. Các nước còn lại — phát triển như Nc6, Nf6, e6, hay các nước cánh như a4, h5, thậm chí Kd7 — đều để nguyên con tốt e4 cho Trắng thong thả phòng thủ bằng Bb2 hay Qe2 sau này, nên ăn ngay vẫn là chính xác nhất.
+              en: 5...axb4 6.cxb4 only trades pawns evenly and hands back the initiative for nothing, while simply taking the hanging e4 pawn keeps every option, ...axb4 included, in reserve for later. Everything else — developing moves such as ...Nc6, ...Nf6, ...e6, or flank moves such as ...a4, ...h5, even ...Kd7 — leaves the e4 pawn for White to defend at leisure later with Bb2 or Qe2, so taking it at once remains the most accurate choice.
+              fr: 5...axb4 6.cxb4 ne fait qu'échanger les pions à égalité et rend l'initiative pour rien, alors que prendre simplement le pion e4 qui pend garde toutes les options, ...axb4 compris, en réserve pour plus tard. Tout le reste — des coups de développement comme ...Nc6, ...Nf6, ...e6, ou des coups d'aile comme ...a4, ...h5, voire ...Kd7 — laisse le pion e4 aux Blancs, qui pourront le défendre tranquillement plus tard par Bb2 ou Qe2 ; le prendre tout de suite reste donc le choix le plus précis.
+          children:
+            - ply: dxe4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen ăn nốt con tốt e4 vẫn đang bị treo, đúng như ở nhánh chính, chỉ khác là bây giờ con tốt b4 đã được đỡ chắc bằng c3, cái giá là con mã b1 mất luôn ô c3, ô phát triển tự nhiên nhất của nó.
+                en: Black takes the still-hanging e4 pawn, exactly as in the main branch — except that now the b4 pawn is solidly held by c3, at the cost of the b1 knight losing c3, its most natural developing square.
+                fr: Les Noirs prennent le pion e4 toujours en suspens, exactement comme dans la ligne principale — sauf qu'à présent le pion b4 est solidement tenu par c3, au prix pour le cavalier b1 de perdre c3, sa case de développement la plus naturelle.
+              children:
+                - ply: Bb2
+                  annotation:
+                    vi: Trắng vẫn hoàn thành ý đồ với Bb2, nhưng mã b1 giờ chỉ còn ô a3 để đi, một ô ở rìa bàn cờ.
+                    en: White still completes the idea with Bb2, but the b1 knight now has only a3 to go to — a square on the rim of the board.
+                    fr: Les Blancs achèvent quand même l'idée par Bb2, mais le cavalier b1 n'a plus que a3 où aller, une case en bordure de l'échiquier.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Quân số, Trắng vẫn kém đúng một tốt, y như ở nhánh ăn tốt trực tiếp. Thêm vào đó, con mã b1 không còn ô phát triển tự nhiên nào nữa vì c3 đã bị tốt chiếm và d2 còn bị tốt riêng chặn, nên nó buộc phải ra rìa bằng Na3 hoặc nằm lại nhà thêm một lúc nữa, một quân cờ không có ô tốt để đi, đúng nghĩa đen.
+                      en: Material — White is down exactly one pawn, the same as in the branch where the pawn is taken directly. On top of that, the b1 knight has no natural developing square left, since c3 is occupied by a pawn and d2 is still blocked by another one, so it is reduced to the rim with Na3 or has to sit at home a while longer — a piece with no good square, quite literally.
+                      fr: Matériel — les Blancs ont exactement un pion de moins, comme dans la ligne où le pion est pris directement. De plus, le cavalier b1 n'a plus aucune case de développement naturelle, puisque c3 est occupé par un pion et d2 encore bloqué par un autre, si bien qu'il est réduit au bord par Na3 ou doit rester à la maison encore un moment, une pièce sans bonne case, au sens propre.
+                    plan:
+                      vi: Trắng đành chấp nhận Na3 hoặc để mã b1 chờ, chơi Nf3, Qc2 và nhập thành, cố dùng cột b nửa mở cùng đường chéo b2 để bù lại con tốt. Đen chơi e6 hoặc g6, nhập thành, và giữ vững con tốt thừa trong khi cột a đã mở sẵn cho xe a8 nếu cần dùng đến sau này.
+                      en: White has to accept Na3 or leave the b1 knight waiting, plays Nf3, Qc2 and castles, trying to use the half-open b-file and the b2 diagonal to make up for the pawn. Black plays ...e6 or ...g6, castles, and simply holds the extra pawn while the open a-file is already there for the a8 rook to use later if needed.
+                      fr: Les Blancs doivent se résoudre à Na3 ou laisser le cavalier b1 en attente, jouent Nf3, Qc2 et roquent, en essayant d'utiliser la colonne b semi-ouverte et la diagonale de b2 pour compenser le pion. Les Noirs jouent ...e6 ou ...g6, roquent, et conservent simplement le pion supplémentaire, la colonne a étant déjà ouverte pour la tour a8 si besoin plus tard.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
