@@ -1,0 +1,82 @@
+# The Monticelli Trap, in the Bogo-Indian Defense. The defining line is the one the catalogue
+# has frozen for this id — 1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Bb4+ 6.Bd2 Bxd2+ 7.Qxd2
+# O-O 8.Nc3 Ne4 9.Qc2 Nxc3 10.Ng5 — and it ends on White's own ply, so the root is an
+# opponent node and Black's careless reply can carry `blunder` (invariant 5). White leaves
+# the knight on c3 hanging to b2 on purpose: the point is not that capture, it is h7.
+#
+# ECO is E11 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
+# records: a trap carries the ECO of the opening it sits inside (ADR-0008).
+#
+# The mate after a careless reply is claimed with `type: trap` and nothing else. The move
+# count, the line and the certificate are produced by `npm run prove:mates` and replayed by
+# `npm run verify:mates` (ADR-0005). Every other line here was replayed with chess.js: in
+# particular, 11.Qxh7# was confirmed to be checkmate by direct replay (0 legal replies,
+# king boxed in by its own g7 pawn, f8 rook and the h-file) before this file was written.
+id: monticelli-trap
+name: Monticelli Trap
+eco: E11
+category: trap
+side: white
+definingLine:
+  [
+    d4,
+    Nf6,
+    c4,
+    e6,
+    Nf3,
+    b6,
+    g3,
+    Bb7,
+    Bg2,
+    'Bb4+',
+    Bd2,
+    'Bxd2+',
+    Qxd2,
+    'O-O',
+    Nc3,
+    Ne4,
+    Qc2,
+    Nxc3,
+    Ng5,
+  ]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, not a measurement, and it is about White's decision to leave the knight
+      on c3 hanging rather than about the trap springing. White is objectively down a piece
+      for a pawn the instant 10.Ng5 is played and stays that way unless Black cooperates, so
+      calling the whole idea "sound" would overstate it; but the mating idea itself is not a
+      matter of opinion, it is proved. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  counts:
+    legal: { count: legalReplies, expect: 37 }
+    mated: { count: matedBy, ply: 'Qxh7#', expect: 29 }
+  annotation:
+    vi: Trắng vừa chơi Ng5 và bỏ mặc con mã ở c3 cho tốt b2 ăn — đó không phải là điều đáng lo. Cái bẫy nằm ở ô h7. Hậu Trắng ở c2 đã nhìn thẳng theo đường chéo c2-h7, và bây giờ mã g5 thêm vào đó — nếu hậu ăn ở h7 thì mã g5 canh chừng không cho vua ăn lại, còn vua Đen thì bị chính tốt g7, xe f8 và cột h của mình vây kín. Nước nào của Đen không đụng đến h7 đều thua ngay.
+    en: White has just played Ng5 and left the knight on c3 for the b2 pawn to take — that is not the worry. The trap lives on h7. The queen on c2 already looks straight down the c2–h7 diagonal, and the knight on g5 adds the missing piece — if the queen takes on h7, the knight stops the king from taking back, and the king itself is boxed in by its own g7 pawn, its own rook on f8 and the h-file. Any black reply that does not touch h7 loses at once.
+    fr: Les Blancs viennent de jouer Cg5 et laissent le cavalier c3 en prise au pion b2 — ce n'est pas cela qui compte. Le piège vit sur h7. La dame blanche en c2 regarde déjà droit le long de la diagonale c2-h7, et le cavalier g5 apporte la pièce manquante  — si la dame prend en h7, le cavalier empêche le roi de reprendre, et le roi lui-même est enfermé par son propre pion g7, sa propre tour f8 et la colonne h. Toute réponse noire qui ne s'occupe pas de h7 perd immédiatement.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, và phần lớn là thua ngay. {Mated} trong {legal} nước hợp lệ ở đây bị 11.Qxh7 chiếu bí tức khắc. Số còn lại là những nước thực sự đụng đến vấn đề — 10...h6 đuổi mã đồng thời canh h7, 10...Qxg5 ăn luôn con mã đang giữ ô h7, hay 10...Be4 chắn đường chéo c2-h7 — và những nước đưa hậu Đen ra khỏi cột nguy hiểm. Không nước nào trong số đó phải trả giá bằng mạng vua.
+      en: Black plays something else, and most of it is mated at once. {Mated} of the {legal} legal moves here are checkmated on the spot by 11.Qxh7#. The survivors are the moves that actually address the problem — 10...h6, kicking the knight while guarding h7; 10...Qxg5, removing the knight that is guarding h7 for White; or 10...Be4, blocking the c2–h7 diagonal outright — together with anything that gets the black queen off the danger square. None of them costs the king its life.
+      fr: Les Noirs jouent autre chose, et la plupart du temps c'est maté sur-le-champ. {Mated} des {legal} coups légaux ici sont matés instantanément par 11.Dxh7#. Les rescapés sont les coups qui s'occupent vraiment du problème — 10...h6, qui chasse le cavalier tout en gardant h7 ; 10...Dxg5, qui élimine le cavalier gardant h7 pour les Blancs ; ou 10...Fe4, qui bloque net la diagonale c2-h7 — ainsi que tout ce qui éloigne la dame noire de la case dangereuse. Aucun d'eux ne coûte la vie au roi.
+  children:
+    - ply: Nc6
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Đen phát triển con mã còn lại, hoàn toàn phớt lờ ô h7. Đây chính xác là nước Chekhover chơi trước Monticelli năm 1930, và nó thua ngay lập tức.
+        en: Black develops the other knight, ignoring h7 completely. This is exactly the move Chekhover played against Monticelli in 1930, and it loses at once.
+        fr: Les Noirs développent l'autre cavalier, en ignorant complètement h7. C'est exactement le coup joué par Chekhover contre Monticelli en 1930, et il perd sur-le-champ.
+      outcome:
+        type: trap

@@ -411,8 +411,8 @@ describe('the catalogue this repository builds', () => {
     return result.entries
   }
 
-  it.each([...locales])('reads back 1003 named entries from %s', (locale) => {
-    expect(parsed(locale).size).toBe(1003)
+  it.each([...locales])('reads back 1008 named entries from %s', (locale) => {
+    expect(parsed(locale).size).toBe(1008)
   })
 
   it('names the same entry differently in each language, which is why it is read per locale', () => {

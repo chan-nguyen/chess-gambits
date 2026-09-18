@@ -1,0 +1,164 @@
+# The Tarrasch Trap, in the Open Ruy Lopez. The Ruy Lopez dataset carries this name twice —
+# "Berlin Defense, Tarrasch Trap" (C66) and "Open, Tarrasch Trap" (C83) — and this file
+# authors the Open Defence version, C83. It is the one with a documented pedigree: Tarrasch
+# sprung a version of it against real opponents rather than only in analysis (two World
+# Championship challengers, Zukertort at Frankfurt 1887 and Gunsberg at Manchester 1890, are
+# both credited with losing the underlying piece-winning idea to Tarrasch, per general
+# opening literature), and it is the version every reference this catalogue found actually
+# calls "the Tarrasch Trap" without qualification. The Berlin (C66) version was not chosen
+# because no source found while researching this entry gives it a citable, independently
+# checkable move sequence — every description of it was vague about which exact position the
+# "trap" refers to, and this project does not author a line it cannot replay.
+#
+# The defining line is 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Nxe4 6.d4 b5 7.Bb3 d5
+# 8.dxe5 Be6 9.c3 Be7 10.Re1 O-O 11.Nd4 — ordinary main-line Open Ruy Lopez down to a genuine
+# branch point, and it ends on White's own ply, so the root is an opponent node and Black's
+# reply can carry a quality (invariant 5).
+#
+# ECO is C83 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
+# records: a trap carries the ECO of the opening it sits inside (ADR-0008).
+#
+# No leaf here claims a mate. The trap wins material, not the game outright — the same shape
+# as the Elephant Trap or the Lasker Trap (docs/CONTEXT.md, "Trap branch") — so every outcome
+# below is `type: position`, machine-checked for legality and for the "no capture going free"
+# rule (invariant 14) rather than proved by a certificate. The whole sequence from 11...Qd7?
+# onward was replayed by hand with chess.js before this file was written, including the point
+# that the more commonly repeated summary of this trap ("12.Nxe6 and White wins a piece
+# however Black recaptures") only tells half of it: 12...fxe6 is a perfectly good defence
+# that even wins material back if White presses on with 13.Rxe4, because the knight the
+# rook took was defended by the d5 pawn all along. It is specifically 12...Qxe6 that fails,
+# because the queen then sits on the same b3–g8 diagonal the bishop already occupies, and
+# 13.Rxe4 dxe4 14.Bxe6 wins the queen for a bishop.
+id: tarrasch-trap
+name: Tarrasch Trap
+eco: C83
+category: trap
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bb5,
+    a6,
+    Ba4,
+    Nf6,
+    'O-O',
+    Nxe4,
+    d4,
+    b5,
+    Bb3,
+    d5,
+    dxe5,
+    Be6,
+    c3,
+    Be7,
+    Re1,
+    'O-O',
+    Nd4,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement about White's play, not about the trap springing. Everything up to and
+      including 11.Nd4 is main-line Open Ruy Lopez theory, sound with or without what
+      follows, and nothing here depends on Black cooperating: the main line 11...Nxd4 is
+      simply a fine, ordinary game. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material count in the final position, which was
+    computed by hand from the derived FEN rather than from an engine.
+tree:
+  annotation:
+    vi: Trắng vừa chơi Nd4, đe doạ ăn con tượng e6 và đồng thời nhắm vào con mã e4 đang đứng một mình. Nước đi chính của lý thuyết ở đây là 11...Nxd4, đổi ngay con mã đang bị nhắm và dẫn tới một ván cờ hoàn toàn bình thường. Cái bẫy chỉ chờ ở nước khác.
+    en: White has just played Nd4, threatening the bishop on e6 while also eyeing the lone knight on e4. Main theory here is simply 11...Nxd4, trading off the piece under fire and leading to a perfectly ordinary game. The trap only waits for something else.
+    fr: Les Blancs viennent de jouer Cd4, menaçant le fou e6 tout en lorgnant le cavalier e4 resté seul. La théorie principale ici est simplement 11...Cxd4, qui échange la pièce visée et mène à une partie parfaitement normale. Le piège n'attend qu'un autre coup.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, và hầu hết đều ổn. Trên hết là nước lý thuyết 11...Nxd4!, đổi ngay con mã đang bị nhắm và cân bằng hoàn toàn; các nước phát triển bình thường khác cũng không có gì phải lo. Chỉ có 11...Qd7? — nước trông như hoàn thiện phát triển — là mời gọi điều sắp xảy ra.
+      en: Black plays something else, and almost all of it is fine. Above all there is the theoretical 11...Nxd4!, trading off the piece under fire and equalising cleanly; the other ordinary developing tries have nothing to fear either. Only 11...Qd7? — a move that looks like simple completion of development — invites what follows.
+      fr: Les Noirs jouent autre chose, et presque tout convient. Il y a d'abord le coup théorique 11...Cxd4 !, qui échange la pièce visée et égalise proprement ; les autres coups de développement ordinaires n'ont rien à craindre non plus. Seul 11...Dd7 ? — un coup qui ressemble à un simple achèvement du développement — invite ce qui suit.
+  children:
+    - ply: Qd7
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Đen định nhập thành xong rồi đưa hậu vào một ô có vẻ hữu ích, hỗ trợ con tượng e6 và chuẩn bị đưa xe vào giữa. Vấn đề là con tượng e6 và con mã e4 giờ có chung một đường liên lạc bí mật xuyên qua đường chéo b3-g8, và con hậu vừa tự đặt mình lên chính đường chéo đó.
+        en: Having castled, Black tucks the queen onto a square that looks useful, supporting the bishop on e6 and preparing to bring a rook to the centre. The trouble is that the bishop on e6 and the knight on e4 now share a hidden connection along the b3–g8 diagonal, and the queen has just put itself on that very diagonal.
+        fr: Une fois roqués, les Noirs posent la dame sur une case qui semble utile, soutenant le fou e6 et préparant l'arrivée d'une tour au centre. Le problème est que le fou e6 et le cavalier e4 partagent désormais un lien caché le long de la diagonale b3-g8, et la dame vient justement de se placer sur cette diagonale.
+      children:
+        - ply: Nxe6
+          annotation:
+            vi: Trắng ăn con tượng bằng mã. Đây là nước đầu tiên của kế hoạch — đổi một quân lấy một quân trông có vẻ vô hại, nhưng nó buộc Đen phải chọn quân nào ăn lại.
+            en: White captures the bishop with the knight. This is the first move of the plan — a trade that looks harmless on its own, but it forces Black to choose which piece recaptures.
+            fr: Les Blancs prennent le fou avec le cavalier. C'est le premier coup du plan — un échange qui semble anodin en soi, mais il oblige les Noirs à choisir la pièce qui reprend.
+          dismissRest:
+            reason:
+              vi: Đen ăn lại bằng tốt, 12...fxe6, và thế là xong — cái bẫy không hoạt động được nữa, vì bây giờ ô e6 chỉ còn một con tốt chứ không phải con hậu, và con mã e4 vẫn được chính con tốt d5 bảo vệ. Bất kỳ nước nào khác bỏ mặc con mã đang ăn ở e6 đều để Đen kém hẳn một quân nhẹ mà không được gì đổi lại. Chỉ có nước ăn lại bằng hậu, 12...Qxe6, là bước tiếp vào cái bẫy.
+              en: Black recaptures with the pawn, 12...fxe6, and that is the end of it — the trap no longer works, because e6 now holds a mere pawn rather than the queen, and the knight on e4 is still guarded by the d5 pawn regardless. Anything else that leaves the knight on e6 uncaptured simply leaves Black a clean minor piece down for nothing. Only recapturing with the queen, 12...Qxe6, walks further into what follows.
+              fr: Les Noirs reprennent avec le pion, 12...fxe6, et l'affaire s'arrête là — le piège ne fonctionne plus, car e6 n'abrite désormais qu'un pion et non la dame, et le cavalier e4 reste de toute façon gardé par le pion d5. Tout autre coup qui laisse le cavalier d'e6 non repris coûte simplement une pièce mineure nette aux Noirs, pour rien. Seule la reprise par la dame, 12...Dxe6, avance davantage dans ce qui suit.
+          children:
+            - ply: Qxe6
+              replyQuality: mistake
+              frequency: occasional
+              annotation:
+                vi: Đen ăn lại bằng hậu, có vẻ tự nhiên vì nó giữ cấu trúc tốt nguyên vẹn và đưa hậu ra một ô trung tâm đẹp. Nhưng con hậu vừa đứng đúng vào đường chéo b3-g8, ngay sau lưng con mã e4 — và con mã đó không hề được bảo vệ trên cột e.
+                en: Black recaptures with the queen, which looks natural since it keeps the pawn structure intact and puts the queen on a nice central square. But the queen has just stood on the b3–g8 diagonal, directly behind the knight on e4 — and that knight is not actually guarded along the e-file.
+                fr: Les Noirs reprennent avec la dame, ce qui paraît naturel puisque cela garde la structure de pions intacte et place la dame sur une belle case centrale. Mais la dame vient de se placer sur la diagonale b3-g8, juste derrière le cavalier e4 — et ce cavalier n'est en réalité pas gardé sur la colonne e.
+              children:
+                - ply: Rxe4
+                  annotation:
+                    vi: Xe ăn luôn con mã, quân duy nhất Đen còn chưa động trên bàn. Cột e đã mở toang từ e1 tới e4, và không quân Đen nào đứng chắn giữa.
+                    en: The rook simply takes the knight, the one black piece left standing in the open. The e-file was wide open from e1 to e4, with nothing black in between.
+                    fr: La tour prend simplement le cavalier, la seule pièce noire restée à découvert. La colonne e était grande ouverte de e1 à e4, sans rien de noir entre les deux.
+                  dismissRest:
+                    reason:
+                      vi: Đen chấp nhận kém một mã sạch — quân đó đã mất rồi, không đòi lại được bằng bất kỳ nước nào khác. Chỉ có nước ăn lại hấp dẫn 13...dxe4?? là còn mất thêm, vì nó lại tự đặt con hậu vào chính đường chéo mà con tượng b3 đang chờ.
+                      en: Black accepts being down a clean knight — it is already gone, and nothing else here wins it back. Only the tempting recapture 13...dxe4?? loses still more, because it puts the queen right back on the diagonal the bishop on b3 has been waiting on the whole time.
+                      fr: Les Noirs acceptent d'être un cavalier net en moins — il est déjà perdu, et rien d'autre ici ne le récupère. Seule la reprise tentante 13...dxe4?? perd encore davantage, car elle replace la dame exactement sur la diagonale que le fou b3 guettait depuis le début.
+                  children:
+                    - ply: dxe4
+                      replyQuality: blunder
+                      frequency: occasional
+                      annotation:
+                        vi: Đen ăn lại con xe bằng tốt, tưởng như gỡ lại chất lượng đã mất. Nhưng con tốt ấy vừa mở lại chính con hậu e6 cho con tượng b3 nhìn thấy.
+                        en: Black recaptures the rook with the pawn, seemingly winning back the exchange. But that pawn has just reopened the queen on e6 to the bishop on b3.
+                        fr: Les Noirs reprennent la tour avec le pion, semblant regagner la qualité. Mais ce pion vient de rouvrir la dame e6 au fou b3.
+                      children:
+                        - ply: Bxe6
+                          annotation:
+                            vi: Tượng ăn thẳng con hậu. Không quân Đen nào canh ô e6 lúc này, vì con tốt vừa rời d5 để ăn xe.
+                            en: The bishop simply takes the queen. Nothing black guards e6 any more, because the pawn has just left d5 to take the rook.
+                            fr: Le fou prend simplement la dame. Plus rien de noir ne garde e6, puisque le pion vient de quitter d5 pour prendre la tour.
+                          dismissRest:
+                            reason:
+                              vi: Đen chơi bất kỳ nước nào khác cũng không đổi được gì — con hậu đã mất rồi, và không nước nào lấy lại được nó. Ăn lại con tượng bằng tốt là cách rõ ràng nhất để tiếp tục, dù kết quả cuối cùng gần như không đổi dù Đen chọn nước nào.
+                              en: Whatever else Black plays changes nothing — the queen is already gone, and no move here wins it back. Recapturing the bishop with the pawn is simply the clearest way to continue, though the final verdict is much the same whatever Black picks.
+                              fr: Quoi que jouent les Noirs d'autre, cela ne change rien — la dame est déjà perdue, et aucun coup ici ne la récupère. Reprendre le fou avec le pion est simplement la façon la plus claire de continuer, même si le verdict final reste à peu près le même quel que soit le choix des Noirs.
+                          children:
+                            - ply: fxe6
+                              annotation:
+                                vi: Đen ăn lại con tượng bằng tốt f7, thu về ít nhất một quân trong đống đổ nát. Con mã c6 cũng có thể ăn tốt e5 ở nước này thay vì ăn lại ngay, nhưng đằng nào Đen cũng không còn gì để cứu vãn — ăn lại con tượng trước là cách rõ ràng nhất.
+                                en: Black recaptures the bishop with the f7 pawn, at least collecting one piece out of the wreckage. The knight on c6 could also grab the e5 pawn here instead of recapturing at once, but there is nothing left to save either way — retaking the bishop first is the clearest choice.
+                                fr: Les Noirs reprennent le fou avec le pion f7, récupérant au moins une pièce dans ce naufrage. Le cavalier c6 pourrait aussi prendre le pion e5 ici plutôt que de reprendre aussitôt, mais il n'y a de toute façon plus rien à sauver — reprendre d'abord le fou est le choix le plus clair.
+                              outcome:
+                                type: position
+                                evaluation:
+                                  vi: Đếm quân ở vị trí cuối cùng — Trắng có hậu, xe, tượng, mã và bảy tốt (tổng 27 điểm chất lượng theo thang quen thuộc chín-năm-ba-ba-một); Đen có hai xe, tượng, mã và bảy tốt nhưng không còn hậu (tổng 23 điểm). Trắng hơn khoảng bốn điểm chất lượng — đúng bằng hiệu số giữa một hậu và một xe — đây là một lợi thế vật chất áp đảo và quyết định, không phải một thế cờ còn phải tranh cãi.
+                                  en: Counting the final position, White has a queen, a rook, a bishop, a knight and seven pawns (27 points on the familiar nine-five-three-three-one scale); Black has two rooks, a bishop, a knight and seven pawns but no queen at all (23 points). White is up roughly four points — exactly the gap between a queen and a rook — a decisive, overwhelming material advantage rather than a position anyone needs to argue about.
+                                  fr: En comptant la position finale, les Blancs ont une dame, une tour, un fou, un cavalier et sept pions (27 points sur l'échelle habituelle neuf-cinq-trois-trois-un) ; les Noirs ont deux tours, un fou, un cavalier et sept pions mais plus de dame du tout (23 points). Les Blancs sont en avance d'environ quatre points — exactement l'écart entre une dame et une tour — un avantage matériel décisif et écrasant, pas une position qui prête à discussion.
+                                plan:
+                                  vi: Trắng chỉ cần hoàn thiện phát triển — Nd2 hoặc Nc3 rồi Qf3 hay Qd3 — và đổi quân bất cứ khi nào có thể, vì với một con hậu thừa ra thì mọi cuộc đổi quân đều làm lợi thế rõ ràng hơn. Đen cố gắng tạo hoạt động cho hai xe và giữ vua an toàn, nhưng không có kế hoạch nào bù lại được sự chênh lệch chất lượng ấy.
+                                  en: White simply finishes developing — Nd2 or Nc3, then Qf3 or Qd3 — and trades pieces whenever possible, since with a spare queen every trade only makes the advantage plainer. Black tries to activate the two rooks and keep the king safe, but no plan makes up for a gap of this size.
+                                  fr: Les Blancs se contentent d'achever leur développement — Cd2 ou Cc3, puis Df3 ou Dd3 — et échangent les pièces dès que possible, car avec une dame d'avance chaque échange ne fait que rendre l'avantage plus net. Les Noirs tentent d'activer leurs deux tours et de mettre le roi à l'abri, mais aucun plan ne comble un tel écart.
+                                basis:
+                                  by: chan
+                                  at: '2026-09-18'

@@ -1,0 +1,83 @@
+# The Kiel Variation trap, in the Modern Scandinavian. The defining line is 1.e4 d5 2.exd5
+# Nf6 3.d4 Nxd5 4.c4 Nb4 — and it ends on Black's own ply, so the root is an opponent node
+# and White's reply can carry a quality (invariant 5).
+#
+# This entry is included because the product owner's reference sources (a lichess trap study
+# and a chess.com "10 traps" article) both point at it, and because #118 asked for it by
+# name. But it does not hold up as a trap. Two specific ideas repeated about it online were
+# checked by hand with chess.js and both fail outright: 4...Nb4 does not threaten 5...Nc2+
+# (the queen on d1 defends c2 directly, so the knight is simply lost for nothing) and it does
+# not threaten 5...Nd3+ either (both the queen and the f1 bishop defend d3). Every "White
+# walks into a trick" story built on either of those squares is not a trick; it is a losing
+# move for Black regardless of what White has or has not played. What is left, once those are
+# checked and discarded, is exactly what general opening literature already says about this
+# line without the trap framing: 5.a3! simply asks the knight where it is going, and neither
+# retreat is a good square. Per docs/CONTEXT.md ("Where a line's reputation doesn't hold up
+# under real analysis... write an honest position leaf"), that is what this file does, rather
+# than inventing a tactic that was not found.
+#
+# ECO is B01 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
+# records: a trap carries the ECO of the opening it sits inside (ADR-0008).
+id: scandinavian-defense-kiel-variation-trap
+name: 'Scandinavian Defense: Kiel Variation Trap'
+eco: B01
+category: trap
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, Nxd5, c4, Nb4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, not a measurement. Two of the tactics most often cited for this line —
+      5...Nc2+ and 5...Nd3+ — were checked by hand with chess.js and both simply lose the
+      knight, defended as they are by White's queen (and, on d3, the bishop too). With those
+      gone there is no concrete punishment for White playing naturally, and the simple 5.a3!
+      leaves the knight without a good square. This is taught so it is recognised, not so it
+      is played with real hope of a trick. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date.
+tree:
+  annotation:
+    vi: Đen vừa đưa mã ra b4, một nước trông có vẻ hung hãn — như thể nó đe doạ Nc2+ chiếu vua và xe, hoặc Nd3+ chiếu vua và tượng. Cả hai đe doạ ấy đều không có thật — hậu Trắng ở d1 canh thẳng ô c2, còn ô d3 thì cả hậu lẫn tượng f1 cùng canh. Con mã b4 chỉ đơn giản là đang đứng ở rìa bàn cờ, chờ Trắng hỏi nó đi đâu.
+    en: Black has just played the knight to b4, a move that looks aggressive — as if it threatens Nc2+, forking king and rook, or Nd3+, forking king and bishop. Neither threat is real. White's queen on d1 guards c2 directly, and d3 is guarded twice over, by the queen and by the bishop on f1. The knight on b4 is simply standing at the edge of the board, waiting for White to ask where it is going.
+    fr: Les Noirs viennent de jouer le cavalier en b4, un coup qui semble agressif — comme s'il menaçait Cc2+, fourchette roi-tour, ou Cd3+, fourchette roi-fou. Aucune de ces menaces n'est réelle. La dame blanche en d1 garde directement c2, et d3 est gardée deux fois, par la dame et par le fou f1. Le cavalier b4 se tient simplement au bord de l'échiquier, attendant que les Blancs lui demandent où il va.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác, và không có gì phải lo cả — vì như đã nói, không đe doạ nào của con mã b4 là thật. Bất kỳ nước phát triển bình thường nào (Nf3, Nc3, Be2...) đều ổn. Nước rõ ràng nhất và trực tiếp nhất, và là nước được chơi ở đây, là 5.a3, hỏi thẳng con mã ngay lập tức.
+      en: White plays something else, and there is nothing to fear either way, since as already noted neither of the knight's threats is real. Any ordinary developing move (Nf3, Nc3, Be2...) is fine. The clearest and most direct one, and the one modelled here, is 5.a3, asking the knight the question at once.
+      fr: Les Blancs jouent autre chose, et il n'y a rien à craindre dans un cas comme dans l'autre, puisqu'aucune des menaces du cavalier n'est réelle, comme on l'a vu. N'importe quel coup de développement ordinaire (Cf3, Cc3, Fe2...) convient. Le plus clair et le plus direct, celui modélisé ici, est 5.a3, qui pose aussitôt la question au cavalier.
+  children:
+    - ply: a3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng đẩy tốt lên a3, hỏi thẳng con mã b4 xem nó định đi đâu. Không có ô nào tốt cả — lùi về a6 thì đứng ngoài rìa, còn về c6 thì chỉ đổi chỗ cho con mã b8 vốn cũng cần một ô tốt.
+        en: White pushes the pawn to a3, asking the knight on b4 directly where it plans to go. There is no good square — retreating to a6 leaves it offside, and going to c6 only swaps places with the b8 knight, which needed a good square of its own too.
+        fr: Les Blancs poussent le pion en a3, demandant directement au cavalier b4 où il compte aller. Il n'y a pas de bonne case — reculer en a6 le laisse hors-jeu, et aller en c6 ne fait qu'échanger sa place avec le cavalier b8, qui avait lui aussi besoin d'une bonne case.
+      children:
+        - ply: N4a6
+          annotation:
+            vi: Con mã lùi về a6, ô duy nhất còn giữ được nó trên bàn cờ mà không cản trở quân khác. Nhưng từ a6 nó không làm được gì và sẽ mất vài nhịp nữa mới quay lại được cuộc chơi.
+            en: The knight retreats to a6, the one square that keeps it on the board without blocking anything else. But from a6 it does nothing useful and will cost several more moves to bring back into the game.
+            fr: Le cavalier recule en a6, la seule case qui le maintient sur l'échiquier sans gêner autre chose. Mais depuis a6 il ne fait rien d'utile et il faudra plusieurs coups de plus pour le ramener dans la partie.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau hoàn toàn. Nhưng con mã a6 là một quân không có ô tốt nào để đi tiếp trong nhiều nước sắp tới — nó đứng ngoài cuộc chơi ở rìa bàn cờ trong khi Trắng đã có được cả một tốt trung tâm phụ (c4) và toàn quyền phát triển bình thường. Đây chính là cái giá thực sự của 4...Nb4 — không phải mất quân, mà là mất nhịp và mất một quân vào chỗ tồi.
+              en: Material is completely level. But the knight on a6 is a piece with no good square to go to for a long stretch of moves — it stands outside the game on the rim while White already has an extra central pawn on c4 and completely normal development ahead. This is the real cost of 4...Nb4 — not lost material, but a lost tempo and a piece parked somewhere bad.
+              fr: Le matériel est parfaitement égal. Mais le cavalier a6 est une pièce sans bonne case où aller pendant un long moment — il reste hors du jeu, sur le bord, tandis que les Blancs disposent déjà d'un pion central supplémentaire en c4 et d'un développement tout à fait normal devant eux. C'est le vrai coût de 4...Cb4 — non pas une perte de matériel, mais un temps perdu et une pièce mal placée.
+            plan:
+              vi: Trắng phát triển bình thường với Nc3, Nf3, Be2 và nhập thành, giữ tốt c4 và d4 làm trung tâm vững chắc, rồi tìm cách đưa con mã a6 kia vào thế bị động lâu dài bằng b4 và Bb2 nếu có dịp. Đen phải tốn thêm vài nhịp mới đưa được con mã trở lại qua c7 hoặc b8, trong khi vẫn phải hoàn thiện phần phát triển còn lại.
+              en: White develops normally with Nc3, Nf3, Be2 and castling, keeps the c4 and d4 pawns as a solid centre, and looks to keep that a6 knight passive for a long time with b4 and Bb2 when the chance comes. Black has to spend extra moves bringing the knight back through c7 or b8, all while still needing to finish the rest of development.
+              fr: Les Blancs développent normalement avec Cc3, Cf3, Fe2 et le roque, gardent les pions c4 et d4 comme centre solide, et cherchent à maintenir ce cavalier a6 passif longtemps avec b4 et Fb2 le moment venu. Les Noirs doivent consacrer des coups supplémentaires à ramener le cavalier via c7 ou b8, tout en devant encore achever le reste de leur développement.
+            basis:
+              by: chan
+              at: '2026-09-18'
