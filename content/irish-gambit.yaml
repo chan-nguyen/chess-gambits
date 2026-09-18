@@ -1,0 +1,56 @@
+# Irish Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Nxe5, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below was
+# replayed with chess.js before being annotated.
+id: irish-gambit
+name: Irish Gambit
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Nxe5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply takes the knight back with Nxe5 and White has spent a whole
+      minor piece for a single pawn with nothing concrete to show for it. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì lùi mã theo lý thuyết thông thường, Trắng chơi 3.Nxe5, để mã của mình bị đỡ bởi mã c6 của Đen. Đây là một quân không được đỡ, mời Đen ăn lại ngay lập tức.
+    en: Instead of the usual retreat, White plays 3.Nxe5, leaving the knight attacked by Black's own knight on c6. This is an undefended piece, inviting Black to recapture at once.
+    fr: Au lieu de la retraite habituelle, les Blancs jouent 3.Nxe5, laissant le cavalier attaqué par le propre cavalier noir en c6. C'est une pièce non défendue, invitant les Noirs à reprendre aussitôt.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại con mã ngay. Các nước khác như Nf6 hay d6 để nguyên con mã e5 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not recapture the knight at once. Anything else, such as Nf6 or d6, leaves the e5 knight sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne reprennent pas aussitôt le cavalier. Tout le reste, comme Nf6 ou d6, laisse le cavalier e5 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại con mã ngay lập tức, quân duy nhất có thể ăn tại đó. Con mã e5 của Trắng không được quân nào đỡ nên đây đơn giản là ăn một quân miễn phí.
+        en: Black recaptures the knight at once, the only piece that can capture there. White's knight on e5 is defended by nothing, so this is simply picking up a free piece.
+        fr: Les Noirs reprennent aussitôt le cavalier, la seule pièce pouvant capturer là. Le cavalier blanc en e5 n'est défendu par rien, il s'agit donc simplement de ramasser une pièce gratuite.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân nhẹ thì Đen còn hai mã, Trắng chỉ còn một. Trắng đã mất trắng một mã chỉ để đổi lấy một con tốt e5 duy nhất, một khoản lỗ vật chất nặng nề mà chưa thấy có gì bù lại được ngay trên bàn cờ.
+          en: Count the knights and Black still has two, White only one. White has lost an entire knight in exchange for just the one e5 pawn, a heavy material loss with nothing visible on the board yet to compensate for it.
+          fr: Comptez les cavaliers, les Noirs en ont encore deux, les Blancs un seul. Les Blancs ont perdu un cavalier entier en échange du seul pion e5, une lourde perte matérielle sans rien de visible sur l'échiquier pour la compenser.
+        plan:
+          vi: Trắng chơi Bc4 và Qh5 hay d4, cố tạo ra càng nhiều đe dọa cụ thể càng tốt trước khi Đen kịp củng cố, dù về vật chất đã lỗ nặng. Đen chơi Nf6 hay d6, Be7 và O-O, hoàn tất phát triển một cách chắc chắn và giữ vững quân đã ăn được.
+          en: White plays Bc4 and Qh5 or d4, trying to create as many concrete threats as possible before Black can consolidate, despite the heavy material deficit. Black plays Nf6 or d6, Be7 and O-O, completing development soundly and holding onto the piece already won.
+          fr: Les Blancs jouent Bc4 et Qh5 ou d4, en essayant de créer autant de menaces concrètes que possible avant que les Noirs ne puissent consolider, malgré le lourd déficit matériel. Les Noirs jouent Nf6 ou d6, Be7 et O-O, achevant leur développement solidement et gardant la pièce déjà gagnée.
+        basis:
+          by: chan
+          at: '2026-09-18'

@@ -1,0 +1,56 @@
+# Nimzo-Larsen Attack: Norfolk Gambit. Frozen defining line 1.Nf3 d5 2.b3 c5 3.e4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated.
+id: nimzo-larsen-attack-norfolk-gambit
+name: 'Nimzo-Larsen Attack: Norfolk Gambit'
+eco: A06
+category: gambit
+side: white
+definingLine: [Nf3, d5, b3, c5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black simply takes the pawn with dxe4 and it stays taken — White's case is
+      the long diagonal for the b2 bishop and a lead in central influence, real but not shown
+      to be worth a full pawn yet. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã fianchetto tượng b2 và Đen đã chơi c5, Trắng chơi luôn 3.e4, một con tốt không được quân nào đỡ, mời Đen ăn nó bằng dxe4 để đổi lấy đường chéo dài thông thoáng cho tượng b2 và ảnh hưởng trung tâm.
+    en: With the b2 bishop fianchettoed and Black having played c5, White plays 3.e4 right away, an undefended pawn, inviting Black to take with dxe4 in exchange for a clear long diagonal for the b2 bishop and central influence.
+    fr: Le fou b2 déjà fianchetté et les Noirs ayant joué c5, les Blancs jouent d'emblée 3.e4, un pion non défendu, invitant les Noirs à le prendre par dxe4 en échange d'une grande diagonale dégagée pour le fou b2 et d'une influence centrale.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước khác như Nc6 hay e6 để nguyên con tốt e4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the e4 pawn. Anything else, such as Nc6 or e6, leaves the e4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme Nc6 ou e6, laisse le pion e4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức bằng tốt d, quân duy nhất có thể ăn tại đó. Con tốt e4 không được quân Trắng nào đỡ nên đây đơn giản là ăn một tốt miễn phí.
+        en: Black takes the pawn at once with the d-pawn, the only piece that can capture there. The e4 pawn is defended by nothing of White's, so this is simply picking up a free pawn.
+        fr: Les Noirs prennent aussitôt le pion avec le pion d, la seule pièce pouvant capturer là. Le pion e4 n'est défendu par rien du côté blanc, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, con tốt e đã mất ngay từ nước 3, và chưa có gì đòi lại được nó. Cái Trắng có để bù lại chỉ là đường chéo dài a1-h8 thông thoáng cho tượng b2, nhưng đường chéo ấy hiện chưa nhắm vào mục tiêu cụ thể nào của Đen.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, the e-pawn lost as early as move three, and nothing has won it back yet. What White has to show for it is only the open a1-h8 diagonal for the b2 bishop, but that diagonal is not yet aimed at any concrete target of Black's.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion de plus bien réel, le pion e perdu dès le troisième coup, et rien ne l'a encore récupéré. Ce que les Blancs ont à montrer pour cela n'est que la grande diagonale a1-h8 dégagée pour le fou b2, mais cette diagonale ne vise encore aucune cible concrète des Noirs.
+        plan:
+          vi: Trắng chơi Nc3 và Qe2 hay Bb5+ gây sức ép lên con tốt e4 và cố lấy lại nó, dùng đường chéo dài và sự phát triển nhanh để bù cho vật chất. Đen chơi Nc6, Nf6 và e6 hay g6, giữ chắc con tốt thừa và hoàn tất phát triển trước khi Trắng kịp khai thác đường chéo dài.
+          en: White plays Nc3 and Qe2 or Bb5+, pressuring the e4 pawn and trying to win it back, using the long diagonal and quick development to compensate materially. Black plays Nc6, Nf6 and e6 or g6, holding the extra pawn firmly and completing development before White can exploit the long diagonal.
+          fr: Les Blancs jouent Nc3 et Qe2 ou Bb5+, faisant pression sur le pion e4 pour tenter de le regagner, en utilisant la grande diagonale et un développement rapide pour compenser matériellement. Les Noirs jouent Nc6, Nf6 et e6 ou g6, gardant fermement le pion supplémentaire et achevant leur développement avant que les Blancs ne puissent exploiter la grande diagonale.
+        basis:
+          by: chan
+          at: '2026-09-18'
