@@ -1,0 +1,59 @@
+# Hungarian Opening: Van Kuijk Gambit. Frozen defining line 1.g3 h5 2.Nf3 h4, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js: 3.Nxh4 simply takes the pawn, since it is defended only by the rook on h8
+# and the knight lands safely on h4 with the g3 pawn covering it from behind. searchMate at
+# 4 moves from the resulting position returns no-mate, so no forced mate is claimed.
+id: hungarian-opening-van-kuijk-gambit
+name: 'Hungarian Opening: Van Kuijk Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [g3, h5, Nf3, h4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black throws forward the rook pawn for no development and no threat that
+      White has to answer immediately. White simply takes it with the knight and is a clean
+      pawn up with an ordinary, healthy position. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2.Nf3, Đen tiếp tục đẩy 2...h4, mời Trắng ăn con tốt bằng chính con mã vừa đưa ra chỗ tấn công nó. Đây là toàn bộ ý tưởng của Van Kuijk Gambit — một tốt đổi lấy hy vọng mở cột h sau này.
+    en: After 2.Nf3, Black pushes on with 2...h4, inviting White to take the pawn with the very knight that just attacked it. This is the whole idea of the Van Kuijk Gambit — a pawn traded for the hope of an open h-file later on.
+    fr: Après 2.Nf3, les Noirs poussent par 2...h4, invitant les Blancs à prendre le pion avec le cavalier qui vient de l'attaquer. C'est toute l'idée du Gambit Van Kuijk — un pion échangé contre l'espoir d'une colonne h ouverte plus tard.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt h4. Những nước khác như Bg2 hay d4 để nguyên con tốt h4 trên bàn cờ, và Đen được quyền chọn đẩy tiếp hxg3 hay giữ nguyên căng thẳng ở đó, nghĩa là con tốt được mời chưa hề mất đi.
+      en: White does not take the h4 pawn. Other moves such as Bg2 or d4 leave the h4 pawn sitting on the board, and Black gets to choose between pushing on with hxg3 or keeping the tension there, meaning the offered pawn has not actually been taken.
+      fr: Les Blancs ne prennent pas le pion h4. D'autres coups comme Bg2 ou d4 laissent le pion h4 sur l'échiquier, et les Noirs peuvent choisir de pousser par hxg3 ou de garder la tension, ce qui veut dire que le pion offert n'a pas été pris.
+  children:
+    - ply: Nxh4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay lập tức. Con mã đứng an toàn trên h4, vì tốt g3 phía sau canh giữ ô đó nếu Đen định dùng xe h8 để dọa lại.
+        en: White takes the pawn at once. The knight sits safely on h4, since the g3 pawn behind it covers that square if Black tries to use the rook on h8 to threaten it back.
+        fr: Les Blancs prennent le pion tout de suite. Le cavalier reste en sécurité sur h4, car le pion g3 derrière lui couvre cette case si les Noirs tentent d'utiliser la tour h8 pour le menacer.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng tám, Đen bảy, hơn đúng một tốt sạch. Đen chưa phát triển thêm quân nào so với Trắng và cột h tuy đã mở cho xe h8 nhưng chưa có mục tiêu cụ thể nào để nhắm vào.
+          en: Count the pawns, eight for White, seven for Black, a clean extra pawn. Black has not developed any more pieces than White, and the h-file, though now open for the rook on h8, has no concrete target to aim at yet.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, un pion net de plus. Les Noirs n'ont pas développé plus de pièces que les Blancs, et la colonne h, bien qu'ouverte désormais pour la tour h8, n'a encore aucune cible concrète à viser.
+        plan:
+          vi: Trắng chơi Bg2, O-O và d4, hoàn thiện phát triển bình thường và giữ chắc con tốt thừa. Đen chơi Rxh4 rồi gxh4 hoặc tiếp tục phát triển bằng Nc6 và e5, cố tận dụng cột h mở và cấu trúc tốt cánh vua của Trắng đã hơi xáo trộn để bù lại con tốt đã mất.
+          en: White plays Bg2, castles and follows with d4, completing ordinary development and holding on to the extra pawn. Black plays Rxh4 followed by gxh4, or continues developing with Nc6 and e5, trying to make use of the open h-file and White's slightly disturbed kingside pawns to compensate for the lost pawn.
+          fr: Les Blancs jouent Bg2, roquent puis d4, achevant un développement ordinaire et conservant le pion supplémentaire. Les Noirs jouent Rxh4 puis gxh4, ou poursuivent leur développement par Nc6 et e5, essayant de tirer parti de la colonne h ouverte et des pions un peu perturbés à l'aile roi blanche pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-18'

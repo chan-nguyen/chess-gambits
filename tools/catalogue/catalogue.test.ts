@@ -281,8 +281,11 @@ describe('AC 7 — tier is derived from content and absent from every source fil
   })
 
   it('takes the tier from the authored entry where one exists', () => {
+    // damiano-defence-refutation was the example of a file present with no tree mapped
+    // (`outcome: { type: unexplored }`) until #102 gave it one, so it now reads `taught`
+    // like any other entry with a real, resolved tree.
     const withContent = catalogue.records.find((entry) => entry.id === 'damiano-defence-refutation')
-    expect(withContent?.tier).toBe('listed')
+    expect(withContent?.tier).toBe('taught')
 
     const withoutContent = build({ datasetDir: DATASET, sourceDir: SOURCE })
     expect(withoutContent.ok).toBe(true)

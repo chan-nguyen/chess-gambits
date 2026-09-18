@@ -1,0 +1,66 @@
+# Petrov's Defense: Stafford Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nf6 3.Nxe5 Nc6,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 4.Nxc6 dxc6: material settles at eight pawns
+# for White against seven for Black, with the minor and major pieces level after the knight
+# trade. searchMate at 4 moves from this position returns unknown, which the stopping rule
+# treats the same as no-mate, so no forced mate is claimed.
+id: petrovs-defense-stafford-gambit
+name: "Petrov's Defense: Stafford Gambit"
+eco: C42
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nf6, Nxe5, Nc6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black offers a pawn for a lead in development and quick pressure on
+      White's position, and the traps it sets are real at club level, but the simplest
+      reply, taking the knight and returning it, leaves White a clean pawn up with no
+      forced way back for Black. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt e4 ngay bằng Nxe4, Đen chơi 3...Nc6, tấn công con mã Trắng vừa ăn tốt và chấp nhận chịu thiệt một tốt để đổi lấy tốc độ phát triển và những cái bẫy chiến thuật phía sau.
+    en: Instead of recapturing the e4 pawn at once with Nxe4, Black plays 3...Nc6, attacking the White knight that just took the pawn and accepting a pawn deficit in exchange for faster development and the tactical traps that follow.
+    fr: Au lieu de reprendre aussitôt le pion e4 par Nxe4, les Noirs jouent 3...Nc6, attaquant le cavalier blanc qui vient de prendre le pion et acceptant un déficit d'un pion en échange d'un développement plus rapide et des pièges tactiques qui en découlent.
+  dismissRest:
+    reason:
+      vi: Trắng không đổi mã bằng Nxc6. Việc lùi mã đi nơi khác — chẳng hạn Nf3 hay Nd3 — vẫn giữ nguyên con mã trên bàn cờ mà không giải quyết dứt điểm tình huống, và Đen vẫn còn cơ hội gây sức ép tiếp theo lên nó.
+      en: White does not trade the knight off with Nxc6. Retreating it elsewhere — Nf3 or Nd3, for instance — keeps the knight on the board without settling the situation, and Black still gets to keep pressing it further.
+      fr: Les Blancs n'échangent pas le cavalier par Nxc6. Le reculer ailleurs — Nf3 ou Nd3, par exemple — garde le cavalier sur l'échiquier sans régler la situation, et les Noirs peuvent continuer à le presser.
+  children:
+    - ply: Nxc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng đổi mã lấy mã, cách đơn giản và an toàn nhất để giải quyết sự tấn công, chấp nhận trả lại một tempo nhưng vẫn giữ tốt thừa.
+        en: White trades knight for knight, the simplest and safest way to answer the attack, giving back a tempo but keeping the extra pawn.
+        fr: Les Blancs échangent cavalier contre cavalier, la façon la plus simple et la plus sûre de répondre à l'attaque, cédant un temps mais conservant le pion supplémentaire.
+      children:
+        - ply: dxc6
+          annotation:
+            vi: Đen ăn lại bằng tốt d, mở cột d cho hậu và giữ được cặp tượng cùng cấu trúc tốt vẫn còn khá lành mạnh dù đã bị đổi chỗ.
+            en: Black recaptures with the d-pawn, opening the d-file for the queen and keeping the bishop pair with a pawn structure that is still fairly healthy despite the reshuffle.
+            fr: Les Noirs reprennent avec le pion d, ouvrant la colonne d pour la dame et conservant la paire de fous avec une structure de pions encore assez saine malgré le remaniement.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt, Trắng tám, Đen bảy, hơn đúng một tốt sạch, còn lại các quân nhẹ và nặng của hai bên bằng nhau sau khi đổi mã. Bù lại, Đen đã mở cột d cho hậu và có cặp tượng, nhưng chưa có mục tiêu cụ thể nào để nhắm tới ngay lúc này.
+              en: Count the pawns, eight for White, seven for Black, a clean extra pawn, with the remaining minor and major pieces level for both sides after the knight trade. In return, Black has an open d-file for the queen and the bishop pair, but no concrete target to aim at just yet.
+              fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, un pion net de plus, les pièces mineures et majeures restantes étant égales des deux côtés après l'échange de cavaliers. En échange, les Noirs ont une colonne d ouverte pour la dame et la paire de fous, mais aucune cible concrète à viser pour l'instant.
+            plan:
+              vi: Trắng chơi d4, Be2 và O-O, cố hoàn thiện phát triển an toàn và giữ chắc con tốt thừa trước khi Đen kịp phối hợp tấn công. Đen chơi Bc5, O-O hay Re8, đưa quân ra nhanh và nhắm vào tốt e4 cùng vị trí vua Trắng để bù lại con tốt đã mất.
+              en: White plays d4, Be2 and castles, trying to complete safe development and hold the extra pawn before Black can coordinate an attack. Black plays Bc5, castles or Re8, bringing pieces out quickly and aiming at the e4 pawn and White's king position to compensate for the lost pawn.
+              fr: Les Blancs jouent d4, Be2 et roquent, cherchant à achever un développement sûr et à garder le pion supplémentaire avant que les Noirs ne coordonnent une attaque. Les Noirs jouent Bc5, roquent ou Re8, développant rapidement et visant le pion e4 ainsi que la position du roi blanc pour compenser le pion perdu.
+            basis:
+              by: chan
+              at: '2026-09-18'

@@ -1,0 +1,60 @@
+# Blumenfeld Countergambit. Frozen defining line 1.d4 Nf6 2.c4 e6 3.Nf3 c5 4.d5 b5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js: 5.cxb5 simply takes the offered pawn, since nothing of Black's
+# recaptures on b5 for free, and nothing else is hanging afterwards. searchMate at 4 moves
+# from this position returns unknown, which the stopping rule treats the same as no-mate,
+# so no forced mate is claimed.
+id: blumenfeld-countergambit
+name: Blumenfeld Countergambit
+eco: E10
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nf3, c5, d5, b5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Black offers a
+      queenside pawn to open the long diagonal for the c8 bishop and build a strong pawn
+      centre after exd5, and this countergambit has held up across established master
+      practice. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 4...b5, dâng thêm một tốt cánh hậu để mở đường chéo dài cho tượng c8 và chuẩn bị dựng một trung tâm tốt mạnh sau khi đổi ở d5.
+    en: Black plays 4...b5, offering a queenside pawn to open the long diagonal for the c8 bishop and prepare a strong pawn centre after trading on d5.
+    fr: Les Noirs jouent 4...b5, offrant un pion à l'aile dame pour ouvrir la grande diagonale au fou c8 et préparer un centre de pions solide après l'échange en d5.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt b5. Các nước khác như dxe6 hay Nc3 để nguyên căng thẳng ở trung tâm và cánh hậu chưa được giải quyết, và Đen vẫn có thể chọn đổi ở d5 hoặc giữ nguyên căng thẳng.
+      en: White does not take the b5 pawn. Other moves such as dxe6 or Nc3 leave the central and queenside tension unresolved, and Black can still choose to trade on d5 or keep the tension as it is.
+      fr: Les Blancs ne prennent pas le pion b5. D'autres coups comme dxe6 ou Nc3 laissent la tension centrale et à l'aile dame non résolue, et les Noirs peuvent encore choisir d'échanger en d5 ou de garder la tension.
+  children:
+    - ply: cxb5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay lập tức. Con tốt b5 không được quân nào của Đen bảo vệ, nên đây đơn giản chỉ là ăn một quân đang bị treo.
+        en: White takes the pawn at once. Nothing of Black's defends the b5 pawn, so this is simply taking a piece that is hanging.
+        fr: Les Blancs prennent le pion tout de suite. Rien du côté noir ne défend le pion b5, donc il s'agit simplement de prendre une pièce en prise.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng tám, Đen bảy, hơn đúng một tốt sạch. Đổi lại, Đen sắp đổi ở d5 để mở đường chéo dài cho tượng c8 và dựng một trung tâm tốt lớn bằng exd5 và d5-d4 sau này.
+          en: Count the pawns, eight for White, seven for Black, a clean extra pawn. In return Black is about to trade on d5 to open the long diagonal for the c8 bishop and build a big pawn centre with exd5 and d5-d4 later.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, un pion net de plus. En échange, les Noirs s'apprêtent à échanger en d5 pour ouvrir la grande diagonale au fou c8 et construire un grand centre de pions par exd5 puis d5-d4 plus tard.
+        plan:
+          vi: Trắng chơi Nc3, g3 và Bg2, hoàn thiện phát triển và cố giữ chắc con tốt thừa. Đen chơi exd5, Bxb5+ hay d5, mở đường chéo dài và dựng trung tâm tốt mạnh để bù lại con tốt đã mất.
+          en: White plays Nc3, g3 and Bg2, completing development and trying to hold onto the extra pawn. Black plays exd5, Bxb5+ or d5, opening the long diagonal and building a strong pawn centre to compensate for the lost pawn.
+          fr: Les Blancs jouent Nc3, g3 et Bg2, achevant leur développement et essayant de garder le pion supplémentaire. Les Noirs jouent exd5, Bxb5+ ou d5, ouvrant la grande diagonale et construisant un centre de pions solide pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-18'

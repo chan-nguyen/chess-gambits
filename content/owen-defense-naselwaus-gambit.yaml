@@ -1,0 +1,60 @@
+# Owen Defense: Naselwaus Gambit. Frozen defining line 1.e4 b6 2.d4 Bb7 3.Bg5, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js: 3...h6 asks the bishop directly what it plans to do, and nothing
+# is hanging afterwards (the bishop is attacked, not captured, so no material has actually
+# changed hands). searchMate at 4 moves from this position returns unknown, which the
+# stopping rule treats the same as no-mate, so no forced mate is claimed.
+id: owen-defense-naselwaus-gambit
+name: 'Owen Defense: Naselwaus Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, b6, d4, Bb7, Bg5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. White develops the bishop actively but pins nothing and threatens
+      nothing concrete yet, since Black has not brought the knight to f6. It reads as an
+      aggressive-looking setup rather than an actual sacrifice, since no material has been
+      offered by this point. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Bg5, đưa tượng ra ô có vẻ hăm doạ dù chưa ghim hay đe doạ điều gì cụ thể, vì Đen còn chưa đưa mã ra f6.
+    en: White plays 3.Bg5, developing the bishop to a square that looks threatening even though nothing is actually pinned or attacked yet, since Black has not brought the knight to f6.
+    fr: Les Blancs jouent 3.Bg5, développant le fou vers une case qui paraît menaçante bien que rien ne soit encore réellement cloué ou attaqué, puisque les Noirs n'ont pas amené le cavalier en f6.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 3...h6. Các nước khác như e6 hay Nf6 để nguyên con tượng g5 chưa bị hỏi, và Trắng có thêm thời gian quyết định xem có ghim mã f6 hay không.
+      en: Black does not play 3...h6. Other moves such as e6 or Nf6 leave the bishop on g5 unquestioned, and White gets more time to decide whether to pin the f6 knight or not.
+      fr: Les Noirs ne jouent pas 3...h6. D'autres coups comme e6 ou Nf6 laissent le fou en g5 sans être interrogé, et les Blancs ont plus de temps pour décider de clouer ou non le cavalier f6.
+  children:
+    - ply: h6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen hỏi thẳng con tượng bằng 3...h6, buộc Trắng phải quyết định giữ tượng ở g5, lùi về hay đổi lấy mã ngay khi nó xuất hiện.
+        en: Black asks the bishop directly with 3...h6, forcing White to decide between keeping it on g5, retreating it, or trading it for the knight once it appears.
+        fr: Les Noirs interrogent directement le fou par 3...h6, forçant les Blancs à choisir entre le garder en g5, le reculer, ou l'échanger contre le cavalier une fois qu'il apparaîtra.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, mỗi bên còn đủ tám quân, vật chất hoàn toàn cân bằng vì chưa có cuộc đổi quân nào xảy ra. Con tượng g5 hiện bị tấn công bởi tốt h6 nhưng chưa bị mất, và cả hai bên vẫn còn ở giai đoạn khai cuộc sớm.
+          en: Count the pawns, eight apiece, material is fully level since no exchange has happened yet. The bishop on g5 is now attacked by the h6 pawn but has not been lost, and both sides are still in the very early opening.
+          fr: Comptez les pions, huit de chaque côté, le matériel est parfaitement égal puisqu'aucun échange n'a encore eu lieu. Le fou en g5 est désormais attaqué par le pion h6 mais n'est pas perdu, et les deux camps en sont encore au tout début de l'ouverture.
+        plan:
+          vi: Trắng chơi Bh4, Be3 hay Bxf6, quyết định số phận con tượng rồi tiếp tục Nc3 và Nf3 để phát triển bình thường. Đen chơi Nf6, e6 và g6, hoàn thiện phát triển và chuẩn bị fianchetto tượng còn lại để hỗ trợ tượng b7 đã có sẵn.
+          en: White plays Bh4, Be3 or Bxf6, settling the bishop's fate and then continuing with Nc3 and Nf3 for ordinary development. Black plays Nf6, e6 and g6, completing development and preparing to fianchetto the other bishop to support the one already on b7.
+          fr: Les Blancs jouent Bh4, Be3 ou Bxf6, réglant le sort du fou puis poursuivant par Nc3 et Nf3 pour un développement ordinaire. Les Noirs jouent Nf6, e6 et g6, achevant leur développement et préparant le fianchetto de l'autre fou pour soutenir celui déjà en b7.
+        basis:
+          by: chan
+          at: '2026-09-18'

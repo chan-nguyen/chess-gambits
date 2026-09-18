@@ -59,7 +59,9 @@ test('no route downloads an entry tree it was not asked for', async ({ page }) =
 })
 
 test('an entry is published as a static JSON file, addressed by URL', async ({ page }) => {
-  const response = await page.request.get(contentUrl('damiano-defence-refutation.json'))
+  // damiano-defence-refutation was this listed-tier example until #102 gave it a tree;
+  // benko-gambit-fianchetto-variation is kept deliberately unmapped for this test now.
+  const response = await page.request.get(contentUrl('benko-gambit-fianchetto-variation.json'))
 
   expect(response.status()).toBe(200)
   expect(response.headers()['content-type']).toContain('application/json')
@@ -70,7 +72,7 @@ test('an entry is published as a static JSON file, addressed by URL', async ({ p
 
   const entry: unknown = JSON.parse(body)
   expect(entry).toMatchObject({
-    id: 'damiano-defence-refutation',
+    id: 'benko-gambit-fianchetto-variation',
     tier: 'listed',
     tree: { kind: 'opponent' },
   })

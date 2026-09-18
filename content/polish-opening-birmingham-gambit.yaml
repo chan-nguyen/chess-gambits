@@ -1,0 +1,60 @@
+# Polish Opening: Birmingham Gambit. Frozen defining line 1.b4 c5, which ends on Black's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js: 2.bxc5 simply takes the offered pawn, since nothing of Black's recaptures on c5
+# for free, and nothing else is hanging afterwards. searchMate at 4 moves from this
+# position returns unknown, which the stopping rule treats the same as no-mate, so no
+# forced mate is claimed.
+id: polish-opening-birmingham-gambit
+name: 'Polish Opening: Birmingham Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [b4, c5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. Black meets the already-eccentric 1.b4 by throwing in a second wing pawn
+      move, but the c5 pawn is simply hanging with nothing to recapture on it, and White
+      ends up a clean pawn up with no concrete return for Black. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đáp lại 1.b4 bằng 1...c5, tấn công thẳng vào con tốt vừa đẩy lên và mời Trắng ăn nó ngay.
+    en: Black answers 1.b4 with 1...c5, striking directly at the just-advanced pawn and inviting White to take it at once.
+    fr: Les Noirs répondent à 1.b4 par 1...c5, frappant directement le pion qui vient d'avancer et invitant les Blancs à le prendre aussitôt.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt c5. Các nước khác như a3 hay Bb2 để nguyên căng thẳng chưa được giải quyết, và Đen được quyền chọn ăn lại tốt b4 hoặc đẩy tiếp theo ý mình.
+      en: White does not take the c5 pawn. Other moves such as a3 or Bb2 leave the tension unresolved, and Black gets to choose between recapturing on b4 or pushing on as planned.
+      fr: Les Blancs ne prennent pas le pion c5. D'autres coups comme a3 ou Bb2 laissent la tension non résolue, et les Noirs peuvent choisir de reprendre en b4 ou de pousser comme prévu.
+  children:
+    - ply: bxc5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay lập tức. Con tốt c5 không được quân nào của Đen bảo vệ, nên đây đơn giản chỉ là ăn một quân đang bị treo.
+        en: White takes the pawn at once. Nothing of Black's defends the c5 pawn, so this is simply taking a piece that is hanging.
+        fr: Les Blancs prennent le pion tout de suite. Rien du côté noir ne défend le pion c5, donc il s'agit simplement de prendre une pièce en prise.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng tám, Đen bảy, hơn đúng một tốt sạch. Đen chưa có gì cụ thể để bù lại, ngoài việc Trắng đã tự làm suy yếu đôi chút cấu trúc tốt cánh hậu của chính mình từ nước đi đầu tiên.
+          en: Count the pawns, eight for White, seven for Black, a clean extra pawn. Black has nothing concrete to show for it yet, beyond the fact that White has slightly weakened its own queenside pawn structure from the very first move.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, un pion net de plus. Les Noirs n'ont encore rien de concret à montrer, si ce n'est que les Blancs ont légèrement affaibli leur propre structure de pions à l'aile dame dès le premier coup.
+        plan:
+          vi: Trắng chơi Bb2, e3 và Nf3, hoàn thiện phát triển bình thường và giữ chắc con tốt thừa. Đen chơi Nf6, e5 hay Qc7, cố lấy lại con tốt hoặc xây dựng áp lực vào trung tâm và cánh hậu Trắng đã hơi suy yếu.
+          en: White plays Bb2, e3 and Nf3, completing ordinary development and holding onto the extra pawn. Black plays Nf6, e5 or Qc7, trying to win back the pawn or build pressure on the centre and White's slightly weakened queenside.
+          fr: Les Blancs jouent Bb2, e3 et Nf3, achevant un développement ordinaire et gardant le pion supplémentaire. Les Noirs jouent Nf6, e5 ou Qc7, essayant de récupérer le pion ou de construire une pression sur le centre et l'aile dame blanche légèrement affaiblie.
+        basis:
+          by: chan
+          at: '2026-09-18'

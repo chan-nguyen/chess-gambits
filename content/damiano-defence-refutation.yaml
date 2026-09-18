@@ -1,5 +1,13 @@
-# Listed tier: the entry is identified, the tree is not mapped yet. `unexplored` is what
-# makes a stopping point committable (ADR-0004); the tier is derived, never written here.
+# Damiano Defence, 3.Nxe5 refutation. Frozen defining line 1.e4 e5 2.Nf3 f6 3.Nxe5, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js: 3...Qe7 is Black's best try, and 4.Nf3 Qxe4+ 5.Be2 settles at
+# level material with White developing with tempo. 3...fxe5, the reply that gives the
+# entry its name, was checked against `tools/mate/search.ts`'s `searchMate` at the resulting
+# position (White to move) up to `withinMoves: 5`; it reports `no-mate` through 4 moves and
+# `unknown` at 5 (the node cap is reached), so no forced mate is claimed there per the
+# stopping rule — instead the line is carried out to 4.Qh5+ g6 5.Qxe5+ Qe7 6.Qxh8 Qxe4+
+# 7.Kd1, a plain, large material win for White (a rook for a pawn) with nothing hanging at
+# the final position.
 id: damiano-defence-refutation
 name: Damiano Defence, 3.Nxe5 refutation
 eco: C40
@@ -8,18 +16,151 @@ side: white
 definingLine: [e4, e5, Nf3, f6, Nxe5]
 soundness:
   value: sound
-  reviewedAt: '2026-09-16'
+  reviewedAt: '2026-09-18'
   basis:
     by: chan
-    at: '2026-09-16'
-    source: 'Long-established opening theory; 2...f6 is refuted by 3.Nxe5. No engine was consulted.'
+    at: '2026-09-18'
+    source: >-
+      Long-established opening theory. 2...f6 weakens e5 and e6 for no development, and
+      3.Nxe5 punishes it at once — the careless recapture 3...fxe5 loses heavily to
+      4.Qh5+, while even Black's best defence, 3...Qe7, only gets material back to level
+      with White holding the more comfortable, better-developed position. No engine was
+      consulted and no database was queried.
 judgement:
   by: chan
-  at: '2026-09-16'
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics. The material
+    counts at each leaf are replayed facts, not judgements.
 tree:
   annotation:
-    vi: Sau 2...f6, nước 3.Nxe5 là lời bác bỏ. Cây nước đi chưa được dựng.
-    en: After 2...f6, 3.Nxe5 is the refutation. The tree is not mapped yet.
-    fr: Après 2...f6, 3.Nxe5 est la réfutation. L'arbre n'est pas encore cartographié.
-  outcome:
-    type: unexplored
+    vi: Trắng vừa ăn tốt bằng 3.Nxe5. Đây là lời bác bỏ tiêu chuẩn cho 2...f6 — con tốt f6 vừa làm suy yếu hai ô e5 và e6 mà chẳng phát triển được quân nào, và Trắng lập tức khai thác điều đó.
+    en: White has just taken the pawn with 3.Nxe5. This is the standard refutation of 2...f6 — the f6 pawn has just weakened both e5 and e6 without developing a single piece, and White exploits that at once.
+    fr: Les Blancs viennent de prendre le pion par 3.Nxe5. C'est la réfutation standard de 2...f6 — le pion f6 vient d'affaiblir à la fois e5 et e6 sans développer la moindre pièce, et les Blancs en profitent aussitôt.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 3...Qe7 hay 3...fxe5. Mọi nước khác — chẳng hạn Nc6 hay d6 — bỏ qua hẳn con mã e5 đang treo và để Trắng đơn giản giữ nguyên con tốt vừa ăn được mà không phải trả giá gì thêm.
+      en: Black does not play 3...Qe7 or 3...fxe5. Anything else — Nc6 or d6, for instance — ignores the hanging e5 knight entirely and lets White simply keep the pawn just won without paying any further price.
+      fr: Les Noirs ne jouent pas 3...Qe7 ni 3...fxe5. Tout le reste — Nc6 ou d6, par exemple — ignore complètement le cavalier en prise en e5 et laisse les Blancs garder simplement le pion tout juste gagné sans payer de prix supplémentaire.
+  children:
+    - ply: Qe7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chơi nước phòng thủ tốt nhất, tấn công đồng thời cả mã e5 lẫn tốt e4 dọc theo cột e, buộc Trắng phải giải quyết ngay.
+        en: Black plays the best defensive try, attacking both the e5 knight and the e4 pawn along the e-file at once, forcing White to deal with it immediately.
+        fr: Les Noirs jouent le meilleur essai défensif, attaquant à la fois le cavalier e5 et le pion e4 le long de la colonne e, forçant les Blancs à réagir immédiatement.
+      children:
+        - ply: Nf3
+          annotation:
+            vi: Trắng lui mã về f3, quân duy nhất bị tấn công, để nguyên tốt e4 và chấp nhận việc Đen sẽ ăn lại nó ngay ở nước sau bằng hậu.
+            en: White retreats the knight, the piece under attack, back to f3, leaving the e4 pawn to be recaptured by Black's queen on the very next move.
+            fr: Les Blancs reculent le cavalier, la pièce attaquée, en f3, laissant le pion e4 être repris par la dame noire dès le coup suivant.
+          dismissRest:
+            reason:
+              vi: Đen không ăn tốt e4 ngay ở nước này. Các nước khác như Nc6 hay d6 để nguyên con tốt e4 trên bàn cờ và bỏ lỡ cơ hội lấy lại đúng con tốt đã mất trước đó.
+              en: Black does not take the e4 pawn right away here. Other moves such as Nc6 or d6 leave the e4 pawn sitting on the board and miss the chance to win back exactly the pawn lost earlier.
+              fr: Les Noirs ne prennent pas le pion e4 tout de suite ici. D'autres coups comme Nc6 ou d6 laissent le pion e4 sur l'échiquier et manquent l'occasion de récupérer exactement le pion perdu plus tôt.
+          children:
+            - ply: Qxe4+
+              annotation:
+                vi: Đen ăn lại tốt e4 kèm chiếu, lấy lại đúng con tốt đã mất trước đó và buộc Trắng phải chặn chiếu.
+                en: Black recaptures the e4 pawn with check, winning back exactly the pawn lost earlier and forcing White to block the check.
+                fr: Les Noirs reprennent le pion e4 avec échec, récupérant exactement le pion perdu plus tôt et forçant les Blancs à bloquer l'échec.
+              children:
+                - ply: Be2
+                  annotation:
+                    vi: Trắng chặn chiếu bằng tượng, đưa quân này vào việc luôn với tempo trong khi giải quyết tình huống chiếu tướng.
+                    en: White blocks the check with the bishop, developing that piece with tempo while dealing with the check at the same time.
+                    fr: Les Blancs bloquent l'échec avec le fou, développant cette pièce avec gain de temps tout en réglant l'échec.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân, mỗi bên còn bảy tốt, vật chất hoàn toàn cân bằng sau tất cả các cuộc đổi chác. Trắng đã đưa được tượng ra với tempo trong khi chặn chiếu, còn hậu Đen thì đã phải đi lại hai lần để lấy về đúng con tốt đã mất.
+                      en: Count the material, seven pawns each, fully level after all the trading. White has managed to develop the bishop with tempo while blocking the check, while Black's queen has had to move twice just to win back the one pawn that was lost.
+                      fr: Comptez le matériel, sept pions de chaque côté, parfaitement égal après tous les échanges. Les Blancs ont réussi à développer le fou avec gain de temps en bloquant l'échec, tandis que la dame noire a dû se déplacer deux fois pour ne récupérer que le seul pion perdu.
+                    plan:
+                      vi: Trắng chơi Nc3, O-O và d4, tiếp tục phát triển nhanh và tận dụng việc hậu Đen đã ra sớm để gây sức ép bằng các nước tấn công tempo. Đen chơi Qe7 hay Qc6, rút hậu về nơi an toàn rồi hoàn thiện phát triển bằng Nf6 và Be7.
+                      en: White plays Nc3, castles and follows with d4, continuing rapid development and using Black's early queen sortie to gain tempo with attacking moves. Black plays Qe7 or Qc6, retreating the queen to safety and completing development with Nf6 and Be7.
+                      fr: Les Blancs jouent Nc3, roquent puis d4, poursuivant un développement rapide et profitant de la sortie précoce de la dame noire pour gagner du temps avec des coups d'attaque. Les Noirs jouent Qe7 ou Qc6, retirant la dame en sécurité puis achevant leur développement par Nf6 et Be7.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
+    - ply: fxe5
+      replyQuality: blunder
+      frequency: occasional
+      annotation:
+        vi: Đen ăn lại mã bằng tốt, nước đi trông tự nhiên nhất nhưng lại chính là cái tên gọi nên lời bác bỏ này — nó mở toang cột h và đường chéo lên thẳng vua Đen.
+        en: Black recaptures the knight with the pawn, the most natural-looking reply and exactly the one this refutation is named for — it throws open the h-file and a diagonal running straight at Black's king.
+        fr: Les Noirs reprennent le cavalier avec le pion, la réponse qui semble la plus naturelle et exactement celle qui donne son nom à cette réfutation — elle ouvre en grand la colonne h et une diagonale filant droit sur le roi noir.
+      children:
+        - ply: Qh5+
+          annotation:
+            vi: Trắng chiếu ngay bằng hậu từ h5, tận dụng cột h vừa mở và đường chéo h5-e8 để gây sức ép tức thời lên vua Đen.
+            en: White gives check at once with the queen from h5, using the newly opened h-file and the h5-e8 diagonal to put immediate pressure on Black's king.
+            fr: Les Blancs donnent aussitôt l'échec avec la dame depuis h5, utilisant la colonne h nouvellement ouverte et la diagonale h5-e8 pour mettre une pression immédiate sur le roi noir.
+          dismissRest:
+            reason:
+              vi: Đen không chặn chiếu bằng 4...g6. Đi vua ra — chẳng hạn Ke7 — cũng giải quyết được chiếu tướng nhưng khiến vua càng dấn sâu hơn vào giữa bàn cờ, còn tệ hơn cả việc để hậu Trắng ăn nốt tốt e5 sau khi chặn bằng tốt.
+              en: Black does not block the check with 4...g6. Moving the king instead — Ke7, for instance — also answers the check but walks the king even further into the middle of the board, worse still than letting White's queen take the e5 pawn after the pawn block.
+              fr: Les Noirs ne bloquent pas l'échec par 4...g6. Déplacer le roi à la place — Ke7, par exemple — répond aussi à l'échec mais l'enfonce encore davantage au milieu de l'échiquier, pire encore que de laisser la dame blanche prendre le pion e5 après le blocage par le pion.
+          children:
+            - ply: g6
+              annotation:
+                vi: Đen chặn chiếu bằng tốt g, cách tự nhiên nhất, nhưng con tốt e5 vừa ăn được lại không có ai bảo vệ.
+                en: Black blocks the check with the g-pawn, the most natural way, but the e5 pawn just captured is left with nobody defending it.
+                fr: Les Noirs bloquent l'échec avec le pion g, la façon la plus naturelle, mais le pion e5 tout juste pris se retrouve sans personne pour le défendre.
+              children:
+                - ply: Qxe5+
+                  annotation:
+                    vi: Trắng ăn lại tốt e5 kèm chiếu luôn, đồng thời con hậu này còn đang nhìn thẳng vào xe h8 dọc theo hàng ngang thứ năm và đường chéo.
+                    en: White recaptures the e5 pawn with check as well, and that same queen is now also looking straight down the fifth rank and a diagonal at the rook on h8.
+                    fr: Les Blancs reprennent aussi le pion e5 avec échec, et cette même dame regarde désormais aussi tout droit, le long de la cinquième rangée et d'une diagonale, la tour en h8.
+                  dismissRest:
+                    reason:
+                      vi: Đen không chặn chiếu bằng hậu. Đi vua ra ngoài như Kf7 hay chặn bằng quân khác như Be7 hoặc Ne7 cũng giải quyết được chiếu tướng nhưng vẫn để xe h8 không được bảo vệ, dẫn đến cùng kết quả mất xe.
+                      en: Black does not block the check with the queen. Moving the king out with Kf7, or blocking with another piece such as Be7 or Ne7, also answers the check but still leaves the rook on h8 undefended, leading to the same result of losing it.
+                      fr: Les Noirs ne bloquent pas l'échec avec la dame. Déplacer le roi par Kf7, ou bloquer avec une autre pièce comme Be7 ou Ne7, répond aussi à l'échec mais laisse quand même la tour h8 sans défense, menant au même résultat de la perdre.
+                  children:
+                    - ply: Qe7
+                      annotation:
+                        vi: Đen chặn chiếu bằng hậu, cách duy nhất giữ được vua an toàn ngay lúc này, nhưng làm vậy lại bỏ mặc xe h8 không ai bảo vệ.
+                        en: Black blocks the check with the queen, the only way to keep the king safe right now, but doing so leaves the rook on h8 with nobody defending it.
+                        fr: Les Noirs bloquent l'échec avec la dame, la seule façon de garder le roi en sécurité pour l'instant, mais cela laisse la tour en h8 sans personne pour la défendre.
+                      children:
+                        - ply: Qxh8
+                          annotation:
+                            vi: Trắng ăn luôn con xe h8 đang bị bỏ trống, thu về một khoản vật chất lớn để đổi lấy con tốt đã bỏ ra từ đầu.
+                            en: White simply takes the undefended rook on h8, banking a large material haul in exchange for the one pawn given up at the very start.
+                            fr: Les Blancs prennent simplement la tour h8 sans défense, empochant un gain matériel important en échange du seul pion cédé au tout début.
+                          dismissRest:
+                            reason:
+                              vi: Đen không ăn tốt e4 ngay ở nước này. Các nước khác — chẳng hạn phát triển bằng Nf6 hay Bg7 — để nguyên con tốt e4 trên bàn cờ và bỏ lỡ cơ hội gỡ lại chút vật chất trước khi Trắng kịp củng cố.
+                              en: Black does not take the e4 pawn right away here. Other moves — developing with Nf6 or Bg7, for instance — leave the e4 pawn sitting on the board and miss the chance to claw back a little material before White can consolidate.
+                              fr: Les Noirs ne prennent pas le pion e4 tout de suite ici. D'autres coups — développer par Nf6 ou Bg7, par exemple — laissent le pion e4 sur l'échiquier et manquent l'occasion de regrapper un peu de matériel avant que les Blancs ne consolident.
+                          children:
+                            - ply: Qxe4+
+                              annotation:
+                                vi: Đen tranh thủ ăn lại tốt e4 kèm chiếu, gỡ lại một phần vật chất trước khi Trắng kịp củng cố.
+                                en: Black snatches back the e4 pawn with check, clawing back a little material before White can consolidate.
+                                fr: Les Noirs reprennent au passage le pion e4 avec échec, regrappant un peu de matériel avant que les Blancs ne consolident.
+                              children:
+                                - ply: Kd1
+                                  annotation:
+                                    vi: Trắng đi vua tránh chiếu, quân duy nhất còn lại có thể chặn chiếu là tượng f1 nhưng đi vua đơn giản và an toàn hơn ở đây.
+                                    en: White steps the king out of check — the only piece that could otherwise block is the bishop on f1, but moving the king is simpler and just as safe here.
+                                    fr: Les Blancs déplacent le roi hors de l'échec — la seule pièce qui pourrait sinon bloquer est le fou en f1, mais déplacer le roi est plus simple et tout aussi sûr ici.
+                                  outcome:
+                                    type: position
+                                    evaluation:
+                                      vi: Đếm quân, Trắng còn bảy tốt và gần như đủ bộ quân nặng-nhẹ, Đen còn sáu tốt và đã mất nguyên một xe đổi lấy vài con tốt. Tổng vật chất nghiêng hẳn về phía Trắng, tương đương khoảng một quân nhẹ, dù Đen đã cố gắng ăn lại vài tốt để giảm bớt thiệt hại.
+                                      en: Count the material, White has seven pawns and nearly a full set of pieces, Black has six pawns and has lost an entire rook for a couple of pawns. The total material clearly favours White, by roughly a minor piece's worth, even after Black's attempt to claw back some pawns.
+                                      fr: Comptez le matériel, les Blancs ont sept pions et presque toutes leurs pièces, les Noirs ont six pions et ont perdu une tour entière contre deux pions. Le total matériel penche nettement en faveur des Blancs, d'environ une pièce mineure, même après la tentative noire de regrapper des pions.
+                                    plan:
+                                      vi: Trắng chơi Nc3, Be3 và O-O-O, hoàn thiện phát triển an toàn và quy đổi ưu thế vật chất lớn thành thắng lợi. Đen chơi Nf6, Bg7 hay Rb8, cố tận dụng đôi chút hoạt động của hậu và cặp tượng để tạo ra vấn đề chiến thuật trước khi tàn cuộc đến gần.
+                                      en: White plays Nc3, Be3 and long castles, completing safe development and converting the large material edge into a win. Black plays Nf6, Bg7 or Rb8, trying to use what little queen activity and bishop pair remain to create tactical problems before the endgame gets close.
+                                      fr: Les Blancs jouent Nc3, Be3 et roquent long, achevant un développement sûr et convertissant le large avantage matériel en victoire. Les Noirs jouent Nf6, Bg7 ou Rb8, essayant d'utiliser le peu d'activité de la dame et la paire de fous restante pour créer des problèmes tactiques avant que la finale n'approche.
+                                    basis:
+                                      by: chan
+                                      at: '2026-09-18'

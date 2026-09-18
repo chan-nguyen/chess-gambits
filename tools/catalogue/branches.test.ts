@@ -175,9 +175,38 @@ describe('the catalogue this repository ships', () => {
     ['vienna-gambit-with-max-lange-defense', 2],
     ['vienna-game-fyfe-gambit', 3],
     ['zukertort-opening-herrstrom-gambit', 1],
+    // #102: 24 family heads plus damiano-defence-refutation's tree, which turned that
+    // entry from Listed to Taught (it is not part of the count above, since it had no
+    // authored tree until now).
+    ['alekhine-defense-krejcik-variation-krejcik-gambit', 1],
+    ['benko-gambit-accepted', 1],
+    ['benko-gambit-declined-bishop-attack', 1],
+    ['benoni-defense-benoni-gambit-accepted', 1],
+    ['blackmar-diemer-gambit-declined-brombacher-countergambit', 1],
+    ['blumenfeld-countergambit', 1],
+    ['borg-defense-borg-gambit', 1],
+    ['center-game-halasz-mcdonnell-gambit', 1],
+    ['damiano-defence-refutation', 2],
+    ['danish-gambit-accepted', 1],
+    ['elephant-gambit', 1],
+    ['englund-gambit-declined', 1],
+    ['four-knights-game-halloween-gambit', 1],
+    ['hungarian-opening-van-kuijk-gambit', 1],
+    ['kings-indian-defense-samisch-variation-samisch-gambit', 1],
+    ['latvian-gambit-accepted', 1],
+    ['modern-defense-lizard-defense-pirc-diemer-gambit', 1],
+    ['nimzo-indian-defense-dilworth-gambit', 1],
+    ['owen-defense-naselwaus-gambit', 1],
+    ['petrovs-defense-stafford-gambit', 1],
+    ['polish-opening-birmingham-gambit', 1],
+    ['ponziani-opening-ponziani-countergambit', 1],
+    ['reti-opening-zilbermints-gambit', 1],
+    ['semi-slav-defense-marshall-gambit', 1],
+    ['slav-defense-diemer-gambit', 1],
+    ['tarrasch-defense-schara-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored forty-four have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored sixty-nine have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

@@ -1,0 +1,62 @@
+# King's Indian Defense: Sämisch Variation, Sämisch Gambit. Frozen defining line 1.d4 Nf6
+# 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 c5, which ends on Black's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js: 7.Nge2 develops
+# the last minor piece toward d5 while leaving the central tension on c5/d4 alone for now,
+# and nothing is hanging afterwards. searchMate at 4 moves from this position returns
+# unknown, which the stopping rule treats the same as no-mate, so no forced mate is
+# claimed.
+id: kings-indian-defense-samisch-variation-samisch-gambit
+name: "King's Indian Defense: Sämisch Variation, Sämisch Gambit"
+eco: E81
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, g6, Nc3, Bg7, e4, d6, f3, 'O-O', Be3, c5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. This is one of
+      the most respected systems against the King's Indian, and 6...c5 is Black's standard,
+      well-tested way to strike back at the centre rather than a genuine one-sided pawn
+      sacrifice — the tension it creates is met by ordinary means. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 6...c5, tấn công thẳng vào trung tâm Trắng theo đúng kế hoạch tiêu chuẩn chống lại hệ Sämisch, tạo ra căng thẳng ở c5 và d4 mà Trắng phải giải quyết.
+    en: Black plays 6...c5, striking directly at White's centre in the standard plan against the Sämisch setup, creating tension on c5 and d4 that White has to resolve.
+    fr: Les Noirs jouent 6...c5, frappant directement le centre blanc selon le plan standard contre le dispositif Sämisch, créant une tension sur c5 et d4 que les Blancs doivent résoudre.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 7.Nge2. Các nước khác như d5 đóng cửa trung tâm ngay hay Qd2 giải quyết theo hướng khác, và mỗi lựa chọn dẫn đến một cấu trúc trung tâm khác nhau cho phần còn lại của ván đấu.
+      en: White does not play 7.Nge2. Other moves such as d5, closing the centre at once, or Qd2, handling it differently, each lead to a different central structure for the rest of the game.
+      fr: Les Blancs ne jouent pas 7.Nge2. D'autres coups comme d5, fermant aussitôt le centre, ou Qd2, réglant la question autrement, mènent chacun à une structure centrale différente pour le reste de la partie.
+  children:
+    - ply: Nge2
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng đưa nốt mã còn lại ra e2, chuẩn bị nhảy lên d5 hoặc chi viện cho trung tâm, tạm thời để nguyên căng thẳng c5-d4 chưa giải quyết.
+        en: White brings the last minor piece out to e2, preparing to jump to d5 or reinforce the centre, leaving the c5-d4 tension temporarily unresolved.
+        fr: Les Blancs amènent la dernière pièce mineure en e2, se préparant à bondir en d5 ou à renforcer le centre, laissant temporairement non résolue la tension c5-d4.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, mỗi bên còn đủ tám quân, vật chất hoàn toàn cân bằng vì chưa có cuộc đổi quân nào xảy ra. Cả hai bên đều đã hoàn thiện phần lớn phát triển và căng thẳng ở c5-d4 vẫn còn nguyên, chưa nghiêng về phía nào.
+          en: Count the pawns, eight apiece, material is fully level since no exchange has happened yet. Both sides have mostly finished developing and the tension on c5-d4 is still there, not yet resolved either way.
+          fr: Comptez les pions, huit de chaque côté, le matériel est parfaitement égal puisqu'aucun échange n'a encore eu lieu. Les deux camps ont pratiquement terminé leur développement et la tension sur c5-d4 demeure entière, sans être encore résolue.
+        plan:
+          vi: Trắng chơi d5 đóng trung tâm hoặc dxc5 mở nó ra, rồi tiếp tục Nc1-d3 hay Qd2 để chuẩn bị nhập thành và tấn công cánh vua. Đen chơi Nc6, a6 hay Rb8, chuẩn bị phản công cánh hậu bằng b5 để khai thác việc Trắng đã bỏ nhập thành ngắn theo lối cổ điển.
+          en: White plays d5 to close the centre or dxc5 to open it up, then continues with Nc1-d3 or Qd2 to prepare castling and a kingside attack. Black plays Nc6, a6 or Rb8, preparing a queenside counterattack with b5 to exploit White having given up on a normal kingside castle.
+          fr: Les Blancs jouent d5 pour fermer le centre ou dxc5 pour l'ouvrir, puis poursuivent par Nc1-d3 ou Qd2 pour préparer le roque et une attaque à l'aile roi. Les Noirs jouent Nc6, a6 ou Rb8, préparant une contre-attaque à l'aile dame par b5 pour exploiter le fait que les Blancs ont renoncé au roque classique.
+        basis:
+          by: chan
+          at: '2026-09-18'
