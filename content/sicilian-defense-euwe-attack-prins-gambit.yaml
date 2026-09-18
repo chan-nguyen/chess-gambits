@@ -1,0 +1,81 @@
+# Sicilian Defense: Euwe Attack, Prins Gambit. Frozen defining line 1.e4 c5 2.b3 d5 3.Bb2,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-euwe-attack-prins-gambit
+name: 'Sicilian Defense: Euwe Attack, Prins Gambit'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b3, d5, Bb2]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. After 3...dxe4 the natural try to win the pawn back
+      with the queen runs into ...Nf6 already guarding e4, so White has to accept the pawn
+      deficit; the long diagonal from b2 has not produced a threat by the point this entry
+      stops looking.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng fianchetto tượng lên b2 nhắm vào tốt e4 của chính mình và cả đường chéo dài, mời Đen ăn tốt e4 để đổi lấy áp lực lâu dài trên đường chéo a1-h8. Đây là Prins Gambit trong Euwe Attack của Khai cuộc Sicilia.
+    en: White fianchettoes the bishop to b2, aiming down the long diagonal past its own e4 pawn, and invites Black to take e4 in exchange for long-term pressure on the a1-h8 diagonal. This is the Prins Gambit inside the Sicilian Euwe Attack.
+    fr: Les Blancs fianchettent le fou en b2, visant le long de la grande diagonale au-delà de leur propre pion e4, et invitent les Noirs à prendre e4 contre une pression durable sur la diagonale a1-h8. C'est le Gambit Prins à l'intérieur de l'Attaque Euwe de la Sicilienne.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4. Mọi nước khác (phát triển mã, đẩy tốt cánh vua, đưa hậu ra) đều bỏ lỡ con tốt đang bị bỏ ngỏ và để Trắng tiếp tục kế hoạch fianchetto mà không phải trả giá gì, tức là chọn một hướng chơi khác chứ không kiểm tra gambit này.
+      en: Black does not take the e4 pawn. Every other move (developing a knight, pushing a kingside pawn, bringing the queen out) passes up the pawn that is hanging and lets White carry on with the fianchetto plan for free, which is choosing a different kind of game rather than testing this gambit.
+      fr: Les Noirs ne prennent pas le pion e4. Tout autre coup (développer un cavalier, avancer un pion de l'aile roi, sortir la dame) laisse passer le pion en prise et permet aux Blancs de poursuivre leur plan de fianchetto sans rien payer, ce qui revient à choisir un autre type de partie plutôt qu'à tester ce gambit.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt tự do. Đây là cách kiểm tra thật sự của gambit này.
+        en: Black simply takes the free pawn — the real test of the gambit.
+        fr: Les Noirs prennent tout simplement le pion, libre. C'est le vrai test du gambit.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng nhắm lại vào tốt e4 bằng một nước phát triển, dọa ăn lại. Đây là cách thử tự nhiên nhất để đòi lại con tốt.
+            en: White attacks e4 again with a developing move, threatening to win it back. This is the most natural try to recover the pawn.
+            fr: Les Blancs attaquent de nouveau e4 par un coup de développement, menaçant de le reprendre. C'est l'essai le plus naturel pour récupérer le pion.
+          dismissRest:
+            reason:
+              vi: Đen không chơi ...Nf6. Nước ...Nxe4 ăn tốt thì Nxe4 đổi ngang, trả lại con tốt vừa ăn được; các nước phát triển khác (Bd7, Be6, Nc6, Na6, các nước hậu, v.v.) đều hợp lý nhưng không bảo vệ được con tốt e4 vừa ăn, nên chúng không kiểm tra được điều thật sự đang diễn ra ở đây.
+              en: Black does not play ...Nf6. ...Nxe4 trades the pawn straight back through an even knight exchange; the other developing moves (...Bd7, ...Be6, ...Nc6, ...Na6, the various queen moves, and so on) are reasonable but do not defend the e4 pawn just won, so they do not test what is really being decided here.
+              fr: Les Noirs ne jouent pas ...Nf6. ...Nxe4 rend aussitôt le pion par un échange de cavaliers à égalité ; les autres coups de développement (...Bd7, ...Be6, ...Nc6, ...Na6, les divers coups de dame, etc.) sont raisonnables mais ne défendent pas le pion e4 tout juste gagné, ils ne testent donc pas ce qui se joue réellement ici.
+          children:
+            - ply: Nf6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã và đồng thời bảo vệ luôn con tốt e4 vừa ăn. Một nước làm hai việc.
+                en: Black develops the knight and, in the same move, defends the e4 pawn just captured. One move doing two jobs.
+                fr: Les Noirs développent le cavalier et défendent du même coup le pion e4 tout juste pris. Un coup, deux fonctions.
+              children:
+                - ply: g3
+                  annotation:
+                    vi: Trắng từ bỏ ý định đòi lại con tốt ngay lập tức và chuyển sang hoàn thiện fianchetto, chấp nhận kém một tốt để đổi lấy áp lực đường chéo lâu dài.
+                    en: White gives up trying to win the pawn back immediately and switches to finishing the fianchetto, accepting the pawn deficit in exchange for long-term diagonal pressure.
+                    fr: Les Blancs renoncent à reprendre le pion tout de suite et achèvent leur fianchetto, acceptant le déficit de pion contre une pression diagonale à long terme.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đen hơn đúng một tốt sạch và chưa phải trả lại gì — con tốt e4 đã ăn từ nước ba và mọi nỗ lực đòi lại bằng chiến thuật đều thất bại trước mã f6. Đổi lại, tượng b2 của Trắng vẫn còn nguyên trên đường chéo dài, nhưng đường chéo đó hiện chưa nhắm được vào bất kỳ mục tiêu cụ thể nào — không có tốt g7 nào đã yếu đi, không có cột hay đường chéo nào khác đang mở nhắm vào vua Đen, và Đen còn dẫn trước một nhịp phát triển với mã f6 đã ra trong khi Trắng mới đi được b3, Bb2, Nc3 và g3, toàn những nước chuẩn bị chứ chưa quân nào thật sự hoàn thành nhiệm vụ.
+                      en: Black is a clean pawn up with nothing yet to give back — the e4 pawn taken on move three, and every tactical attempt to win it back failed against the f6 knight. In return, White's bishop on b2 is still on the long diagonal, but that diagonal is not yet aimed at any concrete target — no weakened g7 pawn, no other open file or diagonal bearing on the black king, and Black is even a tempo ahead in development, with the f6 knight out while White has only played b3, Bb2, Nc3 and g3 — all preparation, nothing that has actually finished a job yet.
+                      fr: Les Noirs ont un pion net d'avance et rien à rendre pour l'instant — le pion e4 pris au troisième coup, et chaque tentative tactique de le reprendre a échoué face au cavalier f6. En échange, le fou blanc en b2 reste sur la grande diagonale, mais celle-ci ne vise encore aucune cible concrète — pas de pion g7 affaibli, aucune autre colonne ou diagonale ouverte pesant sur le roi noir, et les Noirs ont même un temps d'avance en développement, le cavalier f6 étant sorti tandis que les Blancs n'ont joué que b3, Bb2, Nc3 et g3 — de la préparation, rien qui ait vraiment achevé sa tâche.
+                    plan:
+                      vi: Trắng chơi Bg2, Nge2, nhập thành và cố dùng đường chéo dài cộng cột e nửa mở để gây sức ép, chấp nhận đang chơi bù một tốt chứ không có đòn cụ thể ngay. Đen chơi e6 hoặc g6, phát triển tượng, nhập thành và cố đổi bớt quân để con tốt thừa có ý nghĩa hơn về tàn cuộc, tránh mở cờ quá sớm trong khi tượng b2 vẫn còn đang nhắm vào mình.
+                      en: White plays Bg2, Nge2, castles and tries to use the long diagonal together with the half-open e-file for pressure, essentially playing a game down a pawn rather than having a concrete blow ready. Black plays ...e6 or ...g6, develops the bishop, castles and looks to trade pieces so the extra pawn matters more in an endgame, avoiding opening the position too soon while the b2 bishop is still aimed that way.
+                      fr: Les Blancs jouent Bg2, Nge2, roquent et tentent d'exploiter la grande diagonale avec la colonne e semi-ouverte pour faire pression, jouant en somme une partie avec un pion de moins sans coup décisif immédiat. Les Noirs jouent ...e6 ou ...g6, développent le fou, roquent et cherchent à échanger des pièces pour que le pion supplémentaire compte davantage en finale, en évitant d'ouvrir la position trop tôt tant que le fou b2 reste braqué dans leur direction.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

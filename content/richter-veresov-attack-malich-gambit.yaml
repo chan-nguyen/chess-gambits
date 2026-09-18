@@ -1,0 +1,94 @@
+# Richter-Veresov Attack: Malich Gambit. Frozen defining line 1.d4 Nf6 2.Nc3 d5 3.Bg5 c5
+# 4.Bxf6 gxf6 5.e4 dxe4 6.d5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+#
+# One branch below (3...Qb6) resolves plainly rather than at unexplored (#107): material and
+# structure pull in opposite directions there (Black's extra pawn against permanently doubled
+# f-pawns), and the honest leaf names both rather than manufacturing a verdict for either side.
+# The other branch (3...Qxd5) is a genuine, fully resolved tactical trap and is taught as one.
+id: richter-veresov-attack-malich-gambit
+name: 'Richter-Veresov Attack: Malich Gambit'
+eco: D01
+category: gambit
+side: white
+definingLine: [d4, Nf6, Nc3, d5, Bg5, c5, Bxf6, gxf6, e4, dxe4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. Black's kingside pawns are permanently doubled after
+      4...gxf6, which is real and lasting damage, but Black is also up material and the only
+      pawn actually hanging (on d5) is defended by the c3 knight rather than free — so the
+      compensation question is real rather than settled either way at this depth.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đẩy tốt lên d5, con tốt cuối cùng của chuỗi thí quân bắt đầu từ Bxf6 — Đen đã bị chồng tốt f vĩnh viễn, nhưng hiện đang hơn quân. Đây là Malich Gambit trong Richter-Veresov Attack.
+    en: White has just pushed the pawn to d5, the last move of the sequence that began with Bxf6 — Black has permanently doubled f-pawns but is currently up material. This is the Malich Gambit inside the Richter-Veresov Attack.
+    fr: Les Blancs viennent de pousser le pion en d5, dernier coup de la séquence entamée par Bxf6 — les Noirs ont des pions f doublés de façon permanente mais sont pour l'instant en avance matérielle. C'est le Gambit Malich à l'intérieur de l'Attaque Richter-Veresov.
+  dismissRest:
+    reason:
+      vi: Đen không đưa hậu ra b6 và cũng không ăn ở d5. Các nước phát triển khác (Bg7, Nd7, Nc6, Na6, các nước tượng của tượng c8, hay các nước tốt như a6, e6, e5, f5, c4, e3) đều hợp lý và giữ được phần vật chất đang có, nhưng không kiểm tra hai câu hỏi cụ thể mà mục này xem xét — liệu con tốt d5 có ăn được an toàn hay không, và liệu áp lực lên b2 có đáng theo đuổi hay không — nên chúng không được xét riêng.
+      en: Black neither brings the queen to b6 nor takes on d5. The other developing moves (...Bg7, ...Nd7, ...Nc6, ...Na6, moves of the c8 bishop, or pawn moves such as ...a6, ...e6, ...e5, ...f5, ...c4, ...e3) are all reasonable and keep the material already in hand, but they do not test the two specific questions this entry looks at — whether the d5 pawn can be captured safely, and whether pressure on b2 is worth chasing — so they are not examined separately.
+      fr: Les Noirs n'amènent pas la dame en b6 et ne prennent pas non plus en d5. Les autres coups de développement (...Bg7, ...Nd7, ...Nc6, ...Na6, les coups du fou c8, ou des coups de pion comme ...a6, ...e6, ...e5, ...f5, ...c4, ...e3) sont tous raisonnables et conservent le matériel déjà en poche, mais ils ne testent pas les deux questions précises examinées ici — si le pion d5 peut être capturé sans risque, et si la pression sur b2 vaut la peine d'être poursuivie — ils ne sont donc pas examinés séparément.
+  children:
+    - ply: Qxd5
+      replyQuality: blunder
+      frequency: occasional
+      annotation:
+        vi: Đen ăn con tốt d5 bằng hậu, có vẻ như ăn không vì chỉ có hậu mới với tới ô đó. Nhưng đây chính là cái bẫy của cả biến — mã c3 của Trắng cũng đang nhìn thẳng vào d5.
+        en: Black takes the d5 pawn with the queen, which looks like a free pawn since the queen is the only piece that reaches that square. But this is exactly the trap in this whole line — White's knight on c3 is looking straight at d5 too.
+        fr: Les Noirs prennent le pion d5 de la dame, ce qui ressemble à un pion gratuit puisque la dame est la seule pièce à atteindre cette case. Mais c'est exactement le piège de toute cette ligne — le cavalier c3 blanc regarde lui aussi directement d5.
+      children:
+        - ply: Nxd5
+          annotation:
+            vi: Mã ăn hậu. Đen đã đổi cả con hậu để lấy một con tốt.
+            en: The knight takes the queen. Black has just traded an entire queen for one pawn.
+            fr: Le cavalier prend la dame. Les Noirs viennent d'échanger une dame entière contre un pion.
+          outcome:
+            type: position
+            evaluation:
+              vi: Trắng hơn hẳn một hậu, chỉ mất lại có một tốt — một sự chênh lệch vật chất áp đảo và không cần bàn cãi thêm. Đen còn cấu trúc tốt f chồng và một hậu đã mất hoàn toàn, không có bất kỳ điều gì bù lại được cho mất mát này ở bất kỳ giai đoạn nào của ván cờ.
+              en: White is up a whole queen for a single pawn — an overwhelming material gap that needs no further discussion. Black is left with doubled f-pawns and a queen that is simply gone, with nothing at any stage of the game that could make up for a loss this size.
+              fr: Les Blancs ont une dame entière d'avance pour un seul pion — un écart matériel écrasant qui ne nécessite pas plus de discussion. Il reste aux Noirs des pions f doublés et une dame purement et simplement disparue, sans rien, à aucun stade de la partie, pouvant compenser une perte de cette ampleur.
+            plan:
+              vi: Trắng chỉ cần đổi quân và tiến tới tàn cuộc, không cần kế hoạch cụ thể nào khi đã hơn cả một hậu. Đen không còn cách nào để cứu vãn ván cờ bằng lối chơi thông thường.
+              en: White simply trades pieces and heads for an endgame, with no need for a specific plan once a whole queen ahead. Black has no way to save the game through ordinary play.
+              fr: Les Blancs se contentent d'échanger les pièces et de se diriger vers une finale, sans besoin de plan particulier avec une dame entière d'avance. Les Noirs n'ont aucun moyen de sauver la partie par un jeu ordinaire.
+            basis:
+              by: chan
+              at: '2026-09-18'
+    - ply: Qb6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen bỏ qua con tốt d5 và thay vào đó gây áp lực lên tốt b2 cùng đường chéo a7-g1, một cách chơi thận trọng hơn nhiều so với việc ăn tốt.
+        en: Black leaves the d5 pawn alone and instead presses on the b2 pawn and the a7-g1 diagonal, a far more careful way to play than grabbing the pawn.
+        fr: Les Noirs laissent le pion d5 tranquille et font au contraire pression sur le pion b2 et la diagonale a7-g1, une façon de jouer bien plus prudente que de prendre le pion.
+      children:
+        - ply: Rb1
+          annotation:
+            vi: Trắng đưa xe sang b1 để bảo vệ tốt b2 — con hậu d1 không làm được việc này vì chính tốt c2 đang chắn đường. Cái giá là quyền nhập thành dài không còn nữa, nhưng con tốt được giữ lại.
+            en: White brings the rook to b1 to defend the b2 pawn — the queen on d1 cannot do this job, since White's own c2 pawn blocks the rank. The price is giving up the right to castle long, but the pawn is held.
+            fr: Les Blancs amènent la tour en b1 pour défendre le pion b2 — la dame en d1 ne peut pas s'en charger, le propre pion c2 des Blancs bloquant la rangée. Le prix est l'abandon du droit au grand roque, mais le pion est tenu.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn đúng một tốt — con tốt b2 đã được bảo vệ bằng xe nên không mất thêm gì, và số quân trên bàn dừng lại ở mức Đen hơn một tốt kể từ chuỗi đổi quân ở Bxf6. Nhưng con tốt ấy đi kèm một cái giá thật — cặp tốt f6-f7 của Đen bị chồng vĩnh viễn, không tốt e hay tốt g nào có thể đỡ lại chúng, và con tốt d5 tiến xa của Trắng vẫn đứng nguyên, được mã c3 hậu thuẫn, chiếm không gian ngay giữa bàn cờ. Đổi lại, Trắng cũng trả giá bằng quyền nhập thành dài, vì chính con xe vừa dùng để giữ tốt b2 là con xe cần cho nước ấy. Một tốt thừa đổi lấy một điểm yếu cấu trúc vĩnh viễn cộng với việc nhường không gian trung tâm và một quyền nhập thành — các yếu tố này kéo theo nhiều hướng khác nhau, và ở mức hiểu biết thông thường thì chúng cân bằng nhau chứ không nghiêng hẳn về bên nào.
+              en: Black is a clean pawn up — the b2 pawn is now defended by the rook so nothing more is lost, and the material count settles at Black a pawn ahead since the Bxf6 exchange. But that pawn comes with a real price — Black's f6-f7 pawns are permanently doubled, with no e- or g-pawn left that could ever support them, and White's advanced d5 pawn is still sitting there, backed by the c3 knight, holding real space in the middle of the board. In return, White has also paid with the right to castle long, since the very rook that just held b2 is the one that move needed. An extra pawn traded for a permanent structural weakness plus conceded central space and a castling right pulls in several directions at once, and at an ordinary level of understanding they roughly balance rather than clearly favouring either side.
+              fr: Les Noirs ont un pion net d'avance — le pion b2 est désormais défendu par la tour donc rien de plus n'est perdu, et le compte matériel s'arrête à un pion d'avance pour les Noirs depuis l'échange de Bxf6. Mais ce pion a un vrai prix — les pions f6-f7 noirs sont doublés de façon permanente, sans pion e ni g pour jamais les soutenir, et le pion d5 avancé blanc reste bien en place, soutenu par le cavalier c3, tenant un espace réel au centre de l'échiquier. En retour, les Blancs ont aussi payé de leur droit au grand roque, la tour qui vient de tenir b2 étant justement celle dont ce roque aurait besoin. Un pion supplémentaire échangé contre une faiblesse structurelle permanente plus de l'espace central concédé et un droit de roque tire dans plusieurs directions à la fois, et à un niveau de compréhension ordinaire, ces facteurs s'équilibrent à peu près plutôt que de favoriser clairement l'un des deux camps.
+            plan:
+              vi: Trắng chơi Ngf3 hoặc Ne2, nhập thành ngắn và cố dùng tốt d5 cùng cột d để gây sức ép, xem cặp tốt f chồng của Đen là mục tiêu lâu dài hơn là điều cần khai thác ngay. Đen chơi Bg7 hoặc Nd7, nhập thành nếu còn an toàn hoặc đi vua bằng tay, và tìm cách đổi bớt quân nặng để con tốt thừa có ý nghĩa hơn về tàn cuộc, đồng thời tránh mở cờ quá sớm khi cấu trúc tốt của mình còn yếu.
+              en: White plays Ngf3 or Ne2, castles short and tries to use the d5 pawn and the d-file for pressure, treating Black's doubled f-pawns as a long-term target rather than something to cash in on right away. Black plays ...Bg7 or ...Nd7, castles if it is still safe or walks the king out by hand, and looks to trade off major pieces so the extra pawn matters more in an endgame, while avoiding opening the position too soon while the pawn structure is still fragile.
+              fr: Les Blancs jouent Ngf3 ou Ne2, roquent côté roi et tentent d'utiliser le pion d5 et la colonne d pour faire pression, traitant les pions f doublés noirs comme une cible à long terme plutôt qu'à exploiter immédiatement. Les Noirs jouent ...Bg7 ou ...Nd7, roquent si c'est encore sûr ou sortent le roi à la main, et cherchent à échanger les pièces lourdes pour que le pion supplémentaire compte davantage en finale, tout en évitant d'ouvrir la position trop tôt tant que leur structure de pions reste fragile.
+            basis:
+              by: chan
+              at: '2026-09-18'

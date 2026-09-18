@@ -1,0 +1,82 @@
+# Sicilian Defense: O'Kelly Variation, Wing Gambit. Frozen defining line 1.e4 c5 2.Nf3 a6
+# 3.b4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-okelly-variation-wing-gambit
+name: "Sicilian Defense: O'Kelly Variation, Wing Gambit"
+eco: B28
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, a6, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. Black already spent a tempo on ...a6, which after
+      3...cxb4 pays for itself later as queenside space, so this version of the Wing Gambit
+      gives White the same uncompensated pawn deficit as the plain Wing Gambit while Black is,
+      if anything, slightly better placed to hold it.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Đen chơi ...a6 theo kiểu O'Kelly, Trắng vẫn thí tốt b4 giống hệt Wing Gambit thông thường, hy vọng đường a6 sau này sẽ không đủ bù cho một tốt.
+    en: After Black's O'Kelly move ...a6, White still offers the b4 pawn exactly as in the plain Wing Gambit, hoping that ...a6 will not be worth a full pawn later on.
+    fr: Après le coup ...a6 façon O'Kelly des Noirs, les Blancs offrent quand même le pion b4 exactement comme dans le Gambit de l'aile classique, en espérant que ...a6 ne vaudra pas un plein pion par la suite.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt b4. Con tốt này đang nhắm vào c5, nên các nước không đụng đến b4 và cũng không giữ c5 đều để Trắng ăn lại bằng bxc5 và có thêm một tốt miễn phí; các nước có giữ c5 (Qc7, Qb6, Qa5) thì hợp lý nhưng bỏ lỡ câu hỏi thật của gambit này.
+      en: Black does not take the b4 pawn. It is attacking c5, so anything that neither touches b4 nor defends c5 lets White recapture with bxc5 for a free extra pawn; the moves that do defend c5 (Qc7, Qb6, Qa5) are reasonable but sidestep the real question this gambit is asking.
+      fr: Les Noirs ne prennent pas le pion b4. Il attaque c5, donc tout ce qui ne touche ni à b4 ni à la défense de c5 laisse les Blancs reprendre par bxc5 pour un pion gratuit ; les coups qui défendent c5 (Qc7, Qb6, Qa5) sont raisonnables mais éludent la vraie question posée par ce gambit.
+  children:
+    - ply: cxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt, đúng như trong Wing Gambit thông thường — nhưng lần này đã có sẵn nước ...a6 hữu ích cho sau này.
+        en: Black takes the pawn, exactly as in the plain Wing Gambit — but this time with the useful ...a6 already played.
+        fr: Les Noirs prennent le pion, exactement comme dans le Gambit de l'aile classique — mais cette fois avec le utile ...a6 déjà joué.
+      children:
+        - ply: d4
+          annotation:
+            vi: Trắng dựng trung tâm lớn thay vì tìm cách đòi lại tốt ngay, đặt cược vào không gian và phát triển nhanh.
+            en: White builds a big centre rather than trying to win the pawn back at once, betting on space and quick development.
+            fr: Les Blancs construisent un grand centre plutôt que de chercher à reprendre le pion tout de suite, misant sur l'espace et un développement rapide.
+          dismissRest:
+            reason:
+              vi: Đen không chơi ...d5. Các nước phát triển khác (Nc6, Nf6, d6, g6) đều hợp lý nhưng để Trắng tiếp tục đẩy e5 chiếm thêm không gian mà không bị thách thức ngay ở trung tâm, nên chúng không kiểm tra được điều gambit này thật sự cần chứng minh.
+              en: Black does not play ...d5. The other developing moves (...Nc6, ...Nf6, ...d6, ...g6) are reasonable but let White push on with e5 for even more space without being challenged in the centre right away, so they do not test what this gambit actually needs to prove.
+              fr: Les Noirs ne jouent pas ...d5. Les autres coups de développement (...Nc6, ...Nf6, ...d6, ...g6) sont raisonnables mais laissent les Blancs pousser e5 pour encore plus d'espace sans être contestés au centre tout de suite, ils ne testent donc pas ce que ce gambit doit réellement prouver.
+          children:
+            - ply: d5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đánh thẳng vào trung tâm ngay lập tức, không để Trắng có thời gian hoàn thiện nó.
+                en: Black strikes the centre immediately, giving White no time to complete it.
+                fr: Les Noirs frappent le centre immédiatement, ne laissant pas aux Blancs le temps de l'achever.
+              children:
+                - ply: e5
+                  annotation:
+                    vi: Trắng đẩy tốt tiến lên thay vì đổi ở d5, giữ nguyên cấu trúc trung tâm nhưng để lại con tốt d5 của Đen đứng vững.
+                    en: White pushes the pawn on rather than trading on d5, keeping the central structure intact but leaving Black's d5 pawn standing firm.
+                    fr: Les Blancs poussent le pion plutôt que d'échanger en d5, gardant la structure centrale intacte mais laissant le pion d5 noir bien planté.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đen hơn đúng một tốt sạch — tốt b4 ăn được từ nước ba và chưa hề bị đòi lại. Trắng có trung tâm d4-e5 rộng và cầm thêm không gian, nhưng đây mới chỉ là tiềm năng chứ chưa phải mối đe doạ cụ thể nào lên vua hay quân Đen, và nước ...a6 đã chơi từ đầu giúp Đen sẵn sàng mở rộng ở cánh hậu bằng ...b5 sau này mà không lo bị Bb5 hay Nb5 quấy rối. Trắng có cơ hội thực chiến thật sự nhờ không gian, nhưng về khách quan vẫn là một tốt kém mà chưa có gì bù lại.
+                      en: Black is a clean pawn up — the b4 pawn taken on move three and never recovered. White has a wide d4-e5 centre and extra space, but this is still only potential rather than a concrete threat to Black's king or pieces, and the early ...a6 leaves Black ready to expand later with ...b5 on the queenside without worrying about Bb5 or Nb5 tricks. White has real practical chances from the space, but objectively this is still a pawn down with nothing yet to show for it.
+                      fr: Les Noirs ont un pion net d'avance — le pion b4 pris au troisième coup et jamais récupéré. Les Blancs ont un large centre d4-e5 et de l'espace supplémentaire, mais ce n'est encore qu'un potentiel plutôt qu'une menace concrète sur le roi ou les pièces noires, et le ...a6 précoce laisse les Noirs prêts à s'étendre plus tard par ...b5 à l'aile dame sans craindre Bb5 ou Nb5. Les Blancs ont de vraies chances pratiques grâce à l'espace, mais objectivement c'est toujours un pion de moins sans encore rien à montrer.
+                    plan:
+                      vi: Trắng chơi Bd3, O-O, Re1 và cố dùng trung tâm d4-e5 để mở đường tấn công, chấp nhận đang chơi bù một tốt bằng không gian chứ chưa có đòn cụ thể. Đen chơi Nc6 tấn công d4, e6 hoàn thiện cấu trúc, Be7 hoặc Bb4+ và O-O, rồi tìm cách đổi bớt quân trung tâm bằng ...cxd4 đúng lúc để con tốt thừa còn ý nghĩa về sau, đồng thời giữ sẵn ...b5 làm nhịp phản công cánh hậu.
+                      en: White plays Bd3, castles, Re1 and tries to use the d4-e5 centre to open lines for an attack, essentially playing a game down a pawn for space rather than a concrete blow. Black plays ...Nc6 to press d4, ...e6 to round off the structure, ...Be7 or ...Bb4+ and castles, then looks to trade off the central tension with ...cxd4 at the right moment so the extra pawn keeps mattering later, while keeping ...b5 in hand as a queenside counter-break.
+                      fr: Les Blancs jouent Bd3, roquent, Re1 et tentent d'exploiter le centre d4-e5 pour ouvrir des lignes d'attaque, jouant en somme une partie avec un pion de moins contre de l'espace plutôt qu'un coup décisif. Les Noirs jouent ...Nc6 pour presser d4, ...e6 pour compléter la structure, ...Be7 ou ...Bb4+ et roquent, puis cherchent à échanger la tension centrale par ...cxd4 au bon moment pour que le pion supplémentaire compte encore plus tard, tout en gardant ...b5 comme rupture de contre-jeu à l'aile dame.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

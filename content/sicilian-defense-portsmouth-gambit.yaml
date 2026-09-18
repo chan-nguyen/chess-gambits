@@ -1,0 +1,62 @@
+# Sicilian Defense: Portsmouth Gambit. Frozen defining line 1.e4 c5 2.Nf3 Nc6 3.b4, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-portsmouth-gambit
+name: 'Sicilian Defense: Portsmouth Gambit'
+eco: B30
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, Nc6, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. This is the plain Wing Gambit one move later, with the
+      knight already on c6 instead of undeveloped — accepting and then building a big centre
+      leaves White down a clean pawn with nothing concrete in hand, exactly as in the Wing
+      Gambit itself.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã để Đen phát triển mã c6 rồi mới thí tốt b4, một trật tự nước khác của Wing Gambit. Đây là Portsmouth Gambit của Khai cuộc Sicilia.
+    en: White lets Black develop the knight to c6 and only then offers the b4 pawn, a different move order for the Wing Gambit idea. This is the Sicilian Portsmouth Gambit.
+    fr: Les Blancs laissent les Noirs développer le cavalier en c6 et n'offrent le pion b4 qu'ensuite, un ordre des coups différent pour l'idée du Gambit de l'aile. C'est le Gambit de Portsmouth de la Sicilienne.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt b4 bằng tốt c5. Nước Nxb4 ăn bằng mã cũng có thể xét nhưng dẫn tới một dạng thế cờ tương tự (Đen hơn tốt, mã tạm thời ra ngoài rìa rồi rút về an toàn), nên không cần mô hình hoá riêng; các nước bỏ qua con tốt b4 hoàn toàn (phát triển, đẩy tốt cánh vua) để Trắng giữ nguyên tốt b4 và tiếp tục kế hoạch mà không mất gì.
+      en: Black does not take the b4 pawn with the c5 pawn. Nxb4 with the knight is also possible and leads to a similar kind of position (Black a pawn up, the knight briefly offside before retreating to safety), so it is not modelled separately; moves that ignore the b4 pawn entirely (developing, pushing a kingside pawn) let White keep the b4 pawn and continue the plan for free.
+      fr: Les Noirs ne prennent pas le pion b4 avec le pion c5. Nxb4 du cavalier est également possible et mène à un type de position similaire (les Noirs un pion devant, le cavalier brièvement excentré avant de se retirer en sécurité), il n'est donc pas modélisé séparément ; les coups qui ignorent complètement le pion b4 (développement, avance d'un pion de l'aile roi) laissent les Blancs garder le pion b4 et poursuivre leur plan sans rien perdre.
+  children:
+    - ply: cxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng chính con tốt c, giữ cho mã c6 đứng nguyên ở vị trí tốt.
+        en: Black takes the pawn with the c-pawn itself, leaving the c6 knight sitting exactly where it belongs.
+        fr: Les Noirs prennent le pion avec leur propre pion c, laissant le cavalier c6 exactement à sa place.
+      children:
+        - ply: d4
+          annotation:
+            vi: Trắng dựng trung tâm lớn ngay lập tức thay vì tìm cách đòi lại con tốt, đặt cược vào không gian và phát triển nhanh giống hệt Wing Gambit thông thường.
+            en: White immediately builds a big centre rather than trying to win the pawn back, betting on space and quick development exactly as in the plain Wing Gambit.
+            fr: Les Blancs construisent immédiatement un grand centre plutôt que de chercher à reprendre le pion, misant sur l'espace et un développement rapide, exactement comme dans le Gambit de l'aile classique.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn đúng một tốt sạch — con tốt b4 ăn được từ nước ba và chưa hề bị đòi lại. Trắng có trung tâm d4-e4 rộng, nhưng con mã c6 của Đen đang tấn công thẳng vào d4, nên trung tâm ấy sẽ phải được bảo vệ ngay chứ chưa phải là một ưu thế đã hoàn thành; về phát triển thì Đen còn dẫn trước với mã đã ra từ trước khi gambit bắt đầu, trong khi Trắng mới có Nf3 và d4. Không có đường mở nào nhắm vào vua Đen và cấu trúc tốt của Đen hoàn toàn lành lặn.
+              en: Black is a clean pawn up — the b4 pawn taken on move three and never recovered. White has a wide d4-e4 centre, but Black's c6 knight is attacking d4 directly, so that centre needs defending at once rather than being a finished advantage; in development Black is even ahead, having developed the knight before the gambit even began, while White has only Nf3 and d4 to show. No line is open toward the black king and Black's pawn structure is entirely intact.
+              fr: Les Noirs ont un pion net d'avance — le pion b4 pris au troisième coup et jamais récupéré. Les Blancs ont un large centre d4-e4, mais le cavalier c6 noir attaque directement d4, si bien que ce centre doit être défendu tout de suite plutôt que de constituer un avantage acquis ; côté développement, les Noirs sont même en avance, ayant développé leur cavalier avant même le début du gambit, tandis que les Blancs n'ont que Nf3 et d4 à montrer. Aucune ligne n'est ouverte vers le roi noir et la structure de pions noire est entièrement intacte.
+            plan:
+              vi: Trắng chơi d5 đẩy mã đi hoặc Nc3 bảo vệ trung tâm, Bc4 hoặc Bd3, O-O và cố dùng không gian để bù lại con tốt, chấp nhận đang chơi bù chứ chưa có đòn cụ thể. Đen chơi d5 hoặc e6 chọi lại trung tâm, phát triển tượng, nhập thành, và giữ nguyên con tốt thừa trong khi hoàn thiện phát triển.
+              en: White plays d5 to chase the knight or Nc3 to defend the centre, Bc4 or Bd3, castles and tries to use the space as compensation, essentially playing a game down a pawn without a concrete blow yet. Black plays ...d5 or ...e6 to challenge the centre, develops the bishop, castles, and keeps the extra pawn while finishing development.
+              fr: Les Blancs jouent d5 pour chasser le cavalier ou Nc3 pour défendre le centre, Bc4 ou Bd3, roquent et tentent d'utiliser l'espace en compensation, jouant en somme une partie avec un pion de moins sans coup décisif encore. Les Noirs jouent ...d5 ou ...e6 pour contester le centre, développent le fou, roquent, et gardent le pion supplémentaire tout en achevant leur développement.
+            basis:
+              by: chan
+              at: '2026-09-18'

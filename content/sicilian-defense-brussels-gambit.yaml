@@ -1,0 +1,80 @@
+# Sicilian Defense: Brussels Gambit. Frozen defining line 1.e4 c5 2.Nf3 f5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-brussels-gambit
+name: 'Sicilian Defense: Brussels Gambit'
+eco: B27
+category: gambit
+side: black
+definingLine: [e4, c5, Nf3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. After 3.exf5 Black has to prove the pawn back, and the
+      simplest White replies (developing normally, keeping the extra pawn banked) leave nothing
+      for Black to point to — no lead in development, no attack, no weakness in White's camp.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi ...f5 ngay ở nước thứ hai thay vì phát triển, thí một con tốt để mở đường cho hậu và tượng và giành không gian bên cánh vua. Đây là Brussels Gambit của Khai cuộc Sicilia.
+    en: Black plays ...f5 on move two instead of developing, offering a pawn to open lines for the queen and bishop and grab kingside space. This is the Sicilian Brussels Gambit.
+    fr: Les Noirs jouent ...f5 dès le second coup plutôt que de développer, offrant un pion pour ouvrir des lignes à la dame et au fou et gagner de l'espace à l'aile roi. C'est le Gambit de Bruxelles de la Sicilienne.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f5. Đây là những nước bỏ lỡ câu hỏi mà ...f5 đặt ra — Trắng phát triển bình thường (Nc3, d4, Bc4...) và ván cờ trở thành một dạng Grand Prix mà ở đó ...f5 chỉ là một nước giành không gian chứ không phải một con tốt được cho không, khác hẳn ý nghĩa của một "gambit được chấp nhận".
+      en: White does not take the f5 pawn. These moves sidestep the question ...f5 asks — White develops normally (Nc3, d4, Bc4, and so on) and the game becomes a Grand-Prix-style Sicilian where ...f5 is simply space rather than a pawn given away, which is not what "accepted" is testing here.
+      fr: Les Blancs ne prennent pas le pion f5. Ces coups éludent la question posée par ...f5 — les Blancs développent normalement (Nc3, d4, Bc4, etc.) et la partie devient une Sicilienne de type Grand Prix où ...f5 n'est qu'un gain d'espace et non un pion cédé, ce qui n'est pas ce que teste la ligne « acceptée ».
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay — đây là cách kiểm tra thật sự của gambit này, vì con tốt e4 vốn đã nhắm vào f5.
+        en: White simply takes the pawn — the real test of this gambit, since the e4 pawn was already aiming at f5.
+        fr: Les Blancs prennent tout simplement le pion — le vrai test de ce gambit, le pion e4 visant déjà f5.
+      children:
+        - ply: Nf6
+          annotation:
+            vi: Đen phát triển mã, chuẩn bị lấy lại con tốt f5 hoặc chiếm trung tâm bằng d5. Đây là cách thử nghiêm túc nhất, vì các nước khác không tạo áp lực nào lên con tốt f5 của Trắng.
+            en: Black develops the knight, preparing to win the f5 pawn back or to strike the centre with ...d5. This is the most serious try, since other moves put no pressure on White's f5 pawn at all.
+            fr: Les Noirs développent le cavalier, préparant à reprendre le pion f5 ou à frapper le centre par ...d5. C'est l'essai le plus sérieux, les autres coups ne mettant aucune pression sur le pion f5 blanc.
+          dismissRest:
+            reason:
+              vi: Trắng không chơi d4. Các nước khác (bảo vệ tốt f5 bằng g4, phát triển tượng, đưa hậu ra) đều hợp lý nhưng không chiếm thêm trung tâm một cách tự nhiên như d4, nên chúng không cần xét riêng — kết luận về con tốt thừa vẫn giữ nguyên dù Trắng chọn cách nào.
+              en: White does not play d4. The other tries (defending f5 with g4, developing a bishop, bringing the queen out) are reasonable but do not grab more of the centre as naturally as d4, so they do not need separate treatment — the conclusion about the extra pawn holds whichever way White chooses.
+              fr: Les Blancs ne jouent pas d4. Les autres essais (défendre f5 par g4, développer un fou, sortir la dame) sont raisonnables mais ne prennent pas davantage de centre aussi naturellement que d4, ils n'ont donc pas besoin d'un traitement séparé — la conclusion sur le pion supplémentaire tient quel que soit le choix des Blancs.
+          children:
+            - ply: d4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng chiếm thêm trung tâm thay vì lo giữ con tốt f5. Nếu Đen cố ăn lại ngay bằng ...g6 thì Trắng chỉ việc đổi rồi tiếp tục phát triển với vẫn đúng một tốt hơn.
+                en: White grabs more of the centre rather than worrying about the f5 pawn. If Black tries to win it straight back with ...g6, White just trades it off and continues developing still a clean pawn ahead.
+                fr: Les Blancs prennent davantage de centre plutôt que de s'inquiéter du pion f5. Si les Noirs tentent de le reprendre tout de suite par ...g6, les Blancs l'échangent simplement et poursuivent leur développement avec toujours un pion net d'avance.
+              children:
+                - ply: d6
+                  annotation:
+                    vi: Đen chơi chắc chắn, chuẩn bị e5 và phát triển bình thường, chấp nhận tạm thời kém một tốt để đổi lấy một thế cờ vững chắc.
+                    en: Black plays solidly, preparing ...e5 and normal development, accepting a temporary pawn deficit for a sound position.
+                    fr: Les Noirs jouent solidement, préparant ...e5 et un développement normal, acceptant un déficit de pion temporaire pour une position saine.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng hơn đúng một tốt sạch — con tốt f5 đã ăn từ đầu và chưa hề bị đòi lại. Trung tâm Trắng với d4 rộng hơn, mã f3 đã phát triển, trong khi Đen mới chỉ có một mã và một tốt d6, chưa hề có bù đắp nào cho con tốt đã mất — không có đường mở nào nhắm vào vua Trắng, không cột nào cho xe Đen dùng ngay, và cấu trúc tốt của Trắng không hề bị tổn hại. Toàn bộ ý tưởng "thí tốt lấy thời gian" của ...f5 không tạo ra được gì cụ thể.
+                      en: White is a clean pawn up — the f5 pawn taken on move three and never recovered. White's centre with d4 is wider, the f3 knight is already developed, while Black has only one knight and the ...d6 move to show, with nothing yet in return for the missing pawn — no open line pointing at the white king, no file a black rook can use straight away, and White's pawn structure is undamaged. The whole "trade a pawn for time" idea behind ...f5 has produced nothing concrete.
+                      fr: Les Blancs ont un pion net de plus — le pion f5 pris au troisième coup et jamais récupéré. Leur centre avec d4 est plus large, le cavalier f3 est déjà développé, tandis que les Noirs n'ont qu'un cavalier et le coup ...d6 à montrer, sans la moindre contrepartie pour le pion manquant — aucune ligne ouverte vers le roi blanc, aucune colonne immédiatement utile pour une tour noire, et la structure de pions blanche est intacte. Toute l'idée « un pion contre du temps » de ...f5 n'a produit rien de concret.
+                    plan:
+                      vi: Trắng chơi Bc4 hoặc Bd3, Nc3, nhập thành và cố giữ nguyên con tốt thừa trong khi hoàn thiện phát triển, tránh mở cờ quá sớm khi Đen chưa nhập thành. Đen chơi e5 chọi lại trung tâm, Be7 hoặc g6 và Bg7, nhập thành, và tìm cách dùng cột f nửa mở cho xe f8 để bù lại phần nào, nhưng đây là bù đắp về mặt vị trí chứ không lấy lại được con tốt.
+                      en: White plays Bc4 or Bd3, Nc3, castles and tries to keep the extra pawn while finishing development, avoiding opening the position too soon while Black is not yet castled. Black plays ...e5 to challenge the centre, ...Be7 or ...g6 and ...Bg7, castles, and tries to use the half-open f-file for the f8 rook as partial compensation — but this is positional compensation, not the pawn coming back.
+                      fr: Les Blancs jouent Bc4 ou Bd3, Nc3, roquent et tentent de garder le pion en plus tout en achevant leur développement, en évitant d'ouvrir la position trop tôt tant que les Noirs n'ont pas roqué. Les Noirs jouent ...e5 pour contester le centre, ...Be7 ou ...g6 et ...Bg7, roquent, et cherchent à utiliser la colonne f semi-ouverte pour la tour f8 en guise de compensation partielle — mais c'est une compensation positionnelle, pas la récupération du pion.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

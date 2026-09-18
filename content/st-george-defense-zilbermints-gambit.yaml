@@ -1,0 +1,75 @@
+# St. George Defense: Zilbermints Gambit. Frozen defining line 1.e4 a6 2.d4 e5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: st-george-defense-zilbermints-gambit
+name: 'St. George Defense: Zilbermints Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, a6, d4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. Black spends the first move on ...a6, which does
+      nothing for the centre, and then offers a pawn with ...e5 anyway — after 3.dxe5 Nc6
+      4.Nf3 the e5 pawn is defended, not free, and White is simply a pawn up with the ...a6
+      tempo spent on nothing in particular.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi mở đầu bằng ...a6 vốn không giúp gì cho trung tâm, Đen chơi tiếp ...e5, thí một tốt để mời Trắng ăn ở e5 và đổi lấy vài nhịp tấn công vào trung tâm Trắng sau này. Đây là Zilbermints Gambit trong St. George Defense.
+    en: After opening with ...a6, which does nothing for the centre, Black follows up with ...e5, offering a pawn to invite dxe5 in exchange for a few tempi of pressure on White's centre later. This is the Zilbermints Gambit inside the St. George Defense.
+    fr: Après avoir débuté par ...a6, qui ne fait rien pour le centre, les Noirs enchaînent par ...e5, offrant un pion pour inviter dxe5 contre quelques temps de pression sur le centre blanc par la suite. C'est le Gambit Zilbermints à l'intérieur de la Défense St. George.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5. Con tốt d4 đang nhắm thẳng vào e5 và không có gì đỡ nó (vì Đen chưa hề phát triển quân nào), nên mọi nước khác của Trắng đều bỏ lỡ cơ hội ăn không một tốt và không kiểm tra được điều gambit này đặt cược vào.
+      en: White does not take the e5 pawn. The d4 pawn is aiming straight at e5 and nothing defends it yet (Black has not developed a single piece), so any other White move passes up a free pawn and does not test what this gambit is betting on.
+      fr: Les Blancs ne prennent pas le pion e5. Le pion d4 vise directement e5 et rien ne le défend encore (les Noirs n'ont développé aucune pièce), si bien que tout autre coup blanc laisse passer un pion gratuit et ne teste pas ce sur quoi ce gambit mise.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt tự do. Đây là cách kiểm tra thật sự của gambit này, vì con tốt e5 không có ai đỡ.
+        en: White simply takes the free pawn — the real test of the gambit, since nothing defends e5.
+        fr: Les Blancs prennent tout simplement le pion, libre. C'est le vrai test du gambit, rien ne défendant e5.
+      children:
+        - ply: Nc6
+          annotation:
+            vi: Đen phát triển mã, tấn công lại con tốt e5 vừa mất, thay vì cố ăn lại bằng những nước hậu mạo hiểm.
+            en: Black develops the knight, attacking the e5 pawn just lost, rather than trying risky queen tricks to win it back.
+            fr: Les Noirs développent le cavalier, attaquant le pion e5 tout juste perdu, plutôt que de tenter des combinaisons de dame risquées pour le reprendre.
+          dismissRest:
+            reason:
+              vi: Trắng không chơi Nf3. Các nước phát triển khác (Nc3, Bc4, Bb5, Bf4, Bg5, các nước tốt, v.v.) đều hợp lý nhưng không bảo vệ con tốt e5 một cách trực tiếp và tự nhiên như Nf3, nên chúng không cần xét riêng — kết luận về con tốt thừa vẫn giữ nguyên dù Trắng chọn cách phát triển nào.
+              en: White does not play Nf3. The other developing moves (Nc3, Bc4, Bb5, Bf4, Bg5, various pawn moves, and so on) are all reasonable but do not defend the e5 pawn as directly and naturally as Nf3, so they do not need separate treatment — the conclusion about the extra pawn holds whichever way White chooses to develop.
+              fr: Les Blancs ne jouent pas Nf3. Les autres coups de développement (Nc3, Bc4, Bb5, Bf4, Bg5, divers coups de pion, etc.) sont tous raisonnables mais ne défendent pas le pion e5 aussi directement et naturellement que Nf3, ils n'ont donc pas besoin d'un traitement séparé — la conclusion sur le pion supplémentaire tient quel que soit le développement choisi par les Blancs.
+          children:
+            - ply: Nf3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng bảo vệ con tốt e5 bằng một nước phát triển tự nhiên. Con tốt giờ đã được giữ chắc chắn — dù Đen thử ăn lại ngay bằng Nxe5 hay tiếp tục phát triển trước, phần vật chất và thế cờ đã được quyết định từ đây.
+                en: White defends the e5 pawn with a natural developing move. The pawn is now held firmly — whether Black tries Nxe5 at once or develops first, the material and positional picture is already settled from here.
+                fr: Les Blancs défendent le pion e5 par un coup de développement naturel. Le pion est désormais solidement tenu — que les Noirs tentent Nxe5 tout de suite ou développent d'abord, le tableau matériel et positionnel est déjà scellé à partir d'ici.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Trắng hơn đúng một tốt sạch — con tốt e5 ăn được từ nước hai và hiện đã được mã f3 bảo vệ chắc chắn, nên Đen không còn cách nào đòi lại nó ngay. Nước ...a6 mở đầu của Đen chưa đóng góp được gì cho trung tâm hay cho việc phát triển, trong khi Trắng đã có tốt e5 tiến xa cùng một mã đã ra. Đây là một tốt kém đi kèm một nhịp lãng phí, không có gì để bù lại.
+                  en: White is a clean pawn up — the e5 pawn taken on move two and now firmly defended by the f3 knight, so Black has no way to win it back at once. Black's opening move ...a6 has contributed nothing to the centre or to development, while White already has an advanced e5 pawn and a developed knight. This is a pawn down plus a wasted tempo, with nothing to show in return.
+                  fr: Les Blancs ont un pion net d'avance — le pion e5 pris au deuxième coup et désormais solidement défendu par le cavalier f3, si bien que les Noirs n'ont aucun moyen de le reprendre tout de suite. Le coup d'ouverture noir ...a6 n'a rien apporté au centre ni au développement, tandis que les Blancs ont déjà un pion e5 avancé et un cavalier développé. C'est un pion de moins plus un temps perdu, sans rien en retour.
+                plan:
+                  vi: Trắng chơi Bc4 hoặc Bb5, O-O, Re1 và cố giữ con tốt e5 trong khi hoàn thiện phát triển, sẵn sàng chơi c3 và d4 vững chắc nếu Đen tìm cách gây sức ép. Đen chơi d6 thách thức con tốt e5, Be7 hoặc Bg4, nhập thành, và tìm cách đổi bớt quân trong khi hy vọng dùng cột e nửa mở hoặc áp lực lên tốt e5 để bù lại phần nào cho con tốt đã mất.
+                  en: White plays Bc4 or Bb5, castles, Re1 and tries to hold the e5 pawn while finishing development, ready to play c3 and d4 solidly if Black looks for pressure. Black plays ...d6 to challenge the e5 pawn, ...Be7 or ...Bg4, castles, and looks to trade pieces while hoping the half-open e-file or pressure on the e5 pawn provides some compensation for the pawn lost.
+                  fr: Les Blancs jouent Bc4 ou Bb5, roquent, Re1 et tentent de tenir le pion e5 tout en achevant leur développement, prêts à jouer c3 et d4 solidement si les Noirs cherchent la pression. Les Noirs jouent ...d6 pour contester le pion e5, ...Be7 ou ...Bg4, roquent, et cherchent à échanger des pièces en espérant que la colonne e semi-ouverte ou la pression sur le pion e5 compense en partie le pion perdu.
+                basis:
+                  by: chan
+                  at: '2026-09-18'
