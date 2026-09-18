@@ -1,0 +1,53 @@
+# King's Gambit Accepted, Cunningham Defense. One of eighteen entries tracked by issue #111
+# (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with `kings-gambit-accepted.yaml`
+# and group G (#110). Defining line ends on White's 3.Nf3 (invariant 5). Every move replayed
+# with a scratch chess.js script (deleted before commit).
+#
+# 3...Be7 is a respected, sharp defense: the bishop develops with the immediate point of
+# ...Bh4+ next, forcing concessions. That follow-up leads into genuinely sharp, well-studied
+# "Cunningham Gambit" theory (...Bh4+ g3 fxg3 O-O gxh2+ Kh1) whose forced continuation this
+# review could not certify by hand to the confidence this project requires without an engine
+# — several of the natural-looking tries checked in scratch analysis for this entry turned
+# out, on chess.js replay, to lose material rather than win it. Rather than risk publishing
+# an incorrect tactical claim, this entry stops at `unexplored` after the defining reply.
+id: kings-gambit-accepted-cunningham-defense
+name: "King's Gambit Accepted: Cunningham Defense"
+eco: C35
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, Gambit Mã Vua. Mục này đi sâu riêng vào 3...Be7, Phòng thủ Cunningham.
+    en: White has just played the knight to f3, the King's Knight Gambit. This entry follows specifically 3...Be7, the Cunningham Defense.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le Gambit du Cavalier du Roi. Cette entrée suit spécifiquement 3...Be7, la Défense Cunningham.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Nf3 bằng một nước khác ngoài 3...Be7 — đánh trung tâm bằng 3...d5, tấn công cánh vua bằng 3...g5, hay phát triển mã bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Nf3 with something other than 3...Be7 — striking the centre with 3...d5, a kingside storm with 3...g5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Nf3 par autre chose que 3...Be7 — une frappe centrale par 3...d5, un assaut à l'aile roi par 3...g5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Be7
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Cunningham. Đen phát triển tượng với ý đồ cụ thể — nếu Trắng đưa tượng ra c4, Đen có thể chiếu bằng ...Bh4+, buộc Trắng phải nhượng bộ ngay. Đây là một trong những cách đáp trả sắc bén và được đánh giá cao nhất trước Gambit Mã Vua.
+        en: The Cunningham Defense. Black develops the bishop with a concrete point — if White plays the bishop to c4, Black can check with ...Bh4+, forcing an immediate concession. This is one of the sharpest and most respected replies to the King's Knight Gambit.
+        fr: La Défense Cunningham. Les Noirs développent le fou avec une idée concrète — si les Blancs jouent le fou en c4, les Noirs peuvent enchaîner par ...Bh4+, forçant une concession immédiate. C'est l'une des réponses les plus tranchantes et les plus respectées contre le Gambit du Cavalier du Roi.
+      outcome:
+        type: unexplored

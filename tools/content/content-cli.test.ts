@@ -157,7 +157,22 @@ describe('export-pgn (AC 2)', () => {
         'hungarian-opening-van-kuijk-gambit, indian-defense-budapest-gambit, ' +
         'indian-defense-gibbins-weidenhagen-gambit, irish-gambit, ' +
         'italian-game-blackburne-kostic-gambit, italian-game-evans-gambit, ' +
+        'italian-game-rousseau-gambit, ' +
         'kadas-opening-schneider-gambit, kieninger-trap, kings-gambit, kings-gambit-accepted, ' +
+        'kings-gambit-accepted-becker-defense, ' +
+        'kings-gambit-accepted-bishops-gambit-anderssen-defense, ' +
+        'kings-gambit-accepted-bishops-gambit-bledow-variation, ' +
+        'kings-gambit-accepted-bishops-gambit-cozio-defense, ' +
+        'kings-gambit-accepted-bishops-gambit-gianutio-gambit, ' +
+        'kings-gambit-accepted-bishops-gambit-kieseritzky-gambit, ' +
+        'kings-gambit-accepted-bishops-gambit-lopez-defense, ' +
+        'kings-gambit-accepted-bishops-gambit-maurian-defense, ' +
+        'kings-gambit-accepted-bishops-gambit-steinitz-defense, ' +
+        'kings-gambit-accepted-bonsch-osmolovsky-variation, ' +
+        'kings-gambit-accepted-cunningham-defense, kings-gambit-accepted-fischer-defense, ' +
+        'kings-gambit-accepted-gianutio-countergambit, kings-gambit-accepted-macleod-defense, ' +
+        'kings-gambit-accepted-modern-defense, kings-gambit-accepted-schallopp-defense, ' +
+        'kings-gambit-accepted-wagenbach-defense, ' +
         'kings-gambit-declined-classical-variation, kings-indian-attack-omega-delta-gambit, ' +
         'kings-indian-defense-samisch-variation-samisch-gambit, kings-pawn-game-bavarian-gambit, ' +
         'kings-pawn-opening-van-hooydoon-gambit, lasker-trap, latvian-gambit, ' +
@@ -247,8 +262,26 @@ describe('compile (AC 3)', () => {
       'irish-gambit.json',
       'italian-game-blackburne-kostic-gambit.json',
       'italian-game-evans-gambit.json',
+      'italian-game-rousseau-gambit.json',
       'kadas-opening-schneider-gambit.json',
       'kieninger-trap.json',
+      'kings-gambit-accepted-becker-defense.json',
+      'kings-gambit-accepted-bishops-gambit-anderssen-defense.json',
+      'kings-gambit-accepted-bishops-gambit-bledow-variation.json',
+      'kings-gambit-accepted-bishops-gambit-cozio-defense.json',
+      'kings-gambit-accepted-bishops-gambit-gianutio-gambit.json',
+      'kings-gambit-accepted-bishops-gambit-kieseritzky-gambit.json',
+      'kings-gambit-accepted-bishops-gambit-lopez-defense.json',
+      'kings-gambit-accepted-bishops-gambit-maurian-defense.json',
+      'kings-gambit-accepted-bishops-gambit-steinitz-defense.json',
+      'kings-gambit-accepted-bonsch-osmolovsky-variation.json',
+      'kings-gambit-accepted-cunningham-defense.json',
+      'kings-gambit-accepted-fischer-defense.json',
+      'kings-gambit-accepted-gianutio-countergambit.json',
+      'kings-gambit-accepted-macleod-defense.json',
+      'kings-gambit-accepted-modern-defense.json',
+      'kings-gambit-accepted-schallopp-defense.json',
+      'kings-gambit-accepted-wagenbach-defense.json',
       'kings-gambit-accepted.json',
       'kings-gambit-declined-classical-variation.json',
       'kings-gambit.json',

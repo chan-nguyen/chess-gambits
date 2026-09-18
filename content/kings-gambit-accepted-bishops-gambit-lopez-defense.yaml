@@ -1,0 +1,49 @@
+# King's Gambit Accepted, Bishop's Gambit, Lopez Defense. One of eighteen entries tracked by
+# issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...c6 prepares ...d5 with support, a quiet, solid try. Under the stricter #107 bar a
+# `position` leaf must be clearly decisive; no forced decisive continuation could be
+# established by hand without an engine, so the line stops at `unexplored`.
+id: kings-gambit-accepted-bishops-gambit-lopez-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Lopez Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...c6, Phòng thủ Lopez.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...c6, the Lopez Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...c6, la Défense Lopez.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...c6 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...c6 — holding the pawn with 3...g5, striking the centre with 3...d5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...c6 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: c6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Lopez. Đen chuẩn bị ...d5 với sự hỗ trợ của tốt c6, một cách chơi chậm rãi và chắc chắn trước khi tranh chấp trung tâm.
+        en: The Lopez Defense. Black prepares ...d5 with the support of the c6 pawn, a quiet and solid way to get ready before contesting the centre.
+        fr: La Défense Lopez. Les Noirs préparent ...d5 avec l'appui du pion c6, une façon tranquille et solide de se préparer avant de disputer le centre.
+      outcome:
+        type: unexplored

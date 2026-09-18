@@ -1,0 +1,55 @@
+# King's Gambit Accepted, Modern Defense. One of eighteen entries tracked by issue #111
+# (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with `kings-gambit-accepted.yaml`
+# and group G (#110). Defining line ends on White's 3.Nf3 (invariant 5). Every move replayed
+# with a scratch chess.js script (deleted before commit).
+#
+# 3...d5 is the very line `kings-gambit-accepted.yaml` itself follows in depth, all the way
+# to a resolved position it calls fully level. `transposesTo` cannot express a link into a
+# different entry's tree — it is scoped to plies measured from one entry's own root
+# (docs/CONTEXT.md, invariant 12, "scoped within one gambit"; `tools/content/schema.ts`) — so
+# that resolution cannot simply be pointed to from here. Republishing it here would also not
+# survive the stricter #107 bar on its own terms: the sibling entry's own leaf is exactly the
+# kind of "material is level" stopping point #107 was written to raise the bar past. Rather
+# than either duplicate that leaf or invent a decisive verdict this well-regarded main line
+# does not actually have, this entry stops at `unexplored` after the defining reply.
+id: kings-gambit-accepted-modern-defense
+name: "King's Gambit Accepted: Modern Defense"
+eco: C36
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries, which already
+      follows this exact line to a position it judges fully level.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, Gambit Mã Vua. Mục này đi sâu riêng vào 3...d5, Phòng thủ Hiện đại.
+    en: White has just played the knight to f3, the King's Knight Gambit. This entry follows specifically 3...d5, the Modern Defense.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le Gambit du Cavalier du Roi. Cette entrée suit spécifiquement 3...d5, la Défense moderne.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Nf3 bằng một nước khác ngoài 3...d5 — tấn công cánh vua bằng 3...g5, phát triển mã bằng 3...Nf6, hay một trong nhiều lựa chọn khác. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Nf3 with something other than 3...d5 — a kingside storm with 3...g5, developing with 3...Nf6, or one of several other tries. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Nf3 par autre chose que 3...d5 — un assaut à l'aile roi par 3...g5, un développement par 3...Nf6, ou l'un des nombreux autres essais. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Phòng thủ Hiện đại. Đen đánh thẳng vào trung tâm, sẵn sàng trả lại con tốt f4 để đổi lấy sự phát triển thông thoáng — cách đáp trả được tin cậy nhất trước Gambit Mã Vua, như chính mục tổng quan của họ Gambit được nhận đã trình bày chi tiết.
+        en: The Modern Defence. Black strikes the centre directly, willing to give the f4 pawn back for smooth development — the most trusted answer to the King's Knight Gambit, as the Accepted family's own overview entry already covers in depth.
+        fr: La Défense moderne. Les Noirs frappent directement le centre, prêts à rendre le pion f4 contre un développement aisé — la réponse la plus fiable au Gambit du Cavalier du Roi, comme l'entrée de synthèse de la famille acceptée le détaille déjà.
+      outcome:
+        type: unexplored

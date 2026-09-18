@@ -1,0 +1,112 @@
+# King's Gambit Accepted, Becker Defense. One of eighteen sub-variations tracked by issue
+# #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with `kings-gambit-accepted.yaml`
+# and with group G (#110). The defining line ends on White's own 3.Nf3, the learner's ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5) — matching how
+# `kings-gambit-accepted.yaml` itself is built one ply shallower.
+#
+# This entry applies the stricter depth bar from issue #107: a `position` leaf must be
+# clearly decisive, not merely "White is a little better". 3...h6 forestalls ...Ng5 tricks
+# but spends a tempo doing nothing else, and the line below shows the concrete cost of that
+# tempo rather than asserting it. Every move was replayed with chess.js in a scratch script
+# (deleted before commit) verifying legality, check status and material at each ply, and the
+# final leaf was checked for the two machine-checkable stopping conditions (not in check, no
+# free capture) directly against chess.js's own move list before this file was written.
+id: kings-gambit-accepted-becker-defense
+name: "King's Gambit Accepted: Becker Defense"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, the same label the family head `kings-gambit-accepted.yaml` carries. 3...h6
+      is a known, named try but not one Black needs — it spends a tempo on a move that neither
+      develops a piece nor fights for the centre, and White reaches the position below with a
+      complete lead in development for the one gambit pawn already invested. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, nước đi phổ biến và vững chắc nhất của Gambit Mã Vua — vừa ngăn Qh4+ của Đen vừa chuẩn bị giành lại con tốt f4. Mục này đi sâu riêng vào 3...h6, Phòng thủ Becker.
+    en: White has just played the knight to f3, the most popular and solid choice in the King's Knight Gambit — it stops Black's ...Qh4+ and prepares to win the f4 pawn back. This entry follows specifically 3...h6, the Becker Defense.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le choix le plus répandu et le plus solide du Gambit du Cavalier du Roi — il empêche ...Qh4+ des Noirs et prépare à regagner le pion f4. Cette entrée suit spécifiquement 3...h6, la Défense Becker.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 3...h6 — đánh trung tâm bằng 3...d5 (Phòng thủ Hiện đại), tấn công cánh vua bằng 3...g5, phát triển quân bằng 3...Nf6 hay 3...Nc6, hoặc một trong nhiều lựa chọn khác đã có lý thuyết riêng. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black plays something other than 3...h6 — striking the centre with 3...d5 (the Modern Defence), a kingside pawn storm with 3...g5, developing with 3...Nf6 or 3...Nc6, or one of several other tries with their own separate theory. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 3...h6 — frapper le centre par 3...d5 (la Défense moderne), un assaut à l'aile roi par 3...g5, se développer par 3...Nf6 ou 3...Nc6, ou l'un des nombreux autres essais ayant sa propre théorie. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: h6
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Phòng thủ Becker. Đen ngăn Ng5 trước khi nó xảy ra, chuẩn bị giữ tốt f4 bằng ...g5 mà không sợ bị mã nhảy vào g5. Cái giá là một nước tốt không phát triển quân nào và không tranh chấp trung tâm.
+        en: The Becker Defense. Black rules out Ng5 before it happens, preparing to hold the f4 pawn with ...g5 without fearing a knight jumping into g5. The cost is a pawn move that develops no piece and fights for no central square.
+        fr: La Défense Becker. Les Noirs excluent Ng5 avant qu'il ne se produise, préparant à conserver le pion f4 par ...g5 sans craindre un cavalier sautant en g5. Le prix est un coup de pion qui ne développe aucune pièce et ne dispute aucune case centrale.
+      children:
+        - ply: d4
+          annotation:
+            vi: Trắng dựng trung tâm ngay lập tức thay vì mất thời gian đe dọa con tốt f4 lẻ loi — trung tâm rộng lớn quan trọng hơn nhiều so với một con tốt.
+            en: White builds the centre immediately rather than spending time on the lone f4 pawn — the big centre matters far more than one pawn.
+            fr: Les Blancs bâtissent immédiatement le centre plutôt que de perdre du temps sur le pion f4 isolé — le grand centre compte bien davantage qu'un seul pion.
+          dismissRest:
+            reason:
+              vi: Đen đáp lại 4.d4 bằng một nước khác ngoài 4...g5 — chẳng hạn phát triển quân bằng 4...Nf6 hay 4...d6, hoặc thách thức trung tâm bằng 4...d5. Mỗi cách đều để lại cùng một vấn đề — ba tốt cánh vua chưa hề được tốt h6 giải quyết — và mục này theo hướng Đen cố giữ tốt f4 bằng g5 như dự định ban đầu.
+              en: Black meets 4.d4 with something other than 4...g5 — developing with 4...Nf6 or 4...d6, or challenging the centre with 4...d5. Any of these leaves the same underlying problem — h6's purpose unfulfilled — and this entry follows the line where Black tries to hold the f4 pawn with g5 as h6 was played to prepare.
+              fr: Les Noirs répondent à 4.d4 par autre chose que 4...g5 — se développer par 4...Nf6 ou 4...d6, ou défier le centre par 4...d5. Chacun laisse le même problème de fond — le but de h6 non atteint — et cette entrée suit la ligne où les Noirs tentent de conserver le pion f4 par g5, comme h6 le préparait.
+          children:
+            - ply: g5
+              replyQuality: inaccuracy
+              frequency: rare
+              annotation:
+                vi: Đen dùng đúng mục đích của h6 — giữ tốt f4 bằng g5 mà không sợ Ng5. Nhưng đây vẫn là nước tốt thứ ba liên tiếp, không có quân nào được đưa ra.
+                en: Black uses h6 for its stated purpose — holding the f4 pawn with g5 without fearing Ng5. But this is still the third consecutive pawn move, with not a single piece developed.
+                fr: Les Noirs utilisent h6 pour son but affiché — conserver le pion f4 par g5 sans craindre Ng5. Mais c'est encore le troisième coup de pion consécutif, sans la moindre pièce développée.
+              children:
+                - ply: Bc4
+                  annotation:
+                    vi: Trắng phát triển tượng nhắm vào f7, tiếp tục đưa quân ra trong khi Đen vẫn chưa động đến một quân nào.
+                    en: White develops the bishop toward f7, continuing to bring pieces out while Black still has not touched a single piece.
+                    fr: Les Blancs développent le fou vers f7, continuant à sortir leurs pièces alors que les Noirs n'ont encore touché aucune pièce.
+                  dismissRest:
+                    reason:
+                      vi: Đen đáp trả 5.Bc4 bằng một nước khác ngoài 5...d6 — ví dụ phát triển tượng f8 hay đưa mã ra, mỗi cách đều để ngỏ vấn đề tương tự về sự chậm trễ phát triển mà mục này minh họa qua 5...d6.
+                      en: Black meets 5.Bc4 with something other than 5...d6 — developing the f8 bishop or a knight instead, each leaving the same underlying development gap this entry illustrates through 5...d6.
+                      fr: Les Noirs répondent à 5.Bc4 par autre chose que 5...d6 — développer le fou f8 ou un cavalier, chacun laissant le même retard de développement que cette entrée illustre par 5...d6.
+                  children:
+                    - ply: d6
+                      replyQuality: inaccuracy
+                      frequency: rare
+                      annotation:
+                        vi: Đen mở đường cho tượng f8 nhưng lại chơi thêm một nước tốt — nước thứ tư liên tiếp — trong khi vẫn chưa phát triển một quân nào.
+                        en: Black opens a path for the f8 bishop but plays yet another pawn move — the fourth in a row — while still not having developed a single piece.
+                        fr: Les Noirs ouvrent une voie pour le fou f8 mais jouent encore un coup de pion — le quatrième d'affilée — sans avoir développé la moindre pièce.
+                      children:
+                        - ply: O-O
+                          annotation:
+                            vi: Trắng nhập thành, hoàn tất phát triển an toàn. Đến đây phải dừng lại và nhìn thẳng vào thế cờ.
+                            en: White castles, completing development in safety. Here the line stops and the position is looked at directly.
+                            fr: Les Blancs roquent, achevant leur développement en sécurité. Ici la ligne s'arrête et la position est examinée directement.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Sau sáu nước, Đen chỉ toàn chơi tốt — h6, g5, d6 — và chưa hề động đến một quân nào; cả tám quân của Đen vẫn nguyên vị trí ban đầu. Trắng thì đã nhập thành, đưa mã và tượng ra vị trí hoạt động, và kiểm soát trung tâm bằng d4-e4. Xe h8 của Đen chỉ có đúng một nước đi khả dĩ, Rh7, không đưa nó vào cuộc chơi. Trắng vẫn thiếu lại một tốt so với ban đầu, nhưng khoảng cách phát triển — sáu nước ăn không của Trắng đổi lấy ba nước tốt vô nghĩa của Đen — là một khoản bù đắp vượt xa giá trị một tốt.
+                              en: After six moves, Black has played nothing but pawn moves — h6, g5, d6 — and has not developed a single piece; all eight of Black's original pieces still sit on their starting squares. White, by contrast, has castled, brought both the knight and the bishop to active squares, and holds the centre with pawns on d4 and e4. Black's h8-rook has exactly one legal move, Rh7, and it does not bring the rook into the game. White remains a pawn down from the original gambit, but the development gap — six purposeful White moves against three pawn moves that accomplished nothing for Black — is compensation well beyond the value of one pawn.
+                              fr: Après six coups, les Noirs n'ont joué que des coups de pion — h6, g5, d6 — et n'ont développé aucune pièce ; leurs huit pièces d'origine sont encore sur leur case de départ. Les Blancs, eux, ont roqué, amené le cavalier et le fou sur des cases actives, et tiennent le centre avec des pions en d4 et e4. La tour h8 des Noirs n'a qu'un seul coup légal, Rh7, qui ne la fait pas entrer en jeu. Les Blancs restent un pion derrière depuis le gambit initial, mais l'écart de développement — six coups blancs utiles contre trois coups de pion noirs qui n'ont rien accompli — compense largement la valeur d'un pion.
+                            plan:
+                              vi: Trắng tiếp tục với Nc3 và Qe2 hoặc Re1, chuẩn bị đẩy e5 hoặc d5 để mở toang trung tâm trong khi Đen còn chưa kịp phát triển. Đen buộc phải bắt đầu đưa quân ra gấp — Nf6, Bg7 — nhưng đã chậm mất nhiều nước so với một ván cờ bình thường.
+                              en: White continues with Nc3 and Qe2 or Re1, preparing to push e5 or d5 to blow the centre open while Black is still undeveloped. Black now has to scramble to bring pieces out — Nf6, Bg7 — several tempi behind a normal game.
+                              fr: Les Blancs poursuivent par Nc3 et Qe2 ou Re1, préparant à pousser e5 ou d5 pour ouvrir le centre pendant que les Noirs restent sous-développés. Les Noirs doivent maintenant se hâter de sortir leurs pièces — Nf6, Bg7 — plusieurs temps derrière une partie normale.
+                            basis:
+                              by: chan
+                              at: '2026-09-18'

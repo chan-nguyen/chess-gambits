@@ -1,0 +1,50 @@
+# King's Gambit Accepted, MacLeod Defense. One of eighteen entries tracked by issue #111
+# (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with `kings-gambit-accepted.yaml`
+# and group G (#110). Defining line ends on White's 3.Nf3 (invariant 5). Every move replayed
+# with a scratch chess.js script (deleted before commit).
+#
+# 3...Nc6 develops a piece, at the mild cost of blocking the c-pawn's own advance later.
+# Under the stricter #107 bar a `position` leaf must be clearly decisive; no forced decisive
+# continuation could be established by hand without an engine, so the line stops at
+# `unexplored`.
+id: kings-gambit-accepted-macleod-defense
+name: "King's Gambit Accepted: MacLeod Defense"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, Gambit Mã Vua. Mục này đi sâu riêng vào 3...Nc6, Phòng thủ MacLeod.
+    en: White has just played the knight to f3, the King's Knight Gambit. This entry follows specifically 3...Nc6, the MacLeod Defense.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le Gambit du Cavalier du Roi. Cette entrée suit spécifiquement 3...Nc6, la Défense MacLeod.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Nf3 bằng một nước khác ngoài 3...Nc6 — đánh trung tâm bằng 3...d5, tấn công cánh vua bằng 3...g5, hay phát triển mã kia bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Nf3 with something other than 3...Nc6 — striking the centre with 3...d5, a kingside storm with 3...g5, or developing the other knight with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Nf3 par autre chose que 3...Nc6 — une frappe centrale par 3...d5, un assaut à l'aile roi par 3...g5, ou développer l'autre cavalier par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ MacLeod. Đen phát triển mã một cách tự nhiên, chấp nhận tốt c bị chặn đường tiến sau này để đổi lấy một nước đi hữu ích ngay lập tức.
+        en: The MacLeod Defense. Black develops a knight naturally, accepting that the c-pawn's own advance will be blocked later in exchange for a genuinely useful move right now.
+        fr: La Défense MacLeod. Les Noirs développent naturellement un cavalier, acceptant que l'avance du pion c soit bloquée plus tard en échange d'un coup réellement utile dès maintenant.
+      outcome:
+        type: unexplored

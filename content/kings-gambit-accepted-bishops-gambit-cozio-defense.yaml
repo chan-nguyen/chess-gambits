@@ -1,0 +1,50 @@
+# King's Gambit Accepted, Bishop's Gambit, Cozio Defense. One of eighteen entries tracked by
+# issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...Nf6 develops a piece and attacks e4 directly. Under the stricter #107 bar a `position`
+# leaf must be clearly decisive; this is a sound developing try and no forced decisive
+# continuation could be established by hand without an engine, so the line stops at
+# `unexplored` rather than asserting a verdict that is not actually there.
+id: kings-gambit-accepted-bishops-gambit-cozio-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Cozio Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...Nf6, Phòng thủ Cozio.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...Nf6, the Cozio Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...Nf6, la Défense Cozio.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...Nf6 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay chiếu bằng 3...Qh4+. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...Nf6 — holding the pawn with 3...g5, striking the centre with 3...d5, or checking with 3...Qh4+. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...Nf6 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou un échec par 3...Qh4+. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Cozio. Đen phát triển quân và tấn công thẳng vào tốt e4, buộc Trắng phải phản ứng ngay thay vì tự do dựng trung tâm.
+        en: The Cozio Defense. Black develops a piece and attacks the e4 pawn directly, forcing White to react at once instead of freely building the centre.
+        fr: La Défense Cozio. Les Noirs développent une pièce et attaquent directement le pion e4, forçant les Blancs à réagir aussitôt plutôt que de bâtir librement le centre.
+      outcome:
+        type: unexplored

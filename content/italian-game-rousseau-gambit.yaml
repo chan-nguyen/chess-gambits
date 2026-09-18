@@ -1,0 +1,60 @@
+# Rousseau Gambit, from the Italian Game family (1.e4 e5 2.Nf3 Nc6 3.Bc4 f5!?), the 18th and
+# final entry tracked by issue #111 (group H). Unlike the other seventeen entries in this
+# batch it is unrelated to the King's Gambit Accepted trunk; `content/italian-game-evans-gambit.yaml`
+# was studied for the style of an Italian Game family entry. Side is black: Black is the
+# gambit's own side, so the defining line ends on Black's own 3...f5 (docs/CONTEXT.md,
+# invariant 5) and the root is an opponent node with White to move.
+#
+# Every move was replayed with a scratch chess.js script (deleted before commit). Several
+# tactical tries were checked looking for a forced decisive line for either side after
+# 4.d4 — including 4...fxe4 5.Nxe5 (loses a piece to the Nc6 defender), 5.Qh5+ g6 6.Nf5??
+# (hangs the queen to gxh5, since g6 attacks h5 the moment it is played), and 6.Nxc6 bxc6
+# (an even trade with no follow-up) — and each either failed on replay or led back to a
+# level material count with a genuinely sharp, double-edged position rather than a clear
+# advantage for either side. Under the stricter #107 bar from issue #107, that means the
+# line cannot honestly stop at a `position` leaf here, so it stops at `unexplored` after the
+# critical central try 4.d4.
+id: italian-game-rousseau-gambit
+name: 'Rousseau Gambit'
+eco: C50
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3...f5 is a genuine countergambit — a further, voluntary pawn sacrifice —
+      and 4.d4 is White's most testing reply, opening lines before Black's own king has found
+      safety. No forced refutation was established by hand, but no compensation was
+      established either; both are honestly left open rather than asserted. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...f5, Gambit Rousseau — một nước phản-gambit ngay trong khai cuộc Ý, thí thêm một tốt để mở đường cho các quân và tranh chấp trung tâm sớm.
+    en: Black has just played 3...f5, the Rousseau Gambit — a countergambit right inside the Italian Game, offering a further pawn to open lines for the pieces and contest the centre early.
+    fr: Les Noirs viennent de jouer 3...f5, le Gambit Rousseau — un contre-gambit au sein même du Jeu italien, offrant un pion supplémentaire pour ouvrir des lignes aux pièces et disputer le centre tôt.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...f5 bằng một nước khác ngoài 4.d4 — chẳng hạn ăn tốt ngay bằng 4.exf5 hay ăn tốt e5 bằng 4.Nxe5. Mỗi lựa chọn có kết quả riêng và nằm ngoài phạm vi mục này, vốn đi theo cách đáp trả trung tâm được xem là thử thách nhất.
+      en: White meets 3...f5 with something other than 4.d4 — capturing at once with 4.exf5, or taking the e5 pawn with 4.Nxe5. Each leads to its own separate outcome and is outside the scope of this entry, which follows the central reply regarded as the most testing.
+      fr: Les Blancs répondent à 3...f5 par autre chose que 4.d4 — capturer aussitôt par 4.exf5, ou prendre le pion e5 par 4.Nxe5. Chacun mène à une issue différente et sort du cadre de cette entrée, qui suit la réplique centrale considérée comme la plus exigeante.
+  children:
+    - ply: d4
+      replyQuality: best
+      frequency: occasional
+      annotation:
+        vi: Trắng đánh thẳng vào trung tâm và đường chéo mà tượng c4 đang nhắm tới, mở ra thế cờ sắc bén trước khi vua Đen tìm được nơi an toàn.
+        en: White strikes the centre and the diagonal the c4 bishop already points down, opening a sharp position before Black's king has found safety.
+        fr: Les Blancs frappent le centre et la diagonale que le fou c4 vise déjà, ouvrant une position tranchante avant que le roi noir n'ait trouvé la sécurité.
+      outcome:
+        type: unexplored

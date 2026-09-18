@@ -1,0 +1,60 @@
+# King's Gambit Accepted, Bishop's Gambit, Gianutio Gambit. One of eighteen entries tracked
+# by issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit):
+# 3...f5 4.exf5 Nf6 was confirmed legal, with material returning to level (White has now
+# recaptured the pawn Black gave with 3...f5, leaving the original gambit pawn as the only
+# outstanding imbalance) and no free capture standing for either side at that point.
+#
+# 3...f5 is a further, voluntary pawn sacrifice on top of the King's Gambit itself. Even so,
+# under the stricter #107 bar the position after 4.exf5 does not show a two-point material
+# edge or an unambiguous structural catastrophe for Black — it restores material parity and
+# leaves a genuinely sharp position — so rather than dressing that up as decisive, the line
+# stops at `unexplored`, honestly short of the depth bar.
+id: kings-gambit-accepted-bishops-gambit-gianutio-gambit
+name: "King's Gambit Accepted: Bishop's Gambit, Gianutio Gambit"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...f5, Gambit Gianutio.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...f5, the Gianutio Gambit.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...f5, le Gambit Gianutio.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...f5 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...f5 — holding the pawn with 3...g5, striking the centre with 3...d5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...f5 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: f5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Gambit Gianutio. Đen thí thêm một tốt nữa để mở đường cho hậu và tượng f8, đặt cược vào hoạt động quân thay vì giữ vật chất.
+        en: The Gianutio Gambit. Black offers a second pawn to open lines for the queen and the f8 bishop, betting on piece activity rather than holding on to material.
+        fr: Le Gambit Gianutio. Les Noirs offrent un second pion pour ouvrir des lignes à la dame et au fou f8, misant sur l'activité des pièces plutôt que sur la conservation du matériel.
+      children:
+        - ply: exf5
+          annotation:
+            vi: Trắng ăn tốt, đưa quân số trở lại ngang bằng — con tốt Đen vừa thí đã bù lại đúng bằng con tốt f4 ban đầu.
+            en: White captures the pawn, restoring material to level — the pawn Black just sacrificed pays back exactly the original f4 pawn.
+            fr: Les Blancs prennent le pion, ramenant le matériel à l'égalité — le pion que les Noirs viennent de sacrifier rembourse exactement le pion f4 initial.
+          outcome:
+            type: unexplored

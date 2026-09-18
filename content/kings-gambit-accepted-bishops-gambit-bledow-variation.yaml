@@ -1,0 +1,51 @@
+# King's Gambit Accepted, Bishop's Gambit, Bledow Variation. One of eighteen entries tracked
+# by issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...d5 strikes back at the bishop and the centre immediately, the same idea the Modern
+# Defence uses against the King's Knight Gambit. Under the stricter #107 bar a `position`
+# leaf must be clearly decisive; this central counter is genuinely double-edged and no forced
+# decisive continuation could be established by hand without an engine, so the line stops at
+# `unexplored` rather than asserting a verdict that is not actually there.
+id: kings-gambit-accepted-bishops-gambit-bledow-variation
+name: "King's Gambit Accepted: Bishop's Gambit, Bledow Variation"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...d5, Biến thể Bledow.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...d5, the Bledow Variation.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...d5, la Variante Bledow.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...d5 — giữ tốt bằng 3...g5, chiếu bằng 3...Qh4+, hay phát triển bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...d5 — holding the pawn with 3...g5, checking with 3...Qh4+, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...d5 — conserver le pion par 3...g5, un échec par 3...Qh4+, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Biến thể Bledow. Đen phản công ngay vào tượng c4 và trung tâm, sẵn sàng trả lại con tốt f4 để đổi lấy sự phát triển thông thoáng, giống ý tưởng của Phòng thủ Hiện đại trước Gambit Mã Vua.
+        en: The Bledow Variation. Black counterattacks the c4 bishop and the centre at once, ready to give the f4 pawn back for smooth development, the same idea the Modern Defence uses against the King's Knight Gambit.
+        fr: La Variante Bledow. Les Noirs contre-attaquent aussitôt le fou c4 et le centre, prêts à rendre le pion f4 contre un développement aisé, la même idée que la Défense moderne face au Gambit du Cavalier du Roi.
+      outcome:
+        type: unexplored

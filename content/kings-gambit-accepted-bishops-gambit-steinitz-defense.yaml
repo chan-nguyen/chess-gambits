@@ -1,0 +1,54 @@
+# King's Gambit Accepted, Bishop's Gambit, Steinitz Defense. One of eighteen entries tracked
+# by issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...Ne7 is a rare, passive try — the knight blocks the f8-bishop's natural diagonal to e7
+# before relocating, at the cost of tempo. Under the stricter #107 bar a `position` leaf must
+# be clearly decisive: a first draft of this entry checked the resulting piece mobility with
+# chess.js and initially misread it (a scripting error queried the wrong side to move); once
+# corrected, the bishop and rook were found to retain reasonable squares, so no clean
+# structural catastrophe could be honestly certified by hand without an engine. The line
+# therefore stops at `unexplored` rather than asserting a verdict the reviewer could not
+# stand behind.
+id: kings-gambit-accepted-bishops-gambit-steinitz-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Steinitz Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...Ne7, Phòng thủ Steinitz.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...Ne7, the Steinitz Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...Ne7, la Défense Steinitz.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...Ne7 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển mã kia bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...Ne7 — holding the pawn with 3...g5, striking the centre with 3...d5, or developing the other knight with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...Ne7 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou développer l'autre cavalier par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Ne7
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Phòng thủ Steinitz. Đen đưa mã ra e7, một ô tạm thời và ít hoạt động, tạm thời án ngữ đường chéo của tượng f8 trong lúc chuẩn bị đưa mã ra vị trí tốt hơn như g6.
+        en: The Steinitz Defense. Black places the knight on e7, a modest and inactive square that temporarily blocks the f8 bishop's own diagonal while preparing to reroute the knight to a better square such as g6.
+        fr: La Défense Steinitz. Les Noirs placent le cavalier en e7, une case modeste et peu active qui bloque temporairement la diagonale du fou f8, en préparant un repositionnement du cavalier vers une meilleure case comme g6.
+      outcome:
+        type: unexplored
