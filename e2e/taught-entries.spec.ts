@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are one hundred twelve of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred and forty-four of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -129,7 +129,9 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'kieninger-trap',
       'kings-gambit',
       'kings-gambit-accepted',
+      'kings-gambit-accepted-basman-gambit',
       'kings-gambit-accepted-becker-defense',
+      'kings-gambit-accepted-bishops-gambit',
       'kings-gambit-accepted-bishops-gambit-anderssen-defense',
       'kings-gambit-accepted-bishops-gambit-bledow-variation',
       'kings-gambit-accepted-bishops-gambit-cozio-defense',
@@ -139,12 +141,27 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'kings-gambit-accepted-bishops-gambit-maurian-defense',
       'kings-gambit-accepted-bishops-gambit-steinitz-defense',
       'kings-gambit-accepted-bonsch-osmolovsky-variation',
+      'kings-gambit-accepted-breyer-gambit',
+      'kings-gambit-accepted-carrera-gambit',
       'kings-gambit-accepted-cunningham-defense',
+      'kings-gambit-accepted-dodo-variation',
+      'kings-gambit-accepted-eisenberg-variation',
       'kings-gambit-accepted-fischer-defense',
+      'kings-gambit-accepted-gaga-gambit',
       'kings-gambit-accepted-gianutio-countergambit',
+      'kings-gambit-accepted-kings-knights-gambit',
       'kings-gambit-accepted-macleod-defense',
+      'kings-gambit-accepted-mason-keres-gambit',
       'kings-gambit-accepted-modern-defense',
+      'kings-gambit-accepted-orsini-gambit',
+      'kings-gambit-accepted-paris-gambit',
       'kings-gambit-accepted-schallopp-defense',
+      'kings-gambit-accepted-schurig-gambit-with-bb5',
+      'kings-gambit-accepted-schurig-gambit-with-bd3',
+      'kings-gambit-accepted-stamma-gambit',
+      'kings-gambit-accepted-tartakower-gambit',
+      'kings-gambit-accepted-tumbleweed',
+      'kings-gambit-accepted-villemson-gambit',
       'kings-gambit-accepted-wagenbach-defense',
       'kings-gambit-declined-classical-variation',
       'kings-indian-attack-omega-delta-gambit',
@@ -156,6 +173,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'latvian-gambit-accepted',
       'legals-mate',
       'lion-defense-anti-philidor-lions-cave-lion-claw-gambit',
+      'mexican-defense-horsefly-gambit',
+      'mikenas-defense-pozarek-gambit',
       'modern-defense-lizard-defense-pirc-diemer-gambit',
       'mortimer-trap',
       'nimzo-indian-defense-dilworth-gambit',
@@ -166,6 +185,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'owen-defense-naselwaus-gambit',
       'petrovs-defense-stafford-gambit',
       'philidor-defense-lopez-countergambit',
+      'pirc-defense-roscher-gambit',
+      'polish-defense-spassky-gambit-accepted',
       'polish-opening-birmingham-gambit',
       'ponziani-opening-ponziani-countergambit',
       'portuguese-opening-miguel-gambit',
@@ -174,14 +195,25 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'queens-pawn-game-zurich-gambit',
       'rat-defense-english-rat-lisbon-gambit',
       'reti-opening-zilbermints-gambit',
+      'richter-veresov-attack-malich-gambit',
       'ruy-lopez-schliemann-defense',
       'scandinavian-defense-zilbermints-gambit',
       'scotch-game-goring-gambit',
       'scotch-game-scotch-gambit',
       'semi-slav-defense-marshall-gambit',
       'siberian-trap',
+      'sicilian-defense-brussels-gambit',
+      'sicilian-defense-euwe-attack-prins-gambit',
+      'sicilian-defense-halasz-gambit',
+      'sicilian-defense-morphy-gambit',
+      'sicilian-defense-okelly-variation-wing-gambit',
+      'sicilian-defense-polish-gambit',
+      'sicilian-defense-portsmouth-gambit',
       'sicilian-defense-smith-morra-gambit',
+      'sicilian-defense-wing-gambit',
       'slav-defense-diemer-gambit',
+      'sodium-attack-durkin-gambit',
+      'st-george-defense-zilbermints-gambit',
       'tarrasch-defense-schara-gambit',
       'torre-attack-wagner-gambit',
       'trompowsky-attack-raptor-variation-hergert-gambit',
@@ -201,18 +233,21 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       test.setTimeout(120_000)
 
       /*
-       * The default catalogue view is the taught tier. That alone auto-expands families
-       * only while the taught set as a whole is under `autoExpandLimit` (measured at 100,
-       * `src/components/catalogue/filter.ts`) — a ceiling the taught tier itself crossed
-       * once #110 landed, and will cross again as more entries are taught, so relying on it
-       * here would make this test's passing depend on how much content happens to exist
-       * rather than on whether the entry is reachable. Searching by the entry's own ECO
-       * code narrows the match count to (at most) a few dozen, comfortably under the
-       * limit regardless of how large the taught tier grows — and, unlike the entry's
-       * name, the ECO code is not translated, so it matches on every locale this test
-       * might run against. (A name-based search does not: this page renders in Vietnamese,
-       * where 'Lasker Trap' displays as 'Bẫy Lasker', and a search for the English content
-       * name against a Vietnamese-only haystack returns nothing.)
+       * The default catalogue view is the taught tier, and a narrowed view under the
+       * auto-expand limit opens its families — which covered every taught entry
+       * unnarrowed through issue #103's batch, but the taught tier itself passed
+       * `autoExpandLimit` (100, `filter.ts`) once #109 brought it to one hundred and
+       * five, and again once #110's own search-by-name fix turned out to need
+       * search-by-ECO instead (a name is translated to Vietnamese on this page —
+       * 'Lasker Trap' renders as 'Bẫy Lasker' — and a search for the untranslated
+       * content name against a Vietnamese-only haystack finds nothing). Past the limit
+       * the index renders as collapsed family buttons (`CatalogueList.tsx`), which is
+       * the intended behaviour for the unfiltered view — so this walk narrows by the
+       * entry's own ECO code, which is not translated and so matches on every locale
+       * this test might run against. Each of this repository's ECO codes matches at
+       * most a few dozen taught entries (`sicilian-defense-*` tops out at ten),
+       * comfortably under the limit, and the href-based locator below still finds the
+       * one card that is this entry's.
        */
       await page.goto(`${cataloguePath}?q=${encodeURIComponent(entry.eco)}`)
       /*

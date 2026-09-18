@@ -118,17 +118,31 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Ninety-four entries are authored — three from #15, eleven from #73, ten from #93, ten
-   * from #94's group B, ten from #95, twenty-five from #102 (group D, including
-   * damiano-defence-refutation's tree), and twenty-four from #103 (group E) — and the
-   * other 909 are Tier 0. Each authored entry is named here with the number of root-to-leaf
-   * lines its tree actually has, rather than the whole set being loosened to "at least zero",
-   * which would assert nothing and would keep passing if every tree in the repository
-   * disappeared.
+   * One hundred and forty-four entries are authored — three from #15, eleven from #73, ten
+   * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
+   * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
+   * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
+   * seventeen from #110 (group G, King's Gambit Accepted sub-variations), and eighteen
+   * from #111 (group H, King's Gambit Accepted sub-variations and the Rousseau Gambit) —
+   * and the other 859 are Tier 0, with no content file at all. Each authored entry is
+   * named here with the number of root-to-leaf lines its tree actually has, rather than
+   * the whole set being loosened to "at least zero", which would assert nothing and would
+   * keep passing if every tree in the repository disappeared.
+   *
+   * Seven of #110's seventeen (Bishop's Gambit, Carrera, Dodo, Gaga, King's Knight's
+   * Gambit, Paris and Stamma) genuinely level out — real analysis, pushed as far as it
+   * honestly goes, finds no decisive advantage for either side — and say so plainly in a
+   * `position` leaf rather than stopping at `unexplored`, which would teach a learner
+   * nothing (docs/CONTEXT.md: `unexplored` means "not mapped yet", not "mapped and level").
+   * Each still has exactly one root-to-leaf line, so each is named here with `1` the same
+   * as every other single-branch entry.
    *
    * This is the assertion the test was written to force: the day a mapped entry lands, the
    * number that appears here has to appear because content changed. It did five times, and
-   * every time these lines changed with it, deliberately and by name.
+   * every time these lines changed with it, deliberately and by name — including once,
+   * #109, where the count itself was updated correctly but this paragraph's number was
+   * not, which is why the paragraph is worth re-deriving from the map rather than trusted
+   * on sight the next time it changes.
    */
   const AUTHORED: ReadonlyMap<string, number> = new Map([
     ['alekhine-defense-krejcik-variation-krejcik-gambit', 1],
@@ -181,7 +195,9 @@ describe('the catalogue this repository ships', () => {
     ['kieninger-trap', 4],
     ['kings-gambit', 5],
     ['kings-gambit-accepted', 1],
+    ['kings-gambit-accepted-basman-gambit', 1],
     ['kings-gambit-accepted-becker-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit', 1],
     ['kings-gambit-accepted-bishops-gambit-anderssen-defense', 1],
     ['kings-gambit-accepted-bishops-gambit-bledow-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-cozio-defense', 1],
@@ -191,12 +207,27 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-accepted-bishops-gambit-maurian-defense', 1],
     ['kings-gambit-accepted-bishops-gambit-steinitz-defense', 1],
     ['kings-gambit-accepted-bonsch-osmolovsky-variation', 1],
+    ['kings-gambit-accepted-breyer-gambit', 1],
+    ['kings-gambit-accepted-carrera-gambit', 1],
     ['kings-gambit-accepted-cunningham-defense', 1],
+    ['kings-gambit-accepted-dodo-variation', 1],
+    ['kings-gambit-accepted-eisenberg-variation', 1],
     ['kings-gambit-accepted-fischer-defense', 1],
+    ['kings-gambit-accepted-gaga-gambit', 1],
     ['kings-gambit-accepted-gianutio-countergambit', 1],
+    ['kings-gambit-accepted-kings-knights-gambit', 1],
     ['kings-gambit-accepted-macleod-defense', 1],
+    ['kings-gambit-accepted-mason-keres-gambit', 1],
     ['kings-gambit-accepted-modern-defense', 1],
+    ['kings-gambit-accepted-orsini-gambit', 1],
+    ['kings-gambit-accepted-paris-gambit', 1],
     ['kings-gambit-accepted-schallopp-defense', 1],
+    ['kings-gambit-accepted-schurig-gambit-with-bb5', 1],
+    ['kings-gambit-accepted-schurig-gambit-with-bd3', 1],
+    ['kings-gambit-accepted-stamma-gambit', 1],
+    ['kings-gambit-accepted-tartakower-gambit', 1],
+    ['kings-gambit-accepted-tumbleweed', 1],
+    ['kings-gambit-accepted-villemson-gambit', 1],
     ['kings-gambit-accepted-wagenbach-defense', 1],
     ['kings-gambit-declined-classical-variation', 1],
     ['kings-indian-attack-omega-delta-gambit', 1],
@@ -208,6 +239,8 @@ describe('the catalogue this repository ships', () => {
     ['latvian-gambit-accepted', 1],
     ['legals-mate', 7],
     ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
+    ['mexican-defense-horsefly-gambit', 1],
+    ['mikenas-defense-pozarek-gambit', 1],
     ['modern-defense-lizard-defense-pirc-diemer-gambit', 1],
     ['mortimer-trap', 1],
     ['nimzo-indian-defense-dilworth-gambit', 1],
@@ -218,6 +251,8 @@ describe('the catalogue this repository ships', () => {
     ['owen-defense-naselwaus-gambit', 1],
     ['petrovs-defense-stafford-gambit', 1],
     ['philidor-defense-lopez-countergambit', 2],
+    ['pirc-defense-roscher-gambit', 1],
+    ['polish-defense-spassky-gambit-accepted', 1],
     ['polish-opening-birmingham-gambit', 1],
     ['ponziani-opening-ponziani-countergambit', 1],
     ['portuguese-opening-miguel-gambit', 1],
@@ -226,14 +261,25 @@ describe('the catalogue this repository ships', () => {
     ['queens-pawn-game-zurich-gambit', 1],
     ['rat-defense-english-rat-lisbon-gambit', 1],
     ['reti-opening-zilbermints-gambit', 1],
+    ['richter-veresov-attack-malich-gambit', 2],
     ['ruy-lopez-schliemann-defense', 1],
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scotch-game-goring-gambit', 2],
     ['scotch-game-scotch-gambit', 4],
     ['semi-slav-defense-marshall-gambit', 1],
     ['siberian-trap', 1],
+    ['sicilian-defense-brussels-gambit', 1],
+    ['sicilian-defense-euwe-attack-prins-gambit', 1],
+    ['sicilian-defense-halasz-gambit', 1],
+    ['sicilian-defense-morphy-gambit', 1],
+    ['sicilian-defense-okelly-variation-wing-gambit', 1],
+    ['sicilian-defense-polish-gambit', 1],
+    ['sicilian-defense-portsmouth-gambit', 1],
     ['sicilian-defense-smith-morra-gambit', 4],
+    ['sicilian-defense-wing-gambit', 1],
     ['slav-defense-diemer-gambit', 1],
+    ['sodium-attack-durkin-gambit', 1],
+    ['st-george-defense-zilbermints-gambit', 1],
     ['tarrasch-defense-schara-gambit', 1],
     ['torre-attack-wagner-gambit', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
@@ -245,7 +291,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored ninety-four have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored one hundred and forty-four have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

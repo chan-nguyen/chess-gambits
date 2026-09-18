@@ -1,0 +1,76 @@
+# King's Gambit Accepted, Tartakower Gambit: 1.e4 e5 2.f4 exf4 3.Be2. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). The leaf
+# is a decisive stop under the #107 bar: a clean extra pawn plus a king permanently stuck
+# on f1 with no castling rights and no pawn shield around it.
+id: kings-gambit-accepted-tartakower-gambit
+name: Tartakower Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Be2]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.Be2 develops a piece but blocks its own king's escape to e2, leaving
+      only one legal way to answer 3...Qh4+ that does not lose more material. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Be2, phát triển tượng nhưng lại tự chặn mất ô e2 — chính ô mà vua Trắng cần để thoát khỏi một nước chiếu sắp tới. Đen có ngay cách khai thác kẽ hở đó.
+    en: White plays 3.Be2, developing a piece but blocking off e2 — precisely the square White's own king will soon need to escape a coming check. Black has an immediate way to exploit that gap.
+    fr: Les Blancs jouent 3.Be2, développant une pièce mais bloquant e2 — précisément la case dont le roi blanc aura bientôt besoin pour échapper à un échec à venir. Les Noirs disposent d'un moyen immédiat d'exploiter cette faille.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước phát triển khác thay vì chiếu ngay. Bất kỳ nước nào cũng giữ nguyên một tốt hơn cho Đen, nhưng 3...Qh4+ là cách trực tiếp nhất buộc vua Trắng phải rời vị trí ban đầu.
+      en: Black plays some other developing move instead of checking at once. Any of them keeps Black's extra pawn intact, but 3...Qh4+ is the most direct way to force White's king from its starting square.
+      fr: Les Noirs jouent un autre coup de développement au lieu de mettre en échec immédiatement. Chacun d'eux conserve le pion supplémentaire des Noirs, mais 3...Qh4+ est le moyen le plus direct de forcer le roi blanc à quitter sa case de départ.
+  children:
+    - ply: Qh4+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chiếu ngay bằng Qh4+. Vì tượng đã chiếm mất ô e2, Trắng chỉ còn hai lựa chọn — 4.g3 mất thêm một tốt nữa sau fxg3, còn 4.Kf1 mất quyền nhập thành nhưng không mất thêm quân. Kf1 là lựa chọn thực dụng hơn.
+        en: Black checks at once with Qh4+. Since the bishop already occupies e2, White has only two options — 4.g3 drops a further pawn to fxg3, while 4.Kf1 forfeits castling but loses no extra material. Kf1 is the more practical choice.
+        fr: Les Noirs mettent en échec immédiatement par Qh4+. Le fou occupant déjà e2, les Blancs n'ont que deux options — 4.g3 cède un pion supplémentaire après fxg3, tandis que 4.Kf1 sacrifie le roque sans perdre de matériel supplémentaire. Kf1 est le choix le plus pragmatique.
+      children:
+        - ply: Kf1
+          annotation:
+            vi: Trắng buộc phải đi Kf1, tránh mất thêm tốt nhưng từ bỏ quyền nhập thành vĩnh viễn. Các ô e1 và f2 xung quanh vua đều trống — Trắng đã mất tốt f ngay từ nước 2...exf4 — nên không còn lá chắn tốt nào bảo vệ vua ở đó.
+            en: White is forced into Kf1, avoiding a further pawn loss but giving up castling for good. The e1 and f2 squares around the king are both empty — White gave up its f-pawn all the way back at 2...exf4 — so there is no pawn shield left to protect the king there.
+            fr: Les Blancs sont contraints de jouer Kf1, évitant une perte de pion supplémentaire mais abandonnant le roque pour de bon. Les cases e1 et f2 autour du roi sont toutes deux vides — les Blancs ont cédé leur pion f dès 2...exf4 — si bien qu'il n'y a plus aucun bouclier de pions pour protéger le roi à cet endroit.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì giữ lại con tốt f4 bằng g5. Bất kỳ lựa chọn nào cũng để lại vị trí tương tự có lợi cho Đen, nhưng 4...g5 là cách đơn giản nhất để khóa chặt cả hai lợi thế mà không mở thêm đường cho quân Trắng.
+              en: Black plays something other than locking in the f4 pawn with g5. Any choice leaves a broadly similar position in Black's favour, but 4...g5 is the simplest way to lock in both advantages without opening any more lines for White's pieces.
+              fr: Les Noirs jouent autre chose que de verrouiller le pion f4 par g5. Tout autre choix laisse une position globalement semblable en faveur des Noirs, mais 4...g5 est le moyen le plus simple de verrouiller les deux avantages sans ouvrir davantage de lignes pour les pièces blanches.
+          children:
+            - ply: g5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen củng cố con tốt f4 bằng g5, khóa chặt cấu trúc tốt cánh vua. Thế cờ giờ đã ổn định hoàn toàn có lợi cho Đen.
+                en: Black shores up the f4 pawn with g5, locking the kingside pawn structure. The position is now fully settled in Black's favour.
+                fr: Les Noirs consolident le pion f4 par g5, verrouillant la structure de pions à l'aile roi. La position est désormais pleinement stabilisée en faveur des Noirs.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đen hơn đúng một tốt (f4, được g5 bảo vệ vĩnh viễn) mà không có bù đắp nào cho Trắng. Vua Trắng đứng tại f1 — mất quyền nhập thành vĩnh viễn — với các ô e1 và f2 xung quanh hoàn toàn trống, không một tốt nào che chắn.
+                  en: Black is a clean pawn up (the f4 pawn, permanently guarded by g5) with no compensation for White at all. White's king stands on f1 — castling gone for good — with the e1 and f2 squares around it completely bare of any pawn.
+                  fr: Les Noirs ont un pion d'avance net (le pion f4, défendu à jamais par g5) sans la moindre compensation pour les Blancs. Le roi blanc se tient en f1 — le roque perdu pour de bon — avec les cases e1 et f2 autour de lui totalement vides de tout pion.
+                plan:
+                  vi: Đen phát triển bình thường với Nc6, Nf6, Bc5 hoặc Bg7 sau khi chơi thêm d6, nhắm quân vào vua Trắng đang mắc kẹt ở góc bàn cờ, và không có gì phải vội vì lợi thế đã vững chắc và lâu dài.
+                  en: Black develops normally with Nc6, Nf6, and Bc5 or a Bg7 fianchetto after a further d6, aiming pieces at White's king stuck in the corner, with nothing to rush since the advantage is solid and lasting.
+                  fr: Les Noirs se développent normalement par Nc6, Nf6, et Bc5 ou un fianchetto Bg7 après un futur d6, en dirigeant leurs pièces vers le roi blanc bloqué dans le coin, sans rien à précipiter puisque l'avantage est solide et durable.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

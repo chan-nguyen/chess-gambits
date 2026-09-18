@@ -1,0 +1,58 @@
+# King's Gambit Accepted, Eisenberg Variation: 1.e4 e5 2.f4 exf4 3.Nh3. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). The leaf
+# is a decisive stop under the #107 bar: a clean extra pawn, and a knight that has provably
+# no way to challenge it — 4.Nxf4 and 4.Nxg5 both lose the piece, and 4.h4 is flatly illegal
+# with White's own knight sitting on h3.
+id: kings-gambit-accepted-eisenberg-variation
+name: Eisenberg Variation
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nh3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.Nh3 eyes the f4 pawn but blocks its own h-pawn from ever challenging
+      Black's kingside, and both of its own capturing tries on f4 and g5 lose material by
+      force once Black plays 3...g5. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Nh3, nhắm vào con tốt f4 mà không chặn đường chiếu Qh4+ (mã h3 không che được đường chéo đó) nhưng lại tự chặn đường của chính tốt h. Đây là ý tưởng đứng sau tên gọi "Eisenberg" — một nước phát triển trông có vẻ hợp lý nhưng lại tự trói tay mình.
+    en: White plays 3.Nh3, eyeing the f4 pawn without blocking the Qh4+ diagonal (the h3-knight does not cover it) but tying up its own h-pawn in the process. This is the idea behind the name "Eisenberg" — a move that looks like development but ties its own hands.
+    fr: Les Blancs jouent 3.Nh3, visant le pion f4 sans bloquer la diagonale de Qh4+ (le cavalier en h3 ne la couvre pas) mais en immobilisant du même coup son propre pion h. C'est l'idée derrière le nom « Eisenberg » — un coup qui ressemble à du développement mais qui se lie les mains.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì giữ ngay con tốt f4 bằng g5. Bất kỳ lựa chọn nào cũng giữ nguyên một tốt hơn cho Đen, nhưng 3...g5 là cách trực tiếp nhất khóa chặt con tốt vĩnh viễn, vì mã h3 đã tự chặn mất nước h4 duy nhất có thể thách thức nó.
+      en: Black plays something other than holding the f4 pawn immediately with g5. Any choice keeps Black's extra pawn, but 3...g5 is the most direct way to lock it in for good, since the h3-knight has already blocked the only pawn move — h4 — that could ever challenge it.
+      fr: Les Noirs jouent autre chose que de conserver immédiatement le pion f4 par g5. Tout autre choix conserve le pion supplémentaire des Noirs, mais 3...g5 est le moyen le plus direct de le verrouiller pour de bon, puisque le cavalier en h3 a déjà bloqué le seul coup de pion — h4 — qui aurait pu jamais le remettre en cause.
+  children:
+    - ply: g5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen củng cố con tốt f4 bằng g5. Trắng không còn cách nào thách thức cấu trúc tốt cánh vua của Đen — 4.h4 là bất hợp lệ vì chính mã Trắng đang đứng chặn ở h3, còn 4.Nxf4 hay 4.Nxg5 đều mất quân ngay lập tức vì cả hai con tốt đều được bảo vệ lẫn nhau.
+        en: Black shores up the f4 pawn with g5. White now has no way at all to challenge Black's kingside pawn structure — 4.h4 is illegal because White's own knight is sitting on h3 blocking it, while 4.Nxf4 and 4.Nxg5 both lose the knight outright since the two pawns defend each other.
+        fr: Les Noirs consolident le pion f4 par g5. Les Blancs n'ont désormais plus aucun moyen de contester la structure de pions à l'aile roi noire — 4.h4 est illégal puisque le propre cavalier des Blancs, en h3, le bloque, tandis que 4.Nxf4 et 4.Nxg5 perdent tous deux le cavalier net, les deux pions se défendant mutuellement.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen hơn đúng một tốt (f4, được g5 bảo vệ) không có bù đắp nào. Mã Trắng ở h3 không có ô nào tốt để đi tới — nó đã dùng một nước để tự khóa chặt tốt h của chính mình, và hai cách ăn quân duy nhất khả dĩ (Nxf4, Nxg5) đều mất quân ngay lập tức vì cặp tốt g5-f4 bảo vệ lẫn nhau.
+          en: Black is a clean pawn up (f4, guarded by g5) with no compensation. White's knight on h3 has no good square to go to — it has already spent a move locking up its own h-pawn, and the only two captures it could try (Nxf4, Nxg5) both lose the piece outright because the g5-f4 pawn pair defends itself.
+          fr: Les Noirs ont un pion d'avance net (f4, défendu par g5) sans compensation. Le cavalier blanc en h3 n'a aucune bonne case où aller — il a déjà utilisé un coup pour bloquer son propre pion h, et les deux seules captures qu'il pourrait tenter (Nxf4, Nxg5) perdent toutes deux la pièce net, la paire de pions g5-f4 se défendant elle-même.
+        plan:
+          vi: Đen phát triển bình thường với Nc6, Nf6, Bg7 sau d6 hoặc Bc5, không có gì phải vội vì con tốt thừa đã được bảo đảm vĩnh viễn và mã h3 của Trắng sẽ còn mất thêm thời gian để tìm được một ô hữu ích.
+          en: Black develops normally with Nc6, Nf6, and a Bg7 fianchetto after d6 or simply Bc5, with nothing to rush since the extra pawn is permanently secured and White's h3-knight will still need more time to find a useful square.
+          fr: Les Noirs se développent normalement par Nc6, Nf6, et un fianchetto Bg7 après d6, ou simplement Bc5, sans rien à précipiter puisque le pion supplémentaire est assuré pour de bon et que le cavalier blanc en h3 aura encore besoin de temps pour trouver une case utile.
+        basis:
+          by: chan
+          at: '2026-09-18'

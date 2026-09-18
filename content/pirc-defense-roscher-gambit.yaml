@@ -1,0 +1,69 @@
+# Pirc Defense: Roscher Gambit. Frozen defining line 1.e4 d6 2.d4 Nf6 3.Nf3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# No material has changed hands within this defining line or its first continuation — 4.e5 is
+# a pawn push attacking a knight, not yet a sacrifice — and it stays that way at the leaf
+# below: material is level and the position is resolved plainly as such (#107) rather than
+# left at unexplored, since a level material count with the position's few concrete features
+# named is a real answer, not a hedge.
+id: pirc-defense-roscher-gambit
+name: 'Pirc Defense: Roscher Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, d6, d4, Nf6, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted, and a modest one at that: nothing has been sacrificed
+      by the point this entry stops looking, and after 3...g6 4.e5 the material count is
+      exactly level with no concrete feature yet favouring either side — "unsound" describes
+      a gambit that loses material or the initiative it paid for, and this one has not done
+      either at this depth.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi Nf3 theo lối cổ điển thay vì Nc3, để dành ô c3 cho tốt c và chuẩn bị đẩy e5 nhắm vào mã f6 khi có dịp. Đây là Roscher Gambit trong Khai cuộc Pirc — được gọi là gambit nhưng chưa hề thí quân gì ở giai đoạn này.
+    en: White plays the classical Nf3 rather than Nc3, keeping the c3 square free for the c-pawn and preparing to push e5 against the f6 knight when the moment comes. This is the Pirc Defense's Roscher Gambit — called a gambit, though nothing has actually been sacrificed at this stage.
+    fr: Les Blancs jouent le classique Nf3 plutôt que Nc3, gardant la case c3 libre pour le pion c et préparant à pousser e5 contre le cavalier f6 le moment venu. C'est le Gambit Roscher de la Défense Pirc — appelé gambit, bien que rien n'ait encore été sacrifié à ce stade.
+  dismissRest:
+    reason:
+      vi: Đen không chơi ...g6. Các cách sắp xếp khác của Pirc (chơi sớm ...c5, chuẩn bị ...e5, hay đổi ngay ở e4 nếu chiến thuật cho phép) đều là những lựa chọn hợp lý và đã được lý thuyết Pirc nghiên cứu rộng rãi, nhưng chúng nằm ngoài hệ thống fianchetto tiêu chuẩn mà mục này đi theo — ...g6 chuẩn bị ...Bg7 là lựa chọn phổ biến và tiêu biểu nhất để xem xét ở đây.
+      en: Black does not play ...g6. The other Pirc setups (an early ...c5, preparing ...e5, or trading at once on e4 if the tactics allow) are all reasonable and well studied in Pirc theory generally, but they sit outside the standard fianchetto system this entry follows — ...g6 heading for ...Bg7 is the most common and representative choice to examine here.
+      fr: Les Noirs ne jouent pas ...g6. Les autres dispositifs de la Pirc (un ...c5 précoce, la préparation de ...e5, ou l'échange immédiat en e4 si la tactique le permet) sont tous raisonnables et largement étudiés dans la théorie de la Pirc en général, mais ils sortent du système de fianchetto standard que suit cette entrée — ...g6 en direction de ...Bg7 est le choix le plus courant et le plus représentatif à examiner ici.
+  children:
+    - ply: g6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen tiếp tục fianchetto tượng đồng, hệ thống chuẩn của Pirc, chưa lo lắng gì về con tốt e4 hay con mã f6.
+        en: Black continues with the standard Pirc fianchetto, not yet worried about the e4 pawn or the f6 knight.
+        fr: Les Noirs poursuivent avec le fianchetto standard de la Pirc, sans encore se soucier du pion e4 ni du cavalier f6.
+      children:
+        - ply: e5
+          annotation:
+            vi: Đây là nước mang tên "gambit" — Trắng đẩy tốt tấn công thẳng vào mã f6, chưa thí quân gì cả mà chỉ giành nhịp bằng cách đuổi quân. Mã Đen phải quyết định ngay, lùi đi hay đổi ở e5.
+            en: This is the move that gives the line its "gambit" name — White pushes the pawn to attack the f6 knight directly, without offering any material yet, only gaining a tempo by chasing a piece. The knight has to decide at once, retreat or trade on e5.
+            fr: C'est le coup qui donne son nom de « gambit » à la ligne — les Blancs poussent le pion pour attaquer directement le cavalier f6, sans encore rien offrir en matériel, gagnant seulement un temps en chassant une pièce. Le cavalier doit décider tout de suite, reculer ou échanger en e5.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì hai bên hoàn toàn bằng nhau, chưa có con tốt nào bị mất — con tốt e5 vẫn được mã f3 bảo vệ nên đổi ở đó (dxe5 Nxe5) cũng không đổi được gì về vật chất. Đen chưa kịp hoàn thành fianchetto (tượng f8 còn ở nhà dù đã chơi g6), còn Trắng đã đẩy tốt lên e5 và d4, chiếm không gian trung tâm nhưng cũng chưa phát triển tượng hay nhập thành. Không bên nào có tốt chồng, tốt cô hay đường mở nhắm vào vua đối phương ở đây — đây thực sự là một thế cờ cân bằng, và câu hỏi mở duy nhất là con mã f6 sẽ đứng ở đâu.
+              en: Count the pieces and the two sides are completely level, with no pawn lost anywhere — the e5 pawn is still defended by the f3 knight, so trading there (dxe5 Nxe5) would not change the material picture either. Black has not finished the fianchetto yet (the f8 bishop is still at home despite ...g6), while White has pushed pawns to e5 and d4 for central space but has not developed a bishop or castled either. Neither side has doubled or isolated pawns, or an open line toward the other king here — this really is a level position, and the one open question is where the f6 knight ends up.
+              fr: Comptez les pièces, les deux camps sont parfaitement à égalité, aucun pion n'est perdu nulle part — le pion e5 est toujours défendu par le cavalier f3, échanger là (dxe5 Nxe5) ne changerait donc rien au tableau matériel. Les Noirs n'ont pas encore terminé leur fianchetto (le fou f8 est toujours chez lui malgré ...g6), tandis que les Blancs ont poussé leurs pions en e5 et d4 pour l'espace central mais n'ont pas non plus développé de fou ni roqué. Aucun camp n'a de pions doublés ou isolés, ni de ligne ouverte vers le roi adverse ici — c'est réellement une position égale, et la seule question ouverte est de savoir où finira le cavalier f6.
+            plan:
+              vi: Trắng chơi Bc4 hoặc Bb5+, O-O và Re1, cố dùng con tốt e5 tiến xa để hạn chế Đen trong khi hoàn thiện phát triển. Đen chơi Nfd7 hoặc Ng4 lùi mã, rồi Bg7 hoàn thành fianchetto, O-O, và tìm cách phá con tốt e5 bằng ...c5 hoặc ...f6 đúng lúc để giành lại không gian trung tâm.
+              en: White plays Bc4 or Bb5+, castles and Re1, trying to use the advanced e5 pawn to cramp Black while finishing development. Black plays ...Nfd7 or ...Ng4 to retreat the knight, then ...Bg7 to finish the fianchetto, castles, and looks to challenge the e5 pawn with ...c5 or ...f6 at the right moment to win back central space.
+              fr: Les Blancs jouent Bc4 ou Bb5+, roquent et Re1, tentant d'utiliser le pion e5 avancé pour gêner les Noirs tout en achevant leur développement. Les Noirs jouent ...Nfd7 ou ...Ng4 pour reculer le cavalier, puis ...Bg7 pour achever le fianchetto, roquent, et cherchent à contester le pion e5 par ...c5 ou ...f6 au bon moment pour regagner de l'espace central.
+            basis:
+              by: chan
+              at: '2026-09-18'
