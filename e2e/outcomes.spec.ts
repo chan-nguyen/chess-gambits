@@ -129,6 +129,12 @@ test.describe('a branch nobody has mapped', () => {
  * beside an unlabelled opinion does not make the opinion true, only convincing, and six of
  * the ten colour pairs in this palette are so close in luminance that hue is not available
  * to carry the difference.
+ *
+ * **A mate and an unmapped branch still carry one; an assessment does not, as of
+ * 2026-09-18.** `AssessmentOutcome` stopped rendering `JudgementNote` at the product
+ * owner's request (docs/CONTEXT.md, *Provenance*), so `.provenance` now has exactly two
+ * callers rather than three. The comparison below is scoped to those two, and the
+ * assessment's silence is asserted on its own rather than left as a gap nothing checks.
  */
 test.describe('the greyscale review', () => {
   const greyscale = (page: Page) =>
@@ -152,19 +158,26 @@ test.describe('the greyscale review', () => {
       ].join('|')
     })
 
-  test('tells a proof, an opinion and an unmapped branch apart with the colour gone', async ({
-    page,
-  }) => {
+  test('tells a proof from an unmapped branch apart with the colour gone', async ({ page }) => {
     const signals: string[] = []
-    for (const line of [OUTCOME_MATE_LINE, OUTCOME_ASSESSMENT_LINE, OUTCOME_UNEXPLORED_LINE]) {
+    for (const line of [OUTCOME_MATE_LINE, OUTCOME_UNEXPLORED_LINE]) {
       await open(page, line)
       await greyscale(page)
       signals.push(await signal(page))
     }
 
-    expect(signals).toHaveLength(3)
+    expect(signals).toHaveLength(2)
     for (const one of signals) expect(one).not.toBe('')
-    expect(new Set(signals).size).toBe(3)
+    expect(new Set(signals).size).toBe(2)
+  })
+
+  test('shows no provenance note on an assessment', async ({ page }) => {
+    await open(page, OUTCOME_ASSESSMENT_LINE)
+    await greyscale(page)
+
+    // The card itself is really there — the empty signal is the removal, not a broken page.
+    await expect(page.locator('.assessment-outcome')).toBeVisible()
+    expect(await signal(page)).toBe('')
   })
 
   /** The card itself: its border geometry and the mark in its heading, never its fill. */
