@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Gaga Gambit: 1.e4 e5 2.f4 exf4 3.g3. Every ply below was replayed
+# with chess.js before being written (see docs/CONTEXT.md, invariant 1). Genuinely tried to
+# push this line further (fxg3 4.hxg3, and the g5-hold line with gxf4 gxf4) and it settles
+# back to "Black a sound pawn up, nothing more concrete yet" every way it was checked — not
+# a decisive advantage by the #107 bar, so the leaf states that plainly instead of dressing
+# it up as more.
+id: kings-gambit-accepted-gaga-gambit
+name: Gaga Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, g3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.g3 offers to trade off the f4 pawn on White's own terms rather than
+      simply losing it, which is more resilient than several sister lines in this batch. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.g3, đe dọa ăn lại con tốt f4 bằng gxf4 theo cách có tổ chức, khác với hầu hết các nhánh khác trong lô này vốn chỉ đơn thuần bỏ mặc con tốt. Đen cần quyết định giữ con tốt hay để nó bị đổi.
+    en: White plays 3.g3, threatening to win the f4 pawn back with gxf4 in an organised way, unlike most sister lines in this batch that simply abandon the pawn outright. Black must decide whether to hold the pawn or let it be traded off.
+    fr: Les Blancs jouent 3.g3, menaçant de regagner le pion f4 par gxf4 de façon organisée, contrairement à la plupart des variantes sœurs de ce lot qui abandonnent purement et simplement le pion. Les Noirs doivent décider s'ils conservent le pion ou le laissent s'échanger.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì giữ ngay con tốt bằng g5. Đổi tốt bằng 3...fxg3 4.hxg3 cũng dẫn tới một thế cờ tương tự — Đen vẫn hơn đúng một tốt — nên 3...g5 chỉ là cách đơn giản nhất để trình bày điều đó.
+      en: Black plays something other than holding the pawn immediately with g5. Trading with 3...fxg3 4.hxg3 leads to a broadly similar position — Black still exactly a pawn up — so 3...g5 is simply the clearest way to present it.
+      fr: Les Noirs jouent autre chose que de conserver immédiatement le pion par g5. L'échange par 3...fxg3 4.hxg3 mène à une position globalement semblable — les Noirs restent exactement un pion devant — donc 3...g5 n'est que la façon la plus claire de le présenter.
+  children:
+    - ply: g5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen giữ con tốt f4 bằng g5 thay vì đổi nó đi. Nếu Trắng vẫn cố ăn bằng 4.gxf4, Đen ăn lại bằng gxf4 và giữ nguyên chênh lệch một tốt; nếu Trắng bỏ qua, con tốt f4 vẫn đứng vững. Đây là kết quả rõ ràng nhất có thể chứng minh ở giai đoạn này — một tốt hơn, không có gì kịch tính hơn — vì mã, tượng và hậu Trắng vẫn ở nguyên vị trí ban đầu và chưa tạo ra điểm yếu cụ thể nào để khai thác thêm.
+        en: Black holds the f4 pawn with g5 rather than trading it off. If White still grabs it with 4.gxf4, Black recaptures with gxf4 and keeps the same one-pawn edge; if White leaves it alone, the f4 pawn simply stands its ground. This is as far as a concrete verdict can honestly be pushed at this point — a clean pawn up, nothing more dramatic — since White's knights, bishops and queen are all still on their starting squares and have not yet created any concrete weakness to target.
+        fr: Les Noirs conservent le pion f4 par g5 plutôt que de l'échanger. Si les Blancs le prennent quand même par 4.gxf4, les Noirs reprennent par gxf4 et gardent le même pion d'avance ; si les Blancs le laissent tranquille, le pion f4 tient simplement bon. C'est aussi loin qu'un verdict concret peut honnêtement être poussé à ce stade — un pion d'avance net, rien de plus spectaculaire — puisque les cavaliers, les fous et la dame blancs sont tous encore sur leur case de départ et n'ont encore créé aucune faiblesse concrète à exploiter davantage.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Đen hơn đúng một tốt (tốt f4, tám so với bảy) và không có bù đắp nào cho Trắng. Nhưng Trắng chưa mất thêm gì khác — không tốt chồng, không tốt cô lập, vua vẫn còn nguyên quyền nhập thành cả hai bên, và mã, tượng, hậu Trắng vẫn đứng nguyên ở hàng xuất phát. Đây thực sự chỉ là một tốt hơn đơn thuần vào lúc này, không có điểm yếu cấu trúc nào khác của Trắng để nêu tên.
+          en: Count the pawns — Black is a clean pawn up (the f4 pawn, eight against seven) with no compensation for White. But White has not lost anything else — no doubled pawn, no isolated pawn, full castling rights on both sides still intact, and White's knights, bishops and queen are all still on their starting squares. This is genuinely just a plain pawn up for now, with no other structural weakness of White's to name.
+          fr: Comptez les pions — les Noirs ont un pion d'avance net (le pion f4, huit contre sept) sans compensation pour les Blancs. Mais les Blancs n'ont rien perdu d'autre — pas de pion doublé, pas de pion isolé, le roque intact des deux côtés, et les cavaliers, fous et dame blancs sont tous encore sur leur case de départ. C'est véritablement un simple pion d'avance pour l'instant, sans autre faiblesse structurelle blanche à nommer.
+        plan:
+          vi: Trắng chơi Bg2 để fianchetto tượng, Nf3 và nhập thành để bắt kịp phát triển, chấp nhận thiếu một tốt để đổi lấy một thế cờ vững chắc. Đen phát triển bình thường với Nc6, Bg7 và d6, giữ nguyên con tốt thừa và không có gì phải vội vì lợi thế còn khiêm tốn nhưng có thật.
+          en: White plays Bg2 to fianchetto the bishop, Nf3 and castles to catch up on development, accepting the missing pawn for a solid position. Black develops normally with Nc6, Bg7 and d6, banks the extra pawn, and is in no hurry since the edge is modest but real.
+          fr: Les Blancs jouent Bg2 pour fianchetter le fou, Nf3 et roquent pour rattraper leur développement, acceptant le pion manquant pour une position solide. Les Noirs se développent normalement par Nc6, Bg7 et d6, conservent le pion supplémentaire et ne sont pas pressés puisque l'avantage est modeste mais réel.
+        basis:
+          by: chan
+          at: '2026-09-18'

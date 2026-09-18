@@ -1,0 +1,60 @@
+# King's Gambit Accepted, Stamma Gambit: 1.e4 e5 2.f4 exf4 3.h4. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). Checked
+# 3...Qxh4+, which is a straight blunder (4.Rxh4 wins the queen, verified), and 3...g5,
+# which invites 4.hxg5 Qxg5 trading straight back to the original one-pawn edge with
+# Black's queen slightly exposed. Simply developing keeps the pawn with nothing else proven
+# yet, so the leaf states that plainly instead of dressing it up as more.
+id: kings-gambit-accepted-stamma-gambit
+name: Stamma Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, h4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.h4 stops Black from ever safely locking in the pawn with ...g5 (that
+      trade favours White, verified: 4.hxg5 Qxg5 just returns to the original one-pawn
+      deficit with Black's queen exposed), but it attacks nothing itself. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.h4, một nước tốt lạ nhằm ngăn Đen chơi ...g5 để khóa chặt con tốt thừa một cách an toàn — nếu Đen thử điều đó, 4.hxg5 Qxg5 chỉ đơn giản đưa quân số về đúng như ban đầu với quân hậu Đen hơi lộ liễu. Nhưng bản thân 3.h4 không tấn công gì cả.
+    en: White plays 3.h4, an unusual pawn move meant to stop Black from safely locking in the extra pawn with ...g5 — if Black tries that, 4.hxg5 Qxg5 simply returns to the original material count with Black's queen a little exposed. But 3.h4 itself attacks nothing.
+    fr: Les Blancs jouent 3.h4, un coup de pion inhabituel destiné à empêcher les Noirs de verrouiller sans risque le pion supplémentaire par ...g5 — si les Noirs tentent cela, 4.hxg5 Qxg5 ramène simplement le matériel à son niveau initial, la dame noire étant un peu exposée. Mais 3.h4 lui-même n'attaque rien.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì phát triển mã ra c6. Bất kỳ nước phát triển bình thường nào cũng giữ nguyên một tốt hơn cho Đen mà không rơi vào cái bẫy đổi tốt g5, nên 3...Nc6 chỉ là ví dụ đơn giản nhất.
+      en: Black plays something other than developing the knight to c6. Any ordinary developing move keeps Black's extra pawn without walking into the g5 trade, so 3...Nc6 is simply the plainest example.
+      fr: Les Noirs jouent autre chose que de développer le cavalier en c6. Tout coup de développement ordinaire conserve le pion supplémentaire des Noirs sans tomber dans le piège de l'échange en g5, donc 3...Nc6 n'en est que l'exemple le plus simple.
+  children:
+    - ply: Nc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen phát triển bình thường bằng Nc6, không vội giữ con tốt f4 bằng g5 vì điều đó chỉ mời gọi 4.hxg5 Qxg5. Không có quân Trắng nào tấn công tốt f4 lúc này, nên nó vẫn an toàn mà không cần phòng thủ thêm. Đây là điểm dừng cụ thể nhất có thể chứng minh — Đen hơn một tốt, nhưng nước h4 của Trắng, dù hạn chế một kế hoạch của Đen, vẫn chưa tạo ra điểm yếu cụ thể nào để khai thác ngay.
+        en: Black develops normally with Nc6, in no hurry to hold the f4 pawn with g5 since that only invites 4.hxg5 Qxg5. No White piece attacks the f4 pawn right now, so it stays safe without needing extra defence. This is as concrete a stopping point as can honestly be shown — Black is a pawn up, but White's h4, while it does restrict one of Black's plans, has not yet created a concrete weakness to target.
+        fr: Les Noirs se développent normalement par Nc6, sans se presser de conserver le pion f4 par g5, car cela ne ferait qu'inviter 4.hxg5 Qxg5. Aucune pièce blanche n'attaque le pion f4 pour l'instant, donc il reste en sécurité sans défense supplémentaire. C'est un point d'arrêt aussi concret qu'on puisse honnêtement le démontrer — les Noirs ont un pion d'avance, mais le h4 des Blancs, bien qu'il restreigne l'un des plans noirs, n'a pas encore créé de faiblesse concrète à cibler.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Đen hơn đúng một tốt (tốt f4, tám so với bảy) và không có bù đắp nào cho Trắng. Trắng chưa mất thêm gì khác — không tốt chồng, không tốt cô lập, vua vẫn còn nguyên quyền nhập thành, và mã, tượng, hậu Trắng vẫn đứng nguyên ở hàng xuất phát. Nước h4 chỉ ngăn một kế hoạch cụ thể của Đen (khóa tốt bằng g5 mà không mất gì), chứ chưa tự nó tạo ra điểm yếu nào cho Trắng để nêu tên.
+          en: Count the pawns — Black is a clean pawn up (the f4 pawn, eight against seven) with no compensation for White. White has not lost anything else — no doubled pawn, no isolated pawn, full castling rights still intact, and White's knights, bishops and queen are all still on their starting squares. The h4 push only rules out one specific plan of Black's (locking the pawn in with a free g5), without creating any weakness of its own to name.
+          fr: Comptez les pions — les Noirs ont un pion d'avance net (le pion f4, huit contre sept) sans compensation pour les Blancs. Les Blancs n'ont rien perdu d'autre — pas de pion doublé, pas de pion isolé, le roque intact, et les cavaliers, fous et dame blancs sont tous encore sur leur case de départ. La poussée h4 ne fait qu'écarter un plan précis des Noirs (verrouiller le pion par un g5 gratuit), sans créer de faiblesse propre à nommer.
+        plan:
+          vi: Trắng chơi Nf3, Bc4 hoặc Bd3 và nhập thành để bắt kịp phát triển, chấp nhận thiếu một tốt để đổi lấy một thế cờ vững chắc. Đen phát triển bình thường với Nf6, Bc5 và d6, giữ nguyên con tốt thừa và không có gì phải vội vì lợi thế còn khiêm tốn nhưng có thật.
+          en: White plays Nf3, Bc4 or Bd3 and castles to catch up on development, accepting the missing pawn for a solid position. Black develops normally with Nf6, Bc5 and d6, banks the extra pawn, and is in no hurry since the edge is modest but real.
+          fr: Les Blancs jouent Nf3, Bc4 ou Bd3 et roquent pour rattraper leur développement, acceptant le pion manquant pour une position solide. Les Noirs se développent normalement par Nf6, Bc5 et d6, conservent le pion supplémentaire et ne sont pas pressés puisque l'avantage est modeste mais réel.
+        basis:
+          by: chan
+          at: '2026-09-18'

@@ -1,0 +1,97 @@
+# King's Gambit Accepted, Basman Gambit: 1.e4 e5 2.f4 exf4 3.Qe2. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). The leaf
+# is a decisive stop under the #107 bar: a clean extra pawn in a queenless position, with
+# White's king permanently stuck on f2 with no castling rights — not a "roughly balanced"
+# verdict.
+id: kings-gambit-accepted-basman-gambit
+name: Basman Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Qe2]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.Qe2 blocks White's own f1-bishop and answers nothing Black has done;
+      3...Qh4+ shows all three replies lose more ground, and the best of them still ends
+      with White's king exposed and castling gone. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Qe2, ý tưởng đứng sau tên gọi "Basman Gambit". Quân hậu bịt kín đường phát triển tự nhiên của tượng f1 mà không tạo ra mối đe dọa nào — Đen đã hơn một tốt và có ngay một cách chứng minh nước đi này chỉ khiến vị trí Trắng tệ hơn.
+    en: White plays 3.Qe2, the idea behind the name "Basman Gambit". The queen clogs up the f1-bishop's natural development square while creating no threat at all — Black is already a pawn up and has an immediate way to show this move only makes White's position worse.
+    fr: Les Blancs jouent 3.Qe2, l'idée derrière le nom « Basman Gambit ». La dame obstrue la case de développement naturelle du fou f1 sans créer la moindre menace — les Noirs ont déjà un pion d'avance et disposent d'un moyen immédiat de montrer que ce coup ne fait qu'aggraver la position blanche.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước phát triển khác thay vì chiếu ngay. Bất kỳ nước nào cũng giữ nguyên một tốt hơn cho Đen, nhưng 3...Qh4+ là cách trực tiếp nhất buộc Trắng phải tự làm hỏng thêm vị trí của mình.
+      en: Black plays some other developing move instead of checking at once. Any of them keeps Black's extra pawn intact, but 3...Qh4+ is the most direct way to force White into damaging the position further.
+      fr: Les Noirs jouent un autre coup de développement au lieu de mettre en échec immédiatement. Chacun d'eux conserve le pion supplémentaire des Noirs, mais 3...Qh4+ est le moyen le plus direct de forcer les Blancs à aggraver encore leur position.
+  children:
+    - ply: Qh4+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chiếu ngay bằng Qh4+. Trắng chỉ có ba cách đáp lại và cả ba đều xấu — 4.g3 mất thêm một tốt nữa sau fxg3, còn 4.Kd1 lập tức mất quyền nhập thành mà chẳng đổi lại được gì; 4.Qf2 là lựa chọn ít tệ nhất.
+        en: Black checks at once with Qh4+. White has only three replies and all of them are bad — 4.g3 drops a further pawn to fxg3, and 4.Kd1 forfeits castling rights immediately for nothing in return; 4.Qf2 is the least damaging choice.
+        fr: Les Noirs mettent en échec immédiatement par Qh4+. Les Blancs n'ont que trois réponses et toutes sont mauvaises — 4.g3 cède un pion supplémentaire après fxg3, et 4.Kd1 sacrifie immédiatement le roque sans aucune contrepartie ; 4.Qf2 est le choix le moins dommageable.
+      children:
+        - ply: Qf2
+          annotation:
+            vi: Trắng chặn chiếu bằng chính hậu của mình, lựa chọn thực dụng nhất — nó tránh mất thêm tốt và ít nhất chưa từ bỏ quyền nhập thành ngay lập tức, dù việc đổi hậu gần như chắc chắn sẽ đẩy vua Trắng ra vị trí lộ liễu.
+            en: White blocks the check with its own queen, the most practical choice — it avoids losing a further pawn and does not yet give up castling outright, though the coming queen trade is all but certain to push White's king into the open anyway.
+            fr: Les Blancs bloquent l'échec avec leur propre dame, le choix le plus pragmatique — cela évite de perdre un pion supplémentaire et ne sacrifie pas encore le roque, bien que l'échange de dames à venir pousse de toute façon le roi blanc à découvert.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì đổi hậu ngay. Giữ hậu trên bàn cũng ổn cho Đen, nhưng 4...Qxf2+ là cách rõ ràng và triệt để nhất để buộc vua Trắng phải đứng ở f2 vĩnh viễn, không còn đường nhập thành.
+              en: Black plays something other than trading queens immediately. Keeping queens on is fine for Black too, but 4...Qxf2+ is the clearest, most conclusive way to force White's king to stand on f2 for good, with no route to castling left.
+              fr: Les Noirs jouent autre chose que d'échanger les dames immédiatement. Garder les dames sur l'échiquier convient aussi aux Noirs, mais 4...Qxf2+ est le moyen le plus net et le plus définitif de forcer le roi blanc à rester en f2 pour de bon, sans aucune possibilité de roquer.
+          children:
+            - ply: Qxf2+
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đổi hậu bằng Qxf2+, buộc vua Trắng phải ăn lại quân — đây là nước bắt buộc duy nhất có lý, vì để hậu Đen đứng nguyên trên bàn cờ đồng nghĩa với việc mất đứt một hậu.
+                en: Black trades queens with Qxf2+, forcing White's king to recapture — this is the only sane forced reply, since leaving Black's queen on the board means White is simply down a whole queen.
+                fr: Les Noirs échangent les dames par Qxf2+, forçant le roi blanc à reprendre — c'est la seule réponse forcée sensée, car laisser la dame noire sur l'échiquier reviendrait à perdre purement et simplement une dame.
+              children:
+                - ply: Kxf2
+                  annotation:
+                    vi: Trắng buộc phải ăn lại bằng vua — nước duy nhất hợp lý, vì 5.Kd1 bỏ mặc quân hậu Đen đứng nguyên trên bàn nghĩa là mất trắng một hậu. Vua Trắng giờ đứng tại f2, không còn quyền nhập thành, ô e2 ngay bên cạnh hoàn toàn trống, trong một thế cờ đã cạn hậu.
+                    en: White is forced to recapture with the king — the only sensible move, since 5.Kd1 leaves Black's queen standing on the board, meaning White is simply down a whole queen. White's king now stands on f2, with castling gone for good and the e2 square right beside it completely bare, in a position with the queens already off.
+                    fr: Les Blancs sont contraints de reprendre avec le roi — le seul coup sensé, car 5.Kd1 laisserait la dame noire en place, ce qui reviendrait à être purement et simplement en moins une dame. Le roi blanc se retrouve maintenant en f2, sans roque possible et avec la case e2 juste à côté totalement vide, dans une position où les dames ont déjà disparu.
+                  dismissRest:
+                    reason:
+                      vi: Đây là nước duy nhất còn hợp lý; lựa chọn còn lại (5.Kd1) bỏ mặc hậu Đen đứng nguyên trên bàn và mất trắng một hậu, một sai lầm quá hiển nhiên để cần phân tích thêm.
+                      en: This is the only reply worth modelling; the sole alternative (5.Kd1) leaves Black's queen standing on the board for a straight loss of a whole queen, too obvious a blunder to need further analysis.
+                      fr: C'est la seule réponse qui mérite d'être modélisée ; l'unique alternative (5.Kd1) laisse la dame noire en place pour une perte sèche d'une dame entière, une bévue trop évidente pour justifier une analyse plus poussée.
+                  children:
+                    - ply: Nc6
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Đen phát triển bình thường bằng Nc6, không có gì phải vội trong một thế cờ đã hoàn toàn ổn định có lợi cho mình.
+                        en: Black develops normally with Nc6, in no hurry at all in a position that has already settled fully in its favour.
+                        fr: Les Noirs se développent normalement par Nc6, sans aucune urgence dans une position déjà pleinement stabilisée en leur faveur.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Hậu đã bị đổi và Đen hơn đúng một tốt (f4) không có bù đắp. Vua Trắng đứng tại f2 — mất quyền nhập thành vĩnh viễn — với ô e2 ngay bên cạnh hoàn toàn trống, không một tốt nào che chắn. Với hậu đã rời bàn cờ, đây là một thế cờ tàn đã ngã ngũ chứ không còn là chênh lệch tạm thời.
+                          en: Queens are off and Black is a clean pawn up (f4) with no compensation. White's king stands on f2 — castling gone for good — with the e2 square right beside it completely bare of any pawn. With the queens already traded, this is a settled endgame rather than a temporary edge.
+                          fr: Les dames ont disparu et les Noirs ont un pion d'avance net (f4) sans compensation. Le roi blanc se tient en f2 — le roque perdu pour de bon — avec la case e2 juste à côté totalement vide de tout pion. Les dames étant déjà échangées, il s'agit d'une finale installée plutôt que d'un avantage passager.
+                        plan:
+                          vi: Đen hoàn thiện phát triển bằng Nf6, Bc5 hoặc Bd6 và d6, xếp xe vào cột e hoặc f đang mở để nhắm vào vua Trắng, rồi đổi quân dần dần để đưa thế cờ về một thế tàn hơn tốt rõ ràng, đơn giản nhất có thể.
+                          en: Black finishes developing with Nf6, Bc5 or Bd6 and d6, doubles a rook onto the open e- or f-file to aim at White's king, then trades down gradually toward the simplest possible endgame with a clear extra pawn.
+                          fr: Les Noirs achèvent leur développement par Nf6, Bc5 ou Bd6 et d6, doublent une tour sur la colonne e ou f ouverte pour viser le roi blanc, puis échangent progressivement les pièces vers la finale la plus simple possible avec un pion d'avance net.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'
