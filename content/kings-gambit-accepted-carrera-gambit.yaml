@@ -1,0 +1,68 @@
+# King's Gambit Accepted, Carrera Gambit: 1.e4 e5 2.f4 exf4 3.Qh5. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). The naive
+# 4.Qh4 retreat was checked and loses a second pawn outright to 4...Nxe4 (verified: e4 is
+# undefended there); White's actual best retreat, 4.Qf3, defends e4 and re-attacks f4 at
+# the same time, and after that Black's own knight on f6 blocks the Qh4+ idea used
+# elsewhere in this batch. Genuinely pushed for a decisive continuation and the position
+# settles to "Black a sound pawn up", so the leaf here is honestly `unexplored`.
+id: kings-gambit-accepted-carrera-gambit
+name: Carrera Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Qh5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.Qh5 walks into an immediate tempo-loss with 3...Nf6, and the natural
+      retreat 4.Qh4 drops a second pawn outright to 4...Nxe4 — only the more awkward-looking
+      4.Qf3 avoids further damage. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Qh5, đưa hậu ra sớm trông có vẻ đe dọa nhưng thực ra chẳng tấn công được gì cụ thể — cả f7 lẫn h7 đều được bảo vệ. Đen có ngay một nước phát triển vừa đuổi hậu vừa hoàn thiện quân.
+    en: White plays 3.Qh5, an early queen sortie that looks threatening but does not actually attack anything concrete — both f7 and h7 are defended. Black has an immediate developing move that both chases the queen and finishes a piece.
+    fr: Les Blancs jouent 3.Qh5, une sortie précoce de la dame qui semble menaçante mais n'attaque en réalité rien de concret — f7 et h7 sont tous deux défendus. Les Noirs disposent d'un coup de développement immédiat qui chasse la dame tout en achevant une pièce.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì đuổi hậu bằng mã ngay. Ví dụ 3...g6 cũng đuổi được hậu, nhưng 3...Nf6 làm điều đó trong khi phát triển quân, và còn tạo ra một mối đe dọa thứ hai lên tốt e4 mà 3...g6 không có.
+      en: Black plays something other than chasing the queen with the knight at once. For example 3...g6 also chases the queen, but 3...Nf6 does the same while developing a piece, and it creates a second threat on the e4 pawn that 3...g6 does not.
+      fr: Les Noirs jouent autre chose que de chasser immédiatement la dame avec le cavalier. Par exemple, 3...g6 chasse aussi la dame, mais 3...Nf6 fait de même tout en développant une pièce, et crée une seconde menace sur le pion e4 que 3...g6 n'a pas.
+  children:
+    - ply: Nf6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã ra f6, vừa tấn công hậu Trắng vừa dọa ăn tốt e4 ngay sau đó (tốt e4 hiện chưa được bảo vệ). 4.Qh4 có vẻ tự nhiên nhưng vẫn bỏ mặc tốt e4 và mất luôn con tốt đó sau Nxe4; chỉ có 4.Qf3, vừa bảo vệ e4 vừa dọa ăn lại tốt f4, mới tránh được thiệt hại thêm.
+        en: Black develops the knight to f6, attacking White's queen while also threatening to win the e4 pawn right afterwards (e4 is currently undefended). 4.Qh4 looks natural but still leaves e4 hanging and loses that pawn to Nxe4; only 4.Qf3, which defends e4 while re-attacking f4, avoids further damage.
+        fr: Les Noirs développent le cavalier en f6, attaquant la dame blanche tout en menaçant de gagner le pion e4 juste après (e4 n'est actuellement pas défendu). 4.Qh4 semble naturel mais laisse toujours e4 en prise et perd ce pion après Nxe4 ; seul 4.Qf3, qui défend e4 tout en réattaquant f4, évite un dommage supplémentaire.
+      children:
+        - ply: Qf3
+          annotation:
+            vi: Trắng rút hậu về f3, nước duy nhất vừa cứu được tốt e4 vừa tạo ra một mối đe dọa mới (Qxf4) buộc Đen phải phản ứng.
+            en: White retreats the queen to f3, the only square that both saves the e4 pawn and creates a fresh threat of its own (Qxf4) that forces Black to react.
+            fr: Les Blancs replient la dame en f3, la seule case qui sauve à la fois le pion e4 et crée une nouvelle menace (Qxf4) forçant les Noirs à réagir.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì giữ tốt f4 ngay bằng g5. Bất kỳ lựa chọn nào cũng cần xử lý mối đe dọa Qxf4 theo cách này hay cách khác, nhưng 4...g5 là cách trực tiếp nhất.
+              en: Black plays something other than holding the f4 pawn immediately with g5. Any choice has to deal with the Qxf4 threat one way or another, but 4...g5 is the most direct way.
+              fr: Les Noirs jouent autre chose que de conserver immédiatement le pion f4 par g5. Tout autre choix doit gérer d'une façon ou d'une autre la menace Qxf4, mais 4...g5 est le moyen le plus direct.
+          children:
+            - ply: g5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen giữ vững con tốt f4 bằng g5. Quân mã trên f6 hiện chặn mất đường chiếu Qh4+ mà một số nhánh khác trong lô này khai thác được, nên đây là điểm dừng cụ thể nhất có thể chứng minh vào lúc này — Đen hơn đúng một tốt, phát triển tốt hơn, nhưng chưa có điểm yếu cấu trúc cụ thể nào của Trắng để khai thác thêm; hậu Trắng ở f3 vẫn kiểm soát tốt cả trung tâm lẫn cánh vua.
+                en: Black holds the f4 pawn firmly with g5. The knight on f6 now blocks the Qh4+ idea that several sister lines in this batch exploit, so this is as concrete a stopping point as can honestly be shown right now — Black is a clean pawn up and better developed, but there is no concrete structural weakness of White's left to point to yet; White's queen on f3 still covers both the centre and the kingside well.
+                fr: Les Noirs conservent fermement le pion f4 par g5. Le cavalier en f6 bloque désormais l'idée Qh4+ qu'exploitent plusieurs variantes sœurs de ce lot, donc c'est un point d'arrêt aussi concret qu'on puisse honnêtement le démontrer pour l'instant — les Noirs ont un pion d'avance net et sont mieux développés, mais il n'y a encore aucune faiblesse structurelle concrète des Blancs à cibler ; la dame blanche en f3 couvre encore bien le centre et l'aile roi.
+              outcome:
+                type: unexplored

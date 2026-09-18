@@ -118,13 +118,22 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Ninety-four entries are authored — three from #15, eleven from #73, ten from #93, ten
-   * from #94's group B, ten from #95, twenty-five from #102 (group D, including
-   * damiano-defence-refutation's tree), and twenty-four from #103 (group E) — and the
-   * other 909 are Tier 0. Each authored entry is named here with the number of root-to-leaf
-   * lines its tree actually has, rather than the whole set being loosened to "at least zero",
-   * which would assert nothing and would keep passing if every tree in the repository
-   * disappeared.
+   * One hundred and four entries are authored with at least one countable branch — three
+   * from #15, eleven from #73, ten from #93, ten from #94's group B, ten from #95,
+   * twenty-five from #102 (group D, including damiano-defence-refutation's tree), twenty-
+   * four from #103 (group E), and ten from #110 (group G, King's Gambit Accepted
+   * sub-variations that reach a decisive or proved leaf). #110 in fact added seventeen
+   * content files; the other seven (Bishop's Gambit, Carrera, Dodo, Gaga, King's Knight's
+   * Gambit, Paris and Stamma) stop at a single honestly-`unexplored` root branch, which
+   * `countableBranches` deliberately excludes from the denominator (see
+   * `src/components/progress/branches.ts`) — they are authored content but contribute zero
+   * here, the same default every other entry not named in this map gets. Counting both
+   * groups, 111 entries now have an authored content file (94 before #110, plus its
+   * seventeen); the other 892 of the 1003 total entries are Tier 0, with no content file at
+   * all. Each authored entry with a nonzero count is named
+   * here with the number of root-to-leaf lines its tree actually has, rather than the whole
+   * set being loosened to "at least zero", which would assert nothing and would keep
+   * passing if every tree in the repository disappeared.
    *
    * This is the assertion the test was written to force: the day a mapped entry lands, the
    * number that appears here has to appear because content changed. It did five times, and
@@ -180,6 +189,16 @@ describe('the catalogue this repository ships', () => {
     ['kieninger-trap', 4],
     ['kings-gambit', 5],
     ['kings-gambit-accepted', 1],
+    ['kings-gambit-accepted-basman-gambit', 1],
+    ['kings-gambit-accepted-breyer-gambit', 1],
+    ['kings-gambit-accepted-eisenberg-variation', 1],
+    ['kings-gambit-accepted-mason-keres-gambit', 1],
+    ['kings-gambit-accepted-orsini-gambit', 1],
+    ['kings-gambit-accepted-schurig-gambit-with-bb5', 1],
+    ['kings-gambit-accepted-schurig-gambit-with-bd3', 1],
+    ['kings-gambit-accepted-tartakower-gambit', 1],
+    ['kings-gambit-accepted-tumbleweed', 1],
+    ['kings-gambit-accepted-villemson-gambit', 1],
     ['kings-gambit-declined-classical-variation', 1],
     ['kings-indian-attack-omega-delta-gambit', 1],
     ['kings-indian-defense-samisch-variation-samisch-gambit', 1],
@@ -227,7 +246,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored ninety-four have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored one hundred and four have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

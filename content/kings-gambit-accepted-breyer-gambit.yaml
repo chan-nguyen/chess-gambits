@@ -1,0 +1,96 @@
+# King's Gambit Accepted, Breyer Gambit: 1.e4 e5 2.f4 exf4 3.Qf3. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). The leaf
+# is a decisive stop under the #107 bar: a clean extra pawn in a queenless position, with
+# White's king permanently stuck on f2 with no castling rights.
+id: kings-gambit-accepted-breyer-gambit
+name: Breyer Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Qf3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.Qf3 does threaten to win the f4 pawn back with Qxf4, but 3...Qh4+
+      answers that threat and forces White's hand at the same time — every reply either
+      loses more material or gives up castling for good. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Qf3, đe dọa ăn lại con tốt f4 bằng Qxf4 ngay lập tức, đồng thời cũng nhắm vào ô a8 sau này. Nhưng đưa hậu ra sớm như vậy có một điểm yếu rõ ràng — Đen có ngay một nước chiếu khiến White phải trả giá.
+    en: White plays 3.Qf3, threatening to win the f4 pawn straight back with Qxf4, while also eyeing a8 down the line. But bringing the queen out this early has an obvious flaw — Black has an immediate check that makes White pay for it.
+    fr: Les Blancs jouent 3.Qf3, menaçant de regagner immédiatement le pion f4 par Qxf4, tout en lorgnant à terme la case a8. Mais sortir la dame aussi tôt comporte une faiblesse évidente — les Noirs disposent d'un échec immédiat qui le leur fait payer.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì chiếu ngay, chẳng hạn giữ tốt bằng g5. Điều đó cũng ổn, nhưng 3...Qh4+ vừa giữ được tốt f4 vừa buộc Trắng phải tự làm hỏng thêm vị trí của mình ngay lập tức.
+      en: Black plays something other than checking at once, such as holding the pawn with g5. That is fine too, but 3...Qh4+ both keeps the f4 pawn safe and forces White to damage its own position further right away.
+      fr: Les Noirs jouent autre chose qu'un échec immédiat, par exemple en conservant le pion par g5. Cela convient aussi, mais 3...Qh4+ conserve le pion f4 tout en forçant immédiatement les Blancs à aggraver encore leur propre position.
+  children:
+    - ply: Qh4+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chiếu ngay bằng Qh4+, vừa cứu con tốt f4 khỏi bị Qxf4 ăn lại vừa buộc vua Trắng phải nhận thêm rắc rối. 4.g3 dính fxg3 và Trắng mất thêm một tốt nữa; 4.Qf2 là lựa chọn thực dụng nhất.
+        en: Black checks at once with Qh4+, saving the f4 pawn from Qxf4 while forcing White's king into further trouble. 4.g3 runs into fxg3 and drops a further pawn; 4.Qf2 is the most practical choice.
+        fr: Les Noirs mettent en échec immédiatement par Qh4+, sauvant le pion f4 de Qxf4 tout en créant de nouveaux ennuis pour le roi blanc. 4.g3 se heurte à fxg3 et cède un pion supplémentaire ; 4.Qf2 est le choix le plus pragmatique.
+      children:
+        - ply: Qf2
+          annotation:
+            vi: Trắng chặn chiếu bằng chính hậu của mình, tránh mất thêm tốt, nhưng nước đổi hậu sắp tới gần như chắc chắn sẽ đẩy vua ra một ô lộ liễu.
+            en: White blocks the check with its own queen, avoiding the loss of a further pawn, but the coming queen trade is all but certain to push the king onto an exposed square.
+            fr: Les Blancs bloquent l'échec avec leur propre dame, évitant de perdre un pion supplémentaire, mais l'échange de dames à venir pousse presque à coup sûr le roi vers une case exposée.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì đổi hậu ngay. Giữ hậu trên bàn cũng ổn, nhưng 4...Qxf2+ là cách rõ ràng và triệt để nhất để buộc vua Trắng đứng vĩnh viễn không còn đường nhập thành.
+              en: Black plays something other than trading queens immediately. Keeping queens on is fine too, but 4...Qxf2+ is the clearest, most conclusive way to leave White's king with no route to castling for good.
+              fr: Les Noirs jouent autre chose que d'échanger les dames immédiatement. Garder les dames convient aussi, mais 4...Qxf2+ est le moyen le plus net et le plus définitif de priver le roi blanc de toute possibilité de roquer, pour de bon.
+          children:
+            - ply: Qxf2+
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đổi hậu bằng Qxf2+, buộc vua Trắng phải ăn lại — nước duy nhất hợp lý, vì để hậu Đen đứng nguyên trên bàn nghĩa là mất trắng một hậu.
+                en: Black trades queens with Qxf2+, forcing White's king to recapture — the only sensible reply, since leaving Black's queen on the board means White is simply down a whole queen.
+                fr: Les Noirs échangent les dames par Qxf2+, forçant le roi blanc à reprendre — la seule réponse sensée, car laisser la dame noire en place reviendrait à être purement et simplement en moins une dame.
+              children:
+                - ply: Kxf2
+                  annotation:
+                    vi: Trắng buộc phải ăn lại bằng vua — nước duy nhất hợp lý, vì 5.Kd1 bỏ mặc hậu Đen đứng nguyên trên bàn. Vua Trắng giờ đứng tại f2, không còn quyền nhập thành, ô e2 ngay bên cạnh hoàn toàn trống.
+                    en: White is forced to recapture with the king — the only sensible move, since 5.Kd1 leaves Black's queen standing on the board. White's king now stands on f2, with castling gone for good and the e2 square right beside it completely bare.
+                    fr: Les Blancs sont contraints de reprendre avec le roi — le seul coup sensé, car 5.Kd1 laisserait la dame noire en place. Le roi blanc se retrouve maintenant en f2, sans roque possible et avec la case e2 juste à côté totalement vide.
+                  dismissRest:
+                    reason:
+                      vi: Đây là nước duy nhất còn hợp lý; lựa chọn còn lại (5.Kd1) bỏ mặc hậu Đen đứng nguyên trên bàn và mất trắng một hậu, một sai lầm quá hiển nhiên để cần phân tích thêm.
+                      en: This is the only reply worth modelling; the sole alternative (5.Kd1) leaves Black's queen standing on the board for a straight loss of a whole queen, too obvious a blunder to need further analysis.
+                      fr: C'est la seule réponse qui mérite d'être modélisée ; l'unique alternative (5.Kd1) laisse la dame noire en place pour une perte sèche d'une dame entière, une bévue trop évidente pour justifier une analyse plus poussée.
+                  children:
+                    - ply: Nc6
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Đen phát triển bình thường bằng Nc6, không có gì phải vội trong một thế cờ đã hoàn toàn ổn định có lợi cho mình.
+                        en: Black develops normally with Nc6, in no hurry at all in a position that has already settled fully in its favour.
+                        fr: Les Noirs se développent normalement par Nc6, sans aucune urgence dans une position déjà pleinement stabilisée en leur faveur.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Hậu đã bị đổi và Đen hơn đúng một tốt (f4) không có bù đắp. Vua Trắng đứng tại f2 — mất quyền nhập thành vĩnh viễn — với ô e2 ngay bên cạnh hoàn toàn trống, không một tốt nào che chắn. Với hậu đã rời bàn cờ, đây là một thế cờ tàn đã ngã ngũ chứ không còn là chênh lệch tạm thời.
+                          en: Queens are off and Black is a clean pawn up (f4) with no compensation. White's king stands on f2 — castling gone for good — with the e2 square right beside it completely bare of any pawn. With the queens already traded, this is a settled endgame rather than a temporary edge.
+                          fr: Les dames ont disparu et les Noirs ont un pion d'avance net (f4) sans compensation. Le roi blanc se tient en f2 — le roque perdu pour de bon — avec la case e2 juste à côté totalement vide de tout pion. Les dames étant déjà échangées, il s'agit d'une finale installée plutôt que d'un avantage passager.
+                        plan:
+                          vi: Đen hoàn thiện phát triển bằng Nf6, Bc5 hoặc Bd6 và d6, xếp xe vào cột e hoặc f đang mở để nhắm vào vua Trắng, rồi đổi quân dần dần để đưa thế cờ về một thế tàn hơn tốt rõ ràng, đơn giản nhất có thể.
+                          en: Black finishes developing with Nf6, Bc5 or Bd6 and d6, doubles a rook onto the open e- or f-file to aim at White's king, then trades down gradually toward the simplest possible endgame with a clear extra pawn.
+                          fr: Les Noirs achèvent leur développement par Nf6, Bc5 ou Bd6 et d6, doublent une tour sur la colonne e ou f ouverte pour viser le roi blanc, puis échangent progressivement les pièces vers la finale la plus simple possible avec un pion d'avance net.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'

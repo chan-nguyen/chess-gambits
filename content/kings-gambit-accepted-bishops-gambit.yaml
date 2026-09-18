@@ -1,0 +1,58 @@
+# King's Gambit Accepted, Bishop's Gambit: 1.e4 e5 2.f4 exf4 3.Bc4. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). Unlike
+# most sister entries in this batch, this is a serious, deeply analysed historical gambit
+# rather than an obviously refuted try, and it deserves real caution rather than the same
+# shallow verdict used for the batch's weaker sidelines. 3...Qh4+ 4.Kf1 is the well-known
+# starting point of that theory; going further and claiming a decisive outcome for either
+# side here would need engine-level analysis this entry does not have, so the leaf is
+# honestly `unexplored`.
+id: kings-gambit-accepted-bishops-gambit
+name: Bishop's Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and a much more cautious one than most sister entries in this batch. The
+      Bishop's Gambit is a genuine, long-studied line rather than an obvious mistake — White
+      gets real attacking chances down the f-file and the a2-g8 diagonal, and 3...Qh4+ 4.Kf1
+      leads to sharp, heavily analysed positions rather than a quick refutation. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Bc4, nhánh chính lịch sử được gọi là "Gambit Tượng" — thay vì đưa mã ra f3 như Gambit Mã Vua, Trắng phát triển tượng nhắm thẳng vào f7 và chuẩn bị Qe2 hay Nc3 với ý đồ tấn công thực sự, đổi lại việc chấp nhận không lấy lại con tốt f4 ngay lập tức.
+    en: White plays 3.Bc4, the historical main branch known as the "Bishop's Gambit" — instead of the King's Knight Gambit's 3.Nf3, White develops the bishop straight at f7 and prepares Qe2 or Nc3 with genuine attacking intent, accepting that the f4 pawn will not be won back immediately.
+    fr: Les Blancs jouent 3.Bc4, la branche principale historique appelée « Gambit du Fou » — au lieu du 3.Nf3 du Gambit du Cavalier du Roi, les Blancs développent le fou droit sur f7 et préparent Qe2 ou Nc3 avec une réelle intention offensive, acceptant de ne pas regagner immédiatement le pion f4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì chiếu ngay bằng hậu. Đây là một trong những nhánh được nghiên cứu sâu nhất của toàn bộ Gambit Vua, với rất nhiều lựa chọn khác nhau (3...Nf6, 3...d5, 3...Nc6...); 3...Qh4+ là câu trả lời cổ điển và trực tiếp nhất, buộc vua Trắng phải quyết định ngay lập tức.
+      en: Black plays something other than checking with the queen at once. This is one of the most deeply studied branches of the whole King's Gambit, with many alternative tries (3...Nf6, 3...d5, 3...Nc6, and more); 3...Qh4+ is the classical, most direct answer, forcing White's king to decide at once.
+      fr: Les Noirs jouent autre chose que de mettre en échec immédiatement avec la dame. C'est l'une des branches les plus étudiées de tout le Gambit du Roi, avec de nombreuses tentatives alternatives (3...Nf6, 3...d5, 3...Nc6, et d'autres) ; 3...Qh4+ est la réponse classique et la plus directe, forçant le roi blanc à trancher immédiatement.
+  children:
+    - ply: Qh4+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chiếu ngay bằng Qh4+, câu trả lời cổ điển nhất chống lại Gambit Tượng. Trắng có ba lựa chọn — 4.g3 mất thêm một tốt nữa sau fxg3, 4.Ke2 chặn đường vua vào cả hai cánh nhập thành nhưng lộ vua ra giữa bàn, còn 4.Kf1 là nước đi kinh điển được cả Bộ Bách khoa Khai cuộc Cờ vua lẫn nhiều kỳ thủ lớn phân tích sâu.
+        en: Black checks at once with Qh4+, the most classical reply to the Bishop's Gambit. White has three options — 4.g3 drops a further pawn to fxg3, 4.Ke2 blocks both castling routes while exposing the king in the centre, and 4.Kf1 is the time-honoured choice analysed in depth by opening encyclopaedias and many strong players.
+        fr: Les Noirs mettent en échec immédiatement par Qh4+, la réponse la plus classique au Gambit du Fou. Les Blancs ont trois options — 4.g3 cède un pion supplémentaire après fxg3, 4.Ke2 bloque les deux possibilités de roque tout en exposant le roi au centre, et 4.Kf1 est le choix traditionnel, analysé en profondeur par les encyclopédies d'ouvertures et de nombreux forts joueurs.
+      children:
+        - ply: Kf1
+          annotation:
+            vi: Trắng chơi Kf1, nước đi kinh điển của Gambit Tượng — vua từ bỏ quyền nhập thành nhưng đổi lại giữ được tượng c4 nhắm vào f7 và một tốt e cùng d để xây trung tâm, chuẩn bị Nf3 tấn công quân hậu Đen và giành lại thế chủ động. Từ đây, lý thuyết mở rộng ra rất nhiều hướng đã được phân tích sâu (4...b5!?, 4...d6, 4...Nc6, 4...g5...), vượt quá phạm vi có thể xác quyết một cách trung thực trong mục này mà không cần một cỗ máy phân tích.
+            en: White plays Kf1, the classical Bishop's Gambit move — the king gives up castling but in return White keeps the c4-bishop aimed at f7 and an e- and d-pawn to build a centre, preparing Nf3 to hit Black's queen and fight for the initiative. From here, theory branches out in many deeply analysed directions (4...b5!?, 4...d6, 4...Nc6, 4...g5, and more) that go beyond what this entry can honestly settle without an engine.
+            fr: Les Blancs jouent Kf1, le coup classique du Gambit du Fou — le roi renonce au roque mais, en retour, les Blancs conservent le fou en c4 pointé sur f7 ainsi que des pions e et d pour bâtir un centre, préparant Nf3 pour attaquer la dame noire et lutter pour l'initiative. À partir d'ici, la théorie se ramifie dans de nombreuses directions profondément analysées (4...b5!?, 4...d6, 4...Nc6, 4...g5, et d'autres) qui dépassent ce que cette entrée peut honnêtement trancher sans moteur d'analyse.
+          outcome:
+            type: unexplored

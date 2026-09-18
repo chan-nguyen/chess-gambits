@@ -76,7 +76,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are ninety-four of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred and four of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -127,6 +127,16 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'kieninger-trap',
       'kings-gambit',
       'kings-gambit-accepted',
+      'kings-gambit-accepted-basman-gambit',
+      'kings-gambit-accepted-breyer-gambit',
+      'kings-gambit-accepted-eisenberg-variation',
+      'kings-gambit-accepted-mason-keres-gambit',
+      'kings-gambit-accepted-orsini-gambit',
+      'kings-gambit-accepted-schurig-gambit-with-bb5',
+      'kings-gambit-accepted-schurig-gambit-with-bd3',
+      'kings-gambit-accepted-tartakower-gambit',
+      'kings-gambit-accepted-tumbleweed',
+      'kings-gambit-accepted-villemson-gambit',
       'kings-gambit-declined-classical-variation',
       'kings-indian-attack-omega-delta-gambit',
       'kings-indian-defense-samisch-variation-samisch-gambit',
@@ -182,10 +192,15 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       test.setTimeout(120_000)
 
       /*
-       * The default catalogue view is the taught tier, and a narrowed view under the
-       * auto-expand limit opens its families — so an entry this ticket taught is one click
-       * from `/gambits` with no filtering at all. That is the claim: a visitor who opens
-       * the catalogue can reach this.
+       * The default catalogue view is the taught tier. That alone auto-expands families
+       * only while the taught set as a whole is under `autoExpandLimit` (measured at 100,
+       * `src/components/catalogue/filter.ts`) — a ceiling the taught tier itself crossed
+       * once #110 landed, and will cross again as more entries are taught, so relying on it
+       * here would make this test's passing depend on how much content happens to exist
+       * rather than on whether the entry is reachable. Typing the entry's own name into the
+       * search box narrows the match count to (at most) a handful, which is always under
+       * the limit regardless of how large the taught tier grows, and is also a more
+       * realistic way for a visitor to find one specific gambit than scrolling every family.
        */
       await page.goto(cataloguePath)
       /*
@@ -196,6 +211,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
        * empty list is a payload that did not arrive, not a catalogue with nothing in it.
        */
       await expect(page.getByRole('main').getByRole('status')).toContainText(/Đang hiện [1-9]/)
+
+      await page.getByRole('searchbox').fill(entry.name)
 
       const card = page
         .getByRole('main')

@@ -158,6 +158,15 @@ describe('export-pgn (AC 2)', () => {
         'indian-defense-gibbins-weidenhagen-gambit, irish-gambit, ' +
         'italian-game-blackburne-kostic-gambit, italian-game-evans-gambit, ' +
         'kadas-opening-schneider-gambit, kieninger-trap, kings-gambit, kings-gambit-accepted, ' +
+        'kings-gambit-accepted-basman-gambit, kings-gambit-accepted-bishops-gambit, ' +
+        'kings-gambit-accepted-breyer-gambit, kings-gambit-accepted-carrera-gambit, ' +
+        'kings-gambit-accepted-dodo-variation, kings-gambit-accepted-eisenberg-variation, ' +
+        'kings-gambit-accepted-gaga-gambit, kings-gambit-accepted-kings-knights-gambit, ' +
+        'kings-gambit-accepted-mason-keres-gambit, kings-gambit-accepted-orsini-gambit, ' +
+        'kings-gambit-accepted-paris-gambit, kings-gambit-accepted-schurig-gambit-with-bb5, ' +
+        'kings-gambit-accepted-schurig-gambit-with-bd3, kings-gambit-accepted-stamma-gambit, ' +
+        'kings-gambit-accepted-tartakower-gambit, kings-gambit-accepted-tumbleweed, ' +
+        'kings-gambit-accepted-villemson-gambit, ' +
         'kings-gambit-declined-classical-variation, kings-indian-attack-omega-delta-gambit, ' +
         'kings-indian-defense-samisch-variation-samisch-gambit, kings-pawn-game-bavarian-gambit, ' +
         'kings-pawn-opening-van-hooydoon-gambit, lasker-trap, latvian-gambit, ' +
@@ -249,6 +258,23 @@ describe('compile (AC 3)', () => {
       'italian-game-evans-gambit.json',
       'kadas-opening-schneider-gambit.json',
       'kieninger-trap.json',
+      'kings-gambit-accepted-basman-gambit.json',
+      'kings-gambit-accepted-bishops-gambit.json',
+      'kings-gambit-accepted-breyer-gambit.json',
+      'kings-gambit-accepted-carrera-gambit.json',
+      'kings-gambit-accepted-dodo-variation.json',
+      'kings-gambit-accepted-eisenberg-variation.json',
+      'kings-gambit-accepted-gaga-gambit.json',
+      'kings-gambit-accepted-kings-knights-gambit.json',
+      'kings-gambit-accepted-mason-keres-gambit.json',
+      'kings-gambit-accepted-orsini-gambit.json',
+      'kings-gambit-accepted-paris-gambit.json',
+      'kings-gambit-accepted-schurig-gambit-with-bb5.json',
+      'kings-gambit-accepted-schurig-gambit-with-bd3.json',
+      'kings-gambit-accepted-stamma-gambit.json',
+      'kings-gambit-accepted-tartakower-gambit.json',
+      'kings-gambit-accepted-tumbleweed.json',
+      'kings-gambit-accepted-villemson-gambit.json',
       'kings-gambit-accepted.json',
       'kings-gambit-declined-classical-variation.json',
       'kings-gambit.json',

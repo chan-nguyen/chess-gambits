@@ -1,0 +1,75 @@
+# King's Gambit Accepted, Paris Gambit: 1.e4 e5 2.f4 exf4 3.Ne2. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). Unlike
+# most sister entries in this batch, the critical line here does NOT reach a clearly
+# decisive stop by the #107 bar within a reasonable number of plies: White's knight, unlike
+# the one on h3 in the Eisenberg Variation, has a real recapturing square on g3 and the
+# resulting position is simply "Black a sound pawn up", not a proven decisive advantage.
+# The leaf is therefore `unexplored` rather than a forced or invented verdict — see #107's
+# explicit instruction not to dress up a level (or merely-better) position as decisive.
+id: kings-gambit-accepted-paris-gambit
+name: Paris Gambit
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Ne2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.Ne2 is passive but not self-defeating the way 3.Nh3 is — the knight has
+      a genuine recapturing square on g3, so 3...Qh4+ only nets Black the original pawn back
+      rather than more. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Ne2, một nước phát triển thụ động nhắm vào con tốt f4 nhưng không đóng góp gì cho trung tâm. Đen có ngay một nước chiếu quen thuộc để kiểm tra vị trí này.
+    en: White plays 3.Ne2, a passive developing move eyeing the f4 pawn but doing nothing for the centre. Black has the familiar immediate check to test the position.
+    fr: Les Blancs jouent 3.Ne2, un coup de développement passif qui vise le pion f4 sans rien apporter au centre. Les Noirs disposent de l'échec immédiat habituel pour tester la position.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước phát triển khác thay vì chiếu ngay. Bất kỳ nước nào cũng giữ nguyên một tốt hơn cho Đen, nhưng 3...Qh4+ là cách trực tiếp nhất để kiểm tra xem Trắng đáp lại ra sao.
+      en: Black plays some other developing move instead of checking at once. Any of them keeps Black's extra pawn intact, but 3...Qh4+ is the most direct way to test how White responds.
+      fr: Les Noirs jouent un autre coup de développement au lieu de mettre en échec immédiatement. Chacun d'eux conserve le pion supplémentaire des Noirs, mais 3...Qh4+ est le moyen le plus direct de tester la réponse blanche.
+  children:
+    - ply: Qh4+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chiếu ngay bằng Qh4+. Trắng có hai cách chặn — 4.Ng3 chặn trực tiếp bằng mã nhưng mã đó không được bảo vệ và sẽ mất ngay sau 4...fxg3; 4.g3 chặn bằng tốt trước, giữ cho mã có thể ăn lại an toàn ở g3 sau đó. g3 là lựa chọn đúng.
+        en: Black checks at once with Qh4+. White has two ways to block — 4.Ng3 interposes the knight directly, but that knight is undefended there and is lost outright after 4...fxg3; 4.g3 blocks with the pawn first, keeping the knight free to recapture safely on g3 afterwards. g3 is the correct choice.
+        fr: Les Noirs mettent en échec immédiatement par Qh4+. Les Blancs disposent de deux façons de bloquer — 4.Ng3 interpose directement le cavalier, mais celui-ci y est sans défense et se perd net après 4...fxg3 ; 4.g3 bloque d'abord avec le pion, laissant le cavalier libre de reprendre ensuite sans danger en g3. g3 est le bon choix.
+      children:
+        - ply: g3
+          annotation:
+            vi: Trắng chặn chiếu bằng tốt, chuẩn bị ăn lại bằng mã trên g3 nếu Đen đổi tốt — cách duy nhất tránh mất cả một quân mã.
+            en: White blocks the check with the pawn, preparing to recapture with the knight on g3 if Black trades the pawn off — the only way to avoid losing a whole piece.
+            fr: Les Blancs bloquent l'échec avec le pion, se préparant à reprendre avec le cavalier en g3 si les Noirs échangent le pion — la seule façon d'éviter de perdre une pièce entière.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì đổi tốt ngay trên g3. Bất kỳ lựa chọn nào cũng giữ nguyên một tốt hơn cho Đen, nhưng 4...fxg3 là cách trực tiếp nhất để buộc Trắng phải dùng mã tái chiếm.
+              en: Black plays something other than trading the pawn off on g3 at once. Any choice keeps Black's extra pawn, but 4...fxg3 is the most direct way to force White's knight to do the recapturing.
+              fr: Les Noirs jouent autre chose que d'échanger immédiatement le pion en g3. Tout autre choix conserve le pion supplémentaire des Noirs, mais 4...fxg3 est le moyen le plus direct de forcer le cavalier blanc à effectuer la reprise.
+          children:
+            - ply: fxg3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đổi tốt trên g3, buộc mã Trắng phải tái chiếm — vị trí trở lại đúng bằng một tốt hơn cho Đen, không có gì thêm.
+                en: Black trades the pawn off on g3, forcing White's knight to recapture — the position returns to exactly one clean pawn up for Black, nothing more.
+                fr: Les Noirs échangent le pion en g3, forçant le cavalier blanc à reprendre — la position revient à exactement un pion d'avance net pour les Noirs, rien de plus.
+              children:
+                - ply: Nxg3
+                  annotation:
+                    vi: Trắng tái chiếm bằng mã, nước duy nhất hợp lý — quân mã giờ đứng khá tốt ở g3, kiểm soát e4 và f5. Đen thử ăn thêm tốt e4 bằng Qxe4+ sẽ mất trắng hậu vào tay chính con mã ấy (Nxe4), nên Đen chỉ nên rút hậu về và phát triển bình thường, giữ đúng một tốt hơn mà không có thêm ưu thế cụ thể nào khác đã được chứng minh ở đây.
+                    en: White recaptures with the knight, the only sensible move — the knight now sits reasonably well on g3, covering e4 and f5. If Black tries to grab a further pawn with Qxe4+, that same knight simply wins the queen with Nxe4, so Black should just retreat the queen and develop normally, holding exactly one clean pawn with no further concrete advantage proven here.
+                    fr: Les Blancs reprennent avec le cavalier, le seul coup sensé — le cavalier se retrouve plutôt bien placé en g3, couvrant e4 et f5. Si les Noirs tentent de gagner un pion de plus par Qxe4+, ce même cavalier gagne simplement la dame par Nxe4 ; les Noirs doivent donc simplement retirer leur dame et se développer normalement, conservant exactement un pion d'avance sans le moindre avantage concret supplémentaire démontré ici.
+                  outcome:
+                    type: unexplored

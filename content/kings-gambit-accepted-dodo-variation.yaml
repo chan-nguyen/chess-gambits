@@ -1,0 +1,56 @@
+# King's Gambit Accepted, Dodo Variation: 1.e4 e5 2.f4 exf4 3.Qg4. Every ply below was
+# replayed with chess.js before being written (see docs/CONTEXT.md, invariant 1). Checked
+# hard for a way to keep Black's extra pawn: 3...g5 was tried and it allows 4.Qxg5 Qxg5,
+# trading down to dead-equal material; 3...Nf6 lets White simply recapture with 4.Qxf4,
+# which also reaches exact material equality (Nxe4 in reply loses the knight to Qxe4+,
+# verified). Every honest try levels the material, so the leaf here is `unexplored` rather
+# than an invented verdict for either side.
+id: kings-gambit-accepted-dodo-variation
+name: Dodo Variation
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Qg4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement. 3.Qg4 is the one try in this batch that hits the f4 pawn directly along a
+      clear diagonal — every natural way Black tries to keep the pawn either hangs it back
+      or trades down to dead-equal material. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Qg4, đưa hậu ra sớm nhưng lần này nhắm thẳng vào con tốt f4 dọc đường chéo, chứ không chỉ đơn thuần bỏ mặc nó như một số nhánh khác trong lô này.
+    en: White plays 3.Qg4, another early queen sortie, but this one aims straight down the diagonal at the f4 pawn rather than simply abandoning it the way several sister lines in this batch do.
+    fr: Les Blancs jouent 3.Qg4, une autre sortie précoce de la dame, mais celle-ci vise directement le pion f4 le long de la diagonale, au lieu de simplement l'abandonner comme le font plusieurs variantes sœurs de ce lot.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì phát triển mã ra f6. Mọi cách giữ tốt f4 khác đều được kiểm tra và dẫn tới một kết quả tương tự — quân số cân bằng trở lại sau khi Trắng ăn lại tốt hoặc đổi hậu — nên 3...Nf6 chỉ là cách phát triển tự nhiên nhất để đi tới đó.
+      en: Black plays something other than developing the knight to f6. Every other way of trying to keep the f4 pawn was checked and leads to a similar result — material levels back out once White recaptures the pawn or trades queens — so 3...Nf6 is simply the most natural developing move that gets there.
+      fr: Les Noirs jouent autre chose que de développer le cavalier en f6. Toutes les autres façons de tenter de conserver le pion f4 ont été vérifiées et mènent à un résultat semblable — le matériel se rééquilibre dès que les Blancs reprennent le pion ou échangent les dames — donc 3...Nf6 n'est que le coup de développement le plus naturel pour y parvenir.
+  children:
+    - ply: Nf6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã ra f6 một cách tự nhiên. Điều này để cho Trắng ăn lại con tốt bằng Qxf4, nhưng đó là cách hợp lý nhất để tiếp tục ván cờ — 3...g5 giữ tốt cũng được, nhưng sau 4.Qxg5 Qxg5 hai bên đổi hậu và quân số cũng cân bằng trở lại, còn 3...Nf6 ít nhất còn phát triển được một quân.
+        en: Black develops the knight to f6 naturally. This lets White recapture the pawn with Qxf4, but it is the most sensible way to continue — 3...g5 also holds the pawn, but after 4.Qxg5 Qxg5 the queens are traded and material levels out anyway, whereas 3...Nf6 at least gets a piece developed.
+        fr: Les Noirs développent naturellement le cavalier en f6. Cela permet aux Blancs de reprendre le pion par Qxf4, mais c'est la façon la plus sensée de poursuivre — 3...g5 conserve aussi le pion, mais après 4.Qxg5 Qxg5 les dames sont échangées et le matériel se rééquilibre de toute façon, tandis que 3...Nf6 développe au moins une pièce.
+      children:
+        - ply: Qxf4
+          annotation:
+            vi: Trắng ăn lại con tốt f4, đưa quân số trở về hoàn toàn cân bằng. Nếu Đen thử ăn tiếp tốt e4 bằng Nxe4, quân hậu trên f4 lập tức ăn lại mã (Qxe4+) vì hậu vẫn đang bảo vệ ô đó — vì vậy Đen không có cách nào khai thác thêm ngay lúc này, và thế cờ đã trở nên cân bằng thực sự chứ không chỉ là một vị trí hơi tốt hơn cho bên nào.
+            en: White recaptures the f4 pawn, bringing material back to exact equality. If Black tries to grab the e4 pawn as well with Nxe4, the queen on f4 simply recaptures the knight (Qxe4+) since it still guards that square — so there is nothing further for Black to exploit right now, and the position has genuinely levelled rather than settling into a small edge for either side.
+            fr: Les Blancs reprennent le pion f4, ramenant le matériel à une égalité exacte. Si les Noirs tentent de gagner aussi le pion e4 par Nxe4, la dame en f4 reprend simplement le cavalier (Qxe4+) puisqu'elle garde encore cette case — il n'y a donc rien de plus à exploiter pour les Noirs pour l'instant, et la position s'est réellement égalisée plutôt que de se stabiliser sur un léger avantage pour l'un ou l'autre camp.
+          outcome:
+            type: unexplored
