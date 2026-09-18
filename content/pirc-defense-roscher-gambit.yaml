@@ -1,0 +1,56 @@
+# Pirc Defense: Roscher Gambit. Frozen defining line 1.e4 d6 2.d4 Nf6 3.Nf3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# The tree stops at unexplored past the first reply. No material has changed hands within this
+# defining line or its first continuation — 4.e5 is a pawn push attacking a knight, not yet a
+# sacrifice — so there is nothing to hang a decisive verdict on this early, and the named
+# "gambit" idea plainly runs deeper than this entry maps. Unexplored is the honest place to
+# stop (docs/CONTEXT.md, "Where a line may stop").
+id: pirc-defense-roscher-gambit
+name: 'Pirc Defense: Roscher Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, d6, d4, Nf6, Nf3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted, and an early one at that: 3.Nf3 has not yet committed
+      any material, so nothing here has been tested against Black's most natural reply,
+      which is the whole reason this entry stops at unexplored rather than guessing.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi Nf3 theo lối cổ điển thay vì Nc3, để dành ô c3 cho tốt c và chuẩn bị đẩy e5 nhắm vào mã f6 khi có dịp. Đây là Roscher Gambit trong Khai cuộc Pirc — được gọi là gambit nhưng chưa hề thí quân gì ở giai đoạn này.
+    en: White plays the classical Nf3 rather than Nc3, keeping the c3 square free for the c-pawn and preparing to push e5 against the f6 knight when the moment comes. This is the Pirc Defense's Roscher Gambit — called a gambit, though nothing has actually been sacrificed at this stage.
+    fr: Les Blancs jouent le classique Nf3 plutôt que Nc3, gardant la case c3 libre pour le pion c et préparant à pousser e5 contre le cavalier f6 le moment venu. C'est le Gambit Roscher de la Défense Pirc — appelé gambit, bien que rien n'ait encore été sacrifié à ce stade.
+  dismissRest:
+    reason:
+      vi: Đen không chơi ...g6. Các cách sắp xếp khác của Pirc (chơi sớm ...c5, chuẩn bị ...e5, hay đổi ngay ở e4 nếu chiến thuật cho phép) đều là những lựa chọn hợp lý và đã được lý thuyết Pirc nghiên cứu rộng rãi, nhưng chúng nằm ngoài hệ thống fianchetto tiêu chuẩn mà mục này đi theo — ...g6 chuẩn bị ...Bg7 là lựa chọn phổ biến và tiêu biểu nhất để xem xét ở đây.
+      en: Black does not play ...g6. The other Pirc setups (an early ...c5, preparing ...e5, or trading at once on e4 if the tactics allow) are all reasonable and well studied in Pirc theory generally, but they sit outside the standard fianchetto system this entry follows — ...g6 heading for ...Bg7 is the most common and representative choice to examine here.
+      fr: Les Noirs ne jouent pas ...g6. Les autres dispositifs de la Pirc (un ...c5 précoce, la préparation de ...e5, ou l'échange immédiat en e4 si la tactique le permet) sont tous raisonnables et largement étudiés dans la théorie de la Pirc en général, mais ils sortent du système de fianchetto standard que suit cette entrée — ...g6 en direction de ...Bg7 est le choix le plus courant et le plus représentatif à examiner ici.
+  children:
+    - ply: g6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen tiếp tục fianchetto tượng đồng, hệ thống chuẩn của Pirc, chưa lo lắng gì về con tốt e4 hay con mã f6.
+        en: Black continues with the standard Pirc fianchetto, not yet worried about the e4 pawn or the f6 knight.
+        fr: Les Noirs poursuivent avec le fianchetto standard de la Pirc, sans encore se soucier du pion e4 ni du cavalier f6.
+      children:
+        - ply: e5
+          annotation:
+            vi: Đây là nước mang tên "gambit" — Trắng đẩy tốt tấn công thẳng vào mã f6, chưa thí quân gì cả mà chỉ giành nhịp bằng cách đuổi quân. Cây phân tích dừng lại ở đây, vì câu hỏi thật của cả biến này là mã Đen sẽ lùi đi đâu và liệu con tốt e5 có trở thành đối tượng bị tấn công về sau hay không, một câu hỏi cần được xem xét sâu hơn phạm vi mục này.
+            en: This is the move that gives the line its "gambit" name — White pushes the pawn to attack the f6 knight directly, without offering any material yet, only gaining a tempo by chasing a piece. The tree stops here, since the real question of this whole variation is where the knight retreats to and whether the e5 pawn later becomes a target itself, a question that needs more depth than this entry covers.
+            fr: C'est le coup qui donne son nom de « gambit » à la ligne — les Blancs poussent le pion pour attaquer directement le cavalier f6, sans encore rien offrir en matériel, gagnant seulement un temps en chassant une pièce. L'arbre s'arrête ici, la vraie question de toute cette variante étant de savoir où recule le cavalier et si le pion e5 devient plus tard lui-même une cible, une question qui demande plus de profondeur que n'en couvre cette entrée.
+          outcome:
+            type: unexplored

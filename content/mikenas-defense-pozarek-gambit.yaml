@@ -1,0 +1,60 @@
+# Mikenas Defense: Pozarek Gambit. Frozen defining line 1.d4 Nc6 2.c4 e5 3.dxe5 Nxe5 4.Nc3
+# Nxc4, which ends on Black's own ply — the capture that gives the line its name — so the root
+# is an opponent node with White to move (docs/CONTEXT.md, invariant 5). Side is black here:
+# it is Black's knight that does the grabbing, and invariant 5 requires the defining line to end
+# on the taught side's own move, which fixes which side this entry teaches regardless of how
+# the source dataset happened to label the variation.
+#
+# The tree stops at unexplored past the first reply. White has a real development lead (Nc3,
+# about to play e4) for the pawn Black has grabbed, and judging whether that lead is enough
+# compensation needs more original calculation than this entry can responsibly certify without
+# an engine — see docs/CONTEXT.md, "Where a line may stop".
+id: mikenas-defense-pozarek-gambit
+name: 'Mikenas Defense: Pozarek Gambit'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, Nc6, c4, e5, dxe5, Nxe5, Nc3, Nxc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. Black nets a clean pawn by grabbing on c4, but the
+      knight has now moved three times while White is ready to play e4 with a real
+      development lead — real enough that the extra pawn is not simply free, even though
+      nothing concrete has been shown for it yet either.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa ăn tốt c4 bằng mã, con mã đã nhảy ba lần liên tiếp (c6-e5-c4) để lấy một tốt. Đây là Pozarek Gambit trong Mikenas Defense — thí tốt c4 để đổi lấy quyền phát triển nhanh cho Trắng.
+    en: Black has just taken the c4 pawn with the knight, which has now jumped three times in a row (c6-e5-c4) to win one pawn. This is the Pozarek Gambit inside the Mikenas Defense — White gives up the c4 pawn in exchange for a free run at rapid development.
+    fr: Les Noirs viennent de prendre le pion c4 du cavalier, qui a désormais sauté trois fois de suite (c6-e5-c4) pour gagner un pion. C'est le Gambit Pozarek à l'intérieur de la Défense Mikenas — les Blancs cèdent le pion c4 contre un développement rapide sans entrave.
+  dismissRest:
+    reason:
+      vi: Trắng không đuổi mã ngay bằng e4. Các nước khác (phát triển tượng, đưa hậu ra, nhập thành sớm) đều hợp lý nhưng để con mã Đen tiếp tục đứng ở c4 thêm một nhịp, tức là bỏ lỡ cách thử thách thức nhất và tự nhiên nhất đối với con mã đã đi ba lần.
+      en: White does not chase the knight at once with e4. The other tries (developing a bishop, bringing the queen out, castling early) are reasonable but let Black's knight sit on c4 for another move, which passes up the most natural and most testing way to challenge a knight that has already moved three times.
+      fr: Les Blancs ne chassent pas le cavalier tout de suite par e4. Les autres essais (développer un fou, sortir la dame, roquer tôt) sont raisonnables mais laissent le cavalier noir rester en c4 un coup de plus, ce qui renonce à la façon la plus naturelle et la plus exigeante de mettre à l'épreuve un cavalier qui a déjà bougé trois fois.
+  children:
+    - ply: e4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng đẩy tốt lên, chiếm trung tâm và đồng thời đuổi con mã đang đứng ở c4. Con mã đã ăn tốt giờ phải tìm đường về.
+        en: White pushes the pawn up, taking the centre and chasing the knight sitting on c4 in the same move. The knight that grabbed the pawn now has to find its way home.
+        fr: Les Blancs poussent le pion, prenant le centre tout en chassant le cavalier posté en c4. Le cavalier qui a pris le pion doit maintenant trouver le chemin du retour.
+      children:
+        - ply: Nb6
+          annotation:
+            vi: Mã lùi về một ô an toàn và vẫn giữ được con tốt đã ăn. Trắng giờ có trung tâm c4 (đã mất) đổi lấy e4 và Nc3, một quyền phát triển nhanh thật sự chứ không phải suông. Cây phân tích dừng lại ở đây, vì phán xét xem quyền phát triển ấy có đủ bù cho một tốt hay không cần tính toán sâu hơn mức có thể làm một cách nghiêm túc ở đây mà không có sự trợ giúp của máy.
+            en: The knight retreats to a safe square and keeps the pawn it grabbed. White now has e4 and Nc3 in place of the lost c4 pawn — a real development lead, not an empty one. The tree stops here, because judging whether that lead is worth a full pawn needs deeper calculation than can be responsibly done here without engine help.
+            fr: Le cavalier recule sur une case sûre et garde le pion gagné. Les Blancs disposent désormais de e4 et Nc3 à la place du pion c4 perdu — une réelle avance de développement, pas une avance creuse. L'arbre s'arrête ici, car juger si cette avance vaut un plein pion demande un calcul plus profond que ce qui peut être fait ici de façon sérieuse sans l'aide d'un moteur.
+          outcome:
+            type: unexplored

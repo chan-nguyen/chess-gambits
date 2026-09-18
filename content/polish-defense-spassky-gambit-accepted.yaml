@@ -1,0 +1,65 @@
+# Polish Defense: Spassky Gambit Accepted. Frozen defining line 1.d4 b5 2.e4 Bb7 3.Bxb5, which
+# ends on White's own ply — White capturing the pawn Black left en prise is what "accepted"
+# names — so the root is an opponent node with Black to move (docs/CONTEXT.md, invariant 5).
+# Side is white here: it is White's own move that ends the defining line, and invariant 5
+# requires the defining line to end on the taught side's own move, which fixes which side this
+# entry teaches regardless of how the source dataset happened to label the variation.
+id: polish-defense-spassky-gambit-accepted
+name: 'Polish Defense: Spassky Gambit Accepted'
+eco: A40
+category: gambit
+side: white
+definingLine: [d4, b5, e4, Bb7, Bxb5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. Black's ...Bxe4 wins the pawn straight back, and after
+      4.Nc3 attacking the bishop the material count is already level again — an ordinary,
+      balanced position rather than a real edge for either side at this depth.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đã để hở con tốt b5 khi chơi ...Bb7 thay vì bảo vệ nó, và Trắng đơn giản ăn không con tốt ấy. Đây là nhánh "được chấp nhận" của Spassky Gambit trong Polish Defense.
+    en: Black left the b5 pawn undefended by playing ...Bb7 instead of guarding it, and White simply takes it for free. This is the "accepted" branch of the Spassky Gambit inside the Polish Defense.
+    fr: Les Noirs ont laissé le pion b5 sans défense en jouant ...Bb7 plutôt que de le protéger, et les Blancs le prennent tout simplement, gratuitement. C'est la branche « acceptée » du Gambit Spassky à l'intérieur de la Défense polonaise.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại ở e4. Các nước khác (phát triển mã, đẩy tốt trung tâm, đưa hậu ra) đều bỏ lỡ cách đòi lại vật chất nhanh nhất và tự nhiên nhất — tượng b7 đang nhìn thẳng vào tốt e4 không được ai bảo vệ ngay từ đầu.
+      en: Black does not recapture on e4. The other tries (developing a knight, pushing a central pawn, bringing the queen out) all pass up the quickest and most natural way to get material back — the bishop on b7 is looking straight at the undefended e4 pawn already.
+      fr: Les Noirs ne reprennent pas en e4. Les autres essais (développer un cavalier, avancer un pion central, sortir la dame) laissent tous passer le moyen le plus rapide et le plus naturel de récupérer du matériel — le fou en b7 vise déjà directement le pion e4, sans défense.
+  children:
+    - ply: Bxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại ngay bằng tượng, dùng chính đường chéo mà mình vừa mở ra. Con tốt vừa mất đã được đòi lại đầy đủ.
+        en: Black recaptures at once with the bishop, using the very diagonal just opened. The pawn just lost has been fully paid back.
+        fr: Les Noirs reprennent aussitôt du fou, en utilisant la diagonale qu'ils viennent d'ouvrir. Le pion perdu vient d'être intégralement remboursé.
+      children:
+        - ply: f3
+          annotation:
+            vi: Trắng chặn đường chéo bằng chính con tốt f, được tốt g2 bảo vệ. Con tượng Đen giờ không còn cách nào ăn thêm gì miễn phí trên đường chéo ấy nữa.
+            en: White blocks the diagonal with the f-pawn itself, defended by the g2 pawn. Black's bishop no longer has any free capture left to take on that diagonal.
+            fr: Les Blancs bloquent la diagonale avec le pion f lui-même, défendu par le pion g2. Le fou noir n'a plus aucune prise gratuite sur cette diagonale.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì hai bên hoàn toàn bằng nhau — con tốt b5 mà Trắng ăn được đã bị đòi lại đầy đủ bằng ...Bxe4, không ai hơn ai vật chất. Con tượng Đen ở e4 có thể ăn tiếp ở f3 hoặc c2 nhưng cả hai đều bị bảo vệ (tốt g2 và hậu d1), nên đó chỉ là đổi tượng lấy tốt chứ không phải một mối lợi thật sự. Không bên nào có tốt chồng, tốt cô hay đường mở nhắm vào vua đối phương, và cả hai vua đều chưa nhập thành. Đây là một thế cờ cân bằng theo đúng nghĩa, không phải một cách nói tránh cho ưu thế nào đó.
+              en: Count the pieces and the two sides are completely level — the b5 pawn White won has been fully paid back by ...Bxe4, with nobody up any material. Black's bishop on e4 could push on to f3 or c2, but both squares are defended (by the g2 pawn and the d1 queen), so either capture is just a bishop for a pawn rather than a real gain. Neither side has doubled or isolated pawns, or an open line toward the other king, and neither king has castled yet. This is a level position in the plain sense, not a hedge for some hidden edge.
+              fr: Comptez les pièces, les deux camps sont parfaitement à égalité — le pion b5 gagné par les Blancs a été intégralement remboursé par ...Bxe4, personne n'a de matériel en plus. Le fou noir en e4 pourrait pousser jusqu'en f3 ou c2, mais les deux cases sont défendues (par le pion g2 et la dame d1), si bien que chaque capture ne serait qu'un fou contre un pion plutôt qu'un vrai gain. Aucun camp n'a de pions doublés ou isolés, ni de ligne ouverte vers le roi adverse, et ni l'un ni l'autre n'a encore roqué. C'est une position égale au sens plein, pas une façon détournée de dire qu'il existe un avantage caché.
+            plan:
+              vi: Trắng chơi Ne2 hoặc Nc3, Be3, O-O-O hoặc phát triển bình thường, coi ván cờ như một khai cuộc cân bằng từ đây trở đi. Đen lùi tượng về g6 hoặc d5, rồi Nf6, e6 và Be7, nhập thành, và chơi đúng như một ván cờ ngang tài ngang sức chứ không cố tìm lại ưu thế nào đã mất.
+              en: White plays Ne2 or Nc3, Be3, castles queenside or develops normally, treating the game as an ordinary level opening from here on. Black retreats the bishop to g6 or d5, then plays ...Nf6, ...e6 and ...Be7, castles, and plays exactly like an even game rather than trying to win back some lost edge.
+              fr: Les Blancs jouent Ne2 ou Nc3, Be3, roquent côté dame ou développent normalement, traitant la partie comme une ouverture égale ordinaire à partir de là. Les Noirs reculent le fou en g6 ou d5, puis jouent ...Nf6, ...e6 et ...Be7, roquent, et jouent exactement comme dans une partie à forces égales plutôt que de chercher à regagner un avantage perdu.
+            basis:
+              by: chan
+              at: '2026-09-18'

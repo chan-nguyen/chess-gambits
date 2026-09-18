@@ -1,0 +1,81 @@
+# Sicilian Defense: Wing Gambit. Frozen defining line 1.e4 c5 2.b4, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-wing-gambit
+name: 'Sicilian Defense: Wing Gambit'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. After 2...cxb4 3.a3 bxa3 4.Nxa3 Black keeps a clean
+      extra pawn and White has not produced anything concrete for it — no lead in development
+      worth the name, no attack, no structural damage to Black. That is the whole verdict on
+      this pawn sacrifice at club level and below.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng mời con tốt b4 ngay từ nước thứ hai, trước khi Đen kịp làm gì ở trung tâm. Đây là Wing Gambit của Khai cuộc Sicilia — thí tốt cánh hậu để đổi lấy một trung tâm rộng và vài nhịp phát triển.
+    en: White offers the b4 pawn on move two, before Black has done anything in the centre. This is the Sicilian Wing Gambit — a queenside pawn given up for a wide centre and a few tempi of development.
+    fr: Les Blancs offrent le pion b4 dès le second coup, avant que les Noirs n'aient rien fait au centre. C'est le Gambit de l'aile de la Sicilienne — un pion d'aile dame cédé contre un centre large et quelques temps de développement.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt b4. Con tốt này đang nhắm vào tốt c5 của Đen, nên bất kỳ nước nào không đụng đến b4 và cũng không giữ c5 (như các nước mã hay tốt cánh vua) đều để Trắng chơi bxc5 ăn không con tốt c5, tức là Đen tự nguyện kém một tốt mà chẳng được gì. Những nước có giữ c5 (như Qc7, Qb6, Qa5, d6, b6) thì hợp lý nhưng bỏ lỡ câu hỏi thật của bàn cờ, là con tốt b4 có đáng ăn hay không — Trắng khi đó chỉ tiếp tục phát triển bình thường với đúng một tốt hơn so với việc Đen ăn ngay.
+      en: Black does not take the b4 pawn. That pawn is attacking Black's own pawn on c5, so any reply that neither touches b4 nor defends c5 (the knight moves, the kingside pawn moves) lets White play bxc5 and simply win the c5 pawn for free — Black volunteers to be a pawn down for nothing. Replies that do defend c5 (Qc7, Qb6, Qa5, ...d6, ...b6) are reasonable but sidestep the real question of the position, whether the b4 pawn is worth taking — White just continues developing normally, a full pawn ahead of the line where Black accepts at once.
+      fr: Les Noirs ne prennent pas le pion b4. Ce pion attaque leur propre pion c5, si bien que toute réponse qui ne touche ni à b4 ni à la défense de c5 (les coups de cavalier, les pions du roi) laisse jouer bxc5 et gagne le pion c5 gratuitement — les Noirs se retrouvent un pion de moins pour rien. Les réponses qui défendent c5 (Qc7, Qb6, Qa5, ...d6, ...b6) sont raisonnables mais éludent la vraie question de la position, celle de savoir si le pion b4 vaut la peine d'être pris — les Blancs poursuivent alors normalement leur développement, un plein pion devant la ligne où les Noirs acceptent tout de suite.
+  children:
+    - ply: cxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt, đây là nước tự nhiên nhất và cũng là cách kiểm tra thật sự xem gambit này có đáng giá hay không.
+        en: Black takes the pawn — the most natural move, and the real test of whether the gambit is worth anything.
+        fr: Les Noirs prennent le pion — le coup le plus naturel, et le vrai test de la valeur du gambit.
+      children:
+        - ply: a3
+          annotation:
+            vi: Trắng mời tiếp con tốt thứ hai thay vì phát triển ngay. Nếu Đen ăn nốt thì Trắng lấy lại bằng mã và có một quân phát triển kèm theo, còn nếu Đen từ chối thì Đen vẫn đang cầm chắc một tốt hơn.
+            en: White offers a second pawn rather than developing at once. If Black takes it too, White recaptures with the knight and gets a developed piece along with it; if Black declines, Black simply keeps the one extra pawn already in hand.
+            fr: Les Blancs offrent un second pion plutôt que de développer tout de suite. Si les Noirs le prennent aussi, les Blancs reprennent du cavalier et développent une pièce du même coup ; s'ils refusent, ils gardent simplement le pion déjà en poche.
+          dismissRest:
+            reason:
+              vi: Đen không ăn ở a3. Mọi nước phát triển bình thường (Nc6, d6, e6, g6 chuẩn bị Bg7, v.v.) đều giữ nguyên một tốt hơn đã có sẵn, và không nước nào trong nhóm này thua kém gì so với việc ăn thêm tốt a3 — chúng chỉ đơn giản không cần thiết, vì Đen đã có đủ thứ gambit này trao ra.
+              en: Black does not capture on a3. Every ordinary developing move (...Nc6, ...d6, ...e6, ...g6 preparing ...Bg7, and so on) simply keeps the one extra pawn already won, and none of them is any worse than also grabbing the a3 pawn — they are just unnecessary, since Black already has everything this gambit is giving away.
+              fr: Les Noirs ne prennent pas en a3. Tout coup de développement ordinaire (...Nc6, ...d6, ...e6, ...g6 préparant ...Bg7, etc.) conserve simplement le pion déjà gagné, et aucun n'est pire que de prendre aussi le pion a3 — ils sont juste superflus, les Noirs ayant déjà tout ce que ce gambit abandonne.
+          children:
+            - ply: bxa3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen ăn nốt con tốt thứ hai. Con tốt này sẽ bị mã Trắng ăn lại ngay, nhưng Đen vẫn giữ được đúng một tốt hơn so với ban đầu.
+                en: Black takes the second pawn too. It will be recaptured by the knight at once, but Black still ends up exactly one pawn ahead of where the game started.
+                fr: Les Noirs prennent aussi le second pion. Il sera repris aussitôt par le cavalier, mais les Noirs terminent tout de même avec exactement un pion d'avance sur le début de partie.
+              children:
+                - ply: Nxa3
+                  annotation:
+                    vi: Trắng ăn lại bằng mã, phát triển được một quân. Nhưng đây là toàn bộ những gì Trắng có được để đổi lấy con tốt đã mất — không có trung tâm lớn, không có đòn tấn công nào đang chờ sẵn, và Đen chưa hề chậm phát triển.
+                    en: White recaptures with the knight, developing a piece. But this is the whole of what White has to show for the missing pawn — no big centre, no attack waiting in the wings, and Black is not behind in development either.
+                    fr: Les Blancs reprennent du cavalier, développant une pièce. Mais c'est tout ce que les Blancs ont à montrer pour le pion manquant — pas de grand centre, pas d'attaque en réserve, et les Noirs n'ont aucun retard de développement.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm tốt thì Đen bảy, Trắng sáu — hơn đúng một tốt sạch, không phải trả lại gì nữa vì cả hai con tốt cánh hậu của Trắng đã biến mất vĩnh viễn. Đổi lại, lý thuyết của gambit này hứa hẹn một trung tâm rộng hoặc một đợt tấn công nhanh, nhưng ở đây không có cái nào cả — Trắng mới ra đúng một quân (mã a3, một ô không đẹp), tốt d và tốt e vẫn còn ở nhà, và Đen chưa hề bị ép phải nhượng bộ gì để đổi lấy con tốt của mình. Một tốt sạch không kèm gì cả là lý do gambit này bị coi là không vững.
+                      en: Count the pawns and Black has seven, White six — a full clean pawn, nothing further to give back, since both of White's queenside pawns are gone for good. In return, this gambit's whole promise is a wide centre or a quick attack, and neither has shown up — White has developed exactly one piece, a knight sitting on the unglamorous a3 square, the d- and e-pawns are still at home, and Black has not been forced to give up anything to keep the pawn. A clean extra pawn with nothing behind it is why this gambit is labelled unsound.
+                      fr: Comptez les pions, les Noirs en ont sept, les Blancs six — un pion net et sans rien à rendre, les deux pions d'aile dame blancs ayant disparu pour de bon. En échange, toute la promesse de ce gambit est un centre large ou une attaque rapide, et ni l'un ni l'autre ne s'est montré — les Blancs n'ont développé qu'une seule pièce, un cavalier sur la case peu glorieuse a3, les pions d et e sont encore chez eux, et les Noirs n'ont rien dû céder pour garder leur pion. Un pion net sans rien derrière, voilà pourquoi ce gambit est jugé non valable.
+                    plan:
+                      vi: Trắng chơi Nf3, phát triển tượng ra c4 hoặc b2 (sau b3), nhập thành và cố dùng cột nửa mở cùng đôi tượng để tạo áp lực dài hạn, chấp nhận đang chơi bù lại một tốt chứ không tấn công cụ thể. Đen chơi các nước phát triển tự nhiên — Nc6 hoặc Nf6, d6 hoặc d5, g6 và Bg7 hoặc e6 và Be7 — nhập thành, và chỉ cần tránh để con tốt thừa quay lại đổi chác vô ích. Không cần phải ép thắng ngay, giữ được cấu trúc gọn gàng và tốt thừa là đã đủ.
+                      en: White plays Nf3, develops a bishop to c4 or to b2 (after b3), castles and tries to use the half-open lines and the two bishops for long-term pressure, essentially playing a game down a pawn rather than launching a concrete attack. Black plays natural developing moves — ...Nc6 or ...Nf6, ...d6 or ...d5, ...g6 and ...Bg7 or ...e6 and ...Be7 — castles, and only needs to avoid trading the extra pawn back for nothing. There is no need to force a win; keeping a tidy structure and the spare pawn is already enough.
+                      fr: Les Blancs jouent Nf3, développent un fou en c4 ou en b2 (après b3), roquent et cherchent à exploiter les lignes semi-ouvertes et la paire de fous pour une pression à long terme, jouant en somme une partie avec un pion de moins plutôt qu'une attaque concrète. Les Noirs jouent des coups de développement naturels — ...Nc6 ou ...Nf6, ...d6 ou ...d5, ...g6 et ...Bg7 ou ...e6 et ...Be7 — roquent, et doivent seulement éviter de rendre le pion supplémentaire pour rien. Il n'est pas nécessaire de forcer le gain ; garder une structure propre et le pion en plus suffit déjà.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

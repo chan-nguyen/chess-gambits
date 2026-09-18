@@ -1,0 +1,61 @@
+# Sodium Attack: Durkin Gambit. Frozen defining line 1.Na3 e5 2.Nc4 Nc6 3.e4 f5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sodium-attack-durkin-gambit
+name: 'Sodium Attack: Durkin Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Na3, e5, Nc4, Nc6, e4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. The f5 pawn is simply hanging to White's e4 pawn, and
+      after 4.exf5 Black has no immediate way to win it back — a plain pawn loss for the sake
+      of grabbing kingside space that White's own knight detour was supposed to concede.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Trắng đưa mã ra rìa bàn cờ hai lần (Na3-c4) và chơi e4, Đen đáp lại bằng ...f5, thí một tốt để mở cột f và giành không gian cánh vua ngay khi có cơ hội. Đây là Durkin Gambit trong Sodium Attack.
+    en: After White sends the knight to the rim twice (Na3-c4) and plays e4, Black answers with ...f5, offering a pawn to open the f-file and grab kingside space while the chance is there. This is the Durkin Gambit inside the Sodium Attack.
+    fr: Après que les Blancs ont envoyé le cavalier au bord de l'échiquier deux fois (Na3-c4) et joué e4, les Noirs répondent par ...f5, offrant un pion pour ouvrir la colonne f et gagner de l'espace à l'aile roi tant que l'occasion se présente. C'est le Gambit Durkin à l'intérieur de l'Attaque Sodium.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f5. Con tốt e4 đang nhắm thẳng vào f5 và không có gì đỡ nó, nên mọi nước khác của Trắng (lùi mã, phát triển tượng, đẩy tốt khác) đều bỏ lỡ cơ hội ăn không một tốt và không kiểm tra được điều gambit này đặt cược vào.
+      en: White does not take the f5 pawn. The e4 pawn is aiming straight at f5 and nothing defends it, so any other White move (retreating the knight, developing a bishop, pushing a different pawn) passes up a free pawn and does not test what this gambit is betting on.
+      fr: Les Blancs ne prennent pas le pion f5. Le pion e4 vise directement f5 et rien ne le défend, si bien que tout autre coup blanc (reculer le cavalier, développer un fou, avancer un autre pion) laisse passer un pion gratuit et ne teste pas ce sur quoi ce gambit mise.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt tự do. Đây là cách kiểm tra thật sự của gambit này, vì con tốt f5 không có ai đỡ.
+        en: White simply takes the free pawn — the real test of the gambit, since nothing defends f5.
+        fr: Les Blancs prennent tout simplement le pion, libre. C'est le vrai test du gambit, rien ne défendant f5.
+      children:
+        - ply: Nf6
+          annotation:
+            vi: Đen phát triển mã thay vì cố ăn lại ngay, chấp nhận kém một tốt để tiếp tục phát triển bình thường.
+            en: Black develops the knight rather than trying to win the pawn back at once, accepting the pawn deficit in exchange for normal development.
+            fr: Les Noirs développent le cavalier plutôt que de tenter de reprendre le pion tout de suite, acceptant le déficit de pion contre un développement normal.
+          outcome:
+            type: position
+            evaluation:
+              vi: Trắng hơn đúng một tốt sạch — tốt f5 ăn được từ nước bốn và Đen không có cách nào đòi lại ngay lập tức. Đổi lại, con mã Trắng đã phải đi ba lần (a1-a3-c4) chỉ để tới c4, và Trắng còn phải quyết định xem con tốt f5 tiến sâu này có giữ được lâu dài hay không, vì nó chưa được quân nào bảo vệ. Nhưng ở mức hiểu biết thông thường thì một tốt sạch cộng thêm một con mã đang đứng khá ổn ở c4 vẫn là phần hơn rõ ràng, còn Đen chưa cho thấy bất kỳ điều gì bù lại được cho việc thiếu hụt vật chất ấy.
+              en: White is a clean pawn up — the f5 pawn taken on move four, with no immediate way for Black to win it back. In return, White's knight needed three moves (a1-a3-c4) just to reach c4, and White still has to decide whether the advanced f5 pawn can be held for the long run, since nothing yet defends it. But at an ordinary level of understanding, a clean pawn plus a knight that is reasonably placed on c4 is still the clear edge, and Black has not shown anything yet that makes up for being down material.
+              fr: Les Blancs ont un pion net d'avance — le pion f5 pris au quatrième coup, sans que les Noirs puissent le reprendre immédiatement. En contrepartie, le cavalier blanc a eu besoin de trois coups (a1-a3-c4) pour arriver seulement en c4, et les Blancs doivent encore décider si le pion f5 avancé peut être tenu à long terme, rien ne le défendant encore. Mais à un niveau de compréhension ordinaire, un pion net plus un cavalier raisonnablement placé en c4 reste l'avantage net, et les Noirs n'ont encore rien montré qui compense ce déficit matériel.
+            plan:
+              vi: Trắng chơi d3, Be2 hoặc Bd3, O-O và cố giữ con tốt f5 hoặc trả nó lại đúng lúc để đổi lấy phát triển, tránh để con mã c4 bị đuổi bằng ...d5 hay ...b5 mà không có chỗ lùi tốt. Đen chơi Bxf5 hay g6 tìm cách đòi lại con tốt, phát triển tượng và mã còn lại, nhập thành, và coi con tốt đã mất là một khoản đầu tư cho không gian cánh vua chứ không mong lấy lại ngay.
+              en: White plays d3, Be2 or Bd3, castles and tries to hold the f5 pawn or hand it back at the right moment in exchange for development, avoiding letting the c4 knight get chased by ...d5 or ...b5 without a good square to land on. Black plays ...Bxf5 or ...g6 trying to win the pawn back, develops the remaining bishop and knight, castles, and treats the lost pawn as an investment in kingside space rather than expecting to recover it at once.
+              fr: Les Blancs jouent d3, Be2 ou Bd3, roquent et tentent de tenir le pion f5 ou de le rendre au bon moment contre du développement, en évitant de laisser le cavalier c4 se faire chasser par ...d5 ou ...b5 sans bonne case de repli. Les Noirs jouent ...Bxf5 ou ...g6 pour tenter de reprendre le pion, développent le fou et le cavalier restants, roquent, et considèrent le pion perdu comme un investissement dans l'espace à l'aile roi plutôt que d'espérer le récupérer tout de suite.
+            basis:
+              by: chan
+              at: '2026-09-18'

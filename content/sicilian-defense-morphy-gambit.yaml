@@ -1,0 +1,81 @@
+# Sicilian Defense: Morphy Gambit. Frozen defining line 1.e4 c5 2.d4 cxd4 3.Nf3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-morphy-gambit
+name: 'Sicilian Defense: Morphy Gambit'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. Unlike the Halasz Gambit's 3.f4, the Morphy Gambit's
+      3.Nf3 heads straight for a normal recapture on d4 — after 3...Nc6 4.Nxd4 Nxd4 5.Qxd4
+      material is level and the position looks like an ordinary, roughly balanced Sicilian
+      middlegame rather than a real sacrifice at all.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã kém một tốt sau 2...cxd4 và chơi 3.Nf3, chuẩn bị ăn lại con tốt bằng một nước phát triển thay vì đòi lại ngay bằng hậu. Đây là Morphy Gambit của Khai cuộc Sicilia — thực chất là một cách nhập biến chứ không phải một nước hy sinh thật sự.
+    en: White is a pawn down after 2...cxd4 and plays 3.Nf3, preparing to win the pawn back with a developing move rather than at once with the queen. This is the Sicilian Morphy Gambit — really a move-order device rather than a genuine sacrifice.
+    fr: Les Blancs ont un pion de moins après 2...cxd4 et jouent 3.Nf3, préparant à reprendre le pion par un coup de développement plutôt que tout de suite avec la dame. C'est le Gambit Morphy de la Sicilienne — en réalité un artifice d'ordre des coups plutôt qu'un véritable sacrifice.
+  dismissRest:
+    reason:
+      vi: Đen không chơi ...Nc6. Các nước khác (đưa hậu ra sớm, đẩy tốt cánh vua, đẩy tiếp ...d3) đều là những lựa chọn hợp lý khác nhưng không thay đổi việc Trắng sẽ ăn lại được con tốt d4 bằng Nxd4 ngay khi có cơ hội, nên không cần xét riêng.
+      en: Black does not play ...Nc6. The other tries (bringing the queen out early, pushing a kingside pawn, pushing on with ...d3) are all reasonable alternatives but do not change that White recaptures the d4 pawn with Nxd4 as soon as the chance appears, so they do not need separate treatment.
+      fr: Les Noirs ne jouent pas ...Nc6. Les autres essais (sortir la dame tôt, avancer un pion de l'aile roi, pousser encore par ...d3) sont des choix raisonnables mais ne changent rien au fait que les Blancs reprennent le pion d4 par Nxd4 dès que l'occasion se présente, ils n'ont donc pas besoin d'un traitement séparé.
+  children:
+    - ply: Nc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã và đồng thời bảo vệ con tốt d4 đã ăn được. Đây là cách phòng thủ tự nhiên và cũng là câu trả lời thường gặp nhất.
+        en: Black develops the knight and, in the same move, defends the d4 pawn just won. This is the natural defence and also the most common answer.
+        fr: Les Noirs développent le cavalier et défendent du même coup le pion d4 tout juste gagné. C'est la défense naturelle et aussi la réponse la plus courante.
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Trắng ăn lại con tốt bằng mã. Mã Đen ở c6 và mã Trắng ở d4 đang nhìn thẳng vào nhau.
+            en: White recaptures the pawn with the knight. Black's knight on c6 and White's knight on d4 are now looking straight at each other.
+            fr: Les Blancs reprennent le pion du cavalier. Le cavalier noir en c6 et le cavalier blanc en d4 se font maintenant face.
+          dismissRest:
+            reason:
+              vi: Đen không đổi mã ngay. Bất kỳ nước nào khác đều để Trắng đổi trước bằng Nxc6, phá cấu trúc tốt của Đen ở cột b hoặc d tuỳ cách ăn lại, nên đổi mã trước là lựa chọn tự nhiên và không có gì để bàn thêm ở các nước khác.
+              en: Black does not trade knights at once. Anything else lets White trade first with Nxc6, damaging Black's pawn structure on the b- or d-file depending on how it is recaptured, so trading first is the natural choice and there is nothing more to say about the alternatives.
+              fr: Les Noirs n'échangent pas les cavaliers tout de suite. Toute autre option laisse les Blancs échanger en premier par Nxc6, abîmant la structure de pions noire sur la colonne b ou d selon la reprise, si bien qu'échanger en premier est le choix naturel et il n'y a rien de plus à dire sur les alternatives.
+          children:
+            - ply: Nxd4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đổi mã trước, tránh để cấu trúc tốt của mình bị phá.
+                en: Black trades knights first, avoiding any damage to the pawn structure.
+                fr: Les Noirs échangent les cavaliers les premiers, évitant tout dommage à leur structure de pions.
+              children:
+                - ply: Qxd4
+                  annotation:
+                    vi: Hậu Trắng ăn lại mã và đứng ngay giữa bàn cờ. Con tốt đã bị mất từ nước hai coi như đã được đòi lại đầy đủ.
+                    en: White's queen recaptures the knight and stands right in the centre. The pawn lost on move two has now been fully paid back.
+                    fr: La dame blanche reprend le cavalier et se retrouve en plein centre. Le pion perdu au deuxième coup est désormais entièrement remboursé.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì hai bên hoàn toàn bằng nhau — bốn tốt, hai mã còn lại, tượng, xe và hậu ở cả hai bên đều đủ số, không ai hơn ai một chút vật chất nào. Con tốt Trắng thí ở nước 2.d4 đã được đòi lại đầy đủ bằng chuỗi đổi quân tự nhiên chứ không phải bằng chiến thuật. Không bên nào có tốt chồng, tốt cô hay cột mở nhắm vào vua đối phương, và cả hai vua đều chưa nhập thành. Đây thực sự là một thế cờ cân bằng theo đúng nghĩa của từ này, không phải một cách nói tránh cho một ưu thế nào đó — Morphy Gambit chỉ là một cách nhập biến vào một ván Sicilia bình thường.
+                      en: Count the pieces and the two sides are completely equal — four pawns each remaining on that side of the board, the same knights, bishops, rooks and queen, nobody up so much as a fraction of material. The pawn White gave up on move 2.d4 has been paid back in full through a natural sequence of trades rather than through tactics. Neither side has doubled or isolated pawns, or an open file pointing at the other king, and neither king has castled yet. This really is a level position in the plain sense of the word, not a hedge for some hidden edge — the Morphy Gambit is simply a move order into an ordinary Sicilian game.
+                      fr: Comptez les pièces, les deux camps sont parfaitement égaux — quatre pions chacun sur cette partie de l'échiquier, mêmes cavaliers, fous, tours et dame, personne n'a le moindre fragment de matériel en plus. Le pion cédé par les Blancs au coup 2.d4 a été intégralement remboursé par une suite d'échanges naturels et non par la tactique. Aucun camp n'a de pions doublés ou isolés, ni de colonne ouverte vers le roi adverse, et ni l'un ni l'autre n'a encore roqué. C'est réellement une position égale au sens plein du terme, pas une façon détournée de dire qu'il existe un avantage caché — le Gambit Morphy n'est qu'un ordre de coups vers une partie sicilienne ordinaire.
+                    plan:
+                      vi: Trắng chơi Nc3, Be2 hoặc Bc4, O-O và Be3, phát triển bình thường như trong một ván Sicilia Open thông thường, không có kế hoạch nào riêng cho việc "đã từng thí tốt". Đen chơi e5 đuổi hậu để giành nhịp, rồi d6, Be7 hoặc Be6, và O-O, chơi đúng như đang gặp 3.Nxd4 trực tiếp chứ không phải một gambit. Cả hai bên coi ván cờ như một khai cuộc Sicilia bình thường từ đây trở đi.
+                      en: White plays Nc3, Be2 or Bc4, castles and Be3, developing exactly as in an ordinary Open Sicilian, with no special plan tied to "having once sacrificed a pawn". Black plays ...e5 to chase the queen and gain a tempo, then ...d6, ...Be7 or ...Be6, and castles, playing exactly as if facing 3.Nxd4 directly rather than a gambit. Both sides treat the game as a normal Sicilian opening from here on.
+                      fr: Les Blancs jouent Nc3, Be2 ou Bc4, roquent et Be3, se développant exactement comme dans une Sicilienne ouverte ordinaire, sans plan particulier lié au fait d'avoir jadis sacrifié un pion. Les Noirs jouent ...e5 pour chasser la dame et gagner un temps, puis ...d6, ...Be7 ou ...Be6, et roquent, jouant exactement comme s'ils affrontaient 3.Nxd4 directement plutôt qu'un gambit. Les deux camps traitent la partie comme une ouverture sicilienne normale à partir de là.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

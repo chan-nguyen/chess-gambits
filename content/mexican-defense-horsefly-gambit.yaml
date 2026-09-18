@@ -1,0 +1,57 @@
+# Mexican Defense: Horsefly Gambit. Frozen defining line 1.d4 Nf6 2.c4 Nc6 3.d5 Ne5 4.f4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# The tree stops at unexplored past the first reply. No pawn has changed hands by this point —
+# 4.f4 only attacks a knight — so there is no material count yet to hang a decisive verdict on,
+# and pushing further honestly needs more original calculation than this entry can respectably
+# certify without an engine. Unexplored is the honest place to stop (docs/CONTEXT.md, "Where a
+# line may stop"), not a hedge dressed up as a verdict.
+id: mexican-defense-horsefly-gambit
+name: 'Mexican Defense: Horsefly Gambit'
+eco: A50
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, Nc6, d5, Ne5, f4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. 4.f4 wins a tempo on the e5 knight but spends a further
+      pawn move without developing a single piece; a simple retreat leaves White needing to
+      prove that four pawn moves in a row (c4, d4, d5, f4) were worth more than the knight
+      hop they chased, which is a hard case to make.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi mã Đen nhảy vào e5, Trắng chơi f4 đuổi nó đi ngay, chấp nhận thêm một nước tốt nữa mà chưa phát triển quân nào. Đây là Horsefly Gambit của Mexican Defense — không thí quân, mà thí thời gian để đuổi con mã đi khắp bàn cờ.
+    en: After Black's knight jumps to e5, White plays f4 to chase it away at once, spending yet another pawn move without developing a single piece. This is the Mexican Defense's Horsefly Gambit — no material offered, just tempo spent chasing the knight around the board.
+    fr: Après le saut du cavalier noir en e5, les Blancs jouent f4 pour le chasser aussitôt, dépensant encore un coup de pion sans développer la moindre pièce. C'est le Gambit du Taon (Horsefly) de la Défense mexicaine — aucun matériel offert, seulement du temps dépensé à pourchasser le cavalier sur l'échiquier.
+  dismissRest:
+    reason:
+      vi: Đen không di chuyển con mã đang bị tấn công. Con tốt f4 đang nhắm thẳng vào mã e5 và không có gì khác đỡ được nó, nên bất kỳ nước nào không di chuyển chính con mã ấy (kể cả những nước mã khác của mã f6) đều để Trắng ăn không con mã bằng fxe5 ở nước sau — một sự mất quân hoàn toàn tự nguyện.
+      en: Black does not move the attacked knight. The f4 pawn is aiming straight at the e5 knight and nothing else defends it, so anything that does not move that specific knight (including moves of the other knight on f6) lets White simply win it with fxe5 next move — a fully voluntary loss of a piece.
+      fr: Les Noirs ne déplacent pas le cavalier attaqué. Le pion f4 vise directement le cavalier e5 et rien d'autre ne le défend, si bien que tout coup qui ne déplace pas ce cavalier précis (y compris les coups de l'autre cavalier en f6) laisse les Blancs le gagner tout simplement par fxe5 au coup suivant — une perte de pièce entièrement volontaire.
+  children:
+    - ply: Ng6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Mã lùi về một ô an toàn, không mất gì cả. Các nước khác của mã e5 (ăn tốt d5 hoặc c4, nhảy vào f3 hay d3 chiếu, hay lùi về c6) đều đáng chơi nhưng phức tạp hơn và không cần thiết khi có một nước lùi đơn giản như thế này.
+        en: The knight simply retreats to a safe square, losing nothing. The e5 knight's other options (taking on d5 or c4, jumping into f3 or d3 with check, or retreating to c6) are all playable but more complicated, and unnecessary when a plain retreat like this one is available.
+        fr: Le cavalier recule tout simplement sur une case sûre, sans rien perdre. Les autres options du cavalier e5 (prendre en d5 ou c4, sauter en f3 ou d3 avec échec, ou reculer en c6) sont toutes jouables mais plus compliquées, et superflues quand un recul aussi simple est disponible.
+      children:
+        - ply: e4
+          annotation:
+            vi: Trắng hoàn thiện một trung tâm cổ điển rộng — c4, d5, e4 và f4 — nhưng vẫn chưa phát triển được một quân nào. Cây phân tích dừng lại ở đây vì chưa có gì để đếm — không con tốt nào bị mất, không đường mở nào nhắm vào vua bên nào, chỉ có một cuộc đặt cược về không gian mà cần tính toán sâu hơn để phán xét công bằng.
+            en: White completes a wide classical centre — c4, d5, e4 and f4 — but still has not developed a single piece. The tree stops here because there is nothing yet to count — no pawn has been lost, no line is open toward either king, only a bet on space that needs deeper calculation to judge fairly.
+            fr: Les Blancs complètent un large centre classique — c4, d5, e4 et f4 — mais n'ont toujours développé aucune pièce. L'arbre s'arrête ici car il n'y a encore rien à compter — aucun pion n'est perdu, aucune ligne n'est ouverte vers l'un ou l'autre roi, seulement un pari sur l'espace qui demande un calcul plus profond pour être jugé équitablement.
+          outcome:
+            type: unexplored

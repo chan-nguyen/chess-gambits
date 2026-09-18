@@ -1,0 +1,84 @@
+# Richter-Veresov Attack: Malich Gambit. Frozen defining line 1.d4 Nf6 2.Nc3 d5 3.Bg5 c5
+# 4.Bxf6 gxf6 5.e4 dxe4 6.d5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+#
+# One branch below (3...Qb6) stops at unexplored: material and structure pull in opposite
+# directions there (Black's extra pawn against permanently doubled f-pawns) and settling that
+# honestly needs more calculation than this entry can responsibly certify without an engine —
+# see docs/CONTEXT.md, "Where a line may stop". The other branch (3...Qxd5) is a genuine,
+# fully resolved tactical trap and is taught as one.
+id: richter-veresov-attack-malich-gambit
+name: 'Richter-Veresov Attack: Malich Gambit'
+eco: D01
+category: gambit
+side: white
+definingLine: [d4, Nf6, Nc3, d5, Bg5, c5, Bxf6, gxf6, e4, dxe4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. Black's kingside pawns are permanently doubled after
+      4...gxf6, which is real and lasting damage, but Black is also up material and the only
+      pawn actually hanging (on d5) is defended by the c3 knight rather than free — so the
+      compensation question is real rather than settled either way at this depth.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đẩy tốt lên d5, con tốt cuối cùng của chuỗi thí quân bắt đầu từ Bxf6 — Đen đã bị chồng tốt f vĩnh viễn, nhưng hiện đang hơn quân. Đây là Malich Gambit trong Richter-Veresov Attack.
+    en: White has just pushed the pawn to d5, the last move of the sequence that began with Bxf6 — Black has permanently doubled f-pawns but is currently up material. This is the Malich Gambit inside the Richter-Veresov Attack.
+    fr: Les Blancs viennent de pousser le pion en d5, dernier coup de la séquence entamée par Bxf6 — les Noirs ont des pions f doublés de façon permanente mais sont pour l'instant en avance matérielle. C'est le Gambit Malich à l'intérieur de l'Attaque Richter-Veresov.
+  dismissRest:
+    reason:
+      vi: Đen không đưa hậu ra b6 và cũng không ăn ở d5. Các nước phát triển khác (Bg7, Nd7, Nc6, Na6, các nước tượng của tượng c8, hay các nước tốt như a6, e6, e5, f5, c4, e3) đều hợp lý và giữ được phần vật chất đang có, nhưng không kiểm tra hai câu hỏi cụ thể mà mục này xem xét — liệu con tốt d5 có ăn được an toàn hay không, và liệu áp lực lên b2 có đáng theo đuổi hay không — nên chúng không được xét riêng.
+      en: Black neither brings the queen to b6 nor takes on d5. The other developing moves (...Bg7, ...Nd7, ...Nc6, ...Na6, moves of the c8 bishop, or pawn moves such as ...a6, ...e6, ...e5, ...f5, ...c4, ...e3) are all reasonable and keep the material already in hand, but they do not test the two specific questions this entry looks at — whether the d5 pawn can be captured safely, and whether pressure on b2 is worth chasing — so they are not examined separately.
+      fr: Les Noirs n'amènent pas la dame en b6 et ne prennent pas non plus en d5. Les autres coups de développement (...Bg7, ...Nd7, ...Nc6, ...Na6, les coups du fou c8, ou des coups de pion comme ...a6, ...e6, ...e5, ...f5, ...c4, ...e3) sont tous raisonnables et conservent le matériel déjà en poche, mais ils ne testent pas les deux questions précises examinées ici — si le pion d5 peut être capturé sans risque, et si la pression sur b2 vaut la peine d'être poursuivie — ils ne sont donc pas examinés séparément.
+  children:
+    - ply: Qxd5
+      replyQuality: blunder
+      frequency: occasional
+      annotation:
+        vi: Đen ăn con tốt d5 bằng hậu, có vẻ như ăn không vì chỉ có hậu mới với tới ô đó. Nhưng đây chính là cái bẫy của cả biến — mã c3 của Trắng cũng đang nhìn thẳng vào d5.
+        en: Black takes the d5 pawn with the queen, which looks like a free pawn since the queen is the only piece that reaches that square. But this is exactly the trap in this whole line — White's knight on c3 is looking straight at d5 too.
+        fr: Les Noirs prennent le pion d5 de la dame, ce qui ressemble à un pion gratuit puisque la dame est la seule pièce à atteindre cette case. Mais c'est exactement le piège de toute cette ligne — le cavalier c3 blanc regarde lui aussi directement d5.
+      children:
+        - ply: Nxd5
+          annotation:
+            vi: Mã ăn hậu. Đen đã đổi cả con hậu để lấy một con tốt.
+            en: The knight takes the queen. Black has just traded an entire queen for one pawn.
+            fr: Le cavalier prend la dame. Les Noirs viennent d'échanger une dame entière contre un pion.
+          outcome:
+            type: position
+            evaluation:
+              vi: Trắng hơn hẳn một hậu, chỉ mất lại có một tốt — một sự chênh lệch vật chất áp đảo và không cần bàn cãi thêm. Đen còn cấu trúc tốt f chồng và một hậu đã mất hoàn toàn, không có bất kỳ điều gì bù lại được cho mất mát này ở bất kỳ giai đoạn nào của ván cờ.
+              en: White is up a whole queen for a single pawn — an overwhelming material gap that needs no further discussion. Black is left with doubled f-pawns and a queen that is simply gone, with nothing at any stage of the game that could make up for a loss this size.
+              fr: Les Blancs ont une dame entière d'avance pour un seul pion — un écart matériel écrasant qui ne nécessite pas plus de discussion. Il reste aux Noirs des pions f doublés et une dame purement et simplement disparue, sans rien, à aucun stade de la partie, pouvant compenser une perte de cette ampleur.
+            plan:
+              vi: Trắng chỉ cần đổi quân và tiến tới tàn cuộc, không cần kế hoạch cụ thể nào khi đã hơn cả một hậu. Đen không còn cách nào để cứu vãn ván cờ bằng lối chơi thông thường.
+              en: White simply trades pieces and heads for an endgame, with no need for a specific plan once a whole queen ahead. Black has no way to save the game through ordinary play.
+              fr: Les Blancs se contentent d'échanger les pièces et de se diriger vers une finale, sans besoin de plan particulier avec une dame entière d'avance. Les Noirs n'ont aucun moyen de sauver la partie par un jeu ordinaire.
+            basis:
+              by: chan
+              at: '2026-09-18'
+    - ply: Qb6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen bỏ qua con tốt d5 và thay vào đó gây áp lực lên tốt b2 cùng đường chéo a7-g1, một cách chơi thận trọng hơn nhiều so với việc ăn tốt.
+        en: Black leaves the d5 pawn alone and instead presses on the b2 pawn and the a7-g1 diagonal, a far more careful way to play than grabbing the pawn.
+        fr: Les Noirs laissent le pion d5 tranquille et font au contraire pression sur le pion b2 et la diagonale a7-g1, une façon de jouer bien plus prudente que de prendre le pion.
+      children:
+        - ply: Qd2
+          annotation:
+            vi: Trắng chỉ đơn giản bảo vệ tốt b2 dọc theo hàng ngang thứ hai và tiếp tục phát triển. Số quân trên bàn cờ vẫn phức tạp — Đen hơn vật chất nhưng có tốt f chồng vĩnh viễn, còn Trắng có tốt d5 tiến xa và hậu Đen đứng hơi lệch ở b6. Cây phân tích dừng lại ở đây, vì việc phần bù trừ cấu trúc và không gian của Trắng có đủ giá trị hay không cần được tính toán sâu hơn phạm vi mục này cho phép.
+            en: White simply defends the b2 pawn along the second rank and continues developing. The material picture on the board is still tangled — Black is up material but has permanently doubled f-pawns, while White has an advanced d5 pawn and Black's queen stands a little awkwardly on b6. The tree stops here, because whether White's structural and spatial compensation is really worth it needs more calculation than this entry can cover.
+            fr: Les Blancs se contentent de défendre le pion b2 le long de la deuxième rangée et poursuivent leur développement. Le tableau matériel reste enchevêtré — les Noirs sont en avance matérielle mais ont des pions f doublés de façon permanente, tandis que les Blancs ont un pion d5 avancé et la dame noire se tient un peu maladroitement en b6. L'arbre s'arrête ici, la question de savoir si la compensation structurelle et spatiale blanche en vaut vraiment la peine demandant plus de calcul que ce que couvre cette entrée.
+          outcome:
+            type: unexplored
