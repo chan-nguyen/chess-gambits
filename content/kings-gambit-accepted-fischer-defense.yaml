@@ -5,9 +5,11 @@
 #
 # 3...d6 is Bobby Fischer's own recommended try (from his 1961 article "A Bust to the King's
 # Gambit") — a quiet move preparing ...g5 without allowing an early Ng5. It is widely
-# regarded as one of Black's soundest tries. Under the stricter #107 bar a `position` leaf
-# must be clearly decisive; no forced decisive continuation could be established by hand
-# without an engine, so the line stops honestly at `unexplored`.
+# regarded as one of Black's soundest tries. The tried continuation named in the evaluation,
+# 4.d4 g5, was replayed with a scratch chess.js script (deleted before commit) confirming
+# legality and material at each ply. Under the stricter #107 bar this genuinely does not
+# resolve to a decisive edge for either side at this depth, so the leaf states that plainly
+# instead of forcing a verdict or reverting to `unexplored`.
 id: kings-gambit-accepted-fischer-defense
 name: "King's Gambit Accepted: Fischer Defense"
 eco: C34
@@ -48,4 +50,15 @@ tree:
         en: The Fischer Defense, Bobby Fischer's own famous recommendation. Black prepares ...g5 to hold the f4 pawn without giving White the chance of Ng5, and opens a path for the c8 bishop.
         fr: La Défense Fischer, la fameuse recommandation de Bobby Fischer lui-même. Les Noirs préparent ...g5 pour conserver le pion f4 sans laisser aux Blancs l'occasion de Ng5, et ouvrent une voie au fou c8.
       outcome:
-        type: unexplored
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.d4 (dựng trung tâm) g5 (Đen giữ chắc con tốt như dự định), vật chất không đổi và cả hai vua đều chưa nhập thành. Nước d6 đã mở đường cho tượng c8 nhưng chưa quân nào của Đen thực sự phát triển — đây là một thế cờ cân bằng, đúng như Fischer từng đánh giá đây là cách chơi an toàn nhất chứ không phải cách giành lợi thế ngay lập tức.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.d4 (building the centre) g5 (Black holds the pawn as intended) was tried; material is unchanged and neither king has castled. The d6 move has opened a path for the c8 bishop, but Black has not actually developed a piece yet — this is a level position, matching Fischer's own assessment of it as the safest way to meet the gambit rather than a way to seize an immediate advantage.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.d4 (bâtissant le centre) g5 (les Noirs conservent le pion comme prévu) a été essayé ; le matériel est inchangé et aucun roi n'a roqué. Le coup d6 a ouvert une voie pour le fou c8, mais les Noirs n'ont pas encore développé de pièce — c'est une position égale, conforme à l'évaluation de Fischer lui-même, qui y voyait la façon la plus sûre d'affronter le gambit plutôt qu'un moyen de saisir un avantage immédiat.
+        plan:
+          vi: Trắng chơi h4 để thách thức chuỗi tốt g5, hoặc Bc4 và O-O trước, tìm cách khai thác không gian trung tâm đã có. Đen chơi Bg7 và Ne7 hay Nf6, hoàn thiện phát triển và giữ con tốt thừa với thế cờ chắc chắn Fischer đã đề xuất.
+          en: White plays h4 to challenge the g5 pawn chain, or Bc4 and castles first, looking to make use of the central space already gained. Black plays Bg7 and Ne7 or Nf6, completing development and holding the extra pawn with the solid setup Fischer recommended.
+          fr: Les Blancs jouent h4 pour défier la chaîne de pions g5, ou Bc4 puis roquent d'abord, cherchant à exploiter l'espace central déjà acquis. Les Noirs jouent Bg7 et Ne7 ou Nf6, achevant leur développement et conservant le pion supplémentaire avec le dispositif solide que Fischer recommandait.
+        basis:
+          by: chan
+          at: '2026-09-18'

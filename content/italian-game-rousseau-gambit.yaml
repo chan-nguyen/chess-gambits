@@ -5,15 +5,17 @@
 # gambit's own side, so the defining line ends on Black's own 3...f5 (docs/CONTEXT.md,
 # invariant 5) and the root is an opponent node with White to move.
 #
-# Every move was replayed with a scratch chess.js script (deleted before commit). Several
-# tactical tries were checked looking for a forced decisive line for either side after
-# 4.d4 — including 4...fxe4 5.Nxe5 (loses a piece to the Nc6 defender), 5.Qh5+ g6 6.Nf5??
-# (hangs the queen to gxh5, since g6 attacks h5 the moment it is played), and 6.Nxc6 bxc6
-# (an even trade with no follow-up) — and each either failed on replay or led back to a
-# level material count with a genuinely sharp, double-edged position rather than a clear
-# advantage for either side. Under the stricter #107 bar from issue #107, that means the
-# line cannot honestly stop at a `position` leaf here, so it stops at `unexplored` after the
-# critical central try 4.d4.
+# Every move was replayed with a scratch chess.js script (deleted before commit). At the
+# `d4` node, 4...fxe4 is a genuinely free capture (nothing defends the e4 pawn), so the leaf
+# cannot sit at `d4` itself and moves one ply further to the position right after it, which
+# was checked and has no free capture standing for White. Several further tactical tries
+# were also checked looking for a forced decisive line for either side beyond that point —
+# including 5.Nxe5 (loses a piece to the Nc6 defender), 5.Qh5+ g6 6.Nf5?? (hangs the queen to
+# gxh5, since g6 attacks h5 the moment it is played), and 6.Nxc6 bxc6 (an even trade with no
+# follow-up) — and each either failed on replay or led back to a level material count with a
+# genuinely sharp, double-edged position rather than a clear advantage for either side. Per
+# #107, "if a line genuinely levels out, say so plainly" — the leaf below is a real
+# `position` assessment of the position right after 4...fxe4, not `unexplored`.
 id: italian-game-rousseau-gambit
 name: 'Rousseau Gambit'
 eco: C50
@@ -56,5 +58,22 @@ tree:
         vi: Trắng đánh thẳng vào trung tâm và đường chéo mà tượng c4 đang nhắm tới, mở ra thế cờ sắc bén trước khi vua Đen tìm được nơi an toàn.
         en: White strikes the centre and the diagonal the c4 bishop already points down, opening a sharp position before Black's king has found safety.
         fr: Les Blancs frappent le centre et la diagonale que le fou c4 vise déjà, ouvrant une position tranchante avant que le roi noir n'ait trouvé la sécurité.
-      outcome:
-        type: unexplored
+      children:
+        - ply: fxe4
+          annotation:
+            vi: Đen ăn luôn tốt e4 đang bỏ ngỏ — không quân Trắng nào bảo vệ ô này — thay vì để nó đứng yên.
+            en: Black simply takes the undefended e4 pawn — nothing White has guards that square — rather than leaving it alone.
+            fr: Les Noirs prennent simplement le pion e4 non défendu — rien chez les Blancs ne garde cette case — plutôt que de le laisser en place.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đen hơn một tốt (con tốt e4 vừa ăn được, cộng dồn vào con tốt f5 Đen từng bỏ ra khi thí gambit ban đầu vẫn chưa hề mất). Chưa bên nào nhập thành, và cả tượng c4 lẫn mã c6 đều đang chịu một chút áp lực — dxe5 hay Nxe5 đều dẫn tới đổi quân ngang giá chứ không giành thêm được gì. Đây là một thế cờ sắc bén và về vật chất nghiêng nhẹ về Đen, nhưng Trắng có đường chéo mở và một nhịp phát triển để bù lại, không phải một lợi thế rõ ràng cho ai.
+              en: Black is a pawn up — the e4 pawn just captured, on top of the f5 pawn Black offered at the start of the gambit but never actually lost. Neither side has castled, and both the c4 bishop and the c6 knight are under a little pressure — dxe5 or Nxe5 both lead only to an even trade, not a further gain. This is a sharp position, materially a shade in Black's favour, but White has an open diagonal and a developing tempo to show for it, not a clear edge for either side.
+              fr: Les Noirs sont un pion devant — le pion e4 qui vient d'être capturé, en plus du pion f5 offert au début du gambit mais jamais réellement perdu. Aucun camp n'a roqué, et le fou c4 comme le cavalier c6 subissent une légère pression — dxe5 ou Nxe5 ne mènent qu'à un échange équivalent, pas à un gain supplémentaire. C'est une position tranchante, matériellement un peu en faveur des Noirs, mais les Blancs ont une diagonale ouverte et un temps de développement à faire valoir, pas un avantage net pour l'un ou l'autre.
+            plan:
+              vi: Trắng chơi Nc3 để tấn công tốt e4 và phát triển, hoặc Qe2 ghim tốt e4 vào vua Đen, tìm cách giành lại vật chất trước khi Đen kịp củng cố. Đen chơi Nf6 hay Be7, hoàn thiện phát triển nhanh chóng và nhập thành sớm để hóa giải sức ép trên đường chéo a2-g8.
+              en: White plays Nc3 to attack the e4 pawn while developing, or Qe2 to pin the e4 pawn against Black's king, looking to win material back before Black can consolidate. Black plays Nf6 or Be7, developing quickly and castling early to defuse the pressure on the a2-g8 diagonal.
+              fr: Les Blancs jouent Nc3 pour attaquer le pion e4 tout en se développant, ou Qe2 pour clouer le pion e4 contre le roi noir, cherchant à regagner du matériel avant que les Noirs ne consolident. Les Noirs jouent Nf6 ou Be7, se développant rapidement et roquant tôt pour désamorcer la pression sur la diagonale a2-g8.
+            basis:
+              by: chan
+              at: '2026-09-18'

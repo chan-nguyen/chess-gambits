@@ -76,7 +76,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are ninety-five of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred twelve of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -123,11 +123,28 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'irish-gambit',
       'italian-game-blackburne-kostic-gambit',
       'italian-game-evans-gambit',
+      'italian-game-rousseau-gambit',
       'kadas-opening-schneider-gambit',
       'kieninger-trap',
       'kings-gambit',
       'kings-gambit-accepted',
       'kings-gambit-accepted-becker-defense',
+      'kings-gambit-accepted-bishops-gambit-anderssen-defense',
+      'kings-gambit-accepted-bishops-gambit-bledow-variation',
+      'kings-gambit-accepted-bishops-gambit-cozio-defense',
+      'kings-gambit-accepted-bishops-gambit-gianutio-gambit',
+      'kings-gambit-accepted-bishops-gambit-kieseritzky-gambit',
+      'kings-gambit-accepted-bishops-gambit-lopez-defense',
+      'kings-gambit-accepted-bishops-gambit-maurian-defense',
+      'kings-gambit-accepted-bishops-gambit-steinitz-defense',
+      'kings-gambit-accepted-bonsch-osmolovsky-variation',
+      'kings-gambit-accepted-cunningham-defense',
+      'kings-gambit-accepted-fischer-defense',
+      'kings-gambit-accepted-gianutio-countergambit',
+      'kings-gambit-accepted-macleod-defense',
+      'kings-gambit-accepted-modern-defense',
+      'kings-gambit-accepted-schallopp-defense',
+      'kings-gambit-accepted-wagenbach-defense',
       'kings-gambit-declined-classical-variation',
       'kings-indian-attack-omega-delta-gambit',
       'kings-indian-defense-samisch-variation-samisch-gambit',

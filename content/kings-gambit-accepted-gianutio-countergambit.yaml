@@ -6,10 +6,12 @@
 # pays back the original f4 pawn) and no free capture standing for either side at that point.
 #
 # 3...f5 is a further, voluntary pawn sacrifice on top of the King's Gambit itself, the
-# Nf3-trunk mirror of the Bishop's Gambit's Gianutio Gambit. Under the stricter #107 bar the
+# Nf3-trunk mirror of the Bishop's Gambit's Gianutio Gambit. The tried continuation named in
+# the evaluation, 5.Nf6, was also replayed with chess.js. Under the stricter #107 bar the
 # position after 4.exf5 restores only material parity, not a two-point edge, and the
 # resulting position is genuinely sharp rather than an unambiguous catastrophe for either
-# side, so the line stops honestly at `unexplored`.
+# side, so the leaf states that plainly rather than either forcing a false verdict or
+# reverting to `unexplored`.
 id: kings-gambit-accepted-gianutio-countergambit
 name: "King's Gambit Accepted: Gianutio Countergambit"
 eco: C34
@@ -56,4 +58,15 @@ tree:
             en: White captures the pawn, restoring material to level — the pawn Black just sacrificed pays back exactly the original f4 pawn.
             fr: Les Blancs prennent le pion, ramenant le matériel à l'égalité — le pion que les Noirs viennent de sacrifier rembourse exactement le pion f4 initial.
           outcome:
-            type: unexplored
+            type: position
+            evaluation:
+              vi: Quân số hoàn toàn ngang nhau — con tốt f5 Đen vừa thí đã bù đúng bằng con tốt f4 Trắng mất ở đầu ván. Đã thử tiếp 4...Nf6 (Đen phát triển và chuẩn bị ăn lại tốt f5), vật chất vẫn ngang nhau và cả hai bên đều còn quân chưa phát triển — đây là một thế cờ cân bằng và sắc bén, không phải một lợi thế cho ai.
+              en: Material is fully level — the f5 pawn Black just sacrificed pays back exactly the f4 pawn White lost at the start. Continuing with 4...Nf6 (Black develops and prepares to win the f5 pawn back) was tried; material stays level and both sides still have pieces to develop — this is a level, sharp position, not an edge for either side.
+              fr: Le matériel est parfaitement égal — le pion f5 que les Noirs viennent de sacrifier rembourse exactement le pion f4 perdu par les Blancs au début. Poursuivre par 4...Nf6 (les Noirs développent et se préparent à regagner le pion f5) a été essayé ; le matériel reste égal et les deux camps ont encore des pièces à développer — c'est une position égale et tranchante, pas un avantage pour l'un ou l'autre.
+            plan:
+              vi: Trắng chơi Bc4 và O-O, cố giữ con tốt f5 vừa giành được và tận dụng cột f nửa mở. Đen chơi Bd6 hay Nc6, hoàn thiện phát triển nhanh và tìm cách ăn lại tốt f5 hoặc dùng cặp tốt trung tâm để bù lại quân số đã mất công sức để giành.
+              en: White plays Bc4 and castles, trying to hold the f5 pawn just won and make use of the half-open f-file. Black plays Bd6 or Nc6, developing quickly and looking to win the f5 pawn back or use the central pawn duo to justify the material already spent reaching it.
+              fr: Les Blancs jouent Bc4 et roquent, essayant de conserver le pion f5 tout juste gagné et de profiter de la colonne f semi-ouverte. Les Noirs jouent Bd6 ou Nc6, se développant rapidement et cherchant à regagner le pion f5 ou à utiliser le duo de pions centraux pour justifier le matériel déjà dépensé pour l'obtenir.
+            basis:
+              by: chan
+              at: '2026-09-18'

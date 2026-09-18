@@ -6,10 +6,11 @@
 # and material returning to level (a second, separate pawn sacrifice repaid).
 #
 # 3...b5 is a further pawn sacrifice offered to deflect the bishop away from its attack on
-# f7. Under the stricter #107 bar, the position after 4.Bxb5 restores only material parity —
-# not a two-point edge — and the resulting queenside/central imbalance is genuinely double
-# edged rather than an unambiguous catastrophe for either side, so the line stops honestly at
-# `unexplored`.
+# f7. The tried continuation named in the evaluation, 4...Nf6, was also replayed with
+# chess.js. Under the stricter #107 bar, the position after 4.Bxb5 restores only material
+# parity — not a two-point edge — and the resulting queenside/central imbalance is
+# genuinely double edged rather than an unambiguous catastrophe for either side, so the
+# leaf states that plainly instead of forcing a verdict or reverting to `unexplored`.
 id: kings-gambit-accepted-bishops-gambit-kieseritzky-gambit
 name: "King's Gambit Accepted: Bishop's Gambit, Kieseritzky Gambit"
 eco: C33
@@ -56,4 +57,15 @@ tree:
             en: White takes the b5 pawn for free — nothing Black has defends that square — bringing material back to level for the second time in this game.
             fr: Les Blancs prennent le pion b5 gratuitement — rien chez les Noirs ne défend cette case — ramenant le matériel à l'égalité pour la deuxième fois dans cette partie.
           outcome:
-            type: unexplored
+            type: position
+            evaluation:
+              vi: Quân số hoàn toàn ngang nhau — con tốt b5 vừa mất bù đúng bằng con tốt f4 giành được trước đó. Đã thử tiếp 4...Nf6 (Đen tấn công tốt e4 và phát triển), vật chất vẫn ngang nhau sau đó. Tượng Trắng đã rời đường chéo nhắm vào f7 để đổi lấy một con tốt cánh hậu, còn Đen đổi lại có được nhịp phát triển; đây là một thế cờ cân bằng, không phải một lợi thế rõ ràng cho ai.
+              en: Material is fully level — the b5 pawn just lost pays back exactly the f4 pawn won earlier. Continuing with 4...Nf6 (Black attacks the e4 pawn while developing) was tried; material stays level afterward. White's bishop has left the diagonal aimed at f7 in exchange for a queenside pawn, while Black gets a developing tempo in return — this is a level position, not a clear edge for either side.
+              fr: Le matériel est parfaitement égal — le pion b5 qui vient d'être perdu rembourse exactement le pion f4 gagné plus tôt. Poursuivre par 4...Nf6 (les Noirs attaquent le pion e4 tout en se développant) a été essayé ; le matériel reste égal ensuite. Le fou blanc a quitté la diagonale visant f7 contre un pion à l'aile dame, tandis que les Noirs obtiennent en retour un temps de développement — c'est une position égale, pas un avantage net pour l'un ou l'autre.
+            plan:
+              vi: Trắng lui tượng về e2 hay d3, rồi chơi Nf3 và O-O, cố giữ con tốt f4 đã mất khỏi tầm với của Đen. Đen chơi Bc5 hay d5, hoàn thiện phát triển nhanh và tận dụng việc tượng Trắng đã rời xa cánh vua.
+              en: White retreats the bishop to e2 or d3, then plays Nf3 and castles, trying to keep the lost f4 pawn out of Black's reach for good. Black plays Bc5 or d5, developing quickly and making use of the fact that White's bishop has moved away from the kingside.
+              fr: Les Blancs replient le fou en e2 ou d3, puis jouent Nf3 et roquent, essayant de garder le pion f4 perdu hors de portée des Noirs pour de bon. Les Noirs jouent Bc5 ou d5, se développant rapidement et profitant du fait que le fou blanc s'est éloigné de l'aile roi.
+            basis:
+              by: chan
+              at: '2026-09-18'

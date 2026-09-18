@@ -4,10 +4,11 @@
 # (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
 #
 # 3...d5 strikes back at the bishop and the centre immediately, the same idea the Modern
-# Defence uses against the King's Knight Gambit. Under the stricter #107 bar a `position`
-# leaf must be clearly decisive; this central counter is genuinely double-edged and no forced
-# decisive continuation could be established by hand without an engine, so the line stops at
-# `unexplored` rather than asserting a verdict that is not actually there.
+# Defence uses against the King's Knight Gambit. The tried continuation named in the
+# evaluation, 4.Bxd5 Nf6, was replayed with a scratch chess.js script (deleted before
+# commit) confirming legality and material at each ply. Under the stricter #107 bar this
+# genuinely comes out level rather than decisive for either side, so the leaf states that
+# plainly instead of forcing a verdict or reverting to `unexplored`.
 id: kings-gambit-accepted-bishops-gambit-bledow-variation
 name: "King's Gambit Accepted: Bishop's Gambit, Bledow Variation"
 eco: C33
@@ -48,4 +49,15 @@ tree:
         en: The Bledow Variation. Black counterattacks the c4 bishop and the centre at once, ready to give the f4 pawn back for smooth development, the same idea the Modern Defence uses against the King's Knight Gambit.
         fr: La Variante Bledow. Les Noirs contre-attaquent aussitôt le fou c4 et le centre, prêts à rendre le pion f4 contre un développement aisé, la même idée que la Défense moderne face au Gambit du Cavalier du Roi.
       outcome:
-        type: unexplored
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn tốt f4 ban đầu ở đây, nhưng đã thử tiếp 4.Bxd5 Nf6, đưa quân số trở lại hoàn toàn ngang bằng — con tốt d5 vừa mất bù đúng bằng con tốt f4 đã giành trước đó. Cả hai vua đều chưa nhập thành và tượng Trắng trên d5 đang bị mã Đen tấn công, buộc phải chọn một ô rút lui; đây là thế cờ cân bằng và còn nhiều việc phải làm cho cả hai bên, không phải một lợi thế cho ai.
+          en: Black is still a pawn up here (the original f4 pawn), but continuing with 4.Bxd5 Nf6 was tried, bringing material back to fully level — the d5 pawn just lost pays back exactly the f4 pawn won earlier. Neither king has castled yet, and White's bishop on d5 is attacked by the Black knight and must choose a retreat square; this is a level position with real work left for both sides, not an edge for either.
+          fr: Les Noirs restent un pion devant ici (le pion f4 initial), mais poursuivre par 4.Bxd5 Nf6 a été essayé, ramenant le matériel à une parfaite égalité — le pion d5 qui vient d'être perdu rembourse exactement le pion f4 gagné plus tôt. Aucun roi n'a encore roqué, et le fou blanc en d5 est attaqué par le cavalier noir et doit choisir une case de repli ; c'est une position égale avec un vrai travail restant pour les deux camps, pas un avantage pour l'un ou l'autre.
+        plan:
+          vi: Trắng lui tượng về b3 hay e4, rồi chơi Nf3 và O-O, hoàn thiện phát triển và tranh chấp trung tâm. Đen chơi Bd6 hay Bc5, O-O nhanh chóng, và dùng thời gian giành được từ đòn phản công d5 để đi trước Trắng một nhịp phát triển.
+          en: White retreats the bishop to b3 or e4, then plays Nf3 and castles, completing development and contesting the centre. Black plays Bd6 or Bc5, castles quickly, and uses the tempo won from the d5 counterstrike to stay a step ahead in development.
+          fr: Les Blancs replient le fou en b3 ou e4, puis jouent Nf3 et roquent, achevant leur développement et disputant le centre. Les Noirs jouent Bd6 ou Bc5, roquent rapidement, et utilisent le temps gagné par la contre-frappe d5 pour rester en avance dans le développement.
+        basis:
+          by: chan
+          at: '2026-09-18'

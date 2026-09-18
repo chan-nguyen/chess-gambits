@@ -6,11 +6,12 @@
 # recaptured the pawn Black gave with 3...f5, leaving the original gambit pawn as the only
 # outstanding imbalance) and no free capture standing for either side at that point.
 #
-# 3...f5 is a further, voluntary pawn sacrifice on top of the King's Gambit itself. Even so,
-# under the stricter #107 bar the position after 4.exf5 does not show a two-point material
-# edge or an unambiguous structural catastrophe for Black — it restores material parity and
-# leaves a genuinely sharp position — so rather than dressing that up as decisive, the line
-# stops at `unexplored`, honestly short of the depth bar.
+# 3...f5 is a further, voluntary pawn sacrifice on top of the King's Gambit itself. The
+# tried continuation named in the evaluation, 5.Nc3 d5, was also replayed with chess.js.
+# Even so, under the stricter #107 bar the position after 4.exf5 does not show a two-point
+# material edge or an unambiguous structural catastrophe for Black — it restores material
+# parity and leaves a genuinely sharp position — so the leaf states that plainly rather than
+# either forcing a false verdict or reverting to `unexplored`.
 id: kings-gambit-accepted-bishops-gambit-gianutio-gambit
 name: "King's Gambit Accepted: Bishop's Gambit, Gianutio Gambit"
 eco: C33
@@ -57,4 +58,15 @@ tree:
             en: White captures the pawn, restoring material to level — the pawn Black just sacrificed pays back exactly the original f4 pawn.
             fr: Les Blancs prennent le pion, ramenant le matériel à l'égalité — le pion que les Noirs viennent de sacrifier rembourse exactement le pion f4 initial.
           outcome:
-            type: unexplored
+            type: position
+            evaluation:
+              vi: Quân số hoàn toàn ngang nhau — con tốt f5 Đen vừa thí đã bù đúng bằng con tốt f4 Trắng mất ở đầu ván. Đã thử tiếp 5.Nc3 (phát triển, chuẩn bị O-O hoặc d4) d5 (Đen thách thức tượng c4 và trung tâm ngay), vật chất vẫn ngang nhau sau đó và cả hai bên đều còn quân chưa phát triển — đây là một thế cờ cân bằng và sắc bén, không phải một lợi thế cho ai.
+              en: Material is fully level — the f5 pawn Black just sacrificed pays back exactly the f4 pawn White lost at the start. Continuing with 5.Nc3 (developing, preparing O-O or d4) d5 (Black challenges the c4 bishop and the centre at once) was tried; material stays level afterward and both sides still have pieces to develop — this is a level, sharp position, not an edge for either side.
+              fr: Le matériel est parfaitement égal — le pion f5 que les Noirs viennent de sacrifier rembourse exactement le pion f4 perdu par les Blancs au début. Poursuivre par 5.Nc3 (développement, préparant O-O ou d4) d5 (les Noirs défient aussitôt le fou c4 et le centre) a été essayé ; le matériel reste égal ensuite et les deux camps ont encore des pièces à développer — c'est une position égale et tranchante, pas un avantage pour l'un ou l'autre.
+            plan:
+              vi: Trắng lui tượng về b3 hay b5, rồi chơi Nf3 và O-O, tận dụng cột f nửa mở còn lại từ hai lần đổi tốt f. Đen chơi Bd6 hay Nf6, hoàn thiện phát triển nhanh chóng và cố dùng cặp tốt trung tâm để bù lại quân số đã mất công sức để giành.
+              en: White retreats the bishop to b3 or b5, then plays Nf3 and castles, making use of the half-open f-file left over from the two f-pawn trades. Black plays Bd6 or Nf6, developing quickly and trying to use the central pawn duo to justify the material already spent reaching it.
+              fr: Les Blancs replient le fou en b3 ou b5, puis jouent Nf3 et roquent, profitant de la colonne f semi-ouverte héritée des deux échanges de pions f. Les Noirs jouent Bd6 ou Nf6, se développant rapidement et cherchant à utiliser le duo de pions centraux pour justifier le matériel déjà dépensé pour l'obtenir.
+            basis:
+              by: chan
+              at: '2026-09-18'
