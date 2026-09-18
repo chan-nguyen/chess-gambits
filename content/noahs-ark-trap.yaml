@@ -1,0 +1,144 @@
+# Noah's Ark Trap, in the Ruy Lopez (Modern Steinitz Defence move order). The defining line
+# is the one frozen in `tools/catalogue/source/traps.yaml` — 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6
+# 4.Ba4 d6 5.d4 b5 6.Bb3 Nxd4 — and it ends on Black's own ply, so the root is an opponent
+# node and White's replies can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is C71, the code of the Modern Steinitz Defence this line sits inside, matching
+# `traps.yaml` (a trap carries the ECO of the opening it sits inside, ADR-0008).
+#
+# This trap ends in a material win, not a mate. No leaf here claims a mate, so no
+# certificate is needed. Every line was replayed with chess.js, including the detail that
+# the bishop on b3 ends up with no legal square at all once ...c4 arrives: a2 and c2 are
+# both occupied by White's own pawns, so the only moves left for it (Ba4 or Bxc4) both hang
+# it to a pawn recapture.
+id: noahs-ark-trap
+name: "Noah's Ark Trap"
+eco: C71
+category: trap
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, d6, d4, b5, Bb3, Nxd4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. The trap does not need White to
+      make a single outright blunder — every move in the main line below (Nxd4, Qxd4, Qd3)
+      is a perfectly reasonable try, and the bishop is still lost by force because the pawn
+      chain a6-b5 has sealed off every square it could ever retreat to. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa ăn tốt d4 bằng mã, tấn công cả con hậu Trắng đằng sau nó và trực tiếp bắt cặp với chiến lược vây bắt tượng b3 đã chuẩn bị từ các nước a6 và b5. Con tượng b3 tưởng như tự do trên đường chéo dài, nhưng hàng tốt a6-b5 đã bắt đầu khép vòng vây quanh nó.
+    en: Black has just taken the d4 pawn with the knight, hitting the white queen behind it and setting up the encirclement of the bishop on b3 that ...a6 and ...b5 already prepared. That bishop looks free on its long diagonal, but the a6-b5 pawn chain has already started closing the net around it.
+    fr: Les Noirs viennent de prendre le pion d4 du cavalier, frappant la dame blanche derrière lui et amorçant l'encerclement du fou b3 déjà préparé par ...a6 et ...b5. Ce fou paraît libre sur sa grande diagonale, mais la chaîne de pions a6-b5 a déjà commencé à resserrer l'étau autour de lui.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn lại con mã và chơi một nước khác. Khi đó Đen đơn giản là hơn một tốt sạch mà không có gì bù lại cho Trắng, nên đây chưa phải là điều làm nên cái bẫy — cái bẫy chỉ bắt đầu khi Trắng ăn lại.
+      en: White does not recapture the knight and plays something else instead. Black is then simply a clean pawn up with nothing for White to show for it, so this is not yet what the trap is about — the trap only begins once White recaptures.
+      fr: Les Blancs ne reprennent pas le cavalier et jouent autre chose. Les Noirs sont alors simplement un pion net devant sans aucune compensation pour les Blancs, si bien que ce n'est pas encore le sujet du piège — celui-ci ne commence qu'une fois la reprise effectuée.
+  children:
+    - ply: Nxd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn lại bằng mã, nước hoàn toàn tự nhiên để không bị thiệt quân. Con mã này sẽ sớm bị đổi tiếp, và chính nước đổi đó mới là nơi cái bẫy thật sự bắt đầu.
+        en: White recaptures with the knight, entirely natural to avoid losing material outright. This knight is about to be traded again shortly, and that trade is where the trap really begins.
+        fr: Les Blancs reprennent du cavalier, tout à fait naturel pour éviter de perdre du matériel d'emblée. Ce cavalier va bientôt être échangé à son tour, et c'est cet échange qui marque le vrai début du piège.
+      children:
+        - ply: exd4
+          annotation:
+            vi: Đen ăn lại bằng tốt e5, đơn giản và tự nhiên. Con tốt d4 mới này đang tấn công con hậu Trắng.
+            en: Black recaptures with the e5 pawn, simple and natural. This new pawn on d4 is attacking White's queen.
+            fr: Les Noirs reprennent du pion e5, simple et naturel. Ce nouveau pion en d4 attaque la dame blanche.
+          dismissRest:
+            reason:
+              vi: Trắng lùi hậu hoặc đưa quân khác đi thay vì ăn lại con tốt d4 bằng hậu. Không có gì mất mát ở đây — con tốt ấy chỉ đơn giản nằm lại một lúc trên bàn cờ, và cái bẫy vẫn chờ ở phía sau nếu Trắng ăn nó.
+              en: White moves the queen away or develops something else instead of recapturing the d4 pawn with the queen. Nothing is lost here — the pawn simply sits there a while longer, and the trap still waits further along if White takes it.
+              fr: Les Blancs déplacent la dame ou développent autre chose plutôt que de reprendre le pion d4 avec la dame. Rien n'est perdu ici — le pion reste simplement en place un moment de plus, et le piège attend toujours plus loin si les Blancs le prennent.
+          children:
+            - ply: Qxd4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại con tốt bằng hậu, nước tự nhiên để không kém quân. Con hậu đứng giữa bàn cờ này sắp bị một con tốt đuổi đi, đúng như trong bất kỳ thế cờ tốt cô lập nào.
+                en: White recaptures the pawn with the queen, natural enough to stay level on material. This centralised queen is about to be chased by a pawn, exactly as in any isolated-pawn position.
+                fr: Les Blancs reprennent le pion avec la dame, assez naturel pour rester à égalité matérielle. Cette dame centralisée va bientôt être chassée par un pion, comme dans n'importe quelle position à pion isolé.
+              children:
+                - ply: c5
+                  annotation:
+                    vi: Đen đuổi hậu bằng tốt c, bước đầu tiên của cuộc vây bắt tượng b3. Hậu Trắng phải rời khỏi d4.
+                    en: Black chases the queen with the c-pawn, the first step of the hunt for the bishop on b3. White's queen has to leave d4.
+                    fr: Les Noirs chassent la dame avec le pion c, premier pas de la chasse au fou b3. La dame blanche doit quitter d4.
+                  dismissRest:
+                    reason:
+                      vi: Hậu Trắng lùi về một ô khác thay vì d3. Dù đi đâu trong số này, nước c5-c4 tiếp theo vẫn vây bắt con tượng b3 y hệt, vì không ô lùi hậu nào của Trắng nằm trên hai ô thoát duy nhất a2 và c2 mà con tượng cần.
+                      en: White's queen retreats to a different square than d3. Wherever it goes among these, the coming ...c4 still traps the bishop on b3 the same way, since none of White's queen retreats occupy the only two escape squares, a2 and c2, that the bishop needs.
+                      fr: La dame blanche recule sur une autre case que d3. Où qu'elle aille parmi celles-ci, le futur ...c4 piège quand même le fou b3 de la même façon, puisqu'aucun de ces reculs de dame n'occupe les deux seules cases d'évasion, a2 et c2, dont le fou aurait besoin.
+                  children:
+                    - ply: Qd3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Hậu Trắng lùi về d3, một trong những ô lùi tự nhiên nhất. Con tượng b3 vẫn đứng nguyên tại chỗ, chưa biết rằng ô a2 và c2 phía sau nó đều đã bị chính tốt nhà mình chiếm mất.
+                        en: White's queen retreats to d3, one of the most natural squares. The bishop on b3 is still standing where it was, not yet knowing that a2 and c2 behind it are both already occupied by White's own pawns.
+                        fr: La dame blanche recule en d3, l'une des cases les plus naturelles. Le fou b3 reste où il était, ignorant encore que a2 et c2 derrière lui sont déjà occupées par ses propres pions.
+                      children:
+                        - ply: c4
+                          annotation:
+                            vi: Đen đẩy tốt lên c4, hoàn tất cuộc vây. Con tượng b3 giờ bị đánh trực tiếp, và nó không còn ô nào để lùi cả — a2 và c2 đều có tốt Trắng đứng sẵn, còn a4 thì bị chính con tốt b5 của Đen canh giữ.
+                            en: Black pushes the pawn to c4, completing the encirclement. The bishop on b3 is now directly attacked, and it has nowhere at all to retreat — a2 and c2 both already have a white pawn sitting on them, and a4 is covered by Black's own pawn on b5.
+                            fr: Les Noirs poussent le pion en c4, achevant l'encerclement. Le fou b3 est maintenant directement attaqué, et il n'a nulle part où reculer — a2 et c2 portent déjà chacune un pion blanc, et a4 est surveillée par le pion noir en b5.
+                          dismissRest:
+                            reason:
+                              vi: Trắng chơi một nước khác, bỏ mặc con tượng b3. Nó vẫn đang bị tốt c4 đánh và không có ô lùi nào cả, nên bất kỳ nước nào không cứu nó chỉ đơn giản để nó bị ăn không vào nước sau bằng cxb3 — không tốt hơn 14.Bxc4 bên dưới, chỉ là mất con tượng theo cách rẻ tiền hơn thay vì đắt hơn một chút.
+                              en: White plays anything else, leaving the bishop on b3 to its fate. It is still attacked by the c4 pawn with no square to run to, so any move that does not deal with it simply lets it be taken for nothing next move with ...cxb3 — no better than 14.Bxc4 below, just a cheaper way to lose the same piece instead of a slightly less cheap one.
+                              fr: Les Blancs jouent autre chose, abandonnant le fou b3 à son sort. Il reste attaqué par le pion c4 sans case où fuir, si bien que tout coup qui ne s'en occupe pas le laisse simplement se faire prendre pour rien au coup suivant par ...cxb3 — pas mieux que 14.Bxc4 ci-dessous, juste une façon moins coûteuse de perdre la même pièce plutôt qu'un peu plus coûteuse.
+                          children:
+                            - ply: Bxc4
+                              replyQuality: good
+                              frequency: common
+                              annotation:
+                                vi: Trắng chọn cách ít tốn kém nhất trong hai lựa chọn thua cuộc — ăn luôn con tốt c4 để ít nhất lấy lại một chút vật chất, thay vì lùi về a4 và mất tượng mà không được gì cả.
+                                en: White picks the least costly of two losing options — grabbing the c4 pawn on the way out to recover at least a little material, rather than retreating to a4 and losing the bishop for nothing at all.
+                                fr: Les Blancs choisissent la moins coûteuse de deux options perdantes — capturer au passage le pion c4 pour récupérer au moins un peu de matériel, plutôt que de reculer en a4 et perdre le fou pour rien du tout.
+                              children:
+                                - ply: bxc4
+                                  annotation:
+                                    vi: Đen ăn lại bằng tốt b5, và con tượng sáng ô của Trắng đã biến mất khỏi bàn cờ. Con tốt c4 mới của Đen giờ lại đang bị hậu Trắng đánh.
+                                    en: Black recaptures with the b5 pawn, and White's light-squared bishop has vanished from the board. Black's new pawn on c4 is now itself attacked by White's queen.
+                                    fr: Les Noirs reprennent du pion b5, et le fou de cases claires des Blancs a disparu de l'échiquier. Le nouveau pion noir en c4 est désormais lui-même attaqué par la dame blanche.
+                                  dismissRest:
+                                    reason:
+                                      vi: Trắng không ăn lại con tốt c4 và chơi một nước khác. Khi đó Đen vẫn hơn một tượng đổi lấy một tốt, thậm chí còn nhiều hơn thế nếu Trắng bỏ luôn con tốt ấy.
+                                      en: White does not recapture the c4 pawn and plays something else. Black then keeps a full bishop for a pawn, or even more if White leaves that pawn alone as well.
+                                      fr: Les Blancs ne reprennent pas le pion c4 et jouent autre chose. Les Noirs conservent alors un fou entier pour un pion, voire davantage si les Blancs délaissent aussi ce pion.
+                                  children:
+                                    - ply: Qxc4
+                                      replyQuality: good
+                                      frequency: common
+                                      annotation:
+                                        vi: Hậu Trắng ăn lại con tốt c4, thu hồi thêm một chút vật chất trước khi thế cờ lắng xuống. Đây là điểm dừng hợp lý để đếm lại toàn bộ ván trao đổi.
+                                        en: White's queen recaptures the c4 pawn, clawing back a little more material before the position settles. This is a sensible point to count up the whole exchange.
+                                        fr: La dame blanche reprend le pion c4, récupérant un peu plus de matériel avant que la position ne se stabilise. C'est un point raisonnable pour faire le compte de tout l'échange.
+                                      outcome:
+                                        type: position
+                                        evaluation:
+                                          vi: Đen hơn một tượng đổi lấy hai tốt. Đen còn đủ hai xe, hai tượng, một mã, một hậu và sáu tốt; Trắng còn đủ hai xe, một tượng, một mã, một hậu nhưng chỉ năm tốt vì đã mất con tốt d4 gốc lẫn con tốt c mới ăn được. Không bên nào còn tốt cô lập hay tốt chồng — số quân nhẹ chênh lệch mới là điều quyết định thế cờ.
+                                          en: Black has a bishop for two pawns. Black keeps two rooks, two bishops, one knight, one queen and six pawns; White keeps two rooks, one bishop, one knight, one queen but only five pawns, having lost both the original d4 pawn and the c-pawn just won back. Neither side has a doubled or isolated pawn — the imbalance in minor pieces is what actually decides this position.
+                                          fr: Les Noirs ont un fou pour deux pions. Les Noirs gardent deux tours, deux fous, un cavalier, une dame et six pions ; les Blancs gardent deux tours, un fou, un cavalier, une dame mais seulement cinq pions, ayant perdu à la fois le pion d4 initial et le pion c tout juste regagné. Aucun camp n'a de pion doublé ou isolé — c'est le déséquilibre des pièces mineures qui décide vraiment de cette position.
+                                        plan:
+                                          vi: Đen chơi Be6 hoặc Be7 phát triển tượng còn lại, Nf6 và O-O đưa vua vào an toàn, rồi dùng cặp tượng cùng con tượng dư ra để ép dần ở tàn cuộc. Trắng chơi Nc3 và Be3 hoàn thiện phát triển, O-O-O hoặc O-O tuỳ thế cờ, cố hoạt hoá các quân còn lại và tìm cơ hội phản công trước khi Đen kịp củng cố ưu thế quân số.
+                                          en: Black plays ...Be6 or ...Be7 to develop the last bishop, ...Nf6 and ...O-O to get the king safe, then leans on the extra piece and the remaining bishop pair to grind in the endgame. White plays Nc3 and Be3 to finish developing, castles either side depending on the position, and looks for practical counterplay before Black can fully consolidate the material edge.
+                                          fr: Les Noirs jouent ...Be6 ou ...Be7 pour développer le dernier fou, ...Nf6 et ...O-O pour mettre le roi en sécurité, puis s'appuient sur la pièce en plus et la paire de fous restante pour presser en finale. Les Blancs jouent Nc3 et Be3 pour achever leur développement, roquent d'un côté ou de l'autre selon la position, et cherchent un contre-jeu pratique avant que les Noirs ne consolident pleinement leur avantage matériel.
+                                        basis:
+                                          by: chan
+                                          at: '2026-09-18'

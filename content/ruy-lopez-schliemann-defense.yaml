@@ -1,0 +1,83 @@
+# Ruy Lopez: Schliemann Defense, matching the catalogue's own `line` field for this id
+# exactly — 1.e4 e5 2.Nf3 Nc6 3.Bb5 f5. It ends on Black's own ply, so the root is an
+# opponent node and White's replies can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# A dedicated look at the Schliemann's most direct tabiya: White meets the immediate
+# counterattack head-on with 4.Nc3, and Black opens the position at once with 4...fxe4.
+# Every move here was replayed with chess.js. No leaf claims a mate — the position settles
+# into a sharp but materially level middlegame, and an unproved mate claim is refused
+# rather than written (ADR-0005).
+id: ruy-lopez-schliemann-defense
+name: 'Ruy Lopez: Schliemann Defense'
+eco: C63
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, matching the catalogue's own listed rating for this id. Black hands back
+      the tempo used on ...f5 the moment White plays 5.Nxe4, and the resulting position is
+      sharp with chances for both sides rather than a demonstrated equaliser — an honest
+      middle ground between calling it fully sound and calling it refuted. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi f5, phản công thẳng vào trung tâm ngay từ nước thứ ba thay vì phát triển quân bình thường. Đây là Phòng thủ Schliemann — Đen chấp nhận rủi ro về cấu trúc và an toàn của vua để đổi lấy sự chủ động tức thì.
+    en: Black has just played f5, striking straight back at the centre on move three instead of developing normally. This is the Schliemann Defense — Black accepts some risk to structure and king safety in exchange for immediate activity.
+    fr: Les Noirs viennent de jouer f5, frappant directement le centre dès le troisième coup plutôt que de se développer normalement. C'est la Défense Schliemann — les Noirs acceptent un certain risque pour la structure et la sécurité du roi en échange d'une activité immédiate.
+  dismissRest:
+    reason:
+      vi: Trắng ăn ngay tốt f5 bằng exf5, đổi tượng trước bằng Bxc6, hay chơi thận trọng bằng d3. Mỗi lựa chọn dẫn đến một loại thế cờ khác; đối đầu trực diện bằng 4.Nc3 là cách phổ biến và trực tiếp nhất để thử thách phản công của Đen.
+      en: White captures on f5 immediately with exf5, trades the bishop first with Bxc6, or plays the quiet d3. Each leads to a different kind of position; meeting it head-on with 4.Nc3 is the most common and direct way to test Black's counterattack.
+      fr: Les Blancs capturent aussitôt en f5 par exf5, échangent d'abord le fou par Bxc6, ou jouent tranquillement d3. Chacun mène à un type de position différent ; y répondre de front par 4.Nc3 est la façon la plus courante et la plus directe de tester le contre-jeu noir.
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã ra c3, thêm một quân bảo vệ tốt e4 và chuẩn bị sẵn sàng cho việc Đen mở toang trung tâm. Đây là cách đối đầu trực diện nhất với Phòng thủ Schliemann.
+        en: White develops the knight to c3, adding a second defender to the e4 pawn and getting ready for Black to tear the centre open. This is the most direct way to meet the Schliemann head-on.
+        fr: Les Blancs développent le cavalier en c3, ajoutant un second défenseur au pion e4 et se préparant à ce que les Noirs ouvrent le centre. C'est la façon la plus directe d'affronter la Schliemann de front.
+      children:
+        - ply: fxe4
+          annotation:
+            vi: Đen ăn tốt e4, mở trung tâm ngay lập tức đúng theo tinh thần của cả biến này. Con mã c3 của Trắng giờ phải ăn lại.
+            en: Black takes the e4 pawn, opening the centre right away exactly in the spirit of this whole variation. White's knight on c3 now has to recapture.
+            fr: Les Noirs prennent le pion e4, ouvrant immédiatement le centre, exactement dans l'esprit de toute cette variante. Le cavalier blanc en c3 doit maintenant reprendre.
+          dismissRest:
+            reason:
+              vi: Trắng ăn lại con tốt e4 theo một cách khác, đổi tượng trên c6 trước, hay phát triển quân trước khi ăn lại. Dù chọn cách nào, quân số vẫn ngang bằng ngay khi con tốt ấy được đổi, đúng như sau 5.Nxe4 bên dưới.
+              en: White recaptures the e4 pawn a different way, trades the bishop on c6 first, or develops before recapturing. Whichever it is, material is level the moment that pawn is traded, exactly as after 5.Nxe4 below.
+              fr: Les Blancs reprennent le pion e4 d'une autre façon, échangent d'abord le fou en c6, ou développent avant de reprendre. Quel que soit le choix, le matériel est égal dès que ce pion est échangé, exactement comme après 5.Nxe4 ci-dessous.
+          children:
+            - ply: Nxe4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại bằng mã, cách xử lý tự nhiên nhất. Quân số giờ đã hoàn toàn cân bằng, và cả hai bên đều còn nhiều lựa chọn phát triển phía trước.
+                en: White recaptures with the knight, the most natural way to handle it. Material is now completely level, and both sides still have plenty of development choices ahead.
+                fr: Les Blancs reprennent du cavalier, la façon la plus naturelle de procéder. Le matériel est désormais parfaitement égal, et les deux camps ont encore de nombreux choix de développement devant eux.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Quân số hoàn toàn ngang nhau — một cặp tốt vừa được đổi (tốt e4 của Trắng đổi lấy tốt f5 của Đen), và không bên nào còn tốt chồng hay tốt cô lập nào khác so với lúc bắt đầu ván. Vua Đen vẫn ở e8, chưa nhập thành, trong khi vua Trắng cũng vẫn ở e1.
+                  en: Material is completely level — one pair of pawns has just been traded (White's e4 pawn for Black's f5 pawn), and neither side has picked up any other doubled or isolated pawn since the game began. Black's king is still on e8, not yet castled, while White's king is likewise still on e1.
+                  fr: Le matériel est parfaitement égal — une paire de pions vient d'être échangée (le pion e4 blanc contre le pion f5 noir), et aucun camp n'a par ailleurs de pion doublé ou isolé depuis le début de la partie. Le roi noir est encore en e8, pas encore roqué, tandis que le roi blanc est de même encore en e1.
+                plan:
+                  vi: Trắng chơi Nf3 hoặc d4 chiếm trung tâm, Be2 hay Bc4 phát triển tượng còn lại, và O-O đưa vua vào an toàn trước khi Đen kịp phối hợp tấn công dọc cột f đang mở. Đen chơi Nf6 gây áp lực lên mã e4, d5 chiếm không gian trung tâm nếu có cơ hội, và Bd6 hay Be7 cùng O-O nhanh chóng, tận dụng cột f nửa mở cho xe f8.
+                  en: White plays Nf3 or d4 to stake a claim in the centre, Be2 or Bc4 to develop the remaining bishop, and castles to get the king safe before Black can coordinate an attack down the open f-file. Black plays Nf6 to pressure the knight on e4, d5 to grab central space if the chance appears, and Bd6 or Be7 with quick castling, putting the half-open f-file to use for the rook on f8.
+                  fr: Les Blancs jouent Nf3 ou d4 pour revendiquer le centre, Be2 ou Bc4 pour développer le fou restant, et roquent pour mettre le roi en sécurité avant que les Noirs ne coordonnent une attaque sur la colonne f ouverte. Les Noirs jouent Nf6 pour presser le cavalier en e4, d5 pour prendre de l'espace central si l'occasion se présente, et Bd6 ou Be7 avec un roque rapide, exploitant la colonne f semi-ouverte pour la tour f8.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

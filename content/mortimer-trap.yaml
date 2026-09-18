@@ -1,0 +1,112 @@
+# The Mortimer Trap, in the Ruy Lopez (Mortimer Defence / Anti-Berlin move order). The
+# defining line is the one frozen in `tools/catalogue/source/traps.yaml` — 1.e4 e5 2.Nf3
+# Nc6 3.Bb5 Nf6 4.d3 Ne7 — and it ends on Black's own ply, so the root is an opponent node
+# and White's replies can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is C65, matching `traps.yaml` (a trap carries the ECO of the opening it sits inside,
+# ADR-0008; the dataset files this specific line under the Anti-Berlin at the same code).
+#
+# This trap ends in a material win, not a mate. No leaf here claims a mate, so no
+# certificate is needed. Every line was replayed with chess.js, including the detail that
+# 7...Qa5+ is a genuine double attack rather than a discovered one: the queen gives check
+# along the a5-e1 diagonal and simultaneously attacks the loose knight on e5 along the fifth
+# rank, in one move, because retreating the c6 knight to e7 stopped it from ever defending
+# e5 again.
+id: mortimer-trap
+name: Mortimer Trap
+eco: C65
+category: trap
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, Nf6, d3, Ne7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. Retreating the knight to e7 in
+      the first place is a modest concession for Black regardless of what White does next,
+      so this earns its name as a trap sprung by a specific greedy try (5.Nxe5) rather than
+      a refutation of the whole line. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa rút mã từ c6 về e7. Nước này tự nó không tệ, nhưng nó có một cái giá âm thầm — con mã ấy không còn đỡ được tốt e5 nữa, và con tốt ấy giờ chỉ được giữ bởi chính giá trị lý thuyết của nó chứ không phải bởi một quân nào cả.
+    en: Black has just retreated the knight from c6 to e7. The move is not bad in itself, but it has a quiet cost — that knight no longer defends the e5 pawn, and the pawn is now held up by nothing but its own reputation.
+    fr: Les Noirs viennent de reculer le cavalier de c6 en e7. Le coup n'est pas mauvais en soi, mais il a un coût discret — ce cavalier ne défend plus le pion e5, et ce pion ne tient plus désormais que par sa seule réputation.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước phát triển bình thường và không đụng đến tốt e5. Không có gì đặc biệt xảy ra — cái bẫy chỉ xuất hiện nếu Trắng cụ thể ăn con tốt ấy.
+      en: White plays a normal developing move and leaves the e5 pawn alone. Nothing special happens — the trap only appears if White specifically takes that pawn.
+      fr: Les Blancs jouent un coup de développement normal et laissent le pion e5 tranquille. Rien de particulier ne se produit — le piège n'apparaît que si les Blancs prennent précisément ce pion.
+  children:
+    - ply: Nxe5
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Trắng ăn con tốt e5, trông như một nước thắng tốt miễn phí vì không con mã nào của Đen còn đỡ ô ấy. Đây chính là nước mà cái bẫy Mortimer chờ đợi.
+        en: White takes the e5 pawn, looking like a free pawn since no black knight defends that square any more. This is exactly the move the Mortimer Trap is waiting for.
+        fr: Les Blancs prennent le pion e5, ce qui ressemble à un pion gratuit puisque plus aucun cavalier noir ne défend cette case. C'est exactement le coup qu'attend le piège Mortimer.
+      children:
+        - ply: c6
+          annotation:
+            vi: Đen không vội đòi lại con tốt ngay mà hỏi thẳng con tượng b5 bằng tốt c. Con mã e5 của Trắng chưa hề bị đe doạ, nhưng nó sắp bị đe doạ ngay khi con tượng phải chọn một ô lùi.
+            en: Black is in no hurry to win the pawn back and instead asks the bishop on b5 a direct question with the c-pawn. The knight on e5 is not threatened yet, but it is about to be the moment the bishop has to pick a retreat square.
+            fr: Les Noirs ne se pressent pas de reprendre le pion et posent plutôt une question directe au fou b5 avec le pion c. Le cavalier e5 n'est pas encore menacé, mais il va l'être dès que le fou devra choisir une case de repli.
+          dismissRest:
+            reason:
+              vi: Trắng lùi tượng đi một ô khác, đổi tượng lấy mã bằng Bxc6, hoặc phát triển quân khác. Dù chọn cách nào, con mã e5 vẫn không được quân nào đỡ, và Đen tiếp tục với cùng ý tưởng Qa5+ bên dưới để đòi lại nó với lợi thế.
+              en: White retreats the bishop to a different square, trades it for the knight with Bxc6, or develops something else. Whichever it is, the knight on e5 remains undefended, and Black continues with the same ...Qa5+ idea below to win it back with advantage.
+              fr: Les Blancs reculent le fou sur une autre case, l'échangent contre le cavalier par Bxc6, ou développent autre chose. Quel que soit le choix, le cavalier e5 reste sans défense, et les Noirs poursuivent avec la même idée ...Qa5+ ci-dessous pour le regagner avec avantage.
+          children:
+            - ply: Ba4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Tượng lùi về a4, cách lùi tự nhiên nhất để giữ đường chéo nhắm vào mã c6 cũ. Nhưng con mã e5 vẫn đứng đó không ai đỡ, và Đen đã sẵn sàng khai thác điều đó bằng một nước chiếu kép.
+                en: The bishop retreats to a4, the most natural way to keep aiming down the old diagonal. But the knight on e5 is still standing there undefended, and Black is ready to exploit that with a double-purpose check.
+                fr: Le fou recule en a4, la façon la plus naturelle de continuer à viser cette diagonale. Mais le cavalier e5 reste toujours sans défense, et les Noirs sont prêts à exploiter cela par un échec à double effet.
+              children:
+                - ply: 'Qa5+'
+                  annotation:
+                    vi: Con hậu ra a5, vừa chiếu vua theo đường chéo a5-e1 vừa đánh thẳng vào con mã e5 trên cùng hàng ngang thứ năm — một nước làm hai việc cùng lúc. Vua Trắng buộc phải phản ứng với chiếu trước khi có thể nghĩ đến việc cứu mã.
+                    en: The queen comes to a5, giving check along the a5-e1 diagonal and hitting the knight on e5 along the same fifth rank at the same time — one move doing two jobs. White's king has to answer the check before there is any time to think about saving the knight.
+                    fr: La dame vient en a5, donnant échec le long de la diagonale a5-e1 tout en frappant le cavalier e5 sur la même cinquième rangée — un coup qui fait deux choses à la fois. Le roi blanc doit répondre à l'échec avant même de pouvoir songer à sauver le cavalier.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chặn chiếu bằng một quân khác hoặc đi vua sang ô khác. Không quân nào trong số các cách chặn này đỡ được ô e5 cùng lúc, nên Đen vẫn ăn lại con mã ngay sau đó giống hệt như sau 8.c3 bên dưới.
+                      en: White blocks the check with a different piece or moves the king somewhere else. None of these blocks defends e5 at the same time, so Black still wins the knight back right afterwards exactly as after 8.c3 below.
+                      fr: Les Blancs parent l'échec avec une autre pièce ou déplacent le roi ailleurs. Aucun de ces blocages ne défend e5 en même temps, si bien que les Noirs regagnent quand même le cavalier juste après, exactement comme après 8.c3 ci-dessous.
+                  children:
+                    - ply: c3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Trắng chặn chiếu bằng tốt c, cách chặn rẻ nhất về mặt phát triển quân. Nhưng con tốt ấy không hề đỡ được ô e5, nên con mã ở đó vẫn không ai cứu.
+                        en: White blocks the check with the c-pawn, the cheapest block in terms of development. But that pawn does nothing to defend e5, so the knight sitting there is still unrescued.
+                        fr: Les Blancs parent l'échec avec le pion c, le blocage le moins coûteux en développement. Mais ce pion ne fait rien pour défendre e5, si bien que le cavalier qui s'y trouve reste toujours sans secours.
+                      children:
+                        - ply: Qxe5
+                          annotation:
+                            vi: Hậu Đen ăn lại con mã, hoàn tất việc đòi nợ. Chuỗi nước bắt buộc dừng lại ở đây với một thế cờ đã có thể đếm quân rõ ràng.
+                            en: Black's queen recaptures the knight, collecting the debt in full. The forced sequence stops here in a position that can already be counted cleanly.
+                            fr: La dame noire reprend le cavalier, encaissant intégralement la dette. La séquence forcée s'arrête ici dans une position déjà nette à compter.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Đen hơn một mã đổi lấy một tốt. Trắng còn tám tốt nguyên vẹn, đổi lại chỉ còn một mã (ở b1); Đen còn bảy tốt nhưng giữ đủ hai mã (một ở e7, một vừa ăn lại ở e5). Mọi quân nặng và tượng khác vẫn còn nguyên trên bàn cho cả hai bên.
+                              en: Black is up a knight for a pawn. White still has all eight pawns but only one knight left (on b1); Black has seven pawns but keeps both knights (one on e7, one that just recaptured on e5). Every rook and bishop is still on the board for both sides.
+                              fr: Les Noirs ont un cavalier de plus pour un pion. Les Blancs ont conservé leurs huit pions mais n'ont plus qu'un seul cavalier (en b1) ; les Noirs ont sept pions mais gardent leurs deux cavaliers (un en e7, un qui vient de reprendre en e5). Toutes les tours et tous les fous restent sur l'échiquier des deux côtés.
+                            plan:
+                              vi: Đen chơi d5 chiếm trung tâm, Nf6 và Be7 hoàn tất phát triển, rồi O-O và dùng con mã thừa để tạo áp lực dần dần, không cần vội vàng vì đã hơn quân rõ ràng. Trắng chơi O-O, Re1 và Nbd2 hay Nc3 để hoàn thiện phát triển, cố tìm hoạt động và bù đắp thực chiến cho con tốt e5 và con mã đã mất trước khi Đen kịp củng cố.
+                              en: Black plays ...d5 to claim the centre, ...Nf6 and ...Be7 to finish developing, then castles and uses the extra knight to build pressure gradually, with no need to rush since the material lead is already clear. White plays O-O, Re1 and Nbd2 or Nc3 to finish developing, and looks for activity and practical compensation for the lost pawn and knight before Black can consolidate.
+                              fr: Les Noirs jouent ...d5 pour occuper le centre, ...Nf6 et ...Be7 pour achever le développement, puis roquent et utilisent le cavalier en plus pour accumuler la pression progressivement, sans besoin de se presser puisque l'avantage matériel est déjà net. Les Blancs jouent O-O, Re1 et Nbd2 ou Nc3 pour achever leur développement, et cherchent de l'activité et une compensation pratique pour le pion et le cavalier perdus avant que les Noirs ne consolident.
+                            basis:
+                              by: chan
+                              at: '2026-09-18'

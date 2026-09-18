@@ -1,0 +1,155 @@
+# The Lasker Trap, in the Albin Countergambit. The defining line is the one frozen in
+# `tools/catalogue/source/traps.yaml` — 1.d4 d5 2.c4 e5 3.dxe5 d4 4.e3 Bb4+ — and it ends on
+# Black's own ply, so the root is an opponent node and White's replies can carry a quality
+# (docs/CONTEXT.md, invariant 5).
+#
+# ECO is D08, matching `traps.yaml` (a trap carries the ECO of the opening it sits inside,
+# ADR-0008; the dataset's own row for this trap is excluded there since this entry is the
+# only one for it).
+#
+# This trap ends in a material win, not a mate (docs/CONTEXT.md, "Trap branch" — the Lasker
+# Trap is named there as one of the traps that ends this way). No leaf here claims a mate,
+# so no certificate is needed. Every line was replayed with chess.js, including the detail
+# that the pawn which underpromotes on g1 is the very same pawn that started the game on d7
+# — d7-d5-d4xe3xf2xg1=N — and that the point of 9...Bg4+ is a pin along the c8-h3 diagonal:
+# once the white king steps off it, the bishop attacks the queen on d1 directly and nothing
+# defends that square.
+id: lasker-trap
+name: Lasker Trap
+eco: D08
+category: trap
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4, e3, 'Bb4+']
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. The whole point turns on one
+      natural-looking recapture, 6.Bxb4, and everything after it is forced; a defender who
+      avoids that one move (6.fxe3 instead) keeps the balance, but the trap does not depend
+      on anything beyond the single most tempting move on the board. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chiếu bằng tượng b4. Con tốt d4 của Đen chưa hề bị đe doạ ngay, nhưng con tốt ấy sắp đi tiếp một hành trình dài — d4 ăn ở e3, rồi ăn ở f2, rồi phong cấp ở g1 — và toàn bộ cái bẫy nằm trong hành trình đó.
+    en: Black has just given check with the bishop on b4. The pawn on d4 is not under any immediate threat, but that very pawn is about to go on a long journey — capturing on e3, then on f2, then underpromoting on g1 — and the whole trap lives inside that journey.
+    fr: Les Noirs viennent de donner échec avec le fou en b4. Le pion d4 n'est sous aucune menace immédiate, mais ce même pion va entreprendre un long voyage — prenant en e3, puis en f2, puis sous-promouvant en g1 — et tout le piège tient dans ce voyage.
+  dismissed:
+    - ply: Nc3
+      reason: Blocks with the knight instead of the bishop; Black continues in the same spirit with ...dxe3, and nothing about this square is any safer than after 5.Bd2.
+    - ply: Nd2
+      reason: Blocks with the other knight; same idea as Nc3, not materially different from White's point of view here.
+    - ply: Qd2
+      reason: Blocks with the queen itself, offering an immediate trade after ...Bxd2+; simpler than the main line but gives up the bishop pair for nothing in return.
+    - ply: Ke2
+      reason: Moves the king instead of blocking; loses castling rights for no gain, since the check still has to be answered by something and this answers it the most awkwardly.
+  children:
+    - ply: Bd2
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chặn chiếu bằng tượng, nước tự nhiên nhất trong bốn cách chặn. Con tượng này sẽ đổi với tượng b4 sau vài nước nữa, đúng như dự tính của cả hai bên.
+        en: White blocks the check with the bishop, the most natural of the four ways to do it. This bishop is going to be traded for the one on b4 a few moves from now, exactly as both sides expect.
+        fr: Les Blancs parent l'échec avec le fou, la plus naturelle des quatre façons de le faire. Ce fou sera échangé contre celui de b4 quelques coups plus tard, comme les deux camps s'y attendent.
+      children:
+        - ply: dxe3
+          annotation:
+            vi: Đen phớt lờ hoàn toàn con tượng b4 đang bị đánh và ăn tiếp ở e3. Đây là nước then chốt — con tốt ấy đang tự đào một con đường xuyên qua hàng phòng ngự cánh vua Trắng, và con tượng b4 không hề cần được cứu.
+            en: Black completely ignores the attacked bishop on b4 and captures on e3 instead. This is the key move — that pawn is digging its own road straight through White's kingside defences, and the bishop on b4 never needed saving.
+            fr: Les Noirs ignorent complètement le fou attaqué en b4 et capturent plutôt en e3. C'est le coup clé — ce pion se creuse tout seul un chemin à travers la défense de l'aile roi blanche, et le fou b4 n'a jamais eu besoin d'être sauvé.
+          dismissRest:
+            reason:
+              vi: Trắng ăn lại ngay ở e3 bằng tốt f2 (fxe3), thay vì ăn tượng b4 trước. Đây chính là nước loại bỏ con tốt nguy hiểm ngay từ đầu, và toàn bộ đòn phối hợp phía sau mất đi động cơ — cái bẫy chỉ hoạt động nếu Trắng ăn tượng trước.
+              en: White recaptures on e3 with the f2 pawn (fxe3) instead of taking the bishop on b4 first. This removes the dangerous pawn at the source, and the whole combination that follows loses its fuel — the trap only works if White takes the bishop first.
+              fr: Les Blancs reprennent en e3 avec le pion f2 (fxe3) plutôt que de prendre d'abord le fou en b4. Cela élimine le pion dangereux à la source, et toute la combinaison qui suit perd son carburant — le piège ne fonctionne que si les Blancs prennent d'abord le fou.
+          children:
+            - ply: Bxb4
+              replyQuality: mistake
+              frequency: common
+              annotation:
+                vi: Trắng ăn con tượng, trông như đã thắng một quân sạch sẽ vì con tốt e3 của Đen có vẻ chẳng đe doạ gì. Đây chính là nước mà cái bẫy Lasker chờ đợi.
+                en: White takes the bishop, looking like a clean extra piece since Black's pawn on e3 does not seem to threaten anything. This is exactly the move the Lasker Trap is waiting for.
+                fr: Les Blancs prennent le fou, ce qui ressemble à une pièce nette de plus puisque le pion noir en e3 ne semble menacer de rien. C'est exactement le coup qu'attend le piège Lasker.
+              children:
+                - ply: 'exf2+'
+                  annotation:
+                    vi: Con tốt tiếp tục hành trình, ăn luôn tốt f2 và chiếu vua. Vua Trắng buộc phải phản ứng ngay.
+                    en: The pawn continues its journey, taking the f2 pawn as well and giving check. White's king has to react at once.
+                    fr: Le pion poursuit son voyage, prenant aussi le pion f2 et donnant échec. Le roi blanc doit réagir immédiatement.
+                  dismissed:
+                    - ply: Kxf2
+                      reason: Captures the checking pawn directly but walks the king into the open, where the same underpromotion idea (or simpler tactics after ...Ng4+ next) is at least as bad as retreating to e2; not modelled separately.
+                  children:
+                    - ply: Ke2
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Vua Trắng lùi sang e2, tránh ăn con tốt trực tiếp. Con tốt ấy vẫn còn đứng ở f2, và nó chưa xong việc.
+                        en: White's king steps back to e2, avoiding the direct capture. The pawn is still standing on f2, and it is not done yet.
+                        fr: Le roi blanc recule en e2, évitant la capture directe. Le pion se tient toujours en f2, et il n'a pas fini son travail.
+                      children:
+                        - ply: 'fxg1=N+'
+                          annotation:
+                            vi: Con tốt phong cấp thành mã ngay tại g1 — không phải hậu — vì con mã mới sinh ra này chiếu vua e2 trực tiếp, điều mà một con hậu ở g1 không làm được theo cùng cách. Đây là cú đấm dưới phong cấp đặt tên cho cái bẫy.
+                            en: The pawn underpromotes to a knight on g1 — not a queen — because this newborn knight checks the king on e2 directly, which a queen sitting on g1 could not do the same way. This is the underpromotion punch that gives the trap its name.
+                            fr: Le pion sous-promeut en cavalier sur g1 — pas en dame — car ce cavalier tout juste né donne échec directement au roi en e2, ce qu'une dame postée en g1 ne pourrait pas faire de la même façon. C'est le coup de sous-promotion qui donne son nom au piège.
+                          dismissRest:
+                            reason:
+                              vi: Trắng lùi vua đi chỗ khác thay vì ăn lại con mã mới. Mọi ô lùi vua đều để con mã ấy sống và Đen vẫn hơn hẳn về sau, nên ăn lại bằng xe vẫn là lựa chọn ít tốn kém nhất.
+                              en: White moves the king elsewhere instead of recapturing the new knight. Every king move here leaves the knight alive and Black still comes out ahead afterwards, so recapturing with the rook remains the least costly choice.
+                              fr: Les Blancs déplacent le roi ailleurs plutôt que de reprendre le nouveau cavalier. Chaque coup de roi ici laisse le cavalier en vie et les Noirs restent devant par la suite, si bien que reprendre de la tour demeure le choix le moins coûteux.
+                          children:
+                            - ply: Rxg1
+                              replyQuality: good
+                              frequency: common
+                              annotation:
+                                vi: Xe ăn lại con mã mới sinh, cách xử lý ít tốn kém nhất trong hoàn cảnh này. Nhưng con tượng nhẹ của Đen vẫn còn đó, và nó sắp lên tiếng.
+                                en: The rook recaptures the newborn knight, the least costly way to handle the situation. But Black's light-squared bishop is still there, and it is about to speak up.
+                                fr: La tour reprend le cavalier tout juste né, la façon la moins coûteuse de gérer la situation. Mais le fou de cases claires des Noirs est toujours là, et il va bientôt se faire entendre.
+                              children:
+                                - ply: 'Bg4+'
+                                  annotation:
+                                    vi: Tượng c8 ra g4 chiếu, đứng thẳng hàng với vua e2 và hậu d1 trên cùng một đường chéo. Vua buộc phải rời đường chéo ấy, và khi rời đi, con tượng sẽ nhìn thẳng vào hậu.
+                                    en: The bishop on c8 comes to g4 with check, lined up with the king on e2 and the queen on d1 on the very same diagonal. The king has to step off that diagonal, and once it does, the bishop looks straight at the queen.
+                                    fr: Le fou c8 vient en g4 avec échec, aligné avec le roi en e2 et la dame en d1 sur la même diagonale. Le roi doit quitter cette diagonale, et une fois parti, le fou regarde tout droit vers la dame.
+                                  dismissed:
+                                    - ply: Ke3
+                                      reason: Steps off the c8-d1 diagonal like every other king move here; Black answers ...Qxd1 or ...Bxd1 next and wins the undefended queen the same way as after 10.Kf2.
+                                    - ply: Ke1
+                                      reason: Same story as Ke3 — leaves d1 undefended the moment the king is off the diagonal, and the queen falls the same way.
+                                  children:
+                                    - ply: Kf2
+                                      replyQuality: good
+                                      frequency: common
+                                      annotation:
+                                        vi: Vua chạy sang f2, cách xử lý tự nhiên nhất trong ba nước có thể. Nhưng bất kể vua đi đâu trong ba ô này, ô d1 phía sau đều không còn ai canh giữ.
+                                        en: The king runs to f2, the most natural of the three available squares. But wherever the king goes among these three, the square d1 behind it is left with nobody guarding it.
+                                        fr: Le roi court en f2, la plus naturelle des trois cases disponibles. Mais où que le roi aille parmi ces trois cases, la case d1 derrière lui se retrouve sans personne pour la garder.
+                                      children:
+                                        - ply: Bxd1
+                                          annotation:
+                                            vi: Tượng ăn thẳng con hậu ở d1, không quân nào của Trắng đỡ được ô ấy. Đây là điểm kết của toàn bộ chuỗi bắt buộc.
+                                            en: The bishop takes the queen on d1 outright, with nothing white defending that square. This is the end point of the whole forced sequence.
+                                            fr: Le fou prend directement la dame en d1, sans aucune pièce blanche pour défendre cette case. C'est le point final de toute la séquence forcée.
+                                          outcome:
+                                            type: position
+                                            evaluation:
+                                              vi: Đen hơn nguyên một con hậu. Sau khi con tượng bắt hậu, số quân nhẹ hai bên gần như cân bằng — Đen còn một tượng và hai mã, Trắng còn hai tượng và một mã — và số tốt cũng bằng nhau ở bảy mỗi bên, nhưng Trắng hoàn toàn không còn hậu trong khi Đen vẫn giữ nguyên con hậu của mình trên bàn cờ.
+                                              en: Black is up a full queen. After the bishop takes it, the minor pieces are close to even — Black has one bishop and two knights, White has two bishops and one knight — and the pawn count is level at seven each, but White has no queen at all while Black's own queen is still sitting on the board.
+                                              fr: Les Noirs ont une dame entière de plus. Après la prise du fou, les pièces mineures sont presque à égalité — les Noirs ont un fou et deux cavaliers, les Blancs deux fous et un cavalier — et le compte de pions est égal à sept de chaque côté, mais les Blancs n'ont plus aucune dame tandis que celle des Noirs est toujours sur l'échiquier.
+                                            plan:
+                                              vi: Đen chơi Be6 hoặc Bd7 đưa tượng về an toàn khỏi cột g mở, Nc6 và Nf6 hoàn tất phát triển, rồi O-O-O hoặc đơn giản đi vua sang c8 để tránh mọi rắc rối, sau đó dùng con hậu thừa tấn công trực diện. Trắng chơi Nf3 hoặc Nc3 để đưa quân còn lại vào việc, cố đổi càng nhiều quân càng tốt và bám víu vào cặp tượng cùng cấu trúc tốt lành lặn để kéo dài ván đấu.
+                                              en: Black plays ...Be6 or ...Bd7 to bring the bishop to safety off the open g-file, ...Nc6 and ...Nf6 to finish developing, then castles queenside or simply walks the king to c8 to sidestep any trouble, and attacks directly with the extra queen. White plays Nf3 or Nc3 to get the remaining pieces working, tries to trade off as much as possible, and leans on the bishop pair and a sound pawn structure to make a fight of it.
+                                              fr: Les Noirs jouent ...Be6 ou ...Bd7 pour mettre le fou à l'abri de la colonne g ouverte, ...Nc6 et ...Nf6 pour achever le développement, puis roquent du grand côté ou amènent simplement le roi en c8 pour éviter tout ennui, et attaquent directement avec la dame en plus. Les Blancs jouent Nf3 ou Nc3 pour mettre en jeu les pièces restantes, cherchent à échanger le plus possible, et s'appuient sur la paire de fous et une structure de pions saine pour prolonger la lutte.
+                                            basis:
+                                              by: chan
+                                              at: '2026-09-18'

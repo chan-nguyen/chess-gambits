@@ -118,15 +118,16 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Thirty-four entries are authored — three from #15, eleven from #73, ten from #94's group B
+   * Forty-four entries are authored — three from #15, eleven from #73, ten from #93 (six
+   * named traps and four King's/Ruy Lopez/Italian family heads), ten from #94's group B
    * (French through Scandinavian), and ten from #95 (Caro-Kann through Zukertort) — and the
-   * other 969 are Tier 0. Each authored entry is named here with the number of root-to-leaf
+   * other 959 are Tier 0. Each authored entry is named here with the number of root-to-leaf
    * lines its tree actually has, rather than the whole set being loosened to "at least zero",
    * which would assert nothing and would keep passing if every tree in the repository
    * disappeared.
    *
    * This is the assertion the test was written to force: the day a mapped entry lands, the
-   * number that appears here has to appear because content changed. It did three times, and
+   * number that appears here has to appear because content changed. It did four times, and
    * every time these lines changed with it, deliberately and by name.
    */
   const AUTHORED: ReadonlyMap<string, number> = new Map([
@@ -149,24 +150,34 @@ describe('the catalogue this repository ships', () => {
     ['blackmar-diemer-gambit-accepted', 1],
     ['caro-kann-defense-labahn-attack-double-gambit', 2],
     ['dutch-defense-krejcik-gambit', 1],
+    ['elephant-trap', 1],
     ['english-opening-jaenisch-gambit', 1],
+    ['fishing-pole-trap', 2],
     ['french-defense-banzai-leong-gambit', 3],
     ['grob-opening-alessi-gambit', 1],
     ['indian-defense-gibbins-weidenhagen-gambit', 3],
+    ['italian-game-blackburne-kostic-gambit', 2],
+    ['kings-gambit-accepted', 1],
+    ['kings-gambit-declined-classical-variation', 1],
     ['kings-pawn-game-bavarian-gambit', 2],
+    ['lasker-trap', 1],
+    ['mortimer-trap', 1],
     ['nimzowitsch-defense-wheeler-gambit', 2],
+    ['noahs-ark-trap', 1],
     ['philidor-defense-lopez-countergambit', 2],
     ['queens-gambit-declined-albin-countergambit', 1],
     ['queens-pawn-game-zurich-gambit', 1],
+    ['ruy-lopez-schliemann-defense', 1],
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scotch-game-goring-gambit', 2],
+    ['siberian-trap', 1],
     ['van-geet-opening-laroche-gambit', 2],
     ['vienna-gambit-with-max-lange-defense', 2],
     ['vienna-game-fyfe-gambit', 3],
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored thirty-four have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored forty-four have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

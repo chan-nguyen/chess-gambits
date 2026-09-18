@@ -1,0 +1,150 @@
+# Italian Game: Blackburne-Kostić Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nd4,
+# matching the catalogue's own `line` field for this id exactly — it ends on Black's own
+# ply, so the root is an opponent node and White's replies can carry a quality
+# (docs/CONTEXT.md, invariant 5).
+#
+# This is the same position `docs/CONTEXT.md` names under "Trap branch": the dataset calls
+# it a gambit, and the identical position is also the starting point of the Blackburne
+# Shilling Gambit trick. Per that note, the trap lives here as a trap branch rather than as
+# an entry of its own — `tools/catalogue/source/traps.yaml` deliberately does not carry a
+# separate row for it.
+#
+# The mate after 4.Nxe5?? is claimed with `type: trap` and nothing else; the move count and
+# certificate are produced by `npm run prove:mates` and replayed by `npm run verify:mates`
+# (ADR-0005). Every other line here was replayed with chess.js.
+id: italian-game-blackburne-kostic-gambit
+name: 'Italian Game: Blackburne-Kostić Gambit'
+eco: C50
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nd4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, matching the catalogue's own listed rating for this id. White's simplest,
+      most natural reply, 4.Nxd4, simply trades knights and leaves Black with doubled,
+      though not fully isolated, d-pawns for no compensation whatsoever — there is no
+      practical difficulty here for a defender who does not reach for the tempting but
+      losing 4.Nxe5??. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa chơi Nd4, đưa con mã vào giữa bàn cờ và đồng thời đánh vào mã f3 của Trắng. Nước này trông có vẻ ngây thơ về mặt phát triển, nhưng nó ẩn chứa một cái bẫy nổi tiếng nếu Trắng phản ứng bằng cách ăn tốt e5 thay vì xử lý mối đe doạ trực tiếp lên mã f3.
+    en: Black has just played Nd4, planting the knight in the centre while simultaneously attacking White's knight on f3. The move looks naive from a development standpoint, but it hides a famous trap if White reacts by grabbing the e5 pawn instead of dealing with the direct threat to the f3 knight.
+    fr: Les Noirs viennent de jouer Nd4, plantant le cavalier au centre tout en attaquant du même coup le cavalier blanc en f3. Le coup paraît naïf du point de vue du développement, mais il cache un piège célèbre si les Blancs réagissent en s'emparant du pion e5 plutôt que de répondre à la menace directe sur le cavalier f3.
+  dismissRest:
+    reason:
+      vi: Trắng xử lý mối đe doạ lên mã f3 theo một cách khác — lùi mã, hay phát triển quân trong khi chấp nhận cấu trúc tốt chồng sau này. Không nước nào trong số này đưa mã Trắng vào ô e5, nên cái bẫy Blackburne-Kostić không hề xuất hiện.
+      en: White meets the threat to the f3 knight some other way — retreating it, or developing while accepting the doubled pawns to come later. None of these puts White's knight on e5, so the Blackburne-Kostić trick never appears.
+      fr: Les Blancs répondent autrement à la menace sur le cavalier f3 — en le reculant, ou en développant tout en acceptant les pions doublés à venir. Aucun de ces choix ne pose le cavalier blanc en e5, si bien que le coup du Blackburne-Kostić n'apparaît jamais.
+  children:
+    - ply: Nxe5
+      replyQuality: blunder
+      frequency: occasional
+      annotation:
+        vi: Trắng ăn tốt e5, một nước trông như giải quyết cùng lúc cả mối đe doạ lên mã f3 (bằng cách di chuyển nó) lẫn giành thêm một con tốt. Đây chính là nước mà cái bẫy Blackburne-Kostić chờ đợi — nó trông quá hợp lý để nghi ngờ.
+        en: White takes the e5 pawn, a move that looks like it solves both the threat to the f3 knight (by moving it) and wins a pawn in the process. This is exactly the move the Blackburne-Kostić trick is waiting for — it looks too sensible to doubt.
+        fr: Les Blancs prennent le pion e5, un coup qui semble résoudre à la fois la menace sur le cavalier f3 (en le déplaçant) et gagner un pion au passage. C'est exactement le coup qu'attend le piège du Blackburne-Kostić — il paraît trop sensé pour être suspecté.
+      children:
+        - ply: Qg5
+          annotation:
+            vi: Hậu Đen ra g5, đánh kép vào tốt g2 lẫn chính con mã e5 vừa ăn tốt. Trắng buộc phải xử lý cả hai mối đe doạ cùng lúc, và không có cách nào làm được cả hai.
+            en: Black's queen comes to g5, double-attacking the g2 pawn and the knight on e5 that just took the pawn. White has to deal with both threats at once, and there is no way to do both.
+            fr: La dame noire vient en g5, attaquant à la fois le pion g2 et le cavalier en e5 qui vient de prendre le pion. Les Blancs doivent parer les deux menaces en même temps, et il n'y a aucun moyen d'y parvenir.
+          dismissRest:
+            reason:
+              vi: Trắng cứu con mã e5 hoặc đỡ con tốt g2 theo một cách khác thay vì tham ăn tiếp ở f7. Khi đó Đen đơn giản ăn lại con mã bằng Qxe5 và có một thế cờ tốt với thêm một nhịp, nhưng không dẫn tới chiếu bí bắt buộc như nước Nxf7 bên dưới.
+              en: White saves the knight on e5 or defends the g2 pawn some other way instead of greedily grabbing f7 as well. Black then simply recaptures the knight with Qxe5 and has a pleasant position with an extra tempo, but nothing here forces the mate that 6.Nxf7 does below.
+              fr: Les Blancs sauvent le cavalier e5 ou défendent le pion g2 d'une autre façon plutôt que de s'emparer avidement de f7 aussi. Les Noirs reprennent alors simplement le cavalier par Qxe5 et obtiennent une position agréable avec un temps de plus, mais rien ici ne force le mat que provoque 6.Nxf7 ci-dessous.
+          children:
+            - ply: Nxf7
+              replyQuality: blunder
+              frequency: occasional
+              annotation:
+                vi: Trắng tham lam ăn nốt tốt f7, phớt lờ cả hai mối đe doạ cùng lúc. Đây chính là nước hoàn thành cái bẫy Blackburne-Kostić.
+                en: White greedily grabs the f7 pawn as well, ignoring both threats at once. This is the move that completes the Blackburne-Kostić trap.
+                fr: Les Blancs s'emparent avidement aussi du pion f7, ignorant les deux menaces à la fois. C'est le coup qui achève le piège du Blackburne-Kostić.
+              children:
+                - ply: Qxg2
+                  annotation:
+                    vi: Hậu Đen ăn tốt g2, mở đường cho chính mình vào sâu trận địa Trắng và đe doạ ăn luôn xe h1.
+                    en: Black's queen takes the g2 pawn, opening a path deep into White's position and threatening to win the rook on h1 next.
+                    fr: La dame noire prend le pion g2, s'ouvrant un chemin profond dans le camp blanc et menaçant de gagner ensuite la tour h1.
+                  dismissRest:
+                    reason:
+                      vi: Trắng cứu xe h1 theo một cách khác, chẳng hạn Rg1 hay lùi mã e5 đi trước. Con hậu Đen vẫn đang ăn sâu trong trận địa Trắng và giữ ưu thế lớn, nhưng chuỗi bắt buộc dẫn tới chiếu bí chỉ diễn ra chính xác sau 7.Rf1 bên dưới.
+                      en: White saves the rook on h1 a different way, such as Rg1, or retreats the e5 knight first. Black's queen is still deep in White's position with a large advantage, but the exact forcing sequence into mate only follows 7.Rf1 below.
+                      fr: Les Blancs sauvent la tour h1 d'une autre façon, comme Rg1, ou reculent d'abord le cavalier e5. La dame noire reste profondément installée dans le camp blanc avec un net avantage, mais la séquence forcée vers le mat ne suit précisément que 7.Rf1 ci-dessous.
+                  children:
+                    - ply: Rf1
+                      replyQuality: mistake
+                      frequency: occasional
+                      annotation:
+                        vi: Trắng cứu con xe bằng cách lùi nó về f1. Nước này trông hợp lý, nhưng nó không hề phòng thủ được gì trước con hậu Đen đang tự do hoành hành.
+                        en: White saves the rook by tucking it back to f1. The move looks sensible, but it does nothing at all to defend against Black's queen running loose.
+                        fr: Les Blancs sauvent la tour en la ramenant en f1. Le coup paraît sensé, mais il ne défend absolument rien contre la dame noire qui court en liberté.
+                      children:
+                        - ply: 'Qxe4+'
+                          annotation:
+                            vi: Hậu Đen ăn tiếp tốt e4 kèm chiếu, thu về đủ số quân đã mất và buộc vua Trắng phải phản ứng ngay.
+                            en: Black's queen takes the e4 pawn as well, with check — recovering all the material given up and forcing White's king to react at once.
+                            fr: La dame noire prend aussi le pion e4, avec échec — récupérant tout le matériel cédé et obligeant le roi blanc à réagir aussitôt.
+                          dismissed:
+                            - ply: Qe2
+                              reason: Blocks with the queen instead of the bishop, offering an immediate trade after ...Qxe2+; simpler for White but the point below (9...Nf3#) does not need this square to be examined separately since the mate depends on the bishop block, not the queen one.
+                          children:
+                            - ply: Be2
+                              replyQuality: mistake
+                              frequency: occasional
+                              annotation:
+                                vi: Trắng chặn chiếu bằng tượng, cách chặn tự nhiên nhất vì nó giữ được con hậu ở vị trí phòng thủ. Nhưng con mã Đen đang chờ sẵn ở g4 sắp nhảy vào đúng ô cần thiết, và không quân nào của Trắng canh được ô ấy.
+                                en: White blocks with the bishop, the most natural block since it keeps the queen on a defensive post. But Black's knight, still sitting on g4, is about to jump to exactly the square it needs, and nothing white guards that square.
+                                fr: Les Blancs interposent le fou, le blocage le plus naturel puisqu'il garde la dame à un poste défensif. Mais le cavalier noir, toujours en g4, va sauter sur exactement la case qu'il lui faut, et rien du côté blanc ne garde cette case.
+                              outcome:
+                                type: trap
+    - ply: Nxd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn lại con mã, cách xử lý đơn giản và đúng đắn nhất — không có gì để nghi ngờ ở nước này. Con tốt e5 vẫn được đỡ, và không có cái bẫy nào chờ sẵn ở đây.
+        en: White simply recaptures the knight, the plain and correct way to handle the threat — nothing to doubt about this move. The e5 pawn remains defended, and no trap is waiting here.
+        fr: Les Blancs reprennent simplement le cavalier, la façon claire et correcte de répondre à la menace — rien à redouter avec ce coup. Le pion e5 reste défendu, et aucun piège n'attend ici.
+      children:
+        - ply: exd4
+          annotation:
+            vi: Đen ăn lại bằng tốt e5, và con tốt ấy giờ đứng ở d4 bên cạnh con tốt d7 còn nguyên — hai con tốt cùng cột d. Đây là cái giá thật sự của cả nước Nd4 ban đầu.
+            en: Black recaptures with the e5 pawn, and that pawn now sits on d4 next to the untouched pawn on d7 — two pawns sharing the d-file. This is the real price of the original Nd4.
+            fr: Les Noirs reprennent du pion e5, et ce pion se retrouve maintenant en d4 aux côtés du pion d7 intact — deux pions se partageant la colonne d. C'est le prix réel du Nd4 initial.
+          dismissRest:
+            reason:
+              vi: Trắng phát triển hoặc nhập thành theo một thứ tự khác thay vì nhập thành ngay. Dù chọn cách nào, thế cờ vẫn cân bằng về vật chất và con tốt d4 của Đen vẫn là tốt chồng, đúng như sau 5.O-O bên dưới.
+              en: White develops or castles in a different order instead of castling right away. Whichever it is, material stays level and Black's pawn on d4 is still doubled, exactly as after 5.O-O below.
+              fr: Les Blancs développent ou roquent dans un ordre différent plutôt que de roquer tout de suite. Quel que soit le choix, le matériel reste égal et le pion noir en d4 demeure doublé, exactement comme après 5.O-O ci-dessous.
+          children:
+            - ply: 'O-O'
+              annotation:
+                vi: Trắng nhập thành, đưa vua vào an toàn trong khi Đen còn phải giải quyết cấu trúc tốt chồng của mình. Đây là điểm dừng hợp lý để đánh giá thế cờ.
+                en: White castles, tucking the king away while Black still has the doubled pawns to sort out. This is a sensible point to assess the position.
+                fr: Les Blancs roquent, mettant le roi à l'abri pendant que les Noirs ont encore leurs pions doublés à régler. C'est un point raisonnable pour évaluer la position.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Quân số hoàn toàn ngang nhau, không bên nào hơn kém một tốt hay quân nào. Điều khác biệt duy nhất nằm ở cấu trúc tốt — Đen có hai tốt cùng đứng trên cột d (d4 và d7), một nhược điểm không thể sửa được vì không còn tốt c hay tốt e nào của Đen ở gần đó để đổi bớt nó đi, trong khi Trắng giữ nguyên tám tốt lành lặn.
+                  en: Material is completely level, with neither side up a pawn or a piece. The one difference is in the pawn structure — Black has two pawns sharing the d-file (d4 and d7), an unrepairable defect since there is no other Black pawn nearby that could ever trade it away, while White keeps all eight pawns perfectly healthy.
+                  fr: Le matériel est parfaitement égal, aucun camp n'ayant de pion ou de pièce en plus. La seule différence réside dans la structure de pions — les Noirs ont deux pions partageant la colonne d (d4 et d7), un défaut irréparable puisqu'aucun autre pion noir à proximité ne pourra jamais l'échanger, tandis que les Blancs conservent leurs huit pions parfaitement sains.
+                plan:
+                  vi: Trắng chơi c3 để hỏi con tốt d4, Re1 gây áp lực lên cột e, và Nc3 hay d3 hoàn thiện phát triển, nhắm dần vào việc biến cấu trúc tốt chồng của Đen thành một điểm yếu thật sự ở tàn cuộc. Đen chơi Nf6, Be7 hay Bc5, và O-O nhanh chóng để bù đắp bằng hoạt động quân cờ cho nhược điểm cấu trúc, tránh đổi hết quân nặng nếu có thể.
+                  en: White plays c3 to question the d4 pawn, Re1 to press the e-file, and Nc3 or d3 to finish developing, gradually aiming to turn Black's doubled pawn into a real endgame weakness. Black plays Nf6, Be7 or Bc5, and castles quickly to compensate for the structural flaw with piece activity, avoiding trading down into an endgame where possible.
+                  fr: Les Blancs jouent c3 pour questionner le pion d4, Re1 pour peser sur la colonne e, et Nc3 ou d3 pour achever le développement, visant progressivement à transformer le pion doublé noir en une véritable faiblesse de finale. Les Noirs jouent Nf6, Be7 ou Bc5, et roquent rapidement pour compenser le défaut structurel par l'activité des pièces, en évitant si possible de se diriger vers une finale.
+                basis:
+                  by: chan
+                  at: '2026-09-18'

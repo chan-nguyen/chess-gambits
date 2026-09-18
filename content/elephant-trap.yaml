@@ -1,0 +1,142 @@
+# The Elephant Trap, in the Queen's Gambit Declined. The defining line is the one frozen in
+# `tools/catalogue/source/traps.yaml` — 1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Nbd7 — and it ends on
+# Black's own ply, so the root is an opponent node and White's replies can carry a quality
+# (docs/CONTEXT.md, invariant 5).
+#
+# ECO is D51, matching `traps.yaml` (a trap carries the ECO of the opening it sits inside,
+# ADR-0008).
+#
+# This trap ends in a material win, not a mate (docs/CONTEXT.md, "Trap branch" — the
+# Elephant Trap is named there as one of the traps that ends this way). No leaf here claims
+# a mate, so no certificate is needed. Every line was replayed with chess.js, including the
+# detail that 6...Nxd5 is played by the knight on f6 rather than the one on d7 — the d7
+# knight has no geometric way to reach d5 at all, and it is the f6 knight leaving the pin
+# that sets up 7...Bb4+.
+id: elephant-trap
+name: Elephant Trap
+eco: D51
+category: trap
+side: black
+definingLine: [d4, d5, c4, e6, Nc3, Nf6, Bg5, Nbd7]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. The trap does not depend on the
+      opponent cooperating with anything beyond the single natural-looking capture on d5 —
+      once White plays it, the rest is forced, and Black ends up a clean knight for a pawn.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi Nbd7 thay vì Nc6, và đây chính là điều làm nên cái bẫy. Con mã f6 bị tượng g5 ghim vào hậu d8, nhưng ghim ấy sẽ tự vỡ nếu Trắng đổi tốt ở d5 rồi ăn lại bằng mã — vì khi đó chính con mã đang bị ghim sẽ là quân ăn lại.
+    en: Black has just played Nbd7 instead of Nc6, and that choice is the whole trap. The knight on f6 is pinned to the queen on d8 by the bishop on g5, but that pin is about to break itself if White trades on d5 and recaptures with a knight — because the pinned knight is the one that gets to do the recapturing.
+    fr: Les Noirs viennent de jouer Nbd7 plutôt que Nc6, et ce choix est tout le piège. Le cavalier f6 est cloué à la dame d8 par le fou g5, mais ce clouage va se rompre de lui-même si les Blancs échangent en d5 et reprennent du cavalier — car c'est le cavalier cloué qui se chargera de la reprise.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước phát triển bình thường thay vì đổi tốt ở d5. Không có gì sai ở đây — thế cờ vẫn là một ván Hậu thí tốt bình thường, và cái bẫy chỉ xuất hiện nếu Trắng cụ thể đổi ở d5 rồi ăn lại bằng mã.
+      en: White plays a normal developing move instead of trading on d5. Nothing is wrong with this — the game is still an ordinary Queen's Gambit Declined, and the trap only appears if White specifically trades on d5 and recaptures with a knight.
+      fr: Les Blancs jouent un coup de développement normal plutôt que d'échanger en d5. Rien n'est fautif ici — la partie reste une Dame refusée ordinaire, et le piège n'apparaît que si les Blancs échangent précisément en d5 et reprennent du cavalier.
+  dismissed:
+    - ply: Nxd5
+      reason: Falls into the same combination one move sooner — 5.Nxd5 Nxd5 6.Bxd8 Bb4+ etc., identical to the line below via 5.cxd5 exd5 6.Nxd5; not modelled separately since it transposes.
+  children:
+    - ply: cxd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đổi tốt ở d5, một nước hoàn toàn bình thường trong Hậu thí tốt. Vấn đề không nằm ở nước này mà ở nước ăn lại kế tiếp.
+        en: White trades pawns on d5, a completely ordinary move in the Queen's Gambit. The problem is not this move but the recapture that follows it.
+        fr: Les Blancs échangent les pions en d5, un coup tout à fait ordinaire dans la Dame d'échecs. Le problème n'est pas ce coup mais la reprise qui suit.
+      children:
+        - ply: exd5
+          annotation:
+            vi: Đen ăn lại bằng tốt e6, mở đường cho tượng f8 và giữ nguyên cấu trúc tốt. Bây giờ con tốt d5 của Đen đang bị mã c3 của Trắng đánh.
+            en: Black recaptures with the e6 pawn, opening a line for the f8 bishop and keeping a sound pawn structure. Black's pawn on d5 is now attacked by White's knight on c3.
+            fr: Les Noirs reprennent du pion e6, ouvrant une ligne pour le fou f8 et gardant une structure de pions saine. Le pion noir en d5 est maintenant attaqué par le cavalier blanc en c3.
+          dismissRest:
+            reason:
+              vi: Trắng lùi tượng hoặc phát triển quân khác thay vì ăn tốt d5 bằng mã. Không có gì bị mất ở đây — cái bẫy chỉ xảy ra với đúng nước Nxd5.
+              en: White retreats the bishop or develops another piece instead of taking the d5 pawn with the knight. Nothing is lost here — the trap only happens with the specific move Nxd5.
+              fr: Les Blancs reculent le fou ou développent une autre pièce plutôt que de prendre le pion d5 avec le cavalier. Rien n'est perdu ici — le piège ne survient qu'avec le coup précis Nxd5.
+          children:
+            - ply: Nxd5
+              replyQuality: blunder
+              frequency: occasional
+              annotation:
+                vi: Trắng ăn con tốt d5 bằng mã, trông như thắng một tốt sạch. Đây chính là nước mà cái bẫy Con voi chờ đợi.
+                en: White captures the d5 pawn with the knight, looking like a clean extra pawn. This is exactly the move the Elephant Trap is waiting for.
+                fr: Les Blancs capturent le pion d5 du cavalier, ce qui ressemble à un pion net de plus. C'est exactement le coup qu'attend le piège de l'éléphant.
+              children:
+                - ply: Nxd5
+                  annotation:
+                    vi: Đen ăn lại bằng con mã f6 — quân đang bị ghim — chứ không phải mã d7, vì mã d7 không có cách nào đi thẳng tới d5. Việc rời khỏi ghim này sẽ để lộ hậu d8 cho tượng g5, nhưng đó chính xác là điều Đen muốn.
+                    en: Black recaptures with the f6 knight — the pinned one — rather than the d7 knight, which has no geometric way to reach d5 at all. Leaving the pin like this exposes the queen on d8 to the bishop on g5, but that is exactly what Black wants.
+                    fr: Les Noirs reprennent avec le cavalier f6 — celui qui est cloué — plutôt qu'avec celui de d7, qui n'a de toute façon aucun moyen géométrique d'atteindre d5. Quitter ainsi le clouage expose la dame d8 au fou g5, mais c'est précisément ce que veulent les Noirs.
+                  dismissRest:
+                    reason:
+                      vi: Trắng không ăn con hậu ngay. Con hậu d8 đang bị tượng g5 đánh và không có gì đỡ nó cả, nên bất kỳ nước nào khác chỉ đơn giản là bỏ lỡ nước ăn quân miễn phí duy nhất trên bàn cờ, không phải là nước tốt hơn.
+                      en: White does not take the queen right away. The queen on d8 is attacked by the bishop on g5 with nothing defending it, so any other move here simply misses the one free capture on the board rather than being an improvement on it.
+                      fr: Les Blancs ne prennent pas la dame tout de suite. La dame d8 est attaquée par le fou g5 sans rien pour la défendre, si bien que tout autre coup ici manque simplement l'unique prise gratuite de l'échiquier plutôt que de l'améliorer.
+                  children:
+                    - ply: Bxd8
+                      replyQuality: mistake
+                      frequency: common
+                      annotation:
+                        vi: Trắng ăn con hậu, trông như đã thắng đậm. Nhưng con mã vừa ăn lại ở d5 đã rời khỏi ghim, và Đen có ngay một nước chiếu đòi lại tất cả.
+                        en: White takes the queen, looking like a decisive material haul. But the knight that just recaptured on d5 has left the pin, and Black has an immediate check that claims everything back.
+                        fr: Les Blancs prennent la dame, ce qui ressemble à un gain matériel décisif. Mais le cavalier qui vient de reprendre en d5 a quitté le clouage, et les Noirs disposent d'un échec immédiat qui réclame tout en retour.
+                      children:
+                        - ply: 'Bb4+'
+                          annotation:
+                            vi: Tượng f8 chiếu, và vì đang bị chiếu nên Trắng không có thì giờ rút tượng đang đứng ở d8 về an toàn. Đây là nước bản lề của cả cái bẫy.
+                            en: The f8 bishop gives check, and because it is check White has no time to bring the bishop on d8 home to safety. This is the hinge move of the whole trap.
+                            fr: Le fou f8 donne échec, et l'échec obligeant, les Blancs n'ont pas le temps de ramener le fou d8 en sécurité. C'est le coup pivot de tout le piège.
+                          children:
+                            - ply: Qd2
+                              annotation:
+                                vi: Nước duy nhất hợp lệ — chặn chiếu bằng chính con hậu, quân duy nhất còn lại có thể tới d2. Con hậu này sắp bị đổi ngay ở nước sau.
+                                en: The only legal move — blocking the check with the queen itself, the only piece left that can reach d2. This queen is about to be traded off next move.
+                                fr: Le seul coup légal — interposer la dame elle-même, la seule pièce restante capable d'atteindre d2. Cette dame va être échangée dès le coup suivant.
+                              children:
+                                - ply: 'Bxd2+'
+                                  annotation:
+                                    vi: Đen ăn hậu, vẫn kèm chiếu. Số quân giờ đã đổi gần hết, chỉ còn lại một chi tiết cuối để giải quyết.
+                                    en: Black takes the queen, still with check. The material has mostly been exchanged now, with just one last detail to settle.
+                                    fr: Les Noirs prennent la dame, toujours avec échec. Le matériel a maintenant été presque entièrement échangé, il ne reste qu'un dernier détail à régler.
+                                  dismissed:
+                                    - ply: Kd1
+                                      reason: Legal but strictly worse than recapturing — declines the free bishop on d2, which just sits there to be won next move anyway; not modelled separately.
+                                  children:
+                                    - ply: Kxd2
+                                      annotation:
+                                        vi: Vua ăn lại tượng — nước duy nhất hợp lệ ở đây, vì lùi vua vẫn để mất tượng vô ích. Chỉ còn con tượng của Trắng đang đứng ở d8 chưa được giải quyết.
+                                        en: The king recaptures the bishop — the only legal move here, since moving the king away would still lose the bishop for nothing. Only White's bishop, still standing on d8, is left unresolved.
+                                        fr: Le roi reprend le fou — le seul coup légal ici, car reculer le roi perdrait quand même le fou pour rien. Seul le fou blanc, encore posté en d8, reste à régler.
+                                      children:
+                                        - ply: Kxd8
+                                          annotation:
+                                            vi: Vua Đen ăn nốt con tượng ở d8, khép lại chuỗi bắt buộc. Không còn hậu nào trên bàn cờ, và mọi thứ giờ đã có thể đếm được.
+                                            en: Black's king takes the bishop on d8, closing the forced sequence. No queens are left on the board, and everything can now be counted.
+                                            fr: Le roi noir prend le fou en d8, refermant la séquence forcée. Plus aucune dame ne reste sur l'échiquier, et tout peut désormais être compté.
+                                          outcome:
+                                            type: position
+                                            evaluation:
+                                              vi: Đen hơn một con mã, kém một tốt. Hai bên đều còn hai xe, một tượng, không còn hậu, nhưng Đen có hai mã (một ở d7, một vừa ăn lại ở d5) trong khi Trắng chỉ còn một mã ở g1, đổi lại Trắng có bảy tốt so với sáu của Đen vì đã ăn được tốt d5 ban đầu. Vua cả hai bên đều đã mất quyền nhập thành, nhưng không bên nào còn hậu để khai thác điều đó ngay.
+                                              en: Black is up a knight for a pawn. Both sides have two rooks, one bishop and no queen, but Black has two knights (one on d7, one that just recaptured on d5) against White's single knight on g1, while White has seven pawns to Black's six from winning the original d5 pawn. Both kings have lost the right to castle, but with no queens left on the board neither side can exploit that right away.
+                                              fr: Les Noirs ont un cavalier de plus pour un pion. Les deux camps ont deux tours, un fou et plus de dame, mais les Noirs ont deux cavaliers (un en d7, un qui vient de reprendre en d5) contre le seul cavalier blanc en g1, tandis que les Blancs ont sept pions contre six aux Noirs pour avoir gagné le pion d5 initial. Les deux rois ont perdu le droit de roquer, mais sans dame sur l'échiquier, aucun camp ne peut l'exploiter dans l'immédiat.
+                                            plan:
+                                              vi: Đen chơi Ke7 hoặc Kc7 đưa vua vào giữa an toàn (đây là tàn cuộc, vua nên chủ động), rồi Rd8 và Re8 dùng cột mở, Nf6 hay Nc5 đưa mã thừa vào việc, và tận dụng con mã hơn quân trong một tàn cuộc đơn giản. Trắng chơi Nf3 phát triển nốt quân cuối, Be2 và ghép xe vào cột d hay c1, cố đổi bớt quân để giảm bất lợi vật chất và bám vào con tốt thừa.
+                                              en: Black plays ...Ke7 or ...Kc7 to bring the king to safety in the centre (this is an endgame, so the king should be active), then ...Rd8 and ...Re8 to use the open files, ...Nf6 or ...Nc5 to put the spare knight to work, and simply nurses the extra knight home in a simplified ending. White plays Nf3 to finish developing the last piece, Be2 and doubles rooks on the c- or d-file, trying to trade material down and lean on the extra pawn.
+                                              fr: Les Noirs jouent ...Ke7 ou ...Kc7 pour amener le roi en sécurité au centre (c'est une finale, le roi doit être actif), puis ...Rd8 et ...Re8 pour utiliser les colonnes ouvertes, ...Nf6 ou ...Nc5 pour mettre le cavalier surnuméraire au travail, et conduisent simplement le cavalier de plus vers la victoire dans une finale simplifiée. Les Blancs jouent Nf3 pour achever de développer leur dernière pièce, Be2 et doublent les tours sur la colonne c ou d, en cherchant à échanger du matériel et à s'appuyer sur le pion supplémentaire.
+                                            basis:
+                                              by: chan
+                                              at: '2026-09-18'
