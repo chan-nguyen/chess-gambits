@@ -1,0 +1,68 @@
+# King's Gambit Accepted, Bishop's Gambit, Anderssen Defense. One of eighteen entries tracked
+# by issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). The defining line ends on White's own
+# 3.Bc4, the learner's ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# 3...g5 is the Bishop's Gambit's main, most respected defense — the direct analogue of
+# 3...g5 against the King's Knight Gambit — and it holds the f4 pawn while fighting for the
+# centre. Every move here, and the tried continuation 4.h4 g4 5.Ne2 Nc6 named in the
+# evaluation below, was replayed with a scratch chess.js script (deleted before commit)
+# confirming legality, check status and material at each ply. Under the stricter bar from
+# issue #107, this position genuinely does not resolve to a two-point edge or a structural
+# catastrophe for either side after a few plies of testing — Black is a pawn up with a
+# committed, slightly loose kingside, and White has open lines but no forced follow-up a
+# human reviewer without engine assistance can certify — so the leaf states that plainly
+# rather than either forcing a false verdict or reverting to `unexplored`, which would
+# discard the position analysis actually done here.
+id: kings-gambit-accepted-bishops-gambit-anderssen-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Anderssen Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng — thay vì bảo vệ tốt f4 bằng mã, Trắng nhắm thẳng vào f7 và chấp nhận Đen sẽ giữ con tốt lâu hơn. Mục này đi sâu riêng vào 3...g5, Phòng thủ Anderssen.
+    en: White has just played the bishop to c4, the Bishop's Gambit — instead of defending the f4 pawn with a knight, White aims straight at f7 and accepts that Black will hold the pawn a while longer. This entry follows specifically 3...g5, the Anderssen Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou — au lieu de défendre le pion f4 avec un cavalier, les Blancs visent directement f7 et acceptent que les Noirs conservent le pion plus longtemps. Cette entrée suit spécifiquement 3...g5, la Défense Anderssen.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...g5 — chẳng hạn chiếu ngay bằng 3...Qh4+, đánh trung tâm bằng 3...d5, hay phát triển quân bằng 3...Nf6. Mỗi lựa chọn có lý thuyết riêng và nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...g5 — an immediate check with 3...Qh4+, striking the centre with 3...d5, or developing with 3...Nf6. Each has its own separate theory and is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...g5 — un échec immédiat par 3...Qh4+, une frappe centrale par 3...d5, ou un développement par 3...Nf6. Chacun possède sa propre théorie et sort du cadre de cette entrée.
+  children:
+    - ply: g5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Phòng thủ Anderssen — cách đáp trả chính và được tin cậy nhất trước Gambit Tượng. Đen giữ chắc con tốt f4 và chuẩn bị Bg7, chấp nhận cánh vua sẽ bị nới lỏng để đổi lấy vật chất và không gian.
+        en: The Anderssen Defense — the main, most trusted answer to the Bishop's Gambit. Black holds the f4 pawn firmly and prepares Bg7, accepting a looser kingside in exchange for material and space.
+        fr: La Défense Anderssen — la réponse principale et la plus fiable au Gambit du Fou. Les Noirs conservent fermement le pion f4 et préparent Bg7, acceptant un roque affaibli en échange de matériel et d'espace.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng một tốt (con tốt f4 ban đầu), và cả hai bên còn nguyên các quân nhẹ. Cánh vua Đen đã nới lỏng vì g5, nhưng chưa có điểm yếu nào rõ ràng — chưa quân Trắng nào thực sự nhắm được vào đó. Đã thử tiếp 4.h4 g4 5.Ne2 Nc6, sau đó vật chất vẫn y nguyên (Đen hơn một tốt) và không bên nào có một lợi thế cụ thể nằm trong danh sách đã định — đây thực sự là một thế cờ cân bằng và sắc bén, không phải một đánh giá còn bỏ ngỏ.
+          en: Black remains exactly one pawn up (the original f4 pawn), and both sides still have every minor piece on the board. Black's kingside has loosened because of g5, but no concrete weakness has appeared yet — no White piece is actually trained on it. Continuing with 4.h4 g4 5.Ne2 Nc6 was tried; material stays exactly where it was (Black a pawn up) and neither side shows a concrete edge from the closed list — this is genuinely a level, sharp position, not an evaluation left open.
+          fr: Les Noirs restent exactement un pion devant (le pion f4 initial), et les deux camps conservent toutes leurs pièces mineures. L'aile roi noire s'est desserrée à cause de g5, mais aucune faiblesse concrète n'est encore apparue — aucune pièce blanche ne la vise réellement. Poursuivre par 4.h4 g4 5.Ne2 Nc6 a été essayé ; le matériel reste exactement le même (les Noirs un pion devant) et aucun camp ne montre d'avantage concret de la liste fermée — c'est véritablement une position égale et tranchante, pas une évaluation laissée ouverte.
+        plan:
+          vi: Trắng chơi Nc3, d4 và cố mở thêm đường cho các quân nhẹ, nhắm vào f7 và các ô đen quanh vua Đen một khi cánh vua ấy mở ra hơn nữa. Đen chơi Bg7, Nc6 và d6, hoàn thiện phát triển trong khi vẫn giữ con tốt thừa, chỉ mở cột g hay đổi quân khi thực sự có lợi.
+          en: White plays Nc3, d4 and tries to open further lines for the minor pieces, aiming at f7 and the dark squares around Black's king once that kingside opens further. Black plays Bg7, Nc6 and d6, completing development while keeping the extra pawn, only opening the g-file or trading pieces when it is genuinely favourable.
+          fr: Les Blancs jouent Nc3, d4 et cherchent à ouvrir davantage de lignes pour les pièces mineures, visant f7 et les cases noires autour du roi noir une fois cette aile roi encore plus ouverte. Les Noirs jouent Bg7, Nc6 et d6, achevant leur développement tout en conservant le pion supplémentaire, n'ouvrant la colonne g ou n'échangeant les pièces que lorsque c'est réellement favorable.
+        basis:
+          by: chan
+          at: '2026-09-18'

@@ -1,0 +1,62 @@
+# King's Gambit Accepted, Bishop's Gambit, Maurian Defense. One of eighteen entries tracked
+# by issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...Nc6 develops a piece and defends e5, a natural, sound try. The tried continuation
+# named in the evaluation, 4.Nf3 g5, was replayed with a scratch chess.js script (deleted
+# before commit) confirming legality and material at each ply. Under the stricter #107 bar
+# this genuinely does not resolve to a decisive edge for either side at this depth, so the
+# leaf states that plainly instead of forcing a verdict or reverting to `unexplored`.
+id: kings-gambit-accepted-bishops-gambit-maurian-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Maurian Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...Nc6, Phòng thủ Maurian.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...Nc6, the Maurian Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...Nc6, la Défense Maurian.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...Nc6 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển mã kia bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...Nc6 — holding the pawn with 3...g5, striking the centre with 3...d5, or developing the other knight with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...Nc6 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou développer l'autre cavalier par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Maurian. Đen phát triển mã, bảo vệ tốt e5 cũ (nay đã đổi hình dạng) và chuẩn bị đưa quân ra một cách tự nhiên trước khi quyết định cách giữ tốt f4.
+        en: The Maurian Defense. Black develops a knight, keeps an eye on the centre, and prepares to bring pieces out naturally before deciding how to hold the f4 pawn.
+        fr: La Défense Maurian. Les Noirs développent un cavalier, surveillent le centre et se préparent à sortir leurs pièces naturellement avant de décider comment conserver le pion f4.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.Nf3 (phát triển, đe dọa giành lại tốt f4) g5 (Đen giữ chắc con tốt theo kiểu Phòng thủ Anderssen), vật chất không đổi và cả hai vua đều chưa nhập thành. Mã c6 giúp Đen kiểm soát trung tâm nhưng cũng làm chậm nước ...d5 mà nhiều phòng thủ khác dùng để phản công ngay — đây là một thế cờ cân bằng, còn nhiều khả năng cho cả hai bên.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.Nf3 (developing, threatening to win the f4 pawn back) g5 (Black holds the pawn the way the Anderssen Defense does) was tried; material is unchanged and neither king has castled. The knight on c6 helps Black control the centre but also slows down the ...d5 break several other defences use to counterattack at once — this is a level position with real chances for both sides.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.Nf3 (développement, menaçant de regagner le pion f4) g5 (les Noirs conservent le pion à la manière de la Défense Anderssen) a été essayé ; le matériel est inchangé et aucun roi n'a roqué. Le cavalier en c6 aide les Noirs à contrôler le centre mais ralentit aussi la percée ...d5 qu'utilisent plusieurs autres défenses pour contre-attaquer aussitôt — c'est une position égale avec de réelles chances pour les deux camps.
+        plan:
+          vi: Trắng chơi h4 để thách thức chuỗi tốt g5, hoặc d4 để dựng trung tâm lớn trước, sau đó O-O. Đen chơi Bg7 hay d6, hoàn thiện phát triển và giữ con tốt thừa chừng nào còn an toàn để làm vậy.
+          en: White plays h4 to challenge the g5 pawn chain, or d4 to build a big centre first, then castles. Black plays Bg7 or d6, completing development and holding on to the extra pawn for as long as it stays safe to do so.
+          fr: Les Blancs jouent h4 pour défier la chaîne de pions g5, ou d4 pour bâtir d'abord un grand centre, puis roquent. Les Noirs jouent Bg7 ou d6, achevant leur développement et conservant le pion supplémentaire aussi longtemps qu'il reste sûr de le faire.
+        basis:
+          by: chan
+          at: '2026-09-18'

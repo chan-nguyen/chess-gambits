@@ -1,0 +1,71 @@
+# King's Gambit Accepted, Bishop's Gambit, Kieseritzky Gambit. One of eighteen entries
+# tracked by issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit):
+# 3...b5 4.Bxb5 was confirmed legal, with the b5 pawn undefended (nothing recaptures on b5),
+# and material returning to level (a second, separate pawn sacrifice repaid).
+#
+# 3...b5 is a further pawn sacrifice offered to deflect the bishop away from its attack on
+# f7. The tried continuation named in the evaluation, 4...Nf6, was also replayed with
+# chess.js. Under the stricter #107 bar, the position after 4.Bxb5 restores only material
+# parity — not a two-point edge — and the resulting queenside/central imbalance is
+# genuinely double edged rather than an unambiguous catastrophe for either side, so the
+# leaf states that plainly instead of forcing a verdict or reverting to `unexplored`.
+id: kings-gambit-accepted-bishops-gambit-kieseritzky-gambit
+name: "King's Gambit Accepted: Bishop's Gambit, Kieseritzky Gambit"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...b5, Gambit Kieseritzky.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...b5, the Kieseritzky Gambit.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...b5, le Gambit Kieseritzky.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...b5 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...b5 — holding the pawn with 3...g5, striking the centre with 3...d5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...b5 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: b5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Gambit Kieseritzky. Đen thí thêm một tốt để đẩy tượng c4 ra khỏi đường chéo nhắm vào f7, đặt cược vào thời gian và không gian cánh hậu thay vì vật chất.
+        en: The Kieseritzky Gambit. Black offers another pawn to knock the c4 bishop off its diagonal toward f7, betting on time and queenside space rather than material.
+        fr: Le Gambit Kieseritzky. Les Noirs offrent un autre pion pour chasser le fou c4 de sa diagonale vers f7, misant sur le temps et l'espace à l'aile dame plutôt que sur le matériel.
+      children:
+        - ply: Bxb5
+          annotation:
+            vi: Trắng ăn tốt b5 miễn phí — không quân Đen nào bảo vệ ô này — đưa quân số trở lại ngang bằng lần thứ hai trong ván này.
+            en: White takes the b5 pawn for free — nothing Black has defends that square — bringing material back to level for the second time in this game.
+            fr: Les Blancs prennent le pion b5 gratuitement — rien chez les Noirs ne défend cette case — ramenant le matériel à l'égalité pour la deuxième fois dans cette partie.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số hoàn toàn ngang nhau — con tốt b5 vừa mất bù đúng bằng con tốt f4 giành được trước đó. Đã thử tiếp 4...Nf6 (Đen tấn công tốt e4 và phát triển), vật chất vẫn ngang nhau sau đó. Tượng Trắng đã rời đường chéo nhắm vào f7 để đổi lấy một con tốt cánh hậu, còn Đen đổi lại có được nhịp phát triển; đây là một thế cờ cân bằng, không phải một lợi thế rõ ràng cho ai.
+              en: Material is fully level — the b5 pawn just lost pays back exactly the f4 pawn won earlier. Continuing with 4...Nf6 (Black attacks the e4 pawn while developing) was tried; material stays level afterward. White's bishop has left the diagonal aimed at f7 in exchange for a queenside pawn, while Black gets a developing tempo in return — this is a level position, not a clear edge for either side.
+              fr: Le matériel est parfaitement égal — le pion b5 qui vient d'être perdu rembourse exactement le pion f4 gagné plus tôt. Poursuivre par 4...Nf6 (les Noirs attaquent le pion e4 tout en se développant) a été essayé ; le matériel reste égal ensuite. Le fou blanc a quitté la diagonale visant f7 contre un pion à l'aile dame, tandis que les Noirs obtiennent en retour un temps de développement — c'est une position égale, pas un avantage net pour l'un ou l'autre.
+            plan:
+              vi: Trắng lui tượng về e2 hay d3, rồi chơi Nf3 và O-O, cố giữ con tốt f4 đã mất khỏi tầm với của Đen. Đen chơi Bc5 hay d5, hoàn thiện phát triển nhanh và tận dụng việc tượng Trắng đã rời xa cánh vua.
+              en: White retreats the bishop to e2 or d3, then plays Nf3 and castles, trying to keep the lost f4 pawn out of Black's reach for good. Black plays Bc5 or d5, developing quickly and making use of the fact that White's bishop has moved away from the kingside.
+              fr: Les Blancs replient le fou en e2 ou d3, puis jouent Nf3 et roquent, essayant de garder le pion f4 perdu hors de portée des Noirs pour de bon. Les Noirs jouent Bc5 ou d5, se développant rapidement et profitant du fait que le fou blanc s'est éloigné de l'aile roi.
+            basis:
+              by: chan
+              at: '2026-09-18'

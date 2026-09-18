@@ -118,15 +118,16 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * One hundred and twenty-six entries are authored — three from #15, eleven from #73, ten
+   * One hundred and forty-four entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
-   * from #109 (group F, seven remaining family heads and eight Sicilian short lines), and
-   * seventeen from #110 (group G, King's Gambit Accepted sub-variations) — and the other
-   * 877 are Tier 0, with no content file at all. Each authored entry is named here with the
-   * number of root-to-leaf lines its tree actually has, rather than the whole set being
-   * loosened to "at least zero", which would assert nothing and would keep passing if every
-   * tree in the repository disappeared.
+   * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
+   * seventeen from #110 (group G, King's Gambit Accepted sub-variations), and eighteen
+   * from #111 (group H, King's Gambit Accepted sub-variations and the Rousseau Gambit) —
+   * and the other 859 are Tier 0, with no content file at all. Each authored entry is
+   * named here with the number of root-to-leaf lines its tree actually has, rather than
+   * the whole set being loosened to "at least zero", which would assert nothing and would
+   * keep passing if every tree in the repository disappeared.
    *
    * Seven of #110's seventeen (Bishop's Gambit, Carrera, Dodo, Gaga, King's Knight's
    * Gambit, Paris and Stamma) genuinely level out — real analysis, pushed as far as it
@@ -189,27 +190,45 @@ describe('the catalogue this repository ships', () => {
     ['irish-gambit', 1],
     ['italian-game-blackburne-kostic-gambit', 2],
     ['italian-game-evans-gambit', 6],
+    ['italian-game-rousseau-gambit', 1],
     ['kadas-opening-schneider-gambit', 1],
     ['kieninger-trap', 4],
     ['kings-gambit', 5],
     ['kings-gambit-accepted', 1],
     ['kings-gambit-accepted-basman-gambit', 1],
+    ['kings-gambit-accepted-becker-defense', 1],
     ['kings-gambit-accepted-bishops-gambit', 1],
+    ['kings-gambit-accepted-bishops-gambit-anderssen-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit-bledow-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-cozio-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit-gianutio-gambit', 1],
+    ['kings-gambit-accepted-bishops-gambit-kieseritzky-gambit', 1],
+    ['kings-gambit-accepted-bishops-gambit-lopez-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit-maurian-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit-steinitz-defense', 1],
+    ['kings-gambit-accepted-bonsch-osmolovsky-variation', 1],
     ['kings-gambit-accepted-breyer-gambit', 1],
     ['kings-gambit-accepted-carrera-gambit', 1],
+    ['kings-gambit-accepted-cunningham-defense', 1],
     ['kings-gambit-accepted-dodo-variation', 1],
     ['kings-gambit-accepted-eisenberg-variation', 1],
+    ['kings-gambit-accepted-fischer-defense', 1],
     ['kings-gambit-accepted-gaga-gambit', 1],
+    ['kings-gambit-accepted-gianutio-countergambit', 1],
     ['kings-gambit-accepted-kings-knights-gambit', 1],
+    ['kings-gambit-accepted-macleod-defense', 1],
     ['kings-gambit-accepted-mason-keres-gambit', 1],
+    ['kings-gambit-accepted-modern-defense', 1],
     ['kings-gambit-accepted-orsini-gambit', 1],
     ['kings-gambit-accepted-paris-gambit', 1],
+    ['kings-gambit-accepted-schallopp-defense', 1],
     ['kings-gambit-accepted-schurig-gambit-with-bb5', 1],
     ['kings-gambit-accepted-schurig-gambit-with-bd3', 1],
     ['kings-gambit-accepted-stamma-gambit', 1],
     ['kings-gambit-accepted-tartakower-gambit', 1],
     ['kings-gambit-accepted-tumbleweed', 1],
     ['kings-gambit-accepted-villemson-gambit', 1],
+    ['kings-gambit-accepted-wagenbach-defense', 1],
     ['kings-gambit-declined-classical-variation', 1],
     ['kings-indian-attack-omega-delta-gambit', 1],
     ['kings-indian-defense-samisch-variation-samisch-gambit', 1],
@@ -272,7 +291,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored one hundred and twenty-six have any', () => {
+  it('bakes keys on all 1003 entries, and only the authored one hundred and forty-four have any', () => {
     expect(result.value.records).toHaveLength(1003)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

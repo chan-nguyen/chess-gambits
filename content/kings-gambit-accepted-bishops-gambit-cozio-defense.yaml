@@ -1,0 +1,63 @@
+# King's Gambit Accepted, Bishop's Gambit, Cozio Defense. One of eighteen entries tracked by
+# issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...Nf6 develops a piece and attacks e4 directly. The tried continuation named in the
+# evaluation, 4.e5 Ng4, was replayed with a scratch chess.js script (deleted before commit)
+# confirming legality and material at each ply. Under the stricter #107 bar this is a sound
+# developing try that genuinely does not resolve to a decisive edge for either side at this
+# depth, so the leaf states that plainly instead of forcing a verdict or reverting to
+# `unexplored`.
+id: kings-gambit-accepted-bishops-gambit-cozio-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Cozio Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...Nf6, Phòng thủ Cozio.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...Nf6, the Cozio Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...Nf6, la Défense Cozio.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...Nf6 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay chiếu bằng 3...Qh4+. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...Nf6 — holding the pawn with 3...g5, striking the centre with 3...d5, or checking with 3...Qh4+. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...Nf6 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou un échec par 3...Qh4+. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Cozio. Đen phát triển quân và tấn công thẳng vào tốt e4, buộc Trắng phải phản ứng ngay thay vì tự do dựng trung tâm.
+        en: The Cozio Defense. Black develops a piece and attacks the e4 pawn directly, forcing White to react at once instead of freely building the centre.
+        fr: La Défense Cozio. Les Noirs développent une pièce et attaquent directement le pion e4, forçant les Blancs à réagir aussitôt plutôt que de bâtir librement le centre.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.e5 (đẩy tốt, giữ khoảng cách với mã) Ng4 (mã lui về một ô hoạt động, nhắm vào f2 và h2), vật chất không đổi và cả hai bên đều có quân đang phát triển. Trắng có thêm không gian nhờ e5 nhưng con tốt f4 vẫn chưa đòi lại được, còn mã Đen ở g4 tuy tích cực nhưng chưa bám vào một điểm yếu cụ thể nào của Trắng — đây là một thế cờ cân bằng, còn nhiều khả năng cho cả hai bên.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.e5 (pushing the pawn, keeping distance from the knight) Ng4 (the knight retreats to an active square, eyeing f2 and h2) was tried; material is unchanged and both sides have a piece in play. White gains space with e5 but still has not won the f4 pawn back, while Black's knight on g4 is active without yet latching onto a concrete White weakness — this is a level position with real chances for both sides.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.e5 (poussant le pion, gardant ses distances avec le cavalier) Ng4 (le cavalier se replie sur une case active, visant f2 et h2) a été essayé ; le matériel est inchangé et les deux camps ont une pièce en jeu. Les Blancs gagnent de l'espace avec e5 mais n'ont toujours pas regagné le pion f4, tandis que le cavalier noir en g4 est actif sans encore s'accrocher à une faiblesse blanche concrète — c'est une position égale avec de réelles chances pour les deux camps.
+        plan:
+          vi: Trắng chơi Nf3 hay Qe2, chuẩn bị O-O và tìm cách giành lại con tốt f4 hoặc đẩy lùi mã g4 bằng h3. Đen chơi Bc5 hay Nc6, hoàn thiện phát triển và giữ áp lực lên f2 chừng nào còn có thể.
+          en: White plays Nf3 or Qe2, preparing to castle and looking for a way to win the f4 pawn back or chase the g4 knight with h3. Black plays Bc5 or Nc6, completing development and keeping the pressure on f2 for as long as it lasts.
+          fr: Les Blancs jouent Nf3 ou Qe2, se préparant à roquer et cherchant un moyen de regagner le pion f4 ou de chasser le cavalier g4 par h3. Les Noirs jouent Bc5 ou Nc6, achevant leur développement et maintenant la pression sur f2 aussi longtemps que possible.
+        basis:
+          by: chan
+          at: '2026-09-18'

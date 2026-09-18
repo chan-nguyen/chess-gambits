@@ -1,0 +1,62 @@
+# King's Gambit Accepted, Bishop's Gambit, Lopez Defense. One of eighteen entries tracked by
+# issue #111 (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4` with
+# `kings-gambit-accepted.yaml` and group G (#110). Defining line ends on White's 3.Bc4
+# (invariant 5). Every move replayed with a scratch chess.js script (deleted before commit).
+#
+# 3...c6 prepares ...d5 with support, a quiet, solid try. The tried continuation named in
+# the evaluation, 4.Nf3 d5, was replayed with a scratch chess.js script (deleted before
+# commit) confirming legality and material at each ply. Under the stricter #107 bar this
+# genuinely does not resolve to a decisive edge for either side at this depth, so the leaf
+# states that plainly instead of forcing a verdict or reverting to `unexplored`.
+id: kings-gambit-accepted-bishops-gambit-lopez-defense
+name: "King's Gambit Accepted: Bishop's Gambit, Lopez Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...c6, Phòng thủ Lopez.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...c6, the Lopez Defense.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...c6, la Défense Lopez.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...c6 — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...c6 — holding the pawn with 3...g5, striking the centre with 3...d5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...c6 — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: c6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Lopez. Đen chuẩn bị ...d5 với sự hỗ trợ của tốt c6, một cách chơi chậm rãi và chắc chắn trước khi tranh chấp trung tâm.
+        en: The Lopez Defense. Black prepares ...d5 with the support of the c6 pawn, a quiet and solid way to get ready before contesting the centre.
+        fr: La Défense Lopez. Les Noirs préparent ...d5 avec l'appui du pion c6, une façon tranquille et solide de se préparer avant de disputer le centre.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Đã thử tiếp 4.Nf3 (phát triển, chuẩn bị O-O) d5 (Đen thách thức trung tâm với sự hỗ trợ của tốt c6), vật chất không đổi và cả hai vua đều chưa nhập thành. Tốt c6 giữ cho d5 không bị đổi ngay, nhưng chưa quân nào của Đen thực sự phát triển ngoài nước chuẩn bị này — đây là một thế cờ cân bằng, còn nhiều việc phải làm cho cả hai bên.
+          en: Black is still exactly one pawn up, the original f4 pawn. Continuing with 4.Nf3 (developing, preparing O-O) d5 (Black challenges the centre with the c6 pawn's support) was tried; material is unchanged and neither king has castled. The c6 pawn keeps d5 from being traded off at once, but Black has not actually developed a piece beyond this preparation — this is a level position with real work left for both sides.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Poursuivre par 4.Nf3 (développement, préparant O-O) d5 (les Noirs défient le centre avec l'appui du pion c6) a été essayé ; le matériel est inchangé et aucun roi n'a roqué. Le pion c6 empêche d5 d'être échangé aussitôt, mais les Noirs n'ont pas encore développé de pièce au-delà de cette préparation — c'est une position égale avec un vrai travail restant pour les deux camps.
+        plan:
+          vi: Trắng chơi exd5 rồi O-O, hoặc giữ căng thẳng trung tâm bằng e5, tìm cách giành lại con tốt f4. Đen ăn lại d5 bằng tốt hoặc hậu tùy vào cách Trắng chọn, rồi phát triển Nf6 và Bd6, tận dụng trung tâm vững chắc để bù cho con tốt còn thiếu.
+          en: White plays exd5 followed by castling, or keeps the central tension with e5, looking for a way to win the f4 pawn back. Black recaptures on d5 with the pawn or the queen depending on White's choice, then develops with Nf6 and Bd6, using the solid centre to make up for the missing pawn.
+          fr: Les Blancs jouent exd5 puis roquent, ou maintiennent la tension centrale par e5, cherchant un moyen de regagner le pion f4. Les Noirs reprennent en d5 avec le pion ou la dame selon le choix des Blancs, puis développent par Nf6 et Bd6, utilisant le centre solide pour compenser le pion manquant.
+        basis:
+          by: chan
+          at: '2026-09-18'

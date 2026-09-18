@@ -1,0 +1,66 @@
+# King's Gambit Accepted, Cunningham Defense. One of eighteen entries tracked by issue #111
+# (group H), sharing the trunk `1.e4 e5 2.f4 exf4 3.Nf3` with `kings-gambit-accepted.yaml`
+# and group G (#110). Defining line ends on White's 3.Nf3 (invariant 5). Every move replayed
+# with a scratch chess.js script (deleted before commit).
+#
+# 3...Be7 is a respected, sharp defense: the bishop develops with the immediate point of
+# ...Bh4+ next, forcing concessions. That follow-up leads into genuinely sharp, well-studied
+# "Cunningham Gambit" theory (...Bh4+ g3 fxg3 O-O gxh2+ Kh1) whose forced continuation this
+# review could not certify by hand to the confidence this project requires without an engine
+# — several of the natural-looking tries checked in scratch analysis for this entry turned
+# out, on chess.js replay, to lose material rather than win it, so that sharp theory is
+# named but not modelled further here. The leaf below instead assesses the calm, real
+# position that already exists right after 3...Be7 itself, before either side has committed
+# to the sharp continuation — a genuine `position` assessment, not `unexplored`.
+id: kings-gambit-accepted-cunningham-defense
+name: "King's Gambit Accepted: Cunningham Defense"
+eco: C35
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted.yaml` carries. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa mã ra f3, Gambit Mã Vua. Mục này đi sâu riêng vào 3...Be7, Phòng thủ Cunningham.
+    en: White has just played the knight to f3, the King's Knight Gambit. This entry follows specifically 3...Be7, the Cunningham Defense.
+    fr: Les Blancs viennent de jouer le cavalier en f3, le Gambit du Cavalier du Roi. Cette entrée suit spécifiquement 3...Be7, la Défense Cunningham.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Nf3 bằng một nước khác ngoài 3...Be7 — đánh trung tâm bằng 3...d5, tấn công cánh vua bằng 3...g5, hay phát triển mã bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Nf3 with something other than 3...Be7 — striking the centre with 3...d5, a kingside storm with 3...g5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Nf3 par autre chose que 3...Be7 — une frappe centrale par 3...d5, un assaut à l'aile roi par 3...g5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Be7
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Phòng thủ Cunningham. Đen phát triển tượng với ý đồ cụ thể — nếu Trắng đưa tượng ra c4, Đen có thể chiếu bằng ...Bh4+, buộc Trắng phải nhượng bộ ngay. Đây là một trong những cách đáp trả sắc bén và được đánh giá cao nhất trước Gambit Mã Vua.
+        en: The Cunningham Defense. Black develops the bishop with a concrete point — if White plays the bishop to c4, Black can check with ...Bh4+, forcing an immediate concession. This is one of the sharpest and most respected replies to the King's Knight Gambit.
+        fr: La Défense Cunningham. Les Noirs développent le fou avec une idée concrète — si les Blancs jouent le fou en c4, les Noirs peuvent enchaîner par ...Bh4+, forçant une concession immédiate. C'est l'une des réponses les plus tranchantes et les plus respectées contre le Gambit du Cavalier du Roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen vẫn hơn đúng con tốt f4 ban đầu, và cả hai bên còn nguyên các quân nhẹ. Tượng e7 đã sẵn sàng cho ...Bh4+ ngay khi Trắng đưa tượng ra c4, một đe dọa cụ thể mà Trắng phải để ý tới khi chọn nước 4 — nhưng dòng lý thuyết sắc bén sau đó (...Bh4+ g3 fxg3 O-O gxh2+ Kh1) không được phân tích tiếp ở đây, vì nhiều nước tưởng chừng tự nhiên trong đó lại mất quân khi thử lại bằng chess.js. Ngay tại đây, thế cờ vẫn cân bằng và bình lặng.
+          en: Black is still exactly one pawn up, the original f4 pawn, and both sides have every minor piece on the board. The bishop on e7 is already lined up for ...Bh4+ the moment White plays the bishop to c4, a concrete threat White has to keep in mind when choosing move 4 — but the sharp theory that follows (...Bh4+ g3 fxg3 O-O gxh2+ Kh1) is not analysed further here, since several apparently natural moves in it lost material on chess.js replay. Right here, the position is level and calm.
+          fr: Les Noirs restent exactement un pion devant, le pion f4 initial, et les deux camps conservent toutes leurs pièces mineures. Le fou en e7 est déjà prêt pour ...Bh4+ dès que les Blancs joueront le fou en c4, une menace concrète que les Blancs doivent garder à l'esprit en choisissant leur 4e coup — mais la théorie tranchante qui suit (...Bh4+ g3 fxg3 O-O gxh2+ Kh1) n'est pas analysée davantage ici, car plusieurs coups apparemment naturels y perdaient du matériel une fois rejoués avec chess.js. Ici même, la position est égale et calme.
+        plan:
+          vi: Trắng tránh đưa tượng ra c4 quá sớm, chọn 4.d4 hay 4.Bc4 kèm chuẩn bị kỹ, cân nhắc từng nước để không rơi vào đúng cái bẫy mà Đen đã giăng sẵn. Đen hoàn thiện phát triển bằng Nf6 và O-O, giữ ...Bh4+ như một quân bài dự phòng cho đến khi thời điểm thực sự thuận lợi.
+          en: White avoids playing the bishop to c4 too casually, choosing 4.d4 or a carefully prepared 4.Bc4, weighing each move so as not to walk straight into the trap Black has already set. Black completes development with Nf6 and castling, keeping ...Bh4+ in reserve until the moment is genuinely favourable.
+          fr: Les Blancs évitent de jouer le fou en c4 trop négligemment, choisissant 4.d4 ou un 4.Bc4 soigneusement préparé, pesant chaque coup pour ne pas tomber directement dans le piège déjà tendu par les Noirs. Les Noirs achèvent leur développement par Nf6 et le roque, gardant ...Bh4+ en réserve jusqu'au moment réellement favorable.
+        basis:
+          by: chan
+          at: '2026-09-18'
