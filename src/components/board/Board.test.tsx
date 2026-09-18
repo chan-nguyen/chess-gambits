@@ -232,33 +232,29 @@ describe('highlights (AC 6)', () => {
     ).container
 
   /**
-   * #80: only the square the ply *reached* is tinted. A fill behind the square it left is a
-   * surface with nothing standing on it, which is what made an empty square read as
-   * occupied. Read off the class attribute in full rather than by the absence of one name,
-   * so a differently-spelled tint fails here too.
+   * 2026-09-18: both squares of the last ply are tinted and neither carries a ring any
+   * more. Read off the class attribute in full rather than by the presence of one name, so
+   * a differently-spelled tint fails here too.
    */
-  it('tints the square a ply reached, and leaves the one it left its own wood', () => {
+  it('tints the square a ply left and the square it reached, differently from each other', () => {
     const container = highlighted()
+    expect(container.querySelectorAll('.board__square--from')).toHaveLength(1)
     expect(container.querySelectorAll('.board__square--to')).toHaveLength(1)
 
     // e2 is the square this ply left: file e is x=4, rank 2 is y=6, so 6 * 8 + 4.
     const left = container.querySelectorAll('.board__square')[52]
-    expect(left?.getAttribute('class')).toBe('board__square board__square--light')
+    expect(left?.getAttribute('class')).toBe(
+      'board__square board__square--light board__square--from',
+    )
   })
 
-  // The binding rule: colour is never the only signal (design-system.md §2).
-  it('gives every highlight a border or a shape as well as a tint', () => {
+  it('draws no ring or border on either square — a tint is the whole signal', () => {
     const container = highlighted()
-    // The square a ply left is dashed; the square it reached is solid.
-    const from = container.querySelector('.board__last-ply--from')
-    const to = container.querySelector('.board__last-ply--to')
-    expect(from?.tagName).toBe('rect')
-    expect(to?.tagName).toBe('rect')
-    expect(from?.getAttribute('class')).not.toBe(to?.getAttribute('class'))
+    expect(container.querySelectorAll('.board__last-ply')).toHaveLength(0)
 
-    // Check is a disc, not a fourth tinted square.
+    // Check is still a disc, not a fifth tinted square.
     expect(container.querySelectorAll('circle.board__check')).toHaveLength(1)
-    // A mark is a ring, a different shape again.
+    // A mark is still a ring, a different shape again.
     expect(container.querySelectorAll('circle.board__mark')).toHaveLength(2)
   })
 
@@ -280,7 +276,8 @@ describe('highlights (AC 6)', () => {
 
   it('renders nothing extra when nothing is highlighted', () => {
     const { container } = render(<Board fen={START} labels={VIETNAMESE_LABELS} />)
-    expect(container.querySelectorAll('.board__last-ply')).toHaveLength(0)
+    expect(container.querySelectorAll('.board__square--from')).toHaveLength(0)
+    expect(container.querySelectorAll('.board__square--to')).toHaveLength(0)
     expect(container.querySelectorAll('.board__check')).toHaveLength(0)
     expect(container.querySelectorAll('.board__mark')).toHaveLength(0)
   })

@@ -59,15 +59,15 @@ test.describe('the replies at a branch point', () => {
 
     const marks = await page.evaluate(() =>
       [...document.querySelectorAll('.choice-link .board-preview')].map((preview) => {
-        const square = (ring: Element | null): string => {
-          if (ring === null) return ''
-          const x = Math.round(Number(ring.getAttribute('x')) - 0.06)
-          const y = Math.round(Number(ring.getAttribute('y')) - 0.06)
+        const square = (tinted: Element | null): string => {
+          if (tinted === null) return ''
+          const x = Math.round(Number(tinted.getAttribute('x')))
+          const y = Math.round(Number(tinted.getAttribute('y')))
           return `${'abcdefgh'[x] ?? '?'}${8 - y}`
         }
         return [
-          square(preview.querySelector('.board__last-ply--from')),
-          square(preview.querySelector('.board__last-ply--to')),
+          square(preview.querySelector('.board__square--from')),
+          square(preview.querySelector('.board__square--to')),
         ].join('-')
       }),
     )
