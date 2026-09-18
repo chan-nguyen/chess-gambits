@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are one hundred and five of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred and nine of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -138,6 +138,8 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'latvian-gambit-accepted',
       'legals-mate',
       'lion-defense-anti-philidor-lions-cave-lion-claw-gambit',
+      'mexican-defense-horsefly-gambit',
+      'mikenas-defense-pozarek-gambit',
       'modern-defense-lizard-defense-pirc-diemer-gambit',
       'mortimer-trap',
       'nimzo-indian-defense-dilworth-gambit',
@@ -148,6 +150,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'owen-defense-naselwaus-gambit',
       'petrovs-defense-stafford-gambit',
       'philidor-defense-lopez-countergambit',
+      'pirc-defense-roscher-gambit',
       'polish-defense-spassky-gambit-accepted',
       'polish-opening-birmingham-gambit',
       'ponziani-opening-ponziani-countergambit',
@@ -157,6 +160,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'queens-pawn-game-zurich-gambit',
       'rat-defense-english-rat-lisbon-gambit',
       'reti-opening-zilbermints-gambit',
+      'richter-veresov-attack-malich-gambit',
       'ruy-lopez-schliemann-defense',
       'scandinavian-defense-zilbermints-gambit',
       'scotch-game-goring-gambit',

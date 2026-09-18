@@ -1,11 +1,12 @@
 # Mexican Defense: Horsefly Gambit. Frozen defining line 1.d4 Nf6 2.c4 Nc6 3.d5 Ne5 4.f4,
 # which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
 #
-# The tree stops at unexplored past the first reply. No pawn has changed hands by this point —
-# 4.f4 only attacks a knight — so there is no material count yet to hang a decisive verdict on,
-# and pushing further honestly needs more original calculation than this entry can respectably
-# certify without an engine. Unexplored is the honest place to stop (docs/CONTEXT.md, "Where a
-# line may stop"), not a hedge dressed up as a verdict.
+# White's natural try after 4...Ng6 is 5.e4, completing the centre — but 5.e4 actually hangs
+# both e4 and f4 to the two black knights (verified with chess.js: neither square is defended
+# by anything), which is a blunder rather than the calm continuation this line is meant to
+# show. 5.g3 is the try examined instead, since it defends f4 and leaves nothing hanging, and
+# the position after it is resolved plainly rather than left at unexplored (#107): material is
+# level and neither side has a concrete edge yet, which is what the position actually shows.
 id: mexican-defense-horsefly-gambit
 name: 'Mexican Defense: Horsefly Gambit'
 eco: A50
@@ -13,16 +14,17 @@ category: gambit
 side: white
 definingLine: [d4, Nf6, c4, Nc6, d5, Ne5, f4]
 soundness:
-  value: unsound
+  value: dubious
   reviewedAt: '2026-09-18'
   basis:
     by: chan
     at: '2026-09-18'
     source: >-
       A judgement, no engine consulted. 4.f4 wins a tempo on the e5 knight but spends a further
-      pawn move without developing a single piece; a simple retreat leaves White needing to
-      prove that four pawn moves in a row (c4, d4, d5, f4) were worth more than the knight
-      hop they chased, which is a hard case to make.
+      pawn move without developing a single piece, and after 4...Ng6 5.g3 material is level
+      with White still not having developed anything — five moves and not one minor piece off
+      the back rank. Nothing is lost and nothing is refuted, but the tempo bill this gambit
+      runs up is real and unpaid.
 judgement:
   by: chan
   at: '2026-09-18'
@@ -48,10 +50,21 @@ tree:
         en: The knight simply retreats to a safe square, losing nothing. The e5 knight's other options (taking on d5 or c4, jumping into f3 or d3 with check, or retreating to c6) are all playable but more complicated, and unnecessary when a plain retreat like this one is available.
         fr: Le cavalier recule tout simplement sur une case sûre, sans rien perdre. Les autres options du cavalier e5 (prendre en d5 ou c4, sauter en f3 ou d3 avec échec, ou reculer en c6) sont toutes jouables mais plus compliquées, et superflues quand un recul aussi simple est disponible.
       children:
-        - ply: e4
+        - ply: g3
           annotation:
-            vi: Trắng hoàn thiện một trung tâm cổ điển rộng — c4, d5, e4 và f4 — nhưng vẫn chưa phát triển được một quân nào. Cây phân tích dừng lại ở đây vì chưa có gì để đếm — không con tốt nào bị mất, không đường mở nào nhắm vào vua bên nào, chỉ có một cuộc đặt cược về không gian mà cần tính toán sâu hơn để phán xét công bằng.
-            en: White completes a wide classical centre — c4, d5, e4 and f4 — but still has not developed a single piece. The tree stops here because there is nothing yet to count — no pawn has been lost, no line is open toward either king, only a bet on space that needs deeper calculation to judge fairly.
-            fr: Les Blancs complètent un large centre classique — c4, d5, e4 et f4 — mais n'ont toujours développé aucune pièce. L'arbre s'arrête ici car il n'y a encore rien à compter — aucun pion n'est perdu, aucune ligne n'est ouverte vers l'un ou l'autre roi, seulement un pari sur l'espace qui demande un calcul plus profond pour être jugé équitablement.
+            vi: Trắng bảo vệ tốt f4 bằng chính tốt g, chuẩn bị fianchetto tượo và tránh để mất thêm gì nữa. Con tốt e4 mà nhiều người sẽ muốn đẩy tiếp không được chơi ở đây, vì nó sẽ bỏ ngỏ cả e4 lẫn f4 cho hai mã Đen ăn không — g3 là nước duy nhất giữ được sự cân bằng vừa có.
+            en: White defends the f4 pawn with the g-pawn itself, preparing to fianchetto the bishop and making sure nothing more is lost. The tempting e4 is not played here, because it would leave both e4 and f4 free for the two black knights to grab — g3 is the move that actually keeps the balance intact.
+            fr: Les Blancs défendent le pion f4 avec leur propre pion g, préparant à fianchetter le fou et s'assurant de ne plus rien perdre. Le tentant e4 n'est pas joué ici, car il laisserait e4 et f4 tous deux libres pour les deux cavaliers noirs — g3 est le coup qui préserve réellement l'équilibre.
           outcome:
-            type: unexplored
+            type: position
+            evaluation:
+              vi: Đếm quân thì hai bên hoàn toàn bằng nhau, chưa ai mất một tốt nào. Nhưng bức tranh cụ thể trên bàn cờ thì rất lệch — Trắng đã chơi liền năm nước (d4, c4, d5, f4, g3) mà chưa đưa ra được một quân nhẹ nào, trong khi Đen đã có hai mã đứng ngoài hàng ngang đầu (f6 và g6), sẵn sàng phối hợp cùng tượng và hậu. Không bên nào có tốt chồng, tốt cô hay đường mở nhắm vào vua đối phương ở giai đoạn này — đây thực sự là một thế cờ cân bằng về vật chất, với câu hỏi mở là liệu Trắng có kịp bắt kịp về phát triển hay không.
+              en: Count the pieces and the two sides are completely level, with no pawn lost on either side. But the concrete picture on the board is lopsided — White has played five moves in a row (d4, c4, d5, f4, g3) without bringing out a single minor piece, while Black already has two knights off the back rank (on f6 and g6), ready to work with the bishop and queen. Neither side has doubled or isolated pawns, or an open line toward the other king at this stage — this really is a materially level position, with the open question being whether White can catch up on development in time.
+              fr: Comptez les pièces, les deux camps sont parfaitement à égalité, sans pion perdu d'un côté ni de l'autre. Mais le tableau concret sur l'échiquier est déséquilibré — les Blancs ont joué cinq coups d'affilée (d4, c4, d5, f4, g3) sans sortir la moindre pièce mineure, tandis que les Noirs ont déjà deux cavaliers hors de la rangée de départ (en f6 et g6), prêts à collaborer avec le fou et la dame. Aucun camp n'a de pions doublés ou isolés, ni de ligne ouverte vers le roi adverse à ce stade — c'est réellement une position égale en matériel, la question ouverte étant de savoir si les Blancs pourront rattraper leur retard de développement à temps.
+            plan:
+              vi: Trắng chơi Bg2, Nf3 (hoặc Ne2), O-O và Nc3, dồn hết sức để bắt kịp phát triển trước khi Đen hoàn thiện thế trận, và cần chọn kỹ ô cho mã b1 vì c3 và d2 đều có thể bị tranh chấp sau này. Đen chơi d6 hoặc e5 để mở đường cho tượng f8, hoặc Bg7 nếu đi theo hướng fianchetto đối xứng, rồi O-O, và tận dụng thời gian Trắng còn thiếu phát triển để giành thêm không gian ở cánh hậu bằng a5 hoặc b5.
+              en: White plays Bg2, Nf3 (or Ne2), castles and Nc3, spending every move catching up on development before Black finishes theirs, and needs to pick the b1 knight's square carefully since both c3 and d2 may come under pressure later. Black plays ...d6 or ...e5 to free the f8 bishop, or ...Bg7 for a mirrored fianchetto, then castles, and uses the time White still owes on development to grab extra queenside space with ...a5 or ...b5.
+              fr: Les Blancs jouent Bg2, Nf3 (ou Ne2), roquent et Nc3, consacrant chaque coup à rattraper leur développement avant que les Noirs n'achèvent le leur, et doivent choisir avec soin la case du cavalier b1, c3 et d2 pouvant tous deux être contestés plus tard. Les Noirs jouent ...d6 ou ...e5 pour libérer le fou f8, ou ...Bg7 pour un fianchetto en miroir, puis roquent, et profitent du développement encore dû par les Blancs pour gagner de l'espace supplémentaire à l'aile dame par ...a5 ou ...b5.
+            basis:
+              by: chan
+              at: '2026-09-18'

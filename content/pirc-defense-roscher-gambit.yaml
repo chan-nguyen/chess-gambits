@@ -1,11 +1,11 @@
 # Pirc Defense: Roscher Gambit. Frozen defining line 1.e4 d6 2.d4 Nf6 3.Nf3, which ends on
 # White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
 #
-# The tree stops at unexplored past the first reply. No material has changed hands within this
-# defining line or its first continuation — 4.e5 is a pawn push attacking a knight, not yet a
-# sacrifice — so there is nothing to hang a decisive verdict on this early, and the named
-# "gambit" idea plainly runs deeper than this entry maps. Unexplored is the honest place to
-# stop (docs/CONTEXT.md, "Where a line may stop").
+# No material has changed hands within this defining line or its first continuation — 4.e5 is
+# a pawn push attacking a knight, not yet a sacrifice — and it stays that way at the leaf
+# below: material is level and the position is resolved plainly as such (#107) rather than
+# left at unexplored, since a level material count with the position's few concrete features
+# named is a real answer, not a hedge.
 id: pirc-defense-roscher-gambit
 name: 'Pirc Defense: Roscher Gambit'
 eco: B00
@@ -13,15 +13,17 @@ category: gambit
 side: white
 definingLine: [e4, d6, d4, Nf6, Nf3]
 soundness:
-  value: unsound
+  value: dubious
   reviewedAt: '2026-09-18'
   basis:
     by: chan
     at: '2026-09-18'
     source: >-
-      A judgement, no engine consulted, and an early one at that: 3.Nf3 has not yet committed
-      any material, so nothing here has been tested against Black's most natural reply,
-      which is the whole reason this entry stops at unexplored rather than guessing.
+      A judgement, no engine consulted, and a modest one at that: nothing has been sacrificed
+      by the point this entry stops looking, and after 3...g6 4.e5 the material count is
+      exactly level with no concrete feature yet favouring either side — "unsound" describes
+      a gambit that loses material or the initiative it paid for, and this one has not done
+      either at this depth.
 judgement:
   by: chan
   at: '2026-09-18'
@@ -49,8 +51,19 @@ tree:
       children:
         - ply: e5
           annotation:
-            vi: Đây là nước mang tên "gambit" — Trắng đẩy tốt tấn công thẳng vào mã f6, chưa thí quân gì cả mà chỉ giành nhịp bằng cách đuổi quân. Cây phân tích dừng lại ở đây, vì câu hỏi thật của cả biến này là mã Đen sẽ lùi đi đâu và liệu con tốt e5 có trở thành đối tượng bị tấn công về sau hay không, một câu hỏi cần được xem xét sâu hơn phạm vi mục này.
-            en: This is the move that gives the line its "gambit" name — White pushes the pawn to attack the f6 knight directly, without offering any material yet, only gaining a tempo by chasing a piece. The tree stops here, since the real question of this whole variation is where the knight retreats to and whether the e5 pawn later becomes a target itself, a question that needs more depth than this entry covers.
-            fr: C'est le coup qui donne son nom de « gambit » à la ligne — les Blancs poussent le pion pour attaquer directement le cavalier f6, sans encore rien offrir en matériel, gagnant seulement un temps en chassant une pièce. L'arbre s'arrête ici, la vraie question de toute cette variante étant de savoir où recule le cavalier et si le pion e5 devient plus tard lui-même une cible, une question qui demande plus de profondeur que n'en couvre cette entrée.
+            vi: Đây là nước mang tên "gambit" — Trắng đẩy tốt tấn công thẳng vào mã f6, chưa thí quân gì cả mà chỉ giành nhịp bằng cách đuổi quân. Mã Đen phải quyết định ngay, lùi đi hay đổi ở e5.
+            en: This is the move that gives the line its "gambit" name — White pushes the pawn to attack the f6 knight directly, without offering any material yet, only gaining a tempo by chasing a piece. The knight has to decide at once, retreat or trade on e5.
+            fr: C'est le coup qui donne son nom de « gambit » à la ligne — les Blancs poussent le pion pour attaquer directement le cavalier f6, sans encore rien offrir en matériel, gagnant seulement un temps en chassant une pièce. Le cavalier doit décider tout de suite, reculer ou échanger en e5.
           outcome:
-            type: unexplored
+            type: position
+            evaluation:
+              vi: Đếm quân thì hai bên hoàn toàn bằng nhau, chưa có con tốt nào bị mất — con tốt e5 vẫn được mã f3 bảo vệ nên đổi ở đó (dxe5 Nxe5) cũng không đổi được gì về vật chất. Đen chưa kịp hoàn thành fianchetto (tượng f8 còn ở nhà dù đã chơi g6), còn Trắng đã đẩy tốt lên e5 và d4, chiếm không gian trung tâm nhưng cũng chưa phát triển tượng hay nhập thành. Không bên nào có tốt chồng, tốt cô hay đường mở nhắm vào vua đối phương ở đây — đây thực sự là một thế cờ cân bằng, và câu hỏi mở duy nhất là con mã f6 sẽ đứng ở đâu.
+              en: Count the pieces and the two sides are completely level, with no pawn lost anywhere — the e5 pawn is still defended by the f3 knight, so trading there (dxe5 Nxe5) would not change the material picture either. Black has not finished the fianchetto yet (the f8 bishop is still at home despite ...g6), while White has pushed pawns to e5 and d4 for central space but has not developed a bishop or castled either. Neither side has doubled or isolated pawns, or an open line toward the other king here — this really is a level position, and the one open question is where the f6 knight ends up.
+              fr: Comptez les pièces, les deux camps sont parfaitement à égalité, aucun pion n'est perdu nulle part — le pion e5 est toujours défendu par le cavalier f3, échanger là (dxe5 Nxe5) ne changerait donc rien au tableau matériel. Les Noirs n'ont pas encore terminé leur fianchetto (le fou f8 est toujours chez lui malgré ...g6), tandis que les Blancs ont poussé leurs pions en e5 et d4 pour l'espace central mais n'ont pas non plus développé de fou ni roqué. Aucun camp n'a de pions doublés ou isolés, ni de ligne ouverte vers le roi adverse ici — c'est réellement une position égale, et la seule question ouverte est de savoir où finira le cavalier f6.
+            plan:
+              vi: Trắng chơi Bc4 hoặc Bb5+, O-O và Re1, cố dùng con tốt e5 tiến xa để hạn chế Đen trong khi hoàn thiện phát triển. Đen chơi Nfd7 hoặc Ng4 lùi mã, rồi Bg7 hoàn thành fianchetto, O-O, và tìm cách phá con tốt e5 bằng ...c5 hoặc ...f6 đúng lúc để giành lại không gian trung tâm.
+              en: White plays Bc4 or Bb5+, castles and Re1, trying to use the advanced e5 pawn to cramp Black while finishing development. Black plays ...Nfd7 or ...Ng4 to retreat the knight, then ...Bg7 to finish the fianchetto, castles, and looks to challenge the e5 pawn with ...c5 or ...f6 at the right moment to win back central space.
+              fr: Les Blancs jouent Bc4 ou Bb5+, roquent et Re1, tentant d'utiliser le pion e5 avancé pour gêner les Noirs tout en achevant leur développement. Les Noirs jouent ...Nfd7 ou ...Ng4 pour reculer le cavalier, puis ...Bg7 pour achever le fianchetto, roquent, et cherchent à contester le pion e5 par ...c5 ou ...f6 au bon moment pour regagner de l'espace central.
+            basis:
+              by: chan
+              at: '2026-09-18'

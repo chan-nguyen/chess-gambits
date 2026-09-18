@@ -5,10 +5,11 @@
 # on the taught side's own move, which fixes which side this entry teaches regardless of how
 # the source dataset happened to label the variation.
 #
-# The tree stops at unexplored past the first reply. White has a real development lead (Nc3,
-# about to play e4) for the pawn Black has grabbed, and judging whether that lead is enough
-# compensation needs more original calculation than this entry can responsibly certify without
-# an engine — see docs/CONTEXT.md, "Where a line may stop".
+# White has a real development lead (Nc3, e4) for the pawn Black has grabbed, but "real lead"
+# is not the same as "shown compensation" — nothing concrete (no open line at the black king,
+# no immediate threat) has actually appeared on the board by the point this entry stops
+# looking, so the leaf below names what is actually there (a clean extra pawn) rather than
+# crediting White with an edge that has not yet materialised.
 id: mikenas-defense-pozarek-gambit
 name: 'Mikenas Defense: Pozarek Gambit'
 eco: A40
@@ -53,8 +54,19 @@ tree:
       children:
         - ply: Nb6
           annotation:
-            vi: Mã lùi về một ô an toàn và vẫn giữ được con tốt đã ăn. Trắng giờ có trung tâm c4 (đã mất) đổi lấy e4 và Nc3, một quyền phát triển nhanh thật sự chứ không phải suông. Cây phân tích dừng lại ở đây, vì phán xét xem quyền phát triển ấy có đủ bù cho một tốt hay không cần tính toán sâu hơn mức có thể làm một cách nghiêm túc ở đây mà không có sự trợ giúp của máy.
-            en: The knight retreats to a safe square and keeps the pawn it grabbed. White now has e4 and Nc3 in place of the lost c4 pawn — a real development lead, not an empty one. The tree stops here, because judging whether that lead is worth a full pawn needs deeper calculation than can be responsibly done here without engine help.
-            fr: Le cavalier recule sur une case sûre et garde le pion gagné. Les Blancs disposent désormais de e4 et Nc3 à la place du pion c4 perdu — une réelle avance de développement, pas une avance creuse. L'arbre s'arrête ici, car juger si cette avance vaut un plein pion demande un calcul plus profond que ce qui peut être fait ici de façon sérieuse sans l'aide d'un moteur.
+            vi: Mã lùi về một ô an toàn và vẫn giữ được con tốt đã ăn. Trắng giờ có trung tâm c4 (đã mất) đổi lấy e4 và Nc3, một quyền phát triển nhanh thật sự chứ không phải suông — nhưng vẫn chỉ là tiềm năng cho tới khi nó tạo ra được điều gì đó cụ thể.
+            en: The knight retreats to a safe square and keeps the pawn it grabbed. White now has e4 and Nc3 in place of the lost c4 pawn — a real development lead, not an empty one — but it is still only potential until it produces something concrete.
+            fr: Le cavalier recule sur une case sûre et garde le pion gagné. Les Blancs disposent désormais de e4 et Nc3 à la place du pion c4 perdu — une réelle avance de développement, pas une avance creuse — mais ce n'est encore qu'un potentiel tant qu'elle n'a rien produit de concret.
           outcome:
-            type: unexplored
+            type: position
+            evaluation:
+              vi: Đen hơn đúng một tốt sạch — tốt c4 ăn được từ nước bốn và chưa hề bị đòi lại, mã đã về chỗ an toàn ở b6. Đổi lại, Trắng có tốt e4 và mã c3 kiểm soát trung tâm tốt hơn, còn Đen mới chỉ phát triển đúng một mã (dù đã đi ba lần) và chưa động đến tượng hay nhập thành. Nhưng đó chỉ là tiềm năng — chưa có đường mở nào nhắm vào vua Đen, chưa có quân nào bị ghim hay bị đe doạ, và Đen hoàn toàn có thể bắt kịp phát triển ở những nước tiếp theo. Một tốt sạch cộng với một khoảng cách phát triển chưa gây ra hậu quả gì là bức tranh trung thực nhất ở đây.
+              en: Black is a clean pawn up — the c4 pawn taken on move four and never recovered, with the knight now safely home on b6. In return, White's e4 pawn and c3 knight hold the centre better, and Black has developed only one piece so far (even after three of its moves) with the bishops and castling still to come. But that is only potential — no line is open toward the black king, nothing is pinned or under threat, and Black can perfectly well catch up on development over the next few moves. A clean pawn plus a development gap that has not yet caused any actual damage is the honest picture here.
+              fr: Les Noirs ont un pion net d'avance — le pion c4 pris au quatrième coup et jamais repris, le cavalier étant désormais en sécurité en b6. En échange, le pion e4 et le cavalier c3 blancs tiennent mieux le centre, et les Noirs n'ont développé qu'une seule pièce jusqu'ici (même après trois de ses coups), les fous et le roque restant à venir. Mais ce n'est qu'un potentiel — aucune ligne n'est ouverte vers le roi noir, rien n'est cloué ni menacé, et les Noirs peuvent parfaitement rattraper leur développement dans les coups suivants. Un pion net plus un retard de développement qui n'a encore causé aucun dommage réel, voilà le tableau honnête ici.
+            plan:
+              vi: Trắng chơi Nf3, Bc4 hoặc Be2, O-O và Re1, cố dùng lợi thế phát triển để gây sức ép trước khi Đen kịp hoàn thiện, và có thể nhắm vào con mã b6 hơi lệch bằng a4-a5 sau này. Đen chơi e6 hoặc g6 để đưa tượng ra, d6 nếu cần, rồi O-O, và chỉ cần hoàn thiện phát triển an toàn để con tốt thừa bắt đầu có ý nghĩa về sau — không có gì bắt buộc phải phòng thủ ngay lập tức.
+              en: White plays Nf3, Bc4 or Be2, castles and Re1, trying to use the development edge for pressure before Black finishes catching up, and may later aim at the slightly offside b6 knight with a4-a5. Black plays ...e6 or ...g6 to bring out the bishop, ...d6 if needed, then castles, and only needs to finish development safely for the extra pawn to start counting later — there is nothing urgent to defend against yet.
+              fr: Les Blancs jouent Nf3, Bc4 ou Be2, roquent et Re1, tentant d'exploiter leur avance de développement pour faire pression avant que les Noirs ne rattrapent leur retard, et peuvent viser plus tard le cavalier b6 légèrement excentré par a4-a5. Les Noirs jouent ...e6 ou ...g6 pour sortir le fou, ...d6 si nécessaire, puis roquent, et n'ont qu'à achever leur développement en sécurité pour que le pion supplémentaire commence à compter plus tard — rien d'urgent à défendre pour l'instant.
+            basis:
+              by: chan
+              at: '2026-09-18'
