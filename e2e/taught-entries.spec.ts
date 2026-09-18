@@ -45,6 +45,7 @@ const taught = content.entries
     return {
       id: entry.id,
       name: entry.name,
+      eco: entry.eco,
       tree: compiled.tree,
       leaves: countableBranches(compiled.tree).map(
         (key) => parseLine(decodeURIComponent(key)).plies,
@@ -205,12 +206,15 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
        * `src/components/catalogue/filter.ts`) — a ceiling the taught tier itself crossed
        * once #110 landed, and will cross again as more entries are taught, so relying on it
        * here would make this test's passing depend on how much content happens to exist
-       * rather than on whether the entry is reachable. Typing the entry's own name into the
-       * search box narrows the match count to (at most) a handful, which is always under
-       * the limit regardless of how large the taught tier grows, and is also a more
-       * realistic way for a visitor to find one specific gambit than scrolling every family.
+       * rather than on whether the entry is reachable. Searching by the entry's own ECO
+       * code narrows the match count to (at most) a few dozen, comfortably under the
+       * limit regardless of how large the taught tier grows — and, unlike the entry's
+       * name, the ECO code is not translated, so it matches on every locale this test
+       * might run against. (A name-based search does not: this page renders in Vietnamese,
+       * where 'Lasker Trap' displays as 'Bẫy Lasker', and a search for the English content
+       * name against a Vietnamese-only haystack returns nothing.)
        */
-      await page.goto(cataloguePath)
+      await page.goto(`${cataloguePath}?q=${encodeURIComponent(entry.eco)}`)
       /*
        * Waited for by the result count rather than by the heading. The catalogue payload
        * is a separate request, and the heading is on the page before any of it has
@@ -219,8 +223,6 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
        * empty list is a payload that did not arrive, not a catalogue with nothing in it.
        */
       await expect(page.getByRole('main').getByRole('status')).toContainText(/Đang hiện [1-9]/)
-
-      await page.getByRole('searchbox').fill(entry.name)
 
       const card = page
         .getByRole('main')
