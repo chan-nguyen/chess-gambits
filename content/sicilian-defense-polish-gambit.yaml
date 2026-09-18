@@ -1,0 +1,80 @@
+# Sicilian Defense: Polish Gambit. Frozen defining line 1.e4 c5 2.Nf3 b5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+id: sicilian-defense-polish-gambit
+name: 'Sicilian Defense: Polish Gambit'
+eco: B27
+category: gambit
+side: black
+definingLine: [e4, c5, Nf3, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, no engine consulted. The b5 pawn is simply undefended, so 3.Bxb5 just wins
+      it; ...Bb7 gives Black a long diagonal but White defends e4 with a normal developing move
+      and nothing about Black's position makes up for the missing pawn.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi ...b5 ngay ở nước thứ hai, thí một tốt để mở đường chéo cho tượng c8 ra b7 và giành không gian bên cánh hậu. Đây là Polish Gambit của Khai cuộc Sicilia.
+    en: Black plays ...b5 on move two, offering a pawn to open the diagonal for the c8 bishop on b7 and grab queenside space. This is the Sicilian Polish Gambit.
+    fr: Les Noirs jouent ...b5 dès le second coup, offrant un pion pour ouvrir la diagonale au fou c8 en b7 et gagner de l'espace à l'aile dame. C'est le Gambit polonais de la Sicilienne.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt b5. Con tốt này chưa được ai bảo vệ, nên mọi nước khác của Trắng (phát triển bình thường, chơi e5, v.v.) đều bỏ lỡ cơ hội ăn không một tốt — vẫn hợp lý về mặt chơi cờ nhưng không kiểm tra được điều gambit này thật sự đặt cược vào.
+      en: White does not take the b5 pawn. It is undefended, so any other White move (normal development, e5, and so on) simply passes up a free pawn — still a reasonable way to play, but it does not test what this gambit is actually betting on.
+      fr: Les Blancs ne prennent pas le pion b5. Il n'est défendu par personne, si bien que tout autre coup blanc (développement normal, e5, etc.) laisse passer un pion gratuit — cela reste raisonnable, mais ne teste pas ce sur quoi ce gambit mise réellement.
+  children:
+    - ply: Bxb5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt tự do. Đây là cách kiểm tra thật sự của gambit này, vì con tốt b5 không có ai đỡ.
+        en: White simply takes the free pawn. This is the real test of the gambit, since nothing defends b5.
+        fr: Les Blancs prennent simplement le pion, qui n'est défendu par rien. C'est le vrai test du gambit.
+      children:
+        - ply: Bb7
+          annotation:
+            vi: Đen đặt tượng lên đường chéo dài, nhắm thẳng vào tốt e4. Đây là toàn bộ ý tưởng đằng sau con tốt đã thí.
+            en: Black puts the bishop on the long diagonal, aiming straight at the e4 pawn. This is the whole idea behind the pawn just given up.
+            fr: Les Noirs placent le fou sur la grande diagonale, visant directement le pion e4. C'est toute l'idée derrière le pion abandonné.
+          dismissRest:
+            reason:
+              vi: Trắng không chơi Nc3. Các nước khác (đưa tượng đi nơi khác, đẩy tốt trung tâm, đưa hậu ra) đều không bảo vệ tốt e4 một cách trực tiếp và tự nhiên như Nc3, nên chúng không cần xét riêng — kết luận về con tốt thừa vẫn giữ nguyên dù Trắng chọn cách phát triển nào.
+              en: White does not play Nc3. The other tries (moving the bishop elsewhere, pushing a central pawn, bringing the queen out) do not defend e4 as directly and naturally as Nc3, so they do not need separate treatment — the conclusion about the extra pawn holds whichever way White chooses to develop.
+              fr: Les Blancs ne jouent pas Nc3. Les autres essais (déplacer le fou ailleurs, avancer un pion central, sortir la dame) ne défendent pas e4 aussi directement et naturellement que Nc3, ils n'ont donc pas besoin d'un traitement séparé — la conclusion sur le pion supplémentaire tient quel que soit le développement choisi par les Blancs.
+          children:
+            - ply: Nc3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng bảo vệ tốt e4 bằng một nước phát triển bình thường. Đường chéo của tượng Đen coi như đã bị chặn hoàn toàn.
+                en: White simply defends e4 with a normal developing move. Black's bishop diagonal is now fully neutralised.
+                fr: Les Blancs défendent tout simplement e4 par un coup de développement normal. La diagonale du fou noir est désormais totalement neutralisée.
+              children:
+                - ply: e6
+                  annotation:
+                    vi: Đen chuẩn bị đưa tượng và mã ra, chấp nhận thế cờ kém một tốt để đổi lấy sự phát triển thoải mái.
+                    en: Black prepares to bring the bishop and knight out, accepting a pawn deficit in exchange for comfortable development.
+                    fr: Les Noirs se préparent à sortir le fou et le cavalier, acceptant un déficit de pion contre un développement confortable.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng hơn đúng một tốt sạch, không có gì phải trả lại — con tốt b5 đã ăn từ nước thứ ba và tốt e4 đã được mã c3 bảo vệ chắc chắn. Trắng đã phát triển tượng và mã, sẵn sàng nhập thành; Đen mới đưa được tượng ra b7 và tốt e6, tức là ngang bằng về nhịp phát triển chứ không hề vượt lên. Đường chéo dài của tượng Đen — lý do duy nhất để thí con tốt — hiện bị chính mã c3 của Trắng chặn đứng và không tạo ra mối đe doạ nào.
+                      en: White is a clean pawn up with nothing to give back — the b5 pawn taken on move three, and the e4 pawn now solidly held by the c3 knight. White has developed a bishop and a knight and is ready to castle; Black has managed only the bishop on b7 and the ...e6 pawn move, which is even in tempo rather than ahead. The long diagonal — the only reason for giving up the pawn — is blocked by White's own c3 knight and creates no threat at all.
+                      fr: Les Blancs ont un pion net d'avance et rien à rendre — le pion b5 pris au troisième coup, et le pion e4 solidement tenu par le cavalier c3. Ils ont développé un fou et un cavalier et sont prêts à roquer ; les Noirs n'ont réussi qu'à sortir le fou en b7 et à jouer ...e6, ce qui est égal en temps et non en avance. La grande diagonale — seule raison d'avoir cédé le pion — est bloquée par le propre cavalier c3 des Blancs et ne crée aucune menace.
+                    plan:
+                      vi: Trắng chơi Nf3, d3 hoặc d4, nhập thành và hoàn thiện phát triển, giữ nguyên con tốt thừa và chỉ cần tránh những đòn phối hợp rẻ tiền trên đường chéo dài. Đen chơi Nf6, Be7 hoặc d5 tìm cách mở cờ để bù lại phần nào bằng hoạt động của quân, nhưng đây là cố gắng lấy lại thế cân bằng chứ không phải một kế hoạch thắng.
+                      en: White plays Nf3, d3 or d4, castles and finishes development, keeps the extra pawn and only needs to avoid cheap tactics on the long diagonal. Black plays ...Nf6, ...Be7 or ...d5, trying to open the game for some piece activity as partial compensation — but this is a fight to get back to level, not a winning plan.
+                      fr: Les Blancs jouent Nf3, d3 ou d4, roquent et achèvent leur développement, gardent le pion en plus et doivent seulement éviter les combinaisons bon marché sur la grande diagonale. Les Noirs jouent ...Nf6, ...Be7 ou ...d5, cherchant à ouvrir la partie pour un peu d'activité en guise de compensation partielle — mais c'est une lutte pour revenir à l'équilibre, pas un plan gagnant.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

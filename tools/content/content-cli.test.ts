@@ -158,24 +158,41 @@ describe('export-pgn (AC 2)', () => {
         'indian-defense-gibbins-weidenhagen-gambit, irish-gambit, ' +
         'italian-game-blackburne-kostic-gambit, italian-game-evans-gambit, ' +
         'kadas-opening-schneider-gambit, kieninger-trap, kings-gambit, kings-gambit-accepted, ' +
+        'kings-gambit-accepted-basman-gambit, kings-gambit-accepted-bishops-gambit, ' +
+        'kings-gambit-accepted-breyer-gambit, kings-gambit-accepted-carrera-gambit, ' +
+        'kings-gambit-accepted-dodo-variation, kings-gambit-accepted-eisenberg-variation, ' +
+        'kings-gambit-accepted-gaga-gambit, kings-gambit-accepted-kings-knights-gambit, ' +
+        'kings-gambit-accepted-mason-keres-gambit, kings-gambit-accepted-orsini-gambit, ' +
+        'kings-gambit-accepted-paris-gambit, kings-gambit-accepted-schurig-gambit-with-bb5, ' +
+        'kings-gambit-accepted-schurig-gambit-with-bd3, kings-gambit-accepted-stamma-gambit, ' +
+        'kings-gambit-accepted-tartakower-gambit, kings-gambit-accepted-tumbleweed, ' +
+        'kings-gambit-accepted-villemson-gambit, ' +
         'kings-gambit-declined-classical-variation, kings-indian-attack-omega-delta-gambit, ' +
         'kings-indian-defense-samisch-variation-samisch-gambit, kings-pawn-game-bavarian-gambit, ' +
         'kings-pawn-opening-van-hooydoon-gambit, lasker-trap, latvian-gambit, ' +
         'latvian-gambit-accepted, legals-mate, ' +
         'lion-defense-anti-philidor-lions-cave-lion-claw-gambit, ' +
+        'mexican-defense-horsefly-gambit, mikenas-defense-pozarek-gambit, ' +
         'modern-defense-lizard-defense-pirc-diemer-gambit, mortimer-trap, ' +
         'nimzo-indian-defense-dilworth-gambit, nimzo-larsen-attack-norfolk-gambit, ' +
         'nimzowitsch-defense-wheeler-gambit, noahs-ark-trap, old-indian-defense-aged-gibbon-gambit, ' +
         'owen-defense-naselwaus-gambit, petrovs-defense-stafford-gambit, ' +
-        'philidor-defense-lopez-countergambit, polish-opening-birmingham-gambit, ' +
+        'philidor-defense-lopez-countergambit, pirc-defense-roscher-gambit, ' +
+        'polish-defense-spassky-gambit-accepted, polish-opening-birmingham-gambit, ' +
         'ponziani-opening-ponziani-countergambit, portuguese-opening-miguel-gambit, ' +
         'queens-gambit-declined-albin-countergambit, ' +
         'queens-indian-defense-classical-variation-polugaevsky-gambit, ' +
         'queens-pawn-game-zurich-gambit, rat-defense-english-rat-lisbon-gambit, ' +
-        'reti-opening-zilbermints-gambit, ruy-lopez-schliemann-defense, ' +
+        'reti-opening-zilbermints-gambit, richter-veresov-attack-malich-gambit, ' +
+        'ruy-lopez-schliemann-defense, ' +
         'scandinavian-defense-zilbermints-gambit, scotch-game-goring-gambit, ' +
         'scotch-game-scotch-gambit, semi-slav-defense-marshall-gambit, siberian-trap, ' +
-        'sicilian-defense-smith-morra-gambit, slav-defense-diemer-gambit, ' +
+        'sicilian-defense-brussels-gambit, sicilian-defense-euwe-attack-prins-gambit, ' +
+        'sicilian-defense-halasz-gambit, sicilian-defense-morphy-gambit, ' +
+        'sicilian-defense-okelly-variation-wing-gambit, sicilian-defense-polish-gambit, ' +
+        'sicilian-defense-portsmouth-gambit, sicilian-defense-smith-morra-gambit, ' +
+        'sicilian-defense-wing-gambit, slav-defense-diemer-gambit, ' +
+        'sodium-attack-durkin-gambit, st-george-defense-zilbermints-gambit, ' +
         'tarrasch-defense-schara-gambit, torre-attack-wagner-gambit, ' +
         'trompowsky-attack-raptor-variation-hergert-gambit, van-geet-opening-laroche-gambit, ' +
         'vant-kruijs-opening-keoni-hiva-gambit-akahi-variation, ' +
@@ -249,6 +266,23 @@ describe('compile (AC 3)', () => {
       'italian-game-evans-gambit.json',
       'kadas-opening-schneider-gambit.json',
       'kieninger-trap.json',
+      'kings-gambit-accepted-basman-gambit.json',
+      'kings-gambit-accepted-bishops-gambit.json',
+      'kings-gambit-accepted-breyer-gambit.json',
+      'kings-gambit-accepted-carrera-gambit.json',
+      'kings-gambit-accepted-dodo-variation.json',
+      'kings-gambit-accepted-eisenberg-variation.json',
+      'kings-gambit-accepted-gaga-gambit.json',
+      'kings-gambit-accepted-kings-knights-gambit.json',
+      'kings-gambit-accepted-mason-keres-gambit.json',
+      'kings-gambit-accepted-orsini-gambit.json',
+      'kings-gambit-accepted-paris-gambit.json',
+      'kings-gambit-accepted-schurig-gambit-with-bb5.json',
+      'kings-gambit-accepted-schurig-gambit-with-bd3.json',
+      'kings-gambit-accepted-stamma-gambit.json',
+      'kings-gambit-accepted-tartakower-gambit.json',
+      'kings-gambit-accepted-tumbleweed.json',
+      'kings-gambit-accepted-villemson-gambit.json',
       'kings-gambit-accepted.json',
       'kings-gambit-declined-classical-variation.json',
       'kings-gambit.json',
@@ -261,6 +295,8 @@ describe('compile (AC 3)', () => {
       'latvian-gambit.json',
       'legals-mate.json',
       'lion-defense-anti-philidor-lions-cave-lion-claw-gambit.json',
+      'mexican-defense-horsefly-gambit.json',
+      'mikenas-defense-pozarek-gambit.json',
       'modern-defense-lizard-defense-pirc-diemer-gambit.json',
       'mortimer-trap.json',
       'nimzo-indian-defense-dilworth-gambit.json',
@@ -271,6 +307,8 @@ describe('compile (AC 3)', () => {
       'owen-defense-naselwaus-gambit.json',
       'petrovs-defense-stafford-gambit.json',
       'philidor-defense-lopez-countergambit.json',
+      'pirc-defense-roscher-gambit.json',
+      'polish-defense-spassky-gambit-accepted.json',
       'polish-opening-birmingham-gambit.json',
       'ponziani-opening-ponziani-countergambit.json',
       'portuguese-opening-miguel-gambit.json',
@@ -279,14 +317,25 @@ describe('compile (AC 3)', () => {
       'queens-pawn-game-zurich-gambit.json',
       'rat-defense-english-rat-lisbon-gambit.json',
       'reti-opening-zilbermints-gambit.json',
+      'richter-veresov-attack-malich-gambit.json',
       'ruy-lopez-schliemann-defense.json',
       'scandinavian-defense-zilbermints-gambit.json',
       'scotch-game-goring-gambit.json',
       'scotch-game-scotch-gambit.json',
       'semi-slav-defense-marshall-gambit.json',
       'siberian-trap.json',
+      'sicilian-defense-brussels-gambit.json',
+      'sicilian-defense-euwe-attack-prins-gambit.json',
+      'sicilian-defense-halasz-gambit.json',
+      'sicilian-defense-morphy-gambit.json',
+      'sicilian-defense-okelly-variation-wing-gambit.json',
+      'sicilian-defense-polish-gambit.json',
+      'sicilian-defense-portsmouth-gambit.json',
       'sicilian-defense-smith-morra-gambit.json',
+      'sicilian-defense-wing-gambit.json',
       'slav-defense-diemer-gambit.json',
+      'sodium-attack-durkin-gambit.json',
+      'st-george-defense-zilbermints-gambit.json',
       'tarrasch-defense-schara-gambit.json',
       'torre-attack-wagner-gambit.json',
       'trompowsky-attack-raptor-variation-hergert-gambit.json',
