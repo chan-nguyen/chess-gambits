@@ -234,7 +234,8 @@ long a real gambit takes to answer its own question.
 
 ### Provenance
 
-Every claim carries where it came from, and the UI renders the two kinds differently.
+Every claim still carries where it came from, in the compiled data. The UI no longer renders both
+kinds the same way it once did — see the note below.
 
 ```
 Provenance = { basis: 'proved',     by: 'certificate', certificate: <id> }
@@ -252,6 +253,18 @@ where its own claims come from.
 `frequency` is the sharpest case: opening-explorer statistics are deliberately out of scope, so the
 one thing that could make `common | occasional | rare` true is unavailable by design. It is an
 author's impression, and it is labelled as one.
+
+**2026-09-18 — the judgement note removed from the page, at the product owner's explicit request.**
+A mate claim still shows `ProvedNote` — the certificate, and a link to how it was checked. An
+assessment no longer shows `JudgementNote` — the author, the date, and the sentence that says the
+evaluation and plan above it are one person's opinion. The type-level guarantee above this section
+is unchanged: `AssessmentOutcome`'s `basis` prop is still `CompiledJudgement` and still cannot be a
+certificate, so a mate still cannot reach the component that has no proof to show and the compiled
+data still carries who judged an assessment and when — nothing here is deleted, only unrendered.
+What is genuinely given up is the argument two paragraphs up, for exactly the claims it was written
+to cover: an evaluation and a plan now carry the same visual weight as a proof, on the same page,
+with no attribution the learner can see. `AssessmentOutcome.tsx` names the decision at the field
+that still exists but is no longer read.
 
 ### Annotation
 

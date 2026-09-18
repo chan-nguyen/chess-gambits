@@ -32,11 +32,11 @@ export type BoardPreviewProps = {
    * shows none.
    *
    * **Required although it may be undefined**, which is the point (issue #54). `Board` has
-   * carried a complete last-ply highlight — tinted squares, a dashed ring on the square the
-   * ply left and a solid one on the square it reached, tokens in both themes, contrast
-   * checked and unit tested — behind an *optional* prop since #4, and for four waves no
-   * caller passed it, so nothing on the site ever drew one. An optional prop is a decision
-   * a caller can skip without noticing; this one cannot be skipped, only made and stated.
+   * carried a complete last-ply highlight — two tinted squares, tokens in both themes,
+   * contrast checked and unit tested — behind an *optional* prop since #4, and for four
+   * waves no caller passed it, so nothing on the site ever drew one. An optional prop is a
+   * decision a caller can skip without noticing; this one cannot be skipped, only made and
+   * stated.
    */
   readonly lastMove: LastMove | undefined
 }

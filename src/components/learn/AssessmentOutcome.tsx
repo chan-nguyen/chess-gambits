@@ -5,7 +5,6 @@ import { Translated } from '../../i18n/Translated.tsx'
 import type { CompiledAnnotation, CompiledJudgement } from '../../lib/content-types.ts'
 import type { Locale } from '../../lib/locale.ts'
 import { localiseAnnotation, type LocalisedProse } from './annotation.ts'
-import { JudgementNote } from './OutcomeProvenance.tsx'
 
 /**
  * Where a line leaves the learner when the opponent defended (docs/design-system.md §3,
@@ -42,7 +41,17 @@ export type AssessmentOutcomeProps = {
   /**
    * A judgement and never a proof. `CompiledProved` names a mate certificate (ADR-0005), and
    * there is no certificate for "Black is a pawn down with the initiative" — so the type
-   * refuses one here, and this component imports only `JudgementNote` (#45).
+   * refuses one here (#45).
+   *
+   * **Kept in the type and not rendered, as of 2026-09-18.** This component used to render
+   * `JudgementNote` — "Nhận định của người viết", the author and the date — under every
+   * evaluation; the product owner asked for it gone from the page. The type still narrows
+   * `basis` to `CompiledJudgement` rather than widening it back to the full provenance
+   * union, because `outcome-distinction.test.ts` holds a compile-time guarantee on exactly
+   * this narrowing (a mate is still unable to reach this component's props), and because the
+   * data itself — who judged this, and when — is still worth compiling even though nothing
+   * on the page shows it today. `docs/CONTEXT.md`, *Provenance*, records the removal and
+   * why it is a real trade-off rather than a free one.
    */
   readonly basis: CompiledJudgement
   readonly locale: Locale
@@ -90,7 +99,7 @@ const Block = ({
   </div>
 )
 
-export const AssessmentOutcome = ({ evaluation, plan, basis, locale }: AssessmentOutcomeProps) => {
+export const AssessmentOutcome = ({ evaluation, plan, locale }: AssessmentOutcomeProps) => {
   const headingId = useId()
 
   return (
@@ -102,8 +111,6 @@ export const AssessmentOutcome = ({ evaluation, plan, basis, locale }: Assessmen
 
       <Block label="outcome.evaluation" prose={localiseAnnotation(evaluation, locale)} />
       <Block label="outcome.plan" prose={localiseAnnotation(plan, locale)} />
-
-      <JudgementNote by={basis.by} at={basis.at} source={basis.source} />
     </section>
   )
 }

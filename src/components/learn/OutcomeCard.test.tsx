@@ -321,11 +321,16 @@ describe('a branch nobody has mapped', () => {
   })
 })
 
-/** AC 6. Every outcome says where its claim came from. */
+/**
+ * AC 6, as of 2026-09-18 with a documented narrowing: a mate and an unmapped branch say
+ * where their claim came from, and an assessment no longer does — removed from the page at
+ * the product owner's explicit request (docs/CONTEXT.md, *Provenance*). The compiled data
+ * still carries who judged an assessment and when; `AssessmentOutcome.tsx` and
+ * `outcome-distinction.test.ts` hold that half from the source side.
+ */
 describe('provenance', () => {
   const OUTCOMES = [
     { what: 'a proved mate', leaf: MATE },
-    { what: 'an assessed position', leaf: ASSESSMENT },
     { what: 'an unmapped branch', leaf: UNEXPLORED },
   ]
 
@@ -333,6 +338,12 @@ describe('provenance', () => {
     const { container } = await show({ outcome: which.outcome, fen: which.fen })
 
     expect(container.querySelectorAll('.provenance')).toHaveLength(1)
+  })
+
+  it('an assessed position renders none', async () => {
+    const { container } = await show({ outcome: ASSESSMENT.outcome })
+
+    expect(container.querySelectorAll('.provenance')).toHaveLength(0)
   })
 
   it('a proof names a certificate and links to how it was checked', async () => {
@@ -344,21 +355,6 @@ describe('provenance', () => {
       provedMate().basis.certificate,
     )
     expect(note?.querySelector('a')).not.toBeNull()
-  })
-
-  /**
-   * The structural half of the distinction, and the half a stylesheet cannot fake: a
-   * judgement has a person and a date and no certificate to point at, because there is none.
-   */
-  it('a judgement names a person and a date, and has no proof to link to', async () => {
-    const { container } = await show({ outcome: ASSESSMENT.outcome })
-    const note = container.querySelector('.provenance')
-
-    expect(note?.textContent).toContain(EN.judgement)
-    expect(note?.textContent).toContain('chan')
-    expect(note?.querySelector('time')).toHaveAttribute('datetime', '2026-09-16')
-    expect(note?.querySelector('.provenance__certificate')).toBeNull()
-    expect(note?.querySelector('a')).toBeNull()
   })
 
   it('an unmapped branch says there is nothing to attribute, rather than going blank', async () => {
@@ -442,39 +438,49 @@ describe('a proof and an opinion survive greyscale', () => {
     return facts
   }
 
+  /**
+   * Two notes rather than three, as of 2026-09-18: `AssessmentOutcome` no longer renders
+   * one (see `describe('provenance', ...)` above), so there is no third signal to compare
+   * here — that absence is asserted on its own, right after.
+   */
   const everyNote = async (): Promise<readonly NoteFacts[]> => [
     await factsFor(MATE),
-    await factsFor(ASSESSMENT),
     await factsFor(UNEXPLORED),
   ]
 
-  it('gives the three kinds of claim three different signals', async () => {
+  it('renders no provenance note on an assessment card at all', async () => {
+    const { container } = await show({ outcome: ASSESSMENT.outcome, fen: ASSESSMENT.fen })
+
+    expect(container.querySelector('.provenance')).toBeNull()
+  })
+
+  it('gives a proof and an unmapped branch two different signals', async () => {
     const signals = (await everyNote()).map((facts) =>
       [facts.words, facts.shapes, facts.rule].join('|'),
     )
 
-    expect(new Set(signals).size).toBe(3)
+    expect(new Set(signals).size).toBe(2)
     for (const signal of signals) expect(signal).not.toBe('||')
   })
 
   it('and the words alone would do it', async () => {
     const words = (await everyNote()).map((facts) => facts.words)
 
-    expect(new Set(words).size).toBe(3)
+    expect(new Set(words).size).toBe(2)
     for (const word of words) expect(word).not.toBe('')
   })
 
   it('and the icon outlines alone would do it', async () => {
     const shapes = (await everyNote()).map((facts) => facts.shapes)
 
-    expect(new Set(shapes).size).toBe(3)
+    expect(new Set(shapes).size).toBe(2)
     for (const shape of shapes) expect(shape).not.toBe('')
   })
 
   it('and so would the geometry of the rules they are drawn with', async () => {
     const rules = (await everyNote()).map((facts) => facts.rule)
 
-    expect(new Set(rules).size).toBe(3)
+    expect(new Set(rules).size).toBe(2)
     for (const rule of rules) expect(rule).not.toBe('')
   })
 
@@ -617,6 +623,11 @@ describe('the words alone tell a proof from an opinion, in every language', () =
     }
   })
 
+  /**
+   * The assessment card is checked for the *absence* of all three names, as of 2026-09-18:
+   * it no longer carries a provenance note at all (see the `describe('provenance', ...)`
+   * block above), so "judgement" is not on this card either — nothing is.
+   */
   it.each(locales)('puts each name on the right card, and only there, in %s', async (locale) => {
     const { proved, judgement, noClaim } = labelsOf(locale)
 
@@ -635,7 +646,7 @@ describe('the words alone tell a proof from an opinion, in every language', () =
     expect(onMate).not.toContain(judgement)
     expect(onMate).not.toContain(noClaim)
 
-    expect(onAssessment).toContain(judgement)
+    expect(onAssessment).not.toContain(judgement)
     expect(onAssessment).not.toContain(proved)
     expect(onAssessment).not.toContain(noClaim)
 

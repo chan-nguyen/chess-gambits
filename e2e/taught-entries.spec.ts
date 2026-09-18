@@ -138,9 +138,14 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       /*
        * Issue #54 marked the ply that produced the position; #70 gave the root one. The root
        * is the position after the defining line, whose last ply the page now walks through,
-       * so the two squares of that ply are marked here exactly as they are everywhere else.
+       * so the two squares of that ply are tinted here exactly as they are everywhere else
+       * (2026-09-18: two tinted squares, no ring on either).
        */
-      await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(2)
+      await expect(
+        page.locator(
+          '.learning-surface__board .board__square--from, .learning-surface__board .board__square--to',
+        ),
+      ).toHaveCount(2)
 
       const entryPath = `${cataloguePath}/${entry.id}`
 
@@ -173,9 +178,13 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
            * Issue #54, on published content rather than on a fixture. The highlight was
            * complete and unreachable for four waves precisely because nothing asserted it
            * anywhere a visitor actually goes, so every step of every taught line is asked
-           * for the two rings — the square the ply left and the square it reached.
+           * for the two tinted squares — the square the ply left and the square it reached.
            */
-          await expect(page.locator('.learning-surface__board .board__last-ply')).toHaveCount(2)
+          await expect(
+            page.locator(
+              '.learning-surface__board .board__square--from, .learning-surface__board .board__square--to',
+            ),
+          ).toHaveCount(2)
         }
 
         const outcome = nodeAt(entry.tree, leaf).outcome

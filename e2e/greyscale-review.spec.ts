@@ -93,14 +93,16 @@ test.describe('the surfaces a release reviews in greyscale (AC 5)', () => {
    *
    * The frame is taken mid-line, so it also carries the **last-ply highlight** — which it
    * did not until #54, because `Board` implemented it in full behind an optional `lastMove`
-   * prop that no caller passed for four waves. What the reviewer is looking at is the
-   * dashed ring on the square 3...fxe5 left and the solid ring on the square it reached,
-   * and what they are deciding is whether those two read apart at this size once the hue is
-   * gone. They have to, because nothing else can: desaturated, the two highlight tints are
-   * 1.05:1 apart and either is within 1.3:1 of an ordinary square
-   * (`board-contrast.test.ts`). The machine-checkable half is not repeated here —
-   * `e2e/move-navigation.spec.ts`, "the last-ply highlight", measures the two rings on a
-   * desaturated page and carries a probe that makes it fail.
+   * prop that no caller passed for four waves. As of 2026-09-18 the highlight is two plain
+   * tinted squares and nothing else — no ring, by explicit product decision — so what the
+   * reviewer is looking at is the square 3...fxe5 left against the square it reached, and
+   * what they are deciding is whether those two read apart at this size once the hue is
+   * gone. The two tokens are chosen for a real luminance gap rather than a hue difference
+   * alone (`board-contrast.test.ts`), but this pair no longer has a shape channel behind
+   * that colour, which is why this describe exists rather than being redundant with a unit
+   * test. The machine-checkable half is not repeated here — `e2e/move-navigation.spec.ts`,
+   * "the last-ply highlight", measures the two fills on a desaturated page and carries a
+   * probe that makes it fail.
    */
   test('the board, mid-line, with both colours of piece on both colours of square', async ({
     page,

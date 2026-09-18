@@ -1063,11 +1063,11 @@ describe('what the line ends in (#11)', () => {
 /**
  * **What changed, on every board that shows a move (issue #54).**
  *
- * `Board` has drawn a last-ply highlight since #4 — tinted squares plus a dashed ring on
- * the square the ply left and a solid one on the square it reached — behind an optional
- * `lastMove` prop that no caller passed for four waves. So these assertions are deliberately
- * about the *surface* and not about `Board`: a test that handed `Board` a move and checked
- * it drew one would have passed on every day of those four waves.
+ * `Board` has drawn a last-ply highlight since #4 — two tinted squares, since 2026-09-18
+ * with no ring on either — behind an optional `lastMove` prop that no caller passed for
+ * four waves. So these assertions are deliberately about the *surface* and not about
+ * `Board`: a test that handed `Board` a move and checked it drew one would have passed on
+ * every day of those four waves.
  *
  * `last-ply.test.ts` holds the other end — that no board anywhere in `src/` is mounted
  * without the prop, so a fifth wave cannot reopen the gap by adding a caller.
@@ -1079,22 +1079,20 @@ describe('the ply that produced the position', () => {
    * Which square a highlight sits on, read back off the rect's own geometry.
    *
    * Off its `x`/`y` rather than off its index among the 64 squares, because the index would
-   * agree with a board that drew the ring in the right slot of the wrong board — and
-   * because the arithmetic here is the inverse of the arithmetic the component does, so a
-   * ring drawn half a square out fails rather than rounding into the right answer. Both
+   * agree with a board that drew the tint in the right slot of the wrong board. Both
    * fixtures used below are White entries, so the board is unflipped: file a is at x=0 and
    * rank 8 at y=0.
    */
   const squareOf = (rect: Element): string => {
-    const x = Math.round(Number(rect.getAttribute('x')) - 0.06)
-    const y = Math.round(Number(rect.getAttribute('y')) - 0.06)
+    const x = Math.round(Number(rect.getAttribute('x')))
+    const y = Math.round(Number(rect.getAttribute('y')))
     return `${FILES[x] ?? '?'}${8 - y}`
   }
 
   /** `f6-e5`, or the empty string for a board that marks nothing. */
   const marks = (board: Element | null | undefined): string => {
-    const from = board?.querySelector('.board__last-ply--from') ?? null
-    const to = board?.querySelector('.board__last-ply--to') ?? null
+    const from = board?.querySelector('.board__square--from') ?? null
+    const to = board?.querySelector('.board__square--to') ?? null
     return from === null || to === null ? '' : `${squareOf(from)}-${squareOf(to)}`
   }
 
@@ -1108,14 +1106,14 @@ describe('the ply that produced the position', () => {
     expect(marks(mainBoard())).toBe('f6-e5')
   })
 
-  it('tells the square left from the square reached, and not only by colour', async () => {
+  it('tints the square left and the square reached, with no ring on either', async () => {
     await surface({ line: ['fxe5'] })
     const board = mainBoard()
 
-    // Two rings, and one tint: the square the ply left is empty, so #80 stopped filling it.
-    expect(board?.querySelectorAll('.board__square--from')).toHaveLength(0)
+    // Two tinted squares, colour the whole signal since 2026-09-18 — no ring exists any more.
+    expect(board?.querySelectorAll('.board__square--from')).toHaveLength(1)
     expect(board?.querySelectorAll('.board__square--to')).toHaveLength(1)
-    expect(board?.querySelectorAll('.board__last-ply')).toHaveLength(2)
+    expect(board?.querySelectorAll('.board__last-ply')).toHaveLength(0)
   })
 
   /**
@@ -1127,7 +1125,8 @@ describe('the ply that produced the position', () => {
   it('marks nothing at the initial position, where nothing has been stepped to (AC 2)', async () => {
     await surface({ prelude: 0 })
 
-    expect(mainBoard()?.querySelectorAll('.board__last-ply')).toHaveLength(0)
+    expect(mainBoard()?.querySelectorAll('.board__square--from')).toHaveLength(0)
+    expect(mainBoard()?.querySelectorAll('.board__square--to')).toHaveLength(0)
   })
 
   it('marks the defining line s last ply at the root', async () => {
@@ -1181,7 +1180,8 @@ describe('the ply that produced the position', () => {
     const net = document.querySelector('.mate-net .board-preview')
 
     expect(net).not.toBeNull()
-    expect(net?.querySelectorAll('.board__last-ply')).toHaveLength(0)
+    expect(net?.querySelectorAll('.board__square--from')).toHaveLength(0)
+    expect(net?.querySelectorAll('.board__square--to')).toHaveLength(0)
     // 6...Bxd1 — the bishop came from h5, where 4...Bh5 put it earlier in this line.
     expect(marks(mainBoard())).toBe('h5-d1')
   })
