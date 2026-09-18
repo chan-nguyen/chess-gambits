@@ -30,46 +30,30 @@
 }
 
 /*
- * Only the square the ply *arrived* on is tinted, and #80 is why (§2, §5).
+ * Both squares of the last ply are tinted, and neither carries a border (2026-09-18,
+ * reversing #80's ring). #80 argued a tint is a surface and the departed square has
+ * nothing standing on it — a fill *there* is what made an empty square read as occupied,
+ * and that argument is still correct about a fill on its own. What made it loud, measured,
+ * was the 0.045-unit near-black ring drawn on top of it, not the tint underneath: g1 alone
+ * (no ring) is barely darker than a plain square. With no ring on either square, the same
+ * fill this ticket restores no longer has anything to be loud with.
  *
- * A tint is a surface — something a piece sits on — and the square a ply left has nothing
- * sitting on it. Filling it made the emptiest square on the board the most solid object on
- * it: measured, the block and its ring put more dark ink inside an empty g1 than the knight
- * on b1 puts inside its own square. So the departed square keeps the wood it always had and
- * says what happened with a line, not with a body.
+ * The two tints are chosen to differ in **luminance**, not only in hue: `--highlight-from`
+ * is a cool, darker slate and `--highlight-to` a warm, lighter gold, so the two squares
+ * stay apart under `grayscale(1)` (`board-contrast.test.ts`) even without §2's usual "shape
+ * or border" requirement, which this pair is now the one documented exception to
+ * (docs/design-system.md §2).
  */
+.board__square--from {
+  fill: var(--color-board-highlight-from);
+}
+
 .board__square--to {
   fill: var(--color-board-highlight-to);
 }
 
 .board__square {
   transition: fill var(--duration-base) ease;
-}
-
-/*
- * Shape, not only tint: dashed for the square the ply left, solid for the one it reached.
- *
- * That sentence is unchanged by #80 and the weight behind it is not. The stroke was 0.045
- * user units — two to three CSS pixels of near-black around a whole square, heavier than
- * any line the artwork draws inside a piece. It is now a third of that, and the dashes are
- * shorter, so the mark reads as an annotation on the position rather than as part of it.
- * The dash is still long enough to be a dash at 360px, which is the size the shape channel
- * has to survive: it is the only channel there is, because desaturated the arrival square's
- * tint is within 1.3:1 of an ordinary square (`board-contrast.test.ts`), and the departed
- * square has no tint at all.
- */
-.board__last-ply {
-  fill: none;
-  stroke-width: 0.016;
-}
-
-.board__last-ply--from {
-  stroke: var(--color-board-coordinate);
-  stroke-dasharray: 0.07 0.13;
-}
-
-.board__last-ply--to {
-  stroke: var(--color-board-coordinate);
 }
 
 /* A disc, so check is not a fourth tinted square. */
