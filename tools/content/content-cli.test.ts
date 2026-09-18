@@ -155,6 +155,7 @@ describe('export-pgn (AC 2)', () => {
         'french-defense-banzai-leong-gambit, grob-opening-alessi-gambit, ' +
         'grunfeld-defense-gibbon-gambit, halosar-trap, horwitz-defense-zilbermints-gambit, ' +
         'hungarian-opening-van-kuijk-gambit, indian-defense-budapest-gambit, ' +
+        'indian-defense-budapest-gambit-accepted-fajarowicz-defense, ' +
         'indian-defense-gibbins-weidenhagen-gambit, irish-gambit, ' +
         'italian-game-blackburne-kostic-gambit, italian-game-evans-gambit, ' +
         'kadas-opening-schneider-gambit, kieninger-trap, kings-gambit, kings-gambit-accepted, ' +
@@ -173,7 +174,7 @@ describe('export-pgn (AC 2)', () => {
         'latvian-gambit-accepted, legals-mate, ' +
         'lion-defense-anti-philidor-lions-cave-lion-claw-gambit, ' +
         'mexican-defense-horsefly-gambit, mikenas-defense-pozarek-gambit, ' +
-        'modern-defense-lizard-defense-pirc-diemer-gambit, mortimer-trap, ' +
+        'modern-defense-lizard-defense-pirc-diemer-gambit, monticelli-trap, mortimer-trap, ' +
         'nimzo-indian-defense-dilworth-gambit, nimzo-larsen-attack-norfolk-gambit, ' +
         'nimzowitsch-defense-wheeler-gambit, noahs-ark-trap, old-indian-defense-aged-gibbon-gambit, ' +
         'owen-defense-naselwaus-gambit, petrovs-defense-stafford-gambit, ' +
@@ -184,8 +185,9 @@ describe('export-pgn (AC 2)', () => {
         'queens-indian-defense-classical-variation-polugaevsky-gambit, ' +
         'queens-pawn-game-zurich-gambit, rat-defense-english-rat-lisbon-gambit, ' +
         'reti-opening-zilbermints-gambit, richter-veresov-attack-malich-gambit, ' +
-        'ruy-lopez-schliemann-defense, ' +
-        'scandinavian-defense-zilbermints-gambit, scotch-game-goring-gambit, ' +
+        'rubinstein-trap, ruy-lopez-schliemann-defense, ' +
+        'scandinavian-defense-kiel-variation-trap, scandinavian-defense-zilbermints-gambit, ' +
+        'scotch-game-goring-gambit, ' +
         'scotch-game-scotch-gambit, semi-slav-defense-marshall-gambit, siberian-trap, ' +
         'sicilian-defense-brussels-gambit, sicilian-defense-euwe-attack-prins-gambit, ' +
         'sicilian-defense-halasz-gambit, sicilian-defense-morphy-gambit, ' +
@@ -193,10 +195,11 @@ describe('export-pgn (AC 2)', () => {
         'sicilian-defense-portsmouth-gambit, sicilian-defense-smith-morra-gambit, ' +
         'sicilian-defense-wing-gambit, slav-defense-diemer-gambit, ' +
         'sodium-attack-durkin-gambit, st-george-defense-zilbermints-gambit, ' +
-        'tarrasch-defense-schara-gambit, torre-attack-wagner-gambit, ' +
+        'tarrasch-defense-schara-gambit, tarrasch-trap, torre-attack-wagner-gambit, ' +
         'trompowsky-attack-raptor-variation-hergert-gambit, van-geet-opening-laroche-gambit, ' +
         'vant-kruijs-opening-keoni-hiva-gambit-akahi-variation, ' +
-        'vienna-gambit-with-max-lange-defense, vienna-game-fyfe-gambit, ware-opening-wing-gambit, ' +
+        'vienna-gambit-with-max-lange-defense, vienna-game-fyfe-gambit, ' +
+        'vienna-game-wurzburger-trap, ware-opening-wing-gambit, ' +
         'zukertort-opening-herrstrom-gambit.',
     )
   })
@@ -259,6 +262,7 @@ describe('compile (AC 3)', () => {
       'halosar-trap.json',
       'horwitz-defense-zilbermints-gambit.json',
       'hungarian-opening-van-kuijk-gambit.json',
+      'indian-defense-budapest-gambit-accepted-fajarowicz-defense.json',
       'indian-defense-budapest-gambit.json',
       'indian-defense-gibbins-weidenhagen-gambit.json',
       'irish-gambit.json',
@@ -298,6 +302,7 @@ describe('compile (AC 3)', () => {
       'mexican-defense-horsefly-gambit.json',
       'mikenas-defense-pozarek-gambit.json',
       'modern-defense-lizard-defense-pirc-diemer-gambit.json',
+      'monticelli-trap.json',
       'mortimer-trap.json',
       'nimzo-indian-defense-dilworth-gambit.json',
       'nimzo-larsen-attack-norfolk-gambit.json',
@@ -318,7 +323,9 @@ describe('compile (AC 3)', () => {
       'rat-defense-english-rat-lisbon-gambit.json',
       'reti-opening-zilbermints-gambit.json',
       'richter-veresov-attack-malich-gambit.json',
+      'rubinstein-trap.json',
       'ruy-lopez-schliemann-defense.json',
+      'scandinavian-defense-kiel-variation-trap.json',
       'scandinavian-defense-zilbermints-gambit.json',
       'scotch-game-goring-gambit.json',
       'scotch-game-scotch-gambit.json',
@@ -337,12 +344,14 @@ describe('compile (AC 3)', () => {
       'sodium-attack-durkin-gambit.json',
       'st-george-defense-zilbermints-gambit.json',
       'tarrasch-defense-schara-gambit.json',
+      'tarrasch-trap.json',
       'torre-attack-wagner-gambit.json',
       'trompowsky-attack-raptor-variation-hergert-gambit.json',
       'van-geet-opening-laroche-gambit.json',
       'vant-kruijs-opening-keoni-hiva-gambit-akahi-variation.json',
       'vienna-gambit-with-max-lange-defense.json',
       'vienna-game-fyfe-gambit.json',
+      'vienna-game-wurzburger-trap.json',
       'ware-opening-wing-gambit.json',
       'zukertort-opening-herrstrom-gambit.json',
     ])

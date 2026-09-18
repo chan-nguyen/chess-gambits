@@ -1,0 +1,109 @@
+# The Rubinstein Trap, in the Cambridge Springs Defense's Rubinstein Variation. The defining
+# line is 1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 e6 5.Bg5 Nbd7 6.e3 Qa5 7.Nd2 dxc4 — the line this
+# catalogue was pointed at — and it ends on Black's own ply, so the root is an opponent node
+# and White's reply can carry a quality (invariant 5).
+#
+# 7.Nd2 resolves to the f3 knight, not the c3 one: c3 to d2 is not a knight move at all (a
+# one-file, one-rank step), which is easy to get wrong on paper and was checked by replaying
+# the SAN with chess.js before this file was written. That single fact is the whole trap —
+# moving the f3 knight is what leaves the bishop on g5 with nobody defending it.
+#
+# The commonly repeated description of a "Rubinstein Trap" tactic online (9.Bd3?? dxc4!
+# 10.Bxf6 cxd3! 11.Qxd3 Nxf6) turns out to belong to a *different* move order, one where
+# Black delays capturing on c4 until after White has played Bd3 — it does not fit the exact
+# line this catalogue was given, where 7...dxc4 has already happened. Replaying the given
+# line square by square instead found a plainer point one move earlier: the moment the f3
+# knight steps to d2, the queen on a5 already rakes the entire fifth rank, so 8.Bd3?? — a
+# natural developing move that does nothing about the hanging bishop — drops it outright to
+# 8...Qxg5. This is the tactic this file actually claims, and it was verified the same way:
+# every ply replayed with chess.js, and the final material count computed by hand from the
+# derived FEN rather than quoted from a source.
+#
+# ECO is D52 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
+# records: a trap carries the ECO of the opening it sits inside (ADR-0008).
+#
+# No leaf here claims a mate — Black simply wins a bishop, the same shape as the Elephant
+# Trap or the Lasker Trap (docs/CONTEXT.md, "Trap branch") — so the outcome is `type:
+# position`, checked for legality and for "no capture going free" (invariant 14) rather than
+# proved by a certificate.
+id: rubinstein-trap
+name: Rubinstein Trap
+eco: D52
+category: trap
+side: black
+definingLine: [d4, d5, c4, c6, Nf3, Nf6, Nc3, e6, Bg5, Nbd7, e3, Qa5, Nd2, dxc4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement about Black's play, not about the trap springing. Everything up to and
+      including 7...dxc4 is established Cambridge Springs theory and stands on its own
+      whether or not White walks into anything: the pawn is simply won and can be given back
+      later for easy development if White plays accurately. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material count in the final position, which was
+    computed by hand from the derived FEN rather than from an engine.
+tree:
+  annotation:
+    vi: Đen vừa ăn tốt c4, và con mã vừa rời f3 để tới d2 đã để lại một hậu quả mà rất ít người để ý ngay — con tượng trên g5 giờ không còn ai bảo vệ. Hậu Đen ở a5 đã đứng sẵn trên hàng ngang thứ năm, nhìn thẳng qua b5, c5, d5, e5 tới đúng ô g5 đó.
+    en: Black has just captured the pawn on c4, and the knight that just left f3 for d2 has left behind a consequence almost nobody notices right away — the bishop on g5 no longer has a defender. Black's queen on a5 is already sitting on the fifth rank, looking straight across b5, c5, d5 and e5 to that very square.
+    fr: Les Noirs viennent de prendre le pion c4, et le cavalier qui vient de quitter f3 pour d2 a laissé derrière lui une conséquence que presque personne ne remarque tout de suite — le fou en g5 n'a plus de défenseur. La dame noire en a5 est déjà postée sur la cinquième rangée, regardant tout droit à travers b5, c5, d5 et e5 jusqu'à cette case même.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác, và gần như mọi nước đều ổn. Ăn lại con tốt ngay (8.Bxc4 hay 8.Nxc4), lui con tượng (8.Bh4, 8.Bf4), đổi nó đi (8.Bxf6), hay thậm chí đi lại chính con mã vừa rời f3 (8.Nf3) — tất cả đều giữ con tượng an toàn và dẫn tới lý thuyết Cambridge Springs bình thường. Chỉ có 8.Bd3?? — một nước phát triển trông rất tự nhiên — là quên mất rằng không còn ai canh ô g5 nữa.
+      en: White plays something else, and almost all of it is fine. Recapturing the pawn at once (8.Bxc4 or 8.Nxc4), retreating the bishop (8.Bh4 or 8.Bf4), trading it off (8.Bxf6), or even walking the same knight back to where it came from (8.Nf3) all keep the bishop safe and lead to ordinary Cambridge Springs theory. Only 8.Bd3?? — a perfectly natural-looking developing move — forgets that nothing guards g5 any more.
+      fr: Les Blancs jouent autre chose, et presque tout convient. Reprendre le pion aussitôt (8.Bxc4 ou 8.Cxc4), reculer le fou (8.Fh4 ou 8.Ff4), l'échanger (8.Fxf6), ou même ramener le même cavalier d'où il vient (8.Cf3) gardent tous le fou en sécurité et mènent à la théorie habituelle du Cambridge Springs. Seul 8.Fd3 ?? — un coup de développement pourtant bien naturel — oublie que plus rien ne garde g5.
+  children:
+    - ply: Bd3
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Trắng đưa tượng f1 ra để chuẩn bị nhập thành và nhắm vào con tốt c4 vừa mất, một nước trông hoàn toàn vô hại. Nhưng nó không làm gì để cứu con tượng g5, và Đen thì đã sẵn sàng.
+        en: White brings the f1 bishop out, preparing to castle and eyeing the pawn just lost on c4 — a move that looks entirely harmless. But it does nothing to save the bishop on g5, and Black is already lined up for it.
+        fr: Les Blancs sortent le fou f1, préparant le roque et lorgnant le pion tout juste perdu en c4 — un coup qui semble parfaitement inoffensif. Mais il ne fait rien pour sauver le fou g5, et les Noirs sont déjà en position.
+      children:
+        - ply: Qxg5
+          annotation:
+            vi: Hậu Đen ăn thẳng con tượng, dọc theo đúng hàng ngang nó đã đứng sẵn từ đầu. Không quân Trắng nào canh ô g5.
+            en: Black's queen simply takes the bishop, straight along the rank it was sitting on all along. Nothing white guards g5.
+            fr: La dame noire prend simplement le fou, tout le long de la rangée qu'elle occupait déjà. Rien de blanc ne garde g5.
+          dismissRest:
+            reason:
+              vi: Trắng chơi bất cứ nước nào khác cũng không đòi lại được con tượng đã mất — không quân nào của Trắng còn với tới ô g5 nữa. Ăn lại con tốt c4 bằng 9.Bxc4 đơn giản là cách hợp lý nhất để tiếp tục, vì giữ con hậu ở g5 lâu hơn không mang lại gì thêm cho Đen.
+              en: Whatever White plays, the lost bishop is not coming back — nothing white can reach g5 any more. Recapturing the c4 pawn with 9.Bxc4 is simply the most sensible way to continue, since keeping the queen on g5 any longer gains Black nothing further.
+              fr: Quoi que jouent les Blancs, le fou perdu ne revient pas — plus rien de blanc n'atteint g5. Reprendre le pion c4 par 9.Fxc4 est simplement la façon la plus raisonnable de continuer, puisque garder la dame en g5 plus longtemps n'apporte rien de plus aux Noirs.
+          children:
+            - ply: Bxc4
+              replyQuality: good
+              frequency: occasional
+              annotation:
+                vi: Trắng ăn lại con tốt đã mất, ít nhất là gỡ lại một phần. Đây là cách xử lý hợp lý nhất của phần còn lại ván đấu, dù con tượng đã mất từ trước rồi.
+                en: White recaptures the lost pawn, at least clawing something back. This is the most sensible way to handle the rest of the game, even though the bishop is already gone.
+                fr: Les Blancs reprennent le pion perdu, récupérant au moins quelque chose. C'est la façon la plus raisonnable de gérer la suite de la partie, même si le fou est déjà perdu.
+              children:
+                - ply: Qa5
+                  annotation:
+                    vi: Hậu Đen lui về ô quen thuộc, an toàn và không mất thêm nhịp nào đáng kể — con tượng đã ăn được thì vẫn còn nguyên trong túi.
+                    en: Black's queen retreats to its familiar square, safe and without losing any meaningful time — the bishop already won stays won.
+                    fr: La dame noire se retire sur sa case familière, en sécurité et sans perdre de temps significatif — le fou déjà gagné reste gagné.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân ở vị trí này — Đen có hai xe, hai tượng, hai mã, hậu và bảy tốt (38 điểm chất lượng theo thang chín-năm-ba-ba-một); Trắng có hai xe, một tượng, hai mã, hậu và bảy tốt (35 điểm) — thiếu hẳn một tượng so với đầy đủ quân, vì con tượng g5 đã mất hẳn. Số tốt bằng nhau ở cả hai bên. Đây là một lợi thế vật chất sạch và rõ ràng — Đen hơn nguyên một quân nhẹ mà không phải trả giá gì.
+                      en: Counting material here, Black has two rooks, two bishops, two knights, a queen and seven pawns (38 points on the familiar nine-five-three-three-one scale); White has two rooks, one bishop, two knights, a queen and seven pawns (35 points) — a full bishop short of a complete set, because the one on g5 is simply gone. Pawns are level on both sides. This is a clean, plain material advantage — Black is up a full minor piece for nothing.
+                      fr: En comptant le matériel ici, les Noirs ont deux tours, deux fous, deux cavaliers, une dame et sept pions (38 points sur l'échelle habituelle neuf-cinq-trois-trois-un) ; les Blancs ont deux tours, un fou, deux cavaliers, une dame et sept pions (35 points) — il leur manque un fou entier par rapport à un effectif complet, celui de g5 étant purement et simplement perdu. Les pions sont à égalité des deux côtés. C'est un avantage matériel net et simple  — les Noirs ont une pièce mineure entière de plus, pour rien.
+                    plan:
+                      vi: Đen hoàn thiện phát triển bình thường — e7 ra, nhập thành, rồi đưa mã d7 ra một ô tốt — và đổi quân bất cứ khi nào có thể, vì hơn nguyên một quân thì mọi cuộc đổi quân chỉ làm lợi thế rõ hơn. Trắng cố gắng tận dụng cặp mã và đôi tốt trung tâm để tạo hoạt động, nhưng không có kế hoạch nào bù lại được một quân nhẹ đã mất.
+                      en: Black simply finishes development in the ordinary way — the bishop out from e7, castle, then find the d7 knight a good square — and trades pieces whenever the chance comes up, since a piece up means every trade only sharpens the advantage. White tries to make use of the two knights and the central pawns for activity, but no plan compensates for a lost minor piece.
+                      fr: Les Noirs achèvent simplement leur développement de façon habituelle — sortir le fou depuis e7, roquer, puis trouver une bonne case au cavalier d7 — et échangent les pièces dès que l'occasion se présente, car avec une pièce d'avance chaque échange ne fait qu'accentuer l'avantage. Les Blancs tentent de tirer parti des deux cavaliers et des pions centraux pour s'activer, mais aucun plan ne compense une pièce mineure perdue.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'

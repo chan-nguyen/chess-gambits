@@ -118,12 +118,14 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * One hundred and twenty-six entries are authored — three from #15, eleven from #73, ten
+   * One hundred and thirty-two entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
-   * from #109 (group F, seven remaining family heads and eight Sicilian short lines), and
-   * seventeen from #110 (group G, King's Gambit Accepted sub-variations) — and the other
-   * 877 are Tier 0, with no content file at all. Each authored entry is named here with the
+   * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
+   * seventeen from #110 (group G, King's Gambit Accepted sub-variations), and six from #118
+   * (five new named traps plus the Fajarowicz Defense, upgraded in place from the Tier 0
+   * entry the dataset import already gave its exact defining line) — and the other 876 are
+   * Tier 0, with no content file at all. Each authored entry is named here with the
    * number of root-to-leaf lines its tree actually has, rather than the whole set being
    * loosened to "at least zero", which would assert nothing and would keep passing if every
    * tree in the repository disappeared.
@@ -185,6 +187,7 @@ describe('the catalogue this repository ships', () => {
     ['horwitz-defense-zilbermints-gambit', 1],
     ['hungarian-opening-van-kuijk-gambit', 1],
     ['indian-defense-budapest-gambit', 5],
+    ['indian-defense-budapest-gambit-accepted-fajarowicz-defense', 1],
     ['indian-defense-gibbins-weidenhagen-gambit', 3],
     ['irish-gambit', 1],
     ['italian-game-blackburne-kostic-gambit', 2],
@@ -223,6 +226,7 @@ describe('the catalogue this repository ships', () => {
     ['mexican-defense-horsefly-gambit', 1],
     ['mikenas-defense-pozarek-gambit', 1],
     ['modern-defense-lizard-defense-pirc-diemer-gambit', 1],
+    ['monticelli-trap', 1],
     ['mortimer-trap', 1],
     ['nimzo-indian-defense-dilworth-gambit', 1],
     ['nimzo-larsen-attack-norfolk-gambit', 1],
@@ -243,7 +247,9 @@ describe('the catalogue this repository ships', () => {
     ['rat-defense-english-rat-lisbon-gambit', 1],
     ['reti-opening-zilbermints-gambit', 1],
     ['richter-veresov-attack-malich-gambit', 2],
+    ['rubinstein-trap', 1],
     ['ruy-lopez-schliemann-defense', 1],
+    ['scandinavian-defense-kiel-variation-trap', 1],
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scotch-game-goring-gambit', 2],
     ['scotch-game-scotch-gambit', 4],
@@ -262,18 +268,20 @@ describe('the catalogue this repository ships', () => {
     ['sodium-attack-durkin-gambit', 1],
     ['st-george-defense-zilbermints-gambit', 1],
     ['tarrasch-defense-schara-gambit', 1],
+    ['tarrasch-trap', 1],
     ['torre-attack-wagner-gambit', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
     ['van-geet-opening-laroche-gambit', 2],
     ['vant-kruijs-opening-keoni-hiva-gambit-akahi-variation', 1],
     ['vienna-gambit-with-max-lange-defense', 2],
     ['vienna-game-fyfe-gambit', 3],
+    ['vienna-game-wurzburger-trap', 1],
     ['ware-opening-wing-gambit', 1],
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1003 entries, and only the authored one hundred and twenty-six have any', () => {
-    expect(result.value.records).toHaveLength(1003)
+  it('bakes keys on all 1008 entries, and only the authored one hundred and thirty-two have any', () => {
+    expect(result.value.records).toHaveLength(1008)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
@@ -281,7 +289,7 @@ describe('the catalogue this repository ships', () => {
       expect(new Set(record.branchKeys).size).toBe(record.branchKeys.length)
     }
     // Every named entry is actually in the catalogue, so a typo in an id above cannot
-    // quietly turn this into a test that only checks 1,003 zeroes.
+    // quietly turn this into a test that only checks 1,008 zeroes.
     expect(result.value.records.filter((record) => AUTHORED.has(record.id))).toHaveLength(
       AUTHORED.size,
     )
