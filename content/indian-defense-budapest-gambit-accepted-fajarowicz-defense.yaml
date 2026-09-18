@@ -1,0 +1,123 @@
+# The Fajarowicz Defense trap, in the Budapest Gambit Accepted. The defining line is 1.d4
+# Nf6 2.c4 e5 3.dxe5 Ne4 — and it ends on Black's own ply, so the root is an opponent node
+# and White's reply can carry a quality (invariant 5).
+#
+# This is a separate entry from `content/indian-defense-budapest-gambit.yaml`, which only
+# mentions 2...Ne4 in passing as "a completely different and far riskier road" without a tree
+# of its own; nothing in this file duplicates that entry's branches.
+#
+# The common online name for this line's tactic is a "TrickyMate" and the story usually told
+# is 4.a3?? Nxf2!! 5.Kxf2 Qh4+ 6.g3 Qd4+ (forking king and queen) 7.e3 Qxd1, winning White's
+# queen outright. Both checkable branch points in that story were replayed with chess.js
+# before this file was written, and both fail: 6...Qd4+ is met by 7.Qxd4, because the queen
+# on d1 defends d4 down the open d-file the whole time (nothing recaptures for Black); the
+# alternative 6...Qxg3+ fares no better, hanging the queen to 7.hxg3, guarded by the h2 pawn.
+# Neither version of the popularly repeated "wins the queen" line survives contact with the
+# actual position, so this file does not claim it. Per docs/CONTEXT.md ("Where a line's
+# reputation doesn't hold up under real analysis... write an honest position leaf"), what is
+# modelled instead is the sequence that *does* hold up on replay: the knight on f2 is not
+# check but forks the queen on d1 and the rook on h1, so 5.Kxf2 is close to forced, and after
+# 5...Qh4+ 6.Ke3 Qxc4 Black has real, concrete compensation — an exposed, uncastled king and
+# two recovered pawns for the piece — without a proven win for either side.
+#
+# ECO is A51 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
+# records: a trap carries the ECO of the opening it sits inside (ADR-0008). No leaf here
+# claims a mate; the final position is a genuinely open, roughly balanced middlegame, checked
+# for legality and for "no capture going free" (invariant 14) rather than proved decisive.
+id: indian-defense-budapest-gambit-accepted-fajarowicz-defense
+name: 'Budapest Gambit Accepted: Fajarowicz Defense Trap'
+eco: A51
+category: trap
+side: black
+definingLine: [d4, Nf6, c4, e5, dxe5, Ne4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, not a measurement. The line most often quoted online for this defense —
+      a forced queen win after 4.a3?? Nxf2 5.Kxf2 Qh4+ 6.g3 Qd4+ — does not survive replay:
+      both 6...Qd4+ and the alternative 6...Qxg3+ simply hang the queen. What does survive is
+      a real piece sacrifice for two pawns and a badly placed white king, which is genuine
+      practical compensation rather than a proven advantage for either side, hence dubious
+      rather than sound or unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material count in the final position, which was
+    computed by hand from the derived FEN rather than from an engine.
+tree:
+  annotation:
+    vi: Đen vừa đưa mã ra e4 thay vì nước Ng4 quen thuộc hơn của gambit Budapest. Con mã này chưa đe doạ gì cụ thể ngay, nhưng nó đứng ở một ô rất tích cực và Trắng cần một nước thật sự giải quyết được nó, chứ không chỉ phát triển cho có.
+    en: Black has just played the knight to e4 instead of the more familiar Budapest Ng4. The knight threatens nothing concrete yet, but it sits on a very active square, and White needs a move that actually deals with it rather than mere routine development.
+    fr: Les Noirs viennent de jouer le cavalier en e4 au lieu du Cg4 plus habituel du Budapest. Le cavalier ne menace rien de concret pour l'instant, mais il occupe une case très active, et les Blancs ont besoin d'un coup qui s'en occupe vraiment plutôt que d'un développement de routine.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác, và các nước chính của lý thuyết đều ổn cả — 4.Nd2 lui mã hỏi thẳng con mã e4, 4.Qc2 tấn công nó trực tiếp, hay 4.Nf3 phát triển bình thường đều giữ được tốt e5 thêm một thời gian mà không có gì nguy hiểm. Không nước nào trong số đó để hở gì cả. Chỉ có 4.a3?? — một nước cánh hậu chậm rãi hoàn toàn phớt lờ con mã — mới mời gọi điều sắp xảy ra.
+      en: White plays something else, and the main tries here are all fine — 4.Nd2, stepping the knight aside to ask e4 directly what it is doing; 4.Qc2, attacking it directly; or 4.Nf3, simply developing — all hold the e5 pawn for now without any danger. None of them hangs anything. Only 4.a3?? — a slow queenside move that ignores the knight entirely — invites what follows.
+      fr: Les Blancs jouent autre chose, et les essais principaux sont tous corrects ici — 4.Cd2, qui écarte le cavalier pour interroger directement celui d'e4 ; 4.Dc2, qui l'attaque directement ; ou 4.Cf3, simple développement — tous conservent le pion e5 pour l'instant sans aucun danger. Aucun d'eux ne laisse rien en prise. Seul 4.a3 ?? — un coup lent à l'aile dame qui ignore complètement le cavalier — invite ce qui suit.
+  children:
+    - ply: a3
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Trắng chơi một nước cánh hậu chậm rãi, có lẽ định chuẩn bị b4 để đuổi con mã sau này, nhưng lại phớt lờ hoàn toàn việc con mã e4 đang nhắm vào cả ô d2 lẫn ô f2. Đây chính xác là lúc gambit Fajarowicz định biện minh cho quân đã bỏ ra.
+        en: White plays a slow queenside move, perhaps intending b4 later to chase the knight, but completely ignores that the knight on e4 already eyes both d2 and f2. This is exactly the moment the Fajarowicz Defense means to justify the pawn it gave up.
+        fr: Les Blancs jouent un coup lent à l'aile dame, comptant peut-être sur b4 plus tard pour chasser le cavalier, mais ignorent complètement que le cavalier e4 vise déjà d2 et f2. C'est précisément le moment où la défense Fajarowicz entend justifier le pion abandonné.
+      children:
+        - ply: Nxf2
+          annotation:
+            vi: Mã ăn tốt f2. Đây không phải là chiếu, vì mã ở f2 không với tới vua e1 — nhưng nó lại nhắm cùng lúc vào hậu d1 và xe h1, nên Trắng gần như bắt buộc phải ăn lại ngay.
+            en: The knight takes the pawn on f2. This is not check — a knight on f2 does not reach the king on e1 — but it forks the queen on d1 and the rook on h1 at once, so White is close to forced to capture it immediately.
+            fr: Le cavalier prend le pion f2. Ce n'est pas échec — un cavalier en f2 n'atteint pas le roi e1 — mais il fourchette à la fois la dame d1 et la tour h1, si bien que les Blancs sont quasiment contraints de le reprendre immédiatement.
+          dismissRest:
+            reason:
+              vi: Trắng chơi bất kỳ nước nào khác cũng mất đứt hậu hoặc xe vào tay con mã đang chĩa vào cả hai — không quân nào của Trắng canh được ô f2 ngoài chính con vua. Chỉ có 5.Kxf2, ăn thẳng con mã, mới giữ được đủ quân.
+              en: Whatever else White plays loses the queen or the rook to the knight forking both — nothing white guards f2 except the king itself. Only 5.Kxf2, capturing the knight outright, keeps the material together.
+              fr: Quoi que jouent les Blancs d'autre, cela perd la dame ou la tour au profit du cavalier qui fourchette les deux — rien de blanc ne garde f2 en dehors du roi lui-même. Seul 5.Rxf2, qui capture le cavalier sans détour, conserve le matériel.
+          children:
+            - ply: Kxf2
+              annotation:
+                vi: Vua buộc phải tự ăn con mã, vì đó là cách duy nhất không mất thêm quân. Nhưng giờ vua đã rời hàng ngang đầu tiên và mất quyền nhập thành vĩnh viễn.
+                en: The king is forced to capture the knight itself, since that is the only way not to lose more material. But the king has now left the back rank and lost the right to castle for good.
+                fr: Le roi est contraint de prendre lui-même le cavalier, car c'est le seul moyen de ne pas perdre davantage de matériel. Mais le roi a désormais quitté la première rangée et perdu le droit de roquer pour de bon.
+              children:
+                - ply: 'Qh4+'
+                  annotation:
+                    vi: Hậu Đen chiếu ngay, không cho vua Trắng một khoảnh khắc nghỉ ngơi nào sau khi vừa rời hàng ngang đầu.
+                    en: Black's queen gives check at once, allowing White's king no moment of rest after just leaving the back rank.
+                    fr: La dame noire donne échec sur-le-champ, ne laissant au roi blanc aucun répit après avoir tout juste quitté sa rangée.
+                  dismissRest:
+                    reason:
+                      vi: Vua Trắng có ba cách hợp lệ để thoát chiếu — Ke3, Kf3 hay chặn bằng g3 — và cả ba đều dẫn tới cùng một loại thế cờ phức tạp, cân bằng một cách khó lường — vua Trắng bị kéo ra giữa bàn, còn Đen đã bỏ một quân nhẹ để đổi lấy điều đó cộng thêm một hoặc hai tốt. Nhánh dưới đây chọn 6.Ke3 để trình bày ý tưởng; hai nước còn lại dẫn tới những phức tạp tương tự chứ không phải điều gì khác hẳn.
+                      en: White's king has three legal ways to escape the check — Ke3, Kf3, or blocking with g3 — and all three lead to the same kind of sharp, unclear, roughly balanced position — the white king dragged to the centre, Black having given up a minor piece for that plus one or two pawns. The branch below picks 6.Ke3 to show the idea; the other two lead to similar complications rather than anything fundamentally different.
+                      fr: Le roi blanc dispose de trois façons légales d'échapper à l'échec — Re3, Rf3, ou bloquer par g3 — et toutes trois mènent au même type de position tendue, incertaine et à peu près équilibrée  — le roi blanc traîné au centre, les Noirs ayant cédé une pièce mineure contre cela plus un ou deux pions. La branche ci-dessous retient 6.Re3 pour illustrer l'idée ; les deux autres coups mènent à des complications semblables plutôt qu'à quelque chose de fondamentalement différent.
+                  children:
+                    - ply: Ke3
+                      annotation:
+                        vi: Vua Trắng bước hẳn vào giữa bàn cờ để giữ nguyên quân số, thay vì chặn bằng tốt. Đây là thử nghiệm gan dạ nhất, và cũng là thử nghiệm để lộ vua nhiều nhất.
+                        en: White's king steps right into the centre of the board to keep the material intact, rather than blocking with a pawn. This is the boldest try, and also the one that exposes the king the most.
+                        fr: Le roi blanc s'avance en plein centre de l'échiquier pour conserver le matériel intact, plutôt que de bloquer avec un pion. C'est l'essai le plus audacieux, et aussi celui qui expose le plus le roi.
+                      children:
+                        - ply: Qxc4
+                          annotation:
+                            vi: Đen ăn nốt con tốt c4, con tốt tự do duy nhất còn lại chưa ai canh, thay vì đuổi theo những nước chiếu không đi tới đâu như Qd4+ (mất hậu vào tay Qxd4) hay Qxg3+ (mất hậu vào tay hxg3).
+                            en: Black picks up the pawn on c4, the one remaining free pawn nobody guards, rather than chasing checks that go nowhere such as Qd4+ (losing the queen to Qxd4) or Qxg3+ (losing the queen to hxg3).
+                            fr: Les Noirs ramassent le pion c4, le seul pion libre restant que personne ne garde, plutôt que de courir après des échecs qui ne mènent nulle part comme Dd4+ (perdant la dame après Dxd4) ou Dxg3+ (perdant la dame après hxg3).
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Đếm quân ở vị trí này, Trắng có hai xe, hai tượng, hai mã, hậu và sáu tốt (37 điểm chất lượng theo thang chín-năm-ba-ba-một); Đen có hai xe, hai tượng, một mã, hậu và bảy tốt (35 điểm). Trắng hơn khoảng hai điểm chất lượng, đúng bằng hiệu số giữa một mã và hai tốt — nhưng đổi lại, vua Trắng đã mất quyền nhập thành và đứng giữa bàn cờ ở e3, trong khi Đen đã phát triển xong hậu và có thể tiếp tục đưa quân ra với tốc độ. Đây thực sự là một thế cờ phức tạp và chưa rõ ràng, không phải một lợi thế đã được chứng minh cho bên nào — chính điều đó khiến khai cuộc này "tricky" theo đúng nghĩa, chứ không phải vì nó buộc được chiếu bí hay bắt được hậu.
+                              en: Counting material here, White has two rooks, two bishops, two knights, a queen and six pawns (37 points on the familiar nine-five-three-three-one scale); Black has two rooks, two bishops, one knight, a queen and seven pawns (35 points). White is up roughly two points, exactly the gap between a knight and two pawns — but in exchange, White's king has lost the right to castle and stands in the open on e3, while Black already has the queen out and can keep developing quickly. This is genuinely a sharp, unresolved position rather than a proven edge for either side — which is exactly what makes this defense "tricky" in the honest sense, rather than because it forces a mate or wins the queen.
+                              fr: En comptant le matériel ici, les Blancs ont deux tours, deux fous, deux cavaliers, une dame et six pions (37 points sur l'échelle habituelle neuf-cinq-trois-trois-un) ; les Noirs ont deux tours, deux fous, un cavalier, une dame et sept pions (35 points). Les Blancs sont en avance d'environ deux points, exactement l'écart entre un cavalier et deux pions — mais en échange, le roi blanc a perdu le droit de roquer et se tient à découvert en e3, tandis que les Noirs ont déjà sorti leur dame et peuvent continuer à développer rapidement. C'est véritablement une position tendue et non tranchée, plutôt qu'un avantage prouvé pour l'un ou l'autre camp — ce qui est exactement ce qui rend cette défense « tricky » au sens honnête du terme, et non parce qu'elle forcerait un mat ou gagnerait la dame.
+                            plan:
+                              vi: Đen phát triển nhanh với Nc6, Bc5+ hoặc Bb4, và d5 để mở thêm đường vào vua Trắng còn kẹt ở giữa, chấp nhận đang kém một chút vật chất để đổi lấy sáng kiến. Trắng cố gắng đưa vua về an toàn qua d2 hoặc f2 khi có dịp, hoàn thiện phát triển với Nf3 và Be2, và dùng quân số hơn để đổi bớt quân nếu có thể — càng ít quân trên bàn thì lợi thế vật chất càng rõ và sự an toàn của vua càng bớt quan trọng.
+                              en: Black develops quickly with Nc6, Bc5+ or Bb4, and d5 to open further lines at the white king still stuck in the centre, accepting a small material deficit in exchange for the initiative. White tries to walk the king back to safety via d2 or f2 when the chance appears, finishes development with Nf3 and Be2, and looks to trade pieces with the material edge in hand — the fewer pieces left on the board, the plainer the material advantage and the less king safety matters.
+                              fr: Les Noirs développent rapidement avec Cc6, Fc5+ ou Fb4, et d5 pour ouvrir encore les lignes vers le roi blanc resté coincé au centre, acceptant un léger déficit matériel en échange de l'initiative. Les Blancs tentent de ramener le roi en sécurité via d2 ou f2 dès que l'occasion se présente, achèvent leur développement par Cf3 et Fe2, et cherchent à échanger les pièces avec leur avantage matériel en poche — moins il reste de pièces sur l'échiquier, plus l'avantage matériel pèse et moins la sécurité du roi compte.
+                            basis:
+                              by: chan
+                              at: '2026-09-18'

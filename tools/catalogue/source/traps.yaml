@@ -157,3 +157,135 @@ traps:
       Already authored in `content/damiano-defence-refutation.yaml`, and listed here because
       an authored entry that is in no catalogue source file is unreachable. Its id was
       published before this file existed and is pinned by the frozen map.
+
+  - id: monticelli-trap
+    name: 'Monticelli Trap'
+    family: 'Bogo-Indian Defense'
+    eco: E11
+    side: white
+    soundness: dubious
+    line:
+      [
+        d4,
+        Nf6,
+        c4,
+        e6,
+        Nf3,
+        b6,
+        g3,
+        Bb7,
+        Bg2,
+        'Bb4+',
+        Bd2,
+        'Bxd2+',
+        Qxd2,
+        'O-O',
+        Nc3,
+        Ne4,
+        Qc2,
+        Nxc3,
+        Ng5,
+      ]
+    reason: >-
+      White ignores the c3 knight hanging to b2 and instead threatens Qxh7# with the g5
+      knight guarding the queen's escape. Not in the dataset under this name; #118's source
+      lists it as "Bogo-Indian Defense: Monticelli Trap" without a trap-specific ECO, so it
+      takes the E11 of the Bogo-Indian it sits inside.
+
+  - id: tarrasch-trap
+    name: 'Tarrasch Trap'
+    family: 'Ruy Lopez'
+    eco: C83
+    side: white
+    soundness: sound
+    line:
+      [
+        e4,
+        e5,
+        Nf3,
+        Nc6,
+        Bb5,
+        a6,
+        Ba4,
+        Nf6,
+        'O-O',
+        Nxe4,
+        d4,
+        b5,
+        Bb3,
+        d5,
+        dxe5,
+        Be6,
+        c3,
+        Be7,
+        Re1,
+        'O-O',
+        Nd4,
+      ]
+    reason: >-
+      Chosen over the dataset's other row for this name ("Berlin Defense, Tarrasch Trap",
+      C66) because the Open Defence version (C83) is the one with a citable, independently
+      checkable line and a documented pedigree — Tarrasch himself is credited with the
+      underlying idea against two future World Championship challengers — while the C66
+      version has no source found in researching #118 that pins down an exact position. Its
+      dataset row is a Ruy Lopez sub-variation excluded in `classification.yaml`.
+
+  - id: rubinstein-trap
+    name: 'Rubinstein Trap'
+    family: 'Cambridge Springs Defense'
+    eco: D52
+    side: black
+    soundness: sound
+    line: [d4, d5, c4, c6, Nf3, Nf6, Nc3, e6, Bg5, Nbd7, e3, Qa5, Nd2, dxc4]
+    reason: >-
+      The Rubinstein Variation of the Cambridge Springs (7.Nd2, stepping the f3 knight aside
+      rather than the c3 one, which cannot reach d2 at all). Moving that knight leaves the g5
+      bishop undefended the moment ...dxc4 opens the fifth rank to the queen on a5, which is
+      the tactic this entry's tree actually verifies — a different, more direct point than
+      the delayed-dxc4 "Bd3?? dxc4! Bxf6 cxd3!" trick some sources describe for a related but
+      distinct move order. Its dataset row is a Cambridge Springs sub-variation excluded in
+      `classification.yaml`.
+
+  - id: scandinavian-defense-kiel-variation-trap
+    name: 'Scandinavian Defense: Kiel Variation Trap'
+    family: 'Scandinavian Defense'
+    eco: B01
+    side: black
+    soundness: unsound
+    line: [e4, d5, exd5, Nf6, d4, Nxd5, c4, Nb4]
+    reason: >-
+      Included on request from #118's reference lists, but neither commonly cited threat
+      (...Nc2+ or ...Nd3+) survives replay — both squares are defended and the knight is
+      simply lost. 5.a3! leaves the knight without a good square; taught so it is recognised
+      rather than played with real hope of a trick. Its dataset row is a Scandinavian
+      sub-variation excluded in `classification.yaml`.
+
+  - id: indian-defense-budapest-gambit-accepted-fajarowicz-defense
+    name: 'Budapest Gambit Accepted: Fajarowicz Defense Trap'
+    family: 'Budapest Gambit'
+    eco: A51
+    side: black
+    soundness: dubious
+    line: [d4, Nf6, c4, e5, dxe5, Ne4]
+    reason: >-
+      A separate entry from the Budapest Gambit's own tree, which only mentions 2...Ne4 in
+      passing. The popular online "wins the queen" continuation (...Qd4+ or ...Qxg3+ after
+      the king walk) does not survive replay — both hang the queen — so this entry models the
+      line that does hold up: a real piece sacrifice for two pawns and an exposed king, with
+      no proven verdict either way. Its dataset row is a Budapest sub-variation excluded in
+      `classification.yaml`.
+
+  - id: vienna-game-wurzburger-trap
+    name: 'Würzburger Trap'
+    family: 'Vienna Game'
+    eco: C29
+    side: white
+    soundness: dubious
+    line: [e4, e5, Nc3, Nf6, f4, d5, fxe5, Nxe4, d3, 'Qh4+', g3, Nxg3, Nf3, Qh5, Nxd5]
+    reason: >-
+      The sixth trap for #118, picked from `classification.yaml`'s own note (around its
+      Vienna Game rows) that the Würzburger was a real trap not yet hand-entered. Black's
+      greedy 8...Nxh1 costs the exchange back via 9.Nxc7+ and 10.Nxa8, but replaying the
+      final material count by hand found only a one-pawn edge, not the "wins a piece" some
+      summaries claim — real, lasting structural damage to Black's queenside rather than a
+      proven decisive advantage.

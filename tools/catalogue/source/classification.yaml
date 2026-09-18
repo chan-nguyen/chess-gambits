@@ -3160,6 +3160,32 @@ rules:
     reason: >-
       A named trap inside the Tennison Gambit, not yet hand-entered. Breadth is free for
       gambits and is not free for traps; this is what that costs.
+  - match: 'Indian Defense: Budapest Gambit Accepted, Fajarowicz Defense'
+    include: false
+    code: duplicate-trap
+    reason: >-
+      Not named a trap by the dataset, but #118 authors this exact line as
+      `indian-defense-budapest-gambit-accepted-fajarowicz-defense` in `traps.yaml`, with its
+      own tree and its own ECO (A51, the same the dataset already gives it). Importing it
+      here too would give the same defining line two entries under one id. The two named
+      sub-variations below are unrelated positions one ply deeper and are excluded from this
+      blanket exclusion by their own, longer rules.
+  - match: 'Indian Defense: Budapest Gambit Accepted, Fajarowicz Defense, Bonsdorf Variation'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: dubious
+    reason: >-
+      A real sub-variation one ply past the trap entry's own tree (4.a3), not the row
+      excluded just above. Same judgement as the parent Budapest: sound enough for club
+      play.
+  - match: 'Indian Defense: Budapest Gambit Accepted, Fajarowicz Defense, Steiner Variation'
+    include: true
+    sacrifice: { ply: 4, move: e5 }
+    soundness: dubious
+    reason: >-
+      A real sub-variation one ply past the trap entry's own tree (4.Qc2), not the row
+      excluded just above. Same judgement as the parent Budapest: sound enough for club
+      play.
   # ------------------------------------------------------------------ the #56 review: published entries whose side no board supported
   #
   # Issue #36 proved the side of every row it added and left the rows that were already

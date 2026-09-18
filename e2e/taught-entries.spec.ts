@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are one hundred and forty-four of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred and fifty of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -120,6 +120,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'horwitz-defense-zilbermints-gambit',
       'hungarian-opening-van-kuijk-gambit',
       'indian-defense-budapest-gambit',
+      'indian-defense-budapest-gambit-accepted-fajarowicz-defense',
       'indian-defense-gibbins-weidenhagen-gambit',
       'irish-gambit',
       'italian-game-blackburne-kostic-gambit',
@@ -176,6 +177,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'mexican-defense-horsefly-gambit',
       'mikenas-defense-pozarek-gambit',
       'modern-defense-lizard-defense-pirc-diemer-gambit',
+      'monticelli-trap',
       'mortimer-trap',
       'nimzo-indian-defense-dilworth-gambit',
       'nimzo-larsen-attack-norfolk-gambit',
@@ -196,7 +198,9 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'rat-defense-english-rat-lisbon-gambit',
       'reti-opening-zilbermints-gambit',
       'richter-veresov-attack-malich-gambit',
+      'rubinstein-trap',
       'ruy-lopez-schliemann-defense',
+      'scandinavian-defense-kiel-variation-trap',
       'scandinavian-defense-zilbermints-gambit',
       'scotch-game-goring-gambit',
       'scotch-game-scotch-gambit',
@@ -215,12 +219,14 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'sodium-attack-durkin-gambit',
       'st-george-defense-zilbermints-gambit',
       'tarrasch-defense-schara-gambit',
+      'tarrasch-trap',
       'torre-attack-wagner-gambit',
       'trompowsky-attack-raptor-variation-hergert-gambit',
       'van-geet-opening-laroche-gambit',
       'vant-kruijs-opening-keoni-hiva-gambit-akahi-variation',
       'vienna-gambit-with-max-lange-defense',
       'vienna-game-fyfe-gambit',
+      'vienna-game-wurzburger-trap',
       'ware-opening-wing-gambit',
       'zukertort-opening-herrstrom-gambit',
     ])

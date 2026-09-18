@@ -1,0 +1,108 @@
+# The Würzburger Trap, in the Vienna Gambit. Chosen as the sixth trap for #118 from the
+# candidates the issue itself named: `tools/catalogue/source/classification.yaml` lists the
+# Würzburger by name (around the Vienna Game rows) as a real trap not yet hand-entered, and
+# it is not in `AUTHORED` (`tools/catalogue/branches.test.ts`) or in
+# `tools/catalogue/source/traps.yaml` before this change.
+#
+# The defining line is 1.e4 e5 2.Nc3 Nf6 3.f4 d5 4.fxe5 Nxe4 5.d3 Qh4+ 6.g3 Nxg3 7.Nf3 Qh5
+# 8.Nxd5 — and it ends on White's own ply, so the root is an opponent node and Black's reply
+# can carry a quality (invariant 5).
+#
+# General sources describe the follow-up loosely as "if 8...Nxh1 then 9.Nxc7+ Kd8 10.Nxa8
+# leads to an advantage for White." That was replayed move by move with chess.js rather than
+# taken on trust, and the honest result is narrower than "an advantage": counting material at
+# the end of the line by hand from the derived FEN gives White 32 points against Black's 31
+# — a single pawn's worth, not a rout — with a white knight stranded on a8 and a black knight
+# stranded on h1, either of which could still be lost back over the next few moves. What is
+# true and worth teaching is structural rather than a material verdict: Black's queenside is
+# wrecked (the a8 rook is gone, the king has already had to move and can castle nowhere), and
+# that is genuine, lasting compensation for the exchange White gave up on h1 — not a proof
+# that White is winning outright. The outcome below states the position this way rather than
+# repeating the stronger claim, per docs/CONTEXT.md ("Where a line's reputation doesn't hold
+# up under real analysis... write an honest position leaf").
+#
+# ECO is C29 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
+# records: a trap carries the ECO of the opening it sits inside (ADR-0008). No leaf here
+# claims a mate; the outcome is `type: position`, checked for legality and for "no capture
+# going free" (invariant 14) rather than proved decisive.
+id: vienna-game-wurzburger-trap
+name: 'Vienna Game: Würzburger Trap'
+eco: C29
+category: trap
+side: white
+definingLine: [e4, e5, Nc3, Nf6, f4, d5, fxe5, Nxe4, d3, 'Qh4+', g3, Nxg3, Nf3, Qh5, Nxd5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-18'
+  basis:
+    by: chan
+    at: '2026-09-18'
+    source: >-
+      A judgement, not a measurement, and it is about the piece Black gave up rather than
+      about the trap springing. Counted by hand from the derived FEN, the final position
+      after 8...Nxh1 9.Nxc7+ Kd8 10.Nxa8 is only a single pawn's worth of material apart
+      (White 32, Black 31), with a white knight stuck on a8 and a black knight stuck on h1 —
+      real, lasting damage to Black's position rather than a proven win for White. Anyone
+      quoting this as a clean piece win has not replayed it. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-18'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material count in the final position, which was
+    computed by hand from the derived FEN rather than from an engine.
+tree:
+  annotation:
+    vi: Trắng vừa ăn tốt d5 bằng mã, đe doạ ăn tiếp con hậu Đen ở h5 nếu Đen không cẩn thận (vì mã d5 nhắm vào f6, và còn có Nxc7+ nếu vua Đen chưa nhập thành). Con mã Đen ở g3, quân vừa ăn tốt lúc trước, đang đứng nhìn thẳng vào xe h1 — một miếng mồi rất hấp dẫn.
+    en: White has just captured the pawn on d5 with the knight, threatening tricks against the queen on h5 next if Black is careless, since the knight also eyes f6 and there is Nxc7+ waiting if the black king has not castled. Black's own knight on g3, the one that grabbed a pawn a move ago, is staring straight at the rook on h1 — a very tempting target.
+    fr: Les Blancs viennent de prendre le pion d5 avec le cavalier, menaçant des complications contre la dame h5 si les Noirs ne font pas attention, puisque le cavalier vise aussi f6 et que Cxc7+ guette si le roi noir n'a pas roqué. Le propre cavalier des Noirs en g3, celui qui vient de gagner un pion, regarde droit vers la tour h1 — une cible très tentante.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, và phần lớn đơn giản là chấp nhận đã mất con tốt d5 mà không có gì bù lại thêm — vẫn là một thế cờ khó khăn cho Đen nhưng không có gì kịch tính hơn thế. Chỉ có 8...Nxh1?!, ăn nốt con xe đang bị nhắm, mới dẫn tới những biến phức tạp bên dưới.
+      en: Black plays something else, and most of it simply accepts the lost d5 pawn without anything further to show for it — still a hard position for Black, but nothing more dramatic than that. Only 8...Nxh1?!, grabbing the rook that is being eyed, leads into the complications modelled below.
+      fr: Les Noirs jouent autre chose, et la plupart du temps cela revient simplement à accepter le pion d5 perdu sans rien de plus à montrer pour cela — une position toujours difficile pour les Noirs, mais rien de plus dramatique. Seul 8...Cxh1 ?!, qui ramasse la tour visée, mène aux complications modélisées ci-dessous.
+  children:
+    - ply: Nxh1
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Đen ăn con xe, tưởng như thu hoạch được thành quả của nước Nxg3 trước đó. Nhưng con mã Đen ở h1 giờ đứng kẹt trong góc, và Trắng có một nước chen ngang trước khi phải lo tới nó.
+        en: Black grabs the rook, seemingly cashing in the earlier Nxg3. But the black knight on h1 is now stuck in the corner, and White has an in-between move before ever needing to worry about it.
+        fr: Les Noirs ramassent la tour, empochant en apparence le gain du Cxg3 précédent. Mais le cavalier noir en h1 est désormais coincé dans le coin, et les Blancs disposent d'un coup intermédiaire avant même d'avoir à s'en soucier.
+      children:
+        - ply: 'Nxc7+'
+          annotation:
+            vi: Mã Trắng ăn tốt c7 và chiếu vua cùng lúc đe doạ cả xe a8 — một cú đôi kinh điển. Vua Đen buộc phải di chuyển.
+            en: White's knight takes the c7 pawn while forking the king and threatening the rook on a8 at the same time — a classic double blow. The black king has to move.
+            fr: Le cavalier blanc prend le pion c7 tout en mettant en fourchette le roi et en menaçant la tour a8 en même temps — un double coup classique. Le roi noir doit bouger.
+          dismissRest:
+            reason:
+              vi: Cả ba cách thoát chiếu — Kd7, Ke7 hay Kd8 — đều để lại con xe a8 không ai canh, nên mã Trắng ăn nó ở nước sau trong mọi trường hợp. Nhánh dưới chọn 9...Kd8 để trình bày, vì đó là ô giữ vua an toàn nhất trong ba lựa chọn.
+              en: All three ways to answer the check — Kd7, Ke7 or Kd8 — leave the rook on a8 unguarded, so White's knight takes it next regardless of which one Black picks. The branch below models 9...Kd8, the safest of the three squares for the king.
+              fr: Les trois façons de répondre à l'échec — Rd7, Re7 ou Rd8 — laissent toutes la tour a8 sans garde, si bien que le cavalier blanc la prend au coup suivant quel que soit le choix des Noirs. La branche ci-dessous retient 9...Rd8, la plus sûre des trois cases pour le roi.
+          children:
+            - ply: Kd8
+              annotation:
+                vi: Vua lùi về d8, ô an toàn nhất trong ba lựa chọn vì nó không đứng trên đường chiếu nào tiếp theo. Nhưng con xe a8 vẫn bị bỏ mặc.
+                en: The king retreats to d8, the safest of the three squares since it does not stand in the way of any follow-up check. But the rook on a8 is still left hanging.
+                fr: Le roi recule en d8, la plus sûre des trois cases car elle n'est exposée à aucun échec ultérieur. Mais la tour a8 reste toujours en prise.
+              children:
+                - ply: Nxa8
+                  annotation:
+                    vi: Mã Trắng ăn nốt con xe. Cả hai bên giờ đều có một con mã lạc lõng trong lãnh thổ đối phương — mã Trắng ở a8, mã Đen ở h1 — và cả hai đều có thể sẽ bị bắt lại trong vài nước tới.
+                    en: White's knight collects the rook too. Both sides now have a knight stranded deep in enemy territory — White's on a8, Black's on h1 — and either could well be won back over the next few moves.
+                    fr: Le cavalier blanc ramasse aussi la tour. Les deux camps ont désormais un cavalier isolé en territoire ennemi — celui des Blancs en a8, celui des Noirs en h1 — et l'un comme l'autre pourrait bien être repris dans les coups suivants.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân ở vị trí này, Trắng có xe, hai tượng, hai mã, hậu và sáu tốt (32 điểm chất lượng theo thang chín-năm-ba-ba-một); Đen có xe, hai tượng, hai mã, hậu và năm tốt (31 điểm). Chênh lệch chỉ đúng một tốt — không phải một lợi thế áp đảo — nhưng nó đi kèm với thiệt hại lâu dài — cánh hậu Đen đã tan vỡ, xe a8 mất hẳn, và vua Đen đã phải rời hàng ngang đầu tiên nên không còn nhập thành được nữa. Đây là một thế cờ sắc bén và về cơ bản là cân bằng theo điểm số, nhưng cấu trúc nghiêng hẳn về phía có lợi cho Trắng.
+                      en: Counting material here, White has a rook, two bishops, two knights, a queen and six pawns (32 points on the familiar nine-five-three-three-one scale); Black has a rook, two bishops, two knights, a queen and five pawns (31 points). The gap is exactly one pawn's worth — not an overwhelming edge — but it comes with lasting damage — Black's queenside is wrecked, the a8 rook is simply gone, and the black king has already had to leave the back rank and can no longer castle at all. This is a sharp position that is roughly level on points but structurally tilted in White's favour.
+                      fr: En comptant le matériel ici, les Blancs ont une tour, deux fous, deux cavaliers, une dame et six pions (32 points sur l'échelle habituelle neuf-cinq-trois-trois-un) ; les Noirs ont une tour, deux fous, deux cavaliers, une dame et cinq pions (31 points). L'écart vaut exactement un pion — pas un avantage écrasant — mais il s'accompagne de dégâts durables  — l'aile dame noire est en ruine, la tour a8 est purement et simplement perdue, et le roi noir a déjà dû quitter sa rangée et ne peut plus roquer du tout. C'est une position tendue, à peu près égale en points mais structurellement penchée en faveur des Blancs.
+                    plan:
+                      vi: Trắng tìm cách đưa con mã a8 trở về an toàn qua b6 hoặc c7, đồng thời giữ con mã Đen ở h1 bị vây bằng cách phát triển bình thường và không vội đổi quân khi vua Đen còn kẹt ở giữa bàn. Đen cũng cần đưa con mã h1 thoát ra qua f2 hoặc g3, hoàn thiện phát triển phần quân còn lại và tìm cách dùng cặp tượng cùng con hậu đang hoạt động để bù lại cấu trúc đã vỡ.
+                      en: White looks to bring the a8 knight home safely via b6 or c7, while keeping Black's own knight boxed in on h1 by developing normally and not rushing to trade pieces while the black king is still stuck in the centre. Black likewise needs to free the h1 knight via f2 or g3, finish developing the rest of the pieces, and try to use the bishop pair and the active queen to make up for the broken structure.
+                      fr: Les Blancs cherchent à ramener le cavalier a8 en sécurité via b6 ou c7, tout en gardant le cavalier noir enfermé en h1 en développant normalement et sans se presser d'échanger tant que le roi noir reste coincé au centre. Les Noirs doivent de même libérer le cavalier h1 via f2 ou g3, achever le développement du reste des pièces, et tenter d'utiliser la paire de fous et la dame active pour compenser la structure brisée.
+                    basis:
+                      by: chan
+                      at: '2026-09-18'
