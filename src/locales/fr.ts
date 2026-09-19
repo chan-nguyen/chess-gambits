@@ -238,8 +238,6 @@ const fr: PartialTranslations = {
     netModelled:
       'Toutes les défenses légales ont été énumérées et réfutées. Voici la ligne où la défense résiste le plus longtemps :',
     netImmediate: 'Il n’y a aucune défense à modéliser : le mat tombe immédiatement.',
-    stepPrevious: 'Coup précédent de la ligne',
-    stepNext: 'Coup suivant de la ligne',
     mateReached: 'Échec et mat.',
 
     assessmentHeading: 'Où mène cette ligne',

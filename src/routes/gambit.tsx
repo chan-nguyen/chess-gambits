@@ -12,6 +12,7 @@ import { findEntry, fullName } from '../lib/catalogue.ts'
 import type { CompiledEntry } from '../lib/content-types.ts'
 import { loadEntry, type EntryLoad, type EntryLoadFailure } from '../lib/content.ts'
 import { describeLineProblem, lineParam, parseLine } from '../lib/line.ts'
+import { describeMateProblem, mateParam, parseMate } from '../lib/mate-step.ts'
 import { describePreludeProblem, parsePrelude, preludeParam } from '../lib/prelude.ts'
 import { defaultLocale, isLocale } from '../lib/locale.ts'
 
@@ -27,6 +28,12 @@ import { defaultLocale, isLocale } from '../lib/locale.ts'
  * bounded whole number and nothing else — and clamped against the entry's own defining line
  * by `walkEntry`. Neither can throw, and neither produces a blank page: a bad link lands on
  * a real position and says what it could not follow.
+ *
+ * The `mate` parameter (#123) is parsed for shape the same way `prelude` is — a bounded whole
+ * number and nothing else — but what it *means* cannot be decided here: only `walkEntry`
+ * knows whether `line` resolved to a leaf that claims a proved mate, so this route hands the
+ * raw parsed count through and lets `walkEntry` decide whether it names anything at all
+ * (`src/lib/mate-step.ts`).
  *
  * The id is checked by `loadEntry` before it is put in a request path, so this route never
  * builds a URL out of it itself.
@@ -107,6 +114,8 @@ export const GambitRoute = () => {
     () => parsePrelude(rawPrelude),
     [rawPrelude],
   )
+  const rawMate = searchParams.get(mateParam) ?? ''
+  const { ply: mate, problem: mateProblem } = useMemo(() => parseMate(rawMate), [rawMate])
   const { state, retry } = useEntry(id)
 
   /**
@@ -143,6 +152,8 @@ export const GambitRoute = () => {
 
       {preludeProblem !== null && <p role="alert">{describePreludeProblem(preludeProblem)}</p>}
 
+      {mateProblem !== null && <p role="alert">{describeMateProblem(mateProblem)}</p>}
+
       {state.status === 'loading' && <PendingPosition />}
 
       {state.status === 'failed' &&
@@ -164,7 +175,7 @@ export const GambitRoute = () => {
 
       {state.status === 'loaded' && (
         <>
-          <LearningSurface entry={state.entry} requested={plies} prelude={prelude} />
+          <LearningSurface entry={state.entry} requested={plies} prelude={prelude} mate={mate} />
           {/*
            * #14's mount point, and it is here rather than inside the surface for two
            * reasons. The surface belongs to #9 and is being changed in parallel, and this

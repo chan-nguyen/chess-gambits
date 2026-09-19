@@ -1,6 +1,5 @@
 import type { CompiledOutcome } from '../../lib/content-types.ts'
 import type { Locale } from '../../lib/locale.ts'
-import type { Orientation } from '../board/board-model.ts'
 import { AssessmentOutcome } from './AssessmentOutcome.tsx'
 import { MateOutcome } from './MateOutcome.tsx'
 import { UnexploredOutcome } from './UnexploredOutcome.tsx'
@@ -25,23 +24,25 @@ export type OutcomeCardProps = {
   readonly outcome: CompiledOutcome
   /** The leaf's position: the mate arm plays its proved line from it. */
   readonly fen: string
-  /** The learner's side at the bottom of any board drawn below. */
-  readonly orientation: Orientation
+  /** The leaf's own `line` path — the mate arm addresses its sequence from here (#123). */
+  readonly leaf: readonly string[]
+  /** How many plies into a proved mate's sequence the walk stands; 0 at the leaf itself. */
+  readonly step: number
   readonly locale: Locale
 }
 
-export const OutcomeCard = ({ outcome, fen, orientation, locale }: OutcomeCardProps) => {
+export const OutcomeCard = ({ outcome, fen, leaf, step, locale }: OutcomeCardProps) => {
   switch (outcome.kind) {
     case 'mate':
       return (
         <MateOutcome
           inMoves={outcome.inMoves}
           sequence={outcome.sequence}
-          sequenceFens={outcome.sequenceFens}
           provedBy={outcome.provedBy}
           basis={outcome.basis}
           fen={fen}
-          orientation={orientation}
+          leaf={leaf}
+          step={step}
           locale={locale}
         />
       )

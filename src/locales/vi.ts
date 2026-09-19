@@ -304,8 +304,6 @@ const vi = {
     netModelled:
       'Mọi nước chống đỡ hợp lệ đều đã được liệt kê và bác bỏ. Đây là biến đối thủ cầm cự lâu nhất:',
     netImmediate: 'Không có nước chống đỡ nào để dựng: chiếu hết đến ngay.',
-    stepPrevious: 'Nước trước trong biến',
-    stepNext: 'Nước sau trong biến',
     /**
      * The board's own accessible flag once the reader has stepped all the way to the final
      * position (#121) — a standalone sentence, not a reuse of `learn.checkmate`. That key is

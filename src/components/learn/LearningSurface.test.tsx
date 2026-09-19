@@ -6,6 +6,7 @@ import type { LocaleLoader } from '../../i18n/i18n.ts'
 import type { PartialTranslations } from '../../i18n/translations.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
 import { lineSearch } from '../../lib/line.ts'
+import { encodeMate } from '../../lib/mate-step.ts'
 import { preludeSearch } from '../../lib/prelude.ts'
 import { isLocale, type Locale } from '../../lib/locale.ts'
 import en from '../../locales/en.ts'
@@ -40,6 +41,8 @@ const VI = viCatalogue.learn
 /** English and French over the source locale: both are typed as subsets of `vi.ts`. */
 const EN = { ...viCatalogue.learn, ...en.learn }
 const FR = { ...viCatalogue.learn, ...fr.learn }
+/** Same pattern, for the `outcome` group — needed for the checkmate flag's own text. */
+const EN_OUTCOME = { ...viCatalogue.outcome, ...en.outcome }
 
 /** The surface's landmark, per locale, so a test can wait for the page it asked for. */
 const NAVIGATION: Readonly<Record<Locale, string>> = {
@@ -74,6 +77,8 @@ type Options = {
   readonly line?: readonly string[]
   /** How many plies of the defining line to stand after (#70). Omitted means the root. */
   readonly prelude?: number
+  /** How many plies into a proved mate's sequence to stand after (#123). Needs `line`. */
+  readonly mate?: number
   /**
    * A fixture to serve in place of the default. The URL follows it, because `loadEntry`
    * refuses a file that names a different entry — correctly, since that is a misconfigured
@@ -83,10 +88,15 @@ type Options = {
   readonly entry?: CompiledEntry
 }
 
-const renderGambit = ({ locale = 'vi', line = [], prelude, entry }: Options = {}) => {
+const renderGambit = ({ locale = 'vi', line = [], prelude, mate, entry }: Options = {}) => {
   if (entry !== undefined) serve(entry)
   const id = entry?.id ?? MAPPED_ENTRY.id
-  const search = prelude === undefined ? lineSearch(line) : preludeSearch(prelude)
+  const search =
+    prelude !== undefined
+      ? preludeSearch(prelude)
+      : mate === undefined
+        ? lineSearch(line)
+        : `${lineSearch(line)}&${encodeMate(mate)}`
   const router = createMemoryRouter(
     [
       {
@@ -1061,6 +1071,111 @@ describe('what the line ends in (#11)', () => {
 })
 
 /**
+ * **#123's own assertion: the real "next" on the main board walks into and through a proved
+ * mate.** #121/#122 built a second, small board with its own local-state stepper for this;
+ * the product owner's feedback (issue #123) was that the *real* "next" control should do it
+ * instead, on the real board, so that it is one walk rather than two. What is asserted here
+ * is everything that follows from that: the URL changes and is independently loadable at
+ * every step (§4, every position is a URL), browser back/forward retraces it, and the
+ * checkmate flag appears at the true final position and nowhere else.
+ */
+describe('walking a proved mate with the real controls (#123)', () => {
+  it('advances past the leaf into the mate on the first press of next', async () => {
+    const router = await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+
+    fireEvent.click(control(EN.nextPly))
+
+    await waitFor(() =>
+      expect(router.state.location.search).toBe(
+        `${lineSearch(OUTCOME_MATE_LINE)}&${encodeMate(1)}`,
+      ),
+    )
+  })
+
+  it('walks every ply of the sequence and ends on the actual checkmated position', async () => {
+    const router = await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+
+    for (let ply = 1; ply <= 3; ply += 1) {
+      fireEvent.click(control(EN.nextPly))
+      await waitFor(() =>
+        expect(router.state.location.search).toBe(
+          `${lineSearch(OUTCOME_MATE_LINE)}&${encodeMate(ply)}`,
+        ),
+      )
+    }
+
+    // The real end: next is now disabled, and nothing follows the last ply of the sequence.
+    // Re-queried rather than captured once — at the edge the control becomes a `role="link"`
+    // `span` (`MoveNavigator`'s own doc comment), a different element from the `<a>` before it.
+    expect(control(EN.nextPly)).toHaveAttribute('aria-disabled', 'true')
+  })
+
+  it('is independently loadable and bookmarkable at a step inside the mate', async () => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE, mate: 2 })
+
+    await waitFor(() =>
+      expect(document.querySelector('.mate-net__ply-link[aria-current="step"]')).toHaveTextContent(
+        '7...Ke7',
+      ),
+    )
+  })
+
+  it('steps back out of the mate toward the leaf with previous', async () => {
+    const router = await surface({
+      entry: OUTCOMES_ENTRY,
+      locale: 'en',
+      line: OUTCOME_MATE_LINE,
+      mate: 1,
+    })
+
+    fireEvent.click(control(EN.previousPly))
+
+    await waitFor(() => expect(router.state.location.search).toBe(lineSearch(OUTCOME_MATE_LINE)))
+  })
+
+  it('retraces the walk with browser back and forward', async () => {
+    const router = await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+
+    fireEvent.click(control(EN.nextPly))
+    await waitFor(() =>
+      expect(router.state.location.search).toBe(
+        `${lineSearch(OUTCOME_MATE_LINE)}&${encodeMate(1)}`,
+      ),
+    )
+
+    await act(async () => {
+      await router.navigate(-1)
+    })
+    expect(router.state.location.search).toBe(lineSearch(OUTCOME_MATE_LINE))
+
+    await act(async () => {
+      await router.navigate(1)
+    })
+    expect(router.state.location.search).toBe(`${lineSearch(OUTCOME_MATE_LINE)}&${encodeMate(1)}`)
+  })
+
+  /** AC 1's flag, and the reason this whole ticket exists: it must not appear early. */
+  it('shows the checkmate flag only once next has actually reached the last ply', async () => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+    expect(screen.queryByText(EN_OUTCOME.mateReached)).toBeNull()
+
+    for (const ply of [1, 2]) {
+      fireEvent.click(control(EN.nextPly))
+      await waitFor(() =>
+        expect(document.querySelector('.annotation-panel__ply')).toHaveTextContent(
+          ['7.Bxf7+', '7...Ke7'][ply - 1] ?? '',
+        ),
+      )
+      expect(screen.queryByText(EN_OUTCOME.mateReached)).toBeNull()
+    }
+
+    fireEvent.click(control(EN.nextPly))
+
+    await screen.findByText(EN_OUTCOME.mateReached)
+  })
+})
+
+/**
  * **What changed, on every board that shows a move (issue #54).**
  *
  * `Board` has drawn a last-ply highlight since #4 — two tinted squares, since 2026-09-18
@@ -1171,18 +1286,29 @@ describe('the ply that produced the position', () => {
   })
 
   /**
-   * The one board that marks nothing on purpose. `MateNet`'s board is an anchor for a line
-   * played *from* the position, and it repeats the position the main board is already
-   * showing — so the decision there is "none", stated in the call rather than fallen into.
+   * `MateNet` mounts no board of its own any more (#123): the main board is the anchor for
+   * the proved line, since pressing the real "next" walks it through the sequence in place.
+   * A second board that only repeated the position the main one already shows is exactly
+   * what #123 removes.
    */
-  it('leaves the mate net’s board unmarked, and the main board marked', async () => {
+  it('marks the leaf itself on the main board, with no second board beside it', async () => {
     await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
-    const net = document.querySelector('.mate-net .board-preview')
 
-    expect(net).not.toBeNull()
-    expect(net?.querySelectorAll('.board__square--from')).toHaveLength(0)
-    expect(net?.querySelectorAll('.board__square--to')).toHaveLength(0)
+    expect(document.querySelector('.mate-net .board-preview')).toBeNull()
     // 6...Bxd1 — the bishop came from h5, where 4...Bh5 put it earlier in this line.
     expect(marks(mainBoard())).toBe('h5-d1')
+  })
+
+  /**
+   * Pressing the real "next" once the leaf claims a proved mate now marks the *main* board
+   * with the mate's own first ply, instead of ending the walk at the leaf (#123).
+   */
+  it('marks the mate’s own first ply on the main board once next is pressed', async () => {
+    await surface({ entry: OUTCOMES_ENTRY, locale: 'en', line: OUTCOME_MATE_LINE })
+
+    fireEvent.click(control(EN.nextPly))
+
+    // 7.Bxf7+: the bishop left c4 (from 4.Bc4, still on the board) and took on f7.
+    await waitFor(() => expect(marks(mainBoard())).toBe('c4-f7'))
   })
 })

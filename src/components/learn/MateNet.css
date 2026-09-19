@@ -1,8 +1,6 @@
 /*
- * One board, one list, and no second board at any width (docs/design-system.md §3).
- *
- * The list wraps beside the board and falls under it only when the column is too narrow for
- * both, which at 360px it is not: a 96px preview and three plies of SAN fit on one row.
+ * A list, and no board of its own (docs/design-system.md §3): the main board is the anchor
+ * now, since pressing next in `MoveNavigator` moves it through the sequence in place (#123).
  */
 
 .mate-net {
@@ -15,13 +13,6 @@
   margin-block: 0;
 }
 
-.mate-net__figure {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
-  align-items: flex-start;
-}
-
 /*
  * Numbered in the text of each item rather than by a list marker: `7...Ke7` is standard
  * notation and a browser's own `1. 2. 3.` counting plies beside it would be a second,
@@ -29,7 +20,6 @@
  */
 .mate-net__plies {
   display: flex;
-  flex: 1 1 0;
   flex-wrap: wrap;
   gap: var(--space-1) var(--space-3);
   margin-block: 0;
@@ -41,62 +31,21 @@
   white-space: nowrap;
 }
 
-/* Plain text made a button: same look as before #121, so a jump-to-ply control does not
+/* Plain text made a link: same look as before #121, so a jump-to-ply control does not
    read as a new kind of thing beside the SAN it always was. */
-.mate-net__ply-button {
-  padding: 0;
-  border: none;
-  background: none;
+.mate-net__ply-link {
   color: inherit;
-  font: inherit;
   font-family: var(--font-mono);
   font-weight: 700;
-  cursor: pointer;
+  text-decoration: none;
 }
 
-.mate-net__ply-button:hover {
+.mate-net__ply-link:hover {
   text-decoration: underline;
 }
 
 /* The step on screen right now, named without colour alone (§2). */
-.mate-net__ply-button[aria-current='step'] {
+.mate-net__ply-link[aria-current='step'] {
   text-decoration: underline;
   text-underline-offset: var(--space-1);
-}
-
-.mate-net__controls {
-  display: flex;
-  gap: var(--space-2);
-}
-
-.mate-net__control {
-  flex: 1 1 0;
-  min-block-size: var(--target-size-touch);
-  padding-inline: var(--space-2);
-  border: var(--border-width) solid var(--color-border-strong);
-  border-radius: var(--radius-sm);
-  background-color: var(--color-surface);
-  color: var(--color-accent);
-  font-size: var(--text-sm);
-  font-weight: 600;
-}
-
-.mate-net__control--next {
-  border-color: var(--color-accent);
-  background-color: var(--color-accent);
-  color: var(--color-accent-contrast);
-}
-
-.mate-net__control:disabled {
-  border-style: dashed;
-  border-color: var(--color-border);
-  background-color: var(--color-surface);
-  color: var(--color-text-muted);
-  cursor: default;
-}
-
-.mate-net__checkmate {
-  margin-block: 0;
-  color: var(--color-mate);
-  font-weight: 700;
 }

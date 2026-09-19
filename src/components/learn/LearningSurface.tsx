@@ -45,6 +45,11 @@ export type LearningSurfaceProps = {
    * root" — which is every URL published before `?prelude=` existed (#70, AC 3).
    */
   readonly prelude: number | null
+  /**
+   * How far into a proved mate's sequence the URL asked for, or null when absent, unreadable,
+   * or (decided by `walkEntry`, not here) not standing on a leaf that claims one (#123).
+   */
+  readonly mate: number | null
 }
 
 /**
@@ -63,7 +68,7 @@ const belongsToSomethingElse = (target: EventTarget | null): boolean => {
   return target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT'
 }
 
-export const LearningSurface = ({ entry, requested, prelude }: LearningSurfaceProps) => {
+export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSurfaceProps) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const { i18n } = useTranslation()
@@ -81,7 +86,10 @@ export const LearningSurface = ({ entry, requested, prelude }: LearningSurfacePr
    * replacing it — and everything below reads the join instead of the tree, so next and
    * previous cross it without this component knowing where it is.
    */
-  const walk = useMemo(() => walkEntry(entry, prelude, requested), [entry, prelude, requested])
+  const walk = useMemo(
+    () => walkEntry(entry, prelude, requested, mate),
+    [entry, prelude, requested, mate],
+  )
   const { node, next, previous, inPrelude } = walk
   const { path, strayedAt } = walk.resolved
 
@@ -359,16 +367,19 @@ export const LearningSurface = ({ entry, requested, prelude }: LearningSurfacePr
          * them as one thing in two colours would make the opinion look proved rather than
          * making the proof mean anything (docs/CONTEXT.md, *Provenance*).
          *
-         * The position goes down with it because the mate arm plays its proved line *from*
-         * this leaf, and `MateNet` anchors the SAN list against one board: the wire carries
-         * the longest line of the net and never the net itself, so that is the only board
-         * there is to draw.
+         * Read off `walk.resolved.node` rather than `node` (#123): `node` is null for the
+         * whole of a mate address, by the same AC 4 reasoning that makes it null in the
+         * prelude, but the leaf whose outcome this is stays the same node throughout —
+         * `resolved` is the tree half, resolved, whether or not the walk is presently in the
+         * tree. `!inPrelude` keeps this from firing on a prelude position whose *root* happens
+         * to carry an outcome, which `node` being null already prevented before this ticket.
          */}
-        {node?.outcome !== undefined && (
+        {!inPrelude && walk.resolved.node.outcome !== undefined && (
           <OutcomeCard
-            outcome={node.outcome}
-            fen={node.fen}
-            orientation={entry.side}
+            outcome={walk.resolved.node.outcome}
+            fen={walk.resolved.node.fen}
+            leaf={walk.resolved.path}
+            step={walk.here.at === 'mate' ? walk.here.ply : 0}
             locale={locale}
           />
         )}

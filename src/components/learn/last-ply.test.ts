@@ -258,8 +258,11 @@ describe('every board the site mounts is told which ply produced its position (A
     expect(files).toContain('src/components/learn/LearningSurface.tsx')
     expect(files).toContain('src/components/learn/BoardPreview.tsx')
     expect(files).toContain('src/components/learn/ChoiceLink.tsx')
-    expect(files).toContain('src/components/learn/MateNet.tsx')
-    expect(MOUNTS.length).toBeGreaterThanOrEqual(4)
+    // `MateNet` mounted one here from #121 until #123 removed it: the main board is the
+    // anchor now, and a second board that only repeated it is exactly what #123 was filed to
+    // remove (`MateNet.tsx`'s own doc comment). Three is the current, real count, not a
+    // number chosen to make this pass — dropping below it again should still fail here.
+    expect(MOUNTS.length).toBeGreaterThanOrEqual(3)
   })
 
   it('passes lastMove at every one of them', () => {

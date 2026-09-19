@@ -239,8 +239,6 @@ const en: PartialTranslations = {
     netModelled:
       'Every legal defence was enumerated and refuted. This is the line the defence holds out longest in:',
     netImmediate: 'There is no defence to model: the mate is delivered at once.',
-    stepPrevious: 'Previous move in the line',
-    stepNext: 'Next move in the line',
     mateReached: 'Checkmate.',
 
     assessmentHeading: 'Where this line leaves you',
