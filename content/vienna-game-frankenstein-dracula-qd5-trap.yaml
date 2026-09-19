@@ -1,0 +1,114 @@
+# Vienna Game: Frankenstein-Dracula Variation, Qd5 Trap. The frozen defining line is 1.e4 e5
+# 2.Nc3 Nf6 3.Bc4 Nxe4 4.Bxf7+ Kxf7 5.Nxe4 Nc6 6.Qf3+ Kg8 7.Ng5 — and it ends on White's own
+# ply, so the root is an opponent node and Black's reply can carry a quality (docs/CONTEXT.md,
+# invariant 5).
+#
+# Added from #125's lichess study chapter "Trap in The Vienna" (Kutjanin vs Jakobjuk, Moscow
+# 1940). The study's own line continues 7...Qf6 8.Qd5+ Qe6 9.Nxe6, which wins material but
+# stops there. Replaying the position after 7.Ng5 with chess.js found something the source
+# never mentions: the tempting 7...Qxg5??, grabbing the loose-looking knight, walks straight
+# into 8.Qd5#, a genuine forced mate. This entry teaches both — the mate the study missed and
+# the material win the study shows — rather than only the one line the source happened to
+# annotate.
+#
+# ECO is C27, family Vienna Game: the dataset's own row for the position after 3...Nxe4 is
+# "Vienna Game: Frankenstein-Dracula Variation" (`tools/catalogue/dataset/c.tsv`), excluded
+# as a sub-variation in `classification.yaml`. The mate after 7...Qxg5 is claimed with
+# `type: trap` and nothing else; the move count, the line and the certificate are produced by
+# `npm run prove:mates` and replayed by `npm run verify:mates` (ADR-0005). Every other line
+# here was replayed with chess.js.
+id: vienna-game-frankenstein-dracula-qd5-trap
+name: 'Vienna Game: Frankenstein-Dracula Variation, Qd5 Trap'
+eco: C27
+category: trap
+side: white
+definingLine: [e4, e5, Nc3, Nf6, Bc4, Nxe4, 'Bxf7+', Kxf7, Nxe4, Nc6, 'Qf3+', Kg8, Ng5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-19'
+  basis:
+    by: chan
+    at: '2026-09-19'
+    source: >-
+      A judgement about White's whole approach, not about either trap springing. White gave
+      a bishop for a pawn back on move four to drag the black king into the open, and by the
+      root White has that pawn back plus a raging attack, but nothing here is a proven win
+      against accurate defence — the position is objectively sharp and roughly balanced on
+      engine terms in the sidelines this entry does not model. The two traps themselves are
+      not judgements: one is proved, and the other is a plain material count. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-19'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  annotation:
+    vi: Mã Trắng vừa nhảy vào g5, trông như chỉ đe doạ tốt h7 và ô f7 (đã trống). Nhưng cùng với hậu ở f3, con mã này chuẩn bị cho một nước chiếu quan trọng ở d5 dọc đường chéo dài, và con mã g5 hiện đang đứng không được ai canh giữ — một mồi nhử trông rất ngon.
+    en: White's knight has just jumped to g5, apparently just eyeing the h7 pawn and the empty f7 square. But together with the queen on f3, it is setting up an important check on d5 down the long diagonal, and the knight on g5 currently stands completely unguarded — a tempting-looking morsel.
+    fr: Le cavalier blanc vient de sauter en g5, semblant simplement viser le pion h7 et la case f7 désormais vide. Mais avec la dame en f3, il prépare un échec important en d5 sur la grande diagonale, et le cavalier g5 est pour l'instant totalement non gardé — un appât qui a l'air très appétissant.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác ngoài hai nước được dựng thành nhánh dưới đây. Phần lớn các nước còn lại — các nước tượng, các nước tốt, hay đưa xe ra Rb8 — không đụng gì tới ô d5 hay đường chéo dài, nên ý tưởng Qd5+ của Trắng vẫn còn nguyên trong nhiều nước, thường dẫn tới những phức tạp tương tự nhánh 7...Qf6. Mục này không khảo sát hết mọi nước thứ bảy của Đen; nó dừng lại ở đúng hai nước có trong ván đấu gốc — nước ăn mã sập bẫy, và nước hậu ra f6 mà nguồn đã trình bày.
+      en: Black plays something other than the two branches modelled below. Most of the rest — bishop moves, pawn moves, or bringing a rook out with Rb8 — do not touch d5 or the long diagonal at all, so White's Qd5+ idea remains available in many of them too, often leading to complications similar to the ...Qf6 branch. This entry does not survey every one of Black's seventh moves; it stops at exactly the two that appear in the source game — the capture that walks into mate, and the queen move the source itself annotates.
+      fr: Les Noirs jouent autre chose que les deux branches modélisées ci-dessous. La plupart du reste — coups de fou, coups de pion, ou sortie de tour par Tb8 — ne touche ni d5 ni la grande diagonale, si bien que l'idée Dd5+ des Blancs reste disponible dans beaucoup d'entre eux aussi, menant souvent à des complications semblables à la branche ...Df6. Cette entrée ne recense pas tous les septièmes coups noirs ; elle s'arrête exactement aux deux qui figurent dans la partie source — la prise qui tombe dans le mat, et le coup de dame que la source elle-même annote.
+  children:
+    - ply: Qxg5
+      replyQuality: blunder
+      frequency: occasional
+      annotation:
+        vi: Đen ăn luôn con mã đang bị bỏ ngỏ. Trông như một nước ăn quân miễn phí, nhưng đây chính là nước mà nguồn tài liệu gốc không hề nhắc tới — nó mở đường cho hậu Trắng chiếu bí ngay theo đường chéo dài a2-g8, vì vua Đen không có ô nào để tránh, không quân nào chặn được, và con hậu Đen ở g5 cũng không với tới d5 hay g8 để can thiệp.
+        en: Black simply takes the undefended knight. It looks like a free capture, and it is exactly the move the source material never mentions — it opens the way for White's queen to check down the long a2-g8 diagonal at once, since Black's king has no square to escape to, nothing can block, and Black's own queen on g5 cannot reach either d5 or g8 to help.
+        fr: Les Noirs prennent simplement le cavalier non gardé. Cela ressemble à une prise gratuite, et c'est exactement le coup que la source ne mentionne jamais — il ouvre la voie à un échec immédiat de la dame blanche sur la grande diagonale a2-g8, car le roi noir n'a aucune case pour s'échapper, rien ne peut s'interposer, et la dame noire en g5 ne peut atteindre ni d5 ni g8 pour aider.
+      outcome:
+        type: trap
+    - ply: Qf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đỡ ô f7 và giữ con hậu tránh xa con mã g5, đây là nước được chơi trong ván đấu gốc mà nguồn tài liệu dựa vào.
+        en: Black defends f7 and keeps the queen well away from the knight on g5. This is the move played in the original game the source material is drawn from.
+        fr: Les Noirs défendent f7 et gardent la dame bien à l'écart du cavalier g5. C'est le coup joué dans la partie originale dont s'inspire la source.
+      children:
+        - ply: 'Qd5+'
+          annotation:
+            vi: Hậu Trắng vẫn chiếu theo đường chéo dài, nhưng lần này con hậu f6 của Đen canh được cả hai ô đỡ chiếu. Vua Đen chỉ có đúng hai cách hợp lệ để đỡ chiếu, và cả hai đều là nước hậu chắn — Qf7 hoặc Qe6 — vì vua không có ô nào để chạy và không quân nào khác chặn được đường chéo.
+            en: White's queen still checks down the long diagonal, but this time Black's queen on f6 covers both squares that can block the check. Black's king has exactly two legal ways to answer, and both are queen blocks — Qf7 or Qe6 — since the king has no square to flee to and nothing else can interpose on the diagonal.
+            fr: La dame blanche fait toujours échec sur la grande diagonale, mais cette fois la dame noire en f6 couvre les deux cases qui parent l'échec. Le roi noir dispose exactement de deux façons légales de répondre, et ce sont deux blocages par la dame — Df7 ou De6 — car le roi n'a aucune case pour fuir et rien d'autre ne peut s'interposer sur la diagonale.
+          children:
+            - ply: Qf7
+              replyQuality: blunder
+              frequency: occasional
+              annotation:
+                vi: Đen chặn chiếu bằng chính con hậu, đưa nó về đúng ô mà vua vừa rời khỏi vài nước trước. Nhìn có vẻ an toàn vì hậu che chắn cho vua, nhưng ô f7 lại chính là ô hậu Trắng đang nhắm tới — Qxf7 ăn luôn con hậu Đen và đây lại là chiếu bí, vì vua Đen bị chính các quân của mình vây kín ở g8, không ô nào để chạy.
+                en: Black blocks the check with the queen itself, returning it to the very square the king vacated a few moves earlier. It looks safe because the queen shields the king, but f7 is exactly the square White's queen is aiming at — Qxf7 simply takes Black's queen, and this too is checkmate, since Black's king is boxed in on g8 by its own pieces with no square to run to.
+                fr: Les Noirs bloquent l'échec avec la dame elle-même, la ramenant sur la case même que le roi avait quittée quelques coups plus tôt. Cela semble sûr car la dame protège le roi, mais f7 est exactement la case que vise la dame blanche — Dxf7 prend simplement la dame noire, et c'est de nouveau échec et mat, car le roi noir est enfermé en g8 par ses propres pièces, sans case où fuir.
+              outcome:
+                type: trap
+            - ply: Qe6
+              replyQuality: mistake
+              frequency: common
+              annotation:
+                vi: Đen chặn chiếu bằng hậu ở e6, nước được chơi trong ván đấu gốc. Nước này tránh được chiếu bí ngay lập tức, nhưng con hậu lại đứng đúng vào tầm ăn của con mã g5.
+                en: Black blocks the check with the queen on e6, the move played in the original game. This avoids immediate mate, but the queen now stands exactly where the knight on g5 can take it.
+                fr: Les Noirs bloquent l'échec avec la dame en e6, le coup joué dans la partie originale. Cela évite le mat immédiat, mais la dame se retrouve exactement là où le cavalier g5 peut la prendre.
+              children:
+                - ply: Nxe6
+                  annotation:
+                    vi: Mã Trắng ăn thẳng con hậu, không bị ăn lại ngay vì Đen phải chọn giữa ăn lại bằng tốt d hay để mã đứng đó thêm một nhịp.
+                    en: White's knight simply takes the queen. It is not recaptured at once, since Black must choose between taking back with the d-pawn or leaving the knight where it stands for one more move.
+                    fr: Le cavalier blanc prend simplement la dame. Il n'est pas repris aussitôt, car les Noirs doivent choisir entre reprendre avec le pion d ou laisser le cavalier où il se trouve un coup de plus.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân ngay sau khi ăn hậu (trước khi Đen ăn lại con mã bằng dxe6), Trắng có 35 điểm chất lượng chống lại 26 của Đen — chênh lệch gần một con hậu. Ngay cả sau khi Đen ăn lại bằng dxe6, khoảng cách vẫn còn rất lớn — Trắng đã đổi một tượng (thí ở move bốn) và một mã lấy trọn vẹn con hậu Đen. Đây là một lợi thế vật chất áp đảo và mang tính quyết định.
+                      en: Counting material right after the queen is taken (before Black recaptures the knight with dxe6), White has 35 points of force against Black's 26 — nearly a whole queen's worth of gap. Even once Black recaptures with dxe6, the gap stays enormous — White has traded a bishop (sacrificed on move four) and a knight for Black's entire queen. This is an overwhelming, decisive material advantage.
+                      fr: En comptant le matériel juste après la prise de la dame (avant que les Noirs ne reprennent le cavalier par dxe6), les Blancs ont 35 points de force contre 26 pour les Noirs — un écart de presque une dame entière. Même une fois les Noirs repris par dxe6, l'écart reste énorme — les Blancs ont échangé un fou (sacrifié au quatrième coup) et un cavalier contre la dame noire entière. C'est un avantage matériel écrasant et décisif.
+                    plan:
+                      vi: Trắng đưa mã về an toàn nếu chưa bị ăn, phát triển nốt tượng c1 và mã g1, nhập thành, rồi dùng lợi thế hậu ăn không để đơn giản hoá ván cờ bằng cách đổi quân bất cứ khi nào có thể. Đen chỉ còn hai xe, cặp tượng và một mã đổi lấy hậu, nên phải tìm hoạt động tối đa cho các quân đó và tránh đổi thêm quân nếu không muốn thua nhanh.
+                      en: White brings the knight to safety if it has not already been recaptured, finishes developing the c1 bishop and g1 knight, castles, and uses the free queen to simplify by trading pieces whenever the chance appears. Black is left with two rooks, the bishop pair and a knight for the queen, so the only practical try is to find maximum activity for those pieces while avoiding further trades.
+                      fr: Les Blancs mettent le cavalier en sécurité s'il n'a pas déjà été repris, achèvent le développement du fou c1 et du cavalier g1, roquent, puis utilisent la dame gagnée gratuitement pour simplifier en échangeant les pièces dès que l'occasion se présente. Les Noirs n'ont plus que deux tours, la paire de fous et un cavalier contre la dame, si bien que le seul espoir pratique est de chercher un maximum d'activité pour ces pièces tout en évitant de nouveaux échanges.
+                    basis:
+                      by: chan
+                      at: '2026-09-19'

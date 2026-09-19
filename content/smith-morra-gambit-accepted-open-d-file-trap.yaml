@@ -1,0 +1,98 @@
+# Smith-Morra Gambit Accepted: Open d-File Trap. The frozen defining line is 1.e4 c5 2.d4
+# cxd4 3.c3 dxc3 4.Nxc3 d6 5.Bc4 Nf6 6.e5 — and it ends on White's own ply, so the root is an
+# opponent node and Black's reply can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# Added from #125, which found the game via a lichess study chapter titled only with the
+# players' names (David L Zardus vs Anthony Steventon, 1986). Neither source names this
+# trap, so it is not given a borrowed or invented pedigree here — the id and name describe
+# the actual mechanism instead. ECO is B21, the Smith-Morra Gambit Accepted's own code, which
+# `tools/catalogue/source/classification.yaml` already assigns to this family's other named
+# trap in this catalogue, the Siberian Trap (ADR-0008: a trap carries the ECO of the opening
+# it sits inside).
+#
+# The point is not simply "Bxf7+ wins the queen" — it wins the queen only because the d-file
+# is already completely empty by move 6. Every one of White's first three moves and Black's
+# first two removed a d-file pawn (2.d4, 2...cxd4, 3...dxc3, 4...d6 leaves d7 empty too), so
+# by the time 6.e5 forces ...dxe5 and 7.Bxf7+ forces ...Kxf7 (the only legal reply — see
+# below), the black king has no flight to d7: the white queen on d1 already commands the
+# entire d-file down to d8, replayed and confirmed with chess.js. 8.Qxd8 then wins the queen
+# outright, with nothing on the board able to recapture on d8. No outcome here is a claimed
+# mate; the leaf is a decisive material assessment (ADR-0005). Every line was replayed with
+# chess.js.
+id: smith-morra-gambit-accepted-open-d-file-trap
+name: 'Smith-Morra Gambit Accepted: Open d-File Trap'
+eco: B21
+category: trap
+side: white
+definingLine: [e4, c5, d4, cxd4, c3, dxc3, Nxc3, d6, Bc4, Nf6, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-19'
+  basis:
+    by: chan
+    at: '2026-09-19'
+    source: >-
+      A judgement about the Smith-Morra Gambit itself, not about the trap springing. White
+      is a pawn down at the root with the usual gambit compensation — a lead in development
+      and open lines — which club-level theory rates as real but unproven, hence dubious
+      rather than sound. The trap's own material win is not a matter of opinion once Black
+      plays into it; it is confirmed by direct replay. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-19'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material count in the final position, computed by
+    hand from the derived FEN rather than from an engine.
+tree:
+  annotation:
+    vi: Trắng vừa đẩy tốt lên e5, đánh cùng lúc vào mã f6 và tốt d6. Nhìn thì chỉ là một nước tốt trung tâm bình thường, nhưng cột d đã hoàn toàn trống từ đầu ván — tốt d ban đầu của Trắng đã đổi ở move hai, còn tốt d của Đen vừa đứng ở d6 để lại d7 trống — nên hậu Trắng ở d1 đang nhìn thẳng xuống tận d8 mà không ai để ý.
+    en: White has just pushed the pawn to e5, attacking the knight on f6 and the pawn on d6 at once. It looks like an ordinary central pawn push, but the d-file has been completely empty since early in the game — White's own d-pawn was traded away on move two, and Black's d-pawn sits on d6, leaving d7 empty — so White's queen on d1 already looks all the way down to d8, unnoticed.
+    fr: Les Blancs viennent de pousser le pion en e5, attaquant à la fois le cavalier f6 et le pion d6. Cela ressemble à une simple poussée centrale, mais la colonne d est totalement vide depuis le début de la partie — le pion d blanc a été échangé au deuxième coup, et le pion d noir se trouve en d6, laissant d7 vide — si bien que la dame blanche en d1 regarde déjà tout au fond jusqu'en d8, sans que personne s'en aperçoive.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì ăn ở e5. Nước e5 đang đánh cả mã f6 lẫn tốt d6, nên phần lớn các nước phát triển khác — Nbd7, Nc6, Na6, Bd7, Be6, các nước tốt cánh hậu và cánh vua, hay lùi mã bằng Nfd7, Ng8, Nh5, Ng4, Ne4, Nd5 — đều để Trắng ăn tự do ở d6 hoặc f6 ngay sau đó, mất tốt mà chẳng có gì bù lại ngoài việc né được cú lừa cụ thể này. Mục này không đi sâu vào từng nước; nó dừng lại ở nước ăn tự nhiên nhất và cũng là nước duy nhất sập bẫy.
+      en: Black plays something other than capturing on e5. The e5 pawn attacks both the f6 knight and the d6 pawn, so most other developing moves — Nbd7, Nc6, Na6, Bd7, Be6, queenside or kingside pawn moves, or retreating the knight with Nfd7, Ng8, Nh5, Ng4, Ne4 or Nd5 — simply let White capture freely on d6 or f6 next, losing a pawn for nothing beyond dodging this specific trick. This entry does not chase every one of them down; it stops at the most natural-looking capture, which is also the only one that walks into the trap.
+      fr: Les Noirs jouent autre chose que de prendre en e5. Le pion e5 attaque à la fois le cavalier f6 et le pion d6, si bien que la plupart des autres coups de développement — Cbd7, Cc6, Ca6, Fd7, Fe6, des coups de pions à l'aile dame ou à l'aile roi, ou reculer le cavalier par Cfd7, Cg8, Ch5, Cg4, Ce4 ou Cd5 — laissent simplement les Blancs prendre librement en d6 ou f6 ensuite, perdant un pion pour rien de plus qu'éviter ce piège précis. Cette entrée ne les examine pas tous un par un ; elle s'arrête à la prise la plus naturelle en apparence, qui est aussi la seule à tomber dans le piège.
+  children:
+    - ply: dxe5
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: Đen ăn lại bằng tốt, cách xử lý tự nhiên nhất — vừa lấy lại con tốt vừa xoá mối đe doạ. Không có gì trông đáng ngờ ở đây cả.
+        en: Black recaptures with the pawn, the most natural handling — winning the pawn back and removing the threat in one move. Nothing here looks suspicious at all.
+        fr: Les Noirs reprennent avec le pion, le traitement le plus naturel — regagnant le pion et supprimant la menace en un coup. Rien ici ne semble suspect.
+      children:
+        - ply: 'Bxf7+'
+          annotation:
+            vi: Tượng Trắng ăn tốt f7 và chiếu. Đây chính là nước mà cả ván cờ đã âm thầm chuẩn bị từ move hai.
+            en: White's bishop takes the pawn on f7 with check. This is the move the whole game has been quietly preparing for since move two.
+            fr: Le fou blanc prend le pion f7 avec échec. C'est le coup que toute la partie prépare silencieusement depuis le deuxième coup.
+          children:
+            - ply: Kxf7
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: Vua buộc phải tự ăn con tượng — đây là nước hợp lệ duy nhất trên bàn cờ. Lẽ ra Kd7 cũng là một cách thoát chiếu bình thường, nhưng cột d đã trống hoàn toàn từ đầu ván nên hậu Trắng ở d1 canh thẳng ô d7, khiến đi vua tới đó vẫn bị chiếu và phạm luật. Giờ ô d8 không còn ai canh giữ ngoài chính con hậu Đen.
+                en: The king is forced to capture the bishop itself — the only legal move on the board. Kd7 would ordinarily be a perfectly normal way to step out of check, but the d-file has been completely empty since early in the game, so White's queen on d1 covers d7 directly, making the king move there illegal. Now nothing but Black's own queen stands on d8, and nothing guards it.
+                fr: Le roi est contraint de prendre lui-même le fou — le seul coup légal sur l'échiquier. Rd7 serait normalement une façon tout à fait ordinaire de sortir de l'échec, mais la colonne d est totalement vide depuis le début de la partie, si bien que la dame blanche en d1 couvre directement d7, rendant ce coup de roi illégal. Désormais plus rien ne garde d8 à part la dame noire elle-même.
+              children:
+                - ply: Qxd8
+                  annotation:
+                    vi: Hậu Trắng đi thẳng xuống cột d đang mở toang và ăn hậu Đen. Không quân nào của Đen với tới được ô d8 — xe a8 bị chính mã b8 và tượng c8 chắn đường, tượng f8 không đi theo đường chéo tới đó được, còn vua đã ở tận f7. Con hậu mất trắng.
+                    en: White's queen travels straight down the wide-open d-file and takes Black's queen. Nothing black can reach d8 — the rook on a8 is blocked by its own knight on b8 and bishop on c8, the bishop on f8 cannot reach it diagonally, and the king is all the way over on f7. The queen is lost for nothing.
+                    fr: La dame blanche descend tout droit la colonne d grande ouverte et prend la dame noire. Rien de noir n'atteint d8 — la tour a8 est bloquée par son propre cavalier b8 et son fou c8, le fou f8 ne peut l'atteindre en diagonale, et le roi est loin, en f7. La dame est perdue pour rien.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân, Trắng có 33 điểm chất lượng chống lại 28 của Đen — chênh lệch một con hậu đổi lấy một tượng, đúng bằng cái giá của cả cú lừa. Trắng đã thí một tốt ở đầu ván (gambit Smith-Morra) rồi lại thí một tượng để ăn cả con hậu, và phần thắng lợi vật chất còn lại là hoàn toàn áp đảo. Vua Đen đứng trần trụi ở f7, chưa nhập thành và không còn hậu để tổ chức phản công.
+                      en: Counting material, White has 33 points of force against Black's 28 — the gap of a queen for a bishop, exactly the price of the whole trick. White sacrificed one pawn at the start of the game (the Smith-Morra gambit pawn) and then a bishop to win the queen outright, and the remaining material advantage is completely overwhelming. Black's king stands exposed on f7, uncastled, with no queen left to organise any counterplay.
+                      fr: En comptant le matériel, les Blancs ont 33 points de force contre 28 pour les Noirs — l'écart d'une dame contre un fou, exactement le prix de toute l'opération. Les Blancs ont sacrifié un pion au début de la partie (le pion du gambit Smith-Morra) puis un fou pour gagner la dame entière, et l'avantage matériel restant est totalement écrasant. Le roi noir se retrouve exposé en f7, non roqué, sans dame pour organiser la moindre contre-attaque.
+                    plan:
+                      vi: Trắng phát triển nhanh với Nf3, O-O (sau khi đưa vua về an toàn nếu cần) và dùng cặp xe trên các cột mở để truy đuổi vua Đen còn kẹt ở giữa bàn, không vội đổi quân vì càng nhiều quân trên bàn thì lợi thế hậu ăn không càng dễ khai thác. Đen chỉ còn cách cố gắng đưa vua về an toàn và tìm hoạt động cho cặp tượng cùng hai xe để kéo dài ván cờ, chấp nhận đang thua về mặt vật chất.
+                      en: White develops quickly with Nf3, castling once the king is settled, and uses the pair of rooks on open files to keep chasing Black's king, still stuck in the middle of the board, in no hurry to trade pieces since more material on the board makes a free queen easier to convert. Black can only try to tuck the king away and find some activity for the bishop pair and two rooks to prolong the game, while accepting a lost position on material alone.
+                      fr: Les Blancs développent rapidement avec Cf3, roquent une fois le roi mis en sécurité, et utilisent la paire de tours sur les colonnes ouvertes pour continuer à pourchasser le roi noir, toujours coincé au centre, sans hâte d'échanger les pièces puisque plus de matériel sur l'échiquier facilite la conversion d'une dame gagnée gratuitement. Les Noirs ne peuvent que tenter de mettre le roi à l'abri et de trouver de l'activité pour la paire de fous et les deux tours afin de prolonger la partie, tout en acceptant une position perdue sur le seul plan matériel.
+                    basis:
+                      by: chan
+                      at: '2026-09-19'

@@ -289,3 +289,34 @@ traps:
       final material count by hand found only a one-pawn edge, not the "wins a piece" some
       summaries claim — real, lasting structural damage to Black's queenside rather than a
       proven decisive advantage.
+
+  - id: smith-morra-gambit-accepted-open-d-file-trap
+    name: 'Smith-Morra Gambit Accepted: Open d-File Trap'
+    family: 'Sicilian Defense'
+    eco: B21
+    side: white
+    soundness: dubious
+    line: [e4, c5, d4, cxd4, c3, dxc3, Nxc3, d6, Bc4, Nf6, e5]
+    reason: >-
+      From #125, a lichess study chapter naming only the players (David L Zardus vs Anthony
+      Steventon, 1986), so no borrowed trap name is used. The point is not just "Bxf7+ wins
+      the queen" — every early trade on both sides has emptied the d-file since move two, so
+      by the time 6...dxe5 7.Bxf7+ arrives, ...Kd7 is illegal (the queen on d1 already covers
+      it) and Kxf7 is forced, leaving d8 undefended for 8.Qxd8. Same B21 code as this file's
+      Siberian Trap, the Smith-Morra Gambit Accepted's own ECO.
+
+  - id: vienna-game-frankenstein-dracula-qd5-trap
+    name: 'Vienna Game: Frankenstein-Dracula Variation, Qd5 Trap'
+    family: 'Vienna Game'
+    eco: C27
+    side: white
+    soundness: dubious
+    line: [e4, e5, Nc3, Nf6, Bc4, Nxe4, 'Bxf7+', Kxf7, Nxe4, Nc6, 'Qf3+', Kg8, Ng5]
+    reason: >-
+      From #125's lichess study chapter "Trap in The Vienna" (Kutjanin vs Jakobjuk, 1940),
+      which shows the game continuing 7...Qf6 8.Qd5+ Qe6 9.Nxe6, winning material but no
+      more than that. Replaying the position after 7.Ng5 with chess.js found something the
+      study does not mention: the tempting 7...Qxg5?? — grabbing the knight the study never
+      addresses — walks into 8.Qd5#, a genuine forced mate the source never shows. Its
+      dataset row is the Frankenstein-Dracula Variation, C27, excluded as a sub-variation in
+      `classification.yaml`.

@@ -1,0 +1,143 @@
+# Indian Defense: Lazard Gambit. The frozen defining line is 1.d4 Nf6 2.Nd2 e5 — and it ends
+# on Black's own ply, so the root is an opponent node and White's reply can carry a quality
+# (docs/CONTEXT.md, invariant 5).
+#
+# This entry was added from #125, which found it via a lichess study chapter mislabelled
+# "Budapest Trap". It is not a Budapest line at all: 2.Nd2 is not 2.c4, and the dataset
+# already carries this exact position under its own name, `Indian Defense: Lazard Gambit`
+# (A45), classified `include: true` in `classification.yaml` but never authored — this file
+# is that authoring, not a `category: trap` entry, since the gambit already has a real ECO
+# of its own and needs no exemption.
+#
+# The forced mate after 4.h3?? Ne3! is claimed with `type: trap` and nothing else. The move
+# count, the line and the certificate are produced by `npm run prove:mates` and replayed by
+# `npm run verify:mates` (ADR-0005). Every other line here was replayed with chess.js. The
+# critical detail behind 5.fxe3 being forced rather than merely best: after 4...Ne3, White's
+# queen on d1 is completely boxed in by its own bishop (c1), king (e1), knight (d2) and pawns
+# (c2, e2) — no square to run to — so only capturing the knight immediately avoids losing the
+# queen for it outright to ...Nxd1 next move. This entry does not attempt a full survey of
+# White's fourth move; several of the alternatives to 4.h3?? leave the f2 pawn defended only
+# by the king and allow a comparable ...Nxf2 fork (the same idea this catalogue's Fajarowicz
+# Defense entry models), but chasing every one of them down is outside what this entry claims.
+id: indian-defense-lazard-gambit
+name: 'Indian Defense: Lazard Gambit'
+eco: A45
+category: gambit
+side: black
+definingLine: [d4, Nf6, Nd2, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-19'
+  basis:
+    by: chan
+    at: '2026-09-19'
+    source: >-
+      A judgement, not a measurement, matching `classification.yaml`'s existing label for
+      this row. 2...e5 against the passive 2.Nd2 is a Budapest-style pawn offer against a
+      knight that is worse placed than on c3 or f3, which is exactly why it is worth
+      knowing rather than why it is objectively strong. The trap itself is not a matter of
+      opinion — it is proved. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-19'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa đẩy tốt lên e5, thí ngay con tốt đó để đổi lấy nhịp phát triển, giống như trong Gambit Budapest — chỉ khác là con mã Trắng đã đi Nd2 thay vì Nc3 hay Nf3, một ô kém tích cực hơn nhiều. Con tốt e5 đang đánh thẳng vào con tốt d4.
+    en: Black has just pushed the pawn to e5, offering it at once for a lead in development, much as in the Budapest Gambit — except White's knight has gone to d2 instead of c3 or f3, a considerably less active square. The pawn on e5 directly attacks the pawn on d4.
+    fr: Les Noirs viennent de pousser le pion en e5, l'offrant aussitôt contre une avance de développement, comme dans le Gambit Budapest — sauf que le cavalier blanc est allé en d2 plutôt qu'en c3 ou f3, une case bien moins active. Le pion e5 attaque directement le pion d4.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác. Con tốt e5 đang đánh vào d4, nên mọi nước không ăn, không đỡ và không đẩy qua — tức là gần như mọi nước tốt hay nước mã còn lại — đều để mất con tốt d4 vào tay exd4 ngay sau đó. Chỉ có d5, đẩy qua và né tránh hoàn toàn việc ăn tốt, mới giữ được quân số ngang nhau, nhưng nó từ bỏ toàn bộ ý nghĩa của gambit và chỉ dẫn tới một ván Khai cuộc Ấn Độ chậm rãi với con mã Trắng đứng lệch ở d2.
+      en: White plays something else. The pawn on e5 attacks d4 directly, so anything that neither captures nor defends nor pushes past — which is nearly every other pawn or knight move here — simply loses the d4 pawn to ...exd4 next. Only d5, pushing past and sidestepping the capture altogether, keeps material level, but it gives up the entire point of the gambit and just leads to a slow Indian Defense with White's knight misplaced on d2.
+      fr: Les Blancs jouent autre chose. Le pion e5 attaque directement d4, si bien que tout coup qui ne capture pas, ne défend pas et ne pousse pas au-delà — c'est-à-dire presque tout autre coup de pion ou de cavalier ici — perd simplement le pion d4 après ...exd4. Seul d5, qui pousse au-delà et évite complètement la prise, garde le matériel à égalité, mais abandonne tout l'intérêt du gambit et mène simplement à une Défense Indienne lente avec le cavalier blanc mal placé en d2.
+  children:
+    - ply: dxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt, cách kiểm tra gambit trực diện nhất.
+        en: White takes the pawn, the most direct way to test the gambit.
+        fr: Les Blancs prennent le pion, la façon la plus directe de tester le gambit.
+      children:
+        - ply: Ng4
+          annotation:
+            vi: Đen đưa mã ra g4, nhắm cùng lúc vào tốt f2 (mã g4 đánh e3, e5, f2, f6, h2, h6) và chuẩn bị lấy lại tốt e5. Con tốt f2 hiện chỉ được vua đỡ.
+            en: Black jumps the knight to g4, aiming at once at the f2 pawn (a knight on g4 attacks e3, e5, f2, f6, h2 and h6) and preparing to win back the e5 pawn. The f2 pawn is currently defended only by the king.
+            fr: Les Noirs sautent le cavalier en g4, visant aussitôt le pion f2 (un cavalier en g4 attaque e3, e5, f2, f6, h2 et h6) et préparant de regagner le pion e5. Le pion f2 n'est pour l'instant défendu que par le roi.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác thay vì 4.h3. Phần lớn các nước phát triển ở đây vẫn để tốt f2 chỉ do vua canh, nên ý tưởng ...Nxf2 tương tự vẫn còn đó trong nhiều nước — hệt như trong mục Fajarowicz của bộ sưu tập này. Mục này không đi sâu vào từng nước một; nó dừng lại ở nước chiếu bí có thật sau nước đi tự nhiên nhất, 4.h3??.
+              en: White plays something other than 4.h3. Most developing tries here still leave f2 defended only by the king, so a similar ...Nxf2 idea remains available in several of them too — the same motif this catalogue's Fajarowicz entry models. This entry does not chase every one of them down; it stops at the real forced mate that follows the most natural-looking move, 4.h3??.
+              fr: Les Blancs jouent autre chose que 4.h3. La plupart des essais de développement ici laissent encore f2 défendu par le seul roi, si bien qu'une idée semblable de ...Cxf2 reste disponible dans plusieurs d'entre eux aussi — le même motif que modélise l'entrée Fajarowicz de ce catalogue. Cette entrée ne les examine pas tous un par un ; elle s'arrête au vrai mat forcé qui suit le coup le plus naturel en apparence, 4.h3??.
+          children:
+            - ply: h3
+              replyQuality: mistake
+              frequency: common
+              annotation:
+                vi: Trắng đuổi con mã bằng tốt h, có vẻ như thắng luôn một nhịp vì mã g4 phải lùi. Đây chính xác là nước Gambit Lazard chờ đợi.
+                en: White chases the knight with the h-pawn, apparently winning a tempo since the knight on g4 must retreat. This is exactly the move the Lazard Gambit is waiting for.
+                fr: Les Blancs chassent le cavalier avec le pion h, gagnant apparemment un temps puisque le cavalier g4 doit reculer. C'est exactement le coup qu'attend le Gambit Lazard.
+              children:
+                - ply: Ne3
+                  annotation:
+                    vi: Thay vì lùi, con mã nhảy vào e3! Đây không phải chiếu, nhưng hậu Trắng ở d1 hoàn toàn bị vây kín bởi chính quân nhà — tượng c1, vua e1, mã d2, tốt c2 và e2 — nên nó không có ô nào để chạy. Chỉ có nước ăn ngay con mã mới tránh được việc mất hậu vào tay Nxd1 ở nước sau.
+                    en: Instead of retreating, the knight jumps into e3! This is not check, but White's queen on d1 is completely boxed in by its own pieces — the bishop on c1, the king on e1, the knight on d2, and the pawns on c2 and e2 — with no square to run to. Only capturing the knight at once avoids losing the queen to ...Nxd1 next move.
+                    fr: Au lieu de reculer, le cavalier saute en e3 ! Ce n'est pas échec, mais la dame blanche en d1 est totalement enfermée par ses propres pièces — le fou c1, le roi e1, le cavalier d2, et les pions c2 et e2 — sans aucune case où fuir. Seule la prise immédiate du cavalier évite de perdre la dame après ...Cxd1 au coup suivant.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi bất kỳ nước nào khác ngoài fxe3 đều để hậu bị ăn miễn phí ở nước sau, vì hậu d1 không có ô nào để thoát và không quân nào khác canh được d1 kịp thời. Chỉ có 5.fxe3, xoá con mã ngay lập tức, mới tránh được việc mất hậu đổi lấy một con mã.
+                      en: Whatever White plays other than fxe3 leaves the queen to be taken for free next move, since the queen on d1 has no square to escape to and nothing else can guard d1 in time. Only 5.fxe3, removing the knight at once, avoids losing the queen for a mere knight.
+                      fr: Quoi que jouent les Blancs à part fxe3, la dame se retrouve prise gratuitement au coup suivant, car la dame d1 n'a aucune case pour s'échapper et rien d'autre ne peut garder d1 à temps. Seul 5.fxe3, qui supprime le cavalier sur-le-champ, évite de perdre la dame contre un simple cavalier.
+                  children:
+                    - ply: fxe3
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Trắng buộc phải ăn con mã bằng tốt f, cách duy nhất không mất hậu ngay lập tức. Nhưng con tốt f2 giờ đã biến mất, để lại một lỗ hổng ngay trước vua chưa nhập thành.
+                        en: White is forced to capture the knight with the f-pawn, the only way not to lose the queen outright. But the f2 pawn is now gone, leaving a hole right in front of the uncastled king.
+                        fr: Les Blancs sont contraints de prendre le cavalier avec le pion f, seul moyen de ne pas perdre la dame sur-le-champ. Mais le pion f2 a maintenant disparu, laissant un trou juste devant le roi qui n'a pas roqué.
+                      children:
+                        - ply: 'Qh4+'
+                          annotation:
+                            vi: Hậu Đen chiếu ngay qua lỗ hổng vừa mở ra. Vua Trắng không có nước nào khác ngoài chặn bằng tốt g, vì tượng f1 và mã g1 đều không thể xen vào h4-e1, còn vua cũng không có ô nào để đi.
+                            en: Black's queen checks at once through the hole just opened. White's king has no reply but to block with the g-pawn — neither the bishop on f1 nor the knight on g1 can interpose on the h4-e1 diagonal, and the king has no square to move to.
+                            fr: La dame noire fait échec aussitôt par le trou qui vient de s'ouvrir. Le roi blanc n'a d'autre réponse que de bloquer avec le pion g — ni le fou f1 ni le cavalier g1 ne peuvent s'interposer sur la diagonale h4-e1, et le roi n'a aucune case où aller.
+                          children:
+                            - ply: g3
+                              replyQuality: blunder
+                              frequency: common
+                              annotation:
+                                vi: Nước chặn buộc phải chơi, và nó là nước duy nhất hợp lệ. Đây là nước thua, và phần còn lại do máy chứng minh chứ không do người khẳng định.
+                                en: The forced block, and the only legal move on the board. This is the losing move, and what follows is proved by machine rather than asserted by a person.
+                                fr: Le blocage forcé, et le seul coup légal sur l'échiquier. C'est le coup perdant, et la suite est prouvée par la machine plutôt qu'affirmée par un humain.
+                              outcome:
+                                type: trap
+    - ply: d5
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Trắng đẩy tốt qua thay vì ăn, né hoàn toàn con tốt e5 nhưng cũng từ bỏ luôn cơ hội thử thách gambit ngay lập tức.
+        en: White pushes the pawn past rather than capturing, sidestepping the e5 pawn entirely but also giving up any immediate chance to test the gambit.
+        fr: Les Blancs poussent le pion au lieu de prendre, évitant complètement le pion e5 mais renonçant aussi à toute chance immédiate de tester le gambit.
+      children:
+        - ply: e4
+          annotation:
+            vi: Đen giữ nguyên cấu trúc tốt trung tâm, chấp nhận một ván Khai cuộc Ấn Độ chậm rãi thay vì gambit đã định.
+            en: Black keeps the pawn chain intact, settling for a slow Indian Defense rather than the intended gambit.
+            fr: Les Noirs gardent la chaîne de pions intacte, se contentant d'une Défense Indienne lente plutôt que du gambit prévu.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau tuyệt đối, và gambit chưa hề bắt đầu — con tốt e5 không bị ăn, chỉ bị đẩy qua. Con mã Trắng ở d2 vẫn là một quân kém tích cực hơn so với việc nó đứng ở c3 hay f3, đó là toàn bộ điều rút ra được từ nhánh này.
+              en: Material is perfectly level, and the gambit never actually started — the e5 pawn was not captured, only pushed past. White's knight on d2 remains a less active piece than it would be on c3 or f3, which is the entire takeaway from this branch.
+              fr: Le matériel est parfaitement égal, et le gambit n'a jamais vraiment commencé — le pion e5 n'a pas été pris, seulement dépassé. Le cavalier blanc en d2 reste une pièce moins active qu'il ne le serait en c3 ou f3, ce qui est tout l'enseignement de cette branche.
+            plan:
+              vi: Đen phát triển bình thường với Bd6, Nbd7 và O-O, tận dụng việc con mã Trắng ở d2 che mất đường phát triển của tượng c1. Trắng cần thêm một nhịp để điều chỉnh con mã đó, ví dụ qua c4 và Nc3 sau này, trước khi có thể chơi tự nhiên.
+              en: Black develops normally with ...Bd6, ...Nbd7 and ...O-O, making use of the fact that White's knight on d2 blocks the c1 bishop's development. White needs an extra tempo to reroute that knight, for example via c4 and Nc3 later, before playing naturally.
+              fr: Les Noirs développent normalement avec ...Fd6, ...Cbd7 et ...O-O, profitant du fait que le cavalier blanc en d2 bloque le développement du fou c1. Les Blancs ont besoin d'un temps supplémentaire pour reconvertir ce cavalier, par exemple via c4 et Cc3 plus tard, avant de pouvoir jouer naturellement.
+            basis:
+              by: chan
+              at: '2026-09-19'
