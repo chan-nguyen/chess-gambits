@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are one hundred and fifty of them, and they are the ones the content tickets authored', () => {
+  test('there are one hundred and fifty-three of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'alekhine-defense-krejcik-variation-krejcik-gambit',
       'amar-opening-paris-gambit-gent-gambit',
@@ -122,6 +122,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'indian-defense-budapest-gambit',
       'indian-defense-budapest-gambit-accepted-fajarowicz-defense',
       'indian-defense-gibbins-weidenhagen-gambit',
+      'indian-defense-lazard-gambit',
       'irish-gambit',
       'italian-game-blackburne-kostic-gambit',
       'italian-game-evans-gambit',
@@ -216,6 +217,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'sicilian-defense-smith-morra-gambit',
       'sicilian-defense-wing-gambit',
       'slav-defense-diemer-gambit',
+      'smith-morra-gambit-accepted-open-d-file-trap',
       'sodium-attack-durkin-gambit',
       'st-george-defense-zilbermints-gambit',
       'tarrasch-defense-schara-gambit',
@@ -225,6 +227,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'van-geet-opening-laroche-gambit',
       'vant-kruijs-opening-keoni-hiva-gambit-akahi-variation',
       'vienna-gambit-with-max-lange-defense',
+      'vienna-game-frankenstein-dracula-qd5-trap',
       'vienna-game-fyfe-gambit',
       'vienna-game-wurzburger-trap',
       'ware-opening-wing-gambit',
