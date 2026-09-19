@@ -38,7 +38,65 @@
 }
 
 .mate-net__ply {
+  white-space: nowrap;
+}
+
+/* Plain text made a button: same look as before #121, so a jump-to-ply control does not
+   read as a new kind of thing beside the SAN it always was. */
+.mate-net__ply-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
   font-family: var(--font-mono);
   font-weight: 700;
-  white-space: nowrap;
+  cursor: pointer;
+}
+
+.mate-net__ply-button:hover {
+  text-decoration: underline;
+}
+
+/* The step on screen right now, named without colour alone (§2). */
+.mate-net__ply-button[aria-current='step'] {
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+
+.mate-net__controls {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.mate-net__control {
+  flex: 1 1 0;
+  min-block-size: var(--target-size-touch);
+  padding-inline: var(--space-2);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.mate-net__control--next {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.mate-net__control:disabled {
+  border-style: dashed;
+  border-color: var(--color-border);
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.mate-net__checkmate {
+  margin-block: 0;
+  color: var(--color-mate);
+  font-weight: 700;
 }

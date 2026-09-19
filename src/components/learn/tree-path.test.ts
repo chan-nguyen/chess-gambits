@@ -332,6 +332,9 @@ describe('a proved mate', () => {
         kind: 'mate',
         inMoves: 3,
         sequence: ['Nd5#'],
+        // The malformation under test is a mate outcome carrying children, not this line's
+        // content — the FEN is a placeholder for the same reason `branches.test.ts` uses one.
+        sequenceFens: ['placeholder - this file never reads a position'],
         provedBy: 'modelled-net',
         basis: {
           basis: 'proved',

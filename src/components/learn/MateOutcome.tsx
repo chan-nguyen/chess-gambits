@@ -33,6 +33,8 @@ export type MateOutcomeProps = {
   readonly inMoves: number
   /** The longest line in the proved net, in plies from this leaf. */
   readonly sequence: readonly string[]
+  /** The FEN after each ply of `sequence`, same length and same order. */
+  readonly sequenceFens: readonly string[]
   readonly provedBy: 'search' | 'modelled-net'
   readonly basis: CompiledProved
   /** The leaf's position, which is where the proved line starts. */
@@ -52,6 +54,7 @@ const MateMark = () => (
 export const MateOutcome = ({
   inMoves,
   sequence,
+  sequenceFens,
   provedBy,
   basis,
   fen,
@@ -76,7 +79,19 @@ export const MateOutcome = ({
         <Translated id="outcome.mateForced" />
       </p>
 
-      <MateNet fen={fen} sequence={sequence} provedBy={provedBy} orientation={orientation} />
+      {/*
+       * Keyed by `fen`: `step` inside `MateNet` is local state (see its own doc comment),
+       * and a learner following a link from one mate leaf straight to another must land on
+       * a fresh board rather than carry over how far they had stepped into the last one.
+       */}
+      <MateNet
+        key={fen}
+        fen={fen}
+        sequence={sequence}
+        sequenceFens={sequenceFens}
+        provedBy={provedBy}
+        orientation={orientation}
+      />
 
       <ProvedNote certificate={basis.certificate} locale={locale} />
     </section>

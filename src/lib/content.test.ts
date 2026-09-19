@@ -400,6 +400,11 @@ describe('a proved mate over the wire', () => {
       kind: 'mate',
       inMoves: 2,
       sequence: ['Bxf7+', 'Ke7', 'Nd5#'],
+      sequenceFens: [
+        'r2qkbnr/ppp2Bpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R b KQkq - 0 7',
+        'r2q1bnr/ppp1kBpp/2np4/4N3/4P3/2N4P/PPPP1PP1/R1BbK2R w KQ - 1 8',
+        'r2q1bnr/ppp1kBpp/2np4/3NN3/4P3/7P/PPPP1PP1/R1BbK2R b KQ - 2 8',
+      ],
       provedBy: 'modelled-net',
       basis: {
         basis: 'proved',

@@ -60,6 +60,7 @@ const outcome = (value: Outcome): CompiledOutcome => {
         kind: 'mate',
         inMoves: value.inMoves,
         sequence: [...value.sequence],
+        sequenceFens: [...value.sequenceFens],
         provedBy: value.provedBy,
         basis: { basis: 'proved', by: 'certificate', certificate: value.basis.certificate },
       }
@@ -171,7 +172,7 @@ export type EveryNodeFieldIsCompiled = MustBeNever<
  * with no certificate to look up. Found the hard way; closed here.
  */
 export type EveryMateFieldIsCompiled = MustBeNever<
-  Unhandled<ForcedMate, 'kind' | 'inMoves' | 'sequence' | 'provedBy' | 'basis'>
+  Unhandled<ForcedMate, 'kind' | 'inMoves' | 'sequence' | 'sequenceFens' | 'provedBy' | 'basis'>
 >
 
 export type EveryAssessmentFieldIsCompiled = MustBeNever<

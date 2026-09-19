@@ -37,6 +37,7 @@ export const OutcomeCard = ({ outcome, fen, orientation, locale }: OutcomeCardPr
         <MateOutcome
           inMoves={outcome.inMoves}
           sequence={outcome.sequence}
+          sequenceFens={outcome.sequenceFens}
           provedBy={outcome.provedBy}
           basis={outcome.basis}
           fen={fen}

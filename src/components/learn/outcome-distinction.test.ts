@@ -256,9 +256,12 @@ describe('the notes are told which one to be', () => {
  */
 describe('the wire carries a line, not a net', () => {
   type MateArm = Extract<CompiledOutcome, { kind: 'mate' }>
-  type Unexpected = Exclude<keyof MateArm, 'kind' | 'inMoves' | 'sequence' | 'provedBy' | 'basis'>
+  type Unexpected = Exclude<
+    keyof MateArm,
+    'kind' | 'inMoves' | 'sequence' | 'sequenceFens' | 'provedBy' | 'basis'
+  >
 
-  it('a mate leaf carries these five fields and no sixth', () => {
+  it('a mate leaf carries these six fields and no seventh', () => {
     const nothingElseOnTheWire: [Unexpected] extends [never] ? true : false = true
 
     expect(nothingElseOnTheWire).toBe(true)
@@ -292,6 +295,7 @@ describe('no catalogue calls a merely winning position a mate', () => {
     'netModelled',
     'netImmediate',
     'howProved',
+    'mateReached',
   ])
 
   /**
