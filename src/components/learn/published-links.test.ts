@@ -508,7 +508,7 @@ describe('every URL that worked before the defining line was walkable still reso
     const entry = FIXTURES[name]
     if (entry === undefined) throw new Error(`the table names an entry that is gone: ${name}`)
 
-    expect(walkEntry(entry, null, parseLine(raw).plies).fen).toBe(fen)
+    expect(walkEntry(entry, null, parseLine(raw).plies, null).fen).toBe(fen)
   })
 
   /**
@@ -521,7 +521,7 @@ describe('every URL that worked before the defining line was walkable still reso
 
     const { plies } = parseLine(raw)
     const prelude = parsePrelude('1').plies
-    const walked = walkEntry(entry, prelude, plies)
+    const walked = walkEntry(entry, prelude, plies, null)
 
     // Except where the line is empty: there the URL asks for the defining line and gets it,
     // which is the new behaviour and is not a published link.

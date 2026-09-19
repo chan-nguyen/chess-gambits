@@ -3,7 +3,6 @@ import './MateOutcome.css'
 import { Translated } from '../../i18n/Translated.tsx'
 import type { CompiledProved } from '../../lib/content-types.ts'
 import type { Locale } from '../../lib/locale.ts'
-import type { Orientation } from '../board/board-model.ts'
 import { MateNet } from './MateNet.tsx'
 import { ProvedNote } from './OutcomeProvenance.tsx'
 
@@ -27,19 +26,28 @@ import { ProvedNote } from './OutcomeProvenance.tsx'
  * the **count**, in moves; the **forced line**, through `MateNet`; and **how it was proved**,
  * as a certificate name and a link to the About page's explanation of what that certificate
  * had to survive.
+ *
+ * **Since #123, this also owns the checkmate flag.** #121/#122 put it inside `MateNet`,
+ * because `MateNet` was where "which step is the board showing" lived. That is no longer
+ * true — the main board and `walk.ts` own the current step now, `MateNet` is a plain list of
+ * links into it, and `OutcomeCard` renders no element of its own by design (its own doc
+ * comment says why: a fourth arm must stay a compile error, not a wrapper to extend). This
+ * component is what is left that (a) renders an element and (b) already receives `sequence`
+ * and the current `step`, so it is where "has the walk reached the true end" is answered.
  */
 export type MateOutcomeProps = {
   /** Moves, never plies. A mate in N runs to `2N - 1` plies (docs/CONTEXT.md, *Ply*). */
   readonly inMoves: number
   /** The longest line in the proved net, in plies from this leaf. */
   readonly sequence: readonly string[]
-  /** The FEN after each ply of `sequence`, same length and same order. */
-  readonly sequenceFens: readonly string[]
   readonly provedBy: 'search' | 'modelled-net'
   readonly basis: CompiledProved
   /** The leaf's position, which is where the proved line starts. */
   readonly fen: string
-  readonly orientation: Orientation
+  /** The leaf's own `line` path, so `MateNet` can link each ply to its own `mate` address. */
+  readonly leaf: readonly string[]
+  /** How many plies of `sequence` the walk has played: 0 at the leaf's own `line` address. */
+  readonly step: number
   readonly locale: Locale
 }
 
@@ -54,14 +62,15 @@ const MateMark = () => (
 export const MateOutcome = ({
   inMoves,
   sequence,
-  sequenceFens,
   provedBy,
   basis,
   fen,
-  orientation,
+  leaf,
+  step,
   locale,
 }: MateOutcomeProps) => {
   const headingId = useId()
+  const atEnd = step === sequence.length
 
   return (
     <section className="mate-outcome" aria-labelledby={headingId}>
@@ -79,19 +88,21 @@ export const MateOutcome = ({
         <Translated id="outcome.mateForced" />
       </p>
 
+      <MateNet fen={fen} leaf={leaf} sequence={sequence} provedBy={provedBy} step={step} />
+
       {/*
-       * Keyed by `fen`: `step` inside `MateNet` is local state (see its own doc comment),
-       * and a learner following a link from one mate leaf straight to another must land on
-       * a fresh board rather than carry over how far they had stepped into the last one.
+       * The accessible flag the final frame needs (#121), moved here from `MateNet` by #123:
+       * `atEnd` is `step === sequence.length`, which is exactly "the real board on screen
+       * right now is the actual checkmated position", regardless of how the learner got here
+       * — pressing next repeatedly, jumping straight to the last ply in the list, a bookmark,
+       * or browser back/forward. `role="status"` rather than a plain paragraph so a screen
+       * reader announces it the moment `next` reaches it, exactly once.
        */}
-      <MateNet
-        key={fen}
-        fen={fen}
-        sequence={sequence}
-        sequenceFens={sequenceFens}
-        provedBy={provedBy}
-        orientation={orientation}
-      />
+      {atEnd && (
+        <p className="mate-outcome__checkmate" role="status">
+          <Translated id="outcome.mateReached" />
+        </p>
+      )}
 
       <ProvedNote certificate={basis.certificate} locale={locale} />
     </section>

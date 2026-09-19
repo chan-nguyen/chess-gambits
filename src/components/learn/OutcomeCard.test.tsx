@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { cleanup, render, screen } from '@testing-library/react'
 import { RouterProvider, createMemoryRouter } from 'react-router'
 import { afterEach, describe, expect, it } from 'vitest'
 import assessmentCss from './AssessmentOutcome.css?raw'
@@ -9,6 +9,7 @@ import { I18nProvider } from '../../i18n/I18nProvider.tsx'
 import type { LocaleLoader } from '../../i18n/i18n.ts'
 import type { PartialTranslations } from '../../i18n/translations.ts'
 import type { CompiledAnnotation, CompiledOutcome } from '../../lib/content-types.ts'
+import { lineSearch } from '../../lib/line.ts'
 import { isLocale, locales, type Locale } from '../../lib/locale.ts'
 import en from '../../locales/en.ts'
 import fr from '../../locales/fr.ts'
@@ -90,22 +91,27 @@ const headingOf = (outcome: CompiledOutcome, locale: Locale): string => {
 type Options = {
   readonly outcome?: CompiledOutcome
   readonly fen?: string
+  /** The leaf's own `line` path — only the mate arm reads it. */
+  readonly leaf?: readonly string[]
+  /** How many plies into a proved mate's sequence the walk stands; 0 at the leaf itself. */
+  readonly step?: number
   readonly locale?: Locale
 }
 
-const show = async ({ outcome = MATE.outcome, fen = MATE.fen, locale = 'en' }: Options = {}) => {
+const show = async ({
+  outcome = MATE.outcome,
+  fen = MATE.fen,
+  leaf = OUTCOME_MATE_LINE,
+  step = 0,
+  locale = 'en',
+}: Options = {}) => {
   const router = createMemoryRouter(
     [
       {
         path: '/:locale/gambits/:id',
         element: (
           <I18nProvider locale={locale} load={load}>
-            <OutcomeCard
-              outcome={outcome}
-              fen={fen}
-              orientation={OUTCOMES_ENTRY.side}
-              locale={locale}
-            />
+            <OutcomeCard outcome={outcome} fen={fen} leaf={leaf} step={step} locale={locale} />
           </I18nProvider>
         ),
       },
@@ -197,47 +203,24 @@ describe('a proved forced mate', () => {
 })
 
 /**
- * AC 3. One shared board and a SAN list — never one preview per reply.
- *
- * A defender node inside a net can have twenty-four legal replies, and twenty-four board
- * instances on a 360px phone is not a design.
+ * AC 3, revised by #123: never one board per reply, and since #123 never a board here at all
+ * — the main board is the anchor now, and this is a plain list of links into the sequence
+ * (`MateNet`'s own doc comment says why). A defender node inside a net can have twenty-four
+ * legal replies, and twenty-four board instances on a 360px phone was never a design; the
+ * fix for that no longer needs a second board either, since pressing next on the real one
+ * walks it through the sequence directly.
  */
 describe('the mate net', () => {
-  const boards = (container: HTMLElement): number =>
-    container.querySelectorAll('.board-preview').length
-
-  it('draws one board, and a real one', async () => {
+  it('draws no board of its own', async () => {
     const { container } = await show()
 
-    expect(boards(container)).toBe(1)
-    expect(container.querySelectorAll('.board-preview [role="gridcell"]')).toHaveLength(64)
+    expect(container.querySelectorAll('.board-preview')).toHaveLength(0)
   })
 
-  it('draws one board for three plies, so it is not one board per ply', async () => {
+  it('lists every ply of the sequence, and no more', async () => {
     const { container } = await show()
 
     expect(container.querySelectorAll('.mate-net__ply')).toHaveLength(provedMate().sequence.length)
-    expect(boards(container)).toBe(1)
-  })
-
-  /**
-   * The same count at a different length. A renderer that drew a board per ply would still
-   * satisfy the assertion above on a fixture whose line happened to be one ply long.
-   */
-  it('still draws one board when the line is a single ply', async () => {
-    const mate = provedMate()
-    const { container } = await show({
-      outcome: {
-        ...mate,
-        provedBy: 'search',
-        inMoves: 1,
-        sequence: mate.sequence.slice(-1),
-        sequenceFens: mate.sequenceFens.slice(-1),
-      },
-    })
-
-    expect(container.querySelectorAll('.mate-net__ply')).toHaveLength(1)
-    expect(boards(container)).toBe(1)
   })
 
   it('reads in order, because the plies are a refutation only in this order', async () => {
@@ -245,92 +228,59 @@ describe('the mate net', () => {
 
     expect(container.querySelector('.mate-net__plies')?.tagName).toBe('OL')
   })
+
+  it('each ply is a real link, addressed at its own step into the sequence', async () => {
+    const { container } = await show()
+    const links = [...container.querySelectorAll('.mate-net__ply-link')]
+
+    expect(links).toHaveLength(provedMate().sequence.length)
+    for (const [index, link] of links.entries()) {
+      expect(link.getAttribute('href')).toBe(
+        `/en/gambits/${OUTCOMES_ENTRY.id}?${lineSearch(OUTCOME_MATE_LINE).replace('?', '')}&mate=${index + 1}`,
+      )
+    }
+  })
 })
 
 /**
- * Issue #121: the board no longer freezes one ply short of the mate it claims. Every check
- * here reads `aria-current="step"` off the SAN list rather than the board's own markup,
- * because that is the one place "which frame is on screen" is stated in the DOM without
- * decoding an SVG position back into a FEN.
+ * Issue #121, revised by #123: the checkmate flag appears only at the true final position.
+ * `step` used to be this component's own local state, driven by buttons it owned; it is now
+ * a prop, driven by `walk.ts` through the URL — so what is asserted here is that the flag and
+ * the current-step marker are a pure function of that prop, and `LearningSurface.test.tsx`
+ * is where clicking the real "next" control is proved to walk `step` through 0, 1, 2, ….
  */
-describe('stepping the board to the real final position', () => {
+describe('the checkmate flag and the current step', () => {
   const currentStep = (container: HTMLElement): string | null =>
-    container.querySelector('.mate-net__ply-button[aria-current="step"]')?.textContent ?? null
+    container.querySelector('.mate-net__ply-link[aria-current="step"]')?.textContent ?? null
 
-  it('starts on the leaf, one ply short of the first move — not on the mate itself', async () => {
-    const { container } = await show()
+  it('marks nothing current and shows no flag at the leaf itself (step 0)', async () => {
+    const { container } = await show({ step: 0 })
 
     expect(currentStep(container)).toBeNull()
     expect(screen.queryByText(EN.mateReached)).toBeNull()
-    expect(screen.getByRole('button', { name: EN.stepPrevious })).toBeDisabled()
-    expect(screen.getByRole('button', { name: EN.stepNext })).toBeEnabled()
   })
 
-  it('walks the forced line ply by ply, ending on the actual checkmated position', async () => {
-    const { container } = await show()
-    const next = screen.getByRole('button', { name: EN.stepNext })
-
-    fireEvent.click(next)
+  it('marks the ply in progress, with no flag before the real end', async () => {
+    const { container } = await show({ step: 1 })
     expect(currentStep(container)).toBe('7.Bxf7+')
     expect(screen.queryByText(EN.mateReached)).toBeNull()
 
-    fireEvent.click(next)
-    expect(currentStep(container)).toBe('7...Ke7')
+    cleanup()
+    const second = await show({ step: 2 })
+    expect(currentStep(second.container)).toBe('7...Ke7')
     expect(screen.queryByText(EN.mateReached)).toBeNull()
+  })
 
-    fireEvent.click(next)
+  it('shows the flag only once the walk has reached the last ply of the sequence', async () => {
+    const mate = provedMate()
+    const { container } = await show({ step: mate.sequence.length })
+
     expect(currentStep(container)).toBe('8.Nd5#')
     expect(screen.getByText(EN.mateReached)).toBeVisible()
-    expect(next).toBeDisabled()
   })
 
-  it('steps back with previous, and the checkmate flag goes with it', async () => {
-    const { container } = await show()
-    const next = screen.getByRole('button', { name: EN.stepNext })
-    const previous = screen.getByRole('button', { name: EN.stepPrevious })
-
-    fireEvent.click(next)
-    fireEvent.click(next)
-    fireEvent.click(next)
-    expect(screen.getByText(EN.mateReached)).toBeVisible()
-
-    fireEvent.click(previous)
-
-    expect(screen.queryByText(EN.mateReached)).toBeNull()
-    expect(currentStep(container)).toBe('7...Ke7')
-  })
-
-  it('jumps straight to a ply by clicking it in the list', async () => {
-    const { container } = await show()
-    const plies = container.querySelectorAll('.mate-net__ply-button')
-    const last = plies[plies.length - 1]
-    if (!(last instanceof HTMLElement)) throw new Error('the fixture has no third ply')
-
-    fireEvent.click(last)
-
-    expect(screen.getByText(EN.mateReached)).toBeVisible()
-  })
-
-  /**
-   * The main board's own arrow keys are wired to the URL (`LearningSurface`), and this
-   * board's are wired to local state — the two must not both react to one press. Firing the
-   * event on `.mate-net` itself, rather than through `window`, is what proves this control
-   * owns it rather than merely also hearing it.
-   */
-  it('steps with the arrow keys, scoped to this control', async () => {
-    const { container } = await show()
-    const widget = container.querySelector('.mate-net')
-    if (widget === null) throw new Error('the mate net did not render')
-
-    fireEvent.keyDown(widget, { key: 'ArrowRight' })
-    expect(currentStep(container)).toBe('7.Bxf7+')
-
-    fireEvent.keyDown(widget, { key: 'ArrowLeft' })
-    expect(currentStep(container)).toBeNull()
-  })
-
-  /** A mate in one: no defender node, so the first and only press reaches checkmate. */
-  it('reaches checkmate in a single press for a mate in one', async () => {
+  /** A mate in one: no defender node, so the first and only ply is also the last. */
+  it('reaches the flag on the first and only ply of a mate in one', async () => {
     const mate = provedMate()
     await show({
       outcome: {
@@ -340,11 +290,8 @@ describe('stepping the board to the real final position', () => {
         sequence: mate.sequence.slice(-1),
         sequenceFens: mate.sequenceFens.slice(-1),
       },
+      step: 1,
     })
-
-    expect(screen.queryByText(EN.mateReached)).toBeNull()
-
-    fireEvent.click(screen.getByRole('button', { name: EN.stepNext }))
 
     expect(screen.getByText(EN.mateReached)).toBeVisible()
   })

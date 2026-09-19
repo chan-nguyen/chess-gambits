@@ -153,6 +153,14 @@ position for the page to draw past the leaf — the same problem `prelude` solve
 opening moves, solved the same way: replayed once with `chess.js` at build time, and shipped as data
 rather than as the engine that produced it.
 
+Since #123, a position past the leaf inside `sequence` is walkable the same way a position before
+the gambit root is: its own `Address` variant in `walk.ts` and its own URL parameter, `mate`
+(`src/lib/mate-step.ts`), pressed into and through with the real "next" control on the main board.
+See **Prelude** below for the reasoning both share — "a FEN with no tree node" — and that module's
+own doc comment for why the two parameters resolve their conflicts differently: `prelude` sits
+behind the root `line` names, `mate` sits forward of the leaf `line` names, so the two new
+parameters are never contradictory the way `prelude` and `line` can be.
+
 **`Assessment`** — `{ kind: 'position', evaluation: ..., plan: ..., basis: Judgement }`
 
 The opponent defended adequately, so there is no mate. The leaf states a material and positional

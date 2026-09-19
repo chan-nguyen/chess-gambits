@@ -64,16 +64,54 @@ test.describe('a proved forced mate', () => {
   })
 
   /**
-   * AC 3. A defender node inside a net can have twenty-four legal replies, and twenty-four
-   * preview boards on a 360px phone is not a design. One board, whatever the line's length.
+   * AC 3, revised by #123. A defender node inside a net can have twenty-four legal replies,
+   * and twenty-four preview boards on a 360px phone was never a design — the fix for that no
+   * longer needs a second board at all: the main board is the anchor, and this is a list with
+   * nothing off the side, whatever the line's length.
    */
-  test('is one board and a list on a 360px phone, with nothing off the side', async ({ page }) => {
+  test('is a list with no board of its own on a 360px phone, with nothing off the side', async ({
+    page,
+  }) => {
     await page.setViewportSize(PHONE)
     await open(page, OUTCOME_MATE_LINE)
 
-    await expect(page.locator('.mate-net .board-preview')).toHaveCount(1)
+    await expect(page.locator('.mate-net .board-preview')).toHaveCount(0)
     await expect(page.locator('.mate-net__ply')).toHaveCount(3)
     expect(await overflow(page)).toBeLessThanOrEqual(0)
+  })
+
+  /**
+   * **#123's own claim, end to end.** The real "next" on the main board — not a second,
+   * local-state stepper — walks into and through the proved line, the URL changes at every
+   * step, and the checkmate flag appears only at the true end.
+   */
+  test('walks into and through the mate with the real next control', async ({ page }) => {
+    await open(page, OUTCOME_MATE_LINE)
+    const next = page.getByRole('link', { name: vi.learn.nextPly })
+    const search = (): string => new URL(page.url()).search
+
+    await expect(page.getByText(vi.outcome.mateReached)).toHaveCount(0)
+
+    await next.click()
+    await expect.poll(search).toBe(`${lineSearch(OUTCOME_MATE_LINE)}&mate=1`)
+    await expect(page.getByText(vi.outcome.mateReached)).toHaveCount(0)
+
+    await next.click()
+    await expect.poll(search).toBe(`${lineSearch(OUTCOME_MATE_LINE)}&mate=2`)
+    await expect(page.getByText(vi.outcome.mateReached)).toHaveCount(0)
+
+    await next.click()
+    await expect.poll(search).toBe(`${lineSearch(OUTCOME_MATE_LINE)}&mate=3`)
+    await expect(page.getByText(vi.outcome.mateReached)).toBeVisible()
+    await expect(next).toHaveAttribute('aria-disabled', 'true')
+
+    // Independently loadable: a fresh navigation to the same URL lands on the same step.
+    await page.reload()
+    await expect(page.getByText(vi.outcome.mateReached)).toBeVisible()
+
+    await page.goBack()
+    await expect.poll(search).toBe(`${lineSearch(OUTCOME_MATE_LINE)}&mate=2`)
+    await expect(page.getByText(vi.outcome.mateReached)).toHaveCount(0)
   })
 })
 
