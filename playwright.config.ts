@@ -45,7 +45,13 @@ export default defineConfig({
     command: 'npm run build && npm run serve:dist',
     url: baseURL,
     reuseExistingServer: !process.env.CI,
-    timeout: 120_000,
+    // `npm run build` compiles content, builds the catalogue, type-checks the whole
+    // project, runs the Vite build and emits a route shell per published entry — a
+    // pipeline whose cost grows with the catalogue. 120s was tight enough that CI hit it
+    // three times running in a row on 2026-09-20 with nothing wrong in the build itself
+    // (confirmed by a clean, ~50s local build the same day); this budget just needs more
+    // headroom as the catalogue keeps growing; it is not a signal of a real failure.
+    timeout: 240_000,
     env: { BASE_PATH: basePath, PORT: String(port) },
   },
 })

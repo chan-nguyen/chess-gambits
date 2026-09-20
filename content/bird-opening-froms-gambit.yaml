@@ -1,10 +1,35 @@
 # Bird Opening: From's Gambit. Frozen defining line 1.f4 e5, which ends on Black's own
 # ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
 #
-# No mate is claimed anywhere in this entry: every leaf below is an assessment (ADR-0005).
-# The danger around White's missing f-pawn after 2.fxe5 d6 3.exd6 Bxd6 is real, but nothing
-# in either branch modelled here is a forced mate, and none was invented to make the story
-# tidier.
+# The danger around White's missing f-pawn after 2.fxe5 d6 3.exd6 Bxd6 is real, and most of
+# it is an assessment rather than a forced mate (ADR-0005) — except for one branch.
+#
+# From #127, following up on #125/#126: the lichess study's ch22 chapter transcribes
+# 1.f4 e5 2.fxe5 d6 3.exd6 Bxd6 4.Nf3 g5 5.h3?? Bg3#, naming it From's Gambit's "Lasker
+# Variation" trap. This position is already this entry's own `Bxd6` node — the dataset's
+# "Bird Opening: From's Gambit, Lasker Variation" row (`1. f4 e5 2. fxe5 d6 3. exd6 Bxd6
+# 4. Nf3 g5`) is a sub-line of the exact gambit already authored here, not a separate
+# classified row — so the mate is added as a deeper branch of this file's own tree rather
+# than as a new entry. Replaying it with chess.js found the actual mechanism the source
+# does not spell out: the bishop on d6 already sits on the open d6-h2 diagonal from the
+# moment it recaptures, and 4.Nf3 only ever guards the h2 square itself (a knight on f3 is
+# not on that diagonal) — it does nothing about g3, which stays defended only by the h2
+# pawn. 5.h3?? is the one move that pushes that very pawn away, and once it does,
+# 5...Bg3# is mate: the king cannot move (d1 is the queen, d2/e2 are pawns, f1 is the
+# bishop, and f2 — permanently empty since White's very first move, 1.f4 — is itself
+# covered by the checking bishop) and nothing can capture on g3 any more. Every other 5th
+# move leaves the h2 pawn in place, so 5...Bg3+ there is answered at once by 6.hxg3 and is
+# just a check, not a trap; this is checked and dismissed at that node rather than modelled.
+# The longer ch21 line (5.e4 g4 6.e5 gxf3 7.exd6 Qh4+ ...) was also replayed; the source's
+# own annotations run it to further complications rather than a forced verdict of any kind,
+# and after 7.exd6 White has simply won a second pawn while Black's attack is real but not
+# concretely winning anything by force — a genuinely different, murkier position that this
+# entry does not attempt to resolve, since inventing a verdict for it would be exactly the
+# `unexplored`-as-stand-in mistake `docs/PROJECT-PLAN.md` §6.9 warns against. It is left
+# unclaimed rather than forced into either a mate or an assessment it has not earned.
+#
+# The mate at 5...Bg3# is claimed with `type: trap` and nothing else; the certificate is
+# produced by `npm run prove:mates` and replayed by `npm run verify:mates` (ADR-0005).
 id: bird-opening-froms-gambit
 name: "Bird Opening: From's Gambit"
 eco: A02
@@ -74,19 +99,60 @@ tree:
                     vi: Đen ăn lại bằng tượng chứ không bằng hậu hay bằng tốt c. Từ d6, con tượng nhắm thẳng vào đường chéo dẫn tới h2, đúng lúc con tốt f của Trắng đã biến mất vĩnh viễn khỏi bàn cờ.
                     en: Black recaptures with the bishop rather than the queen or the c-pawn. From d6, the bishop points straight down the diagonal towards h2, at exactly the moment White's f-pawn has vanished from the board for good.
                     fr: Les Noirs reprennent avec le fou plutôt qu'avec la dame ou le pion c. Depuis d6, le fou vise directement la diagonale menant à h2, au moment même où le pion f blanc a définitivement disparu de l'échiquier.
-                  outcome:
-                    type: position
-                    evaluation:
-                      vi: Trắng hơn một tốt, nhưng con tốt f đã biến mất hoàn toàn khỏi bàn cờ, nghĩa là một khi vua Trắng nhập thành ngắn thì không còn con tốt nào có thể đứng lại che chắn ở f2 hay hỗ trợ g3 nữa. Con tượng d6 đã nhắm sẵn vào đường chéo tới h2, hậu Đen có thể ra h4 để hỏi thẳng ô f2 và g3, còn mọi quân nhẹ và hậu của Trắng vẫn còn nguyên ở hàng một. Một tốt là một tốt, nhưng ở đây nó là cái giá của một cuộc tấn công có thật chứ không phải một lời hứa suông.
-                      en: White is a pawn up, but the f-pawn has vanished from the board entirely, which means that once White's king castles short there is no pawn left that can ever stand on f2 again to shelter it or support g3. The bishop on d6 already points down the diagonal towards h2, the queen can swing to h4 to question f2 and g3 directly, and every one of White's minor pieces and the queen are still sitting on the back rank. A pawn is a pawn, but here it is the price of a real attack rather than an empty promise.
-                      fr: Les Blancs ont un pion de plus, mais le pion f a complètement disparu de l'échiquier, ce qui signifie qu'une fois les Blancs roqués du petit côté, plus aucun pion ne pourra jamais se tenir en f2 pour l'abriter ou soutenir g3. Le fou en d6 vise déjà la diagonale menant à h2, la dame peut se rendre en h4 pour interroger directement f2 et g3, et toutes les pièces mineures et la dame des Blancs sont encore sur la rangée de départ. Un pion reste un pion, mais ici c'est le prix d'une attaque bien réelle, non d'une simple promesse.
-                    plan:
-                      vi: Đen chơi Nf6 rồi O-O, Qe7 hoặc Nc6, và tìm thời điểm cho Ng4 hay Qh4 để ép f2 và g3 trong khi Trắng còn chưa kịp phát triển xong. Nếu Trắng nhập thành ngắn một cách vội vàng thì g3 và f2 là chỗ để nhắm vào; nếu Trắng nhập thành dài thì Đen chuyển hướng sang cánh hậu bằng a5 và b5. Trắng nên chơi Nf3 sớm để chặn đường chéo b8-h2 hoặc che nước Qh4, tránh nhập thành ngắn cho tới khi phát triển xong, và tìm cách đổi bớt quân nhẹ của Đen — nhất là con tượng d6 — để giảm sức ép trước khi tính đến việc thu hồi con tốt đã bỏ ra.
-                      en: Black plays Nf6, then castles, Qe7 or Nc6, and looks for a moment for Ng4 or Qh4 to press f2 and g3 while White is still behind in development. If White castles short too quickly, g3 and f2 are the squares to aim at; if White castles long, Black switches to the queenside with a5 and b5. White should play Nf3 early to block the b8-h2 diagonal or cover Qh4, avoid castling short until fully developed, and look to trade off Black's minor pieces — especially the bishop on d6 — to ease the pressure before thinking about winning the pawn back.
-                      fr: Les Noirs jouent Nf6, puis roquent, Qe7 ou Nc6, et cherchent le bon moment pour Ng4 ou Qh4 afin de peser sur f2 et g3 pendant que les Blancs sont encore en retard de développement. Si les Blancs roquent du petit côté trop vite, g3 et f2 sont les cases à viser ; s'ils roquent du grand côté, les Noirs basculent à l'aile dame avec a5 et b5. Les Blancs devraient jouer Nf3 tôt pour couper la diagonale b8-h2 ou couvrir Qh4, éviter de roquer du petit côté tant qu'ils ne sont pas développés, et chercher à échanger les pièces mineures noires — en particulier le fou en d6 — pour soulager la pression avant de songer à regagner le pion cédé.
-                    basis:
-                      by: chan
-                      at: '2026-09-18'
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi một nước phát triển yên tĩnh khác thay vì Nf3 — Nc3, Bd3, Bc4, Qe2 và tương tự đều tốt như nhau ở đây. Cả bốn đều dẫn tới cùng một kiểu trung cuộc thoải mái cho Đen được mô tả trong nhánh Nc3 dưới đây, và không nước nào trong số đó tạo ra cái bẫy cụ thể mà nhánh Nf3 mở ra.
+                      en: White plays some other quiet developing move instead of Nf3 — Nc3, Bd3, Bc4, Qe2 and the like are all roughly as good here. All of them lead to the same kind of comfortable middlegame for Black described in the Nc3 branch below, and none of them opens the specific trap the Nf3 branch does.
+                      fr: Les Blancs jouent un autre coup de développement tranquille à la place de Nf3 — Nc3, Bd3, Bc4, Qe2 et autres se valent à peu près ici. Tous mènent au même genre de milieu de partie confortable pour les Noirs décrit dans la branche Nc3 ci-dessous, et aucun n'ouvre le piège particulier que révèle la branche Nf3.
+                  children:
+                    - ply: Nc3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Trắng phát triển mã ra c3, một nước bình thường không liên quan gì tới cột h hay ô g3.
+                        en: White develops the knight to c3, an ordinary move with nothing to do with the h-file or the g3 square.
+                        fr: Les Blancs développent le cavalier en c3, un coup ordinaire n'ayant rien à voir avec la colonne h ou la case g3.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Trắng hơn một tốt, nhưng con tốt f đã biến mất hoàn toàn khỏi bàn cờ, nghĩa là một khi vua Trắng nhập thành ngắn thì không còn con tốt nào có thể đứng lại che chắn ở f2 hay hỗ trợ g3 nữa. Con tượng d6 đã nhắm sẵn vào đường chéo tới h2, hậu Đen có thể ra h4 để hỏi thẳng ô f2 và g3, còn mọi quân nhẹ và hậu của Trắng vẫn còn nguyên ở hàng một. Một tốt là một tốt, nhưng ở đây nó là cái giá của một cuộc tấn công có thật chứ không phải một lời hứa suông.
+                          en: White is a pawn up, but the f-pawn has vanished from the board entirely, which means that once White's king castles short there is no pawn left that can ever stand on f2 again to shelter it or support g3. The bishop on d6 already points down the diagonal towards h2, the queen can swing to h4 to question f2 and g3 directly, and every one of White's minor pieces and the queen are still sitting on the back rank. A pawn is a pawn, but here it is the price of a real attack rather than an empty promise.
+                          fr: Les Blancs ont un pion de plus, mais le pion f a complètement disparu de l'échiquier, ce qui signifie qu'une fois les Blancs roqués du petit côté, plus aucun pion ne pourra jamais se tenir en f2 pour l'abriter ou soutenir g3. Le fou en d6 vise déjà la diagonale menant à h2, la dame peut se rendre en h4 pour interroger directement f2 et g3, et toutes les pièces mineures et la dame des Blancs sont encore sur la rangée de départ. Un pion reste un pion, mais ici c'est le prix d'une attaque bien réelle, non d'une simple promesse.
+                        plan:
+                          vi: Đen chơi Nf6 rồi O-O, Qe7 hoặc Nc6, và tìm thời điểm cho Ng4 hay Qh4 để ép f2 và g3 trong khi Trắng còn chưa kịp phát triển xong. Nếu Trắng nhập thành ngắn một cách vội vàng thì g3 và f2 là chỗ để nhắm vào; nếu Trắng nhập thành dài thì Đen chuyển hướng sang cánh hậu bằng a5 và b5. Trắng nên chơi Nf3 sớm để che ô h2 và ô g4 hoặc che nước Qh4, tránh nhập thành ngắn cho tới khi phát triển xong, và tìm cách đổi bớt quân nhẹ của Đen — nhất là con tượng d6 — để giảm sức ép trước khi tính đến việc thu hồi con tốt đã bỏ ra. Nhưng như nhánh 4.Nf3 dưới đây cho thấy, riêng nước Nf3 vẫn chưa đủ — con tốt h2 mới thực sự là quân canh giữ ô g3.
+                          en: Black plays Nf6, then castles, Qe7 or Nc6, and looks for a moment for Ng4 or Qh4 to press f2 and g3 while White is still behind in development. If White castles short too quickly, g3 and f2 are the squares to aim at; if White castles long, Black switches to the queenside with a5 and b5. White should play Nf3 early to cover h2 and g4 or to guard against Qh4, avoid castling short until fully developed, and look to trade off Black's minor pieces — especially the bishop on d6 — to ease the pressure before thinking about winning the pawn back. But as the 4.Nf3 branch below shows, Nf3 by itself is not enough — the h2 pawn is what actually guards g3.
+                          fr: Les Noirs jouent Nf6, puis roquent, Qe7 ou Nc6, et cherchent le bon moment pour Ng4 ou Qh4 afin de peser sur f2 et g3 pendant que les Blancs sont encore en retard de développement. Si les Blancs roquent du petit côté trop vite, g3 et f2 sont les cases à viser ; s'ils roquent du grand côté, les Noirs basculent à l'aile dame avec a5 et b5. Les Blancs devraient jouer Nf3 tôt pour couvrir h2 et g4 ou pour se prémunir contre Qh4, éviter de roquer du petit côté tant qu'ils ne sont pas développés, et chercher à échanger les pièces mineures noires — en particulier le fou en d6 — pour soulager la pression avant de songer à regagner le pion cédé. Mais comme le montre la branche 4.Nf3 ci-dessous, Nf3 seul ne suffit pas — c'est le pion h2 qui garde réellement la case g3.
+                        basis:
+                          by: chan
+                          at: '2026-09-18'
+                    - ply: Nf3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Trắng phát triển mã ra f3, nước tự nhiên nhất trên bàn cờ — nó canh giữ ô h2, ngăn Đen ăn hoặc chiếu ngay ở đó. Nhưng con mã ở f3 không hề đứng trên đường chéo d6-h2 của con tượng; đường chéo ấy hoàn toàn thông thoáng và ô g3 trên đó, khác với h2, chưa hề có ai canh giữ. Từ #127, kiểm tra lại bằng chess.js cho thấy đây chính là chỗ hở mà sách vở gọi là "Bẫy Lasker" của Gambit From.
+                        en: White develops the knight to f3, the most natural move on the board — it guards h2, stopping Black from capturing or checking there at once. But the knight on f3 does not actually sit on the bishop's d6-h2 diagonal; that diagonal is completely open, and the g3 square on it, unlike h2, is not guarded by anything yet. From #127, replaying this with chess.js confirms this is exactly the gap the literature calls From's Gambit's "Lasker trap".
+                        fr: Les Blancs développent le cavalier en f3, le coup le plus naturel de l'échiquier — il garde h2, empêchant les Noirs d'y capturer ou d'y faire échec immédiatement. Mais le cavalier en f3 ne se trouve pas réellement sur la diagonale d6-h2 du fou ; cette diagonale est totalement dégagée, et la case g3 qui s'y trouve, contrairement à h2, n'est encore gardée par rien. D'après le #127, rejouer cette position avec chess.js confirme qu'il s'agit exactement de la faille que la littérature appelle le « piège Lasker » du Gambit From.
+                      children:
+                        - ply: g5
+                          annotation:
+                            vi: Đen đẩy tốt lên g5, chuẩn bị đẩy tiếp g4 để đuổi con mã f3 và giành thêm không gian bên cánh vua. Nước này không tự nó tạo ra cái bẫy — nó chỉ đơn giản là một nước phát triển hợp lý — nhưng nó đặt ra câu hỏi mà Trắng sắp trả lời sai.
+                            en: Black pushes the pawn to g5, preparing to push it again to g4 and chase the f3 knight while gaining space on the kingside. This move does not create the trap by itself — it is simply a reasonable developing move — but it sets up the question White is about to answer wrongly.
+                            fr: Les Noirs poussent le pion en g5, se préparant à le pousser encore en g4 pour chasser le cavalier f3 tout en gagnant de l'espace à l'aile roi. Ce coup ne crée pas le piège à lui seul — c'est simplement un coup de développement raisonnable — mais il pose la question à laquelle les Blancs vont mal répondre.
+                          dismissRest:
+                            reason:
+                              vi: Trắng chơi một nước khác thay vì 5.h3. Con tốt h2 vẫn còn nguyên tại chỗ trong mọi nước này, vẫn canh giữ ô g3, nên nước 5...Bg3+ chỉ là một nước chiếu bình thường bị ăn ngay bằng hxg3 chứ không phải chiếu bí. Các nước như 5.Nxg5, 5.Ne5, 5.Nd4, 5.Nh4 hay 5.Ng1 rút lui hoặc ăn tốt đều giữ nguyên con tốt h2 tại chỗ; các nước phát triển hay đi tốt khác cũng vậy. Chỉ riêng 5.h3?? mới đẩy chính con tốt canh giữ ấy đi khỏi hàng ngang, để lại ô g3 hoàn toàn trống trải.
+                              en: White plays anything other than 5.h3. The h2 pawn stays exactly where it is in every one of these lines, still guarding g3, so 5...Bg3+ there is just an ordinary check answered at once by hxg3, not a mate. Moves such as 5.Nxg5, 5.Ne5, 5.Nd4, 5.Nh4 or 5.Ng1, retreating or grabbing the pawn, all leave the h2 pawn in place; so does every other developing or pawn move. Only 5.h3?? pushes that very guard off its rank, leaving g3 completely unguarded.
+                              fr: Les Blancs jouent autre chose que 5.h3. Le pion h2 reste exactement à sa place dans chacune de ces lignes, gardant toujours g3, si bien que 5...Bg3+ n'y est alors qu'un simple échec aussitôt repris par hxg3, non un mat. Des coups comme 5.Nxg5, 5.Ne5, 5.Nd4, 5.Nh4 ou 5.Ng1, qu'ils reculent ou capturent le pion, laissent tous le pion h2 en place ; il en va de même pour tout autre coup de développement ou de pion. Seul 5.h3?? pousse ce gardien hors de sa rangée, laissant g3 totalement sans défense.
+                          children:
+                            - ply: h3
+                              replyQuality: blunder
+                              frequency: rare
+                              annotation:
+                                vi: 'Trắng đẩy tốt h, có vẻ như một nước linh hoạt vô hại. Nhưng đây chính là con tốt duy nhất từng canh giữ ô g3 trên đường chéo của con tượng d6, và nó vừa tự rời khỏi vị trí đó.'
+                                en: "White pushes the h-pawn, an apparently harmless flexible move. But this is the one pawn that was ever guarding the g3 square on the d6 bishop's diagonal, and it has just stepped off that job."
+                                fr: "Les Blancs poussent le pion h, un coup en apparence anodin et flexible. Mais c'est le seul pion qui gardait la case g3 sur la diagonale du fou d6, et il vient de quitter ce poste."
+                              outcome:
+                                type: trap
             - ply: d4
               replyQuality: best
               frequency: occasional
