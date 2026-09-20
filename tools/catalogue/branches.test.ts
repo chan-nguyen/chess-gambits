@@ -118,18 +118,21 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * One hundred and fifty-four entries are authored — three from #15, eleven from #73, ten
+   * One hundred and fifty-five entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
    * seventeen from #110 (group G, King's Gambit Accepted sub-variations), eighteen from
    * #111 (group H, King's Gambit Accepted sub-variations and the Rousseau Gambit), six
    * from #118 (five new named traps plus the Fajarowicz Defense, upgraded in place from
-   * the Tier 0 entry the dataset import already gave its exact defining line), and three
+   * the Tier 0 entry the dataset import already gave its exact defining line), three
    * from #125 (the Lazard Gambit, upgraded in place from its own Tier 0 entry, plus two
    * new named traps: the Smith-Morra Gambit Accepted's Open d-File Trap and the Vienna
-   * Game's Frankenstein-Dracula Qd5 Trap) — and the other 856 are Tier 0, with no content
-   * file at all. Each authored entry is named here
+   * Game's Frankenstein-Dracula Qd5 Trap), and one from #127 (the Ruy Lopez Exchange
+   * Variation's Alapin Gambit, upgraded in place from its own Tier 0 entry — #127 also
+   * deepened two already-authored trees, bird-opening-froms-gambit and
+   * scandinavian-defense-kiel-variation-trap, without adding new ids) — and the other 855
+   * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
    * if every tree in the repository disappeared.
@@ -158,7 +161,7 @@ describe('the catalogue this repository ships', () => {
     ['benko-gambit-declined-bishop-attack', 1],
     ['benko-gambit-fianchetto-variation', 0],
     ['benoni-defense-benoni-gambit-accepted', 1],
-    ['bird-opening-froms-gambit', 2],
+    ['bird-opening-froms-gambit', 3],
     ['bishops-opening-calabrese-countergambit', 3],
     ['blackmar-diemer-gambit', 5],
     ['blackmar-diemer-gambit-accepted', 1],
@@ -272,8 +275,9 @@ describe('the catalogue this repository ships', () => {
     ['reti-opening-zilbermints-gambit', 1],
     ['richter-veresov-attack-malich-gambit', 2],
     ['rubinstein-trap', 1],
+    ['ruy-lopez-exchange-variation-alapin-gambit', 3],
     ['ruy-lopez-schliemann-defense', 1],
-    ['scandinavian-defense-kiel-variation-trap', 1],
+    ['scandinavian-defense-kiel-variation-trap', 3],
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scotch-game-goring-gambit', 2],
     ['scotch-game-scotch-gambit', 4],
@@ -306,7 +310,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1010 entries, and only the authored one hundred and fifty-four have any', () => {
+  it('bakes keys on all 1010 entries, and only the authored one hundred and fifty-five have any', () => {
     expect(result.value.records).toHaveLength(1010)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

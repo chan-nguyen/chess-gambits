@@ -18,6 +18,37 @@
 #
 # ECO is B01 and category is `trap`, which is what `tools/catalogue/source/traps.yaml`
 # records: a trap carries the ECO of the opening it sits inside (ADR-0008).
+#
+# From #127, following up on #125/#126: the lichess study's ch24 chapter also gives a second
+# White try, 5.Qa4+, with an annotated line running 5...N8c6 6.d5?! b5! 7.cxb5 Bf5 8.Na3
+# Qxd5 9.bxc6 Qe4+ 10.Kd2 Rd8+ 11.Kc3 e5, calling the position "-+" and noting several
+# sub-branches with claimed deep mates. This is added as a **second sibling branch** at the
+# root, alongside 5.a3, rather than touching that branch or its `unsound` verdict — 5.a3
+# remains simply the best try and is untouched; 5.Qa4+ is a weaker, more complicated try that
+# a real opponent might also play, and showing that White can also blunder badly inside it
+# does not make the position sound for Black, since 5.a3 is still there refuting the gambit
+# cleanly. Replaying every move with chess.js confirms 5...b5! is real (it forks the queen on
+# a4 and the pawn on c4 at once) and that 6.d5?! is genuinely a mistake rather than the best
+# try, matching the source. What replay found past the source's own line: at the final
+# position (after 11...e5, White to move), several of the natural-looking replies hang
+# outright to an immediate mate the source never names as such — 12.Qxb4?? Qxb4# is the
+# cleanest of them (the queen recapture is itself mate, since White's own king on c3 has
+# nowhere to go), and 12.Qb3??/12.b3?? Qd4#, 12.Bd3?? Qxd3#/Rxd3#, and 12.Ne2?? Qd3#/Rd3# all
+# fail the same way. None of these were the source's own claimed lines, which is exactly the
+# kind of thing a hand replay is for. What replay could **not** settle, in the time this pass
+# allows, is whether White's genuinely careful tries (12.Qa5, 12.Kb3, 12.Bd2 and the like)
+# are also lost by force — the position stays full of checks (Rd3+, Nd5+, Nxa2+, Qxc6+ among
+# others) and material is roughly two pawns for White, but no forced mate against best
+# defence was found or claimed. Rather than assert a verdict that was not earned, or leave
+# the node as `unexplored` as a stand-in for "no forced verdict found" (the mistake `docs/
+# PROJECT-PLAN.md` §6.9 warns three earlier agents made), this entry follows 12.Qa5
+# Qxc6+ 13.Kb3 down to an honest `position` leaf: White is up material with a king that has
+# walked from e1 to b3 and committed to an exposed square, and this catalogue does not claim
+# more than that. The deeper alleged mates quoted in the issue (`15.Kb3 Qc2#`, `11.Nd4#`/
+# `Qd3#`) were not reachable from the exact line replayed here and are not claimed.
+#
+# The mate at 12...Qxb4# is claimed with `type: trap` and nothing else; the certificate is
+# produced by `npm run prove:mates` and replayed by `npm run verify:mates` (ADR-0005).
 id: scandinavian-defense-kiel-variation-trap
 name: 'Scandinavian Defense: Kiel Variation Trap'
 eco: B01
@@ -51,9 +82,9 @@ tree:
     fr: Les Noirs viennent de jouer le cavalier en b4, un coup qui semble agressif — comme s'il menaçait Cc2+, fourchette roi-tour, ou Cd3+, fourchette roi-fou. Aucune de ces menaces n'est réelle. La dame blanche en d1 garde directement c2, et d3 est gardée deux fois, par la dame et par le fou f1. Le cavalier b4 se tient simplement au bord de l'échiquier, attendant que les Blancs lui demandent où il va.
   dismissRest:
     reason:
-      vi: Trắng chơi một nước khác, và không có gì phải lo cả — vì như đã nói, không đe doạ nào của con mã b4 là thật. Bất kỳ nước phát triển bình thường nào (Nf3, Nc3, Be2...) đều ổn. Nước rõ ràng nhất và trực tiếp nhất, và là nước được chơi ở đây, là 5.a3, hỏi thẳng con mã ngay lập tức.
-      en: White plays something else, and there is nothing to fear either way, since as already noted neither of the knight's threats is real. Any ordinary developing move (Nf3, Nc3, Be2...) is fine. The clearest and most direct one, and the one modelled here, is 5.a3, asking the knight the question at once.
-      fr: Les Blancs jouent autre chose, et il n'y a rien à craindre dans un cas comme dans l'autre, puisqu'aucune des menaces du cavalier n'est réelle, comme on l'a vu. N'importe quel coup de développement ordinaire (Cf3, Cc3, Fe2...) convient. Le plus clair et le plus direct, celui modélisé ici, est 5.a3, qui pose aussitôt la question au cavalier.
+      vi: Trắng chơi một nước khác, và không có gì phải lo cả — vì như đã nói, không đe doạ nào của con mã b4 là thật. Bất kỳ nước phát triển bình thường nào (Nf3, Nc3, Be2...) đều ổn. Nước rõ ràng nhất và trực tiếp nhất là 5.a3, hỏi thẳng con mã ngay lập tức; nước 5.Qa4+ cũng được xét riêng bên dưới, vì nó dẫn tới những biến phức tạp hơn hẳn.
+      en: White plays something else, and there is nothing to fear either way, since as already noted neither of the knight's threats is real. Any ordinary developing move (Nf3, Nc3, Be2...) is fine. The clearest and most direct one is 5.a3, asking the knight the question at once; 5.Qa4+ is also examined separately below, since it leads to far messier complications.
+      fr: Les Blancs jouent autre chose, et il n'y a rien à craindre dans un cas comme dans l'autre, puisqu'aucune des menaces du cavalier n'est réelle, comme on l'a vu. N'importe quel coup de développement ordinaire (Cf3, Cc3, Fe2...) convient. Le plus clair et le plus direct est 5.a3, qui pose aussitôt la question au cavalier ; 5.Qa4+ est aussi examiné séparément ci-dessous, car il mène à des complications bien plus confuses.
   children:
     - ply: a3
       replyQuality: best
@@ -81,3 +112,189 @@ tree:
             basis:
               by: chan
               at: '2026-09-18'
+    - ply: 'Qa4+'
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Trắng chiếu bằng hậu thay vì hỏi thẳng con mã. Đây là một cách chơi có thật, không phải một sai lầm rõ ràng, nhưng nó dẫn Trắng vào những biến phức tạp hơn hẳn so với 5.a3 đơn giản — và như sẽ thấy dưới đây, phức tạp hơn không có nghĩa là tốt hơn.
+        en: White checks with the queen instead of asking the knight directly. This is a real try, not an obvious mistake, but it leads White into far messier complications than the simple 5.a3 — and as the branch below shows, messier is not the same as better.
+        fr: Les Blancs font échec avec la dame au lieu d'interroger directement le cavalier. C'est un essai réel, pas une erreur évidente, mais il entraîne les Blancs dans des complications bien plus confuses que le simple 5.a3 — et comme le montre la branche ci-dessous, plus confus ne veut pas dire meilleur.
+      children:
+        - ply: N8c6
+          annotation:
+            vi: Đen chặn chiếu bằng con mã còn lại, giữ con mã b4 tại chỗ. Đây là cách chặn tự nhiên nhất và không nhường lại bất kỳ điều gì.
+            en: Black blocks the check with the other knight, keeping the b4 knight exactly where it is. This is the most natural block and gives up nothing.
+            fr: Les Noirs bloquent l'échec avec l'autre cavalier, laissant le cavalier b4 exactement où il est. C'est le blocage le plus naturel et il ne cède rien.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác thay vì 6.d5. Phần lớn các nước ở đây — lùi hậu, phát triển bình thường, hay đơn giản là a3 hỏi thẳng con mã như trong nhánh chính — đều ổn hoặc thậm chí tốt hơn cho Trắng. Nước 6.d5 được chọn ở đây chính vì nó là nước dẫn tới những biến phức tạp mà #127 yêu cầu kiểm tra, không phải vì nó là thử nghiệm nghiêm túc nhất.
+              en: White plays something other than 6.d5. Most tries here — retreating the queen, developing normally, or simply playing a3 to ask the knight the same question as in the main branch — are fine or even better for White. 6.d5 is chosen here precisely because it is the move that leads into the complications #127 asked to have checked, not because it is White's most serious try.
+              fr: Les Blancs jouent autre chose que 6.d5. La plupart des essais ici — reculer la dame, développer normalement, ou simplement jouer a3 pour poser au cavalier la même question que dans la branche principale — sont corrects, voire meilleurs pour les Blancs. 6.d5 est choisi ici précisément parce que c'est le coup qui mène aux complications que le #127 demandait de vérifier, pas parce que c'est l'essai le plus sérieux des Blancs.
+          children:
+            - ply: d5
+              replyQuality: mistake
+              frequency: rare
+              annotation:
+                vi: Trắng đẩy tốt lên d5, đuổi con mã c6 và có vẻ giành thêm không gian. Nhưng nước này bỏ ngỏ hoàn toàn tốt c4 và ô a4 nơi hậu đang đứng — và Đen có đúng một nước để khai thác cả hai cùng lúc.
+                en: White pushes the pawn to d5, chasing the c6 knight and apparently gaining space. But this move leaves the c4 pawn and the a4 square, where the queen is standing, completely undefended together — and Black has exactly one move that exploits both at once.
+                fr: Les Blancs poussent le pion en d5, chassant le cavalier c6 et gagnant apparemment de l'espace. Mais ce coup laisse le pion c4 et la case a4, où se trouve la dame, complètement sans défense en même temps — et les Noirs disposent exactement d'un coup qui exploite les deux à la fois.
+              children:
+                - ply: b5
+                  annotation:
+                    vi: Đòn chĩa đôi thực sự của cả biến này. Con tốt b5 tấn công cùng lúc hậu Trắng ở a4 và tốt Trắng ở c4, và Trắng không thể cứu cả hai.
+                    en: The real fork of this whole branch. The b5 pawn attacks White's queen on a4 and White's pawn on c4 at the same time, and White cannot save both.
+                    fr: La véritable fourchette de toute cette branche. Le pion b5 attaque à la fois la dame blanche en a4 et le pion blanc en c4, et les Blancs ne peuvent sauver les deux.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chọn một cách khác để giải quyết đòn chĩa hai, ví dụ 7.Qxb5 hay 7.Bxb5 thay vì ăn bằng tốt. Cả hai đều dẫn tới ...Nc2+ chĩa đôi vua và xe theo các chú thích của nguồn — không được kiểm chứng sâu ở đây — nhưng đều phức tạp không kém nhánh 7.cxb5 được chọn để đi sâu bên dưới, và không nước nào trong số đó cứu được cả hậu lẫn tốt c4 cùng lúc.
+                      en: White resolves the fork a different way, for instance 7.Qxb5 or 7.Bxb5 instead of the pawn capture. Both are noted by the source as running into ...Nc2+, forking king and rook — not checked in depth here — but both are at least as complicated as the 7.cxb5 branch chosen for the deeper look below, and none of them saves both the queen and the c4 pawn at once.
+                      fr: Les Blancs résolvent la fourchette autrement, par exemple 7.Qxb5 ou 7.Bxb5 plutôt que la prise par le pion. Les deux sont signalés par la source comme menant à ...Cc2+, fourchette roi-tour — non vérifié en profondeur ici — mais les deux sont au moins aussi compliqués que la branche 7.cxb5 choisie pour l'examen plus poussé ci-dessous, et aucun ne sauve à la fois la dame et le pion c4.
+                  children:
+                    - ply: cxb5
+                      replyQuality: good
+                      frequency: occasional
+                      annotation:
+                        vi: Trắng ăn lại bằng tốt, giữ được hậu nhưng chấp nhận mất tốt c4 vừa bị đẩy đi.
+                        en: White recaptures with the pawn, saving the queen but accepting the loss of the c4 pawn that has just been swept aside.
+                        fr: Les Blancs reprennent avec le pion, sauvant la dame mais acceptant la perte du pion c4 qui vient d'être balayé.
+                      children:
+                        - ply: Bf5
+                          annotation:
+                            vi: Đen phát triển tượng ra f5, vừa hoàn thiện phát triển vừa nhắm vào cột f và chuẩn bị ăn lại tốt d5 nếu có dịp.
+                            en: Black develops the bishop to f5, both completing development and eyeing the f-file while preparing to win back the d5 pawn if the chance comes.
+                            fr: Les Noirs développent le fou en f5, achevant leur développement tout en visant la colonne f et en se préparant à regagner le pion d5 le moment venu.
+                          dismissRest:
+                            reason:
+                              vi: Trắng chọn ăn thêm tốt ngay bằng 8.dxc6 hay 8.bxc6 thay vì phát triển mã. Nguồn ghi nhận cả hai đều gặp các đòn tương tự (...Bc2 hay ...Nc2+), lại không được kiểm chứng sâu ở đây; nhánh 8.Na3 được chọn vì nó là nước phát triển tự nhiên nhất và là nước dẫn thẳng tới điểm chính mà #127 muốn làm rõ.
+                              en: White chooses to grab another pawn at once with 8.dxc6 or 8.bxc6 instead of developing the knight. The source notes both run into similar tricks (...Bc2 or ...Nc2+), again not checked in depth here; the 8.Na3 branch is chosen because it is the most natural developing move and the one that leads straight to the point #127 wanted clarified.
+                              fr: Les Blancs choisissent de reprendre un autre pion tout de suite par 8.dxc6 ou 8.bxc6 plutôt que de développer le cavalier. La source signale que les deux mènent à des combinaisons similaires (...Fc2 ou ...Cc2+), là encore non vérifiées en profondeur ici ; la branche 8.Na3 est choisie car c'est le coup de développement le plus naturel et celui qui mène directement au point que le #127 voulait clarifier.
+                          children:
+                            - ply: Na3
+                              replyQuality: good
+                              frequency: occasional
+                              annotation:
+                                vi: Trắng phát triển mã ra a3, nước duy nhất vừa phát triển vừa không để lộ thêm quân nào cho các đòn chĩa của con mã b4.
+                                en: White develops the knight to a3, the one developing move that does not expose anything else to the b4 knight's forking tricks.
+                                fr: Les Blancs développent le cavalier en a3, le seul coup de développement qui n'expose rien d'autre aux fourchettes du cavalier b4.
+                              children:
+                                - ply: Qxd5
+                                  annotation:
+                                    vi: Đen ăn lại con tốt d5, đưa hậu ra một ô rất tích cực và tạm thời cân bằng lại quân số kể từ khi gambit bắt đầu.
+                                    en: Black recaptures the d5 pawn, bringing the queen to a very active square and briefly restoring material equality since the gambit began.
+                                    fr: Les Noirs reprennent le pion d5, amenant la dame sur une case très active et rétablissant brièvement l'égalité matérielle depuis le début du gambit.
+                                  dismissRest:
+                                    reason:
+                                      vi: Trắng chọn một nước khác thay vì 9.bxc6, ví dụ rút lui hay phát triển. Đa số các lựa chọn ấy đơn giản và an toàn hơn hẳn; 9.bxc6 được chọn ở đây vì nó là nước tham lam nhất — ăn nốt con mã c6 — và là nước dẫn thẳng tới các biến mà #127 yêu cầu kiểm tra.
+                                      en: White chooses something other than 9.bxc6, for instance retreating or developing. Most of those choices are simpler and considerably safer; 9.bxc6 is chosen here because it is the greediest try — grabbing the c6 knight as well — and the one that leads straight into the lines #127 asked to have checked.
+                                      fr: Les Blancs choisissent autre chose que 9.bxc6, par exemple reculer ou développer. La plupart de ces choix sont plus simples et nettement plus sûrs ; 9.bxc6 est choisi ici car c'est l'essai le plus gourmand — capturant aussi le cavalier c6 — et celui qui mène directement aux lignes que le #127 demandait de vérifier.
+                                  children:
+                                    - ply: bxc6
+                                      replyQuality: mistake
+                                      frequency: rare
+                                      annotation:
+                                        vi: Trắng ăn luôn con mã c6, có vẻ thắng thêm một quân nữa. Nhưng vua Trắng vẫn còn ở e1 và hậu Đen trên d5 vừa mở ra một nước chiếu ngay lập tức.
+                                        en: White grabs the c6 knight as well, apparently winning yet another piece. But White's king is still on e1, and Black's queen on d5 has an immediate check available.
+                                        fr: Les Blancs capturent également le cavalier c6, gagnant apparemment encore une pièce. Mais le roi blanc est toujours en e1, et la dame noire en d5 dispose d'un échec immédiat.
+                                      children:
+                                        - ply: 'Qe4+'
+                                          annotation:
+                                            vi: Hậu Đen chiếu dọc theo đường chéo, buộc vua Trắng phải lo tự vệ ngay giữa bàn cờ thay vì được nhập thành an toàn.
+                                            en: Black's queen checks along the diagonal, forcing White's king to fend for itself in the middle of the board instead of ever castling to safety.
+                                            fr: La dame noire fait échec sur la diagonale, forçant le roi blanc à se débrouiller seul au milieu de l'échiquier au lieu de pouvoir un jour roquer en sécurité.
+                                          dismissRest:
+                                            reason:
+                                              vi: Trắng chặn chiếu bằng một quân khác (Be3, Be2 hay Ne2) thay vì đi vua. Không nước nào trong số đó được kiểm chứng sâu ở đây; 10.Kd2, đưa vua đi tìm chỗ ẩn náu ở cánh hậu, được chọn vì đó là nước khớp với nguồn và là nước dẫn tới các biến bị nghi ngờ có mát sâu mà #127 yêu cầu kiểm tra.
+                                              en: White blocks the check with a piece instead (Be3, Be2 or Ne2) rather than moving the king. None of those is checked in depth here; 10.Kd2, sending the king to look for shelter on the queenside, is chosen because it matches the source and leads into the lines with the suspected deep mates that #127 asked to have checked.
+                                              fr: Les Blancs bloquent l'échec avec une pièce (Fe3, Fe2 ou Ce2) plutôt que de déplacer le roi. Aucune de ces options n'est vérifiée en profondeur ici ; 10.Kd2, qui envoie le roi chercher refuge à l'aile dame, est choisi car il correspond à la source et mène aux lignes avec les mats profonds soupçonnés que le #127 demandait de vérifier.
+                                          children:
+                                            - ply: Kd2
+                                              replyQuality: best
+                                              frequency: occasional
+                                              annotation:
+                                                vi: Vua Trắng bước sang d2, bắt đầu hành trình đi tìm nơi ẩn náu ở cánh hậu — hành trình sẽ không kết thúc tốt đẹp.
+                                                en: White's king steps to d2, beginning a walk toward shelter on the queenside — a walk that will not end well.
+                                                fr: Le roi blanc se rend en d2, commençant une marche vers un refuge à l'aile dame — une marche qui ne se terminera pas bien.
+                                              children:
+                                                - ply: 'Rd8+'
+                                                  annotation:
+                                                    vi: Xe Đen vào chiếu dọc cột d vừa mở, đẩy vua Trắng đi tiếp.
+                                                    en: Black's rook checks down the newly opened d-file, pushing White's king further along.
+                                                    fr: La tour noire fait échec sur la colonne d qui vient de s'ouvrir, poussant encore plus loin le roi blanc.
+                                                  dismissed:
+                                                    - ply: Bd3
+                                                      reason: The other legal block; not checked in depth here since Kc3 is the try the source's own line follows and the one this branch continues.
+                                                  children:
+                                                    - ply: Kc3
+                                                      replyQuality: best
+                                                      frequency: occasional
+                                                      annotation:
+                                                        vi: Vua Trắng buộc phải tiếp tục bước tới c3, ô duy nhất còn lại ngoài việc chặn bằng tượng.
+                                                        en: White's king is forced to keep going to c3, the only square left besides blocking with the bishop.
+                                                        fr: Le roi blanc est contraint de continuer jusqu'en c3, la seule case restante en dehors du blocage par le fou.
+                                                      children:
+                                                        - ply: e5
+                                                          annotation:
+                                                            vi: Đen đẩy tốt lên e5, mở đường chéo cho tượng f8 và giữ nguyên áp lực lên vua Trắng đang mắc kẹt ở c3 — một ô mà không tốt nào còn có thể che chắn được nữa.
+                                                            en: Black pushes the pawn to e5, opening the diagonal for the f8 bishop and keeping up the pressure on White's king, now stuck on c3 — a square no pawn can ever shelter again.
+                                                            fr: Les Noirs poussent le pion en e5, ouvrant la diagonale pour le fou f8 et maintenant la pression sur le roi blanc, désormais coincé en c3 — une case qu'aucun pion ne pourra plus jamais abriter.
+                                                          dismissed:
+                                                            - ply: Qb3
+                                                              reason: Also walks into 12...Qd4#, the queen on e4 delivering mate along the fourth rank with the king unable to move or be defended; not modelled separately since it is the same mating idea as Qxb4 below.
+                                                            - ply: b3
+                                                              reason: Also loses at once to 12...Qd4#, opening nothing useful and leaving the king exactly as exposed; same idea as Qb3.
+                                                            - ply: Bd3
+                                                              reason: Hangs to 12...Qxd3# or 12...Rxd3#; the bishop blocks nothing that was actually the problem.
+                                                            - ply: Ne2
+                                                              reason: Hangs the same way to 12...Qd3# or 12...Rd3#; the knight does not cover the squares the king actually needed covered.
+                                                          dismissRest:
+                                                            reason:
+                                                              vi: Trắng chơi một nước thận trọng khác (chẳng hạn 12.Qa5, được xét riêng dưới đây, hoặc 12.Kb3, 12.Bd2 và tương tự). Không nước nào trong số này được kiểm chứng đầy đủ ở đây, và vị trí vẫn còn đầy những nước chiếu cho Đen (Rd3+, Nd5+, Nxa2+, Qxc6+ và nhiều nước khác) — nhưng không có nước chiếu bí bắt buộc nào được tìm thấy chống lại lối chơi cẩn trọng nhất của Trắng.
+                                                              en: White plays some other careful move (such as 12.Qa5, examined separately below, or 12.Kb3, 12.Bd2 and the like). None of these is fully checked here, and the position still has plenty of checks available for Black (Rd3+, Nd5+, Nxa2+, Qxc6+ among others) — but no forced mate was found against White's most careful defence.
+                                                              fr: Les Blancs jouent un autre coup prudent (comme 12.Qa5, examiné séparément ci-dessous, ou 12.Kb3, 12.Bd2 et autres). Aucun de ceux-ci n'est entièrement vérifié ici, et la position offre encore de nombreux échecs aux Noirs (Rd3+, Cd5+, Cxa2+, Dxc6+ entre autres) — mais aucun mat forcé n'a été trouvé contre la défense la plus prudente des Blancs.
+                                                          children:
+                                                            - ply: Qxb4
+                                                              replyQuality: blunder
+                                                              frequency: rare
+                                                              annotation:
+                                                                vi: Trắng ăn luôn con mã b4 phiền toái bằng hậu, có vẻ như giải quyết được vấn đề và thắng thêm quân. Nhưng hậu Trắng vừa tự đặt mình lên đúng hàng ngang nơi hậu Đen đang đứng.
+                                                                en: White grabs the annoying b4 knight with the queen, apparently solving the problem and winning yet more material. But White's queen has just placed itself on the exact rank Black's queen already stands on.
+                                                                fr: Les Blancs capturent avec la dame l'agaçant cavalier b4, réglant apparemment le problème et gagnant encore du matériel. Mais la dame blanche vient de se placer exactement sur la rangée où se trouve déjà la dame noire.
+                                                              outcome:
+                                                                type: trap
+                                                            - ply: Qa5
+                                                              replyQuality: good
+                                                              frequency: occasional
+                                                              annotation:
+                                                                vi: Trắng rút hậu khỏi hàng ngang nguy hiểm mà không ăn thêm gì, cách phòng thủ thận trọng nhất được xét trong mục này.
+                                                                en: White pulls the queen off the dangerous rank without grabbing anything more, the most careful defence examined in this entry.
+                                                                fr: Les Blancs retirent la dame de la rangée dangereuse sans rien capturer de plus, la défense la plus prudente examinée dans cette entrée.
+                                                              children:
+                                                                - ply: 'Qxc6+'
+                                                                  annotation:
+                                                                    vi: Đen ăn lại con tốt c6 kèm chiếu luôn, thu hồi một phần vật chất trước khi tính tiếp.
+                                                                    en: Black recaptures the c6 pawn with check as well, winning back some material before continuing.
+                                                                    fr: Les Noirs reprennent également le pion c6 avec échec, regagnant un peu de matériel avant de poursuivre.
+                                                                  dismissRest:
+                                                                    reason:
+                                                                      vi: Ô c6 không còn ai canh giữ sau 12.Qa5, nên đây là nước rõ ràng nhất — vừa lấy lại tốt vừa chiếu — trong khi các lựa chọn khác như Rd3+, Nd5+, Nxa2+ vẫn còn đó nhưng không được xét sâu ở đây.
+                                                                      en: Nothing guards c6 any longer after 12.Qa5, so this is the clearest choice — recapturing the pawn with check at once — while alternatives such as Rd3+, Nd5+ or Nxa2+ remain available but are not examined further here.
+                                                                      fr: Plus rien ne garde c6 après 12.Qa5, donc c'est le choix le plus clair — reprendre le pion avec échec dans la foulée — tandis que d'autres options comme Rd3+, Cd5+ ou Cxa2+ restent disponibles mais ne sont pas approfondies ici.
+                                                                  children:
+                                                                    - ply: Kb3
+                                                                      annotation:
+                                                                        vi: Trắng đi tiếp vua sang b3, tránh chiếu và tìm chỗ ẩn náu gần các con tốt cánh hậu còn nguyên vẹn.
+                                                                        en: White's king steps on to b3, sidestepping the check and looking for shelter near the still-intact queenside pawns.
+                                                                        fr: Le roi blanc continue sa marche jusqu'en b3, esquivant l'échec et cherchant refuge près des pions de l'aile dame encore intacts.
+                                                                      outcome:
+                                                                        type: position
+                                                                        evaluation:
+                                                                          vi: Trắng hơn khoảng hai tốt về vật chất tính từ đầu biến, nhưng vua Trắng đã đi tới b3 sau khi rời e1 — một hành trình nó không thể quay ngược lại và không tốt nào còn che chắn được — trong khi hậu, xe và tượng Đen đều đang hoạt động. Không có quân nào của Trắng đang bị ăn miễn phí ở đây, nhưng vua đã dấn thân quá xa khỏi hàng ngũ quân của mình để có thể gọi là an toàn.
+                                                                          en: White is up roughly two pawns' worth of material counting from the start of this branch, but the king has walked all the way to b3 after leaving e1 — a journey it cannot take back and that no pawn can ever shelter again — while Black's queen, rook and bishop are all active. Nothing of White's is going free right here, but the king has strayed too far from its own pieces to call this safe.
+                                                                          fr: Les Blancs ont environ deux pions de plus en matériel depuis le début de cette branche, mais le roi s'est rendu jusqu'en b3 après avoir quitté e1 — un trajet qu'il ne peut annuler et qu'aucun pion ne pourra plus jamais abriter — tandis que la dame, la tour et le fou noirs sont tous actifs. Rien chez les Blancs n'est pris gratuitement ici, mais le roi s'est trop éloigné de ses propres pièces pour que cela puisse être qualifié de sûr.
+                                                                        plan:
+                                                                          vi: Đen tiếp tục tìm nước chiếu hoặc đe doạ mới quanh vua Trắng lang thang, trong khi vua ấy vẫn chưa tìm được nơi an toàn thật sự. Trắng tìm cách đổi bớt quân tấn công của Đen, nhất là con hậu, và cố gắng che chắn nhà vua bằng các quân còn lại trước khi tính đến việc củng cố phần vật chất đã có.
+                                                                          en: Black keeps looking for the next check or threat around White's wandering king, while that king still has not found real safety. White looks to trade off Black's attacking pieces, especially the queen, and tries to shelter the king behind the remaining pieces before thinking about consolidating the material already won.
+                                                                          fr: Les Noirs continuent de chercher le prochain échec ou la prochaine menace autour du roi blanc errant, tandis que ce roi n'a toujours pas trouvé de véritable sécurité. Les Blancs cherchent à échanger les pièces attaquantes noires, surtout la dame, et tentent d'abriter le roi derrière les pièces restantes avant de songer à consolider le matériel déjà gagné.
+                                                                        basis:
+                                                                          by: chan
+                                                                          at: '2026-09-20'

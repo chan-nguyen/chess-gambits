@@ -1,0 +1,152 @@
+# Ruy Lopez: Exchange Variation, Alapin Gambit. The defining line is 1.e4 e5 2.Nf3 Nc6
+# 3.Bb5 a6 4.Bxc6 dxc6 5.O-O Bg4 6.h3 h5 — exactly the dataset row's own move list, ending
+# on Black's own ply, so the root is an opponent node and White's reply can carry a quality
+# (docs/CONTEXT.md, invariant 5).
+#
+# From #127, following up on #125/#126: the lichess study's "Fishing Pole Spanish Ver."
+# chapter transcribes 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Bxc6 dxc6 5.O-O Bg4 6.h3 h5 7.hxg4 hxg4
+# 8.Nxe5 Qh4 9.f3 g3 10.Ng4 Qh1#, calling it the same "Fishing Pole" idea as this catalogue's
+# existing `fishing-pole-trap` — but that entry's defining line goes 3...Nf6 (Berlin), not
+# 3...a6 4.Bxc6 (Exchange Variation), so the two diverge at move 3 and are different
+# positions with different ids. The real identity, looked up in the dataset rather than
+# assumed from the source's label, is `tools/catalogue/dataset/c.tsv`'s own row: "C69  Ruy
+# Lopez: Exchange Variation, Alapin Gambit  1. e4 e5 2. Nf3 Nc6 3. Bb5 a6 4. Bxc6 dxc6 5. O-O
+# Bg4 6. h3 h5" — classified `include: true` in `classification.yaml` (sacrifice at ply 8,
+# 4...dxc6) but never authored, exactly the situation the Lazard Gambit was in for #125/#126.
+# This is that authoring, as `category: gambit` with its own ECO, not a `category: trap`
+# entry — the gambit already has a real dataset row and needs no ADR-0008 exemption.
+#
+# What replay actually found, past what the source shows: after 7.hxg4 hxg4, White's f3
+# knight is attacked but not truly forced to move — g2 can recapture on f3 evenly if Black
+# ever takes there, so ignoring it is fine. What is NOT fine is grabbing the pawn on e5 with
+# 8.Nxe5, which looks like a free pawn precisely because this move order never developed
+# ...Nf6 to defend it (the same "5.Nxe5 Qd4" temptation `classification.yaml` already flags
+# for this gambit's main line reappears one more time, four moves later, and is just as
+# fatal). Once White takes it, 8...Qh4 walks into the identical mating pattern already
+# proved for `fishing-pole-trap` — a chess.js sweep of the position after 8...Qh4 found 24 of
+# White's 26 legal replies are mated at once by 9...Qh1# (the same square, same mechanism:
+# nothing left on f3 or h2 to guard the h-file behind the queen and the rook on h8), and the
+# two replies that look like they open an escape square, 9.f3 and 9.f4, both still lose to
+# 9...g3! sealing the long diagonal, exactly mirroring that entry's own f3/f4 branches. This
+# is the "real, different forced mate" flagged in #126's "checked and not added" list: not a
+# different mate pattern, but a different critical try (8.Nxe5, made possible only by this
+# move order's missing knight) reaching the same mechanism.
+#
+# The safer-looking retreats (8.Ne1, 8.Nh2) are not modelled as separate branches: replaying
+# them found the identical h2-hole idea and the identical mate, so modelling them again would
+# just be `fishing-pole-trap` a second time under a different move order. 8.Nd4, 8.Ng5 and
+# 8.Nh4 were also checked and simply hang the knight for nothing (Qxd4/exd4, Qxg5, Qxh4/Rxh4
+# respectively) — the same three squares that entry's own tree already dismisses.
+#
+# Every mate claimed with `type: trap` below is proved by `npm run prove:mates` and replayed
+# by `npm run verify:mates` (ADR-0005); nothing else here is proved by a machine.
+id: ruy-lopez-exchange-variation-alapin-gambit
+name: 'Ruy Lopez: Exchange Variation, Alapin Gambit'
+eco: C69
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Bxc6, dxc6, 'O-O', Bg4, h3, h5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-20'
+  basis:
+    by: chan
+    at: '2026-09-20'
+    source: >-
+      A judgement, matching `classification.yaml`'s existing `dubious` label for this row.
+      Black has given up the bishop pair's other half and a full minor piece is now offered
+      on g4 for one pawn, which is a real practical gambit rather than a sound one — but the
+      mating idea this entry teaches is not a matter of opinion, it is proved. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-20'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mates are not — they are machine-proved and replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa đưa tượng ra g4, giống hệt ý tưởng "cần câu" quen thuộc trong Berlin — cột h sắp mở, và con tượng chính là mồi câu. Điểm khác ở đây là Đen đã đổi mã từ nước thứ tư (Bxc6 dxc6), nên không hề có con mã f6 nào canh giữ tốt e5.
+    en: Black has just brought the bishop to g4, the same "fishing pole" idea familiar from the Berlin move order — the h-file is about to open, and the bishop is the bait. The difference here is that Black already traded knights back on move four (Bxc6 dxc6), so there is no knight on f6 guarding the e5 pawn.
+    fr: Les Noirs viennent de sortir le fou en g4, la même idée de « canne à pêche » que dans l'ordre de coups berlinois — la colonne h va s'ouvrir, et le fou est l'appât. La différence ici est que les Noirs ont déjà échangé les cavaliers au quatrième coup (Bxc6 dxc6), si bien qu'aucun cavalier en f6 ne garde le pion e5.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì đổi tượng ngay. Con tượng g4 đang bị tốt h3 đánh, nhưng chưa gì bắt buộc Trắng phải giải quyết nó lượt này; phát triển bình thường vẫn ổn.
+      en: White plays something else instead of trading the bishop off right away. The bishop on g4 is attacked by the h3 pawn, but nothing forces White to settle it this move; ordinary development is fine.
+      fr: Les Blancs jouent autre chose plutôt que d'échanger tout de suite le fou. Le fou g4 est attaqué par le pion h3, mais rien n'oblige les Blancs à régler la question ce coup-ci ; un développement normal convient.
+  children:
+    - ply: hxg4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tượng. Về vật chất đây là nước tốt — một tượng đổi lấy một tốt là lãi lớn — nhưng nó mở đúng cột h mà Đen đang chờ.
+        en: White takes the bishop. Materially this is a good capture — a bishop for a pawn is a real gain — but it opens exactly the file Black has been waiting for.
+        fr: Les Blancs prennent le fou. Matériellement, c'est une bonne prise — un fou contre un pion est un vrai gain — mais cela ouvre exactement la colonne qu'attendaient les Noirs.
+      children:
+        - ply: hxg4
+          annotation:
+            vi: Đen ăn lại bằng tốt h, và cột h giờ hoàn toàn mở với xe h8 đứng sau lưng. Con mã f3 của Trắng bị chính con tốt g4 này đánh, nhưng chưa hẳn bị buộc phải nhảy đi — tốt g2 vẫn có thể đổi ngang bằng gxf3 nếu Đen ăn mã.
+            en: Black recaptures with the h-pawn, and the h-file is now completely open with the rook on h8 behind it. White's knight on f3 is attacked by this same g4 pawn, but it is not strictly forced to move — the g2 pawn can still trade evenly with gxf3 if Black ever takes the knight.
+            fr: Les Noirs reprennent avec le pion h, et la colonne h est désormais totalement ouverte, la tour h8 se tenant derrière. Le cavalier blanc en f3 est attaqué par ce même pion g4, mais il n'est pas strictement forcé de bouger — le pion g2 peut encore échanger à égalité par gxf3 si les Noirs prennent le cavalier.
+          dismissed:
+            - ply: Nd4
+              reason: Abandons f3 but lands on a square Black just takes for free (Qxd4 or exd4); strictly worse than doing nothing.
+            - ply: Ng5
+              reason: Hangs the knight outright to Qxg5.
+            - ply: Nh4
+              reason: Hangs the knight to Qxh4 or Rxh4.
+          dismissRest:
+            reason:
+              vi: Trắng chơi bất kỳ nước nào khác, kể cả lùi mã an toàn về e1 hay h2. Cả hai lùi mã ấy trông có vẻ thận trọng nhưng lại để trống đúng ô h2 mà không quân nào canh — dẫn tới y hệt cái bẫy đã được chứng minh trong mục Fishing Pole Trap của bộ sưu tập này, chỉ khác thứ tự nước đi. Bất kỳ nước nào khác bỏ mặc con mã đều cho phép Trắng đổi ngang bằng gxf3 nếu bị ăn, nên vật chất vẫn ổn. Nước duy nhất được xét kỹ ở đây là 8.Nxe5, vì tốt e5 trông như miễn phí — và chính đó là điều mục này muốn chỉ ra.
+              en: White plays anything else, including the safe-looking retreats to e1 or h2. Both retreats look prudent but leave exactly the h2 square with nobody guarding it — leading to the identical, already-proved mate in this catalogue's Fishing Pole Trap entry, only reached by a different move order. Anything else that leaves the knight alone allows an even trade with gxf3 if it is ever captured, so material stays fine. The only move examined in depth here is 8.Nxe5, because the e5 pawn looks free — and that is exactly the point this entry exists to make.
+              fr: Les Blancs jouent autre chose, y compris les replis prudents en apparence vers e1 ou h2. Ces deux replis semblent sages mais laissent justement la case h2 sans personne pour la garder — menant au mat identique déjà prouvé dans l'entrée Fishing Pole Trap de ce catalogue, seulement atteint par un autre ordre de coups. Tout autre coup qui laisse le cavalier tranquille permet un échange à égalité par gxf3 s'il est un jour capturé, donc le matériel reste correct. Le seul coup examiné en profondeur ici est 8.Nxe5, car le pion e5 paraît gratuit — et c'est précisément ce que cette entrée veut montrer.
+          children:
+            - ply: Nxe5
+              replyQuality: mistake
+              frequency: occasional
+              annotation:
+                vi: Trắng ăn tốt e5, trông như một nước lãi rõ ràng vì không con mã Đen nào canh giữ nó — khác hẳn phiên bản Berlin, nơi mã f6 vẫn còn đó. Nhưng đúng đe doạ hậu ở h4 đang chờ, và con mã mới di chuyển ấy sẽ không kịp quay về phòng thủ.
+                en: White grabs the e5 pawn, which looks like a clean gain since no black knight is left guarding it — unlike the Berlin version, where the f6 knight is still there. But the exact same queen threat on h4 is waiting, and the knight that just moved will not get back in time to help defend.
+                fr: Les Blancs empochent le pion e5, ce qui semble un gain net puisqu'aucun cavalier noir ne le garde — contrairement à la version berlinoise, où le cavalier f6 est toujours présent. Mais la même menace de la dame en h4 attend son heure, et le cavalier qui vient de bouger n'aura pas le temps de revenir défendre.
+              children:
+                - ply: Qh4
+                  annotation:
+                    vi: Hậu Đen ra h4. Không quân Trắng nào còn canh h2 hay h1 phía sau nó, và xe h8 đứng ngay sau lưng hậu trên cột h đã mở toang.
+                    en: The black queen comes to h4. Nothing white is left guarding h2 or the square behind it, and the rook on h8 stands right behind the queen on the wide-open h-file.
+                    fr: La dame noire vient en h4. Plus aucune pièce blanche ne garde h2 ni la case derrière elle, et la tour h8 se tient juste derrière la dame sur la colonne h grande ouverte.
+                  counts:
+                    legal: { count: legalReplies, expect: 26 }
+                    mated: { count: matedBy, ply: 'Qh1#', expect: 24 }
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi một nước khác, và gần như tất cả đều thua ngay. {Mated} trong {legal} nước hợp lệ ở đây bị 9...Qh1# chiếu bí tức khắc, đúng cơ chế đã biết từ mục Fishing Pole Trap — không quân nào canh h1, và vua không thể ăn hậu vì vẫn bị xe h8 chiếu xuyên qua. Hai nước còn lại, 9.f3 và 9.f4, trông như mở ô f2 cho vua chạy thoát nhưng đều được xử lý riêng bên dưới.
+                      en: White plays anything else, and almost all of it loses on the spot. {Mated} of the {legal} legal replies here are mated at once by 9...Qh1#, the same mechanism already known from the Fishing Pole Trap entry — nothing guards h1, and the king cannot capture the queen since it would still be in check from the rook on h8. The two replies that look like they open an escape square, 9.f3 and 9.f4, are each handled separately below.
+                      fr: Les Blancs jouent autre chose, et presque tout perd sur-le-champ. {Mated} des {legal} réponses légales ici sont matées aussitôt par 9...Qh1#, le même mécanisme déjà connu de l'entrée Fishing Pole Trap — rien ne garde h1, et le roi ne peut pas prendre la dame puisqu'il resterait en échec de la tour h8. Les deux réponses qui semblent ouvrir une case d'évasion, 9.f3 et 9.f4, sont chacune traitées séparément ci-dessous.
+                  children:
+                    - ply: Nxg4
+                      replyQuality: blunder
+                      frequency: common
+                      annotation:
+                        vi: Nước trông hợp lý nhất trên bàn cờ — ăn lại con tốt phiền phức ở g4 bằng chính con mã vừa ăn tốt e5. Nhưng đây chính là nước mà cái bẫy này chờ đợi.
+                        en: The most natural-looking move on the board — recapturing the annoying g4 pawn with the very knight that just grabbed the e5 pawn. This is exactly the move this trap is waiting for.
+                        fr: Le coup le plus naturel en apparence sur l'échiquier — reprendre l'agaçant pion g4 avec le cavalier qui vient de capturer le pion e5. C'est exactement le coup qu'attend ce piège.
+                      outcome:
+                        type: trap
+                    - ply: f3
+                      replyQuality: mistake
+                      frequency: rare
+                      annotation:
+                        vi: 'Nước trông có vẻ chính xác nhất, mở ô f2 cho vua sau này. Nhưng đây chỉ là hoãn binh: Đen còn nước g3! đóng sập đường chéo dài g1-a7 và cắt nốt ô h1, sau đó hậu Đen chiếu bí bất kể Trắng đi gì tiếp theo.'
+                        en: 'The move that looks the most precise, opening f2 for the king later. But it is only a delay: Black still has 9...g3!, sealing the long g1-a7 diagonal and cutting off h1 too, after which the black queen mates whatever White plays next.'
+                        fr: "Le coup qui semble le plus précis, ouvrant f2 pour le roi plus tard. Mais ce n'est qu'un sursis : les Noirs disposent encore de 9...g3!, refermant la grande diagonale g1-a7 et coupant aussi h1, après quoi la dame noire mate quoi que jouent les Blancs ensuite."
+                      outcome:
+                        type: trap
+                    - ply: f4
+                      replyQuality: mistake
+                      frequency: rare
+                      annotation:
+                        vi: 'Cùng ý tưởng với 9.f3 — mở ô f2 từ phía bên kia. Kết cục giống hệt: 9...g3! đóng sập đường chéo như trước. Trắng có thêm một nước tạm hoãn ở đây, đẩy hậu lên h5 để chắn đường, nhưng con hậu ấy chỉ đơn giản bị xe h8 ăn mất.'
+                        en: 'The same idea as 9.f3 — opening f2 from the other side. The result is identical: 9...g3! seals the diagonal exactly as before. White has one extra try here, pushing the queen to h5 to block, but that queen is simply captured by the rook on h8.'
+                        fr: "La même idée que 9.f3 — ouvrir f2 depuis l'autre côté. Le résultat est identique : 9...g3! referme la diagonale tout comme avant. Les Blancs disposent ici d'un essai supplémentaire, poussant la dame en h5 pour bloquer, mais cette dame est simplement prise par la tour en h8."
+                      outcome:
+                        type: trap
