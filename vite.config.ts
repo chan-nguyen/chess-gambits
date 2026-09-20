@@ -37,8 +37,16 @@ export default defineConfig({
      * previous number. Measured 24s for `verify:mates` alone and up to 48.7s for the single
      * `content.test.ts` case that validates this one file, both on a developer machine — so a
      * shared runner needed real headroom, not another value picked to just clear one measurement.
+     *
+     * Raised again, 90s → 150s (2026-09-20): CI's `Test` step failed twice in a row on PR #128
+     * with `tools/content/cli.test.ts`'s and `tools/content/content-cli.test.ts`'s
+     * subprocess-spawning cases each hitting exactly 90000ms, on the same CI run whose e2e jobs
+     * also needed their own webServer timeout raised (`playwright.config.ts`) for the identical
+     * reason — a shared runner running unusually slow that day, not a hang in the tests
+     * themselves. A clean sibling worktree ran the same cases in 15–27s. As with the two raises
+     * above, the fix is more headroom, not a value tuned to one bad run.
      */
-    testTimeout: 90_000,
+    testTimeout: 150_000,
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     globals: true,
