@@ -3418,3 +3418,84 @@ rules:
     reason: >-
       2...e5 and the exchange on e5 finishes a pawn up for White. The head rule names the
       Vos among White's offers, which is exactly backwards.
+
+  # ---------------------------------------------------------------- #134: more unnamed sacrifices
+  - match: 'Philidor Defense: Lion Variation, Bishop Sacrifice'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 11, move: 'Bxf7+' }
+    soundness: { value: dubious, by: chan, at: '2026-09-21' }
+    reason: >-
+      6.Bxf7+ gives up the bishop to drag the black king into the open before it castles —
+      a standard idea against the Hanham/Lion setup, taught in club material for decades,
+      and the dataset only calls it a "Sacrifice", never a "Gambit".
+  - match: 'Philidor Defense: Lion Variation, Delayed Bishop Sacrifice'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 13, move: 'Bxf7+' }
+    soundness: { value: dubious, by: chan, at: '2026-09-21' }
+    reason: >-
+      The same Bxf7+ idea a move order later, after the central exchange on e5 instead of
+      before it. Same sacrifice, same side, and the dataset again avoids the word "Gambit".
+  - match: 'Philidor Defense: Lion Variation, Forcing Line'
+    include: true
+    unnamed: true
+    side: white
+    soundness: { value: dubious, by: chan, at: '2026-09-21' }
+    reason: >-
+      7.Bxf7+ follows 6.Ng5 rather than meeting ...Be7 directly, and after 7...Rxf7 8.Ne6
+      forks the queen and forces further concessions. `side` stays asserted rather than
+      naming a `sacrifice` ply: 7.Bxf7+ alone comes out level once 7...Rxf7 8.Ne6 is played
+      out (White's knight fork wins the material straight back), so no single ply of this
+      six-move line hands anything away outright — the board only reads White as the side
+      giving material up once 8.Ne6 itself is on it, and naming that ply as "the sacrifice"
+      would describe the fork rather than the piece offer that provokes it.
+  - match: 'Grünfeld Defense: Exchange Variation, Seville Variation'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 23, move: 'Bxf7+' }
+    soundness: { value: dubious, by: chan, at: '2026-09-21' }
+    reason: >-
+      12.Bxf7+ is Kasparov's piece sacrifice against Karpov from game 16 of their 1987
+      World Championship match, opening the black king in return for tempo and the two
+      bishops' attacking chances. One of the most studied sacrifices in the whole Grünfeld
+      complex, and the dataset never spells the word "Gambit" over it.
+  - match: "Sicilian Defense: Lasker-Pelikan Variation, Sveshnikov Variation, Peresypkin's Sacrifice"
+    include: true
+    unnamed: true
+    sacrifice: { ply: 21, move: 'Bxb5' }
+    soundness: { value: dubious, by: chan, at: '2026-09-21' }
+    reason: >-
+      11.Bxb5 gives up the bishop for two pawns and a grip on the light squares and the
+      d5-outpost, a named sacrifice inside the Sveshnikov that club and master players both
+      still reach for. The dataset's own name for the row already says "Sacrifice".
+  - match: 'Ruy Lopez: Halloween Attack'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 7, move: Nxe5 }
+    soundness: { value: unsound, by: chan, at: '2026-09-21' }
+    reason: >-
+      4.Nxe5 offers a knight without the preparation the Four Knights version has (no Nc3,
+      so the e5/c6 fork never arrives) — objectively worse than that Gambit, and included
+      for the same reason: it is common online and worth recognising rather than falling
+      for.
+  - match: "Petrov's Defense: Classical Attack, Marshall Trap"
+    include: true
+    unnamed: true
+    sacrifice: { ply: 20, move: 'Bxh2+' }
+    soundness: { value: dubious, by: chan, at: '2026-09-21' }
+    reason: >-
+      10...Bxh2+ gives up the bishop to drag White's king forward, and after 11.Kxh2 Ng4+
+      Black regains at least a perpetual check — a genuine, deliberate piece offer used to
+      force a draw against a well-prepared opponent, and the dataset calls it a "Trap"
+      rather than a "Gambit".
+  - match: 'Italian Game: Two Knights Defense, Ulvestad Variation'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 10, move: b5 }
+    soundness: { value: dubious, by: chan, at: '2026-09-21' }
+    reason: >-
+      5...b5!? offers a second pawn (on top of the one already gone to 4.Ng5) to gain the
+      tempo on the bishop and open the position before White consolidates — the direct
+      alternative to the Fried Liver Attack in the same tree, and just as deliberate a
+      sacrifice, but the dataset never calls it a "Gambit".
