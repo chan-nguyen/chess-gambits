@@ -1,0 +1,59 @@
+# Caro-Kann Defense: Mieses Gambit. Frozen defining line 1.e4 c6 2.d4 d5 3.Be3, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated. searchMate from the leaf
+# FEN, bounded to 2 moves, returns no-mate.
+id: caro-kann-defense-mieses-gambit
+name: 'Caro-Kann Defense: Mieses Gambit'
+eco: B12
+category: gambit
+side: white
+definingLine: [e4, c6, d4, d5, Be3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Instead of the usual 3.Nc3 or 3.exd5, White develops with 3.Be3!?,
+      leaving the e4 pawn undefended in exchange for getting the bishop out before it can
+      be blocked in by a later e6 or d4-e5 structure. Black simply takes the pawn and White
+      has to show for it in development alone. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì 3.Nc3 hay 3.exd5 quen thuộc, Trắng chơi 3.Be3!?, đưa tượng ra ngay trước khi nó có thể bị nhốt lại sau này, nhưng để trống con tốt e4 phía sau.
+    en: Instead of the usual 3.Nc3 or 3.exd5, White plays 3.Be3!?, getting the bishop out at once before it can get shut in later, but leaving the e4 pawn undefended behind it.
+    fr: Au lieu du 3.Nc3 ou 3.exd5 habituel, les Blancs jouent 3.Be3!?, sortant le fou tout de suite avant qu'il ne puisse être enfermé plus tard, mais laissant le pion e4 sans défense derrière lui.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước khác như Nf6 hay Bg4 để nguyên con tốt ấy trên bàn cờ và Trắng giữ được trung tâm thêm một nước.
+      en: Black does not take the e4 pawn. Anything else, such as Nf6 or Bg4, leaves that pawn on the board and White keeps the centre for one more move.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme Nf6 ou Bg4, laisse ce pion sur l'échiquier et les Blancs gardent le centre un coup de plus.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt e4 bằng chính con tốt d5, quân duy nhất có thể ăn tại đó. Con tốt e4 của Trắng không được ai đỡ, nên đây đơn giản là ăn một tốt miễn phí.
+        en: Black takes the e4 pawn with the d5 pawn itself, the only piece that can capture there. Nothing defends White's e4 pawn, so this is simply picking up a free pawn.
+        fr: Les Noirs prennent le pion e4 avec le pion d5 lui-même, la seule pièce pouvant capturer là. Rien ne défend le pion e4 blanc, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám. Trắng kém đúng một tốt sạch, và con tượng e3 tuy đã ra ngoài nhưng chưa nhắm vào mục tiêu cụ thể nào, chưa có gì rõ ràng để bù cho tốt đã mất.
+          en: Count the pawns and it is seven for White, eight for Black. White is a clean pawn down, and while the bishop on e3 is out, it does not yet aim at anything concrete — there is nothing clear yet to compensate for the lost pawn.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs. Les Blancs ont un pion de retard, et si le fou en e3 est sorti, il ne vise encore rien de concret — rien de clair ne compense encore le pion perdu.
+        plan:
+          vi: Trắng chơi Nd2 hay Nc3, cố lấy lại con tốt e4 và hoàn tất phát triển nhanh. Đen chơi Nf6, Bf5 hay Bg4 và e6, hoàn tất phát triển an toàn và giữ vững tốt thừa.
+          en: White plays Nd2 or Nc3, trying to win back the e4 pawn and develop quickly. Black plays Nf6, Bf5 or Bg4 and e6, completing development safely and holding the extra pawn.
+          fr: Les Blancs jouent Nd2 ou Nc3, essayant de regagner le pion e4 et de se développer rapidement. Les Noirs jouent Nf6, Bf5 ou Bg4 et e6, achevant leur développement en toute sécurité et gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-21'

@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * One hundred and fifty-five entries are authored — three from #15, eleven from #73, ten
+   * One hundred and seventy-five entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -131,7 +131,10 @@ describe('the catalogue this repository ships', () => {
    * Game's Frankenstein-Dracula Qd5 Trap), and one from #127 (the Ruy Lopez Exchange
    * Variation's Alapin Gambit, upgraded in place from its own Tier 0 entry — #127 also
    * deepened two already-authored trees, bird-opening-froms-gambit and
-   * scandinavian-defense-kiel-variation-trap, without adding new ids) — and the other 855
+   * scandinavian-defense-kiel-variation-trap, without adding new ids), and twenty from
+   * #136 (batch a: twenty short, single-line entries deepened straight from `listed` to
+   * `taught` — a modelled reply to the defining line's sacrifice, ending in a `position`
+   * leaf, one branch each) — and the other 835
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -154,6 +157,9 @@ describe('the catalogue this repository ships', () => {
    */
   const AUTHORED: ReadonlyMap<string, number> = new Map([
     ['alekhine-defense-krejcik-variation-krejcik-gambit', 1],
+    ['alekhine-defense-osullivan-gambit', 1],
+    ['alekhine-defense-scandinavian-variation-geschev-gambit', 1],
+    ['alekhine-defense-spielmann-gambit', 1],
     ['amar-opening-paris-gambit-gent-gambit', 1],
     ['barnes-opening-gedult-gambit', 1],
     ['benko-gambit', 9],
@@ -162,22 +168,39 @@ describe('the catalogue this repository ships', () => {
     ['benko-gambit-fianchetto-variation', 0],
     ['benoni-defense-benoni-gambit-accepted', 1],
     ['bird-opening-froms-gambit', 3],
+    ['bird-opening-froms-gambit-bahr-gambit', 1],
+    ['bird-opening-hobbs-gambit', 1],
+    ['bird-opening-lasker-gambit', 1],
+    ['bishops-opening-anderssen-gambit', 1],
     ['bishops-opening-calabrese-countergambit', 3],
+    ['bishops-opening-khan-gambit', 1],
+    ['bishops-opening-lewis-countergambit', 1],
+    ['bishops-opening-lewis-gambit', 1],
+    ['bishops-opening-ponziani-gambit', 1],
+    ['bishops-opening-stein-gambit', 1],
+    ['bishops-opening-warsaw-gambit', 1],
     ['blackmar-diemer-gambit', 5],
     ['blackmar-diemer-gambit-accepted', 1],
+    ['blackmar-diemer-gambit-blackmar-gambit', 1],
     ['blackmar-diemer-gambit-declined-brombacher-countergambit', 1],
+    ['blackmar-diemer-gambit-reversed-albin-countergambit', 1],
     ['blumenfeld-countergambit', 1],
     ['blumenfeld-countergambit-accepted', 1],
     ['borg-defense-borg-gambit', 1],
+    ['borg-defense-troon-gambit', 1],
+    ['borg-defense-zilbermints-gambit', 1],
     ['caro-kann-defense-labahn-attack-double-gambit', 2],
+    ['caro-kann-defense-mieses-gambit', 1],
     ['carr-defense-zilbermints-gambit', 1],
     ['catalan-opening-hungarian-gambit', 1],
     ['center-game-halasz-mcdonnell-gambit', 1],
     ['damiano-defence-refutation', 2],
     ['danish-gambit', 4],
     ['danish-gambit-accepted', 1],
+    ['danish-gambit-accepted-svenonius-defense', 1],
     ['danish-gambit-declined-sorensen-defense', 1],
     ['duras-gambit', 1],
+    ['dutch-defense-bellon-gambit', 1],
     ['dutch-defense-krejcik-gambit', 1],
     ['elephant-gambit', 1],
     ['elephant-trap', 1],
@@ -310,7 +333,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1019 entries, and only the authored one hundred and fifty-five have any', () => {
+  it('bakes keys on all 1019 entries, and only the authored one hundred and seventy-five have any', () => {
     expect(result.value.records).toHaveLength(1019)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

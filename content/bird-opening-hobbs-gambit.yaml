@@ -1,0 +1,58 @@
+# Bird Opening: Hobbs Gambit. Frozen defining line 1.f4 g5, which ends on Black's own ply,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below was
+# replayed with chess.js before being annotated. searchMate from the leaf FEN, bounded to 2
+# moves, returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: bird-opening-hobbs-gambit
+name: 'Bird Opening: Hobbs Gambit'
+eco: A02
+category: gambit
+side: black
+definingLine: [f4, g5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black offers the g-pawn on the very first move, before White has
+      committed to anything at all. White simply takes it and Black has nothing to show for
+      the pawn except a permanently weakened kingside. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đáp lại 1.f4 bằng 1...g5 ngay lập tức, Đen thí luôn con tốt g mà chưa hề có nước dọa nào từ Trắng. Đây là một trong những gambit kém tiếng nhất bàn cờ, thường được nhắc đến như một trò đùa hơn là một khai cuộc nghiêm túc.
+    en: Answering 1.f4 with 1...g5 straight away, Black offers the g-pawn before White has made any threat at all. This is one of the worst-regarded gambits on the board, usually mentioned as a joke rather than a serious opening.
+    fr: En réponse à 1.f4 par 1...g5 d'emblée, les Noirs offrent le pion g avant même que les Blancs n'aient formulé la moindre menace. C'est l'un des gambits les moins bien considérés de l'échiquier, généralement cité comme une plaisanterie plutôt qu'une ouverture sérieuse.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt g5. Các nước khác để nguyên con tốt ấy trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận, và Trắng bỏ lỡ một con tốt miễn phí mà không được gì bù lại.
+      en: White does not take the g5 pawn. Anything else leaves that pawn sitting on the board, meaning White has passed up a free pawn for nothing in return.
+      fr: Les Blancs ne prennent pas le pion g5. Tout le reste laisse ce pion sur l'échiquier, ce qui signifie que les Blancs ont renoncé à un pion gratuit sans aucune contrepartie.
+  children:
+    - ply: fxg5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Không có gì phức tạp, con tốt g5 chỉ đơn giản là bị treo và không được quân nào của Đen đỡ.
+        en: White takes the pawn at once, the only piece that can capture there. There is nothing complicated here — the g5 pawn is simply hanging and nothing of Black's defends it.
+        fr: Les Blancs prennent aussitôt le pion, la seule pièce pouvant capturer là. Il n'y a rien de compliqué ici, le pion g5 est simplement en prise et rien du côté noir ne le défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch ngay từ nước đi thứ hai, và Đen chưa có gì trên bàn cờ để bù lại — không cột mở, không lợi thế phát triển, chỉ có cánh vua đã bị yếu đi.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up as early as move two, and Black has nothing on the board yet to show for it — no open file, no development lead, only a permanently weakened kingside.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus dès le deuxième coup, et les Noirs n'ont encore rien à montrer pour cela — ni colonne ouverte, ni avance de développement, seulement une aile roi durablement affaiblie.
+        plan:
+          vi: Trắng chơi e4, Nf3 và Bc4 hay d4, phát triển bình thường và khai thác các ô yếu quanh vua Đen sau này. Đen chơi Bg7, d6 và Nc6, cố gắng lấy lại chút gì đó từ đường chéo dài trước khi Trắng hoàn tất phát triển.
+          en: White plays e4, Nf3 and Bc4 or d4, developing normally and planning to exploit the weak squares around Black's king later. Black plays Bg7, d6 and Nc6, trying to salvage something on the long diagonal before White finishes developing.
+          fr: Les Blancs jouent e4, Nf3 et Bc4 ou d4, se développant normalement et prévoyant d'exploiter plus tard les cases faibles autour du roi noir. Les Noirs jouent Bg7, d6 et Nc6, essayant de tirer quelque chose de la grande diagonale avant que les Blancs n'achèvent leur développement.
+        basis:
+          by: chan
+          at: '2026-09-21'

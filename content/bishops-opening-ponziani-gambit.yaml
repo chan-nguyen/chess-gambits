@@ -1,0 +1,65 @@
+# Bishop's Opening: Ponziani Gambit. Frozen defining line 1.e4 e5 2.Bc4 Nf6 3.d4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Every ply below was replayed with chess.js, including White's own recapture 4.Qxd4,
+# which is not an opponent reply and so carries no replyQuality or frequency. searchMate
+# from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: bishops-opening-ponziani-gambit
+name: "Bishop's Opening: Ponziani Gambit"
+eco: C24
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, d4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. White offers the d-pawn to open the centre and the queen's recapture is
+      completely safe here, so the pawn comes straight back with the queen actively placed.
+      Material ends level, and the label "gambit" describes the shape of the try rather
+      than a lasting sacrifice. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì Nc3 hay d3 chậm rãi, Trắng chơi 3.d4!?, mở trung tâm ngay lập tức và mời Đen ăn tốt để đổi lấy một nhịp phát triển hậu với đe dọa cụ thể.
+    en: Instead of the quieter Nc3 or d3, White plays 3.d4!?, opening the centre at once and inviting Black to take the pawn in exchange for a tempo developing the queen with a concrete threat.
+    fr: Au lieu du plus tranquille Nc3 ou d3, les Blancs jouent 3.d4!?, ouvrant le centre immédiatement et invitant les Noirs à prendre le pion en échange d'un temps développant la dame avec une menace concrète.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt d4. Các nước khác như Nc6 hay Bb4+ để nguyên con tốt ấy trên bàn cờ và Trắng giữ được trung tâm rộng thêm một nước.
+      en: Black does not take the d4 pawn. Anything else, such as Nc6 or Bb4+, leaves that pawn on the board and White keeps the broad centre for one more move.
+      fr: Les Noirs ne prennent pas le pion d4. Tout le reste, comme Nc6 ou Bb4+, laisse ce pion sur l'échiquier et les Blancs gardent le large centre un coup de plus.
+  children:
+    - ply: exd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt d4 bằng tốt e5, quân đơn giản nhất để ăn tại đó. Con tốt d4 của Trắng không được ai đỡ trực tiếp lúc này, nên đây là cách ăn tự nhiên nhất.
+        en: Black takes the d4 pawn with the e5 pawn, the most straightforward piece to capture there. Nothing directly defends White's d4 pawn at this point, so this is the most natural way to take it.
+        fr: Les Noirs prennent le pion d4 avec le pion e5, la pièce la plus simple pour capturer là. Rien ne défend directement le pion d4 blanc à ce stade, c'est donc la façon la plus naturelle de le prendre.
+      children:
+        - ply: Qxd4
+          annotation:
+            vi: Trắng ăn lại bằng hậu ngay lập tức, an toàn vì chưa quân Đen nào tấn công được ô d4 lúc này. Hậu đứng ở d4 chiếm vị trí trung tâm, dù sẽ cần chú ý đến nhịp mà Đen có thể tạo ra sau này bằng ...Nc6.
+            en: White recaptures with the queen at once, safely, since nothing of Black's attacks the d4 square yet. The queen takes up a central post on d4, though it will need to watch for the tempo Black can gain later with ...Nc6.
+            fr: Les Blancs reprennent aussitôt avec la dame, en toute sécurité, puisque rien du côté noir n'attaque encore la case d4. La dame occupe un poste central en d4, tout en devant se méfier du temps que les Noirs peuvent gagner plus tard par ...Nc6.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen bảy. Vật chất đã cân bằng trở lại. Hậu Trắng đứng tích cực ở d4, nhưng sẽ cần cẩn thận với nhịp mà Đen có thể tạo ra bằng ...Nc6 hay ...Bd7 và ...Nc6 sau này.
+              en: Count the pawns and it is seven for White, seven for Black. Material is level again. White's queen sits actively on d4, but will need to watch for the tempo Black can gain later with ...Nc6.
+              fr: Comptez les pions, sept pour les Blancs, sept pour les Noirs. Le matériel est de nouveau égal. La dame blanche est active en d4, mais devra se méfier du temps que les Noirs peuvent gagner plus tard par ...Nc6.
+            plan:
+              vi: Trắng chơi Nc3, giữ hậu an toàn khỏi nhịp của ...Nc6, rồi Nf3 và O-O, hoàn tất phát triển với hậu đã tích cực sẵn. Đen chơi Nc6 đuổi hậu, rồi Be7 hay Bc5 và O-O, hoàn tất phát triển và tranh chấp trung tâm.
+              en: White plays Nc3, keeping the queen safe from ...Nc6's tempo, then Nf3 and O-O, completing development with an already active queen. Black plays Nc6 to chase the queen, then Be7 or Bc5 and O-O, completing development and contesting the centre.
+              fr: Les Blancs jouent Nc3, mettant la dame à l'abri du temps que donnerait ...Nc6, puis Nf3 et O-O, achevant leur développement avec une dame déjà active. Les Noirs jouent Nc6 pour chasser la dame, puis Be7 ou Bc5 et O-O, achevant leur développement et contestant le centre.
+            basis:
+              by: chan
+              at: '2026-09-21'

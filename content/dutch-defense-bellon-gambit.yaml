@@ -1,0 +1,59 @@
+# Dutch Defense: Bellon Gambit. Frozen defining line 1.d4 f5 2.c4 e6 3.e4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 2 moves, returns no-mate.
+id: dutch-defense-bellon-gambit
+name: 'Dutch Defense: Bellon Gambit'
+eco: A84
+category: gambit
+side: white
+definingLine: [d4, f5, c4, e6, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. White strikes at the centre immediately with 3.e4!? rather than the
+      quieter Nc3 or Nf3, offering the pawn to open lines before Black finishes developing.
+      It is a real, occasionally-played try, but Black simply takes the pawn and the
+      compensation is not yet visible on the board. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì Nc3 hay Nf3 chậm rãi, Trắng chơi thẳng 3.e4!?, thí tốt e để mở trung tâm ngay lập tức trước khi Đen kịp hoàn tất phát triển theo kiểu Hà Lan thông thường.
+    en: Instead of the quieter Nc3 or Nf3, White strikes immediately with 3.e4!?, offering the e-pawn to open the centre before Black can complete the usual Dutch Defense development.
+    fr: Au lieu du plus tranquille Nc3 ou Nf3, les Blancs frappent immédiatement par 3.e4!?, offrant le pion e pour ouvrir le centre avant que les Noirs ne puissent achever le développement habituel de la défense hollandaise.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước khác như Nf6 hay d5 để nguyên con tốt ấy trên bàn cờ và Trắng giữ được trung tâm rộng thêm một nước.
+      en: Black does not take the e4 pawn. Anything else, such as Nf6 or d5, leaves that pawn on the board and White keeps the broad centre for one more move.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme Nf6 ou d5, laisse ce pion sur l'échiquier et les Blancs gardent le large centre un coup de plus.
+  children:
+    - ply: fxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt e4 bằng chính con tốt f5, quân duy nhất có thể ăn tại đó. Con tốt e4 của Trắng không được ai đỡ, nên đây đơn giản là ăn một tốt miễn phí.
+        en: Black takes the e4 pawn with the f5 pawn itself, the only piece that can capture there. Nothing defends White's e4 pawn, so this is simply picking up a free pawn.
+        fr: Les Noirs prennent le pion e4 avec le pion f5 lui-même, la seule pièce pouvant capturer là. Rien ne défend le pion e4 blanc, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám. Trắng kém đúng một tốt sạch, và cột f cùng đường chéo a3-f8 vẫn còn nguyên cho Đen sử dụng sau này, chưa có gì cụ thể để nói Trắng đã bù lại được.
+          en: Count the pawns and it is seven for White, eight for Black. White is a clean pawn down, and the f-file and the a3-f8 diagonal remain available for Black to use later — there is nothing concrete yet to say White has made up for it.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs. Les Blancs ont un pion de retard, et la colonne f ainsi que la diagonale a3-f8 restent disponibles pour les Noirs plus tard — rien de concret ne permet encore de dire que les Blancs ont compensé.
+        plan:
+          vi: Trắng chơi Nc3, Bc4 hay Bg5 và Qe2 hoặc f3, cố lấy lại con tốt e4 hoặc tạo sức ép cụ thể trước khi Đen kịp củng cố. Đen chơi Nf6, Be7 hay Bb4+ và O-O, hoàn tất phát triển an toàn và giữ vững tốt thừa.
+          en: White plays Nc3, Bc4 or Bg5 and Qe2 or f3, trying to win back the e4 pawn or create concrete pressure before Black can consolidate. Black plays Nf6, Be7 or Bb4+ and O-O, completing development safely and holding the extra pawn.
+          fr: Les Blancs jouent Nc3, Bc4 ou Bg5 et Qe2 ou f3, essayant de regagner le pion e4 ou de créer une pression concrète avant que les Noirs ne consolident. Les Noirs jouent Nf6, Be7 ou Bb4+ et O-O, achevant leur développement en toute sécurité et gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-21'
