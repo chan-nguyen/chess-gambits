@@ -87,7 +87,29 @@ test('an entry that was never published answers 404, not a page pretending to be
   expect(response.status()).toBe(404)
 })
 
-test('the page bundle carries no chess engine and no PGN parser', async ({ page }) => {
+/**
+ * **The PGN parser never reaches the browser (ADR-0004), on the real built bundle.**
+ *
+ * `peg$` is retired as this test's own marker for `chess.js` (#131): this project has no
+ * route-based code splitting, so the one shared script every route loads now legitimately
+ * carries `chess.js` — the home page's free-play board needs it at runtime, by product
+ * decision, and `src/lib/content.test.ts` already checks that boundary at the *source*
+ * level (which directory is allowed to import it). What this test can still catch, and
+ * what it exists for, is `@mliebelt/pgn-parser` reaching the browser — a real risk, since
+ * it is a peggy-generated parser the same shape as the one `chess.js` bundles internally
+ * for its own `loadPgn`/`pgn()` methods, which is exactly why their generated code shares
+ * the `peg$`-prefixed identifiers this test used to key off of. `chess.js`'s own copy is
+ * confirmed present below, by name, rather than pretended away — a passing test that
+ * cannot fail on the thing it is supposed to catch is worse than an honest one.
+ *
+ * The marker below is a string literal from one of `@mliebelt/pgn-parser`'s own error
+ * messages, not an identifier: a minifier renames local variable and function names freely,
+ * but never a string a program can throw or compare against, so this is the one kind of
+ * fingerprint minification cannot remove.
+ */
+test('the page bundle carries no @mliebelt/pgn-parser, though it does carry chess.js', async ({
+  page,
+}) => {
   const scripts: string[] = []
   page.on('response', async (response) => {
     if (response.url().endsWith('.js')) scripts.push(await response.text())
@@ -97,10 +119,17 @@ test('the page bundle carries no chess engine and no PGN parser', async ({ page 
   await page.waitForLoadState('networkidle')
 
   expect(scripts.length).toBeGreaterThan(0)
+
+  // A marker only `@mliebelt/pgn-parser`'s own generated parser throws — not chess.js's.
+  const pgnParserMarker = 'Result in tags is different to result in SAN'
   for (const script of scripts) {
-    // Identifiers the two build-time libraries cannot be shipped without.
-    expect(script).not.toContain('SEVEN_TAG_ROSTER')
-    expect(script).not.toContain('DEFAULT_POSITION')
-    expect(script).not.toContain('peg$')
+    expect(script).not.toContain(pgnParserMarker)
   }
+
+  // Confirmed present, not merely un-asserted: chess.js really is in this shared bundle,
+  // which is the state #131 put the project in on purpose. A string literal again, and
+  // from `move()` itself — the part of chess.js the home board actually calls — rather
+  // than from its internal PGN parser, whose own generated names Terser mangles
+  // inconsistently (some survive, most do not, since they are local, not properties).
+  expect(scripts.some((script) => script.includes('Invalid move: '))).toBe(true)
 })

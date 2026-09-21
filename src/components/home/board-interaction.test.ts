@@ -1,95 +1,104 @@
+import { Chess } from 'chess.js'
 import { describe, expect, it } from 'vitest'
-import type { OpeningTreeNode } from '../../lib/opening-tree.ts'
-import {
-  childSan,
-  destinationsFrom,
-  resolveActivation,
-  selectableOrigins,
-} from './board-interaction.ts'
+import { resolveActivation } from './board-interaction.ts'
 
 /**
- * The home page's move-selection logic (issue #129's own "done" checklist), tested as pure
- * functions over a small hand-built tree rather than a mounted component.
+ * The home board's move-selection logic (issue #131's own "done" checklist), tested as a
+ * pure function over a real `chess.js` instance rather than a mounted component.
  */
-
-const leaf = (fen: string): OpeningTreeNode => ({ fen, check: null, children: [] })
-
-const NODE: OpeningTreeNode = {
-  fen: 'start',
-  check: null,
-  children: [
-    { san: 'e4', from: 'e2', to: 'e4', node: leaf('after-e4') },
-    { san: 'd4', from: 'd2', to: 'd4', node: leaf('after-d4') },
-    // Two different pieces this test never expects to collide: a second move from e2
-    // (a bishop fianchetto is not legal from the start, but nothing here depends on real
-    // legality — the opening tree is the authority, not a rules check).
-    { san: 'e3', from: 'e2', to: 'e3', node: leaf('after-e3') },
-  ],
-}
-
-describe('selectableOrigins', () => {
-  it('lists every distinct square a child move starts from', () => {
-    expect(selectableOrigins(NODE).slice().sort()).toStrictEqual(['d2', 'e2'])
-  })
-
-  it('is empty at a leaf', () => {
-    expect(selectableOrigins(leaf('x'))).toStrictEqual([])
-  })
-
-  it('drops a from/to that is not a real square rather than throwing', () => {
-    const malformed: OpeningTreeNode = {
-      fen: 'x',
-      check: null,
-      children: [{ san: 'e4', from: 'nope', to: 'e4', node: leaf('y') }],
-    }
-    expect(selectableOrigins(malformed)).toStrictEqual([])
-  })
-})
-
-describe('destinationsFrom', () => {
-  it('lists every destination for pieces starting on that square', () => {
-    expect(destinationsFrom(NODE, 'e2').slice().sort()).toStrictEqual(['e3', 'e4'])
-  })
-
-  it('is empty for a square with no outgoing child', () => {
-    expect(destinationsFrom(NODE, 'a1')).toStrictEqual([])
-  })
-})
-
-describe('childSan', () => {
-  it('finds the move for a real from/to pair', () => {
-    expect(childSan(NODE, 'e2', 'e4')).toBe('e4')
-    expect(childSan(NODE, 'e2', 'e3')).toBe('e3')
-  })
-
-  it('is null for a pair with no child', () => {
-    expect(childSan(NODE, 'e2', 'e5')).toBeNull()
-    expect(childSan(NODE, 'a1', 'a2')).toBeNull()
-  })
-})
 
 describe('resolveActivation', () => {
   it('selects a square with at least one legal move, when nothing is selected', () => {
-    expect(resolveActivation(NODE, null, 'e2')).toStrictEqual({ kind: 'select', square: 'e2' })
+    const chess = new Chess()
+    expect(resolveActivation(chess, null, 'e2')).toStrictEqual({ kind: 'select', square: 'e2' })
   })
 
   it('does nothing for a square with no legal move, when nothing is selected', () => {
-    expect(resolveActivation(NODE, null, 'a1')).toStrictEqual({ kind: 'none' })
+    const chess = new Chess()
+    // A rook has no legal first move from a1.
+    expect(resolveActivation(chess, null, 'a1')).toStrictEqual({ kind: 'none' })
   })
 
-  it('commits the move when the activated square is a destination of the selection', () => {
-    expect(resolveActivation(NODE, 'e2', 'e4')).toStrictEqual({ kind: 'commit', san: 'e4' })
+  it('does nothing for an opponent piece, when nothing is selected', () => {
+    const chess = new Chess()
+    // It is White to move, so a black piece has no legal move to offer yet.
+    expect(resolveActivation(chess, null, 'e7')).toStrictEqual({ kind: 'none' })
+  })
+
+  it('commits the move when the activated square is a non-promoting destination', () => {
+    const chess = new Chess()
+    expect(resolveActivation(chess, 'e2', 'e4')).toStrictEqual({
+      kind: 'commit',
+      from: 'e2',
+      to: 'e4',
+    })
   })
 
   it('deselects when the activated square is the one already selected', () => {
-    expect(resolveActivation(NODE, 'e2', 'e2')).toStrictEqual({ kind: 'deselect' })
+    const chess = new Chess()
+    expect(resolveActivation(chess, 'e2', 'e2')).toStrictEqual({ kind: 'deselect' })
   })
 
   it('switches selection to a different selectable origin, while one is already selected', () => {
-    expect(resolveActivation(NODE, 'e2', 'd2')).toStrictEqual({ kind: 'select', square: 'd2' })
+    const chess = new Chess()
+    expect(resolveActivation(chess, 'e2', 'd2')).toStrictEqual({ kind: 'select', square: 'd2' })
   })
 
   it('does nothing for a square that is neither a destination nor a selectable origin', () => {
-    expect(resolveActivation(NODE, 'e2', 'a1')).toStrictEqual({ kind: 'none' })
+    const chess = new Chess()
+    expect(resolveActivation(chess, 'e2', 'a1')).toStrictEqual({ kind: 'none' })
+  })
+
+  it('asks for a promotion choice when the destination is a pawn reaching the back rank', () => {
+    // White to promote on e8, from e7, with the back rank clear to receive it.
+    const chess = new Chess('k7/4P3/8/8/8/8/8/4K3 w - - 0 1')
+    expect(resolveActivation(chess, 'e7', 'e8')).toStrictEqual({
+      kind: 'promote',
+      from: 'e7',
+      to: 'e8',
+    })
+  })
+
+  it('commits without asking, for the same pawn moving one rank short of promotion', () => {
+    const chess = new Chess('k7/8/4P3/8/8/8/8/4K3 w - - 0 1')
+    expect(resolveActivation(chess, 'e6', 'e7')).toStrictEqual({
+      kind: 'commit',
+      from: 'e6',
+      to: 'e7',
+    })
+  })
+
+  it('resolves castling as an ordinary two-square king move, with no special-casing needed', () => {
+    // White king and rook both on their home squares, nothing between them.
+    const chess = new Chess('r3k2r/8/8/8/8/8/8/R3K2R w KQkq - 0 1')
+    expect(resolveActivation(chess, 'e1', 'g1')).toStrictEqual({
+      kind: 'commit',
+      from: 'e1',
+      to: 'g1',
+    })
+  })
+
+  it('resolves en passant as an ordinary pawn destination', () => {
+    const chess = new Chess()
+    chess.move('e4')
+    chess.move('a6')
+    chess.move('e5')
+    chess.move('d5') // Black's pawn lands beside White's, opening en passant on d6.
+    expect(resolveActivation(chess, 'e5', 'd6')).toStrictEqual({
+      kind: 'commit',
+      from: 'e5',
+      to: 'd6',
+    })
+  })
+
+  it('offers nothing at all once the game has ended', () => {
+    // Fool's mate: Black to move has no legal move anywhere, checkmated.
+    const chess = new Chess()
+    chess.move('f3')
+    chess.move('e5')
+    chess.move('g4')
+    chess.move('Qh4')
+    expect(chess.isCheckmate()).toBe(true)
+    expect(resolveActivation(chess, null, 'e8')).toStrictEqual({ kind: 'none' })
   })
 })

@@ -2,16 +2,14 @@ import { countableBranches } from '../../src/components/progress/branches.ts'
 import { compileEntry } from '../content/compile.ts'
 import { loadContent } from '../content/entries.ts'
 import type { Entry } from '../content/types.ts'
-import type { OpeningTreeSize, PayloadSize } from './budget.ts'
-import { checkBudget, checkOpeningTreeBudget, measure, measureOpeningTree } from './budget.ts'
+import type { PayloadSize } from './budget.ts'
+import { checkBudget, measure } from './budget.ts'
 import type { Exclusion } from './classify.ts'
 import { classify } from './classify.ts'
 import type { DatasetSource } from './dataset.ts'
 import { foldByName, readDataset, readDatasetSource, replayLine } from './dataset.ts'
 import type { Mintable, Rename } from './ids.ts'
 import { indexFrozen, lineKey, missingPublishedIds, renames, resolveIds, slugify } from './ids.ts'
-import type { OpeningTreeNode } from './opening-tree.ts'
-import { buildOpeningTree } from './opening-tree.ts'
 import type { CuratedNames, CuratedTrap } from './source.ts'
 import { readClassification, readFrozenIds, readNames, readTraps } from './source.ts'
 import type {
@@ -55,9 +53,6 @@ export type BuildOutput = {
     readonly json: string
   }[]
   readonly sizes: readonly PayloadSize[]
-  readonly openingTree: OpeningTreeNode
-  readonly openingTreeJson: string
-  readonly openingTreeSize: OpeningTreeSize
   readonly source: DatasetSource
   readonly datasetRows: number
   readonly foldedRows: number
@@ -472,17 +467,6 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
   const sizes = payloads.map(({ locale, json }) => measure(locale, records.length, json))
   issues.push(...checkBudget(sizes))
 
-  /**
-   * Built from every published record's defining line, not just the gambits and traps
-   * that were also imported into the dataset in this call — a trap's defining line is
-   * hand-curated the same way a gambit's is dataset-derived, and both belong in the tree
-   * a learner might click through (issue #129).
-   */
-  const openingTree = buildOpeningTree(records.map((record) => record.definingLine))
-  const openingTreeJson = JSON.stringify(openingTree)
-  const openingTreeSize = measureOpeningTree(openingTreeJson)
-  issues.push(...checkOpeningTreeBudget(openingTreeSize))
-
   if (issues.length > 0) return { ok: false, issues }
 
   return {
@@ -491,9 +475,6 @@ export const build = (options: BuildOptions): CatalogueResult<BuildOutput> => {
       records,
       payloads,
       sizes,
-      openingTree,
-      openingTreeJson,
-      openingTreeSize,
       source: source.value,
       datasetRows: dataset.value.length,
       foldedRows: folded.length,

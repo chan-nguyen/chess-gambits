@@ -1,35 +1,18 @@
+import type { Chess } from 'chess.js'
 import type { Square } from '../board/board-model.ts'
-import type { OpeningTreeNode } from '../../lib/opening-tree.ts'
-import { isSquare } from './board-square.ts'
+import { isSelectable, legalDestinationsFrom } from './chess-engine.ts'
 
 /**
- * The home board's move-selection logic, as pure functions over the opening tree — kept
- * out of the component for the same reason `filter.ts` is kept out of `CatalogueRoute`
- * (issue #129's own "done" checklist asks for unit tests on this specifically, and a pure
- * function is what a test can call without mounting anything).
+ * The home board's move-selection logic, as a pure function over a `chess.js` instance —
+ * kept out of the component for the same reason `filter.ts` is kept out of
+ * `CatalogueRoute` (issue #131's own "done" checklist asks for unit tests on this
+ * specifically, and a pure function is what a test can call without mounting anything).
  *
- * Every square this module hands back has already been checked against `board-model.ts`'s
- * closed `Square` union (`isSquare`), because everything here starts life as a plain
- * `string` that crossed a JSON boundary (the opening tree payload).
+ * #129 built this same shape over the (now-retired) opening tree; #131 reverses the
+ * "catalogue-only moves" scope decision, so the authority for what is legal is now a real
+ * `chess.js` position rather than a precomputed trie, but the question a click asks —
+ * select, deselect, commit or do nothing — has not changed shape at all.
  */
-
-/** Every square a piece could be picked up from at this node, deduplicated. */
-export const selectableOrigins = (node: OpeningTreeNode): readonly Square[] => [
-  ...new Set(node.children.map((child) => child.from).filter(isSquare)),
-]
-
-/** Every square a piece picked up from `origin` could be moved to. */
-export const destinationsFrom = (node: OpeningTreeNode, origin: Square): readonly Square[] =>
-  node.children
-    .filter((child) => child.from === origin)
-    .map((child) => child.to)
-    .filter(isSquare)
-
-/** The SAN for the move from `from` to `to` at this node, or null if there is none. */
-export const childSan = (node: OpeningTreeNode, from: Square, to: Square): string | null => {
-  const child = node.children.find((candidate) => candidate.from === from && candidate.to === to)
-  return child?.san ?? null
-}
 
 /** What clicking or activating `square` should do, given what is currently selected. */
 export type Activation =
@@ -37,20 +20,28 @@ export type Activation =
   | { readonly kind: 'select'; readonly square: Square }
   /** Deselect: this is the square already selected. */
   | { readonly kind: 'deselect' }
-  /** Commit this move: `square` is a highlighted destination of the current selection. */
-  | { readonly kind: 'commit'; readonly san: string }
+  /** Commit this move outright: it needs no promotion choice. */
+  | { readonly kind: 'commit'; readonly from: Square; readonly to: Square }
+  /** Ask which piece to promote to before the move can commit. */
+  | { readonly kind: 'promote'; readonly from: Square; readonly to: Square }
   /** Nothing to do: neither a selectable origin nor a destination of the current one. */
   | { readonly kind: 'none' }
 
 export const resolveActivation = (
-  node: OpeningTreeNode,
+  chess: Chess,
   selected: Square | null,
   square: Square,
 ): Activation => {
   if (selected !== null) {
-    const san = childSan(node, selected, square)
-    if (san !== null) return { kind: 'commit', san }
+    const destination = legalDestinationsFrom(chess, selected).find(
+      (candidate) => candidate.to === square,
+    )
+    if (destination !== undefined) {
+      return destination.needsPromotion
+        ? { kind: 'promote', from: selected, to: square }
+        : { kind: 'commit', from: selected, to: square }
+    }
     if (selected === square) return { kind: 'deselect' }
   }
-  return selectableOrigins(node).includes(square) ? { kind: 'select', square } : { kind: 'none' }
+  return isSelectable(chess, square) ? { kind: 'select', square } : { kind: 'none' }
 }

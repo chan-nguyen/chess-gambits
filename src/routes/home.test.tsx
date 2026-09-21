@@ -20,32 +20,22 @@ import { routes } from '../router.tsx'
  * its own the day content earns it, without anybody editing this page.
  */
 
-/** A well-formed but empty opening tree, for tests that are not about the board itself. */
-const EMPTY_OPENING_TREE = {
-  fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
-  check: null,
-  children: [],
-}
-
 /**
- * Routes the fetch by URL, because the home page now makes two of them (the catalogue and,
- * since issue #129, the opening tree) and each needs a body shaped like what it actually
- * parses — a `Response` shaped like the wrong one fails as "malformed", which is a real
- * state this page can reach but not the one most of these tests are about.
+ * Stubs the one fetch this page makes: the catalogue. The home board's own position comes
+ * from a `chess.js` instance created synchronously (#131), not from a fetch, so there is
+ * nothing left to route by URL here the way #129's version had to.
  */
-const respond = (catalogueBody: unknown, openingTreeBody: unknown = EMPTY_OPENING_TREE): void => {
+const respond = (catalogueBody: unknown): void => {
   vi.stubGlobal(
     'fetch',
-    vi.fn((input: RequestInfo | URL) => {
-      const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url
-      const body = url.includes('opening-tree') ? openingTreeBody : catalogueBody
-      return Promise.resolve(
-        new Response(JSON.stringify(body), {
+    vi.fn(() =>
+      Promise.resolve(
+        new Response(JSON.stringify(catalogueBody), {
           status: 200,
           headers: { 'content-type': 'application/json' },
         }),
-      )
-    }),
+      ),
+    ),
   )
 }
 

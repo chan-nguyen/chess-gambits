@@ -182,3 +182,56 @@ says so.
 ## What would change this
 
 The board growing beyond its bounded remit, or v2 requiring drag interaction after all.
+
+## Amended by #131: chess.js is now a runtime dependency, and that is the trigger firing correctly
+
+#129 put a board on the home page restricted to catalogue-only moves, precomputed into a
+build-time opening tree specifically so no rules engine had to reach the browser. #131 is
+the user reversing that restriction, explicitly and on purpose: "cho phép người dùng chọn
+đi quân cờ thoải mái, miễn là đúng luật" — let the visitor play any legal move, not only
+one some catalogue entry happens to contain. A board that must recognise arbitrary legal
+play, including castling, en passant and promotion, cannot be served by a precomputed trie
+of a few hundred known lines; it needs a rules engine that runs when the visitor clicks.
+
+**This is the tripwire doing its job, not the tripwire being defeated.** The rules
+condition above says plainly: rules logic anywhere means the bet on "no engine in the
+browser" was wrong for what the product now needs, and `cm-chessboard` is the pre-selected
+fallback for exactly that case. What #131 asks is narrower than that fallback — the engine
+is needed, but only to compute legal moves and game state, not to render anything — so the
+board itself does not need replacing, only the layer above it that already computed
+`fen`/`marks`/`lastMove` from a different source.
+
+- **What changed.** `chess.js` (MIT, already a build-time-only dependency per ADR-0004 and
+  ADR-0005, where the content gate and the mate-proof pipeline already run it in CI) is
+  now also a runtime dependency, moved from `devDependencies` to `dependencies` in
+  `package.json` at the same pinned `1.4.0`. It is imported by
+  `src/components/home/chess-engine.ts` and runs in the visitor's browser as a real move
+  generator, legality checker and game-end detector for the home page's board.
+- **What did not change.** `src/components/board/` is untouched by this amendment, exactly
+  as it was by #129's. `Board.tsx` still takes a derived `fen`, an optional `check` square
+  and background-tint props, and still contains no move generation, no legality test, no
+  `chess.js` import and no drag or pointer handler — `board-tripwire.test.ts` enforces all
+  of that, unmodified, and still passes. The engine lives one layer up, in
+  `src/components/home/`, the same place #129 already put the interaction logic; only the
+  _source_ of the data handed down to `Board` changed, from a tree lookup to a live
+  `chess.js` instance's `.moves()` and `.move()`. Click-to-move is still the only
+  interaction — no drag was added, and the ban on a board _library_ (`react-chessboard`,
+  `chessground`, `cm-chessboard`, `kokopu`) is unaffected and still enforced by the same
+  test.
+- **Why this is a real product decision and not a technical accident.** Nothing about
+  the opening tree broke or ran out of room; #129's implementation matched its own,
+  narrower issue exactly. The user tried it and asked for real chess instead, which is a
+  scope decision only they can make and this amendment records rather than re-litigates.
+- **The one tripwire assertion this touches.** `board-tripwire.test.ts`'s "ships no board
+  library, and no chess engine at runtime" test asserted `expect(runtime).not.toContain(
+'chess.js')` against `package.json`'s `dependencies`. That assertion now reads
+  `expect(runtime).toContain('chess.js')`, because the fact it was checking — chess.js
+  reaches the browser — is now true by product decision. Every other assertion in that
+  file is unchanged and still enforced: no rules logic inside `src/components/board/`
+  itself, no drag or pointer handlers, the frozen export surface, and the 450-line budget
+  across the shipped board.
+- **The licence question this reopens, and why it is still closed.** The "Consequences"
+  section above already flagged that the licence question returns "if an engine is ever
+  _shipped_ to the browser" — it has been, now. `chess.js` is MIT, same as it was as a
+  build-time dependency, so nothing about the licence analysis for `src/components/board/`
+  itself changes: no GPL code reaches the bundle, and the board library ban is unaffected.

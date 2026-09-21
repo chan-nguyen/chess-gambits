@@ -50,7 +50,11 @@ export type BoardProps = {
   readonly captured?: ReadonlyMap<Square, PieceKey> | undefined
   /** The square of a king in check. */
   readonly check?: Square | undefined
-  /** Arbitrary squares to mark. Teaching arrows are a later ticket. */
+  /**
+   * Arbitrary squares to mark with a background tint (#131; a ring before it). The home
+   * board is the only caller today, and uses it for the clicked square and its legal
+   * destinations — but this component does not know or care what a mark means.
+   */
   readonly marks?: readonly Square[] | undefined
   /** Off for previews, which are small and carry no coordinates. */
   readonly showCoordinates?: boolean | undefined
@@ -72,7 +76,6 @@ const squareOf = (element: EventTarget | null): FocusedSquare | undefined => {
 
 const SQUARE_CENTRE = 0.5
 const CHECK_RADIUS = 0.45
-const MARK_RADIUS = 0.39
 // Unitless SVG user units, so no px reaches the stylesheet (see Board.css).
 const COORDINATE_SIZE = 0.2
 
@@ -151,9 +154,13 @@ export const Board = ({
 
   // Both squares of the last ply are tinted, and neither carries a ring or border any
   // more (2026-09-18): a background colour is the whole signal, by product decision.
+  // A mark (#131; a ring before it) is the same kind of signal, so it wins when a square
+  // is both marked and part of the last move — which cannot happen in practice, since a
+  // commit always clears the selection that produced the marks.
   const squareClassName = (square: Square, light: boolean) => {
-    const tint =
-      square === lastMove?.from
+    const tint = markedSquares.has(square)
+      ? ' board__square--marked'
+      : square === lastMove?.from
         ? ' board__square--from'
         : square === lastMove?.to
           ? ' board__square--to'
@@ -240,19 +247,6 @@ export const Board = ({
             ]
           })
           .sort((one, other) => ((one.key ?? '') < (other.key ?? '') ? -1 : 1))}
-
-        {/* A ring, drawn above the pieces so a mark on an occupied square still reads. */}
-        {cells
-          .filter((cell) => markedSquares.has(cell.square))
-          .map((cell) => (
-            <circle
-              key={`mark-${cell.square}`}
-              className="board__mark"
-              cx={cell.x + SQUARE_CENTRE}
-              cy={cell.y + SQUARE_CENTRE}
-              r={MARK_RADIUS}
-            />
-          ))}
 
         {showCoordinates &&
           cells.map((cell) => (

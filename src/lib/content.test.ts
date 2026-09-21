@@ -219,36 +219,58 @@ describe('the runtime guard', () => {
 })
 
 /**
- * ADR-0004: the PGN parser and the rules engine run in the build only. Their licences never
- * touch the shipped bundle and their bytes never touch the runtime budget. The board has its
- * own tripwire for `chess.js`; this one covers the content pipeline, including the parser
- * that arrived with it, and it looks at every source file rather than at a chosen few.
+ * ADR-0004: the PGN parser runs in the build only, and its licence never touches the shipped
+ * bundle. The rules engine did too, until #131 gave the home page's free-play board a real
+ * `chess.js` instance at runtime — a deliberate, narrow exception, confined to
+ * `src/components/home/` and covered by its own tripwire (ADR-0003's amendment for #131,
+ * and `board-tripwire.test.ts` for `src/components/board/` specifically). This describe
+ * block is what still holds unconditionally: the parser, everywhere, and the engine,
+ * everywhere *except* the one directory that now needs it.
  */
 describe('the content pipeline never reaches the browser (ADR-0004)', () => {
   const sources = Object.entries(
     import.meta.glob('../**/*.{ts,tsx}', { query: '?raw', import: 'default', eager: true }),
   ).filter(([path]) => !path.includes('.test.'))
 
+  /** The one directory `chess.js` is allowed to reach at runtime (#131). */
+  const homeDirectory = '../components/home/'
+
   it('finds the application source to check', () => {
     expect(sources.length).toBeGreaterThan(10)
   })
 
-  it.each(['chess.js', '@mliebelt/pgn-parser'])(
-    'keeps %s out of the runtime dependencies',
-    (name) => {
-      const manifest: unknown = JSON.parse(manifestSource)
-      if (typeof manifest !== 'object' || manifest === null || !('dependencies' in manifest)) {
-        throw new Error('package.json has no dependencies')
-      }
-      const { dependencies } = manifest
+  it('keeps @mliebelt/pgn-parser out of the runtime dependencies', () => {
+    const manifest: unknown = JSON.parse(manifestSource)
+    if (typeof manifest !== 'object' || manifest === null || !('dependencies' in manifest)) {
+      throw new Error('package.json has no dependencies')
+    }
+    const { dependencies } = manifest
 
-      expect(Object.keys(dependencies ?? {})).not.toContain(name)
-    },
-  )
+    expect(Object.keys(dependencies ?? {})).not.toContain('@mliebelt/pgn-parser')
+  })
 
-  it('imports neither the parser nor the engine from anywhere under src/', () => {
+  it('lists chess.js among the runtime dependencies, deliberately (#131)', () => {
+    const manifest: unknown = JSON.parse(manifestSource)
+    if (typeof manifest !== 'object' || manifest === null || !('dependencies' in manifest)) {
+      throw new Error('package.json has no dependencies')
+    }
+    const { dependencies } = manifest
+
+    expect(Object.keys(dependencies ?? {})).toContain('chess.js')
+  })
+
+  it('imports the parser from nowhere under src/', () => {
     const offenders = sources
-      .filter(([, text]) => typeof text === 'string' && /['"](?:chess\.js|@mliebelt\/)/.test(text))
+      .filter(([, text]) => typeof text === 'string' && /['"]@mliebelt\//.test(text))
+      .map(([path]) => path)
+
+    expect(offenders).toStrictEqual([])
+  })
+
+  it('imports the engine from nowhere under src/ except src/components/home/', () => {
+    const offenders = sources
+      .filter(([path]) => !path.includes(homeDirectory))
+      .filter(([, text]) => typeof text === 'string' && /['"]chess\.js['"]/.test(text))
       .map(([path]) => path)
 
     expect(offenders).toStrictEqual([])

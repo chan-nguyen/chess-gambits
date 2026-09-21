@@ -218,20 +218,19 @@ const fr: PartialTranslations = {
     whatTiersMean: 'Ce que signifient les niveaux de couverture',
     tryHeading: 'Essayez quelques coups',
     tryIntro:
-      'Jouez un coup sur l’échiquier ci-dessous. La liste se filtre exactement selon les coups joués.',
+      'Jouez un coup sur l’échiquier ci-dessous — tout coup légal est permis. La liste se filtre exactement selon les coups joués.',
     undo: 'Annuler',
     reset: 'Réinitialiser',
-    boardLoading: 'Chargement de l’arbre d’ouverture…',
-    boardUnavailable:
-      'Impossible de charger l’arbre d’ouverture pour essayer des coups ici. Le catalogue complet reste disponible.',
-    retry: 'Réessayer',
-    retrying: 'Nouvelle tentative…',
     playToFilter:
       'Jouez un coup sur l’échiquier pour voir les gambits et pièges qui lui correspondent.',
     matchCount: '{{count}} correspondance(s)',
-    noMatch: 'Aucun gambit ni piège ne correspond à ces coups.',
+    noMatch: 'Aucun gambit ni piège trouvé.',
     continueIn: 'Continuer dans : {{name}}',
     movePlayed: 'Coup joué : {{san}}',
+    checkmate: 'Échec et mat.',
+    stalemate: 'Aucun coup légal — pat.',
+    draw: 'Match nul.',
+    choosePromotion: 'Choisissez la pièce de promotion',
   },
   tree: {
     heading: 'Le gambit en entier',

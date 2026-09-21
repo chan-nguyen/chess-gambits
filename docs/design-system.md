@@ -127,18 +127,18 @@ anything; the rest of the palette is given values below, by #2. `src/styles/toke
 this table, and `board-contrast.test.ts` reads it directly — the doc is the source of truth, so a value
 edited here without re-checking contrast fails that test rather than shipping.
 
-| Token                        | Light     | Dark      | Role                               |
-| ---------------------------- | --------- | --------- | ---------------------------------- |
-| `--color-board-light`        | `#ebd9b8` | `#bcab94` | Light square                       |
-| `--color-board-dark`         | `#b58863` | `#927b66` | Dark square                        |
-| `--color-board-highlight`    | `#e4c05a` | `#c2a24e` | Both squares of the last ply       |
-| `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check        |
-| `--color-board-mark`         | `#123a5e` | `#0f2e4a` | Ring on an arbitrary marked square |
-| `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers      |
-| `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                   |
-| `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                |
-| `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                   |
-| `--color-piece-black-stroke` | `#f0eae0` | `#cfc7ba` | Black piece outline                |
+| Token                        | Light     | Dark      | Role                                     |
+| ---------------------------- | --------- | --------- | ---------------------------------------- |
+| `--color-board-light`        | `#ebd9b8` | `#bcab94` | Light square                             |
+| `--color-board-dark`         | `#b58863` | `#927b66` | Dark square                              |
+| `--color-board-highlight`    | `#e4c05a` | `#c2a24e` | Both squares of the last ply             |
+| `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check              |
+| `--color-board-mark`         | `#123a5e` | `#0f2e4a` | Background tint, arbitrary marked square |
+| `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers            |
+| `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                         |
+| `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                      |
+| `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                         |
+| `--color-piece-black-stroke` | `#f0eae0` | `#cfc7ba` | Black piece outline                      |
 
 Three rules hold over this table in both themes, and each is asserted:
 
@@ -152,10 +152,16 @@ Three rules hold over this table in both themes, and each is asserted:
    both `--color-board-light` and `--color-board-dark`. One token rather than a per-square pair,
    because a single dark value clears both and a light one cannot clear the light square.
 
-`--color-board-mark` is dark in both themes for the same reason: a mark ring must clear 3:1 on the
-light _and_ the dark square, and only the dark end of the range does.
+`--color-board-mark` is dark in both themes for the same reason: a marked square's tint must clear
+3:1 against the plain square colour it replaces, on the light _and_ the dark square, and only the
+dark end of the range does. #131 changed the mark itself from a ring to a background tint (no ring
+anywhere on the board any more, by user request); the token and its contrast requirement carry over
+unchanged, because a tint needs the same separation from the plain square a ring did.
 
-`--color-board-legal` has no value yet — v1 shows no legal moves, so nothing renders it.
+`--color-board-legal` still has no value. #131 does show legal destinations once a piece is
+selected — the home board's own `marks` — but reuses `--color-board-mark` rather than this
+token: origin and destination are one visual category ("this square matters right now"), not
+two, so a second colour would be a distinction nothing on screen needs yet.
 
 **`--color-board-highlight` marks both squares of the last ply, as of 2026-09-18, and neither has a
 ring beside it.** #80 removed the departed-square token: a tint is a surface — something a piece
@@ -233,8 +239,8 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
 - Reply quality carries an **icon and a text label**, not just a colour.
 - Outcome type carries **distinct components and distinct wording** — a mate leaf and an assessment
   leaf do not differ only in hue.
-- Board highlights carry a **shape or border difference**, not only a tint — **with one documented
-  exception.** The last-ply mark (the square a ply left and the square it reached) is a plain
+- Board highlights carry a **shape or border difference**, not only a tint — **with two documented
+  exceptions.** The last-ply mark (the square a ply left and the square it reached) is a plain
   background colour, the same `--color-board-highlight` token on both squares, and nothing else, as
   of 2026-09-18, by the product owner's explicit decision. Squares of two different plain colours
   (light, dark) still hold the rule normally — light and dark stay apart in `grayscale(1)`. The
@@ -242,7 +248,11 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
   distinct tokens chosen so their **luminance** told them apart under `grayscale(1)`; this revision
   removes that distinction too, so nothing on the board says which square a ply left and which it
   reached — only that a move happened across this pair. `board-contrast.test.ts` records this.
-  Every other colour-coded element on the site still holds the rule with no exception.
+  **#131 adds the second exception**, for the same reason and by the same authority: the home
+  board's `marks` (the selected square and its legal destinations) were a ring until the user asked
+  for it removed outright ("bỏ vòng tròn xung quan quân cờ") — a plain `--color-board-mark` tint,
+  with no shape or border, is what replaced it. Every other colour-coded element on the site still
+  holds the rule with no exception.
 - Every colour-coded element passes a greyscale screenshot review. This is a review step, not a
   suggestion.
 
@@ -399,37 +409,41 @@ This is free, and it turns a graveyard into a small honest site with a large ind
 
 ### Why the home board does not reverse ADR-0003
 
-Issue #129 puts an interactive board on the home page: a visitor clicks a piece, clicks a
-destination, and the catalogue filters live to whatever matches the moves played so far.
-`ADR-0003` bans a rules engine, a drag interaction and any client-side move logic inside
-`src/components/board/`, and names "v2 requiring drag interaction" as its own trigger for
-being revisited. This feature does not trip that trigger, on any of its three conditions:
+The home page has an interactive board: a visitor clicks a piece, clicks a destination, and
+the catalogue filters live to whatever matches the moves played so far. `ADR-0003` bans a
+board _library_, a drag interaction, and any rules logic inside `src/components/board/`
+specifically, and names "v2 requiring drag interaction" as its own trigger for being
+revisited. Neither condition is tripped, on any of its three axes:
 
-- **No rules engine reaches the browser.** The board never decides whether a move is legal
-  by computing it — it looks the move up in a precomputed **opening tree**
-  (`tools/catalogue/opening-tree.ts`), a trie built at compile time with `chess.js` (already
-  a build-time-only dependency per ADR-0004/0005) from every published entry's defining
-  line, shipped as a static `catalogue/opening-tree.json`. A square is clickable only if the
-  tree already has a child move recorded for it. There is no position this board can reach
-  that is not already an entry's own line, and there is no move this board can offer that
-  chess.js did not already validate at build time.
-- **No drag.** Interaction is click-to-move: select a square, then select a highlighted
-  destination — exactly the mode ADR-0003 itself names as the anticipated v2 interaction,
-  because it is what the existing accessible grid already supports (a focused cell,
-  Enter/Space to activate) without adding a pointer-drag system at all.
-- **`src/components/board/` is untouched.** The new board lives entirely under
+- **The rules engine is real, and it is confined to one directory.** #129 first shipped this
+  board restricted to catalogue-only moves, looked up in a precomputed opening tree, so that
+  no rules engine had to reach the browser at all. #131 reverses that restriction by product
+  decision — any legal move can be played now, including one no catalogue entry contains —
+  which needs a real `chess.js` instance running live in the visitor's browser
+  (`src/components/home/chess-engine.ts`). `chess.js` (already a build-time dependency per
+  ADR-0004/0005) is now also a runtime one, and ADR-0003's own amendment for #131 records
+  why that is the tripwire firing correctly rather than being defeated: the ban that matters
+  is on rules logic reaching `src/components/board/`, and that boundary is unmoved.
+- **No drag.** Interaction is still click-to-move: select a square, then select a
+  highlighted destination — exactly the mode ADR-0003 itself names as the anticipated v2
+  interaction, because it is what the existing accessible grid already supports (a focused
+  cell, Enter/Space to activate) without adding a pointer-drag system at all.
+- **`src/components/board/` is untouched.** The board lives entirely under
   `src/components/home/` and reuses the shipped `Board` component exactly as it ships —
   same props, same file, same 450-line budget, same tripwire
   (`board-tripwire.test.ts`). The interaction (click delegation, keyboard activation,
-  selection state) lives in the new files, one layer above `Board`, the same way
+  selection state, the rules engine itself) lives one layer above `Board`, the same way
   `LearningSurface` already drives `Board` with a derived `fen` and a `marks` list without
-  `Board` ever knowing why either one changed.
+  `Board` ever knowing why either one changed. The only visual change #131 made to `Board`
+  itself is cosmetic: `marks` renders as a background tint rather than a ring, by explicit
+  user request, matching the same tint mechanism `lastMove` already used.
 
-The catalogue filter gained one new dimension for this (`CatalogueFilter.movesPrefix` in
+The catalogue filter has one dimension for this (`CatalogueFilter.movesPrefix` in
 `src/components/catalogue/filter.ts`): a played-move prefix matched against
 `CatalogueEntry.line`'s own tokens by deep equality. It is a filter over data the catalogue
-already ships, not a second rules engine — the opening tree is what supplies moves to try,
-and the filter only ever compares strings the catalogue already carries.
+already ships, not a second rules engine — the played sequence now comes from `chess.js`'s
+own move history rather than from a precomputed tree, but the filter only ever compares
+strings the catalogue already carries, exactly as before.
 
 ### Progress is a count, not a percentage
 

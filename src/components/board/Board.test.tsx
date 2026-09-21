@@ -248,22 +248,16 @@ describe('highlights (AC 6)', () => {
     )
   })
 
-  it('draws no ring or border on either square — a tint is the whole signal', () => {
+  it('draws no ring or border anywhere — a tint is the whole signal (#131)', () => {
     const container = highlighted()
     expect(container.querySelectorAll('.board__last-ply')).toHaveLength(0)
 
     // Check is still a disc, not a fifth tinted square.
     expect(container.querySelectorAll('circle.board__check')).toHaveLength(1)
-    // A mark is still a ring, a different shape again.
-    expect(container.querySelectorAll('circle.board__mark')).toHaveLength(2)
-  })
-
-  it('draws the mark over the pieces so an occupied square still reads', () => {
-    const container = highlighted()
-    const nodes = [...(container.querySelector('svg')?.children ?? [])]
-    const lastPiece = nodes.findLastIndex((node) => node.tagName === 'use')
-    const firstMark = nodes.findIndex((node) => node.classList.contains('board__mark'))
-    expect(firstMark).toBeGreaterThan(lastPiece)
+    // A mark is a background tint on the square itself, the same kind of thing as the
+    // last-ply highlight, and no longer a ring (#131 replaces the ring with a tint).
+    expect(container.querySelectorAll('circle.board__mark')).toHaveLength(0)
+    expect(container.querySelectorAll('.board__square--marked')).toHaveLength(2)
   })
 
   it('draws check behind the piece, so the king is still visible', () => {
@@ -279,7 +273,7 @@ describe('highlights (AC 6)', () => {
     expect(container.querySelectorAll('.board__square--from')).toHaveLength(0)
     expect(container.querySelectorAll('.board__square--to')).toHaveLength(0)
     expect(container.querySelectorAll('.board__check')).toHaveLength(0)
-    expect(container.querySelectorAll('.board__mark')).toHaveLength(0)
+    expect(container.querySelectorAll('.board__square--marked')).toHaveLength(0)
   })
 })
 

@@ -126,20 +126,22 @@ test.describe('the axe sweep (AC 1)', () => {
   }
 
   /*
-   * The home page's interactive opening board (issue #129), in a couple of states beyond
-   * the bare start position the loop above already scans: one move played (a piece is
-   * selected's own highlight markup is not reachable through a URL and is left to
-   * `opening-explorer.spec.ts`'s own keyboard walk instead), and a state at the end of an
-   * opening-tree line where the hand-off link into a matched entry appears. Both are real
-   * URLs — the played sequence is the route's own `moves` parameter — so this is scanning
-   * exactly what a visitor's back button or a shared link would land on, not a fixture.
+   * The home page's interactive board (#131's free-play chess.js engine), in a couple of
+   * states beyond the bare start position the loop above already scans: one move played (a
+   * piece's own selection highlight is not reachable through a URL and is left to
+   * `opening-explorer.spec.ts`'s own keyboard walk instead), and a state where the played
+   * sequence narrows the catalogue to exactly one entry, so the hand-off link appears. Both
+   * are real URLs — the played sequence is the route's own `moves` parameter — so this is
+   * scanning exactly what a visitor's back button or a shared link would land on, not a
+   * fixture.
    *
    * Vietnamese only, for the same reason the fixture states below are: what changes between
    * locales here is prose, not the board or catalogue-card markup this sweep exercises.
    */
   const homeStates = [
     { name: 'after one move', search: '?moves=e4' },
-    { name: 'at the end of an opening-tree line, with the hand-off link', search: '?moves=d4_e5' },
+    // 1.e4 f5 (Duras Gambit) is the only published entry matching this exact prefix.
+    { name: 'narrowed to one match, with the hand-off link', search: '?moves=e4_f5' },
   ]
 
   for (const { name, search } of homeStates) {
