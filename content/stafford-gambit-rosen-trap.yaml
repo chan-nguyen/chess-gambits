@@ -1,0 +1,113 @@
+# Stafford Gambit: Rosen Trap. The defining line is the one frozen in
+# `tools/catalogue/source/traps.yaml` — 1.e4 e5 2.Nf3 Nf6 3.Nxe5 Nc6 4.Nxc6 dxc6 5.d3 Bc5 —
+# and it ends on Black's own ply, so the root is an opponent node and White's replies can
+# carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is C42, matching `traps.yaml` (a trap carries the ECO of the opening it sits inside,
+# ADR-0008; the dataset files the deeper "Stafford Gambit Accepted" rows under the same
+# code, folded into the already-imported gambit by the prefix match in
+# `classification.yaml`).
+#
+# Wikipedia's "Stafford Gambit" article (Tactical traps section, citing a Kusuma document
+# hosted on Scribd) calls this specific continuation "the Rosen Trap", after IM Eric Rosen.
+# Every line here was replayed with chess.js, including the point the name alone does not
+# make obvious: 6.Bg5 is not merely "a move that allows a trick" — it is already a
+# concrete mistake, because the correct 7.dxe4 in reply to 6...Nxe4 lets Black win the
+# bishop straight back with 7...Qxg5 (nothing defends g5), levelling material completely
+# and erasing the whole point of the gambit pawn. 7.Bxd8?? is the actual blunder, and it is
+# not merely bad — after 7...Bxf2+ White's king has exactly one legal reply, Ke2 (Kxf2 is
+# covered by the knight on e4), and after 8.Ke2 the mate at 8...Bg4# is immediate.
+#
+# The mate is claimed with `type: trap` and nothing else; the move count and the
+# certificate are produced by `npm run prove:mates` and replayed by `npm run verify:mates`
+# (ADR-0005).
+id: stafford-gambit-rosen-trap
+name: 'Stafford Gambit: Rosen Trap'
+eco: C42
+category: trap
+side: black
+definingLine: [e4, e5, Nf3, Nf6, Nxe5, Nc6, Nxc6, dxc6, d3, Bc5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement about White's play, not Black's: the Stafford Gambit itself is a pawn
+      down and objectively unsound, but the trap this entry teaches does not depend on that
+      — once White plays the natural-looking 6.Bg5, everything that follows is forced or
+      close to it, and the only way for White to avoid disaster is the precise 7.dxe4. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output. The mate is not — it is machine-proved and
+    replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa chơi Bc5, một nước phát triển hoàn toàn bình thường sau khi đã chấp nhận mất một tốt ở đầu ván. Con tượng nhắm vào ô f2 và chờ xem Trắng làm gì tiếp theo.
+    en: Black has just played Bc5, an entirely ordinary developing move after already accepting the pawn deficit from the opening. The bishop eyes f2 and waits to see what White does next.
+    fr: Les Noirs viennent de jouer Bc5, un coup de développement tout à fait normal après avoir déjà accepté le déficit d'un pion dès l'ouverture. Le fou vise f2 et attend la suite des Blancs.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước phát triển bình thường khác, ví dụ c3, Nc3 hay Be2, và không ghim con mã f6. Không có gì đặc biệt xảy ra — cái bẫy chỉ xuất hiện nếu Trắng cụ thể chơi Bg5.
+      en: White plays some other ordinary developing move, such as c3, Nc3 or Be2, and never pins the knight on f6. Nothing special happens — the trap only appears if White specifically plays Bg5.
+      fr: Les Blancs jouent un autre coup de développement ordinaire, comme c3, Nc3 ou Be2, et ne clouent jamais le cavalier f6. Rien de particulier ne se produit — le piège n'apparaît que si les Blancs jouent précisément Bg5.
+  children:
+    - ply: Bg5
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: Trắng ghim con mã f6 vào hậu d8, một nước trông rất tự nhiên. Nhưng con mã ấy không thực sự bị ghim chặt — nó có thể rời khỏi đường chéo đó bất cứ lúc nào, chỉ là để lại con hậu bị lộ nếu làm vậy. Đây chính là điểm mà Trắng đã tính sai.
+        en: White pins the knight on f6 against the queen on d8, which looks entirely natural. But the knight is not truly stuck — it can leave that diagonal any time, at the cost of exposing the queen if it does. This is exactly the point White has misjudged.
+        fr: Les Blancs clouent le cavalier f6 sur la dame d8, ce qui semble tout à fait naturel. Mais le cavalier n'est pas vraiment coincé — il peut quitter cette diagonale à tout moment, au prix d'exposer la dame s'il le fait. C'est précisément le point que les Blancs ont mal jugé.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Đen chấp nhận để hậu bị lộ và ăn luôn con tốt e4, đồng thời chính con mã ấy đang đánh thẳng vào con tượng g5. Trắng phải chọn giữa cứu tượng hay tham ăn con hậu.
+            en: Black accepts the exposed queen and simply takes the e4 pawn, and that very knight now attacks the bishop on g5 as well. White has to choose between saving the bishop and grabbing the queen.
+            fr: Les Noirs acceptent que la dame soit exposée et prennent tout simplement le pion e4, et ce même cavalier attaque désormais aussi le fou en g5. Les Blancs doivent choisir entre sauver le fou ou empocher la dame.
+          dismissRest:
+            reason:
+              vi: Trắng lùi tượng đi nơi khác (Be3, Bd2, Bh4, Bh6, Bf4 hay Bc1) thay vì ăn hoặc đổi. Con tượng thoát an toàn nhưng Trắng vẫn kém một tốt so với thế cờ trước khi chơi Bg5, không hơn không kém gì so với việc chơi 7.dxe4 ngay — chỉ là chậm hơn và không đổi được cặp tượng lấy mã.
+              en: White retreats the bishop somewhere else (Be3, Bd2, Bh4, Bh6, Bf4 or Bc1) rather than capturing or trading. The bishop escapes safely, but White is left exactly as much a pawn down as before 6.Bg5 was even played — no better and no worse than meeting the fork with 7.dxe4 below, just slower about it.
+              fr: Les Blancs reculent le fou ailleurs (Be3, Bd2, Bh4, Bh6, Bf4 ou Bc1) plutôt que de prendre ou d'échanger. Le fou s'échappe sans dommage, mais les Blancs restent exactement aussi démunis d'un pion qu'avant même 6.Bg5 — ni mieux ni pire qu'en répondant à la fourchette par 7.dxe4 ci-dessous, simplement plus lentement.
+          children:
+            - ply: dxe4
+              replyQuality: best
+              frequency: rare
+              annotation:
+                vi: Nước đúng. Trắng ăn lại con mã bằng chính con tốt d3, bỏ mặc con tượng g5 không cần cứu — vì con tượng ấy không thực sự bị gì cả sau khi con mã vừa bị ăn.
+                en: The correct move. White recaptures the knight with the very d3 pawn, and does not bother saving the bishop on g5 — because that bishop is not actually in trouble once the knight that attacked it is gone.
+                fr: Le bon coup. Les Blancs reprennent le cavalier avec le pion d3 lui-même, sans se soucier de sauver le fou en g5 — car ce fou n'est en réalité menacé par rien une fois le cavalier qui l'attaquait disparu.
+              children:
+                - ply: Qxg5
+                  annotation:
+                    vi: Và đây chính là điều Trắng đã bỏ sót. Con tượng g5 không được quân nào đỡ, và hậu Đen ăn nó theo đúng đường chéo mà chính con tượng vừa mở ra bằng cách ghim mã.
+                    en: And this is what White missed. The bishop on g5 is defended by nothing, and Black's queen simply takes it down the very diagonal the bishop opened for itself by pinning the knight.
+                    fr: Et voilà ce que les Blancs ont manqué. Le fou en g5 n'est défendu par rien, et la dame noire le prend tout simplement sur la diagonale que ce fou avait lui-même ouverte en clouant le cavalier.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Quân số hoàn toàn ngang nhau. Đen đã lấy lại đúng con tốt bị mất từ đầu ván (qua Nxe4) và giờ lấy thêm cả con tượng đổi lại con mã đã mất — tổng cộng bù trừ vừa đủ để cân bằng. Không bên nào còn ưu thế vật chất.
+                      en: Material is exactly level. Black has recovered the very pawn lost at the start of the game (via Nxe4) and then traded the knight for the bishop just captured — the books balance exactly. Neither side holds a material edge.
+                      fr: Le matériel est exactement équilibré. Les Noirs ont récupéré le pion même perdu au début de la partie (via Nxe4) puis échangé le cavalier contre le fou qui vient d'être pris — les comptes s'équilibrent exactement. Aucun camp ne détient d'avantage matériel.
+                    plan:
+                      vi: Trắng phát triển bình thường với Nc3, Be2 hoặc Be3, và nhập thành, coi đây như một ván cờ mở bình thường không còn dấu vết của cái bẫy. Đen đưa hậu về nơi an toàn như d8 hay f6, phát triển Nf6 rồi O-O, và chơi với cấu trúc tốt hơi yếu hơn (tốt c đôi) nhưng không còn thiệt hại vật chất nào.
+                      en: White develops normally with Nc3, Be2 or Be3, and castles, treating this as an ordinary open game with no trace of the trap left. Black tucks the queen back somewhere safe like d8 or f6, develops Nf6 and O-O, and plays on with a slightly weaker pawn structure (the doubled c-pawns) but no material damage left over.
+                      fr: Les Blancs se développent normalement avec Nc3, Be2 ou Be3, et roquent, traitant cela comme une partie ouverte ordinaire sans plus aucune trace du piège. Les Noirs replacent la dame en lieu sûr, sur d8 ou f6, développent Nf6 puis O-O, et poursuivent avec une structure de pions légèrement affaiblie (les pions c doublés) mais sans plus aucun dégât matériel.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+            - ply: Bxd8
+              replyQuality: blunder
+              frequency: occasional
+              annotation:
+                vi: Trắng tham ăn con hậu thay vì cứu tượng. Về vật chất đây trông như một món hời rất lớn, nhưng con vua Trắng đứng ở e1 sắp phải trả giá ngay lập tức — con tượng c5 và con mã e4 đã sẵn sàng.
+                en: White grabs the queen instead of saving the bishop. Materially this looks like an enormous windfall, but the king still on e1 is about to pay for it immediately — the bishop on c5 and the knight on e4 are already in position.
+                fr: Les Blancs empochent la dame au lieu de sauver le fou. Matériellement, cela ressemble à une aubaine énorme, mais le roi resté en e1 va le payer tout de suite — le fou en c5 et le cavalier en e4 sont déjà en position.
+              outcome:
+                type: trap
