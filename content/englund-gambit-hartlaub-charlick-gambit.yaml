@@ -1,0 +1,63 @@
+# Englund Gambit: Hartlaub-Charlick Gambit. Frozen defining line 1.d4 e5 2.dxe5 d6, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated.
+id: englund-gambit-hartlaub-charlick-gambit
+name: 'Englund Gambit: Hartlaub-Charlick Gambit'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5, dxe5, d6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black offers a second pawn to reopen the centre and get quick, active
+      development for the bishops. Down a full pawn once White takes and holds one of the
+      two, but with genuinely faster piece play than most Englund lines. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 2...d6, mời Trắng ăn thêm một tốt nữa để đổi lấy việc mở đường chéo cho tượng f8 và một trung tâm linh hoạt hơn, thay vì tìm cách ăn lại con tốt e5 ngay.
+    en: Black plays 2...d6, inviting White to take another pawn in exchange for opening the diagonal for the f8 bishop and a more flexible centre, instead of trying to win the e5 pawn back at once.
+    fr: Les Noirs jouent 2...d6, invitant les Blancs à prendre un autre pion en échange de l'ouverture de la diagonale du fou f8 et d'un centre plus flexible, au lieu d'essayer de regagner aussitôt le pion e5.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt d6. Các nước khác như Nf3 hay e4 để nguyên con tốt d6 trên bàn cờ và Đen sẽ ăn lại tốt e5 ngay bằng dxe5, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: White does not take the d6 pawn. Anything else, such as Nf3 or e4, leaves the d6 pawn sitting on the board and Black simply recaptures the e5 pawn at once with dxe5, meaning the offer has still not actually been accepted.
+      fr: Les Blancs ne prennent pas le pion d6. Tout le reste, comme Nf3 ou e4, laisse le pion d6 sur l'échiquier et les Noirs reprennent aussitôt le pion e5 par dxe5, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: exd6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt thứ hai bằng tốt e, quân duy nhất có thể ăn tại đó. Bây giờ Đen ăn lại bằng tượng từ f8, đưa quân này ra một ô rất hoạt bát.
+        en: White takes the second pawn with the e-pawn, the only piece that can capture there. Now Black recaptures with the bishop from f8, bringing it out to a very active square.
+        fr: Les Blancs prennent le second pion avec le pion e, la seule pièce pouvant capturer là. Les Noirs reprennent maintenant avec le fou depuis f8, l'amenant sur une case très active.
+      children:
+        - ply: Bxd6
+          annotation:
+            vi: Tượng ăn lại ở d6, quân duy nhất có thể ăn tại đó theo cách tự nhiên, và đứng ngay trên đường chéo nhìn về phía cánh vua Trắng.
+            en: The bishop recaptures on d6, the only piece that can naturally capture there, and stands right on the diagonal looking towards White's kingside.
+            fr: Le fou reprend en d6, la seule pièce pouvant naturellement capturer là, et se tient droit sur la diagonale regardant vers l'aile roi blanche.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu, Trắng hơn đúng một tốt sau khi Đen ăn lại một trong hai tốt đã mất. Con tượng d6 đã ra một ô rất tốt, và Đen chưa mất nhịp nào để phát triển nó, nhưng một tốt kém vẫn là một tốt kém và Trắng đã có phát triển bằng nhau về mặt thời gian.
+              en: Count the pawns and it is seven for White, six for Black, a clean one-pawn lead after Black won one of the two pawns back. The bishop on d6 has reached a genuinely good square and Black has not lost a tempo developing it, but a pawn down is still a pawn down and White has kept pace in development.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs, un pion d'avance net après que les Noirs ont regagné l'un des deux pions perdus. Le fou en d6 a atteint une case vraiment bonne et les Noirs n'ont pas perdu de temps à le développer, mais un pion de retard reste un pion de retard et les Blancs ont suivi le rythme du développement.
+            plan:
+              vi: Đen chơi Nf6, O-O và Re8, đưa mã b8 ra c6 hoặc d7, cố gây sức ép lên trung tâm và cánh vua Trắng để bù lại con tốt đã mất. Trắng chơi Nf3, e4, Bd3 hoặc Be2 và O-O, phát triển vững chắc, đổi bớt quân khi có thể, và cố giữ con tốt thừa vào tàn cuộc.
+              en: Black plays Nf6, O-O and Re8, bringing the b8 knight to c6 or d7, trying to build pressure on the centre and White's kingside to make up for the lost pawn. White plays Nf3, e4, Bd3 or Be2 and O-O, developing soundly, trading pieces when possible, and trying to carry the extra pawn into the endgame.
+              fr: Les Noirs jouent Nf6, O-O et Re8, amenant le cavalier b8 en c6 ou d7, en essayant de bâtir une pression sur le centre et l'aile roi blanche pour compenser le pion perdu. Les Blancs jouent Nf3, e4, Bd3 ou Be2 et O-O, se développant solidement, échangeant les pièces quand c'est possible, et essayant de porter le pion supplémentaire jusqu'à la finale.
+            basis:
+              by: chan
+              at: '2026-09-21'
