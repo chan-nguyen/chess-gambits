@@ -65,9 +65,15 @@
  * A background tint, not a ring (#131; a ring before it, by user request — no ring
  * anywhere on the board any more). Drawn the same way the last-ply highlight is: on the
  * square itself, under whatever piece stands there, so an occupied square still reads.
+ *
+ * Shares `--color-board-highlight` with the last-ply squares rather than a token of its
+ * own (a follow-up to #131, by user request): the two never appear on screen together —
+ * a commit always clears the selection that produced a mark — so one colour reads as one
+ * meaning ("this square matters right now") instead of two. The token this replaced is
+ * retired; `docs/design-system.md` §2 records why.
  */
 .board__square--marked {
-  fill: var(--color-board-mark);
+  fill: var(--color-board-highlight);
 }
 
 /*

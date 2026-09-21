@@ -111,7 +111,7 @@ decoration:
 `mistake`, `blunder`.
 
 **Board colours**: `--color-board-light`, `--color-board-dark`, `--color-board-highlight`,
-`--color-board-check`, `--color-board-legal`, `--color-board-mark`, `--color-board-coordinate`.
+`--color-board-check`, `--color-board-legal`, `--color-board-coordinate`.
 
 **Piece colours**: `--color-piece-white-fill`, `--color-piece-white-stroke`,
 `--color-piece-black-fill`, `--color-piece-black-stroke`. A piece's role is carried by its
@@ -127,18 +127,17 @@ anything; the rest of the palette is given values below, by #2. `src/styles/toke
 this table, and `board-contrast.test.ts` reads it directly — the doc is the source of truth, so a value
 edited here without re-checking contrast fails that test rather than shipping.
 
-| Token                        | Light     | Dark      | Role                                     |
-| ---------------------------- | --------- | --------- | ---------------------------------------- |
-| `--color-board-light`        | `#ebd9b8` | `#bcab94` | Light square                             |
-| `--color-board-dark`         | `#b58863` | `#927b66` | Dark square                              |
-| `--color-board-highlight`    | `#e4c05a` | `#c2a24e` | Both squares of the last ply             |
-| `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check              |
-| `--color-board-mark`         | `#123a5e` | `#0f2e4a` | Background tint, arbitrary marked square |
-| `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers            |
-| `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                         |
-| `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                      |
-| `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                         |
-| `--color-piece-black-stroke` | `#f0eae0` | `#cfc7ba` | Black piece outline                      |
+| Token                        | Light     | Dark      | Role                                                  |
+| ---------------------------- | --------- | --------- | ----------------------------------------------------- |
+| `--color-board-light`        | `#ebd9b8` | `#bcab94` | Light square                                          |
+| `--color-board-dark`         | `#b58863` | `#927b66` | Dark square                                           |
+| `--color-board-highlight`    | `#e4c05a` | `#c2a24e` | Both squares of the last ply, and the selected square |
+| `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check                           |
+| `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers                         |
+| `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                                      |
+| `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                                   |
+| `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                                      |
+| `--color-piece-black-stroke` | `#f0eae0` | `#cfc7ba` | Black piece outline                                   |
 
 Three rules hold over this table in both themes, and each is asserted:
 
@@ -152,16 +151,16 @@ Three rules hold over this table in both themes, and each is asserted:
    both `--color-board-light` and `--color-board-dark`. One token rather than a per-square pair,
    because a single dark value clears both and a light one cannot clear the light square.
 
-`--color-board-mark` is dark in both themes for the same reason: a marked square's tint must clear
-3:1 against the plain square colour it replaces, on the light _and_ the dark square, and only the
-dark end of the range does. #131 changed the mark itself from a ring to a background tint (no ring
-anywhere on the board any more, by user request); the token and its contrast requirement carry over
-unchanged, because a tint needs the same separation from the plain square a ring did.
+`--color-board-mark` is retired (a follow-up to #131, by user request): the home board's
+`marks` — now only ever the single currently-selected square, not its legal destinations
+too — shares `--color-board-highlight` instead of its own token. The two never draw on
+screen together, since a commit always clears the selection that produced a mark, so one
+colour still reads as one meaning ("this square matters right now") rather than two.
 
-`--color-board-legal` still has no value. #131 does show legal destinations once a piece is
-selected — the home board's own `marks` — but reuses `--color-board-mark` rather than this
-token: origin and destination are one visual category ("this square matters right now"), not
-two, so a second colour would be a distinction nothing on screen needs yet.
+`--color-board-legal` still has no value. #131 briefly had the home board show legal
+destinations as well as the selected square, reusing `--color-board-mark` for both; the
+destinations are gone now, by the same follow-up request that retired that token, so
+nothing on screen currently needs a second colour for "a square you could move to."
 
 **`--color-board-highlight` marks both squares of the last ply, as of 2026-09-18, and neither has a
 ring beside it.** #80 removed the departed-square token: a tint is a surface — something a piece
@@ -249,10 +248,14 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
   removes that distinction too, so nothing on the board says which square a ply left and which it
   reached — only that a move happened across this pair. `board-contrast.test.ts` records this.
   **#131 adds the second exception**, for the same reason and by the same authority: the home
-  board's `marks` (the selected square and its legal destinations) were a ring until the user asked
-  for it removed outright ("bỏ vòng tròn xung quan quân cờ") — a plain `--color-board-mark` tint,
-  with no shape or border, is what replaced it. Every other colour-coded element on the site still
-  holds the rule with no exception.
+  board's `marks` were a ring until the user asked for it removed outright ("bỏ vòng tròn xung
+  quan quân cờ") — a plain background tint, with no shape or border, is what replaced it. A
+  follow-up request narrowed what gets marked (only the currently-selected square, not its legal
+  destinations too — "không cần set background hết các ô nó có thể đi được") and asked for the
+  same gold as the last-ply highlight, so the tint now shares `--color-board-highlight` rather
+  than its own retired token; the two exceptions were already the same shape of thing and are now
+  the same colour as well. Every other colour-coded element on the site still holds the rule with
+  no exception.
 - Every colour-coded element passes a greyscale screenshot review. This is a review step, not a
   suggestion.
 
