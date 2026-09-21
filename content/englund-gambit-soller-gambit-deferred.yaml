@@ -1,0 +1,63 @@
+# Englund Gambit: Soller Gambit Deferred. Frozen defining line 1.d4 e5 2.dxe5 Nc6 3.Nf3
+# f6, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+id: englund-gambit-soller-gambit-deferred
+name: 'Englund Gambit: Soller Gambit Deferred'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5, dxe5, Nc6, Nf3, f6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White takes the second pawn with exf6, but Black's knight recaptures
+      that very pawn back on f6, so the net cost of the whole idea is only the original
+      e5 pawn, not two — one pawn down for a developed knight and a half-open f-file is
+      a fair, if unproven, price. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen phát triển mã ra c6 trước rồi mới chơi 3...f6, cùng một ý tưởng như Soller Gambit nhưng đưa mã ra trước, mời Trắng ăn thêm một tốt nữa để đổi lấy phát triển và cột f.
+    en: Black develops the knight to c6 first and only then plays 3...f6, the same idea as the Soller Gambit but with the knight brought out first, inviting White to take another pawn in exchange for development and the f-file.
+    fr: Les Noirs développent d'abord le cavalier en c6 puis jouent 3...f6, la même idée que le Gambit Soller mais avec le cavalier sorti en premier, invitant les Blancs à prendre un autre pion en échange du développement et de la colonne f.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt f6. Các nước khác như Bf4 hay Nc3 để nguyên con tốt f6 trên bàn cờ và Đen sẽ ăn lại tốt e5 ngay bằng fxe5, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: White does not take the f6 pawn. Anything else, such as Bf4 or Nc3, leaves the f6 pawn sitting on the board and Black simply recaptures the e5 pawn at once with fxe5, meaning the offer has still not actually been accepted.
+      fr: Les Blancs ne prennent pas le pion f6. Tout le reste, comme Bf4 ou Nc3, laisse le pion f6 sur l'échiquier et les Noirs reprennent aussitôt le pion e5 par fxe5, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: exf6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt thứ hai bằng tốt e, quân duy nhất có thể ăn tại đó. Bây giờ Đen phải ăn lại bằng mã từ g8.
+        en: White takes the second pawn with the e-pawn, the only piece that can capture there. Now Black has to recapture with the knight from g8.
+        fr: Les Blancs prennent le second pion avec le pion e, la seule pièce pouvant capturer là. Les Noirs doivent maintenant reprendre avec le cavalier depuis g8.
+      children:
+        - ply: Nxf6
+          annotation:
+            vi: Mã ăn lại ở f6, quân duy nhất có thể ăn tại đó, và là nước phát triển tự nhiên. Đen giờ đã đưa cả hai mã ra ngoài.
+            en: The knight recaptures on f6, the only piece that can capture there, and is a natural developing move. Black now has both knights out.
+            fr: Le cavalier reprend en f6, la seule pièce pouvant capturer là, et c'est un coup de développement naturel. Les Noirs ont maintenant sorti leurs deux cavaliers.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu, đúng một tốt như Soller Gambit thường, vì con tốt Trắng vừa ăn ở f6 đã bị chính con mã Đen ăn lại ngay. Đen ở đây đã có sẵn mã c6 phát triển từ trước và giờ đưa nốt mã còn lại ra f6, hai mã cùng phát triển bù lại phần nào cho con tốt đã mất.
+              en: Count the pawns and it is seven for White, six for Black, one pawn down just like the regular Soller Gambit, since the pawn White had just won on f6 is immediately recaptured by Black's own knight. Black already had the c6 knight developed from earlier and now brings the other one out to f6, both knights developed as some compensation for the lost pawn.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs, un pion de retard exactement comme dans le Gambit Soller ordinaire, car le pion que les Blancs venaient de gagner en f6 est aussitôt repris par le cavalier noir. Les Noirs avaient déjà développé le cavalier c6 auparavant et sortent maintenant l'autre en f6, les deux cavaliers développés comme compensation partielle pour le pion perdu.
+            plan:
+              vi: Trắng chơi e4, Nc3 và Bc4 hay Bb5, phát triển nhanh, giữ vững con tốt thừa và nhập thành trước khi Đen kịp tận dụng cột f hay đôi mã đã ra ngoài. Đen chơi Bc5 hoặc e5, O-O và Re8 hay Rf8 dùng cột nửa mở, cố gây đủ sức ép để bù lại con tốt đã mất.
+              en: White plays e4, Nc3 and Bc4 or Bb5, developing quickly, holding the extra pawn and castling before Black can make use of the f-file or the two developed knights. Black plays Bc5 or e5, O-O and Re8 or Rf8 to use the half-open file, trying to build enough pressure to make up for the lost pawn.
+              fr: Les Blancs jouent e4, Nc3 et Bc4 ou Bb5, se développant rapidement, gardant le pion supplémentaire et roquant avant que les Noirs ne puissent exploiter la colonne f ou les deux cavaliers développés. Les Noirs jouent Bc5 ou e5, O-O et Re8 ou Rf8 pour utiliser la colonne semi-ouverte, en essayant de bâtir assez de pression pour compenser le pion perdu.
+            basis:
+              by: chan
+              at: '2026-09-22'

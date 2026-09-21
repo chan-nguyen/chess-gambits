@@ -1,0 +1,63 @@
+# Elephant Gambit: Paulsen Countergambit. Frozen defining line 1.e4 e5 2.Nf3 d5 3.exd5 e4,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+id: elephant-gambit-paulsen-countergambit
+name: 'Elephant Gambit: Paulsen Countergambit'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d5, exd5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black gives up a second pawn to kick the f3 knight, but the knight has
+      more than one safe square to go to and Black still has to spend a move recapturing on
+      d5 later. The activity is real but a second pawn is a lot to ask it to justify. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt d5, Đen chơi 3...e4, đuổi con mã f3 đi và giữ được thế chủ động tạm thời, chấp nhận mất luôn tốt thứ hai để đổi lấy nhịp.
+    en: Instead of recapturing on d5, Black plays 3...e4, kicking the knight on f3 and keeping the initiative for a moment, accepting the loss of a second pawn in exchange for time.
+    fr: Au lieu de reprendre en d5, les Noirs jouent 3...e4, chassant le cavalier f3 et gardant l'initiative un instant, acceptant de perdre un second pion en échange du temps.
+  dismissRest:
+    reason:
+      vi: Trắng không lùi mã bằng một nước tấn công lại con tốt e4. Các nước khác ở đây, như Bc4 hay d4, để nguyên con mã f3 bị tốt e4 đe doạ mà không được gì thêm, nên chúng không đáng để mô hình hoá riêng.
+      en: White does not retreat the knight with a move that also hits the e4 pawn. The alternatives here, such as Bc4 or d4, leave the f3 knight under attack from the e4 pawn without gaining anything extra, so none of them are worth modelling separately.
+      fr: Les Blancs ne reculent pas le cavalier par un coup qui attaque aussi le pion e4. Les alternatives ici, comme Bc4 ou d4, laissent le cavalier f3 sous l'attaque du pion e4 sans rien gagner de plus, si bien qu'aucune ne mérite d'être modélisée séparément.
+  children:
+    - ply: Qe2
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Con hậu lùi mã đồng thời đe doạ con tốt e4, buộc Đen phải chọn giữa việc đỡ tốt hay bỏ nó đi để lấy lại con tốt d5.
+        en: The queen moves the knight while also attacking the e4 pawn, forcing Black to choose between defending it and giving it up to take back the pawn on d5.
+        fr: La dame déplace le cavalier tout en attaquant le pion e4, forçant les Noirs à choisir entre le défendre et l'abandonner pour reprendre le pion en d5.
+      children:
+        - ply: Qxd5
+          annotation:
+            vi: Đen chọn ăn lại tốt d5 ngay bằng hậu thay vì cố giữ tốt e4, vì giữ tốt e4 bằng d5 hay f5 sẽ làm hỏng cấu trúc tốt mà chưa chắc giữ nổi trước Nc3 sau này.
+            en: Black chooses to recapture on d5 with the queen at once rather than try to hold the e4 pawn, since defending it with d5 or f5 would wreck the pawn structure and might not even hold once White plays Nc3 later.
+            fr: Les Noirs choisissent de reprendre aussitôt en d5 avec la dame plutôt que d'essayer de tenir le pion e4, car le défendre par d5 ou f5 abîmerait la structure de pions et ne tiendrait peut-être même pas une fois que les Blancs joueront Nc3 plus tard.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau trở lại, mỗi bên bốn tốt cánh trung tâm và cánh vua đã đổi qua lại. Con hậu Đen đứng ở d5 khá lộ liễu và có thể bị Trắng tranh thủ Nc3 hay c4 đuổi tiếp lấy nhịp, trong khi con tốt e4 của Đen vẫn cần một nước nữa để được đỡ chắc.
+              en: Material is level again, with pawns traded on both sides of the centre. Black's queen on d5 is somewhat exposed and White can gain further tempo with Nc3 or c4, while Black's pawn on e4 still needs another move to be properly defended.
+              fr: Le matériel est de nouveau égal, avec des pions échangés des deux côtés du centre. La dame noire en d5 est assez exposée et les Blancs peuvent encore gagner du temps avec Nc3 ou c4, tandis que le pion noir en e4 a encore besoin d'un coup pour être bien défendu.
+            plan:
+              vi: Trắng chơi Nc3 đuổi hậu lấy nhịp, rồi d3 hoặc d4 đánh thẳng vào tốt e4 để lấy lại quân số ngang bằng và có phát triển tốt hơn. Đen chơi Nc6, Bb4 hoặc Be6, đưa hậu về a5 hay d8 khi bị đuổi, và cố giữ tốt e4 càng lâu càng tốt bằng f5 để bù lại nhịp đã mất.
+              en: White plays Nc3, gaining a tempo on the queen, then d3 or d4 to hit the e4 pawn directly and equalise material with better development to show for it. Black plays Nc6, Bb4 or Be6, pulling the queen back to a5 or d8 when chased, and tries to hold the e4 pawn as long as possible with f5 to make up for the lost tempo.
+              fr: Les Blancs jouent Nc3, gagnant un temps sur la dame, puis d3 ou d4 pour frapper directement le pion e4 et égaliser le matériel avec un meilleur développement à montrer. Les Noirs jouent Nc6, Bb4 ou Be6, ramenant la dame en a5 ou d8 quand elle est chassée, et essaient de tenir le pion e4 aussi longtemps que possible par f5 pour compenser le temps perdu.
+            basis:
+              by: chan
+              at: '2026-09-21'

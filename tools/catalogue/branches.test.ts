@@ -131,10 +131,18 @@ describe('the catalogue this repository ships', () => {
    * Game's Frankenstein-Dracula Qd5 Trap), and one from #127 (the Ruy Lopez Exchange
    * Variation's Alapin Gambit, upgraded in place from its own Tier 0 entry — #127 also
    * deepened two already-authored trees, bird-opening-froms-gambit and
-   * scandinavian-defense-kiel-variation-trap, without adding new ids), and twenty from
-   * #136 (batch a: twenty short, single-line entries deepened straight from `listed` to
+   * scandinavian-defense-kiel-variation-trap, without adding new ids), two new named traps
+   * from #137 (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2 Trap),
+   * thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
+   * elephant-gambit-paulsen-countergambit, english-opening-wing-gambit,
+   * englund-gambit-felbecker-gambit, englund-gambit-hartlaub-charlick-gambit,
+   * englund-gambit-main-line, englund-gambit-mosquito-gambit, englund-gambit-soller-gambit,
+   * englund-gambit-soller-gambit-deferred, englund-gambit-zilbermints-gambit,
+   * french-defense-wing-gambit, grob-opening-grob-gambit-declined and
+   * hungarian-opening-asten-gambit, each a single root-to-leaf line), and twenty more from
+   * #136 batch a (twenty short, single-line entries deepened straight from `listed` to
    * `taught` — a modelled reply to the defining line's sacrifice, ending in a `position`
-   * leaf, one branch each) — and the other 835
+   * leaf, one branch each) — and the other 831
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -203,19 +211,32 @@ describe('the catalogue this repository ships', () => {
     ['dutch-defense-bellon-gambit', 1],
     ['dutch-defense-krejcik-gambit', 1],
     ['elephant-gambit', 1],
+    ['elephant-gambit-maroczy-gambit', 1],
+    ['elephant-gambit-paulsen-countergambit', 1],
     ['elephant-trap', 1],
     ['english-defense-eastbourne-gambit', 1],
     ['english-opening-jaenisch-gambit', 1],
+    ['english-opening-wing-gambit', 1],
     ['englund-gambit', 5],
     ['englund-gambit-declined', 1],
+    ['englund-gambit-felbecker-gambit', 1],
+    ['englund-gambit-hartlaub-charlick-gambit', 1],
+    ['englund-gambit-main-line', 1],
+    ['englund-gambit-mosquito-gambit', 1],
+    ['englund-gambit-soller-gambit', 1],
+    ['englund-gambit-soller-gambit-deferred', 1],
     ['englund-gambit-trap', 6],
+    ['englund-gambit-zilbermints-gambit', 1],
     ['fishing-pole-trap', 3],
     ['four-knights-game-halloween-gambit', 1],
     ['french-defense-banzai-leong-gambit', 3],
+    ['french-defense-wing-gambit', 1],
     ['grob-opening-alessi-gambit', 1],
+    ['grob-opening-grob-gambit-declined', 1],
     ['grunfeld-defense-gibbon-gambit', 1],
     ['halosar-trap', 3],
     ['horwitz-defense-zilbermints-gambit', 1],
+    ['hungarian-opening-asten-gambit', 1],
     ['hungarian-opening-van-kuijk-gambit', 1],
     ['indian-defense-budapest-gambit', 5],
     ['indian-defense-budapest-gambit-accepted-fajarowicz-defense', 1],
@@ -319,9 +340,11 @@ describe('the catalogue this repository ships', () => {
     ['smith-morra-gambit-accepted-open-d-file-trap', 1],
     ['sodium-attack-durkin-gambit', 1],
     ['st-george-defense-zilbermints-gambit', 1],
+    ['stafford-gambit-rosen-trap', 2],
     ['tarrasch-defense-schara-gambit', 1],
     ['tarrasch-trap', 1],
     ['torre-attack-wagner-gambit', 1],
+    ['traxler-counterattack-ke2-trap', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
     ['van-geet-opening-laroche-gambit', 2],
     ['vant-kruijs-opening-keoni-hiva-gambit-akahi-variation', 1],
@@ -333,8 +356,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1019 entries, and only the authored one hundred and seventy-five have any', () => {
-    expect(result.value.records).toHaveLength(1019)
+  it('bakes keys on all 1021 entries, and only the authored one hundred and ninety have any', () => {
+    expect(result.value.records).toHaveLength(1021)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the

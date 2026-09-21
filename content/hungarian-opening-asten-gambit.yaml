@@ -1,0 +1,64 @@
+# Hungarian Opening: Asten Gambit. Frozen defining line 1.g3 Nc6 2.Nc3 d5 3.d4 e5 4.dxe5
+# d4 5.Ne4 f5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated.
+id: hungarian-opening-asten-gambit
+name: 'Hungarian Opening: Asten Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [g3, Nc6, Nc3, d5, d4, e5, dxe5, d4, Ne4, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black has already pushed d4 into the knight rather than recapture on e5,
+      and now attacks the e4 knight with tempo — real activity, but the e5 pawn is still on
+      the board for White and Black has spent several moves without regaining material. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 5...f5, đuổi thẳng con mã e4 và giành thêm khoảng không cùng nhịp phát triển, chấp nhận để lại một cấu trúc tốt hơi lỏng lẻo ở cánh vua để đổi lấy sự chủ động này.
+    en: Black plays 5...f5, directly kicking the knight on e4 and grabbing extra space and tempo, accepting a slightly loose kingside pawn structure in exchange for that initiative.
+    fr: Les Noirs jouent 5...f5, chassant directement le cavalier en e4 et gagnant de l'espace et du temps supplémentaires, acceptant une structure de pions un peu lâche à l'aile roi en échange de cette initiative.
+  dismissRest:
+    reason:
+      vi: Trắng không lùi mã đến một ô vẫn còn tấn công được tốt e5. Các nước khác ở đây, như Nd6+ đổi mã lấy tốt hay Ng5 hoặc Nd2, đều để lại con tốt e5 mà không tấn công được gì thêm, kém rõ ràng hơn nước đi lấy lại con tốt.
+      en: White does not retreat the knight to a square that still attacks the e5 pawn. The alternatives here, such as trading it off with Nd6+ or dropping it back with Ng5 or Nd2, leave the e5 pawn without gaining anything more and are less clear-cut than a move that wins the pawn back.
+      fr: Les Blancs ne reculent pas le cavalier sur une case qui attaque encore le pion e5. Les alternatives ici, comme l'échanger par Nd6+ ou le replier par Ng5 ou Nd2, laissent le pion e5 sans rien gagner de plus et sont moins nettes qu'un coup qui regagne le pion.
+  children:
+    - ply: Ng5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Con mã nhảy sang g5, thoát khỏi sự tấn công của tốt f5 và vẫn còn nhắm vào con tốt e5 đang bỏ ngỏ của chính Trắng, chuẩn bị ăn lại nó ngay ở nước tiếp theo.
+        en: The knight jumps to g5, escaping the attack from the f5 pawn while still eyeing White's own loose e5 pawn, ready to scoop it up on the very next move.
+        fr: Le cavalier saute en g5, échappant à l'attaque du pion f5 tout en gardant un œil sur le pion e5 blanc resté sans défense, prêt à le ramasser dès le coup suivant.
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: Đen tranh thủ ăn lại ngay con tốt e5 bằng mã c6, vì con tốt này không còn được ai đỡ sau khi mã Trắng rời khỏi e4.
+            en: Black immediately grabs back the e5 pawn with the knight from c6, since that pawn is left completely undefended once the White knight leaves e4.
+            fr: Les Noirs récupèrent aussitôt le pion e5 avec le cavalier depuis c6, ce pion étant resté totalement sans défense une fois le cavalier blanc parti d'e4.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau trở lại, mỗi bên bảy tốt. Đen có trung tâm tốt d4-f5 chiếm không gian và mã e5 đứng ở một tiền đồn mạnh, nhưng vua vẫn chưa nhập thành và mã g5 của Trắng đang đe doạ nhảy vào f7 hay e6 gây rối.
+              en: Material is level again at seven pawns each. Black has the d4-f5 pawn pair taking up space and a knight on a strong outpost in e5, but the king has not castled yet and White's knight on g5 is threatening to jump into f7 or e6 to stir up trouble.
+              fr: Le matériel est de nouveau égal, sept pions de chaque côté. Les Noirs ont le duo de pions d4-f5 prenant de l'espace et un cavalier sur un avant-poste solide en e5, mais le roi n'a pas encore roqué et le cavalier blanc en g5 menace de sauter en f7 ou e6 pour semer le trouble.
+            plan:
+              vi: Đen chơi h6 đuổi mã g5 đi ngay, rồi Nf6, Be7 và O-O để vua được an toàn trước khi Trắng kịp gây rối. Trắng chơi Nxe4 nếu có cơ hội đổi bớt quân, hoặc rút mã về e4 hay f3, tiếp tục với Bg2 và Nf3, tìm cách khai thác việc vua Đen còn ở giữa bàn cờ.
+              en: Black plays h6 to chase the g5 knight away at once, then Nf6, Be7 and O-O to get the king to safety before White can cause trouble. White plays Nxe4 if the chance to trade pieces comes up, or pulls the knight back to e4 or f3, continuing with Bg2 and Nf3, looking to exploit the fact that Black's king is still in the centre.
+              fr: Les Noirs jouent h6 pour chasser aussitôt le cavalier g5, puis Nf6, Be7 et O-O pour mettre le roi à l'abri avant que les Blancs ne puissent créer des ennuis. Les Blancs jouent Nxe4 si l'occasion d'échanger des pièces se présente, ou replient le cavalier en e4 ou f3, poursuivant par Bg2 et Nf3, en cherchant à exploiter le fait que le roi noir est encore au centre de l'échiquier.
+            basis:
+              by: chan
+              at: '2026-09-21'
