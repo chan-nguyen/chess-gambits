@@ -1,0 +1,56 @@
+# Englund Gambit: Zilbermints Gambit. Frozen defining line 1.d4 e5 2.dxe5 Nc6 3.Nf3 Nge7,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+id: englund-gambit-zilbermints-gambit
+name: 'Englund Gambit: Zilbermints Gambit'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5, dxe5, Nc6, Nf3, Nge7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Routing the knight through e7 keeps the f-pawn free to support a later
+      f6 break and avoids blocking the c-pawn, but it develops slowly and White simply
+      finishes development a pawn up. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đưa mã ra e7 thay vì f6, giữ cho tốt f được tự do để sau này chơi f6 đánh vào tốt e5, và cũng không chắn đường tốt c cho việc chơi d5 sau này.
+    en: Black brings the knight to e7 instead of f6, keeping the f-pawn free to play f6 later against the e5 pawn, and also not blocking the c-pawn from supporting a later d5.
+    fr: Les Noirs amènent le cavalier en e7 plutôt qu'en f6, laissant le pion f libre pour jouer f6 plus tard contre le pion e5, et ne bloquant pas non plus le pion c qui pourrait soutenir un futur d5.
+  dismissRest:
+    reason:
+      vi: Trắng không phát triển bằng một nước tự nhiên khác giữ vững con tốt thừa. Các nước khác ở đây, như e4 hay Bf4, cũng hợp lý và dẫn đến cùng một bức tranh chung, nên không cần mô hình hoá riêng từng nước.
+      en: White does not develop with another natural move that holds the extra pawn. The alternatives here, such as e4 or Bf4, are also reasonable and lead to the same overall picture, so they do not need to be modelled one by one.
+      fr: Les Blancs ne développent pas par un autre coup naturel qui garde le pion supplémentaire. Les alternatives ici, comme e4 ou Bf4, sont aussi raisonnables et mènent au même tableau d'ensemble, elles n'ont donc pas besoin d'être modélisées une à une.
+  children:
+    - ply: Nc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã ra ô tự nhiên, sẵn sàng chơi e4 tiếp theo để dựng một trung tâm lớn trong khi vẫn giữ vững con tốt thừa.
+        en: White develops the knight to its natural square, ready to follow up with e4 to build a big centre while still holding the extra pawn.
+        fr: Les Blancs développent le cavalier sur sa case naturelle, prêts à poursuivre par e4 pour bâtir un grand centre tout en gardant le pion supplémentaire.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy, đúng một tốt Trắng đang giữ từ 2.dxe5. Mã e7 của Đen chưa kiểm soát ô trung tâm nào đáng kể, còn Trắng đã phát triển được hai quân và sắp có e4 để mở rộng thêm khoảng không.
+          en: Count the pawns and it is eight for White, seven for Black, exactly the one White has held since 2.dxe5. Black's knight on e7 does not yet control any significant central square, while White has developed two pieces and is about to play e4 for even more space.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, exactement celui que les Blancs tiennent depuis 2.dxe5. Le cavalier noir en e7 ne contrôle encore aucune case centrale importante, tandis que les Blancs ont développé deux pièces et s'apprêtent à jouer e4 pour encore plus d'espace.
+        plan:
+          vi: Đen chơi Ng6 để nhắm vào tốt e5 lần nữa, hoặc f6 phá ngay trung tâm, cùng với Bc5 hay Bb4 gây sức ép nhanh để bù cho con tốt đã mất. Trắng chơi e4, Bc4 hoặc Be2, và O-O, dựng một trung tâm lớn, hoàn tất phát triển và giữ vững con tốt thừa trước khi Đen kịp phá vỡ nó.
+          en: Black plays Ng6 to aim at the e5 pawn again, or f6 to break the centre right away, together with Bc5 or Bb4 for quick pressure to make up for the lost pawn. White plays e4, Bc4 or Be2, and O-O, building a big centre, completing development and holding the extra pawn before Black can break it up.
+          fr: Les Noirs jouent Ng6 pour viser de nouveau le pion e5, ou f6 pour rompre aussitôt le centre, avec Bc5 ou Bb4 pour une pression rapide compensant le pion perdu. Les Blancs jouent e4, Bc4 ou Be2, et O-O, bâtissant un grand centre, achevant leur développement et gardant le pion supplémentaire avant que les Noirs ne puissent le rompre.
+        basis:
+          by: chan
+          at: '2026-09-21'

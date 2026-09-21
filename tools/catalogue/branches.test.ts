@@ -131,7 +131,14 @@ describe('the catalogue this repository ships', () => {
    * Game's Frankenstein-Dracula Qd5 Trap), and one from #127 (the Ruy Lopez Exchange
    * Variation's Alapin Gambit, upgraded in place from its own Tier 0 entry — #127 also
    * deepened two already-authored trees, bird-opening-froms-gambit and
-   * scandinavian-defense-kiel-variation-trap, without adding new ids) — and the other 855
+   * scandinavian-defense-kiel-variation-trap, without adding new ids), and thirteen more
+   * from #136 batch B (elephant-gambit-maroczy-gambit, elephant-gambit-paulsen-countergambit,
+   * english-opening-wing-gambit, englund-gambit-felbecker-gambit,
+   * englund-gambit-hartlaub-charlick-gambit, englund-gambit-main-line,
+   * englund-gambit-mosquito-gambit, englund-gambit-soller-gambit,
+   * englund-gambit-soller-gambit-deferred, englund-gambit-zilbermints-gambit,
+   * french-defense-wing-gambit, grob-opening-grob-gambit-declined and
+   * hungarian-opening-asten-gambit, each a single root-to-leaf line) — and the other 842
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -180,19 +187,32 @@ describe('the catalogue this repository ships', () => {
     ['duras-gambit', 1],
     ['dutch-defense-krejcik-gambit', 1],
     ['elephant-gambit', 1],
+    ['elephant-gambit-maroczy-gambit', 1],
+    ['elephant-gambit-paulsen-countergambit', 1],
     ['elephant-trap', 1],
     ['english-defense-eastbourne-gambit', 1],
     ['english-opening-jaenisch-gambit', 1],
+    ['english-opening-wing-gambit', 1],
     ['englund-gambit', 5],
     ['englund-gambit-declined', 1],
+    ['englund-gambit-felbecker-gambit', 1],
+    ['englund-gambit-hartlaub-charlick-gambit', 1],
+    ['englund-gambit-main-line', 1],
+    ['englund-gambit-mosquito-gambit', 1],
+    ['englund-gambit-soller-gambit', 1],
+    ['englund-gambit-soller-gambit-deferred', 1],
     ['englund-gambit-trap', 6],
+    ['englund-gambit-zilbermints-gambit', 1],
     ['fishing-pole-trap', 3],
     ['four-knights-game-halloween-gambit', 1],
     ['french-defense-banzai-leong-gambit', 3],
+    ['french-defense-wing-gambit', 1],
     ['grob-opening-alessi-gambit', 1],
+    ['grob-opening-grob-gambit-declined', 1],
     ['grunfeld-defense-gibbon-gambit', 1],
     ['halosar-trap', 3],
     ['horwitz-defense-zilbermints-gambit', 1],
+    ['hungarian-opening-asten-gambit', 1],
     ['hungarian-opening-van-kuijk-gambit', 1],
     ['indian-defense-budapest-gambit', 5],
     ['indian-defense-budapest-gambit-accepted-fajarowicz-defense', 1],
@@ -312,7 +332,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1021 entries, and only the authored one hundred and fifty-seven have any', () => {
+  it('bakes keys on all 1021 entries, and only the authored one hundred and seventy have any', () => {
     expect(result.value.records).toHaveLength(1021)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

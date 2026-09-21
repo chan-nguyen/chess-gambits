@@ -1,0 +1,57 @@
+# Elephant Gambit: Maróczy Gambit. Frozen defining line 1.e4 e5 2.Nf3 d5 3.exd5 Bd6, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated.
+id: elephant-gambit-maroczy-gambit
+name: 'Elephant Gambit: Maróczy Gambit'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d5, exd5, Bd6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Playing 3...Bd6 instead of the immediate 3...Qxd5 avoids the tempo loss
+      to a developing knight, but Black is still down a pawn with no forced way to get it
+      back — White can simply hold d5 with pieces. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại ngay bằng hậu, Đen chơi 3...Bd6, chuẩn bị đưa mã ra f6 để ăn lại con tốt d5 mà không phải đưa hậu ra sớm và bị Trắng tranh thủ phát triển bắt nạt.
+    en: Instead of recapturing at once with the queen, Black plays 3...Bd6, preparing to bring a knight to f6 and win the d5 pawn back without putting the queen out early where a developing White piece can hit it with tempo.
+    fr: Au lieu de reprendre aussitôt avec la dame, les Noirs jouent 3...Bd6, préparant à amener un cavalier en f6 pour reprendre le pion d5 sans sortir la dame tôt, là où une pièce blanche en développement pourrait l'attaquer avec gain de temps.
+  dismissRest:
+    reason:
+      vi: Trắng không cố giữ chắc con tốt d5 bằng một nước phát triển. Các nước khác ở đây chủ yếu là những cách sắp xếp khác của cùng một kế hoạch và không thay đổi bức tranh chung, Trắng vẫn hơn một tốt và phải quyết định giữ nó bằng quân hay trả lại để đổi lấy phát triển.
+      en: White does not defend the d5 pawn with a developing move. The alternatives here are mostly other orderings of the same plan and do not change the overall picture — White is still a pawn up and has to decide whether to hold it with pieces or hand it back for development.
+      fr: Les Blancs ne défendent pas le pion d5 par un coup de développement. Les alternatives ici sont pour l'essentiel d'autres ordres du même plan et ne changent pas le tableau d'ensemble — les Blancs ont toujours un pion de plus et doivent choisir de le garder avec des pièces ou de le rendre contre du développement.
+  children:
+    - ply: Nc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã ra ô tự nhiên nhất, không vội bảo vệ tốt d5 vì con tượng d6 của Đen không đụng tới nó. Trắng chuẩn bị Nf3 hoặc Bc4 và Qe2 tiếp theo.
+        en: White develops the knight to its most natural square, in no hurry to defend the d5 pawn since Black's bishop on d6 does not attack it. White plans to follow up with pieces like Bc4 and Qe2.
+        fr: Les Blancs développent le cavalier sur sa case la plus naturelle, sans se presser de défendre le pion d5 puisque le fou noir en d6 ne l'attaque pas. Les Blancs prévoient de poursuivre avec des pièces comme Bc4 et Qe2.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy, đúng một tốt Trắng đang giữ kể từ 3.exd5. Con tốt d5 hiện không bị tấn công vì tượng d6 đi trên ô đen còn d5 là ô trắng. Đen có phát triển nhanh hơn một chút và điểm tựa ở e5 khi mã vào f6, nhưng chưa có gì cụ thể buộc Trắng phải trả lại tốt.
+          en: Count the pawns and it is eight for White, seven for Black, exactly the one White has held since 3.exd5. The d5 pawn is not under attack right now, because the bishop on d6 moves on dark squares while d5 is light. Black has slightly quicker development and an eye on the e5 square once a knight reaches f6, but nothing yet forces White to give the pawn back.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs, exactement celui que les Blancs tiennent depuis 3.exd5. Le pion d5 n'est pas attaqué pour l'instant, car le fou en d6 se déplace sur cases noires alors que d5 est une case blanche. Les Noirs ont un développement légèrement plus rapide et un œil sur la case e5 une fois qu'un cavalier atteindra f6, mais rien ne force encore les Blancs à rendre le pion.
+        plan:
+          vi: Đen chơi Nf6 tấn công thẳng vào tốt d5, rồi O-O và Re8 gây sức ép lên cột e. Nếu Trắng đỡ tốt bằng Bc4 hay Qe2, Đen tiếp tục với Bg4 hoặc c6 để mở thêm đường cho quân. Trắng chơi Bc4, Qe2 hoặc d4 để giữ vững con tốt thừa, hoàn tất phát triển và nhập thành trước khi Đen kịp gây sức ép đủ mạnh.
+          en: Black plays Nf6, hitting the d5 pawn directly, then O-O and Re8 to add pressure down the e-file. If White defends the pawn with Bc4 or Qe2, Black continues with Bg4 or c6 to open more lines for the pieces. White plays Bc4, Qe2 or d4 to hold the extra pawn, complete development and castle before Black can build enough pressure.
+          fr: Les Noirs jouent Nf6, attaquant directement le pion d5, puis O-O et Re8 pour ajouter de la pression sur la colonne e. Si les Blancs défendent le pion par Bc4 ou Qe2, les Noirs poursuivent par Bg4 ou c6 pour ouvrir davantage de lignes pour leurs pièces. Les Blancs jouent Bc4, Qe2 ou d4 pour garder le pion supplémentaire, achever leur développement et roquer avant que les Noirs ne puissent bâtir une pression suffisante.
+        basis:
+          by: chan
+          at: '2026-09-21'
