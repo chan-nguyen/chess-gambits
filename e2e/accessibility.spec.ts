@@ -126,6 +126,34 @@ test.describe('the axe sweep (AC 1)', () => {
   }
 
   /*
+   * The home page's interactive opening board (issue #129), in a couple of states beyond
+   * the bare start position the loop above already scans: one move played (a piece is
+   * selected's own highlight markup is not reachable through a URL and is left to
+   * `opening-explorer.spec.ts`'s own keyboard walk instead), and a state at the end of an
+   * opening-tree line where the hand-off link into a matched entry appears. Both are real
+   * URLs — the played sequence is the route's own `moves` parameter — so this is scanning
+   * exactly what a visitor's back button or a shared link would land on, not a fixture.
+   *
+   * Vietnamese only, for the same reason the fixture states below are: what changes between
+   * locales here is prose, not the board or catalogue-card markup this sweep exercises.
+   */
+  const homeStates = [
+    { name: 'after one move', search: '?moves=e4' },
+    { name: 'at the end of an opening-tree line, with the hand-off link', search: '?moves=d4_e5' },
+  ]
+
+  for (const { name, search } of homeStates) {
+    test(`the home board ${name} has no WCAG 2.2 AA violation axe can see`, async ({ page }) => {
+      await page.goto(`vi/${search}`)
+      await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+      await expect(page.getByRole('grid')).toBeVisible()
+      await page.waitForLoadState('networkidle')
+
+      expectNoViolations(await scan(page), `home at "${search}" fails axe:`)
+    })
+  }
+
+  /*
    * The states the published routes cannot reach yet — a branch point with its previews and
    * quality badges, and a leaf with its outcome card. Served from the same fixture the rest
    * of `e2e/` uses, for the reason `learning-fixture.ts` gives: the application is entirely

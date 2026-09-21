@@ -185,6 +185,53 @@ describe('the filters compose', () => {
   })
 })
 
+describe('the played-move prefix dimension (issue #129)', () => {
+  const entries = [
+    entry({ id: 'evans', line: 'e4 e5 Nf3 Nc6 Bc4 Bc5 b4' }),
+    entry({ id: 'ruy-lopez', line: 'e4 e5 Nf3 Nc6 Bb5' }),
+    entry({ id: 'sicilian', line: 'e4 c5' }),
+    entry({ id: 'queens-gambit', line: 'd4 d5 c4' }),
+  ]
+
+  it('is absent by default: every entry matches', () => {
+    expect(matchedIds(entries, {})).toEqual(['evans', 'ruy-lopez', 'sicilian', 'queens-gambit'])
+  })
+
+  it('the empty prefix also matches every entry', () => {
+    expect(matchedIds(entries, { movesPrefix: [] })).toEqual([
+      'evans',
+      'ruy-lopez',
+      'sicilian',
+      'queens-gambit',
+    ])
+  })
+
+  it('narrows to every entry whose line starts with the played moves', () => {
+    expect(matchedIds(entries, { movesPrefix: ['e4'] })).toEqual(['evans', 'ruy-lopez', 'sicilian'])
+    expect(matchedIds(entries, { movesPrefix: ['e4', 'e5'] })).toEqual(['evans', 'ruy-lopez'])
+    expect(matchedIds(entries, { movesPrefix: ['e4', 'e5', 'Nf3', 'Nc6', 'Bc4'] })).toEqual([
+      'evans',
+    ])
+  })
+
+  it('is a deep-equality match against tokens, not a substring match', () => {
+    // "e4" must not match an entry whose line merely *contains* "e4" later on.
+    expect(matchedIds(entries, { movesPrefix: ['d4'] })).toEqual(['queens-gambit'])
+  })
+
+  it('a prefix longer than any line matches nothing', () => {
+    expect(matchedIds(entries, { movesPrefix: ['e4', 'c5', 'Nf3', 'Nc6', 'd4'] })).toEqual([])
+  })
+
+  it('composes with the other dimensions', () => {
+    const mixed = [
+      entry({ id: 'a', line: 'e4 e5 Nf3', category: 'gambit' }),
+      entry({ id: 'b', line: 'e4 e5 Nf3', category: 'trap' }),
+    ]
+    expect(matchedIds(mixed, { movesPrefix: ['e4'], category: 'trap' })).toEqual(['b'])
+  })
+})
+
 describe('knowing whether anything is narrowing the list', () => {
   it('is false only for the unfiltered index', () => {
     expect(isNarrowed({ ...defaultFilter, tier: 'all' })).toBe(false)
@@ -197,8 +244,13 @@ describe('knowing whether anything is narrowing the list', () => {
     { side: 'white' },
     { category: 'trap' },
     { soundness: 'unsound' },
+    { movesPrefix: ['e4'] },
   ] as const)('is true for %p', (over) => {
     expect(isNarrowed({ ...defaultFilter, tier: 'all', ...over })).toBe(true)
+  })
+
+  it('an empty played-move prefix does not count as narrowing', () => {
+    expect(isNarrowed({ ...defaultFilter, tier: 'all', movesPrefix: [] })).toBe(false)
   })
 
   it('does not count whitespace as a search term', () => {

@@ -272,6 +272,27 @@ const vi = {
       'Chưa có gambit nào được dạy sâu. Danh mục đã liệt kê đầy đủ tên, mã ECO và nước đi mở đầu, và mỗi trang đều tự nói rõ nó đang ở mức nào.',
     browseCatalogue: 'Xem danh mục đầy đủ',
     whatTiersMean: 'Các mức độ bao phủ nghĩa là gì',
+    /**
+     * The interactive opening board (issue #129). Catalogue-only moves, click-to-move: the
+     * board never invents a move the catalogue does not already contain, so there is no
+     * rules engine anywhere near it (ADR-0003; see `docs/design-system.md`, *Why the home
+     * board does not reverse ADR-0003*).
+     */
+    tryHeading: 'Thử đi vài nước',
+    tryIntro:
+      'Đi thử một nước trên bàn cờ dưới đây. Danh sách sẽ tự lọc theo đúng những nước bạn đã đi.',
+    undo: 'Đi lại',
+    reset: 'Về đầu',
+    boardLoading: 'Đang tải cây khai cuộc…',
+    boardUnavailable:
+      'Không tải được cây khai cuộc để thử nước đi. Danh mục đầy đủ vẫn xem được bình thường.',
+    retry: 'Thử lại',
+    retrying: 'Đang thử lại…',
+    playToFilter: 'Đi một nước trên bàn cờ để xem danh sách các gambit và bẫy khớp với nước đó.',
+    matchCount: 'Khớp {{count}} mục',
+    noMatch: 'Không có gambit hoặc bẫy nào khớp với các nước này.',
+    continueIn: 'Học tiếp: {{name}}',
+    movePlayed: 'Đã đi {{san}}',
   },
   tree: {
     heading: 'Toàn bộ cây biến',

@@ -20,17 +20,32 @@ import { routes } from '../router.tsx'
  * its own the day content earns it, without anybody editing this page.
  */
 
-const respond = (body: unknown): void => {
+/** A well-formed but empty opening tree, for tests that are not about the board itself. */
+const EMPTY_OPENING_TREE = {
+  fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+  check: null,
+  children: [],
+}
+
+/**
+ * Routes the fetch by URL, because the home page now makes two of them (the catalogue and,
+ * since issue #129, the opening tree) and each needs a body shaped like what it actually
+ * parses — a `Response` shaped like the wrong one fails as "malformed", which is a real
+ * state this page can reach but not the one most of these tests are about.
+ */
+const respond = (catalogueBody: unknown, openingTreeBody: unknown = EMPTY_OPENING_TREE): void => {
   vi.stubGlobal(
     'fetch',
-    vi.fn(() =>
-      Promise.resolve(
+    vi.fn((input: RequestInfo | URL) => {
+      const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url
+      const body = url.includes('opening-tree') ? openingTreeBody : catalogueBody
+      return Promise.resolve(
         new Response(JSON.stringify(body), {
           status: 200,
           headers: { 'content-type': 'application/json' },
         }),
-      ),
-    ),
+      )
+    }),
   )
 }
 
@@ -99,7 +114,11 @@ describe('when nothing is taught in depth yet — the site today', () => {
     const main = await screen.findByRole('main')
 
     expect(await within(main).findByText(viStrings.home.nothingTaughtYet)).toBeInTheDocument()
-    expect(within(main).queryByRole('heading', { level: 2 })).toBeNull()
+    // No "start here" heading: that one only appears once something is actually taught.
+    // The opening explorer's own `h2` (issue #129) is unconditional and expected here.
+    expect(
+      within(main).queryByRole('heading', { level: 2, name: viStrings.home.startHere }),
+    ).toBeNull()
   })
 
   it('still offers the index to anybody who wants it anyway', async () => {

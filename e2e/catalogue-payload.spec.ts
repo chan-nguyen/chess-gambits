@@ -64,6 +64,12 @@ test('a route that needs the catalogue downloads one locale of it, never three',
    * built per locale precisely so a visitor pays for one language of names
    * (docs/design-system.md, *Catalogue chunking*). A page that fetched all three would sit
    * inside the per-file budget and be three times over it in practice.
+   *
+   * `vi/gambits` fetches exactly the one locale file. `vi/` (home) fetches that file
+   * **and** the locale-independent opening tree since issue #129 — a second file under
+   * `/catalogue/`, but not a second *locale* of the catalogue, which is the guarantee this
+   * test actually protects. `catalogue.<locale>.json` never appears more than once for
+   * either route.
    */
   for (const route of ['vi/', 'vi/gambits']) {
     const seen: string[] = []
@@ -75,8 +81,12 @@ test('a route that needs the catalogue downloads one locale of it, never three',
     await page.waitForLoadState('networkidle')
 
     expect(seen.length, `${route} requested ${seen.join(', ')}`).toBeGreaterThan(0)
-    expect(new Set(seen), `${route} requested more than one catalogue`).toHaveProperty('size', 1)
-    expect(seen[0]).toContain('catalogue.vi.json')
+    const catalogueRequests = seen.filter((url) => /catalogue\.\w+\.json/.test(url))
+    expect(
+      new Set(catalogueRequests),
+      `${route} requested more than one locale's catalogue`,
+    ).toHaveProperty('size', 1)
+    expect(catalogueRequests[0]).toContain('catalogue.vi.json')
 
     page.removeAllListeners('request')
   }

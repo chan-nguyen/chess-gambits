@@ -33,6 +33,18 @@ export type CatalogueFilter = {
   readonly category: Category | null
   readonly soundness: SoundnessValue | null
   readonly tier: TierFloor
+  /**
+   * A played-move prefix, as ordered SAN plies, matched against `entry.line.split(' ')`'s
+   * own leading tokens by deep equality — not a substring or text match, which is what the
+   * `q` search above does. `undefined` (the field's absence, which every existing caller
+   * gets for free) means this dimension does not narrow anything.
+   *
+   * The home page (issue #129) is the only caller today. It is a separate field from `q`
+   * rather than something folded into it because the two answer different questions: `q`
+   * is what a visitor typed, this is what a visitor *played* on a board, and the matching
+   * rule for the second is exact-position equality, not text containment.
+   */
+  readonly movesPrefix?: readonly string[] | undefined
 }
 
 /**
@@ -119,6 +131,10 @@ const matches = (indexed: IndexedEntry, filter: CatalogueFilter, needle: string)
   if (filter.side !== null && entry.side !== filter.side) return false
   if (filter.category !== null && entry.category !== filter.category) return false
   if (filter.soundness !== null && entry.soundness !== filter.soundness) return false
+  if (filter.movesPrefix !== undefined) {
+    const tokens = entry.line.split(' ')
+    if (filter.movesPrefix.some((ply, index) => tokens[index] !== ply)) return false
+  }
   return needle === '' || indexed.haystack.includes(needle)
 }
 
@@ -173,4 +189,5 @@ export const isNarrowed = (filter: CatalogueFilter): boolean =>
   filter.side !== null ||
   filter.category !== null ||
   filter.soundness !== null ||
-  filter.tier !== 'all'
+  filter.tier !== 'all' ||
+  (filter.movesPrefix?.length ?? 0) > 0

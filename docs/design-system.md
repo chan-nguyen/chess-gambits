@@ -397,6 +397,40 @@ dataset of variations returns dozens of near-identical rows for one search term.
 
 This is free, and it turns a graveyard into a small honest site with a large index attached.
 
+### Why the home board does not reverse ADR-0003
+
+Issue #129 puts an interactive board on the home page: a visitor clicks a piece, clicks a
+destination, and the catalogue filters live to whatever matches the moves played so far.
+`ADR-0003` bans a rules engine, a drag interaction and any client-side move logic inside
+`src/components/board/`, and names "v2 requiring drag interaction" as its own trigger for
+being revisited. This feature does not trip that trigger, on any of its three conditions:
+
+- **No rules engine reaches the browser.** The board never decides whether a move is legal
+  by computing it — it looks the move up in a precomputed **opening tree**
+  (`tools/catalogue/opening-tree.ts`), a trie built at compile time with `chess.js` (already
+  a build-time-only dependency per ADR-0004/0005) from every published entry's defining
+  line, shipped as a static `catalogue/opening-tree.json`. A square is clickable only if the
+  tree already has a child move recorded for it. There is no position this board can reach
+  that is not already an entry's own line, and there is no move this board can offer that
+  chess.js did not already validate at build time.
+- **No drag.** Interaction is click-to-move: select a square, then select a highlighted
+  destination — exactly the mode ADR-0003 itself names as the anticipated v2 interaction,
+  because it is what the existing accessible grid already supports (a focused cell,
+  Enter/Space to activate) without adding a pointer-drag system at all.
+- **`src/components/board/` is untouched.** The new board lives entirely under
+  `src/components/home/` and reuses the shipped `Board` component exactly as it ships —
+  same props, same file, same 450-line budget, same tripwire
+  (`board-tripwire.test.ts`). The interaction (click delegation, keyboard activation,
+  selection state) lives in the new files, one layer above `Board`, the same way
+  `LearningSurface` already drives `Board` with a derived `fen` and a `marks` list without
+  `Board` ever knowing why either one changed.
+
+The catalogue filter gained one new dimension for this (`CatalogueFilter.movesPrefix` in
+`src/components/catalogue/filter.ts`): a played-move prefix matched against
+`CatalogueEntry.line`'s own tokens by deep equality. It is a filter over data the catalogue
+already ships, not a second rules engine — the opening tree is what supplies moves to try,
+and the filter only ever compares strings the catalogue already carries.
+
 ### Progress is a count, not a percentage
 
 "12 of 20 branches", not "60%". A percentage falls when content improves: a learner at 100% on the
