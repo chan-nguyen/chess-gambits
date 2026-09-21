@@ -316,9 +316,11 @@ describe('the catalogue this repository ships', () => {
     ['smith-morra-gambit-accepted-open-d-file-trap', 1],
     ['sodium-attack-durkin-gambit', 1],
     ['st-george-defense-zilbermints-gambit', 1],
+    ['stafford-gambit-rosen-trap', 2],
     ['tarrasch-defense-schara-gambit', 1],
     ['tarrasch-trap', 1],
     ['torre-attack-wagner-gambit', 1],
+    ['traxler-counterattack-ke2-trap', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
     ['van-geet-opening-laroche-gambit', 2],
     ['vant-kruijs-opening-keoni-hiva-gambit-akahi-variation', 1],
@@ -330,8 +332,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1019 entries, and only the authored one hundred and fifty-five have any', () => {
-    expect(result.value.records).toHaveLength(1019)
+  it('bakes keys on all 1021 entries, and only the authored one hundred and seventy have any', () => {
+    expect(result.value.records).toHaveLength(1021)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
