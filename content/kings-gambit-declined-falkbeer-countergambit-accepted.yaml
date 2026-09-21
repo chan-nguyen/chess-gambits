@@ -1,0 +1,92 @@
+# Falkbeer Countergambit Accepted, taught. The catalogue's own line for this id,
+# `e4 e5 f4 d5 exd5`, ends on White's ply; that parity fails the build's
+# `defining-line-parity` check (docs/CONTEXT.md, invariant 5), so `definingLine` here stops
+# one ply earlier, at Black's own 2...d5 — the same root
+# `kings-gambit-declined-falkbeer-countergambit.yaml` uses — and 3.exd5 is modelled as the
+# root's own reply instead, exactly as `kings-gambit-accepted.yaml` does for its own family
+# head. This entry follows specifically the simple, "accepted" idea — Black just recaptures
+# the pawn with the queen rather than playing the sharper 3...e4 — through to a level,
+# resolved position. Every ply was replayed with chess.js; the leaf carries no forced mate
+# (checked with `searchMate`).
+id: kings-gambit-declined-falkbeer-countergambit-accepted
+name: "King's Gambit Declined: Falkbeer Countergambit Accepted"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Simply recapturing the pawn on d5 is the solid, unambitious way to meet
+      the Falkbeer idea: material is level and the position is roughly balanced, at the cost
+      of forgoing the sharper counterplay 3...e4 offers. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4 và Đen vừa đáp lại bằng 2...d5, mời đổi tốt trung tâm. Mục này đi sâu vào nhánh Trắng nhận lời mời đó bằng 3.exd5.
+    en: White has just offered the f4 pawn and Black has just answered with 2...d5, offering to trade the central pawns. This entry follows specifically the branch where White accepts that offer with 3.exd5.
+    fr: Les Blancs viennent d'offrir le pion f4 et les Noirs viennent de répondre par 2...d5, proposant d'échanger les pions centraux. Cette entrée suit spécifiquement la branche où les Blancs acceptent cette offre par 3.exd5.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt d5. Các nước khác, như 3.Nf3 hay 3.fxe5, dẫn tới các nhánh Falkbeer khác nằm ngoài phạm vi mục này.
+      en: White does not take the d5 pawn. Anything else, such as 3.Nf3 or 3.fxe5, heads toward other Falkbeer branches outside the scope of this entry.
+      fr: Les Blancs ne prennent pas le pion d5. Tout le reste, comme 3.Nf3 ou 3.fxe5, mène vers d'autres branches du Falkbeer hors du cadre de cette entrée.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt d5 bằng tốt e, quân duy nhất có thể ăn tại đó. Con tốt f4 vẫn còn nguyên trên bàn, nên đây chưa phải một sự đổi chác hoàn toàn ngang giá — Trắng đang tạm thời hơn một tốt.
+        en: White captures the d5 pawn with the e-pawn, the only piece that can take there. The f4 pawn is still on the board, so this is not yet an even trade — White is temporarily a pawn up.
+        fr: Les Blancs capturent le pion d5 avec le pion e, la seule pièce pouvant y prendre. Le pion f4 est toujours sur l'échiquier, ce n'est donc pas encore un échange équilibré — les Blancs sont temporairement un pion devant.
+      children:
+        - ply: Qxd5
+          annotation:
+            vi: Đen ăn lại ngay bằng hậu, cách đơn giản nhất và cũng là ý nghĩa của cái tên "Accepted" — chấp nhận đòi lại tốt thay vì đẩy tiếp bằng 3...e4. Hậu ra sớm nhưng chưa gặp áp lực cụ thể nào.
+            en: Black recaptures at once with the queen, the simplest way to meet the offer and the idea behind the name "Accepted" — settling for winning the pawn back rather than pushing on with 3...e4. The queen comes out early but faces no concrete pressure yet.
+            fr: Les Noirs reprennent aussitôt avec la dame, la façon la plus simple de répondre à l'offre et l'idée derrière le nom « Accepted » — se contenter de regagner le pion plutôt que de pousser par 3...e4. La dame sort tôt mais ne subit encore aucune pression concrète.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác không đuổi hậu. Mọi nước khác để hậu Đen tiếp tục đứng vững ở d5, không mất nhịp nào cho Trắng.
+              en: White plays anything else that does not chase the queen. Anything else leaves Black's queen sitting comfortably on d5, costing Black no tempo at all.
+              fr: Les Blancs jouent autre chose qui ne chasse pas la dame. Tout le reste laisse la dame noire confortablement installée en d5, sans coûter le moindre temps aux Noirs.
+          children:
+            - ply: Nc3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng phát triển mã và tấn công hậu Đen cùng lúc, giành nhịp. Hậu Đen phải lùi về một ô an toàn.
+                en: White develops the knight and attacks Black's queen at the same time, gaining a tempo. Black's queen has to step back to a safe square.
+                fr: Les Blancs développent le cavalier et attaquent simultanément la dame noire, gagnant un temps. La dame noire doit reculer vers une case sûre.
+              children:
+                - ply: Qd6
+                  annotation:
+                    vi: Hậu lùi về d6, vẫn kiểm soát trung tâm và không cản trở các quân khác phát triển. Đây là ô lui an toàn nhất cho hậu.
+                    en: The queen steps back to d6, still controlling the centre and not getting in the way of the other pieces developing. This is the safest retreat square for the queen.
+                    fr: La dame recule en d6, contrôlant toujours le centre et ne gênant pas le développement des autres pièces. C'est la case de repli la plus sûre pour la dame.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì hai bên ngang nhau — tốt f4 và tốt d5/d4 đã đổi qua đổi lại, không bên nào còn hơn vật chất. Trắng có nhịp phát triển (mã đã ra, hậu Đen đã phải di chuyển hai lần) nhưng chưa có gì cụ thể để khai thác ngay; hậu Đen trên d6 đứng khá an toàn dù hơi lộ. Không có quân nào đang bị ăn không, nên đây là một thế cờ cân bằng thật sự chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and both sides are level — the f4 pawn and the d5/d4 pawns have all been traded off, and neither side is up material. White has a small development lead (the knight is out, and Black's queen has already moved twice) but nothing concrete to show for it yet; Black's queen on d6 sits fairly safely, if a little exposed. Nothing is hanging for free, so this genuinely reads as a level position rather than an evaluation left open.
+                      fr: Comptez les pièces, les deux camps sont à égalité — le pion f4 et les pions d5/d4 ont tous été échangés, aucun camp n'a d'avantage matériel. Les Blancs ont une petite avance de développement (le cavalier est sorti, et la dame noire a déjà bougé deux fois) mais rien de concret à en tirer pour l'instant ; la dame noire en d6 est assez en sécurité, quoique un peu exposée. Rien n'est en prise gratuitement, donc c'est véritablement une position équilibrée, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi Nf3 và Bc4 hay Bd3, hoàn thiện phát triển và nhắm vào việc Đen phải mất thêm thời gian bảo vệ hậu. Đen chơi Nc6 và Nf6, hoàn thiện phát triển và chuẩn bị nhập thành trước khi tính đến kế hoạch tiếp theo.
+                      en: White plays Nf3 and Bc4 or Bd3, finishing development and aiming to make Black spend more time looking after the queen. Black plays Nc6 and Nf6, finishing development and preparing to castle before settling on a further plan.
+                      fr: Les Blancs jouent Nf3 et Bc4 ou Bd3, achevant leur développement et cherchant à faire perdre du temps aux Noirs pour protéger la dame. Les Noirs jouent Cc6 et Cf6, achevant leur développement et se préparant à roquer avant d'arrêter un plan ultérieur.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

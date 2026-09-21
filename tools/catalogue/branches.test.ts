@@ -201,8 +201,12 @@ describe('the catalogue this repository ships', () => {
     ['irish-gambit', 1],
     ['italian-game-blackburne-kostic-gambit', 2],
     ['italian-game-evans-gambit', 6],
+    ['italian-game-jerome-gambit', 1],
+    ['italian-game-rosentreter-gambit', 1],
     ['italian-game-rousseau-gambit', 1],
+    ['kadas-opening-kadas-gambit', 1],
     ['kadas-opening-schneider-gambit', 1],
+    ['kadas-opening-steinbok-gambit', 1],
     ['kieninger-trap', 4],
     ['kings-gambit', 5],
     ['kings-gambit-accepted', 1],
@@ -232,6 +236,7 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-accepted-modern-defense', 1],
     ['kings-gambit-accepted-orsini-gambit', 1],
     ['kings-gambit-accepted-paris-gambit', 1],
+    ['kings-gambit-accepted-quaade-gambit', 1],
     ['kings-gambit-accepted-schallopp-defense', 1],
     ['kings-gambit-accepted-schurig-gambit-with-bb5', 1],
     ['kings-gambit-accepted-schurig-gambit-with-bd3', 1],
@@ -240,10 +245,25 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-accepted-tumbleweed', 1],
     ['kings-gambit-accepted-villemson-gambit', 1],
     ['kings-gambit-accepted-wagenbach-defense', 1],
+    ['kings-gambit-declined-classical-hanham-variation', 1],
     ['kings-gambit-declined-classical-variation', 1],
+    ['kings-gambit-declined-falkbeer-countergambit', 1],
+    ['kings-gambit-declined-falkbeer-countergambit-accepted', 1],
+    ['kings-gambit-declined-falkbeer-countergambit-hinrichsen-gambit', 1],
+    ['kings-gambit-declined-keenes-defense', 1],
+    ['kings-gambit-declined-mafia-defense', 1],
+    ['kings-gambit-declined-norwalde-variation', 1],
+    ['kings-gambit-declined-panteldakis-countergambit', 1],
+    ['kings-gambit-declined-petrovs-defense', 1],
+    ['kings-gambit-declined-queens-knight-defense', 1],
+    ['kings-gambit-declined-zilbermints-double-countergambit', 1],
     ['kings-indian-attack-omega-delta-gambit', 1],
     ['kings-indian-defense-samisch-variation-samisch-gambit', 1],
     ['kings-pawn-game-bavarian-gambit', 2],
+    ['kings-pawn-game-beyer-gambit', 1],
+    ['kings-pawn-game-busch-gass-gambit', 1],
+    ['kings-pawn-game-clam-variation-kings-gambit-reversed', 1],
+    ['kings-pawn-game-gunderam-defense-gunderam-gambit', 1],
     ['kings-pawn-opening-van-hooydoon-gambit', 1],
     ['lasker-trap', 1],
     ['latvian-gambit', 5],
@@ -310,7 +330,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1019 entries, and only the authored one hundred and fifty-five have any', () => {
+  it('bakes keys on all 1019 entries, and only the authored one hundred and seventy-five have any', () => {
     expect(result.value.records).toHaveLength(1019)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

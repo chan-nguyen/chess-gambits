@@ -1,0 +1,65 @@
+# King's Gambit Accepted: Quaade Gambit, taught. The learner plays White, and the defining
+# line 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Nc3 ends on White's own 4.Nc3 — the learner's own ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). Every ply was replayed
+# with chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-accepted-quaade-gambit
+name: "King's Gambit Accepted: Quaade Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, the same label the King's Gambit family carries as a whole. 4.Nc3,
+      instead of the more usual 4.h4, prepares to meet a further pawn push with a piece
+      sacrifice on e5 rather than a direct challenge on the kingside. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Nc3, một cách phát triển bất thường so với 4.h4 quen thuộc trong các nhánh Gambit Vua được nhận. Ý đồ là chuẩn bị đáp lại 4...g4 bằng cách nhảy mã vào e5 thay vì lùi mã.
+    en: White has just played 4.Nc3, an unusual developing move compared with the more familiar 4.h4 in accepted King's Gambit lines. The idea is to meet a further 4...g4 by jumping the knight into e5 rather than retreating it.
+    fr: Les Blancs viennent de jouer 4.Nc3, un développement inhabituel par rapport au plus classique 4.h4 dans les lignes acceptées du Gambit du Roi. L'idée est de répondre à un éventuel 4...g4 en sautant le cavalier en e5 plutôt qu'en le reculant.
+  dismissRest:
+    reason:
+      vi: Đen không đẩy tốt g lên. Các nước khác như 4...Bg7 hay 4...h6 để nguyên căng thẳng ở f4/g5, dẫn tới các thế cờ khác không thuộc phạm vi mục này.
+      en: Black does not push the g-pawn further. Anything else, such as 4...Bg7 or 4...h6, leaves the f4/g5 tension as it is, heading toward other positions outside the scope of this entry.
+      fr: Les Noirs ne poussent pas davantage le pion g. Tout le reste, comme 4...Bg7 ou 4...h6, laisse la tension f4/g5 telle quelle, menant vers d'autres positions hors du cadre de cette entrée.
+  children:
+    - ply: g4
+      annotation:
+        vi: Đen tiếp tục đẩy tốt g, đuổi con mã f3 phải chọn hướng đi. Đây là cách xử lý tự nhiên nhất và cũng là thử thách trực tiếp nhất với ý đồ của 4.Nc3.
+        en: Black keeps pushing the g-pawn, forcing the f3 knight to choose where to go. This is the most natural way to handle the position and also the most direct test of the idea behind 4.Nc3.
+        fr: Les Noirs continuent de pousser le pion g, forçant le cavalier f3 à choisir sa direction. C'est la façon la plus naturelle de traiter la position et aussi le test le plus direct de l'idée derrière 4.Nc3.
+      children:
+        - ply: Ne5
+          annotation:
+            vi: Trắng nhảy mã vào e5 thay vì lùi về g1 hay h4, đúng ý đồ chuẩn bị từ nước trước. Con mã đứng khá mạnh ở trung tâm, dù tạm thời không được tốt nào của Trắng bảo vệ.
+            en: White jumps the knight to e5 instead of retreating to g1 or h4, exactly the idea prepared the move before. The knight sits quite strongly in the centre, even though it is not defended by any White pawn for the moment.
+            fr: Les Blancs sautent le cavalier en e5 plutôt que de le reculer en g1 ou h4, exactement l'idée préparée au coup précédent. Le cavalier occupe une case centrale très forte, même s'il n'est pour l'instant défendu par aucun pion blanc.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Đen hơn đúng một tốt — tốt f4 mà Đen ăn được ở nước 2 vẫn chưa bị đòi lại. Nhưng con mã Trắng đứng rất mạnh ở e5, không bị quân nào của Đen tấn công ngay lúc này, còn tốt g4 của Đen lại không được tốt nào của chính Đen bảo vệ và có thể trở thành mục tiêu sau này. Không có quân nào đang bị ăn không ở thế cờ này. Đây thực sự là "kém một tốt, đổi lấy một con mã tiền tiêu mạnh" chứ không phải một đánh giá còn bỏ ngỏ.
+              en: Count the pieces and Black is up exactly one pawn — the f4 pawn Black won on move two has not been won back. But White's knight sits very strongly on e5, not attacked by anything of Black's right now, while Black's g4 pawn is not defended by any pawn of its own and could become a target later. Nothing is hanging for free in this position. This genuinely reads as "a pawn down for a strong outpost knight" rather than an evaluation left open.
+              fr: Comptez les pièces, les Noirs ont exactement un pion de plus — le pion f4 gagné par les Noirs au deuxième coup n'a pas été regagné. Mais le cavalier blanc occupe une case très forte en e5, non attaqué pour l'instant par quoi que ce soit des Noirs, tandis que le pion g4 noir n'est défendu par aucun pion et pourrait devenir une cible plus tard. Rien n'est en prise gratuitement dans cette position. C'est véritablement « un pion de moins contre un cavalier avancé très solide », pas une évaluation restée ouverte.
+            plan:
+              vi: Trắng chơi d4 và Bc4, dựng trung tâm vững chắc quanh con mã e5 và chuẩn bị nhắm vào tốt g4 yếu. Đen chơi Nf6 hay f6, thách thức con mã e5 và cố giữ vững con tốt đã ăn được.
+              en: White plays d4 and Bc4, building a solid centre around the e5 knight and preparing to take aim at the weak g4 pawn. Black plays Nf6 or f6, challenging the e5 knight and trying to hold on to the pawn already won.
+              fr: Les Blancs jouent d4 et Bc4, construisant un centre solide autour du cavalier en e5 et se préparant à viser le pion g4 affaibli. Les Noirs jouent Cf6 ou f6, remettant en question le cavalier en e5 et essayant de conserver le pion déjà gagné.
+            basis:
+              by: chan
+              at: '2026-09-21'
+              source: >-
+                A judgement, not a measurement. No engine was consulted and no database was
+                queried.

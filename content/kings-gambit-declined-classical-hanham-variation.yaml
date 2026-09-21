@@ -1,0 +1,82 @@
+# King's Gambit Declined: Classical, Hanham Variation, taught. The catalogue's own line for
+# this id, `e4 e5 f4 Bc5 Nf3 d6 Nc3 Nd7`, ends on Black's ply; that parity fails the build's
+# `defining-line-parity` check (docs/CONTEXT.md, invariant 5), so `definingLine` stops one
+# ply earlier, at White's own 4.Nc3 — and 4...Nd7, the move that names the "Hanham"
+# variation, is modelled as the root's own reply instead. The leaf here is reached by
+# Black's own reply Ngf6, so it is a child of an opponent node and carries `replyQuality`
+# and `frequency` (docs/CONTEXT.md, Node). Every ply was replayed with chess.js; the leaf
+# carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-classical-hanham-variation
+name: "King's Gambit Declined: Classical, Hanham Variation"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Bc5, Nf3, d6, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, the same label the King's Gambit family carries as a whole. The Hanham
+      setup, developing the knight to d7 rather than f6, is a solid and flexible way for
+      Black to hold e5 without blocking the f8 bishop. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Nc3, hoàn thiện phát triển mã cánh hậu. Mục này đi sâu vào nhánh Đen phát triển mã về d7 thay vì f6, đúng ý tưởng đặt tên "Hanham" — giữ vững tốt e5 mà không chắn đường tượng f8.
+    en: White has just played 4.Nc3, completing the queenside knight's development. This entry follows the branch where Black develops the knight to d7 instead of f6, the idea behind the "Hanham" name — holding e5 without blocking the f8 bishop.
+    fr: Les Blancs viennent de jouer 4.Nc3, achevant le développement du cavalier dame. Cette entrée suit la branche où les Noirs développent le cavalier en d7 plutôt qu'en f6, l'idée derrière le nom « Hanham » — tenir e5 sans bloquer le fou f8.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, chẳng hạn 4...Nf6 phát triển mã theo cách thông thường hơn. Thế cờ khi đó rẽ sang các nhánh khác của Classical Variation, nằm ngoài phạm vi mục này.
+      en: Black plays anything else, such as the more usual 4...Nf6. The position then heads toward other branches of the Classical Variation, outside the scope of this entry.
+      fr: Les Noirs jouent autre chose, comme le plus habituel 4...Nf6. La position se dirige alors vers d'autres branches de la Variante Classique, hors du cadre de cette entrée.
+  children:
+    - ply: Nd7
+      annotation:
+        vi: Đen phát triển mã về d7 thay vì f6, giữ nguyên đường chéo cho tượng f8 và bảo vệ thêm cho tốt e5. Đây là cách chơi mang tên "Hanham", linh hoạt nhưng hơi chậm hơn cách phát triển thông thường.
+        en: Black develops the knight to d7 instead of f6, keeping the diagonal open for the f8 bishop and adding a defender to e5. This is the approach the "Hanham" name refers to — flexible, though a touch slower than the usual development.
+        fr: Les Noirs développent le cavalier en d7 plutôt qu'en f6, laissant la diagonale ouverte au fou f8 et ajoutant un défenseur à e5. C'est l'approche que désigne le nom « Hanham » — flexible, quoiqu'un peu plus lente que le développement habituel.
+      children:
+        - ply: Bc4
+          annotation:
+            vi: Trắng phát triển tượng, nhắm vào ô f7 yếu và hoàn thiện phát triển các quân nhẹ trước khi nhập thành. Con tốt f4 vẫn treo lơ lửng trước sức ép của tốt e5, nhưng chưa ai vội đổi nó.
+            en: White develops the bishop, aiming at the weak f7 square and finishing minor-piece development before castling. The f4 pawn is still hanging under pressure from the e5 pawn, but neither side is in a hurry to resolve it.
+            fr: Les Blancs développent le fou, visant la case faible f7 et achevant le développement des pièces mineures avant de roquer. Le pion f4 reste en tension sous la pression du pion e5, mais aucun camp ne se presse de régler la question.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác. Mọi cách phát triển hợp lý khác dẫn tới những thế cờ tương tự, không thay đổi đánh giá chung của nhánh này.
+              en: White plays anything else. Any other reasonable developing move leads to similar positions, not changing the general verdict on this branch.
+              fr: Les Blancs jouent autre chose. Tout autre coup de développement raisonnable mène à des positions similaires, sans changer le verdict général sur cette branche.
+          children:
+            - ply: Ngf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển nốt con mã còn lại về f6, hoàn thiện việc kiểm soát trung tâm và chuẩn bị nhập thành. Cả hai bên giờ đã phát triển gần đầy đủ các quân nhẹ.
+                en: Black develops the other knight to f6, rounding off control of the centre and preparing to castle. Both sides have now developed nearly all their minor pieces.
+                fr: Les Noirs développent l'autre cavalier en f6, complétant le contrôle du centre et se préparant à roquer. Les deux camps ont désormais développé presque toutes leurs pièces mineures.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm quân thì hai bên ngang nhau — chưa có tốt nào bị mất ở cả hai phía trong toàn bộ nhánh này. Tốt e5 của Đen giờ được bảo vệ hai lần (bởi tốt d6 và mã d7) trong khi tốt f4 của Trắng vẫn chỉ đứng một mình, nên nếu có đổi chác xảy ra thì cán cân vẫn nghiêng nhẹ về phía giữ vững cấu trúc cho Đen. Không có quân nào đang bị ăn không ở thế cờ này. Đây thực sự là một thế cờ cân bằng, ổn định cho cả hai bên chứ không phải một đánh giá còn bỏ ngỏ.
+                  en: Count the pieces and both sides are level — neither side has lost a pawn anywhere in this branch. Black's e5 pawn is now defended twice (by the d6 pawn and the knight on d7) while White's f4 pawn still stands alone, so if any trade happens the balance tilts slightly toward the side holding its structure together, which is Black's. Nothing is hanging for free in this position. This genuinely reads as a balanced, stable position for both sides rather than an evaluation left open.
+                  fr: Comptez les pièces, les deux camps sont à égalité — aucun pion n'a été perdu de part et d'autre dans toute cette branche. Le pion e5 noir est désormais défendu deux fois (par le pion d6 et le cavalier en d7) tandis que le pion f4 blanc reste isolé, si bien qu'en cas d'échange la balance penche légèrement du côté qui conserve sa structure, à savoir les Noirs. Rien n'est en prise gratuitement dans cette position. C'est véritablement une position équilibrée et stable pour les deux camps, pas une évaluation restée ouverte.
+                plan:
+                  vi: Trắng chơi O-O và d3, hoàn thiện phát triển và cố tận dụng đường chéo mở của tượng c4 lên cánh vua Đen. Đen chơi O-O và c6, hoàn thiện phát triển và giữ vững cấu trúc trung tâm.
+                  en: White plays O-O and d3, finishing development and trying to make use of the c4 bishop's open diagonal toward Black's kingside. Black plays O-O and c6, finishing development and holding the central structure together.
+                  fr: Les Blancs jouent O-O et d3, achevant leur développement et essayant d'exploiter la diagonale ouverte du fou c4 vers l'aile roi noire. Les Noirs jouent O-O et c6, achevant leur développement et consolidant la structure centrale.
+                basis:
+                  by: chan
+                  at: '2026-09-21'
+                  source: >-
+                    A judgement, not a measurement. No engine was consulted and no database
+                    was queried.

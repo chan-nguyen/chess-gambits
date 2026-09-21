@@ -1,0 +1,82 @@
+# Kádas Opening: Steinbok Gambit, taught. The learner plays White, and the defining line
+# 1.h4 f5 2.e4 fxe4 3.d3 ends on White's own 3.d3 — the learner's own ply — so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). The leaf here is reached by Black's own
+# reply Nf6, so it is a child of an opponent node and carries `replyQuality` and
+# `frequency` (docs/CONTEXT.md, Node). Every ply was replayed with chess.js; the leaf
+# carries no forced mate (checked with `searchMate`).
+id: kadas-opening-steinbok-gambit
+name: 'Kádas Opening: Steinbok Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [h4, f5, e4, fxe4, d3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      2.e4 offers the pawn for a share of the centre, but Black can simply hold on to it and
+      develop normally, leaving White down material with little to show for 1.h4 either.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.d3, mở đường cho tượng c1 và chuẩn bị ăn lại tốt e4 mà Đen vừa ăn được. Đây là cách chuộc lại một phần vật chất sau khi đã thí tốt ở nước 2.
+    en: White has just played 3.d3, opening a line for the c1 bishop and preparing to win back the e4 pawn Black just captured. This is the way to recover some of the material after offering the pawn on move two.
+    fr: Les Blancs viennent de jouer 3.d3, ouvrant une ligne pour le fou c1 et se préparant à regagner le pion e4 que les Noirs viennent de capturer. C'est la façon de récupérer une partie du matériel après avoir offert le pion au deuxième coup.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại tốt d3 ngay. Các nước khác giữ nguyên con tốt e4 thêm một nhịp, dẫn tới các thế cờ khác không thuộc phạm vi mục này.
+      en: Black does not recapture on d3 at once. Anything else holds on to the e4 pawn for another move, heading toward other positions outside the scope of this entry.
+      fr: Les Noirs ne reprennent pas aussitôt en d3. Tout le reste conserve le pion e4 un coup de plus, menant vers d'autres positions hors du cadre de cette entrée.
+  children:
+    - ply: exd3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tiếp bằng tốt e4, giữ lại con tốt thêm thay vì lùi nó. Trắng giờ phải ăn lại bằng tượng, quân duy nhất còn ăn được ở đó.
+        en: Black captures again with the e4 pawn, keeping the extra pawn rather than retreating it. White now has to recapture with the bishop, the only piece left that can take there.
+        fr: Les Noirs capturent à nouveau avec le pion e4, conservant le pion supplémentaire plutôt que de le reculer. Les Blancs doivent désormais reprendre avec le fou, la seule pièce restant capable d'y capturer.
+      children:
+        - ply: Bxd3
+          annotation:
+            vi: Trắng ăn lại bằng tượng, phát triển được một quân nhưng con tốt đã mất từ nước 2 vẫn chưa hề được đòi lại — chỉ mới đổi một tốt lấy một tốt trong loạt fxe4-exd3-Bxd3, còn con tốt gốc thì mất đứt.
+            en: White recaptures with the bishop, developing a piece, but the pawn given up on move two has still not been won back at all — the fxe4-exd3-Bxd3 sequence is only a one-for-one pawn trade, and the original pawn is simply gone.
+            fr: Les Blancs reprennent avec le fou, développant une pièce, mais le pion cédé au deuxième coup n'a toujours pas été regagné du tout — la séquence fxe4-exd3-Bxd3 n'est qu'un échange de pions un contre un, et le pion d'origine a purement disparu.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn lại bằng tượng. Đây là quân duy nhất còn ăn được ở d3, nên mọi lựa chọn khác đều để mất con tốt vĩnh viễn mà không đổi lại được gì.
+              en: White does not recapture with the bishop. This is the only piece left that can take on d3, so any other choice simply loses the pawn permanently with nothing in return.
+              fr: Les Blancs ne reprennent pas avec le fou. C'est la seule pièce restant capable de capturer en d3, donc tout autre choix perd simplement le pion de façon permanente sans rien en retour.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã, hoàn thiện phát triển và không vội làm gì thêm với con tốt đã có sẵn. Đây là cách chơi đơn giản nhất để giữ vững lợi thế vật chất.
+                en: Black develops the knight, continuing development and in no hurry to do anything further with the pawn already banked. This is the simplest way to hold on to the material edge.
+                fr: Les Noirs développent le cavalier, poursuivant leur développement sans se presser de faire quoi que ce soit de plus avec le pion déjà engrangé. C'est la façon la plus simple de conserver l'avantage matériel.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm quân thì Đen hơn đúng một tốt — con tốt Trắng thí ở nước 2 chưa hề được đòi lại, chỉ có loạt đổi tốt e và d diễn ra ngang giá. Không có quân nào đang bị ăn không ở thế cờ này. Trắng đã mất hai nước đầu tiên cho 1.h4 và 2.e4 mà chưa thu lại được gì cụ thể, còn Đen đã phát triển và giữ vững vật chất. Đây thực sự là một thế cờ Đen hơn vật chất rõ ràng chứ không phải một đánh giá còn bỏ ngỏ.
+                  en: Count the pieces and Black is up exactly one pawn — the pawn White offered on move two has never been won back, and only the e- and d-pawn trade happened on an even basis. Nothing is hanging for free in this position. White has spent the first two moves on 1.h4 and 2.e4 without anything concrete to show for it, while Black has developed and is holding the material. This genuinely reads as a position where Black is clearly ahead in material rather than an evaluation left open.
+                  fr: Comptez les pièces, les Noirs ont exactement un pion de plus — le pion offert par les Blancs au deuxième coup n'a jamais été regagné, seul l'échange des pions e et d s'est fait à égalité. Rien n'est en prise gratuitement dans cette position. Les Blancs ont consacré leurs deux premiers coups à 1.h4 et 2.e4 sans rien de concret à en montrer, tandis que les Noirs se sont développés et conservent le matériel. C'est véritablement une position où les Noirs ont un net avantage matériel, pas une évaluation restée ouverte.
+                plan:
+                  vi: Trắng chơi Nf3 và O-O, cố hoàn thiện phát triển nhanh nhất có thể và tìm hoạt động quân bù cho con tốt đã mất. Đen chơi d5 và e6 hay Bc5, dựng trung tâm vững chắc và giữ vững lợi thế vật chất.
+                  en: White plays Nf3 and O-O, trying to finish development as quickly as possible and find piece activity to compensate for the lost pawn. Black plays d5 and e6 or Bc5, building a solid centre and holding on to the material edge.
+                  fr: Les Blancs jouent Nf3 et O-O, essayant d'achever leur développement au plus vite et de trouver de l'activité pour compenser le pion perdu. Les Noirs jouent d5 et e6 ou Bc5, construisant un centre solide et conservant leur avantage matériel.
+                basis:
+                  by: chan
+                  at: '2026-09-21'
+                  source: >-
+                    A judgement, not a measurement. No engine was consulted and no database
+                    was queried.

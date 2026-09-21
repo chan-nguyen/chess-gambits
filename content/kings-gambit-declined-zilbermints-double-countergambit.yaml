@@ -1,0 +1,97 @@
+# King's Gambit Declined: Zilbermints Double Countergambit, taught. The catalogue's own
+# line for this id, `e4 e5 f4 g5`, ends on Black's ply; that parity fails the build's
+# `defining-line-parity` check (docs/CONTEXT.md, invariant 5), so `definingLine` stops one
+# ply earlier, at White's own 2.f4 — the same root `content/kings-gambit.yaml` uses — and
+# 2...g5 is modelled as the root's own reply instead. Every ply was replayed with chess.js;
+# the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-zilbermints-double-countergambit
+name: "King's Gambit Declined: Zilbermints Double Countergambit"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. 2...g5 offers a second pawn to keep the f4 pawn permanently pinned down,
+      but the g-pawn push weakens Black's own kingside more than it restrains White, and the
+      pawn White wins back settles the question. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4. Mục này đi sâu vào nhánh Đen đẩy luôn tốt g, thí thêm một tốt nữa để giữ chặt tốt f4 tại chỗ và không cho Trắng đòi lại nó dễ dàng.
+    en: White has just offered the f4 pawn. This entry follows the branch where Black pushes the g-pawn as well, offering a second pawn to pin the f4 pawn down and stop White from reclaiming it easily.
+    fr: Les Blancs viennent d'offrir le pion f4. Cette entrée suit la branche où les Noirs poussent aussi le pion g, offrant un second pion pour clouer le pion f4 sur place et empêcher les Blancs de le regagner facilement.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, không đẩy tốt g. Thế cờ khi đó rẽ sang các nhánh khác của họ Gambit Vua, nằm ngoài phạm vi mục này.
+      en: Black plays anything else, not pushing the g-pawn. The position then heads toward other branches of the King's Gambit family, outside the scope of this entry.
+      fr: Les Noirs jouent autre chose, sans pousser le pion g. La position se dirige alors vers d'autres branches du Gambit du Roi, hors du cadre de cette entrée.
+  children:
+    - ply: g5
+      annotation:
+        vi: Đen đẩy tốt g lên, thí thêm một tốt để tốt f4 của Trắng không còn được tốt g2 hay g3 nào của Trắng hỗ trợ đòi lại. Đổi lại, cánh vua Đen mất đi lớp phòng thủ tự nhiên của nó.
+        en: Black pushes the g-pawn, offering a second pawn so that White's f4 pawn cannot be reclaimed with support from a g-pawn advance. In exchange, Black's own kingside loses its natural pawn cover.
+        fr: Les Noirs poussent le pion g, offrant un second pion afin que le pion f4 blanc ne puisse être regagné avec l'appui d'une avance du pion g. En échange, l'aile roi noire perd sa couverture de pions naturelle.
+      children:
+        - ply: fxg5
+          annotation:
+            vi: Trắng ăn tốt g5 luôn, giành thêm vật chất. Trắng giờ hơn hai tốt tạm thời, và tốt g5 mới ăn được lại đang đe doạ tiến sâu hơn vào cánh vua Đen.
+            en: White simply takes the g5 pawn, picking up more material. White is now temporarily two pawns up, and the newly won g5 pawn is a further threat pushing deeper into Black's kingside.
+            fr: Les Blancs prennent simplement le pion g5, gagnant davantage de matériel. Les Blancs sont désormais temporairement deux pions devant, et le pion g5 fraîchement gagné menace encore de s'enfoncer dans l'aile roi noire.
+          dismissRest:
+            reason:
+              vi: Đen không tấn công tốt g5 ngay. Mọi nước khác để Trắng yên tâm giữ cả hai tốt thêm một nhịp nữa.
+              en: Black does not attack g5 right away. Anything else lets White keep both extra pawns for another move.
+              fr: Les Noirs n'attaquent pas g5 tout de suite. Tout le reste laisse les Blancs conserver les deux pions supplémentaires un coup de plus.
+          children:
+            - ply: h6
+              annotation:
+                vi: Đen đẩy tốt h, tấn công con tốt g5 để cố đòi lại ít nhất một trong hai con tốt đã mất.
+                en: Black pushes the h-pawn, attacking the g5 pawn to try to win back at least one of the two pawns lost.
+                fr: Les Noirs poussent le pion h, attaquant le pion g5 pour tenter de regagner au moins un des deux pions perdus.
+              children:
+                - ply: gxh6
+                  annotation:
+                    vi: Trắng ăn tiếp bằng tốt g, đẩy nó sâu vào tận hàng ngang thứ sáu. Con tốt này giờ đứng khá xa, không được quân nào bảo vệ, và Đen chuẩn bị ăn lại nó ngay.
+                    en: White captures again with the pawn, pushing it deep onto the sixth rank. That pawn is now quite advanced and undefended, and Black is about to recapture it at once.
+                    fr: Les Blancs capturent à nouveau avec le pion, le poussant loin sur la sixième rangée. Ce pion est désormais assez avancé et non défendu, et les Noirs s'apprêtent à le reprendre aussitôt.
+                  dismissRest:
+                    reason:
+                      vi: Đen không ăn lại tốt h6 bằng mã. Các quân khác cũng ăn lại được (xe h8 hay tượng c8), nhưng đều bỏ lỡ ý tưởng giữ nguyên cột h mở cho xe mà nước đi được chọn bên dưới mang lại.
+                      en: Black does not recapture on h6 with the knight. Other pieces can also take there (the rook on h8 or the bishop on c8), but each gives up the point of the move modelled below — keeping the h-file open behind the rook.
+                      fr: Les Noirs ne reprennent pas en h6 avec le cavalier. D'autres pièces peuvent aussi y capturer (la tour h8 ou le fou c8), mais chacune abandonne l'idée du coup modélisé ci-dessous — garder la colonne h ouverte derrière la tour.
+                  children:
+                    - ply: Nxh6
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: 'Đen ăn lại tốt h6 bằng mã thay vì bằng xe, giữ xe h8 đứng yên trên cột mở và phát triển thêm một quân. Vật chất giờ trở lại — Trắng hơn đúng một tốt.'
+                        en: 'Black recaptures the h6 pawn with the knight rather than the rook, keeping the rook on h8 on the open file and developing a piece at the same time. Material is back to level except for one pawn — White is up exactly one.'
+                        fr: "Les Noirs reprennent le pion h6 avec le cavalier plutôt qu'avec la tour, gardant la tour h8 sur la colonne ouverte tout en développant une pièce. Le matériel revient à l'équilibre à un pion près — les Blancs en ont exactement un de plus."
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Đếm quân thì Trắng hơn đúng một tốt — trong loạt đổi chác g5-h6, Trắng mất tốt f và Đen mất tốt g lẫn tốt h, một đổi hai. Không quân nào đang bị ăn không ở thế cờ này. Cấu trúc tốt cánh vua của Đen giờ vỡ hẳn — không còn tốt f, g hay h nguyên vẹn để che vua — dù vua vẫn chưa nhập thành nên chưa bị khai thác ngay. Đây thực sự là một thế cờ Trắng hơn vật chất và có cấu trúc tốt vững hơn hẳn.
+                          en: Count the pieces and White is up exactly one pawn — in the g5-h6 exchange sequence, White gave up the f-pawn while Black gave up both the g- and h-pawns, one for two. Nothing is hanging for free in this position. Black's kingside pawn structure is now broken outright — no f-, g- or h-pawn is left intact to shield the king — though the king has not castled yet so it is not being exploited this instant. This genuinely reads as a position where White is ahead in material and has the far sounder pawn structure.
+                          fr: Comptez les pièces, les Blancs ont exactement un pion de plus — dans la série d'échanges g5-h6, les Blancs ont cédé le pion f pendant que les Noirs cédaient à la fois les pions g et h, un contre deux. Rien n'est en prise gratuitement dans cette position. La structure de pions de l'aile roi noire est désormais totalement brisée — plus aucun pion f, g ou h intact pour protéger le roi — même si celui-ci n'a pas encore roqué et n'est donc pas exploité dans l'instant. C'est véritablement une position où les Blancs ont l'avantage matériel et une structure de pions bien plus saine.
+                        plan:
+                          vi: Trắng chơi Nf3 và Bc4, hoàn thiện phát triển và nhắm vào cấu trúc tốt đã vỡ của Đen ở cánh vua. Đen chơi Bg7 hay Nf6, cố phát triển nhanh và tìm hoạt động quân bù cho tốt đã mất cùng cấu trúc yếu.
+                          en: White plays Nf3 and Bc4, finishing development and aiming at Black's broken kingside pawn structure. Black plays Bg7 or Nf6, trying to develop quickly and find piece activity to compensate for the lost pawn and the weak structure.
+                          fr: Les Blancs jouent Nf3 et Bc4, achevant leur développement et visant la structure de pions brisée des Noirs à l'aile roi. Les Noirs jouent Bg7 ou Cf6, essayant de se développer rapidement et de trouver de l'activité pour compenser le pion perdu et la structure affaiblie.
+                        basis:
+                          by: chan
+                          at: '2026-09-21'
+                          source: >-
+                            A judgement, not a measurement. No engine was consulted and no
+                            database was queried.

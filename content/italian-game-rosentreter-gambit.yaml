@@ -1,0 +1,67 @@
+# Italian Game: Rosentreter Gambit, taught. The learner plays White, and the defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.d4 ends on White's own 4.d4 — the learner's own ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). The leaf here is reached by
+# White's own reply O-O, a learner move, so it carries no `replyQuality`. Every ply was
+# replayed with chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: italian-game-rosentreter-gambit
+name: 'Italian Game: Rosentreter Gambit'
+eco: C50
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, d4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      4.d4 offers the same central pawn as the Scotch Gambit by a different move order, for
+      the same fast development and open lines for both bishops; this has never been shown
+      to be bad for White at club level. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.d4, thí một tốt trung tâm để mở đường cho cả hai tượng và giành nhịp phát triển. Đây chính là ý tưởng của Rosentreter Gambit — cùng con tốt d4 mà Scotch Gambit dùng, chỉ khác thứ tự nước đi.
+    en: White has just played 4.d4, offering a central pawn to open lines for both bishops and gain a tempo. This is the whole idea of the Rosentreter Gambit — the same d4 pawn the Scotch Gambit offers, arrived at by a different move order.
+    fr: Les Blancs viennent de jouer 4.d4, offrant un pion central pour ouvrir des lignes aux deux fous et gagner un temps. C'est toute l'idée du Gambit Rosentreter — le même pion d4 qu'offre le Gambit Écossais, mais par un ordre de coups différent.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt d4. Các nước khác như 4...exd4 dẫn tới cùng nhánh này (xem bên dưới), còn 4...Bb6 hay 4...d6 để nguyên căng thẳng và dẫn tới các thế cờ khác nằm ngoài phạm vi mục này.
+      en: Black does not take the d4 pawn. 4...exd4 leads to this same branch (see below), while 4...Bb6 or 4...d6 leave the tension on the board and head toward other positions outside the scope of this entry.
+      fr: Les Noirs ne prennent pas le pion d4. 4...exd4 mène à cette même branche (voir ci-dessous), tandis que 4...Bb6 ou 4...d6 laissent la tension sur l'échiquier et mènent vers d'autres positions hors du cadre de cette entrée.
+  children:
+    - ply: exd4
+      annotation:
+        vi: Đen ăn tốt d4, cách xử lý tự nhiên nhất trước lời mời của Trắng. Con tượng c5 giờ đứng hơi lộ, không được tốt nào bảo vệ trực tiếp trên đường chéo của nó.
+        en: Black takes the d4 pawn, the most natural way to handle White's offer. The bishop on c5 is now standing a little exposed, with no pawn defending it directly on its own diagonal.
+        fr: Les Noirs prennent le pion d4, la façon la plus naturelle de répondre à l'offre des Blancs. Le fou en c5 se retrouve désormais un peu exposé, sans pion pour le défendre directement sur sa propre diagonale.
+      children:
+        - ply: O-O
+          annotation:
+            vi: Trắng nhập thành ngay thay vì đòi lại tốt d4, ưu tiên an toàn cho vua và giữ nguyên áp lực lên f7 cùng đường chéo mở của tượng c4. Đây là cách chơi chuẩn mực nhất, đúng tinh thần bù đắp bằng hoạt động quân thay vì vật chất.
+            en: White simply castles instead of trying to win the d4 pawn back, prioritising king safety while keeping up the pressure on f7 and the open diagonal for the c4 bishop. This is the standard approach, squarely in the spirit of compensation through piece activity rather than material.
+            fr: Les Blancs se contentent de roquer plutôt que de chercher à regagner le pion d4, priorisant la sécurité du roi tout en maintenant la pression sur f7 et la diagonale ouverte du fou c4. C'est l'approche standard, pleinement dans l'esprit d'une compensation par l'activité des pièces plutôt que par le matériel.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Đen hơn đúng một tốt — tốt d4 đã mất và chưa được đòi lại. Đổi lại, Trắng đã nhập thành an toàn trong khi Đen còn chưa phát triển xong và vua vẫn ở giữa, và tượng c4 lẫn mã f3 đều nhắm thẳng vào cánh vua Đen qua các đường chéo và cột mở. Không có quân nào đang bị ăn không ở thế cờ này. Đây thực sự là "kém một tốt, đổi lấy nhịp phát triển và an toàn vua" chứ không phải một đánh giá còn bỏ ngỏ.
+              en: Count the pieces and Black is up exactly one pawn — the d4 pawn is gone and has not been won back. In exchange, White has castled to safety while Black has not finished developing and the king is still in the centre, and both the c4 bishop and the f3 knight are aimed straight at Black's kingside along open diagonals and files. Nothing is hanging for free in this position. This genuinely reads as "a pawn down for a lead in development and king safety" rather than an evaluation left open.
+              fr: Comptez les pièces, les Noirs ont exactement un pion de plus — le pion d4 a disparu et n'a pas été regagné. En échange, les Blancs ont roqué en sécurité pendant que les Noirs n'ont pas fini de se développer et que leur roi est encore au centre, et le fou c4 comme le cavalier f3 visent tous deux directement l'aile roi noire par des diagonales et colonnes ouvertes. Rien n'est en prise gratuitement dans cette position. C'est véritablement « un pion de moins contre une avance de développement et la sécurité du roi », pas une évaluation restée ouverte.
+            plan:
+              vi: Trắng chơi c3 và Qb3 hay Ng5, dồn quân tấn công thẳng vào f7 và cánh vua Đen để tận dụng việc vua chưa nhập thành. Đen chơi d6 và Nf6, hoàn thiện phát triển nhanh nhất có thể và tìm cách nhập thành trước khi bị tấn công.
+              en: White plays c3 and Qb3 or Ng5, building an attack straight at f7 and Black's kingside to exploit the uncastled king. Black plays d6 and Nf6, finishing development as quickly as possible and looking to castle before the attack lands.
+              fr: Les Blancs jouent c3 et Qb3 ou Ng5, construisant une attaque droit sur f7 et l'aile roi noire pour exploiter le roi non roqué. Les Noirs jouent d6 et Cf6, achevant leur développement au plus vite et cherchant à roquer avant que l'attaque n'aboutisse.
+            basis:
+              by: chan
+              at: '2026-09-21'
+              source: >-
+                A judgement, not a measurement. No engine was consulted and no database was
+                queried.

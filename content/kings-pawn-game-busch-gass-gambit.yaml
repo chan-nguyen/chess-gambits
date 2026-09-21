@@ -1,0 +1,101 @@
+# King's Pawn Game: Busch-Gass Gambit, taught. The learner plays Black, and the defining
+# line 1.e4 e5 2.Nf3 Bc5 ends on Black's own 2...Bc5 — the learner's own ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). The leaf here is reached by White's
+# own reply Be2, so it is a child of an opponent node and carries `replyQuality` and
+# `frequency` (docs/CONTEXT.md, Node). Every ply was replayed with chess.js; the leaf
+# carries no forced mate (checked with `searchMate`).
+id: kings-pawn-game-busch-gass-gambit
+name: "King's Pawn Game: Busch-Gass Gambit"
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Bc5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      2...Bc5 invites 3.Nxe5, and while Black gets one tactical try to win the pawn back with
+      a queen fork, it does not hold up: White ends the sequence with an extra pawn and no
+      real weaknesses. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...Bc5, phát triển tượng thay vì bảo vệ tốt e5 bằng ...Nc6 như thông thường. Con tốt e5 giờ chỉ được bảo vệ bởi chính con tượng đó chứ không phải một quân canh trực tiếp, và Trắng có thể ăn nó ngay.
+    en: Black has just played 2...Bc5, developing the bishop instead of defending e5 with the usual ...Nc6. The e5 pawn is now only shielded by that same bishop rather than a piece guarding it directly, and White can simply take it.
+    fr: Les Noirs viennent de jouer 2...Bc5, développant le fou au lieu de défendre e5 par le traditionnel ...Cc6. Le pion e5 n'est désormais couvert que par ce même fou plutôt que par une pièce le gardant directement, et les Blancs peuvent simplement le prendre.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5. Các nước khác như 3.Bc4 hay 3.Nc3 để nguyên tốt e5 lại, dẫn tới các thế cờ Italian bình thường hơn nằm ngoài phạm vi mục này.
+      en: White does not take on e5. Anything else, such as 3.Bc4 or 3.Nc3, leaves the e5 pawn alone, heading toward more ordinary Italian-style positions outside the scope of this entry.
+      fr: Les Blancs ne prennent pas en e5. Tout le reste, comme 3.Bc4 ou 3.Nc3, laisse le pion e5 tranquille, menant vers des positions plus ordinaires de type italien, hors du cadre de cette entrée.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt e5 luôn, vì con tượng c5 không thực sự bảo vệ được ô đó. Đây là cách xử lý đơn giản nhất, và đúng như cái tên gợi ý, con tốt này thường mất luôn mà không đổi lại được gì cụ thể.
+        en: White simply takes the e5 pawn, since the bishop on c5 does not really defend that square. This is the simplest way to handle the offer, and as the name suggests, the pawn is usually simply lost for nothing concrete in return.
+        fr: Les Blancs prennent simplement le pion e5, le fou en c5 ne défendant pas réellement cette case. C'est la façon la plus simple de traiter l'offre, et comme le nom le suggère, le pion est généralement perdu sans rien de concret en retour.
+      children:
+        - ply: Qe7
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác không giải quyết được cả hai vấn đề cùng lúc. Mọi lựa chọn khác để mất tốt e4 hoặc còn để hở con mã, tệ hơn hẳn nước lùi về f3.
+              en: White plays anything else that does not solve both problems at once. Every other choice loses the e4 pawn or still leaves the knight exposed, strictly worse than retreating to f3.
+              fr: Les Blancs jouent autre chose qui ne résout pas les deux problèmes à la fois. Tout autre choix perd le pion e4 ou laisse toujours le cavalier exposé, nettement pire que le repli en f3.
+          annotation:
+            vi: Đen thử nước tấn công chiến thuật duy nhất còn lại — đe doạ chĩa đôi vào con mã e5 và tốt e4 cùng lúc, buộc Trắng phải xử lý cẩn thận.
+            en: Black tries the one remaining tactical try — threatening a fork on both the e5 knight and the e4 pawn at once, forcing White to handle it carefully.
+            fr: Les Noirs tentent le seul essai tactique restant — menaçant une fourchette sur le cavalier e5 et le pion e4 à la fois, forçant les Blancs à réagir avec prudence.
+          children:
+            - ply: Nf3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng lùi mã về f3, quân duy nhất giải quyết cả hai vấn đề cùng lúc — vừa rời khỏi ô bị chĩa đôi vừa bảo vệ luôn tốt e4. Đây là nước phòng thủ chính xác nhất.
+                en: White retreats the knight to f3, the one square that solves both problems at once — leaving the forked square and defending the e4 pawn in the same move. This is the most precise defensive move.
+                fr: Les Blancs reculent le cavalier en f3, la seule case résolvant les deux problèmes à la fois — quittant la case fourchée tout en défendant le pion e4 du même coup. C'est le coup défensif le plus précis.
+              children:
+                - ply: Qxe4+
+                  annotation:
+                    vi: Đen vẫn ăn tốt e4 dù có chiếu, giành lại một phần vật chất nhưng đưa hậu vào giữa bàn cờ với thế chủ động đã mất về tay Trắng.
+                    en: Black still takes the e4 pawn despite giving check, winning back some material but placing the queen in the middle of the board with the initiative now in White's hands.
+                    fr: Les Noirs prennent tout de même le pion e4 malgré l'échec, regagnant du matériel mais plaçant la dame au milieu de l'échiquier, l'initiative passant désormais aux Blancs.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi một nước khác thay vì tượng, chỉ cần giải quyết cơn chiếu bằng cách nào đó. Dù chặn chiếu bằng quân nào, hậu Đen vẫn đứng giữa bàn cờ không có ô an toàn cố định, nên ý tưởng chính của đánh giá dưới đây không đổi.
+                      en: White plays anything else instead of the bishop, needing only to answer the check somehow. However White blocks it, Black's queen still sits in the middle of the board with no settled safe square, so the main idea of the evaluation below does not change.
+                      fr: Les Blancs jouent autre chose que le fou, devant seulement répondre d'une manière ou d'une autre à l'échec. Quelle que soit la pièce qui bloque, la dame noire reste au milieu de l'échiquier sans case sûre stable, donc l'idée principale de l'évaluation ci-dessous ne change pas.
+                  children:
+                    - ply: Be2
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Trắng chặn chiếu bằng tượng, phát triển một quân mới trong lúc bắt buộc phải phản ứng với chiếu. Hậu Đen giờ đứng giữa bàn cờ, nơi mọi nước phát triển tiếp theo của Trắng đều có thể tấn công nó.
+                        en: White blocks the check with the bishop, developing a new piece while forced to respond to the check anyway. Black's queen now sits in the middle of the board, where every further White developing move can attack it.
+                        fr: Les Blancs bloquent l'échec avec le fou, développant une nouvelle pièce tout en devant de toute façon répondre à l'échec. La dame noire se retrouve désormais au milieu de l'échiquier, où chaque nouveau coup de développement blanc peut l'attaquer.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Đếm quân thì hai bên ngang nhau tạm thời — tốt e5 và tốt e4 đã đổi qua đổi lại, không bên nào còn hơn vật chất ngay lúc này. Nhưng hậu Đen đang đứng giữa bàn cờ không có ô an toàn cố định, còn Trắng vừa phát triển thêm một quân đúng lúc bắt buộc phải phản ứng, không mất nhịp nào. Đây thực sự là "vật chất cân bằng nhưng hậu Đen sẽ sớm bị đuổi tiếp và mất thêm thời gian" chứ không phải một đánh giá còn bỏ ngỏ.
+                          en: Count the pieces and both sides are temporarily level — the e5 and e4 pawns have traded off, and neither side is up material right now. But Black's queen sits in the middle of the board with no settled safe square, while White has developed a further piece exactly while forced to react, at no cost in tempo. This genuinely reads as "material level, but Black's queen will soon be chased again and lose more time" rather than an evaluation left open.
+                          fr: Comptez les pièces, les deux camps sont temporairement à égalité — les pions e5 et e4 se sont échangés, aucun camp n'a d'avantage matériel pour l'instant. Mais la dame noire se retrouve au milieu de l'échiquier sans case sûre stable, tandis que les Blancs ont développé une pièce de plus exactement au moment où ils devaient réagir, sans perte de temps. C'est véritablement « matériel équilibré, mais la dame noire sera bientôt chassée à nouveau et perdra encore du temps », pas une évaluation restée ouverte.
+                        plan:
+                          vi: Trắng chơi Nc3 và d4, phát triển thêm quân và tiếp tục đuổi hậu Đen để giành nhịp. Đen chơi Qe7 hay Qg6, tìm ô an toàn hơn cho hậu và cố hoàn thiện phát triển sau một mở đầu tốn nhiều thời gian.
+                          en: White plays Nc3 and d4, developing further and continuing to chase Black's queen for tempo. Black plays Qe7 or Qg6, looking for a safer square for the queen and trying to catch up on development after a costly opening.
+                          fr: Les Blancs jouent Nc3 et d4, se développant davantage et continuant à chasser la dame noire pour gagner du temps. Les Noirs jouent Qe7 ou Qg6, cherchant une case plus sûre pour la dame et essayant de rattraper leur retard de développement après une ouverture coûteuse.
+                        basis:
+                          by: chan
+                          at: '2026-09-21'
+                          source: >-
+                            A judgement, not a measurement. No engine was consulted and no
+                            database was queried.

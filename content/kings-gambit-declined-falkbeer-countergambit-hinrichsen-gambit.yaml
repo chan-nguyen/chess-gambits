@@ -1,0 +1,87 @@
+# Falkbeer Countergambit, Hinrichsen Gambit, taught. The catalogue's own line for this id,
+# `e4 e5 f4 d5 d4`, ends on White's ply; that parity fails the build's
+# `defining-line-parity` check (docs/CONTEXT.md, invariant 5), so `definingLine` stops one
+# ply earlier, at Black's own 2...d5 — the same root
+# `kings-gambit-declined-falkbeer-countergambit.yaml` uses — and 3.d4 is modelled as the
+# root's own reply instead, the same way `kings-gambit-accepted.yaml` treats its own root.
+# Every ply was replayed with chess.js; the leaf carries no forced mate (checked with
+# `searchMate`).
+id: kings-gambit-declined-falkbeer-countergambit-hinrichsen-gambit
+name: "King's Gambit Declined: Falkbeer Countergambit, Hinrichsen Gambit"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Instead of taking on d5, White pushes a second central pawn to d4,
+      offering it too rather than settling the tension. Play tends to simplify quickly and
+      roughly evenly. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4 và Đen vừa đáp lại bằng 2...d5. Mục này đi sâu vào nhánh Trắng không ăn tốt d5 mà đẩy tiếp tốt trung tâm còn lại lên d4.
+    en: White has just offered the f4 pawn and Black has just answered with 2...d5. This entry follows the branch where White does not take on d5 but instead pushes the other central pawn up to d4.
+    fr: Les Blancs viennent d'offrir le pion f4 et les Noirs viennent de répondre par 2...d5. Cette entrée suit la branche où les Blancs ne prennent pas en d5 mais poussent plutôt l'autre pion central en d4.
+  dismissRest:
+    reason:
+      vi: Trắng không đẩy tốt d4. Các nước khác, như 3.exd5 hay 3.Nf3, dẫn tới các nhánh Falkbeer khác nằm ngoài phạm vi mục này.
+      en: White does not push the d4 pawn. Anything else, such as 3.exd5 or 3.Nf3, heads toward other Falkbeer branches outside the scope of this entry.
+      fr: Les Blancs ne poussent pas le pion d4. Tout le reste, comme 3.exd5 ou 3.Nf3, mène vers d'autres branches du Falkbeer, hors du cadre de cette entrée.
+  children:
+    - ply: d4
+      annotation:
+        vi: Trắng đẩy tốt d lên, thí thêm một tốt trung tâm nữa thay vì giải quyết căng thẳng ở d5. Con tốt e5 của Đen giờ bị tấn công.
+        en: White pushes the d-pawn, offering yet another central pawn instead of settling the tension on d5. Black's e5 pawn is now under attack.
+        fr: Les Blancs poussent le pion d, offrant un pion central de plus au lieu de régler la tension en d5. Le pion e5 noir est désormais attaqué.
+      children:
+        - ply: exd4
+          annotation:
+            vi: Đen ăn tốt d4, giành thêm vật chất. Đây là cách xử lý đơn giản và tự nhiên nhất trước lời mời của Trắng.
+            en: Black takes the d4 pawn, picking up more material. This is the simplest and most natural way to handle White's offer.
+            fr: Les Noirs prennent le pion d4, gagnant davantage de matériel. C'est la façon la plus simple et la plus naturelle de répondre à l'offre des Blancs.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn lại tốt d4 ngay. Mọi nước khác để tốt d4 lại cho Đen giữ thêm một nhịp, khiến Đen hơn hẳn một tốt.
+              en: White does not recapture on d4 at once. Anything else leaves the d4 pawn for Black to keep a little longer, leaving Black clearly a pawn up.
+              fr: Les Blancs ne reprennent pas aussitôt en d4. Tout le reste laisse le pion d4 aux Noirs un coup de plus, laissant les Noirs nettement en avance d'un pion.
+          children:
+            - ply: Qxd4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại bằng hậu, quân duy nhất còn có thể ăn ở d4 và cũng là quân đòi lại đúng con tốt Trắng đã thí. Vật chất giờ trở lại cân bằng.
+                en: White recaptures with the queen, the only piece left that can take on d4 and also the one that wins back exactly the pawn White offered. Material is level again.
+                fr: Les Blancs reprennent avec la dame, la seule pièce restant capable de capturer en d4 et aussi celle qui regagne exactement le pion offert par les Blancs. Le matériel est de nouveau équilibré.
+              children:
+                - ply: Nc6
+                  annotation:
+                    vi: Đen phát triển mã, tấn công con hậu Trắng đang đứng ở d4 và giành nhịp phát triển. Hậu Trắng phải di chuyển tiếp ở nước sau.
+                    en: Black develops the knight, attacking White's queen standing on d4 and gaining a tempo. White's queen has to move again next.
+                    fr: Les Noirs développent le cavalier, attaquant la dame blanche postée en d4 et gagnant un temps. La dame blanche devra encore bouger au coup suivant.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì hai bên ngang nhau — mỗi bên vừa mất đúng một tốt trung tâm trong loạt đổi chác vừa rồi, và không quân nào đang bị ăn không ở thế cờ này. Hậu Trắng ra sớm và giờ bị tấn công, sắp phải di chuyển lần thứ hai, trong khi Đen mới phát triển đúng một quân với đầy đủ nhịp. Đây thực sự là một thế cờ cân bằng nhưng Đen đang có sáng kiến nhỏ, chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and both sides are level — each has just lost exactly one central pawn in the trade sequence just played, and nothing is hanging for free in this position. White's queen came out early and is now under attack, about to move for a second time, while Black has developed only one piece with full tempo. This genuinely reads as a balanced position with Black holding a small initiative, rather than an evaluation left open.
+                      fr: Comptez les pièces, les deux camps sont à égalité — chacun vient de perdre exactement un pion central dans la série d'échanges qui vient de se jouer, et rien n'est en prise gratuitement dans cette position. La dame blanche est sortie tôt et se retrouve attaquée, sur le point de bouger une seconde fois, tandis que les Noirs n'ont développé qu'une seule pièce avec plein temps. C'est véritablement une position équilibrée où les Noirs détiennent une petite initiative, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi Qd1 hay Qe3, tìm ô an toàn cho hậu và cố bắt kịp tốc độ phát triển. Đen chơi Nf6 và Bc5, hoàn thiện phát triển và tận dụng nhịp đã có để chuẩn bị nhập thành trước.
+                      en: White plays Qd1 or Qe3, looking for a safe square for the queen and trying to catch up on development. Black plays Nf6 and Bc5, finishing development and using the tempo already gained to prepare castling first.
+                      fr: Les Blancs jouent Qd1 ou Qe3, cherchant une case sûre pour la dame et essayant de rattraper leur retard de développement. Les Noirs jouent Cf6 et Bc5, achevant leur développement et utilisant le temps déjà gagné pour se préparer à roquer en premier.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.
