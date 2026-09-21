@@ -23,22 +23,27 @@ const includes = classification.rules.filter((rule) => rule.include === true)
 
 /**
  * The rules that still say `side:` outright rather than naming the ply and letting the
- * build read the side off a board. All of them predate #36, and this is the ratchet: an
- * eighty-second cannot be added without this number changing in a diff somebody reviewed.
+ * build read the side off a board. Almost all of them predate #36, and this is the
+ * ratchet: an eighty-third cannot be added without this number changing in a diff somebody
+ * reviewed.
  *
  * It was 84 until #56 split the broad heads it had to: `Bird Opening`, `Van Geet Opening`,
  * `Vienna Game`, `Zukertort Opening` and the rest keep their asserted `side` for the rows
  * that are genuinely White's, and thirty-one narrower rules now prove the rows that are
  * not. Three heads went the whole way and were converted outright — the Lemberger
  * Countergambit, the Four Knights Krause Gambit and the Grob Romford Countergambit — which
- * is where the three come from.
+ * is where the three come from. #134 added one more, deliberately: `Philidor Defense:
+ * Lion Variation, Forcing Line` names a real sacrifice (7.Bxf7+) whose own ply comes out
+ * level by `proveOffer` — the board only reads a deficit once the knight fork on move 8 is
+ * played out — so naming a `sacrifice` ply for it would misdescribe which move gives the
+ * material away, and an honest assertion beats a dishonest proof.
  *
  * The count is not zero and pretending otherwise would be the dishonest version of this
  * test. What is left asserts a side over rows whose own lines give nothing away, which is
  * not something a ply can be named for; `published-sides.test.ts` lists the six entries
  * that reach the browser that way, one sentence of chess each.
  */
-const ASSERTED_SIDES = 81
+const ASSERTED_SIDES = 82
 
 describe('how the catalogue establishes which side a gambit belongs to', () => {
   it('proves the side of every rule reviewed on the board, and asserts none of them', () => {
