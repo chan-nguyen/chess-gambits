@@ -94,12 +94,12 @@ describe('the board does not know chess (AC 8)', () => {
       expect(manifestSource).not.toContain(library)
     }
 
-    // chess.js is banned only from *runtime*. The content gate under tools/ uses it as a
-    // rules engine at build time, which is ADR-0004 working as designed — the parser and
-    // the rules engine run in CI and neither reaches a browser. An earlier version of this
-    // test banned the string anywhere in the manifest, which made a legitimate build-time
-    // dependency look like a violation the moment the content gate landed.
-    expect(runtime).not.toContain('chess.js')
+    // chess.js reaching the browser is no longer itself the violation (#131): the home
+    // page's free-play board needs a real rules engine at runtime, and product decided
+    // that deliberately. What still matters is *where* — `src/components/board/` stays
+    // rules-free (checked above and by the denylist below), so `chess.js` living in
+    // `src/components/home/` is exactly the boundary this ADR now draws, not a breach of it.
+    expect(runtime).toContain('chess.js')
   })
 
   it.each(MODULES)('$file wires up no drag and no move input', ({ text }) => {

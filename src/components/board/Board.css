@@ -61,11 +61,13 @@
   fill: var(--color-board-check);
 }
 
-/* A ring, drawn over the piece so a marked occupied square still reads. */
-.board__mark {
-  fill: none;
-  stroke: var(--color-board-mark);
-  stroke-width: 0.06;
+/*
+ * A background tint, not a ring (#131; a ring before it, by user request — no ring
+ * anywhere on the board any more). Drawn the same way the last-ply highlight is: on the
+ * square itself, under whatever piece stands there, so an occupied square still reads.
+ */
+.board__square--marked {
+  fill: var(--color-board-mark);
 }
 
 /*

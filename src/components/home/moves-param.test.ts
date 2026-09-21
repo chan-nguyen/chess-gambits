@@ -58,8 +58,8 @@ describe('parseMovesShape', () => {
   })
 
   it('is shape-only: a token that is not a real move still comes back as a string', () => {
-    // Legality is the opening tree's job (`walkOpeningTree`), not this parser's — see the
-    // module doc for why that split exists.
+    // Legality is `replay`'s job (`chess-engine.ts`), not this parser's — see the module
+    // doc for why that split exists.
     expect(parseMovesShape('not-a-move')).toStrictEqual(['not-a-move'])
   })
 })

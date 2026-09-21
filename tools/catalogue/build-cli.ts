@@ -114,7 +114,6 @@ const run = (argv: readonly string[]): number => {
   for (const { locale, json } of result.value.payloads) {
     writeFileSync(join(out, `catalogue.${locale}.json`), json, 'utf8')
   }
-  writeFileSync(join(out, 'opening-tree.json'), result.value.openingTreeJson, 'utf8')
 
   const { records, sizes, renamed } = result.value
   const gambits = records.filter((record) => record.category === 'gambit').length
@@ -136,8 +135,6 @@ const run = (argv: readonly string[]): number => {
         `  catalogue.${size.locale}.json  ${kb(size.bytes).padStart(8)} raw  ` +
         `${kb(size.gzippedBytes).padStart(8)} gzipped`,
     ),
-    `  opening-tree.json          ${kb(result.value.openingTreeSize.bytes).padStart(8)} raw  ` +
-      `${kb(result.value.openingTreeSize.gzippedBytes).padStart(8)} gzipped`,
   ]
 
   if (renamed.length > 0) {

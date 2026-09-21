@@ -273,26 +273,25 @@ const vi = {
     browseCatalogue: 'Xem danh mục đầy đủ',
     whatTiersMean: 'Các mức độ bao phủ nghĩa là gì',
     /**
-     * The interactive opening board (issue #129). Catalogue-only moves, click-to-move: the
-     * board never invents a move the catalogue does not already contain, so there is no
-     * rules engine anywhere near it (ADR-0003; see `docs/design-system.md`, *Why the home
-     * board does not reverse ADR-0003*).
+     * The interactive opening board. As of #131, any legal move can be played — a real
+     * `chess.js` instance runs in the browser (`src/components/home/chess-engine.ts`),
+     * reversing #129's catalogue-only restriction by product decision. `Board` itself is
+     * still untouched (ADR-0003, amended for #131).
      */
     tryHeading: 'Thử đi vài nước',
     tryIntro:
-      'Đi thử một nước trên bàn cờ dưới đây. Danh sách sẽ tự lọc theo đúng những nước bạn đã đi.',
+      'Đi thử một nước trên bàn cờ dưới đây — đi tự do, miễn là đúng luật. Danh sách sẽ tự lọc theo đúng những nước bạn đã đi.',
     undo: 'Đi lại',
     reset: 'Về đầu',
-    boardLoading: 'Đang tải cây khai cuộc…',
-    boardUnavailable:
-      'Không tải được cây khai cuộc để thử nước đi. Danh mục đầy đủ vẫn xem được bình thường.',
-    retry: 'Thử lại',
-    retrying: 'Đang thử lại…',
     playToFilter: 'Đi một nước trên bàn cờ để xem danh sách các gambit và bẫy khớp với nước đó.',
     matchCount: 'Khớp {{count}} mục',
-    noMatch: 'Không có gambit hoặc bẫy nào khớp với các nước này.',
+    noMatch: 'Không có gambit/trap nào tìm thấy.',
     continueIn: 'Học tiếp: {{name}}',
     movePlayed: 'Đã đi {{san}}',
+    checkmate: 'Chiếu hết.',
+    stalemate: 'Hết nước đi, hoà cờ.',
+    draw: 'Hoà cờ.',
+    choosePromotion: 'Chọn quân để phong cấp',
   },
   tree: {
     heading: 'Toàn bộ cây biến',

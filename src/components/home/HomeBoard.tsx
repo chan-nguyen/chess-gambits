@@ -1,35 +1,40 @@
+import { Chess } from 'chess.js'
+import type { Color } from 'chess.js'
 import { useMemo, useState } from 'react'
 import type { KeyboardEvent, MouseEvent } from 'react'
 import './HomeBoard.css'
+import { Translated } from '../../i18n/Translated.tsx'
+import type { TranslationKey } from '../../i18n/translations.ts'
+import { useTranslated } from '../../i18n/useTranslated.ts'
 import { useBoardLabels } from '../../i18n/board-labels.ts'
-import type { OpeningTreeNode } from '../../lib/opening-tree.ts'
 import { Board } from '../board/Board.tsx'
 import type { LastMove } from '../board/Board.tsx'
-import type { Square } from '../board/board-model.ts'
-import { destinationsFrom, resolveActivation, selectableOrigins } from './board-interaction.ts'
+import type { PieceColour, PieceKey, Square } from '../board/board-model.ts'
+import { resolveActivation } from './board-interaction.ts'
 import { isSquare } from './board-square.ts'
+import { commitMove, legalDestinationsFrom, promotionRoles } from './chess-engine.ts'
+import type { GameEnd, PromotionRole } from './chess-engine.ts'
 
 /**
- * The home page's interactive board (issue #129). Click-to-move, restricted entirely to
- * moves the opening tree actually offers — never a rules engine, never a drag, and no code
- * inside `src/components/board/` (ADR-0003; `board-tripwire.test.ts` is unmodified by this
- * feature). `Board` is reused exactly as it ships: this component only ever changes which
- * `fen`, `check`, `marks` and `lastMove` it hands to it.
+ * The home page's interactive board. Any legal move can be played (#131, reversing #129's
+ * catalogue-only restriction by product decision) — never a rules engine inside
+ * `src/components/board/`, never a drag, and `Board` reused exactly as it ships (ADR-0003,
+ * amended for #131). The rules engine, `chess.js`, is read here and in
+ * `chess-engine.ts`/`board-interaction.ts`, all under `src/components/home/`.
  *
- * **Selection is transient interaction state** (a `useState`, not URL state): which square
- * is picked up mid-click is not something worth bookmarking. **The move actually played**
- * is the caller's business — `onCommit` reports a SAN and the caller decides what that
- * means for the URL (`OpeningExplorer` appends it to `moves`).
- *
- * Interaction, mouse and keyboard alike, is read off the DOM by delegation rather than by
- *64 handlers: `Board`'s own grid already gives every cell a `data-square` attribute and a
- * roving tabindex with full arrow-key navigation, so the only thing missing for
- * click-to-move is *activating* whatever cell the pointer or the keyboard's Enter/Space
- * lands on — which is what ADR-0003 itself names as v2's own anticipated interaction.
+ * **Selection and a pending promotion are transient interaction state** (`useState`, not
+ * URL state), the same distinction #129 already drew: which square is picked up mid-click,
+ * or which piece a promotion is waiting on, is not something worth bookmarking. **The move
+ * actually played** is the caller's business — `onCommit` reports a SAN and the caller
+ * decides what that means for the URL (`OpeningExplorer` appends it to `moves`).
  */
 export type HomeBoardProps = {
-  readonly node: OpeningTreeNode
+  /** The current position, as a live `chess.js` instance — read here, never mutated. */
+  readonly chess: Chess
   readonly lastMove: LastMove | undefined
+  readonly check: Square | undefined
+  /** `null` while the game continues; otherwise how it ended. */
+  readonly ended: GameEnd | null
   readonly announcement: string | undefined
   readonly onCommit: (san: string) => void
 }
@@ -42,31 +47,68 @@ const squareFromTarget = (target: EventTarget | null): Square | null => {
   return value !== undefined && isSquare(value) ? value : null
 }
 
-export const HomeBoard = ({ node, lastMove, announcement, onCommit }: HomeBoardProps) => {
+const colourOf = (turn: Color): PieceColour => (turn === 'w' ? 'white' : 'black')
+
+const PROMOTION_PIECE_KEYS: Readonly<
+  Record<PromotionRole, Readonly<Record<PieceColour, PieceKey>>>
+> = {
+  q: { white: 'whiteQueen', black: 'blackQueen' },
+  r: { white: 'whiteRook', black: 'blackRook' },
+  b: { white: 'whiteBishop', black: 'blackBishop' },
+  n: { white: 'whiteKnight', black: 'blackKnight' },
+}
+
+type PendingPromotion = { readonly from: Square; readonly to: Square }
+
+const GAME_END_KEYS: Readonly<Record<GameEnd, TranslationKey>> = {
+  checkmate: 'home.checkmate',
+  stalemate: 'home.stalemate',
+  draw: 'home.draw',
+}
+
+export const HomeBoard = ({
+  chess,
+  lastMove,
+  check,
+  ended,
+  announcement,
+  onCommit,
+}: HomeBoardProps) => {
   const labels = useBoardLabels()
+  const translated = useTranslated()
   const [selected, setSelected] = useState<Square | null>(null)
+  const [pending, setPending] = useState<PendingPromotion | null>(null)
 
   /*
-   * A selection can never survive onto a different position: adjusted during render, the
-   * same way `CatalogueList` resets its disclosure state when the filter's default flips
-   * (`defaultWas`). Committing a move, undoing, and resetting all replace `node` with a
-   * different object from the (immutable) opening tree, so identity is exactly the signal.
+   * Neither selection nor a pending promotion can survive onto a different position:
+   * adjusted during render, the same way `CatalogueList` resets its disclosure state when
+   * the filter's default flips. Committing a move, undoing, and resetting all replace
+   * `chess` with a freshly-replayed instance, so identity is exactly the signal.
    */
-  const [selectedAt, setSelectedAt] = useState(node)
-  if (selectedAt !== node) {
-    setSelectedAt(node)
+  const [chessAt, setChessAt] = useState(chess)
+  if (chessAt !== chess) {
+    setChessAt(chess)
     if (selected !== null) setSelected(null)
+    if (pending !== null) setPending(null)
   }
 
-  const origins = useMemo(() => selectableOrigins(node), [node])
   const destinations = useMemo(
-    () => (selected === null ? [] : destinationsFrom(node, selected)),
-    [node, selected],
+    () => (selected === null ? [] : legalDestinationsFrom(chess, selected)),
+    [chess, selected],
   )
-  const marks = selected === null ? origins : destinations
+  const marks = selected === null ? [] : [selected, ...destinations.map((move) => move.to)]
+
+  const attemptCommit = (from: Square, to: Square, promotion?: PromotionRole): void => {
+    // A scratch copy: this component only ever reads `chess`, never mutates the instance
+    // its caller derived and passed down.
+    const scratch = new Chess(chess.fen())
+    const san = commitMove(scratch, from, to, promotion)
+    if (san !== null) onCommit(san)
+  }
 
   const activate = (square: Square): void => {
-    const activation = resolveActivation(node, selected, square)
+    if (ended !== null) return
+    const activation = resolveActivation(chess, selected, square)
     switch (activation.kind) {
       case 'select':
         setSelected(activation.square)
@@ -76,11 +118,21 @@ export const HomeBoard = ({ node, lastMove, announcement, onCommit }: HomeBoardP
         return
       case 'commit':
         setSelected(null)
-        onCommit(activation.san)
+        attemptCommit(activation.from, activation.to)
+        return
+      case 'promote':
+        setSelected(null)
+        setPending({ from: activation.from, to: activation.to })
         return
       case 'none':
         return
     }
+  }
+
+  const choosePromotion = (role: PromotionRole): void => {
+    if (pending === null) return
+    attemptCommit(pending.from, pending.to, role)
+    setPending(null)
   }
 
   const handleClick = (event: MouseEvent<HTMLDivElement>): void => {
@@ -97,16 +149,45 @@ export const HomeBoard = ({ node, lastMove, announcement, onCommit }: HomeBoardP
     activate(square)
   }
 
+  const promotionColour = pending === null ? null : colourOf(chess.turn())
+
   return (
-    <div className="home-board" onClick={handleClick} onKeyDown={handleKeyDown}>
-      <Board
-        fen={node.fen}
-        labels={labels}
-        lastMove={lastMove}
-        check={node.check !== null && isSquare(node.check) ? node.check : undefined}
-        marks={marks}
-        announcement={announcement}
-      />
+    <div className="home-board">
+      <div onClick={handleClick} onKeyDown={handleKeyDown}>
+        <Board
+          fen={chess.fen()}
+          labels={labels}
+          lastMove={lastMove}
+          check={check}
+          marks={marks}
+          announcement={announcement}
+        />
+      </div>
+
+      {pending !== null && promotionColour !== null && (
+        <div
+          className="home-board__promotion"
+          role="group"
+          aria-label={translated('home.choosePromotion').text}
+        >
+          {promotionRoles.map((role) => (
+            <button key={role} type="button" onClick={() => choosePromotion(role)}>
+              {labels.pieces[PROMOTION_PIECE_KEYS[role][promotionColour]]}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/*
+       * Visible, but not its own live region: `Board`'s own `announcement` already speaks
+       * this (`OpeningExplorer` appends it to the move that produced it), and a second
+       * `role="status"` here would announce the same sentence twice.
+       */}
+      {ended !== null && (
+        <p className="home-board__status">
+          <Translated id={GAME_END_KEYS[ended]} />
+        </p>
+      )}
     </div>
   )
 }

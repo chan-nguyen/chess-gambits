@@ -48,37 +48,3 @@ export const checkBudget = (sizes: readonly PayloadSize[]): readonly CatalogueIs
         'scale with coverage: a catalogue that outgrows it has to get smaller per entry, not be ' +
         'allowed to get larger.',
     }))
-
-/**
- * The opening tree's own payload budget: 150KB gzipped.
- *
- * A separate, larger figure from the catalogue's, because it carries a FEN and a check
- * square per node rather than one line of text per entry — measured on the real dataset at
- * roughly a third of this (`opening-tree.test.ts`), so there is real headroom before the
- * catalogue's own growth (more entries, deeper defining lines) would need this revisited.
- * Locale-independent, so there is exactly one file to measure rather than three.
- */
-export const OPENING_TREE_BUDGET_BYTES = 150 * 1024
-
-export type OpeningTreeSize = {
-  readonly bytes: number
-  readonly gzippedBytes: number
-}
-
-export const measureOpeningTree = (json: string): OpeningTreeSize => ({
-  bytes: Buffer.byteLength(json, 'utf8'),
-  gzippedBytes: gzipSync(Buffer.from(json, 'utf8')).byteLength,
-})
-
-export const checkOpeningTreeBudget = (size: OpeningTreeSize): readonly CatalogueIssue[] =>
-  size.gzippedBytes > OPENING_TREE_BUDGET_BYTES
-    ? [
-        {
-          where: 'public/catalogue/opening-tree.json',
-          message:
-            `is ${kb(size.gzippedBytes)} gzipped, above the ${kb(OPENING_TREE_BUDGET_BYTES)} ` +
-            'opening-tree budget. The tree covers every published defining line, so growth ' +
-            'here tracks the catalogue growing deeper or wider, not a per-entry regression.',
-        },
-      ]
-    : []
