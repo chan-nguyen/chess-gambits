@@ -57,7 +57,6 @@ const EXPECTED_TOKENS: readonly string[] = [
   '--color-board-dark',
   '--color-board-highlight',
   '--color-board-check',
-  '--color-board-mark',
   '--color-board-coordinate',
   '--color-piece-white-fill',
   '--color-piece-white-stroke',
@@ -139,12 +138,6 @@ describe.each(THEMES)('in the %s theme', (theme) => {
     }
   })
 
-  it('shows a square mark on both square colours', () => {
-    for (const square of ['--color-board-light', '--color-board-dark']) {
-      expect(contrast(value('--color-board-mark'), value(square))).toBeGreaterThanOrEqual(3)
-    }
-  })
-
   it('distinguishes the two board squares from each other', () => {
     expect(contrast(value('--color-board-light'), value('--color-board-dark'))).toBeGreaterThan(1.5)
   })
@@ -190,5 +183,19 @@ describe('the last-ply highlight is a documented exception to the shape rule', (
     expect(fromRule).toContain('var(--color-board-highlight)')
     expect(toRule).toContain('var(--color-board-highlight)')
     expect(boardStyles).not.toContain('board__last-ply')
+  })
+
+  /**
+   * A follow-up to #131, by user request: the home board's `marked` square (the one
+   * currently selected — its legal destinations are no longer marked at all) now shares
+   * this same exception and this same token, rather than the ring-turned-tint
+   * `--color-board-mark` carried, which is retired. The two never draw on screen
+   * together — a commit always clears the selection that produced a mark — so one colour
+   * still reads as one meaning.
+   */
+  it('draws a marked square in the one highlight token too, and no board colour is unused', () => {
+    const markedRule = boardStyles.match(/\.board__square--marked\s*{[^}]*}/)?.[0] ?? ''
+    expect(markedRule).toContain('var(--color-board-highlight)')
+    expect(boardStyles).not.toContain('--color-board-mark')
   })
 })

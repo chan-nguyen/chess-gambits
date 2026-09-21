@@ -1,6 +1,6 @@
 import { Chess } from 'chess.js'
 import type { Color } from 'chess.js'
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import type { KeyboardEvent, MouseEvent } from 'react'
 import './HomeBoard.css'
 import { Translated } from '../../i18n/Translated.tsx'
@@ -12,7 +12,7 @@ import type { LastMove } from '../board/Board.tsx'
 import type { PieceColour, PieceKey, Square } from '../board/board-model.ts'
 import { resolveActivation } from './board-interaction.ts'
 import { isSquare } from './board-square.ts'
-import { commitMove, legalDestinationsFrom, promotionRoles } from './chess-engine.ts'
+import { commitMove, promotionRoles } from './chess-engine.ts'
 import type { GameEnd, PromotionRole } from './chess-engine.ts'
 
 /**
@@ -92,11 +92,10 @@ export const HomeBoard = ({
     if (pending !== null) setPending(null)
   }
 
-  const destinations = useMemo(
-    () => (selected === null ? [] : legalDestinationsFrom(chess, selected)),
-    [chess, selected],
-  )
-  const marks = selected === null ? [] : [selected, ...destinations.map((move) => move.to)]
+  // Only the selected square itself, by user request — not its legal destinations too.
+  // `resolveActivation` still finds those internally to resolve the *next* click; nothing
+  // here needs to know them just to draw a mark.
+  const marks = selected === null ? [] : [selected]
 
   const attemptCommit = (from: Square, to: Square, promotion?: PromotionRole): void => {
     // A scratch copy: this component only ever reads `chess`, never mutates the instance
