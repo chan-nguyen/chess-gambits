@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router'
 import './home.css'
 import { aboutAnchors } from '../components/catalogue/about-anchors.ts'
 import { useCatalogue } from '../components/catalogue/useCatalogue.ts'
+import { OpeningExplorer } from '../components/home/OpeningExplorer.tsx'
 import { Translated } from '../i18n/Translated.tsx'
 import { firstTaught, fullName } from '../lib/catalogue.ts'
 import { defaultLocale, isLocale } from '../lib/locale.ts'
@@ -96,6 +97,11 @@ export const HomeRoute = () => {
           <Translated id="home.whatTiersMean" />
         </Link>
       </p>
+
+      <OpeningExplorer
+        locale={safeLocale}
+        catalogue={state.status === 'loaded' ? state.catalogue : null}
+      />
     </main>
   )
 }

@@ -1,0 +1,10 @@
+/*
+ * Sized the way `LearningSurface.tsx` sizes the main learning board — a fraction of the
+ * viewport, composed from spacing tokens rather than a measured pixel count — not the way
+ * `BoardPreview.css` sizes a small inline preview, since this board is the page's own
+ * focus rather than a picture beside a link (docs/design-system.md §2).
+ */
+.home-board {
+  inline-size: min(100%, calc(100svh - var(--space-10) - var(--space-10) - var(--space-9)));
+  margin-inline: auto;
+}

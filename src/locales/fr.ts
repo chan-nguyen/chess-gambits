@@ -216,6 +216,22 @@ const fr: PartialTranslations = {
       'Aucun gambit n’est encore enseigné en profondeur. Le catalogue répertorie tous les noms, codes ECO et lignes d’ouverture, et chaque page dit elle-même où elle en est.',
     browseCatalogue: 'Parcourir tout le catalogue',
     whatTiersMean: 'Ce que signifient les niveaux de couverture',
+    tryHeading: 'Essayez quelques coups',
+    tryIntro:
+      'Jouez un coup sur l’échiquier ci-dessous. La liste se filtre exactement selon les coups joués.',
+    undo: 'Annuler',
+    reset: 'Réinitialiser',
+    boardLoading: 'Chargement de l’arbre d’ouverture…',
+    boardUnavailable:
+      'Impossible de charger l’arbre d’ouverture pour essayer des coups ici. Le catalogue complet reste disponible.',
+    retry: 'Réessayer',
+    retrying: 'Nouvelle tentative…',
+    playToFilter:
+      'Jouez un coup sur l’échiquier pour voir les gambits et pièges qui lui correspondent.',
+    matchCount: '{{count}} correspondance(s)',
+    noMatch: 'Aucun gambit ni piège ne correspond à ces coups.',
+    continueIn: 'Continuer dans : {{name}}',
+    movePlayed: 'Coup joué : {{san}}',
   },
   tree: {
     heading: 'Le gambit en entier',
