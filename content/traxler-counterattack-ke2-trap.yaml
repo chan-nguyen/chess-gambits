@@ -1,0 +1,103 @@
+# Traxler Counterattack: Ke2 Trap. The defining line is the one frozen in
+# `tools/catalogue/source/traps.yaml` — 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 Bc5 5.Nxf7 Bxf2+ —
+# and it ends on Black's own ply, so the root is an opponent node and White's replies can
+# carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is C57, matching `traps.yaml` (a trap carries the ECO of the opening it sits inside,
+# ADR-0008; the dataset's deeper Traxler rows — Bishop Sacrifice Line, King March Line,
+# Knight Sacrifice Line — are all folded into the gambit already imported from the shorter
+# 4...Bc5 row by the prefix match in `classification.yaml`, at the same code).
+#
+# This is the line of the game that gave the whole opening its name: J. Reinisch vs Karel
+# Traxler, Hostouň 1890, as recorded on Wikipedia's "Traxler Counterattack" page (citing
+# Chessgames.com for the game score). Of White's three legal replies to 5...Bxf2+ —
+# 6.Kxf2, 6.Kf1 and 6.Ke2 — the first two are the ones modern theory actually recommends
+# (per the same page: Kf1 "as the white king can no longer be checked", and Kxf2 the choice
+# of "most modern masters" facing 5.Bxf7+ move orders); 6.Ke2 is singled out on the page as
+# strictly worse than Kf1, "as Black does not have to play Qe7 since the white king is
+# still exposed to checks." What follows in the actual game, quoted there from Traxler's
+# own annotation ("White has no defense; the mating finale is pretty"), was replayed in
+# full with chess.js: 6...Nd4+ 7.Kd3 b5!! 8.Bb3 Nxe4!! 9.Nxd8 Nc5+ 10.Kc3 Ne2+ 11.Qxe2 Bd4+
+# 12.Kb4 a5+ 13.Kxb5 Ba6+ 14.Kxa5 Bd3+ 15.Kb4 Na6+ 16.Ka4 Nb4+ 17.Kxb4 c5#, giving up the
+# queen and both knights to walk White's own king to the a4/b4 corner of its own side of
+# the board.
+#
+# No leaf here claims a mate, even though the actual 1890 game reached one by force
+# (invariant 4 forbids asserting a mate without a certificate, and there is no certificate
+# for this one). `npm run prove:mates -- --max-moves 12` was run against the leaf below and
+# **refused**: after 167 seconds and three million nodes the search reached its node cap
+# without settling whether mate in 12 is forced (`cap-reached`, per ADR-0005 — "an
+# unprovable claim never becomes a published one, and the leaf goes back to the author to
+# be written as an honest assessment"). No engine was available to narrow the search
+# (`stockfish` is not installed here, and this project takes on no new dependency to add
+# one). The historical record and Traxler's own annotation are cited in the prose as what
+# they are — a documented fact about one specific game — and the outcome below is the
+# `type: position` a project this careful about invariant 4 has to fall back to rather than
+# assert what it cannot prove.
+id: traxler-counterattack-ke2-trap
+name: 'Traxler Counterattack: Ke2 Trap'
+eco: C57
+category: trap
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, Bc5, Nxf7, 'Bxf2+']
+soundness:
+  value: sound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement about White's play at move 6, not about the Traxler Counterattack as a
+      whole, which remains a real piece sacrifice and is taught as such by the gambit entry
+      this trap sits alongside. Once White specifically plays 6.Ke2, the king stays in the
+      centre with no safe haven, and the actual 1890 game — replayed move by move with
+      chess.js and legal at every step — was lost by force according to Traxler's own
+      annotation. This project's own search could not certify that forced mate within
+      budget (see the header), so the judgement below stops at "White's position is
+      practically hopeless" rather than at a proved mate. No engine was consulted for the
+      judgement and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output. The mate is not — it is machine-proved and
+    replayed by CI.
+tree:
+  annotation:
+    vi: Đen vừa ăn tốt f2 và chiếu vua bằng chính con tượng vốn đã hy sinh cả một con xe để đứng ở đó. Vua Trắng còn ba cách hợp lệ để trả lời chiếu này, và chỉ một trong số đó là sai lầm thực sự.
+    en: Black has just taken the f2 pawn and given check with the very bishop that already gave up a whole rook to stand there. White's king has three legal answers to this check, and only one of them is a genuine mistake.
+    fr: Les Noirs viennent de prendre le pion f2 et de donner échec avec ce même fou qui a déjà sacrifié une tour entière pour se poster là. Le roi blanc dispose de trois réponses légales à cet échec, et une seule d'entre elles est une véritable faute.
+  dismissRest:
+    reason:
+      vi: Trắng trả lời đúng, bằng Kf1 hoặc Kxf2. Cả hai cách đều lấy được quân đã bỏ ra (xe h8 sớm hay muộn) và giữ vua tương đối an toàn — Kf1 buộc Đen phải lui hậu bằng Qe7 trước khi tính chuyện đòi lại xe, còn Kxf2 dẫn vào những biến đã được lý thuyết nghiên cứu kỹ (…Nxe4+ rồi Kg1 hay Ke3). Cả hai đường này đều nằm ngoài phạm vi của mục này — cái bẫy chỉ xuất hiện với đúng một nước đi cụ thể của Trắng.
+      en: White answers correctly, with Kf1 or Kxf2. Both eventually collect the material Black offered (the rook on h8, sooner or later) and keep the king relatively safe — Kf1 forces Black to retreat the queen with Qe7 before there is any thought of winning material back, while Kxf2 leads into lines opening theory has studied carefully (…Nxe4+ followed by Kg1 or Ke3). Both of these are outside the scope of this entry — the trap only appears after one specific move from White.
+      fr: Les Blancs répondent correctement, par Kf1 ou Kxf2. Les deux finissent par récupérer le matériel offert par les Noirs (la tour en h8, tôt ou tard) et gardent le roi relativement en sécurité — Kf1 oblige les Noirs à reculer la dame par Qe7 avant même de songer à regagner du matériel, tandis que Kxf2 mène à des lignes que la théorie a étudiées en détail (…Nxe4+ puis Kg1 ou Ke3). Ces deux voies sortent du cadre de cette entrée — le piège n'apparaît qu'après un coup précis des Blancs.
+  children:
+    - ply: Ke2
+      replyQuality: blunder
+      frequency: rare
+      annotation:
+        vi: Trắng lùi vua về e2 thay vì f1 hay ăn luôn con tượng. Nước này trông như một cách lùi vua thận trọng, nhưng nó vẫn để vua đứng giữa bàn cờ, còn có thể bị chiếu tiếp — và Đen sẽ không để cơ hội đó trôi qua.
+        en: White steps the king to e2 instead of f1 or simply capturing the bishop. It looks like a cautious retreat, but it still leaves the king in the middle of the board, open to further checks — and Black does not let that chance go by.
+        fr: Les Blancs reculent le roi en e2 au lieu de f1 ou de simplement prendre le fou. Cela ressemble à un repli prudent, mais le roi reste au milieu de l'échiquier, exposé à d'autres échecs — et les Noirs ne laissent pas passer cette occasion.
+      unsettled: >-
+        Nxe4 is going free in the narrow sense this check uses — nothing recaptures on
+        e4 — but it is not the move: Nd4+ is check, keeps the king from ever castling or
+        settling, and is the move both the historical game and this entry's plan actually
+        continue with. Grabbing the free pawn first would only give White a spare tempo to
+        address the king. This is the detector reporting a capture the stronger move
+        simply ignores, and the leaf is correct as it stands.
+      outcome:
+        type: position
+        evaluation:
+          vi: Quân số vẫn ngang nhau ở đây — Trắng vừa ăn một tốt và bỏ mặc con xe h8, Đen vừa ăn một tốt và mất quyền nhập thành — nhưng thế cờ thì không hề ngang nhau chút nào. Vua Trắng còn kẹt giữa bàn, ngay trên đường chiếu tiếp theo của mã c6, và mọi cách phát triển bình thường (Nc3, d4, Re1) đều chậm hơn ít nhất một nhịp so với những đòn chiếu liên tục mà Đen sắp tung ra. Đây chính xác là thế cờ của ván đấu lịch sử J. Reinisch – Karel Traxler, Hostouň 1890 — ván đấu mà chính Traxler ghi lại rằng Trắng "không còn cách chống đỡ nào" sau đó.
+          en: Material is still level here — White has taken a pawn and left the rook on h8 alone, Black has taken a pawn and lost the right to castle — but the position is nowhere near level. White's king is stuck in the centre, sitting right on the next check the knight on c6 is about to give, and every ordinary developing move (Nc3, d4, Re1) is at least a tempo too slow for the string of checks Black is about to unleash. This is the exact position from the historical game J. Reinisch–Karel Traxler, Hostouň 1890 — the game Traxler himself recorded as having "no defense" for White from here on.
+          fr: Le matériel reste égal ici — les Blancs ont pris un pion et laissé la tour h8 tranquille, les Noirs ont pris un pion et perdu le droit de roquer — mais la position, elle, n'a rien d'égal. Le roi blanc reste coincé au centre, posté juste sur le prochain échec que le cavalier c6 s'apprête à donner, et tout coup de développement ordinaire (Nc3, d4, Re1) accuse au moins un temps de retard sur la série d'échecs que les Noirs s'apprêtent à déclencher. C'est exactement la position de la partie historique J. Reinisch–Karel Traxler, Hostouň 1890 — la partie que Traxler lui-même a notée comme n'ayant "aucune défense" pour les Blancs à partir d'ici.
+        plan:
+          vi: Đen tiếp tục với Nd4+, buộc vua Trắng phải chọn giữa Kd3 (như ván đấu lịch sử) hay ăn liều Kxf2, và trong cả hai trường hợp vua đều tiếp tục bị đuổi bằng những nước chiếu liên tiếp của mã, tượng và hậu, hy sinh cả hậu lẫn cả hai mã nếu cần chỉ để giữ vua Trắng không bao giờ tìm được nơi trú ẩn. Trắng, về phần mình, không còn nước phát triển nào đủ nhanh để bắt kịp — cố nhập thành là không thể vì vua đã di chuyển, còn cố đổi quân để giảm áp lực chỉ giúp Đen giản lược sang một thế tàn cuộc vẫn còn thắng thế rõ ràng nhờ vua Trắng lộ liễu.
+          en: Black continues with Nd4+, forcing White's king to choose between Kd3 (as in the historical game) or the greedy Kxf2, and either way the king keeps getting chased by a string of checks from the knight, the bishop and the queen, giving up the queen and both knights if that is what it takes to keep the White king from ever finding shelter. White, for its part, has no developing move fast enough to catch up — castling is gone because the king has moved, and trading pieces to relieve the pressure only helps Black simplify into an endgame that is still clearly winning on the exposed king alone.
+          fr: Les Noirs poursuivent par Nd4+, obligeant le roi blanc à choisir entre Kd3 (comme dans la partie historique) ou la prise gourmande Kxf2, et dans les deux cas le roi continue d'être chassé par une série d'échecs du cavalier, du fou et de la dame, sacrifiant la dame et les deux cavaliers s'il le faut pour que le roi blanc ne trouve jamais refuge. Les Blancs, de leur côté, n'ont aucun coup de développement assez rapide pour rattraper leur retard — le roque a disparu puisque le roi a bougé, et échanger les pièces pour soulager la pression ne fait qu'aider les Noirs à simplifier vers une finale encore nettement gagnante, rien qu'à cause du roi exposé.
+        basis:
+          by: chan
+          at: '2026-09-21'

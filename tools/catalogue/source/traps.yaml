@@ -358,3 +358,43 @@ traps:
       Defense: Magnus Smith Trap, B57) is not imported as a gambit because nobody in the
       main line deliberately offers material — the loss is entirely Black's mistake at move
       8, which is exactly what `category: trap` is for.
+
+  - id: stafford-gambit-rosen-trap
+    name: 'Stafford Gambit: Rosen Trap'
+    family: "Petrov's Defense"
+    eco: C42
+    side: black
+    soundness: sound
+    line: [e4, e5, Nf3, Nf6, Nxe5, Nc6, Nxc6, dxc6, d3, Bc5]
+    reason: >-
+      Wikipedia's "Stafford Gambit" article names this specific continuation "the Rosen
+      Trap" in its Tactical traps section (citing a Kusuma document hosted on Scribd), after
+      IM Eric Rosen, whose online play popularised the whole gambit. The natural-looking
+      6.Bg5? walks into 6...Nxe4!, and if White grabs the queen with 7.Bxd8?? the reply is
+      forced mate: 7...Bxf2+ 8.Ke2 Bg4#. Its dataset row (Petrov's Defense: Stafford Gambit
+      Accepted, C42) is folded into the gambit already imported from the shorter "Petrov's
+      Defense: Stafford Gambit" row (3...Nc6) by the prefix match in `classification.yaml`,
+      so this trap's own line — four plies deeper, ending on Black's own 5...Bc5 — is not a
+      second entry for the same defining line.
+
+  - id: traxler-counterattack-ke2-trap
+    name: 'Traxler Counterattack: Ke2 Trap'
+    family: 'Italian Game'
+    eco: C57
+    side: black
+    soundness: sound
+    line: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, Bc5, Nxf7, 'Bxf2+']
+    reason: >-
+      The line of the founding game of the whole opening, J. Reinisch vs Karel Traxler,
+      Hostouň 1890, as recorded on Wikipedia's "Traxler Counterattack" page (citing
+      Chessgames.com): after 5.Nxf7 Bxf2+, declining correctly with 6.Kf1 or capturing with
+      6.Kxf2 both hold for White, but the tempting in-between 6.Ke2?? — keeping the extra
+      rook on h8 en prise without shutting down the checks — has no defence at all. Traxler's
+      own annotation on the game, quoted on the page, calls the forced finish "pretty":
+      6...Nd4+ 7.Kd3 b5!! 8.Bb3 Nxe4!! 9.Nxd8 Nc5+ 10.Kc3 Ne2+ 11.Qxe2 Bd4+ 12.Kb4 a5+
+      13.Kxb5 Ba6+ 14.Kxa5 Bd3+ 15.Kb4 Na6+ 16.Ka4 Nb4+ 17.Kxb4 c5#, queen and both knights
+      given up to walk the white king to its own side of the board. Its dataset row (Italian
+      Game: Two Knights Defense, Traxler Counterattack, C57) is folded into the gambit
+      already imported from the shorter defining line (4...Bc5) by the same prefix match, so
+      this trap's own line — six plies deeper, ending on Black's own 5...Bxf2+ — is not a
+      second entry for that line either.
