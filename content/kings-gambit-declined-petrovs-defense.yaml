@@ -1,0 +1,88 @@
+# King's Gambit Declined: Petrov's Defense, taught. The catalogue's own line for this id,
+# `e4 e5 f4 Nf6`, ends on Black's ply; that parity fails the build's `defining-line-parity`
+# check (docs/CONTEXT.md, invariant 5), so `definingLine` stops one ply earlier, at White's
+# own 2.f4 — the same root `content/kings-gambit.yaml` uses — and 2...Nf6 is modelled as the
+# root's own reply instead, exactly as `kings-gambit-accepted.yaml` does. Every ply was
+# replayed with chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-petrovs-defense
+name: "King's Gambit Declined: Petrov's Defense"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, the same label the King's Gambit family carries as a whole. Meeting the
+      gambit with a developing move rather than a capture is safe and solid for Black, and
+      the position after White regains the pawn is close to level. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4. Đây là vị trí gốc chung của cả họ Gambit Vua, và mục này đi sâu vào nhánh Đen từ chối tốt bằng cách phát triển mã, 2...Nf6, thay vì ăn tốt hay các cách từ chối khác.
+    en: White has just offered the f4 pawn. This is the same root position the whole King's Gambit family shares, and this entry follows specifically the branch where Black declines the pawn by developing a knight, 2...Nf6, rather than capturing or declining some other way.
+    fr: Les Blancs viennent d'offrir le pion f4. C'est la même position de départ que partage toute la famille du Gambit du Roi, et cette entrée suit spécifiquement la branche où les Noirs refusent le pion en développant un cavalier, 2...Nf6, plutôt qu'en capturant ou en refusant autrement.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, chẳng hạn ăn tốt bằng 2...exf4 hoặc từ chối theo cách khác như 2...Bc5. Thế cờ khi đó rẽ sang các nhánh khác của họ Gambit Vua, nằm ngoài phạm vi mục này.
+      en: Black plays anything else, such as accepting with 2...exf4 or declining another way such as 2...Bc5. The position then heads toward other branches of the King's Gambit family, outside the scope of this entry.
+      fr: Les Noirs jouent autre chose, comme accepter par 2...exf4 ou refuser autrement, par exemple 2...Bc5. La position se dirige alors vers d'autres branches de la famille du Gambit du Roi, hors du cadre de cette entrée.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã, tấn công thẳng vào tốt e4 của Trắng thay vì đụng đến tốt f4. Con mã f3 (nếu Trắng đi) sẽ không đủ để bảo vệ e4, nên Trắng phải chọn cách xử lý áp lực này.
+        en: Black develops the knight, attacking White's e4 pawn directly instead of touching the f4 pawn at all. A later Nf3 will not be enough to defend e4, so White has to choose how to deal with this pressure.
+        fr: Les Noirs développent le cavalier, attaquant directement le pion e4 blanc sans toucher au pion f4. Un futur Nf3 ne suffira pas à défendre e4, les Blancs doivent donc choisir comment gérer cette pression.
+      children:
+        - ply: fxe5
+          annotation:
+            vi: Trắng ăn tốt e5 luôn, phớt lờ áp lực lên e4 vì con mã sắp ăn tốt đó cũng chỉ đứng tạm thời. Vật chất coi như huề — mỗi bên vừa mất một tốt trung tâm.
+            en: White simply takes the e5 pawn, ignoring the pressure on e4 since the knight about to take that pawn will only be sitting there temporarily anyway. Material is level — each side has just lost a central pawn.
+            fr: Les Blancs prennent simplement le pion e5, ignorant la pression sur e4 puisque le cavalier qui va prendre ce pion n'y restera de toute façon que temporairement. Le matériel est équilibré — chaque camp vient de perdre un pion central.
+          dismissRest:
+            reason:
+              vi: Đen không ăn lại tốt e4 ngay. Mọi nước khác để tốt e4 lại cho Trắng chuộc bằng một nước phát triển, mất đi chính lý do khiến 2...Nf6 hợp lý.
+              en: Black does not recapture on e4 at once. Anything else leaves the e4 pawn for White to reclaim with a developing move, giving up the exact reason 2...Nf6 made sense.
+              fr: Les Noirs ne reprennent pas aussitôt en e4. Tout le reste laisse le pion e4 aux Blancs pour le récupérer par un coup de développement, abandonnant la raison même qui justifiait 2...Nf6.
+          children:
+            - ply: Nxe4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen ăn lại tốt e4, quân duy nhất còn ăn được ở đó. Vật chất vẫn cân bằng, và con mã Đen đứng khá năng động ở trung tâm, dù nó sẽ sớm bị hỏi thăm.
+                en: Black recaptures the e4 pawn, the only piece that can take there. Material stays level, and the black knight sits actively in the centre, though it will soon be questioned.
+                fr: Les Noirs reprennent le pion e4, la seule pièce pouvant y capturer. Le matériel reste équilibré, et le cavalier noir occupe une case active au centre, même s'il sera bientôt interrogé.
+              children:
+                - ply: d3
+                  annotation:
+                    vi: Trắng đẩy tốt d, vừa mở đường cho tượng c1 vừa đuổi con mã e4 phải chọn ô lui. Đây là cách đơn giản nhất để giành lại nhịp mà không cần đổi thêm quân nào.
+                    en: White pushes the d-pawn, both opening a line for the c1 bishop and forcing the knight on e4 to choose a retreat square. This is the simplest way to win back the tempo without any further trades.
+                    fr: Les Blancs poussent le pion d, ouvrant à la fois une ligne pour le fou c1 et forçant le cavalier en e4 à choisir une case de retraite. C'est la façon la plus simple de regagner le temps sans échange supplémentaire.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì hai bên ngang nhau — mỗi bên vừa mất đúng một tốt trung tâm trong loạt đổi chác vừa rồi, và không quân nào đang bị ăn không ở thế cờ này. Con mã Đen bị đuổi phải lùi (ví dụ về c5), còn tốt e5 cũ của Trắng giờ đã biến mất, để lại một cấu trúc tốt khá thoáng cho cả hai bên. Đây thực sự là một thế cờ cân bằng chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and both sides are level — each has just lost exactly one central pawn in the trade sequence just played, and nothing is hanging for free in this position. Black's knight is chased back (say, to c5), and White's old e5 pawn is now gone, leaving a fairly open pawn structure for both sides. This genuinely reads as a balanced position rather than an evaluation left open.
+                      fr: Comptez les pièces, les deux camps sont à égalité — chacun vient de perdre exactement un pion central dans la série d'échanges qui vient de se jouer, et rien n'est en prise gratuitement dans cette position. Le cavalier noir est chassé et doit reculer (par exemple en c5), et l'ancien pion e5 blanc a désormais disparu, laissant une structure de pions assez ouverte pour les deux camps. C'est véritablement une position équilibrée, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi Nf3 và Bc4 hay Be2, hoàn thiện phát triển và tận dụng cấu trúc tốt thoáng để tấn công. Đen chơi Nc6 và Be7, hoàn thiện phát triển và chuẩn bị nhập thành trước khi tranh chấp trung tâm tiếp.
+                      en: White plays Nf3 and Bc4 or Be2, finishing development and using the open pawn structure to look for attacking chances. Black plays Nc6 and Be7, finishing development and preparing to castle before contesting the centre further.
+                      fr: Les Blancs jouent Nf3 et Bc4 ou Be2, achevant leur développement et exploitant la structure ouverte pour chercher des chances d'attaque. Les Noirs jouent Cc6 et Be7, achevant leur développement et se préparant à roquer avant de disputer davantage le centre.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

@@ -1,0 +1,86 @@
+# King's Gambit Declined: Panteldakis Countergambit, taught. The learner plays Black, and
+# the defining line 1.e4 e5 2.f4 f5 ends on Black's own 2...f5 — the learner's own ply — so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Every ply was replayed with
+# chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-panteldakis-countergambit
+name: "King's Gambit Declined: Panteldakis Countergambit"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, e5, f4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      2...f5 is Black's own gambit and a weakening one — it opens the same king's diagonal
+      the King's Gambit is already trying to prise open, from the side that can least afford
+      it. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...f5, một gambit của chính Đen đáp lại gambit của Trắng. Về mặt cấu trúc, nước này làm suy yếu đúng đường chéo mà Gambit Vua vốn đã nhắm tới, lần này lại từ phía Đen.
+    en: Black has just played 2...f5, a countergambit of Black's own answering White's. Structurally, this weakens exactly the diagonal the King's Gambit is already aiming at, only now from Black's own side.
+    fr: Les Noirs viennent de jouer 2...f5, un contre-gambit des Noirs répondant à celui des Blancs. Sur le plan structurel, ce coup affaiblit exactement la diagonale que le Gambit du Roi vise déjà, mais cette fois du côté des Noirs.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f5. Các nước khác như 3.fxe5 hay 3.Nf3 dẫn tới những thế cờ khác không thuộc phạm vi mục này, dù đánh giá chung vẫn nghiêng về Trắng.
+      en: White does not take the f5 pawn. Anything else, such as 3.fxe5 or 3.Nf3, leads to other positions outside the scope of this entry, though the general verdict still favours White.
+      fr: Les Blancs ne prennent pas le pion f5. Tout le reste, comme 3.fxe5 ou 3.Nf3, mène vers d'autres positions hors du cadre de cette entrée, bien que le verdict général reste favorable aux Blancs.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt f5, giành thêm một tốt nữa. Trắng giờ đang hơn hai tốt tạm thời, dù tốt f4 gốc vẫn có thể bị đòi lại sau này.
+        en: White takes the f5 pawn, picking up a second pawn. White is now temporarily two pawns up, even though the original f4 pawn can still be won back later.
+        fr: Les Blancs prennent le pion f5, gagnant un second pion. Les Blancs sont désormais temporairement deux pions devant, même si le pion f4 d'origine peut encore être regagné plus tard.
+      children:
+        - ply: e4
+          annotation:
+            vi: Đen đẩy tốt e lên, ý tưởng chính của Panteldakis Countergambit — ngăn con mã g1 nhảy ra f3 và giữ không gian trung tâm, đổi lại tiếp tục kém vật chất.
+            en: Black pushes the e-pawn, the main idea of the Panteldakis Countergambit — keeping White's knight off f3 and holding central space, at the cost of staying down more material.
+            fr: Les Noirs poussent le pion e, l'idée principale du Contre-gambit Panteldakis — empêchant le cavalier blanc de se rendre en f3 et conservant de l'espace central, au prix de rester en retard de matériel.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác. Mọi cách phát triển hợp lý khác dẫn tới những thế cờ tương tự, không thay đổi đánh giá chung của nhánh này.
+              en: White plays anything else. Any other reasonable developing move leads to similar positions, not changing the general verdict on this branch.
+              fr: Les Blancs jouent autre chose. Tout autre coup de développement raisonnable mène à des positions similaires, sans changer le verdict général sur cette branche.
+          children:
+            - ply: Nc3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng phát triển mã, tấn công tốt e4 và chuẩn bị hoàn thiện phát triển. Con tốt e4 của Đen giờ cần được bảo vệ hoặc sẽ mất thêm.
+                en: White develops the knight, attacking the e4 pawn and preparing to finish development. Black's e4 pawn now needs defending or it will be lost too.
+                fr: Les Blancs développent le cavalier, attaquant le pion e4 et se préparant à achever leur développement. Le pion e4 noir a maintenant besoin d'être défendu, sous peine d'être perdu aussi.
+              children:
+                - ply: Nf6
+                  annotation:
+                    vi: Đen phát triển mã, bảo vệ tốt e4 và chuẩn bị nhập thành. Đây là nước hợp lý nhất để không mất thêm vật chất ngay lập tức.
+                    en: Black develops a knight, defending e4 and preparing to castle. This is the most sensible move to avoid losing further material immediately.
+                    fr: Les Noirs développent un cavalier, défendant e4 et se préparant à roquer. C'est le coup le plus sensé pour éviter de perdre davantage de matériel dans l'immédiat.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì Trắng hơn đúng hai tốt — tốt f4 gốc và tốt f5 vừa ăn thêm đều chưa được đòi lại. Con tốt e4 của Đen giờ được bảo vệ nhưng chỉ chặn được chứ không tạo ra đe doạ nào cụ thể, còn Trắng đã phát triển đầy đủ mã và sẵn sàng nhập thành. Đây thực sự là một thế cờ Trắng hơn vật chất rõ ràng chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and White is up exactly two pawns — the original f4 pawn and the f5 pawn just won are both still uncontested. Black's e4 pawn is now defended but only holds the line rather than creating any concrete threat, while White has fully developed the knight and is ready to castle. This genuinely reads as a position where White is clearly ahead in material rather than an evaluation left open.
+                      fr: Comptez les pièces, les Blancs ont exactement deux pions de plus — le pion f4 d'origine et le pion f5 tout juste gagné sont tous deux toujours acquis. Le pion e4 noir est désormais défendu mais ne fait que tenir la ligne sans créer de menace concrète, tandis que les Blancs ont pleinement développé leur cavalier et sont prêts à roquer. C'est véritablement une position où les Blancs ont un net avantage matériel, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi d3 và Bg5, tìm cách đổi hoặc phá vỡ con tốt e4 để tận dụng trọn vẹn lợi thế vật chất. Đen chơi Bc5 hay d5, cố dồn quân hoạt động và tạo đe doạ cụ thể để bù lại hai con tốt đã mất.
+                      en: White plays d3 and Bg5, looking to trade off or break down the e4 pawn to make full use of the material edge. Black plays Bc5 or d5, trying to build piece activity and create concrete threats to compensate for the two lost pawns.
+                      fr: Les Blancs jouent d3 et Bg5, cherchant à échanger ou à briser le pion e4 pour exploiter pleinement l'avantage matériel. Les Noirs jouent Bc5 ou d5, essayant de développer l'activité des pièces et de créer des menaces concrètes pour compenser les deux pions perdus.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

@@ -1,0 +1,91 @@
+# King's Gambit Declined: Falkbeer Countergambit, taught. The learner plays Black, and the
+# defining line 1.e4 e5 2.f4 d5 ends on Black's own 2...d5 — the learner's own ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). This entry sketches the family
+# broadly through White's quiet declining try, 3.Nf3 (the Blackburne Attack move order);
+# the sharp main line 3.exd5 gets its own deeper entry,
+# `kings-gambit-declined-falkbeer-countergambit-accepted.yaml`. Every ply below was replayed
+# with chess.js before being annotated, and the leaf was checked with `searchMate` and
+# carries no forced mate.
+id: kings-gambit-declined-falkbeer-countergambit
+name: "King's Gambit Declined: Falkbeer Countergambit"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      Black returns the f-pawn's challenge with a countergambit of their own rather than
+      accepting or passively declining, and objectively this is roughly balanced rather than
+      a refutation of White's second move. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...d5, đáp lại gambit của Trắng bằng một gambit của chính mình — đây chính là "Falkbeer Countergambit" đặt tên cho mục này. Thay vì nhận hay từ chối tốt f4, Đen mở ngay trung tâm và mời đổi tốt d qua lại.
+    en: Black has just played 2...d5, answering White's gambit with a countergambit of their own — the move that gives the Falkbeer Countergambit its name. Instead of accepting or passively declining the f-pawn, Black opens the centre at once and offers to trade the d-pawn straight back.
+    fr: Les Noirs viennent de jouer 2...d5, répondant au gambit des Blancs par un gambit de leur cru — le coup qui donne son nom au Contre-gambit Falkbeer. Plutôt que d'accepter ou de refuser passivement le pion f, les Noirs ouvrent aussitôt le centre et proposent d'échanger le pion d.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác, phổ biến nhất là 3.exd5 (xem mục riêng về nhánh này) hoặc 3.fxe5. Mục này chỉ đi sâu vào nhánh phát triển đơn giản 3.Nf3 để phác hoạ họ khai cuộc; các nhánh nhận tốt có mục riêng của chúng.
+      en: White plays anything else, most commonly 3.exd5 (see the dedicated entry on that branch) or 3.fxe5. This entry follows only the simple developing try 3.Nf3 to sketch the family; the accepting branches have their own dedicated entries.
+      fr: Les Blancs jouent autre chose, le plus souvent 3.exd5 (voir l'entrée dédiée à cette branche) ou 3.fxe5. Cette entrée ne suit que l'essai de développement simple 3.Nf3 pour esquisser la famille ; les branches d'acceptation ont leurs propres entrées.
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng phát triển mã thay vì ăn ngay, để nguyên áp lực trung tâm cho sau. Con mã không bảo vệ tốt e4, nên Đen có thể ăn tốt đó ngay lập tức.
+        en: White develops the knight instead of capturing at once, leaving the central tension for later. The knight does not defend the e4 pawn, so Black can simply take it right away.
+        fr: Les Blancs développent le cavalier au lieu de capturer tout de suite, laissant la tension centrale pour plus tard. Le cavalier ne défend pas le pion e4, donc les Noirs peuvent le prendre immédiatement.
+      children:
+        - ply: dxe4
+          annotation:
+            vi: Đen ăn tốt e4, giành lại đúng con tốt mà Trắng vừa thí ở nước 2. Con mã f3 giờ mất chỗ đứng tự nhiên trên trung tâm.
+            en: Black takes the e4 pawn, winning back exactly the pawn White offered on move two. White's knight on f3 has lost its natural foothold in the centre.
+            fr: Les Noirs prennent le pion e4, regagnant exactement le pion offert par les Blancs au deuxième coup. Le cavalier blanc en f3 a perdu son point d'appui naturel au centre.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn lại tốt e5 ngay. Mọi nước khác để tốt e5 đứng yên trong khi tốt e4 của Đen vẫn còn trên bàn, khiến Đen hơn hẳn một tốt mà không có gì bù lại.
+              en: White does not recapture on e5 at once. Anything else leaves the e5 pawn standing while Black's e4 pawn is still on the board, leaving Black simply a clean pawn up.
+              fr: Les Blancs ne reprennent pas aussitôt en e5. Tout le reste laisse le pion e5 en place pendant que le pion e4 noir reste sur l'échiquier, laissant les Noirs simplement un pion de plus sans compensation.
+          children:
+            - ply: Nxe5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại tốt e5 bằng mã, quân duy nhất còn có thể ăn ở đó. Vật chất coi như cân bằng trở lại — mỗi bên vừa đổi một tốt trung tâm — và con mã đứng khá năng động ở e5.
+                en: White recaptures the e5 pawn with the knight, the only piece that can take there. Material is level again — each side has just traded a central pawn — and the knight sits actively on e5.
+                fr: Les Blancs reprennent le pion e5 avec le cavalier, la seule pièce pouvant y capturer. Le matériel est de nouveau équilibré — chaque camp vient d'échanger un pion central — et le cavalier est actif en e5.
+              children:
+                - ply: Nf6
+                  annotation:
+                    vi: Đen phát triển mã, chuẩn bị nhập thành và không vội đòi lại con tốt e4 ngay. Đây là một nước hoàn thiện thế trận yên tĩnh.
+                    en: Black develops the knight, preparing to castle and in no hurry to win back the e4 pawn immediately. This is a calm, consolidating developing move.
+                    fr: Les Noirs développent le cavalier, se préparant à roquer sans se presser de regagner immédiatement le pion e4. C'est un coup de développement calme et consolidant.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì hai bên ngang nhau — mỗi bên vừa mất đúng một tốt trung tâm trong loạt đổi chác vừa rồi. Tốt e4 của Đen tiến khá xa nhưng đang bị chính con mã e5 của Trắng dòm ngó, còn con mã ấy lại không được tốt nào của Trắng che chắn nữa vì tốt f và tốt d đều đã rời hàng ngang thứ hai. Đây thực sự là một thế cờ cân bằng, năng động cho cả hai bên, chứ không phải một đánh giá bỏ ngỏ.
+                      en: Count the pieces and both sides are level — each has just lost exactly one central pawn in the trade sequence just played. Black's e4 pawn is advanced but is eyed by White's own knight on e5, and that knight in turn is no longer shielded by any White pawn, since both the f- and d-pawns have left the second rank. This genuinely reads as a balanced, dynamic position for both sides rather than an evaluation left open.
+                      fr: Comptez les pièces, les deux camps sont à égalité — chacun vient de perdre exactement un pion central dans la série d'échanges qui vient de se jouer. Le pion e4 noir est avancé mais surveillé par le cavalier blanc en e5, et ce cavalier n'est plus protégé par aucun pion blanc, les pions f et d ayant tous deux quitté la deuxième rangée. C'est véritablement une position équilibrée et dynamique pour les deux camps, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi Be2 hay Nc3, cố giữ con mã e5 đứng vững và hoàn thiện phát triển trước khi tính đến việc ăn lại tốt e4. Đen chơi Bd6 hay O-O, tạo áp lực lên con mã e5 và chuẩn bị đòi lại con tốt e4 khi có cơ hội.
+                      en: White plays Be2 or Nc3, trying to keep the knight on e5 secure and finish developing before worrying about the e4 pawn. Black plays Bd6 or O-O, building pressure on the e5 knight and preparing to reclaim the e4 pawn when the moment is right.
+                      fr: Les Blancs jouent Be2 ou Nc3, essayant de maintenir le cavalier en e5 et d'achever leur développement avant de se soucier du pion e4. Les Noirs jouent Bd6 ou O-O, construisant une pression sur le cavalier e5 et se préparant à reprendre le pion e4 le moment venu.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.
