@@ -134,7 +134,8 @@ describe('the catalogue this repository ships', () => {
    * scandinavian-defense-kiel-variation-trap, without adding new ids), two new named traps
    * from #137 batch a (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2
    * Trap), two more new named traps from #137 batch b (Petrov's Defense's Marshall Trap and
-   * the Tennison Gambit's Brigg's Trap), thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
+   * the Tennison Gambit's Brigg's Trap), one more new named trap from #137 batch c (the
+   * Milner-Barry Trap), thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
    * elephant-gambit-paulsen-countergambit, english-opening-wing-gambit,
    * englund-gambit-felbecker-gambit, englund-gambit-hartlaub-charlick-gambit,
    * englund-gambit-main-line, englund-gambit-mosquito-gambit, englund-gambit-soller-gambit,
@@ -327,6 +328,7 @@ describe('the catalogue this repository ships', () => {
     ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
     ['mexican-defense-horsefly-gambit', 1],
     ['mikenas-defense-pozarek-gambit', 1],
+    ['milner-barry-trap', 1],
     ['modern-defense-lizard-defense-pirc-diemer-gambit', 1],
     ['modern-defense-westermann-gambit', 1],
     ['modern-defense-wind-gambit', 1],
@@ -403,8 +405,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-tennison-gambit-briggs-trap', 1],
   ])
 
-  it('bakes keys on all 1023 entries, and only the authored two hundred and thirty-one have any', () => {
-    expect(result.value.records).toHaveLength(1023)
+  it('bakes keys on all 1024 entries, and only the authored two hundred and thirty-two have any', () => {
+    expect(result.value.records).toHaveLength(1024)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
