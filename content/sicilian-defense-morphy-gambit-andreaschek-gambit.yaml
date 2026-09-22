@@ -1,0 +1,63 @@
+# Sicilian Defense: Morphy Gambit, Andreaschek Gambit. Frozen defining line 1.e4 c5 2.d4
+# cxd4 3.Nf3 e5 4.c3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: sicilian-defense-morphy-gambit-andreaschek-gambit
+name: 'Sicilian Defense: Morphy Gambit, Andreaschek Gambit'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, Nf3, e5, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black's 3...e5 defends the d4 pawn by locking it behind a chain, so
+      White offers a second pawn with 4.c3 to blow the centre open before Black's pieces,
+      cramped behind that chain, can get out. It is a real practical try rather than a
+      proven equalizer. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3...e5 giữ chắc tốt d4 bằng một chuỗi tốt, Trắng chơi 4.c3, thí thêm một tốt nữa để phá tung trung tâm trước khi các quân của Đen kịp thoát ra sau chuỗi tốt ấy.
+    en: After 3...e5 holds the d4 pawn with a pawn chain, White plays 4.c3, offering a second pawn to blow the centre open before Black's pieces can escape from behind that chain.
+    fr: Après 3...e5 qui tient le pion d4 par une chaîne de pions, les Blancs jouent 4.c3, offrant un second pion pour faire sauter le centre avant que les pièces noires ne puissent s'échapper de derrière cette chaîne.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt c3. Các nước khác như ...Nf6 hay ...d6 phát triển trước và để nguyên con tốt ấy; câu trả lời của Trắng không đổi, Nxc3 vẫn ăn lại bình thường khi cần.
+      en: Black does not take the c3 pawn. Anything else, such as ...Nf6 or ...d6 developing first and leaving that pawn alone, meets the same ordinary Nxc3 recapture whenever it is needed; White's answer does not change.
+      fr: Les Noirs ne prennent pas le pion c3. Tout le reste, comme ...Nf6 ou ...d6 qui développent d'abord et laissent ce pion tranquille, rencontre la même reprise ordinaire par Nxc3 quand il le faut ; la réponse blanche ne change pas.
+  children:
+    - ply: dxc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen nhận tốt thứ hai bằng 4...dxc3, giữ nguyên chuỗi tốt e5-d4 cũ đã tan nhưng lấy thêm một tốt, thách Trắng chứng minh sự bù đắp bằng phát triển.
+        en: Black accepts the second pawn with 4...dxc3, taking another pawn and daring White to prove the development compensation is real.
+        fr: Les Noirs acceptent le second pion par 4...dxc3, prenant un pion de plus et mettant les Blancs au défi de prouver que la compensation en développement est réelle.
+      unsettled: >-
+        Nxe5, bxc3 and Nxc3 are all going free at once, and the evaluation is built on that
+        fact — the point of the leaf is that Black's own e5 pawn lost its defender the
+        moment the d4 pawn moved away to take on c3, not a race to pick one recapture and
+        play it out.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 37, Đen 39, nhưng con số ấy sẽ không đứng yên. Con tốt e5 của Đen đã mất người đỡ ngay khi con tốt d4 rời đi để ăn ở c3, nên Nxe5 đang treo lơ lửng cùng với hai cách ăn lại thông thường là bxc3 và Nxc3. Nếu Trắng chọn Nxe5 thay vì ăn lại tốt c3 ngay, khoảng cách vật chất sẽ thu hẹp lại chỉ còn một tốt và Đen mất luôn lý do đã chơi ...e5 từ đầu.
+          en: Count the pieces and it is 37 for White, 39 for Black, but that number will not hold. Black's own e5 pawn lost its defender the moment the d4 pawn moved away to take on c3, so Nxe5 is hanging alongside the two ordinary recaptures bxc3 and Nxc3. If White chooses Nxe5 instead of collecting the c3 pawn at once, the material gap shrinks to just one pawn and Black loses the entire point of having played ...e5 in the first place.
+          fr: Comptez les pièces, 37 pour les Blancs, 39 pour les Noirs, mais ce chiffre ne va pas tenir. Le propre pion e5 des Noirs a perdu son défenseur dès que le pion d4 est parti prendre en c3, si bien que Nxe5 est en prise en même temps que les deux reprises ordinaires bxc3 et Nxc3. Si les Blancs choisissent Nxe5 plutôt que de récupérer aussitôt le pion c3, l'écart matériel se réduit à un seul pion et les Noirs perdent toute la raison d'avoir joué ...e5 au départ.
+        plan:
+          vi: Đen chơi ...Nc6 hoặc ...Be7 càng sớm càng tốt để đỡ thêm cho tốt e5 trước khi Trắng kịp ăn nó, rồi ...d6 và ...Nf6 hoàn tất phát triển, chấp nhận Trắng ăn lại một trong hai tốt c3 nếu buộc phải chọn. Trắng chơi Nxe5 ngay nếu được phép, thu hẹp cách biệt vật chất và xoá bỏ lý do của nước ...e5, hoặc Nxc3 nếu muốn giữ nguyên hai tốt kém để đổi lấy phát triển nhanh với Bc4 và Qb3 nhắm vào f7.
+          en: Black plays ...Nc6 or ...Be7 as quickly as possible to add a defender to the e5 pawn before White can take it, then ...d6 and ...Nf6 to finish developing, accepting that White will recapture one of the c3 pawns if forced to choose. White plays Nxe5 at once if it is available, narrowing the material gap and erasing the point of ...e5, or Nxc3 if it prefers to stay two pawns down in exchange for fast development with Bc4 and Qb3 aimed at f7.
+          fr: Les Noirs jouent ...Nc6 ou ...Be7 aussi vite que possible pour ajouter un défenseur au pion e5 avant que les Blancs ne le prennent, puis ...d6 et ...Nf6 pour achever leur développement, acceptant que les Blancs reprennent l'un des pions c3 s'ils y sont contraints. Les Blancs jouent Nxe5 aussitôt si c'est possible, réduisant l'écart matériel et effaçant la raison d'être de ...e5, ou Nxc3 s'ils préfèrent rester en retard de deux pions en échange d'un développement rapide avec Bc4 et Qb3 visant f7.
+        basis:
+          by: chan
+          at: '2026-09-22'

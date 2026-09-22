@@ -1,0 +1,64 @@
+# Sicilian Defense: Kotov Gambit. Frozen defining line 1.e4 c5 2.Nf3 d6 3.g3 b5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 2 moves, returns no-mate.
+id: sicilian-defense-kotov-gambit
+name: 'Sicilian Defense: Kotov Gambit'
+eco: B50
+category: gambit
+side: black
+definingLine: [e4, c5, Nf3, d6, g3, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black offers the b5 pawn for queenside space and a tempo against
+      White's fianchetto set-up, but there is no real tactical point behind it, and White
+      can simply take the pawn and keep developing. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3.g3 chuẩn bị fianchetto, Đen chơi 3...b5, thí tốt để chiếm không gian cánh hậu và giành nhịp trước khi Trắng kịp hoàn tất Bg2.
+    en: After 3.g3 preparing the fianchetto, Black plays 3...b5, offering the pawn to grab queenside space and a tempo before White can finish Bg2.
+    fr: Après 3.g3 préparant le fianchetto, les Noirs jouent 3...b5, offrant le pion pour prendre de l'espace à l'aile dame et un temps avant que les Blancs n'achèvent Bg2.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt b5. Các nước khác như Bg2 tiếp tục fianchetto để lời mời còn nguyên trên bàn; câu trả lời của Đen không đổi, vẫn tiếp tục kế hoạch ban đầu với ...Bb7 và ...Nf6.
+      en: White does not take the b5 pawn. Anything else, such as continuing the fianchetto with Bg2, leaves the offer on the table; Black's plan does not change, continuing with ...Bb7 and ...Nf6 as intended.
+      fr: Les Blancs ne prennent pas le pion b5. Tout le reste, comme la poursuite du fianchetto par Bg2, laisse l'offre sur l'échiquier ; le plan noir ne change pas, se poursuivant par ...Bb7 et ...Nf6 comme prévu.
+  children:
+    - ply: Bxb5+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng nhận lời mời và ăn thẳng bằng 4.Bxb5+, kèm chiếu luôn vì đường chéo tới e8 vẫn còn trống, cách kiểm tra trực diện nhất xem Đen có thật sự bù đắp được cho con tốt đã mất hay không.
+        en: White accepts the offer and takes directly with 4.Bxb5+, with check thrown in since the diagonal to e8 is still open, the most direct way to test whether Black really has enough to show for the missing pawn.
+        fr: Les Blancs acceptent l'offre et prennent directement par 4.Bxb5+, avec échec au passage puisque la diagonale vers e8 est encore ouverte, la façon la plus directe de tester si les Noirs ont vraiment de quoi compenser le pion manquant.
+      children:
+        - ply: Bd7
+          annotation:
+            vi: Đen chắn chiếu bằng chính con tượng đồng hạng, sẵn sàng đổi nếu Trắng muốn và giữ mã b8 tự do đi ra c6 hay d7 sau này.
+            en: Black blocks with the matching bishop, ready to trade if White wants and leaving the b8 knight free to head to c6 or d7 later.
+            fr: Les Noirs bloquent avec le fou de même valeur, prêts à l'échange si les Blancs le souhaitent, laissant le cavalier b8 libre d'aller en c6 ou d7 plus tard.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Trắng 39, Đen 38. Trắng hơn hẳn một tốt sạch, và con tượng b5 hiện đang ghim thẳng vào tượng d7 chứ không hề đứng lạc lõng. Bù đắp của Đen ở đây khá mỏng, chỉ là một chút không gian cánh hậu và nhịp tấn công tượng.
+              en: Count the pieces and it is 39 for White, 38 for Black. White is a clean pawn up, and the bishop on b5 is now pinning the bishop on d7, not stranded at all. Black's compensation here is thin, just a little queenside space and a tempo spent chasing the bishop.
+              fr: Comptez les pièces, 39 pour les Blancs, 38 pour les Noirs. Les Blancs ont un pion net d'avance, et le fou en b5 cloue désormais le fou d7, loin d'être isolé. La compensation noire est ici assez mince, juste un peu d'espace à l'aile dame et un temps passé à chasser le fou.
+            plan:
+              vi: Đen chơi ...a6 đuổi tượng, sau đó ...Nf6 hay ...Qb6 gây sức ép lên b2, tìm cách khai thác nốt chút không gian đã có để bù cho con tốt. Trắng chơi Bxd7+ đổi tượng lấy nhịp hoặc lui Be2, rồi Bg2, Nc3, O-O hoàn tất fianchetto và phát triển bình thường, giữ chắc con tốt thừa mà không cần mạo hiểm gì thêm.
+              en: Black plays ...a6 to chase the bishop, then ...Nf6 or ...Qb6 to pressure b2, trying to squeeze some use out of the little space gained to compensate for the pawn. White plays Bxd7+ to trade the bishop for a tempo or retreats with Be2, then Bg2, Nc3 and O-O to complete the fianchetto and develop normally, holding the extra pawn without needing to take any further risk.
+              fr: Les Noirs jouent ...a6 pour chasser le fou, puis ...Nf6 ou ...Qb6 pour presser b2, essayant de tirer parti du peu d'espace gagné pour compenser le pion. Les Blancs jouent Bxd7+ pour échanger le fou contre un temps ou reculent par Be2, puis Bg2, Nc3 et O-O pour achever le fianchetto et développer normalement, gardant le pion supplémentaire sans avoir besoin de prendre le moindre risque de plus.
+            basis:
+              by: chan
+              at: '2026-09-22'

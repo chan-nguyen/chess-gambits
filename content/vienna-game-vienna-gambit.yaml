@@ -1,0 +1,63 @@
+# Vienna Game: Vienna Gambit. Frozen defining line 1.e4 e5 2.Nc3 Nf6 3.f4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 2 moves, returns no-mate.
+id: vienna-game-vienna-gambit
+name: 'Vienna Game: Vienna Gambit'
+eco: C29
+category: gambit
+side: white
+definingLine: [e4, e5, Nc3, Nf6, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White strikes at e5 a move later than the King's Gambit, having first
+      developed the queenside knight, but that knight does nothing to defend e4, so Black
+      can simply take there instead of taking on f4. The resulting positions are sharp and
+      well tested rather than clearly good for either side. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...Nf6 quen thuộc, Trắng chơi 3.f4, tấn công tốt e5 giống một ván Khai cuộc Vua thí tốt nhưng đã phát triển mã c3 trước. Vấn đề là con mã ấy không đỡ ô e4, nên Đen có thể bỏ qua việc ăn ở f4 mà ăn thẳng ở e4.
+    en: After the familiar 2...Nf6, White plays 3.f4, striking at e5 much like a King's Gambit but with the c3 knight already developed. The trouble is that knight does nothing to guard e4, so Black can skip capturing on f4 and take on e4 instead.
+    fr: Après le 2...Nf6 habituel, les Blancs jouent 3.f4, frappant e5 comme dans un gambit du roi mais avec le cavalier c3 déjà développé. Le problème est que ce cavalier ne garde pas e4, si bien que les Noirs peuvent ignorer la prise en f4 et prendre directement en e4.
+  dismissRest:
+    reason:
+      vi: Đen không ăn ở e4. Các nước khác như ...d5 hay ...exf4 giữ căng thẳng theo cách khác và dẫn tới những biến đã có tên riêng; con tốt e4 không bị đụng tới và câu trả lời của Trắng không thay đổi.
+      en: Black does not take on e4. Anything else, such as ...d5 or ...exf4, keeps the tension a different way and leads into other named lines; the e4 pawn is left alone and White's answer does not change.
+      fr: Les Noirs ne prennent pas en e4. Tout le reste, comme ...d5 ou ...exf4, maintient la tension autrement et mène à d'autres lignes déjà nommées ; le pion e4 reste intact et la réponse blanche ne change pas.
+  children:
+    - ply: Nxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thẳng tốt e4 vì không ai đỡ nó. Đây là cách kiểm tra gambit trực diện nhất, chấp nhận đi vào biến phức tạp thay vì chơi ...d5 chắc chắn hơn.
+        en: Black takes the undefended e4 pawn directly. This is the most direct test of the gambit, accepting a sharp position instead of the safer ...d5.
+        fr: Les Noirs prennent directement le pion e4, sans défenseur. C'est le test le plus direct du gambit, acceptant une position tranchante plutôt que le plus prudent ...d5.
+      unsettled: >-
+        fxe5 is going free alongside the plain Nxe4 recapture — Black's own e5 pawn lost
+        its defender the moment the knight left f6 — and the evaluation is built on that
+        fact rather than on picking one of the two and playing it out.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39 ngay sau nước ăn của Đen, tức Trắng kém đúng một tốt lúc này. Nhưng Trắng có hai cách xử lý, hoặc Nxe4 ăn lại con mã bình thường, hoặc fxe5 ăn hẳn con tốt e5 của Đen vốn đã mất người đỡ khi mã rời f6. Dù chọn cách nào thì quân số cũng trở lại gần cân bằng ngay lập tức.
+          en: Count the pieces and it is 38 for White, 39 for Black right after Black's capture, so White is a clean pawn down for the moment. But White has two ways to answer, either the plain Nxe4 recapture, or fxe5 grabbing Black's own e5 pawn, which lost its defender the moment the knight left f6. Whichever is chosen, material comes straight back close to level.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs juste après la capture noire, les Blancs sont donc un pion de moins pour l'instant. Mais ils ont deux façons de répondre, le simple Nxe4, ou fxe5 qui s'empare du propre pion e5 des Noirs, resté sans défenseur dès que le cavalier a quitté f6. Quel que soit le choix, le matériel revient aussitôt près de l'égalité.
+        plan:
+          vi: Trắng chơi Nxe4 ăn lại ngay, rồi sau ...d5 đuổi mã, Trắng lui về g3 hoặc c3, chấp nhận Đen chiếm trung tâm một lúc để đổi lấy nhịp phát triển và cột f nửa mở cho xe f1 sau này; hoặc Trắng chọn fxe5 trước, để con mã e4 của Đen lại đó một lúc và tính chuyện đuổi nó sau bằng d3. Đen chơi ...d5, ...Nc6 và ...Bd6 hoặc ...Be7 để hoàn tất phát triển nhanh trong lúc Trắng gỡ lại quân.
+          en: White plays Nxe4 to recapture at once, and after ...d5 chases the knight, White retreats to g3 or c3, accepting that Black owns the centre for a while in exchange for a development tempo and the half-open f-file for the rook; or White chooses fxe5 first, leaving Black's knight on e4 alone for the moment and planning to chase it later with d3. Black plays ...d5, ...Nc6 and ...Bd6 or ...Be7, finishing development quickly while White regroups.
+          fr: Les Blancs jouent Nxe4 pour reprendre aussitôt, et après ...d5 qui chasse le cavalier, ils reculent en g3 ou c3, acceptant que les Noirs possèdent le centre un moment en échange d'un temps de développement et de la colonne f semi-ouverte pour la tour ; ou bien ils choisissent d'abord fxe5, laissant un moment le cavalier noir en e4 et prévoyant de le chasser plus tard par d3. Les Noirs jouent ...d5, ...Nc6 et ...Bd6 ou ...Be7, achevant rapidement leur développement pendant que les Blancs se regroupent.
+        basis:
+          by: chan
+          at: '2026-09-22'

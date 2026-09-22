@@ -1,0 +1,62 @@
+# Scotch Game: Göring Gambit, Double Pawn Sacrifice. Frozen defining line 1.e4 e5 2.Nf3
+# Nc6 3.d4 exd4 4.c3 dxc3 5.Bc4, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before
+# being annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: scotch-game-goring-gambit-double-pawn-sacrifice
+name: 'Scotch Game: Göring Gambit, Double Pawn Sacrifice'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, c3, dxc3, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Instead of recapturing on c3 at once, White develops the bishop first
+      and lets Black take a third pawn, banking on a huge lead in development and the
+      long diagonal for the c1 bishop. It is the most ambitious way to play the Göring, and
+      also the most risky. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 4...dxc3, thay vì ăn lại ngay bằng Nxc3, Trắng chơi 5.Bc4, phát triển trước và để ngỏ con tốt c3 như một lời mời ăn thêm lần nữa.
+    en: After 4...dxc3, instead of recapturing at once with Nxc3, White plays 5.Bc4, developing first and leaving the c3 pawn as an invitation to take yet again.
+    fr: Après 4...dxc3, au lieu de reprendre aussitôt par Nxc3, les Blancs jouent 5.Bc4, développant d'abord et laissant le pion c3 comme une invitation à prendre encore une fois.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tiếp ở b2. Các nước khác như ...cxb2 chưa chơi, ...d6 hay ...Nf6 phát triển trước và để nguyên con tốt c3; câu trả lời của Trắng không đổi trong các trường hợp đó, Nxc3 vẫn ăn lại bình thường.
+      en: Black does not take a third time on b2. Anything else, such as ...d6 or ...Nf6 developing first and leaving the c3 pawn alone, meets the same ordinary recapture with Nxc3; White's answer does not change in those cases.
+      fr: Les Noirs ne prennent pas une troisième fois en b2. Tout le reste, comme ...d6 ou ...Nf6 qui développent d'abord et laissent le pion c3 tranquille, rencontre la même reprise ordinaire par Nxc3 ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: cxb2
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tiếp một tốt nữa bằng 5...cxb2, đẩy quân tốt ấy lên hàng thứ hai của Trắng, nơi nó cùng lúc chĩa vào cả xe a1 lẫn tượng c1.
+        en: Black takes a further pawn with 5...cxb2, pushing that pawn onto White's second rank, where it forks the rook on a1 and the bishop on c1 at the same time.
+        fr: Les Noirs prennent un pion de plus par 5...cxb2, poussant ce pion sur la deuxième rangée blanche, où il fourchette à la fois la tour a1 et le fou c1.
+      unsettled: >-
+        Bxb2 is going free and the evaluation is built on it — the whole point of the leaf
+        is the fork on a1 and c1 that makes White's recapture the story, not a race to play
+        it out a ply further.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 36, Đen 39. Trắng đã kém tới ba tốt, con số rất lớn cho một ván gambit. Nhưng con tốt b2 kia không có ai đỡ nó cả, và Bxb2 sẽ vừa ăn lại một tốt vừa đặt con tượng lên đúng đường chéo dài a1-h8 mà Trắng đã nhắm tới ngay từ nước 5.Bc4.
+          en: Count the pieces and it is 36 for White, 39 for Black. White is down three whole pawns, a large number for a gambit. But that pawn on b2 has no defender of its own, and Bxb2 both recaptures a pawn and puts the bishop exactly on the long a1-h8 diagonal that White has been aiming for since 5.Bc4.
+          fr: Comptez les pièces, 36 pour les Blancs, 39 pour les Noirs. Les Blancs sont en retard de trois pions entiers, un chiffre considérable pour un gambit. Mais ce pion en b2 n'a aucun défenseur, et Bxb2 reprend un pion tout en plaçant le fou exactement sur la grande diagonale a1-h8 que les Blancs visaient depuis 5.Bc4.
+        plan:
+          vi: Trắng chơi Bxb2, lấy lại một tốt và có ngay một con tượng cực mạnh nhắm vào g7 và h8, rồi Qb3 hay O-O-O phối hợp tấn công nhanh trong khi Đen còn chưa kịp nhập thành. Đen chơi ...d6 hoặc ...Nf6 để che chắn đường chéo và chuẩn bị nhập thành gấp, giữ chặt hai tốt còn thừa và tránh mở thêm đường cho quân Trắng.
+          en: White plays Bxb2, winning a pawn back and getting an immediately powerful bishop aimed at g7 and h8, then Qb3 or O-O-O for a fast attack while Black has not yet castled. Black plays ...d6 or ...Nf6 to block the diagonal and prepare to castle quickly, holding on to the remaining two extra pawns and trying not to open any more lines for White's pieces.
+          fr: Les Blancs jouent Bxb2, regagnant un pion et obtenant aussitôt un fou puissant visant g7 et h8, puis Qb3 ou O-O-O pour une attaque rapide pendant que les Noirs n'ont pas encore roqué. Les Noirs jouent ...d6 ou ...Nf6 pour boucher la diagonale et se préparer à roquer vite, gardant les deux pions restants et évitant d'ouvrir davantage de lignes aux pièces blanches.
+        basis:
+          by: chan
+          at: '2026-09-22'

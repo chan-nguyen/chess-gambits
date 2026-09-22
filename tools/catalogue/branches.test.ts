@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * One hundred and seventy-five entries are authored — three from #15, eleven from #73, ten
+   * Two hundred and ten entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -142,7 +142,20 @@ describe('the catalogue this repository ships', () => {
    * hungarian-opening-asten-gambit, each a single root-to-leaf line), and twenty more from
    * #136 batch a (twenty short, single-line entries deepened straight from `listed` to
    * `taught` — a modelled reply to the defining line's sacrifice, ending in a `position`
-   * leaf, one branch each) — and the other 831
+   * leaf, one branch each), and twenty more from #136 batch e (scotch-game-alekhine-gambit,
+   * scotch-game-goring-gambit-double-pawn-sacrifice, scotch-game-scotch-gambit-advance-variation,
+   * sicilian-defense-alapin-variation-anti-alapin-gambit, sicilian-defense-kotov-gambit,
+   * sicilian-defense-mcdonnell-attack-tal-gambit, sicilian-defense-morphy-gambit-andreaschek-gambit,
+   * sicilian-defense-smith-morra-gambit-deferred, sicilian-defense-wing-gambit-abrahams-variation,
+   * sicilian-defense-wing-gambit-marshall-variation, slav-defense-geller-gambit,
+   * slav-defense-slav-gambit-alekhine-attack, slav-defense-winawer-countergambit,
+   * tarrasch-defense-tarrasch-gambit, vienna-game-frankenstein-dracula-variation,
+   * vienna-game-philidor-countergambit, vienna-game-vienna-gambit,
+   * vienna-game-vienna-gambit-steinitz-variation, zukertort-opening-lemberger-gambit and
+   * zukertort-opening-tennison-gambit, each a single root-to-leaf line except the three
+   * (sicilian-defense-alapin-variation-anti-alapin-gambit, sicilian-defense-kotov-gambit and
+   * sicilian-defense-mcdonnell-attack-tal-gambit) that model a forced reply to an
+   * intermediate check before their leaf, still one branch each) — and the other 811
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -323,25 +336,39 @@ describe('the catalogue this repository ships', () => {
     ['ruy-lopez-schliemann-defense', 1],
     ['scandinavian-defense-kiel-variation-trap', 3],
     ['scandinavian-defense-zilbermints-gambit', 2],
+    ['scotch-game-alekhine-gambit', 1],
     ['scotch-game-goring-gambit', 2],
+    ['scotch-game-goring-gambit-double-pawn-sacrifice', 1],
     ['scotch-game-scotch-gambit', 4],
+    ['scotch-game-scotch-gambit-advance-variation', 1],
     ['semi-slav-defense-marshall-gambit', 1],
     ['siberian-trap', 1],
+    ['sicilian-defense-alapin-variation-anti-alapin-gambit', 1],
     ['sicilian-defense-brussels-gambit', 1],
     ['sicilian-defense-euwe-attack-prins-gambit', 1],
     ['sicilian-defense-halasz-gambit', 1],
+    ['sicilian-defense-kotov-gambit', 1],
+    ['sicilian-defense-mcdonnell-attack-tal-gambit', 1],
     ['sicilian-defense-morphy-gambit', 1],
+    ['sicilian-defense-morphy-gambit-andreaschek-gambit', 1],
     ['sicilian-defense-okelly-variation-wing-gambit', 1],
     ['sicilian-defense-polish-gambit', 1],
     ['sicilian-defense-portsmouth-gambit', 1],
     ['sicilian-defense-smith-morra-gambit', 4],
+    ['sicilian-defense-smith-morra-gambit-deferred', 1],
     ['sicilian-defense-wing-gambit', 1],
+    ['sicilian-defense-wing-gambit-abrahams-variation', 1],
+    ['sicilian-defense-wing-gambit-marshall-variation', 1],
     ['slav-defense-diemer-gambit', 1],
+    ['slav-defense-geller-gambit', 1],
+    ['slav-defense-slav-gambit-alekhine-attack', 1],
+    ['slav-defense-winawer-countergambit', 1],
     ['smith-morra-gambit-accepted-open-d-file-trap', 1],
     ['sodium-attack-durkin-gambit', 1],
     ['st-george-defense-zilbermints-gambit', 1],
     ['stafford-gambit-rosen-trap', 2],
     ['tarrasch-defense-schara-gambit', 1],
+    ['tarrasch-defense-tarrasch-gambit', 1],
     ['tarrasch-trap', 1],
     ['torre-attack-wagner-gambit', 1],
     ['traxler-counterattack-ke2-trap', 1],
@@ -350,10 +377,16 @@ describe('the catalogue this repository ships', () => {
     ['vant-kruijs-opening-keoni-hiva-gambit-akahi-variation', 1],
     ['vienna-gambit-with-max-lange-defense', 2],
     ['vienna-game-frankenstein-dracula-qd5-trap', 3],
+    ['vienna-game-frankenstein-dracula-variation', 1],
     ['vienna-game-fyfe-gambit', 3],
+    ['vienna-game-philidor-countergambit', 1],
+    ['vienna-game-vienna-gambit', 1],
+    ['vienna-game-vienna-gambit-steinitz-variation', 1],
     ['vienna-game-wurzburger-trap', 1],
     ['ware-opening-wing-gambit', 1],
     ['zukertort-opening-herrstrom-gambit', 1],
+    ['zukertort-opening-lemberger-gambit', 1],
+    ['zukertort-opening-tennison-gambit', 1],
   ])
 
   it('bakes keys on all 1021 entries, and only the authored one hundred and ninety have any', () => {

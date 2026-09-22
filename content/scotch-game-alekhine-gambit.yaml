@@ -1,0 +1,58 @@
+# Scotch Game: Alekhine Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Nxd4
+# Nf6 5.e5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: scotch-game-alekhine-gambit
+name: 'Scotch Game: Alekhine Gambit'
+eco: C45
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, Nxd4, Nf6, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Material is already level after 4.Nxd4, so 5.e5 is not a pawn sacrifice
+      yet — it is a further committal push that chases the knight and opens the e-file
+      against a king still on e1, at the cost of leaving the e5 pawn itself as a long-term
+      target. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 4.Nxd4 ăn lại tốt, quân số đã cân bằng. Trắng chơi tiếp 5.e5, đuổi mã f6 và đẩy trung tâm lên xa hơn thay vì chơi Nc3 an toàn, một nước có tên riêng vì nó rất giàu tham vọng.
+    en: After 4.Nxd4 recaptures the pawn, material is already level. White continues with 5.e5, chasing the f6 knight and pushing the centre further rather than playing the safe Nc3, a move with a name of its own because it is so ambitious.
+    fr: Après 4.Nxd4 qui reprend le pion, le matériel est déjà égal. Les Blancs poursuivent par 5.e5, chassant le cavalier f6 et poussant le centre plus loin plutôt que de jouer le prudent Nc3, un coup qui porte un nom tant il est ambitieux.
+  dismissRest:
+    reason:
+      vi: Đen không đưa hậu ra chiếu ghim tốt e5. Các nước khác như ...Ne4 hay ...Nd5 đưa mã đi chỗ khác và không đụng ngay đến con tốt vừa đẩy lên; câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black does not bring the queen out to pin the e5 pawn. Anything else, such as ...Ne4 or ...Nd5, sends the knight elsewhere without immediately targeting the pawn that just advanced; White's answer does not change in those cases.
+      fr: Les Noirs ne sortent pas la dame pour clouer le pion e5. Tout le reste, comme ...Ne4 ou ...Nd5, envoie le cavalier ailleurs sans viser immédiatement le pion qui vient d'avancer ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: Qe7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chơi 5...Qe7, nước chính của biến này. Con hậu ghim tốt e5 vào vua Trắng còn đứng ở e1, nên Trắng không thể giữ nó bằng một nước phát triển bình thường.
+        en: Black plays 5...Qe7, the main move of this line. The queen pins the e5 pawn to the white king, still sitting on e1, so White cannot simply hold it with an ordinary developing move.
+        fr: Les Noirs jouent 5...Qe7, le coup principal de cette ligne. La dame cloue le pion e5 contre le roi blanc, toujours en e1, si bien que les Blancs ne peuvent pas le tenir par un simple coup de développement.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì hai bên vẫn 38-38, quân số ngang nhau tuyệt đối. Cái đáng chú ý không phải là vật chất mà là con tốt e5 bị ghim và mã d4 của Trắng cũng đứng trên chính cột e ấy, nên một vài nước tới sẽ quyết định con tốt e5 có trụ được hay không.
+          en: Count the pieces and it is still 38-38, perfectly level. What matters is not the material but that the e5 pawn is pinned and White's own knight on d4 also sits on that same e-file, so the next few moves decide whether the e5 pawn survives at all.
+          fr: Comptez les pièces, toujours 38-38, parfaitement égal. Ce qui compte n'est pas le matériel mais le fait que le pion e5 est cloué et que le cavalier blanc en d4 se trouve lui aussi sur cette colonne e, si bien que les prochains coups décideront si le pion e5 survit.
+        plan:
+          vi: Trắng chơi Qe2 để giải toả ghim và chuẩn bị đổi hậu nếu cần, hoặc Nb5 đe doạ Nc7+ nếu Đen chậm trễ, rồi Nc3 và Be3 hoàn tất phát triển trong lúc con tốt e5 vẫn cần được để mắt tới. Đen chơi ...Nd5 hoặc ...Ng4 nhắm vào con tốt và con mã d4, rồi ...Nc6 đổi bớt quân, tìm cách ăn lại tốt e5 hoặc buộc Trắng phải trả nó về.
+          en: White plays Qe2 to break the pin and prepare a queen trade if needed, or Nb5 to threaten Nc7+ if Black is slow, then Nc3 and Be3 to finish development while still keeping an eye on the e5 pawn. Black plays ...Nd5 or ...Ng4, aiming at the pawn and the knight on d4, then ...Nc6 to trade off pieces, looking to win the e5 pawn back or force White to give it up.
+          fr: Les Blancs jouent Qe2 pour rompre le clouage et préparer un échange de dames au besoin, ou Nb5 pour menacer Nc7+ si les Noirs traînent, puis Nc3 et Be3 pour achever leur développement tout en surveillant le pion e5. Les Noirs jouent ...Nd5 ou ...Ng4, visant le pion et le cavalier d4, puis ...Nc6 pour échanger des pièces, cherchant à regagner le pion e5 ou à forcer les Blancs à le rendre.
+        basis:
+          by: chan
+          at: '2026-09-22'

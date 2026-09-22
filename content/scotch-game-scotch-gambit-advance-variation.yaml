@@ -1,0 +1,58 @@
+# Scotch Game: Scotch Gambit, Advance Variation. Frozen defining line 1.e4 e5 2.Nf3 Nc6
+# 3.d4 exd4 4.Bc4 Nf6 5.e5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: scotch-game-scotch-gambit-advance-variation
+name: 'Scotch Game: Scotch Gambit, Advance Variation'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, Bc4, Nf6, e5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Instead of recapturing on d4, White develops the bishop and then pushes
+      e5 to gain a further tempo on the f6 knight. It is one of the most respected ways to
+      handle the Scotch Gambit, keeping the game sharp without overextending. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 4...Nf6, Trắng chưa vội ăn lại tốt d4 mà đẩy 5.e5, đuổi thẳng con mã và giữ nguyên con tốt thừa của Đen như một khoản đầu tư cho không gian và nhịp.
+    en: After 4...Nf6, White is in no hurry to recapture on d4 and instead pushes 5.e5, chasing the knight directly and leaving Black's extra pawn on the board as an investment in space and time.
+    fr: Après 4...Nf6, les Blancs ne se pressent pas de reprendre en d4 et poussent 5.e5, chassant directement le cavalier et laissant le pion supplémentaire noir sur l'échiquier comme un investissement en espace et en temps.
+  dismissRest:
+    reason:
+      vi: Đen không đụng đến con tượng c4. Các nước khác như ...Ne4 hay ...Nh5 đưa mã đi chỗ khác và để nguyên căng thẳng theo cách khác; câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black does not touch the bishop on c4. Anything else, such as ...Ne4 or ...Nh5, sends the knight elsewhere and keeps the tension a different way; White's answer does not change in those cases.
+      fr: Les Noirs ne touchent pas au fou c4. Tout le reste, comme ...Ne4 ou ...Nh5, envoie le cavalier ailleurs et maintient la tension autrement ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: d5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen không rút mã mà phản công thẳng vào con tượng c4 bằng 5...d5, nước đi chính và mạnh nhất, mở đường cho tượng c8 và giành lại một phần trung tâm ngay lập tức.
+        en: Rather than retreat the knight, Black counterattacks the bishop on c4 directly with 5...d5, the main and strongest move, opening a diagonal for the c8 bishop and reclaiming central influence at once.
+        fr: Plutôt que de reculer le cavalier, les Noirs contre-attaquent directement le fou c4 par 5...d5, le coup principal et le plus fort, ouvrant une diagonale pour le fou c8 et reprenant aussitôt de l'influence centrale.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39, Trắng vẫn kém đúng một tốt như từ đầu ván gambit. Con tượng c4 bị tấn công và phải quyết định ngay, trong khi con tốt e5 của Trắng cũng chưa chắc chắn đứng vững vì mã f6 vẫn còn đó một lúc nữa.
+          en: Count the pieces and it is 38 for White, 39 for Black, so White is still down the one pawn from the start of the gambit. The bishop on c4 is attacked and must decide at once, while White's e5 pawn is not fully settled either, since the f6 knight is still sitting there for another move.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs, les Blancs restent donc en retard du seul pion offert depuis le début du gambit. Le fou c4 est attaqué et doit se décider immédiatement, tandis que le pion e5 blanc n'est pas non plus tout à fait assuré, le cavalier f6 étant encore présent un coup de plus.
+        plan:
+          vi: Trắng chơi exf6 ăn mã trước rồi mới tính dxc4, hoặc lui Bb5 giữ tượng và giữ áp lực lên mã c6 đang bị ghim, tiếp theo là O-O và Re1 khai thác cột e nửa mở. Đen chơi ...dxc4 nếu Trắng ăn mã trước, hoặc ...Qe7+ nếu tượng lui, rồi hoàn tất phát triển bằng ...Be6 và ...O-O-O hay ...O-O tuỳ thế cờ.
+          en: White plays exf6 to take the knight first and worry about dxc4 afterwards, or retreats with Bb5 to keep the bishop and the pin on the c6 knight, following up with O-O and Re1 to use the half-open e-file. Black plays ...dxc4 if White takes the knight first, or ...Qe7+ if the bishop retreats, then finishes development with ...Be6 and ...O-O-O or ...O-O depending on how the position looks.
+          fr: Les Blancs jouent exf6 pour prendre le cavalier d'abord et régler dxc4 ensuite, ou reculent par Bb5 pour garder le fou et le clouage du cavalier c6, poursuivant par O-O et Re1 pour exploiter la colonne e semi-ouverte. Les Noirs jouent ...dxc4 si les Blancs prennent le cavalier d'abord, ou ...Qe7+ si le fou recule, puis achèvent leur développement par ...Be6 et ...O-O-O ou ...O-O selon la position.
+        basis:
+          by: chan
+          at: '2026-09-22'
