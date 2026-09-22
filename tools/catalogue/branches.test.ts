@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Two hundred and fifty-one entries are authored — three from #15, eleven from #73, ten
+   * Two hundred and fifty-four entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -162,7 +162,10 @@ describe('the catalogue this repository ships', () => {
    * zukertort-opening-tennison-gambit, each a single root-to-leaf line except the three
    * (sicilian-defense-alapin-variation-anti-alapin-gambit, sicilian-defense-kotov-gambit and
    * sicilian-defense-mcdonnell-attack-tal-gambit) that model a forced reply to an
-   * intermediate check before their leaf, still one branch each) — and the other 772
+   * intermediate check before their leaf, still one branch each), and three more from #136
+   * batch f (danish-gambit-accepted-classical-defense, italian-game-two-knights-defense-fried-liver-attack
+   * and petrovs-defense-cochrane-gambit, each a single root-to-leaf line ending on the
+   * forced recapture after the gambit's own knight sacrifice) — and the other 769
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
