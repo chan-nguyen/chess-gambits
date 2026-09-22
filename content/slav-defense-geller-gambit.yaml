@@ -1,0 +1,58 @@
+# Slav Defense: Geller Gambit. Frozen defining line 1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 dxc4
+# 5.e4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: slav-defense-geller-gambit
+name: 'Slav Defense: Geller Gambit'
+eco: D15
+category: gambit
+side: white
+definingLine: [d4, d5, c4, c6, Nf3, Nf6, Nc3, dxc4, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Reaching the same idea as the Alekhine Attack by way of Nf3 first,
+      White again leaves the c4 pawn on the board and grabs the full centre, betting on
+      development and space rather than a quick pawn recovery. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 4...dxc4, Trắng chơi 5.e4, dựng cặp tốt trung tâm d4-e4 giống hệt ý tưởng của Alekhine Attack nhưng đến bằng thứ tự nước đi qua Nf3 và Nf6 trước.
+    en: After 4...dxc4, White plays 5.e4, building the same d4-e4 pawn centre as the Alekhine Attack idea, but arrived at through the move order Nf3 and Nf6 first.
+    fr: Après 4...dxc4, les Blancs jouent 5.e4, bâtissant le même centre de pions d4-e4 que l'idée de l'Alekhine Attack, mais atteint par l'ordre des coups Nf3 et Nf6 d'abord.
+  dismissRest:
+    reason:
+      vi: Đen không đẩy tốt giữ chặt con tốt c4. Các nước khác như ...Bg4 hay ...b6 phát triển trước và để ngỏ chuyện con tốt ấy; câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black does not push a pawn to hold on to c4. Anything else, such as ...Bg4 or ...b6 developing first and leaving the pawn's fate open, meets the same continuation; White's answer does not change in those cases.
+      fr: Les Noirs ne poussent pas un pion pour garder c4. Tout le reste, comme ...Bg4 ou ...b6 qui développent d'abord et laissent en suspens le sort de ce pion, rencontre la même poursuite ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: b5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chơi 5...b5, giữ chắc con tốt c4 và giành thêm không gian cánh hậu, đúng như trong Alekhine Attack nhưng ở đây mã Trắng đã đứng sẵn ở f3.
+        en: Black plays 5...b5, holding on to the c4 pawn and grabbing queenside space, just as in the Alekhine Attack, except that here White's knight is already developed on f3.
+        fr: Les Noirs jouent 5...b5, tenant le pion c4 et prenant de l'espace à l'aile dame, comme dans l'Alekhine Attack, sauf qu'ici le cavalier blanc est déjà développé en f3.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39. Trắng kém một tốt nhưng có cặp tốt trung tâm đầy đủ và mã f3 đã phát triển sẵn, một nhịp hơn so với Alekhine Attack ở cùng cấu trúc.
+          en: Count the pieces and it is 38 for White, 39 for Black. White is a pawn down but has the full pawn centre and the f3 knight already developed, a tempo ahead of the Alekhine Attack in the same structure.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs. Les Blancs sont en retard d'un pion mais ont le centre de pions complet et le cavalier f3 déjà développé, un temps d'avance sur l'Alekhine Attack dans la même structure.
+        plan:
+          vi: Trắng chơi e5 đuổi mã f6, rồi Ng5 hay a4 đánh vào tốt b5, tận dụng con mã f3 đã sẵn sàng để gây áp lực nhanh hơn lên cánh hậu của Đen. Đen chơi ...Bb7, ...e6 và ...Nbd7 hoặc ...a6 nếu bị a4 đe doạ, cố gắng giữ hai tốt thừa qua giai đoạn khai cuộc và hoàn tất phát triển an toàn.
+          en: White plays e5 to chase the f6 knight, then Ng5 or a4 hitting the b5 pawn, using the already-developed f3 knight to build pressure on Black's queenside more quickly. Black plays ...Bb7, ...e6 and ...Nbd7 or ...a6 if a4 comes, trying to carry the two extra pawns through the opening and finish developing safely.
+          fr: Les Blancs jouent e5 pour chasser le cavalier f6, puis Ng5 ou a4 frappant le pion b5, utilisant le cavalier f3 déjà développé pour presser plus vite l'aile dame noire. Les Noirs jouent ...Bb7, ...e6 et ...Nbd7 ou ...a6 si a4 arrive, essayant de conserver les deux pions supplémentaires au sortir de l'ouverture et d'achever leur développement en sécurité.
+        basis:
+          by: chan
+          at: '2026-09-22'

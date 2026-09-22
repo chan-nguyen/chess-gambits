@@ -1,0 +1,64 @@
+# Sicilian Defense: Alapin Variation, Anti-Alapin Gambit. Frozen defining line 1.e4 c5
+# 2.c3 d5 3.exd5 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: sicilian-defense-alapin-variation-anti-alapin-gambit
+name: 'Sicilian Defense: Alapin Variation, Anti-Alapin Gambit'
+eco: B22
+category: gambit
+side: black
+definingLine: [e4, c5, c3, d5, exd5, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Rather than recapture at once with the queen, Black develops with
+      3...Nf6, offering to stay a pawn down for a move or two in exchange for development
+      and a lead against White's still-uncastled king. It is playable rather than clearly
+      equalizing. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3.exd5, thay vì ăn lại ngay bằng ...Qxd5 rồi bị Nc3 đuổi mất nhịp, Đen chơi 3...Nf6, chấp nhận tạm thời kém một tốt để đổi lấy phát triển nhanh và một mã sẵn sàng ăn lại ở d5.
+    en: After 3.exd5, instead of recapturing at once with ...Qxd5 and losing a tempo to Nc3, Black plays 3...Nf6, accepting a temporary pawn deficit in exchange for fast development and a knight ready to recapture on d5.
+    fr: Après 3.exd5, au lieu de reprendre aussitôt par ...Qxd5 et de perdre un temps sur Nc3, les Noirs jouent 3...Nf6, acceptant un déficit de pion temporaire en échange d'un développement rapide et d'un cavalier prêt à reprendre en d5.
+  dismissRest:
+    reason:
+      vi: Trắng không chiếu bằng tượng. Các nước khác như d4 hay Nf3 phát triển bình thường và để Đen ăn lại thoải mái bằng ...Nxd5; câu trả lời của Đen không đổi trong các trường hợp đó.
+      en: White does not check with the bishop. Anything else, such as d4 or Nf3 developing normally, lets Black recapture comfortably with ...Nxd5; Black's plan does not change in those cases.
+      fr: Les Blancs ne donnent pas échec avec le fou. Tout le reste, comme d4 ou Nf3 qui développent normalement, laisse les Noirs reprendre confortablement par ...Nxd5 ; le plan noir ne change pas dans ces cas.
+  children:
+    - ply: Bb5+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng chơi 4.Bb5+, nước thử thách nhất, ngăn Đen ăn lại một cách êm đẹp và buộc Đen phải chắn chiếu trước khi tính đến chuyện lấy lại con tốt.
+        en: White plays 4.Bb5+, the most testing try, stopping Black from recapturing smoothly and forcing a block to the check before the pawn can be won back.
+        fr: Les Blancs jouent 4.Bb5+, l'essai le plus exigeant, empêchant les Noirs de reprendre en douceur et forçant un blocage de l'échec avant de pouvoir regagner le pion.
+      children:
+        - ply: Bd7
+          annotation:
+            vi: Đen chắn chiếu bằng chính con tượng đồng hạng, sẵn sàng đổi nếu Trắng muốn và giữ được nhịp phát triển đã tính từ đầu.
+            en: Black blocks with the matching bishop, ready to trade if White wants and keeping the development tempo planned from the start.
+            fr: Les Noirs bloquent avec le fou de même valeur, prêts à l'échange si les Blancs le souhaitent, gardant le temps de développement prévu depuis le début.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Trắng 39, Đen 38. Đen vẫn kém một tốt và đã mất thêm một nước để chắn chiếu, nhưng con tượng b5 không có mục tiêu lâu dài và vua Trắng vẫn ở giữa bàn cờ, nên phần bù đắp về phát triển của Đen vẫn còn nguyên.
+              en: Count the pieces and it is 39 for White, 38 for Black. Black is still a pawn down and has now spent an extra move blocking the check, but the bishop on b5 has no long-term target and White's king is still in the centre, so Black's development compensation is still intact.
+              fr: Comptez les pièces, 39 pour les Blancs, 38 pour les Noirs. Les Noirs restent en retard d'un pion et ont dépensé un coup de plus pour bloquer l'échec, mais le fou b5 n'a pas de cible durable et le roi blanc reste au centre, si bien que la compensation de développement noire reste intacte.
+            plan:
+              vi: Đen chơi ...Nxd5 ăn lại tốt sau khi hoàn tất chắn chiếu, rồi ...g6, ...Bg7 fianchetto và ...O-O, và nếu Trắng đổi Bxd7+ thì ...Qxd7 hay ...Nxd7 vẫn giúp Đen hoàn tất phát triển nhanh. Trắng chơi Bxd7+ đổi tượng lấy nhịp, hoặc lui Be2, rồi d4 và Nf3 dựng trung tâm, cố giữ con tốt thừa càng lâu càng tốt trước khi Đen kịp phối hợp.
+              en: Black plays ...Nxd5 to win the pawn back once the check is dealt with, then ...g6, ...Bg7 to fianchetto and ...O-O, and if White trades with Bxd7+ then ...Qxd7 or ...Nxd7 still lets Black finish developing quickly. White plays Bxd7+ to trade the bishop for a tempo, or retreats with Be2, then builds a centre with d4 and Nf3, trying to hold the extra pawn as long as possible before Black gets any real coordination.
+              fr: Les Noirs jouent ...Nxd5 pour regagner le pion une fois l'échec réglé, puis ...g6, ...Bg7 pour le fianchetto et ...O-O, et si les Blancs échangent par Bxd7+, alors ...Qxd7 ou ...Nxd7 permet toujours aux Noirs d'achever rapidement leur développement. Les Blancs jouent Bxd7+ pour échanger le fou contre un temps, ou reculent par Be2, puis bâtissent un centre avec d4 et Nf3, essayant de garder le pion supplémentaire le plus longtemps possible avant que les Noirs ne trouvent une vraie coordination.
+            basis:
+              by: chan
+              at: '2026-09-22'

@@ -1,0 +1,63 @@
+# Vienna Game: Philidor Countergambit. Frozen defining line 1.e4 e5 2.Nc3 Nc6 3.d4 f5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: vienna-game-philidor-countergambit
+name: 'Vienna Game: Philidor Countergambit'
+eco: C25
+category: gambit
+side: black
+definingLine: [e4, e5, Nc3, Nc6, d4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black meets White's central push with a kingside strike of their own,
+      but the e5 pawn is simply undefended after 3...f5, and White is not obliged to
+      exchange first. A pawn for some quick activity is a real try, not a sound equalizer.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3.d4, thay vì đổi tốt hay đỡ tốt e5, Đen chơi 3...f5, đáp trả bằng chính nước tấn công cánh vua thay vì chơi chắc chắn. Con tốt e5 giờ đây không còn ai đỡ.
+    en: After 3.d4, instead of trading or defending the e5 pawn, Black plays 3...f5, answering with a kingside strike of its own rather than a safe move. The e5 pawn is now left without a defender.
+    fr: Après 3.d4, au lieu d'échanger ou de défendre le pion e5, les Noirs jouent 3...f5, répondant par une frappe à l'aile roi plutôt que par un coup prudent. Le pion e5 se retrouve désormais sans défenseur.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5. Các nước khác như dxe5 chậm hơn hay Nf3 phát triển trước đều để nguyên căng thẳng; câu trả lời của Đen không đổi trong các trường hợp đó, vì mục tiêu vẫn là ...fxe4 nếu được phép.
+      en: White does not take the e5 pawn. Anything else, such as a slower dxe5 in spirit or developing with Nf3 first, leaves the tension in place; Black's plan does not change in those cases, since ...fxe4 is still the target if allowed.
+      fr: Les Blancs ne prennent pas le pion e5. Tout le reste, comme un dxe5 plus lent dans l'esprit ou un développement par Nf3 d'abord, laisse la tension en place ; le plan noir ne change pas dans ces cas, ...fxe4 restant l'objectif si on le permet.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn ngay con tốt e5 đang bỏ ngỏ, cách kiểm tra trực tiếp nhất xem Đen có thật sự bù đắp được cho nó hay không.
+        en: White simply takes the undefended e5 pawn, the most direct way to test whether Black really has enough to show for it.
+        fr: Les Blancs prennent simplement le pion e5 sans défenseur, la façon la plus directe de tester si les Noirs ont vraiment de quoi compenser.
+      unsettled: >-
+        Nxe5 is going free — the pawn White has just captured has no defender of its own —
+        and the evaluation is built on it — the point of the leaf is that Black has a
+        choice between that immediate equalizer and the sharper ...fxe4, not a race to play
+        either one out.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 39, Đen 38 ngay sau nước ăn tốt, nhưng con số đó sẽ không đứng yên. Con tốt e5 của Trắng không ai đỡ, nên ...Nxe5 lấy lại ngay quân số cân bằng. Đen cũng có lựa chọn tham vọng hơn là ...fxe4, bỏ qua việc ăn lại để đánh thẳng vào mã c3 và mở cột f, dẫn tới quân số ngang nhau theo một hướng khác hẳn.
+          en: Count the pieces and it is 39 for White, 38 for Black right after the capture, but that number will not hold. White's pawn on e5 has no defender, so ...Nxe5 restores material equality at once. Black also has the more ambitious ...fxe4, skipping the recapture to strike the knight on c3 and open the f-file, reaching level material by a completely different route.
+          fr: Comptez les pièces, 39 pour les Blancs, 38 pour les Noirs juste après la capture, mais ce chiffre ne va pas tenir. Le pion blanc en e5 n'a pas de défenseur, si bien que ...Nxe5 rétablit aussitôt l'égalité matérielle. Les Noirs disposent aussi du plus ambitieux ...fxe4, renonçant à la reprise pour frapper le cavalier c3 et ouvrir la colonne f, atteignant un matériel égal par une tout autre voie.
+        plan:
+          vi: Đen chơi ...fxe4 nếu muốn giữ thế chủ động, và sau Nxe4 thì tiếp tục ...Nf6 hay ...d5 đổi mã và giành lại một phần trung tâm, hoặc đơn giản ...Nxe5 nếu chỉ cần cân bằng vật chất ngay lập tức. Trắng chơi Nxe4 rồi Nf3, Bc4 hay Be2 và O-O nếu Đen chọn ...fxe4, hoặc đơn giản phát triển bình thường nếu Đen chọn ...Nxe5 và quân số đã ngang nhau.
+          en: Black plays ...fxe4 to keep the initiative, and after Nxe4 continues with ...Nf6 or ...d5 to trade the knight and win back some central influence, or simply plays ...Nxe5 if levelling the material at once is enough. White plays Nxe4 and then Nf3, Bc4 or Be2 and O-O if Black chooses ...fxe4, or simply develops normally if Black settles for ...Nxe5 and material is already level.
+          fr: Les Noirs jouent ...fxe4 pour garder l'initiative, et après Nxe4 poursuivent par ...Nf6 ou ...d5 pour échanger le cavalier et regagner une part d'influence centrale, ou jouent simplement ...Nxe5 s'il suffit d'égaliser le matériel tout de suite. Les Blancs jouent Nxe4 puis Nf3, Bc4 ou Be2 et O-O si les Noirs choisissent ...fxe4, ou développent simplement s'ils se contentent de ...Nxe5 et que le matériel est déjà égal.
+        basis:
+          by: chan
+          at: '2026-09-22'

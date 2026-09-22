@@ -1,0 +1,58 @@
+# Vienna Game: Frankenstein-Dracula Variation. Frozen defining line 1.e4 e5 2.Nc3 Nf6
+# 3.Bc4 Nxe4, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: vienna-game-frankenstein-dracula-variation
+name: 'Vienna Game: Frankenstein-Dracula Variation'
+eco: C27
+category: gambit
+side: black
+definingLine: [e4, e5, Nc3, Nf6, Bc4, Nxe4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black grabs the e4 pawn because the bishop on c4 does nothing to defend
+      it, but the name warns what is coming: White has an immediate double threat that
+      forces Black into narrow, calculated replies rather than a quiet extra pawn. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3.Bc4, con tượng nhắm vào f7 nhưng không đỡ tốt e4. Đen ăn ngay bằng 3...Nxe4, chấp nhận bước vào biến nổi tiếng vì rắc rối hơn là vì con tốt.
+    en: After 3.Bc4, the bishop aims at f7 but does nothing to guard e4. Black takes it at once with 3...Nxe4, stepping into a line famous for the trouble that follows rather than for the pawn itself.
+    fr: Après 3.Bc4, le fou vise f7 mais ne garde pas e4. Les Noirs le prennent aussitôt par 3...Nxe4, entrant dans une ligne célèbre pour les ennuis qui suivent plutôt que pour le pion lui-même.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4. Các nước khác như ...Bc5 hay ...Nc6 phát triển bình thường và để nguyên con tốt ấy; câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black does not take the e4 pawn. Anything else, such as ...Bc5 or ...Nc6, develops normally and leaves that pawn alone; White's answer does not change in those cases.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme ...Bc5 ou ...Nc6, développe normalement et laisse ce pion tranquille ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: Qh5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Hậu Trắng ra h5 với một đòn kép. Nó chiếu gián tiếp lên tốt e5 vì mã f6 đã rời đi, nên Qxe5+ đang đe dọa chĩa vào cả vua e8 lẫn xe h8, và nó cũng chuẩn bị phối hợp với tượng c4 nhắm vào f7.
+        en: The white queen goes to h5 with a double point. It attacks the e5 pawn, undefended now that the f6 knight is gone, so Qxe5+ threatens to fork the king on e8 and the rook on h8, and it also lines up with the bishop on c4 against f7.
+        fr: La dame blanche va en h5 avec une double idée. Elle attaque le pion e5, sans défenseur maintenant que le cavalier f6 est parti, si bien que Qxe5+ menace de fourchetter le roi en e8 et la tour en h8, et elle s'aligne aussi avec le fou c4 contre f7.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì hai bên đang 38-39 nghiêng về Đen, tức Đen còn giữ tốt thừa lúc này. Nhưng đó không phải là điều đáng nói ở thế cờ này. Điều đáng nói là Qxe5+ đang treo lơ lửng, chĩa vào cả vua lẫn xe h8 cùng lúc, nên Đen buộc phải xử lý ngay chứ không được thong thả phát triển quân.
+          en: Count the pieces and it is 38-39 in Black's favour, so Black still holds the extra pawn for the moment. That is not what matters here. What matters is that Qxe5+ is hanging over the board, forking the king and the rook on h8 at once, so Black has to deal with it immediately rather than developing at leisure.
+          fr: Comptez les pièces, 38-39 en faveur des Noirs, qui gardent donc le pion supplémentaire pour l'instant. Ce n'est pas ce qui compte ici. Ce qui compte, c'est que Qxe5+ plane sur l'échiquier, fourchettant à la fois le roi et la tour h8, si bien que les Noirs doivent y répondre immédiatement plutôt que de développer tranquillement.
+        plan:
+          vi: Đen chơi ...Nd6 bắt buộc, vừa chặn đường tượng c4 vừa đuổi nó đi, sau đó Trắng lui Bb3 vẫn giữ áp lực lên f7 và chuẩn bị Nb5 hoặc Qxe5+ nếu Đen sơ hở. Đen tiếp tục ...Be7 hoặc ...g6 để hoàn thành nhập thành càng sớm càng tốt, vì vua vẫn chưa an toàn suốt cả biến này.
+          en: Black is forced into ...Nd6, blocking the c4 bishop's diagonal and chasing it away at the same time; White retreats with Bb3, still pressing f7 and preparing Nb5 or Qxe5+ if Black is careless. Black continues with ...Be7 or ...g6 to castle as soon as possible, because the king is not safe for the rest of this line.
+          fr: Les Noirs sont contraints à ...Nd6, bloquant la diagonale du fou c4 tout en le chassant ; les Blancs reculent par Bb3, continuant de peser sur f7 et préparant Nb5 ou Qxe5+ à la moindre imprudence noire. Les Noirs poursuivent par ...Be7 ou ...g6 pour roquer au plus vite, car le roi n'est pas en sécurité pour le reste de cette ligne.
+        basis:
+          by: chan
+          at: '2026-09-22'
