@@ -1,0 +1,58 @@
+# Modern Defense: Westermann Gambit. Frozen defining line 1.e4 g6 2.d4 Bg7 3.Bd2, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 3 moves, returns no-mate.
+id: modern-defense-westermann-gambit
+name: 'Modern Defense: Westermann Gambit'
+eco: B06
+category: gambit
+side: white
+definingLine: [e4, g6, d4, Bg7, Bd2]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Nothing is actually offered here — 3.Bd2 develops the bishop toward a
+      future Qc1/Bh6 or c4-and-Nc3 setup, keeping options flexible. It is a quiet, modest
+      try rather than a genuine sacrifice, so there is little to refute and White stays
+      perfectly safe. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.Bd2, một nước phát triển linh hoạt, chuẩn bị cho các phương án như c4 và Nc3, hoặc Qc1 kèm Bh6 nhắm vào tượng fianchetto của Đen.'
+    en: "White plays 3.Bd2, a flexible developing move preparing setups such as c4 and Nc3, or Qc1 with Bh6 aiming at Black's fianchettoed bishop."
+    fr: 'Les Blancs jouent 3.Bd2, un coup de développement flexible préparant des dispositifs comme c4 et Nc3, ou Qc1 avec Bh6 visant le fou fianchetto noir.'
+  dismissRest:
+    reason:
+      vi: 'Đen không đẩy d5 ngay. Các nước như c5, d6 hay Nf6 phát triển bình thường đều tốt, nhưng để nguyên căng thẳng ở trung tâm cho một nước sau.'
+      en: 'Black does not push d5 at once. Moves such as c5, d6 or Nf6 all develop normally and are fine, but they leave the central tension for a later move.'
+      fr: 'Les Noirs ne poussent pas d5 tout de suite. Des coups comme c5, d6 ou Nf6 se développent tous normalement et sont corrects, mais laissent la tension centrale pour plus tard.'
+  children:
+    - ply: d5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen thách thức trung tâm ngay lập tức bằng d5, tận dụng việc Trắng vừa dùng một nước để đưa tượng ra ô không mấy tích cực.'
+        en: 'Black challenges the centre immediately with d5, taking advantage of White having just spent a move putting the bishop on a not especially active square.'
+        fr: 'Les Noirs défient immédiatement le centre avec d5, profitant du fait que les Blancs viennent de consacrer un coup à placer le fou sur une case peu active.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân thì cả hai bên vẫn đủ, chưa có ai mất gì. Trung tâm hiện đang căng thẳng giữa tốt e4/d4 của Trắng và tốt d5 của Đen, ai giải quyết được căng thẳng này tốt hơn sẽ có phần chủ động.'
+          en: "Count the material and both sides still have everything, nobody has lost anything yet. The centre is now tense between White's e4/d4 pawns and Black's d5 pawn, and whoever resolves that tension better gets the more active game."
+          fr: "Le matériel est intact des deux côtés, personne n'a encore rien perdu. Le centre est maintenant tendu entre les pions e4/d4 blancs et le pion d5 noir, et celui qui résoudra le mieux cette tension obtiendra la partie la plus active."
+        plan:
+          vi: 'Trắng chơi exd5 để giải tỏa căng thẳng hoặc Nc3 giữ vững trung tâm và chuẩn bị f4. Đen chơi dxe4 hoặc Nf6, hoàn thiện phát triển và tấn công trung tâm còn lại của Trắng.'
+          en: "White plays exd5 to release the tension, or Nc3 to hold the centre and prepare f4. Black plays dxe4 or Nf6, completing development and pressuring what remains of White's centre."
+          fr: "Les Blancs jouent exd5 pour relâcher la tension, ou Nc3 pour tenir le centre et préparer f4. Les Noirs jouent dxe4 ou Nf6, achevant leur développement et faisant pression sur ce qu'il reste du centre blanc."
+        basis:
+          by: chan
+          at: '2026-09-22'

@@ -1,0 +1,59 @@
+# King's Pawn Game: Gunderam Gambit. Frozen defining line 1.e4 e5 2.Nf3 c6, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 3 moves, returns no-mate.
+id: kings-pawn-game-gunderam-gambit
+name: "King's Pawn Game: Gunderam Gambit"
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, c6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Nothing is offered yet at this point — 2...c6 is a slow preparing move,
+      not a sacrifice, and its whole point is the pawn thrust ...d5 next move. Spending a
+      tempo on c6 instead of developing lets White simply claim the centre with 3.d4, which
+      is why the line is considered dubious rather than a real test of White. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen chơi 2...c6, một nước chuẩn bị chậm nhằm đẩy ...d5 ngay sau đó và thách thức trung tâm của Trắng bằng một tốt được hậu thuẫn chắc chắn, thay vì phát triển quân ngay.'
+    en: "Black plays 2...c6, a slow preparing move aimed at pushing ...d5 next and challenging White's centre with a solidly supported pawn, rather than developing a piece straight away."
+    fr: 'Les Noirs jouent 2...c6, un coup de préparation lent visant à pousser ...d5 juste après et à défier le centre blanc avec un pion solidement soutenu, plutôt que de développer une pièce tout de suite.'
+  dismissRest:
+    reason:
+      vi: 'Trắng không vội chiếm trung tâm bằng d4. Các nước như Bc4 hay Nc3 phát triển quân trước, nhưng để Đen có thêm thời gian thực hiện ý đồ ...d5 mà không bị cản trở ngay.'
+      en: 'White does not immediately grab the centre with d4. Moves such as Bc4 or Nc3 develop a piece first, but they give Black more time to carry out the ...d5 plan unopposed.'
+      fr: "Les Blancs ne s'emparent pas immédiatement du centre avec d4. Des coups comme Bc4 ou Nc3 développent une pièce d'abord, mais laissent aux Noirs plus de temps pour réaliser le plan ...d5 sans opposition."
+  children:
+    - ply: d4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng chiếm ngay trung tâm bằng 3.d4, tận dụng việc Đen chưa kịp đẩy ...d5 để giành không gian trước khi Đen thực hiện được kế hoạch của mình.'
+        en: "White seizes the centre at once with 3.d4, exploiting the fact that Black has not yet pushed ...d5 to claim extra space before Black's plan is carried out."
+        fr: "Les Blancs s'emparent aussitôt du centre avec 3.d4, profitant du fait que les Noirs n'ont pas encore poussé ...d5 pour gagner de l'espace avant que le plan noir ne se réalise."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân thì cả hai bên vẫn đủ, chưa ai mất gì. Trắng đang có hai tốt trung tâm e4 và d4 đối đầu tốt e5 của Đen, còn Đen thì vẫn giữ được ý định đẩy ...d5 ngay sau đó nếu muốn.'
+          en: "Count the material and both sides still have everything, nobody has lost anything yet. White now has two central pawns on e4 and d4 facing Black's e5 pawn, while Black still keeps the option of pushing ...d5 right afterwards."
+          fr: "Le matériel est intact des deux côtés, personne n'a encore rien perdu. Les Blancs ont maintenant deux pions centraux en e4 et d4 face au pion noir en e5, tandis que les Noirs gardent toujours l'option de pousser ...d5 juste après."
+        plan:
+          vi: 'Trắng chơi Nc3 hoặc Bd3 để hoàn thiện phát triển và giữ vững trung tâm rộng. Đen chơi d5 ngay, thách thức tốt trung tâm của Trắng và mở đường cho tượng c8 cùng hậu.'
+          en: "White plays Nc3 or Bd3, completing development and holding the broad centre. Black plays d5 at once, challenging White's central pawns and opening lines for the c8 bishop and the queen."
+          fr: 'Les Blancs jouent Nc3 ou Bd3, achevant leur développement et gardant un centre large. Les Noirs jouent d5 tout de suite, défiant les pions centraux blancs et ouvrant des lignes pour le fou c8 et la dame.'
+        basis:
+          by: chan
+          at: '2026-09-22'

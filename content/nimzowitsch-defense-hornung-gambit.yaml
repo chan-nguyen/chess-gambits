@@ -1,0 +1,59 @@
+# Nimzowitsch Defense: Hornung Gambit. Frozen defining line 1.e4 Nc6 2.d4 d5 3.Be3, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 3 moves, returns no-mate.
+id: nimzowitsch-defense-hornung-gambit
+name: 'Nimzowitsch Defense: Hornung Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, Nc6, d4, d5, Be3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Rather than the routine 3.exd5, White develops the bishop and lets Black
+      take on e4, betting on faster development and central pressure with the c-pawn still
+      free to support d4. It is a reasonable practical try, but White is a clean pawn down
+      and still has to prove the compensation is real. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.Be3, phát triển tượng thay vì đổi tốt ngay bằng exd5, mời Đen ăn tốt e4 để đổi lấy tốc độ phát triển.'
+    en: 'White plays 3.Be3, developing the bishop instead of trading pawns at once with exd5, inviting Black to take the e4 pawn in exchange for faster development.'
+    fr: "Les Blancs jouent 3.Be3, développant le fou au lieu d'échanger tout de suite avec exd5, invitant les Noirs à prendre le pion e4 en échange d'un développement plus rapide."
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt e4 ngay. Các nước như Nf6 hay e6 phát triển bình thường đều tốt, nhưng để nguyên căng thẳng ở trung tâm cho một nước khác.'
+      en: 'Black does not take the e4 pawn at once. Moves such as Nf6 or e6 develop normally and are fine, but they leave the central tension for another move.'
+      fr: 'Les Noirs ne prennent pas immédiatement le pion e4. Des coups comme Nf6 ou e6 se développent normalement et sont corrects, mais laissent la tension centrale pour un autre coup.'
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e4 bằng tốt d5, đơn giản là nhận con tốt trung tâm được mời trong khi tượng e3 của Trắng chưa nhắm vào đâu cụ thể.'
+        en: "Black takes the e4 pawn with the d5 pawn, simply accepting the offered central pawn while White's bishop on e3 is not yet aiming anywhere specific."
+        fr: 'Les Noirs prennent le pion e4 avec le pion d5, acceptant simplement le pion central offert pendant que le fou blanc en e3 ne vise encore rien de précis.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng bảy, Đen tám, Trắng kém đúng một tốt. Tốt d4 vẫn được giữ vững và Trắng có thể chơi Nc3 hay f3 để tấn công lại tốt e4 vừa mất, nhưng chưa có gì bị đe dọa trực tiếp lúc này.'
+          en: 'Count the pawns and it is seven for White, eight for Black, White a clean pawn down. The d4 pawn is still solidly held and White can play Nc3 or f3 to strike back at the e4 pawn just lost, but nothing is directly threatened yet.'
+          fr: "Comptez les pions, sept pour les Blancs, huit pour les Noirs, les Blancs ont un pion de retard. Le pion d4 reste solidement tenu et les Blancs peuvent jouer Nc3 ou f3 pour riposter sur le pion e4 tout juste perdu, mais rien n'est directement menacé pour l'instant."
+        plan:
+          vi: 'Trắng chơi Nc3 tấn công tốt e4 và hoàn thiện phát triển, có thể kèm theo f3 mở thêm đường. Đen chơi Nf6 hay f5 để giữ vững tốt e4 và hoàn thiện phát triển với tốt thừa.'
+          en: 'White plays Nc3, attacking the e4 pawn and completing development, perhaps followed by f3 to open more lines. Black plays Nf6 or f5, holding the e4 pawn and completing development with the extra pawn.'
+          fr: 'Les Blancs jouent Nc3, attaquant le pion e4 et achevant leur développement, éventuellement suivi de f3 pour ouvrir davantage de lignes. Les Noirs jouent Nf6 ou f5, tenant le pion e4 et achevant leur développement avec le pion supplémentaire.'
+        basis:
+          by: chan
+          at: '2026-09-22'

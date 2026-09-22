@@ -1,0 +1,58 @@
+# Owen Defense: Smith Gambit. Frozen defining line 1.e4 b6 2.d4 Bb7 3.Nf3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 3 moves, returns no-mate.
+id: owen-defense-smith-gambit
+name: 'Owen Defense: Smith Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, b6, d4, Bb7, Nf3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Nothing is offered yet — 3.Nf3 is a calm developing move, defending e4
+      indirectly along the way and preparing normal continuations such as Bd3 and O-O. It
+      is a solid, low-risk try against the Owen Defense rather than a genuine sacrifice. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.Nf3, phát triển bình thường và gián tiếp bảo vệ tốt e4 trước áp lực từ tượng b7 của Đen trên đường chéo dài.'
+    en: "White plays 3.Nf3, a normal developing move that indirectly guards the e4 pawn against the pressure from Black's b7 bishop on the long diagonal."
+    fr: 'Les Blancs jouent 3.Nf3, un coup de développement normal qui protège indirectement le pion e4 contre la pression du fou noir en b7 sur la grande diagonale.'
+  dismissRest:
+    reason:
+      vi: 'Đen không đẩy f5 hay e6 ngay. Các nước như Nf6 hay c5 phát triển bình thường đều được, nhưng nhường lại cơ hội thách thức trung tâm ngay lập tức.'
+      en: 'Black does not push f5 or e6 at once. Moves such as Nf6 or c5 are both fine developing tries, but they give up the immediate chance to challenge the centre.'
+      fr: "Les Noirs ne poussent pas f5 ou e6 tout de suite. Des coups comme Nf6 ou c5 sont tous deux de bons essais de développement, mais renoncent à l'occasion immédiate de défier le centre."
+  children:
+    - ply: e6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen chơi e6, chuẩn bị phát triển tượng f8 và giữ vững ô d5 mà không vội thí tốt hay mở đường chéo b7 ngay lập tức.'
+        en: 'Black plays e6, preparing to develop the f8 bishop and controlling d5, without rushing to sacrifice a pawn or open the b7 diagonal right away.'
+        fr: 'Les Noirs jouent e6, préparant le développement du fou f8 et contrôlant d5, sans se précipiter pour sacrifier un pion ou ouvrir la diagonale b7 tout de suite.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân thì cả hai bên vẫn đủ, chưa có ai mất gì. Trắng có trung tâm rộng với d4 và e4 cùng phát triển thuận lợi, còn Đen vẫn giữ ý đồ gây áp lực lên e4 bằng tượng b7 và Nf6 sau này.'
+          en: 'Count the material and both sides still have everything, nobody has lost anything yet. White has a broad centre with d4 and e4 and comfortable development, while Black still keeps the idea of pressuring e4 with the b7 bishop and Nf6 later.'
+          fr: "Le matériel est intact des deux côtés, personne n'a encore rien perdu. Les Blancs ont un centre large avec d4 et e4 et un développement confortable, tandis que les Noirs gardent l'idée de faire pression sur e4 avec le fou b7 et Nf6 plus tard."
+        plan:
+          vi: 'Trắng chơi Bd3 và O-O, hoàn thiện phát triển và chuẩn bị e5 nếu cần đẩy lùi mã Đen. Đen chơi Nf6, Be7 và c5, tấn công trung tâm Trắng từ hai phía.'
+          en: "White plays Bd3 and O-O, completing development and preparing e5 if needed to push back a black knight. Black plays Nf6, Be7 and c5, attacking White's centre from both sides."
+          fr: 'Les Blancs jouent Bd3 et O-O, achevant leur développement et préparant e5 si besoin de repousser un cavalier noir. Les Noirs jouent Nf6, Be7 et c5, attaquant le centre blanc des deux côtés.'
+        basis:
+          by: chan
+          at: '2026-09-22'

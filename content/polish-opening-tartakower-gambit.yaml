@@ -1,0 +1,59 @@
+# Polish Opening: Tartakower Gambit. Frozen defining line 1.b4 e5 2.Bb2 f6 3.e4, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated. searchMate from the leaf
+# FEN, bounded to 3 moves, returns no-mate.
+id: polish-opening-tartakower-gambit
+name: 'Polish Opening: Tartakower Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [b4, e5, Bb2, f6, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White has already offered the b-pawn with the opening move and now adds
+      a proper centre with e4, since 2...f6 has blunted the fianchettoed bishop's diagonal
+      for now. The pawn spent on b4 buys development and a wide centre, but a well-known
+      accepted gambit pawn is still a pawn, so it is judged dubious rather than clearly
+      sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.e4, xây dựng một trung tâm vững chắc sau khi 2...f6 của Đen đã tạm thời chặn đường chéo của tượng b2.'
+    en: "White plays 3.e4, building a solid centre now that Black's 2...f6 has temporarily blunted the b2 bishop's diagonal."
+    fr: 'Les Blancs jouent 3.e4, bâtissant un centre solide maintenant que le 2...f6 noir a temporairement bouché la diagonale du fou b2.'
+  dismissRest:
+    reason:
+      vi: 'Đen không thách thức trung tâm ngay bằng d5. Các nước như Nc6 hay Bxb4 ăn lại tốt đều được, nhưng nhường lại cơ hội đối đầu trực tiếp ở trung tâm.'
+      en: 'Black does not challenge the centre at once with d5. Moves such as Nc6, or Bxb4 to win the pawn back, are both possible, but they give up the immediate central confrontation.'
+      fr: 'Les Noirs ne défient pas immédiatement le centre avec d5. Des coups comme Nc6, ou Bxb4 pour regagner le pion, sont tous deux possibles, mais renoncent à la confrontation centrale immédiate.'
+  children:
+    - ply: d5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen thách thức trung tâm ngay bằng d5, tận dụng việc con tốt f6 tuy chặn đường chéo tượng nhưng cũng hỗ trợ tốt e5 và giờ thêm d5 vào cuộc.'
+        en: "Black challenges the centre at once with d5, making use of the fact that the f6 pawn, while blunting the bishop's diagonal, also supports e5 and now adds d5 into the mix."
+        fr: "Les Noirs défient immédiatement le centre avec d5, profitant du fait que le pion f6, tout en bouchant la diagonale du fou, soutient aussi e5 et ajoute maintenant d5 à l'équation."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì cả hai bên đều còn tám, chưa ai mất gì — tốt b4 mà Trắng thí ở nước đi đầu tiên vẫn còn nguyên trên bàn cờ vì Đen chưa từng ăn nó. Trung tâm hiện đang căng thẳng giữa các tốt e4, d5 và e5, và kết quả của việc giải tỏa căng thẳng này sẽ quyết định phần lớn thế trận.'
+          en: 'Count the pawns and both sides still have eight, nobody has lost anything yet — the b4 pawn White offered on the very first move is still sitting on the board because Black has never taken it. The centre is now tense among the e4, d5 and e5 pawns, and how that tension resolves will decide most of the middlegame.'
+          fr: "Comptez les pions, les deux camps en ont encore huit chacun, personne n'a encore rien perdu — le pion b4 offert par les Blancs dès le premier coup est toujours sur l'échiquier puisque les Noirs ne l'ont jamais pris. Le centre est maintenant tendu entre les pions e4, d5 et e5, et la manière dont cette tension se résoudra déterminera l'essentiel du milieu de partie."
+        plan:
+          vi: 'Trắng chơi exd5 giải tỏa căng thẳng và mở đường cho tượng b2, hoặc Nc3 hỗ trợ trung tâm. Đen chơi dxe4 hay Ne7/Nc6, hoàn thiện phát triển và cố giữ vững tốt thừa.'
+          en: 'White plays exd5 to release the tension and open lines for the b2 bishop, or Nc3 to support the centre. Black plays dxe4, or Ne7/Nc6, completing development and trying to hold on to the extra pawn.'
+          fr: 'Les Blancs jouent exd5 pour relâcher la tension et ouvrir des lignes au fou b2, ou Nc3 pour soutenir le centre. Les Noirs jouent dxe4, ou Ne7/Nc6, achevant leur développement et essayant de conserver le pion supplémentaire.'
+        basis:
+          by: chan
+          at: '2026-09-22'

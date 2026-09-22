@@ -1,0 +1,65 @@
+# Latvian Gambit: Lobster Gambit. Frozen defining line 1.e4 e5 2.Nf3 f5 3.g4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 3 moves, returns no-mate.
+id: latvian-gambit-lobster-gambit
+name: 'Latvian Gambit: Lobster Gambit'
+eco: C40
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, f5, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White ignores the hanging e4 pawn entirely and throws forward the g-pawn
+      instead, hoping to rip open the g-file and the long diagonal against a black king that
+      has not moved yet. It is an extremely speculative try that a calm defence answers
+      comfortably, so it is judged unsound despite its shock value. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.g4!?, hoàn toàn phớt lờ tốt e4 đang bị treo và đẩy tốt g lên để mời Đen ăn, đổi lấy cột g mở và đường chéo dài a1-h8.'
+    en: 'White plays 3.g4!?, completely ignoring the hanging e4 pawn and pushing the g-pawn forward to invite a capture, in exchange for the open g-file and the long a1-h8 diagonal.'
+    fr: 'Les Blancs jouent 3.g4!?, ignorant complètement le pion e4 en prise et poussant le pion g pour inviter une capture, en échange de la colonne g ouverte et de la grande diagonale a1-h8.'
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt g4. Các nước như fxe4 ăn tốt trung tâm trước hoặc d5 phát triển bình thường đều tốt hơn, nhưng để lại tốt g4 trên bàn cờ cho Trắng.'
+      en: 'Black does not take the g4 pawn. Moves such as fxe4, taking the central pawn first, or the normal d5 are both better, but they leave the g4 pawn on the board for White.'
+      fr: "Les Noirs ne prennent pas le pion g4. Des coups comme fxe4, prenant d'abord le pion central, ou le d5 habituel sont tous deux meilleurs, mais laissent le pion g4 sur l'échiquier pour les Blancs."
+  children:
+    - ply: fxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt g4 bằng tốt f5, nhận con tốt được mời và mở cột f cho cả hai bên, trong khi tốt e4 của Trắng vẫn còn nguyên trên bàn cờ, chưa bị đụng tới.'
+        en: "Black takes the g4 pawn with the f5 pawn, accepting the offered pawn and opening the f-file for both sides, while White's e4 pawn is still sitting untouched on the board."
+        fr: "Les Noirs prennent le pion g4 avec le pion f5, acceptant le pion offert et ouvrant la colonne f pour les deux camps, tandis que le pion e4 blanc reste intact sur l'échiquier, non capturé."
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: 'Trắng đưa mã đi vừa tránh bị tốt g4 ăn, vừa ăn luôn tốt e5 của Đen đang không được bảo vệ, giải quyết hai vấn đề cùng một lúc.'
+            en: "White moves the attacked knight while grabbing Black's undefended e5 pawn on the way, solving two problems with one move."
+            fr: "Les Blancs déplacent le cavalier attaqué tout en s'emparant au passage du pion e5 noir non défendu, réglant deux problèmes en un seul coup."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt thì Trắng bảy, Đen bảy, vật chất lại cân bằng. Mã Trắng đứng vững ở e5, không còn bị tốt g4 đe dọa, còn Đen vẫn chưa nhập thành và có cột f nửa mở để khai thác.'
+              en: "Count the pawns and it is seven for White, seven for Black, material is level again. White's knight sits safely on e5, no longer threatened by the g4 pawn, while Black is still uncastled with a half-open f-file to work with."
+              fr: "Comptez les pions, sept pour les Blancs, sept pour les Noirs, le matériel est de nouveau égal. Le cavalier blanc est solidement posté en e5, plus menacé par le pion g4, tandis que les Noirs, non roqués, disposent d'une colonne f semi-ouverte à exploiter."
+            plan:
+              vi: 'Trắng chơi Bg2 hoặc d4, hoàn thiện phát triển và giữ vững con mã tiền tiêu ở e5. Đen chơi Nf6 hay d6 đuổi mã đi, tận dụng cột f mở và sự chậm trễ trong nhập thành của Trắng.'
+              en: "White plays Bg2 or d4, completing development and keeping the advanced knight secure on e5. Black plays Nf6, or d6 to chase the knight away, making use of the open f-file and White's own delayed castling."
+              fr: 'Les Blancs jouent Bg2 ou d4, achevant leur développement et gardant le cavalier avancé en sécurité sur e5. Les Noirs jouent Nf6, ou d6 pour chasser le cavalier, exploitant la colonne f ouverte et le roque également retardé côté blanc.'
+            basis:
+              by: chan
+              at: '2026-09-22'
