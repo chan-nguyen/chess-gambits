@@ -413,6 +413,29 @@ traps:
       Gambit, Brigg's Trap`, A06) as a named trap "not yet hand-entered" — this is that
       entry.
 
+  - id: milner-barry-trap
+    name: 'Milner-Barry Trap'
+    family: 'French Defense'
+    eco: C02
+    side: white
+    soundness: sound
+    line: [e4, e6, d4, d5, e5, c5, c3, Nc6, Nf3, Qb6, Bd3, cxd4, cxd4]
+    reason: >-
+      Widely documented under this name across long-standing community references (a
+      multi-page chess.com forum thread titled "The Milner-Barry Gambit, and the trap", the
+      365chess opening explorer's annotated line, chesstempo's game database entry and
+      several independent instructional videos), distinct from the Milner-Barry Gambit
+      itself, which `classification.yaml` already imports as a gambit (its dubious
+      soundness is a judgement about the gambit's compensation, not about this trap). The
+      natural-looking 7...Nxd4?? grabs a second pawn but hangs the knight to 8.Nxd4, and the
+      equally natural recapture 8...Qxd4?? walks into 9.Bb5+ — not a discovered check but a
+      line-clearing one: the bishop's departure from d3 opens the d-file for White's own
+      queen on d1, which was blocked the entire time. Every reply to the check (9...Bd7,
+      9...Ke7 or 9...Kd8) loses the queen outright to 10.Qxd4 or, after 9...Bd7, to
+      10.Bxd7+ Kxd7 11.Qxd4 — confirmed by replaying all three with chess.js. Its dataset
+      row (French Defense: Advance Variation, Milner-Barry Gambit, Sørensen Variation, C02)
+      is a Milner-Barry Gambit sub-variation excluded in `classification.yaml`.
+
   - id: traxler-counterattack-ke2-trap
     name: 'Traxler Counterattack: Ke2 Trap'
     family: 'Italian Game'

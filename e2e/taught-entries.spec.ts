@@ -238,6 +238,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'lion-defense-anti-philidor-lions-cave-lion-claw-gambit',
       'mexican-defense-horsefly-gambit',
       'mikenas-defense-pozarek-gambit',
+      'milner-barry-trap',
       'modern-defense-lizard-defense-pirc-diemer-gambit',
       'modern-defense-westermann-gambit',
       'modern-defense-wind-gambit',

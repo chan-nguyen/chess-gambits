@@ -1,0 +1,154 @@
+# Milner-Barry Trap. The frozen defining line is 1.e4 e6 2.d4 d5 3.e5 c5 4.c3 Nc6 5.Nf3
+# Qb6 6.Bd3 cxd4 7.cxd4 — and it ends on White's own ply, so the root is an opponent node
+# and Black's replies can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is C02, matching `traps.yaml` (a trap carries the ECO of the opening it sits inside,
+# ADR-0008; the dataset files the deeper "Milner-Barry Gambit, Sørensen Variation" row
+# under the same code, excluded as a sub-variation in `classification.yaml`, distinct from
+# the Milner-Barry Gambit itself, which the same file already imports as a gambit).
+#
+# Widely documented under this name across long-standing community references — a
+# multi-page chess.com forum thread ("The Milner-Barry Gambit, and the trap"), the 365chess
+# opening explorer's annotated line, chesstempo's game database entry and several
+# independent instructional videos — as distinct from the gambit's own main line, where
+# Black plays the accurate 7...Bd7 first. Every line here was replayed with chess.js. The
+# point is not simply "9.Bb5+ wins the queen": it is a line-clearing check rather than a
+# discovered one, since the bishop delivers the check itself, but its departure from d3 is
+# what opens the d-file for White's own queen on d1, blocked there since move six. All
+# three replies to the check (9...Bd7, 9...Ke7, 9...Kd8) lose the queen — immediately to
+# 10.Qxd4 for the two king moves, or after 9...Bd7 10.Bxd7+ Kxd7 11.Qxd4 — confirmed by
+# replaying each. No outcome here is a claimed mate; the leaf is a decisive material
+# assessment (ADR-0005).
+id: milner-barry-trap
+name: 'Milner-Barry Trap'
+eco: C02
+category: trap
+side: white
+definingLine: [e4, e6, d4, d5, e5, c5, c3, Nc6, Nf3, Qb6, Bd3, cxd4, cxd4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement about the trap mechanism, not about the Milner-Barry Gambit's own
+      compensation (which `classification.yaml` already rates dubious for White at the
+      root). Once Black plays the natural-looking 7...Nxd4 and then recaptures with
+      7...Qxd4, every White reply from there is forced or close to it, confirmed by direct
+      replay rather than engine evaluation.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material count in the final position, computed by
+    hand from the derived FEN rather than from an engine.
+tree:
+  annotation:
+    vi: Trắng vừa ăn lại bằng tốt trên d4 (7.cxd4), khôi phục lại tốt trung tâm sau khi vừa đổi tốt ở nước trước. Về vật chất quân số đang hoàn toàn cân bằng, và bàn cờ trông như một ván Phòng thủ Pháp hết sức bình thường.
+    en: White has just recaptured on d4 with the pawn (7.cxd4), restoring the central pawn after the trade the move before. Material is exactly level, and the position looks like an entirely ordinary French Defense.
+    fr: Les Blancs viennent de reprendre en d4 avec le pion (7.cxd4), restaurant le pion central après l'échange du coup précédent. Le matériel est parfaitement égal, et la position ressemble à une partie tout à fait ordinaire de Défense française.
+  dismissRest:
+    reason:
+      vi: Đen phát triển bình thường mà không đụng đến tốt d4 — ví dụ 7...Bd7 (đường chính chính thống của Milner-Barry Gambit), 7...Nge7, hay một nước tốt cánh hậu hoặc cánh vua. Không có gì đặc biệt xảy ra — cái bẫy của mục này chỉ xuất hiện nếu Đen cụ thể ăn tốt d4 bằng con mã.
+      en: Black develops normally without touching the pawn on d4 — 7...Bd7 (the actual main line of the Milner-Barry Gambit), 7...Nge7, or a queenside or kingside pawn move. Nothing special happens — this entry's trap only appears if Black specifically captures the d4 pawn with the knight.
+      fr: Les Noirs se développent normalement sans toucher au pion d4 — 7...Fd7 (la ligne principale réelle du gambit Milner-Barry), 7...Cge7, ou un coup de pion à l'aile dame ou à l'aile roi. Rien de particulier ne se produit — le piège de cette entrée n'apparaît que si les Noirs capturent précisément le pion d4 avec le cavalier.
+  dismissed:
+    - ply: Qxd4
+      reason: >-
+        Grabs the pawn directly with the queen instead of the knight first. This loses even
+        more simply — 8.Nxd4! wins the queen for a knight outright, since 8...Nxd4 merely
+        trims the deficit to a queen for a knight and a pawn. This entry follows the
+        specific move order the documented sources give.
+  children:
+    - ply: Nxd4
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: Đen ăn thêm một tốt bằng con mã, trông có vẻ tự nhiên vì tốt d4 chỉ được hậu Trắng bảo vệ từ xa. Nhưng con mã ấy giờ đứng giữa bàn cờ mà không được quân nào của Đen bảo vệ.
+        en: Black grabs a second pawn with the knight, which looks natural since the pawn on d4 is only defended by White's queen from a distance. But that knight now stands in the middle of the board, defended by nothing of Black's.
+        fr: Les Noirs prennent un second pion avec le cavalier, ce qui semble naturel puisque le pion d4 n'est défendu que de loin par la dame blanche. Mais ce cavalier se retrouve au centre de l'échiquier, sans la moindre protection noire.
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Trắng ăn lại con mã bằng chính con mã của mình. Đen hiện kém một quân nhẹ đổi lấy một tốt, và phải quyết định có ăn lại con mã Trắng trên d4 hay không.
+            en: White recaptures the knight with its own knight. Black is now down a minor piece for a pawn, and has to decide whether to recapture the knight on d4.
+            fr: Les Blancs reprennent le cavalier avec leur propre cavalier. Les Noirs sont désormais en retard d'une pièce mineure contre un pion, et doivent décider s'ils reprennent le cavalier en d4.
+          dismissRest:
+            reason:
+              vi: Đen chơi bất kỳ nước nào khác ngoài việc ăn lại bằng hậu — lùi hậu, phát triển một quân, hay đẩy tốt. Đen vẫn kém một quân nhẹ đổi lấy một tốt so với vật chất ban đầu, một thiệt hại rõ ràng nhưng bình thường, mà không rơi vào cú lừa cụ thể được mô tả ở đây.
+              en: Black plays anything other than recapturing with the queen — retreating the queen, developing a piece, or pushing a pawn. Black remains down a minor piece for a pawn compared with the starting material, a clear but ordinary deficit, without walking into the specific trick modelled here.
+              fr: Les Noirs jouent autre chose que de reprendre avec la dame — reculer la dame, développer une pièce ou avancer un pion. Les Noirs restent en retard d'une pièce mineure contre un pion par rapport au matériel de départ, un déficit net mais ordinaire, sans tomber dans le piège précis modélisé ici.
+          children:
+            - ply: Qxd4
+              replyQuality: blunder
+              frequency: occasional
+              annotation:
+                vi: Đen ăn lại con mã bằng hậu, tưởng như đang khôi phục vật chất một cách hợp lý. Nhưng con hậu Đen giờ đứng ngay trên đường chéo a1-h8, đúng nơi một nước chiếu sắp mở ra.
+                en: Black recaptures the knight with the queen, seemingly restoring the material balance sensibly. But Black's queen now stands right on the a1-h8 diagonal, exactly where a check is about to open up.
+                fr: Les Noirs reprennent le cavalier avec la dame, semblant ainsi rétablir raisonnablement l'équilibre matériel. Mais la dame noire se retrouve alors juste sur la diagonale a1-h8, exactement là où un échec va s'ouvrir.
+              children:
+                - ply: 'Bb5+'
+                  annotation:
+                    vi: Trắng chiếu bằng con tượng từ b5. Đây không phải là chiếu phát hiện — chính con tượng cho chiếu — nhưng việc nó rời khỏi ô d3 mới là điểm mấu chốt — hậu Trắng ở d1 giờ nhìn thẳng xuống cột d đang mở toang, đúng vào ô d4 nơi hậu Đen đang đứng.
+                    en: White gives check with the bishop from b5. This is not a discovered check — the bishop itself delivers it — but its departure from d3 is the real point — White's queen on d1 now looks straight down the newly open d-file, right onto the d4 square where Black's queen stands.
+                    fr: Les Blancs donnent échec avec le fou depuis b5. Ce n'est pas un échec à la découverte — c'est le fou lui-même qui donne l'échec — mais son départ de d3 est le point essentiel — la dame blanche en d1 regarde désormais tout droit le long de la colonne d nouvellement ouverte, exactement sur la case d4 où se trouve la dame noire.
+                  dismissed:
+                    - ply: Ke7
+                      reason: >-
+                        Steps the king to e7 instead of blocking. The bishop's departure
+                        from d3 has already opened the d-file, so 10.Qxd4 wins the queen
+                        immediately regardless of the king move.
+                    - ply: Kd8
+                      reason: >-
+                        Steps the king to d8 instead of blocking. Same as 9...Ke7 — the
+                        d-file is already open, so 10.Qxd4 wins the queen immediately.
+                  children:
+                    - ply: Bd7
+                      annotation:
+                        vi: Đen chặn chiếu bằng con tượng cột hậu. Nước cản trở này ít nhất cũng che chắn được ô chiếu, nhưng không cứu được con hậu.
+                        en: Black blocks the check with the queenside bishop. The interposition at least covers the checking square, but it does not save the queen.
+                        fr: Les Noirs bloquent l'échec avec le fou de la dame. Cette interposition couvre au moins la case d'échec, mais elle ne sauve pas la dame.
+                      children:
+                        - ply: 'Bxd7+'
+                          annotation:
+                            vi: Trắng ăn tượng và chiếu tiếp. Dù vua Đen chọn cách nào, cột d vẫn mở và hậu Đen trên d4 vẫn treo.
+                            en: White captures the bishop with another check. Whichever way Black's king responds, the d-file stays open and Black's queen on d4 is still hanging.
+                            fr: Les Blancs prennent le fou avec un nouvel échec. Quelle que soit la réponse du roi noir, la colonne d reste ouverte et la dame noire en d4 reste en prise.
+                          dismissed:
+                            - ply: Ke7
+                              reason: >-
+                                Steps aside instead of recapturing, leaving the bishop on
+                                d7 alive as well. 11.Qxd4 still wins the queen, and White
+                                keeps the extra bishop on top of it.
+                            - ply: Kd8
+                              reason: >-
+                                Same idea as 10...Ke7 — declines the recapture, so
+                                11.Qxd4 wins the queen while White also keeps the bishop
+                                on d7.
+                          children:
+                            - ply: Kxd7
+                              annotation:
+                                vi: Vua Đen ăn lại con tượng, cách xử lý tự nhiên nhất — ít nhất cũng lấy lại được quân tượng. Nhưng cột d vẫn hoàn toàn mở, và hậu Đen trên d4 không được quân nào bảo vệ.
+                                en: Black's king recaptures the bishop, the most natural handling — at least the bishop comes back. But the d-file is still completely open, and Black's queen on d4 is defended by nothing.
+                                fr: Le roi noir reprend le fou, le traitement le plus naturel — au moins le fou est-il récupéré. Mais la colonne d reste totalement ouverte, et la dame noire en d4 n'est protégée par rien.
+                              children:
+                                - ply: Qxd4
+                                  annotation:
+                                    vi: Hậu Trắng đi thẳng xuống cột d và ăn hậu Đen. Không quân nào của Đen bảo vệ ô d4, và cái bẫy khép lại với Trắng hơn hẳn một con hậu.
+                                    en: White's queen travels straight down the d-file and takes Black's queen. Nothing defends d4 for Black, and the trap closes with White up a full queen.
+                                    fr: La dame blanche descend tout droit la colonne d et prend la dame noire. Rien ne défend la case d4 côté noir, et le piège se referme avec les Blancs en avance d'une dame entière.
+                                  outcome:
+                                    type: position
+                                    evaluation:
+                                      vi: Đếm quân trên bàn cờ (không tính vua), cả hai bên đều đủ hai xe, một mã và một tượng — những quân này đã đổi ngang giá suốt ván. Khác biệt duy nhất là Trắng vẫn còn hậu còn Đen thì không, chỉ được bù lại đúng một tốt (Đen còn bảy tốt so với sáu của Trắng). Toàn bộ khoảng cách bắt nguồn từ chuỗi 7...Nxd4?? 8.Nxd4 Qxd4?? — một mã đổi một tốt, rồi cả một con hậu mất trắng không được gì bù lại.
+                                      en: Counting the pieces (kings aside), both sides have two rooks, one knight and one bishop — those traded evenly across the whole sequence. The only difference is that White still has the queen and Black does not, offset by exactly one pawn (Black has seven pawns to White's six). The entire gap traces back to 7...Nxd4?? 8.Nxd4 Qxd4?? — a knight for a pawn, and then an entire queen given away for nothing in return.
+                                      fr: En comptant les pièces (rois exceptés), les deux camps ont deux tours, un cavalier et un fou — ces pièces se sont échangées à égalité tout au long de la séquence. La seule différence est que les Blancs conservent la dame et pas les Noirs, compensée par exactement un pion (les Noirs ont sept pions contre six aux Blancs). Tout l'écart remonte à la séquence 7...Cxd4?? 8.Cxd4 Dxd4?? — un cavalier contre un pion, puis une dame entière abandonnée sans la moindre compensation.
+                                    plan:
+                                      vi: Trắng đưa vua về nơi an toàn (nhập thành cánh vua vẫn còn hợp lệ, hoặc một nước vua đơn giản), hoàn tất phát triển, rồi chơi phần còn lại của ván với nguyên một con hậu dư ra — đủ để thắng ở hầu hết mọi trình độ. Đen cố gắng đưa vua về nơi an toàn hơn và tạo hoạt động bù trừ bằng cặp tượng cùng hai xe, nhưng không có đòn phối hợp cụ thể nào lấy lại được con hậu đã mất.
+                                      en: White tucks the king away (kingside castling is still available, or a quiet king move), finishes development, and plays out the rest of the game an entire queen ahead — enough to win at almost any level. Black tries to get the king to safety and generate some activity with the bishop pair and two rooks, but there is no concrete combination that wins back the lost queen.
+                                      fr: Les Blancs mettent le roi à l'abri (le petit roque reste disponible, ou un coup de roi tranquille), achèvent leur développement, et jouent le reste de la partie avec une dame entière d'avance — suffisant pour gagner à presque tous les niveaux. Les Noirs tentent de mettre le roi en sécurité et de générer de l'activité avec la paire de fous et les deux tours, mais aucune combinaison concrète ne permet de regagner la dame perdue.
+                                    basis:
+                                      by: chan
+                                      at: '2026-09-22'

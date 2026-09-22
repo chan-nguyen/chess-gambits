@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Two hundred and fifty-four entries are authored — three from #15, eleven from #73, ten
+   * Two hundred and fifty-five entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -134,7 +134,8 @@ describe('the catalogue this repository ships', () => {
    * scandinavian-defense-kiel-variation-trap, without adding new ids), two new named traps
    * from #137 batch a (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2
    * Trap), two more new named traps from #137 batch b (Petrov's Defense's Marshall Trap and
-   * the Tennison Gambit's Brigg's Trap), thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
+   * the Tennison Gambit's Brigg's Trap), one more new named trap from #137 batch c (the
+   * Milner-Barry Trap), thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
    * elephant-gambit-paulsen-countergambit, english-opening-wing-gambit,
    * englund-gambit-felbecker-gambit, englund-gambit-hartlaub-charlick-gambit,
    * englund-gambit-main-line, englund-gambit-mosquito-gambit, englund-gambit-soller-gambit,
@@ -165,7 +166,9 @@ describe('the catalogue this repository ships', () => {
    * intermediate check before their leaf, still one branch each), and three more from #136
    * batch f (danish-gambit-accepted-classical-defense, italian-game-two-knights-defense-fried-liver-attack
    * and petrovs-defense-cochrane-gambit, each a single root-to-leaf line ending on the
-   * forced recapture after the gambit's own knight sacrifice) — and the other 769
+   * forced recapture after the gambit's own knight sacrifice), and one new named trap from
+   * #137 batch c (the Milner-Barry Trap, French Defense Advance Variation) — and the other
+   * 769
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -346,6 +349,7 @@ describe('the catalogue this repository ships', () => {
     ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
     ['mexican-defense-horsefly-gambit', 1],
     ['mikenas-defense-pozarek-gambit', 1],
+    ['milner-barry-trap', 1],
     ['modern-defense-lizard-defense-pirc-diemer-gambit', 1],
     ['modern-defense-westermann-gambit', 1],
     ['modern-defense-wind-gambit', 1],
@@ -443,8 +447,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-tennison-gambit-briggs-trap', 1],
   ])
 
-  it('bakes keys on all 1023 entries, and only the authored two hundred and fifty-one have any', () => {
-    expect(result.value.records).toHaveLength(1023)
+  it('bakes keys on all 1024 entries, and only the authored two hundred and fifty-five have any', () => {
+    expect(result.value.records).toHaveLength(1024)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
