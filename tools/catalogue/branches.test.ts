@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Two hundred and fifty entries are authored — three from #15, eleven from #73, ten
+   * Two hundred and fifty-one entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -132,8 +132,9 @@ describe('the catalogue this repository ships', () => {
    * Variation's Alapin Gambit, upgraded in place from its own Tier 0 entry — #127 also
    * deepened two already-authored trees, bird-opening-froms-gambit and
    * scandinavian-defense-kiel-variation-trap, without adding new ids), two new named traps
-   * from #137 (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2 Trap),
-   * thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
+   * from #137 batch a (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2
+   * Trap), two more new named traps from #137 batch b (Petrov's Defense's Marshall Trap and
+   * the Tennison Gambit's Brigg's Trap), thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
    * elephant-gambit-paulsen-countergambit, english-opening-wing-gambit,
    * englund-gambit-felbecker-gambit, englund-gambit-hartlaub-charlick-gambit,
    * englund-gambit-main-line, englund-gambit-mosquito-gambit, englund-gambit-soller-gambit,
@@ -161,7 +162,7 @@ describe('the catalogue this repository ships', () => {
    * zukertort-opening-tennison-gambit, each a single root-to-leaf line except the three
    * (sicilian-defense-alapin-variation-anti-alapin-gambit, sicilian-defense-kotov-gambit and
    * sicilian-defense-mcdonnell-attack-tal-gambit) that model a forced reply to an
-   * intermediate check before their leaf, still one branch each) — and the other 771
+   * intermediate check before their leaf, still one branch each) — and the other 772
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -357,6 +358,7 @@ describe('the catalogue this repository ships', () => {
     ['owen-defense-naselwaus-gambit', 1],
     ['owen-defense-smith-gambit', 1],
     ['owen-defense-wind-gambit', 1],
+    ['petrovs-defense-marshall-trap', 1],
     ['petrovs-defense-stafford-gambit', 1],
     ['philidor-defense-lopez-countergambit', 2],
     ['pirc-defense-roscher-gambit', 1],
@@ -432,10 +434,11 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
     ['zukertort-opening-lemberger-gambit', 1],
     ['zukertort-opening-tennison-gambit', 1],
+    ['zukertort-opening-tennison-gambit-briggs-trap', 1],
   ])
 
-  it('bakes keys on all 1021 entries, and only the authored two hundred and forty-nine have any', () => {
-    expect(result.value.records).toHaveLength(1021)
+  it('bakes keys on all 1023 entries, and only the authored two hundred and fifty-one have any', () => {
+    expect(result.value.records).toHaveLength(1023)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
