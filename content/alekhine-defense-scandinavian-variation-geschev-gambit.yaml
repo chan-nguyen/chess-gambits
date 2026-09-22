@@ -1,0 +1,66 @@
+# Alekhine Defense: Scandinavian Variation, Geschev Gambit. Frozen defining line 1.e4 Nf6
+# 2.Nc3 d5 3.exd5 c6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js, including
+# Black's own recapture 4...Nxc6, which is not an opponent reply and so carries no
+# replyQuality or frequency. searchMate from the leaf FEN, bounded to 2 moves, returns
+# no-mate.
+id: alekhine-defense-scandinavian-variation-geschev-gambit
+name: 'Alekhine Defense: Scandinavian Variation, Geschev Gambit'
+eco: B02
+category: gambit
+side: black
+definingLine: [e4, Nf6, Nc3, d5, exd5, c6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Rather than recapture at once with 3...Nxd5, Black offers a second pawn
+      with 3...c6 to open the queenside knight's development after White takes twice. It is
+      a real speculative try, but two pawns is a real price. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại ngay bằng 3...Nxd5, Đen chơi 3...c6!?, mời Trắng ăn thêm một tốt nữa để đổi lấy việc phát triển mã b8 ra c6 ngay trong nước ăn lại, thay vì phải đi Nxd5 rồi có thể bị Nxd5 đổi lại.
+    en: Instead of recapturing at once with 3...Nxd5, Black plays 3...c6!?, offering a second pawn in exchange for developing the b8 knight to c6 within the recapture itself, instead of recapturing on d5 and risking a trade there.
+    fr: Au lieu de reprendre immédiatement par 3...Nxd5, les Noirs jouent 3...c6!?, offrant un second pion en échange du développement du cavalier b8 en c6 dès la reprise elle-même, plutôt que de reprendre en d5 au risque d'un échange.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tiếp con tốt c6. Các nước khác như Nf3 hay d4 để nguyên con tốt ấy trên bàn cờ và Đen ăn lại đơn giản bằng ...cxd5 hoặc ...Qxd5.
+      en: White does not take the c6 pawn. Anything else, such as Nf3 or d4, leaves that pawn on the board and Black simply recaptures with ...cxd5 or ...Qxd5.
+      fr: Les Blancs ne prennent pas le pion c6. Tout le reste, comme Nf3 ou d4, laisse ce pion sur l'échiquier et les Noirs reprennent simplement par ...cxd5 ou ...Qxd5.
+  children:
+    - ply: dxc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt thứ hai bằng chính con tốt d5 vừa ăn được. Con tốt c6 của Đen không được quân nào đỡ, nên đây đơn giản là ăn thêm vật chất.
+        en: White takes the second pawn with the very d5 pawn it just captured with. Nothing of Black's defends c6, so this is simply picking up more material.
+        fr: Les Blancs prennent le second pion avec le pion d5 qu'ils viennent tout juste de capturer. Rien du côté noir ne défend c6, il s'agit donc simplement de ramasser du matériel supplémentaire.
+      children:
+        - ply: Nxc6
+          annotation:
+            vi: Đen ăn lại bằng mã b8, đúng như ý đồ ban đầu của 3...c6 — thay vì chỉ ăn lại đơn thuần bằng tốt hay hậu, Đen đưa luôn một quân ra c6, một ô phát triển tự nhiên, thay vì phải mất thêm một nước sau này.
+            en: Black recaptures with the b8 knight, exactly the point of 3...c6 — instead of just recapturing plainly with a pawn or the queen, Black brings a piece straight to c6, a natural developing square, saving a move compared with developing the knight later.
+            fr: Les Noirs reprennent avec le cavalier b8, exactement le but de 3...c6 — au lieu de simplement reprendre avec un pion ou la dame, les Noirs amènent directement une pièce en c6, une case de développement naturelle, économisant un coup par rapport à un développement plus tardif.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu. Đen kém đúng một tốt sạch, nhưng đã đưa được một quân ra phát triển ngay trong nước ăn lại, thay vì phải dùng một nước riêng cho việc đó sau này.
+              en: Count the pawns and it is seven for White, six for Black. Black is a clean pawn down, but has developed a piece within the recapture itself, instead of needing a separate move for it later.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs. Les Noirs ont un pion de retard, mais ont développé une pièce dès la reprise elle-même, au lieu d'avoir besoin d'un coup séparé pour cela plus tard.
+            plan:
+              vi: Trắng chơi Nf3 hay d4, giữ vững tốt thừa và hoàn tất phát triển trước khi Đen kịp tận dụng nhịp đã có. Đen chơi e5 hay g6 và Bg7, cố mở trung tâm nhanh và gây sức ép để bù cho tốt đã mất.
+              en: White plays Nf3 or d4, holding the extra pawn and completing development before Black can make full use of the tempo gained. Black plays e5 or g6 and Bg7, trying to open the centre quickly and build pressure to compensate for the lost pawn.
+              fr: Les Blancs jouent Nf3 ou d4, gardant le pion supplémentaire et achevant leur développement avant que les Noirs ne puissent pleinement exploiter le temps gagné. Les Noirs jouent e5 ou g6 et Bg7, essayant d'ouvrir rapidement le centre et de créer de la pression pour compenser le pion perdu.
+            basis:
+              by: chan
+              at: '2026-09-21'

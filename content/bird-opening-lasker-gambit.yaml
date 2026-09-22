@@ -1,0 +1,64 @@
+# Bird Opening: Lasker Gambit. Frozen defining line 1.f4 e5 2.fxe5 f6, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Every
+# ply below was replayed with chess.js, including Black's own recapture 3...Nxf6, which is
+# not an opponent reply and so carries no replyQuality or frequency. searchMate from the
+# leaf FEN, bounded to 2 moves, returns no-mate.
+id: bird-opening-lasker-gambit
+name: 'Bird Opening: Lasker Gambit'
+eco: A02
+category: gambit
+side: black
+definingLine: [f4, e5, fxe5, f6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black is already down the e5 pawn from 2.fxe5, and 2...f6 offers a
+      second pawn to try to blow the position open. White simply takes it and consolidates
+      two pawns up. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi mất tốt e5, Đen chơi tiếp 2...f6, mời Trắng ăn thêm một tốt nữa để đổi lấy đường chéo dài mở ra cho hậu Đen sau khi ăn lại.
+    en: Having already lost the e5 pawn, Black plays 2...f6, offering a second pawn in exchange for the long diagonal opening up for Black's queen once the recapture happens.
+    fr: Ayant déjà perdu le pion e5, les Noirs jouent 2...f6, offrant un second pion en échange de la grande diagonale qui s'ouvre pour la dame noire après la reprise.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tiếp con tốt f6. Các nước khác như e6 hay Nf3 để nguyên con tốt ấy trên bàn cờ và cho Đen thời gian để lấy lại một phần vật chất đã mất.
+      en: White does not take the f6 pawn. Anything else, such as e6 or Nf3, leaves that pawn on the board and gives Black time to win back some of the lost material.
+      fr: Les Blancs ne prennent pas le pion f6. Tout le reste, comme e6 ou Nf3, laisse ce pion sur l'échiquier et donne aux Noirs le temps de regagner une partie du matériel perdu.
+  children:
+    - ply: exf6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt thứ hai. Con tốt f6 không được quân nào của Đen đỡ, nên đây đơn giản là ăn thêm vật chất trước khi Đen kịp đổi lại.
+        en: White takes the second pawn. Nothing of Black's defends f6, so this is simply picking up more material before Black gets to trade it back.
+        fr: Les Blancs prennent le second pion. Rien du côté noir ne défend f6, il s'agit donc simplement de ramasser du matériel supplémentaire avant que les Noirs ne puissent l'échanger.
+      children:
+        - ply: Nxf6
+          annotation:
+            vi: Đen ăn lại bằng mã, phát triển một quân và tránh làm yếu thêm cấu trúc tốt bằng cách không ăn bằng tốt g7. Đây là cách hợp lý nhất để tiếp tục ván cờ sau khi đã mất hai tốt.
+            en: Black recaptures with the knight, developing a piece and avoiding further pawn damage rather than recapturing with the g7 pawn. This is the most sensible way to continue after already being down two pawns.
+            fr: Les Noirs reprennent avec le cavalier, développant une pièce et évitant d'abîmer davantage la structure de pions plutôt que de reprendre avec le pion g7. C'est la façon la plus sensée de poursuivre après avoir déjà perdu deux pions.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu. Đen đã lấy lại một trong hai tốt đã mất nhưng vẫn kém đúng một tốt sạch, và cái duy nhất Đen có bù lại là mã đã phát triển với hậu có thể ra e7 hoặc g6 sau này. Không có cột mở nào bù cho tốt đã mất.
+              en: Count the pawns and it is seven for White, six for Black. Black has won back one of the two lost pawns but is still down a clean pawn, and the only thing to show for it is a developed knight with the queen able to come to e7 or g6 later. No open file compensates for the missing pawn.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs. Les Noirs ont récupéré l'un des deux pions perdus mais restent en retard d'un pion net, et la seule contrepartie est un cavalier développé, la dame pouvant venir plus tard en e7 ou g6. Aucune colonne ouverte ne compense le pion manquant.
+            plan:
+              vi: Trắng chơi Nf3, e4 và Bc4 hay d4, phát triển nhanh và giữ vững tốt thừa. Đen chơi e6 hay Bd6, Qe7 và O-O, cố hoàn tất phát triển và tìm sức ép ở trung tâm để bù cho quân số ít hơn.
+              en: White plays Nf3, e4 and Bc4 or d4, developing quickly and holding the extra pawn. Black plays e6 or Bd6, Qe7 and O-O, trying to complete development and find central pressure to compensate for the material deficit.
+              fr: Les Blancs jouent Nf3, e4 et Bc4 ou d4, se développant rapidement et gardant le pion supplémentaire. Les Noirs jouent e6 ou Bd6, Qe7 et O-O, essayant d'achever leur développement et de trouver une pression centrale pour compenser le déficit matériel.
+            basis:
+              by: chan
+              at: '2026-09-21'

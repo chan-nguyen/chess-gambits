@@ -1,0 +1,66 @@
+# Bishop's Opening: Warsaw Gambit. Frozen defining line 1.e4 e5 2.Bc4 Nf6 3.d4 exd4 4.c3,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Every ply below was replayed with chess.js, including White's own
+# recapture 5.Nxc3, which is not an opponent reply and so carries no replyQuality or
+# frequency. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: bishops-opening-warsaw-gambit
+name: "Bishop's Opening: Warsaw Gambit"
+eco: C24
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, d4, exd4, c3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. White has already given the d-pawn with 3.d4 and now offers the c-pawn
+      too with 4.c3, aiming to recapture on c3 with the knight for a fully developed piece
+      rather than the queen. Material ends level after the recapture, so this specific try
+      is judged sound rather than a lasting sacrifice. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã thí tốt d bằng 3.d4, Trắng chơi tiếp 4.c3!?, mời Đen ăn thêm một tốt nữa để đổi lấy việc ăn lại bằng mã thay vì hậu, giữ hậu an toàn ở nhà lâu hơn.
+    en: Having already offered the d-pawn with 3.d4, White plays on with 4.c3!?, inviting Black to take a second pawn in exchange for recapturing with the knight instead of the queen, keeping the queen safely at home a little longer.
+    fr: Ayant déjà offert le pion d par 3.d4, les Blancs poursuivent par 4.c3!?, invitant les Noirs à prendre un second pion en échange d'une reprise au cavalier plutôt qu'à la dame, gardant la dame à l'abri un peu plus longtemps.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt c3. Các nước khác như Nc6 hay Bc5 để nguyên con tốt d4 đã ăn được trên bàn cờ và Trắng chưa lấy lại được gì.
+      en: Black does not take the c3 pawn. Anything else, such as Nc6 or Bc5, leaves the already-won d4 pawn on the board and White has not yet won anything back.
+      fr: Les Noirs ne prennent pas le pion c3. Tout le reste, comme Nc6 ou Bc5, laisse le pion d4 déjà gagné sur l'échiquier et les Blancs n'ont encore rien regagné.
+  children:
+    - ply: dxc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt c3 bằng chính con tốt d4 đã ăn được trước đó, quân duy nhất có thể ăn tại đó. Đen giờ hơn hai tốt sạch tạm thời, và Trắng phải ăn lại để lấy lại vật chất.
+        en: Black takes the c3 pawn with the very d4 pawn won earlier, the only piece that can capture there. Black is now up two clean pawns for the moment, and White has to recapture to win back material.
+        fr: Les Noirs prennent le pion c3 avec le pion d4 gagné plus tôt, la seule pièce pouvant capturer là. Les Noirs ont désormais deux pions d'avance pour l'instant, et les Blancs doivent reprendre pour regagner du matériel.
+      children:
+        - ply: Nxc3
+          annotation:
+            vi: Trắng ăn lại bằng mã từ b1, phát triển một quân thay vì ăn bằng tốt b2 và làm xấu cấu trúc tốt cánh hậu. Đây là cách ăn lại đúng tinh thần gambit, đưa một quân ra ngoài ngay trong nước ăn lại.
+            en: White recaptures with the knight from b1, developing a piece rather than recapturing with the b2 pawn and damaging the queenside pawn structure. This is the recapture in the true spirit of the gambit, bringing a piece out within the recapture itself.
+            fr: Les Blancs reprennent avec le cavalier depuis b1, développant une pièce plutôt que de reprendre avec le pion b2 et d'abîmer la structure de pions de l'aile dame. C'est la reprise dans l'esprit véritable du gambit, sortant une pièce dès la reprise elle-même.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng sáu, Đen bảy. Vật chất gần như cân bằng, chỉ còn kém một tốt do tốt b vẫn đứng nguyên chưa cần dùng đến. Trắng có hai quân đã phát triển (tượng c4 và mã c3) đổi lấy một tốt, một cái giá hợp lý cho vị trí tích cực này.
+              en: Count the pawns and it is six for White, seven for Black. Material is nearly level, only a single pawn short since the b-pawn was never needed. White has two developed pieces (the bishop on c4 and the knight on c3) for one pawn, a reasonable price for this active set-up.
+              fr: Comptez les pions, six pour les Blancs, sept pour les Noirs. Le matériel est presque égal, à un seul pion près puisque le pion b n'a jamais été nécessaire. Les Blancs ont deux pièces développées (le fou en c4 et le cavalier en c3) pour un pion, un prix raisonnable pour ce dispositif actif.
+            plan:
+              vi: Trắng chơi Nf3, O-O và Qb3 hay Re1, tập trung quân vào cánh vua Đen và tận dụng sự phát triển vượt trội. Đen chơi d6 hay Be7 và O-O, hoàn tất phát triển an toàn và giữ vững tốt thừa.
+              en: White plays Nf3, O-O and Qb3 or Re1, massing pieces against Black's kingside and making use of the development lead. Black plays d6 or Be7 and O-O, completing development safely and holding the extra pawn.
+              fr: Les Blancs jouent Nf3, O-O et Qb3 ou Re1, massant leurs pièces contre l'aile roi noire et exploitant leur avance de développement. Les Noirs jouent d6 ou Be7 et O-O, achevant leur développement en toute sécurité et gardant le pion supplémentaire.
+            basis:
+              by: chan
+              at: '2026-09-21'

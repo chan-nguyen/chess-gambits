@@ -1,0 +1,62 @@
+# Blackmar-Diemer Gambit: Reversed Albin Countergambit. Frozen defining line 1.d4 d5 2.e4
+# dxe4 3.Nc3 c5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: blackmar-diemer-gambit-reversed-albin-countergambit
+name: 'Blackmar-Diemer Gambit: Reversed Albin Countergambit'
+eco: D00
+category: gambit
+side: black
+definingLine: [d4, d5, e4, dxe4, Nc3, c5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black keeps the e4 pawn for one more move and strikes at d4 with 3...c5,
+      echoing the Albin Countergambit's ...d4 push with colours reversed. White simply
+      recaptures the e4 pawn and is no worse off than the main Blackmar-Diemer lines, so
+      this specific try has not been shown to gain Black anything extra. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại ngay bằng 3...exf3 hay phát triển bình thường, Đen chơi 3...c5!?, giữ tốt e4 thêm một nước và tấn công thẳng vào tốt d4 của Trắng, giống ý tưởng của Phản gambit Albin nhưng với hai màu đảo ngược.
+    en: Instead of recapturing at once or developing normally, Black plays 3...c5!?, holding onto the e4 pawn for one more move and striking straight at White's d4 pawn, echoing the idea of the Albin Countergambit with the colours reversed.
+    fr: Au lieu de reprendre aussitôt ou de développer normalement, les Noirs jouent 3...c5!?, gardant le pion e4 un coup de plus et frappant directement le pion d4 blanc, reprenant l'idée du Contre-gambit Albin avec les couleurs inversées.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn lại con tốt e4. Các nước khác như d5 hay Bd2 để nguyên con tốt ấy trên bàn cờ và Đen tiếp tục theo kế hoạch với ...cxd4.
+      en: White does not recapture the e4 pawn. Anything else, such as d5 or Bd2, leaves that pawn on the board and Black continues with the plan of ...cxd4.
+      fr: Les Blancs ne reprennent pas le pion e4. Tout le reste, comme d5 ou Bd2, laisse ce pion sur l'échiquier et les Noirs poursuivent leur plan avec ...cxd4.
+  dismissed:
+    - ply: dxc5
+      reason: Also wins a pawn, grabbing c5 instead of recapturing on e4, but leaves the e4 pawn on the board for Black to consolidate and ignores development; Nxe4 is simpler and more thematic, so this is not modelled separately.
+  children:
+    - ply: Nxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn lại con tốt e4 bằng mã c3, quân duy nhất có thể ăn tại đó mà không mất tempo. Con tốt e4 của Đen không được ai đỡ, nên đây đơn giản là lấy lại vật chất đã mất từ đầu ván.
+        en: White recaptures the e4 pawn with the c3 knight, the only piece that can capture there without losing time. Nothing defends Black's e4 pawn, so this simply wins back the material given up at the start of the game.
+        fr: Les Blancs reprennent le pion e4 avec le cavalier c3, la seule pièce pouvant capturer là sans perdre de temps. Rien ne défend le pion e4 noir, il s'agit donc simplement de regagner le matériel cédé au début de la partie.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen bảy. Vật chất đã cân bằng trở lại. Trắng có mã đã phát triển ở e4 và tốt d4 vẫn đứng vững ở trung tâm, còn Đen đã đẩy c5 sớm mà chưa lấy lại được gì cụ thể cho việc đó.
+          en: Count the pawns and it is seven for White, seven for Black. Material is level again. White has a developed knight on e4 and the d4 pawn still holds the centre, while Black has pushed c5 early without anything concrete yet to show for it.
+          fr: Comptez les pions, sept pour les Blancs, sept pour les Noirs. Le matériel est de nouveau égal. Les Blancs ont un cavalier développé en e4 et le pion d4 tient toujours le centre, tandis que les Noirs ont poussé c5 tôt sans encore rien de concret à montrer pour cela.
+        plan:
+          vi: Trắng chơi Nf3, dxc5 khi thuận lợi, và Bc4 hay Bf4, hoàn tất phát triển và giữ vững thế trận trung tâm. Đen chơi cxd4, Nc6 và Nf6, cố mở cột c và gây sức ép lên trung tâm Trắng.
+          en: White plays Nf3, takes on c5 when convenient, and Bc4 or Bf4, completing development and holding the central setup. Black plays cxd4, Nc6 and Nf6, trying to open the c-file and pressure White's centre.
+          fr: Les Blancs jouent Nf3, prennent en c5 quand cela convient, et Bc4 ou Bf4, achevant leur développement et gardant leur dispositif central. Les Noirs jouent cxd4, Nc6 et Nf6, essayant d'ouvrir la colonne c et de faire pression sur le centre blanc.
+        basis:
+          by: chan
+          at: '2026-09-21'

@@ -1,0 +1,58 @@
+# Bishop's Opening: Stein Gambit. Frozen defining line 1.e4 e5 2.Bc4 Bc5 3.f4, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated. searchMate from the leaf
+# FEN, bounded to 2 moves, returns no-mate.
+id: bishops-opening-stein-gambit
+name: "Bishop's Opening: Stein Gambit"
+eco: C23
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Bc5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. White offers the f-pawn in King's Gambit style, but with the bishop
+      already committed to c4 rather than staying home to answer ...Qh4+ ideas. Black
+      simply takes the pawn and White has to prove the open f-file and central space are
+      worth it. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...Bc5, Trắng chơi 3.f4!?, mang tinh thần của Khai cuộc Vua thí tốt f vào giữa ván, mời Đen ăn tốt để đổi lấy cột f mở và trung tâm rộng hơn.
+    en: After 2...Bc5, White plays 3.f4!?, bringing King's Gambit style pawn-sacrificing ideas into the middle of the game, offering the f-pawn for an open f-file and a broader centre.
+    fr: Après 2...Bc5, les Blancs jouent 3.f4!?, apportant l'esprit sacrificiel du Gambit du Roi en plein milieu de la partie, offrant le pion f pour une colonne f ouverte et un centre plus large.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt f4. Các nước khác như Nf6 hay d6 để nguyên con tốt ấy trên bàn cờ và Trắng giữ được trung tâm thêm một nước.
+      en: Black does not take the f4 pawn. Anything else, such as Nf6 or d6, leaves that pawn on the board and White keeps the centre for one more move.
+      fr: Les Noirs ne prennent pas le pion f4. Tout le reste, comme Nf6 ou d6, laisse ce pion sur l'échiquier et les Blancs gardent le centre un coup de plus.
+  children:
+    - ply: exf4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt f4 bằng tốt e5, quân duy nhất có thể ăn tại đó. Con tốt f4 của Trắng không được ai đỡ, nên đây đơn giản là ăn một tốt miễn phí.
+        en: Black takes the f4 pawn with the e5 pawn, the only piece that can capture there. Nothing defends White's f4 pawn, so this is simply picking up a free pawn.
+        fr: Les Noirs prennent le pion f4 avec le pion e5, la seule pièce pouvant capturer là. Rien ne défend le pion f4 blanc, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám. Trắng kém đúng một tốt sạch. Đổi lại, cột f đã mở cho xe h1 sau khi nhập thành, nhưng con tượng c5 của Đen cũng đang nhìn thẳng vào ô g1 nơi vua Trắng sẽ đứng, một mối lo cần giải quyết trước.
+          en: Count the pawns and it is seven for White, eight for Black. White is a clean pawn down. In return, the f-file is open for the rook once White castles, but Black's bishop on c5 also stares straight at g1, where White's king will stand — a worry that needs sorting out first.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs. Les Blancs ont un pion de retard. En échange, la colonne f s'ouvre pour la tour une fois le roque effectué, mais le fou noir en c5 regarde aussi tout droit vers g1, où se tiendra le roi blanc — un souci à régler d'abord.
+        plan:
+          vi: Trắng chơi Nf3, d3 hay d4, cố lấy lại con tốt f4 hoặc kiểm soát vững ô g1 trước khi nhập thành. Đen chơi Nf6, d6 và Nc6, hoàn tất phát triển an toàn và giữ vững tốt thừa.
+          en: White plays Nf3, d3 or d4, trying to win back the f4 pawn or make g1 secure before castling. Black plays Nf6, d6 and Nc6, completing development safely and holding the extra pawn.
+          fr: Les Blancs jouent Nf3, d3 ou d4, essayant de regagner le pion f4 ou de sécuriser g1 avant de roquer. Les Noirs jouent Nf6, d6 et Nc6, achevant leur développement en toute sécurité et gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-21'

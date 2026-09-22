@@ -1,0 +1,57 @@
+# Borg Defense: Zilbermints Gambit. Frozen defining line 1.e4 g5 2.d4 e5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 2 moves, returns no-mate.
+id: borg-defense-zilbermints-gambit
+name: 'Borg Defense: Zilbermints Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, g5, d4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black has already weakened the kingside with 1...g5, and 2...e5 simply
+      offers a second pawn on top of that. White takes it and Black has nothing concrete to
+      show for either concession. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 1...g5 kỳ lạ, Đen chơi tiếp 2...e5, thí luôn con tốt trung tâm để mời Trắng ăn tốt d4 lấy tốt e5, mở đường cho hậu Đen ra sớm.
+    en: After the odd 1...g5, Black continues with 2...e5, offering the central pawn to invite White's d4 pawn to take on e5, opening a line for Black's queen to come out early.
+    fr: Après l'étrange 1...g5, les Noirs poursuivent par 2...e5, offrant le pion central pour inviter le pion d4 blanc à prendre en e5, ouvrant une ligne pour que la dame noire sorte tôt.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e5. Các nước khác như Nc3 hay Bxg5 để nguyên căng thẳng ở trung tâm và không thu được gì thêm ngay lập tức.
+      en: White does not take the e5 pawn. Anything else, such as Nc3 or Bxg5, leaves the central tension alone and gains nothing extra immediately.
+      fr: Les Blancs ne prennent pas le pion e5. Tout le reste, comme Nc3 ou Bxg5, laisse la tension centrale telle quelle et ne rapporte rien de plus dans l'immédiat.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt trung tâm ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt e5 của Đen không được quân nào đỡ, nên đây đơn giản là ăn một tốt miễn phí.
+        en: White takes the central pawn at once, the only piece that can capture there. Black's e5 pawn is defended by nothing, so this is simply picking up a free pawn.
+        fr: Les Blancs prennent aussitôt le pion central, la seule pièce pouvant capturer là. Le pion e5 noir n'est défendu par rien, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, và cánh vua Đen đã yếu sẵn từ nước 1...g5 giờ càng thêm rủi ro, vì chính con tốt g5 ấy lại chắn mất đường chéo mà hậu Đen cần dùng để ra ngoài nhanh.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, and Black's kingside, already weakened by 1...g5, is now even riskier — that very g5 pawn blocks the diagonal Black's queen would otherwise use to come out quickly.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus, et l'aile roi noire, déjà affaiblie par 1...g5, est désormais encore plus fragile — ce même pion g5 bloque la diagonale que la dame noire aurait pu emprunter pour sortir rapidement.
+        plan:
+          vi: Trắng chơi Nf3 hoặc Be3, phát triển bình thường và giữ vững tốt thừa trong khi khai thác các ô yếu quanh vua Đen. Đen chơi Bg7, Nc6 và d6, cố hoàn tất phát triển và tìm sức ép ở trung tâm để bù cho quân số ít hơn.
+          en: White plays Nf3 or Be3, developing normally and holding the extra pawn while eyeing the weak squares around Black's king. Black plays Bg7, Nc6 and d6, trying to complete development and find central pressure to compensate for the material deficit.
+          fr: Les Blancs jouent Nf3 ou Be3, se développant normalement et gardant le pion supplémentaire tout en visant les cases faibles autour du roi noir. Les Noirs jouent Bg7, Nc6 et d6, essayant d'achever leur développement et de trouver une pression centrale pour compenser le déficit matériel.
+        basis:
+          by: chan
+          at: '2026-09-21'

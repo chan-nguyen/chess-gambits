@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * One hundred and fifty-five entries are authored — three from #15, eleven from #73, ten
+   * One hundred and seventy-five entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -131,7 +131,19 @@ describe('the catalogue this repository ships', () => {
    * Game's Frankenstein-Dracula Qd5 Trap), and one from #127 (the Ruy Lopez Exchange
    * Variation's Alapin Gambit, upgraded in place from its own Tier 0 entry — #127 also
    * deepened two already-authored trees, bird-opening-froms-gambit and
-   * scandinavian-defense-kiel-variation-trap, without adding new ids) — and the other 855
+   * scandinavian-defense-kiel-variation-trap, without adding new ids), two new named traps
+   * from #137 (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2 Trap),
+   * thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
+   * elephant-gambit-paulsen-countergambit, english-opening-wing-gambit,
+   * englund-gambit-felbecker-gambit, englund-gambit-hartlaub-charlick-gambit,
+   * englund-gambit-main-line, englund-gambit-mosquito-gambit, englund-gambit-soller-gambit,
+   * englund-gambit-soller-gambit-deferred, englund-gambit-zilbermints-gambit,
+   * french-defense-wing-gambit, grob-opening-grob-gambit-declined and
+   * hungarian-opening-asten-gambit, each a single root-to-leaf line), and twenty more from
+   * #136 batch a (twenty short, single-line entries deepened straight from `listed` to
+   * `taught` — a modelled reply to the defining line's sacrifice, ending in a `position`
+   * leaf, one branch each), and twenty more from #136 batch C (family heads and King's
+   * Gambit Declined sub-variations, each a single root-to-leaf line) — and the other 811
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -154,6 +166,9 @@ describe('the catalogue this repository ships', () => {
    */
   const AUTHORED: ReadonlyMap<string, number> = new Map([
     ['alekhine-defense-krejcik-variation-krejcik-gambit', 1],
+    ['alekhine-defense-osullivan-gambit', 1],
+    ['alekhine-defense-scandinavian-variation-geschev-gambit', 1],
+    ['alekhine-defense-spielmann-gambit', 1],
     ['amar-opening-paris-gambit-gent-gambit', 1],
     ['barnes-opening-gedult-gambit', 1],
     ['benko-gambit', 9],
@@ -162,37 +177,67 @@ describe('the catalogue this repository ships', () => {
     ['benko-gambit-fianchetto-variation', 0],
     ['benoni-defense-benoni-gambit-accepted', 1],
     ['bird-opening-froms-gambit', 3],
+    ['bird-opening-froms-gambit-bahr-gambit', 1],
+    ['bird-opening-hobbs-gambit', 1],
+    ['bird-opening-lasker-gambit', 1],
+    ['bishops-opening-anderssen-gambit', 1],
     ['bishops-opening-calabrese-countergambit', 3],
+    ['bishops-opening-khan-gambit', 1],
+    ['bishops-opening-lewis-countergambit', 1],
+    ['bishops-opening-lewis-gambit', 1],
+    ['bishops-opening-ponziani-gambit', 1],
+    ['bishops-opening-stein-gambit', 1],
+    ['bishops-opening-warsaw-gambit', 1],
     ['blackmar-diemer-gambit', 5],
     ['blackmar-diemer-gambit-accepted', 1],
+    ['blackmar-diemer-gambit-blackmar-gambit', 1],
     ['blackmar-diemer-gambit-declined-brombacher-countergambit', 1],
+    ['blackmar-diemer-gambit-reversed-albin-countergambit', 1],
     ['blumenfeld-countergambit', 1],
     ['blumenfeld-countergambit-accepted', 1],
     ['borg-defense-borg-gambit', 1],
+    ['borg-defense-troon-gambit', 1],
+    ['borg-defense-zilbermints-gambit', 1],
     ['caro-kann-defense-labahn-attack-double-gambit', 2],
+    ['caro-kann-defense-mieses-gambit', 1],
     ['carr-defense-zilbermints-gambit', 1],
     ['catalan-opening-hungarian-gambit', 1],
     ['center-game-halasz-mcdonnell-gambit', 1],
     ['damiano-defence-refutation', 2],
     ['danish-gambit', 4],
     ['danish-gambit-accepted', 1],
+    ['danish-gambit-accepted-svenonius-defense', 1],
     ['danish-gambit-declined-sorensen-defense', 1],
     ['duras-gambit', 1],
+    ['dutch-defense-bellon-gambit', 1],
     ['dutch-defense-krejcik-gambit', 1],
     ['elephant-gambit', 1],
+    ['elephant-gambit-maroczy-gambit', 1],
+    ['elephant-gambit-paulsen-countergambit', 1],
     ['elephant-trap', 1],
     ['english-defense-eastbourne-gambit', 1],
     ['english-opening-jaenisch-gambit', 1],
+    ['english-opening-wing-gambit', 1],
     ['englund-gambit', 5],
     ['englund-gambit-declined', 1],
+    ['englund-gambit-felbecker-gambit', 1],
+    ['englund-gambit-hartlaub-charlick-gambit', 1],
+    ['englund-gambit-main-line', 1],
+    ['englund-gambit-mosquito-gambit', 1],
+    ['englund-gambit-soller-gambit', 1],
+    ['englund-gambit-soller-gambit-deferred', 1],
     ['englund-gambit-trap', 6],
+    ['englund-gambit-zilbermints-gambit', 1],
     ['fishing-pole-trap', 3],
     ['four-knights-game-halloween-gambit', 1],
     ['french-defense-banzai-leong-gambit', 3],
+    ['french-defense-wing-gambit', 1],
     ['grob-opening-alessi-gambit', 1],
+    ['grob-opening-grob-gambit-declined', 1],
     ['grunfeld-defense-gibbon-gambit', 1],
     ['halosar-trap', 3],
     ['horwitz-defense-zilbermints-gambit', 1],
+    ['hungarian-opening-asten-gambit', 1],
     ['hungarian-opening-van-kuijk-gambit', 1],
     ['indian-defense-budapest-gambit', 5],
     ['indian-defense-budapest-gambit-accepted-fajarowicz-defense', 1],
@@ -316,9 +361,11 @@ describe('the catalogue this repository ships', () => {
     ['smith-morra-gambit-accepted-open-d-file-trap', 1],
     ['sodium-attack-durkin-gambit', 1],
     ['st-george-defense-zilbermints-gambit', 1],
+    ['stafford-gambit-rosen-trap', 2],
     ['tarrasch-defense-schara-gambit', 1],
     ['tarrasch-trap', 1],
     ['torre-attack-wagner-gambit', 1],
+    ['traxler-counterattack-ke2-trap', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
     ['van-geet-opening-laroche-gambit', 2],
     ['vant-kruijs-opening-keoni-hiva-gambit-akahi-variation', 1],
@@ -330,8 +377,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-herrstrom-gambit', 1],
   ])
 
-  it('bakes keys on all 1019 entries, and only the authored one hundred and seventy-five have any', () => {
-    expect(result.value.records).toHaveLength(1019)
+  it('bakes keys on all 1021 entries, and only the authored two hundred and ten have any', () => {
+    expect(result.value.records).toHaveLength(1021)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the

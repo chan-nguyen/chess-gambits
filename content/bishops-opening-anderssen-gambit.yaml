@@ -1,0 +1,63 @@
+# Bishop's Opening: Anderssen Gambit. Frozen defining line 1.e4 e5 2.Bc4 b5 3.Bxb5 c6,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated, along
+# with the dismissed 4.Bxc6?!. searchMate from the leaf FEN, bounded to 2 moves, returns
+# no-mate.
+id: bishops-opening-anderssen-gambit
+name: "Bishop's Opening: Anderssen Gambit"
+eco: C23
+category: gambit
+side: black
+definingLine: [e4, e5, Bc4, b5, Bxb5, c6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black offers the b-pawn to divert White's bishop and then chases it
+      again with 3...c6, aiming to win time and open lines for development. White simply
+      retreats the bishop and keeps the extra pawn, so Black still has to prove the
+      development lead is worth a whole pawn. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Trắng ăn tốt bằng 3.Bxb5, Đen chơi tiếp 3...c6!?, đuổi con tượng đi lần nữa và mời nó ăn thêm một tốt để đổi lấy thời gian và đường mở cho các quân còn lại.
+    en: After White takes the pawn with 3.Bxb5, Black continues with 3...c6!?, chasing the bishop again and inviting it to take yet another pawn in exchange for time and open lines for the rest of the pieces.
+    fr: Après que les Blancs ont pris le pion par 3.Bxb5, les Noirs poursuivent par 3...c6!?, chassant de nouveau le fou et l'invitant à prendre encore un pion en échange de temps et de lignes ouvertes pour le reste des pièces.
+  dismissRest:
+    reason:
+      vi: Trắng không lùi tượng và cũng không ăn thêm. Các nước khác như d3 hay Nf3 để nguyên con tượng b5 bị tấn công, và Đen ăn lại tượng bằng ...cxb5 ngay lượt sau.
+      en: White neither retreats the bishop nor takes a further pawn. Anything else, such as d3 or Nf3, leaves the bishop on b5 under attack, and Black simply captures it with ...cxb5 next move.
+      fr: Les Blancs ne reculent ni ne prennent un pion supplémentaire. Tout le reste, comme d3 ou Nf3, laisse le fou en b5 attaqué, et les Noirs le capturent tout simplement par ...cxb5 au coup suivant.
+  dismissed:
+    - ply: Bxc6
+      reason: Grabs a second pawn but hangs the bishop to 4...dxc6, losing a whole piece for two pawns; strictly worse than the safe retreat, so not modelled separately.
+  children:
+    - ply: Ba4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng lùi tượng về a4, giữ nguyên đường chéo a4-e8 và giữ vững con tốt thừa đã ăn được ở nước trước, thay vì mạo hiểm ăn thêm bằng Bxc6.
+        en: White retreats the bishop to a4, keeping the a4-e8 diagonal and holding on to the extra pawn already won, instead of risking a further capture with Bxc6.
+        fr: Les Blancs reculent le fou en a4, gardant la diagonale a4-e8 et conservant le pion supplémentaire déjà gagné, plutôt que de risquer une nouvelle prise par Bxc6.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch từ nước 3.Bxb5, và con tượng a4 vẫn an toàn, chưa bị mất nhịp gì thêm. Đen có đường phát triển cởi mở hơn nhưng chưa có gì cụ thể bù cho tốt đã mất.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up from 3.Bxb5, and the bishop on a4 is safe, having lost no further time. Black has somewhat freer development but nothing concrete yet to compensate for the lost pawn.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus depuis 3.Bxb5, et le fou en a4 est en sécurité, sans avoir perdu davantage de temps. Les Noirs ont un développement un peu plus dégagé mais rien de concret encore pour compenser le pion perdu.
+        plan:
+          vi: Trắng chơi Nf3, O-O và d4, phát triển bình thường và giữ vững tốt thừa. Đen chơi Nf6, d5 và Bd6 hay Be7, cố mở trung tâm nhanh và gây sức ép để bù cho tốt đã mất.
+          en: White plays Nf3, O-O and d4, developing normally and holding the extra pawn. Black plays Nf6, d5 and Bd6 or Be7, trying to open the centre quickly and build pressure to compensate for the lost pawn.
+          fr: Les Blancs jouent Nf3, O-O et d4, se développant normalement et gardant le pion supplémentaire. Les Noirs jouent Nf6, d5 et Bd6 ou Be7, essayant d'ouvrir rapidement le centre et de créer de la pression pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-21'

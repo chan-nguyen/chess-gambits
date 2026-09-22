@@ -1,0 +1,58 @@
+# Alekhine Defense: O'Sullivan Gambit. Frozen defining line 1.e4 Nf6 2.e5 Nd5 3.d4 b5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: alekhine-defense-osullivan-gambit
+name: "Alekhine Defense: O'Sullivan Gambit"
+eco: B03
+category: gambit
+side: black
+definingLine: [e4, Nf6, e5, Nd5, d4, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black offers the b-pawn to gain a tempo on White's light-squared bishop
+      and free development for the queenside pieces. It is a real, sometimes-played try
+      rather than an outright loss of material for nothing, but a full pawn is a full pawn.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...Nd5 chuẩn của phòng thủ Alekhine, Đen chơi thẳng 3...b5!? thay vì các nước chuẩn bị thông thường, mời Trắng ăn tốt để đổi lấy nhịp phát triển và không gian cánh hậu.
+    en: After the standard 2...Nd5 of Alekhine's Defense, Black plays the direct 3...b5!? instead of the usual preparatory moves, offering the pawn in exchange for a tempo and queenside space.
+    fr: Après le 2...Nd5 habituel de la défense Alekhine, les Noirs jouent directement 3...b5!? au lieu des coups préparatoires usuels, offrant le pion en échange d'un temps et d'espace à l'aile dame.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt b5. Các nước khác như c4 hay Nf3 để nguyên con tốt ấy trên bàn cờ và Đen tiếp tục theo kế hoạch ban đầu với ...Bb7 và ...e6.
+      en: White does not take the b5 pawn. Anything else, such as c4 or Nf3, leaves that pawn on the board and Black continues with the original plan of ...Bb7 and ...e6.
+      fr: Les Blancs ne prennent pas le pion b5. Tout le reste, comme c4 ou Nf3, laisse ce pion sur l'échiquier et les Noirs poursuivent le plan initial avec ...Bb7 et ...e6.
+  children:
+    - ply: Bxb5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Tượng Trắng ăn con tốt b5, quân duy nhất có thể ăn tại đó ngay lập tức. Đây là cách trực tiếp nhất để nhận lời mời, dù con tượng giờ đứng khá xa và có thể bị mất nhịp sau này.
+        en: White's bishop takes the b5 pawn, the only piece that can capture there at once. This is the most direct way to accept the offer, though the bishop now sits far out and may lose time later.
+        fr: Le fou blanc prend le pion b5, la seule pièce pouvant capturer là immédiatement. C'est la façon la plus directe d'accepter l'offre, bien que le fou se retrouve désormais éloigné et puisse perdre du temps plus tard.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, nhưng con tượng b5 chưa có mục tiêu rõ ràng và có thể bị Đen tấn công bằng ...c6 hay ...a6 để giành lại nhịp đã mất.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, but the bishop on b5 has no clear target yet and can be hit by ...c6 or ...a6, letting Black win back some of the lost time.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus, mais le fou en b5 n'a pas encore de cible claire et peut être chassé par ...c6 ou ...a6, permettant aux Noirs de regagner un peu de temps perdu.
+        plan:
+          vi: Trắng chơi Nf3, O-O và c4, đẩy lùi mã d5 và củng cố tốt thừa trong khi hoàn tất phát triển. Đen chơi c6 để đuổi tượng, rồi e6 và Be7, tìm cách gây sức ép lên con tượng b5 và hoàn tất phát triển nhanh để bù cho tốt đã mất.
+          en: White plays Nf3, O-O and c4, pushing back the knight on d5 and consolidating the extra pawn while completing development. Black plays c6 to chase the bishop, then e6 and Be7, trying to pressure the bishop on b5 and finish developing quickly to compensate for the lost pawn.
+          fr: Les Blancs jouent Nf3, O-O et c4, repoussant le cavalier en d5 et consolidant le pion supplémentaire tout en achevant leur développement. Les Noirs jouent c6 pour chasser le fou, puis e6 et Be7, cherchant à faire pression sur le fou en b5 et à achever rapidement leur développement pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-21'
