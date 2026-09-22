@@ -1,0 +1,58 @@
+# Petrov's Defense: Cochrane Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nf6 3.Nxe5 d6
+# 4.Nxf7, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: petrovs-defense-cochrane-gambit
+name: "Petrov's Defense: Cochrane Gambit"
+eco: C42
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nf6, Nxe5, d6, Nxf7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. The knight forks the queen on d8 and the rook on h8, so Black's reply is
+      essentially forced, but a whole knight for two pawns and a few tempi against a king
+      stuck in the centre needs a real attack to justify it, and modern theory holds this to
+      be objectively risky for White. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 4.Nxf7!?, hy sinh cả một con mã để ăn tốt f7 và chĩa vào cả hậu d8 lẫn xe h8 cùng lúc bằng một chạc đôi.
+    en: White plays 4.Nxf7!?, sacrificing a whole knight to grab the f7 pawn while forking the queen on d8 and the rook on h8 at once.
+    fr: 'Les Blancs jouent 4.Nxf7!?, sacrifiant un cavalier entier pour prendre le pion f7 tout en fourchant la dame d8 et la tour h8 à la fois.'
+  dismissRest:
+    reason:
+      vi: Trắng không thí mã ở f7. Đây là điểm đặc trưng của Cochrane Gambit, nên mọi nước khác của Trắng ở đây, như Nf3 rút lui thông thường, đưa ván cờ ra khỏi gambit này hoàn toàn.
+      en: White does not sacrifice the knight on f7. That capture is the whole identity of the Cochrane Gambit, so any other move here, such as the ordinary retreat Nf3, takes the game outside this gambit entirely.
+      fr: "Les Blancs ne sacrifient pas le cavalier en f7. Cette prise est toute l'identité du Gambit Cochrane, donc tout autre coup ici, comme le retrait ordinaire Nf3, sort complètement du cadre de ce gambit."
+  children:
+    - ply: Kxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Vua Đen buộc phải ăn lại. Bỏ mặc con mã thì Trắng ăn tiếp xe h8 hoặc hậu d8, lỗ còn nặng hơn nhiều so với mất quyền nhập thành.
+        en: Black's king is forced to recapture. Ignoring the knight lets White scoop up the rook on h8 or the queen on d8 next, a far heavier loss than giving up castling rights.
+        fr: "Le roi noir est contraint de reprendre. Ignorer le cavalier laisse les Blancs ramasser ensuite la tour h8 ou la dame d8, une perte bien plus lourde que d'abandonner le droit de roquer."
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng còn tám tốt, hai tượng, một mã, hai xe và hậu; Đen còn sáu tốt, hai tượng, hai mã, hai xe và hậu. Trắng đã thí đứt một mã để ăn hai tốt của Đen, tức là lỗ khoảng một quân nhẹ trừ đi hai tốt về vật chất thuần túy. Đổi lại, vua Đen đứng giữa bàn cờ ở f7, mất trắng quyền nhập thành, và Trắng còn nguyên cả hai xe cùng cả hai tượng để phối hợp tấn công trước khi Đen kịp tìm chỗ trú.
+          en: Count the pieces and White has eight pawns, two bishops, one knight, two rooks and a queen; Black has six pawns, two bishops, two knights, two rooks and a queen. White has given up a whole knight to collect two of Black's pawns, roughly a minor piece down for two pawns in pure material terms. In return, Black's king stands in the middle of the board on f7 with castling rights gone for good, while White still has both rooks and both bishops available to build an attack before Black finds shelter.
+          fr: "Comptez les pièces, les Blancs ont huit pions, deux fous, un cavalier, deux tours et une dame ; les Noirs ont six pions, deux fous, deux cavaliers, deux tours et une dame. Les Blancs ont donné un cavalier entier pour capturer deux pions noirs, soit environ une pièce mineure de moins contre deux pions en matériel pur. En échange, le roi noir se tient au milieu de l'échiquier en f7, ayant perdu pour de bon le droit de roquer, tandis que les Blancs disposent encore de leurs deux tours et de leurs deux fous pour construire une attaque avant que les Noirs ne trouvent un abri."
+        plan:
+          vi: Trắng chơi d4 chiếm trung tâm rộng hoặc Bc4+ chiếu ngay để đẩy vua Đen đi tiếp, sau đó Nc3, Qf3 hoặc Qh5+ và O-O nếu nhập thành còn được, dồn hết quân vào cánh vua trước khi Đen kịp co cụm. Đen chơi Kg8 hay Ke8 tìm chỗ tương đối an toàn, rồi g6, Bg7, Nc6 và Be6 để hoàn thiện phát triển, đổi bớt quân tấn công của Trắng và giữ vững quân nhẹ hơn đã có.
+          en: White plays d4 for a big centre, or Bc4+ with immediate check to push the black king further, followed by Nc3, Qf3 or Qh5+ and O-O if castling is still available, throwing every piece at the kingside before Black can consolidate. Black plays Kg8 or Ke8 to find relative safety, then g6, Bg7, Nc6 and Be6 to finish development, trade off White's attackers, and hold on to the extra minor piece already won.
+          fr: "Les Blancs jouent d4 pour un grand centre, ou Bc4+ avec échec immédiat pour repousser encore le roi noir, puis Nc3, Qf3 ou Qh5+ et O-O si le roque est encore possible, jetant toutes les pièces à l'aile roi avant que les Noirs ne se regroupent. Les Noirs jouent Kg8 ou Ke8 pour trouver un abri relatif, puis g6, Bg7, Nc6 et Be6 pour achever leur développement, échanger les attaquants blancs et conserver la pièce mineure déjà gagnée."
+        basis:
+          by: chan
+          at: '2026-09-22'
