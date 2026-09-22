@@ -1,0 +1,86 @@
+# King's Gambit Declined: Queen's Knight Defense, taught. The catalogue's own line for this
+# id, `e4 e5 f4 Nc6`, ends on Black's ply; that parity fails the build's
+# `defining-line-parity` check (docs/CONTEXT.md, invariant 5), so `definingLine` stops one
+# ply earlier, at White's own 2.f4 — the same root `content/kings-gambit.yaml` uses — and
+# 2...Nc6 is modelled as the root's own reply instead. Every ply was replayed with chess.js;
+# the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-queens-knight-defense
+name: "King's Gambit Declined: Queen's Knight Defense"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, the same label the King's Gambit family carries as a whole. Developing
+      the queen's knight first, without committing the e5 pawn's fate either way, is a solid
+      and flexible way for Black to meet the gambit. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4. Mục này đi sâu vào nhánh Đen phát triển mã c6, bảo vệ tốt e5 một lần và chưa quyết định ngay việc ăn hay từ chối tốt f4.
+    en: White has just offered the f4 pawn. This entry follows the branch where Black develops the queen's knight to c6, defending e5 once and putting off any decision about the f4 pawn.
+    fr: Les Blancs viennent d'offrir le pion f4. Cette entrée suit la branche où les Noirs développent le cavalier dame en c6, défendant e5 une fois et repoussant toute décision sur le pion f4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, chẳng hạn ăn tốt bằng 2...exf4 hay từ chối theo cách khác. Thế cờ khi đó rẽ sang các nhánh khác của họ Gambit Vua, nằm ngoài phạm vi mục này.
+      en: Black plays anything else, such as accepting with 2...exf4 or declining another way. The position then heads toward other branches of the King's Gambit family, outside the scope of this entry.
+      fr: Les Noirs jouent autre chose, comme accepter par 2...exf4 ou refuser autrement. La position se dirige alors vers d'autres branches de la famille du Gambit du Roi, hors du cadre de cette entrée.
+  children:
+    - ply: Nc6
+      annotation:
+        vi: Đen phát triển mã, bảo vệ thêm cho tốt e5 và chưa vội quyết định số phận tốt f4. Đây là cách chơi linh hoạt, giữ nhiều lựa chọn mở.
+        en: Black develops a knight, adding a defender to e5 and putting off any decision about the f4 pawn. This is a flexible approach that keeps options open.
+        fr: Les Noirs développent un cavalier, ajoutant un défenseur à e5 et repoussant toute décision sur le pion f4. C'est une approche flexible qui garde les options ouvertes.
+      children:
+        - ply: Nf3
+          annotation:
+            vi: Trắng phát triển mã, bảo vệ tốt f4 gián tiếp bằng cách chuẩn bị kiểm soát trung tâm, dù bản thân con mã chưa canh trực tiếp ô f4.
+            en: White develops a knight, preparing to reinforce the centre, though the knight does not itself guard f4 directly yet.
+            fr: Les Blancs développent un cavalier, se préparant à renforcer le centre, même si le cavalier ne garde pas encore directement f4.
+          dismissRest:
+            reason:
+              vi: Đen không ăn tốt f4 ngay. Các nước khác như 3...d6 hay 3...Nf6 để nguyên căng thẳng đó, dẫn tới các thế cờ khác không thuộc nhánh này.
+              en: Black does not take on f4 at once. Anything else, such as 3...d6 or 3...Nf6, leaves that tension on the board, heading toward other positions outside this branch.
+              fr: Les Noirs ne prennent pas aussitôt en f4. Tout le reste, comme 3...d6 ou 3...Nf6, laisse cette tension sur l'échiquier, menant vers d'autres positions hors de cette branche.
+          children:
+            - ply: exf4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen ăn tốt f4, vì cuối cùng chẳng có quân nào của Trắng canh giữ ô đó. Đen giành một tốt sạch, đổi lại Trắng có nhịp phát triển và trung tâm rộng hơn.
+                en: Black takes the f4 pawn, since nothing White has developed actually guards that square. Black wins a clean pawn, in exchange for which White gets a lead in development and a wider centre.
+                fr: Les Noirs prennent le pion f4, puisque rien de ce que les Blancs ont développé ne garde réellement cette case. Les Noirs gagnent un pion net, en échange de quoi les Blancs obtiennent une avance de développement et un centre plus large.
+              children:
+                - ply: Bc4
+                  annotation:
+                    vi: Trắng phát triển tượng nhắm vào ô f7 yếu, không mất công đòi lại tốt f4 ngay. Đây là cách bù đắp vật chất bằng hoạt động quân, đúng tinh thần một ván Gambit Vua.
+                    en: White develops the bishop aiming at the weak f7 square, not bothering to win the f4 pawn back right away. This is the standard way to seek compensation through piece activity, in the spirit of a King's Gambit.
+                    fr: Les Blancs développent le fou visant la case faible f7, sans se soucier de regagner tout de suite le pion f4. C'est la façon habituelle de chercher une compensation par l'activité des pièces, dans l'esprit d'un Gambit du Roi.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì Đen hơn đúng một tốt — tốt f4 đã mất và chưa được chuộc lại. Đổi lại, Trắng có hai quân đã phát triển nhắm vào cánh vua Đen, còn Đen mới ra đúng một quân. Không có quân nào đang bị ăn không ở thế cờ này, nên đây thực sự là "hơn một tốt, đổi lấy nhịp phát triển" chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and Black is up exactly one pawn — the f4 pawn is gone and has not been won back. In exchange, White has two pieces developed and aimed at Black's kingside, while Black has developed only one. Nothing is hanging for free in this position, so this genuinely reads as "a clean pawn for a lead in development" rather than an evaluation left open.
+                      fr: Comptez les pièces, les Noirs ont exactement un pion de plus — le pion f4 a disparu et n'a pas été regagné. En échange, les Blancs ont deux pièces développées visant l'aile roi noire, tandis que les Noirs n'en ont développé qu'une. Rien n'est en prise gratuitement dans cette position, donc c'est véritablement « un pion net contre une avance de développement », pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi O-O và d4 hoặc Qe1-h4, dồn quân tấn công vào cánh vua Đen để bù cho con tốt đã mất. Đen chơi d6 và Nf6, hoàn thiện phát triển, giữ chắc con tốt thêm và chuẩn bị nhập thành.
+                      en: White plays O-O and d4, or Qe1-h4, building an attack on Black's kingside to compensate for the missing pawn. Black plays d6 and Nf6, finishing development, holding on to the extra pawn and preparing to castle.
+                      fr: Les Blancs jouent O-O et d4, ou Qe1-h4, construisant une attaque sur l'aile roi noire pour compenser le pion manquant. Les Noirs jouent d6 et Cf6, achevant leur développement, conservant le pion supplémentaire et se préparant à roquer.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

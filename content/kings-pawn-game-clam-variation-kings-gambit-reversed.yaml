@@ -1,0 +1,87 @@
+# King's Pawn Game: Clam Variation, King's Gambit Reversed, taught. The learner plays
+# Black, and the defining line 1.e4 e5 2.d3 f5 ends on Black's own 2...f5 — the learner's
+# own ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). Every ply was
+# replayed with chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: kings-pawn-game-clam-variation-kings-gambit-reversed
+name: "King's Pawn Game: Clam Variation, King's Gambit Reversed"
+eco: C20
+category: gambit
+side: black
+definingLine: [e4, e5, d3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      2...f5 mirrors the King's Gambit at a tempo's loss and on the wrong side of the board —
+      White has played the modest d3 rather than committing a piece, so the pawn Black wins
+      does not buy the same compensation the real King's Gambit does. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...f5, một Gambit Vua đảo ngược — cùng ý tưởng thí tốt f nhưng lần này là Đen chơi và Trắng mới chỉ đi d3 khiêm tốn chứ chưa cam kết gì lớn.
+    en: Black has just played 2...f5, a King's Gambit in reverse — the same f-pawn offer, only this time it is Black making it, and White has only played the modest d3 rather than committing to anything ambitious yet.
+    fr: Les Noirs viennent de jouer 2...f5, un Gambit du Roi inversé — la même offre du pion f, mais cette fois ce sont les Noirs qui la font, et les Blancs n'ont joué que le modeste d3 sans encore s'engager dans quoi que ce soit d'ambitieux.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f5. Các nước khác như 3.Nf3 để nguyên căng thẳng đó, dẫn tới các thế cờ khác không thuộc phạm vi mục này.
+      en: White does not take on f5. Anything else, such as 3.Nf3, leaves that tension on the board, heading toward other positions outside the scope of this entry.
+      fr: Les Blancs ne prennent pas en f5. Tout le reste, comme 3.Nf3, laisse cette tension sur l'échiquier, menant vers d'autres positions hors du cadre de cette entrée.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt f5, giành vật chất mà không phải cam kết trung tâm như trong Gambit Vua thật. Đen giờ phải tìm cách bù lại con tốt đã mất.
+        en: White takes the f5 pawn, winning material without having to commit the centre the way a real King's Gambit does. Black now has to look for compensation for the lost pawn.
+        fr: Les Blancs prennent le pion f5, gagnant du matériel sans avoir à engager le centre comme le ferait un vrai Gambit du Roi. Les Noirs doivent désormais chercher une compensation pour le pion perdu.
+      children:
+        - ply: e4
+          annotation:
+            vi: Đen đẩy tốt e lên, tấn công tốt d3 và mở đường cho các quân nhẹ, đúng tinh thần "gambit đảo ngược" của cái tên mục này.
+            en: Black pushes the e-pawn, attacking the d3 pawn and opening lines for the minor pieces, in keeping with the "reversed gambit" spirit of this entry's name.
+            fr: Les Noirs poussent le pion e, attaquant le pion d3 et ouvrant des lignes pour les pièces mineures, dans l'esprit du « gambit inversé » que porte le nom de cette entrée.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn tốt e4 ngay. Các nước khác lùi tốt d3 đi để tránh đổi chác, giữ vật chất ít hơn nhưng đi theo hướng khác với nhánh này.
+              en: White does not take on e4 at once. Anything else pulls the d3 pawn back to avoid the trade, holding less material but heading a different way than this branch.
+              fr: Les Blancs ne prennent pas aussitôt en e4. Tout le reste retire le pion d3 pour éviter l'échange, conservant moins de matériel mais suivant une autre voie que cette branche.
+          children:
+            - ply: dxe4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại tốt e4 luôn, giành thêm vật chất thay vì lùi tốt. Trắng giờ hơn hai tốt tạm thời.
+                en: White simply takes the e4 pawn back rather than retreating the pawn. White is now temporarily two pawns up.
+                fr: Les Blancs reprennent simplement le pion e4 plutôt que de le reculer. Les Blancs sont désormais temporairement deux pions devant.
+              children:
+                - ply: Qh4
+                  annotation:
+                    vi: Đen đưa hậu ra h4, cố tạo áp lực trực diện lên tốt e4 và cột f, thay vì âm thầm phát triển. Đây là nỗ lực chiến thuật duy nhất còn lại để bù cho vật chất đã mất.
+                    en: Black brings the queen out to h4, trying to create direct pressure on the e4 pawn and the f-file rather than developing quietly. This is the one remaining tactical try to compensate for the lost material.
+                    fr: Les Noirs sortent la dame en h4, essayant de créer une pression directe sur le pion e4 et la colonne f plutôt que de se développer tranquillement. C'est le dernier essai tactique restant pour compenser le matériel perdu.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì Trắng hơn đúng hai tốt — tốt f5 và tốt e4 đều đã mất mà chưa đòi lại được gì. Hậu Đen ở h4 tạo ra một chút áp lực nhưng chưa có đe doạ cụ thể nào ngay lập tức, trong khi Trắng vẫn chưa phát triển quân nào để phản ứng — không có quân nào của Trắng đang bị ăn không. Đây thực sự là một thế cờ Trắng hơn vật chất rõ ràng, dù Đen còn một chút hoạt động để thử.
+                      en: Count the pieces and White is up exactly two pawns — both the f5 and e4 pawns are gone with nothing won back for them. Black's queen on h4 creates a little pressure but no concrete threat just yet, while White has not developed a single piece to react with — and nothing White has is hanging for free. This genuinely reads as a position where White is clearly ahead in material, even though Black still has a little activity to try.
+                      fr: Comptez les pièces, les Blancs ont exactement deux pions de plus — les pions f5 et e4 ont tous deux disparu sans rien regagner en retour. La dame noire en h4 crée une petite pression mais pas de menace concrète pour l'instant, tandis que les Blancs n'ont développé aucune pièce pour réagir — et rien chez les Blancs n'est en prise gratuitement. C'est véritablement une position où les Blancs ont un net avantage matériel, même si les Noirs conservent un peu d'activité à tenter.
+                    plan:
+                      vi: Trắng chơi g3 hay Qf3, đẩy lui hậu Đen và bắt đầu hoàn thiện phát triển với vật chất hơn hẳn. Đen chơi Nf6 hay Bc5, cố tận dụng nốt chút hoạt động quân trước khi Trắng ổn định thế trận.
+                      en: White plays g3 or Qf3, pushing Black's queen back and starting to finish development with the extra material in hand. Black plays Nf6 or Bc5, trying to squeeze out the last of the piece activity before White settles the position.
+                      fr: Les Blancs jouent g3 ou Qf3, repoussant la dame noire et commençant à achever leur développement avec le matériel supplémentaire en poche. Les Noirs jouent Cf6 ou Bc5, essayant d'exploiter le peu d'activité restant avant que les Blancs ne stabilisent la position.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

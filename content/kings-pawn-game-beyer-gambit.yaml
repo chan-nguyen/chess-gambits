@@ -1,0 +1,86 @@
+# King's Pawn Game: Beyer Gambit, taught. The learner plays Black, and the defining line
+# 1.e4 e5 2.d4 d5 ends on Black's own 2...d5 — the learner's own ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Every ply was replayed with chess.js; the
+# leaf carries no forced mate (checked with `searchMate`).
+id: kings-pawn-game-beyer-gambit
+name: "King's Pawn Game: Beyer Gambit"
+eco: C20
+category: gambit
+side: black
+definingLine: [e4, e5, d4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      2...d5 is a real countergambit, striking back in the centre before White has developed
+      a single piece, and it leads to sharp, roughly balanced positions rather than a clear
+      edge for either side. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...d5, đáp lại tốt d4 của Trắng bằng chính một gambit ở trung tâm thay vì đổi tốt bình thường bằng ...exd4. Cả hai tốt trung tâm giờ treo lơ lửng, mời đổi qua đổi lại.
+    en: Black has just played 2...d5, answering White's d4 pawn with a countergambit in the centre instead of the normal trade ...exd4. Both central pawns are now hanging, inviting a series of exchanges.
+    fr: Les Noirs viennent de jouer 2...d5, répondant au pion d4 blanc par un contre-gambit au centre plutôt que par l'échange normal ...exd4. Les deux pions centraux sont désormais en prise, invitant une série d'échanges.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác, phổ biến nhất là 3.dxe5. Mục này chỉ đi sâu vào nhánh 3.exd5 để giữ cho phần trình bày ngắn gọn; nhánh 3.dxe5 dẫn tới một cấu trúc tốt khác, đánh giá tương tự.
+      en: White plays anything else, most commonly 3.dxe5. This entry follows only the 3.exd5 branch to keep the presentation short; the 3.dxe5 branch leads to a different pawn structure with a similar verdict.
+      fr: Les Blancs jouent autre chose, le plus souvent 3.dxe5. Cette entrée ne suit que la branche 3.exd5 pour garder une présentation courte ; la branche 3.dxe5 mène à une structure de pions différente avec un verdict similaire.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt d5 bằng tốt e, quân duy nhất có thể ăn tại đó. Con tốt d4 của Trắng vẫn còn nguyên, nên hiện tại Trắng đang tạm hơn một tốt.
+        en: White captures the d5 pawn with the e-pawn, the only piece that can take there. White's d4 pawn is still on the board, so White is temporarily a pawn up.
+        fr: Les Blancs capturent le pion d5 avec le pion e, la seule pièce pouvant y prendre. Le pion d4 blanc est toujours sur l'échiquier, les Blancs sont donc temporairement un pion devant.
+      children:
+        - ply: Qxd5
+          annotation:
+            vi: Đen ăn lại ngay bằng hậu, quân duy nhất còn có thể ăn tại d5. Hậu ra sớm nhưng chưa gặp áp lực cụ thể nào, vì Trắng còn chưa phát triển mã để đuổi nó.
+            en: Black recaptures at once with the queen, the only piece left that can take on d5. The queen comes out early but faces no concrete pressure yet, since White has not developed a knight to chase it.
+            fr: Les Noirs reprennent aussitôt avec la dame, la seule pièce restante pouvant prendre en d5. La dame sort tôt mais ne subit encore aucune pression concrète, les Blancs n'ayant pas développé de cavalier pour la chasser.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác không đuổi hậu. Mọi nước khác để hậu Đen tiếp tục đứng vững ở d5, không mất nhịp nào cho Trắng.
+              en: White plays anything else that does not chase the queen. Anything else leaves Black's queen sitting comfortably on d5, costing Black no tempo at all.
+              fr: Les Blancs jouent autre chose qui ne chasse pas la dame. Tout le reste laisse la dame noire confortablement installée en d5, sans coûter le moindre temps aux Noirs.
+          children:
+            - ply: Nc3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng phát triển mã và tấn công hậu Đen cùng lúc, giành nhịp. Hậu Đen phải lùi về một ô an toàn.
+                en: White develops the knight and attacks Black's queen at the same time, gaining a tempo. Black's queen has to step back to a safe square.
+                fr: Les Blancs développent le cavalier et attaquent simultanément la dame noire, gagnant un temps. La dame noire doit reculer vers une case sûre.
+              children:
+                - ply: Qd6
+                  annotation:
+                    vi: Hậu lùi về d6, vẫn kiểm soát trung tâm và không cản trở các quân khác phát triển. Con tốt d4 của Trắng giờ đứng cô lập, không còn tốt c hay e nào bên cạnh để bảo vệ.
+                    en: The queen steps back to d6, still controlling the centre and not getting in the way of the other pieces developing. White's d4 pawn now stands isolated, with no c- or e-pawn left beside it to shield it.
+                    fr: La dame recule en d6, contrôlant toujours le centre et ne gênant pas le développement des autres pièces. Le pion d4 blanc se retrouve désormais isolé, sans pion c ou e à ses côtés pour le protéger.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì hai bên ngang nhau — mỗi bên vừa mất đúng một tốt trung tâm trong loạt đổi chác vừa rồi. Con tốt d4 của Trắng đứng cô lập, một điểm yếu lâu dài dù chưa bị tấn công ngay lập tức, còn hậu Đen ở d6 kiểm soát tốt trung tâm và chưa gặp nguy hiểm. Đây thực sự là một thế cờ cân bằng chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and both sides are level — each has just lost exactly one central pawn in the trade sequence just played. White's d4 pawn stands isolated, a lasting weakness even though it is not under immediate attack, while Black's queen on d6 controls the centre and faces no danger. This genuinely reads as a balanced position rather than an evaluation left open.
+                      fr: Comptez les pièces, les deux camps sont à égalité — chacun vient de perdre exactement un pion central dans la série d'échanges qui vient de se jouer. Le pion d4 blanc est isolé, une faiblesse durable même s'il n'est pas encore attaqué directement, tandis que la dame noire en d6 contrôle le centre sans courir de danger. C'est véritablement une position équilibrée, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi Nf3 và Bc4 hay Bd3, hoàn thiện phát triển và cố dùng hoạt động quân bù cho điểm yếu ở d4. Đen chơi Nc6 và Nf6, tạo áp lực lên con tốt d4 cô lập đó về lâu dài.
+                      en: White plays Nf3 and Bc4 or Bd3, finishing development and trying to use piece activity to compensate for the weakness on d4. Black plays Nc6 and Nf6, building long-term pressure on that isolated d4 pawn.
+                      fr: Les Blancs jouent Nf3 et Bc4 ou Bd3, achevant leur développement et essayant d'utiliser l'activité des pièces pour compenser la faiblesse en d4. Les Noirs jouent Cc6 et Cf6, construisant une pression à long terme sur ce pion d4 isolé.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

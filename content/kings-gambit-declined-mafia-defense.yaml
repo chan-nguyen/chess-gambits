@@ -1,0 +1,88 @@
+# King's Gambit Declined: Mafia Defense, taught. The learner plays Black, and the defining
+# line 1.e4 c5 2.f4 e5 ends on Black's own 2...e5 — the learner's own ply — so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). Filed under King's Gambit Declined, where
+# every other row is White's f-pawn, this one flips: it is Black's own e5 push that is the
+# sacrifice, since nothing takes it back after White's 3.fxe5. Every ply was replayed with
+# chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-mafia-defense
+name: "King's Gambit Declined: Mafia Defense"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, c5, f4, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. After 1.e4 c5 2.f4, Black's 2...e5 offers a pawn that White simply takes
+      with nothing to win it back immediately; Black's compensation is only a lead in
+      development, which is real but does not fully cover the pawn. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...e5, một nước đi ngược với lối chơi Sicilian bình thường — thay vì tranh chấp cột c hay trung tâm bằng ...Nc6 hay ...d6, Đen đẩy ngay tốt e lên và mời Trắng ăn nó bằng fxe5.
+    en: Black has just played 2...e5, a move that runs against normal Sicilian play — instead of contesting the c-file or the centre with ...Nc6 or ...d6, Black pushes the e-pawn straight up and invites White to take it with fxe5.
+    fr: Les Noirs viennent de jouer 2...e5, un coup qui va à l'encontre du jeu sicilien habituel — au lieu de disputer la colonne c ou le centre par ...Cc6 ou ...d6, les Noirs poussent directement le pion e et invitent les Blancs à le prendre par fxe5.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5. Các nước khác như 3.Nf3 hay 3.d3 để nguyên căng thẳng đó, dẫn tới các thế cờ Sicilian bình thường hơn nằm ngoài phạm vi mục này.
+      en: White does not take on e5. Anything else, such as 3.Nf3 or 3.d3, leaves that tension on the board, heading toward more ordinary Sicilian positions outside the scope of this entry.
+      fr: Les Blancs ne prennent pas en e5. Tout le reste, comme 3.Nf3 ou 3.d3, laisse cette tension sur l'échiquier, menant vers des positions siciliennes plus ordinaires, hors du cadre de cette entrée.
+  children:
+    - ply: fxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt e5 luôn, vì không có gì để đòi lại ngay lập tức. Đây là cách xử lý đơn giản nhất và cũng là lý do khiến cái tên này thường bị gắn với đánh giá không mấy tích cực.
+        en: White simply takes the e5 pawn, since there is nothing to win it back with right away. This is the simplest way to handle the offer, and the reason this line is usually rated unfavourably for Black.
+        fr: Les Blancs prennent simplement le pion e5, puisqu'il n'y a rien pour le regagner immédiatement. C'est la façon la plus simple de traiter l'offre, et la raison pour laquelle cette ligne est généralement mal jugée pour les Noirs.
+      children:
+        - ply: Nc6
+          annotation:
+            vi: Đen phát triển mã, tấn công tốt e5 mới ăn được của Trắng và bắt đầu lấy lại nhịp phát triển. Đây là cách hợp lý nhất để tận dụng khoảng trống Trắng để lại ở trung tâm.
+            en: Black develops the knight, attacking White's newly won e5 pawn and starting to claim back some development tempo. This is the most sensible way to make use of the hole White has left in the centre.
+            fr: Les Noirs développent le cavalier, attaquant le pion e5 que les Blancs viennent de gagner et commençant à regagner du temps de développement. C'est la façon la plus sensée de profiter du trou laissé par les Blancs au centre.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác. Mọi cách bảo vệ hay phát triển hợp lý khác dẫn tới những thế cờ tương tự, không thay đổi đánh giá chung của nhánh này.
+              en: White plays anything else. Any other reasonable defending or developing move leads to similar positions, not changing the general verdict on this branch.
+              fr: Les Blancs jouent autre chose. Toute autre défense ou tout autre développement raisonnable mène à des positions similaires, sans changer le verdict général sur cette branche.
+          children:
+            - ply: Nf3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng phát triển mã, bảo vệ thêm cho tốt e5 và hoàn thiện phát triển cùng lúc. Con tốt e5 giờ được bảo vệ một lần.
+                en: White develops the knight, adding a defender to e5 while finishing development at the same time. The e5 pawn is now defended once.
+                fr: Les Blancs développent le cavalier, ajoutant un défenseur à e5 tout en achevant leur développement. Le pion e5 est désormais défendu une fois.
+              children:
+                - ply: d6
+                  annotation:
+                    vi: Đen đẩy tốt d, tấn công tốt e5 lần thứ hai và chuẩn bị mở đường cho tượng c8. Con tốt e5 giờ bị tấn công hai lần, chỉ được bảo vệ một lần.
+                    en: Black pushes the d-pawn, attacking e5 a second time and preparing to open a line for the c8 bishop. The e5 pawn is now attacked twice and defended only once.
+                    fr: Les Noirs poussent le pion d, attaquant e5 une deuxième fois et préparant à ouvrir une ligne pour le fou c8. Le pion e5 est désormais attaqué deux fois et défendu une seule fois.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì Trắng hơn đúng một tốt — tốt e5 mà Đen thí ở nước 2 vẫn chưa được đòi lại, dù đang bị tấn công hai lần. Trắng sẽ phải chọn giữa đổi tốt (exd6) hay đẩy lên (e6), nhưng dù thế nào vật chất vẫn nghiêng về Trắng. Đây thực sự là "kém một tốt, đổi lấy một chút hoạt động quân" chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and White is up exactly one pawn — the e5 pawn Black offered on move two has still not been won back, even though it is now attacked twice. White will have to choose between trading it off (exd6) or pushing on (e6), but material stays in White's favour either way. This genuinely reads as "a pawn down for a little piece activity" rather than an evaluation left open.
+                      fr: Comptez les pièces, les Blancs ont exactement un pion de plus — le pion e5 offert par les Noirs au deuxième coup n'a toujours pas été regagné, même s'il est désormais attaqué deux fois. Les Blancs devront choisir entre l'échanger (exd6) ou le pousser (e6), mais le matériel reste en faveur des Blancs dans tous les cas. C'est véritablement « un pion de moins pour un peu d'activité des pièces », pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi exd6 và Bd3, giữ tốt thêm và hoàn thiện phát triển trước khi nhập thành. Đen chơi Bxd6 hay Nf6, dồn quân hoạt động để bù lại con tốt đã mất.
+                      en: White plays exd6 and Bd3, holding on to the extra pawn and finishing development before castling. Black plays Bxd6 or Nf6, piling up piece activity to try to compensate for the missing pawn.
+                      fr: Les Blancs jouent exd6 et Bd3, conservant le pion supplémentaire et achevant leur développement avant de roquer. Les Noirs jouent Bxd6 ou Cf6, accumulant l'activité des pièces pour tenter de compenser le pion manquant.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

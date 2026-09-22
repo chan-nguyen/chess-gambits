@@ -1,0 +1,112 @@
+# Italian Game: Jerome Gambit, taught. The learner plays White, and the defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.Bxf7+ ends on White's own 4.Bxf7+ — the learner's own ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5); Black is in check at the
+# root and every legal reply to it is a candidate. Every ply below was replayed with
+# chess.js. No leaf here claims a mate — the whole point of this well-known refutation is
+# that White does not get one — and the leaf was checked with `searchMate` and carries none.
+id: italian-game-jerome-gambit
+name: 'Italian Game: Jerome Gambit'
+eco: C50
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, Bxf7+]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      4.Bxf7+ gives up a bishop and, one move later, a knight as well, for the black king's
+      shelter and two pawns; the whole point of teaching it is that this does not hold up —
+      Black consolidates with an extra piece for two pawns and no lasting weaknesses. No
+      engine was consulted and no database was queried; the material count below is exact,
+      computed by replaying the line, not judged.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics. The material
+    count at the leaf is exact, not a judgement.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Bxf7+, thí cả con tượng để lôi vua Đen ra giữa bàn cờ. Đây chính là "Jerome Gambit" — một trong những cách thí quân bị bác bỏ rõ ràng nhất nhưng vẫn thường gặp trong các ván cờ chớp nhoáng.
+    en: White has just played 4.Bxf7+, sacrificing the bishop outright to drag Black's king into the open. This is the Jerome Gambit itself — one of the most clearly refuted sacrifices in chess, and still one of the most commonly met in fast online games.
+    fr: Les Blancs viennent de jouer 4.Bxf7+, sacrifiant purement et simplement le fou pour attirer le roi noir au centre. C'est le Gambit Jerome lui-même — l'un des sacrifices les plus clairement réfutés aux échecs, et pourtant l'un des plus fréquemment rencontrés dans les parties rapides en ligne.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại bằng vua. Các lựa chọn khác như 4...Kf8 hay 4...Ke7 tránh bị lôi ra giữa bàn nhưng để lại con tượng Trắng đứng nguyên trên f7, một cách chơi thận trọng hơn nhưng ít được thử nghiệm hơn hẳn.
+      en: Black does not recapture with the king. Alternatives such as 4...Kf8 or 4...Ke7 avoid being dragged into the open but leave White's bishop sitting on f7, a more cautious approach that is far less tested in practice.
+      fr: Les Noirs ne reprennent pas avec le roi. Des alternatives comme 4...Kf8 ou 4...Ke7 évitent d'être attirés au centre mais laissent le fou blanc posté en f7, une approche plus prudente mais bien moins testée en pratique.
+  children:
+    - ply: Kxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại bằng vua, cách xử lý tự nhiên và mạnh nhất — vua tạm thời lộ ra giữa bàn nhưng Đen đã hơn hẳn một tượng, và Trắng phải chứng minh được điều gì đó cụ thể để bù lại.
+        en: Black recaptures with the king, the natural and strongest way to handle it — the king is temporarily exposed, but Black is already up a clean bishop, and White has to prove something concrete for it.
+        fr: Les Noirs reprennent avec le roi, la façon naturelle et la plus forte de répondre — le roi est temporairement exposé, mais les Noirs ont déjà un fou de plus, et les Blancs doivent prouver quelque chose de concret pour le compenser.
+      children:
+        - ply: Nxe5+
+          annotation:
+            vi: Trắng thí tiếp con mã, ăn tốt e5 kèm chiếu để lôi kéo tiếp và cố giữ sáng kiến. Đây là nước tiếp theo bắt buộc nếu Trắng còn muốn tấn công tiếp.
+            en: White sacrifices the knight as well, taking the e5 pawn with check to keep dragging Black along and try to hold on to the initiative. This is the necessary follow-up if White wants to keep attacking at all.
+            fr: Les Blancs sacrifient aussi le cavalier, prenant le pion e5 avec échec pour continuer d'entraîner les Noirs et tenter de garder l'initiative. C'est la suite nécessaire si les Blancs veulent continuer à attaquer.
+          dismissRest:
+            reason:
+              vi: Trắng không chơi nước chiếu này. Mọi nước khác từ bỏ luôn sáng kiến, để Đen đơn giản hơn một tượng mà không phải đối mặt thêm rủi ro nào.
+              en: White does not play this check. Anything else simply gives up the initiative, leaving Black a clean bishop up with no further risk to face.
+              fr: Les Blancs ne jouent pas cet échec. Tout le reste abandonne simplement l'initiative, laissant les Noirs avec un fou de plus sans risque supplémentaire à affronter.
+          children:
+            - ply: Nxe5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: 'Đen ăn lại bằng mã, quân duy nhất còn ăn được ở đó. Vật chất giờ là Trắng đã mất tượng và mã, đổi lại ăn được tốt f7 và tốt e5 — vẫn kém hẳn vật chất.'
+                en: 'Black recaptures with the knight, the only piece left that can take there. The material count now stands at White having given up a bishop and a knight, in exchange for the f7 and e5 pawns — still clearly down material.'
+                fr: "Les Noirs reprennent avec le cavalier, la seule pièce restant capable d'y capturer. Le bilan matériel est désormais que les Blancs ont cédé un fou et un cavalier, en échange des pions f7 et e5 — toujours clairement en retard de matériel."
+              children:
+                - ply: Qh5+
+                  annotation:
+                    vi: Trắng chiếu tiếp bằng hậu, cố tận dụng nốt vua Đen còn đứng giữa bàn. Đây là nỗ lực tấn công cuối cùng thực sự đáng kể của Trắng trong toàn bộ chuỗi thí quân.
+                    en: White gives another check with the queen, trying to make the most of Black's king still sitting in the open. This is the last real attacking try in the whole sacrificial sequence.
+                    fr: Les Blancs donnent un nouvel échec avec la dame, essayant de tirer le meilleur parti du roi noir encore exposé. C'est le dernier véritable essai offensif de toute la séquence de sacrifices.
+                  dismissRest:
+                    reason:
+                      vi: Đen không chặn chiếu bằng tốt g. Các lựa chọn khác như 6...Ke6 hay 6...g6 khác cách chặn cũng đều xử lý được cơn chiếu này tương tự.
+                      en: Black does not block the check with the g-pawn. Alternatives such as 6...Ke6 also handle this check adequately in a similar way.
+                      fr: Les Noirs ne bloquent pas l'échec avec le pion g. Des alternatives comme 6...Ke6 traitent aussi cet échec de manière adéquate et similaire.
+                  children:
+                    - ply: g6
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Đen chặn chiếu bằng tốt g, cách đơn giản và vững chắc nhất. Hậu Trắng giờ phải chọn hướng đi tiếp, và con mã e5 vẫn đang bị chính con mã Đen vừa ăn lại đứng đó.
+                        en: Black blocks the check with the g-pawn, the simplest and most solid way to answer it. White's queen now has to choose where to go next, and the knight on e5 is exactly the piece Black just recaptured with, still standing there.
+                        fr: Les Noirs bloquent l'échec avec le pion g, la façon la plus simple et la plus solide d'y répondre. La dame blanche doit désormais choisir où aller, et le cavalier en e5 est justement la pièce que les Noirs viennent de reprendre, toujours sur place.
+                      children:
+                        - ply: Qxe5
+                          annotation:
+                            vi: Trắng ăn nốt con mã e5, thu về thêm một quân sau tất cả các cuộc đổi chác. Đây là điểm dừng tự nhiên của toàn bộ chuỗi thí quân, khi không còn nước chiếu hay đe doạ trực tiếp nào nữa.
+                            en: White takes the e5 knight as well, recovering one more piece after all the trading. This is the natural stopping point of the whole sacrificial sequence, once there is no more check or direct threat left to give.
+                            fr: Les Blancs prennent aussi le cavalier en e5, récupérant une pièce de plus après tous ces échanges. C'est le point d'arrêt naturel de toute la séquence de sacrifices, une fois qu'il n'y a plus d'échec ni de menace directe à donner.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: 'Đếm quân đúng theo từng nước đã đi — Trắng đã thí một tượng (Bxf7+) và một mã (Nxe5+), rồi ăn lại được ba tốt của Đen (f7, e5, và con mã Đen từng đứng ở e5 sau khi ăn lại) — quy đổi ra, Trắng đang kém khoảng một tượng đổi lấy hai tốt, một cái giá không đủ bù. Vua Đen ở f7 tạm thời không được nhập thành nhưng không hề bị chiếu hay đe doạ chiếu bí trước mắt, và không quân nào của Đen đang bị ăn không. Đây thực sự là một thế cờ Đen hơn vật chất rõ rệt — đúng như danh tiếng "unsound" của cái tên Jerome Gambit — chứ không phải một đánh giá còn bỏ ngỏ.'
+                              en: 'Counting exactly what has been played — White sacrificed a bishop (Bxf7+) and a knight (Nxe5+), and won back three pawns'' worth of material in pawns and the knight recaptured on e5 — netting out to roughly a bishop down for two pawns, a price that is not covered. Black''s king on f7 has temporarily lost the right to castle but faces no check and no immediate mating threat, and nothing of Black''s is hanging for free. This genuinely reads as a position where Black is clearly ahead in material — exactly matching the Jerome Gambit''s "unsound" reputation — rather than an evaluation left open.'
+                              fr: "En comptant exactement ce qui a été joué — les Blancs ont sacrifié un fou (Bxf7+) et un cavalier (Nxe5+), et ont regagné l'équivalent de trois pions en pions et le cavalier repris en e5 — ce qui donne à peu près un fou de moins contre deux pions, un prix non couvert. Le roi noir en f7 a temporairement perdu le droit de roquer mais ne subit aucun échec ni menace de mat immédiate, et rien chez les Noirs n'est en prise gratuitement. C'est véritablement une position où les Noirs ont un net avantage matériel — conforme à la réputation « unsound » du Gambit Jerome — pas une évaluation restée ouverte."
+                            plan:
+                              vi: Trắng chơi Nc3 hay d4, cố hoàn thiện phát triển và tìm thêm chút hoạt động quân, dù vật chất đã mất khó lòng bù lại. Đen chơi d6 và Nf6, đẩy lui hậu Trắng, hoàn thiện phát triển và đưa vua về nơi an toàn hơn.
+                              en: White plays Nc3 or d4, trying to finish development and find a little more piece activity, though the material already lost is unlikely to be made up. Black plays d6 and Nf6, pushing White's queen back, finishing development and tucking the king away somewhere safer.
+                              fr: Les Blancs jouent Nc3 ou d4, essayant d'achever leur développement et de trouver un peu plus d'activité, même si le matériel déjà perdu a peu de chances d'être compensé. Les Noirs jouent d6 et Cf6, repoussant la dame blanche, achevant leur développement et mettant le roi à l'abri ailleurs.
+                            basis:
+                              by: chan
+                              at: '2026-09-21'
+                              source: >-
+                                A judgement for the plan and the framing; the material count
+                                itself is exact, computed by replaying the line with
+                                chess.js rather than judged. No engine was consulted for the
+                                prose.
