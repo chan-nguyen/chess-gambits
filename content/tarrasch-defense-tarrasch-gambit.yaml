@@ -1,0 +1,58 @@
+# Tarrasch Defense: Tarrasch Gambit. Frozen defining line 1.d4 d5 2.c4 e6 3.Nc3 c5 4.cxd5
+# exd5 5.dxc5 d4 6.Na4 b5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: tarrasch-defense-tarrasch-gambit
+name: 'Tarrasch Defense: Tarrasch Gambit'
+eco: D32
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e6, Nc3, c5, cxd5, exd5, dxc5, d4, Na4, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. After White's 5.dxc5 wins a pawn, Black plays 5...d4 to chase the
+      knight to the rim and 6...b5 to keep chasing it, offering a further pawn to strand
+      the knight on a4 and win the c5 pawn back with the bishop. A real theoretical try,
+      not a proven equalizer. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 6.Na4 lánh mã sang cạnh bàn cờ, Đen chơi 6...b5, tiếp tục đuổi con mã ấy và thí thêm một tốt để nó không còn đường lui an toàn nào ngoài b6 hay c3.
+    en: After 6.Na4 sends the knight to the edge of the board, Black plays 6...b5, continuing to chase it and offering another pawn so that it has no safe retreat left except b6 or c3.
+    fr: Après 6.Na4 qui envoie le cavalier au bord de l'échiquier, les Noirs jouent 6...b5, continuant à le chasser et offrant un pion de plus pour qu'il ne lui reste plus aucune retraite sûre, hormis b6 ou c3.
+  dismissRest:
+    reason:
+      vi: Trắng không phát triển bằng Nf3. Các nước khác như e4 hay Nxb5 ngay lập tức đi vào biến phức tạp khác với cách xử lý riêng; câu trả lời của Đen ở đây giả định Trắng chọn cách chơi chắc chắn.
+      en: White does not develop with Nf3. Anything else, such as e4 or an immediate Nxb5, leads into a different set of complications with its own handling; Black's plan here assumes White chooses the solid approach.
+      fr: Les Blancs ne développent pas par Nf3. Tout le reste, comme e4 ou un Nxb5 immédiat, mène à d'autres complications avec leur propre traitement ; le plan noir suppose ici que les Blancs choisissent l'approche solide.
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi 7.Nf3, phát triển bình thường thay vì lao vào ăn tốt b5, để con mã a4 tạm thời đứng yên và chưa vội giải quyết chuyện của nó.
+        en: White plays 7.Nf3, developing normally rather than diving in to grab the b5 pawn, leaving the knight on a4 where it is for the moment and putting off dealing with it.
+        fr: Les Blancs jouent 7.Nf3, développant normalement plutôt que de se précipiter sur le pion b5, laissant pour l'instant le cavalier en a4 et repoussant la question à plus tard.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 37, Trắng đang hơn đúng một tốt vì con tốt c5 vẫn chưa bị Đen ăn lại và con tốt b5 vẫn còn nguyên trên bàn cờ, chưa ai đụng tới. Nhưng con mã a4 đang đứng ở rìa bàn cờ, xa mọi hành động, và Đen sắp ăn lại tốt c5 bằng tượng.
+          en: Count the pieces and it is 38 for White, 37 for Black, so White is a clean pawn up for the moment, since the c5 pawn has not been won back yet and the b5 pawn is still untouched on the board. But the knight on a4 is stuck on the rim, far from the action, and Black is about to win the c5 pawn back with the bishop.
+          fr: Comptez les pièces, 38 pour les Blancs, 37 pour les Noirs, les Blancs ont donc un pion net d'avance pour l'instant, le pion c5 n'ayant pas encore été repris et le pion b5 restant intact sur l'échiquier. Mais le cavalier en a4 est coincé au bord, loin de l'action, et les Noirs s'apprêtent à reprendre le pion c5 avec le fou.
+        plan:
+          vi: Đen chơi ...Bxc5 ăn lại con tốt bằng tượng, đưa quân số trở lại gần cân bằng trong khi con mã a4 vẫn cần vài nước nữa mới về được cuộc chơi, rồi ...Nc6, ...Nge7 và ...O-O hoàn tất phát triển với con tốt d4 tiền tiêu đầy khó chịu cho Trắng. Trắng chơi g3 và Bg2 để tượng gây áp lực lên d5 và b7, tìm cách đưa mã a4 về qua c3 hay b2 và giữ chắc phần vật chất còn lại.
+          en: Black plays ...Bxc5, winning the pawn back with the bishop and bringing material close to level while the knight on a4 still needs several moves to rejoin the game, then continues with ...Nc6, ...Nge7 and ...O-O, finishing development with the advanced d4 pawn a real nuisance for White. White plays g3 and Bg2 to pressure d5 and b7 with the bishop, looking for a way back for the knight on a4 through c3 or b2 and holding on to whatever material edge remains.
+          fr: Les Noirs jouent ...Bxc5, reprenant le pion avec le fou et ramenant le matériel près de l'égalité pendant que le cavalier en a4 a encore besoin de plusieurs coups pour rejoindre la partie, puis poursuivent par ...Nc6, ...Nge7 et ...O-O, achevant leur développement avec le pion d4 avancé, une vraie gêne pour les Blancs. Les Blancs jouent g3 et Bg2 pour presser d5 et b7 avec le fou, cherchant un chemin de retour pour le cavalier en a4 via c3 ou b2 et conservant l'avantage matériel qui subsiste.
+        basis:
+          by: chan
+          at: '2026-09-22'

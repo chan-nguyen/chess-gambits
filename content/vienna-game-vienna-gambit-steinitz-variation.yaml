@@ -1,0 +1,63 @@
+# Vienna Game: Vienna Gambit, Steinitz Variation. Frozen defining line 1.e4 e5 2.Nc3 Nf6
+# 3.f4 d5 4.d3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: vienna-game-vienna-gambit-steinitz-variation
+name: 'Vienna Game: Vienna Gambit, Steinitz Variation'
+eco: C29
+category: gambit
+side: white
+definingLine: [e4, e5, Nc3, Nf6, f4, d5, d3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Rather than resolve the tension with fxe5 or exd5, White quietly props
+      up e4 with d3. It is solid rather than ambitious, and it gives up on the sharpest
+      lines in exchange for a position White understands. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3...d5 đáp trả trung tâm, Trắng chơi 4.d3 thay vì fxe5 hay exd5, chỉ đơn giản đỡ tốt e4 và hoãn mọi quyết định về việc đổi tốt lại sau.
+    en: After the central 3...d5, White plays 4.d3 instead of fxe5 or exd5, simply propping up e4 and postponing any decision about the pawn exchanges for later.
+    fr: Après le 3...d5 central, les Blancs jouent 4.d3 au lieu de fxe5 ou exd5, se contentant d'étayer e4 et repoussant à plus tard toute décision sur les échanges de pions.
+  dismissRest:
+    reason:
+      vi: Đen không đụng đến tốt e4. Các nước khác như ...Nc6 hay ...Bb4 phát triển quân trước và để nguyên căng thẳng ở trung tâm; câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black leaves the e4 pawn alone. Anything else, such as ...Nc6 or ...Bb4, develops first and leaves the central tension untouched; White's answer does not change in those cases.
+      fr: Les Noirs laissent le pion e4 tranquille. Tout le reste, comme ...Nc6 ou ...Bb4, développe d'abord et laisse la tension centrale intacte ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thẳng ở e4, kiểm tra xem con tốt d3 có thật sự đỡ nổi nó không. Đây là cách trực tiếp nhất để chất vấn nước đi khiêm tốn của Trắng.
+        en: Black captures on e4 directly, testing whether the pawn on d3 really holds it. This is the most direct way to question White's modest move.
+        fr: Les Noirs prennent directement en e4, testant si le pion d3 le tient vraiment. C'est la façon la plus directe de remettre en cause le coup modeste des Blancs.
+      unsettled: >-
+        fxe5 and Nxe4 are both going free alongside the simple dxe4 — Black's own e5 pawn
+        has never been defended in this line, and the c3 knight also reaches e4 — and the
+        evaluation is built on that fact rather than on picking one of the three and
+        playing it out.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39 ngay sau nước ăn của Đen, nhưng Trắng có tới ba cách xử lý, dxe4 ăn lại đơn giản, Nxe4 ăn lại bằng mã đang phát triển, hoặc fxe5 ăn hẳn con tốt e5 vốn chưa từng được Đen đỡ trong suốt biến này. Dù chọn cách nào, quân số cũng trở lại gần cân bằng ngay lập tức.
+          en: Count the pieces and it is 38 for White, 39 for Black right after Black's capture, but White has three ways to answer, the simple dxe4, Nxe4 recapturing with a developing knight, or fxe5 grabbing the e5 pawn that has never been defended anywhere in this line. Whichever is chosen, material comes straight back close to level.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs juste après la capture noire, mais les Blancs ont trois façons de répondre, le simple dxe4, Nxe4 qui reprend avec un cavalier en développement, ou fxe5 qui s'empare du pion e5 resté sans défenseur tout au long de cette ligne. Quel que soit le choix, le matériel revient aussitôt près de l'égalité.
+        plan:
+          vi: Trắng chơi dxe4 để giữ cấu trúc tốt lành mạnh, hoặc Nxe4 để phát triển kèm ăn lại, hoặc fxe5 nếu muốn giữ nguyên con tốt e4 của Đen mà đổi lấy con tốt e5, tuỳ vào việc Trắng muốn cấu trúc nào hơn. Đen chơi ...Nc6, ...Bb4 hoặc ...Bc5 phát triển nhanh sau khi Trắng đã chọn, khai thác việc Trắng đã mất một nhịp cho d3 và f4 mà chưa có cấu trúc rõ ràng đổi lại.
+          en: White plays dxe4 to keep a healthy pawn structure, or Nxe4 to develop while recapturing, or fxe5 to leave Black's e4 pawn alone in exchange for the e5 pawn, depending on which structure White prefers. Black plays ...Nc6, ...Bb4 or ...Bc5 to develop quickly once White has chosen, making the most of the tempo White has spent on d3 and f4 without a clear structural gain to show for it.
+          fr: Les Blancs jouent dxe4 pour garder une structure de pions saine, ou Nxe4 pour développer en reprenant, ou fxe5 pour laisser le pion e4 noir en échange du pion e5, selon la structure préférée. Les Noirs jouent ...Nc6, ...Bb4 ou ...Bc5 pour se développer vite une fois le choix blanc fait, profitant du temps que les Blancs ont consacré à d3 et f4 sans gain structurel net à en montrer.
+        basis:
+          by: chan
+          at: '2026-09-22'

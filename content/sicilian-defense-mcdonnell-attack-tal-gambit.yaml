@@ -1,0 +1,63 @@
+# Sicilian Defense: McDonnell Attack, Tal Gambit. Frozen defining line 1.e4 c5 2.f4 d5
+# 3.exd5 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: sicilian-defense-mcdonnell-attack-tal-gambit
+name: 'Sicilian Defense: McDonnell Attack, Tal Gambit'
+eco: B21
+category: gambit
+side: black
+definingLine: [e4, c5, f4, d5, exd5, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black develops instead of recapturing on d5 at once, betting that
+      White's committal 2.f4 has weakened the kingside enough to be worth a temporary pawn.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3.exd5, thay vì ăn lại ngay, Đen chơi 3...Nf6, phát triển và chuẩn bị ăn lại con tốt d5 sau, đặt cược rằng nước 2.f4 đã làm yếu cánh vua Trắng đủ để đáng đổi lấy con tốt tạm thời.
+    en: After 3.exd5, instead of recapturing at once, Black plays 3...Nf6, developing and planning to win the d5 pawn back later, betting that White's committal 2.f4 has weakened the kingside enough to be worth the temporary pawn.
+    fr: Après 3.exd5, au lieu de reprendre aussitôt, les Noirs jouent 3...Nf6, développant et prévoyant de regagner le pion d5 plus tard, pariant que le 2.f4 engageant des Blancs a assez affaibli l'aile roi pour valoir le pion temporaire.
+  dismissRest:
+    reason:
+      vi: Trắng không chiếu bằng tượng. Các nước khác như Nf3 hay c4 phát triển bình thường và để Đen ăn lại thoải mái bằng ...Nxd5; câu trả lời của Đen không đổi trong các trường hợp đó.
+      en: White does not check with the bishop. Anything else, such as Nf3 or c4 developing normally, lets Black recapture comfortably with ...Nxd5; Black's plan does not change in those cases.
+      fr: Les Blancs ne donnent pas échec avec le fou. Tout le reste, comme Nf3 ou c4 qui développent normalement, laisse les Noirs reprendre confortablement par ...Nxd5 ; le plan noir ne change pas dans ces cas.
+  children:
+    - ply: Bb5+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng chơi 4.Bb5+, nước thử thách nhất, buộc Đen phải chắn chiếu trước khi tính đến chuyện ăn lại con tốt d5.
+        en: White plays 4.Bb5+, the most testing try, forcing Black to block the check before getting around to recapturing the d5 pawn.
+        fr: Les Blancs jouent 4.Bb5+, l'essai le plus exigeant, forçant les Noirs à bloquer l'échec avant de pouvoir songer à reprendre le pion d5.
+      children:
+        - ply: Bd7
+          annotation:
+            vi: Đen chắn chiếu bằng chính con tượng đồng hạng, sẵn sàng đổi nếu Trắng muốn và giữ nguyên kế hoạch ăn lại tốt d5.
+            en: Black blocks with the matching bishop, ready to trade if White wants and keeping the plan of winning back the d5 pawn.
+            fr: Les Noirs bloquent avec le fou de même valeur, prêts à l'échange si les Blancs le souhaitent, gardant le plan de regagner le pion d5.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Trắng 39, Đen 38. Đen vẫn kém một tốt và đã mất thêm một nước để chắn chiếu. Nhưng nước 2.f4 đã để lại một lỗ hổng vĩnh viễn ở đường chéo e1-h4 và ô e3, nên phần bù đắp của Đen không hề mất đi.
+              en: Count the pieces and it is 39 for White, 38 for Black. Black is still a pawn down and has now spent an extra move blocking the check. But 2.f4 has left a permanent hole on the e1-h4 diagonal and the e3 square, so Black's compensation is still there.
+              fr: Comptez les pièces, 39 pour les Blancs, 38 pour les Noirs. Les Noirs restent en retard d'un pion et ont dépensé un coup de plus pour bloquer l'échec. Mais 2.f4 a laissé un trou permanent sur la diagonale e1-h4 et la case e3, si bien que la compensation noire reste bien présente.
+            plan:
+              vi: Đen chơi ...Nxd5 ăn lại tốt, rồi ...g6, ...Bg7 nhắm vào lỗ hổng cánh vua Trắng đã để lại từ nước f4, và nếu Trắng đổi Bxd7+ thì ...Qxd7 hay ...Nxd7 vẫn ổn. Trắng chơi Bxd7+ đổi tượng lấy nhịp, hoặc lui Be2, rồi Nf3 và O-O, cố giữ con tốt thừa và bịt lại những ô yếu vừa mở ra.
+              en: Black plays ...Nxd5 to win the pawn back, then ...g6, ...Bg7 aiming at the kingside holes White's f4 has left behind, and if White trades with Bxd7+ then ...Qxd7 or ...Nxd7 is fine either way. White plays Bxd7+ to trade the bishop for a tempo, or retreats with Be2, then Nf3 and O-O, trying to hold the extra pawn and patch up the weak squares just opened.
+              fr: Les Noirs jouent ...Nxd5 pour regagner le pion, puis ...g6, ...Bg7 visant les trous laissés à l'aile roi blanche par f4, et si les Blancs échangent par Bxd7+, alors ...Qxd7 ou ...Nxd7 conviennent tout autant. Les Blancs jouent Bxd7+ pour échanger le fou contre un temps, ou reculent par Be2, puis Nf3 et O-O, essayant de garder le pion supplémentaire et de colmater les cases faibles qui viennent de s'ouvrir.
+            basis:
+              by: chan
+              at: '2026-09-22'

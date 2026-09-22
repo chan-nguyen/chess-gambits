@@ -1,0 +1,62 @@
+# Sicilian Defense: Wing Gambit, Marshall Variation. Frozen defining line 1.e4 c5 2.b4
+# cxb4 3.a3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: sicilian-defense-wing-gambit-marshall-variation
+name: 'Sicilian Defense: Wing Gambit, Marshall Variation'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b4, cxb4, a3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White offers a second pawn to open lines quickly, but Black is under no
+      obligation to take it and can simply strike the centre instead, leaving White down
+      material with nothing concrete to show for it yet. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...cxb4, Trắng chơi 3.a3, mời Đen ăn tiếp để mở cột a cho xe, đúng ý tưởng cốt lõi của Gambit Cánh.
+    en: After 2...cxb4, White plays 3.a3, inviting Black to take again in order to open the a-file for the rook, the core idea of the Wing Gambit.
+    fr: Après 2...cxb4, les Blancs jouent 3.a3, invitant les Noirs à reprendre afin d'ouvrir la colonne a pour la tour, l'idée centrale du gambit de l'aile.
+  dismissRest:
+    reason:
+      vi: Đen ăn tốt a3. Nước ...bxa3 nhận lời mời và mở cột a đúng như Trắng muốn, dẫn tới biến Carlsbad đã có tên riêng; câu trả lời của Trắng ở đó khác hẳn với việc bị đánh thẳng vào trung tâm.
+      en: Black takes the a3 pawn. The move ...bxa3 accepts the invitation and opens the a-file exactly as White wants, leading into the separately named Carlsbad line; White's answer there is quite different from being struck in the centre.
+      fr: Les Noirs prennent le pion a3. Le coup ...bxa3 accepte l'invitation et ouvre la colonne a exactement comme le veulent les Blancs, menant à la ligne Carlsbad, nommée séparément ; la réponse blanche y est bien différente d'être frappée au centre.
+  children:
+    - ply: d5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen bỏ qua lời mời và chơi 3...d5, đánh thẳng vào tốt e4 ngay khi Trắng còn chưa phát triển gì cả. Đây là cách phản bác trực diện nhất với Gambit Cánh.
+        en: Black ignores the invitation and plays 3...d5, striking the e4 pawn directly while White has not developed anything yet. This is the most direct rebuttal of the Wing Gambit.
+        fr: Les Noirs ignorent l'invitation et jouent 3...d5, frappant directement le pion e4 alors que les Blancs n'ont encore rien développé. C'est la réfutation la plus directe du gambit de l'aile.
+      unsettled: >-
+        axb4 is going free — Black's own b4 pawn has no defender of its own — and the
+        evaluation is built on it — the point of the leaf is that Black ignores the offer
+        to strike the centre instead, not a race to play the recapture out.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39. Trắng vẫn kém một tốt từ nước b4, nhưng con tốt b4 của Đen cũng không ai đỡ, nên axb4 đang treo lơ lửng và sẽ đưa quân số về gần cân bằng ngay ở nước tiếp theo. Cái Đen thực sự nhắm tới không phải là giữ tốt b4 mà là đòn đánh thẳng vào e4 khi Trắng còn chưa phát triển gì.
+          en: Count the pieces and it is 38 for White, 39 for Black. White is still down the pawn from b4, but Black's own b4 pawn has no defender either, so axb4 is hanging and will bring material close to level again next move. What Black is really after is not holding the b4 pawn but the direct strike at e4 while White has developed nothing.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs. Les Blancs restent en retard du pion offert par b4, mais le propre pion b4 des Noirs n'a lui non plus aucun défenseur, si bien qu'axb4 est en prise et ramènera le matériel près de l'égalité au coup suivant. Ce que les Noirs recherchent vraiment n'est pas de garder le pion b4 mais la frappe directe sur e4 alors que les Blancs n'ont encore rien développé.
+        plan:
+          vi: Trắng chơi axb4 lấy lại tốt rồi exd5 hay Nf3 phát triển bình thường, coi như đã thoát khỏi ván gambit với quân số gần cân bằng. Đen chơi ...dxe4 nếu Trắng chưa kịp ăn ở d5, hoặc ...Nc6 và ...e5 hoàn tất phát triển, chấp nhận đổi lại con tốt b4 để lấy quyền chủ động ở trung tâm.
+          en: White plays axb4 to win the pawn back, then exd5 or Nf3 to develop normally, effectively out of gambit territory with material close to level. Black plays ...dxe4 if White has not yet taken on d5, or ...Nc6 and ...e5 to finish developing, accepting the loss of the b4 pawn in exchange for central initiative.
+          fr: Les Blancs jouent axb4 pour regagner le pion, puis exd5 ou Nf3 pour développer normalement, sortis du gambit avec un matériel proche de l'égalité. Les Noirs jouent ...dxe4 si les Blancs n'ont pas encore pris en d5, ou ...Nc6 et ...e5 pour achever leur développement, acceptant de perdre le pion b4 en échange de l'initiative centrale.
+        basis:
+          by: chan
+          at: '2026-09-22'
