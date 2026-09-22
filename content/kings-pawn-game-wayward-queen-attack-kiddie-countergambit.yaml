@@ -1,0 +1,65 @@
+# King's Pawn Game: Wayward Queen Attack, Kiddie Countergambit. Frozen defining line 1.e4
+# e5 2.Qh5 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: kings-pawn-game-wayward-queen-attack-kiddie-countergambit
+name: "King's Pawn Game: Wayward Queen Attack, Kiddie Countergambit"
+eco: C20
+category: gambit
+side: black
+definingLine: [e4, e5, Qh5, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black lets the queen grab the e5 pawn in exchange for development and a
+      target — the queen on e5 has to move again soon, and every tempo Black gains chasing
+      it is worth more than the pawn itself. It does not fully equalise, but it turns a
+      dubious try by White into Black's problem to solve rather than the reverse. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen chơi 2...Nf6!?, phớt lờ lời đe dọa lên tốt e5 và thay vào đó tấn công hậu Trắng đang lạc lõng, sẵn sàng để mất tốt e5 để đổi lấy nhịp phát triển.'
+    en: "Black plays 2...Nf6!?, ignoring the threat to the e5 pawn and instead attacking White's exposed queen, willing to give up the e5 pawn in exchange for development tempo."
+    fr: "Les Noirs jouent 2...Nf6!?, ignorant la menace sur le pion e5 et attaquant à la place la dame blanche exposée, prêts à céder le pion e5 en échange d'un temps de développement."
+  dismissRest:
+    reason:
+      vi: 'Trắng không ăn tốt e5. Các nước như Bc4 hay Nc3 phát triển và giữ hậu ở h5 thêm một lúc, nhưng để tốt e5 lại cho Đen bảo vệ bằng d6 hay Nc6 sau đó.'
+      en: 'White does not take the e5 pawn. Moves such as Bc4 or Nc3 develop and keep the queen on h5 a little longer, but leave the e5 pawn for Black to defend with d6 or Nc6 next.'
+      fr: 'Les Blancs ne prennent pas le pion e5. Des coups comme Bc4 ou Nc3 développent et gardent la dame en h5 un peu plus longtemps, mais laissent le pion e5 aux Noirs pour le défendre avec d6 ou Nc6 ensuite.'
+  children:
+    - ply: Qxe5+
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt e5 kèm chiếu, tận dụng cơ hội lấy vật chất trong khi hậu vẫn còn ở giữa bàn cờ, buộc Đen phải chặn chiếu ngay.'
+        en: 'White takes the e5 pawn with check, grabbing material while the queen is still in the middle of the board, forcing Black to block the check at once.'
+        fr: "Les Blancs prennent le pion e5 avec échec, s'emparant du matériel pendant que la dame est encore au centre de l'échiquier, forçant les Noirs à parer l'échec immédiatement."
+      children:
+        - ply: Be7
+          annotation:
+            vi: 'Đen chặn chiếu bằng tượng ra e7, vừa giải quyết chiếu vừa phát triển một quân và tiếp tục nhắm đuổi hậu Trắng.'
+            en: "Black blocks the check with the bishop on e7, both answering the check and developing a piece while continuing to eye White's queen."
+            fr: "Les Noirs parent l'échec avec le fou en e7, répondant à l'échec tout en développant une pièce et en continuant à viser la dame blanche."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt. Hậu Trắng ở e5 hiện không còn bị chiếu lại ngay, nhưng tượng e7 vừa bảo vệ chắc chắn cả c7 lẫn f6, nên hậu Trắng chưa ăn thêm được gì miễn phí.'
+              en: "Count the pawns and it is eight for White, seven for Black, White exactly one pawn up. White's queen on e5 is no longer giving check, but the e7 bishop now solidly defends both c7 and f6, so the queen cannot grab anything else for free."
+              fr: 'Comptez les pions, huit pour les Blancs, sept pour les Noirs, les Blancs ont un pion de plus. La dame blanche en e5 ne donne plus échec, mais le fou en e7 défend désormais solidement c7 et f6, si bien que la dame ne peut plus rien prendre gratuitement.'
+            plan:
+              vi: 'Trắng chơi Qe2 hoặc Bc4, đưa hậu về nơi an toàn hơn và tiếp tục phát triển với tốt thừa. Đen chơi O-O rồi d5 hay Nc6, hoàn thiện phát triển và khai thác việc hậu Trắng đã ra sớm.'
+              en: "White plays Qe2 or Bc4, tucking the queen somewhere safer and continuing to develop with the extra pawn. Black plays O-O followed by d5 or Nc6, completing development and exploiting White's early queen sortie."
+              fr: 'Les Blancs jouent Qe2 ou Bc4, mettant la dame en sécurité tout en poursuivant leur développement avec le pion supplémentaire. Les Noirs jouent O-O puis d5 ou Nc6, achevant leur développement et exploitant la sortie précoce de la dame blanche.'
+            basis:
+              by: chan
+              at: '2026-09-22'

@@ -1,0 +1,59 @@
+# Queen's Pawn Game: Hübsch Gambit. Frozen defining line 1.d4 Nf6 2.Nc3 d5 3.e4, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated. searchMate from the leaf
+# FEN, bounded to 3 moves, returns no-mate.
+id: queens-pawn-game-hubsch-gambit
+name: "Queen's Pawn Game: Hübsch Gambit"
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, Nf6, Nc3, d5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White throws in e4 to strike the centre at once, a Blackmar-Diemer style
+      idea reached through a different move order, offering the pawn for rapid piece
+      activity and open lines against Black's king. Black can simply take and defend
+      carefully, so the sacrifice needs energetic follow-up to be worth it. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.e4!?, thí tốt trung tâm để mở đường ngay lập tức, mang tinh thần Gambit Blackmar-Diemer nhưng đến qua một trật tự nước đi khác.'
+    en: 'White plays 3.e4!?, sacrificing the central pawn to open lines at once, in the spirit of the Blackmar-Diemer Gambit but reached through a different move order.'
+    fr: "Les Blancs jouent 3.e4!?, sacrifiant le pion central pour ouvrir les lignes immédiatement, dans l'esprit du Gambit Blackmar-Diemer mais atteint par un ordre de coups différent."
+  dismissRest:
+    reason:
+      vi: 'Trắng đã cam kết vào e4 ở nước này, chính là nước định nghĩa của gambit này; vị trí gốc ở đây là sau khi nước ấy đã được thực hiện.'
+      en: 'White has already committed to e4 at this move, which is the very move this gambit is defined by; the root here is the position right after that move.'
+      fr: 'Les Blancs se sont déjà engagés dans e4 à ce coup, qui est précisément le coup définissant ce gambit ; la position racine ici est celle juste après ce coup.'
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e4 bằng tốt d5, đơn giản là nhận con tốt trung tâm được mời và giữ thêm một tốt trên bàn cờ.'
+        en: 'Black takes the e4 pawn with the d5 pawn, simply accepting the offered central pawn and holding an extra pawn on the board.'
+        fr: "Les Noirs prennent le pion e4 avec le pion d5, acceptant simplement le pion central offert et gardant un pion supplémentaire sur l'échiquier."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng bảy, Đen tám, Trắng kém đúng một tốt. Con mã c3 sẵn sàng ăn lại tốt e4 ngay lập tức, nên vật chất chênh lệch này chỉ là tạm thời trên bàn cờ.'
+          en: 'Count the pawns and it is seven for White, eight for Black, White a clean pawn down. The knight on c3 is ready to recapture the e4 pawn at once, so this material gap is only temporary on the board.'
+          fr: "Comptez les pions, sept pour les Blancs, huit pour les Noirs, les Blancs ont un pion de retard. Le cavalier en c3 est prêt à reprendre immédiatement le pion e4, donc cet écart matériel n'est que temporaire sur l'échiquier."
+        plan:
+          vi: 'Trắng chơi Nxe4 lấy lại tốt ngay và tiếp tục phát triển nhanh, có thể kèm theo Bc4 hay Nf3. Đen chơi Nxe4 đổi mã hoặc Bf5, hoàn thiện phát triển trong khi vẫn giữ được lợi thế tốt thừa nếu đổi quân hợp lý.'
+          en: 'White plays Nxe4 to win the pawn straight back and continues developing quickly, perhaps with Bc4 or Nf3. Black plays Nxe4 to trade knights, or Bf5, completing development while still keeping the extra-pawn edge if the trades go well.'
+          fr: "Les Blancs jouent Nxe4 pour regagner immédiatement le pion et poursuivent un développement rapide, éventuellement avec Bc4 ou Nf3. Les Noirs jouent Nxe4 pour échanger les cavaliers, ou Bf5, achevant leur développement tout en conservant l'avantage du pion supplémentaire si les échanges se passent bien."
+        basis:
+          by: chan
+          at: '2026-09-22'

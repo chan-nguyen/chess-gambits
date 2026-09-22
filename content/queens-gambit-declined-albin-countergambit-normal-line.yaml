@@ -1,0 +1,59 @@
+# Queen's Gambit Declined: Albin Countergambit, Normal Line. Frozen defining line 1.d4 d5
+# 2.c4 e5 3.dxe5 d4 4.Nf3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: queens-gambit-declined-albin-countergambit-normal-line
+name: "Queen's Gambit Declined: Albin Countergambit, Normal Line"
+eco: D08
+category: gambit
+side: white
+definingLine: [d4, d5, c4, e5, dxe5, d4, Nf3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. This is White's calmest and most common treatment of the whole Albin
+      Countergambit — simply developing the knight rather than reaching for the sharper
+      4.Nbd2 or 4.a3 tries. It keeps the extra pawn from 3.dxe5 without taking on any extra
+      risk, so it is judged the safe, sound main road for White. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 4.Nf3, cách xử lý bình thường và phổ biến nhất trước tốt d4 của Đen, phát triển mã và tấn công thẳng vào con tốt tiền tiêu ấy.'
+    en: "White plays 4.Nf3, the calmest and most common way of meeting Black's advanced d4 pawn, developing the knight and attacking that pawn directly."
+    fr: 'Les Blancs jouent 4.Nf3, la manière la plus calme et la plus courante de répondre au pion d4 avancé des Noirs, développant le cavalier et attaquant directement ce pion.'
+  dismissRest:
+    reason:
+      vi: 'Trắng đã cam kết vào Nf3 ở vị trí gốc; đây là biến thể được đặt tên riêng cho cách xử lý cụ thể này, các nước như Nbd2 hay a3 đã tạo thành các mục lục khác.'
+      en: "The root here is already the position after White's Nf3, the move this specific named line is built around — other tries such as Nbd2 or a3 are separate, differently named lines."
+      fr: "La position racine ici est déjà celle après le Nf3 blanc, le coup autour duquel cette ligne nommée est construite — d'autres essais comme Nbd2 ou a3 forment des lignes distinctes, nommées différemment."
+  children:
+    - ply: Nc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen phát triển mã ra c6, bảo vệ tốt d4 tiền tiêu và chuẩn bị các nước như Bg4 hoặc Nge7 để tiếp tục gây áp lực lên trung tâm.'
+        en: 'Black develops the knight to c6, defending the advanced d4 pawn and preparing moves such as Bg4 or Nge7 to keep pressuring the centre.'
+        fr: 'Les Noirs développent le cavalier en c6, défendant le pion d4 avancé et préparant des coups comme Bg4 ou Nge7 pour continuer à faire pression sur le centre.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt tính từ nước 3.dxe5. Con tốt d4 của Đen tiến sâu và được bảo vệ, choán chỗ hoạt động của Trắng, nhưng vẫn chỉ là một tốt không hơn không kém.'
+          en: "Count the pawns and it is eight for White, seven for Black, White exactly one pawn up since 3.dxe5. Black's advanced and defended d4 pawn cramps White's activity, but it remains just one pawn, no more and no less."
+          fr: "Comptez les pions, huit pour les Blancs, sept pour les Noirs, les Blancs ont un pion de plus depuis 3.dxe5. Le pion d4 noir, avancé et défendu, gêne l'activité blanche, mais reste un seul pion, ni plus ni moins."
+        plan:
+          vi: 'Trắng chơi g3 rồi Bg2, chuẩn bị fianchetto và nhắm vào tốt d4 từ xa trước khi tính đến b4 mở rộng thế trận. Đen chơi Bg4 gây áp lực lên mã f3 hoặc Nge7 hoàn thiện phát triển và giữ vững tốt d4.'
+          en: 'White plays g3 followed by Bg2, preparing a fianchetto and eyeing the d4 pawn from a distance before thinking about b4 to expand. Black plays Bg4, pressuring the f3 knight, or Nge7, completing development and holding the d4 pawn.'
+          fr: 'Les Blancs jouent g3 puis Bg2, préparant un fianchetto et visant le pion d4 à distance avant de songer à b4 pour étendre le jeu. Les Noirs jouent Bg4, faisant pression sur le cavalier f3, ou Nge7, achevant leur développement et tenant le pion d4.'
+        basis:
+          by: chan
+          at: '2026-09-22'

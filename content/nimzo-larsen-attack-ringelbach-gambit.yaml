@@ -1,0 +1,59 @@
+# Nimzo-Larsen Attack: Ringelbach Gambit. Frozen defining line 1.b3 f5 2.Bb2 e6 3.e4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 3 moves, returns no-mate.
+id: nimzo-larsen-attack-ringelbach-gambit
+name: 'Nimzo-Larsen Attack: Ringelbach Gambit'
+eco: A01
+category: gambit
+side: white
+definingLine: [b3, f5, Bb2, e6, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White throws the e-pawn forward against Black's Dutch-style setup,
+      trying to open the long diagonal for the bishop on b2 and gain time before Black
+      finishes developing. Black can simply take the pawn and defend, so the sacrifice
+      needs quick and accurate follow-up to be worth it. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.e4!?, thí tốt trung tâm để mở đường chéo dài cho tượng b2 và giành thời gian trước khi Đen kịp hoàn thiện phát triển.'
+    en: 'White plays 3.e4!?, sacrificing the central pawn to open the long diagonal for the b2 bishop and gain time before Black finishes developing.'
+    fr: "Les Blancs jouent 3.e4!?, sacrifiant le pion central pour ouvrir la grande diagonale au fou b2 et gagner du temps avant que les Noirs n'achèvent leur développement."
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt e4 ngay. Các nước như d5 hay Nf6 phát triển bình thường đều có thể, nhưng để lại con tốt e4 đang treo cho Trắng.'
+      en: "Black does not take the e4 pawn at once. Moves such as d5 or Nf6 develop normally and are possible, but they leave White's hanging e4 pawn alone."
+      fr: 'Les Noirs ne prennent pas immédiatement le pion e4. Des coups comme d5 ou Nf6 se développent normalement et sont possibles, mais laissent le pion e4 blanc en prise.'
+  children:
+    - ply: fxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e4 bằng tốt f5, đơn giản là nhận lấy con tốt được mời và giữ thêm một tốt trên bàn cờ.'
+        en: 'Black takes the e4 pawn with the f5 pawn, simply accepting the offered pawn and holding an extra pawn on the board.'
+        fr: "Les Noirs prennent le pion e4 avec le pion f5, acceptant simplement le pion offert et gardant un pion supplémentaire sur l'échiquier."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng bảy, Đen tám, Trắng kém đúng một tốt. Đường chéo a1-h8 giờ mở hoàn toàn cho tượng b2 và con mã b1 sẵn sàng nhảy lên c3 để tấn công thẳng vào tốt e4 vừa ăn được.'
+          en: 'Count the pawns and it is seven for White, eight for Black, White a clean pawn down. The a1-h8 diagonal is now fully open for the b2 bishop, and the knight on b1 is ready to jump to c3 to attack the e4 pawn Black just won.'
+          fr: 'Comptez les pions, sept pour les Blancs, huit pour les Noirs, les Blancs ont un pion de retard. La diagonale a1-h8 est désormais entièrement ouverte pour le fou b2, et le cavalier b1 est prêt à sauter en c3 pour attaquer le pion e4 que les Noirs viennent de gagner.'
+        plan:
+          vi: 'Trắng chơi Nc3 tấn công tốt e4 và tiếp tục phát triển nhanh, có thể kèm theo Qh5+ nếu vua Đen chưa an toàn. Đen chơi Nf6 hoặc d5, bảo vệ tốt e4 và hoàn thiện phát triển với tốt thừa.'
+          en: "White plays Nc3, attacking the e4 pawn and continuing to develop quickly, perhaps with Qh5+ if Black's king is not yet safe. Black plays Nf6 or d5, defending the e4 pawn and completing development with the extra pawn."
+          fr: "Les Blancs jouent Nc3, attaquant le pion e4 et poursuivant un développement rapide, éventuellement avec Qh5+ si le roi noir n'est pas encore en sécurité. Les Noirs jouent Nf6 ou d5, défendant le pion e4 et achevant leur développement avec le pion supplémentaire."
+        basis:
+          by: chan
+          at: '2026-09-22'

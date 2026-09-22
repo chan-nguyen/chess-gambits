@@ -1,0 +1,64 @@
+# Latvian Gambit: Mayet Attack. Frozen defining line 1.e4 e5 2.Nf3 f5 3.Bc4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 3 moves, returns no-mate.
+id: latvian-gambit-mayet-attack
+name: 'Latvian Gambit: Mayet Attack'
+eco: C40
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, f5, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Instead of grabbing the e5 pawn, White develops the bishop to its most
+      active square and lets Black take on e4. The bishop eyes f7 at once, which is real
+      compensation, but White is a clean pawn down and has to prove the attack works before
+      the extra pawn matters. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.Bc4, phát triển tượng lên ô hoạt động nhất và nhắm thẳng vào f7, thay vì ăn tốt e5 ngay lập tức.'
+    en: 'White plays 3.Bc4, developing the bishop to its most active square and aiming straight at f7, instead of taking the e5 pawn right away.'
+    fr: 'Les Blancs jouent 3.Bc4, développant le fou sur sa case la plus active et visant directement f7, au lieu de prendre immédiatement le pion e5.'
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt e4 ngay. Các nước như Nf6 bảo vệ tốt e4 gián tiếp hoặc d6 phòng thủ chắc chắn hơn, nhưng bỏ lỡ cơ hội ăn tốt miễn phí mà Trắng vừa để hở.'
+      en: 'Black does not take the e4 pawn at once. Moves such as Nf6, indirectly guarding the pawn, or the more solid d6 are possible, but they pass up the free pawn White has just left hanging.'
+      fr: 'Les Noirs ne prennent pas immédiatement le pion e4. Des coups comme Nf6, protégeant indirectement le pion, ou le plus solide d6 sont possibles, mais ils laissent passer le pion gratuit que les Blancs viennent de laisser en prise.'
+  children:
+    - ply: fxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e4 bằng tốt f5, đơn giản là nhận con tốt trung tâm không được bảo vệ mà Trắng vừa để lại.'
+        en: 'Black takes the e4 pawn with the f5 pawn, simply picking up the undefended central pawn White has just left behind.'
+        fr: 'Les Noirs prennent le pion e4 avec le pion f5, ramassant simplement le pion central non défendu que les Blancs viennent de laisser.'
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: 'Trắng ăn luôn tốt e5 vốn không được bảo vệ, tận dụng việc Đen vừa dồn sự chú ý vào tốt e4 mà quên mất tốt e5 của mình.'
+            en: "White grabs the undefended e5 pawn as well, exploiting the fact that Black's attention just went to the e4 pawn while leaving the e5 pawn unguarded."
+            fr: "Les Blancs s'emparent aussi du pion e5 non défendu, profitant du fait que l'attention des Noirs vient de se porter sur le pion e4 en laissant le pion e5 sans garde."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt thì Trắng bảy, Đen bảy, vật chất lại cân bằng. Mã Trắng đứng vững ở e5, tượng c4 vẫn nhắm vào f7, và vua Đen vẫn chưa nhập thành.'
+              en: "Count the pawns and it is seven for White, seven for Black, material is level again. White's knight sits safely on e5, the bishop on c4 still aims at f7, and Black's king has still not castled."
+              fr: "Comptez les pions, sept pour les Blancs, sept pour les Noirs, le matériel est de nouveau égal. Le cavalier blanc est solidement posté en e5, le fou en c4 vise toujours f7, et le roi noir n'a toujours pas roqué."
+            plan:
+              vi: 'Trắng chơi d3 hoặc O-O, củng cố trung tâm và tiếp tục gây áp lực lên vua Đen còn ở giữa bàn cờ. Đen chơi Nf6 hay d5, đuổi các quân Trắng và cố hoàn thiện phát triển an toàn.'
+              en: "White plays d3 or O-O, shoring up the centre and continuing to pressure Black's king still stuck in the middle. Black plays Nf6 or d5, chasing White's pieces and trying to complete development safely."
+              fr: "Les Blancs jouent d3 ou O-O, consolidant le centre et continuant à faire pression sur le roi noir resté au centre. Les Noirs jouent Nf6 ou d5, chassant les pièces blanches et essayant d'achever leur développement en toute sécurité."
+            basis:
+              by: chan
+              at: '2026-09-22'

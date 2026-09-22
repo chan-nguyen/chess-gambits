@@ -1,0 +1,59 @@
+# Nimzo-Larsen Attack: Pachman Gambit. Frozen defining line 1.b3 e5 2.Bb2 Nc6 3.f4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 3 moves, returns no-mate.
+id: nimzo-larsen-attack-pachman-gambit
+name: 'Nimzo-Larsen Attack: Pachman Gambit'
+eco: A01
+category: gambit
+side: white
+definingLine: [b3, e5, Bb2, Nc6, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White brings King's Gambit ideas into a fianchetto setup, offering the
+      f-pawn to open the f-file and clear a diagonal for the bishop on b2 once the e5 pawn
+      is gone. It is thematically neat but a pawn down against a solid centre is still a
+      pawn down, so it is judged dubious rather than clearly justified. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.f4!?, mang tinh thần Khai cuộc Vua thí tốt vào một hệ thống fianchetto, mời Đen ăn tốt để mở đường chéo cho tượng b2.'
+    en: "White plays 3.f4!?, bringing King's Gambit style pawn-sacrificing ideas into a fianchetto setup, inviting Black to take the pawn in exchange for opening the diagonal for the b2 bishop."
+    fr: "Les Blancs jouent 3.f4!?, apportant l'esprit sacrificiel du Gambit du Roi dans un dispositif fianchetto, invitant les Noirs à prendre le pion en échange de l'ouverture de la diagonale pour le fou b2."
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt f4. Các nước như Nf6 hay d6 để nguyên căng thẳng và giữ tốt e5, khiến Trắng phải tự tìm cách chứng minh f4 có ích.'
+      en: 'Black does not take the f4 pawn. Moves such as Nf6 or d6 leave the tension alone and keep the e5 pawn, leaving White to prove f4 was worth playing.'
+      fr: 'Les Noirs ne prennent pas le pion f4. Des coups comme Nf6 ou d6 laissent la tension intacte et gardent le pion e5, obligeant les Blancs à prouver que f4 valait la peine.'
+  children:
+    - ply: exf4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt f4 bằng tốt e5, con quân duy nhất có thể ăn tại đó, đơn giản là nhận lấy con tốt được mời.'
+        en: 'Black takes the f4 pawn with the e5 pawn, the only piece that can capture there, simply accepting the offered pawn.'
+        fr: 'Les Noirs prennent le pion f4 avec le pion e5, la seule pièce pouvant capturer là, acceptant simplement le pion offert.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng bảy, Đen tám, Trắng kém đúng một tốt. Đường chéo a1-h8 giờ đã mở hoàn toàn cho tượng b2, nhưng con tốt f4 của Đen cũng cản một phần các ý đồ phát triển tự nhiên của Trắng.'
+          en: "Count the pawns and it is seven for White, eight for Black, White a clean pawn down. The a1-h8 diagonal is now fully open for the b2 bishop, but Black's pawn on f4 also gets in the way of some of White's natural developing ideas."
+          fr: 'Comptez les pions, sept pour les Blancs, huit pour les Noirs, les Blancs ont un pion de retard. La diagonale a1-h8 est désormais entièrement ouverte pour le fou b2, mais le pion noir en f4 gêne aussi certaines idées de développement naturelles des Blancs.'
+        plan:
+          vi: 'Trắng chơi Nf3 tấn công tốt f4 hoặc e4 mở thêm trung tâm, tận dụng đường chéo đã mở cho tượng b2. Đen chơi d6 và Nf6, củng cố tốt f4 và hoàn thiện phát triển với tốt thừa.'
+          en: 'White plays Nf3, attacking the f4 pawn, or e4 to open the centre further, making use of the now-open diagonal for the b2 bishop. Black plays d6 and Nf6, shoring up the f4 pawn and completing development with the extra pawn.'
+          fr: 'Les Blancs jouent Nf3, attaquant le pion f4, ou e4 pour ouvrir davantage le centre, exploitant la diagonale désormais ouverte pour le fou b2. Les Noirs jouent d6 et Nf6, consolidant le pion f4 et achevant leur développement avec le pion supplémentaire.'
+        basis:
+          by: chan
+          at: '2026-09-22'

@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Two hundred and thirty entries are authored — three from #15, eleven from #73, ten
+   * Two hundred and fifty entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -143,8 +143,12 @@ describe('the catalogue this repository ships', () => {
    * #136 batch a (twenty short, single-line entries deepened straight from `listed` to
    * `taught` — a modelled reply to the defining line's sacrifice, ending in a `position`
    * leaf, one branch each), twenty more from #136 batch C (family heads and King's
-   * Gambit Declined sub-variations, each a single root-to-leaf line), and twenty more from
-   * #136 batch e (scotch-game-alekhine-gambit,
+   * Gambit Declined sub-variations, each a single root-to-leaf line), twenty more from
+   * #136 batch d (single-line entries across King's Pawn Game, Latvian Gambit, Modern
+   * Defense, Nimzo-Larsen Attack, Nimzowitsch Defense, Owen Defense, Polish Opening,
+   * Portuguese Opening, the Queen's Gambit Declined Albin Countergambit, Queen's Pawn Game
+   * and Scandinavian Defense families, each a single root-to-leaf line), and twenty more
+   * from #136 batch e (scotch-game-alekhine-gambit,
    * scotch-game-goring-gambit-double-pawn-sacrifice, scotch-game-scotch-gambit-advance-variation,
    * sicilian-defense-alapin-variation-anti-alapin-gambit, sicilian-defense-kotov-gambit,
    * sicilian-defense-mcdonnell-attack-tal-gambit, sicilian-defense-morphy-gambit-andreaschek-gambit,
@@ -157,7 +161,7 @@ describe('the catalogue this repository ships', () => {
    * zukertort-opening-tennison-gambit, each a single root-to-leaf line except the three
    * (sicilian-defense-alapin-variation-anti-alapin-gambit, sicilian-defense-kotov-gambit and
    * sicilian-defense-mcdonnell-attack-tal-gambit) that model a forced reply to an
-   * intermediate check before their leaf, still one branch each) — and the other 791
+   * intermediate check before their leaf, still one branch each) — and the other 771
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -188,7 +192,6 @@ describe('the catalogue this repository ships', () => {
     ['benko-gambit', 9],
     ['benko-gambit-accepted', 1],
     ['benko-gambit-declined-bishop-attack', 1],
-    ['benko-gambit-fianchetto-variation', 0],
     ['benoni-defense-benoni-gambit-accepted', 1],
     ['bird-opening-froms-gambit', 3],
     ['bird-opening-froms-gambit-bahr-gambit', 1],
@@ -323,32 +326,51 @@ describe('the catalogue this repository ships', () => {
     ['kings-pawn-game-busch-gass-gambit', 1],
     ['kings-pawn-game-clam-variation-kings-gambit-reversed', 1],
     ['kings-pawn-game-gunderam-defense-gunderam-gambit', 1],
+    ['kings-pawn-game-gunderam-gambit', 1],
+    ['kings-pawn-game-pachman-wing-gambit', 1],
+    ['kings-pawn-game-wayward-queen-attack-kiddie-countergambit', 1],
     ['kings-pawn-opening-van-hooydoon-gambit', 1],
     ['lasker-trap', 1],
     ['latvian-gambit', 5],
     ['latvian-gambit-accepted', 1],
+    ['latvian-gambit-lobster-gambit', 1],
+    ['latvian-gambit-mason-countergambit', 1],
+    ['latvian-gambit-mayet-attack', 1],
     ['legals-mate', 7],
     ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
     ['mexican-defense-horsefly-gambit', 1],
     ['mikenas-defense-pozarek-gambit', 1],
     ['modern-defense-lizard-defense-pirc-diemer-gambit', 1],
+    ['modern-defense-westermann-gambit', 1],
+    ['modern-defense-wind-gambit', 1],
     ['monticelli-trap', 1],
     ['mortimer-trap', 1],
     ['nimzo-indian-defense-dilworth-gambit', 1],
     ['nimzo-larsen-attack-norfolk-gambit', 1],
+    ['nimzo-larsen-attack-pachman-gambit', 1],
+    ['nimzo-larsen-attack-ringelbach-gambit', 1],
+    ['nimzowitsch-defense-colorado-countergambit', 1],
+    ['nimzowitsch-defense-hornung-gambit', 1],
     ['nimzowitsch-defense-wheeler-gambit', 2],
     ['noahs-ark-trap', 1],
     ['old-indian-defense-aged-gibbon-gambit', 1],
     ['owen-defense-naselwaus-gambit', 1],
+    ['owen-defense-smith-gambit', 1],
+    ['owen-defense-wind-gambit', 1],
     ['petrovs-defense-stafford-gambit', 1],
     ['philidor-defense-lopez-countergambit', 2],
     ['pirc-defense-roscher-gambit', 1],
     ['polish-defense-spassky-gambit-accepted', 1],
     ['polish-opening-birmingham-gambit', 1],
+    ['polish-opening-tartakower-gambit', 1],
     ['ponziani-opening-ponziani-countergambit', 1],
     ['portuguese-opening-miguel-gambit', 1],
+    ['portuguese-opening-portuguese-gambit', 1],
     ['queens-gambit-declined-albin-countergambit', 1],
+    ['queens-gambit-declined-albin-countergambit-normal-line', 1],
     ['queens-indian-defense-classical-variation-polugaevsky-gambit', 1],
+    ['queens-pawn-game-chigorin-variation-irish-gambit', 1],
+    ['queens-pawn-game-hubsch-gambit', 1],
     ['queens-pawn-game-zurich-gambit', 1],
     ['rat-defense-english-rat-lisbon-gambit', 1],
     ['reti-opening-zilbermints-gambit', 1],
@@ -356,6 +378,7 @@ describe('the catalogue this repository ships', () => {
     ['rubinstein-trap', 1],
     ['ruy-lopez-exchange-variation-alapin-gambit', 3],
     ['ruy-lopez-schliemann-defense', 1],
+    ['scandinavian-defense-blackburne-kloosterboer-gambit', 1],
     ['scandinavian-defense-kiel-variation-trap', 3],
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scotch-game-alekhine-gambit', 1],
@@ -411,7 +434,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-tennison-gambit', 1],
   ])
 
-  it('bakes keys on all 1021 entries, and only the authored two hundred and ten have any', () => {
+  it('bakes keys on all 1021 entries, and only the authored two hundred and forty-nine have any', () => {
     expect(result.value.records).toHaveLength(1021)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
