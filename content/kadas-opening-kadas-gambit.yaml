@@ -1,0 +1,84 @@
+# Kádas Opening: Kádas Gambit, taught. The learner plays White, and the defining line
+# 1.h4 c5 2.b4 ends on White's own 2.b4 — the learner's own ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Every ply was replayed with chess.js; the
+# leaf carries no forced mate (checked with `searchMate`).
+id: kadas-opening-kadas-gambit
+name: 'Kádas Opening: Kádas Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [h4, c5, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      1.h4 has already spent a move on nothing central, and 2.b4 spends a pawn on top of it
+      for a wing gambit that offers no real follow-up; Black simply keeps the extra pawn and
+      the better development. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 2.b4, thí một tốt cánh hậu sau khi đã dùng nước đầu tiên cho 1.h4 — một nước không góp gì cho trung tâm hay phát triển. Đây là gambit mang tên chính khai cuộc này.
+    en: White has just played 2.b4, offering a queenside pawn after already spending the first move on 1.h4 — a move that contributes nothing to the centre or to development. This is the gambit that gives this opening its name.
+    fr: Les Blancs viennent de jouer 2.b4, offrant un pion à l'aile dame après avoir déjà consacré le premier coup à 1.h4 — un coup qui ne contribue ni au centre ni au développement. C'est le gambit qui donne son nom à cette ouverture.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác không ăn tốt b4. Mọi nước khác để Trắng giữ lại con tốt đó thêm một nhịp, không tận dụng hết cơ hội vật chất đã có.
+      en: Black plays anything else that does not take the b4 pawn. Anything else lets White hold on to that pawn for another move, not making full use of the material chance already on offer.
+      fr: Les Noirs jouent autre chose qui ne prend pas le pion b4. Tout le reste laisse les Blancs conserver ce pion un coup de plus, sans exploiter pleinement la chance matérielle déjà offerte.
+  children:
+    - ply: cxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt b4 luôn, vì không có lý do gì để từ chối một con tốt miễn phí ở đây. Trắng chưa có gì bù lại cụ thể cho con tốt đã mất.
+        en: Black simply takes the b4 pawn, since there is no reason to decline a free pawn here. White has nothing concrete to show for the lost pawn yet.
+        fr: Les Noirs prennent simplement le pion b4, rien ne justifiant de refuser un pion gratuit ici. Les Blancs n'ont encore rien de concret à montrer pour le pion perdu.
+      children:
+        - ply: Bb2
+          annotation:
+            vi: Trắng fianchetto tượng, nhắm vào đường chéo dài a1-h8 để cố bù lại con tốt đã mất bằng áp lực lâu dài lên trung tâm và cánh vua Đen.
+            en: White fianchettoes the bishop, aiming down the long a1-h8 diagonal to try to compensate for the lost pawn with long-term pressure on the centre and Black's kingside.
+            fr: Les Blancs fianchettent le fou, visant la grande diagonale a1-h8 pour tenter de compenser le pion perdu par une pression durable sur le centre et l'aile roi noire.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác. Mọi cách phát triển hợp lý khác dẫn tới những thế cờ tương tự, không thay đổi đánh giá chung của nhánh này.
+              en: Black plays anything else. Any other reasonable developing move leads to similar positions, not changing the general verdict on this branch.
+              fr: Les Noirs jouent autre chose. Tout autre coup de développement raisonnable mène à des positions similaires, sans changer le verdict général sur cette branche.
+          children:
+            - ply: Nc6
+              annotation:
+                vi: Đen phát triển mã, giữ con tốt đã ăn được và tiếp tục hoàn thiện phát triển bình thường mà không cần lo lắng gì đặc biệt.
+                en: Black develops a knight, holding on to the extra pawn and continuing normal development without any particular worry.
+                fr: Les Noirs développent un cavalier, conservant le pion supplémentaire et poursuivant un développement normal sans souci particulier.
+              children:
+                - ply: e3
+                  annotation:
+                    vi: Trắng đẩy tốt e, mở đường cho tượng f1 và chuẩn bị phát triển tiếp. Con tốt b4 mà Đen đã ăn được vẫn chưa hề bị đe doạ đòi lại.
+                    en: White pushes the e-pawn, opening a line for the f1 bishop and preparing to develop further. The b4 pawn Black has won is not under any threat of being reclaimed.
+                    fr: Les Blancs poussent le pion e, ouvrant une ligne pour le fou f1 et se préparant à développer davantage. Le pion b4 gagné par les Noirs n'est nullement menacé d'être repris.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì Đen hơn đúng một tốt, và không có dấu hiệu nào cho thấy Trắng sắp đòi lại được nó. Trắng có tượng fianchetto nhắm vào trung tâm nhưng chưa tạo ra đe doạ cụ thể nào, trong khi Đen đã phát triển mã và giữ vững con tốt thêm. Đây thực sự là một thế cờ Đen hơn vật chất mà chưa phải trả giá gì rõ ràng, chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and Black is up exactly one pawn, with no sign yet that White is about to win it back. White has a fianchettoed bishop aimed at the centre but no concrete threat so far, while Black has developed a knight and is holding the extra pawn comfortably. This genuinely reads as a position where Black is ahead in material with no clear price paid for it, rather than an evaluation left open.
+                      fr: Comptez les pièces, les Noirs ont exactement un pion de plus, et rien n'indique pour l'instant que les Blancs vont le regagner. Les Blancs ont un fou fianchetté visant le centre mais aucune menace concrète jusqu'ici, tandis que les Noirs ont développé un cavalier et conservent tranquillement le pion supplémentaire. C'est véritablement une position où les Noirs ont un avantage matériel sans contrepartie claire, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi Nf3 và Be2, cố hoàn thiện phát triển nhanh nhất có thể và tìm hoạt động quân bù cho con tốt đã mất. Đen chơi d5 và Nf6, dựng trung tâm vững chắc và giữ vững lợi thế vật chất.
+                      en: White plays Nf3 and Be2, trying to finish development as quickly as possible and find piece activity to compensate for the lost pawn. Black plays d5 and Nf6, building a solid centre and holding on to the material edge.
+                      fr: Les Blancs jouent Nf3 et Be2, essayant d'achever leur développement au plus vite et de trouver de l'activité pour compenser le pion perdu. Les Noirs jouent d5 et Cf6, construisant un centre solide et conservant leur avantage matériel.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

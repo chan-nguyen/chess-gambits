@@ -1,0 +1,85 @@
+# King's Gambit Declined: Norwalde Variation, taught. The catalogue's own line for this id,
+# `e4 e5 f4 Qf6`, ends on Black's ply; that parity fails the build's
+# `defining-line-parity` check (docs/CONTEXT.md, invariant 5), so `definingLine` stops one
+# ply earlier, at White's own 2.f4 — the same root `content/kings-gambit.yaml` uses — and
+# 2...Qf6 is modelled as the root's own reply instead. Every ply was replayed with chess.js;
+# the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-norwalde-variation
+name: "King's Gambit Declined: Norwalde Variation"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Bringing the queen out to f6 this early lets Black grab the f4 pawn, but
+      it also puts the queen where White can chase it for tempo, so the pawn Black wins is
+      not free. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4. Mục này đi sâu vào nhánh Đen đưa hậu ra f6 ngay, chuẩn bị ăn tốt f4 bằng chính con hậu.
+    en: White has just offered the f4 pawn. This entry follows the branch where Black brings the queen straight out to f6, preparing to capture the f4 pawn with it.
+    fr: Les Blancs viennent d'offrir le pion f4. Cette entrée suit la branche où les Noirs amènent directement la dame en f6, se préparant à capturer le pion f4 avec elle.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, chẳng hạn ăn tốt bằng 2...exf4 hoặc từ chối theo cách phổ biến hơn. Thế cờ khi đó rẽ sang các nhánh khác của họ Gambit Vua, nằm ngoài phạm vi mục này.
+      en: Black plays anything else, such as accepting with 2...exf4 or declining a more common way. The position then heads toward other branches of the King's Gambit family, outside the scope of this entry.
+      fr: Les Noirs jouent autre chose, comme accepter par 2...exf4 ou refuser d'une manière plus courante. La position se dirige alors vers d'autres branches du Gambit du Roi, hors du cadre de cette entrée.
+  children:
+    - ply: Qf6
+      annotation:
+        vi: Đen đưa hậu ra sớm, nhắm thẳng vào tốt f4. Đây là một nước bất thường — hậu ra sớm luôn có rủi ro bị mất nhịp về sau.
+        en: Black brings the queen out early, aiming straight at the f4 pawn. This is an unusual move — an early queen sortie always risks losing tempo later.
+        fr: Les Noirs sortent tôt la dame, visant directement le pion f4. C'est un coup inhabituel — une sortie précoce de la dame risque toujours de coûter du temps plus tard.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng phát triển mã, không vội bảo vệ tốt f4 vì con hậu Đen sẽ sớm bị đuổi sau khi ăn nó. Đây là nước phát triển tự nhiên nhất.
+            en: White develops the knight, not worrying about defending f4 since Black's queen will soon be chased after taking it. This is the most natural developing move.
+            fr: Les Blancs développent le cavalier, sans se soucier de défendre f4 puisque la dame noire sera bientôt chassée après l'avoir pris. C'est le coup de développement le plus naturel.
+          dismissRest:
+            reason:
+              vi: Đen không ăn tốt f4 ngay. Các nước khác lùi hậu về hoặc phát triển quân khác đều an toàn hơn nhưng từ bỏ chính ý đồ của 2...Qf6.
+              en: Black does not take on f4 at once. Anything else, retreating the queen or developing another piece, is safer but gives up the whole point of 2...Qf6.
+              fr: Les Noirs ne prennent pas aussitôt en f4. Tout le reste, reculer la dame ou développer une autre pièce, est plus sûr mais abandonne l'idée même de 2...Qf6.
+          children:
+            - ply: Qxf4
+              replyQuality: inaccuracy
+              frequency: common
+              annotation:
+                vi: Đen ăn tốt f4, giành vật chất nhưng đưa hậu vào giữa bàn cờ, nơi các quân Trắng sắp phát triển có thể tấn công nó liên tục.
+                en: Black takes the f4 pawn, winning material but placing the queen in the middle of the board, where White's developing pieces can harass it repeatedly.
+                fr: Les Noirs prennent le pion f4, gagnant du matériel mais plaçant la dame au milieu de l'échiquier, où les pièces blanches en développement pourront la harceler à répétition.
+              children:
+                - ply: Nf3
+                  annotation:
+                    vi: Trắng phát triển mã, vừa hoàn thiện phát triển vừa tấn công thẳng vào con hậu đang đứng ở f4. Hậu Đen buộc phải di chuyển lần nữa ở nước tiếp theo.
+                    en: White develops the knight, both finishing development and attacking the queen sitting on f4 directly. Black's queen has to move again next.
+                    fr: Les Blancs développent le cavalier, achevant leur développement tout en attaquant directement la dame en f4. La dame noire devra encore bouger au coup suivant.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì Đen hơn đúng một tốt — tốt f4 đã mất và chưa bị đòi lại. Nhưng hậu Đen đang bị tấn công và sắp phải di chuyển lần thứ ba trong khi Trắng mới phát triển hai quân với đầy đủ nhịp, một quân cờ không có ô đứng tốt trong lúc này. Đây thực sự là "hơn một tốt nhưng trả giá bằng thời gian" chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and Black is up exactly one pawn — the f4 pawn is gone and has not been won back. But Black's queen is under attack and about to move for a third time while White has developed two pieces with full tempo, a piece with no good square to settle on right now. This genuinely reads as "a pawn up, paid for in time" rather than an evaluation left open.
+                      fr: Comptez les pièces, les Noirs ont exactement un pion de plus — le pion f4 a disparu et n'a pas été regagné. Mais la dame noire est attaquée et va devoir bouger pour la troisième fois pendant que les Blancs ont développé deux pièces avec plein temps, une pièce sans bonne case où se poser pour l'instant. C'est véritablement « un pion de plus payé en temps », pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi d4 và Bc4 hay Bd3, dựng trung tâm và tiếp tục đuổi hậu Đen để giành thêm nhịp phát triển. Đen chơi Qf6 hay Qh4+, tìm ô an toàn cho hậu và cố giữ con tốt đã ăn được.
+                      en: White plays d4 and Bc4 or Bd3, building the centre and continuing to chase Black's queen for further tempo. Black plays Qf6 or Qh4+, looking for a safe square for the queen and trying to hold on to the pawn already won.
+                      fr: Les Blancs jouent d4 et Bc4 ou Bd3, construisant le centre et continuant à chasser la dame noire pour gagner encore du temps. Les Noirs jouent Qf6 ou Qh4+, cherchant une case sûre pour la dame et essayant de conserver le pion déjà gagné.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

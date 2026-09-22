@@ -1,0 +1,86 @@
+# King's Gambit Declined: Keene's Defense, taught. The catalogue's own line for this id,
+# `e4 e5 f4 Qh4+`, ends on Black's ply; that parity fails the build's
+# `defining-line-parity` check (docs/CONTEXT.md, invariant 5), so `definingLine` stops one
+# ply earlier, at White's own 2.f4 — the same root `content/kings-gambit.yaml` uses — and
+# 2...Qh4+ is modelled as the root's own reply instead. Every ply was replayed with
+# chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: kings-gambit-declined-keenes-defense
+name: "King's Gambit Declined: Keene's Defense"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, the same label the King's Gambit family carries as a whole. The early
+      check costs Black a tempo once White blocks it, but it does force White's kingside
+      pawns forward a little earlier than they might like. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa cho tốt f4. Mục này đi sâu vào nhánh Đen chiếu ngay bằng hậu, 2...Qh4+, buộc Trắng phải phản ứng với vua trước khi tính tới việc ăn hay giữ tốt f4.
+    en: White has just offered the f4 pawn. This entry follows the branch where Black checks immediately with the queen, 2...Qh4+, forcing White to react around the king before worrying about the f4 pawn at all.
+    fr: Les Blancs viennent d'offrir le pion f4. Cette entrée suit la branche où les Noirs donnent immédiatement échec avec la dame, 2...Qh4+, forçant les Blancs à réagir autour du roi avant même de se soucier du pion f4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác, không chiếu ngay. Thế cờ khi đó rẽ sang các nhánh khác của họ Gambit Vua, nằm ngoài phạm vi mục này.
+      en: Black plays anything else, not checking right away. The position then heads toward other branches of the King's Gambit family, outside the scope of this entry.
+      fr: Les Noirs jouent autre chose, sans donner échec tout de suite. La position se dirige alors vers d'autres branches du Gambit du Roi, hors du cadre de cette entrée.
+  children:
+    - ply: Qh4+
+      annotation:
+        vi: Đen chiếu ngay bằng hậu trước khi Trắng kịp phát triển gì. Vua Trắng không thể ăn hậu, nên Trắng phải chặn chiếu bằng tốt.
+        en: Black checks immediately with the queen before White can develop anything. The white king cannot take the queen, so White has to block the check with a pawn.
+        fr: Les Noirs donnent immédiatement échec avec la dame avant que les Blancs n'aient pu développer quoi que ce soit. Le roi blanc ne peut pas prendre la dame, les Blancs doivent donc bloquer l'échec avec un pion.
+      children:
+        - ply: g3
+          annotation:
+            vi: Trắng chặn chiếu bằng tốt g, quân duy nhất có thể chặn ở đó. Con hậu Đen giờ bị chính tốt g3 này tấn công.
+            en: White blocks the check with the g-pawn, the only piece that can block there. Black's queen is now attacked by that very g3 pawn.
+            fr: Les Blancs bloquent l'échec avec le pion g, la seule pièce pouvant bloquer là. La dame noire est désormais attaquée par ce même pion g3.
+          dismissRest:
+            reason:
+              vi: Đen không lùi hậu về e7. Các nước khác để hậu đứng lại và bị tốt g3 ăn ngay, mất trắng cả con hậu.
+              en: Black does not retreat the queen to e7. Anything else leaves the queen sitting where the g3 pawn can simply capture it, losing the queen outright.
+              fr: Les Noirs ne reculent pas la dame en e7. Tout le reste laisse la dame là où le pion g3 peut simplement la capturer, perdant la dame purement et simplement.
+          children:
+            - ply: Qe7
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Hậu lùi về e7, ô lui an toàn nhất, vẫn kiểm soát đường chéo e và chưa cản trở phát triển các quân khác quá nhiều.
+                en: The queen retreats to e7, the safest square, still eyeing the e-file and not getting too much in the way of the other pieces developing.
+                fr: La dame recule en e7, la case la plus sûre, tout en surveillant toujours la colonne e et sans trop gêner le développement des autres pièces.
+              children:
+                - ply: Nf3
+                  annotation:
+                    vi: Trắng phát triển mã, hoàn thiện việc chặn chiếu bằng một nước phát triển hữu ích và chuẩn bị kiểm soát trung tâm. Tốt f4 vẫn còn nguyên trên bàn.
+                    en: White develops the knight, following up the pawn block with a useful developing move and preparing to reinforce the centre. The f4 pawn is still on the board.
+                    fr: Les Blancs développent le cavalier, complétant le blocage du pion par un coup de développement utile et se préparant à renforcer le centre. Le pion f4 est toujours sur l'échiquier.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân thì hai bên ngang nhau — chưa có tốt nào bị mất ở cả hai phía trong nhánh này. Trắng đã chơi g3 và Nf3, hai nước có ích cho phát triển dù ban đầu là để chặn chiếu, còn Đen mới đi đúng một nước hậu, hai lần. Không có quân nào đang bị ăn không, nên đây thực sự là một thế cờ cân bằng chứ không phải một đánh giá còn bỏ ngỏ.
+                      en: Count the pieces and both sides are level — neither side has lost a pawn in this branch at all. White has played g3 and Nf3, both useful developing moves even though the first began as a block, while Black has only moved the queen, twice. Nothing is hanging for free, so this genuinely reads as a balanced position rather than an evaluation left open.
+                      fr: Comptez les pièces, les deux camps sont à égalité — aucun pion n'a été perdu de part et d'autre dans cette branche. Les Blancs ont joué g3 et Nf3, deux coups utiles au développement même si le premier n'était au départ qu'un blocage, tandis que les Noirs n'ont bougé que la dame, deux fois. Rien n'est en prise gratuitement, donc c'est véritablement une position équilibrée, pas une évaluation restée ouverte.
+                    plan:
+                      vi: Trắng chơi Bg2 và d4, hoàn thiện phát triển và dựng trung tâm rộng, tận dụng việc Đen mất hai nhịp cho con hậu. Đen chơi Nc6 và Nf6, hoàn thiện phát triển và chuẩn bị nhập thành trước khi tính đến kế hoạch tiếp theo.
+                      en: White plays Bg2 and d4, finishing development and building a wide centre, making use of the two tempi Black has spent on the queen. Black plays Nc6 and Nf6, finishing development and preparing to castle before settling on a further plan.
+                      fr: Les Blancs jouent Bg2 et d4, achevant leur développement et construisant un centre large, profitant des deux temps que les Noirs ont consacrés à la dame. Les Noirs jouent Cc6 et Cf6, achevant leur développement et se préparant à roquer avant d'arrêter un plan ultérieur.
+                    basis:
+                      by: chan
+                      at: '2026-09-21'
+                      source: >-
+                        A judgement, not a measurement. No engine was consulted and no
+                        database was queried.

@@ -1,0 +1,82 @@
+# King's Pawn Game: Gunderam Defense, Gunderam Gambit, taught. The learner plays Black, and
+# the defining line 1.e4 e5 2.Nf3 Qe7 3.Bc4 f5 ends on Black's own 3...f5 — the learner's
+# own ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). The leaf here is
+# reached by White's own reply O-O, so it is a child of an opponent node and carries
+# `replyQuality` and `frequency` (docs/CONTEXT.md, Node). Every ply was replayed with
+# chess.js; the leaf carries no forced mate (checked with `searchMate`).
+id: kings-pawn-game-gunderam-defense-gunderam-gambit
+name: "King's Pawn Game: Gunderam Defense, Gunderam Gambit"
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Qe7, Bc4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement, matching the family-level label in the catalogue's own classification.
+      3...f5 with the queen already committed to e7 opens the f-file toward Black's own
+      king, and White simply takes the pawn and keeps it with a safe, developed position.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...f5, thí một tốt để mở đường cho hậu đã đứng sẵn ở e7 và tạo áp lực trung tâm. Nhưng con tốt e4 của Trắng vẫn còn nguyên và con hậu Đen giờ đứng ngay sau con tốt f vừa tiến, một vị trí khá lộ liễu.
+    en: Black has just played 3...f5, offering a pawn to open lines for the queen already sitting on e7 and to contest the centre. But White's e4 pawn is untouched, and Black's queen now sits right behind the newly advanced f-pawn, a rather exposed arrangement.
+    fr: Les Noirs viennent de jouer 3...f5, offrant un pion pour ouvrir des lignes à la dame déjà postée en e7 et disputer le centre. Mais le pion e4 blanc reste intact, et la dame noire se retrouve juste derrière le pion f fraîchement avancé, une disposition assez exposée.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f5. Các nước khác như 4.d3 để nguyên căng thẳng đó, dẫn tới các thế cờ khác không thuộc phạm vi mục này.
+      en: White does not take on f5. Anything else, such as 4.d3, leaves that tension on the board, heading toward other positions outside the scope of this entry.
+      fr: Les Blancs ne prennent pas en f5. Tout le reste, comme 4.d3, laisse cette tension sur l'échiquier, menant vers d'autres positions hors du cadre de cette entrée.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt f5 luôn, vì không có gì bảo vệ nó ngoài chính con hậu đứng sau. Đây là cách xử lý đơn giản nhất, và con tốt này thường mất luôn mà không đổi lại được gì cụ thể cho Đen.
+        en: White simply takes the f5 pawn, since nothing defends it except the queen standing behind it. This is the simplest way to handle the offer, and the pawn is usually simply lost for nothing concrete in return.
+        fr: Les Blancs prennent simplement le pion f5, rien ne le défendant hormis la dame postée derrière. C'est la façon la plus simple de traiter l'offre, et le pion est généralement perdu sans rien de concret en retour.
+      children:
+        - ply: Nf6
+          annotation:
+            vi: Đen phát triển mã thay vì cố đòi lại tốt ngay, chuẩn bị nhập thành và hoàn thiện phát triển các quân còn lại.
+            en: Black develops the knight instead of trying to win the pawn back at once, preparing to castle and bring out the remaining pieces.
+            fr: Les Noirs développent le cavalier plutôt que de chercher à regagner tout de suite le pion, se préparant à roquer et à sortir les pièces restantes.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác. Mọi cách phát triển hợp lý khác dẫn tới những thế cờ tương tự, không thay đổi đánh giá chung của nhánh này.
+              en: Black plays anything else. Any other reasonable developing move leads to similar positions, not changing the general verdict on this branch.
+              fr: Les Noirs jouent autre chose. Tout autre coup de développement raisonnable mène à des positions similaires, sans changer le verdict général sur cette branche.
+          children:
+            - ply: O-O
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng nhập thành, đưa vua vào nơi an toàn và hoàn thiện một phần phát triển trong khi vẫn giữ nguyên con tốt đã ăn được. Đây là cách xử lý điềm tĩnh nhất, không cần liều lĩnh gì thêm.
+                en: White castles, tucking the king away safely and completing part of development while still holding on to the pawn already won. This is the calmest way to handle the position, with no further risk needed.
+                fr: Les Blancs roquent, mettant le roi à l'abri et achevant une partie du développement tout en conservant le pion déjà gagné. C'est la façon la plus calme de traiter la position, sans risque supplémentaire nécessaire.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm quân thì Trắng hơn đúng một tốt — tốt f5 mà Đen thí ở nước 3 chưa hề được đòi lại. Trắng đã nhập thành an toàn trong khi Đen còn chưa nhập thành, và không có quân nào của Trắng đang bị ăn không. Con hậu Đen ở e7 vẫn đứng khá gò bó, che mất đường phát triển của tượng f8. Đây thực sự là một thế cờ Trắng hơn vật chất và an toàn hơn hẳn, chứ không phải một đánh giá còn bỏ ngỏ.
+                  en: Count the pieces and White is up exactly one pawn — the f5 pawn Black offered on move three has never been won back. White has castled to safety while Black has not, and nothing White has is hanging for free. Black's queen on e7 still sits rather awkwardly, blocking the f8 bishop's development. This genuinely reads as a position where White is ahead in material and considerably safer, rather than an evaluation left open.
+                  fr: Comptez les pièces, les Blancs ont exactement un pion de plus — le pion f5 offert par les Noirs au troisième coup n'a jamais été regagné. Les Blancs ont roqué en sécurité alors que les Noirs ne l'ont pas fait, et rien chez les Blancs n'est en prise gratuitement. La dame noire en e7 reste assez mal placée, bloquant le développement du fou f8. C'est véritablement une position où les Blancs ont l'avantage matériel et une bien meilleure sécurité, pas une évaluation restée ouverte.
+                plan:
+                  vi: Trắng chơi d4 và Nc3, dựng trung tâm rộng và hoàn thiện phát triển với vật chất hơn hẳn. Đen chơi c6 và d5, cố tranh chấp trung tâm và tìm đường thoát cho tượng f8 bị kẹt.
+                  en: White plays d4 and Nc3, building a wide centre and finishing development with the extra material in hand. Black plays c6 and d5, trying to contest the centre and find a way out for the boxed-in f8 bishop.
+                  fr: Les Blancs jouent d4 et Nc3, construisant un centre large et achevant leur développement avec le matériel supplémentaire en poche. Les Noirs jouent c6 et d5, essayant de disputer le centre et de trouver une issue pour le fou f8 enfermé.
+                basis:
+                  by: chan
+                  at: '2026-09-21'
+                  source: >-
+                    A judgement, not a measurement. No engine was consulted and no database
+                    was queried.
