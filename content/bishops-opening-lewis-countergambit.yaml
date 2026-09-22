@@ -1,0 +1,59 @@
+# Bishop's Opening: Lewis Countergambit. Frozen defining line 1.e4 e5 2.Bc4 Bc5 3.c3 d5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated,
+# including the dismissed Qxd5?? line. searchMate from the leaf FEN, bounded to 2 moves,
+# returns no-mate.
+id: bishops-opening-lewis-countergambit
+name: "Bishop's Opening: Lewis Countergambit"
+eco: C23
+category: gambit
+side: black
+definingLine: [e4, e5, Bc4, Bc5, c3, d5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black strikes back in the centre with 3...d5!?, but White simply takes
+      the pawn, and Black has no safe way to recapture it at once — the natural queen
+      recapture walks into the same bishop fork as the plain Khan Gambit. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3.c3 chuẩn bị d4, Đen chơi 3...d5!? thay vì Nf6 hay Qe7 thông thường, phản công thẳng vào trung tâm trước khi Trắng kịp hoàn tất kế hoạch của mình.
+    en: After 3.c3 preparing d4, Black plays 3...d5!? instead of the usual Nf6 or Qe7, striking straight back at the centre before White can complete the plan.
+    fr: Après 3.c3 préparant d4, les Noirs jouent 3...d5!? au lieu du Nf6 ou Qe7 habituel, contre-attaquant directement au centre avant que les Blancs ne puissent achever leur plan.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt d5. Các nước khác như Bb3 hay d4 để nguyên con tốt ấy trên bàn cờ và Đen tiếp tục theo kế hoạch ban đầu.
+      en: White does not take the d5 pawn. Anything else, such as Bb3 or d4, leaves that pawn on the board and Black continues with the original plan.
+      fr: Les Blancs ne prennent pas le pion d5. Tout le reste, comme Bb3 ou d4, laisse ce pion sur l'échiquier et les Noirs poursuivent leur plan initial.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt d5 bằng tốt e4, giữ con tượng c4 ở lại đường chéo tốt của nó. Con tốt d5 của Đen không được ai đỡ, nên đây đơn giản là ăn một tốt miễn phí.
+        en: White takes the d5 pawn with the e4 pawn, keeping the bishop on c4 on its good diagonal. Nothing defends Black's d5 pawn, so this is simply picking up a free pawn.
+        fr: Les Blancs prennent le pion d5 avec le pion e4, gardant le fou en c4 sur sa bonne diagonale. Rien ne défend le pion d5 noir, il s'agit donc simplement de ramasser un pion gratuit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, và Đen không có cách ăn lại an toàn ngay lập tức — hậu ăn lại thì mất luôn vì con tượng c4 đang nhìn thẳng vào ô d5.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, and Black has no safe way to recapture it at once — the queen recapture simply loses to the bishop on c4, which stares straight at d5.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus, et les Noirs n'ont aucun moyen sûr de le reprendre immédiatement — la reprise à la dame perd tout simplement à cause du fou en c4, qui regarde tout droit vers d5.
+        plan:
+          vi: Trắng chơi Nf3, O-O và d4, phát triển bình thường và giữ vững tốt thừa trong khi hoàn tất phát triển an toàn. Đen chơi Nf6 rồi O-O và Re8, cố hoàn tất phát triển nhanh để bù cho tốt đã mất.
+          en: White plays Nf3, O-O and d4, developing normally and holding the extra pawn while completing development safely. Black plays Nf6 then O-O and Re8, trying to develop quickly to compensate for the lost pawn.
+          fr: Les Blancs jouent Nf3, O-O et d4, se développant normalement et gardant le pion supplémentaire tout en achevant leur développement en toute sécurité. Les Noirs jouent Nf6 puis O-O et Re8, essayant de se développer rapidement pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-21'

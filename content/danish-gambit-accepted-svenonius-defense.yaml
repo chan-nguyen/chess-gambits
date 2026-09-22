@@ -1,0 +1,62 @@
+# Danish Gambit Accepted: Svenonius Defense. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3
+# Ne7, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: danish-gambit-accepted-svenonius-defense
+name: 'Danish Gambit Accepted: Svenonius Defense'
+eco: C21
+category: gambit
+side: black
+definingLine: [e4, e5, d4, exd4, c3, Ne7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Black declines the second pawn White offers with 3.c3 and instead
+      develops with 3...Ne7, planning ...Ng6 to challenge the long diagonal before White's
+      bishops get there. It gives back the first pawn for a solid but slightly passive
+      position rather than testing White's compensation directly. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn tiếp bằng 3...dxc3 để giữ hai tốt thừa, Đen chơi 3...Ne7!?, từ chối con tốt thứ hai và chuẩn bị đưa mã lên g6 để cản đường tấn công cánh vua mà các quân Trắng có thể dùng sau này.
+    en: Instead of taking a second pawn with 3...dxc3, Black plays 3...Ne7!?, declining the second pawn and preparing to bring the knight to g6 to block the kingside attacking lines White's pieces might otherwise use later.
+    fr: Au lieu de prendre un second pion par 3...dxc3, les Noirs jouent 3...Ne7!?, refusant le second pion et préparant à amener le cavalier en g6 pour bloquer les lignes d'attaque à l'aile roi que les pièces blanches pourraient sinon utiliser plus tard.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn lại con tốt d4. Các nước khác như Bc4 hay Nf3 để nguyên con tốt ấy trên bàn cờ và Đen vẫn hơn một tốt tạm thời.
+      en: White does not recapture the d4 pawn. Anything else, such as Bc4 or Nf3, leaves that pawn on the board and Black is still a pawn up for the moment.
+      fr: Les Blancs ne reprennent pas le pion d4. Tout le reste, comme Bc4 ou Nf3, laisse ce pion sur l'échiquier et les Noirs ont encore un pion d'avance pour l'instant.
+  dismissed:
+    - ply: Qxd4
+      reason: Also regains the pawn, but centralises the queen early where ...Nbc6 or ...d5 can gain a tempo on it; cxd4 keeps the same material result without that risk, so this is not modelled separately.
+  children:
+    - ply: cxd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn lại con tốt d4 bằng chính con tốt c3, quân đơn giản nhất để ăn tại đó. Vật chất trở lại cân bằng và Trắng giữ được một trung tâm tốt rộng.
+        en: White recaptures the d4 pawn with the c3 pawn itself, the most straightforward piece to take there. Material returns to level and White keeps a broad pawn centre.
+        fr: Les Blancs reprennent le pion d4 avec le pion c3 lui-même, la pièce la plus simple pour capturer là. Le matériel redevient égal et les Blancs gardent un large centre de pions.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen bảy. Vật chất đã cân bằng trở lại. Trắng có hai tốt trung tâm d4 và e4 cùng đường phát triển thoáng, còn mã e7 của Đen tạm thời hơi thụ động so với vị trí thông thường ở f6.
+          en: Count the pawns and it is seven for White, seven for Black. Material is level again. White has the d4 and e4 pawns together with open lines for development, while Black's knight on e7 is a little more passive for now than the usual f6 square.
+          fr: Comptez les pions, sept pour les Blancs, sept pour les Noirs. Le matériel est de nouveau égal. Les Blancs ont les pions d4 et e4 ensemble avec des lignes de développement ouvertes, tandis que le cavalier noir en e7 est pour l'instant un peu plus passif que la case f6 habituelle.
+        plan:
+          vi: Trắng chơi Nf3, Bc4 và O-O, phát triển nhanh và tận dụng trung tâm rộng. Đen chơi Ng6, Be7 và O-O, hoàn tất phát triển an toàn và cản đường tấn công cánh vua từ g6.
+          en: White plays Nf3, Bc4 and O-O, developing quickly and making use of the broad centre. Black plays Ng6, Be7 and O-O, completing development safely and blocking kingside attacking lines from g6.
+          fr: Les Blancs jouent Nf3, Bc4 et O-O, se développant rapidement et exploitant le large centre. Les Noirs jouent Ng6, Be7 et O-O, achevant leur développement en toute sécurité et bloquant les lignes d'attaque à l'aile roi depuis g6.
+        basis:
+          by: chan
+          at: '2026-09-21'

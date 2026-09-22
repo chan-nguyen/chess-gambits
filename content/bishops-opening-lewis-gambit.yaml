@@ -1,0 +1,61 @@
+# Bishop's Opening: Lewis Gambit. Frozen defining line 1.e4 e5 2.Bc4 Bc5 3.d4, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated, including the dismissed
+# Qxd4?? line. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: bishops-opening-lewis-gambit
+name: "Bishop's Opening: Lewis Gambit"
+eco: C23
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Bc5, d4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. White pushes 3.d4!? to open the centre and the diagonal for the bishop
+      on c1, but Black simply takes the pawn, and White has no safe way to recapture it at
+      once — the natural queen recapture walks into a bishop fork. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...Bc5 đối xứng, Trắng chơi thẳng 3.d4!?, thí tốt trung tâm để mở đường chéo cho tượng c1 và mời Đen ăn tốt ngay lập tức.
+    en: After the symmetrical 2...Bc5, White strikes at once with 3.d4!?, offering the central pawn to open the diagonal for the c1 bishop and inviting Black to take it immediately.
+    fr: Après le symétrique 2...Bc5, les Blancs frappent aussitôt par 3.d4!?, offrant le pion central pour ouvrir la diagonale du fou c1 et invitant les Noirs à le prendre immédiatement.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt d4. Các nước khác như Nf6 hay Nc6 để nguyên con tốt ấy trên bàn cờ và Trắng giữ được trung tâm rộng thêm một nước.
+      en: Black does not take the d4 pawn. Anything else, such as Nf6 or Nc6, leaves that pawn on the board and White keeps the broad centre for one more move.
+      fr: Les Noirs ne prennent pas le pion d4. Tout le reste, comme Nf6 ou Nc6, laisse ce pion sur l'échiquier et les Blancs gardent le large centre un coup de plus.
+  dismissed:
+    - ply: Bxd4
+      reason: Also wins the pawn, but moves the c5 bishop to d4 where it can be hit later by a knight coming to c3 or e2-f4 ideas; exd4 wins the same pawn while keeping the bishop on its original diagonal, so this is not modelled separately.
+  children:
+    - ply: exd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt d4 bằng tốt e5, quân đơn giản nhất để ăn tại đó. Con tốt d4 của Trắng không được ai đỡ trực tiếp lúc này, nên đây là cách ăn tự nhiên nhất.
+        en: Black takes the d4 pawn with the e5 pawn, the most straightforward piece to capture there. Nothing directly defends White's d4 pawn at this point, so this is the most natural way to take it.
+        fr: Les Noirs prennent le pion d4 avec le pion e5, la pièce la plus simple pour capturer là. Rien ne défend directement le pion d4 blanc à ce stade, c'est donc la façon la plus naturelle de le prendre.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám. Trắng kém đúng một tốt sạch, và không có cách ăn lại an toàn ngay lập tức — hậu ăn lại thì mất luôn vì con tượng c5 của Đen đang nhìn thẳng vào ô d4.
+          en: Count the pawns and it is seven for White, eight for Black. White is a clean pawn down, and there is no safe way to recapture it at once — the queen recapture simply loses to Black's bishop on c5, which stares straight at d4.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs. Les Blancs ont un pion de retard, et il n'y a aucun moyen sûr de le reprendre immédiatement — la reprise à la dame perd tout simplement à cause du fou noir en c5, qui regarde tout droit vers d4.
+        plan:
+          vi: Trắng chơi Nf3, O-O và Re1, phát triển bình thường và cố gây sức ép lên tốt d4 của Đen sau này. Đen chơi Nf6 hay Nc6 và d6, hoàn tất phát triển an toàn và giữ vững tốt thừa.
+          en: White plays Nf3, O-O and Re1, developing normally and trying to pressure Black's d4 pawn later. Black plays Nf6 or Nc6 and d6, completing development safely and holding the extra pawn.
+          fr: Les Blancs jouent Nf3, O-O et Re1, se développant normalement et essayant de faire pression plus tard sur le pion d4 noir. Les Noirs jouent Nf6 ou Nc6 et d6, achevant leur développement en toute sécurité et gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-21'

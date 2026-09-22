@@ -1,0 +1,60 @@
+# Borg Defense: Troon Gambit. Frozen defining line 1.e4 g5 2.d4 h6 3.h4 g4, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated; the dismissed 4.Bxh6 was checked
+# the same way. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: borg-defense-troon-gambit
+name: 'Borg Defense: Troon Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, g5, d4, h6, h4, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Three kingside pawn moves in a row (1...g5, 2...h6, 3...g4) have opened
+      Black's own king wide without developing a single piece, and 3...g4 simply hangs a
+      pawn on top of that. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...h6 chống lại 3.h4, Đen đẩy tiếp 3...g4 để tránh bị Trắng đẩy tốt tiếp, nhưng con tốt g4 này lại không được quân nào đỡ và cùng lúc bỏ ngỏ con tốt h6 phía sau.
+    en: After 2...h6 in reply to 3.h4, Black pushes on with 3...g4 to dodge a further pawn advance, but that g4 pawn is defended by nothing, and h6 is left hanging behind it at the same time.
+    fr: Après 2...h6 en réponse à 3.h4, les Noirs poussent encore par 3...g4 pour éviter une nouvelle avance de pion, mais ce pion g4 n'est défendu par rien, et h6 se retrouve en prise en même temps.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt ngay. Các nước khác như Nc3 hay Be3 để nguyên cả hai con tốt g4 và h6 trên bàn cờ và cho Đen thời gian phát triển.
+      en: White does not take a pawn straight away. Anything else, such as Nc3 or Be3, leaves both the g4 and h6 pawns on the board and gives Black time to develop.
+      fr: Les Blancs ne prennent pas de pion tout de suite. Tout le reste, comme Nc3 ou Be3, laisse les deux pions g4 et h6 sur l'échiquier et donne aux Noirs le temps de se développer.
+  dismissed:
+    - ply: Bxh6
+      reason: Also wins a pawn, taking h6 instead of g4, and is roughly as good; not modelled separately because Qxg4 wins the more advanced, more exposed pawn and keeps the bishop's diagonal for later.
+  children:
+    - ply: Qxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Hậu Trắng ăn thẳng con tốt g4 dọc đường chéo mở từ d1. Đây là cách đơn giản nhất để lấy vật chất, và hậu đứng ở g4 vẫn hoàn toàn an toàn vì không quân Đen nào tấn công được ô đó ngay.
+        en: White's queen simply takes the g4 pawn along the open diagonal from d1. This is the most direct way to win material, and the queen is entirely safe on g4 because nothing of Black's attacks that square yet.
+        fr: La dame blanche prend simplement le pion g4 le long de la diagonale ouverte depuis d1. C'est le moyen le plus direct de gagner du matériel, et la dame est tout à fait en sécurité en g4 car rien du côté noir n'attaque encore cette case.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, và vua Đen đã mất luôn quyền phòng thủ tự nhiên ở cánh vua sau ba nước đẩy tốt liên tiếp mà chưa đưa ra được quân nào.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, and Black's king has already lost its natural kingside defences after three straight pawn pushes with not a single piece developed yet.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion de plus, et le roi noir a déjà perdu ses défenses naturelles à l'aile roi après trois poussées de pion consécutives, sans qu'une seule pièce n'ait été développée.
+        plan:
+          vi: Trắng chơi Nf3 hoặc Nc3 và Bc4, phát triển nhanh và nhắm thẳng vào cánh vua Đen đã suy yếu. Đen chơi Bg7, Nc6 và d6, cố hoàn tất phát triển trước khi Trắng kịp tận dụng các ô yếu.
+          en: White plays Nf3 or Nc3 and Bc4, developing quickly and aiming straight at Black's weakened kingside. Black plays Bg7, Nc6 and d6, trying to complete development before White can exploit the weak squares.
+          fr: Les Blancs jouent Nf3 ou Nc3 et Bc4, se développant rapidement et visant directement l'aile roi noire affaiblie. Les Noirs jouent Bg7, Nc6 et d6, essayant d'achever leur développement avant que les Blancs n'exploitent les cases faibles.
+        basis:
+          by: chan
+          at: '2026-09-21'

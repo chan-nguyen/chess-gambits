@@ -1,0 +1,66 @@
+# Blackmar-Diemer Gambit: Blackmar Gambit. Frozen defining line 1.d4 d5 2.e4 dxe4 3.f3,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Every ply below was replayed with chess.js, including White's own
+# recapture 4.Nxf3, which is not an opponent reply and so carries no replyQuality or
+# frequency. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: blackmar-diemer-gambit-blackmar-gambit
+name: 'Blackmar-Diemer Gambit: Blackmar Gambit'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, f3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. This is the original 1880s predecessor of the Blackmar-Diemer Gambit,
+      offering the f-pawn straight away without first developing the queenside knight to
+      c3. Black simply takes it and White is left a full pawn down with less to show for it
+      than the later, more refined move order. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã thí một tốt bằng 2.e4, và giờ chơi tiếp 3.f3!?, mời Đen ăn thêm tốt f3 để mở cột f cho xe và đường chéo cho tượng c1, theo đúng tinh thần gambit nhưng chưa qua bước phát triển Nc3 trước.
+    en: White has already offered a pawn with 2.e4, and now plays on with 3.f3!?, inviting Black to take the f3 pawn too, opening the f-file for the rook and the diagonal for the c1 bishop, in the spirit of the gambit but without first developing Nc3.
+    fr: Les Blancs ont déjà offert un pion par 2.e4, et poursuivent par 3.f3!?, invitant les Noirs à prendre aussi le pion f3, ouvrant la colonne f pour la tour et la diagonale pour le fou c1, dans l'esprit du gambit mais sans avoir d'abord développé Nc3.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt f3. Các nước khác như Nf6 hay Bf5 để nguyên con tốt e4 đã ăn được và tránh mở thêm đường cho quân Trắng, nhưng cũng bỏ lỡ cơ hội ăn thêm vật chất.
+      en: Black does not take the f3 pawn. Anything else, such as Nf6 or Bf5, keeps the already-won e4 pawn and avoids opening more lines for White's pieces, but also passes up the chance to win further material.
+      fr: Les Noirs ne prennent pas le pion f3. Tout le reste, comme Nf6 ou Bf5, conserve le pion e4 déjà gagné et évite d'ouvrir davantage de lignes pour les pièces blanches, mais renonce aussi à la possibilité de gagner du matériel supplémentaire.
+  children:
+    - ply: exf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt f3, quân duy nhất có thể ăn tại đó. Đen giờ hơn hai tốt sạch, và Trắng phải ăn lại để lấy lại một phần vật chất và mở đường cho quân.
+        en: Black takes the f3 pawn, the only piece that can capture there. Black is now up two clean pawns, and White has to recapture to win back some material and open lines for the pieces.
+        fr: Les Noirs prennent le pion f3, la seule pièce pouvant capturer là. Les Noirs ont désormais deux pions d'avance, et les Blancs doivent reprendre pour regagner du matériel et ouvrir des lignes pour leurs pièces.
+      children:
+        - ply: Nxf3
+          annotation:
+            vi: Trắng ăn lại bằng mã từ g1, phát triển một quân thay vì ăn bằng tốt g2 và làm xấu cấu trúc tốt cánh vua. Đây là cách ăn lại đúng tinh thần gambit, mở đường cho các quân còn lại.
+            en: White recaptures with the knight from g1, developing a piece rather than recapturing with the g2 pawn and damaging the kingside pawn structure. This is the recapture in the true spirit of the gambit, opening lines for the remaining pieces.
+            fr: Les Blancs reprennent avec le cavalier depuis g1, développant une pièce plutôt que de reprendre avec le pion g2 et d'abîmer la structure de pions de l'aile roi. C'est la reprise dans l'esprit véritable du gambit, ouvrant des lignes pour les pièces restantes.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng sáu, Đen tám. Trắng kém đúng một tốt sạch. Đổi lại, mã đã ra f3 với sự phát triển tự nhiên, cột f mở cho xe f1, và đường chéo c1-h6 mở cho tượng, nhưng vẫn còn phải chứng minh sức ép ấy đáng giá một tốt sạch.
+              en: Count the pawns and it is six for White, eight for Black. White is a clean pawn down. In return, the knight has developed naturally to f3, the f-file is open for the rook on f1, and the c1-h6 diagonal is open for the bishop, but it still remains to be shown that this pressure is worth a full pawn.
+              fr: Comptez les pions, six pour les Blancs, huit pour les Noirs. Les Blancs ont un pion de retard. En échange, le cavalier s'est développé naturellement en f3, la colonne f est ouverte pour la tour f1, et la diagonale c1-h6 est ouverte pour le fou, mais il reste à démontrer que cette pression vaut un pion entier.
+            plan:
+              vi: Trắng chơi Bc4 hay Bd3, O-O và Qe1, tập trung quân vào cánh vua Đen để tận dụng cột f và đường chéo đã mở. Đen chơi e6 hay g6, Be7 hay Bg7 và O-O, hoàn tất phát triển an toàn và giữ vững tốt thừa.
+              en: White plays Bc4 or Bd3, O-O and Qe1, massing pieces against Black's kingside to make use of the open f-file and diagonal. Black plays e6 or g6, Be7 or Bg7 and O-O, completing development safely and holding the extra pawns.
+              fr: Les Blancs jouent Bc4 ou Bd3, O-O et Qe1, massant leurs pièces contre l'aile roi noire pour exploiter la colonne f et la diagonale ouvertes. Les Noirs jouent e6 ou g6, Be7 ou Bg7 et O-O, achevant leur développement en toute sécurité et gardant les pions supplémentaires.
+            basis:
+              by: chan
+              at: '2026-09-21'

@@ -1,0 +1,58 @@
+# Bird Opening: From's Gambit, Bahr Gambit. Frozen defining line 1.f4 e5 2.Nc3, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated. searchMate from the leaf
+# FEN, bounded to 2 moves, returns no-mate.
+id: bird-opening-froms-gambit-bahr-gambit
+name: "Bird Opening: From's Gambit, Bahr Gambit"
+eco: A02
+category: gambit
+side: white
+definingLine: [f4, e5, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. Rather than take on e5 at once, White develops with 2.Nc3, leaving the
+      f4 pawn hanging as well. Black simply collects it, and White's case is a lead in
+      development and a knight already out, real but unproven against a clean pawn. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn ngay 2.fxe5, Trắng chơi 2.Nc3, phát triển một quân trước và để nguyên căng thẳng ở trung tâm. Con tốt f4 giờ không được ai đỡ, mời Đen ăn nó.
+    en: Instead of taking at once with 2.fxe5, White plays 2.Nc3, developing a piece first and leaving the central tension alone. The f4 pawn is now undefended, inviting Black to take it.
+    fr: Au lieu de prendre immédiatement par 2.fxe5, les Blancs jouent 2.Nc3, développant d'abord une pièce et laissant la tension centrale telle quelle. Le pion f4 n'est désormais plus défendu, invitant les Noirs à le prendre.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt f4. Các nước khác như Nc6 hay d6 để nguyên con tốt ấy trên bàn cờ, nghĩa là Trắng chưa hề trả giá cho việc trì hoãn ăn ở e5.
+      en: Black does not take the f4 pawn. Anything else, such as Nc6 or d6, leaves that pawn sitting on the board, meaning White has not yet paid any price for delaying the capture on e5.
+      fr: Les Noirs ne prennent pas le pion f4. Tout le reste, comme Nc6 ou d6, laisse ce pion sur l'échiquier, ce qui signifie que les Blancs n'ont pas encore payé de prix pour avoir retardé la prise en e5.
+  children:
+    - ply: exf4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt f4, quân duy nhất có thể ăn tại đó. Con tốt e5 của Đen giờ đã đổi thành tốt f4, và Trắng chưa có gì cụ thể để bù lại.
+        en: Black takes the f4 pawn, the only piece that can capture there. Black's e5 pawn has simply traded itself for the f4 pawn, and White has nothing concrete to show for it yet.
+        fr: Les Noirs prennent le pion f4, la seule pièce pouvant capturer là. Le pion e5 noir vient de s'échanger contre le pion f4, et les Blancs n'ont encore rien de concret à montrer pour cela.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám. Trắng kém một tốt sạch và con tốt f4 của Đen giờ đứng sâu trong phần sân Trắng, cản trở việc nhập thành ngắn. Cái Trắng có là mã c3 đã phát triển và lượt đi.
+          en: Count the pawns and it is seven for White, eight for Black. White is a clean pawn down and Black's f4 pawn now sits deep in White's camp, getting in the way of short castling. What White has is the developed knight on c3 and the move.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs. Les Blancs ont un pion de retard et le pion f4 noir se retrouve profondément ancré dans le camp blanc, gênant le petit roque. Ce que les Blancs ont, c'est le cavalier développé en c3 et le trait.
+        plan:
+          vi: Trắng chơi Nf3, e4 và Bc4 hay d4, cố mở đường cho các quân còn lại và tạo sức ép trước khi Đen kịp củng cố con tốt f4. Đen chơi Nc6, g5 và Bg7 hoặc d6, giữ vững con tốt thừa và hoàn tất phát triển.
+          en: White plays Nf3, e4 and Bc4 or d4, trying to open lines for the remaining pieces and create pressure before Black can consolidate the f4 pawn. Black plays Nc6, g5 and Bg7 or d6, holding the extra pawn and completing development.
+          fr: Les Blancs jouent Nf3, e4 et Bc4 ou d4, essayant d'ouvrir des lignes pour les pièces restantes et de créer de la pression avant que les Noirs ne puissent consolider le pion f4. Les Noirs jouent Nc6, g5 et Bg7 ou d6, gardant le pion supplémentaire et achevant leur développement.
+        basis:
+          by: chan
+          at: '2026-09-21'

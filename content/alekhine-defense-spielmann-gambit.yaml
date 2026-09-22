@@ -1,0 +1,58 @@
+# Alekhine Defense: Spielmann Gambit. Frozen defining line 1.e4 Nf6 2.Nc3 d5 3.e5 Nfd7
+# 4.e6, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: alekhine-defense-spielmann-gambit
+name: 'Alekhine Defense: Spielmann Gambit'
+eco: B02
+category: gambit
+side: white
+definingLine: [e4, Nf6, Nc3, d5, e5, Nfd7, e6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-21'
+  basis:
+    by: chan
+    at: '2026-09-21'
+    source: >-
+      A judgement. White pushes the e-pawn a second time to e6, giving it up in exchange
+      for damaging Black's pawn structure and gaining time. It is a sharp practical try
+      rather than a proven advantage — Black simply takes the pawn and untangles. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-21'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì rút lui hay đỡ tốt e5, Trắng đẩy tiếp 4.e6!?, thí luôn con tốt để phá vỡ cấu trúc tốt cánh vua của Đen trước khi mã d7 kịp ăn lại.
+    en: Instead of retreating or defending the e5 pawn, White pushes on with 4.e6!?, giving up the pawn to wreck Black's kingside pawn structure before the knight on d7 gets to recapture.
+    fr: Au lieu de reculer ou de défendre le pion e5, les Blancs poussent par 4.e6!?, sacrifiant le pion pour abîmer la structure de pions de l'aile roi noire avant que le cavalier en d7 ne puisse reprendre.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e6. Các nước khác như Nb6 hay c6 để nguyên con tốt ấy trên bàn cờ và Trắng vẫn giữ được cấu trúc trung tâm tạm thời.
+      en: Black does not take the e6 pawn. Anything else, such as Nb6 or c6, leaves that pawn on the board and White keeps the central structure a little longer.
+      fr: Les Noirs ne prennent pas le pion e6. Tout le reste, comme Nb6 ou c6, laisse ce pion sur l'échiquier et les Blancs conservent un peu plus longtemps la structure centrale.
+  children:
+    - ply: fxe6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại bằng tốt f7, quân đơn giản nhất để ăn tại đó. Cấu trúc tốt của Đen giờ có tốt e6 và tốt d5 song song, còn cột f đã mở cho xe f8.
+        en: Black recaptures with the f7 pawn, the most straightforward piece to take there. Black's pawn structure now has e6 and d5 side by side, and the f-file has opened for the rook on f8.
+        fr: Les Noirs reprennent avec le pion f7, la pièce la plus simple pour capturer là. La structure de pions noire a désormais e6 et d5 côte à côte, et la colonne f s'est ouverte pour la tour f8.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám. Trắng kém một tốt sạch. Đổi lại, tốt e6 và d5 của Đen không đỡ lẫn nhau theo cách thông thường và mã d7 tạm thời bị vướng, nhưng chưa có gì cụ thể để nói đây là đủ bù cho tốt đã mất.
+          en: Count the pawns and it is seven for White, eight for Black. White is a clean pawn down. In return, Black's e6 and d5 pawns do not support each other in the usual way and the knight on d7 is temporarily cramped, but there is nothing concrete yet to call this full compensation for the pawn.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs. Les Blancs ont un pion de retard. En échange, les pions e6 et d5 noirs ne se soutiennent pas de façon habituelle et le cavalier en d7 est temporairement à l'étroit, mais rien de concret ne permet encore d'y voir une compensation suffisante pour le pion.
+        plan:
+          vi: Trắng chơi Nf3, Bc4 và O-O, phát triển nhanh và nhắm vào tốt e6 cùng ô f7 đã yếu. Đen chơi Nb6, Be7 và O-O, hoàn tất phát triển và cố giữ vững cấu trúc tốt dù không cân đối.
+          en: White plays Nf3, Bc4 and O-O, developing quickly and aiming at the e6 pawn and the weakened f7 square. Black plays Nb6, Be7 and O-O, completing development and trying to hold the structure together despite its odd shape.
+          fr: Les Blancs jouent Nf3, Bc4 et O-O, se développant rapidement et visant le pion e6 ainsi que la case f7 affaiblie. Les Noirs jouent Nb6, Be7 et O-O, achevant leur développement et essayant de tenir la structure malgré sa forme inhabituelle.
+        basis:
+          by: chan
+          at: '2026-09-21'
