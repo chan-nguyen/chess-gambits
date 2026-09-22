@@ -1,0 +1,65 @@
+# Portuguese Opening: Portuguese Gambit. Frozen defining line 1.e4 e5 2.Bb5 Nf6 3.d4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 3 moves, returns no-mate.
+id: portuguese-opening-portuguese-gambit
+name: 'Portuguese Opening: Portuguese Gambit'
+eco: C20
+category: gambit
+side: white
+definingLine: [e4, e5, Bb5, Nf6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White strikes the centre with d4 while the bishop is already committed
+      to b5, offering the pawn to open lines quickly against a black king still in the
+      centre. It resembles a Scotch-style break but a move earlier than usual, and Black
+      can take and consolidate, so the compensation needs care to be real. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.d4, thí tốt d để mở trung tâm ngay lập tức trong khi tượng đã đứng ở b5, giành nhịp phát triển và đường mở.'
+    en: 'White plays 3.d4, sacrificing the d-pawn to open the centre at once while the bishop is already posted on b5, gaining development tempo and open lines.'
+    fr: 'Les Blancs jouent 3.d4, sacrifiant le pion d pour ouvrir immédiatement le centre pendant que le fou est déjà posté en b5, gagnant du temps de développement et des lignes ouvertes.'
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt d4. Các nước như Nxe4 ăn tốt khác hoặc a6 đuổi tượng đều có thể, nhưng để nguyên căng thẳng ở trung tâm chưa được giải quyết.'
+      en: 'Black does not take the d4 pawn. Moves such as Nxe4, taking a different pawn, or a6, chasing the bishop, are both possible, but they leave the central tension unresolved.'
+      fr: 'Les Noirs ne prennent pas le pion d4. Des coups comme Nxe4, prenant un autre pion, ou a6, chassant le fou, sont tous deux possibles, mais laissent la tension centrale non résolue.'
+  children:
+    - ply: exd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt d4 bằng tốt e5, đơn giản là nhận con tốt trung tâm được mời và giữ thêm một tốt trên bàn cờ.'
+        en: 'Black takes the d4 pawn with the e5 pawn, simply accepting the offered central pawn and holding an extra pawn on the board.'
+        fr: "Les Noirs prennent le pion d4 avec le pion e5, acceptant simplement le pion central offert et gardant un pion supplémentaire sur l'échiquier."
+      children:
+        - ply: e5
+          annotation:
+            vi: 'Trắng đẩy tốt lên e5 tấn công mã f6, giành nhịp thay vì vội ăn lại tốt d4 ngay bằng hậu.'
+            en: 'White pushes the pawn to e5, attacking the f6 knight and gaining a tempo instead of rushing to recapture the d4 pawn with the queen at once.'
+            fr: 'Les Blancs poussent le pion en e5, attaquant le cavalier f6 et gagnant un temps plutôt que de se précipiter pour reprendre le pion d4 avec la dame tout de suite.'
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt thì Trắng bảy, Đen tám, Trắng vẫn kém đúng một tốt. Con mã f6 của Đen buộc phải di chuyển ngay, cho Trắng thêm một nhịp phát triển để bù lại con tốt đã mất.'
+              en: "Count the pawns and it is seven for White, eight for Black, White still a clean pawn down. Black's f6 knight has to move at once, giving White another tempo of development to make up for the lost pawn."
+              fr: 'Comptez les pions, sept pour les Blancs, huit pour les Noirs, les Blancs ont toujours un pion de retard. Le cavalier noir en f6 doit bouger immédiatement, offrant aux Blancs un temps de développement supplémentaire pour compenser le pion perdu.'
+            plan:
+              vi: 'Trắng chơi O-O rồi Re1, tiếp tục phát triển nhanh và gây áp lực lên trung tâm cùng con mã vừa bị đẩy. Đen chơi Nd5 hay Ne4, tìm một ô đứng vững chắc và cố giữ vững tốt thừa.'
+              en: 'White plays O-O followed by Re1, continuing to develop quickly and pressuring the centre and the knight just chased away. Black plays Nd5 or Ne4, finding a stable square and trying to hold on to the extra pawn.'
+              fr: "Les Blancs jouent O-O puis Re1, poursuivant un développement rapide et faisant pression sur le centre et le cavalier qui vient d'être chassé. Les Noirs jouent Nd5 ou Ne4, trouvant une case stable et essayant de conserver le pion supplémentaire."
+            basis:
+              by: chan
+              at: '2026-09-22'

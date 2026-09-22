@@ -1,0 +1,65 @@
+# Latvian Gambit: Mason Countergambit. Frozen defining line 1.e4 e5 2.Nf3 f5 3.d4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 3 moves, returns no-mate.
+id: latvian-gambit-mason-countergambit
+name: 'Latvian Gambit: Mason Countergambit'
+eco: C40
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, f5, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Instead of the routine 3.Nxe5, White strikes the centre with d4, offering
+      a second pawn to rip the position open before Black's king finds shelter. It is
+      thematically consistent with the whole Latvian complex — everyone keeps sacrificing —
+      but two pawns down needs a genuine attack to justify, and White has not built one yet
+      at this exact point. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.d4!?, một gambit đáp trả gambit, thí thêm một tốt trung tâm để phá vỡ cấu trúc trung tâm của Đen ngay lập tức.'
+    en: 'White plays 3.d4!?, a countergambit answering a gambit, offering another central pawn to blow the centre open immediately.'
+    fr: 'Les Blancs jouent 3.d4!?, un contre-gambit répondant à un gambit, offrant un autre pion central pour ouvrir le centre immédiatement.'
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt d4. Các nước như fxe4 ăn tốt e4 trước hoặc Nf6 phát triển bình thường đều có thể, nhưng để lại căng thẳng ở trung tâm chưa được giải quyết theo cách khác.'
+      en: 'Black does not take the d4 pawn. Moves such as fxe4, taking the e4 pawn first, or the normal developing Nf6 are both possible, but they leave the central tension unresolved in a different way.'
+      fr: "Les Noirs ne prennent pas le pion d4. Des coups comme fxe4, prenant d'abord le pion e4, ou le développement normal Nf6 sont tous deux possibles, mais ils laissent la tension centrale non résolue d'une autre manière."
+  children:
+    - ply: exd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt d4 bằng tốt e5, nhận con tốt thứ hai và giữ thêm căng thẳng ở trung tâm với con tốt f5 vẫn đang đe dọa e4.'
+        en: 'Black takes the d4 pawn with the e5 pawn, accepting the second pawn and keeping extra central tension with the f5 pawn still eyeing e4.'
+        fr: 'Les Noirs prennent le pion d4 avec le pion e5, acceptant le second pion tout en gardant une tension centrale supplémentaire, le pion f5 visant toujours e4.'
+      children:
+        - ply: exf5
+          annotation:
+            vi: 'Trắng ăn lại tốt f5 đang bị treo bằng tốt e4, giải tỏa căng thẳng và lấy lại quân số ngang bằng thay vì vội vàng ăn tốt d4 tiến sâu.'
+            en: 'White recaptures the hanging f5 pawn with the e4 pawn, releasing the tension and restoring material equality rather than rushing to take the advanced d4 pawn.'
+            fr: "Les Blancs reprennent le pion f5 en prise avec le pion e4, relâchant la tension et rétablissant l'égalité matérielle plutôt que de se précipiter pour prendre le pion d4 avancé."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt thì Trắng bảy, Đen bảy, vật chất lại cân bằng. Con tốt d4 của Đen tiến sâu vào phần sân Trắng và choán chỗ đáng kể, nhưng vẫn chỉ là một tốt và cả hai vua đều chưa nhập thành.'
+              en: "Count the pawns and it is seven for White, seven for Black, material is level again. Black's d4 pawn is pushed deep into White's half of the board and takes up real space, but it remains just one pawn and neither king has castled yet."
+              fr: "Comptez les pions, sept pour les Blancs, sept pour les Noirs, le matériel est de nouveau égal. Le pion d4 noir est poussé loin dans le camp blanc et prend beaucoup de place, mais il ne reste qu'un seul pion et aucun roi n'a encore roqué."
+            plan:
+              vi: 'Trắng chơi Bc4 hoặc Nxd4 sau đó, phát triển nhanh và nhắm vào f7 cùng con tốt d4 tiền tiêu. Đen chơi Nf6 hay Nc6, hoàn thiện phát triển và cố giữ vững con tốt d4 choán chỗ ấy.'
+              en: 'White plays Bc4, or Nxd4 a little later, developing quickly and taking aim at both f7 and the advanced d4 pawn. Black plays Nf6 or Nc6, completing development and trying to hold on to that cramping d4 pawn.'
+              fr: 'Les Blancs jouent Bc4, ou Nxd4 un peu plus tard, se développant rapidement et visant à la fois f7 et le pion d4 avancé. Les Noirs jouent Nf6 ou Nc6, achevant leur développement et essayant de conserver ce pion d4 gênant.'
+            basis:
+              by: chan
+              at: '2026-09-22'

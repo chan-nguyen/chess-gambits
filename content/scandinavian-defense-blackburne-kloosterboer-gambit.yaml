@@ -1,0 +1,65 @@
+# Scandinavian Defense: Blackburne-Kloosterboer Gambit. Frozen defining line 1.e4 d5 2.exd5
+# c6, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: scandinavian-defense-blackburne-kloosterboer-gambit
+name: 'Scandinavian Defense: Blackburne-Kloosterboer Gambit'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, c6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black offers a second pawn on top of the one already lost to 2.exd5,
+      betting entirely on the lead in development after White grabs both pawns. Giving up
+      two pawns this early is a lot to ask for compensation that has not shown itself yet,
+      so this is judged unsound even though it has trapped many unprepared opponents. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen chơi 2...c6!?, thí thêm một tốt nữa bên cạnh tốt d5 đã mất, đặt cược hoàn toàn vào lợi thế phát triển nếu Trắng ăn cả hai tốt.'
+    en: 'Black plays 2...c6!?, offering a second pawn on top of the d5 pawn already lost, betting entirely on a development lead if White takes both pawns.'
+    fr: 'Les Noirs jouent 2...c6!?, offrant un second pion en plus du pion d5 déjà perdu, misant entièrement sur une avance de développement si les Blancs prennent les deux pions.'
+  dismissRest:
+    reason:
+      vi: 'Trắng không ăn tốt c6 ngay. Các nước như d4 hay Nf3 phát triển bình thường đều được, nhưng để nguyên con tốt ấy trên bàn cờ cho Đen chuộc lại tốt d5 bằng cxd5.'
+      en: 'White does not take the c6 pawn at once. Moves such as d4 or Nf3 develop normally and are fine, but they leave that pawn on the board for Black to recapture the d5 pawn with cxd5.'
+      fr: "Les Blancs ne prennent pas immédiatement le pion c6. Des coups comme d4 ou Nf3 se développent normalement et sont corrects, mais laissent ce pion sur l'échiquier, permettant aux Noirs de reprendre le pion d5 avec cxd5."
+  children:
+    - ply: dxc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn luôn tốt c6, nhận con tốt thứ hai được mời và đặt Đen vào thế phải chứng minh sự đền bù cho hai tốt đã mất.'
+        en: 'White takes the c6 pawn as well, accepting the second offered pawn and putting Black to the test of proving compensation for two lost pawns.'
+        fr: "Les Blancs prennent aussi le pion c6, acceptant le second pion offert et mettant les Noirs à l'épreuve de prouver une compensation pour deux pions perdus."
+      children:
+        - ply: Nxc6
+          annotation:
+            vi: 'Đen ăn lại tốt c6 bằng mã, lấy lại một phần vật chất và đưa quân ra một ô phát triển hợp lý cùng lúc.'
+            en: 'Black recaptures the c6 pawn with the knight, winning back some material and developing the piece to a reasonable square at the same time.'
+            fr: 'Les Noirs reprennent le pion c6 avec le cavalier, regagnant un peu de matériel tout en développant la pièce sur une case raisonnable.'
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt thì Trắng bảy, Đen sáu, Trắng hơn đúng một tốt. Đen đã lấy lại một quân nên khoảng cách vật chất giờ chỉ còn một tốt, và mã c6 lại là một quân đã phát triển.'
+              en: 'Count the pawns and it is seven for White, six for Black, White exactly one pawn up. Black has won back a piece, so the material gap is now down to a single pawn, and the knight on c6 is a developed piece rather than a liability.'
+              fr: "Comptez les pions, sept pour les Blancs, six pour les Noirs, les Blancs ont un pion de plus. Les Noirs ont regagné une pièce, l'écart matériel se réduit donc à un seul pion, et le cavalier en c6 est une pièce développée plutôt qu'un handicap."
+            plan:
+              vi: 'Trắng chơi d4 và Nf3, củng cố trung tâm và hoàn thiện phát triển với tốt thừa. Đen chơi e5 hoặc Nf6, tiếp tục phát triển nhanh và cố khai thác nhịp còn lại để bù cho tốt đã mất.'
+              en: 'White plays d4 and Nf3, shoring up the centre and completing development with the extra pawn. Black plays e5 or Nf6, continuing to develop quickly and trying to make use of remaining tempo to compensate for the lost pawn.'
+              fr: "Les Blancs jouent d4 et Nf3, consolidant le centre et achevant leur développement avec le pion supplémentaire. Les Noirs jouent e5 ou Nf6, poursuivant un développement rapide et essayant d'exploiter le temps restant pour compenser le pion perdu."
+            basis:
+              by: chan
+              at: '2026-09-22'

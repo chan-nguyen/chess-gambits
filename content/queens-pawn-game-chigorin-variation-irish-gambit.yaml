@@ -1,0 +1,59 @@
+# Queen's Pawn Game: Chigorin Variation, Irish Gambit. Frozen defining line 1.d4 d5 2.Nc3
+# c5, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: queens-pawn-game-chigorin-variation-irish-gambit
+name: "Queen's Pawn Game: Chigorin Variation, Irish Gambit"
+eco: D00
+category: gambit
+side: black
+definingLine: [d4, d5, Nc3, c5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black offers the c-pawn to strike at the centre immediately and open
+      lines before White's knight development is finished, in the spirit of the Albin and
+      Benko complexes. It gives real practical activity, but White can simply take and
+      consolidate with an extra, cleanly won pawn, so it is judged dubious rather than fully
+      equal. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen chơi 2...c5!?, thí tốt c để tấn công thẳng vào trung tâm Trắng ngay khi mã vừa ra c3, mở đường cho các quân còn lại.'
+    en: "Black plays 2...c5!?, offering the c-pawn to strike straight at White's centre right after the knight has come out to c3, opening lines for the remaining pieces."
+    fr: 'Les Noirs jouent 2...c5!?, offrant le pion c pour frapper directement le centre blanc juste après la sortie du cavalier en c3, ouvrant des lignes pour les pièces restantes.'
+  dismissRest:
+    reason:
+      vi: 'Trắng không ăn tốt c5 ngay. Các nước như Nf3 hay e4 phát triển bình thường đều được, nhưng để nguyên con tốt ấy trên bàn cờ cho Đen.'
+      en: 'White does not take the c5 pawn at once. Moves such as Nf3 or e4 develop normally and are fine, but they leave that pawn on the board for Black.'
+      fr: "Les Blancs ne prennent pas immédiatement le pion c5. Des coups comme Nf3 ou e4 se développent normalement et sont corrects, mais laissent ce pion sur l'échiquier pour les Noirs."
+  children:
+    - ply: dxc5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt c5 bằng tốt d4, đơn giản là nhận con tốt được mời và giữ thêm một tốt trên bàn cờ.'
+        en: 'White takes the c5 pawn with the d4 pawn, simply accepting the offered pawn and holding an extra pawn on the board.'
+        fr: "Les Blancs prennent le pion c5 avec le pion d4, acceptant simplement le pion offert et gardant un pion supplémentaire sur l'échiquier."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt. Đen có thể tính đến e5 hay Nf6 để giành lại không gian trung tâm, nhưng chưa có gì cụ thể ngay bây giờ để lấy lại con tốt đã mất.'
+          en: 'Count the pawns and it is eight for White, seven for Black, White exactly one pawn up. Black can look at e5 or Nf6 to fight for central space, but nothing concrete exists yet to win the lost pawn back.'
+          fr: "Comptez les pions, huit pour les Blancs, sept pour les Noirs, les Blancs ont un pion de plus. Les Noirs peuvent envisager e5 ou Nf6 pour lutter pour l'espace central, mais rien de concret n'existe encore pour regagner le pion perdu."
+        plan:
+          vi: 'Trắng chơi Nf3 và e4, giữ vững tốt thừa và xây dựng trung tâm rộng. Đen chơi e5 hoặc Nf6 và e5, giành lại không gian và nhắm vào con tốt c5 của Trắng.'
+          en: "White plays Nf3 and e4, holding the extra pawn and building a broad centre. Black plays e5, or Nf6 followed by e5, fighting back for space and taking aim at White's c5 pawn."
+          fr: "Les Blancs jouent Nf3 et e4, conservant le pion supplémentaire et bâtissant un centre large. Les Noirs jouent e5, ou Nf6 puis e5, luttant pour l'espace et visant le pion blanc en c5."
+        basis:
+          by: chan
+          at: '2026-09-22'
