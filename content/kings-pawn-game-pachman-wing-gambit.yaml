@@ -1,0 +1,58 @@
+# King's Pawn Game: Pachman Wing Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.b4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated. searchMate from the
+# leaf FEN, bounded to 3 moves, returns no-mate.
+id: kings-pawn-game-pachman-wing-gambit
+name: "King's Pawn Game: Pachman Wing Gambit"
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White offers a wing pawn for a tempo on the bishop that would otherwise
+      go to c5, plus an open b-file later, but a wing pawn bought this early rarely pays for
+      itself against accurate defence, and Black keeps a clean extra pawn with no structural
+      damage. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.b4!?, một gambit cánh hậu sớm, mời Đen ăn tốt để đổi lấy nhịp và cột b mở sau này.'
+    en: 'White plays 3.b4!?, an early wing gambit, inviting Black to take the pawn in exchange for a tempo and a later open b-file.'
+    fr: "Les Blancs jouent 3.b4!?, un gambit d'aile précoce, invitant les Noirs à prendre le pion en échange d'un temps et d'une colonne b ouverte plus tard."
+  dismissRest:
+    reason:
+      vi: 'Đen không ăn tốt b4. Các nước như d5 hay Nf6 phát triển bình thường và để nguyên con tốt ấy, khiến Trắng phải tự tìm cách biện minh cho b4 mà chưa có gì đổi lại ngay.'
+      en: 'Black does not take the b4 pawn. Moves such as d5 or Nf6 develop normally and leave that pawn alone, leaving White to justify b4 without anything immediate in return.'
+      fr: 'Les Noirs ne prennent pas le pion b4. Des coups comme d5 ou Nf6 se développent normalement et laissent ce pion tranquille, obligeant les Blancs à justifier b4 sans contrepartie immédiate.'
+  children:
+    - ply: Bxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b4 bằng tượng, đơn giản là nhận lấy con tốt được mời và giữ tượng ở một ô khá tốt trên đường chéo a5-e1.'
+        en: 'Black takes the b4 pawn with the bishop, simply accepting the offered pawn while keeping the bishop on a reasonable square on the a5-e1 diagonal.'
+        fr: 'Les Noirs prennent le pion b4 avec le fou, acceptant simplement le pion offert tout en gardant le fou sur une case correcte de la diagonale a5-e1.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng bảy, Đen tám, Trắng kém đúng một tốt sạch. Đổi lại Trắng có ý định c3 và d4 để đẩy tượng đi và dựng trung tâm lớn, nhưng chưa có gì cụ thể ngay lúc này.'
+          en: 'Count the pawns and it is seven for White, eight for Black, White a clean pawn down. In return White intends c3 and d4 to chase the bishop and build a big centre, but nothing concrete exists yet.'
+          fr: "Comptez les pions, sept pour les Blancs, huit pour les Noirs, les Blancs ont un pion de retard. En échange, les Blancs comptent jouer c3 et d4 pour chasser le fou et bâtir un grand centre, mais rien de concret n'existe encore."
+        plan:
+          vi: 'Trắng chơi c3 rồi d4, đẩy tượng b4 và chiếm trung tâm để bù lại con tốt đã mất. Đen chơi Ba5 hoặc Bc5 giữ tượng, rồi d6 và Nf6 hoàn thiện phát triển với tốt thừa.'
+          en: 'White plays c3 then d4, chasing the bishop off b4 and grabbing the centre to make up for the lost pawn. Black plays Ba5 or Bc5 to keep the bishop, then d6 and Nf6, completing development with the extra pawn.'
+          fr: 'Les Blancs jouent c3 puis d4, chassant le fou de b4 et prenant le centre pour compenser le pion perdu. Les Noirs jouent Ba5 ou Bc5 pour garder le fou, puis d6 et Nf6, achevant leur développement avec le pion supplémentaire.'
+        basis:
+          by: chan
+          at: '2026-09-22'

@@ -1,0 +1,59 @@
+# Owen Defense: Wind Gambit. Frozen defining line 1.e4 b6 2.d4 Bb7 3.f3 e5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 3 moves, returns no-mate.
+id: owen-defense-wind-gambit
+name: 'Owen Defense: Wind Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, b6, d4, Bb7, f3, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black strikes back in the centre with e5 right after White's slightly
+      slow 3.f3, offering a pawn to open the long diagonal for the b7 bishop immediately
+      rather than waiting. It gives real practical chances, especially since 3.f3 does
+      nothing for White's development, but objectively White keeps an extra pawn with
+      correct play. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen chơi 3...e5!?, đáp trả nước f3 hơi chậm của Trắng bằng cách thí tốt để mở ngay đường chéo dài cho tượng b7 thay vì chờ đợi.'
+    en: "Black plays 3...e5!?, answering White's slightly slow f3 by offering a pawn to open the long diagonal for the b7 bishop right away instead of waiting."
+    fr: "Les Noirs jouent 3...e5!?, répondant au f3 un peu lent des Blancs en offrant un pion pour ouvrir immédiatement la grande diagonale au fou b7 plutôt que d'attendre."
+  dismissRest:
+    reason:
+      vi: 'Trắng không ăn tốt e5 ngay. Các nước như Be3 hay c4 phát triển bình thường đều được, nhưng để nguyên con tốt ấy trên bàn cờ cho Đen.'
+      en: 'White does not take the e5 pawn at once. Moves such as Be3 or c4 develop normally and are fine, but they leave that pawn on the board for Black.'
+      fr: "Les Blancs ne prennent pas immédiatement le pion e5. Des coups comme Be3 ou c4 se développent normalement et sont corrects, mais laissent ce pion sur l'échiquier pour les Noirs."
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt e5 bằng tốt d4, nhận con tốt được mời trong khi tượng b7 của Đen giờ đã có đường chéo mở hoàn toàn.'
+        en: "White takes the e5 pawn with the d4 pawn, accepting the offered pawn while Black's b7 bishop now has the diagonal fully open."
+        fr: "Les Blancs prennent le pion e5 avec le pion d4, acceptant le pion offert pendant que le fou noir en b7 dispose désormais d'une diagonale totalement ouverte."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt. Tượng b7 đang nhìn thẳng vào tốt g2 qua một đường chéo hoàn toàn trống, nhưng Trắng đã nhập cuộc chậm với f3 nên chưa nhập thành ngay được.'
+          en: "Count the pawns and it is eight for White, seven for Black, White exactly one pawn up. The b7 bishop stares straight down a completely open diagonal at the g2 pawn, but White's slow f3 means castling is not immediate either."
+          fr: "Comptez les pions, huit pour les Blancs, sept pour les Noirs, les Blancs ont un pion de plus. Le fou en b7 regarde tout droit le pion g2 le long d'une diagonale totalement ouverte, mais le f3 lent des Blancs signifie que le roque n'est pas immédiat non plus."
+        plan:
+          vi: 'Trắng chơi Be3 hoặc c4, củng cố trung tâm và chuẩn bị đưa vua đi an toàn qua nhập thành cánh hậu. Đen chơi Nf6 hay Qh4+ nếu có thể, khai thác đường chéo mở và sự chậm trễ trong phát triển của Trắng.'
+          en: "White plays Be3 or c4, shoring up the centre and preparing to get the king safe with queenside castling. Black plays Nf6, or Qh4+ if it is available, exploiting the open diagonal and White's slow development."
+          fr: 'Les Blancs jouent Be3 ou c4, consolidant le centre et préparant à mettre le roi en sécurité par un roque long. Les Noirs jouent Nf6, ou Qh4+ si disponible, exploitant la diagonale ouverte et le développement lent des Blancs.'
+        basis:
+          by: chan
+          at: '2026-09-22'

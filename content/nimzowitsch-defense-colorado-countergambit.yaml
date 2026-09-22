@@ -1,0 +1,59 @@
+# Nimzowitsch Defense: Colorado Countergambit. Frozen defining line 1.e4 Nc6 2.Nf3 f5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: nimzowitsch-defense-colorado-countergambit
+name: 'Nimzowitsch Defense: Colorado Countergambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, Nc6, Nf3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black offers the f-pawn for quick central influence and open lines, but
+      the knight already sitting on c6 blocks Black's own c-pawn and does nothing to
+      support the centre or the king's safety after ...fxe5-style ideas. White simply takes
+      the pawn and keeps a comfortable, safe extra pawn, which is why this is judged
+      unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen chơi 2...f5!?, một biến thể của Gambit Latvia với con mã đã đứng sẵn ở c6, thí tốt f để mở đường và giành nhịp phát triển.'
+    en: 'Black plays 2...f5!?, a Latvian-style idea with the knight already committed to c6, offering the f-pawn for open lines and development tempo.'
+    fr: 'Les Noirs jouent 2...f5!?, une idée à la manière du Gambit Letton avec le cavalier déjà engagé en c6, offrant le pion f pour des lignes ouvertes et un temps de développement.'
+  dismissRest:
+    reason:
+      vi: 'Trắng không ăn tốt f5 ngay. Các nước như d4 hay Nc3 phát triển và giữ trung tâm đều tốt, nhưng để nguyên con tốt ấy trên bàn cờ cho Đen.'
+      en: 'White does not take the f5 pawn at once. Moves such as d4 or Nc3, developing and holding the centre, are both fine, but they leave that pawn on the board for Black.'
+      fr: "Les Blancs ne prennent pas immédiatement le pion f5. Des coups comme d4 ou Nc3, développant et tenant le centre, sont tous deux corrects, mais laissent ce pion sur l'échiquier pour les Noirs."
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt f5 ngay lập tức, nhận con tốt được mời trong khi con mã c6 của Đen chưa làm được gì để bù đắp lại.'
+        en: "White takes the f5 pawn at once, accepting the offered pawn while Black's knight on c6 has not done anything yet to make up for it."
+        fr: "Les Blancs prennent immédiatement le pion f5, acceptant le pion offert pendant que le cavalier noir en c6 n'a encore rien fait pour compenser."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt. Đen có thể tính đến e5 hay g6 để lấy lại tốt f5, nhưng chưa có gì cụ thể ngay bây giờ và con mã c6 vẫn cản đường tốt c.'
+          en: 'Count the pawns and it is eight for White, seven for Black, White exactly one pawn up. Black can look at e5 or g6 to try to win the f5 pawn back, but nothing concrete exists yet and the knight on c6 still blocks the c-pawn.'
+          fr: "Comptez les pions, huit pour les Blancs, sept pour les Noirs, les Blancs ont un pion de plus. Les Noirs peuvent envisager e5 ou g6 pour tenter de regagner le pion f5, mais rien de concret n'existe encore et le cavalier en c6 gêne toujours le pion c."
+        plan:
+          vi: 'Trắng chơi d4 giữ vững trung tâm và tốt thừa, hoặc Nc3 hoàn thiện phát triển. Đen chơi g6 rồi Bg7 nhắm lại tốt f5, hoặc e5 mở đường cho các quân còn lại.'
+          en: 'White plays d4 to hold the centre and the extra pawn, or Nc3 to complete development. Black plays g6 followed by Bg7, taking aim at the f5 pawn again, or e5 to open lines for the remaining pieces.'
+          fr: 'Les Blancs jouent d4 pour tenir le centre et le pion supplémentaire, ou Nc3 pour achever leur développement. Les Noirs jouent g6 puis Bg7, visant à nouveau le pion f5, ou e5 pour ouvrir des lignes pour les pièces restantes.'
+        basis:
+          by: chan
+          at: '2026-09-22'
