@@ -1,0 +1,62 @@
+# Sicilian Defense: Smith-Morra Gambit Deferred. Frozen defining line 1.e4 c5 2.Nf3 e6
+# 3.d4 cxd4 4.c3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: sicilian-defense-smith-morra-gambit-deferred
+name: 'Sicilian Defense: Smith-Morra Gambit Deferred'
+eco: B40
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, e6, d4, cxd4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White delays the c3 pawn offer until after Nf3 and e6 have been played,
+      reaching the same Smith-Morra structure and the same practical compensation, but with
+      Black's ...e6 already committed. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3...cxd4, Trắng chơi 4.c3 thay vì Nxd4, đưa ván cờ về đúng cấu trúc Smith-Morra nhưng chậm một nhịp so với biến chính vì Đen đã chơi ...e6 trước.
+    en: After 3...cxd4, White plays 4.c3 instead of Nxd4, arriving at the same Smith-Morra structure but a move later than the main line because Black has already played ...e6.
+    fr: Après 3...cxd4, les Blancs jouent 4.c3 au lieu de Nxd4, aboutissant à la même structure Smith-Morra mais avec un coup de retard sur la ligne principale, les Noirs ayant déjà joué ...e6.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt c3. Các nước khác như ...d5 hay ...Nf6 phát triển trước và để nguyên con tốt ấy; câu trả lời của Trắng không đổi, Nxc3 vẫn ăn lại bình thường khi cần.
+      en: Black does not take the c3 pawn. Anything else, such as ...d5 or ...Nf6 developing first and leaving that pawn alone, meets the same ordinary Nxc3 recapture whenever it is needed; White's answer does not change.
+      fr: Les Noirs ne prennent pas le pion c3. Tout le reste, comme ...d5 ou ...Nf6 qui développent d'abord et laissent ce pion tranquille, rencontre la même reprise ordinaire par Nxc3 quand il le faut ; la réponse blanche ne change pas.
+  children:
+    - ply: dxc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen nhận tốt thứ hai bằng 4...dxc3, đi đúng tinh thần Smith-Morra, nhận hết những gì được mời để đổi lấy sự phát triển nhanh của Trắng.
+        en: Black accepts the second pawn with 4...dxc3, stepping into the true spirit of the Smith-Morra by taking everything on offer in exchange for White's fast development.
+        fr: Les Noirs acceptent le second pion par 4...dxc3, entrant dans le véritable esprit du Smith-Morra, prenant tout ce qui est offert en échange du développement rapide des Blancs.
+      unsettled: >-
+        bxc3 and Nxc3 are both going free — the pawn Black has just taken has no defender
+        of its own — and the evaluation is built on that fact, not on picking one of the
+        two recaptures and playing it out; either one brings the same Smith-Morra
+        structure.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 37, Đen 39. Trắng đã kém hai tốt và chưa ăn lại được gì, nhưng Nxc3 ở nước sau sẽ đưa toàn bộ quân nhẹ ra nhanh chóng, đúng như mọi ván Smith-Morra khác.
+          en: Count the pieces and it is 37 for White, 39 for Black. White is down two pawns and has not recaptured anything yet, but Nxc3 next move brings every minor piece out quickly, exactly as in any other Smith-Morra game.
+          fr: Comptez les pièces, 37 pour les Blancs, 39 pour les Noirs. Les Blancs sont en retard de deux pions et n'ont encore rien repris, mais Nxc3 au coup suivant sort rapidement toutes les pièces mineures, comme dans toute autre partie Smith-Morra.
+        plan:
+          vi: Trắng chơi Nxc3, rồi Bc4 nhắm vào f7, Qe2 hoặc O-O và Rd1 phối hợp áp lực lên cột d, tận dụng việc Đen đã chơi ...e6 sớm nên tượng f8 và mã g8 còn kẹt lại phía sau. Đen chơi ...a6, ...Nc6 và ...Qc7 hoặc ...d6, cố gắng hoàn tất phát triển an toàn và giữ hai tốt thừa qua giai đoạn khai cuộc.
+          en: White plays Nxc3, then Bc4 aiming at f7, Qe2 or O-O and Rd1 to combine pressure on the d-file, making use of the fact that Black's early ...e6 leaves the f8 bishop and g8 knight a little cramped behind it. Black plays ...a6, ...Nc6 and ...Qc7 or ...d6, trying to finish developing safely and carry the two extra pawns through the opening.
+          fr: Les Blancs jouent Nxc3, puis Bc4 visant f7, Qe2 ou O-O et Rd1 pour combiner la pression sur la colonne d, profitant du fait que le ...e6 précoce des Noirs laisse le fou f8 et le cavalier g8 un peu à l'étroit derrière. Les Noirs jouent ...a6, ...Nc6 et ...Qc7 ou ...d6, essayant d'achever leur développement en sécurité et de conserver les deux pions supplémentaires au sortir de l'ouverture.
+        basis:
+          by: chan
+          at: '2026-09-22'

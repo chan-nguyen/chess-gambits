@@ -1,0 +1,58 @@
+# Zukertort Opening: Tennison Gambit. Frozen defining line 1.e4 d5 2.Nf3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 2 moves, returns no-mate.
+id: zukertort-opening-tennison-gambit
+name: 'Zukertort Opening: Tennison Gambit'
+eco: A06
+category: gambit
+side: white
+definingLine: [e4, d5, Nf3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Rather than trade on d5, White develops the knight and leaves the e4
+      pawn hanging. Black can simply take it, and the compensation on offer, a knight
+      already out and a chance to reroute it to e5 or g5, is thin against a clean pawn. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 1...d5, thay vì đổi tốt bằng exd5, Trắng chơi 2.Nf3, phát triển và bỏ mặc con tốt e4 để đổi lấy một chút nhịp phát triển.
+    en: After 1...d5, instead of trading pawns with exd5, White plays 2.Nf3, developing and leaving the e4 pawn to its fate in exchange for a little development time.
+    fr: Après 1...d5, au lieu d'échanger les pions par exd5, les Blancs jouent 2.Nf3, développant et abandonnant le pion e4 à son sort en échange d'un peu de temps de développement.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4. Các nước khác như ...Nf6 hay ...c5 phát triển trước và để nguyên con tốt ấy; câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black does not take the e4 pawn. Anything else, such as ...Nf6 or ...c5 developing first and leaving that pawn alone, meets the same continuation; White's answer does not change in those cases.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme ...Nf6 ou ...c5 qui développent d'abord et laissent ce pion tranquille, rencontre la même poursuite ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thẳng con tốt e4 đang bỏ ngỏ, cách kiểm tra trực diện nhất xem Trắng có thật sự bù đắp được cho nó hay không.
+        en: Black simply takes the undefended e4 pawn, the most direct way to test whether White really has enough to show for it.
+        fr: Les Noirs prennent simplement le pion e4 sans défenseur, la façon la plus directe de tester si les Blancs ont vraiment de quoi compenser.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39. Trắng kém một tốt sạch và chỉ có một chút phát triển để đổi lại, vì mã f3 vẫn phải mất thêm nước mới tạo được áp lực thật sự lên con tốt e4 vừa mất.
+          en: Count the pieces and it is 38 for White, 39 for Black. White is a clean pawn down with only a little development to show for it, since the knight on f3 still needs another move before it can put any real pressure on the pawn it has just lost.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs. Les Blancs sont en retard d'un pion net avec bien peu de développement à montrer en échange, le cavalier en f3 ayant encore besoin d'un coup avant de pouvoir exercer une vraie pression sur le pion qu'il vient de perdre.
+        plan:
+          vi: Trắng chơi Ng5 nhắm vào f7 và con tốt e4, hoặc đơn giản Bc4 và O-O tìm cách phát triển nhanh, cố gắng dùng nhịp có được để bù cho con tốt đã mất. Đen chơi ...Nf6 hoặc ...e6 cản đường Ng5, giữ chắc con tốt thừa và hoàn tất phát triển bình thường, không cần mạo hiểm gì để trả lại nó.
+          en: White plays Ng5, aiming at f7 and the e4 pawn, or simply Bc4 and O-O to develop quickly, trying to use whatever tempo is available to compensate for the lost pawn. Black plays ...Nf6 or ...e6 to block Ng5, holds firmly onto the extra pawn and finishes developing normally, with no need to give it back to stay safe.
+          fr: Les Blancs jouent Ng5, visant f7 et le pion e4, ou simplement Bc4 et O-O pour développer vite, essayant d'utiliser le temps disponible pour compenser le pion perdu. Les Noirs jouent ...Nf6 ou ...e6 pour bloquer Ng5, gardent fermement le pion supplémentaire et achèvent leur développement normalement, sans avoir besoin de le rendre pour rester en sécurité.
+        basis:
+          by: chan
+          at: '2026-09-22'

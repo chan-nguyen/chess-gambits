@@ -1,0 +1,58 @@
+# Slav Defense: Slav Gambit, Alekhine Attack. Frozen defining line 1.d4 d5 2.c4 c6 3.Nc3
+# dxc4 4.e4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: slav-defense-slav-gambit-alekhine-attack
+name: 'Slav Defense: Slav Gambit, Alekhine Attack'
+eco: D10
+category: gambit
+side: white
+definingLine: [d4, d5, c4, c6, Nc3, dxc4, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Rather than spend a move to win the c4 pawn back at once, White grabs
+      the full d4-e4 centre and rapid development, leaving the pawn on the board for the
+      moment. It is a genuine practical try, not a proven refutation of the Slav. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3...dxc4, thay vì tính đường ăn lại tốt ngay, Trắng chơi 4.e4, dựng luôn cặp tốt trung tâm d4-e4 và để con tốt c4 nằm lại đó như một khoản đầu tư cho không gian.
+    en: After 3...dxc4, instead of working out a way to win the pawn back at once, White plays 4.e4, building the full d4-e4 pawn centre and leaving the c4 pawn where it is as an investment in space.
+    fr: Après 3...dxc4, au lieu de chercher aussitôt à regagner le pion, les Blancs jouent 4.e4, bâtissant le centre de pions complet d4-e4 et laissant le pion c4 où il est, comme un investissement en espace.
+  dismissRest:
+    reason:
+      vi: Đen không đẩy tốt giữ chặt con tốt c4. Các nước khác như ...Nf6 hay ...Bg4 phát triển trước và để ngỏ chuyện con tốt ấy; câu trả lời của Trắng không đổi trong các trường hợp đó, vẫn tiếp tục dựng trung tâm và phát triển.
+      en: Black does not push a pawn to hold on to c4. Anything else, such as ...Nf6 or ...Bg4 developing first and leaving the pawn's fate open, meets the same continuation of building the centre and developing; White's answer does not change in those cases.
+      fr: Les Noirs ne poussent pas un pion pour garder c4. Tout le reste, comme ...Nf6 ou ...Bg4 qui développent d'abord et laissent en suspens le sort de ce pion, rencontre la même poursuite de la construction du centre et du développement ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: b5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chơi 4...b5, nước chính của biến này, giữ chắc con tốt c4 và giành thêm không gian cánh hậu, chấp nhận đối đầu trực diện với trung tâm lớn của Trắng.
+        en: Black plays 4...b5, the main move of this line, holding firmly on to the c4 pawn and grabbing extra queenside space, accepting a direct confrontation with White's big centre.
+        fr: Les Noirs jouent 4...b5, le coup principal de cette ligne, tenant fermement le pion c4 et prenant de l'espace supplémentaire à l'aile dame, acceptant une confrontation directe avec le grand centre blanc.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39. Trắng kém một tốt nhưng có cặp tốt trung tâm d4-e4 đầy đủ và lợi thế phát triển rõ ràng, trong khi Đen phải lo giữ cả con tốt b5 lẫn c4 cùng một lúc.
+          en: Count the pieces and it is 38 for White, 39 for Black. White is a pawn down but owns the full d4-e4 pawn centre and a clear lead in development, while Black has to look after both the b5 and c4 pawns at once.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs. Les Blancs sont en retard d'un pion mais possèdent le centre de pions complet d4-e4 et une nette avance de développement, tandis que les Noirs doivent surveiller à la fois les pions b5 et c4.
+        plan:
+          vi: Trắng chơi e5 đuổi mã f6 nếu nó đã ra, rồi Nf3, Be2 hay a4 đánh vào tốt b5, tìm cách phá cấu trúc cánh hậu của Đen trong lúc trung tâm và phát triển vẫn còn nguyên. Đen chơi ...Bb7, ...e6 và ...Nbd7 củng cố hai con tốt thừa, chuẩn bị ...a6 nếu bị a4 đe doạ, đặt cược rằng phần vật chất hơn sẽ có giá trị hơn không gian của Trắng về sau.
+          en: White plays e5 to chase the f6 knight if it has come out, then Nf3, Be2 or a4 hitting the b5 pawn, trying to break up Black's queenside structure while the centre and development lead are still there. Black plays ...Bb7, ...e6 and ...Nbd7 to shore up the two extra pawns, ready with ...a6 if a4 comes, betting that the extra material will outweigh White's space later on.
+          fr: Les Blancs jouent e5 pour chasser le cavalier f6 s'il est sorti, puis Nf3, Be2 ou a4 frappant le pion b5, essayant de briser la structure de l'aile dame noire tant que le centre et l'avance de développement restent intacts. Les Noirs jouent ...Bb7, ...e6 et ...Nbd7 pour consolider les deux pions supplémentaires, prêts à ...a6 si a4 arrive, pariant que le surcroît de matériel pèsera plus lourd que l'espace blanc par la suite.
+        basis:
+          by: chan
+          at: '2026-09-22'

@@ -1,0 +1,57 @@
+# Zukertort Opening: Lemberger Gambit. Frozen defining line 1.Nf3 Nf6 2.e4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated. searchMate from the leaf FEN,
+# bounded to 2 moves, returns no-mate.
+id: zukertort-opening-lemberger-gambit
+name: 'Zukertort Opening: Lemberger Gambit'
+eco: A05
+category: gambit
+side: white
+definingLine: [Nf3, Nf6, e4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. The knight on f3 does nothing to guard e4, and Black's own knight on f6
+      already attacks it, so 2.e4 simply hangs a pawn for a small lead in development. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 1...Nf6, Trắng chơi 2.e4, đẩy tốt lên ô mà chính mã f6 của Đen đang nhắm tới, và mã f3 của Trắng thì chẳng đỡ được nó chút nào.
+    en: After 1...Nf6, White plays 2.e4, pushing the pawn to the very square Black's own knight on f6 is already attacking, and the knight on f3 does nothing to defend it.
+    fr: Après 1...Nf6, les Blancs jouent 2.e4, poussant le pion précisément sur la case que le cavalier noir en f6 attaque déjà, et le cavalier en f3 ne le défend en rien.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4. Các nước khác như ...d6 hay ...g6 phát triển trước và để nguyên con tốt ấy; câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black does not take the e4 pawn. Anything else, such as ...d6 or ...g6 developing first and leaving that pawn alone, meets the same continuation; White's answer does not change in those cases.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme ...d6 ou ...g6 qui développent d'abord et laissent ce pion tranquille, rencontre la même poursuite ; la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: Nxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thẳng con tốt e4 đang bỏ ngỏ bằng chính con mã đang tấn công nó, cách kiểm tra trực diện nhất và cũng là nước tự nhiên nhất trên bàn cờ.
+        en: Black simply takes the undefended e4 pawn with the very knight attacking it, the most direct test and also the most natural move on the board.
+        fr: Les Noirs prennent simplement le pion e4 sans défenseur avec le cavalier qui l'attaque déjà, le test le plus direct et aussi le coup le plus naturel sur l'échiquier.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39. Trắng kém một tốt sạch và chưa có mối đe doạ cụ thể nào lên con mã e4, vì mã f3 đã bị đổi hướng đi nơi khác từ trước.
+          en: Count the pieces and it is 38 for White, 39 for Black. White is a clean pawn down with no concrete threat yet against the knight on e4, since the f3 knight has already gone elsewhere.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs. Les Blancs sont en retard d'un pion net sans la moindre menace concrète contre le cavalier en e4, le cavalier f3 étant déjà parti ailleurs.
+        plan:
+          vi: Trắng chơi d3 đuổi mã ngay lập tức, giành lại một nhịp khi con mã phải lùi về f6 hay c5, rồi Nc3 và Be2 hoàn tất phát triển, hy vọng lấy lại phần nào thời gian đã mất mà không thật sự đòi lại được con tốt. Đen chơi ...Nf6 lui về chỗ cũ hoặc ...Nc5 tìm ô đứng năng động hơn, giữ chắc con tốt thừa và tiếp tục ...d5, ...g6 phát triển bình thường.
+          en: White plays d3 to chase the knight at once, winning back a tempo when it retreats to f6 or c5, then Nc3 and Be2 to finish developing, hoping to make up some of the lost time without really winning the pawn back. Black plays ...Nf6 back to where it started or ...Nc5 for a more active square, holding on to the extra pawn and continuing with ...d5, ...g6 to develop normally.
+          fr: Les Blancs jouent d3 pour chasser aussitôt le cavalier, regagnant un temps quand il recule en f6 ou c5, puis Nc3 et Be2 pour achever leur développement, espérant rattraper un peu le temps perdu sans vraiment regagner le pion. Les Noirs jouent ...Nf6 pour revenir à sa case de départ ou ...Nc5 pour une case plus active, gardent le pion supplémentaire et poursuivent par ...d5, ...g6 pour développer normalement.
+        basis:
+          by: chan
+          at: '2026-09-22'

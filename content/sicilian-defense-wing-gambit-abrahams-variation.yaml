@@ -1,0 +1,57 @@
+# Sicilian Defense: Wing Gambit, Abrahams Variation. Frozen defining line 1.e4 c5 2.b4
+# cxb4 3.Bb2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: sicilian-defense-wing-gambit-abrahams-variation
+name: 'Sicilian Defense: Wing Gambit, Abrahams Variation'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b4, cxb4, Bb2]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White skips a3 entirely and fianchettoes at once, banking everything on
+      the long diagonal. Black has no need to cooperate and can simply develop normally a
+      pawn to the good. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...cxb4, Trắng bỏ qua a3 và chơi thẳng 3.Bb2, đặt cược toàn bộ vào đường chéo dài a1-h8 thay vì mở cột a như cách chơi thường thấy.
+    en: After 2...cxb4, White skips a3 and plays 3.Bb2 at once, betting everything on the long a1-h8 diagonal instead of opening the a-file the usual way.
+    fr: Après 2...cxb4, les Blancs sautent a3 et jouent aussitôt 3.Bb2, misant tout sur la grande diagonale a1-h8 au lieu d'ouvrir la colonne a comme d'habitude.
+  dismissRest:
+    reason:
+      vi: Đen không đưa mã ra c6. Các nước khác như ...d5 hay ...e5 đánh vào trung tâm trước, dẫn tới cùng một hướng xử lý; Trắng vẫn phải tìm cách mở đường chéo cho con tượng đã đặt xuống b2.
+      en: Black does not bring the knight to c6. Anything else, such as ...d5 or ...e5 hitting the centre first, leads to the same handling; White still has to find a way to open the diagonal for the bishop already placed on b2.
+      fr: Les Noirs n'amènent pas le cavalier en c6. Tout le reste, comme ...d5 ou ...e5 frappant d'abord le centre, mène au même traitement ; les Blancs doivent toujours trouver comment ouvrir la diagonale du fou déjà posé en b2.
+  children:
+    - ply: Nc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chơi 3...Nc6, phát triển bình thường, giữ chặt con tốt thừa và không vội mở đường chéo dài mà con tượng b2 đang chờ đợi.
+        en: Black plays 3...Nc6, developing normally, holding on to the extra pawn and in no hurry to open the long diagonal the bishop on b2 is waiting for.
+        fr: Les Noirs jouent 3...Nc6, se développant normalement, gardant le pion supplémentaire et sans se presser d'ouvrir la grande diagonale que le fou en b2 attend.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 38, Đen 39. Trắng kém một tốt và con tượng b2 hiện vẫn nhìn vào con tốt e5 của chính Đen, tức là chưa có mục tiêu thật sự nào ở phía sau đường chéo dài cả.
+          en: Count the pieces and it is 38 for White, 39 for Black. White is a pawn down and the bishop on b2 is currently staring at Black's own e-pawn, which means there is no real target yet at the far end of that diagonal.
+          fr: Comptez les pièces, 38 pour les Blancs, 39 pour les Noirs. Les Blancs sont en retard d'un pion et le fou en b2 regarde pour l'instant le propre pion e des Noirs, ce qui signifie qu'il n'y a encore aucune cible réelle au bout de cette diagonale.
+        plan:
+          vi: Trắng chơi Nf3, Bc4 và c4 hoặc d4 cố mở toang đường chéo dài, rồi O-O tìm cách phối hợp với hậu và xe f1 tấn công cánh vua Đen. Đen chơi ...d6, ...Nf6 và ...g6 fianchetto đối trọng, giữ vững con tốt thừa và chuẩn bị nhập thành an toàn trước khi Trắng kịp mở được đường chéo ấy.
+          en: White plays Nf3, Bc4 and c4 or d4, trying to force the long diagonal fully open, then O-O looking to combine the queen and the f1 rook against Black's kingside. Black plays ...d6, ...Nf6 and ...g6 with a counter-fianchetto, holding the extra pawn and castling to safety before White manages to open that diagonal.
+          fr: Les Blancs jouent Nf3, Bc4 et c4 ou d4, essayant de forcer l'ouverture complète de la grande diagonale, puis O-O pour chercher à combiner la dame et la tour f1 contre l'aile roi noire. Les Noirs jouent ...d6, ...Nf6 et ...g6 avec un contre-fianchetto, gardant le pion supplémentaire et roquant en sécurité avant que les Blancs ne parviennent à ouvrir cette diagonale.
+        basis:
+          by: chan
+          at: '2026-09-22'

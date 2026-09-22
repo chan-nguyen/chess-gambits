@@ -1,0 +1,63 @@
+# Slav Defense: Winawer Countergambit. Frozen defining line 1.d4 d5 2.c4 c6 3.Nc3 e5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+# searchMate from the leaf FEN, bounded to 2 moves, returns no-mate.
+id: slav-defense-winawer-countergambit
+name: 'Slav Defense: Winawer Countergambit'
+eco: D10
+category: gambit
+side: black
+definingLine: [d4, d5, c4, c6, Nc3, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. Black strikes back in the centre with 3...e5 rather than defend the d5
+      pawn quietly, offering a pawn for the freeing ...d4 push and open lines for the
+      pieces. It is a sharp practical try rather than a proven equalizer. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 3.Nc3, thay vì đỡ tốt d5 một cách chắc chắn, Đen chơi 3...e5, phản công thẳng vào trung tâm và thí một tốt để đổi lấy nước ...d4 giải phóng cùng đường mở cho các quân.
+    en: After 3.Nc3, instead of quietly defending the d5 pawn, Black plays 3...e5, striking back in the centre and offering a pawn in exchange for the freeing ...d4 push and open lines for the pieces.
+    fr: Après 3.Nc3, au lieu de défendre tranquillement le pion d5, les Noirs jouent 3...e5, contre-attaquant au centre et offrant un pion en échange du coup libérateur ...d4 et de lignes ouvertes pour les pièces.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5. Các nước khác như Nf3 hay e3 phát triển bình thường và để nguyên căng thẳng ở trung tâm; câu trả lời của Đen không đổi trong các trường hợp đó.
+      en: White does not take the e5 pawn. Anything else, such as Nf3 or e3 developing normally, leaves the central tension untouched; Black's plan does not change in those cases.
+      fr: Les Blancs ne prennent pas le pion e5. Tout le reste, comme Nf3 ou e3 qui développent normalement, laisse la tension centrale intacte ; le plan noir ne change pas dans ces cas.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn ngay con tốt e5, cách kiểm tra trực diện nhất xem Đen có thật sự bù đắp được cho nó hay không trước khi tính đến bất kỳ điều gì khác.
+        en: White simply takes the e5 pawn, the most direct way to test whether Black really has enough to show for it before anything else is considered.
+        fr: Les Blancs prennent simplement le pion e5, la façon la plus directe de tester si les Noirs ont vraiment de quoi compenser avant d'envisager autre chose.
+      unsettled: >-
+        dxc4 is going free — the c4 pawn has no defender of its own, since the c3 knight
+        does not guard it — and the evaluation is built on it — the leaf covers the sharper
+        ...d4 try rather than the simple recapture, so it stops before that immediate
+        equalizer is played out.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng 39, Đen 38. Đen kém một tốt sạch, nhưng có ngay ...dxc4 lấy lại quân số vì con tốt c4 của Trắng cũng không ai đỡ. Đen chọn cách chơi tham vọng hơn là ...d4, đuổi thẳng mã c3 và giành không gian trung tâm thay vì chỉ hoà lại vật chất.
+          en: Count the pieces and it is 39 for White, 38 for Black. Black is a clean pawn down, but ...dxc4 is available right away to restore material, since White's c4 pawn has no defender either. Black instead chooses the more ambitious ...d4, directly chasing the knight on c3 and grabbing central space rather than settling for a level material count.
+          fr: Comptez les pièces, 39 pour les Blancs, 38 pour les Noirs. Les Noirs sont en retard d'un pion net, mais ...dxc4 est disponible immédiatement pour rétablir le matériel, le pion c4 blanc n'ayant lui non plus aucun défenseur. Les Noirs choisissent plutôt le plus ambitieux ...d4, chassant directement le cavalier en c3 et prenant de l'espace central plutôt que de se contenter d'un matériel égal.
+        plan:
+          vi: Đen chơi ...d4 đuổi mã, sau đó ...Bg4 hay ...Nc6 phát triển nhanh, tranh thủ lúc mã Trắng còn phải tìm chỗ đứng để hoàn tất phát triển trước và tạo áp lực bù cho con tốt đã mất, giữ ...dxc4 làm phương án dự phòng nếu cần hoà lại vật chất. Trắng chơi Ne4 hay Nb1 lui mã, rồi Nf3 và giữ chắc con tốt thừa, tìm cách đổi bớt quân hoạt động của Đen trước khi bị bắt kịp về mặt phát triển.
+          en: Black plays ...d4 to chase the knight, then ...Bg4 or ...Nc6 to develop quickly, using the time the White knight spends finding a new square to finish developing first and build pressure to compensate for the lost pawn, keeping ...dxc4 in reserve if levelling the material becomes necessary. White plays Ne4 or Nb1 to retreat the knight, then Nf3 and holds the extra pawn, looking to trade off Black's active pieces before being caught up on development.
+          fr: Les Noirs jouent ...d4 pour chasser le cavalier, puis ...Bg4 ou ...Nc6 pour se développer vite, profitant du temps que le cavalier blanc passe à chercher une case pour achever leur développement en premier et créer une pression compensant le pion perdu, gardant ...dxc4 en réserve si égaliser le matériel devient nécessaire. Les Blancs jouent Ne4 ou Nb1 pour reculer le cavalier, puis Nf3 et gardent le pion supplémentaire, cherchant à échanger les pièces actives noires avant d'être rattrapés sur le plan du développement.
+        basis:
+          by: chan
+          at: '2026-09-22'
