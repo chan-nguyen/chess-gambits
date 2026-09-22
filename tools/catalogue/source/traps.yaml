@@ -377,6 +377,42 @@ traps:
       so this trap's own line — four plies deeper, ending on Black's own 5...Bc5 — is not a
       second entry for the same defining line.
 
+  - id: petrovs-defense-marshall-trap
+    name: "Petrov's Defense: Marshall Trap"
+    family: "Petrov's Defense"
+    eco: C42
+    side: black
+    soundness: sound
+    line: [e4, e5, Nf3, Nf6, Nxe5, d6, Nf3, Nxe4, d4, d5, Bd3, Bd6, 'O-O', 'O-O', c4, Bg4, cxd5, f5]
+    reason: >-
+      Wikipedia's dedicated "Petrov's Defence, Marshall Trap" article: the natural-looking
+      10.Re1?? (10.Nc3 is correct) walks into 10...Bxh2+! 11.Kxh2 Nxf2, forking the queen,
+      and after 12.Qe2 Nxd3 13.Qxd3 Bxf3 14.Qxf3 Qh4+ 15.Kg1 Qxe1+ Black wins the exchange
+      and more for a bishop, a clean and decisive material haul rather than mate. Its
+      dataset row ("Petrov's Defense: Classical Attack, Marshall Trap", C42) runs one ply
+      further, to Black's punishing 10...Bxh2+, so this entry's own line — ending on
+      Black's own 9...f5, the last quiet move before White's mistake — is not a second
+      entry for that row.
+
+  - id: zukertort-opening-tennison-gambit-briggs-trap
+    name: "Tennison Gambit: Brigg's Trap"
+    family: 'Tennison Gambit'
+    eco: A06
+    side: white
+    soundness: sound
+    line: [e4, d5, Nf3, dxe4, Ng5, Nf6, Nc3, Bf5, Qe2]
+    reason: >-
+      Documented across multiple independent chess-teaching sources (chess.com's "Weekly
+      Opening Exploration" and "Ten Tricky Traps in the Tennison" blogs, chess-teacher.com's
+      "Tennison Gambit Trap" and Chessable's Tennison Gambit guide, plus the Chess Wiki
+      Fandom page carrying the same name) as the standard punishment for the greedy
+      5...Qd4?: 6.Qb5+! forces a block or king move, and after 6...c6 7.Qxb7 the queen
+      collects a second pawn while forking the bishop on f5 and the rook on a8, leaving
+      Black unable to avoid dropping further material. `classification.yaml` already
+      excludes the dataset's own row for this exact name (`Zukertort Opening: Tennison
+      Gambit, Brigg's Trap`, A06) as a named trap "not yet hand-entered" — this is that
+      entry.
+
   - id: traxler-counterattack-ke2-trap
     name: 'Traxler Counterattack: Ke2 Trap'
     family: 'Italian Game'

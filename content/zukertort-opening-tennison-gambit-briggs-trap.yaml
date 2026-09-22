@@ -1,0 +1,126 @@
+# Tennison Gambit: Brigg's Trap. The defining line is the one frozen in
+# `tools/catalogue/source/traps.yaml` — 1.e4 d5 2.Nf3 dxe4 3.Ng5 Nf6 4.Nc3 Bf5 5.Qe2 — and
+# it ends on White's own ply, so the root is an opponent node and Black's replies can carry
+# a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is A06 (Zukertort Opening), matching `traps.yaml` and matching the dataset's own row
+# for this exact name (`Zukertort Opening: Tennison Gambit, Brigg's Trap`). That row is
+# excluded from the gambit catalogue by `classification.yaml`'s own note — "A named trap
+# inside the Tennison Gambit, not yet hand-entered. Breadth is free for gambits and is not
+# free for traps; this is what that costs." — written for #118 and left as a pointer to
+# exactly this entry.
+#
+# Documented across several independent chess-teaching sources describing the same idea
+# under the same name: chess.com's "Weekly Opening Exploration: Traps In The Tennison
+# Gambit" and "Ten Tricky Traps in the Tennison" blogs, chess-teacher.com's "Tennison
+# Gambit Trap" article, the Chessable Tennison Gambit guide, and the Chess Wiki Fandom page
+# carrying the dataset's own name. All of them describe the same punishment for the greedy
+# 5...Qd4?: 6.Qb5+ forces Black to block the check or move the king, and after any of the
+# seven legal replies, 7.Qxb7 grabs a second pawn while leaving the rook on a8 attacked —
+# replayed with chess.js at every one of those seven branches to confirm the rook is left
+# hanging in each. This is a clear, decisive material and positional edge, not a forced
+# mate, so the leaf below is a `type: position` assessment.
+id: zukertort-opening-tennison-gambit-briggs-trap
+name: "Tennison Gambit: Brigg's Trap"
+eco: A06
+category: trap
+side: white
+definingLine: [e4, d5, Nf3, dxe4, Ng5, Nf6, Nc3, Bf5, Qe2]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement about Black's fifth move, not about the Tennison Gambit as a whole,
+      which remains a pawn sacrifice White is not guaranteed to hold. Once Black
+      specifically plays 5...Qd4, grabbing a second central pawn with a move that also
+      hits d1 and b2, 6.Qb5+ is a genuine, verified reply that costs Black at least a pawn
+      and the safety of the rook on a8 no matter which of the seven legal blocks Black
+      chooses. No engine was consulted and no database was queried; every branch was
+      replayed with chess.js.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output.
+tree:
+  annotation:
+    vi: Trắng vừa lui hậu về e2, phòng thủ tốt e4 mà Đen vừa ăn được ở nước trước và chuẩn bị ăn lại nó. Đây là nước đi lý thuyết của Tennison Gambit.
+    en: White has just retreated the queen to e2, defending the recapture of the e4 pawn Black grabbed last move and preparing to win it back. This is the theoretical move of the Tennison Gambit.
+    fr: Les Blancs viennent de reculer la dame en e2, préparant à reprendre le pion e4 que les Noirs viennent de gagner et défendant cette reprise. C'est le coup théorique du Gambit Tennison.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước phát triển bình thường, ví dụ Nc6, thay vì tham ăn thêm tốt trung tâm. Không có gì đặc biệt xảy ra — cái bẫy chỉ xuất hiện nếu Đen cụ thể chơi Qd4.
+      en: Black plays some ordinary developing move, such as Nc6, rather than grabbing another central pawn. Nothing special happens — the trap only appears if Black specifically plays Qd4.
+      fr: Les Noirs jouent un coup de développement ordinaire, comme Nc6, plutôt que de s'emparer d'un autre pion central. Rien de particulier ne se produit — le piège n'apparaît que si les Noirs jouent précisément Qd4.
+  children:
+    - ply: Qd4
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Đen tham ăn tiếp tốt d4, đồng thời tấn công cả hậu d1 lẫn tốt b2. Nước này trông như thu lợi thêm, nhưng để lộ hậu Đen giữa bàn cờ, nơi Trắng có thể chiếu ngay lập tức.
+        en: Black grabs a second pawn on d4, attacking both the queen on d1 and the b2 pawn at once. It looks like a further profit, but it leaves the queen out in the middle of the board, where White can check it immediately.
+        fr: Les Noirs s'emparent d'un second pion en d4, attaquant à la fois la dame en d1 et le pion b2. Cela ressemble à un profit supplémentaire, mais cela laisse la dame en plein milieu de l'échiquier, où les Blancs peuvent immédiatement donner échec.
+      children:
+        - ply: 'Qb5+'
+          annotation:
+            vi: Trắng chiếu tướng bằng chính con hậu tưởng chừng bị tấn công. Đen phải chặn quân hoặc di chuyển vua, và bất kể chọn cách nào, tốt b7 cũng sẽ không còn được bảo vệ đầy đủ.
+            en: White gives check with the very queen that looked attacked a moment ago. Black must block or move the king, and whichever is chosen, the b7 pawn ends up without adequate protection.
+            fr: Les Blancs donnent échec avec cette même dame qui semblait attaquée un instant plus tôt. Les Noirs doivent bloquer ou déplacer le roi, et quel que soit le choix, le pion b7 se retrouve sans protection adéquate.
+          dismissed:
+            - ply: Nbd7
+              reason: >-
+                Blocks on d7 with the queenside knight. 7.Qxb7 follows just as in the
+                6...c6 line this entry models, leaving the rook on a8 attacked along the
+                same diagonal — verified with chess.js.
+            - ply: Nc6
+              reason: >-
+                Blocks on c6 with the kingside knight instead of the pawn. Same 7.Qxb7,
+                same rook on a8 left hanging on the long diagonal — verified with chess.js.
+            - ply: Kd8
+              reason: >-
+                Sidesteps instead of blocking. 7.Qxb7 still follows and the a8 rook is
+                still attacked, and Black has also lost the right to castle — verified with
+                chess.js.
+            - ply: Nfd7
+              reason: >-
+                Blocks on d7 with the other knight. Same 7.Qxb7, same rook left attacked on
+                a8 — verified with chess.js.
+            - ply: Bd7
+              reason: >-
+                Blocks on d7 with the bishop instead of a knight. Same 7.Qxb7, same rook
+                left attacked on a8 — verified with chess.js.
+            - ply: Qd7
+              reason: >-
+                Blocks with the queen itself, on d7. The c7 pawn still shields b7 from this
+                queen along the seventh rank, so 7.Qxb7 remains a free pawn and the a8 rook
+                is left attacked exactly as in the other six replies — verified with
+                chess.js.
+          children:
+            - ply: c6
+              annotation:
+                vi: Đen chặn chiếu bằng chính con tốt c7. Đây là cách chặn tự nhiên nhất, nhưng nó không giải quyết được vấn đề của tốt b7.
+                en: Black blocks the check with the c7 pawn. This is the most natural-looking block, but it does nothing to address the b7 pawn's problem.
+                fr: Les Noirs bloquent l'échec avec le pion c7. C'est le blocage le plus naturel, mais cela ne règle en rien le problème du pion b7.
+              children:
+                - ply: Qxb7
+                  annotation:
+                    vi: Hậu Trắng ăn thêm tốt b7. Đến đây Trắng đã ăn được hai tốt, còn hậu của Trắng đứng trên cùng đường chéo với xe Đen ở a8 — con xe ấy hiện không được quân nào bảo vệ.
+                    en: White's queen takes the b7 pawn as well. White has now won two pawns, and the queen sits on the same diagonal as Black's rook on a8 — a rook nothing currently defends.
+                    fr: La dame blanche prend également le pion b7. Les Blancs ont désormais gagné deux pions, et la dame se trouve sur la même diagonale que la tour noire en a8 — une tour que rien ne défend actuellement.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng đã ăn được hai tốt trung tâm và cánh hậu (e4 rồi b7) mà chưa mất gì, và xe a8 của Đen đang bị hậu Trắng tấn công trực tiếp trên đường chéo dài — Đen buộc phải dùng một nước đi để cứu nó, đẩy lùi tốc độ phát triển vốn đã chậm hơn Trắng. Không có quân Trắng nào bị treo miễn phí ở đây.
+                      en: White has won two pawns (the central e4 pawn, then the queenside b7 pawn) at no cost, and Black's rook on a8 is directly attacked by the queen along the long diagonal — Black has to spend a move saving it, falling further behind in development, which was already slower than White's. Nothing of White's is hanging for free here.
+                      fr: Les Blancs ont gagné deux pions (le pion central e4, puis le pion b7 à l'aile dame) sans rien payer, et la tour noire en a8 est directement attaquée par la dame le long de la grande diagonale — les Noirs doivent consacrer un coup à la sauver, prenant encore plus de retard dans un développement déjà plus lent que celui des Blancs. Rien du côté blanc n'est en prise gratuitement ici.
+                    plan:
+                      vi: Đen dùng một nước để cứu xe (Rb8 hay tương tự), sau đó cố gắng bắt kịp phát triển và tìm cách khai thác việc hậu Trắng đã đi lại nhiều lần giữa ván cờ. Trắng lui hậu về nơi an toàn khi bị tấn công, hoàn tất phát triển các quân nhẹ và nhập thành, chơi tiếp với hai tốt hơn và Đen vẫn còn chậm phát triển.
+                      en: Black spends a move saving the rook (Rb8 or similar), then tries to catch up on development and look for ways to exploit how many times White's queen has moved already. White retreats the queen to safety whenever it is attacked, finishes developing the minor pieces, castles, and continues two pawns up with Black still behind in development.
+                      fr: Les Noirs consacrent un coup à sauver la tour (Rb8 ou similaire), puis tentent de rattraper leur retard de développement et de tirer parti du nombre de fois où la dame blanche s'est déjà déplacée. Les Blancs replacent la dame en sécurité chaque fois qu'elle est attaquée, achèvent le développement des pièces mineures, roquent, et poursuivent avec deux pions d'avance pendant que les Noirs restent en retard de développement.
+                    basis:
+                      by: chan
+                      at: '2026-09-22'

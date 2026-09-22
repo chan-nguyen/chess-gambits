@@ -219,6 +219,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'noahs-ark-trap',
       'old-indian-defense-aged-gibbon-gambit',
       'owen-defense-naselwaus-gambit',
+      'petrovs-defense-marshall-trap',
       'petrovs-defense-stafford-gambit',
       'philidor-defense-lopez-countergambit',
       'pirc-defense-roscher-gambit',
@@ -268,6 +269,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'vienna-game-wurzburger-trap',
       'ware-opening-wing-gambit',
       'zukertort-opening-herrstrom-gambit',
+      'zukertort-opening-tennison-gambit-briggs-trap',
     ])
   })
 

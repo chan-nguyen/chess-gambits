@@ -132,8 +132,9 @@ describe('the catalogue this repository ships', () => {
    * Variation's Alapin Gambit, upgraded in place from its own Tier 0 entry — #127 also
    * deepened two already-authored trees, bird-opening-froms-gambit and
    * scandinavian-defense-kiel-variation-trap, without adding new ids), two new named traps
-   * from #137 (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2 Trap),
-   * thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
+   * from #137 batch a (the Stafford Gambit's Rosen Trap and the Traxler Counterattack's Ke2
+   * Trap), two more new named traps from #137 batch b (Petrov's Defense's Marshall Trap and
+   * the Tennison Gambit's Brigg's Trap), thirteen from #136 batch B (elephant-gambit-maroczy-gambit,
    * elephant-gambit-paulsen-countergambit, english-opening-wing-gambit,
    * englund-gambit-felbecker-gambit, englund-gambit-hartlaub-charlick-gambit,
    * englund-gambit-main-line, englund-gambit-mosquito-gambit, englund-gambit-soller-gambit,
@@ -305,6 +306,7 @@ describe('the catalogue this repository ships', () => {
     ['noahs-ark-trap', 1],
     ['old-indian-defense-aged-gibbon-gambit', 1],
     ['owen-defense-naselwaus-gambit', 1],
+    ['petrovs-defense-marshall-trap', 1],
     ['petrovs-defense-stafford-gambit', 1],
     ['philidor-defense-lopez-countergambit', 2],
     ['pirc-defense-roscher-gambit', 1],
@@ -354,10 +356,11 @@ describe('the catalogue this repository ships', () => {
     ['vienna-game-wurzburger-trap', 1],
     ['ware-opening-wing-gambit', 1],
     ['zukertort-opening-herrstrom-gambit', 1],
+    ['zukertort-opening-tennison-gambit-briggs-trap', 1],
   ])
 
-  it('bakes keys on all 1021 entries, and only the authored one hundred and ninety have any', () => {
-    expect(result.value.records).toHaveLength(1021)
+  it('bakes keys on all 1023 entries, and only the authored one hundred and ninety-two have any', () => {
+    expect(result.value.records).toHaveLength(1023)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
