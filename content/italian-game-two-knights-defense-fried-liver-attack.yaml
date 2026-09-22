@@ -1,0 +1,59 @@
+# Italian Game: Two Knights Defense, Fried Liver Attack. Frozen defining line 1.e4 e5 2.Nf3
+# Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Nxd5 6.Nxf7, which ends on White's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js
+# before being annotated. searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: italian-game-two-knights-defense-fried-liver-attack
+name: 'Italian Game: Two Knights Defense, Fried Liver Attack'
+eco: C57
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Nxd5, Nxf7]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. The knight forks the queen on d8 and the rook on h8, so 6...Kxf7 is
+      forced, and White follows up with a queen check to drag the king further out before it
+      can find shelter. This is one of the oldest analysed sacrifices in chess and the
+      resulting attack is dangerous enough in practice that the line is considered sound for
+      White with precise play. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 6.Nxf7!?, thí cả một con mã để ăn tốt f7 và tạo chạc đôi vào hậu d8 lẫn xe h8, buộc vua Đen phải tự đi ra bắt quân.
+    en: White plays 6.Nxf7!?, sacrificing a whole knight to grab the f7 pawn and fork the queen on d8 and the rook on h8, forcing Black's king to come out and recapture by hand.
+    fr: 'Les Blancs jouent 6.Nxf7!?, sacrifiant un cavalier entier pour prendre le pion f7 et fourcher la dame d8 et la tour h8, obligeant le roi noir à sortir lui-même pour reprendre.'
+  dismissRest:
+    reason:
+      vi: Trắng không thí mã ở f7. Đây chính là điểm đặc trưng của Fried Liver Attack, nên mọi nước khác ở đây, như Bxd5 ăn lại tốt bình thường, đưa ván cờ sang một biến khác của Two Knights Defense.
+      en: White does not sacrifice the knight on f7. That capture is the whole identity of the Fried Liver Attack, so any other move here, such as the ordinary recapture Bxd5, takes the game into a different branch of the Two Knights Defense.
+      fr: "Les Blancs ne sacrifient pas le cavalier en f7. Cette prise est toute l'identité du Fried Liver Attack, donc tout autre coup ici, comme la reprise ordinaire Bxd5, mène vers une autre branche de la Défense des Deux Cavaliers."
+  children:
+    - ply: Kxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Vua Đen buộc phải ăn lại. Bỏ mặc con mã thì Trắng ăn tiếp xe h8 hoặc hậu d8, lỗ còn nặng hơn nhiều so với mất quyền nhập thành.
+        en: Black's king is forced to recapture. Ignoring the knight lets White scoop up the rook on h8 or the queen on d8 next, a far heavier loss than giving up castling rights.
+        fr: "Le roi noir est contraint de reprendre. Ignorer le cavalier laisse les Blancs ramasser ensuite la tour h8 ou la dame d8, une perte bien plus lourde que d'abandonner le droit de roquer."
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân thì Trắng còn bảy tốt, hai tượng, một mã, hai xe và hậu; Đen còn sáu tốt, hai tượng, hai mã, hai xe và hậu. Trắng đã thí đứt một mã để ăn hai tốt của Đen là d5 và f7, tức là lỗ khoảng một quân nhẹ trừ đi một tốt về vật chất thuần túy. Đổi lại, vua Đen đứng giữa bàn cờ ở f7, mất trắng quyền nhập thành, con mã d5 của Đen đang bị tượng c4 chiếu thẳng, và Trắng còn nguyên hậu để chiếu tiếp ngay lập tức.
+          en: Count the pieces and White has seven pawns, two bishops, one knight, two rooks and a queen; Black has six pawns, two bishops, two knights, two rooks and a queen. White has given up a whole knight to collect two of Black's pawns, d5 and f7, roughly a minor piece down for one pawn in pure material terms. In return, Black's king stands in the middle of the board on f7 with castling rights gone for good, the knight on d5 sits in the line of White's bishop on c4, and White still has the queen ready to check immediately.
+          fr: "Comptez les pièces, les Blancs ont sept pions, deux fous, un cavalier, deux tours et une dame ; les Noirs ont six pions, deux fous, deux cavaliers, deux tours et une dame. Les Blancs ont donné un cavalier entier pour capturer deux pions noirs, d5 et f7, soit environ une pièce mineure de moins contre un pion en matériel pur. En échange, le roi noir se tient au milieu de l'échiquier en f7, ayant perdu pour de bon le droit de roquer, le cavalier d5 est dans la ligne du fou blanc en c4, et les Blancs disposent encore de la dame prête à donner échec immédiatement."
+        plan:
+          vi: Trắng chơi Qf3+ chiếu ngay, buộc vua Đen đi tiếp bằng Ke6 vì mọi ô khác đều thua thêm quân, rồi Nc3 tấn công thẳng vào con mã d5 đang bị ghim, dồn thêm quân vào cánh vua trước khi Đen kịp co cụm. Đen chơi Ke6 rồi Nb4, Nb6 hay Ncb4 tùy ván để giữ tạm con mã d5, sau đó tìm cách trả lại chất để đưa vua về nơi an toàn, hoặc Nce7 và c6 củng cố trung tâm nếu vua đứng vững được ở e6.
+          en: White plays Qf3+ with immediate check, forcing the king to Ke6 since every other square loses further material, then Nc3 attacking the pinned knight on d5 directly, throwing more pieces at the king before Black can consolidate. Black plays Ke6 and then Nb4, Nb6 or Ncb4 depending on the game to hold on to the d5 knight for the moment, later looks to give back material to bring the king to safety, or plays Nce7 and c6 to shore up the centre if the king can stand its ground on e6.
+          fr: "Les Blancs jouent Qf3+ avec échec immédiat, forçant le roi vers Ke6 puisque toute autre case perd davantage de matériel, puis Nc3 attaquant directement le cavalier clouté en d5, jetant plus de pièces sur le roi avant que les Noirs ne se regroupent. Les Noirs jouent Ke6 puis Nb4, Nb6 ou Ncb4 selon la partie pour tenir momentanément le cavalier d5, cherchent ensuite à rendre du matériel pour mettre le roi à l'abri, ou jouent Nce7 et c6 pour consolider le centre si le roi peut tenir sa position en e6."
+        basis:
+          by: chan
+          at: '2026-09-22'

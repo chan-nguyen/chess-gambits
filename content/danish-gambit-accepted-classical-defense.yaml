@@ -1,0 +1,59 @@
+# Danish Gambit Accepted: Classical Defense. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3
+# dxc3 4.Bc4 cxb2 5.Bxb2 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated. searchMate from the leaf FEN, bounded to 3 moves, returns no-mate.
+id: danish-gambit-accepted-classical-defense
+name: 'Danish Gambit Accepted: Classical Defense'
+eco: C21
+category: gambit
+side: black
+definingLine: [e4, e5, d4, exd4, c3, dxc3, Bc4, cxb2, Bxb2, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-22'
+  basis:
+    by: chan
+    at: '2026-09-22'
+    source: >-
+      A judgement. White has given up two pawns for two bishops aimed straight at f7 and g7
+      and a lead in development, but nothing forced yet, and 5...Nf6 is Black's most solid
+      answer — hitting e4 at once instead of grabbing more material or trying to complete
+      development first. Two pawns is a real price, and engines mark this dubious for White,
+      but no engine was consulted and no database was queried for this entry.
+judgement:
+  by: chan
+  at: '2026-09-22'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 5...Nf6, tấn công tốt e4 ngay lập tức thay vì cố ăn thêm quân hay vội hoàn thiện phát triển. Đây là cách chơi cổ điển và chắc chắn nhất chống lại Danish Gambit đã được chấp nhận.
+    en: Black plays 5...Nf6, attacking the e4 pawn at once instead of grabbing more material or rushing to finish development. This is the classical, soundest way to meet the accepted Danish Gambit.
+    fr: "Les Noirs jouent 5...Nf6, attaquant aussitôt le pion e4 au lieu de saisir davantage de matériel ou de se précipiter pour achever leur développement. C'est la manière classique et la plus saine de répondre au Gambit Danois accepté."
+  dismissRest:
+    reason:
+      vi: Trắng không đỡ tốt e4 và cũng chưa nhập thành. Các nước như Qb3 nhắm f7 hay Nc3 phát triển bình thường không đi qua đúng chuỗi này nên được gộp ở đây thay vì phân tích riêng, vì Đen vẫn trả lời như kế hoạch bên dưới trong mọi trường hợp.
+      en: White has not defended the e4 pawn and has not castled either. Moves such as Qb3 eyeing f7 or the plain developing Nc3 do not go through this exact sequence, so they are folded in here rather than analysed separately, since Black answers the same way regardless.
+      fr: "Les Blancs n'ont ni défendu le pion e4 ni roqué. Des coups comme Qb3 visant f7 ou le développement ordinaire Nc3 ne suivent pas exactement cette séquence, ils sont donc regroupés ici plutôt qu'analysés séparément, car les Noirs répondent de la même façon dans tous les cas."
+  children:
+    - ply: Nc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng đỡ tốt e4 bằng mã và tiếp tục phát triển thay vì vội tấn công. Đây là nước đáp phổ biến nhất và chắc chắn nhất cho Trắng ở đây.
+        en: White defends the e4 pawn with the knight and continues developing rather than rushing an attack. This is White's most common and soundest reply here.
+        fr: "Les Blancs défendent le pion e4 avec le cavalier et poursuivent leur développement au lieu de se précipiter à l'attaque. C'est la réponse la plus courante et la plus saine des Blancs ici."
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng năm, Đen bảy, Trắng kém hai tốt. Số tượng, mã và xe hai bên bằng nhau, không có cặp tượng dư ra cho ai. Đổi lại hai tốt ấy, Trắng có con tượng b2 nhìn suốt đường chéo dài tới g7 và con tượng c4 nhắm vào f7, cùng một nhịp phát triển đi trước vì Đen còn chưa nhập thành và chưa đưa mã b8 ra. Hai tốt là cái giá thật, không phải ảo, và Đen không có điểm yếu cấu trúc nào để bù lại cho Trắng.
+          en: Count the pawns and it is five for White, seven for Black — White is down two pawns. Bishops, knights and rooks are equal on both sides; neither side holds a spare bishop. In exchange for those two pawns, White has the bishop on b2 raking the long diagonal toward g7 and the bishop on c4 aimed at f7, plus a full move of development, since Black has not castled yet and the b8 knight is still at home. Two pawns is a real price, not an illusory one, and Black has no structural weakness to hand White in compensation.
+          fr: "Comptez les pions, cinq pour les Blancs, sept pour les Noirs, les Blancs sont en retard de deux pions. Fous, cavaliers et tours sont à égalité des deux côtés ; personne n'a de fou excédentaire. En échange de ces deux pions, les Blancs ont le fou b2 qui balaie la grande diagonale jusqu'en g7 et le fou c4 visant f7, plus un temps de développement complet, les Noirs n'ayant pas encore roqué et le cavalier b8 restant à la maison. Deux pions est un prix réel, non illusoire, et les Noirs n'offrent en échange aucune faiblesse structurelle."
+        plan:
+          vi: Trắng chơi e5 đuổi mã, hoặc Qb3 và O-O-O để dồn lực vào f7, tận dụng cặp tượng và nhịp phát triển trước khi Đen kịp bắt kịp. Đen chơi d5 ngay để trả lại một tốt và mở đường cho tượng c8, hoặc Nc6 rồi Be7 và O-O để hoàn thiện phát triển và giữ nguyên số tốt hơn.
+          en: White plays e5 to chase the knight, or Qb3 and O-O-O to pile up on f7, trying to cash in the bishop pair and the extra tempo before Black catches up on development. Black plays d5 at once, giving a pawn back to open the diagonal for the c8 bishop, or Nc6 followed by Be7 and O-O to finish development and keep the extra pawns.
+          fr: "Les Blancs jouent e5 pour chasser le cavalier, ou Qb3 et O-O-O pour accumuler la pression sur f7, cherchant à monnayer la paire de fous et le temps d'avance avant que les Noirs ne rattrapent leur développement. Les Noirs jouent d5 aussitôt, rendant un pion pour ouvrir la diagonale du fou c8, ou Nc6 suivi de Be7 et O-O pour achever leur développement et conserver leurs pions supplémentaires."
+        basis:
+          by: chan
+          at: '2026-09-22'
