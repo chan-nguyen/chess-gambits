@@ -1,0 +1,62 @@
+# Van't Kruijs Opening: Keoni-Hiva Gambit, Alua Variation. Frozen defining line 1.e3 e5
+# 2.Nc3 Nc6 3.f4 exf4 4.Nf3, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before
+# being annotated.
+id: vant-kruijs-opening-keoni-hiva-gambit-alua-variation
+name: "Van't Kruijs Opening: Keoni-Hiva Gambit, Alua Variation"
+eco: A00
+category: gambit
+side: white
+definingLine: [e3, e5, Nc3, Nc6, f4, exf4, Nf3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black wins the f-pawn with 3...exf4 and then the e-pawn as well with
+      4...fxe3, and although dxe3 recaptures one of those two pawns for free at once,
+      Black still keeps a full extra pawn afterward. White's case is two developed
+      knights and near-readiness to castle, real development but not enough to call the
+      pawn-down price sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã mất tốt f vào tay Đen, Trắng chơi 4.Nf3, phát triển và chuẩn bị nhập thành thay vì đòi lại con tốt ngay lập tức, dùng nhịp độ để bù cho vật chất.
+    en: Having already lost the f-pawn to Black, White plays 4.Nf3, developing and preparing to castle rather than trying to win the pawn back immediately, using tempo to compensate for the material.
+    fr: Ayant déjà perdu le pion f au profit des Noirs, les Blancs jouent 4.Nf3, développant et préparant le roque plutôt que de tenter de regagner le pion immédiatement, utilisant le temps pour compenser le matériel.
+  dismissRest:
+    reason:
+      vi: Đen không đẩy tốt tiếp tục ăn thêm ở e3. Các nước khác như Bc5, d5 hay Nf6 phát triển bình thường đều để nguyên con tốt f4 đang giữ được mà không mạo hiểm đẩy nó thêm nữa, nên phần lớn trường hợp cụ thể ấy được gộp vào đây thay vì phân tích riêng.
+      en: Black does not push the pawn on to capture again on e3. Anything else, such as the natural developing Bc5, d5 or Nf6, leaves the f4 pawn already won in place without risking pushing it any further, so those specific cases are folded in here rather than analysed separately.
+      fr: Les Noirs ne poussent pas le pion pour capturer encore en e3. Tout le reste, comme le développement naturel Bc5, d5 ou Nf6, laisse le pion f4 déjà gagné en place sans risquer de le pousser plus loin, donc ces cas précis sont regroupés ici plutôt qu'analysés séparément.
+  children:
+    - ply: fxe3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen đẩy tiếp con tốt vừa ăn được từ f4 xuống e3, ăn luôn cả con tốt e của Trắng vốn đã đứng đó từ nước đầu tiên. Giờ Đen tạm thời hơn hẳn hai tốt.
+        en: Black pushes the pawn already won on f4 forward to e3, taking White's own e-pawn as well, which has stood there since move one. Black is temporarily two clean pawns up.
+        fr: Les Noirs poussent le pion déjà gagné en f4 jusqu'en e3, prenant au passage le pion e blanc, resté là depuis le premier coup. Les Noirs sont temporairement en avance de deux pions nets.
+      unsettled: >-
+        dxe3 is going free and the evaluation says so — nothing defends the pawn on e3,
+        and White's own d-pawn is the piece that will recapture it next move.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng sáu — hơn hẳn hai tốt trên giấy. Nhưng con tốt vừa ăn được ở e3 không ai bảo vệ, nên dxe3 sẽ lấy lại ngay một trong hai, đưa cách biệt thực tế về đúng một tốt. Bù lại, Trắng đã đưa cả hai mã ra ngoài (Nc3 và Nf3) trong khi Đen mới chỉ phát triển được mã c6, và Trắng đã sẵn sàng nhập thành ngay sau khi ăn lại.
+          en: Count the pawns and it is eight for Black, six for White — two full pawns up on paper. But the pawn just won on e3 has nothing defending it, so dxe3 wins one of them straight back, bringing the real gap down to a single pawn. In return, White already has both knights out (Nc3 and Nf3) while Black has only the c6-knight developed, and White is ready to castle right after recapturing.
+          fr: Comptez les pions, huit pour les Noirs, six pour les Blancs — deux pions entiers d'avance sur le papier. Mais le pion tout juste gagné en e3 n'a personne pour le défendre, donc dxe3 en récupère un aussitôt, ramenant l'écart réel à un seul pion. En contrepartie, les Blancs ont déjà sorti leurs deux cavaliers (Nc3 et Nf3) tandis que les Noirs n'ont développé que le cavalier c6, et les Blancs sont prêts à roquer juste après avoir repris.
+        plan:
+          vi: Trắng chơi dxe3, rồi Bc4 hay Bd3 và O-O, hoàn tất phát triển nhanh và tìm cách gây sức ép trước khi Đen kịp củng cố con tốt thừa còn lại. Đen chơi d6, Nf6 và Be7 hay Be6, hoàn tất phát triển và giữ vững con tốt thừa, sẵn sàng đổi bớt quân khi có lợi.
+          en: White plays dxe3, then Bc4 or Bd3 and O-O, finishing development quickly and looking to build pressure before Black can consolidate the remaining extra pawn. Black plays d6, Nf6 and Be7 or Be6, completing development and holding the extra pawn firmly, ready to trade pieces when it is favourable.
+          fr: Les Blancs jouent dxe3, puis Bc4 ou Bd3 et O-O, achevant rapidement leur développement et cherchant à faire pression avant que les Noirs ne consolident le pion supplémentaire restant. Les Noirs jouent d6, Nf6 et Be7 ou Be6, achevant leur développement et gardant fermement le pion supplémentaire, prêts à échanger des pièces quand c'est favorable.
+        basis:
+          by: chan
+          at: '2026-09-25'

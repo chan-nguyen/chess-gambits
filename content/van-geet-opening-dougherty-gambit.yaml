@@ -1,0 +1,63 @@
+# Van Geet Opening: Dougherty Gambit. Frozen defining line 1.Nc3 d5 2.e4 dxe4 3.f3, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated.
+id: van-geet-opening-dougherty-gambit
+name: 'Van Geet Opening: Dougherty Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [Nc3, d5, e4, dxe4, f3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers a second pawn with 3.f3, on top of the one Black already
+      won with 2...dxe4, for the half-open f-file and a lead in development — the same
+      idea as the Blackmar-Diemer family of gambits. Even after recapturing on f3, the
+      ledger still reads one full pawn permanently gone with nothing forced, real but
+      standard compensation that has not been shown to be enough. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng thí thêm một tốt nữa bằng 3.f3, sau khi đã để mất tốt e4, nhằm mở cột f và giành nhịp phát triển. Đây là ý tưởng của Dougherty Gambit trong Van Geet Opening, cùng họ với các gambit kiểu Blackmar-Diemer.
+    en: White offers yet another pawn with 3.f3, having already lost the e4 pawn, aiming to open the f-file and gain development tempo. This is the idea behind the Dougherty Gambit in the Van Geet Opening, part of the same family as the Blackmar-Diemer style gambits.
+    fr: Les Blancs offrent encore un autre pion avec 3.f3, ayant déjà perdu le pion e4, dans le but d'ouvrir la colonne f et de gagner du temps de développement. C'est l'idée du Gambit Dougherty dans le Van Geet, de la même famille que les gambits de style Blackmar-Diemer.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt f3 bằng tốt e4. Các nước khác — giữ nguyên tốt e4, phát triển quân trước, hay tìm cách khác — đều để lại một cấu trúc tốt khác với thế cờ đang được phân tích ở đây, nơi Trắng đã mất luôn cả hai tốt trung tâm.
+      en: Black does not capture the f3 pawn with the e4 pawn. Anything else — keeping the e4 pawn where it is, developing first, or trying something else — leaves a different pawn structure from the position analysed here, where White has lost both central pawns outright.
+      fr: Les Noirs ne prennent pas le pion f3 avec le pion e4. Tout le reste — garder le pion e4 où il est, développer d'abord, ou tenter autre chose — laisse une structure de pions différente de la position analysée ici, où les Blancs ont perdu les deux pions centraux.
+  children:
+    - ply: exf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn luôn tốt f3 bằng chính con tốt vừa ăn được ở e4, giữ trọn cả hai tốt thừa trong tay mà chưa trả lại gì.
+        en: Black takes the f3 pawn as well, with the very pawn just won on e4, banking both extra pawns without giving anything back yet.
+        fr: Les Noirs prennent aussi le pion f3, avec le pion tout juste gagné en e4, engrangeant les deux pions supplémentaires sans rien rendre pour l'instant.
+      unsettled: >-
+        Nxf3 is going free and the evaluation says so — recapturing with the knight
+        develops a piece and brings material back to just one pawn down, the standard
+        price of this gambit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm thì Đen 39, Trắng 37 — hơn hai tốt trên giấy, nhưng Nxf3 sẽ lấy lại ngay một trong hai tốt đó, đưa cách biệt thực tế về đúng một tốt, mức giá tiêu chuẩn của các gambit kiểu này. Bù lại, Trắng đã mất luôn tốt f nên cột f giờ nửa mở, hướng thẳng về phía tốt f7 gần vua Đen còn chưa nhập thành.
+          en: Count the points and it is 39 for Black, 37 for White — two pawns up on paper, but Nxf3 wins one of them straight back, bringing the real gap down to a single pawn, the standard price for this style of gambit. In return, having lost the f-pawn outright, White now has a half-open f-file pointed straight at f7, near Black's still-uncastled king.
+          fr: En comptant les points, 39 pour les Noirs, 37 pour les Blancs — deux pions d'avance sur le papier, mais Nxf3 en récupère un aussitôt, ramenant l'écart réel à un seul pion, le prix habituel de ce type de gambit. En contrepartie, ayant perdu le pion f, les Blancs disposent maintenant d'une colonne f semi-ouverte pointée droit vers f7, près du roi noir toujours non roqué.
+        plan:
+          vi: Trắng chơi Nxf3, rồi Bd3 hay Bc4 và O-O, đưa xe ra cột f để gây sức ép lên f7 trước khi Đen kịp nhập thành. Đen chơi Nf6, e6 hay g6 và O-O, che chắn vua nhanh chóng và giữ vững con tốt thừa còn lại.
+          en: White plays Nxf3, then Bd3 or Bc4 and O-O, bringing a rook to the f-file to pressure f7 before Black can castle. Black plays Nf6, e6 or g6 and O-O, tucking the king away quickly and holding on to the remaining extra pawn.
+          fr: Les Blancs jouent Nxf3, puis Bd3 ou Bc4 et O-O, amenant une tour sur la colonne f pour faire pression sur f7 avant que les Noirs ne roquent. Les Noirs jouent Nf6, e6 ou g6 et O-O, mettant le roi à l'abri rapidement et gardant le pion supplémentaire restant.
+        basis:
+          by: chan
+          at: '2026-09-25'

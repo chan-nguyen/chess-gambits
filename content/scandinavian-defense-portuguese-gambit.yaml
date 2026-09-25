@@ -1,0 +1,64 @@
+# Scandinavian Defense: Portuguese Gambit. Frozen defining line 1.e4 d5 2.exd5 Nf6 3.d4 Bg4, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Instead
+# of recapturing at once, Black develops the bishop and prepares to strike back at the pawn on d5.
+# The line was replayed with chess.js before being annotated, and the leaf carries two free
+# captures (Qxd5, Nxd5), covered below with `unsettled`.
+id: scandinavian-defense-portuguese-gambit
+name: 'Scandinavian Defense: Portuguese Gambit'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, Bg4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      White's attempt to hold the extra pawn with 4.f3 costs the g1-knight its natural square and
+      loosens the kingside dark squares, and the pawn on d5 is undefended either way, so Black
+      simply wins it back with an active queen or knight. Nothing is lost for White, but nothing
+      is won beyond a slightly worse structure, which is a dubious trade rather than a sound one.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt d5 ngay, Đen chơi 3...Bg4, phát triển tượng và nhắm vào đường chéo d1-h5, chuẩn bị ăn con tốt d5 đang không có ai bảo vệ bằng hậu hoặc mã ở nước sau.
+    en: Instead of recapturing on d5 straight away, Black plays 3...Bg4, developing the bishop onto the d1-h5 diagonal and preparing to take the undefended d5 pawn with the queen or knight next.
+    fr: Au lieu de reprendre immédiatement en d5, les Noirs jouent 3...Bg4, développant le fou sur la diagonale d1-h5 et se préparant à prendre le pion d5, sans défenseur, avec la dame ou le cavalier au coup suivant.
+  dismissRest:
+    reason:
+      vi: Trắng không thách thức con tượng bằng f3. Bất kể chơi gì khác, chẳng hạn phát triển bằng Nf3 hay Be2, con tốt d5 vẫn không có ai bảo vệ và Đen ăn lại nó theo đúng cách như nhau, nên vật chất và kế hoạch của Đen không thay đổi.
+      en: White does not challenge the bishop with f3. Whatever else is played instead, such as developing with Nf3 or Be2, the pawn on d5 is still undefended and Black wins it back the same way, so the material picture and Black's plan do not change.
+      fr: Les Blancs ne défient pas le fou par f3. Quel que soit l'autre coup joué, comme développer par Nf3 ou Be2, le pion d5 reste sans défenseur et les Noirs le reprennent de la même façon, si bien que le tableau matériel et le plan noir ne changent pas.
+  children:
+    - ply: f3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng thách thức con tượng ngay lập tức, hy vọng giành được đôi tượng hoặc buộc nó phải lùi, nhưng cái giá phải trả là mất đi ô phát triển tự nhiên của mã g1 và làm yếu thêm các ô tối cạnh vua.
+        en: White challenges the bishop at once, hoping to win the bishop pair or force it back, but the cost is the g1-knight's natural developing square and a further weakening of the dark squares near the king.
+        fr: Les Blancs défient aussitôt le fou, espérant gagner la paire de fous ou le forcer à reculer, mais le prix à payer est la case de développement naturelle du cavalier g1 et un affaiblissement supplémentaire des cases noires près du roi.
+      unsettled: >-
+        Qxd5 is going free and the evaluation is built on it — nothing of White's still guards d5,
+        whether Black recaptures with the queen or with ...Nxd5, which is exactly why the leaf
+        stops one ply before that happens rather than after it.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn tám và Đen còn bảy, tức là Trắng hơn đúng một tốt ngay lúc này, nhưng con tốt đó đứng trên d5 mà chẳng có ai đỡ. Nước f3 vừa chơi đã lấy mất ô tự nhiên của mã g1 và để lại một lỗ hổng vĩnh viễn ở ô e3 cùng đường chéo a7-g1, ngay phía trước nơi vua Trắng định nhập thành.
+          en: Count the pawns and White has eight left to Black's seven, so White is up exactly one pawn right now, but that pawn sits on d5 with nobody guarding it. The f3 just played has already cost the g1-knight its natural square and leaves a permanent hole on e3 and along the a7-g1 diagonal, right in front of where the White king intends to castle.
+          fr: En comptant les pions, il reste huit pions aux Blancs contre sept aux Noirs, donc les Blancs ont exactement un pion de plus en ce moment, mais ce pion est en d5 sans aucun défenseur. Le f3 qui vient d'être joué a déjà coûté au cavalier g1 sa case naturelle et laisse un trou permanent en e3 ainsi que sur la diagonale a7-g1, juste devant l'endroit où le roi blanc compte roquer.
+        plan:
+          vi: Đen chơi ...Qxd5 hoặc ...Nxd5, đặt quân vào giữa bàn cờ một cách an toàn, rồi tiếp tục ...Nc6, ...g6 và ...Bg7 hay ...e5, khai thác các ô tối yếu quanh vua Trắng để bù lại con tốt đã mất. Trắng chơi Nc3 nếu vừa mất tốt bằng hậu để kiếm nhịp đuổi hậu, rồi Be3, Qd2 và nhập thành cánh hậu hoặc Ne2, dựa vào đôi tượng và cặp tốt trung tâm còn lại để bù cho ô yếu vừa tạo ra.
+          en: Black plays ...Qxd5 or ...Nxd5, centralising a piece safely, then continues with ...Nc6, ...g6 and ...Bg7 or ...e5, aiming at the weak dark squares around the White king to make up for the lost pawn. White plays Nc3 if the queen took on d5 to gain a tempo chasing it, then Be3, Qd2 and castles queenside, or Ne2, relying on the bishop pair and the remaining central pawn duo to offset the weak square just created.
+          fr: Les Noirs jouent ...Qxd5 ou ...Nxd5, centralisant une pièce en sécurité, puis poursuivent par ...Nc6, ...g6 et ...Bg7 ou ...e5, visant les cases noires faibles autour du roi blanc pour compenser le pion perdu. Les Blancs jouent Nc3 si la dame a pris en d5 pour gagner un temps en la chassant, puis Be3, Qd2 et roquent côté dame, ou Ne2, comptant sur la paire de fous et le duo de pions central restant pour compenser la case faible tout juste créée.
+        basis:
+          by: chan
+          at: '2026-09-25'

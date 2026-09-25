@@ -1,0 +1,68 @@
+# Ruy Lopez: Morphy Defense, Norwegian Variation, Nightingale Gambit. Frozen defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 b5 5.Bb3 Na5 6.Bxf7+, which ends on White's own ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). The check on f7 leaves Black
+# exactly two legal replies, Kxf7 and Ke7 — nothing else can block a check delivered by the
+# bishop standing on f7 itself, or capture the checking piece — so the root carries a
+# `dismissed` entry for Ke7 instead of a `dismissRest`, since the two replies exhaust every
+# legal move here. The line below was replayed with chess.js before being annotated; after
+# 6...Kxf7, White's other knight can still collect the e5 pawn with 7.Nxe5+, since the
+# knight that used to guard e5 left for a5 the move before.
+id: ruy-lopez-morphy-defense-norwegian-variation-nightingale-gambit
+name: 'Ruy Lopez: Morphy Defense, Norwegian Variation, Nightingale Gambit'
+eco: C70
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, b5, Bb3, Na5, Bxf7+]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White gives up a whole bishop for a single pawn to drag Black's king to
+      f7, and even with the follow-up Nxe5+ regaining a second pawn, that is a bishop for two
+      pawns in total — a real narrowing of the deficit but nowhere near enough to call the
+      sacrifice sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 5...Na5, Trắng chơi 6.Bxf7+, thí hẳn con tượng để lôi vua Đen ra khỏi vị trí ban đầu, thay vì lùi tượng về c2 hay đổi nó theo cách bình thường khác.
+    en: After 5...Na5, White plays 6.Bxf7+, giving up the bishop outright to drag Black's king off its starting square, instead of retreating the bishop to c2 or trading it off some other ordinary way.
+    fr: Après 5...Na5, les Blancs jouent 6.Bxf7+, sacrifiant carrément le fou pour arracher le roi noir de sa case de départ, au lieu de le replier en c2 ou de l'échanger d'une façon plus ordinaire.
+  dismissed:
+    - ply: Ke7
+      reason: >-
+        Steps the king to e7 instead of recapturing the bishop. Nothing else attacks the bishop
+        on f7, so it is simply lost for a pawn either way, and the king is no safer on e7 than on
+        f7 in this position.
+  children:
+    - ply: Kxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại con tượng bằng vua, cách xử lý tự nhiên nhất vì không quân nào khác của Đen có thể ăn được nó.
+        en: Black recaptures the bishop with the king, the most natural way to handle it since nothing else of Black's can take it.
+        fr: Les Noirs reprennent le fou avec le roi, la façon la plus naturelle de procéder puisque rien d'autre chez les Noirs ne peut le prendre.
+      unsettled: >-
+        Nxe5+ is going free — White's other knight forks nothing but simply wins back the e5
+        pawn with check, since Black's own knight left c6 for a5 earlier in this exact line and
+        no longer guards e5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân ngay tại đây, Trắng 36 còn Đen 38 — Trắng đang kém hẳn một tượng đổi lấy một tốt. Con mã Đen trên a5 đứng ở biên bàn cờ, không có tốt nào bảo vệ và cũng chẳng làm được gì ở đó — chính vì nó rời khỏi c6 nên tốt e5 mất người canh giữ, và con mã còn lại của Trắng sắp ăn tiếp tốt ấy kèm chiếu ngay nước tới. Nhờ vậy khoản lỗ sẽ thu hẹp thành tượng đổi hai tốt chứ chưa hề được bù đắp hết, trong khi vua Đen cũng đã mất quyền nhập thành và đứng lộ trên f7.
+          en: Counting material right here, White has 36 to Black's 38 — White is down a full bishop for a single pawn. Black's knight on a5 sits offside on the rim, defended by no pawn and doing nothing there — it is precisely because it left c6 that the e5 pawn lost its guard, and White's other knight is about to collect that pawn with check next move. That narrows the deficit to a bishop for two pawns without making it up in full, while Black's king has also lost the right to castle and stands exposed on f7.
+          fr: En comptant le matériel ici même, les Blancs ont 36 contre 38 pour les Noirs — les Blancs sont en retard d'un fou entier contre un seul pion. Le cavalier noir en a5 se tient à la marge de l'échiquier, sans le moindre pion pour le défendre et sans utilité là où il est — c'est précisément parce qu'il a quitté c6 que le pion e5 a perdu son gardien, et l'autre cavalier blanc s'apprête à le prendre avec échec au coup suivant. Le déficit se réduit ainsi à un fou contre deux pions sans être comblé pour autant, tandis que le roi noir a lui aussi perdu le droit au roque et se retrouve exposé en f7.
+        plan:
+          vi: Trắng chơi Nxe5+ ăn tốt kèm chiếu, buộc vua Đen di chuyển lần nữa, rồi Qh5+ hoặc d4 và phát triển nhanh, cố khai thác vị trí vua bấp bênh trước khi Đen kịp che chắn. Đen chơi Kg8 hay Ke8 tìm chỗ tương đối an toàn, rồi d6, Nf6 và g6, dồn hết cố gắng vào việc hoàn tất phát triển với quân dư vẫn còn trong tay Trắng nhưng đổi lấy được thời gian.
+          en: White plays Nxe5+ to grab the pawn with check, forcing Black's king to move again, then Qh5+ or d4 and rapid development, trying to exploit the shaky king position before Black can shore it up. Black plays Kg8 or Ke8 to find relative safety, then d6, Nf6 and g6, putting all the effort into finishing development while White still holds the extra material but has spent time getting it.
+          fr: Les Blancs jouent Nxe5+ pour prendre le pion avec échec, forçant le roi noir à bouger de nouveau, puis Qh5+ ou d4 et un développement rapide, cherchant à exploiter la position précaire du roi avant que les Noirs ne puissent la consolider. Les Noirs jouent Kg8 ou Ke8 pour trouver un peu de sécurité, puis d6, Nf6 et g6, mettant tous leurs efforts à achever leur développement pendant que les Blancs gardent leur avantage matériel mais ont dû y consacrer du temps.
+        basis:
+          by: chan
+          at: '2026-09-25'
