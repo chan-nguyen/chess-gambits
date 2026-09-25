@@ -1,0 +1,59 @@
+# English Opening: Wade Gambit. Frozen defining line 1.c4 f5 2.g4, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 2...fxg4: Black takes the pawn at once, the only piece that can capture
+# there. Nothing is hanging at the resulting position. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: english-opening-wade-gambit
+name: 'English Opening: Wade Gambit'
+eco: A10
+category: gambit
+side: white
+definingLine: [c4, f5, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers a wing pawn to open the g-file and pull the f5 pawn off its
+      post, but the king's own cover is weakened first and Black keeps the pawn with no
+      immediate way for White to make it count. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 2.g4, mời Đen ăn con tốt cánh vua này ngay sau nước đi f5 kiểu Hà Lan, đổi lấy việc mở cột g cho xe h1 và kéo tốt f5 ra khỏi vị trí.
+    en: White plays 2.g4, inviting Black to take the kingside pawn right after the Dutch-style ...f5, in exchange for opening the g-file for the h1 rook and pulling the f5 pawn off its post.
+    fr: Les Blancs jouent 2.g4, invitant les Noirs à prendre le pion d'aile roi juste après le coup hollandais ...f5, en échange de l'ouverture de la colonne g pour la tour h1 et du déplacement du pion f5 de son poste.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt g4. Các nước như Nf6 hay d6 để nguyên con tốt g4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the g4 pawn. Anything else, such as ...Nf6 or ...d6, leaves the g4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion g4. Tout le reste, comme ...Nf6 ou ...d6, laisse le pion g4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: fxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt f5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt.
+        en: Black takes the pawn at once, the only piece that can capture there. The f5 pawn has done its capturing and Black is now a clean pawn up.
+        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le pion f5 a fait sa capture et les Noirs ont maintenant un pion net d'avance.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, còn Trắng chưa có gì cụ thể để bù lại ngoài cột g nửa mở, và chính hàng tốt cánh vua của Trắng đã bị xới lên trước cả khi Đen kịp nhập thành về phía đó.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and White has nothing concrete yet to show for it beyond the half-open g-file, while White's own kingside pawn cover is already loosened before Black has even castled that way.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance, et les Blancs n'ont encore rien de concret à montrer, hormis la colonne g semi-ouverte, alors que leur propre couverture de pions à l'aile roi est déjà affaiblie avant même que les Noirs n'y aient roqué.
+        plan:
+          vi: Trắng chơi h3 hay Nf3, cố đòi lại con tốt g4 và hoàn thiện phát triển, tránh nhập thành cánh vua vì hàng tốt đã yếu. Đen chơi Nf6, d5 hay g6, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa vào tàn cuộc.
+          en: White plays h3 or Nf3, trying to win the g4 pawn back and complete development, avoiding castling kingside since the pawn cover is already weak. Black plays ...Nf6, ...d5 or ...g6, completing development soundly and holding the extra pawn for the endgame.
+          fr: Les Blancs jouent h3 ou Nf3, cherchant à reprendre le pion g4 et à achever leur développement, en évitant de roquer côté roi puisque la couverture de pions est déjà faible. Les Noirs jouent ...Nf6, ...d5 ou ...g6, achevant leur développement solidement et gardant le pion supplémentaire pour la finale.
+        basis:
+          by: chan
+          at: '2026-09-25'

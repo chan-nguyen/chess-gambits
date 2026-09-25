@@ -1,0 +1,67 @@
+# Dutch Defense: Staunton Gambit, Tartakower Variation. Frozen defining line 1.d4 f5 2.e4
+# fxe4 3.Nc3 Nf6 4.g4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...Nxg4 5.Nxe4: Black
+# grabs the second pawn, and White recaptures the first one with the knight, hitting
+# nothing but restoring material. Nothing is hanging at the resulting position. searchMate
+# at 4 moves from this position returns no-mate, so no forced mate is claimed anywhere in
+# this entry.
+id: dutch-defense-staunton-gambit-tartakower-variation
+name: 'Dutch Defense: Staunton Gambit, Tartakower Variation'
+eco: A82
+category: gambit
+side: white
+definingLine: [d4, f5, e4, fxe4, Nc3, Nf6, g4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Offering a second
+      pawn to reopen lines is a sharp practical try, but it leaves Black's knight actively
+      placed on e4 after the trade, and the compensation is real but unproven by force. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi phát triển mã c3 và Đen đưa mã ra f6, Trắng chơi 4.g4, thí thêm một con tốt nữa để đuổi mã và mở cột g cho xe.
+    en: After developing the c3 knight and Black bringing a knight to f6, White plays 4.g4, offering a second pawn to chase the knight and open the g-file for the rook.
+    fr: Après avoir développé le cavalier en c3 et les Noirs ayant amené un cavalier en f6, les Blancs jouent 4.g4, offrant un second pion pour chasser le cavalier et ouvrir la colonne g pour la tour.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt g4. Lùi mã bằng Nd5 hay đổi hướng bằng h6 vẫn giữ được con tốt đã ăn ở nước trước nhưng theo cách khác, còn con tốt g4 vẫn chưa ai đỡ thêm.
+      en: Black does not take the g4 pawn. Retreating with ...Nd5 or trying ...h6 also keeps the pawn already won on the previous move but in a different way, and the g4 pawn still has no extra defender.
+      fr: Les Noirs ne prennent pas le pion g4. Reculer par ...Nd5 ou essayer ...h6 garde également le pion déjà gagné au coup précédent mais d'une autre façon, et le pion g4 n'a toujours pas de défenseur supplémentaire.
+  children:
+    - ply: Nxg4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn nốt con tốt thứ hai bằng mã, chấp nhận thử thách gắt gao nhất của nước thí thêm này.
+        en: Black takes the second pawn with the knight, accepting the sternest test of this further offer.
+        fr: Les Noirs prennent le second pion avec le cavalier, acceptant le test le plus sévère de cette nouvelle offre.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Trắng ăn lại con tốt e4 bằng mã c3, đưa vật chất trở lại cân bằng và đặt con mã vào một ô rất tích cực ở giữa bàn cờ.
+            en: White recaptures the e4 pawn with the c3 knight, restoring material balance and placing the knight on a very active central square.
+            fr: Les Blancs reprennent le pion e4 avec le cavalier c3, rétablissant l'équilibre matériel et plaçant le cavalier sur une case centrale très active.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau, sáu tốt mỗi bên, nên hai nước thí đã triệt tiêu lẫn nhau. Mã Trắng đứng rất vững ở e4, nhòm vào d6 và f6, trong khi con mã Đen ở g4 lại đứng khá lệch, xa vua của chính nó và có thể bị Trắng nhắm tới bằng h3 hay Bc4 sau này.
+              en: Material is level, six pawns each, so the two sacrifices have cancelled each other out. White's knight sits very solidly on e4, eyeing d6 and f6, while Black's knight on g4 sits rather offside, far from its own king, and can be targeted with h3 or Bc4 later.
+              fr: Le matériel est égal, six pions de chaque côté, les deux sacrifices s'annulent donc. Le cavalier blanc est très solidement installé en e4, visant d6 et f6, tandis que le cavalier noir en g4 est plutôt excentré, loin de son propre roi, et peut être visé par h3 ou Bc4 plus tard.
+            plan:
+              vi: Trắng chơi h3 đuổi mã, rồi Bc4 và Qe2 hoặc Nf3, tận dụng con mã e4 và việc vua Đen chưa nhập thành. Đen chơi Nf6 lùi mã về vị trí an toàn hơn, rồi d6, g6 và Bg7, hoàn tất phát triển một cách chắc chắn.
+              en: White plays h3 to chase the knight, then Bc4 and Qe2 or Nf3, making use of the e4 knight and Black's uncastled king. Black plays ...Nf6 to bring the knight back to a safer square, then ...d6, ...g6 and ...Bg7, completing development soundly.
+              fr: Les Blancs jouent h3 pour chasser le cavalier, puis Bc4 et Qe2 ou Nf3, profitant du cavalier e4 et du roi noir pas encore roqué. Les Noirs jouent ...Nf6 pour ramener le cavalier vers une case plus sûre, puis ...d6, ...g6 et ...Bg7, achevant leur développement solidement.
+            basis:
+              by: chan
+              at: '2026-09-25'

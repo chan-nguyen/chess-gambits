@@ -1,0 +1,66 @@
+# Caro-Kann Defense: Alekhine Gambit. Frozen defining line 1.e4 c6 2.d4 d5 3.Nc3 dxe4
+# 4.Nxe4 Nf6 5.Bd3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5...Nxe4 6.Bxe4: rather
+# than retreating the attacked knight, White defends it with the bishop and lets the trade
+# happen. Nothing is hanging at the resulting position. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: caro-kann-defense-alekhine-gambit
+name: 'Caro-Kann Defense: Alekhine Gambit'
+eco: B15
+category: gambit
+side: white
+definingLine: [e4, c6, d4, d5, Nc3, dxe4, Nxe4, Nf6, Bd3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Keeping the
+      knight on e4 defended rather than retreating it saves a tempo, but trading it off for
+      the bishop gives up the two bishops for a small lead in development. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đáp lại việc mã f6 tấn công mã e4, Trắng không lùi mã mà chơi 5.Bd3, đỡ thêm cho nó và chấp nhận một cuộc đổi quân nếu Đen muốn.
+    en: Answering the attack on the e4 knight from ...Nf6, White does not retreat it but plays 5.Bd3, adding a defender and accepting a trade if Black wants one.
+    fr: En réponse à l'attaque du cavalier e4 par ...Nf6, les Blancs ne le reculent pas mais jouent 5.Bd3, lui ajoutant un défenseur et acceptant un échange si les Noirs le souhaitent.
+  dismissRest:
+    reason:
+      vi: Đen không đổi mã ngay bằng 5...Nxe4. Các nước phát triển như Bf5 hay g6 để nguyên căng thẳng ở e4, và Trắng vẫn giữ được cả hai quân trên bàn cờ.
+      en: Black does not trade at once with 5...Nxe4. Developing moves such as ...Bf5 or ...g6 leave the tension on e4 unresolved, and White keeps both pieces on the board.
+      fr: Les Noirs n'échangent pas tout de suite par 5...Nxe4. Des coups de développement comme ...Bf5 ou ...g6 laissent la tension en e4 non résolue, et les Blancs gardent les deux pièces sur l'échiquier.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi mã ngay lập tức, giải quyết dứt điểm căng thẳng ở e4 trước khi Trắng kịp tăng thêm áp lực lên đó.
+        en: Black trades at once, settling the tension on e4 before White can add any more pressure to it.
+        fr: Les Noirs échangent aussitôt, réglant la tension en e4 avant que les Blancs ne puissent y ajouter davantage de pression.
+      children:
+        - ply: Bxe4
+          annotation:
+            vi: Tượng ăn lại và đứng ở e4, một ô rất tốt nhìn thẳng vào b7 và h7. Đây đúng là ý đồ của cả biến này, đổi cặp tượng lấy một quân đang hoạt động tích cực.
+            en: The bishop recaptures and lands on e4, a fine square looking straight at b7 and h7. This is exactly the idea of the whole line, trading the bishop pair for one actively placed piece.
+            fr: Le fou reprend et se pose en e4, une excellente case regardant droit vers b7 et h7. C'est exactement l'idée de toute la ligne, échanger la paire de fous contre une pièce très active.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau, bảy tốt mỗi bên, không ai còn thí gì nữa ở đây. Trắng chỉ còn một tượng nhưng nó đứng cực kỳ tích cực ở e4, nhìn thẳng vào cả b7 lẫn h7, trong khi Đen vẫn giữ được cặp tượng nhưng cả hai đều chưa ra khỏi hàng tốt.
+              en: Material is level, seven pawns each, and nobody is sacrificing anything here. White has only one bishop left, but it stands extremely actively on e4, looking at both b7 and h7, while Black keeps the bishop pair but neither of them has left the pawn row yet.
+              fr: Le matériel est égal, sept pions de chaque côté, et plus personne ne sacrifie rien ici. Les Blancs n'ont plus qu'un seul fou, mais il est extrêmement actif en e4, visant à la fois b7 et h7, tandis que les Noirs gardent la paire de fous, mais aucun des deux n'a encore quitté la rangée de pions.
+            plan:
+              vi: Trắng chơi Nf3, O-O và Re1 hay Qe2, tận dụng con tượng e4 để gây sức ép lên cánh hậu Đen trước khi nó bị đổi. Đen chơi Bf5 hay Bg4 đổi bớt tượng nguy hiểm, rồi e6, Nd7 và O-O, hoàn tất phát triển một cách chắc chắn.
+              en: White plays Nf3, O-O and Re1 or Qe2, using the e4 bishop to pressure Black's queenside before it gets traded off. Black plays ...Bf5 or ...Bg4 to trade off the dangerous bishop, then ...e6, ...Nd7 and ...O-O, completing development soundly.
+              fr: Les Blancs jouent Nf3, O-O et Re1 ou Qe2, utilisant le fou e4 pour faire pression sur l'aile dame noire avant qu'il ne soit échangé. Les Noirs jouent ...Bf5 ou ...Bg4 pour échanger le fou dangereux, puis ...e6, ...Nd7 et ...O-O, achevant leur développement solidement.
+            basis:
+              by: chan
+              at: '2026-09-25'

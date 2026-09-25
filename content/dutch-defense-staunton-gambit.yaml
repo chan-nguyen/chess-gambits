@@ -1,0 +1,60 @@
+# Dutch Defense: Staunton Gambit. Frozen defining line 1.d4 f5 2.e4, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 2...e6: Black declines the pawn and closes the centre instead, sidestepping
+# every trick the accepted lines are built around. Nothing is hanging at the resulting
+# position. searchMate at 4 moves from this position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: dutch-defense-staunton-gambit
+name: 'Dutch Defense: Staunton Gambit'
+eco: A82
+category: gambit
+side: white
+definingLine: [d4, f5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers the e-pawn to rip open the diagonal to h5 and the f-file
+      before Black's king finds cover, real compensation that is not proven to outweigh a
+      clean pawn against accurate defence. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 2.e4, mời Đen ăn con tốt trung tâm này ngay sau nước đi đầu tiên của Phòng thủ Hà Lan, đổi lấy việc mở tung trung tâm trước khi Đen kịp hoàn thiện phát triển.
+    en: White plays 2.e4, inviting Black to take the central pawn right after the Dutch Defense's very first move, in exchange for ripping the centre open before Black can finish developing.
+    fr: Les Blancs jouent 2.e4, invitant les Noirs à prendre le pion central juste après le tout premier coup de la Défense hollandaise, en échange de l'ouverture du centre avant que les Noirs n'achèvent leur développement.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e4. Các nước như 2...fxe4 dẫn vào nhánh đã được chấp nhận, còn 2...d6 hay 2...Nf6 cũng từ chối gambit nhưng theo cách khác.
+      en: This entry is not about taking the pawn. 2...fxe4 leads into the accepted branch, while 2...d6 or 2...Nf6 also decline the gambit but in a different way.
+      fr: Cette entrée ne concerne pas la prise du pion. 2...fxe4 mène vers la branche acceptée, tandis que 2...d6 ou 2...Nf6 refusent eux aussi le gambit mais d'une autre façon.
+  children:
+    - ply: e6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen từ chối ăn tốt và đóng cửa trung tâm bằng 2...e6, mở đường cho tượng f8 và tránh hẳn mọi phức tạp của các nhánh đã nhận.
+        en: Black declines the pawn and closes the centre with 2...e6, opening a line for the f8 bishop and sidestepping every complication of the accepted branches entirely.
+        fr: Les Noirs refusent le pion et ferment le centre par 2...e6, ouvrant une ligne pour le fou f8 et évitant complètement toutes les complications des branches acceptées.
+      outcome:
+        type: position
+        evaluation:
+          vi: Quân số ngang nhau, tám tốt mỗi bên, và con tốt e4 vẫn còn nguyên trên bàn cờ chưa ai đụng tới. Trắng có được trung tâm rộng hơn với hai tốt d4 và e4, nhưng Đen đã mở đường cho tượng f8 và giữ được cấu trúc hoàn toàn lành lặn, không nhận bất kỳ rủi ro nào từ các nhánh đã nhận.
+          en: Material is level, eight pawns each, and the e4 pawn is still untouched on the board. White has the bigger centre with pawns on d4 and e4, but Black has opened a line for the f8 bishop and keeps a completely sound structure, taking on none of the risk of the accepted branches.
+          fr: Le matériel est égal, huit pions de chaque côté, et le pion e4 est encore intact sur l'échiquier. Les Blancs ont le plus grand centre avec les pions d4 et e4, mais les Noirs ont ouvert une ligne pour le fou f8 et gardent une structure parfaitement saine, sans prendre aucun des risques des branches acceptées.
+        plan:
+          vi: Trắng chơi Nc3, Nf3 và Bd3, hoàn thiện phát triển và tận dụng khoảng không ở trung tâm trước khi Đen kịp phản công bằng c5 hay d5. Đen chơi Nf6, Be7 hay Bb4 và O-O, hoàn tất phát triển một cách chắc chắn rồi mới chọn thời điểm phản công ở trung tâm.
+          en: White plays Nc3, Nf3 and Bd3, completing development and making use of the central space before Black can counterattack with ...c5 or ...d5. Black plays ...Nf6, ...Be7 or ...Bb4 and ...O-O, completing development soundly before choosing the moment to strike back at the centre.
+          fr: Les Blancs jouent Nc3, Nf3 et Bd3, achevant leur développement et profitant de l'espace central avant que les Noirs ne contre-attaquent par ...c5 ou ...d5. Les Noirs jouent ...Nf6, ...Be7 ou ...Bb4 et ...O-O, achevant leur développement solidement avant de choisir le moment de riposter au centre.
+        basis:
+          by: chan
+          at: '2026-09-25'

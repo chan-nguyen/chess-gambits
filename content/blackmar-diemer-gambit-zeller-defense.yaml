@@ -1,0 +1,60 @@
+# Blackmar-Diemer Gambit: Zeller Defense. Frozen defining line 1.d4 d5 2.e4 dxe4 3.Nc3,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 3...Bf5: Black develops the bishop outside
+# the pawn chain and holds onto the extra pawn. Nothing is hanging at the resulting
+# position. searchMate at 4 moves from this position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: blackmar-diemer-gambit-zeller-defense
+name: 'Blackmar-Diemer Gambit: Zeller Defense'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Developing the
+      bishop before it is shut in by ...e6 is a sound, simple way to hold the extra pawn, and
+      the compensation White gets for it with f3 next is real but unproven by force. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Nc3, chuẩn bị đòi lại con tốt e4 bằng f3 theo lối chính thống. Đen phát triển tượng ra ngoài trước khi nó bị chính hàng tốt của mình khóa lại.
+    en: White plays 3.Nc3, preparing to win the e4 pawn back with f3 the orthodox way. Black develops the bishop outside the pawn chain before it gets shut in by its own pawns.
+    fr: Les Blancs jouent 3.Nc3, préparant à reprendre le pion e4 par f3 de façon orthodoxe. Les Noirs développent le fou hors de la chaîne de pions avant qu'il ne soit enfermé par ses propres pions.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 3...Bf5. Nước 3...e5 phản công ngay ở trung tâm theo kiểu khác, còn Nf6 phát triển mã trước cũng giữ được con tốt thừa nhưng để tượng c8 lại phía sau hàng tốt.
+      en: Black does not play 3...Bf5. 3...e5 counterattacks the centre in a different way, while ...Nf6, developing the knight first, also keeps the extra pawn but leaves the c8 bishop behind the pawn row.
+      fr: Les Noirs ne jouent pas 3...Bf5. 3...e5 contre-attaque le centre d'une autre façon, tandis que ...Nf6, développant d'abord le cavalier, garde lui aussi le pion supplémentaire mais laisse le fou c8 derrière la rangée de pions.
+  children:
+    - ply: Bf5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa tượng ra f5 trước khi chơi e6, giải quyết vấn đề muôn thuở của con tượng ô trắng trong các khai cuộc kiểu này ngay từ sớm.
+        en: Black brings the bishop to f5 before playing ...e6, solving the light-squared bishop's usual problem in this type of opening right at the start.
+        fr: Les Noirs amènent le fou en f5 avant de jouer ...e6, réglant dès le départ le problème habituel du fou de cases claires dans ce genre d'ouverture.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn đúng một tốt sạch và con tốt ấy chưa hề bị đe dọa. Tượng f5 của Đen đã thoát ra ngoài an toàn, một điều mà nhiều biến khác của gambit này phải vật lộn mới làm được, còn Trắng vẫn chưa đòi lại được gì.
+          en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up and that pawn is not under any threat. Black's bishop on f5 has safely escaped, something many other lines of this gambit struggle to manage, while White still has nothing back for the pawn.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion net d'avance et ce pion n'est sous aucune menace. Le fou noir en f5 s'est échappé sans encombre, ce que beaucoup d'autres lignes de ce gambit peinent à réaliser, et les Blancs n'ont toujours rien en échange du pion.
+        plan:
+          vi: Trắng chơi f3, cố mở lại đường cho trung tâm và tìm cách đòi con tốt e4 về, rồi Qe2 hoặc g4 đuổi tượng f5 nếu cần. Đen chơi e6, Nf6 và Be7 hay Bb4, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa vào tàn cuộc.
+          en: White plays f3, trying to reopen the centre and win the e4 pawn back, then Qe2 or g4 to chase the f5 bishop if needed. Black plays ...e6, ...Nf6 and ...Be7 or ...Bb4, completing development soundly and holding the extra pawn for the endgame.
+          fr: Les Blancs jouent f3, cherchant à rouvrir le centre et à reprendre le pion e4, puis Qe2 ou g4 pour chasser le fou f5 au besoin. Les Noirs jouent ...e6, ...Nf6 et ...Be7 ou ...Bb4, achevant leur développement solidement et gardant le pion supplémentaire pour la finale.
+        basis:
+          by: chan
+          at: '2026-09-25'

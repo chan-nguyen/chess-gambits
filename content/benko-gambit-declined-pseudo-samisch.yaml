@@ -1,0 +1,66 @@
+# Benko Gambit Declined: Pseudo-Sämisch. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 4.f3 bxc4: White prepares a big e4 centre instead of taking
+# on b5, and Black simply takes on c4, since nothing defends that pawn yet. No capture is
+# left going free at the resulting position. searchMate at 4 moves from this position
+# returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: benko-gambit-declined-pseudo-samisch
+name: 'Benko Gambit Declined: Pseudo-Sämisch'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Preparing e4 with
+      4.f3 instead of taking on b5 hands Black the c4 pawn for nothing, exactly as the other
+      quiet declines do, so this one is not thought to trouble Black either. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 3...b5 theo đúng tinh thần Benko Gambit, thí tốt cánh hậu để đổi lấy áp lực trên hai cột a và b. Ở đây Trắng chơi 4.f3, chuẩn bị dựng trung tâm lớn bằng e4 giống như trong Phòng thủ Sämisch chống King's Indian, thay vì quyết định ngay chuyện con tốt b5.
+    en: Black plays 3...b5 in true Benko Gambit style, offering the queenside pawn for pressure on the a- and b-files. Here White plays 4.f3, preparing a big e4 centre in Sämisch style against the King's Indian, instead of deciding the fate of the b5 pawn right away.
+    fr: Les Noirs jouent 3...b5 dans le pur style du Gambit Benko, offrant le pion de l'aile dame contre la pression sur les colonnes a et b. Ici, les Blancs jouent 4.f3, préparant un grand centre par e4 à la manière de la Défense Sämisch contre la Est-indienne, au lieu de trancher tout de suite le sort du pion b5.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.f3. Ăn tốt ngay bằng 4.cxb5 dẫn vào các nhánh Benko Gambit đã được chấp nhận, còn những nước như 4.Nf3, 4.a4 hay 4.Nd2 để nguyên tốt b5 nằm đó theo cách khác, mỗi nước ấy có cách chơi riêng của Đen.
+      en: White does not play 4.f3. Taking at once with 4.cxb5 leads into the accepted Benko Gambit branches, while moves such as 4.Nf3, 4.a4 or 4.Nd2 leave the b5 pawn there in their own way, each with Black's own way of meeting it.
+      fr: Les Blancs ne jouent pas 4.f3. Prendre tout de suite par 4.cxb5 mène vers les branches acceptées du Gambit Benko, tandis que des coups comme 4.Nf3, 4.a4 ou 4.Nd2 laissent le pion b5 en place à leur manière, chacun avec sa propre réponse noire.
+  children:
+    - ply: f3
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Trắng chuẩn bị e4 nhưng bỏ qua câu hỏi về tốt c4, con tốt vừa bị tốt b5 nhắm tới. Ý tưởng trung tâm lớn có lý, nhưng nó cho Đen một cách ăn tốt sạch sẽ trước khi trung tâm ấy kịp dựng lên.
+        en: White prepares e4 but ignores the question hanging over c4, the pawn b5 is now aiming at. The big-centre idea has its logic, but it hands Black a clean way to win a pawn before that centre is even built.
+        fr: Les Blancs préparent e4 mais ignorent la question qui pèse sur c4, le pion que b5 vise désormais. L'idée du grand centre a sa logique, mais elle offre aux Noirs un moyen net de gagner un pion avant même que ce centre ne soit bâti.
+      children:
+        - ply: bxc4
+          annotation:
+            vi: Đen ăn con tốt c4 vì không có quân Trắng nào đỡ nó. Đây là cách đáp lại đơn giản và hiệu quả nhất trước một nước chuẩn bị chậm rãi như vậy.
+            en: Black takes the c4 pawn, since nothing white defends it. This is the simplest and most effective answer to such a slow preparatory move.
+            fr: Les Noirs prennent le pion c4, que rien ne défend côté blanc. C'est la réponse la plus simple et la plus efficace à une préparation aussi lente.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn hẳn một tốt sạch và con tốt ấy chưa có cách nào bị ăn lại ngay. Trắng chưa phát triển được quân nào, chỉ mới đi hai nước tốt, còn Đen coi như đã thu được phần thưởng của cả ván gambit mà chưa phải nhượng bộ gì. Cấu trúc tốt của cả hai bên đều lành lặn.
+              en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up and that pawn cannot be recaptured immediately. White has not developed a single piece yet, only two pawn moves, while Black has effectively collected the reward of the whole gambit without having given up anything yet. Both pawn structures are perfectly sound.
+              fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion net d'avance et ce pion ne peut pas être repris tout de suite. Les Blancs n'ont encore développé aucune pièce, seulement deux coups de pion, tandis que les Noirs ont pour ainsi dire empoché la récompense de tout le gambit sans encore rien avoir cédé. Les deux structures de pions sont parfaitement saines.
+            plan:
+              vi: Đen chơi g6, Bg7 và O-O theo cấu trúc quen thuộc, giữ chắc con tốt c4 và không vội trả lại. Trắng chơi e4 để dựng trung tâm như đã định, rồi Bxc4 để lấy lại con tốt khi có dịp, chấp nhận đi sau một nhịp phát triển so với biến đã ăn tốt ngay từ đầu.
+              en: Black plays ...g6, ...Bg7 and ...O-O in the familiar structure, holds the c4 pawn firmly and is in no hurry to give it back. White plays e4 to build the centre as planned, then Bxc4 to win the pawn back when the chance comes, accepting a tempo's lag compared with the lines that take on b5 right away.
+              fr: Les Noirs jouent ...g6, ...Bg7 et ...O-O dans la structure habituelle, tiennent fermement le pion c4 et ne sont pas pressés de le rendre. Les Blancs jouent e4 pour bâtir le centre comme prévu, puis Bxc4 pour reprendre le pion à l'occasion, en acceptant un temps de retard par rapport aux lignes qui prennent en b5 dès le début.
+            basis:
+              by: chan
+              at: '2026-09-25'

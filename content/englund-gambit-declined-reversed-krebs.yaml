@@ -1,0 +1,59 @@
+# Englund Gambit Declined: Reversed Krebs. Frozen defining line 1.d4 e5 2.Nf3 e4, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3.Ng1: the attacked knight simply retreats all the way home
+# rather than going sideways. Nothing is hanging at the resulting position. searchMate at 4
+# moves from this position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: englund-gambit-declined-reversed-krebs
+name: 'Englund Gambit Declined: Reversed Krebs'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5, Nf3, e4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Pushing the e-pawn to chase the knight gains space but costs a tempo the
+      moment the knight simply steps home, so Black is not thought to get more out of this
+      than out of the plainer declines. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi bị mã f3 tấn công, Đen đẩy tốt lên 2...e4, đuổi luôn con mã trước khi nó kịp ăn tốt. Con mã Trắng phải rời vị trí ngay lập tức.
+    en: Having been attacked by the f3 knight, Black pushes with 2...e4, chasing the knight away before it can ever take the pawn. The white knight has to move at once.
+    fr: Après avoir été attaqué par le cavalier f3, les Noirs poussent par 2...e4, chassant aussitôt le cavalier avant qu'il ne puisse jamais prendre le pion. Le cavalier blanc doit bouger tout de suite.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 2...e4. Đỡ tốt bằng Nc6 hay d6 giữ được con tốt theo cách khác mà không cần đẩy tiếp, mỗi cách có trang riêng của nó.
+      en: Black does not play 2...e4. Defending the pawn with ...Nc6 or ...d6 keeps it in a different way, without pushing on, each with its own page.
+      fr: Les Noirs ne jouent pas 2...e4. Défendre le pion par ...Nc6 ou ...d6 le garde d'une autre façon, sans pousser, chacun avec sa propre page.
+  children:
+    - ply: Ng1
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Con mã lùi hẳn về vị trí ban đầu thay vì đi sang bên. Nghe có vẻ mất thời gian, nhưng con tốt e4 của Đen giờ đứng khá xa và có thể trở thành mục tiêu sau này.
+        en: The knight retreats all the way home rather than stepping sideways. It sounds like wasted time, but Black's pawn on e4 is now advanced and can become a target later.
+        fr: Le cavalier recule complètement à sa case de départ plutôt que de se déplacer sur le côté. Cela paraît une perte de temps, mais le pion noir en e4 est désormais avancé et peut devenir une cible plus tard.
+      outcome:
+        type: position
+        evaluation:
+          vi: Quân số ngang nhau, tám tốt mỗi bên. Đen có được không gian nhờ con tốt e4 tiến xa, nhưng con tốt ấy cũng đứng một mình, không tốt nào khác đỡ được nó, và Trắng đã mất một nhịp để rồi sẽ lấy lại bằng cách tấn công thẳng vào nó với f3 hay Nc3.
+          en: Material is level, eight pawns each. Black has gained space with the advanced e4 pawn, but that pawn also stands alone with no other pawn defending it, and White has lost a tempo only to win it back by attacking the pawn directly with f3 or Nc3.
+          fr: Le matériel est égal, huit pions de chaque côté. Les Noirs ont gagné de l'espace avec le pion e4 avancé, mais ce pion se retrouve aussi seul, sans autre pion pour le défendre, et les Blancs ont perdu un temps qu'ils regagneront en attaquant directement ce pion par f3 ou Nc3.
+        plan:
+          vi: Đen chơi Nc6, d5 và Nf6, hoàn tất phát triển và giữ vững con tốt e4 càng lâu càng tốt. Trắng chơi Nc3 hay f3, tấn công thẳng vào con tốt e4 và tìm cách đòi lại không gian đã mất.
+          en: Black plays ...Nc6, ...d5 and ...Nf6, completing development and holding the e4 pawn for as long as possible. White plays Nc3 or f3, attacking the e4 pawn directly and looking to win back the space that was lost.
+          fr: Les Noirs jouent ...Nc6, ...d5 et ...Nf6, achevant leur développement et gardant le pion e4 aussi longtemps que possible. Les Blancs jouent Nc3 ou f3, attaquant directement le pion e4 et cherchant à regagner l'espace perdu.
+        basis:
+          by: chan
+          at: '2026-09-25'
