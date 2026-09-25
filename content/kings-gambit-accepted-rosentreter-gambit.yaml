@@ -1,0 +1,58 @@
+# King's Gambit Accepted, Rosentreter Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 g5 4.d4, which ends on White's own 4.d4 — the learner's ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Black's 4...Bg7 is modelled as the root's
+# single reply. The position after it was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-gambit-accepted-rosentreter-gambit
+name: "King's Gambit Accepted: Rosentreter Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White builds the full pawn centre at once, before even developing the
+      bishop, banking on space and quick piece play rather than an immediate try to win the
+      f4 pawn back. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì đưa tượng ra c4 trước, Trắng đẩy luôn tốt d lên d4, dựng cặp tốt trung tâm d4-e4 ngay lập tức và để việc phát triển quân lại sau.
+    en: Instead of developing the bishop to c4 first, White pushes the d-pawn to d4 at once, building the d4-e4 pawn pair immediately and leaving piece development for later.
+    fr: Au lieu de développer d'abord le fou en c4, les Blancs poussent aussitôt le pion d en d4, bâtissant immédiatement le duo de pions d4-e4 et laissant le développement des pièces pour plus tard.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.d4 bằng một nước khác ngoài 4...Bg7 — chẳng hạn ...g4 đuổi mã ngay (xem mục riêng, Sörensen Gambit) hay ...Nc6. Nằm ngoài phạm vi mục này.
+      en: Black meets 4.d4 with something other than 4...Bg7 — for instance ...g4 chasing the knight at once (see the dedicated Sörensen Gambit entry) or ...Nc6. Outside the scope of this entry.
+      fr: Les Noirs répondent à 4.d4 par autre chose que 4...Bg7 — par exemple ...g4 chassant aussitôt le cavalier (voir l'entrée dédiée, le gambit Sörensen) ou ...Nc6. Hors du cadre de cette entrée.
+  children:
+    - ply: Bg7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen fianchetto tượng, ép vào trung tâm Trắng từ xa mà chưa vội đuổi mã hay đụng tới cấu trúc tốt cánh vua.
+        en: Black fianchettoes the bishop, pressing on White's centre from a distance without yet chasing the knight or touching the kingside pawn structure.
+        fr: Les Noirs fianchettent le fou, pressant le centre blanc à distance sans encore chasser le cavalier ni toucher à la structure de pions de l'aile roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng kém một tốt kể từ nước 2...exf4 chưa được ăn lại. Đổi lại, Trắng đã có cặp tốt trung tâm d4-e4 chiếm không gian lớn, còn con tượng g7 của Đen giờ ép thẳng vào ô d4 dọc đường chéo dài. Chưa quân nào bên nào đang bị treo.
+          en: Count the pawns and it is seven for White, eight for Black — White is a pawn down since 2...exf4 was never recaptured. In exchange, White already has the d4-e4 pawn pair claiming a great deal of space, while Black's bishop on g7 now presses straight down the long diagonal at d4. Nothing on either side is currently hanging.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de retard depuis que 2...exf4 n'a jamais été repris. En échange, ils disposent déjà du duo de pions d4-e4 qui prend beaucoup d'espace, tandis que le fou g7 noir presse désormais tout droit la case d4 le long de la grande diagonale. Rien n'est actuellement en prise d'un côté ni de l'autre.
+        plan:
+          vi: Trắng chơi Nc3 bảo vệ tốt d4 và tốt e4, Bxf4 hoặc g3 để đòi lại con tốt đã mất, dùng cặp tốt trung tâm để hạn chế quân Đen. Đen chơi ...Ne7 hoặc ...Nc6, cố giữ con tốt f4 thêm một lúc và tìm chỗ an toàn cho vua.
+          en: White plays Nc3 to defend the d4 and e4 pawns, Bxf4 or g3 to win back the lost pawn, and uses the pawn pair to cramp Black's pieces. Black plays ...Ne7 or ...Nc6, tries to hold the f4 pawn a little longer, and looks for a safe spot for the king.
+          fr: Les Blancs jouent Nc3 pour défendre les pions d4 et e4, Bxf4 ou g3 pour regagner le pion perdu, et utilisent le duo de pions pour gêner les pièces noires. Les Noirs jouent ...Ne7 ou ...Nc6, tentent de garder le pion f4 un peu plus longtemps et cherchent un abri pour le roi.
+        basis:
+          by: chan
+          at: '2026-09-25'

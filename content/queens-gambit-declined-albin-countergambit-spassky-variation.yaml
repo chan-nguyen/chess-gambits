@@ -1,0 +1,57 @@
+# Queen's Gambit Declined, Albin Countergambit, Spassky Variation, taught. Frozen defining
+# line 1.d4 d5 2.c4 e5 3.dxe5 d4, which ends on Black's own 3...d4 — the learner's ply — so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5), and White's 4.e4, the move
+# that gives this entry its name, is modelled as the root's own reply rather than folded into
+# the defining line. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate.
+id: queens-gambit-declined-albin-countergambit-spassky-variation
+name: "Queen's Gambit Declined: Albin Countergambit, Spassky Variation"
+eco: D08
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Rather than developing the knight to f3, White pushes a second central
+      pawn to e4, giving the wedge on d4 even more room but also fixing the centre in a way
+      Black can play against. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa đẩy tốt lên d4, giữ cái nêm lấn sâu vào trung tâm Trắng. Mục này theo dõi 4.e4, Trắng chọn giữ trọn tốt e5 bằng cách chiếm thêm không gian trung tâm thay vì phát triển mã ngay.
+    en: Black has just pushed the pawn to d4, driving the wedge deep into White's centre. This entry follows 4.e4, where White chooses to hold the e5 pawn firmly by claiming more central space instead of developing the knight at once.
+    fr: Les Noirs viennent de pousser le pion en d4, enfonçant le coin profondément dans le centre blanc. Cette entrée suit 4.e4, où les Blancs choisissent de tenir fermement le pion e5 en prenant davantage d'espace central plutôt que de développer aussitôt le cavalier.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...d4 bằng một nước khác ngoài 4.e4 — phổ biến nhất là 4.Nf3 (xem các mục riêng về nhánh này) hay 4.e3. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White meets 3...d4 with something other than 4.e4 — most commonly 4.Nf3 (see the dedicated entries on that branch) or 4.e3. Each is outside the scope of this entry.
+      fr: Les Blancs répondent à 3...d4 par autre chose que 4.e4 — le plus souvent 4.Nf3 (voir les entrées dédiées à cette branche) ou 4.e3. Chacune sort du cadre de cette entrée.
+  children:
+    - ply: e4
+      annotation:
+        vi: Trắng đẩy tốt e lên e4, khoá chặt con tốt d4 của Đen và mở đường chéo cho tượng f1 ra c4 hay b5 sau này.
+        en: White pushes the e-pawn to e4, locking Black's d4 pawn in place and opening the diagonal for the f1 bishop to reach c4 or b5 later.
+        fr: Les Blancs poussent le pion e en e4, verrouillant le pion d4 noir en place et ouvrant la diagonale du fou f1 vers c4 ou b5 plus tard.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Đen kém một tốt kể từ 3.dxe5. Con tốt d4 vẫn cấm ô c3 và giờ được thêm không gian nhờ tốt e4 của Trắng đứng cạnh, nhưng con tượng c8 của Đen tạm thời bị chính con tốt d4 và d5 cũ che khuất một phần đường phát triển.
+          en: Count the pawns and it is eight for White, seven for Black — Black is a pawn down since 3.dxe5. The d4 pawn still bans the c3 square and now has extra room thanks to White's e4 pawn standing beside it, but Black's own c8 bishop has part of its development path shadowed by the d4 pawn for the moment.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Noirs sont en retard d'un pion depuis 3.dxe5. Le pion d4 interdit toujours la case c3 et dispose désormais de plus d'espace grâce au pion e4 blanc à ses côtés, mais le fou c8 noir voit une partie de son chemin de développement obscurcie par le pion d4 pour l'instant.
+        plan:
+          vi: Trắng chơi Bc4 hoặc Nf3 hoàn tất phát triển, giữ vững con tốt thừa và trung tâm e4-e5 rộng lớn. Đen chơi ...Nc6 và ...Bg4 hay ...Bb4+ gây sức ép, ...Qe7 nhắm lại tốt e5, và tìm cách khai thác cái nêm d4 trước khi Trắng kịp củng cố hoàn toàn.
+          en: White plays Bc4 or Nf3 to finish developing, holding onto the extra pawn and the big e4-e5 centre. Black plays ...Nc6 and ...Bg4 or ...Bb4+ to build pressure, ...Qe7 aiming back at the e5 pawn, and looks to exploit the d4 wedge before White fully consolidates.
+          fr: Les Blancs jouent Bc4 ou Nf3 pour achever leur développement, gardant le pion supplémentaire et le grand centre e4-e5. Les Noirs jouent ...Nc6 et ...Bg4 ou ...Bb4+ pour construire la pression, ...Qe7 visant de nouveau le pion e5, et cherchent à exploiter le coin en d4 avant que les Blancs ne consolident totalement.
+        basis:
+          by: chan
+          at: '2026-09-25'

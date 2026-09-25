@@ -1,0 +1,58 @@
+# Petrov's Defense, Stafford Gambit Accepted, taught. Frozen defining line 1.e4 e5 2.Nf3
+# Nf6 3.Nxe5 Nc6 4.Nxc6 dxc6, which ends on Black's own 4...dxc6 — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). White's 5.d3 is modelled as the
+# root's single reply. The position after it was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: petrovs-defense-stafford-gambit-accepted
+name: "Petrov's Defense: Stafford Gambit Accepted"
+eco: C42
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nf6, Nxe5, Nc6, Nxc6, dxc6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement about the objective material balance, not about how dangerous the
+      position is to face in practice. Black is a clean pawn down with doubled c-pawns, and
+      the fast development and open lines that follow are real, sharp practical chances
+      rather than a proven equalising idea. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen ăn lại bằng tốt d, chấp nhận cấu trúc tốt c bị chồng để đổi lấy cột d nửa mở và tốc độ phát triển nhanh cho các quân còn lại.
+    en: Black recaptures with the d-pawn, accepting a doubled c-pawn structure in exchange for the half-open d-file and quick development for the remaining pieces.
+    fr: Les Noirs reprennent avec le pion d, acceptant une structure de pions c doublés en échange de la colonne d semi-ouverte et d'un développement rapide pour les pièces restantes.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 4...dxc6 bằng một nước khác ngoài 5.d3 — chẳng hạn Be2 phát triển tượng trước. Đánh giá vẫn tương tự, vì Trắng vẫn giữ được tốt thừa theo cách này hay cách khác.
+      en: White meets 4...dxc6 with something other than 5.d3 — for instance Be2 developing the bishop first. The assessment is similar, since White keeps the extra pawn one way or another.
+      fr: Les Blancs répondent à 4...dxc6 par autre chose que 5.d3 — par exemple Be2 en développant d'abord le fou. L'évaluation est similaire, les Blancs gardant le pion supplémentaire d'une manière ou d'une autre.
+  children:
+    - ply: d3
+      annotation:
+        vi: Trắng chơi thận trọng, mở đường cho tượng c1 và chuẩn bị nhập thành trước khi bị Đen tấn công.
+        en: White plays solidly, opening a path for the c1 bishop and preparing to castle before Black can attack.
+        fr: Les Blancs jouent solidement, ouvrant une voie pour le fou c1 et se préparant à roquer avant que les Noirs ne puissent attaquer.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Đen kém một tốt sạch kể từ loạt đổi mã, và cấu trúc tốt c6-c7 bị chồng đôi là một điểm yếu lâu dài. Đổi lại, cột d đã nửa mở cho xe Đen, còn Trắng đã chơi một nước thận trọng thay vì phát triển thêm quân.
+          en: Count the pawns and it is eight for White, seven for Black — Black is a clean pawn down since the knight trade, and the doubled c6-c7 pawns are a long-term weakness. In exchange, the d-file is already half-open for Black's rook, and White has spent a solid but modest move rather than developing another piece.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Noirs ont un pion net de moins depuis l'échange de cavaliers, et les pions doublés c6-c7 sont une faiblesse durable. En échange, la colonne d est déjà semi-ouverte pour la tour noire, et les Blancs ont joué un coup solide mais modeste plutôt que de développer une autre pièce.
+        plan:
+          vi: Trắng chơi Be2 và O-O hoàn tất an toàn cho vua, tin vào tốt thừa cho tàn cuộc trong lúc phòng thủ chắc chắn. Đen chơi ...Bc5 nhắm vào f2, ...Bg4 và ...O-O-O tận dụng cột d nửa mở, dồn vào tấn công nhanh trước khi Trắng kịp củng cố.
+          en: White plays Be2 and O-O to complete king safety, trusting the extra pawn for the endgame while defending solidly. Black plays ...Bc5 aimed at f2, ...Bg4 and ...O-O-O using the half-open d-file, banking on a fast attack before White can consolidate.
+          fr: Les Blancs jouent Be2 et O-O pour achever la sécurité du roi, misant sur le pion supplémentaire pour la finale tout en se défendant solidement. Les Noirs jouent ...Bc5 visant f2, ...Bg4 et ...O-O-O utilisant la colonne d semi-ouverte, misant sur une attaque rapide avant que les Blancs ne consolident.
+        basis:
+          by: chan
+          at: '2026-09-25'

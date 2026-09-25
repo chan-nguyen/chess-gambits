@@ -1,0 +1,63 @@
+# Nimzowitsch Defense, Kennedy Variation, de Smet Gambit, taught. Frozen defining line 1.e4
+# Nc6 2.d4 e5 3.dxe5 d6, which ends on Black's own 3...d6 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.exd6 is modelled as the
+# root's reply; Black's 4...Bxd6 is the single recapture that follows. The position after it
+# was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# Every ply was replayed with chess.js.
+id: nimzowitsch-defense-kennedy-variation-de-smet-gambit
+name: 'Nimzowitsch Defense: Kennedy Variation, de Smet Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, Nc6, d4, e5, dxe5, d6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black strikes at the e5 pawn directly with 3...d6, the most concrete try
+      to win it back at once rather than developing around it. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đẩy tốt d lên d6, tấn công thẳng vào con tốt e5 và đòi lại nó ngay ở nước sau nếu Trắng không giữ được.
+    en: Black pushes the d-pawn to d6, attacking the e5 pawn directly and threatening to win it straight back next move if White cannot hold it.
+    fr: Les Noirs poussent le pion d en d6, attaquant directement le pion e5 et menaçant de le regagner aussitôt au coup suivant si les Blancs ne peuvent le tenir.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...d6 bằng một nước khác ngoài 4.exd6 — chẳng hạn f4 hay Nf3 cố giữ con tốt bằng thêm quân. Nằm ngoài phạm vi mục này.
+      en: White meets 3...d6 with something other than 4.exd6 — for instance f4 or Nf3 trying to hold the pawn with more support. Outside the scope of this entry.
+      fr: Les Blancs répondent à 3...d6 par autre chose que 4.exd6 — par exemple f4 ou Nf3 pour essayer de tenir le pion avec davantage de soutien. Hors du cadre de cette entrée.
+  children:
+    - ply: exd6
+      annotation:
+        vi: Trắng trả lại con tốt ngay, đổi lấy phát triển thông thoáng thay vì cố giữ nó bằng thêm quân.
+        en: White gives the pawn back at once, trading it for freer development rather than trying to hold it with more support.
+        fr: Les Blancs rendent aussitôt le pion, l'échangeant contre un développement plus dégagé plutôt que d'essayer de le tenir avec davantage de soutien.
+      children:
+        - ply: Bxd6
+          annotation:
+            vi: Đen ăn lại bằng tượng, đưa quân số về ngang nhau và mở đường cho tượng f8 luôn trong một nước.
+            en: Black recaptures with the bishop, restoring material equality and developing the f8 bishop in one move.
+            fr: Les Noirs reprennent avec le fou, rétablissant l'égalité matérielle et développant le fou f8 en un seul coup.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu — Trắng vẫn hơn một tốt sạch, vì con tốt vừa ăn ở d6 chính là con tốt d4 ban đầu đã đổi liên tiếp lấy hai con tốt của Đen (e5 rồi d6), còn Đen chỉ ăn lại nó bằng tượng chứ không phải bằng tốt. Con tượng d6 của Đen đã phát triển, còn Trắng vẫn chưa động đến quân nào ngoài tốt.
+              en: Count the pawns and it is seven for White, six for Black — White is still a clean pawn up, since the pawn just captured on d6 was the original d4 pawn, which had already traded for two Black pawns in a row (e5, then d6), and Black recaptured it with the bishop rather than a pawn. Black's bishop on d6 is developed, while White has not touched a piece yet besides pawns.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — les Blancs restent avec un pion net de plus, le pion qui vient d'être capturé en d6 étant le pion d4 d'origine, qui avait déjà pris deux pions noirs de suite (e5, puis d6), et les Noirs ne l'ont repris qu'avec le fou, pas avec un pion. Le fou noir en d6 est développé, tandis que les Blancs n'ont encore touché aucune pièce à part des pions.
+            plan:
+              vi: Trắng chơi Nf3 và Bc4 hoàn tất phát triển, giữ vững con tốt thừa và tận dụng việc đi trước để tranh chủ động. Đen chơi ...Nf6 và ...O-O, hoàn tất phát triển an toàn và tìm bù đắp cụ thể cho con tốt đã mất.
+              en: White plays Nf3 and Bc4 to finish developing, keeping the extra pawn and using the extra move to fight for the initiative. Black plays ...Nf6 and ...O-O, finishing development safely and looking for concrete compensation for the missing pawn.
+              fr: Les Blancs jouent Nf3 et Bc4 pour achever leur développement, gardant le pion supplémentaire et utilisant le coup d'avance pour lutter pour l'initiative. Les Noirs jouent ...Nf6 et ...O-O, achevant leur développement en sécurité et cherchant une compensation concrète pour le pion manquant.
+            basis:
+              by: chan
+              at: '2026-09-25'

@@ -1,0 +1,58 @@
+# King's Gambit Declined, Falkbeer Countergambit, Modern Transfer, taught. Frozen defining
+# line 1.e4 e5 2.f4 d5 3.exd5 exf4, which ends on Black's own 3...exf4 — the learner's ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.c4 is modelled as
+# the root's single reply, defending the d5 pawn directly rather than leaving it to a
+# ...Qxd5 recapture. The position after it was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-gambit-declined-falkbeer-countergambit-modern-transfer
+name: "King's Gambit Declined: Falkbeer Countergambit, Modern Transfer"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, exf4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Instead of pushing 3...e4 as in the main countergambit, Black takes the
+      f4 pawn straight back, trading pawn for pawn and heading toward a position closer to an
+      ordinary King's Gambit Accepted than a sharp countergambit. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì đẩy 3...e4 để lấy nhịp như trong nhánh chính, Đen ăn lại ngay tốt f4, chuyển ván cờ về một cấu trúc quen thuộc hơn thay vì giữ mũi tốt e4 sắc bén.
+    en: Instead of pushing 3...e4 for a tempo as in the main countergambit branch, Black takes the f4 pawn straight back, shifting the game toward a more familiar structure rather than keeping the sharp e4 spearhead.
+    fr: Au lieu de pousser 3...e4 pour gagner un temps comme dans la branche principale, les Noirs reprennent aussitôt le pion f4, ramenant la partie vers une structure plus familière plutôt que de garder la pointe de pion e4 tranchante.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.c4. Các nước khác để con tốt d5 không quân nào bảo vệ, và ...Qxd5 ăn lại nó ngay lập tức mà không mất gì.
+      en: White does not play 4.c4. Anything else leaves the d5 pawn defended by nothing, and ...Qxd5 recaptures it at once for free.
+      fr: Les Blancs ne jouent pas 4.c4. Tout le reste laisse le pion d5 sans défense, et ...Qxd5 le reprend aussitôt gratuitement.
+  children:
+    - ply: c4
+      annotation:
+        vi: Trắng đỡ thẳng con tốt d5 bằng tốt c, giữ nó lại trên bàn cờ thay vì để Đen ăn lại miễn phí.
+        en: White defends the d5 pawn directly with the c-pawn, keeping it on the board instead of letting Black recapture it for free.
+        fr: Les Blancs défendent directement le pion d5 avec le pion c, le gardant sur l'échiquier au lieu de laisser les Noirs le reprendre gratuitement.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau — con tốt d5 giờ đã được đỡ và không còn là mục tiêu miễn phí, trong khi con tốt f4 của Đen vẫn chọc sâu vào cánh vua Trắng. Cả hai vua đều chưa nhập thành.
+          en: Count the pawns and it is seven each, material dead level — the d5 pawn is now defended and no longer a free target, while Black's f4 pawn still pokes into White's kingside. Neither king has castled.
+          fr: Comptez les pions, sept de chaque côté, le matériel est parfaitement égal — le pion d5 est désormais défendu et n'est plus une cible gratuite, tandis que le pion f4 noir s'enfonce toujours dans l'aile roi blanche. Aucun roi n'a roqué.
+        plan:
+          vi: Trắng chơi Nf3 để tấn công tốt f4 và chuẩn bị lấy lại nó, giữ tốt d5 làm quân bài không gian, rồi tìm cách hoàn tất phát triển và nhập thành. Đen chơi ...Nf6 phát triển và gây sức ép lên trung tâm Trắng, ...Bc5, và cân nhắc giữ tốt f4 làm điểm tựa hoặc trả lại nó để đổi lấy phát triển thông thoáng.
+          en: White plays Nf3 to attack the f4 pawn and prepare to win it back, keeps the d5 pawn as a space asset, then looks to finish developing and castle. Black plays ...Nf6 developing and pressuring White's centre, ...Bc5, and weighs holding the f4 pawn as an outpost against giving it back for freer development.
+          fr: Les Blancs jouent Nf3 pour attaquer le pion f4 et préparer à le regagner, gardent le pion d5 comme atout d'espace, puis cherchent à achever leur développement et à roquer. Les Noirs jouent ...Nf6 en se développant et en pressant le centre blanc, ...Bc5, et pèsent l'idée de garder le pion f4 comme avant-poste contre celle de le rendre pour un développement plus dégagé.
+        basis:
+          by: chan
+          at: '2026-09-25'

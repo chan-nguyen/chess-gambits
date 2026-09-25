@@ -1,0 +1,57 @@
+# King's Pawn Game, Philidor Gambit, taught. Frozen defining line 1.e4 e5 2.d4 d6 3.dxe5
+# Bd7, which ends on Black's own 3...Bd7 — the learner's ply — so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). White's 4.Qxd6, the queen trade that cashes in the d6
+# pawn's weakness, is modelled as the root's single reply. The position after it was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. Every ply
+# was replayed with chess.js.
+id: kings-pawn-game-philidor-gambit
+name: "King's Pawn Game: Philidor Gambit"
+eco: C20
+category: gambit
+side: black
+definingLine: [e4, e5, d4, d6, dxe5, Bd7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black leaves the e5 pawn uncaptured and develops the bishop instead, but
+      the pawn is simply gone unless Black comes back for it, and the d6 pawn is now loose as
+      well. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen không ăn lại tốt e5 bằng ...dxe5 mà đưa tượng ra d7 để chuẩn bị ...Bc6 hoặc tránh việc đổi hậu sớm, để lại con tốt e5 cho Trắng.
+    en: Rather than recapturing the e5 pawn with ...dxe5, Black develops the bishop to d7 to prepare ...Bc6 or avoid an early queen trade, leaving the e5 pawn with White.
+    fr: Plutôt que de reprendre le pion e5 par ...dxe5, les Noirs développent le fou en d7 pour préparer ...Bc6 ou éviter un échange de dames précoce, laissant le pion e5 aux Blancs.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Qxd6. Các nước khác, chẳng hạn Nf3 phát triển trước, để nguyên căng thẳng nhưng cũng để ngỏ cơ hội đổi hậu này lại cho sau.
+      en: White does not play 4.Qxd6. Anything else, such as Nf3 developing first, leaves the tension in place but also leaves this queen trade available for later.
+      fr: Les Blancs ne jouent pas 4.Qxd6. Tout le reste, comme Nf3 en se développant d'abord, laisse la tension en place mais garde aussi cet échange de dames disponible pour plus tard.
+  children:
+    - ply: Qxd6
+      annotation:
+        vi: Trắng đổi hậu ngay, ăn nốt con tốt d6 không được bảo vệ và đưa ván cờ vào một tàn cuộc hơn hẳn hai tốt.
+        en: White trades queens at once, picking up the undefended d6 pawn too and steering the game into an endgame two clean pawns up.
+        fr: Les Blancs échangent aussitôt les dames, ramassant au passage le pion d6 sans défense et menant la partie vers une finale avec deux pions nets d'avance.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen sáu — Trắng hơn hẳn hai tốt sạch sau khi ăn cả e5 lẫn d6, và hậu đã bị đổi. Đen ăn lại bằng ...Qxd6, nhưng bước vào tàn cuộc với khoản lỗ vật chất nặng nề mà chưa có gì cụ thể bù lại.
+          en: Count the pawns and it is eight for White, six for Black — White is two clean pawns up after picking up both e5 and d6, and the queens have come off. Black recaptures with ...Qxd6, but enters the endgame with a heavy material deficit and nothing concrete to show for it.
+          fr: Comptez les pions, huit pour les Blancs, six pour les Noirs — les Blancs ont deux pions nets d'avance après avoir ramassé e5 et d6, et les dames ont été échangées. Les Noirs reprennent par ...Qxd6, mais entrent en finale avec un lourd déficit matériel et rien de concret à montrer pour cela.
+        plan:
+          vi: Trắng chơi Nf3 và Bc4 hoàn tất phát triển, đổi bớt quân nặng khi có thể và tin vào hai tốt thừa cho tàn cuộc. Đen chơi ...Bc6 đe doạ tốt e4, ...Nd7 và ...Nf6, cố tìm hoạt động và bù đắp cụ thể trước khi tàn cuộc trở nên vô vọng.
+          en: White plays Nf3 and Bc4 to finish developing, trades off heavy pieces when possible, and trusts the two extra pawns for the endgame. Black plays ...Bc6 threatening the e4 pawn, ...Nd7 and ...Nf6, trying to find activity and concrete compensation before the endgame becomes hopeless.
+          fr: Les Blancs jouent Nf3 et Bc4 pour achever leur développement, échangent les pièces lourdes quand c'est possible et misent sur les deux pions supplémentaires pour la finale. Les Noirs jouent ...Bc6 menaçant le pion e4, ...Nd7 et ...Nf6, cherchant de l'activité et une compensation concrète avant que la finale ne devienne sans espoir.
+        basis:
+          by: chan
+          at: '2026-09-25'

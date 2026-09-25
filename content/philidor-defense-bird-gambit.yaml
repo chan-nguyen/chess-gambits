@@ -1,0 +1,58 @@
+# Philidor Defense, Bird Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 d6 3.d4 exd4
+# 4.c3, which ends on White's own 4.c3 — the learner's ply — so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Black's 4...Nc6 is modelled as the root's single reply,
+# declining the second pawn. The position after it was checked with `searchMate` (bounded to
+# 2 moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: philidor-defense-bird-gambit
+name: 'Philidor Defense: Bird Gambit'
+eco: C41
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, d6, d4, exd4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Rather than recapture on d4 at once with the knight, White offers a
+      second pawn with c3 to open the centre and diagonals for a quick lead in development.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt d4 ngay bằng mã, Trắng chơi c3, mời Đen ăn thêm một tốt nữa để đổi lấy trung tâm rộng mở và tốc độ phát triển.
+    en: Instead of recapturing on d4 at once with the knight, White plays c3, inviting Black to take a second pawn in exchange for an open centre and speed of development.
+    fr: Au lieu de reprendre aussitôt en d4 avec le cavalier, les Blancs jouent c3, invitant les Noirs à prendre un second pion en échange d'un centre ouvert et d'une rapidité de développement.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 4...Nc6 — chẳng hạn ...dxc3 ăn nốt tốt thứ hai ngay. Đánh giá vẫn tương tự về mặt nguyên tắc, dù con đường cụ thể khác đi.
+      en: Black plays something other than 4...Nc6 — for instance ...dxc3 taking the second pawn at once. The assessment is similar in principle, even though the concrete path differs.
+      fr: Les Noirs jouent autre chose que 4...Nc6 — par exemple ...dxc3 en prenant aussitôt le second pion. L'évaluation est similaire en principe, même si le chemin concret diffère.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen từ chối con tốt thứ hai và phát triển mã, giữ lại một tốt thay vì mạo hiểm ăn cả hai.
+        en: Black declines the second pawn and develops the knight, keeping the one pawn already won rather than risking taking both.
+        fr: Les Noirs déclinent le second pion et développent le cavalier, gardant le pion déjà gagné plutôt que de risquer d'en prendre deux.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng kém một tốt sạch vì con tốt d4 chưa bị ăn lại và Đen đã từ chối ăn thêm tốt c3. Đổi lại, Trắng vẫn giữ được tốt c3 làm vốn cho trung tâm sau này, còn Đen đã phát triển được một mã.
+          en: Count the pawns and it is seven for White, eight for Black — White is a clean pawn down since the d4 pawn was never recaptured and Black declined the c3 pawn as well. In exchange, White still keeps the c3 pawn as an asset for the centre later, and Black has developed one knight.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion net de moins, le pion d4 n'ayant jamais été repris et les Noirs ayant décliné le pion c3 aussi. En échange, les Blancs gardent le pion c3 comme atout pour le centre plus tard, et les Noirs ont développé un cavalier.
+        plan:
+          vi: Trắng chơi cxd4 để đòi lại con tốt và dựng trung tâm d4-e4, rồi Bc4 và O-O, dồn vào tốc độ phát triển để bù cho tốt đã mất. Đen chơi ...Nf6 và ...Be7, hoàn tất phát triển an toàn và giữ vững tốt đã ăn được.
+          en: White plays cxd4 to win the pawn back and build the d4-e4 centre, then Bc4 and O-O, banking on speed of development to make up for the missing pawn. Black plays ...Nf6 and ...Be7, finishing development safely and holding onto the pawn already won.
+          fr: Les Blancs jouent cxd4 pour regagner le pion et bâtir le centre d4-e4, puis Bc4 et O-O, misant sur la rapidité de développement pour compenser le pion manquant. Les Noirs jouent ...Nf6 et ...Be7, achevant leur développement en sécurité et gardant le pion déjà gagné.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,56 @@
+# Philidor Defense, Philidor Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 d6 3.d4 Bd7,
+# which ends on Black's own 3...Bd7 — the learner's ply — so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White's 4.Nc3 is modelled as the root's single reply. The
+# position after it was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check, no free capture. Every ply was replayed with chess.js.
+id: philidor-defense-philidor-gambit
+name: 'Philidor Defense: Philidor Gambit'
+eco: C41
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d6, d4, Bd7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The bishop move to d7 defends nothing new and blocks Black's own queen
+      and the c8 bishop's natural squares, while White is left completely free to keep
+      building the centre. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đưa tượng ra d7, một nước phát triển nhưng khá thụ động — nó không đỡ thêm gì mới và còn chắn mất đường của chính con hậu.
+    en: Black develops the bishop to d7, a developing move that is fairly passive — it defends nothing new and even blocks Black's own queen's path.
+    fr: Les Noirs développent le fou en d7, un coup de développement plutôt passif — il ne défend rien de nouveau et bloque même le chemin de la propre dame des Noirs.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...Bd7 bằng một nước khác ngoài 4.Nc3 — chẳng hạn c3 chống lưng cho trung tâm trước. Đánh giá vẫn tương tự, vì Đen vẫn chưa tạo ra đe doạ nào bất kể Trắng chơi gì.
+      en: White meets 3...Bd7 with something other than 4.Nc3 — for instance c3 propping up the centre first. The assessment is similar, since Black still creates no threat regardless of what White plays.
+      fr: Les Blancs répondent à 3...Bd7 par autre chose que 4.Nc3 — par exemple c3 pour étayer d'abord le centre. L'évaluation est similaire, les Noirs ne créant toujours aucune menace quoi que jouent les Blancs.
+  children:
+    - ply: Nc3
+      annotation:
+        vi: Trắng phát triển mã, tiếp tục dựng trung tâm và hoàn thiện đội hình mà không cần lo lắng gì.
+        en: White develops the knight, continuing to build the centre and complete the setup without any concern.
+        fr: Les Blancs développent le cavalier, continuant à bâtir le centre et à compléter leur dispositif sans aucune inquiétude.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn tám, quân số ngang nhau. Nhưng con tượng d7 vẫn chắn mất cột d cho con hậu Đen và không tạo thêm áp lực nào lên trung tâm Trắng, trong khi Trắng đã đưa thêm một mã ra và hoàn toàn rảnh tay tiếp tục phát triển.
+          en: Count the pawns and it is eight each, material level. But the bishop on d7 still blocks the d-file for Black's own queen and creates no extra pressure on White's centre, while White has developed another knight and is completely free to keep developing.
+          fr: Comptez les pions, huit de chaque côté, le matériel est égal. Mais le fou en d7 bloque toujours la colonne d pour la propre dame des Noirs et ne crée aucune pression supplémentaire sur le centre blanc, tandis que les Blancs ont développé un cavalier de plus et restent entièrement libres de continuer à se développer.
+        plan:
+          vi: Trắng chơi Bc4 hoàn tất phát triển nhanh, dựng thêm trung tâm bằng h3 hay a4 nếu cần, tận dụng việc Đen chưa tạo ra đe doạ nào. Đen chơi ...Nf6 và ...Be7 hay ...g6 để bắt kịp phát triển, và tìm cách thách thức trung tâm Trắng bằng ...exd4 hoặc ...c5 trước khi bị bỏ quá xa.
+          en: White plays Bc4 to develop quickly, adds h3 or a4 to the position if needed, and takes advantage of Black creating no threats at all. Black plays ...Nf6 and ...Be7 or ...g6 to catch up on development, and looks to challenge White's centre with ...exd4 or ...c5 before falling too far behind.
+          fr: Les Blancs jouent Bc4 pour se développer vite, ajoutent h3 ou a4 si nécessaire, et profitent du fait que les Noirs ne créent aucune menace. Les Noirs jouent ...Nf6 et ...Be7 ou ...g6 pour rattraper leur développement, et cherchent à défier le centre blanc par ...exd4 ou ...c5 avant de prendre trop de retard.
+        basis:
+          by: chan
+          at: '2026-09-25'

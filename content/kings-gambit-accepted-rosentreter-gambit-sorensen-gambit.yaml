@@ -1,0 +1,66 @@
+# King's Gambit Accepted, Rosentreter Gambit, Sörensen Gambit, taught. Shares its 7-ply
+# root, 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.d4, with `kings-gambit-accepted-rosentreter-gambit`, so
+# `definingLine` stops there — the learner's own 4.d4 — and Black's 4...g4 followed by
+# White's 5.Nc3, the moves that give this entry its name, are modelled as the root's own
+# reply and its own single continuation rather than folded into the defining line
+# (docs/CONTEXT.md, invariant 5). Every ply was replayed with chess.js, and the position was
+# checked with `searchMate` (bounded to 2 moves): no-mate.
+id: kings-gambit-accepted-rosentreter-gambit-sorensen-gambit
+name: "King's Gambit Accepted: Rosentreter Gambit, Sörensen Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black chases the f3 knight with ...g4, and rather than move it, White
+      develops the other knight to c3, offering the f3 knight in exchange for a further lead
+      in development. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa dựng cặp tốt trung tâm bằng 4.d4, và Đen đáp lại bằng 4...g4, đuổi con mã f3. Mục này theo dõi 5.Nc3, đưa nốt con mã còn lại ra thay vì di chuyển con mã đang bị tấn công.
+    en: White has just built the pawn pair with 4.d4, and Black answers with 4...g4, chasing the f3 knight. This entry follows 5.Nc3, bringing the other knight out instead of moving the attacked one.
+    fr: Les Blancs viennent de bâtir le duo de pions par 4.d4, et les Noirs répondent par 4...g4, chassant le cavalier f3. Cette entrée suit 5.Nc3, faisant sortir l'autre cavalier au lieu de déplacer celui qui est attaqué.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.d4 bằng một nước khác ngoài 4...g4 — chẳng hạn ...Bg7 ép vào trung tâm hay ...Nc6 phát triển quân. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black meets 4.d4 with something other than 4...g4 — for instance ...Bg7 pressing the centre or ...Nc6 developing a piece. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 4.d4 par autre chose que 4...g4 — par exemple ...Bg7 pressant le centre ou ...Nc6 développant une pièce. Chacune sort du cadre de cette entrée.
+  children:
+    - ply: g4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đuổi con mã f3 ngay lập tức. Trắng phải quyết định lùi mã hay bỏ mặc nó.
+        en: Black kicks the f3 knight at once. White has to decide whether to retreat it or leave it be.
+        fr: Les Noirs chassent aussitôt le cavalier f3. Les Blancs doivent décider de le reculer ou de le laisser où il est.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng không lùi con mã đang bị tấn công mà đưa nốt con mã còn lại ra c3, phát triển thêm một quân và để Đen tự quyết định có ăn ...gxf3 hay không.
+            en: White does not retreat the attacked knight, instead bringing the other one out to c3, developing another piece and leaving it to Black to decide whether ...gxf3 is worth playing.
+            fr: Les Blancs ne reculent pas le cavalier attaqué, mais sortent l'autre en c3, développant une pièce de plus et laissant aux Noirs le choix de jouer ou non ...gxf3.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng vẫn kém một tốt như từ đầu. Con mã f3 vẫn bị tốt g4 tấn công trực tiếp và ...gxf3 ăn được nó ngay; Qxf3 chỉ ăn lại con tốt vừa tới chứ không đòi được quân đã mất. Đổi lại, Trắng đã đưa ra hai mã trong khi Đen chưa phát triển quân nào.
+              en: Count the pawns and it is seven for White, eight for Black, the same pawn deficit as from the start. The f3 knight is still directly attacked by the g4 pawn, and ...gxf3 wins it outright; Qxf3 only recaptures the pawn that lands there, not the piece already lost. In exchange, White has brought out two knights while Black has developed no piece at all.
+              fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, le même déficit qu'au départ. Le cavalier f3 est toujours directement attaqué par le pion g4, et ...gxf3 le gagne tout net ; Qxf3 ne reprend que le pion qui s'y pose, pas la pièce déjà perdue. En échange, les Blancs ont sorti deux cavaliers tandis que les Noirs n'ont développé aucune pièce.
+            plan:
+              vi: Trắng chấp nhận mất mã sau ...gxf3 Qxf3, rồi chơi Bc4 và O-O-O, dồn vào tốc độ phát triển và trung tâm rộng để bù cho một quân đã mất. Đen ăn ...gxf3 rồi vội bắt kịp bằng ...Bg7, ...Ne7 và ...d6, hoặc bỏ qua con tốt g4 và tự phát triển bằng ...Bg7, ...Ne7 ngay.
+              en: White accepts the knight's loss after ...gxf3 Qxf3, then plays Bc4 and O-O-O, banking on speed of development and the big centre to make up for the missing piece. Black takes with ...gxf3 and scrambles to catch up with ...Bg7, ...Ne7 and ...d6, or ignores the g4 pawn and develops at once with ...Bg7, ...Ne7.
+              fr: Les Blancs acceptent la perte du cavalier après ...gxf3 Qxf3, puis jouent Bc4 et O-O-O, misant sur la rapidité de développement et le grand centre pour compenser la pièce manquante. Les Noirs prennent par ...gxf3 et se hâtent de rattraper leur retard par ...Bg7, ...Ne7 et ...d6, ou ignorent le pion g4 et se développent aussitôt par ...Bg7, ...Ne7.
+            basis:
+              by: chan
+              at: '2026-09-25'

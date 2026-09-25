@@ -1,0 +1,57 @@
+# Nimzo-Indian Defense, Classical Variation, Belyavsky Gambit, taught. Frozen defining line
+# 1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.Qc2 d5 5.cxd5 Qxd5 6.Nf3 Qf5 7.Qd1 e5, which ends on Black's
+# own 7...e5 — the learner's ply — so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). White's 8.dxe5 is modelled as the root's single reply. The position after it
+# was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# Every ply was replayed with chess.js.
+id: nimzo-indian-defense-classical-variation-belyavsky-gambit
+name: 'Nimzo-Indian Defense: Classical Variation, Belyavsky Gambit'
+eco: E34
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nc3, Bb4, Qc2, d5, cxd5, Qxd5, Nf3, Qf5, Qd1, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black's queen has travelled to d5 and then f5, drawing White's own queen
+      back to d1 in reply, and Black uses the tempo gained to strike at the centre with
+      ...e5 rather than defend material. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi hậu hai bên đổi chỗ qua lại, Đen dùng nhịp vừa giành được để đánh thẳng vào trung tâm bằng 7...e5, thách thức tốt d4 của Trắng.
+    en: After the queens have shuffled back and forth, Black uses the tempo just gained to strike the centre directly with 7...e5, challenging White's d4 pawn.
+    fr: Après que les dames se sont déplacées l'une après l'autre, les Noirs utilisent le temps ainsi gagné pour frapper directement le centre par 7...e5, défiant le pion d4 blanc.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 7...e5 bằng một nước khác ngoài 8.dxe5 — chẳng hạn a3 buộc tượng b4 quyết định trước. Đánh giá vẫn tương tự, vì căng thẳng trung tâm sớm muộn cũng phải giải quyết.
+      en: White meets 7...e5 with something other than 8.dxe5 — for instance a3 forcing the b4 bishop to decide first. The assessment is similar, since the central tension has to be resolved sooner or later.
+      fr: Les Blancs répondent à 7...e5 par autre chose que 8.dxe5 — par exemple a3 forçant d'abord le fou b4 à se décider. L'évaluation est similaire, la tension centrale devant de toute façon se résoudre.
+  children:
+    - ply: dxe5
+      annotation:
+        vi: Trắng giải toả căng thẳng bằng cách ăn tốt e5, mở đường chéo a1-h8 cho chính mình.
+        en: White releases the tension by capturing on e5, opening the a1-h8 diagonal for itself.
+        fr: Les Blancs relâchent la tension en capturant en e5, ouvrant la diagonale a1-h8 pour eux-mêmes.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn sáu, quân số ngang nhau — con tốt e5 vừa đổi cho tốt d4. Con hậu Đen trên f5 vẫn đứng khá hoạt động, và con tượng b4 vẫn ghim mã c3 vào vua Trắng. Cả hai vua chưa nhập thành.
+          en: Count the pawns and it is six each, material level — the e5 pawn just traded for the d4 pawn. Black's queen on f5 still stands fairly actively, and the bishop on b4 still pins the c3 knight to White's king. Neither king has castled.
+          fr: Comptez les pions, six de chaque côté, le matériel est égal — le pion e5 vient de s'échanger contre le pion d4. La dame noire en f5 se tient toujours assez activement, et le fou en b4 cloue toujours le cavalier c3 au roi blanc. Aucun roi n'a roqué.
+        plan:
+          vi: Trắng chơi a3 buộc con tượng b4 phải quyết định, rồi tìm cách nhập thành và đuổi con hậu Đen khỏi f5. Đen chơi ...Nc6 tấn công tốt e5 và phát triển, hoặc ...Qxe5 ăn lại tốt ngay, và tìm chỗ an toàn cho vua.
+          en: White plays a3 to force the b4 bishop to decide, then looks to castle and chase Black's queen off f5. Black plays ...Nc6 attacking the e5 pawn and developing, or ...Qxe5 recapturing the pawn at once, and looks for a safe spot for the king.
+          fr: Les Blancs jouent a3 pour forcer le fou b4 à se décider, puis cherchent à roquer et à chasser la dame noire de f5. Les Noirs jouent ...Nc6 attaquant le pion e5 et se développant, ou ...Qxe5 pour reprendre aussitôt le pion, et cherchent un abri pour le roi.
+        basis:
+          by: chan
+          at: '2026-09-25'

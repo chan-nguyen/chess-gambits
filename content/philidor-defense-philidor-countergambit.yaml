@@ -1,0 +1,57 @@
+# Philidor Defense, Philidor Countergambit, taught. Frozen defining line 1.e4 e5 2.Nf3 d6
+# 3.d4 f5, which ends on Black's own 3...f5 — the learner's ply — so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). White's 4.Nc3 is modelled as the root's single reply.
+# The position after it was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check, no free capture. Every ply was replayed with chess.js.
+id: philidor-defense-philidor-countergambit
+name: 'Philidor Defense: Philidor Countergambit'
+eco: C41
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d6, d4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black strikes back in the centre with ...f5, but this leaves the e5 pawn
+      defended only once, by d6, and opens several ways for White to break through at once —
+      dxe5, exf5 or Nxe5 are all available. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đáp lại trung tâm Trắng bằng chính một nước thí ở trung tâm, đẩy tốt f lên f5 để thách thức tốt e4 ngay lập tức.
+    en: Black answers White's centre with a central countergambit of its own, pushing the f-pawn to f5 to challenge the e4 pawn at once.
+    fr: Les Noirs répondent au centre blanc par un contre-gambit central de leur cru, poussant le pion f en f5 pour défier aussitôt le pion e4.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...f5 bằng một nước khác ngoài 4.Nc3 — chẳng hạn dxe5 hay Nxe5 ăn tốt trực tiếp. Đánh giá vẫn tương tự hoặc còn tệ hơn cho Đen, vì cả ba cách khai thác đều thực sự tồn tại.
+      en: White meets 3...f5 with something other than 4.Nc3 — for instance dxe5 or Nxe5 winning the pawn directly. The assessment is similar or worse for Black, since all three ways to exploit the position genuinely exist.
+      fr: Les Blancs répondent à 3...f5 par autre chose que 4.Nc3 — par exemple dxe5 ou Nxe5 pour gagner directement le pion. L'évaluation est similaire ou pire pour les Noirs, les trois façons d'exploiter la position existant réellement.
+  children:
+    - ply: Nc3
+      annotation:
+        vi: Trắng phát triển mã trước, để nguyên căng thẳng trung tâm nhưng vẫn giữ mọi lựa chọn khai thác con tốt e5 yếu.
+        en: White develops the knight first, leaving the central tension but still keeping every option to exploit the weak e5 pawn.
+        fr: Les Blancs développent d'abord le cavalier, laissant la tension centrale mais gardant toutes les options pour exploiter le pion e5 fragile.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn tám, quân số ngang nhau. Nhưng con tốt e5 của Đen vẫn chỉ được đúng tốt d6 bảo vệ, và Trắng đã đưa thêm một mã ra trong khi Đen vẫn chưa phát triển quân nào. Vua Đen cũng sẽ khó tìm chỗ nhập thành an toàn sau khi cột f đã mở.
+          en: Count the pawns and it is eight each, material level. But Black's e5 pawn is still held only by the d6 pawn, and White has developed another knight while Black has still not developed a single piece. Black's king will also find it hard to reach safety once the f-file is open.
+          fr: Comptez les pions, huit de chaque côté, le matériel est égal. Mais le pion e5 noir n'est toujours tenu que par le pion d6, et les Blancs ont développé un cavalier de plus tandis que les Noirs n'ont encore développé aucune pièce. Le roi noir aura aussi du mal à trouver un abri une fois la colonne f ouverte.
+        plan:
+          vi: Trắng chơi dxe5 mở toang trung tâm khi thuận tiện, hoặc Nxe5 ăn tốt trực tiếp, khai thác việc Đen chưa phát triển quân nào để giành lợi thế rõ rệt. Đen chơi ...fxe4 cố giữ lại chút hoạt động, ...Nf6 và ...Be7 vội vàng phát triển, và tìm cách bù cho thế trung tâm đã tan vỡ.
+          en: White plays dxe5 to blow the centre open when convenient, or Nxe5 to win the pawn directly, exploiting Black's total lack of development for a clear advantage. Black plays ...fxe4 to hold onto some activity, ...Nf6 and ...Be7 scrambling to develop, and looks for something to show for the shattered centre.
+          fr: Les Blancs jouent dxe5 pour faire sauter le centre quand cela convient, ou Nxe5 pour gagner le pion directement, exploitant l'absence totale de développement noir pour un avantage net. Les Noirs jouent ...fxe4 pour garder un peu d'activité, ...Nf6 et ...Be7 en se hâtant de se développer, et cherchent quelque chose à montrer pour le centre en miettes.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,57 @@
+# Latvian Gambit Accepted, Leonhardt Variation, taught. Frozen defining line 1.e4 e5 2.Nf3
+# f5 3.Nxe5 Qf6 4.Nc4 fxe4, which ends on Black's own 4...fxe4 — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5), and White's 5.Nc3, the move that
+# gives this entry its name, is modelled as the root's own reply rather than folded into the
+# defining line. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate.
+id: latvian-gambit-accepted-leonhardt-variation
+name: 'Latvian Gambit Accepted: Leonhardt Variation'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Nxe5, Qf6, Nc4, fxe4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black has won the e4 pawn back, restoring material, but the queen on f6 is
+      exposed early and White develops with tempo against it. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa ăn lại tốt e4, đưa quân số trở lại cân bằng. Mục này theo dõi 5.Nc3, đưa mã ra tấn công thẳng vào con tốt e4 vừa chiếm được.
+    en: Black has just won back the e4 pawn, restoring material balance. This entry follows 5.Nc3, developing the knight with a direct attack on the newly won e4 pawn.
+    fr: Les Noirs viennent de regagner le pion e4, rétablissant l'égalité matérielle. Cette entrée suit 5.Nc3, développant le cavalier avec une attaque directe sur le pion e4 tout juste gagné.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 4...fxe4 bằng một nước khác ngoài 5.Nc3 — chẳng hạn phát triển tượng bằng ...Be2 hay đẩy tốt d3 ngay. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White meets 4...fxe4 with something other than 5.Nc3 — for instance developing the bishop with Be2, or pushing d3 at once. Each is outside the scope of this entry.
+      fr: Les Blancs répondent à 4...fxe4 par autre chose que 5.Nc3 — par exemple développer le fou par Be2, ou pousser aussitôt d3. Chacune sort du cadre de cette entrée.
+  children:
+    - ply: Nc3
+      annotation:
+        vi: Trắng phát triển mã và tấn công thẳng con tốt e4, buộc Đen phải quyết định giữ nó bằng cách nào hoặc để nó đi.
+        en: White develops the knight and attacks the e4 pawn directly, forcing Black to decide how to hold it or let it go.
+        fr: Les Blancs développent le cavalier et attaquent directement le pion e4, obligeant les Noirs à décider comment le tenir ou le laisser filer.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau sau khi Đen vừa ăn lại tốt e4. Nhưng con tốt ấy hiện bị mã c3 tấn công và không quân nào của Đen đang bảo vệ nó, còn con hậu Đen trên f6 đã phải di chuyển sớm và đứng ở một ô khá lộ liễu.
+          en: Count the pawns and it is seven each, material level again now that Black has won the e4 pawn back. But that pawn is now attacked by the c3 knight and nothing of Black's currently defends it, and Black's queen on f6 has already moved early and stands on a rather exposed square.
+          fr: Comptez les pions, sept de chaque côté, le matériel est de nouveau égal maintenant que les Noirs ont regagné le pion e4. Mais ce pion est désormais attaqué par le cavalier c3 et rien du côté noir ne le défend actuellement, et la dame noire en f6, sortie tôt, se tient sur une case plutôt exposée.
+        plan:
+          vi: Trắng chơi Nxe4 ăn lại tốt nếu Đen không kịp bảo vệ, hoặc d3 và Be3 hoàn tất phát triển trước, tận dụng việc con hậu Đen ra sớm để tranh nhịp. Đen chơi ...d5 bảo vệ tốt e4 và mở đường cho tượng c8, hoặc ...Qg6 lui hậu về ô an toàn hơn trước khi hoàn tất phát triển.
+          en: White plays Nxe4 to win the pawn back if Black cannot defend it in time, or d3 and Be3 to finish developing first, using Black's early queen sortie to gain tempo. Black plays ...d5 to defend the e4 pawn and open a path for the c8 bishop, or ...Qg6 retreating the queen to a safer square before finishing development.
+          fr: Les Blancs jouent Nxe4 pour regagner le pion si les Noirs ne peuvent le défendre à temps, ou d3 et Be3 pour achever d'abord leur développement, profitant de la sortie précoce de la dame noire pour gagner du temps. Les Noirs jouent ...d5 pour défendre le pion e4 et ouvrir une voie au fou c8, ou ...Qg6 en repliant la dame sur une case plus sûre avant d'achever leur développement.
+        basis:
+          by: chan
+          at: '2026-09-25'
