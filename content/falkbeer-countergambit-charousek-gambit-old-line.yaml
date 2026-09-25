@@ -1,0 +1,84 @@
+# King's Gambit Declined: Falkbeer Countergambit, Charousek Gambit, Old Line. One of a batch
+# of entries authored for issue #148 (batch h), sharing the trunk `1.e4 e5 2.f4 d5 3.exd5 e4`
+# with `falkbeer-countergambit-rubinstein-variation` (4.Nc3 instead of this entry's 4.d3).
+# Defining line ends on Black's 3...e4 (invariant 5). Every ply below was replayed with
+# chess.js before being written. The dataset's own line runs one move further, 6.Qe2; this
+# entry stops at 5...Nf6 instead, which is already a safe, quiet leaf, and mentions 6.Qe2 in
+# prose only.
+id: falkbeer-countergambit-charousek-gambit-old-line
+name: "King's Gambit Declined: Falkbeer Countergambit, Charousek Gambit, Old Line"
+eco: C32
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The same judgement the family head `kings-gambit-declined-falkbeer-countergambit.yaml`
+      carries. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...d5, Phản-gambit Falkbeer. Mục này đi sâu riêng vào việc Trắng ăn tốt bằng 3.exd5, và Đen đáp lại bằng nước đẩy tốt chính của cả phản-gambit, 3...e4.
+    en: Black has just played 2...d5, the Falkbeer Countergambit. This entry follows specifically White capturing with 3.exd5, and Black answering with the countergambit's own main push, 3...e4.
+    fr: Les Noirs viennent de jouer 2...d5, le Contre-gambit Falkbeer. Cette entrée suit spécifiquement la prise blanche 3.exd5, à laquelle les Noirs répondent par la poussée principale du contre-gambit, 3...e4.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt bằng 3.exd5 — chơi 3.Nf3 (xem mục gốc của cả họ) hay 3.Nc3 (xem Biến Milner-Barry). Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: White does not capture with 3.exd5 — playing 3.Nf3 (see the family head) or 3.Nc3 (see the Milner-Barry Variation) instead. Each is outside the scope of this entry.
+      fr: Les Blancs ne prennent pas par 3.exd5 — jouant 3.Cf3 (voir l'entrée de tête de la famille) ou 3.Cc3 (voir la Variante Milner-Barry). Chacun sort du cadre de cette entrée.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng nhận tốt, nhánh chính của cả họ khai cuộc này. Con tốt d5 giờ thuộc về Trắng, và Đen phải quyết định đòi lại nó ngay hay chơi tiếp theo cách khác.
+        en: White accepts, the main branch of the whole family. The d5 pawn now belongs to White, and Black has to decide whether to win it back at once or play on differently.
+        fr: Les Blancs acceptent, la branche principale de toute la famille. Le pion d5 appartient désormais aux Blancs, et les Noirs doivent décider de le regagner aussitôt ou de jouer autrement.
+      children:
+        - ply: e4
+          annotation:
+            vi: Nước đẩy tốt mang tên cho cả phản-gambit. Con tốt e5 của Đen tiến qua ô e4 vừa được tốt Trắng bỏ trống, giành đất và mở đường chéo cho tượng f8.
+            en: The push that names the whole countergambit. Black's e5 pawn advances through the e4 square White's own pawn just vacated, grabbing space and opening the diagonal for the f8 bishop.
+            fr: La poussée qui donne son nom à tout le contre-gambit. Le pion e5 noir avance sur la case e4 que le pion blanc vient de quitter, gagnant de l'espace et ouvrant la diagonale du fou f8.
+          dismissRest:
+            reason:
+              vi: Trắng không chơi 4.d3 — chơi 4.Nc3 thay vào đó (xem Biến Rubinstein). Mỗi lựa chọn khác nằm ngoài phạm vi mục này.
+              en: White does not play 4.d3 — playing 4.Nc3 instead (see the Rubinstein Variation). Any other choice is outside the scope of this entry.
+              fr: Les Blancs ne jouent pas 4.d3 — jouant 4.Cc3 à la place (voir la Variante Rubinstein). Tout autre choix sort du cadre de cette entrée.
+          children:
+            - ply: d3
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Gambit Charousek. Thay vì phát triển mã ngay, Trắng thí thêm một tốt nữa để phá vỡ con tốt e4 đang chắn đường, mở lại đường chéo cho tượng f1.
+                en: The Charousek Gambit. Instead of developing the knight at once, White offers a second pawn to break up the blocking e4 pawn, reopening the diagonal for the f1 bishop.
+                fr: Le Gambit Charousek. Au lieu de développer aussitôt le cavalier, les Blancs offrent un second pion pour briser le pion e4 qui bloque la diagonale du fou f1, la rouvrant ainsi.
+              children:
+                - ply: Nf6
+                  annotation:
+                    vi: Biến Old Line. Đen phát triển mã, tấn công thẳng vào con tốt d5 của Trắng thay vì vội ăn con tốt d3 vừa được thí ra.
+                    en: The Old Line. Black develops the knight, attacking White's d5 pawn directly instead of rushing to take the freshly offered d3 pawn.
+                    fr: L'Old Line. Les Noirs développent le cavalier, attaquant directement le pion d5 blanc au lieu de se précipiter sur le pion d3 tout juste offert.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng hơn đúng một tốt, con tốt d5 vẫn còn nguyên trên bàn, và con tốt d3 vừa thí ra vẫn chưa bị ai động tới. Mã f6 của Đen đã nhắm vào d5 trong khi tượng f1 của Trắng sắp được mở đường trở lại.
+                      en: Count the pawns and it is eight for White, seven for Black — White is exactly one pawn up, the d5 pawn still standing, and the freshly offered d3 pawn has not been touched yet either. Black's f6 knight already aims at d5, while White's f1 bishop is about to have its diagonal reopened.
+                      fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont exactement un pion de plus, le pion d5 étant toujours en place, et le pion d3 tout juste offert n'a pas non plus été touché. Le cavalier f6 noir vise déjà d5, tandis que le fou f1 blanc va bientôt voir sa diagonale rouverte.
+                    plan:
+                      vi: Trắng chơi dxe4 ăn lại con tốt Đen vừa tiến, rồi Bc4 hoặc Nf3, tận dụng đường chéo đã mở và con tốt d5 để bù cho những gì đã thí. Đen chơi Nxe4 ăn lại nếu Trắng chưa ăn, hoặc Bc5 và O-O, nhập thành nhanh và tìm cách đòi lại con tốt d5.
+                      en: White plays dxe4 to recapture the pawn Black just advanced, then Bc4 or Nf3, making use of the reopened diagonal and the d5 pawn to justify what was offered. Black plays Nxe4 to recapture if White has not taken yet, or Bc5 and O-O, castling quickly and looking for a way to win back the d5 pawn.
+                      fr: Les Blancs jouent dxe4 pour reprendre le pion que les Noirs viennent d'avancer, puis Bc4 ou Nf3, exploitant la diagonale rouverte et le pion d5 pour justifier ce qui a été offert. Les Noirs jouent Nxe4 pour reprendre si les Blancs n'ont pas encore pris, ou Bc5 et O-O, roquant rapidement et cherchant à regagner le pion d5.
+                    basis:
+                      by: chan
+                      at: '2026-09-25'

@@ -1,0 +1,62 @@
+# Four Knights Game, Scotch Variation, Krause Gambit. One entry in a batch authored for
+# issue #148 (batch h). Defining line ends on Black's 4...Bb4 (invariant 5). Every ply below
+# was replayed with chess.js before being written.
+id: four-knights-game-scotch-variation-krause-gambit
+name: 'Four Knights Game: Scotch Variation, Krause Gambit'
+eco: C47
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Nc3, Nf6, d4, Bb4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers the e5 pawn for the pin on c3 and quick development, and the
+      compensation has never been shown to fall short at club level, though it has not been
+      shown decisive either. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa ghim mã c3 bằng tượng thay vì đòi lại tốt d4 bị đánh đôi. Con tốt e5 giờ chỉ còn được mã c6 đỡ, trong khi mã f3 và tốt d4 đều đang nhòm tới nó.
+    en: Black has just pinned the c3 knight with the bishop instead of settling the doubly-attacked d4 pawn. The e5 pawn is now defended only by the c6 knight, while both the f3 knight and the d4 pawn eye it.
+    fr: Les Noirs viennent de clouer le cavalier c3 avec le fou au lieu de régler le pion d4 doublement attaqué. Le pion e5 n'est plus défendu que par le cavalier c6, alors que le cavalier f3 et le pion d4 le visent tous deux.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5 — đổi tốt bằng 5.dxe5 trước, hay phát triển bằng 5.Bd3 hay 5.Bg5. Mỗi lựa chọn để nguyên con tốt e5 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: White does not take the e5 pawn — trading it off first with 5.dxe5, or developing with 5.Bd3 or 5.Bg5. Each leaves the e5 pawn sitting on the board, meaning the invitation has still not actually been accepted.
+      fr: Les Blancs ne prennent pas le pion e5 — l'échangeant d'abord par 5.dxe5, ou développant par 5.Bd3 ou 5.Bg5. Chacun laisse le pion e5 sur l'échiquier, ce qui veut dire que l'invitation n'a toujours pas été acceptée.
+  children:
+    - ply: Nxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Gambit Krause. Trắng ăn tốt e5 bằng mã, con mã ấy được tốt d4 đỡ nên Đen chưa thể ăn lại tự do bằng Qxe5 hay Nxe5.
+        en: The Krause Gambit. White takes the e5 pawn with the knight, which the d4 pawn defends, so Black cannot simply win it back for free with Qxe5 or Nxe5.
+        fr: Le Gambit Krause. Les Blancs prennent le pion e5 avec le cavalier, défendu par le pion d4, si bien que les Noirs ne peuvent pas simplement le regagner gratuitement par Dxe5 ou Cxe5.
+      children:
+        - ply: Qe7
+          annotation:
+            vi: Đen không ăn lại ngay và thay vào đó đưa hậu ra e7, gây áp lực dọc cột e. Con mã e5 hiện đang che chắn cho tốt e4 và vua e1 phía sau nó, nên nó không thể rời cột e một cách tùy tiện.
+            en: Black does not recapture at once and instead brings the queen to e7, adding pressure down the e-file. The knight on e5 currently shields the e4 pawn and the king behind it, so it cannot leave the e-file carelessly.
+            fr: Les Noirs ne reprennent pas aussitôt et amènent plutôt la dame en e7, ajoutant de la pression le long de la colonne e. Le cavalier en e5 protège actuellement le pion e4 et le roi derrière lui, si bien qu'il ne peut quitter la colonne e à la légère.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng hơn đúng một tốt, và con mã e5 hiện được tốt d4 đỡ nên chưa thể bị ăn không. Nhưng nếu con mã ấy rời cột e mà không tính toán — ví dụ ăn 8.Nxc6 — thì 8...Qxe4+ chiếu và đòi lại đúng con tốt vừa mất.
+              en: Count the pawns and it is eight for White, seven for Black — White is exactly one pawn up, and the e5 knight is currently defended by the d4 pawn, so it cannot simply be captured for free. But if that knight leaves the e-file without care — say, 8.Nxc6 — then 8...Qxe4+ checks and wins back exactly the pawn just lost.
+              fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont exactement un pion de plus, et le cavalier e5 est actuellement défendu par le pion d4, donc il ne peut pas simplement être pris gratuitement. Mais si ce cavalier quitte la colonne e sans précaution — par exemple 8.Cxc6 — alors 8...Dxe4+ donne échec et regagne exactement le pion qui vient d'être perdu.
+            plan:
+              vi: Trắng chơi Qd3 hay Bd2 trước để gỡ thế ghim của mã c3 và giữ tốt e4 an toàn, hoặc chấp nhận đổi chác bằng Nxc6 rồi Qxe4+ Be2, đưa quân số về ngang nhau với cấu trúc tốt cánh hậu của Đen bị chồng. Đen chơi Nxe4 ngay nếu Trắng chậm chân giải quyết cột e, hoặc Bxc3+ trước để phá vỡ hàng phòng ngự quanh vua Trắng.
+              en: White plays Qd3 or Bd2 first to untangle the c3 pin and keep the e4 pawn safe, or accepts the trade with Nxc6 followed by Qxe4+ Be2, bringing material back level with Black's queenside pawns doubled. Black plays Nxe4 at once if White is slow to settle the e-file, or Bxc3+ first to break up the defence around White's king.
+              fr: Les Blancs jouent Qd3 ou Bd2 d'abord pour dénouer le clouage en c3 et garder le pion e4 en sécurité, ou acceptent l'échange par Nxc6 puis Qxe4+ Be2, ramenant le matériel à l'égalité avec les pions de l'aile dame noirs doublés. Les Noirs jouent Nxe4 aussitôt si les Blancs tardent à régler la colonne e, ou Bxc3+ d'abord pour démanteler la défense autour du roi blanc.
+            basis:
+              by: chan
+              at: '2026-09-25'
