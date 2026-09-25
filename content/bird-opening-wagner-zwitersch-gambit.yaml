@@ -1,0 +1,58 @@
+# Bird Opening: Wagner-Zwitersch Gambit. Frozen defining line 1.f4 f5 2.e4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 2...fxe4: Black takes the pawn at once, the only piece that can
+# capture there. Nothing is hanging at the resulting position. searchMate at 4 moves from
+# this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: bird-opening-wagner-zwitersch-gambit
+name: 'Bird Opening: Wagner-Zwitersch Gambit'
+eco: A02
+category: gambit
+side: white
+definingLine: [f4, f5, e4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Two symmetrical wing pushes meet each other and White simply hands over
+      the centre pawn for an open f-file that Black's own first move already half-opened
+      anyway. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đáp lại 1...f5 bằng 2.e4, Trắng mời Đen ăn con tốt trung tâm này ngay, đổi lấy việc mở tung trung tâm khi cả hai bên đều đã đẩy tốt cánh vua.
+    en: Answering 1...f5 with 2.e4, White invites Black to take the central pawn at once, in exchange for ripping the centre open now that both sides have pushed a kingside pawn.
+    fr: En réponse à 1...f5 par 2.e4, les Blancs invitent les Noirs à prendre aussitôt le pion central, en échange de l'ouverture du centre maintenant que les deux camps ont poussé un pion d'aile roi.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước khác như Nf6 hay d6 để nguyên con tốt e4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the e4 pawn. Anything else, such as ...Nf6 or ...d6, leaves the e4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme ...Nf6 ou ...d6, laisse le pion e4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: fxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt f5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt.
+        en: Black takes the pawn at once, the only piece that can capture there. The f5 pawn has done its capturing and Black is now a clean pawn up.
+        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le pion f5 a fait sa capture et les Noirs ont maintenant un pion net d'avance.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, còn Trắng chưa có gì cụ thể để bù lại ngoài ý định đưa mã ra g5 hay c3 để nhắm lại vào con tốt e4.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and White has nothing concrete yet to show for it beyond the intention to bring a knight to g5 or c3 to take aim at the e4 pawn again.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance, et les Blancs n'ont encore rien de concret à montrer, hormis l'intention d'amener un cavalier en g5 ou c3 pour reviser le pion e4.
+        plan:
+          vi: Trắng chơi Nc3 rồi Qe2 hoặc Ng5, cố ăn lại con tốt e4 và tận dụng việc vua Đen chưa nhập thành. Đen chơi Nf6, d5 và e6, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa nếu có thể.
+          en: White plays Nc3 and then Qe2 or Ng5, trying to win the e4 pawn back and make use of Black's king still not being castled. Black plays ...Nf6, ...d5 and ...e6, completing development soundly and holding onto the extra pawn if possible.
+          fr: Les Blancs jouent Nc3 puis Qe2 ou Ng5, essayant de reprendre le pion e4 et de profiter du roi noir pas encore roqué. Les Noirs jouent ...Nf6, ...d5 et ...e6, achevant leur développement solidement et gardant le pion supplémentaire si possible.
+        basis:
+          by: chan
+          at: '2026-09-25'

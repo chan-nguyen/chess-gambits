@@ -1,0 +1,66 @@
+# Budapest Gambit Accepted: Main Line, Alekhine Variation. Frozen defining line 1.d4 Nf6
+# 2.c4 e5 3.dxe5 Ng4, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4.e4 Nxe5: White grabs the
+# centre with a further pawn move instead of defending e5 with a piece, and Black simply
+# recaptures. Nothing is hanging at the resulting position. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: budapest-gambit-accepted-main-line-alekhine-variation
+name: 'Budapest Gambit Accepted: Main Line, Alekhine Variation'
+eco: A52
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e5, dxe5, Ng4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Grabbing the
+      centre with 4.e4 gives back the extra pawn at once but leaves White with a big pawn
+      duo, a reasonable practical try rather than a proven improvement on the simpler 4.Nf3.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ăn tốt e5, Đen đáp lại bằng 3...Ng4, tấn công ngay con tốt e5 và dọa ăn lại nó bằng mã trước khi Trắng kịp phát triển.
+    en: After the e5 pawn is taken, Black answers with 3...Ng4, attacking the e5 pawn at once and threatening to win it back with the knight before White can develop.
+    fr: Après la prise du pion e5, les Noirs répondent par 3...Ng4, attaquant aussitôt le pion e5 et menaçant de le reprendre avec le cavalier avant que les Blancs ne se développent.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.e4. Đỡ tốt e5 bằng Nf3 hay Bf4 giữ được nó lâu hơn, mỗi cách có trang riêng của nó, còn 4.f4 để lại điểm yếu lớn ở e3.
+      en: White does not play 4.e4. Defending e5 with Nf3 or Bf4 holds it for longer, each with its own page, while 4.f4 leaves a serious weakness on e3.
+      fr: Les Blancs ne jouent pas 4.e4. Défendre e5 par Nf3 ou Bf4 le tient plus longtemps, chacun avec sa propre page, tandis que 4.f4 laisse une faiblesse sérieuse en e3.
+  children:
+    - ply: e4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng không cố đỡ con tốt e5 mà đẩy tiếp một tốt trung tâm khác, chấp nhận trả lại con tốt để đổi lấy cặp tốt d và e chiếm không gian.
+        en: White does not try to defend the e5 pawn but pushes a second central pawn, accepting the pawn back in exchange for a d- and e-pawn duo taking up space.
+        fr: Les Blancs n'essaient pas de défendre le pion e5 mais poussent un second pion central, acceptant de le rendre en échange d'un duo de pions d et e prenant de l'espace.
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: Đen ăn lại con tốt e5 bằng mã, quân duy nhất còn tấn công nó. Vật chất trở lại cân bằng và con mã đứng khá vững ở giữa bàn cờ.
+            en: Black recaptures the e5 pawn with the knight, the only piece still attacking it. Material is level again and the knight sits fairly solidly in the centre.
+            fr: Les Noirs reprennent le pion e5 avec le cavalier, la seule pièce l'attaquant encore. Le matériel est de nouveau égal et le cavalier se tient assez solidement au centre.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau, bảy tốt mỗi bên, nên nước thí đã kết thúc ở đây. Trắng có cặp tốt c4-e4 chiếm không gian và sẽ chơi f4 đuổi mã, còn Đen đứng vững ở e5 nhưng sẽ phải lùi và mất lại một nhịp phát triển vừa kiếm được.
+              en: Material is level, seven pawns each, so the sacrifice has ended here. White has the c4-e4 pawn duo for space and will play f4 to chase the knight, while Black sits solidly on e5 but will have to retreat and lose back the tempo just gained.
+              fr: Le matériel est égal, sept pions de chaque côté, le sacrifice s'arrête donc ici. Les Blancs ont le duo de pions c4-e4 pour l'espace et joueront f4 pour chasser le cavalier, tandis que les Noirs sont solidement installés en e5 mais devront reculer et reperdre le temps tout juste gagné.
+            plan:
+              vi: Trắng chơi f4 đuổi mã, rồi Nc3, Nf3 và Be2, dùng cặp tốt trung tâm để lấy không gian và hạn chế các quân Đen. Đen chơi Nec6 hay Ng6 lùi mã về an toàn, rồi Bc5 hoặc Bb4, Nc6 và O-O, hoàn tất phát triển trước khi trung tâm Trắng kịp lấn tới.
+              en: White plays f4 to chase the knight, then Nc3, Nf3 and Be2, using the central pawn duo for space and to restrict Black's pieces. Black retreats with ...Nec6 or ...Ng6 to safety, then ...Bc5 or ...Bb4, ...Nc6 and ...O-O, completing development before White's centre can advance further.
+              fr: Les Blancs jouent f4 pour chasser le cavalier, puis Nc3, Nf3 et Be2, utilisant le duo de pions centraux pour l'espace et pour restreindre les pièces noires. Les Noirs reculent par ...Nec6 ou ...Ng6 pour se mettre à l'abri, puis ...Bc5 ou ...Bb4, ...Nc6 et ...O-O, achevant leur développement avant que le centre blanc n'avance davantage.
+            basis:
+              by: chan
+              at: '2026-09-25'

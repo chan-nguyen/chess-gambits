@@ -1,0 +1,60 @@
+# English Opening: Anglo-Dutch Defense, Hickmann Gambit. Frozen defining line 1.c4 f5 2.e4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 2...fxe4: Black takes the pawn at once, the
+# only piece that can capture there. Nothing is hanging at the resulting position.
+# searchMate at 4 moves from this position returns no-mate, so no forced mate is claimed
+# anywhere in this entry.
+id: english-opening-anglo-dutch-defense-hickmann-gambit
+name: 'English Opening: Anglo-Dutch Defense, Hickmann Gambit'
+eco: A10
+category: gambit
+side: white
+definingLine: [c4, f5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, borrowed from the same idea as the Staunton Gambit against the Dutch. The
+      pawn buys a lead in development and pressure on the h5-e8 diagonal, real compensation
+      that is not proven to outweigh a clean pawn. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 2.e4, mời Đen ăn con tốt trung tâm này ngay sau nước đi f5 kiểu Hà Lan, đổi lấy việc mở tung trung tâm trước khi Đen kịp hoàn thiện phát triển.
+    en: White plays 2.e4, inviting Black to take the central pawn right after the Dutch-style ...f5, in exchange for ripping the centre open before Black can finish developing.
+    fr: Les Blancs jouent 2.e4, invitant les Noirs à prendre le pion central juste après le coup hollandais ...f5, en échange de l'ouverture du centre avant que les Noirs n'achèvent leur développement.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước như d6 hay Nf6 để nguyên con tốt e4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the e4 pawn. Anything else, such as ...d6 or ...Nf6, leaves the e4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme ...d6 ou ...Nf6, laisse le pion e4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: fxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt f5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt.
+        en: Black takes the pawn at once, the only piece that can capture there. The f5 pawn has done its capturing and Black is now a clean pawn up.
+        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le pion f5 a fait sa capture et les Noirs ont maintenant un pion net d'avance.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, còn Trắng chưa có gì cụ thể để bù lại ngoài cột e nửa mở và lỗ hổng ở e6 mà con tốt f5 để lại.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and White has nothing concrete yet to show for it beyond the half-open e-file and the hole on e6 the f5 pawn left behind.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance, et les Blancs n'ont encore rien de concret à montrer, hormis la colonne e semi-ouverte et le trou en e6 laissé par le pion f5.
+        plan:
+          vi: Trắng chơi Nc3, Qh5+ hoặc Bc4, cố tạo áp lực cụ thể lên cánh vua trước khi Đen kịp nhập thành. Đen chơi Nf6, g6 hay e6, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa vào tàn cuộc.
+          en: White plays Nc3, Qh5+ or Bc4, trying to create concrete pressure on the kingside before Black can castle. Black plays ...Nf6, ...g6 or ...e6, completing development soundly and holding the extra pawn for the endgame.
+          fr: Les Blancs jouent Nc3, Qh5+ ou Bc4, cherchant à créer une pression concrète sur l'aile roi avant que les Noirs ne roquent. Les Noirs jouent ...Nf6, ...g6 ou ...e6, achevant leur développement solidement et gardant le pion supplémentaire pour la finale.
+        basis:
+          by: chan
+          at: '2026-09-25'

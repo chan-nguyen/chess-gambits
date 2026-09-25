@@ -1,0 +1,59 @@
+# Benko Gambit Declined: Quiet Line. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 4.Nd2: unlike the Main Line's 4.Nf3, the knight goes to d2
+# where it adds a second defender to c4, so nothing is left hanging. searchMate at 4 moves
+# from this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: benko-gambit-declined-quiet-line
+name: 'Benko Gambit Declined: Quiet Line'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Unlike the other
+      quiet declines, 4.Nd2 actually defends c4 rather than leaving it hanging, so the pawn
+      question stays genuinely open here, which is why this is judged White's soundest
+      passive try. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 3...b5 theo đúng tinh thần Benko Gambit, thí tốt cánh hậu để đổi lấy áp lực trên hai cột a và b. Ở đây Trắng chơi 4.Nd2, đưa mã tới một ô có vẻ khiêm tốn hơn Nf3 nhưng lại đỡ thêm cho tốt c4.
+    en: Black plays 3...b5 in true Benko Gambit style, offering the queenside pawn for pressure on the a- and b-files. Here White plays 4.Nd2, sending the knight to a square that looks more modest than Nf3 but actually adds a defender to c4.
+    fr: Les Noirs jouent 3...b5 dans le pur style du Gambit Benko, offrant le pion de l'aile dame contre la pression sur les colonnes a et b. Ici, les Blancs jouent 4.Nd2, envoyant le cavalier vers une case qui semble plus modeste que Nf3 mais qui défend en fait c4.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Nd2. Ăn tốt ngay bằng 4.cxb5 dẫn vào các nhánh Benko Gambit đã được chấp nhận, còn những nước như 4.Nf3 hay 4.f3 bỏ trống tốt c4 cho Đen ăn ngay, mỗi nước ấy có cách chơi riêng của Đen.
+      en: White does not play 4.Nd2. Taking at once with 4.cxb5 leads into the accepted Benko Gambit branches, while moves such as 4.Nf3 or 4.f3 leave the c4 pawn open for Black to take at once, each with Black's own way of meeting it.
+      fr: Les Blancs ne jouent pas 4.Nd2. Prendre tout de suite par 4.cxb5 mène vers les branches acceptées du Gambit Benko, tandis que des coups comme 4.Nf3 ou 4.f3 laissent le pion c4 ouvert à une prise noire immédiate, chacun avec sa propre réponse noire.
+  children:
+    - ply: Nd2
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng đưa mã tới d2, đỡ thêm cho tốt c4 và giữ đường chéo cho tượng f1. Đây là cách từ chối gambit vững chắc nhất, vì con tốt b5 và c4 đều chưa ai ăn được ngay.
+        en: White brings the knight to d2, adding a defender to c4 and keeping the diagonal open for the f1 bishop. This is the soundest way to decline the gambit, because neither the b5 nor the c4 pawn can be taken for free right now.
+        fr: Les Blancs amènent le cavalier en d2, ajoutant un défenseur à c4 et laissant la diagonale libre pour le fou f1. C'est la manière la plus solide de refuser le gambit, car ni le pion b5 ni le pion c4 ne peuvent être pris gratuitement pour l'instant.
+      outcome:
+        type: position
+        evaluation:
+          vi: Quân số ngang nhau, tám tốt mỗi bên, và cả tốt b5 lẫn c4 đều đang bị nhắm tới nhưng chưa ai bị ăn miễn phí, vì tốt c4 nay đã có mã d2 đỡ. Trắng chưa thật sự phát triển, mã d2 che mất đường ra của tượng c1, còn Đen vẫn giữ nguyên toàn bộ ý đồ ban đầu của gambit.
+          en: Material is level, eight pawns each, and both the b5 and c4 pawns are being eyed but neither can be taken for free, now that the d2 knight defends c4. White has not really developed — the knight on d2 blocks the c1 bishop's own route out — while Black still has the whole original idea of the gambit intact.
+          fr: Le matériel est égal, huit pions de chaque côté, et les pions b5 et c4 sont tous deux dans le viseur sans que ni l'un ni l'autre ne puisse être pris gratuitement, le cavalier d2 défendant désormais c4. Les Blancs ne se sont pas vraiment développés — le cavalier en d2 bloque la sortie du fou c1 — tandis que les Noirs conservent intacte toute l'idée originale du gambit.
+        plan:
+          vi: Đen chơi g6, Bg7 và O-O theo cấu trúc quen thuộc, rồi tùy thời điểm chọn giữa giữ nguyên căng thẳng ở b5 hay đổi bằng ...bxc4 khi có lợi. Trắng chơi Ngf3, g3 và Bg2, cố hoàn thiện phát triển trước khi giải quyết dứt điểm chuyện hai con tốt cánh hậu.
+          en: Black plays ...g6, ...Bg7 and ...O-O in the familiar structure, then chooses between keeping the tension on b5 and trading with ...bxc4 whenever that suits. White plays Ngf3, g3 and Bg2, trying to finish developing before settling the question of the two queenside pawns for good.
+          fr: Les Noirs jouent ...g6, ...Bg7 et ...O-O dans la structure habituelle, puis choisissent entre garder la tension en b5 et échanger par ...bxc4 quand cela convient. Les Blancs jouent Ngf3, g3 et Bg2, cherchant à achever leur développement avant de trancher définitivement la question des deux pions de l'aile dame.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,61 @@
+# Danish Gambit Accepted: Chigorin Defense. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3
+# dxc3 4.Bc4 cxb2 5.Bxb2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5...Qe7: Black defends the
+# e5 square in advance and prepares to meet the coming pressure with ...d6 and ...Nc6.
+# Nothing is hanging at the resulting position. searchMate at 4 moves from this position
+# returns unknown, which the stopping rule treats the same as no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: danish-gambit-accepted-chigorin-defense
+name: 'Danish Gambit Accepted: Chigorin Defense'
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, c3, dxc3, Bc4, cxb2, Bxb2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Guarding e5 in
+      advance rather than developing a piece is a solid, unglamorous way to meet the fully
+      accepted Danish, thought to hold up against White's two bishops without conceding
+      anything concrete. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi nhận cả hai tốt và đưa cả hai tượng ra ngoài, Trắng chờ Đen phải đối mặt với hai đường chéo đang nhắm vào f7 và g7. Đen chọn một nước phòng thủ chắc chắn.
+    en: Having taken both pawns and brought both bishops out, White waits for Black to face the two diagonals aimed at f7 and g7. Black chooses a solid defensive move.
+    fr: Après avoir pris les deux pions et sorti les deux fous, les Blancs attendent que les Noirs affrontent les deux diagonales visant f7 et g7. Les Noirs choisissent un coup défensif solide.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 5...Qe7. Nước 5...d5 theo lối Schlechter Defence trả lại một tốt để chặn đường chéo, còn 5...Bb4+ theo lối Copenhagen Defense chiếu ngay lập tức, mỗi cách có trang riêng của nó.
+      en: Black does not play 5...Qe7. 5...d5 in Schlechter Defence style gives a pawn back to block a diagonal, while 5...Bb4+ in Copenhagen Defense style checks at once, each with its own page.
+      fr: Les Noirs ne jouent pas 5...Qe7. 5...d5 à la manière de la Défense Schlechter rend un pion pour barrer une diagonale, tandis que 5...Bb4+ à la manière de la Défense Copenhagen donne échec aussitôt, chacun avec sa propre page.
+  children:
+    - ply: Qe7
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đưa hậu ra e7, đỡ thêm cho ô e5 trước khi Trắng kịp gây sức ép ở đó và chuẩn bị nhập thành cánh hậu sau này để tránh hẳn đường chéo của tượng b2.
+        en: Black brings the queen to e7, adding a defender to the e5 square before White can pressure it and preparing to castle queenside later to dodge the b2 bishop's diagonal entirely.
+        fr: Les Noirs amènent la dame en e7, ajoutant un défenseur à la case e5 avant que les Blancs ne puissent y faire pression, et se préparant à roquer côté dame plus tard pour éviter complètement la diagonale du fou b2.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng năm, Đen bảy, Trắng kém hẳn hai tốt. Đổi lại, cặp tượng Trắng ở c4 và b2 đã hoàn toàn thông thoáng, nhắm vào f7 và g7, trong khi Đen mới chỉ đưa ra được con hậu và cả tượng lẫn mã vẫn còn nguyên ở hàng đầu.
+          en: Count the pawns, five for White, seven for Black, White fully two pawns down. In return White's bishop pair on c4 and b2 is completely unobstructed, aimed at f7 and g7, while Black has only brought the queen out and every bishop and knight is still on the back rank.
+          fr: Comptez les pions, cinq pour les Blancs, sept pour les Noirs, les Blancs ont deux pions de moins. En échange, la paire de fous blancs en c4 et b2 est totalement dégagée, visant f7 et g7, tandis que les Noirs n'ont sorti que la dame et que chaque fou et cavalier reste encore à la rangée de départ.
+        plan:
+          vi: Trắng chơi Nf3 hoặc Ne2, O-O và Qb3 hay Re1, dồn quân nhanh vào f7 và cột e trước khi Đen kịp nhập thành. Đen chơi Nf6, d6 và Nc6, che chắn vua và hoàn tất phát triển một cách chắc chắn, giữ vững cặp tốt thừa vào tàn cuộc nếu đổi được quân nặng.
+          en: White plays Nf3 or Ne2, castles and Qb3 or Re1, throwing pieces at f7 and the e-file before Black can castle. Black plays ...Nf6, ...d6 and ...Nc6, shielding the king and completing development soundly, holding the extra pawns for the endgame if the heavy pieces come off.
+          fr: Les Blancs jouent Nf3 ou Ne2, roquent et Qb3 ou Re1, jetant leurs pièces sur f7 et la colonne e avant que les Noirs ne roquent. Les Noirs jouent ...Nf6, ...d6 et ...Nc6, protégeant le roi et achevant leur développement solidement, gardant les pions supplémentaires pour la finale si les pièces lourdes s'échangent.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,66 @@
+# Center Game: Lanc-Arnold Gambit. Frozen defining line 1.e4 e5 2.d4 exd4 3.Nf3 Bc5 4.c3,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 4...dxc3 5.bxc3: Black takes the offered
+# pawn, and White recaptures with the b-pawn, the only pawn that can reach c3. Nothing is
+# hanging at the resulting position. searchMate at 4 moves from this position returns
+# no-mate, so no forced mate is claimed anywhere in this entry.
+id: center-game-lanc-arnold-gambit
+name: 'Center Game: Lanc-Arnold Gambit'
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, Nf3, Bc5, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Offering a second pawn to open lines quickly is a real Danish-style idea,
+      but the doubled c-pawns that follow are a genuine, permanent structural cost, and
+      Black's position is thought to hold up with careful play. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi mã ra f3 và tượng Đen ra c5, Trắng chơi 4.c3, mời Đen ăn thêm một con tốt nữa để đổi lấy việc mở đường phát triển nhanh, giống hệt ý tưởng của Danish Gambit.
+    en: After the knight develops to f3 and Black's bishop to c5, White plays 4.c3, inviting Black to take a second pawn in exchange for quick development, exactly the Danish Gambit idea.
+    fr: Après le développement du cavalier en f3 et du fou noir en c5, les Blancs jouent 4.c3, invitant les Noirs à prendre un second pion en échange d'un développement rapide, exactement l'idée du Gambit danois.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt c3. Các nước như Nc6 hay Nf6 để nguyên con tốt c3 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận và Trắng sẽ ăn lại d4 theo cách bình thường.
+      en: Black does not take the c3 pawn. Moves such as ...Nc6 or ...Nf6 leave the c3 pawn sitting on the board, meaning the offer has still not actually been accepted and White simply recaptures on d4 the ordinary way.
+      fr: Les Noirs ne prennent pas le pion c3. Des coups comme ...Nc6 ou ...Nf6 laissent le pion c3 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée et que les Blancs reprennent simplement en d4 de façon ordinaire.
+  children:
+    - ply: dxc3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn nốt con tốt thứ hai. Đây là thử thách gắt gao nhất, giữ lại cả hai con tốt và để Trắng phải chứng minh sự bù đắp bằng những nước cụ thể.
+        en: Black takes the second pawn as well. This is the sternest test, keeping both pawns and making White prove the compensation with concrete moves.
+        fr: Les Noirs prennent aussi le second pion. C'est le test le plus sévère, gardant les deux pions et obligeant les Blancs à démontrer la compensation par des coups concrets.
+      children:
+        - ply: bxc3
+          annotation:
+            vi: Trắng ăn lại bằng tốt b, chấp nhận cặp tốt c chồng lên nhau để đổi lấy cột b nửa mở và một nhịp phát triển.
+            en: White recaptures with the b-pawn, accepting doubled c-pawns in exchange for the half-open b-file and a tempo of development.
+            fr: Les Blancs reprennent avec le pion b, acceptant des pions c doublés en échange de la colonne b semi-ouverte et d'un temps de développement.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen bảy, Trắng sáu, Trắng kém một tốt. Đổi lại, Trắng có cặp tốt c3 chồng lên nhau, một điểm yếu cấu trúc không bao giờ tự sửa được, nhưng bù lại là cột b nửa mở cho xe a1 và đường chéo mở cho tượng c1, trong khi vua Đen vẫn còn ở giữa bàn cờ.
+              en: Count the pawns and it is seven for Black, six for White, White a pawn down. In return White has doubled pawns on the c-file, a structural defect that can never repair itself, but gets the half-open b-file for the a1 rook and an open diagonal for the c1 bishop, while Black's king is still in the centre.
+              fr: Comptez les pions, sept pour les Noirs, six pour les Blancs, les Blancs ont un pion de moins. En échange, les Blancs ont des pions doublés sur la colonne c, un défaut de structure qui ne se répare jamais tout seul, mais obtiennent la colonne b semi-ouverte pour la tour a1 et une diagonale ouverte pour le fou c1, tandis que le roi noir est encore au centre.
+            plan:
+              vi: Trắng chơi Bc4 hoặc Bd3, O-O và Qb3 hay Rb1, dồn quân nhanh vào cánh vua Đen và cột b trước khi Đen kịp nhập thành. Đen chơi Nc6, d6 và Nf6, hoàn tất phát triển một cách chắc chắn, nhập thành sớm và giữ vững cặp tốt thừa.
+              en: White plays Bc4 or Bd3, castles and Qb3 or Rb1, throwing pieces at Black's kingside and the b-file before Black can castle. Black plays ...Nc6, ...d6 and ...Nf6, completing development soundly, castling early and holding onto the extra pawns.
+              fr: Les Blancs jouent Bc4 ou Bd3, roquent et Qb3 ou Rb1, jetant leurs pièces sur l'aile roi noire et la colonne b avant que les Noirs ne roquent. Les Noirs jouent ...Nc6, ...d6 et ...Nf6, achevant leur développement solidement, roquant tôt et gardant les pions supplémentaires.
+            basis:
+              by: chan
+              at: '2026-09-25'

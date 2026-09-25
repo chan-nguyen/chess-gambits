@@ -1,0 +1,60 @@
+# Center Game: Ross Gambit. Frozen defining line 1.e4 e5 2.d4 exd4 3.Bd3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 3...Nc6: Black develops and holds onto the extra pawn rather than
+# rushing to defend it further. Nothing is hanging at the resulting position. searchMate at
+# 4 moves from this position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: center-game-ross-gambit
+name: 'Center Game: Ross Gambit'
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, Bd3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Developing the bishop before recapturing the pawn saves a tempo for an
+      attack on e4-e5 ideas later, but it is an unusual square for the bishop and Black's
+      simplest reply holds everything together. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại ngay bằng 3.Qxd4 theo lối Center Game thông thường, Trắng chơi 3.Bd3, phát triển tượng trước và để dành việc đòi lại con tốt d4 cho sau này.
+    en: Instead of recapturing at once with 3.Qxd4, the usual Center Game way, White plays 3.Bd3, developing the bishop first and saving the recapture on d4 for later.
+    fr: Au lieu de reprendre tout de suite par 3.Qxd4, comme dans le Center Game habituel, les Blancs jouent 3.Bd3, développant d'abord le fou et gardant la reprise en d4 pour plus tard.
+  dismissRest:
+    reason:
+      vi: Đen không phát triển bằng 3...Nc6. Các nước như Nf6 hay d5 cũng giữ được con tốt thừa nhưng theo cách khác, còn con tốt d4 vẫn chưa ai đỡ thêm.
+      en: Black does not develop with 3...Nc6. Moves such as ...Nf6 or ...d5 also keep the extra pawn but in a different way, and the d4 pawn still has no extra defender.
+      fr: Les Noirs ne développent pas par 3...Nc6. Des coups comme ...Nf6 ou ...d5 gardent eux aussi le pion supplémentaire mais d'une autre façon, et le pion d4 n'a toujours pas de défenseur supplémentaire.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã tự nhiên và giữ vững con tốt thừa, chưa cần vội vàng làm gì thêm vì chưa quân Trắng nào đe dọa được nó.
+        en: Black develops the knight naturally and simply keeps the extra pawn, with no need to do anything more urgent yet since no white piece threatens it.
+        fr: Les Noirs développent naturellement le cavalier et gardent simplement le pion supplémentaire, sans rien devoir faire de plus urgent puisqu'aucune pièce blanche ne le menace.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn đúng một tốt sạch và con tốt ấy chưa hề bị đe dọa. Tượng d3 của Trắng đứng ở một ô khác thường, không nhắm vào mục tiêu cụ thể nào ngay lập tức, còn Đen thì đã phát triển được một quân mà chưa phải nhượng bộ gì.
+          en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up and that pawn is not under any threat. White's bishop on d3 sits on an unusual square with no concrete target yet, while Black has already developed a piece without conceding anything.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion net d'avance et ce pion n'est sous aucune menace. Le fou blanc en d3 se trouve sur une case inhabituelle, sans cible concrète pour l'instant, tandis que les Noirs ont déjà développé une pièce sans avoir rien concédé.
+        plan:
+          vi: Trắng chơi Nf3, O-O và Re1 hay c3, cố đòi lại con tốt d4 và tận dụng cột e nửa mở. Đen chơi Nf6, Bc5 hay d6, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa vào tàn cuộc.
+          en: White plays Nf3, O-O and Re1 or c3, trying to win the d4 pawn back and make use of the half-open e-file. Black plays ...Nf6, ...Bc5 or ...d6, completing development soundly and holding the extra pawn for the endgame.
+          fr: Les Blancs jouent Nf3, O-O et Re1 ou c3, essayant de reprendre le pion d4 et de profiter de la colonne e semi-ouverte. Les Noirs jouent ...Nf6, ...Bc5 ou ...d6, achevant leur développement solidement et gardant le pion supplémentaire pour la finale.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,59 @@
+# Bishop's Opening: McDonnell Gambit, McDonnell Double Gambit. Frozen defining line 1.e4 e5
+# 2.Bc4 Bc5 3.b4 Bxb4 4.f4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...exf4: Black takes the
+# second pawn at once, the only piece that can capture there. Nothing is hanging at the
+# resulting position. searchMate at 4 moves from this position returns no-mate, so no forced
+# mate is claimed anywhere in this entry.
+id: bishops-opening-mcdonnell-gambit-mcdonnell-double-gambit
+name: "Bishop's Opening: McDonnell Gambit, McDonnell Double Gambit"
+eco: C23
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Bc5, b4, Bxb4, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. A second pawn goes to reopen the f-file and the diagonal to f7, a genuine
+      attacking idea, but two pawns is a real price and Black's position holds up with
+      accurate defence. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ăn tốt b4, Đen thấy Trắng chơi tiếp 4.f4, thí thêm một con tốt nữa để mở cột f và đường chéo a2-g8 nhắm vào f7.
+    en: Having taken the b4 pawn, Black sees White continue with 4.f4, offering a second pawn to open the f-file and the a2-g8 diagonal aimed at f7.
+    fr: Après avoir pris le pion b4, les Noirs voient les Blancs poursuivre par 4.f4, offrant un second pion pour ouvrir la colonne f et la diagonale a2-g8 visant f7.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt f4. Lùi tượng bằng Bd6 hay Be7 để tránh mọi phức tạp thì Trắng vẫn có fxe5 hoặc f5 tùy tình huống, còn không nước nào trong số đó nhận trọn con tốt như exf4.
+      en: Black does not take the f4 pawn. Retreating the bishop with ...Bd6 or ...Be7 to dodge the complications still leaves White with fxe5 or f5 depending on the position, and none of those moves collects the pawn the way ...exf4 does.
+      fr: Les Noirs ne prennent pas le pion f4. Reculer le fou par ...Bd6 ou ...Be7 pour éviter les complications laisse encore aux Blancs fxe5 ou f5 selon la position, et aucun de ces coups ne ramasse le pion comme le fait ...exf4.
+  children:
+    - ply: exf4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn nốt con tốt thứ hai. Về vật chất đây là nước đúng, và nó còn mở luôn đường chéo cho tượng b4 lẫn con hậu d8.
+        en: Black takes the second pawn too. Materially this is correct, and it also opens the diagonal for both the b4 bishop and the queen on d8.
+        fr: Les Noirs prennent aussi le second pion. Matériellement c'est correct, et cela ouvre en plus la diagonale pour le fou b4 comme pour la dame d8.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng sáu, Đen hơn hẳn hai tốt sạch. Đổi lại, cột f đã mở toang cho xe h1 và đường chéo a2-g8 sẵn sàng cho tượng c4 nhắm vào f7, trong khi Đen vẫn chưa đưa ra được quân nào ngoài cặp tượng và vua còn đứng ở giữa bàn cờ.
+          en: Count the pawns, eight for Black, six for White — Black is a clean two pawns up. In return the f-file stands wide open for the h1 rook and the a2-g8 diagonal is ready for the c4 bishop to bear down on f7, while Black has still not brought out anything beyond the bishop pair and the king remains in the centre.
+          fr: Comptez les pions, huit pour les Noirs, six pour les Blancs — les Noirs ont deux pions nets d'avance. En échange, la colonne f est grande ouverte pour la tour h1 et la diagonale a2-g8 est prête pour que le fou c4 pèse sur f7, tandis que les Noirs n'ont encore rien sorti au-delà de la paire de fous et que le roi reste au centre.
+        plan:
+          vi: Trắng chơi Nf3 nhắm vào tốt f4 và ô e5, rồi O-O và Qb3 hay Qe1, dồn quân vào cột f và f7 trước khi Đen kịp nhập thành. Đen chơi d6 hay Nf6 để che chắn vua, rồi Nc6, Be6 đổi bớt tượng nguy hiểm, và tìm cách nhập thành càng sớm càng tốt.
+          en: White plays Nf3 to take aim at the f4 pawn and the e5 square, then O-O and Qb3 or Qe1, piling onto the f-file and f7 before Black can castle. Black plays ...d6 or ...Nf6 to shield the king, then ...Nc6, ...Be6 to trade off the dangerous bishop, and looks to castle as soon as possible.
+          fr: Les Blancs jouent Nf3 pour viser le pion f4 et la case e5, puis O-O et Qb3 ou Qe1, s'accumulant sur la colonne f et f7 avant que les Noirs ne roquent. Les Noirs jouent ...d6 ou ...Nf6 pour protéger le roi, puis ...Nc6, ...Be6 pour échanger le fou dangereux, et cherchent à roquer au plus vite.
+        basis:
+          by: chan
+          at: '2026-09-25'

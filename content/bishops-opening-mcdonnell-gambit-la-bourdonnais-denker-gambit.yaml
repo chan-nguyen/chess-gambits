@@ -1,0 +1,60 @@
+# Bishop's Opening: McDonnell Gambit, La Bourdonnais-Denker Gambit. Frozen defining line
+# 1.e4 e5 2.Bc4 Bc5 3.b4 Bxb4 4.c3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...Ba5:
+# White offers a second pawn to chase the bishop off b4 entirely, and Black retreats rather
+# than grab it. Nothing is hanging at the resulting position. searchMate at 4 moves from
+# this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: bishops-opening-mcdonnell-gambit-la-bourdonnais-denker-gambit
+name: "Bishop's Opening: McDonnell Gambit, La Bourdonnais-Denker Gambit"
+eco: C23
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Bc5, b4, Bxb4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White throws in a second pawn purely for tempo, since the bishop on b4
+      must move again regardless of whether it is taken, and the resulting lead in
+      development is real but not proven to outweigh two pawns. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ăn tốt b4, Đen bị Trắng chơi 4.c3 đuổi tượng tiếp. Con tượng đang bị tấn công phải quyết định giữa việc ăn nốt tốt c3 hay lùi về an toàn.
+    en: Having taken the b4 pawn, Black is chased again by White's 4.c3. The attacked bishop must decide between grabbing the c3 pawn too or retreating to safety.
+    fr: Après avoir pris le pion b4, les Noirs sont de nouveau chassés par 4.c3 des Blancs. Le fou attaqué doit choisir entre prendre aussi le pion c3 ou reculer en lieu sûr.
+  dismissRest:
+    reason:
+      vi: Đen không lùi tượng về a5. Ăn nốt tốt bằng 4...Bxc3 là nước mạo hiểm nhất và có trang riêng của nó trong lý thuyết, còn các nước lùi khác như Bd6 hay Be7 cũng cùng ý tưởng tránh bị đuổi tiếp nhưng bỏ đường chéo b4-f8.
+      en: Black does not retreat the bishop to a5. Taking the pawn as well with 4...Bxc3 is the sharpest try and has its own page in theory, while other retreats such as ...Bd6 or ...Be7 share the same idea of dodging further harassment but give up the b4-f8 diagonal.
+      fr: Les Noirs ne reculent pas le fou en a5. Prendre aussi le pion par 4...Bxc3 est l'essai le plus tranchant et a sa propre place dans la théorie, tandis que d'autres retraites comme ...Bd6 ou ...Be7 partagent la même idée d'éviter d'être encore chassé mais abandonnent la diagonale b4-f8.
+  children:
+    - ply: Ba5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen lùi tượng về a5, giữ nguyên đường chéo nhắm vào f2 và tránh mọi rắc rối liên quan đến việc ăn tốt c3. Đây là cách chơi chắc chắn nhất, đơn giản là giữ lại con tốt đã ăn được.
+        en: Black retreats the bishop to a5, keeping the diagonal aimed at f2 and avoiding all the complications that come with taking the c3 pawn. This is the safest way to play it, simply banking the pawn already won.
+        fr: Les Noirs reculent le fou en a5, gardant la diagonale visant f2 et évitant toutes les complications liées à la prise du pion c3. C'est la façon la plus sûre de jouer, en empochant simplement le pion déjà gagné.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng sáu, Đen hơn hẳn hai tốt sạch. Đổi lại, Trắng đã chơi bốn nước liền để chuẩn bị một trung tâm d4 vững chắc và có đường chéo a1-h8 sẵn sàng cho tượng c1, còn Đen vẫn chưa đưa ra được quân nào ngoài cặp tượng.
+          en: Count the pawns, eight for Black, six for White — Black is a clean two pawns up. In return White has spent four moves setting up a solid d4 centre with the a1-h8 diagonal ready for the c1 bishop, while Black has still not brought out anything beyond the bishop pair.
+          fr: Comptez les pions, huit pour les Noirs, six pour les Blancs — les Noirs ont deux pions nets d'avance. En échange, les Blancs ont passé quatre coups à préparer un centre d4 solide avec la diagonale a1-h8 prête pour le fou c1, tandis que les Noirs n'ont encore rien sorti au-delà de la paire de fous.
+        plan:
+          vi: Trắng chơi d4, Nf3 và O-O, dồn quân vào trung tâm và cánh vua Đen, cố tạo đủ hoạt động để bù cho hai con tốt đã mất. Đen chơi Nf6, d6 và O-O, hoàn tất phát triển một cách chắc chắn, giữ vững cặp tốt thừa và đổi bớt quân khi có dịp.
+          en: White plays d4, Nf3 and O-O, throwing pieces at the centre and Black's kingside, trying to create enough activity to make up for the two lost pawns. Black plays ...Nf6, ...d6 and ...O-O, completing development soundly, holding the extra pawns and trading pieces when the chance comes.
+          fr: Les Blancs jouent d4, Nf3 et O-O, jetant leurs pièces sur le centre et l'aile roi noire, essayant de créer assez d'activité pour compenser les deux pions perdus. Les Noirs jouent ...Nf6, ...d6 et ...O-O, achevant leur développement solidement, gardant les pions supplémentaires et échangeant des pièces à l'occasion.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,66 @@
+# Danish Gambit Accepted: Copenhagen Defense. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3
+# dxc3 4.Bc4 cxb2 5.Bxb2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5...Bb4+ 6.Nc3: Black
+# checks at once, and White blocks with the knight rather than moving the king or giving up
+# the bishop pair. Nothing is hanging at the resulting position. searchMate at 4 moves from
+# this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: danish-gambit-accepted-copenhagen-defense
+name: 'Danish Gambit Accepted: Copenhagen Defense'
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, c3, dxc3, Bc4, cxb2, Bxb2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. The immediate
+      check costs Black a tempo once White blocks with the knight, developing a piece for
+      free, so this is thought to be a shade less accurate than the quieter defenses. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi nhận cả hai tốt và đưa cả hai tượng ra ngoài, Trắng chờ Đen phải đối mặt với hai đường chéo đang nhắm vào f7 và g7. Đen đáp lại bằng một nước chiếu ngay lập tức.
+    en: Having taken both pawns and brought both bishops out, White waits for Black to face the two diagonals aimed at f7 and g7. Black answers with an immediate check.
+    fr: Après avoir pris les deux pions et sorti les deux fous, les Blancs attendent que les Noirs affrontent les deux diagonales visant f7 et g7. Les Noirs répondent par un échec immédiat.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 5...Bb4+. Nước 5...d5 theo lối Schlechter Defence trả lại một tốt để chặn đường chéo, còn 5...Qe7 đỡ trước cho ô e5, mỗi cách có trang riêng của nó.
+      en: Black does not play 5...Bb4+. 5...d5 in Schlechter Defence style gives a pawn back to block a diagonal, while 5...Qe7 defends the e5 square in advance, each with its own page.
+      fr: Les Noirs ne jouent pas 5...Bb4+. 5...d5 à la manière de la Défense Schlechter rend un pion pour barrer une diagonale, tandis que 5...Qe7 défend d'avance la case e5, chacun avec sa propre page.
+  children:
+    - ply: Bb4+
+      replyQuality: inaccuracy
+      frequency: common
+      annotation:
+        vi: Đen chiếu ngay bằng tượng. Đây là nước rất tự nhiên nhưng nó cho Trắng cơ hội phát triển thêm một quân trong lúc chặn chiếu.
+        en: Black checks at once with the bishop. This is a very natural move, but it gives White the chance to develop yet another piece while blocking the check.
+        fr: Les Noirs donnent aussitôt échec avec le fou. C'est un coup très naturel, mais il donne aux Blancs l'occasion de développer une pièce de plus en parant l'échec.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng chặn chiếu bằng mã thay vì đi vua hay chen tượng vào, phát triển thêm một quân ngay trong lúc phòng thủ.
+            en: White blocks the check with the knight rather than moving the king or interposing the bishop, developing another piece in the very act of defending.
+            fr: Les Blancs parent l'échec avec le cavalier plutôt que de bouger le roi ou d'interposer le fou, développant une pièce de plus tout en se défendant.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng năm, Đen bảy, Trắng kém hẳn hai tốt. Đổi lại, Trắng đã đưa ra ba quân nhẹ trong khi Đen mới chỉ có mỗi con tượng, và chính con tượng ấy sẽ phải tự hỏi nó nên đứng ở đâu ngay từ nước sau.
+              en: Count the pawns, five for White, seven for Black, White fully two pawns down. In return White has three minor pieces out while Black has only the one bishop, and that very bishop must already ask itself where it belongs next move.
+              fr: Comptez les pions, cinq pour les Blancs, sept pour les Noirs, les Blancs ont deux pions de moins. En échange, les Blancs ont sorti trois pièces mineures tandis que les Noirs n'ont que le seul fou, et ce fou doit déjà se demander où il ira au coup suivant.
+            plan:
+              vi: Trắng chơi Nf3 hoặc Ne2, O-O và Qb3, dồn quân nhanh vào f7 trước khi Đen kịp nhập thành, và tính đến a3 để đuổi tượng b4 nếu cần. Đen chơi Nf6, d6 và Nc6, che chắn vua và hoàn tất phát triển, sẵn sàng đổi tượng b4 lấy mã c3 khi có lợi.
+              en: White plays Nf3 or Ne2, castles and Qb3, throwing pieces at f7 before Black can castle, and weighs a3 to chase the b4 bishop if needed. Black plays ...Nf6, ...d6 and ...Nc6, shielding the king and completing development, ready to trade the b4 bishop for the c3 knight when it suits.
+              fr: Les Blancs jouent Nf3 ou Ne2, roquent et Qb3, jetant leurs pièces sur f7 avant que les Noirs ne roquent, et pèsent a3 pour chasser le fou b4 au besoin. Les Noirs jouent ...Nf6, ...d6 et ...Nc6, protégeant le roi et achevant leur développement, prêts à échanger le fou b4 contre le cavalier c3 quand cela convient.
+            basis:
+              by: chan
+              at: '2026-09-25'

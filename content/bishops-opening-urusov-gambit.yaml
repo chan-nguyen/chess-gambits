@@ -1,0 +1,66 @@
+# Bishop's Opening: Urusov Gambit. Frozen defining line 1.e4 e5 2.Bc4 Nf6 3.d4 exd4 4.Nf3,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 4...Nxe4 5.Qxd4: Black grabs the second pawn,
+# and White recaptures the first one with the queen, which lands with tempo on the
+# e4 knight. Nothing is hanging at the resulting position. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: bishops-opening-urusov-gambit
+name: "Bishop's Opening: Urusov Gambit"
+eco: C43
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, d4, exd4, Nf3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White's lead in development and the queen's double duty against the e4
+      knight and the long diagonal are real and immediate, which is why this pawn sacrifice
+      is judged to hold up rather than merely look dangerous. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 4.Nf3, mời Đen ăn nốt con tốt e4 thay vì ăn lại ngay con tốt d4 đã mất trước đó. Việc ăn lại được để dành cho quân hậu.
+    en: White plays 4.Nf3, inviting Black to take the e4 pawn as well instead of recapturing the d4 pawn right away. The recapture is being saved for the queen.
+    fr: Les Blancs jouent 4.Nf3, invitant les Noirs à prendre aussi le pion e4 au lieu de reprendre tout de suite le pion d4. La reprise est réservée à la dame.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước như Nc6 hay d5 để nguyên con tốt e4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận và Trắng sẽ ăn lại d4 theo cách bình thường.
+      en: Black does not take the e4 pawn. Moves such as ...Nc6 or ...d5 leave the e4 pawn sitting on the board, meaning the offer has still not actually been accepted and White simply recaptures on d4 the ordinary way.
+      fr: Les Noirs ne prennent pas le pion e4. Des coups comme ...Nc6 ou ...d5 laissent le pion e4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée et que les Blancs reprennent simplement en d4 de façon ordinaire.
+  children:
+    - ply: Nxe4
+      replyQuality: inaccuracy
+      frequency: common
+      annotation:
+        vi: Đen ăn nốt con tốt thứ hai bằng mã. Đây là thử thách gắt gao nhất với gambit, nhưng con mã ở e4 sắp phải đối mặt với một nước chiếu vào chính nó.
+        en: Black takes the second pawn with the knight. This is the sternest test of the gambit, but the knight on e4 is about to face a move that attacks it directly.
+        fr: Les Noirs prennent le second pion avec le cavalier. C'est le test le plus sévère du gambit, mais le cavalier en e4 va devoir affronter un coup qui l'attaque directement.
+      children:
+        - ply: Qxd4
+          annotation:
+            vi: Hậu ăn lại con tốt d4 và đồng thời làm hai việc, tấn công thẳng vào mã e4 và nhòm xuống đường chéo dài tới tận g7. Đen buộc phải trả lời ngay lập tức.
+            en: The queen recaptures on d4 and does two jobs at once, attacking the e4 knight directly and looking down the long diagonal all the way to g7. Black must answer at once.
+            fr: La dame reprend en d4 et fait deux choses à la fois, attaquant directement le cavalier e4 et regardant tout au long de la grande diagonale jusqu'en g7. Les Noirs doivent répondre aussitôt.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen bảy, Trắng sáu, Trắng kém một tốt. Đổi lại, con hậu Trắng ở d4 vừa tấn công mã e4 vừa nhìn suốt đường chéo a1 tới g7, nơi chỉ có tốt g7 đứng chắn, trong khi vua Đen còn ở giữa bàn cờ và chưa có quân nào ngoài mã e4 được đưa ra. Trắng đã đi trước hẳn về hoạt động quân cờ so với con số vật chất.
+              en: Count the pawns and it is seven for Black, six for White, White a pawn down. In return the white queen on d4 attacks the e4 knight while also looking straight down the diagonal to g7, where only the g7 pawn stands guard, and Black's king is still in the centre with nothing developed except the e4 knight. White is well ahead in piece activity relative to the material count.
+              fr: Comptez les pions, sept pour les Noirs, six pour les Blancs, les Blancs ont un pion de moins. En échange, la dame blanche en d4 attaque le cavalier e4 tout en regardant droit vers g7 le long de la diagonale, où seul le pion g7 monte la garde, et le roi noir est encore au centre sans rien de développé hormis le cavalier e4. Les Blancs sont nettement en avance en activité de pièces par rapport au compte matériel.
+            plan:
+              vi: Đen chơi Nf6 lùi mã về phòng thủ đường chéo, hoặc Nc5 đuổi hậu, rồi Nc6 và Be7, cố nhập thành càng sớm càng tốt để đưa vua ra khỏi trung tâm. Trắng chơi Nc3 và Bg5 hoặc Bh6, dồn quân vào cánh vua Đen trước khi Đen kịp nhập thành, coi hoạt động quân cờ quan trọng hơn việc đòi lại con tốt ngay.
+              en: Black plays ...Nf6 to bring the knight back to defend the diagonal, or ...Nc5 to chase the queen, then ...Nc6 and ...Be7, trying to castle as soon as possible to get the king out of the centre. White plays Nc3 and Bg5 or Bh6, piling onto Black's kingside before castling happens, valuing piece activity over winning the pawn back at once.
+              fr: Les Noirs jouent ...Nf6 pour ramener le cavalier défendre la diagonale, ou ...Nc5 pour chasser la dame, puis ...Nc6 et ...Be7, cherchant à roquer au plus vite pour sortir le roi du centre. Les Blancs jouent Nc3 et Bg5 ou Bh6, s'accumulant sur l'aile roi noire avant que le roque n'ait lieu, privilégiant l'activité des pièces plutôt que la reprise immédiate du pion.
+            basis:
+              by: chan
+              at: '2026-09-25'
