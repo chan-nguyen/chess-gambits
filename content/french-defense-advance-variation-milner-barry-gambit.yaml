@@ -1,0 +1,66 @@
+# French Defense, Advance Variation, Milner-Barry Gambit. One entry in a batch authored for
+# issue #148 (batch h). Defining line ends on White's 6.Bd3 (invariant 5), the same position
+# `milner-barry-trap.yaml` starts from — that entry goes on to model the specific mistake
+# 7...Nxd4??, while this entry follows Black's actual best try, 7...cxd4 8.cxd4, and stops at
+# the calm position that leaves, without claiming anything about the trap. Every ply below
+# was replayed with chess.js before being written.
+id: french-defense-advance-variation-milner-barry-gambit
+name: 'French Defense: Advance Variation, Milner-Barry Gambit'
+eco: C02
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, e5, c5, c3, Nc6, Nf3, Qb6, Bd3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers the d4 pawn for a lead in development and open lines toward
+      Black's king, and the gambit has never been shown unsound at club level, though best
+      defence keeps Black at least equal. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra d3, phớt lờ việc con tốt d4 đang bị hậu b6 và mã c6 đánh hai lần trong khi chỉ được tốt c3 đỡ một lần. Đây chính là Gambit Milner-Barry.
+    en: White has just played the bishop to d3, ignoring the fact that the d4 pawn is attacked twice, by the queen on b6 and the knight on c6, while defended only once, by the c3 pawn. This is the Milner-Barry Gambit.
+    fr: Les Blancs viennent de jouer le fou en d3, ignorant que le pion d4 est attaqué deux fois, par la dame en b6 et le cavalier c6, alors qu'il n'est défendu qu'une fois, par le pion c3. C'est le Gambit Milner-Barry.
+  dismissRest:
+    reason:
+      vi: Đen ăn tốt d4 bằng mã ngay lập tức, 6...Nxd4??, thay vì ăn bằng tốt trước. Đây chính là cú lừa nổi tiếng khiến Trắng bắt được hậu — xem mục `milner-barry-trap` để đi sâu vào đòn ấy.
+      en: Black takes the d4 pawn with the knight at once, 6...Nxd4??, instead of taking with the pawn first. This is the famous trick that wins White the queen — see the `milner-barry-trap` entry for that line.
+      fr: Les Noirs prennent immédiatement le pion d4 avec le cavalier, 6...Cxd4??, au lieu de prendre d'abord avec le pion. C'est le fameux piège qui gagne la dame pour les Blancs — voir l'entrée `milner-barry-trap` pour cette ligne.
+  children:
+    - ply: cxd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng tốt trước, cách xử lý chính xác. Con mã c6 vẫn còn đó để ăn lại nếu Trắng đổi tốt, và con hậu b6 không bị lộ ra giữa cột d đang mở.
+        en: Black takes with the pawn first, the accurate handling. The c6 knight is still there to recapture if White trades again, and the queen on b6 is never exposed on the newly open d-file.
+        fr: Les Noirs prennent d'abord avec le pion, le traitement précis. Le cavalier c6 reste disponible pour reprendre si les Blancs échangent à nouveau, et la dame en b6 n'est jamais exposée sur la colonne d désormais ouverte.
+      children:
+        - ply: cxd4
+          annotation:
+            vi: Trắng ăn lại bằng tốt, khôi phục con tốt trung tâm. Quân số hoàn toàn ngang nhau, và ván cờ trông giống một thế Phòng thủ Pháp bình thường hơn là một gambit.
+            en: White recaptures with the pawn, restoring the central pawn. Material is completely level, and the position looks more like an ordinary French Defense than a gambit.
+            fr: Les Blancs reprennent avec le pion, restaurant le pion central. Le matériel est parfaitement égal, et la position ressemble davantage à une Défense française ordinaire qu'à un gambit.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số hoàn toàn ngang nhau, mỗi bên còn đủ bảy tốt sau loạt đổi chác trên cột c và cột d. Trắng đã hoàn thiện phát triển cánh vua với tượng d3 và mã f3, còn Đen thì có mã c6 và hậu b6 đã áp lực sẵn lên cánh hậu.
+              en: Material is completely level, each side has seven pawns left after the trades on the c- and d-files. White has finished kingside development with the bishop on d3 and the knight on f3, while Black already has the c6 knight and b6 queen putting pressure on the queenside.
+              fr: Le matériel est parfaitement égal, chaque camp a sept pions après les échanges sur les colonnes c et d. Les Blancs ont achevé leur développement à l'aile roi avec le fou en d3 et le cavalier en f3, tandis que les Noirs ont déjà le cavalier c6 et la dame b6 qui font pression sur l'aile dame.
+            plan:
+              vi: Trắng chơi O-O rồi Re1 hay Na3, tận dụng đường chéo b1-h7 và không gian do tốt e5 mang lại để tấn công cánh vua Đen. Đen chơi Bd7 và Nge7 hay f6, tranh chấp tốt e5 và hoàn thiện phát triển trước khi Trắng kịp dồn quân tấn công.
+              en: White plays O-O then Re1 or Na3, using the b1-h7 diagonal and the space the e5 pawn gives to attack Black's kingside. Black plays Bd7 and Nge7 or f6, contesting the e5 pawn and completing development before White can mass an attack.
+              fr: Les Blancs jouent O-O puis Re1 ou Na3, utilisant la diagonale b1-h7 et l'espace donné par le pion e5 pour attaquer l'aile roi noire. Les Noirs jouent Bd7 et Nge7 ou f6, disputant le pion e5 et achevant leur développement avant que les Blancs ne rassemblent une attaque.
+            basis:
+              by: chan
+              at: '2026-09-25'

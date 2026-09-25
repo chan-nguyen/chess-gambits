@@ -1,0 +1,57 @@
+# Hungarian Opening, Pachman Gambit. One entry in a batch authored for issue #148 (batch h).
+# Defining line ends on White's 3.Qh5+ (invariant 5). Every ply below was replayed with
+# chess.js before being written.
+id: hungarian-opening-pachman-gambit
+name: 'Hungarian Opening: Pachman Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [g3, f5, e4, fxe4, 'Qh5+']
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The check wins a tempo and weakens Black's kingside dark squares, but
+      White has not won back the pawn and has not been shown to have enough for it. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chiếu bằng hậu từ h5, quân duy nhất có thể chiếu ở đây. Đen phải trả lời ngay trước khi làm gì khác.
+    en: White has just given check with the queen from h5, the only piece that can check here. Black has to answer at once before doing anything else.
+    fr: Les Blancs viennent de donner échec avec la dame depuis h5, la seule pièce pouvant le faire ici. Les Noirs doivent répondre aussitôt avant toute autre chose.
+  children:
+    - ply: g6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chặn chiếu bằng tốt g, cách đáp trả tự nhiên nhất. Nhưng con tốt g6 đã làm yếu vĩnh viễn các ô đen quanh vua, đặc biệt là f6 và h6.
+        en: Black blocks the check with the g-pawn, the most natural answer. But the g6 pawn permanently weakens the dark squares around the king, especially f6 and h6.
+        fr: Les Noirs bloquent l'échec avec le pion g, la réponse la plus naturelle. Mais le pion g6 affaiblit durablement les cases noires autour du roi, notamment f6 et h6.
+      children:
+        - ply: Qe2
+          annotation:
+            vi: Trắng lui hậu về e2, giữ áp lực lên con tốt e4 đang tiến và tránh bị Đen tranh nhịp bằng ...Nf6 sắp tới.
+            en: White drops the queen back to e2, keeping pressure on the advanced e4 pawn and staying out of the way of Black's upcoming ...Nf6.
+            fr: Les Blancs replient la dame en e2, gardant la pression sur le pion e4 avancé et évitant la gêne du futur ...Cf6 noir.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen tám, Trắng bảy — Đen vẫn hơn đúng một tốt. Đổi lại, cánh vua Đen đã yếu đi vì tốt g6, và con hậu Trắng ở e2 đang gây áp lực lên con tốt e4 tiến khá xa mà chưa có quân nào đỡ chắc.
+              en: Count the pawns and it is eight for Black, seven for White — Black is still exactly one pawn up. In exchange, Black's kingside is weaker because of the g6 pawn, and White's queen on e2 already pressures the far-advanced e4 pawn, which has no solid defender yet.
+              fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs restent exactement un pion devant. En échange, l'aile roi noire est affaiblie à cause du pion g6, et la dame blanche en e2 fait déjà pression sur le pion e4 très avancé, qui n'a pas encore de défenseur solide.
+            plan:
+              vi: Trắng chơi Nc3 tấn công thêm vào tốt e4, rồi d3 để đòi lại nó, tận dụng các ô đen yếu quanh vua Đen. Đen chơi Nf6 và Bg7, hoàn thiện phát triển và giữ con tốt e4 làm vốn liếng lâu dài dù có phần rủi ro.
+              en: White plays Nc3 to add pressure on e4, then d3 to win it back, using the weak dark squares around Black's king. Black plays Nf6 and Bg7, completing development and banking the e4 pawn as a long-term asset despite the risk involved.
+              fr: Les Blancs jouent Nc3 pour ajouter de la pression sur e4, puis d3 pour le regagner, exploitant les cases noires faibles autour du roi noir. Les Noirs jouent Nf6 et Bg7, achevant leur développement et conservant le pion e4 comme atout durable malgré le risque.
+            basis:
+              by: chan
+              at: '2026-09-25'

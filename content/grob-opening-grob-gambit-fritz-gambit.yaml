@@ -1,0 +1,81 @@
+# Grob Opening, Grob Gambit, Fritz Gambit. One entry in a batch authored for issue #148
+# (batch h), sharing the trunk `1.g4 d5 2.Bg2` with `grob-opening-grob-gambit` and its
+# sibling `grob-opening-romford-countergambit` (same 2...Bxg4 3.c4, differing on Black's
+# next move). Defining line ends on White's 2.Bg2 (invariant 5). Every ply below was
+# replayed with chess.js before being written.
+id: grob-opening-grob-gambit-fritz-gambit
+name: 'Grob Opening: Grob Gambit, Fritz Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [g4, d5, Bg2]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The same judgement the family head `grob-opening-grob-gambit.yaml` carries — a second
+      pawn offered for activity that has never been shown to be enough. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa fianchetto tượng lên g2. Mục này đi sâu riêng vào việc Đen ăn tốt bằng 2...Bxg4, và Trắng đáp lại bằng cách thí thêm một tốt nữa, 3.c4.
+    en: White has just fianchettoed the bishop to g2. This entry follows specifically Black taking with 2...Bxg4, and White answering by offering a second pawn, 3.c4.
+    fr: Les Blancs viennent de fianchetter le fou en g2. Cette entrée suit spécifiquement la prise noire 2...Fxg4, à laquelle les Blancs répondent en offrant un second pion, 3.c4.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt g4 — phát triển bằng 2...Nf6, hay chơi 2...c6 (Richter-Grob), 2...h5 (Basman) hay 2...e5 (Keres). Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black does not take the g4 pawn — developing with 2...Nf6, or playing 2...c6 (Richter-Grob), 2...h5 (Basman) or 2...e5 (Keres). Each is outside the scope of this entry.
+      fr: Les Noirs ne prennent pas le pion g4 — développant par 2...Cf6, ou jouant 2...c6 (Richter-Grob), 2...h5 (Basman) ou 2...e5 (Keres). Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen nhận tốt g4 bằng tượng, quân duy nhất có thể ăn tại đó.
+        en: Black accepts the g4 pawn with the bishop, the only piece that can capture there.
+        fr: Les Noirs acceptent le pion g4 avec le fou, la seule pièce pouvant capturer là.
+      children:
+        - ply: c4
+          annotation:
+            vi: Gambit Fritz. Trắng thí thêm một tốt nữa để đánh vào tốt d5, tách con tượng g4 ra khỏi phần còn lại của quân Đen và mở đường chéo dài cho tượng g2.
+            en: The Fritz Gambit. White offers a second pawn to hit the d5 pawn, cutting the bishop on g4 off from the rest of Black's army and opening the long diagonal for the g2 bishop.
+            fr: Le Gambit Fritz. Les Blancs offrent un second pion pour frapper le pion d5, coupant le fou en g4 du reste de l'armée noire et ouvrant la grande diagonale pour le fou g2.
+          dismissRest:
+            reason:
+              vi: Đen không ăn tốt c4 — lui tượng về d7 hay h5, hay phát triển bằng 4...Nf6. Mỗi lựa chọn để nguyên con tốt c4 của Trắng trên bàn cờ, chưa bị đòi lại.
+              en: Black does not take the c4 pawn — dropping the bishop back to d7 or h5, or developing with 4...Nf6. Each leaves White's c4 pawn sitting on the board, not yet won back.
+              fr: Les Noirs ne prennent pas le pion c4 — repliant le fou en d7 ou h5, ou développant par 4...Cf6. Chacun laisse le pion c4 blanc sur l'échiquier, pas encore regagné.
+          children:
+            - ply: dxc4
+              annotation:
+                vi: Đen ăn thêm tốt c4, giờ đã hơn hai tốt. Nhưng con tốt d5 vừa rời đi đã mở toang đường chéo g2-a8 cho tượng Trắng.
+                en: Black grabs the c4 pawn too, now two pawns up. But the d5 pawn just leaving has thrown the g2-a8 diagonal wide open for White's bishop.
+                fr: Les Noirs ramassent aussi le pion c4, désormais deux pions d'avance. Mais le départ du pion d5 vient d'ouvrir en grand la diagonale g2-a8 pour le fou blanc.
+              children:
+                - ply: Bxb7
+                  annotation:
+                    vi: Trắng ăn tiếp tốt b7 bằng tượng, đi thẳng xuống đường chéo dài vừa mở và đe dọa luôn cả xe a8.
+                    en: White grabs the b7 pawn with the bishop too, running straight down the newly opened long diagonal and threatening the a8 rook at the same time.
+                    fr: Les Blancs ramassent aussi le pion b7 avec le fou, filant tout droit le long de la grande diagonale nouvellement ouverte et menaçant du même coup la tour a8.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm tốt thì Đen bảy, Trắng sáu — Đen hơn một tốt tính riêng về số lượng, nhưng con tượng Trắng ở b7 đang chĩa thẳng vào xe a8 chưa được ai đỡ, một mối đe dọa nặng hơn hẳn khoảng cách một tốt.
+                      en: Count the pawns and it is seven for Black, six for White — Black is up a pawn by count alone, but White's bishop on b7 aims straight at the undefended a8 rook, a threat worth far more than that one-pawn gap.
+                      fr: Comptez les pions, sept pour les Noirs, six pour les Blancs — les Noirs ont un pion d'avance en nombre seulement, mais le fou blanc en b7 vise directement la tour a8 non défendue, une menace qui vaut bien plus que cet écart d'un pion.
+                    plan:
+                      vi: Trắng chơi Bxa8 ăn hẳn xe nếu Đen không kịp cứu, rồi Qb3 hay Nc3, tận dụng quân hơn để tấn công. Đen chơi Nd7 hay Qc8 cứu xe trước khi bị ăn, chấp nhận lùi lại một nhịp để tránh mất quân nặng đổi lấy tượng.
+                      en: White plays Bxa8 to win the rook outright if Black cannot save it in time, then Qb3 or Nc3, using the material edge to attack. Black plays Nd7 or Qc8 to save the rook before it is taken, accepting a lost tempo to avoid losing a rook for a bishop.
+                      fr: Les Blancs jouent Bxa8 pour gagner la tour si les Noirs ne peuvent la sauver à temps, puis Qb3 ou Nc3, exploitant l'avantage matériel pour attaquer. Les Noirs jouent Nd7 ou Qc8 pour sauver la tour avant qu'elle ne soit prise, acceptant un temps perdu pour éviter de perdre une tour contre un fou.
+                    basis:
+                      by: chan
+                      at: '2026-09-25'

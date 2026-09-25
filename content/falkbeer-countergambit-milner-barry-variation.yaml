@@ -1,0 +1,70 @@
+# King's Gambit Declined: Falkbeer Countergambit, Milner-Barry Variation. One of a batch of
+# entries authored for issue #148 (batch h), sharing the trunk `1.e4 e5 2.f4 d5` with
+# `kings-gambit-declined-falkbeer-countergambit.yaml`, whose own root models the quiet
+# 3.Nf3 and cross-refers to 3.exd5 (`kings-gambit-declined-falkbeer-countergambit-accepted`).
+# This entry follows the third try, 3.Nc3. Defining line ends on Black's 2...d5 (invariant
+# 5). Every ply below was replayed with chess.js before being written.
+#
+# The leaf stops right after 3.Nc3, where Black's exf4 is going free (the f4 pawn is
+# defended by nothing, confirmed by a scratch chess.js check) — but that capture is not the
+# point of this named variation, which is about the tension White leaves unresolved rather
+# than about that one pawn, so the leaf is marked `unsettled` instead of forcing a verdict
+# on a capture Black has simply not made yet (docs/CONTEXT.md, invariant 14).
+id: falkbeer-countergambit-milner-barry-variation
+name: "King's Gambit Declined: Falkbeer Countergambit, Milner-Barry Variation"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The same judgement the family head `kings-gambit-declined-falkbeer-countergambit.yaml`
+      carries. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...d5, Phản-gambit Falkbeer. Mục này đi sâu riêng vào 3.Nc3, một cách chơi hiếm gặp bỏ ngỏ mọi căng thẳng ở trung tâm.
+    en: Black has just played 2...d5, the Falkbeer Countergambit. This entry follows specifically 3.Nc3, a rare try that leaves every central tension unresolved.
+    fr: Les Noirs viennent de jouer 2...d5, le Contre-gambit Falkbeer. Cette entrée suit spécifiquement 3.Cc3, un essai rare qui laisse toute la tension centrale non résolue.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác ngoài 3.Nc3 — phổ biến nhất là 3.exd5 (xem mục riêng về nhánh nhận) hoặc 3.Nf3 (xem mục gốc của cả họ). Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: White plays anything other than 3.Nc3 — most commonly 3.exd5 (see the dedicated entry on the accepting branch) or 3.Nf3 (see the family head). Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 3.Cc3 — le plus souvent 3.exd5 (voir l'entrée dédiée à la branche d'acceptation) ou 3.Cf3 (voir l'entrée de tête de la famille). Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Biến Milner-Barry. Trắng phát triển mã mà không giải quyết căng thẳng ở trung tâm theo hướng nào — tốt e4 và tốt f4 đều chưa đổi, và tốt d5 của Đen cũng chưa bị ăn.
+        en: The Milner-Barry Variation. White develops the knight without settling the central tension either way — the e4 and f4 pawns are both still on the board untraded, and Black's d5 pawn has not been touched either.
+        fr: La Variante Milner-Barry. Les Blancs développent le cavalier sans trancher la tension centrale dans un sens ou dans l'autre — les pions e4 et f4 restent tous deux sur l'échiquier sans avoir été échangés, et le pion d5 noir n'a pas non plus été touché.
+      unsettled: >-
+        exf4 is going free for Black here, confirmed by a scratch chess.js check — the f4
+        pawn is defended by nothing. This is not the point of the variation, though: Black's
+        actual replies here are the countergambit's own follow-ups, most often ...dxe4 next,
+        and the leaf is about the fact that White has left every central tension open rather
+        than about one loose pawn Black has simply not captured yet.
+      outcome:
+        type: position
+        evaluation:
+          vi: Quân số hoàn toàn ngang nhau, và cả ba con tốt trung tâm — e4, f4 của Trắng, d5 của Đen — vẫn còn nguyên trên bàn cờ, chưa quả nào bị đổi. Trắng chọn phát triển thay vì tranh chấp ngay, để lại toàn bộ câu hỏi ấy cho Đen quyết định trước.
+          en: Material is completely level, and all three central pawns — White's e4 and f4, Black's d5 — are still standing untraded. White has chosen to develop rather than contest anything at once, leaving the whole question for Black to answer first.
+          fr: Le matériel est parfaitement égal, et les trois pions centraux — e4 et f4 blancs, d5 noir — restent tous en place, sans le moindre échange. Les Blancs ont choisi de développer plutôt que de disputer quoi que ce soit tout de suite, laissant toute la question aux Noirs de trancher en premier.
+        plan:
+          vi: Đen chơi dxe4 giành lại con tốt Trắng vừa thí, rồi Nf6 và Bc5 hay Bb4, tận dụng nhịp và trung tâm đã chiếm. Trắng chơi Nxe4 ăn lại, hoặc fxe5 trước nếu muốn đổi hướng, rồi hoàn thiện phát triển và tìm cách giành lại thế chủ động.
+          en: Black plays dxe4, winning back the pawn White offered, then Nf6 and Bc5 or Bb4, making use of the tempo and the centre already grabbed. White plays Nxe4 to recapture, or fxe5 first to change direction, then finishes developing and looks for a way to regain the initiative.
+          fr: Les Noirs jouent dxe4, regagnant le pion offert par les Blancs, puis Nf6 et Bc5 ou Bb4, exploitant le temps et le centre déjà pris. Les Blancs jouent Nxe4 pour reprendre, ou fxe5 d'abord pour changer de direction, puis achèvent leur développement et cherchent à regagner l'initiative.
+        basis:
+          by: chan
+          at: '2026-09-25'

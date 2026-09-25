@@ -1,0 +1,91 @@
+# King's Gambit Declined: Falkbeer Countergambit, Nimzowitsch-Marshall Countergambit. One of
+# a batch of entries authored for issue #148 (batch h), sharing the trunk `1.e4 e5 2.f4 d5`
+# with `kings-gambit-declined-falkbeer-countergambit.yaml` and cross-referring to
+# `kings-gambit-declined-falkbeer-countergambit-accepted` for 3.exd5's own main line.
+# Defining line ends on Black's 2...d5 (invariant 5). Every ply below was replayed with
+# chess.js before being written.
+#
+# The leaf stops right after 4.fxe5, where both cxd5 and Qxd5 are going free for Black
+# (confirmed by a scratch chess.js check — the d5 square, still holding White's pawn from
+# 3.exd5, is reachable both ways since Black's own d-pawn already left d7 back on move two).
+# That is the whole point of the countergambit's second pawn offer rather than an oversight,
+# so the leaf is marked `unsettled` instead of forcing a verdict on a recapture Black simply
+# has not played yet (docs/CONTEXT.md, invariant 14).
+id: falkbeer-countergambit-nimzowitsch-marshall-countergambit
+name: "King's Gambit Declined: Falkbeer Countergambit, Nimzowitsch-Marshall Countergambit"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The same judgement the family head `kings-gambit-declined-falkbeer-countergambit.yaml`
+      carries. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...d5, Phản-gambit Falkbeer. Mục này đi sâu riêng vào việc Trắng ăn tốt bằng 3.exd5, và Đen đáp lại bằng 3...c6 thay vì ăn lại ngay.
+    en: Black has just played 2...d5, the Falkbeer Countergambit. This entry follows specifically White capturing with 3.exd5, and Black answering with 3...c6 instead of recapturing at once.
+    fr: Les Noirs viennent de jouer 2...d5, le Contre-gambit Falkbeer. Cette entrée suit spécifiquement la prise blanche 3.exd5, à laquelle les Noirs répondent par 3...c6 au lieu de reprendre aussitôt.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt bằng 3.exd5 — chơi 3.Nf3 (xem mục gốc của cả họ) hay 3.Nc3 (xem Biến Milner-Barry). Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: White does not capture with 3.exd5 — playing 3.Nf3 (see the family head) or 3.Nc3 (see the Milner-Barry Variation) instead. Each is outside the scope of this entry.
+      fr: Les Blancs ne prennent pas par 3.exd5 — jouant 3.Cf3 (voir l'entrée de tête de la famille) ou 3.Cc3 (voir la Variante Milner-Barry). Chacun sort du cadre de cette entrée.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng nhận tốt, nhánh chính của cả họ khai cuộc này. Con tốt d5 giờ thuộc về Trắng, và Đen phải quyết định đòi lại nó ngay hay chơi tiếp theo cách khác.
+        en: White accepts, the main branch of the whole family. The d5 pawn now belongs to White, and Black has to decide whether to win it back at once or play on differently.
+        fr: Les Blancs acceptent, la branche principale de toute la famille. Le pion d5 appartient désormais aux Blancs, et les Noirs doivent décider de le regagner aussitôt ou de jouer autrement.
+      children:
+        - ply: c6
+          annotation:
+            vi: Phản-gambit Nimzowitsch-Marshall. Đen chưa vội đòi lại tốt d5 và thay vào đó mở đường cho hậu ra ăn lại sau, chấp nhận Trắng có thêm một nước đi trước khi việc đổi chác kết thúc.
+            en: The Nimzowitsch-Marshall Countergambit. Black is in no hurry to win back the d5 pawn and instead opens a path for the queen to recapture later, accepting that White gets one more free move before the exchanges are settled.
+            fr: Le Contre-gambit Nimzowitsch-Marshall. Les Noirs ne sont pas pressés de regagner le pion d5 et ouvrent plutôt une voie pour que la dame reprenne plus tard, acceptant que les Blancs disposent d'un coup de plus avant que les échanges ne se règlent.
+          dismissRest:
+            reason:
+              vi: Trắng không chơi 4.fxe5 — phát triển bằng 4.Nf3 hay giữ nguyên bằng 4.d4. Mỗi lựa chọn khác nằm ngoài phạm vi mục này.
+              en: White does not play 4.fxe5 — developing with 4.Nf3, or holding firm with 4.d4. Any other choice is outside the scope of this entry.
+              fr: Les Blancs ne jouent pas 4.fxe5 — développant par 4.Cf3, ou tenant ferme par 4.d4. Tout autre choix sort du cadre de cette entrée.
+          children:
+            - ply: fxe5
+              replyQuality: good
+              frequency: occasional
+              annotation:
+                vi: Trắng ăn thêm một tốt nữa thay vì lo giữ tốt d5. Cả hai con tốt vừa ăn được — d5 và e5 — đều đang bị đe dọa đòi lại ngay lập tức.
+                en: White grabs a second pawn instead of worrying about holding the one on d5. Both pawns just won — on d5 and e5 — are immediately threatened with being taken straight back.
+                fr: Les Blancs ramassent un second pion au lieu de se soucier de garder celui en d5. Les deux pions tout juste gagnés — en d5 et e5 — sont tous deux menacés d'être aussitôt repris.
+              unsettled: >-
+                cxd5 and Qxd5 are both going free for Black here, confirmed by a scratch
+                chess.js check — the d5 pawn is defended by nothing, reachable by the c6 pawn
+                and, since Black's own d-pawn already left d7 back on move two, by the queen
+                along the open d-file as well. That tangle is exactly what this countergambit
+                bets on, not an oversight, so the leaf records the shape of the position
+                rather than a material count frozen mid-exchange.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Trắng vừa ăn được hai tốt liên tiếp, d5 và e5, nhưng cả hai đều không được quân nào đỡ và Đen có tới hai cách ăn lại con tốt d5 — bằng tốt c6 hoặc bằng hậu dọc cột d đã mở. Đây là một mớ căng thẳng thật sự chứ chưa phải một khoản lời vật chất đã yên.
+                  en: White has just won two pawns in a row, on d5 and e5, but neither is defended by anything and Black has two separate ways to recapture on d5 — with the c6 pawn or with the queen down the now-open d-file. This is a genuine tangle rather than a material gain that has settled yet.
+                  fr: Les Blancs viennent de gagner deux pions d'affilée, en d5 et e5, mais aucun des deux n'est défendu et les Noirs disposent de deux façons de reprendre en d5 — avec le pion c6 ou avec la dame le long de la colonne d désormais ouverte. C'est un véritable enchevêtrement plutôt qu'un gain matériel stabilisé.
+                plan:
+                  vi: Trắng chơi d4 hoặc Nf3 để củng cố trước khi Đen kịp ăn lại, chấp nhận trả lại ít nhất một tốt để hoàn thiện phát triển. Đen chơi cxd5 hoặc Qxd5 tùy ý, rồi Nf6 và Bc5 hay Bb4+, dùng nhịp phát triển để bù cho khoản vật chất đã mất.
+                  en: White plays d4 or Nf3 to consolidate before Black can recapture, accepting that at least one pawn goes back in exchange for finishing development. Black plays cxd5 or Qxd5 as preferred, then Nf6 and Bc5 or Bb4+, using the development tempo to make up for the material lost.
+                  fr: Les Blancs jouent d4 ou Nf3 pour consolider avant que les Noirs ne puissent reprendre, acceptant qu'au moins un pion revienne en échange d'achever leur développement. Les Noirs jouent cxd5 ou Qxd5 à leur convenance, puis Nf6 et Bc5 ou Bb4+, utilisant le temps de développement pour compenser le matériel perdu.
+                basis:
+                  by: chan
+                  at: '2026-09-25'

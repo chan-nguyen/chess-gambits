@@ -1,0 +1,68 @@
+# Hungarian Opening, Winterberg Gambit. One entry in a batch authored for issue #148 (batch
+# h). Defining line ends on White's 5.b3 (invariant 5) — the dataset's own shortest line for
+# this name already ends there, on White's own ply, so no ply needs to be trimmed out into a
+# modelled reply. The children below are this author's own choice of a natural, thematic
+# continuation rather than a further named sub-variation, and they were replayed with
+# chess.js like every other ply — the first try considered, 5...Nf6, was checked and rejected
+# because it hangs the c4 pawn for nothing more concrete, so 5...Nf6 6.bxc4 is modelled
+# instead as the honest continuation. Every ply below was replayed with chess.js before being
+# written.
+id: hungarian-opening-winterberg-gambit
+name: 'Hungarian Opening: Winterberg Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [g3, d5, Bg2, e5, c4, dxc4, b3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers a second pawn to open the long diagonal and win the first one
+      straight back, and the resulting position is roughly balanced rather than clearly good
+      for either side. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đẩy tốt lên b3, chuẩn bị ăn lại con tốt c4 mà Đen vừa ăn được ở nước trước. Con tốt c4 ấy hiện không được quân Đen nào đỡ.
+    en: White has just pushed the pawn to b3, getting ready to win back the c4 pawn Black captured the move before. That c4 pawn is currently defended by nothing Black has.
+    fr: Les Blancs viennent de pousser le pion en b3, se préparant à regagner le pion c4 que les Noirs viennent de capturer au coup précédent. Ce pion c4 n'est actuellement défendu par rien chez les Noirs.
+  dismissRest:
+    reason:
+      vi: Đen không phớt lờ mối đe dọa bxc4 — giữ tốt bằng 5...b5 hay 5...Be6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black does not ignore the bxc4 threat — holding the pawn with 5...b5 or 5...Be6. Each is outside the scope of this entry.
+      fr: Les Noirs n'ignorent pas la menace bxc4 — gardant le pion par 5...b5 ou 5...Be6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nf6
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Đen phát triển mã mà không lo giữ con tốt c4, đặt cược rằng nhịp phát triển đáng giá hơn một con tốt ở rìa bàn cờ.
+        en: Black develops the knight without worrying about holding the c4 pawn, betting that the development tempo is worth more than a pawn out on the wing.
+        fr: Les Noirs développent le cavalier sans se soucier de garder le pion c4, pariant que le temps de développement vaut plus qu'un pion à l'aile.
+      children:
+        - ply: bxc4
+          annotation:
+            vi: Trắng ăn lại con tốt c4 ngay lập tức, quân duy nhất có thể ăn tại đó. Quân số trở lại hoàn toàn ngang nhau.
+            en: White recaptures the c4 pawn at once, the only piece that can capture there. Material is fully level again.
+            fr: Les Blancs reprennent aussitôt le pion c4, la seule pièce pouvant capturer là. Le matériel est de nouveau parfaitement égal.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số hoàn toàn ngang nhau, mỗi bên còn đủ bảy tốt sau loạt đổi chác vừa rồi. Tượng g2 của Trắng đã có đường chéo dài mở sẵn, còn Đen đã phát triển được một quân trước khi lo tới việc giữ tốt.
+              en: Material is completely level, each side has seven pawns left after the trades just played. White's g2 bishop already has the long diagonal open, while Black has one piece developed before worrying about holding the pawn.
+              fr: Le matériel est parfaitement égal, chaque camp a sept pions après les échanges qui viennent de se jouer. Le fou g2 blanc a déjà la grande diagonale ouverte, tandis que les Noirs ont une pièce développée avant de se soucier de garder le pion.
+            plan:
+              vi: Trắng chơi Bb2 nhìn suốt đường chéo vào tốt e5, rồi Nf3 và O-O, tận dụng đường chéo dài để gây sức ép lên trung tâm Đen. Đen chơi Nc6 và Be7 hay Bd6, hoàn thiện phát triển và giữ vững con tốt e5 trước áp lực của tượng g2.
+              en: White plays Bb2 to look straight down the diagonal at the e5 pawn, then Nf3 and O-O, using the long diagonal to pressure Black's centre. Black plays Nc6 and Be7 or Bd6, completing development and holding the e5 pawn firm against the g2 bishop's pressure.
+              fr: Les Blancs jouent Bb2 pour regarder tout le long de la diagonale vers le pion e5, puis Cf3 et O-O, utilisant la grande diagonale pour presser le centre noir. Les Noirs jouent Cc6 et Be7 ou Bd6, achevant leur développement et tenant fermement le pion e5 face à la pression du fou g2.
+            basis:
+              by: chan
+              at: '2026-09-25'
