@@ -1,0 +1,59 @@
+# Sicilian Defense: O'Kelly Variation, Normal System, Cortlever Gambit. Frozen defining
+# line 1.e4 c5 2.Nf3 a6 3.d4 cxd4 4.Bc4, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js.
+id: sicilian-defense-okelly-variation-normal-system-cortlever-gambit
+name: "Sicilian Defense: O'Kelly Variation, Normal System, Cortlever Gambit"
+eco: B28
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, a6, d4, cxd4, Bc4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White never wins the d4 pawn back: 4.Bc4 develops toward f7 instead of
+      recapturing, and Black's simple 4...Nc6 does not need to address anything concrete
+      yet, since nothing of White's is actually threatening f7 or anywhere else. Black's
+      earlier 2...a6 has also already ruled out the usual Bb5+ or Nb5 tricks, so White is
+      left a clean pawn down with a plan that has already lost its sharpest point. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2...a6 kiểu O'Kelly, Trắng chơi 3.d4 rồi 4.Bc4 thay vì ăn lại tốt, nhắm tượng vào f7. Nhưng chính nước a6 mà Đen đã chơi từ trước lại vô hiệu hóa hầu hết các ý tưởng chiếu hay nhảy mã lên b5 mà tượng này thường đi kèm.
+    en: After the O'Kelly-style 2...a6, White plays 3.d4 and then 4.Bc4 instead of recapturing the pawn, aiming the bishop at f7. But Black's earlier a6 has already ruled out most of the checks or knight jumps to b5 that usually go along with that bishop.
+    fr: Après le 2...a6 à la O'Kelly, les Blancs jouent 3.d4 puis 4.Bc4 au lieu de reprendre le pion, visant le fou vers f7. Mais le a6 déjà joué par les Noirs a déjà écarté la plupart des échecs ou sauts de cavalier en b5 qui accompagnent d'habitude ce fou.
+  dismissRest:
+    reason:
+      vi: Đen không chơi Nc6. Các nước khác như Nf6 hay e6 vẫn giữ nguyên con tốt d4 đã ăn được và không hề thay đổi tình hình của tượng c4.
+      en: Black does not play Nc6. Anything else, such as Nf6 or e6, still keeps the already-won d4 pawn on the board and does not change the c4 bishop's situation either.
+      fr: Les Noirs ne jouent pas Nc6. Tout le reste, comme Nf6 ou e6, garde le pion d4 déjà gagné sur l'échiquier et ne change rien non plus à la situation du fou en c4.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đơn giản phát triển bằng Nc6, không cần vội vàng đáp trả gì cả vì chưa có quân Trắng nào thực sự đe dọa được điều gì cụ thể.
+        en: Black simply develops with Nc6, in no hurry to answer anything specific since nothing of White's is actually threatening anything concrete yet.
+        fr: Les Noirs se contentent de développer par Nc6, sans se presser de répondre à quoi que ce soit puisque rien du côté blanc ne menace encore quelque chose de concret.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 38, Đen 39 — Đen hơn đúng một tốt sạch, con tốt d4 vẫn chưa hề được lấy lại. Đường chéo của tượng c4 hướng tới f7 đang mở hoàn toàn, nhưng nước a6 mà Đen đã chơi từ trước khiến các ý tưởng Bxf7+ hay Nb5 thông thường không còn tác dụng, nên đường chéo ấy hiện chưa dọa được gì cụ thể.
+          en: Count the point values and it is 38 for White, 39 for Black — Black is a clean pawn up, the d4 pawn never having come back. The c4 bishop's diagonal toward f7 is wide open, but Black's earlier a6 has already taken the sting out of the usual Bxf7+ or Nb5 ideas, so that diagonal is not threatening anything concrete right now.
+          fr: En comptant les points, cela donne 38 pour les Blancs, 39 pour les Noirs — les Noirs ont un pion net d'avance, le pion d4 n'étant jamais revenu. La diagonale du fou en c4 vers f7 est grande ouverte, mais le a6 déjà joué par les Noirs a déjà désamorcé les idées habituelles de Bxf7+ ou Nb5, si bien que cette diagonale ne menace rien de concret pour l'instant.
+        plan:
+          vi: Trắng chơi Nc3 hay O-O, cố gắng hoàn tất phát triển và tìm cách khai thác đường chéo c4-f7 bằng những quân khác. Đen chơi Nf6 và d6 hay e6, hoàn tất phát triển an toàn trong khi vẫn giữ vững con tốt thừa.
+          en: White plays Nc3 or O-O, trying to complete development and find another piece to make use of the c4-f7 diagonal. Black plays Nf6 and d6 or e6, completing development safely while holding on to the extra pawn.
+          fr: Les Blancs jouent Nc3 ou O-O, essayant d'achever leur développement et de trouver une autre pièce pour exploiter la diagonale c4-f7. Les Noirs jouent Nf6 et d6 ou e6, achevant leur développement en toute sécurité tout en conservant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

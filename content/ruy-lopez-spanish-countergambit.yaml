@@ -1,0 +1,61 @@
+# Ruy Lopez: Spanish Countergambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 d5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# The line below was replayed with chess.js before being annotated; after 4.exd5 the pawn on
+# d5 is undefended, so Qxd5 is noted as a free recapture rather than modelled further.
+id: ruy-lopez-spanish-countergambit
+name: 'Ruy Lopez: Spanish Countergambit'
+eco: C60
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, d5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers a second central pawn as early as move three, and White
+      simply takes it — the resulting activity does not amount to real compensation, and
+      known theory holds that White keeps a stable extra pawn or a comfortable development
+      lead once the position settles. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì phát triển bình thường, Đen chơi 3...d5 ngay lập tức, phản công vào trung tâm và mời Trắng ăn thêm một con tốt nữa đổi lấy hoạt động cho quân cờ.
+    en: Instead of developing normally, Black plays 3...d5 straight away, striking back in the centre and inviting White to take yet another pawn in exchange for piece activity.
+    fr: Au lieu de développer normalement, les Noirs jouent 3...d5 d'emblée, contre-attaquant au centre et invitant les Blancs à prendre un pion de plus en échange d'activité pour les pièces.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt d5. Các nước khác như Bxc6+ đổi tượng trước hay Nc3 để nguyên con tốt ấy trên bàn cờ, và lời mời của Đen vẫn chưa được nhận.
+      en: White does not take the d5 pawn. Anything else, such as Bxc6+ trading the bishop first or Nc3, leaves that pawn sitting on the board, meaning Black's offer has still not actually been accepted.
+      fr: Les Blancs ne prennent pas le pion d5. Tout le reste, comme Bxc6+ pour échanger le fou d'abord ou Nc3, laisse ce pion sur l'échiquier, ce qui veut dire que l'offre noire n'a toujours pas été acceptée.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay bằng chính tốt e4, quân duy nhất có thể ăn tại đó, chấp nhận lời mời của Đen.
+        en: White takes the pawn at once with the e4 pawn, the only piece that can capture there, accepting Black's offer.
+        fr: Les Blancs prennent aussitôt le pion avec leur propre pion e4, la seule pièce pouvant capturer là, acceptant l'offre noire.
+      unsettled: >-
+        Qxd5 is going free and the evaluation is built on it — nothing of White's defends the
+        d5 square, so the queen simply collects the pawn back on the very next move.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây, Trắng 39 còn Đen 38, nhưng con tốt d5 chẳng có ai bảo vệ nên Qxd5 sẽ lấy lại nó ngay tức khắc, đưa quân số về ngang nhau. Cái Đen thật sự phải trả giá là toàn bộ cánh vua vẫn còn nguyên — tượng f8, mã g8 và xe h8 chưa hề động đậy — trong khi con hậu phải ra sớm để đòi lại tốt.
+          en: Count the pawns right here, 39 for White against 38 for Black, but the pawn on d5 has no defender at all, so Qxd5 wins it straight back next move, levelling the material. What Black actually pays for that is a kingside still completely undeveloped — the bishop on f8, the knight on g8 and the rook on h8 have not moved at all — while the queen has to come out early just to get the pawn back.
+          fr: Comptez les pions ici même, 39 pour les Blancs contre 38 pour les Noirs, mais le pion d5 n'a aucun défenseur, si bien que Qxd5 le reprend aussitôt au coup suivant, égalisant le matériel. Ce que les Noirs paient réellement pour cela, c'est une aile roi encore totalement sous-développée — le fou f8, le cavalier g8 et la tour h8 n'ont pas bougé du tout — alors que la dame doit sortir tôt rien que pour récupérer le pion.
+        plan:
+          vi: Đen chơi Qxd5 lấy lại tốt, rồi phải tính đến việc Trắng chơi Nc3 đuổi hậu giành thêm nhịp, sau đó mới có thể chơi Nf6, g6, Bg7 hay e6 hoàn tất phát triển. Trắng chơi Nc3 đuổi hậu ngay, rồi d4, Be3 và O-O, tận dụng nhịp thời gian kiếm được để hoàn tất phát triển trước Đen.
+          en: Black plays Qxd5 to win the pawn back, then has to reckon with White's Nc3 chasing the queen for a further tempo, only after which can Black play Nf6, g6, Bg7 or e6 to finish developing. White plays Nc3 to chase the queen at once, then d4, Be3 and O-O, using the tempo gained to finish developing ahead of Black.
+          fr: Les Noirs jouent Qxd5 pour reprendre le pion, puis doivent compter avec Nc3 blanc qui chasse la dame pour gagner un temps supplémentaire, et ce n'est qu'ensuite qu'ils peuvent jouer Nf6, g6, Bg7 ou e6 pour achever leur développement. Les Blancs jouent Nc3 pour chasser aussitôt la dame, puis d4, Be3 et O-O, mettant à profit le temps gagné pour achever leur développement avant les Noirs.
+        basis:
+          by: chan
+          at: '2026-09-25'

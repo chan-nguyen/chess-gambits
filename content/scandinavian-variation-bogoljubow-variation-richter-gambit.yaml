@@ -1,0 +1,65 @@
+# Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Richter Gambit. Frozen
+# defining line 1.e4 Nc6 2.d4 d5 3.Nc3 dxe4 4.d5 Nb8 5.f3, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). White has already given up the e-pawn
+# and now offers a second one with 5.f3 to blow the centre open before Black's queenside knight
+# can get back into the game. The line was replayed with chess.js before being annotated, and the
+# leaf carries three free captures (gxf3, Qxf3, Nxf3), covered below with `unsettled`.
+id: scandinavian-variation-bogoljubow-variation-richter-gambit
+name: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Richter Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, Nc6, d4, d5, Nc3, dxe4, d5, Nb8, f3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      White has already given away one pawn to shove Black's knight back to b8, and now offers a
+      second with 5.f3 to rip the centre open; with three different ways to recapture on f3 next
+      move the real gap is only one clean pawn, propped up by the space of the d5 pawn and a lead
+      in development against Black's tangled queenside. That is real but unresolved compensation,
+      so dubious is the honest label. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi mã Đen phải lùi về đúng ô xuất phát b8 vì bị tốt d5 đuổi, Trắng lập tức thách thức con tốt e4 đang thừa của Đen bằng 5.f3, từ chối chấp nhận kém một tốt và thay vào đó cố phá tung trung tâm trong khi Đen còn chưa kịp phát triển.
+    en: With Black's knight forced right back to its starting square b8 by the pawn on d5, White immediately challenges Black's extra pawn on e4 with 5.f3, refusing to simply accept being down material and trying instead to blast the centre open while Black is still undeveloped.
+    fr: Alors que le cavalier noir a été renvoyé jusqu'à sa case de départ b8 par le pion d5, les Blancs défient aussitôt le pion e4 excédentaire des Noirs par 5.f3, refusant de simplement accepter d'être en retard matériel et cherchant plutôt à faire exploser le centre pendant que les Noirs sont encore sous-développés.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt f3. Nếu chọn cách khác, chẳng hạn phát triển bằng ...Nf6 hay ...g6, Trắng vẫn có thể tự giải quyết chuyện con tốt e4 vào lúc thuận tiện, và tình hình vẫn được đánh giá như nhau, đó là Trắng có khoảng không nhờ tốt d5 còn Đen thì có một con mã chưa biết đặt vào đâu.
+      en: Black does not take on f3. If something else is chosen instead, such as developing with ...Nf6 or ...g6, White can still settle the question of the e4 pawn in its own time, and the position is judged the same way either way — White has space from the d5 pawn against a Black knight that still has nowhere good to go.
+      fr: Les Noirs ne prennent pas en f3. Si autre chose est choisi, comme développer par ...Nf6 ou ...g6, les Blancs peuvent toujours régler la question du pion e4 à leur convenance, et la position est jugée de la même façon dans les deux cas — les Blancs ont l'espace grâce au pion d5 face à un cavalier noir qui n'a toujours nulle part où aller.
+  children:
+    - ply: exf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn luôn con tốt thứ hai vì không có gì ngăn cản, thu thêm vốn liếng vật chất trong khi sự phát triển của Trắng càng tụt lại phía sau.
+        en: Black grabs the second pawn since nothing stops the capture, banking more material while White's development falls further behind.
+        fr: Les Noirs prennent le second pion puisque rien n'empêche la capture, engrangeant davantage de matériel tandis que le développement blanc prend encore du retard.
+      unsettled: >-
+        Nxf3 is going free and the evaluation is built on it — White has three ways to recapture
+        the pawn on f3 (Nxf3, Qxf3 or gxf3), so the two-pawn count below is only the picture for
+        the one ply before White collects one of them back.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng chỉ còn sáu và Đen còn tám, tức là Đen hơn hai tốt ngay lúc này. Con mã Đen đã phải lùi về đúng ô b8 và chưa có ô tốt nào để phát triển tới, vì cả c6 lẫn d7 đều bị con tốt d5 tiến xa của Trắng kiểm soát, trong khi bản thân Trắng cũng chưa đưa được quân nào ra ngoài hai con mã.
+          en: Count the pawns and White has only six left to Black's eight, so Black is up two pawns right now. Black's knight has been shoved all the way back to b8 with no good square to develop to yet, since both c6 and d7 are covered by White's advanced d5 pawn, while White itself has not brought out anything beyond the two knights either.
+          fr: En comptant les pions, il ne reste que six pions aux Blancs contre huit aux Noirs, donc les Noirs ont deux pions de plus en ce moment. Le cavalier noir a été renvoyé jusqu'en b8 sans bonne case de développement, puisque c6 et d7 sont tous deux couverts par le pion d5 blanc avancé, alors que les Blancs eux-mêmes n'ont encore sorti que leurs deux cavaliers.
+        plan:
+          vi: Trắng ăn lại bằng Nxf3, vừa phát triển vừa lấy lại một tốt, rồi chơi Bc4, Qe2 hay O-O, tận dụng khoảng không từ tốt d5 và việc mã Đen bị kẹt để gây sức ép trước khi Đen kịp gỡ rối. Đen chơi ...Nf6, ...g6 và ...Bg7 hoặc ...c6 để thách thức tốt d5, rồi tìm cách đưa mã b8 về lại cuộc chơi qua ...Nd7-b6 hay tương tự, giữ con tốt còn thừa làm khoản đền bù cho việc chậm phát triển.
+          en: White recaptures with Nxf3, developing while winning back a pawn, then plays Bc4, Qe2 or O-O, using the space from the d5 pawn and Black's stuck knight to press before Black can untangle. Black plays ...Nf6, ...g6 and ...Bg7 or ...c6 to challenge the d5 pawn, then looks to get the b8 knight back into the game with ...Nd7-b6 or similar, banking the remaining extra pawn as compensation for the slow start.
+          fr: Les Blancs reprennent par Nxf3, développant tout en regagnant un pion, puis jouent Bc4, Qe2 ou O-O, utilisant l'espace du pion d5 et le cavalier noir coincé pour presser avant que les Noirs ne se démêlent. Les Noirs jouent ...Nf6, ...g6 et ...Bg7 ou ...c6 pour défier le pion d5, puis cherchent à remettre le cavalier b8 en jeu par ...Nd7-b6 ou similaire, gardant le pion restant comme compensation pour le retard de développement.
+        basis:
+          by: chan
+          at: '2026-09-25'
