@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Kieseritzky Gambit, Berlin Defense, taught. Shares its 9-ply root,
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5, with `kings-gambit-accepted-kieseritzky-gambit`,
+# so `definingLine` stops there — the learner's own 5.Ne5 — and Black's 5...Nf6, the move
+# that gives this entry its name, is modelled as the root's own reply rather than folded
+# into the defining line (docs/CONTEXT.md, invariant 5). Every ply was replayed with
+# chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate.
+id: kings-gambit-accepted-kieseritzky-gambit-berlin-defense
+name: "King's Gambit Accepted: Kieseritzky Gambit, Berlin Defense"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The most natural developing try: Black brings out the king's knight
+      rather than committing a pawn move, at the cost of leaving the g4 pawn to fend for
+      itself. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Con mã Trắng vừa nhảy vào e5, nhòm thẳng f7, và Đen phải chọn cách đáp trả. Mục này theo dõi 5...Nf6, nước phát triển tự nhiên nhất.
+    en: White's knight has just jumped to e5, eyeing f7 directly, and Black has to choose a reply. This entry follows 5...Nf6, the most natural developing move.
+    fr: Le cavalier blanc vient de sauter en e5, visant directement f7, et les Noirs doivent choisir une réponse. Cette entrée suit 5...Nf6, le coup de développement le plus naturel.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác ngoài 5...Nf6 — đẩy tốt trung tâm bằng ...d5 hay ...d6, phát triển mã bằng ...Nc6, đưa hậu ra bằng ...Qe7 hay ...Qf6, hoặc một trong nhiều cách phòng thủ khác đã có tên riêng. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays anything other than 5...Nf6 — a central pawn push with ...d5 or ...d6, developing with ...Nc6, bringing the queen out with ...Qe7 or ...Qf6, or one of several other separately named defences. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 5...Nf6 — une poussée centrale par ...d5 ou ...d6, un développement par ...Nc6, une sortie de dame par ...Qe7 ou ...Qf6, ou l'une des nombreuses autres défenses portant leur propre nom. Chacune sort du cadre de cette entrée.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã và chuẩn bị tấn công tốt e4 cũng như con mã e5 sau này bằng ...d5. Đây là cách chơi thực dụng nhất, ưu tiên phát triển hơn là đuổi ngay con mã Trắng.
+        en: Black develops the knight and prepares to hit both the e4 pawn and the e5 knight later with ...d5. This is the most practical handling, prioritising development over chasing the White knight immediately.
+        fr: Les Noirs développent le cavalier et préparent à attaquer plus tard le pion e4 comme le cavalier e5 par ...d5. C'est le traitement le plus pragmatique, qui privilégie le développement plutôt que de chasser immédiatement le cavalier blanc.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng vẫn kém một tốt như từ đầu. Con mã e5 vẫn đứng vững và nhòm f7, còn tốt g4 của Đen vẫn không quân nào bảo vệ. Cả hai vua vẫn ở giữa bàn, chưa nhập thành, nên đây vẫn là một thế cờ căng thẳng chứ chưa nghiêng hẳn về bên nào.
+          en: Count the pawns and it is seven for White, eight for Black, the same pawn deficit as from the start. The e5 knight is still well placed and still eyes f7, and Black's g4 pawn is still defended by nothing. Neither king has castled, so this remains a tense position rather than one clearly favouring either side.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, le même déficit qu'au départ. Le cavalier e5 reste bien placé et vise toujours f7, et le pion noir en g4 n'est toujours défendu par rien. Aucun roi n'a roqué, donc la position reste tendue plutôt que clairement favorable à un camp.
+        plan:
+          vi: Trắng chơi Bc4 nhắm f7, d4 để dựng trung tâm, và có thể ăn tốt g4 khi thuận tiện, tất cả trước khi Đen kịp chơi ...d5 đuổi mã. Đen chơi ...d5 ngay để vừa đuổi mã e5 vừa mở đường cho tượng c8, rồi ...Bg7 hoặc ...Bd6 và tìm chỗ an toàn cho vua.
+          en: White plays Bc4 aiming at f7, d4 to build the centre, and may pick up the g4 pawn when convenient, all before Black gets in ...d5 to chase the knight. Black plays ...d5 at once to chase the e5 knight and open a path for the c8 bishop, then ...Bg7 or ...Bd6 and looks for a safe spot for the king.
+          fr: Les Blancs jouent Bc4 en visant f7, d4 pour bâtir le centre, et peuvent ramasser le pion g4 quand cela convient, le tout avant que les Noirs ne jouent ...d5 pour chasser le cavalier. Les Noirs jouent ...d5 aussitôt pour chasser le cavalier e5 et ouvrir une voie au fou c8, puis ...Bg7 ou ...Bd6 et cherchent un abri pour le roi.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,60 @@
+# King's Gambit Accepted, Kieseritzky Gambit, Kolisch Defense, taught. Shares its 9-ply
+# root, 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5, with
+# `kings-gambit-accepted-kieseritzky-gambit`, so `definingLine` stops there — the learner's
+# own 5.Ne5 — and Black's 5...d6, the move that gives this entry its name, is modelled as the
+# root's own reply rather than folded into the defining line (docs/CONTEXT.md, invariant 5).
+# Every ply was replayed with chess.js, and the leaf was checked with `searchMate` (bounded
+# to 2 moves): no-mate.
+id: kings-gambit-accepted-kieseritzky-gambit-kolisch-defense
+name: "King's Gambit Accepted: Kieseritzky Gambit, Kolisch Defense"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black kicks the knight immediately rather than developing around it,
+      forcing White to decide at once whether the knight stays in the centre or retreats. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Con mã Trắng vừa nhảy vào e5, nhòm thẳng f7, và Đen phải chọn cách đáp trả. Mục này theo dõi 5...d6, đuổi thẳng con mã ngay lập tức.
+    en: White's knight has just jumped to e5, eyeing f7 directly, and Black has to choose a reply. This entry follows 5...d6, kicking the knight at once.
+    fr: Le cavalier blanc vient de sauter en e5, visant directement f7, et les Noirs doivent choisir une réponse. Cette entrée suit 5...d6, chassant aussitôt le cavalier.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác ngoài 5...d6 — phát triển mã bằng ...Nf6 (xem mục riêng), mở đường tượng bằng ...d5, hay một trong nhiều cách phòng thủ khác đã có tên riêng. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays anything other than 5...d6 — developing with ...Nf6 (see the dedicated entry), opening the bishop's diagonal with ...d5, or one of several other separately named defences. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 5...d6 — se développer par ...Nf6 (voir l'entrée dédiée), ouvrir la diagonale du fou par ...d5, ou l'une des nombreuses autres défenses portant leur propre nom. Chacune sort du cadre de cette entrée.
+  children:
+    - ply: d6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đẩy tốt d lên đúng một ô, đuổi con mã e5 ngay lập tức. Trắng phải quyết định lùi mã về đâu hoặc đổi nó lấy quân khác.
+        en: Black pushes the d-pawn one square, kicking the e5 knight at once. White has to decide where to retreat it, or trade it off.
+        fr: Les Noirs avancent le pion d d'une case, chassant aussitôt le cavalier e5. Les Blancs doivent décider où le reculer, ou l'échanger.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng vẫn kém một tốt như từ đầu. Con mã e5 đang bị tấn công trực tiếp và phải di chuyển ở nước kế tiếp, nghĩa là Trắng sắp mất đi nhịp mà nó vừa bỏ công giành được. Chưa vua nào nhập thành.
+          en: Count the pawns and it is seven for White, eight for Black, the same pawn deficit as from the start. The e5 knight is directly attacked and has to move next, meaning White is about to lose the very tempo the knight jump was spent gaining. Neither king has castled.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, le même déficit qu'au départ. Le cavalier e5 est directement attaqué et doit bouger au coup suivant, ce qui signifie que les Blancs vont perdre le temps même que le saut du cavalier avait permis de gagner. Aucun roi n'a roqué.
+        plan:
+          vi: Trắng lùi mã về d3 hoặc c4, giữ áp lực lên tốt g4 và chuẩn bị d4, chấp nhận mất một nhịp để đổi lấy vị trí quân tốt hơn. Đen chơi ...Nf6, ...Bg7 và tìm chỗ an toàn cho vua, tận dụng nhịp vừa giành được để bắt kịp phát triển.
+          en: White retreats the knight to d3 or c4, keeping pressure on the g4 pawn and preparing d4, accepting the lost tempo in exchange for a better-placed piece. Black plays ...Nf6, ...Bg7 and looks for a safe spot for the king, using the tempo just won to catch up on development.
+          fr: Les Blancs reculent le cavalier en d3 ou c4, maintenant la pression sur le pion g4 et préparant d4, acceptant le temps perdu contre une pièce mieux placée. Les Noirs jouent ...Nf6, ...Bg7 et cherchent un abri pour le roi, profitant du temps gagné pour rattraper leur retard de développement.
+        basis:
+          by: chan
+          at: '2026-09-25'

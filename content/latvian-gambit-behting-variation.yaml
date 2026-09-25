@@ -1,0 +1,65 @@
+# Latvian Gambit, Behting Variation, taught. Frozen defining line 1.e4 e5 2.Nf3 f5 3.Bc4
+# fxe4 4.Nxe5 Qg5 5.Nf7 Qxg2 6.Rf1 d5 7.Nxh8 Nf6, which ends on Black's own 7...Nf6 — the
+# learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's
+# knight on h8 has exactly two legal destinations, Ng6 and Nf7, and both were replayed and
+# answered by a real recapture (hxg6, Kxf7), so it is modelled here losing the piece by the
+# Ng6 route; the leaf after Black's recapture was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: latvian-gambit-behting-variation
+name: 'Latvian Gambit: Behting Variation'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Bc4, fxe4, Nxe5, Qg5, Nf7, Qxg2, Rf1, d5, Nxh8, Nf6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement about this specific forcing sequence, not about the Latvian Gambit as a
+      whole. Black lets White grab the rook on h8, but the price is a knight with nowhere to
+      go — both of its only two squares lose it outright, so the exchange sacrifice buys back
+      a whole piece by force. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau một loạt nước ăn quân qua lại, Trắng vừa ăn xe h8 bằng mã, và Đen đưa nốt con mã còn lại ra f6. Con mã Trắng trên h8 giờ đứng ở góc bàn cờ mà không còn đường thoát an toàn nào.
+    en: After a forcing run of captures, White has just taken the rook on h8 with the knight, and Black brings the other knight out to f6. White's knight on h8 now stands in the corner with no safe way out.
+    fr: Après une série forcée de captures, les Blancs viennent de prendre la tour h8 avec le cavalier, et les Noirs sortent l'autre cavalier en f6. Le cavalier blanc en h8 se retrouve maintenant dans le coin, sans issue sûre.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì đi mã ngay — chẳng hạn Qe2 hay d3 trước, để con mã kẹt ở h8 thêm một lúc. Đánh giá vẫn tương tự, vì con mã ấy vẫn sẽ mất khi buộc phải di chuyển.
+      en: White plays something other than moving the knight at once — for instance Qe2 or d3 first, leaving the knight stuck on h8 a little longer. The assessment is similar, since that knight is still going to be lost whenever it is forced to move.
+      fr: Les Blancs jouent autre chose que de bouger aussitôt le cavalier — par exemple Qe2 ou d3 d'abord, laissant le cavalier coincé en h8 un peu plus longtemps. L'évaluation est similaire, ce cavalier étant de toute façon perdu dès qu'il devra bouger.
+  children:
+    - ply: Ng6
+      annotation:
+        vi: Trắng buộc phải cho con mã đi, vì nó không có nước nào khác ngoài hai ô đều mất quân. Ng6 là một trong hai lựa chọn ấy.
+        en: White is forced to move the knight, since it has no move that does not lose the piece. Ng6 is one of the two options.
+        fr: Les Blancs sont contraints de bouger le cavalier, qui n'a aucun coup ne perdant pas la pièce. Ng6 est l'une des deux options.
+      children:
+        - ply: hxg6
+          annotation:
+            vi: Đen ăn lại con mã bằng tốt h, quân duy nhất canh giữ ô g6. Con mã Trắng đã mất, đúng như dự tính từ trước.
+            en: Black recaptures the knight with the h-pawn, the only piece guarding g6. White's knight is lost, exactly as expected.
+            fr: Les Noirs reprennent le cavalier avec le pion h, la seule pièce gardant g6. Le cavalier blanc est perdu, exactement comme prévu.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Đen chỉ còn một xe so với hai xe của Trắng (đã mất xe h8 từ trước), nhưng Đen còn hai mã so với chỉ một mã của Trắng (con mã h8 vừa mất), và bảy tốt so với sáu của Trắng, tính luôn con tốt g2 đã ăn được. Một xe đổi lấy một mã và một tốt là một tỉ giá gần như ngang bằng, không nghiêng hẳn về bên nào, khác hẳn với khoản lỗ nguyên xe mà Đen chịu ngay sau khi Nxh8 xảy ra.
+              en: Count the pieces and Black has only one rook against White's two (having lost the h8 rook earlier), but Black has two knights against White's one (the h8 knight just lost), and seven pawns against White's six, counting the g2 pawn already won. A rook for a knight and a pawn is close to an even trade, not a clear edge for either side — a very different picture from the bare rook deficit Black carried right after Nxh8.
+              fr: Comptez les pièces, les Noirs n'ont plus qu'une tour contre deux aux Blancs (ayant perdu la tour h8 plus tôt), mais les Noirs ont deux cavaliers contre un seul aux Blancs (le cavalier h8 tout juste perdu), et sept pions contre six aux Blancs, en comptant le pion g2 déjà gagné. Une tour contre un cavalier et un pion est un échange à peu près équilibré, sans avantage net pour un camp ou l'autre — un tableau bien différent du simple déficit de tour que les Noirs portaient juste après Nxh8.
+            plan:
+              vi: Trắng chơi Qe2 hoặc d3, phối hợp cặp tượng và gây sức ép lên con tốt e4 mà Đen đang giữ, tận dụng việc có xe hơn để tìm lợi thế trong tàn cuộc về sau. Đen chơi ...Bg7 hay ...Be7 và đưa vua vào nơi an toàn, dùng cặp mã và con tốt dư ra để bù cho việc kém xe.
+              en: White plays Qe2 or d3, coordinating the bishop pair and pressing the e4 pawn Black is holding, using the extra rook to look for an edge later in the endgame. Black plays ...Bg7 or ...Be7 and tucks the king away safely, using the extra knight and pawn to make up for the missing rook.
+              fr: Les Blancs jouent Qe2 ou d3, coordonnant la paire de fous et pressant le pion e4 que gardent les Noirs, utilisant la tour supplémentaire pour chercher un avantage plus tard en finale. Les Noirs jouent ...Bg7 ou ...Be7 et mettent le roi à l'abri, utilisant le cavalier et le pion supplémentaires pour compenser la tour manquante.
+            basis:
+              by: chan
+              at: '2026-09-25'

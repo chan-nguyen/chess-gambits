@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Tartakower Gambit, Weiss Defense, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Be2 f5 4.exf5, which ends on White's own 4.exf5 — the learner's ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5), and Black's 4...d6, the
+# move that gives this entry its name, is modelled as the root's own reply rather than folded
+# into the defining line. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate.
+id: kings-gambit-accepted-tartakower-gambit-weiss-defense
+name: "King's Gambit Accepted: Tartakower Gambit, Weiss Defense"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Be2, f5, exf5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Rather than 3.Nf3, White develops the bishop to e2 first, and Black
+      answers with the countergambit 3...f5, trading pawns straight back rather than
+      defending the f4 pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa ăn lại tốt bằng exf5, cân bằng vật chất trở lại sau khi Đen thí thêm tốt f để đổi hướng ván cờ. Mục này theo dõi 4...d6, chuẩn bị mở đường cho tượng c8 và ổn định trung tâm.
+    en: White has just recaptured with exf5, restoring material balance after Black offered a further pawn on f5 to change the game's direction. This entry follows 4...d6, preparing to open a path for the c8 bishop and settle the centre.
+    fr: Les Blancs viennent de reprendre par exf5, rétablissant l'égalité matérielle après que les Noirs ont offert un nouveau pion en f5 pour changer le cours de la partie. Cette entrée suit 4...d6, préparant à ouvrir une voie pour le fou c8 et à stabiliser le centre.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.exf5 bằng một nước khác ngoài 4...d6 — chẳng hạn phát triển ngay bằng ...Nf6 hay ...Bc5. Nằm ngoài phạm vi mục này.
+      en: Black meets 4.exf5 with something other than 4...d6 — for instance developing at once with ...Nf6 or ...Bc5. Outside the scope of this entry.
+      fr: Les Noirs répondent à 4.exf5 par autre chose que 4...d6 — par exemple se développer aussitôt par ...Nf6 ou ...Bc5. Hors du cadre de cette entrée.
+  children:
+    - ply: d6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen chơi d6, mở đường chéo cho tượng c8 và chuẩn bị ăn lại con tốt f4 bằng chính con tượng ấy nếu cần, thay vì vội phát triển mã.
+        en: Black plays d6, opening the diagonal for the c8 bishop and preparing to recapture the f4 pawn with that very bishop if needed, rather than rushing a knight out.
+        fr: Les Noirs jouent d6, ouvrant la diagonale du fou c8 et préparant à reprendre le pion f4 avec ce même fou si nécessaire, plutôt que de se hâter de sortir un cavalier.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau — cả hai đã đổi đúng một tốt cho nhau kể từ đầu ván. Trắng có tốt f5 tiến xa hạn chế tượng c8 của Đen, còn Đen có tốt f4 cản trở tượng e2 và hàng tốt cánh vua Trắng. Cả hai vua đều chưa nhập thành.
+          en: Count the pawns and it is seven each, material dead level — each side has traded exactly one pawn since the start of the game. White has the advanced f5 pawn cramping Black's c8 bishop, while Black has the f4 pawn getting in the way of the e2 bishop and White's kingside pawns. Neither king has castled.
+          fr: Comptez les pions, sept de chaque côté, le matériel est parfaitement égal — chaque camp a échangé exactement un pion depuis le début de la partie. Les Blancs ont le pion f5 avancé qui gêne le fou c8 noir, tandis que les Noirs ont le pion f4 qui gêne le fou e2 et les pions de l'aile roi blancs. Aucun roi n'a roqué.
+        plan:
+          vi: Trắng chơi Nf3 và O-O, tìm cách vây bắt con tốt f4 bằng Bxf4 hoặc g3 khi thuận tiện, tận dụng con tốt f5 để hạn chế Đen. Đen chơi ...Bxf5, ...Nf6 và ...Be7, hoàn tất phát triển và cố giữ con tốt f4 làm lá chắn lâu dài cho cánh vua.
+          en: White plays Nf3 and O-O, looks to round up the f4 pawn with Bxf4 or g3 when convenient, and uses the f5 pawn to cramp Black. Black plays ...Bxf5, ...Nf6 and ...Be7, finishes developing, and tries to keep the f4 pawn as a long-term shield for the kingside.
+          fr: Les Blancs jouent Nf3 et O-O, cherchent à encercler le pion f4 par Bxf4 ou g3 quand cela convient, et utilisent le pion f5 pour gêner les Noirs. Les Noirs jouent ...Bxf5, ...Nf6 et ...Be7, achèvent leur développement et tentent de garder le pion f4 comme rempart durable pour l'aile roi.
+        basis:
+          by: chan
+          at: '2026-09-25'

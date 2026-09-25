@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Traditional Variation, taught. Frozen defining line 1.e4 e5 2.f4
+# exf4 3.Nf3 g5 4.Bc4, which ends on White's own 4.Bc4 — the learner's ply — so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5), and Black's 4...Bg7, the move that gives
+# this entry its name, is modelled as the root's own reply rather than folded into the
+# defining line. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate.
+id: kings-gambit-accepted-traditional-variation
+name: "King's Gambit Accepted: Traditional Variation"
+eco: C38
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black fianchettoes at once, the oldest and most natural way to defend the
+      f4 pawn from a distance without spending a tempo on ...h6 or ...g4 first. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, nhắm vào f7. Mục này theo dõi 4...Bg7, nước fianchetto cổ điển nhất để bảo vệ tốt f4 từ xa.
+    en: White has just developed the bishop to c4, aiming at f7. This entry follows 4...Bg7, the oldest and most classical fianchetto to defend the f4 pawn from a distance.
+    fr: Les Blancs viennent de développer le fou en c4, visant f7. Cette entrée suit 4...Bg7, le fianchetto le plus ancien et le plus classique pour défendre le pion f4 à distance.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.Bc4 bằng một nước khác ngoài 4...Bg7 — chẳng hạn ...g4 đuổi mã ngay hay ...h6 giữ tốt g5, mỗi cách có mục riêng của nó. Nằm ngoài phạm vi mục này.
+      en: Black meets 4.Bc4 with something other than 4...Bg7 — for instance ...g4 to chase the knight at once, or ...h6 to hold the g5 pawn, each with its own dedicated entry. Outside the scope of this one.
+      fr: Les Noirs répondent à 4.Bc4 par autre chose que 4...Bg7 — par exemple ...g4 pour chasser aussitôt le cavalier, ou ...h6 pour tenir le pion g5, chacune ayant sa propre entrée. Hors du cadre de celle-ci.
+  children:
+    - ply: Bg7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen fianchetto tượng, để nó bảo vệ tốt f4 từ xa mà không cần đụng tới cấu trúc tốt cánh vua. Đây là cách xử lý bền bỉ và lâu đời nhất.
+        en: Black fianchettoes the bishop, letting it guard the f4 pawn from a distance without touching the kingside pawn structure. This is the oldest and most durable handling.
+        fr: Les Noirs fianchettent le fou, qui garde le pion f4 à distance sans toucher à la structure de pions de l'aile roi. C'est le traitement le plus ancien et le plus durable.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng kém một tốt kể từ nước 2...exf4. Cả hai vua chưa nhập thành. Con tượng g7 giờ bảo vệ tốt f4 dọc đường chéo dài, nên Trắng không thể ăn lại nó ngay bằng một nước đơn giản, trong khi Đen vẫn chưa động đến quân nào khác.
+          en: Count the pawns and it is seven for White, eight for Black, a pawn down since 2...exf4. Neither king has castled. The bishop on g7 now guards the f4 pawn along the long diagonal, so White cannot simply win it back in one move, while Black has still not developed any other piece.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion de retard depuis 2...exf4. Aucun roi n'a roqué. Le fou en g7 garde désormais le pion f4 le long de la grande diagonale, si bien que les Blancs ne peuvent pas le regagner d'un seul coup simple, tandis que les Noirs n'ont encore développé aucune autre pièce.
+        plan:
+          vi: Trắng chơi O-O hoặc h4 để gây sức ép lên cánh vua Đen, rồi d4 dựng trung tâm, đặt cược vào tốc độ phát triển và an toàn của vua để bù cho con tốt. Đen chơi ...h6 để giữ chắc tốt g5, ...Ne7 hoặc ...Nc6, và tìm chỗ an toàn cho vua trước khi Trắng kịp mở cuộc tấn công.
+          en: White plays O-O or h4 to press on Black's kingside, then d4 to build the centre, betting on speed of development and king safety to make up for the pawn. Black plays ...h6 to firmly hold the g5 pawn, ...Ne7 or ...Nc6, and looks for a safe spot for the king before White can open an attack.
+          fr: Les Blancs jouent O-O ou h4 pour presser l'aile roi noire, puis d4 pour bâtir le centre, misant sur la rapidité de développement et la sécurité du roi pour compenser le pion. Les Noirs jouent ...h6 pour tenir fermement le pion g5, ...Ne7 ou ...Nc6, et cherchent un abri pour le roi avant que les Blancs n'ouvrent une attaque.
+        basis:
+          by: chan
+          at: '2026-09-25'

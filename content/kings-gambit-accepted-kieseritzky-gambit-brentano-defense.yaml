@@ -1,0 +1,60 @@
+# King's Gambit Accepted, Kieseritzky Gambit, Brentano Defense, taught. Shares its 9-ply
+# root, 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5, with
+# `kings-gambit-accepted-kieseritzky-gambit`, so `definingLine` stops there — the learner's
+# own 5.Ne5 — and Black's 5...d5, the move that gives this entry its name, is modelled as the
+# root's own reply rather than folded into the defining line (docs/CONTEXT.md, invariant 5).
+# Every ply was replayed with chess.js, and the leaf was checked with `searchMate` (bounded
+# to 2 moves): no-mate.
+id: kings-gambit-accepted-kieseritzky-gambit-brentano-defense
+name: "King's Gambit Accepted: Kieseritzky Gambit, Brentano Defense"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black opens the diagonal for the c8 bishop and supports a later ...Nf6
+      without letting White's knight take on g4 for free, at the cost of leaving the e5
+      knight standing for one more move. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Con mã Trắng vừa nhảy vào e5, nhòm thẳng f7, và Đen phải chọn cách đáp trả. Mục này theo dõi 5...d5, mở đường cho tượng c8 và chuẩn bị ...Nf6.
+    en: White's knight has just jumped to e5, eyeing f7 directly, and Black has to choose a reply. This entry follows 5...d5, opening the diagonal for the c8 bishop and preparing ...Nf6.
+    fr: Le cavalier blanc vient de sauter en e5, visant directement f7, et les Noirs doivent choisir une réponse. Cette entrée suit 5...d5, ouvrant la diagonale du fou c8 et préparant ...Nf6.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác ngoài 5...d5 — phát triển mã ngay bằng ...Nf6 (xem mục riêng), đẩy tốt ...d6, hay một trong nhiều cách phòng thủ khác đã có tên riêng. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays anything other than 5...d5 — developing at once with ...Nf6 (see the dedicated entry), pushing ...d6, or one of several other separately named defences. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 5...d5 — se développer aussitôt par ...Nf6 (voir l'entrée dédiée), pousser ...d6, ou l'une des nombreuses autres défenses portant leur propre nom. Chacune sort du cadre de cette entrée.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen mở đường chéo c8-h3 cho con tượng và chuẩn bị ...Nf6 mà không sợ Nxg4 trao đổi tốt, vì lúc đó ...Bxg4 sẽ đưa tượng vào cuộc.
+        en: Black opens the c8-h3 diagonal for the bishop and prepares ...Nf6 without fearing Nxg4 trading the pawn off, since ...Bxg4 would then bring the bishop into play.
+        fr: Les Noirs ouvrent la diagonale c8-h3 pour le fou et préparent ...Nf6 sans craindre Nxg4 échangeant le pion, puisque ...Bxg4 ferait alors entrer le fou en jeu.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng vẫn kém một tốt như từ đầu. Con mã e5 vẫn đứng vững, nhưng giờ tốt d5 của Đen đã khống chế thêm ô c4 và bắt đầu tranh chấp trung tâm, còn tượng c8 đã có đường ra. Chưa vua nào nhập thành.
+          en: Count the pawns and it is seven for White, eight for Black, the same pawn deficit as from the start. The e5 knight still stands firm, but Black's d5 pawn now also controls c4 and starts contesting the centre, and the c8 bishop already has a way out. Neither king has castled yet.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, le même déficit qu'au départ. Le cavalier e5 tient toujours bon, mais le pion d5 noir contrôle désormais aussi c4 et commence à disputer le centre, et le fou c8 a déjà une sortie. Aucun roi n'a encore roqué.
+        plan:
+          vi: Trắng chơi d4 để củng cố mã e5 và dựng trung tâm, rồi Bxg4 hay Nxg4 khi tiện, cố khai thác lợi thế phát triển trước khi Đen kịp hoàn thiện. Đen chơi ...Nf6, ...Bxg4 nếu cần và ...Bd6 hay ...Bg7, tìm chỗ an toàn cho vua và giữ con tốt g4 làm quân bài mặc cả.
+          en: White plays d4 to prop up the e5 knight and build the centre, then Bxg4 or Nxg4 when convenient, trying to cash in the development lead before Black finishes catching up. Black plays ...Nf6, ...Bxg4 if needed, and ...Bd6 or ...Bg7, looking for a safe spot for the king and keeping the g4 pawn as a bargaining chip.
+          fr: Les Blancs jouent d4 pour étayer le cavalier e5 et bâtir le centre, puis Bxg4 ou Nxg4 quand cela convient, cherchant à monnayer leur avance de développement avant que les Noirs ne rattrapent leur retard. Les Noirs jouent ...Nf6, ...Bxg4 si nécessaire et ...Bd6 ou ...Bg7, cherchant un abri pour le roi et gardant le pion g4 comme monnaie d'échange.
+        basis:
+          by: chan
+          at: '2026-09-25'

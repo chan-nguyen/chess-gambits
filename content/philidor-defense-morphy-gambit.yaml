@@ -1,0 +1,59 @@
+# Philidor Defense, Morphy Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 d6 3.d4 exd4
+# 4.Bc4, which ends on White's own 4.Bc4 — the learner's ply — so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Black's 4...Nc6 is modelled as the root's single
+# reply. The position after it was checked with `searchMate` (bounded to 2 moves): no-mate,
+# not in check, no free capture. Every ply was replayed with chess.js.
+id: philidor-defense-morphy-gambit
+name: 'Philidor Defense: Morphy Gambit'
+eco: C41
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, d6, d4, exd4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Rather than recapture on d4 with the knight, White develops the bishop to
+      c4, aimed at f7, leaving the extra pawn with Black for the moment in exchange for a
+      lead in development and a target on the kingside. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt d4 ngay bằng mã, Trắng đưa tượng ra c4, nhắm thẳng vào f7 và để con tốt d4 tạm thời ở lại tay Đen.
+    en: Instead of recapturing on d4 at once with the knight, White develops the bishop to c4, aimed directly at f7, leaving the d4 pawn with Black for the moment.
+    fr: Au lieu de reprendre aussitôt en d4 avec le cavalier, les Blancs développent le fou en c4, visant directement f7, laissant le pion d4 aux Noirs pour l'instant.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.Bc4 bằng một nước khác ngoài 4...Nc6 — chẳng hạn ...Be7 phát triển tượng trước. Đánh giá vẫn tương tự, vì con tốt d4 vẫn tạm thời ở lại tay Đen bất kể Đen chơi gì.
+      en: Black meets 4.Bc4 with something other than 4...Nc6 — for instance ...Be7 developing the bishop first. The assessment is similar, since the d4 pawn still sits with Black for the moment regardless of what Black plays.
+      fr: Les Noirs répondent à 4.Bc4 par autre chose que 4...Nc6 — par exemple ...Be7 en développant d'abord le fou. L'évaluation est similaire, le pion d4 restant pour l'instant aux Noirs quoi qu'ils jouent.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã, giữ con tốt d4 thêm một lúc và tiếp tục hoàn thiện đội hình.
+        en: Black develops the knight, holding the d4 pawn a little longer and continuing to complete the setup.
+        fr: Les Noirs développent le cavalier, gardant le pion d4 un peu plus longtemps et continuant à compléter leur dispositif.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng tạm thời kém một tốt vì con tốt d4 chưa bị ăn lại. Đổi lại, con tượng c4 vẫn nhắm thẳng vào f7, và giờ Đen đã đưa ra một mã trong khi Trắng cũng chỉ mới có đúng một quân phát triển.
+          en: Count the pawns and it is seven for White, eight for Black — White is temporarily a pawn down since the d4 pawn has not been recaptured. In exchange, the bishop on c4 still aims straight at f7, and now Black has developed one knight while White too has only the one piece developed.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs sont temporairement en retard d'un pion, celui en d4 n'ayant pas été repris. En échange, le fou c4 vise toujours droit sur f7, et les Noirs ont maintenant développé un cavalier tandis que les Blancs n'ont eux aussi qu'une seule pièce développée.
+        plan:
+          vi: Trắng chơi O-O và Re1 hoặc c3 để đòi lại tốt d4 sau, tận dụng đường chéo mở của tượng c4 để gây sức ép lên f7. Đen chơi ...Be7 hoàn tất phát triển, giữ con tốt d4 làm vốn liếng nếu có thể, và tìm chỗ an toàn cho vua trước khi Trắng kịp tấn công.
+          en: White plays O-O and Re1 or c3 to win the d4 pawn back later, using the open diagonal of the c4 bishop to press on f7. Black plays ...Be7 to finish developing, keeps the d4 pawn as an asset if possible, and looks for a safe spot for the king before White can attack.
+          fr: Les Blancs jouent O-O et Re1 ou c3 pour regagner plus tard le pion d4, utilisant la diagonale ouverte du fou c4 pour presser f7. Les Noirs jouent ...Be7 pour achever leur développement, gardent le pion d4 comme atout si possible, et cherchent un abri pour le roi avant que les Blancs n'attaquent.
+        basis:
+          by: chan
+          at: '2026-09-25'

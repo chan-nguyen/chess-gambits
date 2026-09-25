@@ -1,0 +1,58 @@
+# King's Gambit Accepted, Mayet Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4 3.Nf3
+# g5 4.Bc4 Bg7 5.d4 d6 6.c3, which ends on White's own 6.c3 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Black's 6...Nc6 is modelled as the
+# root's single reply. The position after it was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-gambit-accepted-mayet-gambit
+name: "King's Gambit Accepted: Mayet Gambit"
+eco: C38
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, Bg7, d4, d6, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White builds a full classical centre with d4 and c3, giving the queen a
+      route to b3 and keeping options for either O-O or O-O-O, rather than rushing to win the
+      f4 pawn back. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng củng cố trung tâm bằng c3, chống lưng cho tốt d4 và mở đường cho hậu ra b3 sau này, chưa vội đòi lại con tốt f4.
+    en: White reinforces the centre with c3, propping up the d4 pawn and opening a route for the queen to b3 later, without yet rushing to win the f4 pawn back.
+    fr: Les Blancs renforcent le centre par c3, étayant le pion d4 et ouvrant une voie pour la dame vers b3 plus tard, sans se presser encore de regagner le pion f4.
+  dismissRest:
+    reason:
+      vi: Đen phát triển theo cách khác thay vì 6...Nc6 — chẳng hạn ...Ne7 hay ...h6 trước. Đánh giá vẫn như nhau, vì trung tâm và sự phát triển của hai bên chưa thay đổi.
+      en: Black develops some other way instead of 6...Nc6 — for instance ...Ne7 or ...h6 first. The assessment stays the same, since the centre and each side's development are unchanged.
+      fr: Les Noirs se développent autrement qu'avec 6...Nc6 — par exemple ...Ne7 ou ...h6 d'abord. L'évaluation reste la même, le centre et le développement de chaque camp étant inchangés.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã ra c6, hoàn thiện đội hình một cách bình thường.
+        en: Black develops the knight to c6, completing the setup in a normal way.
+        fr: Les Noirs développent le cavalier en c6, complétant leur dispositif normalement.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng kém một tốt kể từ nước 2...exf4. Cả hai vua chưa nhập thành. Trắng đã có trung tâm d4-e4 vững chắc được tốt c3 chống lưng, còn Đen đã đưa mã ra c6 và mở đường cho tượng f8.
+          en: Count the pawns and it is seven for White, eight for Black, a pawn down since 2...exf4. Neither king has castled yet. White already has a solid d4-e4 centre propped up by the c3 pawn, while Black has developed the knight to c6 and opened the way for the f8 bishop.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion de retard depuis 2...exf4. Aucun roi n'a roqué. Les Blancs ont déjà un centre d4-e4 solide étayé par le pion c3, tandis que les Noirs ont développé le cavalier en c6 et ouvert la voie au fou f8.
+        plan:
+          vi: Trắng chơi Qb3 nhắm vào b7 và f7, Nbd2 hoặc O-O, dùng trung tâm vững chắc để hạn chế quân Đen và tìm thời điểm đòi lại tốt f4. Đen chơi ...Nge7, ...h6 để giữ tốt g5, và tìm chỗ an toàn cho vua trước khi Trắng kịp phối hợp tấn công.
+          en: White plays Qb3 aiming at b7 and f7, Nbd2 or O-O, using the solid centre to cramp Black's pieces and looking for the moment to win the f4 pawn back. Black plays ...Nge7, ...h6 to hold the g5 pawn, and looks for a safe spot for the king before White can coordinate an attack.
+          fr: Les Blancs jouent Qb3 en visant b7 et f7, Nbd2 ou O-O, utilisant le centre solide pour gêner les pièces noires et cherchant le moment de regagner le pion f4. Les Noirs jouent ...Nge7, ...h6 pour tenir le pion g5, et cherchent un abri pour le roi avant que les Blancs ne coordonnent une attaque.
+        basis:
+          by: chan
+          at: '2026-09-25'

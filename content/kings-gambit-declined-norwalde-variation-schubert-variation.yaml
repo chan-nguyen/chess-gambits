@@ -1,0 +1,59 @@
+# King's Gambit Declined, Norwalde Variation, Schubert Variation, taught. Frozen defining
+# line 1.e4 e5 2.f4 Qf6 3.Nc3 Qxf4 4.d4, which ends on White's own 4.d4 — the learner's ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 4...Nc6 is modelled
+# as the root's single reply. The position after it was checked with `searchMate` (bounded to
+# 2 moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-gambit-declined-norwalde-variation-schubert-variation
+name: "King's Gambit Declined: Norwalde Variation, Schubert Variation"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Qf6, Nc3, Qxf4, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Instead of developing the knight to f3 first, White opens the centre
+      immediately with d4, offering a second pawn to open even more lines toward Black's
+      queen. Real, sharp compensation for the pawn rather than a proven refutation. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chưa vội đưa mã ra f3 mà mở luôn trung tâm bằng d4, thí thêm một tốt nữa để mở toang các đường chéo và cột nhắm vào con hậu Đen đang đứng lộ liễu ở f4.
+    en: Rather than developing the knight to f3 first, White opens the centre at once with d4, offering a second pawn to blow the diagonals and files wide open toward Black's queen, still standing exposed on f4.
+    fr: Plutôt que de développer d'abord le cavalier en f3, les Blancs ouvrent aussitôt le centre par d4, offrant un second pion pour faire sauter les diagonales et les colonnes vers la dame noire, toujours exposée en f4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 4...Nc6 — chẳng hạn ...exd4 ăn thêm tốt ngay hay lui hậu về ...Qf6. Đánh giá vẫn tương tự, vì con hậu Đen vẫn đứng lộ liễu và trung tâm vẫn sắp mở toang.
+      en: Black plays something else instead of 4...Nc6 — for instance ...exd4 grabbing another pawn at once, or retreating the queen with ...Qf6. The assessment is similar, since Black's queen still stands exposed and the centre is still about to blow open.
+      fr: Les Noirs jouent autre chose que 4...Nc6 — par exemple ...exd4 pour gagner un autre pion aussitôt, ou reculer la dame par ...Qf6. L'évaluation est similaire, la dame noire restant exposée et le centre sur le point de s'ouvrir.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã, chưa vội ăn thêm tốt d4 và giữ nguyên căng thẳng ở trung tâm.
+        en: Black develops the knight, not yet grabbing the d4 pawn and keeping the central tension on the board.
+        fr: Les Noirs développent le cavalier, sans encore ramasser le pion d4 et gardant la tension centrale sur l'échiquier.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng kém một tốt kể từ 3...Qxf4, và con tốt d4 vẫn đang bị hậu Đen ăn được bằng ...exd4 nếu muốn. Đổi lại, con hậu Đen đã phải di chuyển hai lần chỉ để đứng giữa một trung tâm sắp mở toang, còn Trắng đã đưa được mã c3 và mã b1 chuẩn bị ra, sẵn sàng phát triển tiếp với nhịp.
+          en: Count the pawns and it is seven for White, eight for Black, a pawn down since 3...Qxf4, and the d4 pawn can still be taken with ...exd4 if Black wants it. In exchange, Black's queen has already moved twice just to stand in the middle of a centre about to blow open, while White has the c3 knight out and the other one ready to develop, keeping the tempo.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion de retard depuis 3...Qxf4, et le pion d4 peut toujours être pris par ...exd4 si les Noirs le souhaitent. En échange, la dame noire a déjà bougé deux fois pour se retrouver au milieu d'un centre sur le point de s'ouvrir, tandis que les Blancs ont le cavalier c3 sorti et l'autre prêt à se développer, gardant le temps.
+        plan:
+          vi: Trắng chơi Nf3 đuổi hậu kèm nhịp, Bc4 và O-O, dồn vào việc mở đường tấn công con hậu Đen trước khi Đen kịp lui về an toàn. Đen chơi ...exd4 lấy thêm tốt nếu dám, hoặc lui hậu ngay bằng ...Qf6 hay ...Qc7, rồi phát triển bằng ...Nf6 để bắt kịp Trắng.
+          en: White plays Nf3 to chase the queen with tempo, Bc4 and O-O, focusing on opening lines at Black's queen before it can retreat to safety. Black plays ...exd4 to grab another pawn if daring, or retreats the queen at once with ...Qf6 or ...Qc7, then develops with ...Nf6 to catch up with White.
+          fr: Les Blancs jouent Nf3 pour chasser la dame avec un temps, Bc4 et O-O, se concentrant sur l'ouverture de lignes vers la dame noire avant qu'elle ne puisse se replier en sécurité. Les Noirs jouent ...exd4 pour gagner un pion de plus s'ils l'osent, ou reculent aussitôt la dame par ...Qf6 ou ...Qc7, puis se développent par ...Nf6 pour rattraper les Blancs.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,57 @@
+# Latvian Gambit, Corkscrew Countergambit, taught. Frozen defining line 1.e4 e5 2.Nf3 f5
+# 3.Bc4 fxe4 4.Nxe5 Nf6, which ends on Black's own 4...Nf6 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). White's 5.Nc3 is modelled as the root's
+# single reply. The position after it was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: latvian-gambit-corkscrew-countergambit
+name: 'Latvian Gambit: Corkscrew Countergambit'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Bc4, fxe4, Nxe5, Nf6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Material is level after the pawns on e4 and e5 changed hands, but Black
+      develops with a piece that does nothing to challenge White's actively centralised
+      knight and bishop, both aimed at Black's kingside. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen phát triển mã ra f6, một nước tự nhiên nhưng chưa trực tiếp thách thức con mã e5 hay con tượng c4 của Trắng, cả hai đều đang nhắm vào cánh vua Đen.
+    en: Black develops the knight to f6, a natural move that does not yet directly challenge White's e5 knight or c4 bishop, both of which are aimed at Black's kingside.
+    fr: Les Noirs développent le cavalier en f6, un coup naturel qui ne défie pas encore directement le cavalier e5 ou le fou c4 des Blancs, tous deux braqués sur l'aile roi noire.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 4...Nf6 bằng một nước khác ngoài 5.Nc3 — chẳng hạn O-O rồi d3. Đánh giá vẫn tương tự, vì con tốt e4 của Đen vẫn đứng đơn độc bất kể Trắng chơi gì.
+      en: White meets 4...Nf6 with something other than 5.Nc3 — for instance O-O followed by d3. The assessment is similar, since Black's e4 pawn still stands alone regardless of what White plays.
+      fr: Les Blancs répondent à 4...Nf6 par autre chose que 5.Nc3 — par exemple O-O puis d3. L'évaluation est similaire, le pion e4 noir restant seul quoi que jouent les Blancs.
+  children:
+    - ply: Nc3
+      annotation:
+        vi: Trắng phát triển mã và tấn công thẳng vào con tốt e4 mà Đen vừa chiếm được.
+        en: White develops the knight and attacks the e4 pawn Black just won directly.
+        fr: Les Blancs développent le cavalier et attaquent directement le pion e4 que les Noirs viennent de gagner.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau sau khi hai con tốt e4 và e5 đã đổi cho nhau. Nhưng con tốt e4 giờ bị mã c3 tấn công trực tiếp và không quân nào của Đen đang bảo vệ nó, trong khi con mã e5 và tượng c4 của Trắng vẫn nhắm vào cánh vua Đen và Đen vẫn chưa nhập thành.
+          en: Count the pawns and it is seven each, material level after the pawns on e4 and e5 traded off. But the e4 pawn is now directly attacked by the c3 knight and nothing of Black's currently defends it, while White's e5 knight and c4 bishop still bear on Black's kingside and Black has not castled.
+          fr: Comptez les pions, sept de chaque côté, le matériel est égal après l'échange des pions en e4 et e5. Mais le pion e4 est désormais directement attaqué par le cavalier c3 et rien du côté noir ne le défend actuellement, tandis que le cavalier e5 et le fou c4 blancs visent toujours l'aile roi noire et que les Noirs n'ont pas roqué.
+        plan:
+          vi: Trắng chơi Nxe4 ăn lại tốt nếu Đen không kịp bảo vệ, hoặc O-O trước để hoàn tất phát triển, tận dụng thế chủ động để gây sức ép trước khi Đen kịp nhập thành. Đen chơi ...d5 bảo vệ tốt e4 và mở đường cho tượng c8, ...Be7 và tìm cách nhập thành sớm để đưa vua vào nơi an toàn.
+          en: White plays Nxe4 to win back the pawn if Black cannot defend it in time, or O-O first to finish developing, using the active pieces to build pressure before Black can castle. Black plays ...d5 to defend the e4 pawn and open a path for the c8 bishop, ...Be7, and looks to castle soon to get the king to safety.
+          fr: Les Blancs jouent Nxe4 pour regagner le pion si les Noirs ne peuvent le défendre à temps, ou O-O d'abord pour achever leur développement, utilisant leurs pièces actives pour construire la pression avant que les Noirs ne roquent. Les Noirs jouent ...d5 pour défendre le pion e4 et ouvrir une voie au fou c8, ...Be7, et cherchent à roquer bientôt pour mettre le roi en sécurité.
+        basis:
+          by: chan
+          at: '2026-09-25'

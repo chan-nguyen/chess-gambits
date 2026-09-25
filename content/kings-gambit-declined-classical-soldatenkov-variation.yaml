@@ -1,0 +1,68 @@
+# King's Gambit Declined, Classical, Soldatenkov Variation, taught. Frozen defining line
+# 1.e4 e5 2.f4 Bc5 3.Nf3 d6 4.fxe5, which ends on White's own 4.fxe5 — the learner's ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 4...dxe5 is
+# modelled as the root's reply; the naive recapture 5.Nxe5?? was replayed and found to hang
+# the knight to 5...Qd4, a real double attack on the knight and f2, so White's actual single
+# reply modelled here is the careful 5.Bc4 instead. The position after it was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was
+# replayed with chess.js.
+id: kings-gambit-declined-classical-soldatenkov-variation
+name: "King's Gambit Declined: Classical, Soldatenkov Variation"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Bc5, Nf3, d6, fxe5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The capture on e5 looks like a free pawn since 3...d6 seemed to defend it,
+      but the recapture ...dxe5 comes right back, and if White is careless about how to
+      finish recovering the piece that follows, Black gets real tactical chances. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng ăn tốt e5, một con tốt tưởng như đã được 3...d6 bảo vệ. Nhưng Đen sẽ ăn lại ngay bằng ...dxe5, và cách Trắng ăn lại con tốt đó sau này mới là điểm mấu chốt của biến này.
+    en: White captures the e5 pawn, one that 3...d6 seemed to have defended. But Black will recapture at once with ...dxe5, and how White then wins that pawn back is the real point of this variation.
+    fr: Les Blancs capturent le pion e5, que 3...d6 semblait pourtant défendre. Mais les Noirs reprendront aussitôt par ...dxe5, et la façon dont les Blancs regagneront ensuite ce pion est le vrai point de cette variante.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại tốt e5 ngay bằng ...dxe5. Mọi nước khác để tốt e5 lại cho Trắng, khiến Trắng hơn hẳn một tốt sạch mà không có gì bù lại.
+      en: Black does not recapture the e5 pawn at once with ...dxe5. Anything else leaves the e5 pawn with White, leaving White simply a clean pawn up with nothing to show for it.
+      fr: Les Noirs ne reprennent pas aussitôt le pion e5 par ...dxe5. Tout le reste laisse le pion e5 aux Blancs, qui se retrouvent simplement avec un pion net de plus sans rien en retour.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại con tốt ngay, quân duy nhất còn có thể ăn tại đó, đưa quân số trở lại ngang nhau.
+        en: Black recaptures the pawn at once, the only piece left that can take there, restoring material equality.
+        fr: Les Noirs reprennent aussitôt le pion, la seule pièce restant capable de capturer là, rétablissant l'égalité matérielle.
+      children:
+        - ply: Bc4
+          annotation:
+            vi: Trắng tránh nước ăn lại vội vàng bằng mã — vì 5.Nxe5?? sẽ thua ngay cho 5...Qd4, một đòn đôi tấn công cùng lúc con mã và tốt f2 — và đưa tượng ra c4 trước, chống lưng thêm cho ô e5 và giữ nhiều lựa chọn hơn.
+            en: White avoids the hasty recapture with the knight — since 5.Nxe5?? loses at once to 5...Qd4, a double attack on the knight and the f2 pawn at the same time — and develops the bishop to c4 first, adding support toward e5 and keeping more options open.
+            fr: Les Blancs évitent la reprise hâtive avec le cavalier — car 5.Nxe5?? perd aussitôt après 5...Qd4, une attaque double sur le cavalier et le pion f2 en même temps — et développent d'abord le fou en c4, ajoutant du soutien vers e5 et gardant plus d'options ouvertes.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau — con tốt e5 đã trở lại tay Đen mà không kèm theo cái bẫy nào. Con tượng c4 của Trắng đã phát triển và nhắm vào f7, còn Đen vẫn giữ nguyên tượng c5 đang có ở đó từ trước.
+              en: Count the pawns and it is seven each, material level — the e5 pawn has returned to Black with no trap attached. White's bishop on c4 is developed and aims at f7, while Black still has the bishop already sitting on c5.
+              fr: Comptez les pions, sept de chaque côté, le matériel est égal — le pion e5 est revenu aux Noirs sans aucun piège attaché. Le fou blanc en c4 est développé et vise f7, tandis que les Noirs gardent le fou déjà posté en c5.
+            plan:
+              vi: Trắng chơi Nc3 và O-O hoàn tất phát triển an toàn, giữ vững thế cân bằng vật chất và tìm cách tận dụng con tượng c4 hoạt động. Đen chơi ...Nf6 và ...Nc6, hoàn tất phát triển bình thường với quân số ngang nhau.
+              en: White plays Nc3 and O-O to finish developing safely, holding the material balance and looking to use the active c4 bishop. Black plays ...Nf6 and ...Nc6, finishing normal development with material level.
+              fr: Les Blancs jouent Nc3 et O-O pour achever leur développement en sécurité, maintenant l'équilibre matériel et cherchant à utiliser le fou c4 actif. Les Noirs jouent ...Nf6 et ...Nc6, achevant un développement normal avec un matériel égal.
+            basis:
+              by: chan
+              at: '2026-09-25'

@@ -1,0 +1,57 @@
+# King's Pawn Game, Weber Gambit, taught. Frozen defining line 1.e4 e5 2.d3 d5 3.exd5 c6
+# 4.dxc6 Nxc6, which ends on Black's own 4...Nxc6 — the learner's ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). White's 5.Nf3 is modelled as the root's
+# single reply. The position after it was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-pawn-game-weber-gambit
+name: "King's Pawn Game: Weber Gambit"
+eco: C20
+category: gambit
+side: black
+definingLine: [e4, e5, d3, d5, exd5, c6, dxc6, Nxc6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers a second pawn with 3...c6 to recapture with a developed
+      knight instead of a pawn, but the count still comes out a clean pawn down with no
+      concrete threat to show for it yet. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen ăn lại bằng mã trên c6 thay vì bằng tốt, chấp nhận mất đi hẳn cấu trúc tốt cột c, d, e để đổi lấy một quân đã được phát triển sẵn.
+    en: Black recaptures on c6 with the knight rather than a pawn, accepting the loss of the entire c-, d- and e-pawn structure in exchange for a piece that is already developed.
+    fr: Les Noirs reprennent en c6 avec le cavalier plutôt qu'avec un pion, acceptant de perdre entièrement la structure de pions c, d et e en échange d'une pièce déjà développée.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 4...Nxc6 bằng một nước khác ngoài 5.Nf3 — chẳng hạn Nc3 hay Be2. Đánh giá vẫn tương tự, vì Trắng vẫn giữ được tốt thừa và lỗ hổng cấu trúc của Đen chưa thay đổi.
+      en: White meets 4...Nxc6 with something other than 5.Nf3 — for instance Nc3 or Be2. The assessment is similar, since White keeps the extra pawn and Black's structural hole is unchanged.
+      fr: Les Blancs répondent à 4...Nxc6 par autre chose que 5.Nf3 — par exemple Nc3 ou Be2. L'évaluation est similaire, les Blancs gardant le pion supplémentaire et le trou structurel noir restant inchangé.
+  children:
+    - ply: Nf3
+      annotation:
+        vi: Trắng phát triển mã, hướng tới việc đưa tượng f1 ra c4 hay b5 sau này.
+        en: White develops the knight, heading toward bringing the f1 bishop to c4 or b5 later.
+        fr: Les Blancs développent le cavalier, en vue d'amener plus tard le fou f1 en c4 ou b5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen sáu — Trắng hơn hẳn một tốt sạch sau loạt đổi chác liên tiếp. Đen không còn tốt nào ở các cột c, d và e, một lỗ hổng cấu trúc thật sự ở trung tâm, dù đã có một con mã phát triển sớm trên c6 và Trắng cũng mới chỉ đưa ra đúng một quân.
+          en: Count the pawns and it is seven for White, six for Black — White is a clean pawn up after the run of trades. Black has no pawn left on the c-, d- or e-files at all, a genuine structural hole in the centre, though there is one knight already developed on c6, and White too has only brought out one piece so far.
+          fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — les Blancs ont un pion net de plus après la série d'échanges. Les Noirs n'ont plus aucun pion sur les colonnes c, d et e, un véritable trou structurel au centre, même s'ils ont un cavalier déjà développé en c6, et les Blancs eux aussi n'ont encore sorti qu'une seule pièce.
+        plan:
+          vi: Trắng chơi Bc4 hoặc Be2 hoàn tất phát triển, giữ vững con tốt thừa và khai thác lỗ hổng ở trung tâm Đen bằng d4 khi thuận tiện. Đen chơi ...Nf6 và ...Bc5 hoặc ...Be7, dùng con mã đã phát triển để bù nhịp, và tìm cách gây sức ép lên tốt e4 trước khi Trắng kịp củng cố.
+          en: White plays Bc4 or Be2 to finish developing, keeps the extra pawn, and looks to exploit the hole in Black's centre with d4 when convenient. Black plays ...Nf6 and ...Bc5 or ...Be7, uses the already-developed knight to make up tempo, and looks to pressure the e4 pawn before White can consolidate.
+          fr: Les Blancs jouent Bc4 ou Be2 pour achever leur développement, gardent le pion supplémentaire et cherchent à exploiter le trou dans le centre noir par d4 quand cela convient. Les Noirs jouent ...Nf6 et ...Bc5 ou ...Be7, utilisent le cavalier déjà développé pour compenser le temps, et cherchent à faire pression sur le pion e4 avant que les Blancs ne consolident.
+        basis:
+          by: chan
+          at: '2026-09-25'
