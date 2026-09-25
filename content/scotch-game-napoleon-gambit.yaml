@@ -1,0 +1,65 @@
+# Scotch Game: Napoleon Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.d4 Nxd4 4.Nxd4 exd4
+# 5.Bc4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Instead of winning the d4 pawn straight back with Qxd4, White develops the bishop
+# onto the a2-g8 diagonal, aiming it at f7 for a move of extra time. The line was replayed with
+# chess.js before being annotated, and the leaf carries one free capture (Qxd4), covered below
+# with `unsettled`.
+id: scotch-game-napoleon-gambit
+name: 'Scotch Game: Napoleon Gambit'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, Nxd4, Nxd4, exd4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      White chooses not to collect the pawn on d4 straight away and instead develops with 5.Bc4,
+      aiming the bishop at f7 for one extra move of time; the pawn is available whenever White
+      wants it, so this is a tempo gambit rather than a real material sacrifice, and the resulting
+      activity is promising but not proven to be worth more than an ordinary position. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ...exd4 để lại một con tốt Đen đứng lẻ loi ở d4, Trắng không vội ăn lại bằng Qxd4 mà chơi 5.Bc4, đưa tượng vào đường chéo a2-g8 nhắm thẳng vào f7, chấp nhận để con tốt đó đứng thêm một nước nữa để đổi lấy thời gian phát triển.
+    en: After ...exd4 leaves a lone black pawn sitting on d4, White does not rush to take it back with Qxd4 and instead plays 5.Bc4, bringing the bishop onto the a2-g8 diagonal aimed straight at f7, content to leave the pawn there one move longer in exchange for time.
+    fr: Après que ...exd4 a laissé un pion noir isolé en d4, les Blancs ne se pressent pas de le reprendre par Qxd4 et jouent plutôt 5.Bc4, amenant le fou sur la diagonale a2-g8 visant directement f7, acceptant de laisser le pion là un coup de plus en échange de temps.
+  dismissRest:
+    reason:
+      vi: Đen không phát triển mã ra f6. Dù chọn nước khác, chẳng hạn ...Bc5 hay ...Qe7, con tốt d4 vẫn treo lơ lửng để Trắng ăn lại bất cứ lúc nào, và tượng c4 vẫn nhắm vào f7 y như cũ, nên vị trí được đánh giá như nhau.
+      en: Black does not develop the knight to f6. Whatever else is chosen instead, such as ...Bc5 or ...Qe7, the pawn on d4 is still hanging for White to collect whenever it wants, and the bishop on c4 is still aimed at f7 exactly the same way, so the position is judged the same way.
+      fr: Les Noirs ne développent pas le cavalier en f6. Quel que soit l'autre coup choisi, comme ...Bc5 ou ...Qe7, le pion en d4 reste en prise pour que les Blancs le récupèrent quand ils le souhaitent, et le fou c4 vise toujours f7 de la même façon, si bien que la position est jugée de la même manière.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã ra ô tự nhiên nhất, chuẩn bị nhập thành trong vài nước và gặp con tượng c4 bằng ý tưởng đẩy ...d5 sau này, còn con tốt thừa ở d4 thì cứ để đó, Trắng muốn ăn lại lúc nào cũng được.
+        en: Black develops the knight to its most natural square, preparing to castle in a few moves and planning to meet the bishop on c4 with a later ...d5, while leaving the extra pawn on d4 for White to win back whenever it wants.
+        fr: Les Noirs développent le cavalier sur sa case la plus naturelle, se préparant à roquer dans quelques coups et prévoyant de répondre au fou c4 par un futur ...d5, tout en laissant le pion supplémentaire en d4 pour que les Blancs le reprennent quand ils le veulent.
+      unsettled: >-
+        Qxd4 is going free and the evaluation is built on it — nothing of Black's guards the pawn
+        on d4, so White can collect it back at any moment; the whole point of 5.Bc4 is to develop
+        with tempo first and take on d4 later.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn bảy và Đen còn tám, tức là Đen hơn đúng một tốt lúc này, nhưng con tốt ấy không có ai bảo vệ nên chỉ là chuyện thời gian trước khi Trắng ăn lại bằng Qxd4. Đường chéo của tượng c4 nhắm thẳng vào f7, ô duy nhất chưa có quân nào khác của Đen che chắn cho tới khi vua nhập thành.
+          en: Count the pawns and White has seven left to Black's eight, so Black is up exactly one pawn for now, but nobody guards that pawn, so it is only a matter of time before White wins it back with Qxd4. The bishop on c4's diagonal points straight at f7, the one square with no other defender until the king castles.
+          fr: En comptant les pions, il reste sept pions aux Blancs contre huit aux Noirs, donc les Noirs ont exactement un pion de plus pour l'instant, mais personne ne garde ce pion, donc ce n'est qu'une question de temps avant que les Blancs ne le reprennent par Qxd4. La diagonale du fou c4 vise directement f7, la seule case sans autre défenseur tant que le roi n'a pas roqué.
+        plan:
+          vi: Trắng chơi Qxd4 để lấy lại quân số ngang nhau, rồi Nc3, O-O và Re1, dùng thế phát triển nhanh hơn và áp lực lên f7 để tìm lợi thế nhỏ trước khi Đen kịp ổn định. Đen chơi ...d5 ngay để đuổi tượng c4, hoặc ...Be7 và ...O-O trước để xoá bỏ điểm yếu f7, sau đó hoàn tất phát triển và chứng minh cấu trúc của mình vẫn lành lặn.
+          en: White plays Qxd4 to restore material equality, then Nc3, O-O and Re1, using the faster development and the pressure on f7 to look for a small edge before Black settles down. Black plays ...d5 at once to chase the c4 bishop, or ...Be7 and ...O-O first to remove the f7 weakness, then finishes development and shows the structure is perfectly sound.
+          fr: Les Blancs jouent Qxd4 pour rétablir l'égalité matérielle, puis Nc3, O-O et Re1, utilisant le développement plus rapide et la pression sur f7 pour chercher un petit avantage avant que les Noirs ne se stabilisent. Les Noirs jouent ...d5 aussitôt pour chasser le fou c4, ou ...Be7 et ...O-O d'abord pour supprimer la faiblesse f7, puis terminent leur développement et montrent que leur structure reste parfaitement saine.
+        basis:
+          by: chan
+          at: '2026-09-25'

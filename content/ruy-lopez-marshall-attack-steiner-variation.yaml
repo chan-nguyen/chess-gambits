@@ -1,0 +1,59 @@
+# Ruy Lopez: Marshall Attack, Steiner Variation. Frozen defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d5 9.exd5 e4, which ends on Black's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below
+# was replayed with chess.js before being annotated.
+id: ruy-lopez-marshall-attack-steiner-variation
+name: 'Ruy Lopez: Marshall Attack, Steiner Variation'
+eco: C89
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, Nf6, O-O, Be7, Re1, b5, Bb3, O-O, c3, d5, exd5, e4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black lets White grab a whole knight on c6 rather than retreating the
+      attacked f3 knight, banking on the far-advanced e4 pawn to win material back or wreck
+      White's kingside pawns on the very next move — a well-tested branch of the Marshall
+      complex where the resulting activity is judged to hold up. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 9.exd5, thay vì ăn lại tốt ngay, Đen chơi 9...e4!, đẩy tốt lên tấn công thẳng vào mã f3 và giành nhịp, chấp nhận để ngỏ chuyện con mã c6 của mình.
+    en: After 9.exd5, instead of recapturing at once, Black plays 9...e4!, pushing the pawn forward to attack the knight on f3 directly and gain a tempo, accepting that the knight on c6 is left unresolved.
+    fr: Après 9.exd5, au lieu de reprendre aussitôt, les Noirs jouent 9...e4!, poussant le pion pour attaquer directement le cavalier en f3 et gagner un temps, tout en laissant la question du cavalier c6 en suspens.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con mã c6 bằng tốt d5. Các nước khác như lùi mã bằng Nd4 hay Nh4 để nguyên con mã c6 trên bàn cờ, và Đen chỉ đơn giản ăn lại tốt d5 như một biến Marshall Attack bình thường, không rơi vào nhánh Steiner này.
+      en: White does not take the knight on c6 with the d5 pawn. Anything else, such as retreating the knight with Nd4 or Nh4, leaves the knight on c6 alone, and Black simply recaptures the d5 pawn as in an ordinary Marshall Attack line, never entering this Steiner branch at all.
+      fr: Les Blancs ne prennent pas le cavalier c6 avec le pion d5. Tout le reste, comme reculer le cavalier par Nd4 ou Nh4, laisse le cavalier c6 tranquille, et les Noirs reprennent simplement le pion d5 comme dans une attaque Marshall ordinaire, sans jamais entrer dans cette branche Steiner.
+  children:
+    - ply: dxc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng phớt lờ lời đe doạ vào mã f3 và ăn thẳng con mã c6 bằng tốt d5, thu về nguyên một quân thay vì chỉ lùi bước để giữ tốt.
+        en: White ignores the threat to the f3 knight and simply takes the knight on c6 with the d5 pawn, collecting a whole piece rather than just retreating to save a pawn.
+        fr: Les Blancs ignorent la menace sur le cavalier f3 et prennent tout simplement le cavalier c6 avec le pion d5, empochant une pièce entière plutôt que de simplement reculer pour sauver un pion.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân, Trắng 39 còn Đen 35 — Đen kém hẳn một quân nhẹ mà chưa có tốt nào bù lại (con tốt trên c6 của Trắng vẫn chưa bị ăn lại). Nhưng mã f3 của Trắng đang bị chính con tốt e4 của Đen tấn công và không có ô lui an toàn nào, nghĩa là Đen sắp đòi lại một phần vật chất hoặc phá vỡ hàng tốt cánh vua của Trắng ngay nước tiếp theo.
+          en: Count the pieces, 39 for White against 35 for Black — Black is down a full minor piece with no pawn yet to show for it (White's pawn on c6 has not been recaptured). But White's knight on f3 is under attack from Black's own e4 pawn with no safe square to retreat to, meaning Black is about to win back some material or wreck White's kingside pawns on the very next move.
+          fr: Comptez les pièces, 39 pour les Blancs contre 35 pour les Noirs — les Noirs sont en retard d'une pièce mineure entière sans le moindre pion en retour (le pion blanc en c6 n'a pas encore été repris). Mais le cavalier blanc en f3 est attaqué par le propre pion e4 noir et n'a aucune case sûre où reculer, ce qui signifie que les Noirs vont regagner du matériel ou démolir les pions de l'aile roi blanche dès le coup suivant.
+        plan:
+          vi: Đen chơi exf3 ăn luôn con mã, hoặc để Trắng tự đổi Nd4/Nh4 rồi chơi Qxc6, đồng thời tận dụng cặp tượng và cột mở để tấn công. Trắng chơi Nd2 hay Nd4 tìm cách cứu mã, rồi Nb3 hoặc f3 củng cố trung tâm, cố giữ con tốt c6 làm bàn đạp gây khó dễ cho Đen.
+          en: Black plays exf3 to simply take the knight, or lets White move it with Nd4/Nh4 and then plays Qxc6, meanwhile using the bishop pair and the open lines to attack. White plays Nd2 or Nd4 trying to save the knight, then Nb3 or f3 to shore up the centre, trying to keep the c6 pawn as a thorn that causes Black lasting trouble.
+          fr: Les Noirs jouent exf3 pour prendre tout simplement le cavalier, ou laissent les Blancs le déplacer par Nd4/Nh4 puis jouent Qxc6, tout en utilisant la paire de fous et les lignes ouvertes pour attaquer. Les Blancs jouent Nd2 ou Nd4 pour tenter de sauver le cavalier, puis Nb3 ou f3 pour consolider le centre, essayant de garder le pion c6 comme une écharde qui gêne durablement les Noirs.
+        basis:
+          by: chan
+          at: '2026-09-25'

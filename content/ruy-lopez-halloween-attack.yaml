@@ -1,0 +1,57 @@
+# Ruy Lopez: Halloween Attack. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6 4.Nxe5,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+id: ruy-lopez-halloween-attack
+name: 'Ruy Lopez: Halloween Attack'
+eco: C65
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, Nf6, Nxe5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White gives up a whole knight for one pawn on move four, and Black's
+      position has no weakness anywhere for White to aim the missing piece at — the point of
+      the trap lies entirely in how a human opponent reacts under surprise, not in any
+      genuine follow-up. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì rút lui hay tiếp tục phát triển bình thường trong biến Ruy Lopez, Trắng bất ngờ chơi 4.Nxe5, thí hẳn một con mã lấy một tốt ngay giữa khai cuộc, hy vọng Đen bối rối trước một đòn phối hợp trông có vẻ nguy hiểm.
+    en: Instead of retreating or continuing normal Ruy Lopez development, White suddenly plays 4.Nxe5, sacrificing a whole knight for a single pawn right in the opening, hoping Black gets rattled by what looks like a dangerous combination.
+    fr: Au lieu de reculer ou de poursuivre un développement normal de la Ruy Lopez, les Blancs jouent soudain 4.Nxe5, sacrifiant carrément un cavalier contre un pion en pleine ouverture, en espérant que les Noirs se laissent déstabiliser par ce qui ressemble à une combinaison dangereuse.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại con mã e5. Các nước khác để nguyên con mã ấy đứng giữa bàn cờ mà không mất gì, nghĩa là Trắng vẫn giữ được nguyên một quân thừa đổi lấy một tốt — rõ ràng có lợi cho Trắng, nên việc ăn lại ngay là lựa chọn hợp lý duy nhất của Đen.
+      en: Black does not recapture on e5. Anything else lets that knight sit in the centre for free, meaning White simply keeps an extra piece for one pawn — clearly good for White, so recapturing at once is Black's only sensible choice.
+      fr: Les Noirs ne reprennent pas en e5. Tout le reste laisse ce cavalier trôner gratuitement au centre, ce qui signifie que les Blancs conservent une pièce entière contre un seul pion — clairement favorable aux Blancs, si bien que reprendre aussitôt est le seul choix sensé pour les Noirs.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại ngay bằng chính con mã c6, quân duy nhất có thể ăn tại đó, thu về nguyên một quân đổi lấy con tốt vừa mất.
+        en: Black recaptures at once with the knight on c6, the only piece that can capture there, collecting a whole piece in exchange for the pawn just lost.
+        fr: Les Noirs reprennent aussitôt avec le cavalier en c6, la seule pièce pouvant capturer là, empochant une pièce entière contre le pion qui vient d'être perdu.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân, Trắng 36 còn Đen 38 — Trắng kém hẳn một quân nhẹ đổi lấy một tốt, khoản lỗ hơn hai điểm giá trị quân. Đổi lại chẳng có gì cụ thể — cấu trúc tốt của Đen hoàn toàn lành lặn, còn cánh hậu của Trắng (mã b1, tượng c1) vẫn nằm nguyên ở nhà, và vua Trắng cũng chưa hề nhập thành.
+          en: Count the pieces and it is 36 for White against 38 for Black — White is down a clean minor piece for one pawn, a deficit of more than two points of material. Nothing concrete comes back for it — Black's pawn structure is entirely sound, while White's queenside (the knight on b1, the bishop on c1) is still sitting at home, and White's king has not castled either.
+          fr: Comptez les pièces, 36 pour les Blancs contre 38 pour les Noirs — les Blancs sont en retard d'une pièce mineure entière contre un seul pion, un déficit de plus de deux points de valeur. Rien de concret ne vient compenser cela — la structure de pions noire est parfaitement saine, tandis que l'aile dame blanche (le cavalier b1, le fou c1) reste à la maison, et le roi blanc n'a pas non plus roqué.
+        plan:
+          vi: Trắng cố gắng lấy lại phần nào bằng d4 và Bc4 hay Bd3, mở đường phát triển nhanh và nhắm vào con mã e5 hoặc f7, nhưng không có đòn phối hợp cụ thể nào đòi lại được quân đã mất. Đen chơi d5 hay d6 củng cố con mã e5, hoàn tất phát triển bằng Be7 hay Bc5 và O-O, rồi chơi tiếp với một quân dư hẳn trong tay.
+          en: White tries to claw something back with d4 and Bc4 or Bd3, developing quickly and aiming at the knight on e5 or at f7, but there is no concrete combination that wins the piece back. Black plays d5 or d6 to support the knight on e5, finishes development with Be7 or Bc5 and O-O, and simply plays on with a full extra piece in hand.
+          fr: Les Blancs tentent de récupérer un peu de terrain avec d4 et Bc4 ou Bd3, se développant rapidement et visant le cavalier en e5 ou f7, mais aucune combinaison concrète ne permet de regagner la pièce. Les Noirs jouent d5 ou d6 pour soutenir le cavalier en e5, achèvent leur développement par Be7 ou Bc5 et O-O, puis poursuivent la partie avec une pièce entière d'avance.
+        basis:
+          by: chan
+          at: '2026-09-25'

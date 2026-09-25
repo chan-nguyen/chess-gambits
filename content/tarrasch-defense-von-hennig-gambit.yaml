@@ -1,0 +1,59 @@
+# Tarrasch Defense: von Hennig Gambit. Frozen defining line 1.d4 d5 2.c4 e6 3.Nc3 c5
+# 4.cxd5 cxd4 5.Qxd4 Nc6 6.Qd1 exd5 7.Qxd5 Be6, which ends on Black's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). The line below was replayed with
+# chess.js before being annotated.
+id: tarrasch-defense-von-hennig-gambit
+name: 'Tarrasch Defense: von Hennig Gambit'
+eco: D32
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e6, Nc3, c5, cxd5, cxd4, Qxd4, Nc6, Qd1, exd5, Qxd5, Be6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. After the central pawns are all traded off, White ends up a clean pawn
+      (Black gave back the d-pawn without getting one in return), but White's queen has now
+      moved four times chasing pawns while Black simply developed. That is real
+      compensation in tempo, but it has not been shown to be worth a full pawn yet. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đổi hết tốt trung tâm, hậu Trắng vừa ăn lại tốt d5 thì Đen tung ngay tượng ra e6, vừa phát triển vừa dồn hậu Trắng phải chạy tiếp. Đây chính là điểm mấu chốt của Von Hennig Gambit — Trắng ăn xong tốt thì phải trả giá bằng nhịp độ.
+    en: Having just recaptured on d5, White's queen is immediately met by Black's bishop landing on e6, developing a piece while chasing the queen away again. This is the whole point of the von Hennig Gambit — White collects the pawn but pays for it in tempo.
+    fr: Venant de reprendre en d5, la dame blanche se retrouve aussitôt face au fou noir qui atterrit en e6, développant une pièce tout en la chassant à nouveau. C'est là tout l'intérêt du Gambit von Hennig — les Blancs empochent le pion mais le paient en temps.
+  dismissRest:
+    reason:
+      vi: Trắng không rút hậu về d1. Bất kỳ nước nào khác đều để hậu đứng nguyên trên ô d5 đang bị tượng e6 tấn công, nghĩa là hậu sẽ bị bắt hoặc phải đổi bất lợi, nên phần tốt thừa đang xét ở đây không thay đổi theo hướng nào khác.
+      en: White does not retreat the queen to d1. Anything else leaves the queen sitting on d5 under direct attack from the bishop on e6, meaning it gets captured or has to trade unfavourably, so the extra pawn examined here does not change hands any other way.
+      fr: Les Blancs ne replient pas la dame en d1. Tout le reste laisse la dame en d5 sous l'attaque directe du fou en e6, ce qui signifie qu'elle serait capturée ou devrait s'échanger défavorablement, donc le pion supplémentaire examiné ici ne change pas de main autrement.
+  children:
+    - ply: Qd1
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Hậu Trắng lại phải rút về d1, lần thứ hai trong ván đấu. Đây là ô an toàn duy nhất còn giữ được con tốt vừa ăn được.
+        en: White's queen retreats to d1 again, the second such retreat of the game. It is the only safe square that still holds on to the pawn just won.
+        fr: La dame blanche recule de nouveau en d1, pour la deuxième fois de la partie. C'est la seule case sûre qui permette de conserver le pion tout juste gagné.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng sáu, Đen năm — Trắng hơn đúng một tốt sạch sau loạt đổi tốt ở trung tâm. Bù lại, cả bốn nước hậu của Trắng (Qxd4, Qd1, Qxd5, Qd1) đều không phát triển thêm quân nào, trong khi Đen đã đưa mã ra c6 và tượng ra e6. Cả hai bên đều không còn tốt c hay d, nên ô d4 sẽ mãi mãi không có tốt Trắng nào bảo vệ được nữa, và con mã c6 đã sẵn sàng nhảy vào đó làm tiền đồn.
+          en: Count the pawns and it is six for White, five for Black — White is a clean pawn up after the wave of central trades. In exchange, all four of White's queen moves (Qxd4, Qd1, Qxd5, Qd1) have developed nothing, while Black has brought the knight to c6 and the bishop to e6. Neither side has a c- or d-pawn left, so the d4 square can never be defended by a White pawn again, and the c6-knight is already eyeing it as an outpost.
+          fr: Comptez les pions, six pour les Blancs, cinq pour les Noirs — les Blancs ont un pion net de plus après la série d'échanges au centre. En contrepartie, les quatre coups de dame blancs (Qxd4, Qd1, Qxd5, Qd1) n'ont rien développé, tandis que les Noirs ont amené le cavalier en c6 et le fou en e6. Aucun camp n'a plus de pion c ni d, donc la case d4 ne pourra plus jamais être défendue par un pion blanc, et le cavalier en c6 la guette déjà comme avant-poste.
+        plan:
+          vi: Trắng chơi Nf3, e3 và Be2 hay Bd3 để nhập thành, cố giữ vững con tốt thừa và hoàn tất phát triển trước khi bị bắt kịp. Đen chơi Nf6, Bb4 hoặc O-O, hoàn thiện phát triển nhanh và nhắm vào ô d4 hoặc các cột mở để đòi lại cân bằng.
+          en: White plays Nf3, e3 and Be2 or Bd3, castling and trying to hold the extra pawn while finishing development before Black catches up. Black plays Nf6, Bb4 or O-O, completing development quickly and aiming at the d4 square or the open lines to argue for full compensation.
+          fr: Les Blancs jouent Nf3, e3 et Be2 ou Bd3, roquant et essayant de garder le pion supplémentaire tout en achevant leur développement avant que les Noirs ne rattrapent leur retard. Les Noirs jouent Nf6, Bb4 ou O-O, achevant rapidement leur développement et visant la case d4 ou les colonnes ouvertes pour réclamer une pleine compensation.
+        basis:
+          by: chan
+          at: '2026-09-25'

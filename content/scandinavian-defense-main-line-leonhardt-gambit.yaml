@@ -1,0 +1,59 @@
+# Scandinavian Defense: Main Line, Leonhardt Gambit. Frozen defining line 1.e4 d5 2.exd5 Qxd5
+# 3.Nc3 Qa5 4.b4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). White throws in a further pawn with 4.b4 to deflect and harass the queen on a5.
+# The line was replayed with chess.js before being annotated; the leaf has no free capture, so no
+# `unsettled` is written here.
+id: scandinavian-defense-main-line-leonhardt-gambit
+name: 'Scandinavian Defense: Main Line, Leonhardt Gambit'
+eco: B01
+category: gambit
+side: white
+definingLine: [e4, d5, exd5, Qxd5, Nc3, Qa5, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      White gives up a further clean pawn with 4.b4 purely to gain a tempo on the queen and open
+      the b-file, and while the resulting development lead and pressure are real, nothing is
+      forced and Black keeps the extra pawn with careful play. That mix of a genuine but unproven
+      idea is exactly what dubious describes. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi hậu Đen dạt về a5 để tránh bị mã c3 đuổi, Trắng chơi 4.b4, thí thêm một tốt để đuổi tiếp con hậu và mở cột b cho xe a1, thay vì chỉ đơn giản phát triển như bình thường.
+    en: After the black queen has retreated to a5 to dodge the knight on c3, White plays 4.b4, offering another pawn to chase the queen further and open the b-file for the a1 rook, rather than simply developing normally.
+    fr: Après que la dame noire s'est repliée en a5 pour éviter le cavalier c3, les Blancs jouent 4.b4, offrant un pion de plus pour chasser encore la dame et ouvrir la colonne b pour la tour a1, au lieu de simplement développer normalement.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt b4. Nếu hậu lui về chỗ khác như c5 hay b6, hoặc Đen chọn phát triển bằng Nc6, kế hoạch của Trắng vẫn không đổi, đó là phát triển nhanh và tận dụng cột b vừa mở ra, nên ván cờ được đánh giá như nhau trong mọi trường hợp.
+      en: Black does not take the pawn on b4. If the queen retreats elsewhere such as c5 or b6, or Black develops instead with Nc6, White's plan stays exactly the same — quick development and pressure down the newly opened b-file — so the position is judged the same way regardless.
+      fr: Les Noirs ne prennent pas le pion en b4. Si la dame se replie ailleurs comme c5 ou b6, ou si les Noirs développent plutôt par Nc6, le plan des Blancs reste exactement le même — développement rapide et pression sur la colonne b tout juste ouverte — si bien que la position est jugée de la même façon dans tous les cas.
+  children:
+    - ply: Qxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn luôn con tốt còn để trống, vì không có cách nào phạt ngay lập tức, và chấp nhận rằng con hậu sẽ còn bị đuổi thêm lần nữa để đổi lấy một tốt sạch.
+        en: Black simply takes the pawn that is left hanging, since nothing punishes it right away, accepting that the queen will be chased once more in exchange for a clean pawn.
+        fr: Les Noirs prennent simplement le pion laissé en prise, puisque rien ne le sanctionne dans l'immédiat, acceptant que la dame soit encore chassée une fois de plus en échange d'un pion net.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng chỉ còn sáu và Đen còn bảy, tức là Đen hơn đúng một tốt. Nhưng cột b đã mở toang cho xe a1 của Trắng, nhắm thẳng vào con hậu vừa ăn tốt ở đó, còn cột e cũng nửa mở hướng về phía vua Trắng còn đứng ở e1, hứa hẹn một con xe Đen sau này qua ...Re8.
+          en: Count the pawns and White has only six left to Black's seven, so Black is up exactly one pawn. But the b-file is now wide open for White's a1 rook, aimed straight at the queen that just captured there, and the e-file is also half-open toward the White king still on e1, promising a black rook there later with ...Re8.
+          fr: En comptant les pions, il ne reste que six pions aux Blancs contre sept aux Noirs, donc les Noirs ont exactement un pion de plus. Mais la colonne b est maintenant grande ouverte pour la tour a1 blanche, visant directement la dame qui vient d'y capturer, et la colonne e est elle aussi semi-ouverte vers le roi blanc toujours en e1, promettant une tour noire là-bas plus tard par ...Re8.
+        plan:
+          vi: Trắng chơi Rb1 đuổi hậu, rồi Nf3, Bc4 hay Bd2 và nhập thành, dùng nhịp thời gian kiếm được cùng đôi tượng linh hoạt để bù cho tốt đã mất. Đen lui hậu về a5 hay d6, rồi phát triển bằng Nf6, Nc6, Be7 và nhập thành cánh vua, giữ chắc con tốt thừa và chuẩn bị đưa xe ra cột e nếu vua Trắng chậm nhập thành.
+          en: White plays Rb1, chasing the queen again, then Nf3, Bc4 or Bd2 and castles, using the time gained and the active bishop pair to offset the lost pawn. Black retreats the queen to a5 or d6, then develops with Nf6, Nc6, Be7 and castles kingside, holding on to the extra pawn and preparing to bring a rook to the e-file if White is slow to castle.
+          fr: Les Blancs jouent Rb1, chassant encore la dame, puis Nf3, Bc4 ou Bd2 et roquent, utilisant le temps gagné et la paire de fous actifs pour compenser le pion perdu. Les Noirs replient la dame en a5 ou d6, puis développent par Nf6, Nc6, Be7 et roquent côté roi, conservant le pion supplémentaire et se préparant à amener une tour sur la colonne e si les Blancs tardent à roquer.
+        basis:
+          by: chan
+          at: '2026-09-25'
