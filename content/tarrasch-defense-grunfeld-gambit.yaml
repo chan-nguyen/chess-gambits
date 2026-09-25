@@ -1,0 +1,61 @@
+# Tarrasch Defense: Grünfeld Gambit. Frozen defining line 1.d4 d5 2.c4 e6 3.Nc3 c5 4.cxd5
+# exd5 5.Nf3 Nc6 6.dxc5 d4 7.Na4 b5, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js,
+# including the en passant recapture 8.cxb6.
+id: tarrasch-defense-grunfeld-gambit
+name: 'Tarrasch Defense: Grünfeld Gambit'
+eco: D32
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e6, Nc3, c5, cxd5, exd5, Nf3, Nc6, dxc5, d4, Na4, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black has already sacrificed one pawn to reach an isolated, advanced pawn
+      on d4, and now offers a second with 7...b5, hoping the knight stranded on a4 will have
+      nowhere useful to go. It does, though — a4 still defends b6 and can recapture there —
+      so White simply collects the second pawn as well via en passant, leaving Black two
+      pawns down for a lead in development and the bishop pair. Real compensation, but not
+      proven enough to call the whole idea sound. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã thí một tốt để có được tốt d4 tiến sâu và tách rời, Đen chơi tiếp 7...b5!?, mời Trắng ăn tiếp một tốt nữa bằng cách bắt tốt qua đường, với hy vọng con mã bị đẩy ra biên trên a4 sẽ không biết đi đâu. Đây là Grünfeld Gambit trong phòng thủ Tarrasch — đổi vật chất lấy tốc độ phát triển và cặp tượng.
+    en: Having already given up one pawn to reach an advanced, isolated pawn on d4, Black plays on with 7...b5!?, offering another pawn to the en passant capture, hoping the knight stranded on a4 will have nowhere useful to go. This is the Grünfeld Gambit in the Tarrasch Defense — material traded for speed of development and the bishop pair.
+    fr: Après avoir déjà sacrifié un pion pour obtenir un pion avancé et isolé en d4, les Noirs poursuivent par 7...b5!?, offrant un pion de plus à la prise en passant, espérant que le cavalier relégué en a4 n'aura nulle part où aller. C'est le Gambit Grünfeld dans la défense Tarrasch — du matériel échangé contre de la rapidité de développement et la paire de fous.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt qua đường. Các nước khác như Nc3 hay Be3 để nguyên con tốt b5 đứng đó, và Đen có thêm thời gian củng cố không gian cánh hậu vừa giành được.
+      en: White does not take en passant. Anything else, such as Nc3 or Be3, leaves the b5 pawn standing there, and Black gets more time to consolidate the queenside space just gained.
+      fr: Les Blancs ne prennent pas en passant. Tout le reste, comme Nc3 ou Be3, laisse le pion b5 sur place, et les Noirs gagnent davantage de temps pour consolider l'espace tout juste acquis à l'aile dame.
+  children:
+    - ply: cxb6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt qua đường bằng cxb6, tận dụng việc con tốt b5 vừa tiến hai ô. Con tốt Trắng giờ đứng rất sâu trên b6, được chính con mã a4 bảo vệ, nên không hề bị treo.
+        en: White captures en passant with cxb6, taking advantage of the b5 pawn having just advanced two squares. White's pawn now sits very deep on b6, defended by the very knight on a4, so it is not simply hanging.
+        fr: Les Blancs capturent en passant par cxb6, profitant du fait que le pion b5 vient d'avancer de deux cases. Le pion blanc se retrouve désormais très avancé en b6, défendu par le cavalier en a4 lui-même, il n'est donc pas simplement en prise.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 38, Đen 36 — Trắng hơn hẳn hai tốt. Trắng có một tốt thông đã tiến rất sâu trên b6, ngay trong trại của Đen, lại được mã a4 bảo vệ nên không thể ăn miễn phí; đổi lại, Đen có cặp tượng và một con tốt thông, dù cô lập, trên d4 để bù đắp.
+          en: Count the point values and it is 38 for White, 36 for Black — White is a full two pawns up. White has a passed pawn pushed deep to b6, right inside Black's own camp, defended by the knight on a4 so it cannot simply be won back for free; in return, Black has the bishop pair and a passed, if isolated, pawn on d4 to show for it.
+          fr: En comptant les points, cela donne 38 pour les Blancs, 36 pour les Noirs — les Blancs ont deux pions d'avance. Les Blancs disposent d'un pion passé poussé très loin en b6, en plein dans le camp noir, défendu par le cavalier en a4 et donc impossible à regagner gratuitement ; en contrepartie, les Noirs ont la paire de fous et un pion passé, bien qu'isolé, en d4 à faire valoir.
+        plan:
+          vi: Trắng chơi Bd2 hay Nc3, cố gắng hoàn tất phát triển an toàn trong khi con tốt b6 tự nó đã gây rắc rối lớn cho hàng ngũ Đen. Đen chơi Qf6 hay Bc5, đưa quân ra nhanh và tìm cách phong tỏa hay giành lại con tốt nguy hiểm đó trước khi nó tiến xa hơn.
+          en: White plays Bd2 or Nc3, trying to complete development safely while the b6 pawn causes plenty of trouble for Black's position on its own. Black plays Qf6 or Bc5, developing quickly and looking to blockade or win back that dangerous pawn before it advances any further.
+          fr: Les Blancs jouent Bd2 ou Nc3, essayant d'achever leur développement en toute sécurité pendant que le pion en b6 cause à lui seul bien des soucis à la position noire. Les Noirs jouent Qf6 ou Bc5, développant rapidement et cherchant à bloquer ou à regagner ce pion dangereux avant qu'il n'avance davantage.
+        basis:
+          by: chan
+          at: '2026-09-25'

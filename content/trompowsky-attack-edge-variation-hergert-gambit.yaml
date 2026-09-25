@@ -1,0 +1,59 @@
+# Trompowsky Attack: Edge Variation, Hergert Gambit. Frozen defining line 1.d4 Nf6 2.Bg5
+# Ne4 3.Bh4 d5 4.f3 Nf6 5.Nc3 Bf5 6.e4, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js
+# before being annotated.
+id: trompowsky-attack-edge-variation-hergert-gambit
+name: 'Trompowsky Attack: Edge Variation, Hergert Gambit'
+eco: A45
+category: gambit
+side: white
+definingLine: [d4, Nf6, Bg5, Ne4, Bh4, d5, f3, Nf6, Nc3, Bf5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White throws in 6.e4, offering the pawn to blow the centre open against
+      Black's bishop and knight. Black simply takes with 6...dxe4 and keeps the pawn,
+      taking on doubled e-pawns in return — real central space and development for White,
+      but not shown to be worth a full pawn yet. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng tung tốt lên e4, thách thức cặp tượng-mã của Đen đứng ở f5 và f6, chấp nhận thí con tốt này để mở trung tâm và dồn nhịp phát triển. Đây là ý tưởng của Hergert Gambit trong biến Edge của Trompowsky Attack.
+    en: White pushes the pawn to e4, challenging Black's bishop and knight standing on f5 and f6, willing to offer this pawn to open the centre and gain tempo for development. This is the idea behind the Hergert Gambit in the Edge Variation of the Trompowsky Attack.
+    fr: Les Blancs poussent le pion en e4, défiant le fou et le cavalier noirs postés en f5 et f6, acceptant d'offrir ce pion pour ouvrir le centre et gagner du temps de développement. C'est l'idée du Gambit Hergert dans la Variante Edge du Trompowsky.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4 bằng tốt d5. Các nước khác — lùi tượng f5, đẩy mã f6 đi nơi khác, hay bỏ qua đòn tấn công — đều để nguyên con tốt e4 của Trắng trên bàn cờ, nghĩa là lời mời vẫn chưa được nhận.
+      en: Black does not capture on e4 with the d5 pawn. Anything else — retreating the f5-bishop, moving the f6-knight elsewhere, or ignoring the attack — leaves White's e4 pawn sitting on the board, meaning the offer has not actually been accepted.
+      fr: Les Noirs ne prennent pas en e4 avec le pion d5. Tout le reste — reculer le fou f5, déplacer ailleurs le cavalier f6, ou ignorer l'attaque — laisse le pion blanc en e4 sur l'échiquier, ce qui veut dire que l'offre n'a pas été acceptée.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt e4 bằng tốt d5, quân duy nhất có thể ăn tại đó. Con tốt vừa chiếm được lại đứng ngay trước tốt e7 sẵn có, tạo thành một cặp tốt e chồng nhau.
+        en: Black captures on e4 with the d5 pawn, the only piece that can take there. The newly won pawn lands right in front of the existing e7 pawn, creating a doubled pair of e-pawns.
+        fr: Les Noirs capturent en e4 avec le pion d5, la seule pièce pouvant y prendre. Le pion tout juste gagné atterrit juste devant le pion e7 existant, créant une paire de pions e doublés.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm thì Đen 39, Trắng 38 — Đen hơn đúng một tốt. Nhưng con tốt vừa ăn được lại đứng chồng lên tốt e7 sẵn có, tạo thành cặp tốt e kép, một nhược điểm cấu trúc không thể sửa được để đổi lấy con tốt thừa và không gian trung tâm.
+          en: Count the points and it is 39 for Black, 38 for White — Black is a clean pawn up. But the pawn just won now stands doubled with the existing e7 pawn, an unrepairable structural defect taken on in exchange for the extra pawn and central space.
+          fr: En comptant les points, 39 pour les Noirs, 38 pour les Blancs — les Noirs ont un pion net de plus. Mais le pion tout juste gagné se retrouve doublé avec le pion e7 existant, un défaut structurel irréparable accepté en échange du pion supplémentaire et de l'espace central.
+        plan:
+          vi: Trắng chơi Bd3, Nge2 và O-O, tận dụng việc Đen chưa hoàn tất phát triển để gây sức ép lên trung tâm trước khi cặp tốt kép trở thành mục tiêu rõ ràng. Đen chơi e6, Be7 và O-O, che chắn vua và hoàn tất phát triển, chấp nhận cấu trúc tốt xấu hơn để đổi lấy con tốt thừa.
+          en: White plays Bd3, Nge2 and O-O, using Black's incomplete development to pile pressure on the centre before the doubled pawns become a clear target. Black plays e6, Be7 and O-O, tucking the king away and finishing development, accepting the worse pawn structure in exchange for the extra pawn.
+          fr: Les Blancs jouent Bd3, Nge2 et O-O, profitant du développement incomplet des Noirs pour faire pression sur le centre avant que les pions doublés ne deviennent une cible évidente. Les Noirs jouent e6, Be7 et O-O, mettant le roi à l'abri et achevant leur développement, acceptant la structure de pions moins bonne en échange du pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,62 @@
+# Semi-Slav Defense: Anti-Moscow Gambit. Frozen defining line 1.d4 d5 2.c4 c6 3.Nf3 Nf6 4.Nc3 e6
+# 5.Bg5 h6 6.Bh4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Rather than trading on f6 the way the Moscow Variation does,
+# White retreats to h4, explicitly inviting 6...dxc4 — this project's own classification already
+# notes that the real point of 6.Bh4 is to let the c4 pawn go rather than defend it, banking on
+# quick development and the long diagonal instead. The line was replayed with chess.js before
+# being annotated; the leaf has no free capture, so no `unsettled` is written here.
+id: semi-slav-defense-anti-moscow-gambit
+name: 'Semi-Slav Defense: Anti-Moscow Gambit'
+eco: D43
+category: gambit
+side: white
+definingLine: [d4, d5, c4, c6, Nf3, Nf6, Nc3, e6, Bg5, h6, Bh4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The whole point of 6.Bh4 is to let the c4 pawn go rather than defend it, so calling this a
+      material deficit misreads the position; White already has three minor pieces in play
+      against Black's one, and the pawn Black is about to win doubles awkwardly with the one
+      already on c6, which is exactly the kind of return White is playing for. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Đen chơi 5...h6 để hỏi con tượng, Trắng lui về 6.Bh4 thay vì đổi luôn bằng Bxf6, chủ động mời Đen ăn tốt c4 bằng ...dxc4, vì mục đích thật sự của Bh4 chưa bao giờ là giữ chặt con tốt đó.
+    en: After Black asks the bishop the question with 5...h6, White retreats to 6.Bh4 rather than trading it off with Bxf6, actively inviting Black to take the c4 pawn with ...dxc4, since holding on to that pawn was never really the point of Bh4.
+    fr: Après que les Noirs ont posé la question au fou par 5...h6, les Blancs se replient en 6.Bh4 plutôt que de l'échanger par Bxf6, invitant activement les Noirs à prendre le pion c4 par ...dxc4, puisque garder ce pion n'a jamais vraiment été le but de Bh4.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt c4. Dù chọn cách khác, chẳng hạn phát triển bằng ...Nbd7 hay ...Be7, con tốt c4 vẫn đứng đó chờ được ăn và kế hoạch của Trắng là e4 rồi phát triển nhanh vẫn diễn ra y hệt, nên vị trí được đánh giá như nhau.
+      en: Black does not take the c4 pawn. Whatever else is played instead, such as developing with ...Nbd7 or ...Be7, the c4 pawn is still sitting there waiting to be taken and White's plan of e4 and quick development follows exactly the same path either way, since holding that pawn was never really the point.
+      fr: Les Noirs ne prennent pas le pion c4. Quel que soit l'autre coup joué, comme développer par ...Nbd7 ou ...Be7, le pion c4 reste là à attendre d'être pris et le plan des Blancs, e4 puis un développement rapide, suit exactement le même chemin dans les deux cas, puisque garder ce pion n'a jamais vraiment été le but.
+  children:
+    - ply: dxc4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen nhận lời mời và ăn luôn con tốt, vì Trắng không hề cố gắng giữ nó, và câu hỏi thật sự bây giờ là Trắng sẽ nhận được gì để đổi lại.
+        en: Black accepts the invitation and grabs the pawn, since White has made no attempt to defend it, and the real question now is what White gets in return for it.
+        fr: Les Noirs acceptent l'invitation et prennent le pion, puisque les Blancs n'ont fait aucun effort pour le défendre, et la vraie question désormais est ce que les Blancs obtiennent en échange.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn bảy và Đen còn tám, tức là Đen hơn đúng một tốt trên giấy tờ. Nhưng con tốt vừa ăn được lại đứng chồng lên con tốt sẵn có ở c6, tạo thành cặp tốt chồng khó chữa trên cùng một cột, trong khi Trắng đã đưa được ba quân nhẹ ra ngoài (hai mã và tượng h4) so với chỉ một quân của Đen.
+          en: Count the pawns and White has seven left to Black's eight, so Black is up exactly one pawn on paper. But the pawn just captured doubles up with the one already on c6, forming a hard-to-repair doubled pawn pair on the same file, while White already has three minor pieces developed — two knights and the bishop on h4 — against just one for Black.
+          fr: En comptant les pions, il reste sept pions aux Blancs contre huit aux Noirs, donc les Noirs ont exactement un pion de plus sur le papier. Mais le pion qui vient d'être pris se double avec celui déjà présent en c6, formant une paire de pions doublés difficile à réparer sur la même colonne, tandis que les Blancs ont déjà trois pièces mineures développées — deux cavaliers et le fou en h4 — contre une seule pour les Noirs.
+        plan:
+          vi: Trắng chơi e4 để dựng trung tâm lớn, rồi Bxc4 lấy lại con tốt trong khi đặt tượng vào một đường chéo hoạt bát nhắm tới e6 và f7, tiếp tục với Qc2 hay Bd3 và nhập thành. Đen có thể giữ con tốt thêm một lúc bằng ...b5 và ...Bb7, hoặc đơn giản để nó mất và tập trung vào ...Nbd7, ...Be7 và nhập thành nhanh, xem cấu trúc tốt bị chồng như cái giá hợp lý cho một thế trận chắc chắn.
+          en: White plays e4 to build a big centre, then Bxc4 to win the pawn back while placing the bishop on an active diagonal aimed at e6 and f7, continuing with Qc2 or Bd3 and castling. Black can hold on to the pawn a little longer with ...b5 and ...Bb7, or simply let it go and focus on ...Nbd7, ...Be7 and quick castling, treating the doubled pawn structure as a fair price for a solid position.
+          fr: Les Blancs jouent e4 pour bâtir un grand centre, puis Bxc4 pour regagner le pion tout en plaçant le fou sur une diagonale active visant e6 et f7, poursuivant par Qc2 ou Bd3 et le roque. Les Noirs peuvent garder le pion un peu plus longtemps par ...b5 et ...Bb7, ou simplement le laisser partir et se concentrer sur ...Nbd7, ...Be7 et un roque rapide, considérant la structure de pions doublés comme un prix raisonnable pour une position solide.
+        basis:
+          by: chan
+          at: '2026-09-25'

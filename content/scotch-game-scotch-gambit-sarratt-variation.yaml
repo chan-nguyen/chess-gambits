@@ -1,0 +1,60 @@
+# Scotch Game: Scotch Gambit, Sarratt Variation. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.d4 exd4
+# 4.Bc4 Bc5 5.Ng5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White ignores completing development and jumps straight in with
+# 5.Ng5, renewing the well-known threat of a fork on f7. The line was replayed with chess.js
+# before being annotated; the leaf has no free capture, so no `unsettled` is written here.
+id: scotch-game-scotch-gambit-sarratt-variation
+name: 'Scotch Game: Scotch Gambit, Sarratt Variation'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, Bc4, Bc5, Ng5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      5.Ng5 renews a genuine threat on f7 that Black must answer exactly with 5...Nh6, and by that
+      point White already has three pieces in play against Black's two, with the bishop on c4
+      still bearing on the kingside. This is well-established main-line theory in which the single
+      pawn is a fair price for that much activity against a king that has not yet castled. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Ngay sau khi Đen phát triển tượng ra c5, Trắng lập tức chơi 5.Ng5, làm sống lại đòn tấn công quen thuộc vào f7 bằng cách nhảy mã ra đe doạ chĩa vào đó, thay vì hoàn tất phát triển trước như bình thường.
+    en: Right after Black develops the bishop to c5, White immediately plays 5.Ng5, reviving the familiar attacking idea against f7 by jumping the knight there to threaten it, rather than finishing development first as usual.
+    fr: Juste après que les Noirs ont développé le fou en c5, les Blancs jouent aussitôt 5.Ng5, ranimant l'idée d'attaque bien connue contre f7 en sautant le cavalier là pour la menacer, au lieu de d'abord terminer leur développement comme d'habitude.
+  dismissRest:
+    reason:
+      vi: Đen không đáp lại bằng ...Nh6. Dù chọn cách nào khác, chẳng hạn đi hậu ra hay phát triển bằng cách khác, đòn phối hợp Nxf7 mà nước Ng5 vừa làm sống lại vẫn còn nguyên đó, và ...Nh6 vẫn là cách xử lý sạch sẽ nhất, nên vị trí được đánh giá như nhau.
+      en: Black does not answer with ...Nh6. Whatever else is tried instead, such as a queen move or developing some other way, the Nxf7 fork that Ng5 just revived is still the concern, and Nh6 remains the move that deals with it cleanly, so the position is judged the same way.
+      fr: Les Noirs ne répondent pas par ...Nh6. Quel que soit l'autre essai, comme un coup de dame ou un autre développement, la fourchette Nxf7 que Ng5 vient de ranimer reste préoccupante, et Nh6 demeure le coup qui la règle proprement, si bien que la position est jugée de la même façon.
+  children:
+    - ply: Nh6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Con mã Đen nhảy ra rìa bàn cờ đúng vào chỗ có thể che chắn ô f7, ngăn chặn đòn ăn chĩa vào hậu và xe mà Trắng vừa đe doạ, mà không phải nhượng bộ điều gì khác.
+        en: Black's knight jumps to the rim precisely because it covers f7 from there, stopping the fork on the queen and rook that White has just threatened, without giving up anything else.
+        fr: Le cavalier noir saute sur le bord précisément parce qu'il couvre f7 depuis là, arrêtant la fourchette sur la dame et la tour que les Blancs viennent de menacer, sans rien céder d'autre.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn bảy và Đen còn tám, tức là Đen hơn đúng một tốt. Nhưng đường chéo của tượng c4 vẫn nhắm thẳng vào f7 ngay cạnh vua Đen chưa nhập thành, và dù ...Nh6 đã ngăn được đòn ăn chĩa ngay lập tức, Đen vẫn cần thêm một nước nhập thành nữa trước khi điểm yếu đó thật sự được giải quyết.
+          en: Count the pawns and White has seven left to Black's eight, so Black is up exactly one pawn. But the c4 bishop's diagonal still points straight at f7 right next to Black's uncastled king, and although ...Nh6 has stopped the immediate fork, Black still needs one more move to castle before that weakness is properly dealt with.
+          fr: En comptant les pions, il reste sept pions aux Blancs contre huit aux Noirs, donc les Noirs ont exactement un pion de plus. Mais la diagonale du fou c4 vise toujours directement f7, juste à côté du roi noir qui n'a pas roqué, et bien que ...Nh6 ait arrêté la fourchette immédiate, les Noirs ont encore besoin d'un coup de plus pour roquer avant que cette faiblesse ne soit vraiment réglée.
+        plan:
+          vi: Trắng chơi O-O, Nc3 và Re1, giữ áp lực lên f7 và e6 trong khi hoàn tất phát triển, đặt cược rằng hoạt động của quân sẽ đáng giá hơn một tốt. Đen chơi ...O-O ngay để cất vua vào nơi an toàn, rồi ...d6 và ...Be6 để đổi con tượng nguy hiểm ở c4, củng cố con tốt thừa bằng một cấu trúc lành mạnh.
+          en: White plays O-O, Nc3 and Re1, keeping the pressure on f7 and e6 while completing development, betting that the piece activity is worth more than the pawn. Black plays ...O-O at once to tuck the king away safely, then ...d6 and ...Be6 to trade off the dangerous c4 bishop, consolidating the extra pawn with a healthy structure.
+          fr: Les Blancs jouent O-O, Nc3 et Re1, maintenant la pression sur f7 et e6 tout en achevant leur développement, pariant que l'activité des pièces vaut plus que le pion. Les Noirs jouent ...O-O aussitôt pour mettre le roi en sécurité, puis ...d6 et ...Be6 pour échanger le dangereux fou c4, consolidant le pion supplémentaire avec une structure saine.
+        basis:
+          by: chan
+          at: '2026-09-25'

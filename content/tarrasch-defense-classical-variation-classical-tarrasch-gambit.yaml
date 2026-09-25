@@ -1,0 +1,64 @@
+# Tarrasch Defense: Classical Variation, Classical Tarrasch Gambit. Frozen defining line
+# 1.d4 d5 2.c4 e6 3.Nc3 c5 4.cxd5 exd5 5.Nf3 Nc6 6.g3 Nf6 7.Bg2 Be7 8.O-O O-O 9.dxc5 d4,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+id: tarrasch-defense-classical-variation-classical-tarrasch-gambit
+name: 'Tarrasch Defense: Classical Variation, Classical Tarrasch Gambit'
+eco: D34
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e6, Nc3, c5, cxd5, exd5, Nf3, Nc6, g3, Nf6, Bg2, Be7, O-O, O-O, dxc5, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Instead of recapturing on c5, Black pushes the d-pawn to d4, attacking
+      the c3-knight and offering a second pawn for open lines and piece activity. After
+      White simply takes it with Nxd4, Black is briefly down two pawns, and even once the
+      loose c5-pawn is won back with Bxc5, Black is still a clean pawn down with only
+      development to show for it — real, but not shown to be worth a full pawn yet. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt c5 ngay bằng ...Bxc5, Đen đẩy tốt d lên d4, tấn công thẳng vào mã c3 và mời Trắng ăn thêm một tốt nữa để đổi lấy trung tâm thoáng và các đường chéo mở. Đây là ý tưởng của Classical Tarrasch Gambit.
+    en: Rather than recapturing the c5 pawn at once with ...Bxc5, Black pushes the d-pawn to d4, attacking the c3-knight directly and offering a second pawn in exchange for open lines and freer piece play. This is the whole idea of the Classical Tarrasch Gambit.
+    fr: Plutôt que de reprendre aussitôt le pion c5 par ...Bxc5, les Noirs poussent le pion d en d4, attaquant directement le cavalier c3 et offrant un second pion contre des lignes ouvertes et un jeu de pièces plus libre. C'est toute l'idée du Gambit Tarrasch Classique.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt d4 bằng mã f3. Các nước khác — dời mã c3 đi nơi khác, tìm cách bảo vệ nó, hoặc bỏ qua đòn tấn công — đều để nguyên con tốt d4 trên bàn cờ theo cách khác, nên không dẫn tới đúng thế cờ đang được phân tích ở đây.
+      en: White does not capture the d4 pawn with the f3-knight. Anything else — moving the attacked c3-knight elsewhere, defending it some other way, or ignoring the attack — leaves that pawn on the board in a different way, so it does not lead to the exact position analysed here.
+      fr: Les Blancs ne prennent pas le pion d4 avec le cavalier f3. Tout le reste — déplacer ailleurs le cavalier c3 attaqué, le défendre autrement, ou ignorer l'attaque — laisse ce pion sur l'échiquier d'une autre façon, et ne mène donc pas à la position précise analysée ici.
+  children:
+    - ply: Nxd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt d4 bằng mã từ f3, vừa giải toả đòn tấn công vào mã c3 vừa giành thêm một tốt nữa, tạm thời hơn hai tốt.
+        en: White captures the d4 pawn with the knight from f3, removing the attack on the c3-knight and picking up a second pawn, temporarily two pawns to the good.
+        fr: Les Blancs capturent le pion d4 avec le cavalier venu de f3, levant l'attaque sur le cavalier c3 et empochant un second pion, deux pions de mieux pour l'instant.
+      unsettled: >-
+        Bxc5 is going free and the evaluation says so — the pawn White won earlier on c5
+        has no pawn left to defend it now that the f3-knight recaptured on d4 instead, so
+        Black regains it at once.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm thì Trắng 38, Đen 36 — hơn hai tốt trên giấy. Nhưng con tốt Trắng đứng ở c5 không còn ai bảo vệ, nên Bxc5 lấy lại ngay một trong hai tốt đó, đưa cách biệt thực tế về đúng một tốt. Bù lại, tượng c8 của Đen đã có đường chéo hoàn toàn thông thoáng vì tốt d không còn cản nữa.
+          en: Count the points and it is 38 for White, 36 for Black — two pawns up on paper. But the White pawn sitting on c5 has nothing left to defend it, so Bxc5 wins one of them straight back, bringing the real gap down to a single pawn. In return, Black's c8-bishop already has a fully open diagonal now that the d-pawn is out of its way.
+          fr: En comptant les points, 38 pour les Blancs, 36 pour les Noirs — deux pions d'avance sur le papier. Mais le pion blanc posté en c5 n'a plus personne pour le défendre, donc Bxc5 en récupère un aussitôt, ramenant l'écart réel à un seul pion. En contrepartie, le fou c8 des Noirs dispose déjà d'une diagonale entièrement dégagée puisque le pion d ne la bloque plus.
+        plan:
+          vi: Trắng chơi Nb3 hoặc Nf3, b4 và Bb2, cố giữ vững con tốt còn lại và hoàn tất phát triển tượng c1. Đen chơi Bxc5 ngay, rồi b6 và Bb7 hoặc Rd8, dùng cặp tượng và các cột mở để gây sức ép bù cho con tốt đã mất.
+          en: White plays Nb3 or Nf3, b4 and Bb2, trying to hold on to the remaining extra pawn and finish developing the c1-bishop. Black plays Bxc5 at once, then b6 and Bb7 or Rd8, using the bishop pair and the open lines to press for compensation for the pawn still down.
+          fr: Les Blancs jouent Nb3 ou Nf3, b4 et Bb2, essayant de conserver le pion supplémentaire restant et d'achever le développement du fou c1. Les Noirs jouent Bxc5 aussitôt, puis b6 et Bb7 ou Rd8, utilisant la paire de fous et les colonnes ouvertes pour faire pression et compenser le pion qui manque encore.
+        basis:
+          by: chan
+          at: '2026-09-25'
