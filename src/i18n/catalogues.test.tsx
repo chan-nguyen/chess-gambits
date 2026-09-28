@@ -49,7 +49,7 @@ describe('the board vocabulary', () => {
 
   const Probe = () => {
     const labels = useBoardLabels()
-    const every = [labels.board, labels.emptySquare, ...Object.values(labels.pieces)]
+    const every = [labels.board, labels.emptySquare, labels.target, ...Object.values(labels.pieces)]
 
     return (
       <>
@@ -77,14 +77,15 @@ describe('the board vocabulary', () => {
     }
   }
 
+  // The twelve pieces, plus the grid's name, an empty square, a target and the flip control.
   it('names the board and all twelve pieces, in the source locale', () => {
-    expect(Object.keys(vi.board)).toHaveLength(PIECE_ROLES.length * 2 + 2)
+    expect(Object.keys(vi.board)).toHaveLength(PIECE_ROLES.length * 2 + 4)
   })
 
   it.each([...locales])('resolves every one of them in %s', async (locale) => {
     const { count, unresolved } = await probe(locale)
 
-    expect(count).toBe(String(PIECE_ROLES.length * 2 + 2))
+    expect(count).toBe(String(PIECE_ROLES.length * 2 + 3))
     expect(unresolved, 'a piece name fell through to its key').toBe('0')
   })
 

@@ -42,6 +42,8 @@ const en: PartialTranslations = {
   board: {
     label: 'Chessboard',
     emptySquare: 'empty square',
+    target: 'can move here',
+    flip: 'Flip board',
     whiteKing: 'white king',
     whiteQueen: 'white queen',
     whiteRook: 'white rook',
@@ -74,7 +76,7 @@ const en: PartialTranslations = {
     plyList: 'Moves in this line',
     shortcuts: 'Keyboard shortcuts',
     shortcutsHint:
-      'Use the left and right arrow keys to move through the line, and 1 to 9 to pick a reply.',
+      'Use the left and right arrow keys to move through the line, 1 to 9 to pick a reply, and F to flip the board.',
     branchNotFound: 'This gambit has no such move, so the nearest position is shown:',
     capture: 'capture',
     check: 'check',

@@ -206,6 +206,12 @@ const showsBoardAndControlsTogether = async (page: Page): Promise<void> => {
     navigator.bottom,
     `the controls reach ${navigator.bottom}px of ${navigator.viewport}px`,
   ).toBeLessThanOrEqual(navigator.viewport)
+
+  // The flip control shares the navigator's row, so it is held to the same rule.
+  const flip = await geometryOf(page.getByRole('button', { name: vi.board.flip }))
+  expect(flip.bottom, `the flip control reaches ${flip.bottom}px`).toBeLessThanOrEqual(
+    flip.viewport,
+  )
 }
 
 for (const { name, width, height } of VIEWPORTS) {
@@ -256,6 +262,10 @@ test.describe('at 360px in French', () => {
       navigator.bottom,
       `the controls reach ${navigator.bottom}px of ${navigator.viewport}px`,
     ).toBeLessThanOrEqual(navigator.viewport)
+    const flip = await geometryOf(page.locator('.learning-surface__flip'))
+    expect(flip.bottom, `the flip control reaches ${flip.bottom}px`).toBeLessThanOrEqual(
+      flip.viewport,
+    )
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(360)
   })
 })

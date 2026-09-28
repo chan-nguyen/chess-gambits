@@ -58,6 +58,7 @@ const EXPECTED_TOKENS: readonly string[] = [
   '--color-board-highlight',
   '--color-board-check',
   '--color-board-coordinate',
+  '--color-board-legal',
   '--color-piece-white-fill',
   '--color-piece-white-stroke',
   '--color-piece-black-fill',
@@ -89,12 +90,9 @@ describe('the token table itself', () => {
   })
 
   // Without this the table could drift into decoration while the board used something else.
-  it.each(EXPECTED_TOKENS.filter((token) => token !== '--color-board-legal'))(
-    'is what the board actually draws with: %s',
-    (token) => {
-      expect(boardStyles).toContain(`var(${token})`)
-    },
-  )
+  it.each(EXPECTED_TOKENS)('is what the board actually draws with: %s', (token) => {
+    expect(boardStyles).toContain(`var(${token})`)
+  })
 })
 
 describe.each(THEMES)('in the %s theme', (theme) => {

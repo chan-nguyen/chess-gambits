@@ -21,6 +21,7 @@ export const useBoardLabels = (): BoardLabels => {
     () => ({
       board: t('board.label'),
       emptySquare: t('board.emptySquare'),
+      target: t('board.target'),
       pieces: {
         whiteKing: t('board.whiteKing'),
         whiteQueen: t('board.whiteQueen'),

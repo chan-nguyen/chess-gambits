@@ -52,10 +52,17 @@ export type BoardProps = {
   readonly check?: Square | undefined
   /**
    * Arbitrary squares to mark with a background tint (#131; a ring before it). The home
-   * board is the only caller today, and uses it for the clicked square and its legal
-   * destinations — but this component does not know or care what a mark means.
+   * board is the only caller today, and uses it for the selected square — its legal
+   * destinations are `targets` below — but this component does not know or care what a
+   * mark means.
    */
   readonly marks?: readonly Square[] | undefined
+  /**
+   * Squares to draw a dot on — or, where a piece stands, a ring around it. The home board
+   * passes the selected piece's legal destinations; this component does not know that
+   * either, only that these squares get a dot and say so in their accessible name.
+   */
+  readonly targets?: readonly Square[] | undefined
   /** Off for previews, which are small and carry no coordinates. */
   readonly showCoordinates?: boolean | undefined
 }
@@ -76,6 +83,9 @@ const squareOf = (element: EventTarget | null): FocusedSquare | undefined => {
 
 const SQUARE_CENTRE = 0.5
 const CHECK_RADIUS = 0.45
+// A third of the square across, and a ring just inside its edge, as chess.com draws them.
+const TARGET_RADIUS = 0.16
+const TARGET_RING_RADIUS = 0.45
 // Unitless SVG user units, so no px reaches the stylesheet (see Board.css).
 const COORDINATE_SIZE = 0.2
 
@@ -102,12 +112,14 @@ export const Board = ({
   captured,
   check,
   marks,
+  targets,
   showCoordinates = true,
 }: BoardProps) => {
   const position = useMemo(() => parseFen(fen), [fen])
   const files = useMemo(() => orientedFiles(orientation), [orientation])
   const ranks = useMemo(() => orientedRanks(orientation), [orientation])
   const markedSquares = useMemo(() => new Set(marks ?? []), [marks])
+  const targetSquares = useMemo(() => new Set(targets ?? []), [targets])
   const gridRef = useRef<HTMLDivElement>(null)
 
   // Stripped to letters and digits so the id is safe in a `#fragment` reference.
@@ -248,6 +260,22 @@ export const Board = ({
           })
           .sort((one, other) => ((one.key ?? '') < (other.key ?? '') ? -1 : 1))}
 
+        {/* Over the pieces: a ring must stay visible around the piece it would take. */}
+        {cells
+          .filter((cell) => targetSquares.has(cell.square))
+          .map((cell) => {
+            const occupied = position.has(cell.square)
+            return (
+              <circle
+                key={`target-${cell.square}`}
+                className={`board__target${occupied ? ' board__target--occupied' : ''}`}
+                cx={cell.x + SQUARE_CENTRE}
+                cy={cell.y + SQUARE_CENTRE}
+                r={occupied ? TARGET_RING_RADIUS : TARGET_RADIUS}
+              />
+            )
+          })}
+
         {showCoordinates &&
           cells.map((cell) => (
             <g key={`coordinate-${cell.square}`}>
@@ -299,7 +327,12 @@ export const Board = ({
                   data-square={square}
                   data-file={file}
                   data-rank={rank}
-                  aria-label={squareLabel(square, position.get(square), labels)}
+                  aria-label={squareLabel(
+                    square,
+                    position.get(square),
+                    labels,
+                    targetSquares.has(square),
+                  )}
                 />
               )
             })}

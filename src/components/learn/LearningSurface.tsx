@@ -6,6 +6,7 @@ import { useBoardLabels } from '../../i18n/board-labels.ts'
 import { Translated } from '../../i18n/Translated.tsx'
 import { useTranslated } from '../../i18n/useTranslated.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
+import { orient, withFlip } from '../../lib/flip.ts'
 import { defaultLocale, isLocale } from '../../lib/locale.ts'
 import { Board } from '../board/Board.tsx'
 import { AnnotationPanel } from './AnnotationPanel.tsx'
@@ -25,6 +26,7 @@ import {
   type ShortcutSetting,
 } from './shortcuts.ts'
 import { branchChoices, plyLabel, type BranchChoice } from './tree-path.ts'
+import { useFlip } from './use-flip.ts'
 import { addressKey, addressSearch, rootAddress, walkEntry, type Address } from './walk.ts'
 
 /**
@@ -70,7 +72,8 @@ const belongsToSomethingElse = (target: EventTarget | null): boolean => {
 
 export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSurfaceProps) => {
   const navigate = useNavigate()
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
+  const { flipped, keepFlip } = useFlip()
   const { i18n } = useTranslation()
   const translated = useTranslated()
   const labels = useBoardLabels()
@@ -78,6 +81,15 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
   const [shortcuts, setShortcuts] = useState<ShortcutSetting>(readShortcutSetting)
 
   const locale = isLocale(i18n.language) ? i18n.language : defaultLocale
+
+  /**
+   * The learner's side at the bottom until they turn it round (F2). Every board on the page
+   * reads this one value — the previews too, so a reply is drawn the way the position above
+   * it is — and the address the flip goes to is the current one, byte for byte, with only
+   * `flip` changed: turning the board is not moving through the line.
+   */
+  const orientation = orient(entry.side, flipped)
+  const flipTarget = withFlip(search, !flipped)
 
   /**
    * One walk, from the initial position through the defining line and into the tree (#70).
@@ -118,9 +130,9 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
   const go = useCallback(
     (target: Address | null): void => {
       if (target === null) return
-      void navigate({ pathname, search: addressSearch(target) })
+      void navigate({ pathname, search: keepFlip(addressSearch(target)) })
     },
-    [navigate, pathname],
+    [navigate, pathname, keepFlip],
   )
 
   /**
@@ -139,10 +151,11 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
     previous: Address | null
     next: Address | null
     choices: readonly BranchChoice[]
-  }>({ previous, next, choices })
+    flip: string
+  }>({ previous, next, choices, flip: flipTarget })
 
   useLayoutEffect(() => {
-    targets.current = { previous, next, choices }
+    targets.current = { previous, next, choices, flip: flipTarget }
   })
 
   /**
@@ -178,6 +191,13 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
         return
       }
 
+      // `f` flips (§4), under the same switch as every other single-key shortcut here.
+      if (event.key === 'f') {
+        event.preventDefault()
+        void navigate({ pathname, search: targets.current.flip })
+        return
+      }
+
       /*
        * AC 6. `1`-`9` select the first nine branches, and only where there is a branch to
        * select: a digit pressed at a node with one continuation must not become a second
@@ -197,7 +217,7 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [shortcuts, go])
+  }, [shortcuts, go, navigate, pathname])
 
   /**
    * AC 5. Focus lands on what changed, not at the top of the page.
@@ -288,22 +308,50 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
        */}
       <div className="learning-surface__stage">
         <div className="learning-surface__board">
+          {/* Keyed by orientation so a flip redraws in place: the same pieces with new
+              transforms would otherwise all slide across the board at once (#72). */}
           <Board
+            key={orientation}
             fen={walk.fen}
             labels={labels}
-            orientation={entry.side}
+            orientation={orientation}
             announcement={announcement}
             lastMove={lastMove}
             arrivedFrom={motion?.arrivedFrom}
             captured={motion?.captured}
           />
         </div>
-        <MoveNavigator
-          start={walk.atStart ? null : walk.start}
-          root={walk.atRoot ? null : rootAddress}
-          previous={previous}
-          next={next}
-        />
+        <div className="learning-surface__controls">
+          <MoveNavigator
+            start={walk.atStart ? null : walk.start}
+            root={walk.atRoot ? null : rootAddress}
+            previous={previous}
+            next={next}
+          />
+          {/* A button rather than a link like its neighbours: it toggles a view of this
+              position rather than going to another one, and `aria-pressed` says which way
+              round the board is, which a link cannot. An icon, with its label read but not
+              drawn: the row has no room for the words (LearningSurface.css). */}
+          <button
+            type="button"
+            className="learning-surface__flip"
+            aria-pressed={flipped}
+            title={translated('board.flip').text}
+            onClick={() => void navigate({ pathname, search: flipTarget })}
+          >
+            <svg
+              className="learning-surface__flip-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <path d="M7 20V4M3 8l4-4 4 4M17 4v16M13 16l4 4 4-4" />
+            </svg>
+            <span className="visually-hidden">
+              <Translated id="board.flip" />
+            </span>
+          </button>
+        </div>
       </div>
 
       <div className="learning-surface__context">
@@ -341,7 +389,7 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
               fen={node.fen}
               dismissed={dismissed}
               dismissRest={node.dismissRest}
-              orientation={entry.side}
+              orientation={orientation}
               locale={locale}
               judgement={entry.judgement}
               shortcuts={shortcuts}
@@ -352,7 +400,7 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
           <PlanChoices
             choices={choices}
             fen={node.fen}
-            orientation={entry.side}
+            orientation={orientation}
             shortcuts={shortcuts}
           />
         )}
