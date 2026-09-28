@@ -190,12 +190,22 @@ export type BoardLabels = {
   readonly board: string
   /** Spoken for a square with nothing on it, e.g. `ô trống`. */
   readonly emptySquare: string
+  /**
+   * Appended to a square the caller passed as a target, e.g. `đi được tới đây` — the words
+   * for what the dot on it draws, so the dot is not a sighted-only signal.
+   */
+  readonly target: string
   readonly pieces: Readonly<Record<PieceKey, string>>
 }
 
-/** `f3, mã trắng` — the square, then its occupant, both in the active locale. */
+/**
+ * `f3, mã trắng` — the square, then its occupant, both in the active locale — and, on a
+ * target, what the dot on it means: `f3, ô trống, đi được tới đây`.
+ */
 export const squareLabel = (
   square: Square,
   piece: PieceKey | undefined,
   labels: BoardLabels,
-): string => `${square}, ${piece === undefined ? labels.emptySquare : labels.pieces[piece]}`
+  target = false,
+): string =>
+  `${square}, ${piece === undefined ? labels.emptySquare : labels.pieces[piece]}${target ? `, ${labels.target}` : ''}`

@@ -81,6 +81,8 @@ describe('the policy', () => {
     ['style-src', "'self'"],
     ['img-src', "'self'"],
     ['connect-src', "'self'"],
+    // The analysis page's engine (ADR-0012): same-origin, and nothing else.
+    ['worker-src', "'self'"],
     ['font-src', "'none'"],
     ['base-uri', "'none'"],
     ['form-action', "'none'"],

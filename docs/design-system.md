@@ -20,10 +20,11 @@ Locale is the first path segment on every route, so every URL is shareable with 
 
 | Route                  | Purpose                                                                        | State in the URL                                 |
 | ---------------------- | ------------------------------------------------------------------------------ | ------------------------------------------------ |
-| `/:locale/`            | What this is, in one screen. Entry to the catalogue. Resume where you left off | —                                                |
+| `/:locale/`            | What this is, in one screen. Entry to the catalogue. Resume where you left off | `moves` (SAN played on the home board), `flip`   |
 | `/:locale/gambits`     | The full catalogue. Search and filter                                          | `q`, `side`, `category`, `soundness`, `tier`     |
 | `/:locale/gambits/:id` | The learning surface: board, navigation, tree, annotation                      | `line` (SAN path), `prelude` (ply count), `flip` |
 | `/:locale/about`       | What the coverage tiers mean, how mate claims are verified, credits, licences  | —                                                |
+| `/:locale/analysis`    | Play or paste a line and see Stockfish's estimate of each position (#154)      | `moves` (the whole line), `ply`, `flip`          |
 | `*`                    | Not found, with a route back to the catalogue                                  | —                                                |
 
 `/` with no locale resolves the visitor's preferred language and redirects once. The chosen locale
@@ -32,6 +33,11 @@ is remembered in `localStorage` so the redirect is stable on return visits.
 **Every piece of view state is in the URL.** Which gambit, which branch, which language, which board
 orientation, which filters. This is requirement F8 and it is not negotiable: it is what makes a
 branch shareable and a bug reproducible.
+
+`flip=1` turns the board round on both routes that have one, against that page's own default — the
+learner's side on the gambit page, White on the home page — so it means "the other way up" rather
+than naming a colour, and an unflipped board carries no parameter. Every link and every move keeps
+it (`src/lib/flip.ts`).
 
 `line` and `prelude` are the two halves of one walk and never appear together. `line` is the path
 from the gambit root and means exactly what it has always meant; `prelude` counts plies of the
@@ -134,6 +140,8 @@ edited here without re-checking contrast fails that test rather than shipping.
 | `--color-board-highlight`    | `#e4c05a` | `#c2a24e` | Both squares of the last ply, and the selected square |
 | `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check                           |
 | `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers                         |
+| `--color-board-legal`        | `#1f1a14` | `#14110c` | Dot or ring on a square the selected piece can reach  |
+| `--color-board-arrow`        | `#15781b` | `#3a9142` | The engine's best move, on the analysis page          |
 | `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                                      |
 | `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                                   |
 | `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                                      |
@@ -157,10 +165,16 @@ too — shares `--color-board-highlight` instead of its own token. The two never
 screen together, since a commit always clears the selection that produced a mark, so one
 colour still reads as one meaning ("this square matters right now") rather than two.
 
-`--color-board-legal` still has no value. #131 briefly had the home board show legal
-destinations as well as the selected square, reusing `--color-board-mark` for both; the
-destinations are gone now, by the same follow-up request that retired that token, so
-nothing on screen currently needs a second colour for "a square you could move to."
+`--color-board-legal` has a value as of 2026-09-28, by user request ("tạo hiệu ứng con cờ được
+chọn & các ô có thể đi của con cờ giống giống như chess.com/analysis"). #131 briefly showed the
+selected piece's destinations as a background tint and a follow-up removed them ("không cần set
+background hết các ô nó có thể đi được"); what returns is not that tint but chess.com's shapes — a
+dot on an empty square, a ring around a piece that can be taken — drawn translucent over the
+square rather than filling it. `Board` takes them as `targets`, a list of squares it does not
+understand, and the home board computes them from `chess.js`. The value is the coordinate colour
+because both are warm near-black ink on the same two squares; they are separate tokens because
+they are separate roles. The opacity (`0.18`) is in `Board.css`, since §2's table holds opaque
+colours only.
 
 **`--color-board-highlight` marks both squares of the last ply, as of 2026-09-18, and neither has a
 ring beside it.** #80 removed the departed-square token: a tint is a surface — something a piece
@@ -256,6 +270,19 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
   than its own retired token; the two exceptions were already the same shape of thing and are now
   the same colour as well. Every other colour-coded element on the site still holds the rule with
   no exception.
+- **The target dots hold the shape rule and break the contrast floor, on purpose.** A dot and a
+  ring are shapes, so they need no exception to the rule above. What they do not meet is WCAG 2.2
+  _1.4.11 Non-text Contrast_: at `0.18` opacity a dot measures about 1.3:1 against the square under
+  it, and reaching 3:1 on the dark square in the dark theme needs about 75% — a near-black blot,
+  nothing like the reference the owner asked for. Offered both on 2026-09-28, the owner chose the
+  chess.com look. Two things keep this from being colour-only information: every target cell's
+  accessible name ends with `BoardLabels.target` ("đi được tới đây"), and a click on a square that
+  is not a target does nothing harmful — it selects another piece or is ignored.
+- **The analysis page's best-move arrow is the same kind of exception** (#154):
+  `--color-board-arrow`, green as lichess draws engine arrows so it is never read as the gold
+  last-ply or selection tint it may cross, at `0.8` opacity so the pieces under it still read. It
+  measures under 3:1 against the dark square. It carries nothing alone: the move it draws is the
+  first move of the best line, written out in the engine panel beside the board.
 - Every colour-coded element passes a greyscale screenshot review. This is a review step, not a
   suggestion.
 

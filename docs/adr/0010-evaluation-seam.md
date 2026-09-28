@@ -7,7 +7,8 @@ implementation can be added later without touching a component.
 
 ## Status
 
-accepted
+accepted — **amended by ADR-0012**, which made the seam real code, made it stream, and answered
+the licence question below by the owner's decision.
 
 ## The decision
 

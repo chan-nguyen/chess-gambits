@@ -1,15 +1,19 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import './LearningSurface.css'
 import { useBoardLabels } from '../../i18n/board-labels.ts'
 import { Translated } from '../../i18n/Translated.tsx'
 import { useTranslated } from '../../i18n/useTranslated.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
+import { orient, withFlip } from '../../lib/flip.ts'
 import { defaultLocale, isLocale } from '../../lib/locale.ts'
+import { routePath, routeSegments } from '../../lib/routes.ts'
 import { Board } from '../board/Board.tsx'
+import { movesSearch } from '../home/moves-param.ts'
 import { AnnotationPanel } from './AnnotationPanel.tsx'
 import { BranchChoices } from './BranchChoices.tsx'
+import { FlipButton } from './FlipButton.tsx'
 import { MoveList } from './MoveList.tsx'
 import { MoveNavigator } from './MoveNavigator.tsx'
 import { OutcomeCard } from './OutcomeCard.tsx'
@@ -19,12 +23,14 @@ import { announcementOf, localiseAnnotation } from './annotation.ts'
 import { lastPlyBetween } from './last-ply.ts'
 import { plyMotionBetween } from './ply-motion.ts'
 import {
+  belongsToSomethingElse,
   branchShortcutIndex,
   rememberShortcutSetting,
   readShortcutSetting,
   type ShortcutSetting,
 } from './shortcuts.ts'
 import { branchChoices, plyLabel, type BranchChoice } from './tree-path.ts'
+import { useFlip } from './use-flip.ts'
 import { addressKey, addressSearch, rootAddress, walkEntry, type Address } from './walk.ts'
 
 /**
@@ -52,25 +58,10 @@ export type LearningSurfaceProps = {
   readonly mate: number | null
 }
 
-/**
- * Whether a key press belongs to something else on the page.
- *
- * The board owns the arrow keys inside its own grid — they walk its roving tabindex from
- * square to square — so a global handler that also fired would move the cursor *and* leave
- * the position, which is two things from one press. Text fields are excluded for the usual
- * reason, which is emphatically **not** how AC 2 is satisfied: suppressing a shortcut
- * inside an input does not meet 2.1.4, the switch in `shortcuts.ts` does.
- */
-const belongsToSomethingElse = (target: EventTarget | null): boolean => {
-  if (!(target instanceof HTMLElement)) return false
-  if (target.isContentEditable) return true
-  if (target.closest('[role="grid"]') !== null) return true
-  return target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT'
-}
-
 export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSurfaceProps) => {
   const navigate = useNavigate()
-  const { pathname } = useLocation()
+  const { pathname, search } = useLocation()
+  const { flipped, keepFlip } = useFlip()
   const { i18n } = useTranslation()
   const translated = useTranslated()
   const labels = useBoardLabels()
@@ -78,6 +69,15 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
   const [shortcuts, setShortcuts] = useState<ShortcutSetting>(readShortcutSetting)
 
   const locale = isLocale(i18n.language) ? i18n.language : defaultLocale
+
+  /**
+   * The learner's side at the bottom until they turn it round (F2). Every board on the page
+   * reads this one value — the previews too, so a reply is drawn the way the position above
+   * it is — and the address the flip goes to is the current one, byte for byte, with only
+   * `flip` changed: turning the board is not moving through the line.
+   */
+  const orientation = orient(entry.side, flipped)
+  const flipTarget = withFlip(search, !flipped)
 
   /**
    * One walk, from the initial position through the defining line and into the tree (#70).
@@ -118,9 +118,9 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
   const go = useCallback(
     (target: Address | null): void => {
       if (target === null) return
-      void navigate({ pathname, search: addressSearch(target) })
+      void navigate({ pathname, search: keepFlip(addressSearch(target)) })
     },
-    [navigate, pathname],
+    [navigate, pathname, keepFlip],
   )
 
   /**
@@ -139,10 +139,11 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
     previous: Address | null
     next: Address | null
     choices: readonly BranchChoice[]
-  }>({ previous, next, choices })
+    flip: string
+  }>({ previous, next, choices, flip: flipTarget })
 
   useLayoutEffect(() => {
-    targets.current = { previous, next, choices }
+    targets.current = { previous, next, choices, flip: flipTarget }
   })
 
   /**
@@ -178,6 +179,13 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
         return
       }
 
+      // `f` flips (§4), under the same switch as every other single-key shortcut here.
+      if (event.key === 'f') {
+        event.preventDefault()
+        void navigate({ pathname, search: targets.current.flip })
+        return
+      }
+
       /*
        * AC 6. `1`-`9` select the first nine branches, and only where there is a branch to
        * select: a digit pressed at a node with one continuation must not become a second
@@ -197,7 +205,7 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [shortcuts, go])
+  }, [shortcuts, go, navigate, pathname])
 
   /**
    * AC 5. Focus lands on what changed, not at the top of the page.
@@ -288,22 +296,31 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
        */}
       <div className="learning-surface__stage">
         <div className="learning-surface__board">
+          {/* Keyed by orientation so a flip redraws in place: the same pieces with new
+              transforms would otherwise all slide across the board at once (#72). */}
           <Board
+            key={orientation}
             fen={walk.fen}
             labels={labels}
-            orientation={entry.side}
+            orientation={orientation}
             announcement={announcement}
             lastMove={lastMove}
             arrivedFrom={motion?.arrivedFrom}
             captured={motion?.captured}
           />
         </div>
-        <MoveNavigator
-          start={walk.atStart ? null : walk.start}
-          root={walk.atRoot ? null : rootAddress}
-          previous={previous}
-          next={next}
-        />
+        <div className="learning-surface__controls">
+          <MoveNavigator
+            start={walk.atStart ? null : walk.start}
+            root={walk.atRoot ? null : rootAddress}
+            previous={previous}
+            next={next}
+          />
+          <FlipButton
+            flipped={flipped}
+            onFlip={() => void navigate({ pathname, search: flipTarget })}
+          />
+        </div>
       </div>
 
       <div className="learning-surface__context">
@@ -341,7 +358,7 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
               fen={node.fen}
               dismissed={dismissed}
               dismissRest={node.dismissRest}
-              orientation={entry.side}
+              orientation={orientation}
               locale={locale}
               judgement={entry.judgement}
               shortcuts={shortcuts}
@@ -352,7 +369,7 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
           <PlanChoices
             choices={choices}
             fen={node.fen}
-            orientation={entry.side}
+            orientation={orientation}
             shortcuts={shortcuts}
           />
         )}
@@ -385,6 +402,26 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
         )}
 
         <MoveList steps={walk.steps} start={walk.start} />
+        {/*
+         * The position on screen, handed to Stockfish on its own page (#154) — a link, not an
+         * evaluation here: this page's assessments are authored and say so (ADR-0010), and an
+         * engine's figure beside them would read as a second opinion of the same kind. It
+         * opens the same way up as this board, which the analysis page's default (White at
+         * the bottom) would otherwise undo for a Black gambit.
+         */}
+        <p className="learning-surface__analyse">
+          <Link
+            to={{
+              pathname: routePath(locale, routeSegments.analysis),
+              search: withFlip(
+                movesSearch(walk.steps.map((step) => step.ply)),
+                orientation === 'black',
+              ),
+            }}
+          >
+            <Translated id="analysis.openHere" />
+          </Link>
+        </p>
         <ShortcutToggle
           setting={shortcuts}
           onChange={(setting) => {

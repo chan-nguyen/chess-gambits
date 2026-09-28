@@ -94,3 +94,26 @@ the 96px branch preview, where a preview square is twelve pixels and detail coll
 The shapes are inlined in the bundle at build time and are never fetched. There is no piece URL
 anywhere in the application, which is what makes requirement N8 — zero third-party requests at
 runtime — true by construction rather than by policy. `Board.test.tsx` asserts it.
+
+---
+
+## Stockfish
+
+`public/engine/` — `stockfish-19-lite-single.js`, `stockfish-19-lite-single.wasm`
+
+**Origin:** the release files of [stockfish.js](https://github.com/nmrugg/stockfish.js) 19.0.0
+by Nathan Rugg and Chess.com (npm `stockfish@19.0.0`, commit
+`54fde71d90c7c403964f6cacef48f7bbec495df1`), a WebAssembly build of
+[Stockfish](https://github.com/official-stockfish/Stockfish) by the Stockfish developers, with the
+`nn-61e7af4bb97d` network by Chris Bao embedded. Vendored unmodified.
+**Licence:** GNU General Public License, version 3 (`public/engine/COPYING.txt`).
+**Why GPL code sits in an MIT repository, and why that does not make the application GPL:**
+ADR-0012. In short: Stockfish is a separate program. The analysis page starts it as a Web Worker
+from its own URL and exchanges UCI text with it; nothing in `src/` imports, bundles or links its
+code. That reading of the GPL is common among chess sites and is not legal advice.
+**What the licence obliges us to do, and where it is done:** convey the licence with the program,
+and make the corresponding source available. `COPYING.txt` and `public/engine/README.md` are
+published beside the engine on the deployed site, and the README names the exact upstream
+release, commit and network, with each file's SHA-256. `tools/engine/vendored.test.ts` holds the
+files to those hashes, so the engine cannot change without this notice being wrong in a way CI
+reports. The About page credits it and links to both.

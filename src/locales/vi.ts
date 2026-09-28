@@ -26,6 +26,7 @@ const vi = {
     catalogue: 'Danh mục',
     traps: 'Bẫy',
     about: 'Giới thiệu',
+    analysis: 'Phân tích',
     /** Accessible name of the language switcher landmark. */
     language: 'Ngôn ngữ',
   },
@@ -55,6 +56,8 @@ const vi = {
   board: {
     label: 'Bàn cờ',
     emptySquare: 'ô trống',
+    target: 'đi được tới đây',
+    flip: 'Lật bàn cờ',
     whiteKing: 'vua trắng',
     whiteQueen: 'hậu trắng',
     whiteRook: 'xe trắng',
@@ -108,7 +111,7 @@ const vi = {
     plyList: 'Các nước trong biến',
     shortcuts: 'Phím tắt bàn phím',
     shortcutsHint:
-      'Dùng phím mũi tên trái và phải để đi trong biến, và phím 1–9 để chọn một nước trả lời.',
+      'Dùng phím mũi tên trái và phải để đi trong biến, phím 1–9 để chọn một nước trả lời, và phím F để lật bàn cờ.',
     branchNotFound: 'Gambit này không có nước sau đây, nên trang hiển thị thế gần nhất:',
     capture: 'ăn quân',
     check: 'chiếu',
@@ -318,6 +321,51 @@ const vi = {
    * đang thắng thì không phải là chiếu hết (docs/design-system.md §7), và
    * `outcome-distinction.test.ts` đọc chính ba cuốn từ điển này để kiểm.
    */
+  /**
+   * Trang phân tích (#154). Stockfish chạy trong trình duyệt của người xem (ADR-0012). Mọi con
+   * số ở đây là ước tính của engine, không phải chứng minh — lời văn phải nói rõ điều đó.
+   */
+  analysis: {
+    heading: 'Phân tích thế cờ',
+    intro:
+      'Đi quân hoặc dán một ván PGN, rồi xem Stockfish đánh giá từng thế cờ — ngay trong trình duyệt của bạn, không gửi gì lên máy chủ.',
+    openHere: 'Phân tích thế này bằng Stockfish',
+    engine: 'Stockfish 19',
+    estimate: 'Ước tính của engine, không phải chứng minh.',
+    loading: 'Đang tải Stockfish (khoảng 1,2 MB)…',
+    thinking: 'Đang tính…',
+    failed: 'Không chạy được Stockfish trong trình duyệt này.',
+    gameOver: 'Ván cờ đã kết thúc ở thế này, nên không còn gì để tính.',
+    depth: 'Độ sâu {{depth}}',
+    searching: 'đang tính tiếp',
+    complete: 'đã xong',
+    evaluation: 'Đánh giá',
+    whiteMates: 'Stockfish thấy Trắng chiếu hết trong {{moves}} nước.',
+    blackMates: 'Stockfish thấy Đen chiếu hết trong {{moves}} nước.',
+    chances: 'Trắng thắng {{white}}% · Hoà {{draw}}% · Đen thắng {{black}}%',
+    chancesNote:
+      'Tỉ lệ theo mô hình của chính Stockfish, vốn rút ra từ ván máy đấu máy — nên tỉ lệ hoà cao hơn nhiều so với ván giữa người với người.',
+    lines: 'Các biến tốt nhất',
+    playLine: 'Đi {{san}}',
+    moves: 'Các nước đã đi',
+    noMoves: 'Chưa đi nước nào.',
+    navigation: 'Đi trong ván',
+    toStart: 'Đầu ván',
+    previous: 'Nước trước',
+    next: 'Nước sau',
+    toEnd: 'Nước cuối',
+    atStart: 'Đây là thế xuất phát.',
+    atEnd: 'Đây là nước cuối của biến.',
+    pgnLabel: 'Dán PGN',
+    pgnHint: 'Ví dụ: 1. e4 e5 2. Nf3 Nc6 3. Bb5',
+    pgnLoad: 'Mở ván này',
+    pgnEmpty: 'Chưa có gì để mở.',
+    pgnInvalid: 'Không đọc được PGN này — hãy kiểm tra lại các nước đi.',
+    pgnCustomStart:
+      'Ván này bắt đầu từ một thế cờ bày sẵn (có thẻ FEN). Trang này chỉ phân tích ván bắt đầu từ thế xuất phát.',
+    pgnTooLong: 'PGN này quá dài.',
+    shortcutsHint: 'Dùng phím mũi tên trái và phải để đi trong ván, và phím F để lật bàn cờ.',
+  },
   outcome: {
     mateHeading: 'Chiếu hết bắt buộc sau {{moves}} nước',
     mateForced: 'Đối thủ bị chiếu hết dù chống đỡ cách nào.',

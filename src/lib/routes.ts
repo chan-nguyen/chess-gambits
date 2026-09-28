@@ -14,13 +14,19 @@ import { locales } from './locale.ts'
 export const routeSegments = {
   catalogue: 'gambits',
   about: 'about',
+  analysis: 'analysis',
 } as const
 
 /** The dynamic segment of the gambit route, as the router names it. */
 export const gambitIdParam = 'id'
 
 /** Locale-relative paths of the routes that exist without any content. */
-const staticRoutePaths: readonly string[] = ['', routeSegments.catalogue, routeSegments.about]
+const staticRoutePaths: readonly string[] = [
+  '',
+  routeSegments.catalogue,
+  routeSegments.about,
+  routeSegments.analysis,
+]
 
 /*
  * Module prose rather than a doc comment, because it documents the *absence* of a symbol

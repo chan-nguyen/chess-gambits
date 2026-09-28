@@ -15,6 +15,7 @@ import type { BoardLabels } from './board-model'
 export const VIETNAMESE_LABELS: BoardLabels = {
   board: 'Bàn cờ',
   emptySquare: 'ô trống',
+  target: 'đi được tới đây',
   pieces: {
     whiteKing: 'vua trắng',
     whiteQueen: 'hậu trắng',

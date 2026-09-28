@@ -21,11 +21,12 @@ describe('the shells a build must emit', () => {
   it('covers every static route in every locale', () => {
     const paths = shellPaths([])
 
-    expect(paths).toHaveLength(locales.length * 3)
+    expect(paths).toHaveLength(locales.length * 4)
     for (const locale of locales) {
       expect(paths).toContain(locale)
       expect(paths).toContain(`${locale}/gambits`)
       expect(paths).toContain(`${locale}/about`)
+      expect(paths).toContain(`${locale}/analysis`)
     }
   })
 
@@ -36,14 +37,14 @@ describe('the shells a build must emit', () => {
   it('adds one shell per gambit per locale', () => {
     const paths = shellPaths(['evans-gambit', 'kings-gambit'])
 
-    expect(paths).toHaveLength(locales.length * 5)
+    expect(paths).toHaveLength(locales.length * 6)
     expect(paths).toContain('fr/gambits/evans-gambit')
     expect(paths).toContain('vi/gambits/kings-gambit')
   })
 
   /**
    * The shape of the real build, at the real size. 1,003 published entries is 3,009 gambit
-   * shells plus the nine static ones — and a link on the catalogue page to an id with no
+   * shells plus the twelve static ones — and a link on the catalogue page to an id with no
    * shell behind it is an HTTP 404 on the host while every test here passes, which is the
    * failure this module exists to make impossible.
    */
@@ -51,7 +52,7 @@ describe('the shells a build must emit', () => {
     const ids = Array.from({ length: 1003 }, (_, index) => `gambit-${index}`)
     const paths = shellPaths(ids)
 
-    expect(paths).toHaveLength(locales.length * (3 + ids.length))
+    expect(paths).toHaveLength(locales.length * (4 + ids.length))
     expect(new Set(paths).size).toBe(paths.length)
   })
 

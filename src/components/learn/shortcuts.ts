@@ -72,3 +72,20 @@ export const branchShortcutIndex = (key: string): number | null => {
   const index = branchShortcutKeys.indexOf(key)
   return index === -1 ? null : index
 }
+
+/**
+ * Whether a key press belongs to something else on the page — shared by the gambit page and
+ * the analysis page (#154), whose boards own their arrow keys the same way.
+ *
+ * The board owns the arrow keys inside its own grid — they walk its roving tabindex from
+ * square to square — so a global handler that also fired would move the cursor *and* leave
+ * the position, which is two things from one press. Text fields are excluded for the usual
+ * reason, which is emphatically **not** how AC 2 is satisfied: suppressing a shortcut
+ * inside an input does not meet 2.1.4, the switch at the top of this module does.
+ */
+export const belongsToSomethingElse = (target: EventTarget | null): boolean => {
+  if (!(target instanceof HTMLElement)) return false
+  if (target.isContentEditable) return true
+  if (target.closest('[role="grid"]') !== null) return true
+  return target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT'
+}

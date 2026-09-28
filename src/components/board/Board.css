@@ -77,6 +77,40 @@
 }
 
 /*
+ * Where the selected piece can go, drawn the way chess.com draws it: a dot on an empty
+ * square, a ring around a piece that can be taken. A shape rather than a tint, so §2's
+ * binding rule holds without an exception — but translucent, and therefore well under 3:1
+ * against either square, by product decision; §2 records that exception and why. The
+ * gridcell's accessible name carries the same fact in words.
+ *
+ * `pointer-events: none` is inherited from the canvas: a click lands on the grid cell
+ * above, which is the square, whatever is drawn on it.
+ */
+.board__target {
+  fill: var(--color-board-legal);
+  fill-opacity: 0.18;
+}
+
+.board__target--occupied {
+  fill: none;
+  stroke: var(--color-board-legal);
+  stroke-opacity: 0.18;
+  stroke-width: 0.09;
+}
+
+/*
+ * An arrow (#154): the analysis page's best move. Green, as lichess draws engine arrows,
+ * so it cannot be mistaken for the gold last-ply and selection tints it may cross, and
+ * translucent so the pieces under it still read. Like the target dots it is well under
+ * 3:1 against the squares; it never carries anything alone — the same move is the first
+ * move of the best line, in text, beside the board. §2 records it with the dots.
+ */
+.board__arrow {
+  fill: var(--color-board-arrow);
+  fill-opacity: 0.8;
+}
+
+/*
  * The slide (#72).
  *
  * `Board` positions every piece with a transform and keeps the element that moved, so the

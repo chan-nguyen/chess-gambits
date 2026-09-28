@@ -28,6 +28,7 @@ import {
   type TreeMode,
 } from './tree-layout.ts'
 import { plyLabel, resolvePath } from './tree-path.ts'
+import { useFlip } from './use-flip.ts'
 
 /**
  * The whole gambit at once (docs/design-system.md §3, `GambitTree`).
@@ -93,6 +94,7 @@ const focusableIn = (root: HTMLElement): readonly HTMLElement[] =>
 
 export const GambitTree = ({ entry, requested, inPrelude }: GambitTreeProps) => {
   const { pathname } = useLocation()
+  const { keepFlip } = useFlip()
   const translated = useTranslated()
   const mode = useTreeMode()
   const titleId = useId()
@@ -243,7 +245,7 @@ export const GambitTree = ({ entry, requested, inPrelude }: GambitTreeProps) => 
         key={item.key}
         ref={register(item.key)}
         className={`gambit-tree__node${current ? ' gambit-tree__node--current' : ''}`}
-        to={{ pathname, search: lineSearch(item.path) }}
+        to={{ pathname, search: keepFlip(lineSearch(item.path)) }}
         role="treeitem"
         aria-level={item.level}
         aria-setsize={item.setSize}
