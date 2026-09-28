@@ -1,0 +1,60 @@
+# King's Gambit Accepted, Philidor Gambit, Schultz Variation, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 h6 4.Bc4 d6 5.d4 g5 6.h4 Bg7 7.Qd3, which ends on White's own
+# 7.Qd3 — the learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5). Black's 7...Ne7 is modelled as the root's single reply. The position after it was
+# checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# Every ply was replayed with chess.js.
+id: kings-gambit-accepted-philidor-gambit-schultz-variation
+name: "King's Gambit Accepted: Philidor Gambit, Schultz Variation"
+eco: C38
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, h6, Bc4, d6, d4, g5, h4, Bg7, Qd3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black delays ...g5 with the quieter 3...h6, and after both sides finish
+      their opening moves White brings the queen to d3, adding a second defender to e4 and
+      leaving open the choice of which side to castle. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi cả hai bên hoàn tất loạt nước mở đầu, Trắng đưa hậu ra d3, thêm một quân bảo vệ tốt e4 và để ngỏ việc sẽ nhập thành bên nào.
+    en: After both sides finish their opening moves, White brings the queen to d3, adding a second defender to the e4 pawn and leaving open which side to castle.
+    fr: Une fois les deux camps arrivés au bout de leur séquence d'ouverture, les Blancs amènent la dame en d3, ajoutant un second défenseur au pion e4 et laissant ouvert le choix du côté où roquer.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 7.Qd3 bằng một nước khác ngoài 7...Ne7 — chẳng hạn ...Nf6 phát triển mã kia trước, hay ...Nd7. Đánh giá vẫn như nhau bất kể con mã nào ra trước.
+      en: Black meets 7.Qd3 with something other than 7...Ne7 — for instance ...Nf6 developing the other knight first, or ...Nd7. The assessment stays the same regardless of which knight comes out first.
+      fr: Les Noirs répondent à 7.Qd3 par autre chose que 7...Ne7 — par exemple ...Nf6 en développant l'autre cavalier d'abord, ou ...Nd7. L'évaluation reste la même quel que soit le cavalier sorti en premier.
+  children:
+    - ply: Ne7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa mã ra e7, một cách phát triển bình thường và chuẩn bị nhập thành.
+        en: Black develops the knight to e7, a normal developing move preparing to castle.
+        fr: Les Noirs développent le cavalier en e7, un coup de développement normal préparant à roquer.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng kém một tốt kể từ nước 2...exf4. Cả hai vua chưa nhập thành. Trắng đã hoàn tất phát triển tượng và mã, đưa hậu ra vị trí có ích, còn Đen đã đưa được một mã ra và chuẩn bị nhập thành.
+          en: Count the pawns and it is seven for White, eight for Black, a pawn down since 2...exf4. Neither king has castled. White has finished developing the bishop and knight and put the queen on a useful square, while Black has one knight out and is ready to castle.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion de retard depuis 2...exf4. Aucun roi n'a roqué. Les Blancs ont achevé le développement du fou et du cavalier et placé la dame sur une case utile, tandis que les Noirs ont sorti un cavalier et se préparent à roquer.
+        plan:
+          vi: Trắng chọn giữa O-O-O để tấn công thẳng cánh vua Đen hoặc O-O rồi tìm cách đòi lại tốt f4 bằng Nc3 và Bxf4, tận dụng việc Đen còn chậm phát triển. Đen chơi ...Nbc6 hay ...Nd7 để đưa nốt quân ra, quyết định nhập thành bên nào cho an toàn, và cố giữ con tốt f4 làm vốn liếng.
+          en: White chooses between O-O-O to attack Black's king directly, or O-O followed by Nc3 and Bxf4 to win the pawn back, exploiting Black's slower development. Black plays ...Nbc6 or ...Nd7 to bring the last piece out, decides which side is safer to castle, and tries to keep the f4 pawn as an asset.
+          fr: Les Blancs choisissent entre O-O-O pour attaquer directement le roi noir, ou O-O suivi de Nc3 et Bxf4 pour regagner le pion, exploitant le développement plus lent des Noirs. Les Noirs jouent ...Nbc6 ou ...Nd7 pour sortir la dernière pièce, décident du côté le plus sûr pour roquer, et tentent de garder le pion f4 comme atout.
+        basis:
+          by: chan
+          at: '2026-09-25'

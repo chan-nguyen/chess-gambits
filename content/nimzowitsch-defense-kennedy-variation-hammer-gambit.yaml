@@ -1,0 +1,57 @@
+# Nimzowitsch Defense, Kennedy Variation, Hammer Gambit, taught. Frozen defining line 1.e4
+# Nc6 2.d4 e5 3.dxe5 f6, which ends on Black's own 3...f6 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.Nf3 is modelled as the root's
+# single reply, developing rather than resolving the f6 pawn's challenge at once. The
+# position after it was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check, no free capture. Every ply was replayed with chess.js.
+id: nimzowitsch-defense-kennedy-variation-hammer-gambit
+name: 'Nimzowitsch Defense: Kennedy Variation, Hammer Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, Nc6, d4, e5, dxe5, f6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black attacks the e5 pawn with 3...f6, but this also weakens the kingside
+      permanently, and White can simply take on f6 and come out with a sound extra pawn and a
+      healthier structure. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen tấn công tốt e5 bằng 3...f6, nhưng nước này cũng làm yếu vĩnh viễn cấu trúc tốt cánh vua, để lại các ô e6 và g6 không còn tốt nào canh giữ.
+    en: Black attacks the e5 pawn with 3...f6, but this also permanently weakens the kingside pawn structure, leaving the e6 and g6 squares with no pawn to guard them.
+    fr: Les Noirs attaquent le pion e5 par 3...f6, mais ce coup affaiblit aussi durablement la structure de pions de l'aile roi, laissant les cases e6 et g6 sans aucun pion pour les garder.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...f6 bằng một nước khác ngoài 4.Nf3 — chẳng hạn ăn ngay bằng exf6. Đánh giá vẫn tương tự, vì con tốt thừa và lỗ hổng cấu trúc của Đen không đổi.
+      en: White meets 3...f6 with something other than 4.Nf3 — for instance taking at once with exf6. The assessment is similar, since the extra pawn and Black's structural holes are unchanged.
+      fr: Les Blancs répondent à 3...f6 par autre chose que 4.Nf3 — par exemple prendre aussitôt par exf6. L'évaluation est similaire, le pion supplémentaire et les trous structurels noirs restant inchangés.
+  children:
+    - ply: Nf3
+      annotation:
+        vi: Trắng phát triển mã trước, để nguyên căng thẳng ở e5 và chưa vội ăn tốt f6.
+        en: White develops the knight first, leaving the tension on e5 and not rushing to take the f6 pawn.
+        fr: Les Blancs développent d'abord le cavalier, laissant la tension en e5 et sans se presser de prendre le pion f6.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng hơn một tốt sạch kể từ 3.dxe5, và con tốt e5 hoàn toàn có thể được cứu hoặc ăn lại tốt f6 sau này. Cấu trúc tốt cánh vua Đen đã bị thủng lỗ vĩnh viễn ở e6 và g6, trong khi Trắng đã đưa thêm một mã ra.
+          en: Count the pawns and it is eight for White, seven for Black — White is a clean pawn up since 3.dxe5, and the e5 pawn can perfectly well be saved or trade for the f6 pawn later. Black's kingside pawn structure has permanent holes on e6 and g6, while White has developed another knight.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net de plus depuis 3.dxe5, et le pion e5 peut très bien être sauvé ou échangé contre le pion f6 plus tard. La structure de pions à l'aile roi noire a des trous permanents en e6 et g6, tandis que les Blancs ont développé un cavalier de plus.
+        plan:
+          vi: Trắng chơi exf6 khi thuận tiện để giữ trọn con tốt thừa, rồi Bc4 nhắm vào các ô yếu vừa để lại. Đen ăn lại ...Nxf6 hay ...Qxf6 và cố phát triển nhanh bằng ...d5, ...Bd6 để bù cho cấu trúc đã bị làm yếu.
+          en: White plays exf6 when convenient to keep the extra pawn entirely, then Bc4 aimed at the weak squares just left behind. Black recaptures with ...Nxf6 or ...Qxf6 and tries to develop quickly with ...d5, ...Bd6 to compensate for the weakened structure.
+          fr: Les Blancs jouent exf6 quand cela convient pour garder entièrement le pion supplémentaire, puis Bc4 visant les cases faibles ainsi laissées. Les Noirs reprennent par ...Nxf6 ou ...Qxf6 et tentent de se développer vite par ...d5, ...Bd6 pour compenser la structure affaiblie.
+        basis:
+          by: chan
+          at: '2026-09-25'

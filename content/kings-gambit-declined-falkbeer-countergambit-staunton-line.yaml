@@ -1,0 +1,57 @@
+# King's Gambit Declined, Falkbeer Countergambit, Staunton Line, taught. Frozen defining
+# line 1.e4 e5 2.f4 d5 3.exd5 e4, which ends on Black's own 3...e4 — the learner's ply — so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.Nc3 is modelled as
+# the root's single reply. The position after it was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-gambit-declined-falkbeer-countergambit-staunton-line
+name: "King's Gambit Declined: Falkbeer Countergambit, Staunton Line"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black does not recapture the d5 pawn at once, instead pushing the e-pawn
+      to gain a tempo on White's f3 square and open lines toward White's own king, trading a
+      pawn for activity rather than material. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt d5 ngay, Đen đẩy tốt e lên e4, chiếm nhịp trên ô f3 của Trắng và mở đường cho các quân của mình, chấp nhận tạm thời kém vật chất để đổi lấy hoạt động.
+    en: Rather than recapturing on d5 at once, Black pushes the e-pawn to e4, gaining a tempo on White's f3 square and opening lines for Black's own pieces, trading material for activity for the moment.
+    fr: Plutôt que de reprendre aussitôt en d5, les Noirs poussent le pion e en e4, gagnant un temps sur la case f3 des Blancs et ouvrant des lignes pour leurs propres pièces, échangeant du matériel contre de l'activité pour l'instant.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Nc3. Nhiều nước khác — chẳng hạn d4 hay Qe2 — để con tốt d5 không quân nào bảo vệ, và ...Qxd5 ăn lại nó ngay lập tức mà không mất gì.
+      en: White does not play 4.Nc3. Several other tries — such as d4 or Qe2 — leave the d5 pawn defended by nothing, and ...Qxd5 recaptures it at once for free.
+      fr: Les Blancs ne jouent pas 4.Nc3. Plusieurs autres essais — comme d4 ou Qe2 — laissent le pion d5 sans défense, et ...Qxd5 le reprend aussitôt gratuitement.
+  children:
+    - ply: Nc3
+      annotation:
+        vi: Trắng phát triển mã, chuẩn bị đỡ con tốt d5 thêm lần nữa qua Qe2 hoặc chuẩn bị Nge2, thay vì để nó không quân nào bảo vệ.
+        en: White develops the knight, preparing to add another defender to the d5 pawn via Qe2 or a knight to e2, rather than leaving it undefended.
+        fr: Les Blancs développent le cavalier, préparant à ajouter un autre défenseur au pion d5 via Qe2 ou un cavalier en e2, plutôt que de le laisser sans défense.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng đang tạm thời hơn một tốt vì con tốt d5 vẫn còn trên bàn. Đổi lại, tốt e4 của Đen cấm hẳn con mã Trắng khỏi ô f3 tự nhiên của nó, và cả hai vua đều chưa nhập thành trong một thế cờ đã mở.
+          en: Count the pawns and it is eight for White, seven for Black — White is temporarily a pawn up, since the pawn on d5 is still on the board. In exchange, Black's e4 pawn bans White's knight from its natural f3 square outright, and neither king has castled in a position that is already open.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs sont temporairement en avance d'un pion, le pion en d5 restant sur l'échiquier. En échange, le pion noir en e4 interdit purement et simplement au cavalier blanc sa case naturelle f3, et aucun roi n'a roqué dans une position déjà ouverte.
+        plan:
+          vi: Trắng chơi d4 để giữ vững con tốt e4 đã cấm mã, hoặc Qe2 gây thêm sức ép lên tốt e4, cố giữ con tốt d5 dư ra càng lâu càng tốt. Đen chơi ...Nf6 tấn công tốt d5, ...Bc5 hoặc ...Bb4 phát triển nhanh, và tính đến việc ăn lại tốt d5 sau khi đã có đủ áp lực.
+          en: White plays d4 to hold the e4 pawn in place, or Qe2 to add pressure on the e4 pawn, trying to keep the extra d5 pawn as long as possible. Black plays ...Nf6 attacking the d5 pawn, ...Bc5 or ...Bb4 to develop quickly, and looks to win the d5 pawn back once enough pressure is built up.
+          fr: Les Blancs jouent d4 pour maintenir le pion e4 en place, ou Qe2 pour ajouter de la pression sur le pion e4, essayant de garder le pion d5 supplémentaire aussi longtemps que possible. Les Noirs jouent ...Nf6 attaquant le pion d5, ...Bc5 ou ...Bb4 pour se développer vite, et cherchent à regagner le pion d5 une fois assez de pression accumulée.
+        basis:
+          by: chan
+          at: '2026-09-25'

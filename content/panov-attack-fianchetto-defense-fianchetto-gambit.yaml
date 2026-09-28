@@ -1,0 +1,63 @@
+# Panov Attack, Fianchetto Defense, Fianchetto Gambit, taught. Frozen defining line 1.e4 c6
+# 2.d4 d5 3.exd5 cxd5 4.c4 Nf6 5.Nc3 g6 6.cxd5 Bg7, which ends on Black's own 6...Bg7 — the
+# learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's
+# 7.Nf3 is modelled as the root's reply; Black's 7...Nxd5 is the single recapture that
+# follows. The position after it was checked with `searchMate` (bounded to 2 moves): no-mate,
+# not in check, no free capture. Every ply was replayed with chess.js.
+id: panov-attack-fianchetto-defense-fianchetto-gambit
+name: 'Panov Attack, Fianchetto Defense: Fianchetto Gambit'
+eco: B14
+category: gambit
+side: black
+definingLine: [e4, c6, d4, d5, exd5, cxd5, c4, Nf6, Nc3, g6, cxd5, Bg7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black delays recapturing on d5 to finish the fianchetto first, trusting
+      that ...Nxd5 will win the pawn straight back next move rather than losing it for good.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chưa vội ăn lại con tốt d5 mà hoàn tất fianchetto bằng ...Bg7 trước, tin rằng ...Nxd5 ở nước sau sẽ đòi lại đúng con tốt ấy.
+    en: Black does not rush to recapture on d5, finishing the fianchetto with ...Bg7 first, trusting that ...Nxd5 next move will win that very pawn straight back.
+    fr: Les Noirs ne se pressent pas de reprendre en d5, achevant d'abord le fianchetto par ...Bg7, confiants que ...Nxd5 au coup suivant regagnera précisément ce pion.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 6...Bg7 bằng một nước khác ngoài 7.Nf3 — chẳng hạn Bc4 giữ áp lực lên con tốt d5. Đánh giá vẫn tương tự, vì con tốt d5 sẽ về tay Đen ngay khi có dịp bất kể Trắng chơi gì.
+      en: White meets 6...Bg7 with something other than 7.Nf3 — for instance Bc4 keeping pressure on the d5 pawn. The assessment is similar, since the d5 pawn returns to Black as soon as it gets the chance regardless of what White plays.
+      fr: Les Blancs répondent à 6...Bg7 par autre chose que 7.Nf3 — par exemple Bc4 pour maintenir la pression sur le pion d5. L'évaluation est similaire, le pion d5 revenant aux Noirs dès qu'ils en ont l'occasion quoi que jouent les Blancs.
+  children:
+    - ply: Nf3
+      annotation:
+        vi: Trắng phát triển mã, hoàn tất phát triển trước khi Đen kịp ăn lại con tốt d5.
+        en: White develops the knight, finishing development before Black can recapture the d5 pawn.
+        fr: Les Blancs développent le cavalier, achevant leur développement avant que les Noirs ne puissent reprendre le pion d5.
+      children:
+        - ply: Nxd5
+          annotation:
+            vi: Đen ăn lại con tốt d5 bằng mã, đưa quân số trở lại ngang nhau.
+            en: Black recaptures the d5 pawn with the knight, restoring material equality.
+            fr: Les Noirs reprennent le pion d5 avec le cavalier, rétablissant l'égalité matérielle.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì mỗi bên còn sáu, quân số ngang nhau — con tốt d5 đã trở lại tay Đen. Con mã d5 của Đen đứng khá trung tâm, và tượng g7 đã sẵn sàng phát triển trên đường chéo dài. Cả hai vua đều chưa nhập thành.
+              en: Count the pawns and it is six each, material level — the d5 pawn has returned to Black. Black's knight on d5 stands fairly centrally, and the bishop on g7 is already developed on the long diagonal. Neither king has castled.
+              fr: Comptez les pions, six de chaque côté, le matériel est égal — le pion d5 est revenu aux Noirs. Le cavalier noir en d5 se tient assez centralement, et le fou g7 est déjà développé sur la grande diagonale. Aucun roi n'a roqué.
+            plan:
+              vi: Trắng chơi Bc4 nhắm vào con mã d5 và ô f7, O-O và Re1, tận dụng thế phát triển để tranh chủ động. Đen chơi ...O-O, ...Nc6 và ...b6, hoàn tất phát triển an toàn với quân số ngang nhau.
+              en: White plays Bc4 aiming at the d5 knight and f7, O-O and Re1, using the development lead to fight for the initiative. Black plays ...O-O, ...Nc6 and ...b6, finishing development safely with material level.
+              fr: Les Blancs jouent Bc4 en visant le cavalier d5 et f7, O-O et Re1, utilisant leur avance de développement pour lutter pour l'initiative. Les Noirs jouent ...O-O, ...Nc6 et ...b6, achevant leur développement en sécurité avec un matériel égal.
+            basis:
+              by: chan
+              at: '2026-09-25'

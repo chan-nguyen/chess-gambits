@@ -1,0 +1,59 @@
+# King's Pawn Game, Tayler Opening, Basman Gambit, taught. Frozen defining line 1.e4 e5
+# 2.Nf3 Nc6 3.Be2 Nf6 4.d4 exd4 5.e5, which ends on White's own 5.e5 — the learner's ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...Nd5 is
+# modelled as the root's single reply. The position after it was checked with `searchMate`
+# (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was replayed with
+# chess.js.
+id: kings-pawn-game-tayler-opening-basman-gambit
+name: "King's Pawn Game: Tayler Opening, Basman Gambit"
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Be2, Nf6, d4, exd4, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Rather than recapture on d4 at once, White pushes the e-pawn to attack the
+      f6 knight, leaving the d4 pawn in Black's hands for a move in exchange for a tempo and
+      space. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt d4 ngay, Trắng đẩy tốt e lên e5, tấn công con mã f6 và chiếm không gian, để con tốt d4 tạm thời ở lại tay Đen.
+    en: Instead of recapturing on d4 at once, White pushes the e-pawn to e5, attacking the f6 knight and claiming space, leaving the d4 pawn with Black for the moment.
+    fr: Au lieu de reprendre aussitôt en d4, les Blancs poussent le pion e en e5, attaquant le cavalier f6 et prenant de l'espace, laissant le pion d4 aux Noirs pour l'instant.
+  dismissRest:
+    reason:
+      vi: Đen di chuyển mã f6 đến ô khác thay vì 5...Nd5 — chẳng hạn ...Ng4. Đánh giá vẫn tương tự, vì con tốt d4 và thế cân bằng nhịp chưa thay đổi.
+      en: Black moves the f6 knight elsewhere instead of 5...Nd5 — for instance ...Ng4. The assessment is similar, since the d4 pawn and the tempo balance are unchanged.
+      fr: Les Noirs déplacent le cavalier f6 ailleurs qu'en 5...Nd5 — par exemple ...Ng4. L'évaluation est similaire, le pion d4 et l'équilibre des temps étant inchangés.
+  children:
+    - ply: Nd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen lùi mã về d5, một ô trung tâm vững chắc, tránh xa tầm với của tốt e5.
+        en: Black retreats the knight to d5, a solid central square, out of reach of the e5 pawn.
+        fr: Les Noirs reculent le cavalier en d5, une case centrale solide, hors de portée du pion e5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng tạm thời kém một tốt vì con tốt d4 chưa bị ăn lại. Con mã d5 của Đen đứng vững ở trung tâm, còn con tốt e5 của Trắng chiếm không gian lớn nhưng chưa tạo được đe doạ cụ thể nào thêm.
+          en: Count the pawns and it is seven for White, eight for Black — White is temporarily a pawn down since the d4 pawn has not been recaptured. Black's knight on d5 stands solidly in the centre, while White's e5 pawn claims a great deal of space but has not created any further concrete threat yet.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs sont temporairement en retard d'un pion, le pion d4 n'ayant pas été repris. Le cavalier noir en d5 se tient solidement au centre, tandis que le pion e5 blanc prend beaucoup d'espace sans avoir encore créé de menace concrète supplémentaire.
+        plan:
+          vi: Trắng chơi Nxd4 để đòi lại con tốt, hoặc O-O và c4 đuổi tiếp con mã d5, dùng con tốt e5 để hạn chế quân Đen. Đen chơi ...d6 thách thức tốt e5, ...Be7 và tìm chỗ an toàn cho vua, cố giữ con mã d5 làm điểm tựa trung tâm.
+          en: White plays Nxd4 to win the pawn back, or O-O and c4 to chase the d5 knight further, using the e5 pawn to cramp Black. Black plays ...d6 to challenge the e5 pawn, ...Be7 and looks for a safe spot for the king, trying to keep the d5 knight as a central outpost.
+          fr: Les Blancs jouent Nxd4 pour regagner le pion, ou O-O et c4 pour chasser davantage le cavalier d5, utilisant le pion e5 pour gêner les Noirs. Les Noirs jouent ...d6 pour défier le pion e5, ...Be7 et cherchent un abri pour le roi, tentant de garder le cavalier d5 comme avant-poste central.
+        basis:
+          by: chan
+          at: '2026-09-25'

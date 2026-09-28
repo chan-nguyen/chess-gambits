@@ -1,0 +1,58 @@
+# King's Gambit Declined, Hobbs-Zilbermints Gambit, taught. Frozen defining line 1.e4 e5
+# 2.f4 Nc6 3.Nf3 g5 4.fxg5 h6, which ends on Black's own 4...h6 — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). White's 5.Nc3 is modelled as the
+# root's single reply, developing before resolving the g5 pawn. The position after it was
+# checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# Every ply was replayed with chess.js.
+id: kings-gambit-declined-hobbs-zilbermints-gambit
+name: "King's Gambit Declined: Hobbs-Zilbermints Gambit"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, e5, f4, Nc6, Nf3, g5, fxg5, h6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black declines the f-pawn with 2...Nc6 and then offers a second pawn with
+      3...g5, and White has simply taken it. The follow-up ...h6 attacks the pawn on g5 but
+      does not force it back, so this is a genuine pawn down with no concrete compensation
+      shown yet. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...h6, tấn công con tốt Trắng vừa ăn được ở g5. Con tốt ấy phải di chuyển hoặc được đỡ, nhưng nó chưa hề bị buộc phải quay về tay Đen.
+    en: Black has just played 4...h6, attacking the pawn White just won on g5. That pawn has to move or be defended, but nothing forces it back into Black's hands.
+    fr: Les Noirs viennent de jouer 4...h6, attaquant le pion que les Blancs viennent de gagner en g5. Ce pion doit bouger ou être défendu, mais rien ne l'oblige à revenir aux Noirs.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 4...h6 bằng một nước khác ngoài 5.Nc3 — chẳng hạn ăn lại ngay bằng gxh6 hay lùi tốt về g6. Đánh giá vẫn tương tự, vì Trắng vẫn giữ được tốt thừa theo cách này hay cách khác.
+      en: White meets 4...h6 with something other than 5.Nc3 — for instance recapturing at once with gxh6, or falling back with g6. The assessment is similar, since White keeps the extra pawn one way or another.
+      fr: Les Blancs répondent à 4...h6 par autre chose que 5.Nc3 — par exemple reprendre aussitôt par gxh6, ou reculer par g6. L'évaluation est similaire, les Blancs gardant le pion supplémentaire d'une manière ou d'une autre.
+  children:
+    - ply: Nc3
+      annotation:
+        vi: Trắng chưa vội giải quyết chuyện con tốt g5 mà phát triển mã trước, để nguyên căng thẳng trên bàn cờ.
+        en: White does not rush to settle the g5 pawn's fate, developing the knight first and leaving the tension on the board.
+        fr: Les Blancs ne se pressent pas de régler le sort du pion g5, développant d'abord le cavalier et laissant la tension sur l'échiquier.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng hơn hẳn một tốt sạch kể từ 4.fxg5, và con tốt g5 hoàn toàn có thể được cứu bằng gxh6 hoặc g6 sau này, không có gì buộc nó phải mất. Trắng đã đưa thêm một mã ra trong lúc đó.
+          en: Count the pawns and it is eight for White, seven for Black — White is a clean pawn up since 4.fxg5, and the pawn on g5 can perfectly well be saved later with gxh6 or g6; nothing forces it to be lost. White has developed another knight in the meantime.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net de plus depuis 4.fxg5, et le pion en g5 peut très bien être sauvé plus tard par gxh6 ou g6 ; rien ne l'oblige à se perdre. Les Blancs ont développé un cavalier de plus entre-temps.
+        plan:
+          vi: Trắng chơi gxh6 khi thuận tiện để giữ trọn con tốt thừa, hoặc lùi về g6, rồi hoàn tất phát triển bằng Bc4 và O-O. Đen chơi ...Bxh6 lấy lại con tốt nếu Trắng ăn, hoặc ...Nf6 và ...Bg7 phát triển bình thường nếu Trắng lùi tốt, và cố tìm bù đắp cụ thể cho quân đã mất.
+          en: White plays gxh6 when convenient to keep the extra pawn entirely, or falls back to g6, then finishes developing with Bc4 and O-O. Black plays ...Bxh6 to win the pawn back if White takes, or ...Nf6 and ...Bg7 developing normally if White retreats the pawn, and looks for concrete compensation for the missing pawn.
+          fr: Les Blancs jouent gxh6 quand cela convient pour garder entièrement le pion supplémentaire, ou reculent en g6, puis achèvent leur développement par Bc4 et O-O. Les Noirs jouent ...Bxh6 pour regagner le pion si les Blancs prennent, ou ...Nf6 et ...Bg7 en se développant normalement si les Blancs reculent le pion, et cherchent une compensation concrète pour le pion manquant.
+        basis:
+          by: chan
+          at: '2026-09-25'

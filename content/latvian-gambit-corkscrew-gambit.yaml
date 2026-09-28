@@ -1,0 +1,65 @@
+# Latvian Gambit, Corkscrew Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 f5 3.Nxe5
+# Nf6 4.Bc4 fxe4 5.Nf7 Qe7 6.Nxh8 d5, which ends on Black's own 6...d5 — the learner's ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's knight on h8 has
+# exactly two legal destinations, Ng6 and Nf7, and both were replayed and answered by a real
+# recapture (hxg6, Kxf7 or Qxf7), so it is modelled here losing the piece by the Ng6 route;
+# the leaf after Black's recapture was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: latvian-gambit-corkscrew-gambit
+name: 'Latvian Gambit: Corkscrew Gambit'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Nxe5, Nf6, Bc4, fxe4, Nf7, Qe7, Nxh8, d5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement about this exact move order, distinct from the Behting Variation, which
+      reaches the same trapped-knight idea while also winning the g2 pawn along the way. Here
+      Black has not picked up that extra pawn, so even winning the stranded knight back still
+      leaves a real material shortfall. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa ăn xe h8 bằng mã, và Đen đẩy tốt d lên d5 để mở đường cho tượng c8. Con mã Trắng trên h8 giờ mắc kẹt ở góc bàn cờ.
+    en: White has just taken the rook on h8 with the knight, and Black pushes the d-pawn to d5 to open a path for the c8 bishop. White's knight on h8 is now stuck in the corner.
+    fr: Les Blancs viennent de prendre la tour h8 avec le cavalier, et les Noirs poussent le pion d en d5 pour ouvrir une voie au fou c8. Le cavalier blanc en h8 est désormais coincé dans le coin.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì đi mã ngay — chẳng hạn d3 trước, để con mã kẹt ở h8 thêm một lúc. Đánh giá vẫn tương tự, vì con mã ấy vẫn sẽ mất khi buộc phải di chuyển.
+      en: White plays something other than moving the knight at once — for instance d3 first, leaving the knight stuck on h8 a little longer. The assessment is similar, since that knight is still going to be lost whenever it is forced to move.
+      fr: Les Blancs jouent autre chose que de bouger aussitôt le cavalier — par exemple d3 d'abord, laissant le cavalier coincé en h8 un peu plus longtemps. L'évaluation est similaire, ce cavalier étant de toute façon perdu dès qu'il devra bouger.
+  children:
+    - ply: Ng6
+      annotation:
+        vi: Trắng buộc phải cho con mã đi, vì nó không có nước nào khác ngoài hai ô đều mất quân. Ng6 là một trong hai lựa chọn ấy.
+        en: White is forced to move the knight, since it has no move that does not lose the piece. Ng6 is one of the two options.
+        fr: Les Blancs sont contraints de bouger le cavalier, qui n'a aucun coup ne perdant pas la pièce. Ng6 est l'une des deux options.
+      children:
+        - ply: hxg6
+          annotation:
+            vi: Đen ăn lại con mã bằng tốt h, quân duy nhất canh giữ ô g6. Con mã Trắng đã mất, đúng như dự tính từ trước.
+            en: Black recaptures the knight with the h-pawn, the only piece guarding g6. White's knight is lost, exactly as expected.
+            fr: Les Noirs reprennent le cavalier avec le pion h, la seule pièce gardant g6. Le cavalier blanc est perdu, exactement comme prévu.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân thì Đen chỉ còn một xe so với hai xe của Trắng (đã mất xe h8 từ trước), nhưng Đen còn hai mã so với chỉ một mã của Trắng (con mã h8 vừa mất); tốt thì mỗi bên còn bảy, ngang nhau, vì không có tốt g2 nào bị ăn trong biến này. Một xe đổi lấy đúng một mã, không có tốt bù thêm, vẫn là một khoản lỗ vật chất thật sự cho Đen.
+              en: Count the pieces and Black has only one rook against White's two (having lost the h8 rook earlier), but Black has two knights against White's one (the h8 knight just lost); the pawns are seven each, level, since no g2 pawn was won in this line. A rook for just a knight, with no extra pawn to show for it, is still a real material shortfall for Black.
+              fr: Comptez les pièces, les Noirs n'ont plus qu'une tour contre deux aux Blancs (ayant perdu la tour h8 plus tôt), mais les Noirs ont deux cavaliers contre un seul aux Blancs (le cavalier h8 tout juste perdu) ; les pions sont à sept partout, sans pion g2 gagné dans cette ligne. Une tour contre un simple cavalier, sans pion supplémentaire, reste un véritable manque matériel pour les Noirs.
+            plan:
+              vi: Trắng chơi d3 và Be3, cố giữ phần vật chất còn thừa và hoàn tất phát triển an toàn. Đen chơi ...Bg7 hay ...Bd6, hoàn tất phát triển và tìm cách tạo thêm áp lực để bù cho phần vật chất vẫn còn thiếu.
+              en: White plays d3 and Be3, trying to keep the remaining material edge and finish developing safely. Black plays ...Bg7 or ...Bd6, finishes developing and looks to build further pressure to make up for the material still missing.
+              fr: Les Blancs jouent d3 et Be3, essayant de garder l'avantage matériel restant et d'achever leur développement en sécurité. Les Noirs jouent ...Bg7 ou ...Bd6, achèvent leur développement et cherchent à construire davantage de pression pour compenser le matériel qui manque encore.
+            basis:
+              by: chan
+              at: '2026-09-25'

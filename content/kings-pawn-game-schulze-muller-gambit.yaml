@@ -1,0 +1,59 @@
+# King's Pawn Game, Schulze-Müller Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Nxe5 Nxe5 4.d4, which ends on White's own 4.d4 — the learner's ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Black's 4...Nc6 is modelled as the root's
+# single reply. The position after it was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-pawn-game-schulze-muller-gambit
+name: "King's Pawn Game: Schulze-Müller Gambit"
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Nxe5, Nxe5, d4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. 3.Nxe5 hands the knight straight back after 3...Nxe5, and 4.d4 attacks it
+      again, but the knight simply steps aside and White is left a full piece down for one
+      pawn with no forced way to recover it. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đẩy tốt d lên d4, tấn công con mã Đen đang đứng ở e5. Nhưng con mã ấy chỉ cần lùi đi một ô là xong, không có gì buộc nó phải mất.
+    en: White pushes the d-pawn to d4, attacking Black's knight standing on e5. But that knight only needs to step aside, and nothing forces it to be lost.
+    fr: Les Blancs poussent le pion d en d4, attaquant le cavalier noir posté en e5. Mais ce cavalier n'a qu'à se déplacer d'une case, et rien ne l'oblige à se perdre.
+  dismissRest:
+    reason:
+      vi: Đen lùi mã về ô khác thay vì 4...Nc6 — chẳng hạn ...Ng6 hay ...Ng4. Đánh giá vẫn tương tự, vì Đen luôn giữ được quân đã ăn dù lùi về đâu.
+      en: Black retreats the knight elsewhere instead of 4...Nc6 — for instance ...Ng6 or ...Ng4. The assessment is similar, since Black keeps the piece already won wherever the knight retreats to.
+      fr: Les Noirs reculent le cavalier ailleurs qu'en 4...Nc6 — par exemple ...Ng6 ou ...Ng4. L'évaluation est similaire, les Noirs gardant la pièce déjà gagnée quelle que soit la case de repli.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen lùi mã về c6, trở lại ô nó đã đứng trước đó nhưng vẫn giữ nguyên quân đã ăn được.
+        en: Black retreats the knight to c6, back to the square it stood on before, but still holding onto the piece already won.
+        fr: Les Noirs reculent le cavalier en c6, la case qu'il occupait auparavant, tout en gardant la pièce déjà gagnée.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân nhẹ thì Đen còn hai mã, Trắng chỉ còn một. Trắng đã đổi trắng một mã lấy đúng con tốt e5 duy nhất kể từ 3.Nxe5 Nxe5, một khoản lỗ vật chất nặng nề, và nước 4.d4 rồi ...Nc6 không đòi lại được gì.
+          en: Count the knights and Black still has two, White only one. White has traded away an entire knight for just the one e5 pawn since 3.Nxe5 Nxe5, a heavy material loss, and 4.d4 followed by ...Nc6 wins nothing back.
+          fr: Comptez les cavaliers, les Noirs en ont encore deux, les Blancs un seul. Les Blancs ont échangé un cavalier entier contre le seul pion e5 depuis 3.Nxe5 Nxe5, une lourde perte matérielle, et 4.d4 suivi de ...Nc6 ne regagne rien.
+        plan:
+          vi: Trắng chơi Bd3 và O-O, cố tạo thêm đe doạ cụ thể và tìm sáng kiến để bù cho quân đã mất, dù về vật chất đã lỗ nặng. Đen chơi ...Nf6 và ...Be7, hoàn tất phát triển an toàn và giữ vững quân đã ăn được.
+          en: White plays Bd3 and O-O, trying to create further concrete threats and find some initiative to make up for the lost piece, despite the heavy material deficit. Black plays ...Nf6 and ...Be7, finishing development safely and holding onto the piece already won.
+          fr: Les Blancs jouent Bd3 et O-O, essayant de créer d'autres menaces concrètes et de trouver de l'initiative pour compenser la pièce perdue, malgré le lourd déficit matériel. Les Noirs jouent ...Nf6 et ...Be7, achevant leur développement en sécurité et gardant la pièce déjà gagnée.
+        basis:
+          by: chan
+          at: '2026-09-25'

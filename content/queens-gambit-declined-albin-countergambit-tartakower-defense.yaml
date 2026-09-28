@@ -1,0 +1,57 @@
+# Queen's Gambit Declined, Albin Countergambit, Tartakower Defense, taught. Frozen defining
+# line 1.d4 d5 2.c4 e5 3.dxe5 d4 4.Nf3 c5, which ends on Black's own 4...c5 — the learner's
+# ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's 5.Nbd2 is
+# modelled as the root's single reply. The position after it was checked with `searchMate`
+# (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was replayed with
+# chess.js.
+id: queens-gambit-declined-albin-countergambit-tartakower-defense
+name: "Queen's Gambit Declined: Albin Countergambit, Tartakower Defense"
+eco: D08
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4, Nf3, c5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black props up the advanced d4 pawn with c5 rather than developing a
+      piece, keeping the wedge that denies White's knight the c3 square in exchange for the
+      pawn already spent. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chống lưng cho con tốt d4 tiến sâu bằng ...c5, giữ nguyên cái nêm chiếm ô c3 thay vì vội phát triển quân.
+    en: Black props up the advanced d4 pawn with ...c5, keeping the wedge that denies White the c3 square rather than rushing to develop a piece.
+    fr: Les Noirs étayent le pion d4 avancé par ...c5, conservant le coin qui interdit la case c3 aux Blancs plutôt que de se hâter de développer une pièce.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 4...c5 bằng một nước khác ngoài 5.Nbd2 — chẳng hạn g3 chuẩn bị fianchetto trước. Đánh giá vẫn tương tự, vì cái nêm d4 vẫn cấm ô c3 bất kể Trắng chơi gì.
+      en: White meets 4...c5 with something other than 5.Nbd2 — for instance g3 preparing a fianchetto first. The assessment is similar, since the d4 wedge still bans the c3 square regardless of what White plays.
+      fr: Les Blancs répondent à 4...c5 par autre chose que 5.Nbd2 — par exemple g3 préparant d'abord un fianchetto. L'évaluation est similaire, le coin en d4 interdisant toujours la case c3 quoi que jouent les Blancs.
+  children:
+    - ply: Nbd2
+      annotation:
+        vi: Trắng đưa mã sang d2, chuẩn bị đổi nó lên b3 hoặc c4 để tấn công con tốt d4 mà không chặn đường tốt c của mình.
+        en: White develops the knight to d2, preparing to swing it to b3 or c4 to attack the d4 pawn without blocking the c-pawn.
+        fr: Les Blancs développent le cavalier en d2, se préparant à le faire passer en b3 ou c4 pour attaquer le pion d4 sans bloquer leur propre pion c.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Đen kém một tốt kể từ 3.dxe5. Con tốt d4 vẫn được tốt c5 chống lưng và tiếp tục cấm ô c3, còn con mã d2 của Trắng phải mất thêm một nhịp nữa mới tới được ô hoạt động của nó.
+          en: Count the pawns and it is eight for White, seven for Black — Black is a pawn down since 3.dxe5. The d4 pawn is still propped up by c5 and keeps banning the c3 square, while White's knight on d2 needs a further tempo before it reaches an active square.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Noirs sont en retard d'un pion depuis 3.dxe5. Le pion d4 reste étayé par c5 et continue d'interdire la case c3, tandis que le cavalier d2 blanc a besoin d'un temps de plus avant d'atteindre une case active.
+        plan:
+          vi: Trắng chơi Nb3 hoặc Nc4 tấn công con tốt d4, g3 và Bg2 hoàn tất phát triển, tận dụng nhịp để dần dần vây bắt cái nêm. Đen chơi ...Bg4 gây sức ép lên mã f3, ...Nc6 phát triển nhanh, và giữ vững con tốt d4 càng lâu càng tốt để duy trì lợi thế không gian.
+          en: White plays Nb3 or Nc4 to attack the d4 pawn, g3 and Bg2 to finish developing, using the tempo to slowly surround the wedge. Black plays ...Bg4 to pressure the f3 knight, ...Nc6 to develop quickly, and holds onto the d4 pawn as long as possible to keep the space advantage.
+          fr: Les Blancs jouent Nb3 ou Nc4 pour attaquer le pion d4, g3 et Bg2 pour achever leur développement, utilisant le temps pour encercler peu à peu le coin. Les Noirs jouent ...Bg4 pour faire pression sur le cavalier f3, ...Nc6 pour se développer vite, et gardent le pion d4 aussi longtemps que possible pour conserver l'avantage d'espace.
+        basis:
+          by: chan
+          at: '2026-09-25'

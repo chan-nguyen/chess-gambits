@@ -1,0 +1,60 @@
+# King's Gambit Declined, Norwalde Variation, Bücker Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 Qf6 3.Nc3 Qxf4 4.Nf3 Bb4 5.Bc4, which ends on White's own 5.Bc4 — the
+# learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's
+# 5...Nc6 is modelled as the root's single reply. The position after it was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was
+# replayed with chess.js.
+id: kings-gambit-declined-norwalde-variation-bucker-gambit
+name: "King's Gambit Declined: Norwalde Variation, Bücker Gambit"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Qf6, Nc3, Qxf4, Nf3, Bb4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black's early queen sortie grabs a pawn, but it costs a great deal of
+      time, and White has used every one of those moves to develop a piece with a threat
+      attached. Real, sharp compensation for the pawn rather than a proven refutation. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã phát triển đủ ba quân nhẹ chỉ trong năm nước, con tượng cuối cùng vừa ra c4 nhắm thẳng vào f7, trong khi con hậu Đen vẫn lang thang ở f4 từ nước ăn tốt sớm.
+    en: White has developed all three minor pieces in just five moves, the last bishop just landing on c4 aimed straight at f7, while Black's queen is still wandering on f4 from its early pawn grab.
+    fr: Les Blancs ont développé leurs trois pièces mineures en seulement cinq coups, le dernier fou venant de se poser en c4, braqué droit sur f7, tandis que la dame noire erre encore en f4 depuis sa prise de pion précoce.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...Nc6 — chẳng hạn ...Bxc3 đổi tượng lấy mã ngay hay ...Nf6 phát triển. Đánh giá vẫn tương tự, vì con hậu Đen vẫn đứng lộ liễu và Trắng vẫn dẫn trước về phát triển.
+      en: Black plays something else instead of 5...Nc6 — for instance ...Bxc3 trading the bishop for the knight at once, or ...Nf6 developing. The assessment is similar, since Black's queen still stands exposed and White still leads in development.
+      fr: Les Noirs jouent autre chose que 5...Nc6 — par exemple ...Bxc3 échangeant aussitôt le fou contre le cavalier, ou ...Nf6 en se développant. L'évaluation est similaire, la dame noire restant exposée et les Blancs gardant leur avance de développement.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã ra c6, giữ nguyên tượng b4 ghim mã c3 thay vì đổi nó ngay.
+        en: Black develops the knight to c6, keeping the bishop on b4 pinning the c3 knight rather than trading it off at once.
+        fr: Les Noirs développent le cavalier en c6, gardant le fou b4 qui cloue le cavalier c3 plutôt que de l'échanger tout de suite.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng kém một tốt kể từ 3...Qxf4. Nhưng Trắng đã đưa ra cả ba quân nhẹ — hai mã và một tượng — còn Đen mới có tượng b4 và mã c6, và con hậu Đen đã phải di chuyển hai lần chỉ để đứng ở một ô không hẳn an toàn. Cả hai vua đều chưa nhập thành.
+          en: Count the pawns and it is seven for White, eight for Black, a pawn down since 3...Qxf4. But White has brought out all three minor pieces — two knights and a bishop — while Black has only the bishop on b4 and the knight on c6, and Black's queen has already moved twice just to stand on a square that is not obviously safe. Neither king has castled.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion de retard depuis 3...Qxf4. Mais les Blancs ont sorti leurs trois pièces mineures — deux cavaliers et un fou — tandis que les Noirs n'ont que le fou b4 et le cavalier c6, et la dame noire a déjà bougé deux fois pour se retrouver sur une case qui n'est pas franchement sûre. Aucun roi n'a roqué.
+        plan:
+          vi: Trắng chơi d4 mở đường cho tượng c1 kèm theo đe doạ, hoặc O-O đưa xe vào cột f nhắm thẳng con hậu Đen, dồn hết vào nhịp và các đường mở để bù cho tốt đã mất. Đen chơi ...Bxc3 đổi tượng lấy mã trước khi bị đuổi, ...Nf6 và ...d6 để hoàn tất phát triển, và tìm cách đưa con hậu về nơi an toàn.
+          en: White plays d4 to open the c1 bishop with a threat attached, or O-O to bring the rook to the f-file aimed straight at Black's queen, banking everything on tempo and open lines to make up for the missing pawn. Black plays ...Bxc3 trading the bishop for the knight before it gets chased, ...Nf6 and ...d6 to finish developing, and looks for a safe square for the queen.
+          fr: Les Blancs jouent d4 pour ouvrir le fou c1 avec une menace attachée, ou O-O pour amener la tour sur la colonne f, braquée droit sur la dame noire, misant tout sur le temps et les lignes ouvertes pour compenser le pion manquant. Les Noirs jouent ...Bxc3 échangeant le fou contre le cavalier avant d'être chassés, ...Nf6 et ...d6 pour achever leur développement, et cherchent une case sûre pour la dame.
+        basis:
+          by: chan
+          at: '2026-09-25'

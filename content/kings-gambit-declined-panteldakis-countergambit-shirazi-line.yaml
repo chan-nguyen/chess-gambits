@@ -1,0 +1,58 @@
+# King's Gambit Declined, Panteldakis Countergambit, Shirazi Line, taught. Frozen defining
+# line 1.e4 e5 2.f4 f5 3.exf5 exf4 4.Qh5+ Ke7, which ends on Black's own 4...Ke7 — the
+# learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's
+# 5.Nf3 is modelled as the root's single reply. The position after it was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was
+# replayed with chess.js.
+id: kings-gambit-declined-panteldakis-countergambit-shirazi-line
+name: "King's Gambit Declined: Panteldakis Countergambit, Shirazi Line"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, e5, f4, f5, exf5, exf4, 'Qh5+', Ke7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Two pawns have already changed hands and the count is level, but stepping
+      the king to e7 instead of blocking the check gives up castling for good, a permanent
+      cost that the pawn trade alone does not pay for. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì chặn chiếu bằng ...g6 hay ...Qe7, Đen bước vua sang e7, tự tay từ bỏ quyền nhập thành để giữ nguyên cấu trúc tốt.
+    en: Instead of blocking the check with ...g6 or ...Qe7, Black steps the king to e7, giving up the right to castle on purpose in order to keep the pawn structure intact.
+    fr: Au lieu de bloquer l'échec par ...g6 ou ...Qe7, les Noirs avancent le roi en e7, renonçant volontairement au roque pour garder la structure de pions intacte.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 4...Ke7 bằng một nước khác ngoài 5.Nf3 — chẳng hạn Bc4 phát triển tượng trước. Đánh giá vẫn tương tự, vì vua Đen đã kẹt ở e7 bất kể Trắng chơi gì.
+      en: White meets 4...Ke7 with something other than 5.Nf3 — for instance Bc4 developing the bishop first. The assessment is similar, since Black's king is stuck on e7 regardless of what White plays.
+      fr: Les Blancs répondent à 4...Ke7 par autre chose que 5.Nf3 — par exemple Bc4 en développant d'abord le fou. L'évaluation est similaire, le roi noir restant coincé en e7 quoi que jouent les Blancs.
+  children:
+    - ply: Nf3
+      annotation:
+        vi: Trắng phát triển mã, thêm áp lực lên con tốt f4 và chuẩn bị đưa tượng ra tiếp.
+        en: White develops the knight, adding pressure to the f4 pawn and preparing to bring the bishop out next.
+        fr: Les Blancs développent le cavalier, ajoutant de la pression sur le pion f4 et se préparant à sortir le fou ensuite.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau sau hai lần đổi tốt liên tiếp. Nhưng vua Đen đã phải rời e8 và mất quyền nhập thành vĩnh viễn, trong khi vua Trắng vẫn còn nguyên cả hai quyền nhập thành. Con hậu Trắng ở h5 và mã f3 giờ cùng gây sức ép lên cánh vua Đen.
+          en: Count the pawns and it is seven each, material dead level after two pawns changed hands in a row. But Black's king has had to leave e8 and has permanently lost the right to castle, while White's king still has both castling rights intact. White's queen on h5 and knight on f3 now both press on Black's kingside.
+          fr: Comptez les pions, sept de chaque côté, le matériel est parfaitement égal après deux échanges de pions consécutifs. Mais le roi noir a dû quitter e8 et a perdu pour de bon le droit de roquer, tandis que le roi blanc conserve intacts ses deux droits de roque. La dame blanche en h5 et le cavalier f3 font désormais tous deux pression sur l'aile roi noire.
+        plan:
+          vi: Trắng chơi Bc4 phát triển kèm đe doạ vào vua Đen còn kẹt ở e7, giữ con hậu ở h5 gây sức ép và tìm cách mở thêm đường vào cánh vua. Đen chơi ...g6 đuổi hậu, ...Nf6 và ...d6, gấp rút đưa vua về nơi an toàn hơn dù không còn quyền nhập thành nữa.
+          en: White plays Bc4 developing with a threat against Black's king still stuck on e7, keeps the queen on h5 applying pressure, and looks to open further lines at the kingside. Black plays ...g6 to chase the queen, ...Nf6 and ...d6, hurrying to get the king somewhere safer even without the right to castle any more.
+          fr: Les Blancs jouent Bc4 en se développant avec une menace contre le roi noir toujours coincé en e7, gardent la dame en h5 pour maintenir la pression, et cherchent à ouvrir davantage de lignes à l'aile roi. Les Noirs jouent ...g6 pour chasser la dame, ...Nf6 et ...d6, se hâtant de mettre le roi quelque part de plus sûr même sans plus avoir le droit de roquer.
+        basis:
+          by: chan
+          at: '2026-09-25'

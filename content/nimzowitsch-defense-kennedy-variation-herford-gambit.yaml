@@ -1,0 +1,64 @@
+# Nimzowitsch Defense, Kennedy Variation, Herford Gambit, taught. Frozen defining line 1.e4
+# Nc6 2.d4 e5 3.dxe5 Qh4, which ends on Black's own 3...Qh4 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.Nc3, defending the e4 pawn,
+# is modelled as the root's reply; Black's 4...Nxe5, recapturing the other pawn since the
+# knight on c6 can reach it, is the single reply that follows. The position after it was
+# checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# Every ply was replayed with chess.js.
+id: nimzowitsch-defense-kennedy-variation-herford-gambit
+name: 'Nimzowitsch Defense: Kennedy Variation, Herford Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, Nc6, d4, e5, dxe5, Qh4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black brings the queen out early along the fourth rank, threatening to
+      win the e4 pawn back with check, but an early queen sortie this loose invites White to
+      develop with tempo against it. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đưa hậu ra h4 ngay từ sớm, đe doạ ăn tốt e4 kèm chiếu bằng ...Qxe4+ ở nước sau.
+    en: Black brings the queen out to h4 very early, threatening to win the e4 pawn back with check via ...Qxe4+ next move.
+    fr: Les Noirs sortent très tôt la dame en h4, menaçant de regagner le pion e4 avec échec par ...Qxe4+ au coup suivant.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...Qh4 bằng một nước khác ngoài 4.Nc3 — chẳng hạn g3 đuổi hậu ngay lập tức. Nằm ngoài phạm vi mục này.
+      en: White meets 3...Qh4 with something other than 4.Nc3 — for instance g3 chasing the queen away at once. Outside the scope of this entry.
+      fr: Les Blancs répondent à 3...Qh4 par autre chose que 4.Nc3 — par exemple g3 chassant aussitôt la dame. Hors du cadre de cette entrée.
+  children:
+    - ply: Nc3
+      annotation:
+        vi: Trắng phát triển mã, bảo vệ tốt e4 và ngăn ...Qxe4+, để nguyên con tốt e5 cho Đen đòi lại bằng cách khác.
+        en: White develops the knight, defending the e4 pawn and stopping ...Qxe4+, leaving the e5 pawn for Black to win back another way.
+        fr: Les Blancs développent le cavalier, défendant le pion e4 et empêchant ...Qxe4+, laissant le pion e5 aux Noirs pour le regagner autrement.
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: Đen ăn lại con tốt e5 bằng chính con mã c6, quân duy nhất có thể vươn tới đó.
+            en: Black recaptures the e5 pawn with the c6 knight, the only piece that can reach it.
+            fr: Les Noirs reprennent le pion e5 avec le cavalier c6, la seule pièce pouvant l'atteindre.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau — con tốt e5 đã trở lại tay Đen. Con hậu Đen vẫn đứng ở h4, khá lộ liễu nhưng chưa bị tấn công trực tiếp, và con mã e5 của Đen đứng khá trung tâm.
+              en: Count the pawns and it is seven each, material level — the e5 pawn has returned to Black. Black's queen still stands on h4, fairly exposed but not directly attacked yet, and Black's knight on e5 stands fairly centrally.
+              fr: Comptez les pions, sept de chaque côté, le matériel est égal — le pion e5 est revenu aux Noirs. La dame noire reste en h4, assez exposée mais pas encore directement attaquée, et le cavalier noir en e5 se tient assez centralement.
+            plan:
+              vi: Trắng chơi Nf3 tấn công con hậu và con mã cùng lúc, giành nhịp và tranh chủ động. Đen chơi ...Qxf3? sẽ mất hậu nếu bất cẩn nên thường lui hậu bằng ...Qe7 hay ...Qf6, giữ con mã e5 và tìm cách hoàn tất phát triển.
+              en: White plays Nf3 attacking the queen and the knight at the same time, gaining a tempo and fighting for the initiative. Black usually retreats the queen with ...Qe7 or ...Qf6 rather than risk it, keeps the e5 knight, and looks to finish developing.
+              fr: Les Blancs jouent Nf3, attaquant à la fois la dame et le cavalier, gagnant un temps et luttant pour l'initiative. Les Noirs reculent en général la dame par ...Qe7 ou ...Qf6 plutôt que de la risquer, gardent le cavalier e5 et cherchent à achever leur développement.
+            basis:
+              by: chan
+              at: '2026-09-25'

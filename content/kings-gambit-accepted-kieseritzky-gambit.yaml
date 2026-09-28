@@ -1,0 +1,61 @@
+# King's Gambit Accepted, Kieseritzky Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 g5 4.h4 g4 5.Ne5, which ends on White's own 5.Ne5 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). The many named defences to this exact
+# position — Berlin, Brentano, Kolisch and others — get their own deeper sibling entries;
+# this one models 5...Nh6, a defence not covered elsewhere, as its single reply. The position
+# after it was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free
+# capture. Every ply was replayed with chess.js.
+id: kings-gambit-accepted-kieseritzky-gambit
+name: "King's Gambit Accepted: Kieseritzky Gambit"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The most classical way to meet 3...g5: White provokes ...g4 with 4.h4
+      first, then jumps the knight to e5 where it eyes f7 and cannot easily be evicted. Real,
+      dangerous compensation for the pawn rather than a proven refutation. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ép Đen phải đẩy tốt lên g4 bằng 4.h4, Trắng nhảy mã vào e5, một ô trung tâm mà con mã khó bị đuổi và đang nhòm thẳng vào f7.
+    en: Having provoked ...g4 with 4.h4, White jumps the knight into e5, a central square from which it is hard to evict and from which it already eyes f7.
+    fr: Après avoir provoqué ...g4 par 4.h4, les Blancs sautent le cavalier en e5, une case centrale d'où il est difficile à déloger et d'où il vise déjà f7.
+  dismissRest:
+    reason:
+      vi: Đen chọn một cách phòng thủ khác thay vì 5...Nh6 — nhiều biến trong số đó đã có tên riêng và mục riêng, chẳng hạn ...Nf6, ...d6 hay ...d5, mỗi cách nhằm hoặc đuổi mã e5, hoặc hoàn tất phát triển, hoặc cả hai. Nằm ngoài phạm vi mục này.
+      en: Black chooses a different defence instead of 5...Nh6 — several of these already have their own name and their own entry, such as ...Nf6, ...d6 or ...d5, each aiming to chase the e5 knight, finish development, or both. Outside the scope of this entry.
+      fr: Les Noirs choisissent une autre défense que 5...Nh6 — plusieurs d'entre elles ont déjà leur propre nom et leur propre entrée, comme ...Nf6, ...d6 ou ...d5, chacune visant à chasser le cavalier e5, à achever le développement, ou les deux. Hors du cadre de cette entrée.
+  children:
+    - ply: Nh6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đưa mã ra h6, một ô ít thấy hơn nhưng lại canh giữ chính con tốt g4 đang bị bỏ ngỏ, thay vì tấn công con mã e5.
+        en: Black develops the knight to h6, a less common square, but one that guards the very g4 pawn that is otherwise undefended, rather than attacking the e5 knight.
+        fr: Les Noirs développent le cavalier en h6, une case moins courante, mais qui garde justement le pion g4 autrement sans défense, plutôt que d'attaquer le cavalier e5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng vẫn kém một tốt kể từ nước 2...exf4. Cả hai vua đều chưa nhập thành. Đổi lại con tốt, Trắng có một con mã đứng vững ở e5 nhắm f7, nhưng giờ con tốt g4 của Đen đã được mã h6 bảo vệ, nên nó không còn là mục tiêu miễn phí nữa.
+          en: Count the pawns and it is seven for White, eight for Black — White is still a pawn down since 2...exf4. Neither king has castled. In exchange for the pawn, White has a well-placed knight on e5 aimed at f7, but Black's g4 pawn is now guarded by the h6 knight, so it is no longer a free target.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs restent en retard d'un pion depuis 2...exf4. Aucun des deux rois n'a roqué. En échange du pion, les Blancs disposent d'un cavalier bien posté en e5, braqué sur f7, mais le pion noir en g4 est désormais gardé par le cavalier h6, ce qui en fait une cible qui n'est plus gratuite.
+        plan:
+          vi: Trắng chơi Bc4 nhắm f7, d4 để dựng trung tâm, và tìm cách khai thác sự chậm phát triển của Đen trước khi Đen kịp củng cố. Đen chơi ...Bg7, ...d6 đuổi mã e5, và hoàn tất phát triển bằng ...O-O hay ...Qe7, giữ con mã h6 làm quân canh gác cánh vua.
+          en: White plays Bc4 aiming at f7, d4 to build the centre, and looks to exploit Black's slower development before Black can consolidate. Black plays ...Bg7, ...d6 to chase the e5 knight, and finishes developing with ...O-O or ...Qe7, keeping the h6 knight as a kingside guard.
+          fr: Les Blancs jouent Bc4 en visant f7, d4 pour bâtir le centre, et cherchent à exploiter le retard de développement noir avant que les Noirs ne consolident. Les Noirs jouent ...Bg7, ...d6 pour chasser le cavalier e5, et achèvent leur développement par ...O-O ou ...Qe7, gardant le cavalier h6 comme garde de l'aile roi.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,56 @@
+# Nimzowitsch Defense, Kennedy Variation, Bielefelder Gambit, taught. Frozen defining line
+# 1.e4 Nc6 2.d4 e5 3.dxe5 Bc5, which ends on Black's own 3...Bc5 — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.Nf3 is modelled as the
+# root's single reply. The position after it was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: nimzowitsch-defense-kennedy-variation-bielefelder-gambit
+name: 'Nimzowitsch Defense: Kennedy Variation, Bielefelder Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, Nc6, d4, e5, dxe5, Bc5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black leaves the e5 pawn with White and develops the bishop to c5,
+      pressuring f2 instead of recapturing anything, banking on quick development rather than
+      material. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen không tìm cách ăn lại tốt e5 ngay mà đưa tượng ra c5, nhắm vào tốt f2 và chuẩn bị phát triển nhanh phần còn lại.
+    en: Rather than trying to win the e5 pawn back at once, Black develops the bishop to c5, aiming at the f2 pawn and preparing to develop the rest quickly.
+    fr: Plutôt que de chercher à regagner aussitôt le pion e5, les Noirs développent le fou en c5, visant le pion f2 et se préparant à développer rapidement le reste.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...Bc5 bằng một nước khác ngoài 4.Nf3 — chẳng hạn Qh5 tận dụng việc Đen chưa nhập thành. Đánh giá vẫn tương tự, vì Trắng vẫn giữ được tốt thừa theo cách này hay cách khác.
+      en: White meets 3...Bc5 with something other than 4.Nf3 — for instance Qh5 exploiting Black's uncastled king. The assessment is similar, since White keeps the extra pawn one way or another.
+      fr: Les Blancs répondent à 3...Bc5 par autre chose que 4.Nf3 — par exemple Qh5 en exploitant le roi noir non roqué. L'évaluation est similaire, les Blancs gardant le pion supplémentaire d'une manière ou d'une autre.
+  children:
+    - ply: Nf3
+      annotation:
+        vi: Trắng phát triển mã, chặn đường chéo của tượng c5 tới f2 và chuẩn bị nhập thành.
+        en: White develops the knight, blocking the c5 bishop's diagonal to f2 and preparing to castle.
+        fr: Les Blancs développent le cavalier, bloquant la diagonale du fou c5 vers f2 et se préparant à roquer.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng hơn một tốt sạch kể từ 3.dxe5. Con tượng c5 của Đen giờ bị chính con mã f3 chặn đường tới f2, và con mã c6 vẫn chưa gây áp lực gì lên con tốt e5. Trắng đã sẵn sàng nhập thành.
+          en: Count the pawns and it is eight for White, seven for Black — White is a clean pawn up since 3.dxe5. Black's bishop on c5 now has its path to f2 blocked by the f3 knight itself, and the knight on c6 still puts no pressure on the e5 pawn. White is ready to castle.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net de plus depuis 3.dxe5. Le fou noir en c5 a désormais son chemin vers f2 bloqué par le cavalier f3 lui-même, et le cavalier c6 ne fait toujours pas pression sur le pion e5. Les Blancs sont prêts à roquer.
+        plan:
+          vi: Trắng chơi O-O hoàn tất an toàn cho vua, rồi Bc4 hay c3, giữ vững con tốt thừa và tìm cách phát triển tiếp. Đen chơi ...Qh4 hay ...Nge7 tìm cách gây thêm sức ép, ...d6 chuẩn bị ăn lại tốt e5, và cố tạo đủ hoạt động để bù cho tốt đã mất.
+          en: White plays O-O to complete king safety, then Bc4 or c3, holding onto the extra pawn and continuing to develop. Black plays ...Qh4 or ...Nge7 to build further pressure, ...d6 to prepare winning the e5 pawn back, and tries to create enough activity to make up for the missing pawn.
+          fr: Les Blancs jouent O-O pour achever la sécurité du roi, puis Bc4 ou c3, gardant le pion supplémentaire et continuant à se développer. Les Noirs jouent ...Qh4 ou ...Nge7 pour construire davantage de pression, ...d6 pour préparer à regagner le pion e5, et tentent de créer assez d'activité pour compenser le pion manquant.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Schallopp Defense, Tashkent Attack, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 Nf6 4.e5 Nh5 5.g4, which ends on White's own 5.g4 — the learner's
+# ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...Nf6 is
+# modelled as the root's single reply. The position after it was checked with `searchMate`
+# (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was replayed with
+# chess.js.
+id: kings-gambit-accepted-schallopp-defense-tashkent-attack
+name: "King's Gambit Accepted: Schallopp Defense, Tashkent Attack"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, Nf6, e5, Nh5, g4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Having chased the knight to the rim with 4.e5 Nh5, White presses further
+      with 5.g4, gaining space and attacking the knight again rather than developing a piece.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đẩy con mã Đen ra tận rìa bàn cờ bằng 4.e5 Nh5, Trắng đẩy tiếp 5.g4, vừa chiếm không gian cánh vua vừa tấn công thẳng vào con mã h5 lần nữa.
+    en: Having chased Black's knight all the way to the rim with 4.e5 Nh5, White pushes on with 5.g4, gaining kingside space and attacking the h5 knight directly once more.
+    fr: Après avoir repoussé le cavalier noir jusqu'au bord de l'échiquier par 4.e5 Nh5, les Blancs enchaînent par 5.g4, gagnant de l'espace à l'aile roi et attaquant de nouveau directement le cavalier h5.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 5.g4 bằng một nước khác ngoài 5...Nf6 — chẳng hạn ...g6 và ...Bg7 để hỗ trợ con mã tại chỗ. Nằm ngoài phạm vi mục này.
+      en: Black meets 5.g4 with something other than 5...Nf6 — for instance ...g6 and ...Bg7 to support the knight where it stands. Outside the scope of this entry.
+      fr: Les Noirs répondent à 5.g4 par autre chose que 5...Nf6 — par exemple ...g6 et ...Bg7 pour soutenir le cavalier là où il se trouve. Hors du cadre de cette entrée.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen lùi mã về f6, chấp nhận mất trắng các nhịp đã bỏ ra để đưa nó tới h5, đổi lại con mã đứng ở ô an toàn và bình thường.
+        en: Black retreats the knight to f6, accepting the loss of every tempo spent getting it to h5, in exchange for a knight standing on a safe, normal square.
+        fr: Les Noirs reculent le cavalier en f6, acceptant de perdre tous les temps consacrés à l'amener en h5, en échange d'un cavalier posté sur une case sûre et normale.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng kém một tốt kể từ nước 2...exf4. Con mã Đen đã về lại f6 nhưng đã mất ba nhịp (Nf6-h5-f6) so với việc đưa nó ra thẳng, còn Trắng đã dùng đúng số nhịp ấy để chiếm không gian bằng e5 và g4. Cả hai vua đều chưa nhập thành.
+          en: Count the pawns and it is seven for White, eight for Black, a pawn down since 2...exf4. Black's knight is back on f6 but has spent three tempi (Nf6-h5-f6) compared with developing it there directly, while White has used exactly that many tempi claiming space with e5 and g4. Neither king has castled.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion de retard depuis 2...exf4. Le cavalier noir est revenu en f6 mais a coûté trois temps (Nf6-h5-f6) comparé à un développement direct, tandis que les Blancs ont utilisé exactement ce nombre de temps pour prendre de l'espace par e5 et g4. Aucun roi n'a roqué.
+        plan:
+          vi: Trắng chơi d4 để dựng trung tâm vững chắc, Bxf4 hoặc Bg2 để đòi lại con tốt và hoàn tất phát triển, khai thác nhịp đã kiếm được. Đen chơi ...d6 thách thức tốt e5, ...Bg7 và tìm chỗ an toàn cho vua, cố bù lại những nhịp đã mất bằng áp lực lên trung tâm Trắng.
+          en: White plays d4 to build a solid centre, Bxf4 or Bg2 to win the pawn back and finish developing, cashing in the tempi gained. Black plays ...d6 to challenge the e5 pawn, ...Bg7 and looks for a safe spot for the king, trying to make up for the lost tempi with pressure on White's centre.
+          fr: Les Blancs jouent d4 pour bâtir un centre solide, Bxf4 ou Bg2 pour regagner le pion et achever leur développement, monnayant les temps gagnés. Les Noirs jouent ...d6 pour défier le pion e5, ...Bg7 et cherchent un abri pour le roi, tentant de compenser les temps perdus par une pression sur le centre blanc.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,81 @@
+# Petrov's Defense, Moody Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 Nf6 3.Qe2 Nc6
+# 4.d4, which ends on White's own 4.d4 — the learner's ply — so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Black's 4...exd4 is modelled as the root's reply; White's
+# 5.Nxd4, the only legal recapture, is modelled next — and it was replayed and found to hang
+# the knight outright, since the queen on e2 does not defend d4 the way it would from d1, so
+# Black's 5...Nxd4 is modelled as the reply that actually follows. The position after it was
+# checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# Every ply was replayed with chess.js.
+id: petrovs-defense-moody-gambit
+name: "Petrov's Defense: Moody Gambit"
+eco: C42
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nf6, Qe2, Nc6, d4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. 3.Qe2 blocks White's own f1 bishop and, more concretely, leaves d4
+      undefended by the queen the way it would be from d1 — the only recapture on d4 simply
+      hangs the piece to Black's own knight. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã đưa hậu ra e2 từ nước ba, chặn mất con tượng f1 khỏi đường chéo tự nhiên của nó, và giờ đẩy tốt d lên d4 để thách thức trung tâm.
+    en: White already committed the queen to e2 on move three, blocking the f1 bishop from its natural diagonal, and now pushes the d-pawn to d4 to challenge the centre.
+    fr: Les Blancs ont déjà engagé la dame en e2 dès le troisième coup, bloquant le fou f1 de sa diagonale naturelle, et poussent maintenant le pion d en d4 pour défier le centre.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.d4 bằng một nước khác ngoài 4...exd4 — chẳng hạn ...Bb4+ phát triển kèm chiếu trước. Đánh giá vẫn tương tự, vì con tượng f1 vẫn kẹt sau con hậu bất kể Đen chơi gì.
+      en: Black meets 4.d4 with something other than 4...exd4 — for instance ...Bb4+ developing with check first. The assessment is similar, since the f1 bishop is still stuck behind the queen regardless of what Black plays.
+      fr: Les Noirs répondent à 4.d4 par autre chose que 4...exd4 — par exemple ...Bb4+ en se développant d'abord avec échec. L'évaluation est similaire, le fou f1 restant coincé derrière la dame quoi que jouent les Noirs.
+  children:
+    - ply: exd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt d4, thách thức trung tâm Trắng ngay lập tức.
+        en: Black takes the d4 pawn, challenging White's centre at once.
+        fr: Les Noirs prennent le pion d4, défiant aussitôt le centre blanc.
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Trắng ăn lại bằng mã, cách duy nhất còn hợp lệ để ăn ở d4 sau khi hậu đã rời d1 — nhưng con mã ấy hoá ra không được quân nào bảo vệ, vì hậu ở e2 không canh ô d4 như khi nó còn ở d1.
+            en: White recaptures with the knight, the only legal way left to take on d4 now that the queen has left d1 — but that knight turns out to be defended by nothing, since the queen on e2 does not guard d4 the way it would from d1.
+            fr: Les Blancs reprennent avec le cavalier, la seule façon légale restante de capturer en d4 maintenant que la dame a quitté d1 — mais ce cavalier se révèle sans défense, la dame en e2 ne gardant pas d4 comme elle le ferait depuis d1.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác ngoài việc ăn nốt con mã d4 — điều này khó xảy ra vì con mã đang bị treo hoàn toàn, nhưng nếu Đen bỏ qua thì sai lầm của Trắng sẽ không bị trừng phạt và ván cờ trở lại bình thường.
+              en: Black plays anything other than capturing the hanging d4 knight — unlikely, since the knight is completely undefended, but if Black lets it go, White's mistake goes unpunished and the game returns to normal.
+              fr: Les Noirs jouent autre chose que de capturer le cavalier d4 sans défense — improbable, ce cavalier étant totalement sans protection, mais si les Noirs le laissent filer, l'erreur blanche reste impunie et la partie redevient normale.
+          children:
+            - ply: Nxd4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen ăn nốt con mã, quân hoàn toàn không được bảo vệ.
+                en: Black takes the knight, which is completely undefended.
+                fr: Les Noirs prennent le cavalier, totalement sans défense.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm quân nhẹ thì Đen còn hai mã, Trắng chỉ còn một — Trắng đã mất trắng một mã chỉ trong năm nước, không có gì bù lại. Đếm tốt thì mỗi bên còn bảy, ngang nhau. Con tượng f1 của Trắng cũng vẫn bị chính con hậu chặn mất đường chéo tự nhiên.
+                  en: Count the knights and Black still has two, White only one — White has lost an entire knight in just five moves, with nothing to show for it. Count the pawns and it is seven each, level. White's own f1 bishop still has its natural diagonal blocked by the queen too.
+                  fr: Comptez les cavaliers, les Noirs en ont encore deux, les Blancs un seul — les Blancs ont perdu un cavalier entier en cinq coups à peine, sans rien en retour. Comptez les pions, sept de chaque côté, à égalité. Le fou f1 blanc a lui aussi toujours sa diagonale naturelle bloquée par la dame.
+                plan:
+                  vi: Trắng chơi Nc3 hoặc Bd3 sau khi hậu đã rời đi, cố tạo thêm đe doạ cụ thể để bù cho quân đã mất, dù về vật chất đã lỗ nặng. Đen chơi ...Bc5 hay ...Be7, hoàn tất phát triển an toàn và giữ vững quân đã ăn được.
+                  en: White plays Nc3 or Bd3 once the queen has moved on, trying to create further concrete threats to make up for the lost piece, despite the heavy material deficit. Black plays ...Bc5 or ...Be7, finishing development safely and holding onto the piece already won.
+                  fr: Les Blancs jouent Nc3 ou Bd3 une fois la dame partie, essayant de créer d'autres menaces concrètes pour compenser la pièce perdue, malgré le lourd déficit matériel. Les Noirs jouent ...Bc5 ou ...Be7, achevant leur développement en sécurité et gardant la pièce déjà gagnée.
+                basis:
+                  by: chan
+                  at: '2026-09-25'

@@ -1,0 +1,64 @@
+# King's Pawn Game, Busch-Gass Gambit, Chiodini Gambit, taught. Frozen defining line 1.e4
+# e5 2.Nf3 Bc5 3.Nxe5 Nc6, which ends on Black's own 3...Nc6 — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.Nxc6 is modelled as the
+# root's reply; Black's 4...dxc6 is the single recapture that follows. The position after it
+# was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# Every ply was replayed with chess.js.
+id: kings-pawn-game-busch-gass-gambit-chiodini-gambit
+name: "King's Pawn Game: Busch-Gass Gambit, Chiodini Gambit"
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Bc5, Nxe5, Nc6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. 2...Bc5 does nothing to defend the e5 pawn, so 3.Nxe5 simply wins it, and
+      3...Nc6 only attacks the knight rather than winning any material back — a real pawn
+      given away with nothing concrete shown for it. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Nc6, tấn công con mã Trắng vừa ăn tốt ở e5. Con mã ấy hoàn toàn có thể lùi về hoặc đổi đi mà không mất gì thêm.
+    en: Black has just played 3...Nc6, attacking White's knight that just captured the pawn on e5. That knight can simply retreat or trade without losing anything further.
+    fr: Les Noirs viennent de jouer 3...Nc6, attaquant le cavalier blanc qui vient de capturer le pion en e5. Ce cavalier peut simplement reculer ou s'échanger sans rien perdre de plus.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 3...Nc6 bằng một nước khác ngoài 4.Nxc6 — chẳng hạn lùi mã về f3 hay d3. Đánh giá vẫn tương tự, vì Trắng vẫn giữ được tốt thừa theo cách này hay cách khác.
+      en: White meets 3...Nc6 with something other than 4.Nxc6 — for instance retreating the knight to f3 or d3. The assessment is similar, since White keeps the extra pawn one way or another.
+      fr: Les Blancs répondent à 3...Nc6 par autre chose que 4.Nxc6 — par exemple reculer le cavalier en f3 ou d3. L'évaluation est similaire, les Blancs gardant le pion supplémentaire d'une manière ou d'une autre.
+  children:
+    - ply: Nxc6
+      annotation:
+        vi: Trắng đổi mã lấy mã, đơn giản hoá vị trí trong lúc vẫn giữ nguyên con tốt đã ăn được.
+        en: White trades knights, simplifying the position while still keeping the pawn already won.
+        fr: Les Blancs échangent les cavaliers, simplifiant la position tout en gardant le pion déjà gagné.
+      children:
+        - ply: dxc6
+          annotation:
+            vi: Đen ăn lại bằng tốt d, quân duy nhất còn có thể ăn tại đó, chấp nhận cấu trúc tốt c bị chồng.
+            en: Black recaptures with the d-pawn, the only piece left that can take there, accepting a doubled c-pawn structure.
+            fr: Les Noirs reprennent avec le pion d, la seule pièce restant capable de capturer là, acceptant une structure de pions c doublés.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng hơn hẳn một tốt sạch kể từ 3.Nxe5, vì con tượng c5 không hề bảo vệ tốt e5. Đen giờ còn có thêm cấu trúc tốt c6-c7 bị chồng đôi, một điểm yếu lâu dài cộng thêm vào việc kém tốt.
+              en: Count the pawns and it is eight for White, seven for Black — White is a clean pawn up since 3.Nxe5, because the bishop on c5 never defended the e5 pawn. Black now also has the doubled c6-c7 pawns, a long-term weakness on top of the missing pawn.
+              fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net de plus depuis 3.Nxe5, car le fou en c5 n'a jamais défendu le pion e5. Les Noirs ont désormais aussi les pions c6-c7 doublés, une faiblesse durable en plus du pion manquant.
+            plan:
+              vi: Trắng chơi Nc3 và Bc4 hoàn tất phát triển, giữ vững con tốt thừa và khai thác cấu trúc tốt yếu của Đen bằng d4 khi thuận tiện. Đen chơi ...Nf6 và ...d6, cố tạo áp lực lên tốt e4 và tìm bù đắp cụ thể cho tốt đã mất.
+              en: White plays Nc3 and Bc4 to finish developing, keeps the extra pawn, and looks to exploit Black's weak structure with d4 when convenient. Black plays ...Nf6 and ...d6, trying to build pressure on the e4 pawn and looking for concrete compensation for the missing pawn.
+              fr: Les Blancs jouent Nc3 et Bc4 pour achever leur développement, gardent le pion supplémentaire et cherchent à exploiter la structure noire affaiblie par d4 quand cela convient. Les Noirs jouent ...Nf6 et ...d6, essayant de faire pression sur le pion e4 et cherchant une compensation concrète pour le pion manquant.
+            basis:
+              by: chan
+              at: '2026-09-25'

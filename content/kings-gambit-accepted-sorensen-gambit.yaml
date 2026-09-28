@@ -1,0 +1,67 @@
+# King's Gambit Accepted, Sörensen Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 g5 4.d4 g4 5.Ne5, which ends on White's own 5.Ne5 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...Nh6 is modelled as the
+# root's reply; White's 6.Bxf4, recapturing the long-hanging f4 pawn (the g5 pawn that once
+# guarded it had already advanced to g4 within the defining line), is the single reply that
+# follows. The position after it was checked with `searchMate` (bounded to 2 moves): no-mate,
+# not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-gambit-accepted-sorensen-gambit
+name: "King's Gambit Accepted: Sörensen Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, d4, g4, Ne5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Having built the centre with 4.d4 rather than developing the bishop,
+      White jumps the attacked knight forward to e5, keeping the big pawn centre and an
+      active knight rather than a developed bishop. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Con mã f3 bị tốt g4 tấn công, và Trắng nhảy nó tới e5 thay vì lùi về, giữ nguyên cặp tốt trung tâm d4-e4 đã dựng từ nước trước.
+    en: The f3 knight is attacked by the g4 pawn, and White jumps it forward to e5 rather than back, keeping the d4-e4 pawn pair built the move before.
+    fr: Le cavalier f3 est attaqué par le pion g4, et les Blancs le sautent en e5 plutôt que de le reculer, conservant le duo de pions d4-e4 bâti au coup précédent.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 5.Ne5 bằng một nước khác ngoài 5...Nh6 — chẳng hạn ...d6 đuổi mã trực tiếp hay ...Bg7 ép trung tâm. Đánh giá vẫn tương tự, vì con tốt f4 vẫn đang chờ bị Bxf4 ăn lại bất kể Đen chơi gì ở đây.
+      en: Black meets 5.Ne5 with something other than 5...Nh6 — for instance ...d6 chasing the knight directly, or ...Bg7 pressing the centre. The assessment is similar, since the f4 pawn is due to fall to Bxf4 regardless of what Black plays here.
+      fr: Les Noirs répondent à 5.Ne5 par autre chose que 5...Nh6 — par exemple ...d6 chassant directement le cavalier, ou ...Bg7 pressant le centre. L'évaluation est similaire, le pion f4 étant destiné à tomber sous Bxf4 quoi que jouent les Noirs ici.
+  children:
+    - ply: Nh6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen phát triển mã ra h6, chuẩn bị ...Bg7 mà chưa vội đuổi mã e5.
+        en: Black develops the knight to h6, preparing ...Bg7 without yet chasing the e5 knight.
+        fr: Les Noirs développent le cavalier en h6, préparant ...Bg7 sans encore chasser le cavalier e5.
+      children:
+        - ply: Bxf4
+          annotation:
+            vi: Trắng ăn lại con tốt f4 bằng tượng c1, con tốt vốn không còn được ai bảo vệ từ khi tốt g5 tiến lên g4. Đường chéo c1-h6 đã mở sẵn từ đầu, chỉ chờ đến lượt Trắng.
+            en: White recaptures the f4 pawn with the c1 bishop, a pawn that has been undefended ever since the g5 pawn advanced to g4. The c1-h6 diagonal was open all along, just waiting for White's turn.
+            fr: Les Blancs reprennent le pion f4 avec le fou c1, un pion sans défense depuis que le pion g5 a avancé en g4. La diagonale c1-h6 était ouverte depuis le début, n'attendant que le tour des Blancs.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau — con tốt f4 mà Đen giữ được từ nước 2 giờ đã về tay Trắng. Con mã e5 vẫn đứng vững, còn con tượng f4 mới ăn được đang đối mặt trực tiếp với con mã h6 của Đen trên cùng đường chéo. Cả hai vua đều chưa nhập thành.
+              en: Count the pawns and it is seven each, level — the f4 pawn Black had held since move two now belongs to White. The e5 knight still stands firm, and the bishop that just captured on f4 now faces Black's h6 knight directly on the same diagonal. Neither king has castled.
+              fr: Comptez les pions, sept de chaque côté, à égalité — le pion f4 que les Noirs gardaient depuis le second coup appartient désormais aux Blancs. Le cavalier e5 tient toujours bon, et le fou qui vient de capturer en f4 fait désormais face au cavalier h6 noir sur la même diagonale. Aucun roi n'a roqué.
+            plan:
+              vi: Trắng chơi Nc3 hoàn tất phát triển, giữ vững thế trận cân bằng về vật chất nhưng vượt trội về hoạt động của quân, và tìm nước phá ở trung tâm bằng e5 sau này. Đen chơi ...Bg7 đổi lại đường chéo, ...d6 và tìm chỗ an toàn cho vua trước khi Trắng kịp phối hợp tấn công.
+              en: White plays Nc3 to finish developing, keeping a position that is level in material but ahead in piece activity, and looks for a central break with e5 later. Black plays ...Bg7 to contest the diagonal, ...d6, and looks for a safe spot for the king before White can coordinate an attack.
+              fr: Les Blancs jouent Nc3 pour achever leur développement, gardant une position égale en matériel mais en avance en activité des pièces, et cherchent une rupture centrale par e5 plus tard. Les Noirs jouent ...Bg7 pour contester la diagonale, ...d6, et cherchent un abri pour le roi avant que les Blancs ne coordonnent une attaque.
+            basis:
+              by: chan
+              at: '2026-09-25'

@@ -1,0 +1,67 @@
+# King's Gambit Accepted, Muzio Gambit, Wild Muzio Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.O-O, which ends on White's own 5.O-O — the learner's
+# ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...gxf3, the
+# critical try that actually wins the knight, is modelled as the root's reply; White's 6.Qxf3
+# is the single recapture that follows. The position after it was checked with `searchMate`
+# (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was replayed with
+# chess.js.
+id: kings-gambit-accepted-muzio-gambit-wild-muzio-gambit
+name: "King's Gambit Accepted: Muzio Gambit, Wild Muzio Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, 'O-O']
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The purest Muzio idea: White does not even try to save the attacked
+      knight, castling instead to bring the rook to f1 and the king to safety in one move.
+      Real, sharp compensation for a whole piece — dangerous in practice, not a proven
+      refutation of Black's defence. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng không cứu con mã f3 đang bị tấn công mà nhập thành ngay, đưa vua vào chỗ an toàn và đẩy xe ra cột f trong cùng một nước.
+    en: White does not save the attacked knight on f3 at all, castling at once to tuck the king away and swing the rook to the f-file in the same move.
+    fr: Les Blancs ne sauvent pas du tout le cavalier f3 attaqué, roquant aussitôt pour mettre le roi à l'abri et amener la tour sur la colonne f en un seul coup.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con mã f3. Các nước khác, chẳng hạn ...Bg7, để nguyên con mã trên bàn cờ, nghĩa là Trắng chỉ còn kém đúng một tốt như từ đầu chứ không kém thêm cả một quân.
+      en: Black does not take the f3 knight. Anything else, such as ...Bg7, leaves the knight on the board, meaning White is only down the original pawn rather than a whole piece as well.
+      fr: Les Noirs ne prennent pas le cavalier f3. Tout le reste, comme ...Bg7, laisse le cavalier sur l'échiquier, ce qui signifie que les Blancs ne sont en retard que du pion initial, pas aussi d'une pièce entière.
+  children:
+    - ply: gxf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con mã, quân duy nhất còn có thể ăn tại đó và cũng là điểm chính của cả biến này.
+        en: Black takes the knight, the only piece left that can capture there and the whole point of this line.
+        fr: Les Noirs prennent le cavalier, la seule pièce restant capable de capturer là et tout le sens de cette ligne.
+      children:
+        - ply: Qxf3
+          annotation:
+            vi: Trắng ăn lại bằng hậu, quân duy nhất còn có thể ăn ở f3. Đây chỉ là ăn lại con tốt vừa tới đó, không đòi lại được con mã đã mất, nhưng con hậu giờ đứng ở vị trí cực mạnh.
+            en: White recaptures with the queen, the only piece left that can take on f3. This only wins back the pawn that just landed there, not the knight already lost, but the queen now stands on a very strong square.
+            fr: Les Blancs reprennent avec la dame, la seule pièce restant capable de capturer en f3. Cela ne regagne que le pion qui vient de s'y poser, pas le cavalier déjà perdu, mais la dame se tient désormais sur une case très forte.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm quân nhẹ thì Đen còn hai mã và hai tượng, Trắng chỉ còn một mã và hai tượng — Trắng kém hẳn một quân nhẹ. Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau. Đổi lại, vua Trắng đã an toàn sau khi nhập thành, xe f1 đã đứng sẵn trên cột f, và con hậu f3 nhắm thẳng vào b7 và f7, trong khi Đen chưa phát triển một quân nào và vua vẫn ở giữa bàn.
+              en: Count the minor pieces and Black still has two knights and two bishops, White only one knight and two bishops — White is a clear minor piece down. Count the pawns and it is seven each, level. In exchange, White's king is already safe after castling, the rook on f1 already sits on the f-file, and the queen on f3 aims straight at b7 and f7, while Black has developed no piece at all with the king still in the centre.
+              fr: Comptez les pièces mineures, les Noirs ont encore deux cavaliers et deux fous, les Blancs un seul cavalier et deux fous — les Blancs sont nettement en retard d'une pièce mineure. Comptez les pions, sept de chaque côté, à égalité. En échange, le roi blanc est déjà en sécurité après le roque, la tour f1 est déjà sur la colonne f, et la dame en f3 vise droit sur b7 et f7, tandis que les Noirs n'ont développé aucune pièce, le roi restant au centre.
+            plan:
+              vi: Trắng chơi d4 và Nc3, dồn toàn lực tấn công vào vị trí vua Đen trước khi Đen kịp phát triển, đặt cược hoàn toàn vào sáng kiến để bù cho một quân đã mất. Đen cố sống sót bằng ...Qf6 hoặc ...Qe7 đổi hậu, ...Bg7 và tìm cách đưa vua ra khỏi trung tâm càng nhanh càng tốt.
+              en: White plays d4 and Nc3, throwing everything at Black's king before Black can develop, betting entirely on the initiative to make up for the lost piece. Black tries to survive with ...Qf6 or ...Qe7 offering a queen trade, ...Bg7, and gets the king out of the centre as fast as possible.
+              fr: Les Blancs jouent d4 et Nc3, jetant toutes leurs forces sur le roi noir avant que les Noirs ne se développent, misant entièrement sur l'initiative pour compenser la pièce perdue. Les Noirs tentent de survivre par ...Qf6 ou ...Qe7 proposant l'échange des dames, ...Bg7, et sortent le roi du centre aussi vite que possible.
+            basis:
+              by: chan
+              at: '2026-09-25'

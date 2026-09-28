@@ -1,0 +1,64 @@
+# Modern Defense, Masur Gambit, taught. Frozen defining line 1.e4 g6 2.d4 Nh6 3.Nc3 f5
+# 4.Bxh6 Bxh6 5.exf5 O-O, which ends on Black's own 5...O-O — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). White's 6.Nf3 is modelled as the root's
+# reply; Black's 6...Rxf5, recapturing the pawn along the newly open f-file, is the single
+# reply that follows. The position after it was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: modern-defense-masur-gambit
+name: 'Modern Defense: Masur Gambit'
+eco: B06
+category: gambit
+side: black
+definingLine: [e4, g6, d4, Nh6, Nc3, f5, Bxh6, Bxh6, exf5, 'O-O']
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black trades a knight for a bishop and then offers the f5 pawn, but the
+      rook recaptures it along the file that castling just opened, so the pawn does not stay
+      lost for long — the real question is whether the resulting activity is worth the
+      earlier concessions. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa nhập thành, đưa vua vào chỗ an toàn ngay sau khi để mất con tốt f5 cho Trắng.
+    en: Black has just castled, tucking the king away right after letting the f5 pawn go to White.
+    fr: Les Noirs viennent de roquer, mettant le roi à l'abri juste après avoir laissé le pion f5 aux Blancs.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại 5...O-O bằng một nước khác ngoài 6.Nf3 — chẳng hạn Bd3 trước. Đánh giá vẫn tương tự, vì con tốt f5 vẫn sẽ bị xe Đen ăn lại ngay khi có dịp.
+      en: White meets 5...O-O with something other than 6.Nf3 — for instance Bd3 first. The assessment is similar, since Black's rook still recaptures the f5 pawn as soon as it gets the chance.
+      fr: Les Blancs répondent à 5...O-O par autre chose que 6.Nf3 — par exemple Bd3 d'abord. L'évaluation est similaire, la tour noire reprenant de toute façon le pion f5 dès qu'elle en a l'occasion.
+  children:
+    - ply: Nf3
+      annotation:
+        vi: Trắng phát triển mã, chưa vội bảo vệ con tốt f5 vừa ăn được.
+        en: White develops the knight, not yet rushing to defend the newly won f5 pawn.
+        fr: Les Blancs développent le cavalier, sans encore se presser de défendre le pion f5 tout juste gagné.
+      children:
+        - ply: Rxf5
+          annotation:
+            vi: Đen ăn lại con tốt bằng xe, tận dụng đúng cột f vừa mở ra nhờ nước nhập thành.
+            en: Black recaptures the pawn with the rook, using exactly the f-file that castling just opened.
+            fr: Les Noirs reprennent le pion avec la tour, utilisant précisément la colonne f que le roque venait d'ouvrir.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì mỗi bên còn bảy, quân số ngang nhau — con tốt f5 đã trở lại tay Đen. Đôi bên trước đó đã đổi đúng một mã lấy một tượng ở h6, một cuộc đổi chác cân bằng, nên vật chất giờ hoàn toàn ngang nhau. Xe Đen trên f5 đứng khá hoạt động trên cột f đã mở.
+              en: Count the pawns and it is seven each, material level — the f5 pawn has returned to Black. The earlier knight-for-bishop trade on h6 was roughly even, so material is now fully level. Black's rook on f5 stands fairly actively on the open f-file.
+              fr: Comptez les pions, sept de chaque côté, le matériel est égal — le pion f5 est revenu aux Noirs. L'échange antérieur du cavalier contre le fou en h6 était à peu près équilibré, si bien que le matériel est maintenant parfaitement égal. La tour noire en f5 se tient assez activement sur la colonne f ouverte.
+            plan:
+              vi: Trắng chơi Bd3 đuổi xe và hoàn tất phát triển, tìm cách tận dụng cặp tượng khác màu hoặc trung tâm để giành lại chủ động. Đen chơi ...Rf8 lùi xe về an toàn nếu bị đuổi, ...d6 và ...Nc6, hoàn tất phát triển và giữ vững thế cân bằng vật chất.
+              en: White plays Bd3 to chase the rook and finish developing, looking to use the remaining bishop or the centre to fight for the initiative. Black plays ...Rf8 retreating the rook to safety if chased, ...d6 and ...Nc6, finishing development and holding the material balance.
+              fr: Les Blancs jouent Bd3 pour chasser la tour et achever leur développement, cherchant à utiliser le fou restant ou le centre pour lutter pour l'initiative. Les Noirs jouent ...Rf8 en repliant la tour en sécurité si elle est chassée, ...d6 et ...Nc6, achevant leur développement et maintenant l'équilibre matériel.
+            basis:
+              by: chan
+              at: '2026-09-25'

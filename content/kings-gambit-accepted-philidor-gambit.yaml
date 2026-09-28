@@ -1,0 +1,58 @@
+# King's Gambit Accepted, Philidor Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 g5 4.Bc4 Bg7 5.h4, which ends on White's own 5.h4 — the learner's ply — so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...h6 is modelled as the
+# root's single reply. The position after it was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check, no free capture. Every ply was replayed with chess.js.
+id: kings-gambit-accepted-philidor-gambit
+name: "King's Gambit Accepted: Philidor Gambit"
+eco: C38
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, Bg7, h4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Rather than castle at once as in the Hanstein, White strikes the g5 pawn
+      straight away with 5.h4, trying to break Black's kingside pawn chain before it settles.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì nhập thành ngay như trong Hanstein Gambit, Trắng tấn công thẳng vào tốt g5 bằng 5.h4, cố phá vỡ hàng tốt cánh vua của Đen trước khi nó kịp ổn định.
+    en: Instead of castling at once as in the Hanstein Gambit, White strikes the g5 pawn directly with 5.h4, trying to break up Black's kingside pawn chain before it settles.
+    fr: Au lieu de roquer aussitôt comme dans le Gambit Hanstein, les Blancs frappent directement le pion g5 par 5.h4, cherchant à briser la chaîne de pions de l'aile roi noire avant qu'elle ne s'installe.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 5.h4 bằng một nước khác ngoài 5...h6 — chẳng hạn ...gxh4 chấp nhận mất cấu trúc tốt ngay, hay ...Ne7 phát triển trước. Nằm ngoài phạm vi mục này.
+      en: Black meets 5.h4 with something other than 5...h6 — for instance ...gxh4 accepting a damaged structure at once, or ...Ne7 developing first. Outside the scope of this entry.
+      fr: Les Noirs répondent à 5.h4 par autre chose que 5...h6 — par exemple ...gxh4 en acceptant aussitôt une structure abîmée, ou ...Ne7 en se développant d'abord. Hors du cadre de cette entrée.
+  children:
+    - ply: h6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen giữ chắc tốt g5 bằng h6, từ chối mở cột h cho xe Trắng và giữ nguyên cấu trúc tốt.
+        en: Black firmly holds the g5 pawn with h6, declining to open the h-file for White's rook and keeping the pawn structure intact.
+        fr: Les Noirs tiennent fermement le pion g5 par h6, refusant d'ouvrir la colonne h pour la tour blanche et gardant la structure de pions intacte.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Trắng kém một tốt kể từ nước 2...exf4. Tốt g5 của Đen giờ được h6 chống lưng vững chắc, và cột h vẫn đóng. Cả hai vua đều chưa nhập thành, và vua Đen ở giữa bàn vẫn là mục tiêu lâu dài của Trắng.
+          en: Count the pawns and it is seven for White, eight for Black, a pawn down since 2...exf4. Black's g5 pawn is now solidly propped up by h6, and the h-file stays closed. Neither king has castled, and Black's king in the centre remains White's long-term target.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion de retard depuis 2...exf4. Le pion g5 noir est désormais solidement étayé par h6, et la colonne h reste fermée. Aucun roi n'a roqué, et le roi noir au centre reste la cible à long terme des Blancs.
+        plan:
+          vi: Trắng chơi O-O rồi d4 và Nc3, tận dụng thời gian Đen chưa nhập thành để dựng sức ép, và tìm nước phá qua g3 hoặc d4-d5 sau này. Đen chơi ...Ne7 hay ...Nc6, ...d6, và tìm chỗ an toàn cho vua càng sớm càng tốt trước khi Trắng kịp mở cuộc tấn công.
+          en: White plays O-O then d4 and Nc3, using the time before Black castles to build pressure, and looks for a break via g3 or d4-d5 later. Black plays ...Ne7 or ...Nc6, ...d6, and looks for a safe spot for the king as soon as possible before White can open an attack.
+          fr: Les Blancs jouent O-O puis d4 et Nc3, utilisant le temps avant que les Noirs ne roquent pour construire la pression, et cherchent une rupture par g3 ou d4-d5 plus tard. Les Noirs jouent ...Ne7 ou ...Nc6, ...d6, et cherchent un abri pour le roi au plus vite avant que les Blancs n'ouvrent une attaque.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,60 @@
+# King's Gambit Accepted, Hanstein Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 g5 4.Bc4 Bg7 5.O-O, which ends on White's own 5.O-O — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...Nc6 is modelled as the
+# root's single reply, a representative developing try; the position after it was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. Every ply
+# was replayed with chess.js.
+id: kings-gambit-accepted-hanstein-gambit
+name: "King's Gambit Accepted: Hanstein Gambit"
+eco: C38
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, Bg7, O-O]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White gives up on winning the f4 pawn back immediately and castles into
+      safety instead, planning to open the centre with c3 and d4 once the king is tucked
+      away — real compensation for one pawn, not a refutation of Black's defence. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng bỏ luôn ý định ăn lại tốt f4 trong ngắn hạn và nhập thành ngay để đưa vua vào chỗ an toàn trước khi mở trung tâm.
+    en: White gives up on recapturing the f4 pawn in the short term and castles at once, tucking the king away before opening the centre.
+    fr: Les Blancs renoncent pour l'instant à reprendre le pion f4 et roquent aussitôt, mettant le roi à l'abri avant d'ouvrir le centre.
+  dismissRest:
+    reason:
+      vi: Đen phát triển theo cách khác thay vì 5...Nc6 — chẳng hạn ...Ne7 hay ...h6 trước. Đánh giá vẫn như nhau bất kể Đen đưa quân nào ra trước, vì trung tâm và an toàn của hai vua chưa thay đổi.
+      en: Black develops some other way instead of 5...Nc6 — for instance ...Ne7 or ...h6 first. The assessment stays the same regardless of which piece Black brings out first, since the centre and both kings' safety are unchanged.
+      fr: Les Noirs se développent autrement qu'avec 5...Nc6 — par exemple ...Ne7 ou ...h6 d'abord. L'évaluation reste la même quelle que soit la pièce sortie en premier, le centre et la sécurité des deux rois étant inchangés.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã, một cách hoàn thiện đội hình bình thường và chưa vội giải quyết chuyện con tốt f4.
+        en: Black develops the knight, a normal way to complete the setup without yet settling the question of the f4 pawn.
+        fr: Les Noirs développent le cavalier, une façon normale de compléter le dispositif sans encore régler la question du pion f4.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, một tốt sạch nghiêng về Đen kể từ nước 2...exf4. Đổi lại, vua Trắng đã an toàn sau nước nhập thành trong khi vua Đen còn kẹt ở giữa bàn, và xe f1 đã đứng sẵn trên cột f nhắm vào con tốt f4 cùng hướng vua Đen. Con mã c6 của Đen mới phát triển nhưng chưa tạo được đe doạ cụ thể nào.
+          en: Count the pawns and it is seven for White, eight for Black, a clean pawn in Black's favour since 2...exf4. In exchange, White's king is already safe after castling while Black's king is still stuck in the centre, and the rook on f1 already sits on the f-file, aimed at the f4 pawn and at Black's king's side of the board. Black's newly developed knight on c6 has not created any concrete threat yet.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs, un pion net en faveur des Noirs depuis 2...exf4. En échange, le roi blanc est déjà à l'abri après le roque, tandis que le roi noir reste coincé au centre, et la tour f1 est déjà sur la colonne f, braquée sur le pion f4 et sur le côté du roi noir. Le cavalier c6 des Noirs, tout juste développé, n'a encore créé aucune menace concrète.
+        plan:
+          vi: Trắng chơi c3 và d4, mở trung tâm và đường chéo cho tượng c1, rồi tìm cách ăn lại tốt f4 bằng Bxf4 hoặc g3 khi thời cơ tới, tất cả trong lúc vua đã an toàn. Đen chơi ...Bg7, ...h6 để giữ tốt g5, hoàn tất phát triển bằng ...Nge7 và ...O-O, và cố giữ con tốt f4 làm vốn liếng lâu dài nếu có thể.
+          en: White plays c3 and d4, opening the centre and the diagonal for the bishop on c1, then looks to win the f4 pawn back with Bxf4 or g3 when the moment is right, all while the king is already safe. Black plays ...Bg7, ...h6 to hold the g5 pawn, finishes developing with ...Nge7 and ...O-O, and tries to keep the f4 pawn as a long-term asset if possible.
+          fr: Les Blancs jouent c3 et d4, ouvrant le centre et la diagonale du fou c1, puis cherchent à regagner le pion f4 par Bxf4 ou g3 au bon moment, tout cela le roi déjà en sécurité. Les Noirs jouent ...Bg7, ...h6 pour tenir le pion g5, achèvent leur développement par ...Nge7 et ...O-O, et tentent de garder le pion f4 comme atout durable si possible.
+        basis:
+          by: chan
+          at: '2026-09-25'
