@@ -1,0 +1,61 @@
+# Danish Gambit Accepted: Schlechter Defense. Frozen defining line 1.e4 e5 2.d4 exd4 3.c3
+# dxc3 4.Bc4 cxb2 5.Bxb2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5...d5: Black gives one
+# pawn back at once to shut the c4 bishop out and open lines for the pieces. Nothing is
+# hanging at the resulting position. searchMate at 4 moves from this position returns
+# unknown, which the stopping rule treats the same as no-mate, so no forced mate is claimed
+# anywhere in this entry.
+id: danish-gambit-accepted-schlechter-defense
+name: 'Danish Gambit Accepted: Schlechter Defense'
+eco: C21
+category: gambit
+side: white
+definingLine: [e4, e5, d4, exd4, c3, dxc3, Bc4, cxb2, Bxb2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Giving one pawn
+      straight back to shut the c4 bishop out of the game is generally judged Black's safest
+      and best-tested way to meet the fully accepted Danish. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi nhận cả hai tốt và đưa cả hai tượng ra ngoài, Trắng chờ Đen phải đối mặt với hai đường chéo đang nhắm vào f7 và g7. Đen không tham lam mà trả lại ngay một tốt.
+    en: Having taken both pawns and brought both bishops out, White waits for Black to face the two diagonals aimed at f7 and g7. Black does not get greedy and gives one pawn straight back.
+    fr: Après avoir pris les deux pions et sorti les deux fous, les Blancs attendent que les Noirs affrontent les deux diagonales visant f7 et g7. Les Noirs ne s'entêtent pas et rendent aussitôt un pion.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 5...d5. Nước 5...Qe7 đỡ trước cho ô e5, còn 5...Bb4+ chiếu ngay lập tức, mỗi cách có trang riêng của nó.
+      en: Black does not play 5...d5. 5...Qe7 defends the e5 square in advance, while 5...Bb4+ checks at once, each with its own page.
+      fr: Les Noirs ne jouent pas 5...d5. 5...Qe7 défend d'avance la case e5, tandis que 5...Bb4+ donne échec aussitôt, chacun avec sa propre page.
+  children:
+    - ply: d5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen trả lại một tốt để chặn đứng đường chéo của tượng c4 và mở đường cho các quân của mình cùng lúc. Đây là nước được đánh giá cao nhất trong toàn bộ biến đã nhận.
+        en: Black gives one pawn back to shut the c4 bishop's diagonal and open lines for its own pieces at the same time. This is rated the best try in the whole accepted line.
+        fr: Les Noirs rendent un pion pour barrer d'un coup la diagonale du fou c4 et ouvrir des lignes pour leurs propres pièces. C'est le coup le mieux considéré de toute la ligne acceptée.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng năm, Đen bảy nhưng con tốt d5 sắp bị ăn lại ngay, nên vật chất thực chất sẽ trở về Trắng kém một tốt sau khi Trắng ăn lại. Tượng c4 đã mất đường chéo về phía f7 và phải chọn ăn lại bằng cách nào, trong khi tượng b2 vẫn còn nguyên đường chéo dài.
+          en: Count the pawns, five for White, seven for Black, but the d5 pawn is about to be recaptured at once, so material really settles at White one pawn down once that happens. The c4 bishop has lost its diagonal towards f7 and must choose how to recapture, while the b2 bishop still has its long diagonal intact.
+          fr: Comptez les pions, cinq pour les Blancs, sept pour les Noirs, mais le pion d5 va être repris aussitôt, si bien que le matériel se stabilise réellement à un pion de moins pour les Blancs une fois cela fait. Le fou c4 a perdu sa diagonale vers f7 et doit choisir comment reprendre, tandis que le fou b2 garde intacte sa grande diagonale.
+        plan:
+          vi: Trắng chơi Bxd5 hay exd5, rồi Nf3 và O-O, giữ vững đường chéo dài của tượng b2 và tìm cách khai thác việc Đen chậm phát triển. Đen chơi Nf6 đuổi tượng nếu Trắng ăn bằng tượng, rồi Nc6 hoặc Be7, O-O, hoàn tất phát triển và giữ vững con tốt còn lại.
+          en: White plays Bxd5 or exd5, then Nf3 and O-O, keeping the b2 bishop's long diagonal and looking to exploit Black's slower development. Black plays ...Nf6 to chase the bishop if White recaptured with it, then ...Nc6 or ...Be7 and ...O-O, completing development and holding the remaining extra pawn.
+          fr: Les Blancs jouent Bxd5 ou exd5, puis Nf3 et O-O, gardant la grande diagonale du fou b2 et cherchant à exploiter le développement plus lent des Noirs. Les Noirs jouent ...Nf6 pour chasser le fou si les Blancs ont repris avec lui, puis ...Nc6 ou ...Be7 et ...O-O, achevant leur développement et gardant le pion restant.
+        basis:
+          by: chan
+          at: '2026-09-25'

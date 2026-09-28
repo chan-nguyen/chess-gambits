@@ -1,0 +1,60 @@
+# Accelerated London System: Steinitz Countergambit Accepted. Frozen defining line 1.d4 d5
+# 2.Bf4 c5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 3.dxc5: White simply takes
+# the pawn Black offered. Nothing is hanging at the resulting position. searchMate at 4
+# moves from this position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: accelerated-london-system-steinitz-countergambit-accepted
+name: 'Accelerated London System: Steinitz Countergambit Accepted'
+eco: D00
+category: gambit
+side: black
+definingLine: [d4, d5, Bf4, c5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Taking the pawn is
+      thought to be White's most testing reply — Black gets the pawn back with ...Qa5+ or
+      keeps up development-based compensation, but does not have more than that to show for
+      it. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 2...c5, thách thức trung tâm ngay từ sớm trước khi Trắng kịp hoàn tất cách xếp quân London. Ở đây Trắng nhận lời mời và ăn luôn con tốt.
+    en: Black plays 2...c5, challenging the centre early, before White finishes the London set-up. Here White accepts the invitation and takes the pawn at once.
+    fr: Les Noirs jouent 2...c5, défiant le centre tôt, avant que les Blancs n'achèvent leur dispositif London. Ici, les Blancs acceptent l'invitation et prennent aussitôt le pion.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn ngay bằng 3.dxc5. Các nước như 3.e3 hay 3.c3 chỉ trì hoãn việc quyết định và giữ nguyên căng thẳng ở trung tâm thay vì giải quyết nó luôn.
+      en: White does not take at once with 3.dxc5. Moves such as 3.e3 or 3.c3 only postpone the decision and keep the central tension alive instead of settling it right away.
+      fr: Les Blancs ne prennent pas tout de suite par 3.dxc5. Des coups comme 3.e3 ou 3.c3 ne font que reporter la décision et maintiennent la tension centrale au lieu de la régler tout de suite.
+  children:
+    - ply: dxc5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt c5 ngay lập tức. Đây là câu trả lời thẳng thắn nhất, buộc Đen phải chứng minh rằng mất một tốt là đáng giá.
+        en: White takes the c5 pawn right away. This is the most direct answer, forcing Black to show that giving up a pawn was worth it.
+        fr: Les Blancs prennent aussitôt le pion c5. C'est la réponse la plus directe, obligeant les Noirs à démontrer que céder un pion en valait la peine.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt sạch. Đổi lại, con tốt d5 của Đen vẫn còn nguyên và có thể tiến lên nếu cần, còn con tốt c5 của Trắng đứng khá cô lập, tạm thời không tốt nào của Trắng đỡ được nó. Đen chưa mất tempo nào để bù lại, nên toàn bộ việc còn lại là chứng minh sự bù đắp ấy bằng những nước tiếp theo.
+          en: Count the pawns, eight for White, seven for Black — White is a clean pawn up. In return, Black's d5 pawn is untouched and can advance if needed, and White's pawn on c5 stands fairly isolated, with no white pawn defending it for the moment. Black has not lost a single tempo to show for it yet, so everything still depends on the moves that follow.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net d'avance. En échange, le pion d5 noir est intact et peut avancer au besoin, et le pion blanc en c5 est assez isolé, aucun pion blanc ne le défendant pour l'instant. Les Noirs n'ont perdu aucun temps pour le moment, donc tout dépend encore des coups qui suivent.
+        plan:
+          vi: Đen chơi Qa5+ để lấy lại tốt ngay hoặc Nc6 và e6 rồi Bxc5 sau, tùy theo Trắng bảo vệ con tốt bằng cách nào. Trắng chơi Nc3 hoặc b4 để giữ con tốt c5 thêm một lúc, rồi Nf3 và e3, hoàn thiện phát triển trước khi Đen kịp lấy lại vật chất.
+          en: Black plays ...Qa5+ to win the pawn back at once, or ...Nc6 and ...e6 followed by ...Bxc5 later, depending on how White defends the pawn. White plays Nc3 or b4 to hold the c5 pawn a little longer, then Nf3 and e3, completing development before Black can recover the material.
+          fr: Les Noirs jouent ...Qa5+ pour reprendre le pion aussitôt, ou ...Nc6 et ...e6 suivi de ...Bxc5 plus tard, selon la façon dont les Blancs défendent le pion. Les Blancs jouent Nc3 ou b4 pour garder le pion c5 un peu plus longtemps, puis Nf3 et e3, achevant leur développement avant que les Noirs ne récupèrent le matériel.
+        basis:
+          by: chan
+          at: '2026-09-25'

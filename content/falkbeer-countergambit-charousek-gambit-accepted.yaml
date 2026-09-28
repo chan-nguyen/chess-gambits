@@ -1,0 +1,66 @@
+# Falkbeer Countergambit: Charousek Gambit Accepted. Frozen defining line 1.e4 e5 2.f4 d5
+# 3.exd5 e4 4.d3 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5.dxe4 Nxe4: White takes
+# the pawn Black offered, and Black recaptures it right back with the knight. Nothing is
+# hanging at the resulting position. searchMate at 4 moves from this position returns
+# no-mate, so no forced mate is claimed anywhere in this entry.
+id: falkbeer-countergambit-charousek-gambit-accepted
+name: 'Falkbeer Countergambit: Charousek Gambit Accepted'
+eco: C32
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, e4, d3, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Offering the
+      e4 pawn back at once to develop with tempo is a real practical idea inside the Falkbeer
+      complex, and taking it is thought to be White's most natural, testing answer. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Trắng chơi 4.d3, thách thức con tốt e4 của Đen, Đen phát triển thêm bằng 4...Nf6 thay vì đỡ nó, chấp nhận để Trắng ăn tốt để đổi lấy một nhịp phát triển.
+    en: After White's 4.d3, challenging Black's e4 pawn, Black develops further with 4...Nf6 instead of defending it, accepting that White will take the pawn in exchange for a tempo of development.
+    fr: Après 4.d3 des Blancs, qui défie le pion e4 noir, les Noirs développent davantage par 4...Nf6 au lieu de le défendre, acceptant que les Blancs prennent le pion en échange d'un temps de développement.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e4. Nước Qe2 ghim con tốt trước khi ăn dẫn vào một nhánh khác, còn để nguyên bằng Nf3 hay Nc3 vẫn giữ căng thẳng như cũ.
+      en: This entry is not about ignoring the e4 pawn. Qe2, pinning the pawn before taking it, leads into a different branch, while leaving it alone with Nf3 or Nc3 keeps the same tension as before.
+      fr: Cette entrée ne concerne pas le fait d'ignorer le pion e4. Qe2, qui cloue le pion avant de le prendre, mène vers une autre branche, tandis que le laisser en place par Nf3 ou Nc3 maintient la même tension qu'avant.
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt e4 ngay lập tức, đưa vật chất trở lại cân bằng và mở đường cho tượng f1.
+        en: White takes the e4 pawn at once, restoring material balance and opening a line for the f1 bishop.
+        fr: Les Blancs prennent aussitôt le pion e4, rétablissant l'équilibre matériel et ouvrant une ligne pour le fou f1.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Đen ăn lại ngay bằng mã, quân duy nhất còn tấn công ô e4. Con mã đứng vững ở giữa bàn cờ và đã lấy lại đúng con tốt vừa mất.
+            en: Black recaptures at once with the knight, the only piece still attacking the e4 square. The knight sits solidly in the centre and has won back exactly the pawn just lost.
+            fr: Les Noirs reprennent aussitôt avec le cavalier, la seule pièce attaquant encore la case e4. Le cavalier est solidement installé au centre et a repris exactement le pion tout juste perdu.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu, Trắng hơn đúng một tốt sạch vì con tốt d5 vẫn còn nguyên trên bàn cờ chưa ai đòi lại. Đổi lại, con mã Đen đứng rất tích cực ở e4, còn Trắng vẫn chưa phát triển được quân nào ngoài con tốt f4 đã yếu đi rõ rệt và để lộ đường chéo a7-g1.
+              en: Count the pawns, seven for White, six for Black — White is a clean pawn up, since the d5 pawn is still sitting on the board unclaimed. In return Black's knight stands very actively on e4, while White has developed nothing yet beyond a noticeably weakened f4 pawn that leaves the a7-g1 diagonal exposed.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — les Blancs ont un pion net d'avance, le pion d5 restant sur l'échiquier sans être réclamé. En échange, le cavalier noir est très actif en e4, tandis que les Blancs n'ont encore rien développé au-delà d'un pion f4 nettement affaibli qui expose la diagonale a7-g1.
+            plan:
+              vi: Đen chơi Bc5 hay Bd6 nhắm vào f2 và đường chéo a7-g1, rồi O-O và Re8, gây sức ép bù cho con tốt còn thiếu. Trắng chơi Nf3, Be2 và O-O, hoàn thiện phát triển và tìm cách đòi lại con tốt d5 khi có dịp, cố giữ vững con tốt f4 khỏi mọi đòn tấn công.
+              en: Black plays ...Bc5 or ...Bd6 aiming at f2 and the a7-g1 diagonal, then ...O-O and ...Re8, building pressure to compensate for the missing pawn. White plays Nf3, Be2 and O-O, completing development and looking to reclaim the d5 pawn when the chance comes, trying to keep the f4 pawn safe from every attack.
+              fr: Les Noirs jouent ...Bc5 ou ...Bd6 en visant f2 et la diagonale a7-g1, puis ...O-O et ...Re8, construisant une pression compensant le pion manquant. Les Blancs jouent Nf3, Be2 et O-O, achevant leur développement et cherchant à récupérer le pion d5 à l'occasion, en essayant de garder le pion f4 à l'abri de toute attaque.
+            basis:
+              by: chan
+              at: '2026-09-25'

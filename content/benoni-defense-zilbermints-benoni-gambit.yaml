@@ -1,0 +1,58 @@
+# Benoni Defense: Zilbermints-Benoni Gambit. Frozen defining line 1.d4 c5 2.b4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 2...cxb4: Black simply takes the offered pawn, the only piece that
+# can capture there. Nothing is hanging at the resulting position. searchMate at 4 moves
+# from this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: benoni-defense-zilbermints-benoni-gambit
+name: 'Benoni Defense: Zilbermints-Benoni Gambit'
+eco: A43
+category: gambit
+side: white
+definingLine: [d4, c5, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers a wing pawn on the very second move for a diagonal that is
+      not even open yet, and Black keeps the pawn without any real concession. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đáp lại 1...c5 bằng 2.b4, Trắng mời Đen ăn con tốt cánh hậu ngay từ nước thứ hai, đổi lấy việc kéo tốt c5 ra khỏi vị trí và mở đường cho tượng c1 sau này.
+    en: Answering 1...c5 with 2.b4, White invites Black to take the queenside pawn as early as the second move, in exchange for pulling the c5 pawn off its post and opening a line for the c1 bishop later.
+    fr: En réponse à 1...c5 par 2.b4, les Blancs invitent les Noirs à prendre le pion de l'aile dame dès le deuxième coup, en échange du déplacement du pion c5 de son poste et de l'ouverture d'une ligne pour le fou c1 plus tard.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt b4. Các nước khác như cxd4 hay Nf6 để nguyên con tốt b4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the b4 pawn. Anything else, such as ...cxd4 or ...Nf6, leaves the b4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion b4. Tout le reste, comme ...cxd4 ou ...Nf6, laisse le pion b4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: cxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt c5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt mà chưa phải nhượng bộ gì.
+        en: Black takes the pawn at once, the only piece that can capture there. The c5 pawn has done its capturing and Black is now a clean pawn up without having conceded anything yet.
+        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le pion c5 a fait sa capture et les Noirs ont maintenant un pion net d'avance sans avoir encore rien concédé.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, còn Trắng chưa có gì cụ thể để bù lại ngoài ý định mở đường chéo a1-h8 bằng Bb2 sau này, một ý định mà chính con tốt b4 vừa mất lại là thứ lẽ ra phải mở đường ấy.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and White has nothing concrete yet to show for it beyond the intention to open the a1-h8 diagonal with Bb2 later — an intention the very pawn just lost was supposed to serve.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance, et les Blancs n'ont encore rien de concret à montrer, hormis l'intention d'ouvrir la diagonale a1-h8 par Bb2 plus tard — une intention que le pion tout juste perdu était censé servir.
+        plan:
+          vi: Trắng chơi Bb2, Nf3 và e3, phát triển nhanh và gây sức ép lên đường chéo dài, cố tạo đủ hoạt động để bù cho con tốt đã mất. Đen chơi Nc6, d5 hay g6, hoàn tất phát triển một cách chắc chắn và tìm cách đổi bớt quân để giữ vững con tốt thừa vào tàn cuộc.
+          en: White plays Bb2, Nf3 and e3, developing quickly and pressuring the long diagonal, trying to create enough activity to make up for the lost pawn. Black plays Nc6, d5 or g6, completing development soundly and looking to trade pieces to carry the extra pawn into the endgame.
+          fr: Les Blancs jouent Bb2, Nf3 et e3, se développant rapidement et faisant pression sur la grande diagonale, essayant de créer assez d'activité pour compenser le pion perdu. Les Noirs jouent Nc6, d5 ou g6, achevant leur développement solidement et cherchant à échanger des pièces pour porter le pion supplémentaire jusqu'à la finale.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,66 @@
+# Benoni Defense: Cormorant Gambit. Frozen defining line 1.d4 c5 2.dxc5 b6, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 3.cxb6 axb6: White takes the second pawn offered, and Black
+# recaptures with the a-pawn, the only pawn that can reach b6. Nothing is hanging at the
+# resulting position. searchMate at 4 moves from this position returns no-mate, so no forced
+# mate is claimed anywhere in this entry.
+id: benoni-defense-cormorant-gambit
+name: 'Benoni Defense: Cormorant Gambit'
+eco: A43
+category: gambit
+side: black
+definingLine: [d4, c5, dxc5, b6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers a second pawn purely to open the a-file and clear a diagonal
+      for the c8 bishop, and White can simply take both pawns and hold on, so there is no
+      shown compensation to match the material given up. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại ngay ở c5, Đen chơi 2...b6, mời Trắng ăn thêm một con tốt nữa để đổi lấy cột a mở cho xe và đường chéo thoáng hơn cho tượng c8.
+    en: Instead of recapturing at c5 right away, Black plays 2...b6, inviting White to take a second pawn in exchange for an open a-file for the rook and a freer diagonal for the c8 bishop.
+    fr: Au lieu de reprendre tout de suite en c5, les Noirs jouent 2...b6, invitant les Blancs à prendre un second pion en échange d'une colonne a ouverte pour la tour et d'une diagonale plus dégagée pour le fou c8.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt b6. Nước Nf3 hay g3 để nguyên cả tốt c5 lẫn tốt b6 trên bàn cờ, nghĩa là lời mời thứ hai vẫn chưa hề được nhận, còn con tốt c5 vẫn có thể bị ăn lại bằng bxc5 sau đó.
+      en: White does not take the b6 pawn. A move such as Nf3 or g3 leaves both the c5 and b6 pawns on the board, meaning the second offer has still not actually been accepted, and the c5 pawn can still be recaptured later with ...bxc5.
+      fr: Les Blancs ne prennent pas le pion b6. Un coup comme Nf3 ou g3 laisse à la fois les pions c5 et b6 sur l'échiquier, ce qui veut dire que la seconde offre n'a toujours pas été acceptée, et le pion c5 peut encore être repris plus tard par ...bxc5.
+  children:
+    - ply: cxb6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn nốt con tốt thứ hai. Con tốt Trắng bây giờ đứng ở b6, sâu trong phần sân của Đen, và chỉ có tốt a7 mới ăn lại được nó.
+        en: White takes the second pawn as well. The white pawn now stands on b6, deep in Black's half of the board, and only the a7 pawn can recapture it.
+        fr: Les Blancs prennent aussi le second pion. Le pion blanc se trouve maintenant en b6, loin dans le camp noir, et seul le pion a7 peut le reprendre.
+      children:
+        - ply: axb6
+          annotation:
+            vi: Đen ăn lại bằng tốt a, quân duy nhất có thể ăn tại đó. Cột a mở ra cho xe a8, nhưng con tốt b6 mới hình thành lại không còn tốt a hay tốt c nào đứng cạnh để bảo vệ nó nữa.
+            en: Black recaptures with the a-pawn, the only pawn that can reach that square. The a-file opens for the rook on a8, but the newly formed b6 pawn no longer has an a-pawn or a c-pawn standing beside it to protect it.
+            fr: Les Noirs reprennent avec le pion a, le seul pion pouvant atteindre cette case. La colonne a s'ouvre pour la tour a8, mais le pion b6 tout juste formé n'a plus ni pion a ni pion c à ses côtés pour le protéger.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu, Trắng hơn đúng một tốt sạch. Đổi lại, Đen có cột a mở cho xe và tượng c8 đã có thêm đường ra, nhưng con tốt b6 giờ là tốt cô thật sự, không tốt Đen nào còn đứng ở cột a hay cột c để một ngày nào đó đỡ nó, và nó sẽ mãi mãi là điểm yếu trong tàn cuộc.
+              en: Count the pawns, seven for White, six for Black — White is a clean pawn up. In return Black has an open a-file for the rook and a freer path out for the c8 bishop, but the pawn on b6 is now a genuinely isolated pawn — no black pawn remains on the a- or c-file that could ever defend it — and it will be a permanent weakness in an endgame.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — les Blancs ont un pion net d'avance. En échange, les Noirs ont une colonne a ouverte pour la tour et une voie plus libre pour le fou c8, mais le pion b6 est désormais véritablement isolé — plus aucun pion noir ne reste sur les colonnes a ou c pour le défendre un jour — et ce sera une faiblesse permanente en finale.
+            plan:
+              vi: Đen chơi Bb7, Nf6 và g6, tận dụng cột a cùng đường chéo dài để bù cho con tốt đã mất, và tránh đổi hết quân nặng vì tàn cuộc chỉ có lợi cho Trắng. Trắng chơi Nc3, Nf3 và e4, hoàn thiện phát triển, giữ vững con tốt thừa và tìm cách vây bắt điểm yếu ở b6 khi quân nặng đã vơi bớt.
+              en: Black plays ...Bb7, ...Nf6 and ...g6, using the a-file and the long diagonal to compensate for the lost pawn, and avoids trading off all the heavy pieces since an endgame favours only White. White plays Nc3, Nf3 and e4, completing development, holding the extra pawn and looking to besiege the b6 weakness once the heavy pieces have thinned out.
+              fr: Les Noirs jouent ...Bb7, ...Nf6 et ...g6, exploitant la colonne a et la grande diagonale pour compenser le pion perdu, et évitent d'échanger toutes les pièces lourdes puisqu'une finale ne favoriserait que les Blancs. Les Blancs jouent Nc3, Nf3 et e4, achevant leur développement, gardant le pion supplémentaire et cherchant à assiéger la faiblesse en b6 une fois les pièces lourdes réduites.
+            basis:
+              by: chan
+              at: '2026-09-25'

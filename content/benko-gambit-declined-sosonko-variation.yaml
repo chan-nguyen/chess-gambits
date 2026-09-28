@@ -1,0 +1,66 @@
+# Benko Gambit Declined: Sosonko Variation. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 4.a4 bxc4: White attacks b5 with a second
+# pawn instead of taking on it, and Black simply takes on c4 first, since nothing defends
+# that pawn yet. No capture is left going free at the resulting position. searchMate at 4
+# moves from this position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: benko-gambit-declined-sosonko-variation
+name: 'Benko Gambit Declined: Sosonko Variation'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Attacking b5 with
+      4.a4 still leaves c4 completely undefended, so Black simply takes there first and the
+      question of b5 becomes secondary. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 3...b5 theo đúng tinh thần Benko Gambit, thí tốt cánh hậu để đổi lấy áp lực trên hai cột a và b. Ở đây Trắng chơi 4.a4, đánh thẳng vào tốt b5 bằng một con tốt khác thay vì ăn nó ngay.
+    en: Black plays 3...b5 in true Benko Gambit style, offering the queenside pawn for pressure on the a- and b-files. Here White plays 4.a4, attacking the b5 pawn with a pawn of its own instead of taking it at once.
+    fr: Les Noirs jouent 3...b5 dans le pur style du Gambit Benko, offrant le pion de l'aile dame contre la pression sur les colonnes a et b. Ici, les Blancs jouent 4.a4, attaquant le pion b5 avec un pion au lieu de le prendre tout de suite.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.a4. Ăn tốt ngay bằng 4.cxb5 dẫn vào các nhánh Benko Gambit đã được chấp nhận, còn những nước như 4.Nf3 hay 4.Nd2 để tốt c4 và b5 theo cách khác, mỗi nước ấy có cách chơi riêng của Đen.
+      en: White does not play 4.a4. Taking at once with 4.cxb5 leads into the accepted Benko Gambit branches, while moves such as 4.Nf3 or 4.Nd2 leave the c4 and b5 pawns in their own way, each with Black's own way of meeting it.
+      fr: Les Blancs ne jouent pas 4.a4. Prendre tout de suite par 4.cxb5 mène vers les branches acceptées du Gambit Benko, tandis que des coups comme 4.Nf3 ou 4.Nd2 laissent les pions c4 et b5 d'une autre manière, chacun avec sa propre réponse noire.
+  children:
+    - ply: a4
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Trắng dùng một con tốt để đánh vào tốt b5, tính đến việc mở cột a cho xe a1 nếu Đen ăn lại. Nhưng nước này vẫn bỏ trống tốt c4, đúng con tốt mà tốt b5 đang nhắm tới.
+        en: White uses a pawn to attack b5, with the idea of opening the a-file for the a1 rook if Black recaptures. But it still leaves c4 wide open, the very pawn b5 was aiming at.
+        fr: Les Blancs utilisent un pion pour attaquer b5, avec l'idée d'ouvrir la colonne a pour la tour a1 si les Noirs reprennent. Mais cela laisse toujours c4 grand ouvert, le pion même que b5 visait.
+      children:
+        - ply: bxc4
+          annotation:
+            vi: Đen bỏ qua lời đe dọa vào b5 và ăn luôn con tốt c4 không ai đỡ. Tốt a4 của Trắng giờ đứng một mình mà không có ai để đuổi theo nữa.
+            en: Black ignores the threat to b5 and takes the undefended c4 pawn instead. White's a4 pawn is now standing alone with nothing left to chase.
+            fr: Les Noirs ignorent la menace sur b5 et prennent plutôt le pion c4 non défendu. Le pion a4 blanc se retrouve désormais seul, sans plus rien à chasser.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn hẳn một tốt sạch và con tốt ấy chưa có cách nào bị ăn lại ngay. Con tốt a4 của Trắng đã mất mục tiêu vì tốt b5 giờ có thể đẩy tiếp lên b4 bất cứ lúc nào, còn Trắng vẫn chưa phát triển được quân nào.
+              en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up and that pawn cannot be recaptured immediately. White's a4 pawn has lost its target, since the b5 pawn can simply push on to b4 whenever it likes, and White still has not developed a single piece.
+              fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion net d'avance et ce pion ne peut pas être repris tout de suite. Le pion a4 blanc a perdu sa cible, le pion b5 pouvant simplement avancer en b4 quand bon lui semble, et les Blancs n'ont toujours développé aucune pièce.
+            plan:
+              vi: Đen chơi g6, Bg7 và O-O theo cấu trúc quen thuộc, đẩy ...b4 khi cần để giữ khoảng cách với tốt a4, và giữ chắc con tốt c4 đã ăn được. Trắng chơi Nc3 hoặc e4 để giành lại không gian trung tâm, rồi tìm cách lấy lại tốt c4 qua Bxc4 hay Qc2, chấp nhận đi sau một nhịp phát triển.
+              en: Black plays ...g6, ...Bg7 and ...O-O in the familiar structure, pushes ...b4 when needed to keep distance from the a4 pawn, and holds the c4 pawn firmly. White plays Nc3 or e4 to regain central space, then looks to win the c4 pawn back through Bxc4 or Qc2, accepting a tempo's lag in development.
+              fr: Les Noirs jouent ...g6, ...Bg7 et ...O-O dans la structure habituelle, poussent ...b4 au besoin pour garder leurs distances avec le pion a4, et tiennent fermement le pion c4 gagné. Les Blancs jouent Nc3 ou e4 pour regagner de l'espace central, puis cherchent à reprendre le pion c4 par Bxc4 ou Qc2, en acceptant un temps de retard de développement.
+            basis:
+              by: chan
+              at: '2026-09-25'

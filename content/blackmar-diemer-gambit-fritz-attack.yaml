@@ -1,0 +1,59 @@
+# Blackmar-Diemer Gambit: Fritz Attack. Frozen defining line 1.d4 d5 2.e4 dxe4 3.Bc4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3...Nf6: Black develops rather than holding onto the extra
+# pawn by force. Nothing is hanging at the resulting position. searchMate at 4 moves from
+# this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: blackmar-diemer-gambit-fritz-attack
+name: 'Blackmar-Diemer Gambit: Fritz Attack'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Aiming the bishop
+      at f7 straight away instead of playing 3.Nc3 first is a real practical try, but it
+      leaves the e4 pawn unrecovered for a while and the family's compensation is real but
+      unproven by force. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì chơi 3.Nc3 theo lối thông thường, Trắng đưa tượng ra c4 ngay, nhắm thẳng vào f7 mà chưa vội đòi lại con tốt e4.
+    en: Instead of the usual 3.Nc3, White brings the bishop straight to c4, aiming at f7 at once without hurrying to win the e4 pawn back.
+    fr: Au lieu du traditionnel 3.Nc3, les Blancs amènent directement le fou en c4, visant aussitôt f7 sans se presser de reprendre le pion e4.
+  dismissRest:
+    reason:
+      vi: Đen không phát triển bằng 3...Nf6. Các nước như e5 hay Nc6 phản công ngay ở trung tâm cũng giữ được con tốt thừa nhưng theo cách khác, còn con tốt e4 vẫn chưa ai đỡ thêm.
+      en: Black does not develop with 3...Nf6. Moves such as ...e5 or ...Nc6, counterattacking the centre at once, also keep the extra pawn but in a different way, and the e4 pawn still has no extra defender.
+      fr: Les Noirs ne développent pas par 3...Nf6. Des coups comme ...e5 ou ...Nc6, contre-attaquant aussitôt le centre, gardent eux aussi le pion supplémentaire mais d'une autre façon, et le pion e4 n'a toujours pas de défenseur supplémentaire.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã tự nhiên, che chắn thêm cho ô e4 và chuẩn bị hoàn thiện phát triển, chưa cần lo lắng gì về con tượng c4.
+        en: Black develops the knight naturally, adding cover to the e4 square and preparing to finish developing, with no need to worry about the c4 bishop yet.
+        fr: Les Noirs développent naturellement le cavalier, ajoutant une protection à la case e4 et se préparant à achever leur développement, sans devoir se soucier du fou c4 pour l'instant.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn đúng một tốt sạch và con tốt ấy chưa hề bị đe dọa. Tượng c4 của Trắng đã nhắm vào f7 nhưng chưa có quân nào hỗ trợ thêm, còn Đen sẽ nhập thành và con tốt e4 sẽ được che chắn kỹ hơn nữa.
+          en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up and that pawn is not under any threat. White's bishop on c4 already aims at f7 but has no support yet, while Black will castle and the e4 pawn will be shielded even more.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion net d'avance et ce pion n'est sous aucune menace. Le fou blanc en c4 vise déjà f7 mais n'a encore aucun soutien, tandis que les Noirs vont roquer et le pion e4 sera encore mieux protégé.
+        plan:
+          vi: Trắng chơi Nc3, Qe2 hoặc Ng5, cố tạo áp lực cụ thể lên f7 và đòi lại con tốt e4 trước khi Đen kịp củng cố hoàn toàn. Đen chơi e6 hay g6, Be7 hoặc Bg7 và O-O, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa vào tàn cuộc.
+          en: White plays Nc3, Qe2 or Ng5, trying to create concrete pressure on f7 and win the e4 pawn back before Black fully consolidates. Black plays ...e6 or ...g6, ...Be7 or ...Bg7 and ...O-O, completing development soundly and holding the extra pawn for the endgame.
+          fr: Les Blancs jouent Nc3, Qe2 ou Ng5, cherchant à créer une pression concrète sur f7 et à reprendre le pion e4 avant que les Noirs ne consolident complètement. Les Noirs jouent ...e6 ou ...g6, ...Be7 ou ...Bg7 et ...O-O, achevant leur développement solidement et gardant le pion supplémentaire pour la finale.
+        basis:
+          by: chan
+          at: '2026-09-25'

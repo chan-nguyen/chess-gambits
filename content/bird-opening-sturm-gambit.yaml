@@ -1,0 +1,58 @@
+# Bird Opening: Sturm Gambit. Frozen defining line 1.f4 d5 2.c4, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 2...dxc4: Black takes the pawn at once, the only piece that can capture
+# there. Nothing is hanging at the resulting position. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: bird-opening-sturm-gambit
+name: 'Bird Opening: Sturm Gambit'
+eco: A03
+category: gambit
+side: white
+definingLine: [f4, d5, c4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers a second wing pawn on the second move for open lines that are
+      not yet worth that much, and Black keeps the pawn with no immediate way for White to
+      make it count. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 2.c4, mời Đen ăn con tốt này để đổi lấy việc mở cột c và gây sức ép sớm lên trung tâm của Đen.
+    en: White plays 2.c4, inviting Black to take the pawn in exchange for opening the c-file and pressuring Black's centre early.
+    fr: Les Blancs jouent 2.c4, invitant les Noirs à prendre le pion en échange de l'ouverture de la colonne c et d'une pression précoce sur le centre noir.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt c4. Các nước khác như Nf6 hay c6 để nguyên con tốt c4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the c4 pawn. Anything else, such as ...Nf6 or ...c6, leaves the c4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion c4. Tout le reste, comme ...Nf6 ou ...c6, laisse le pion c4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: dxc4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt d5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt.
+        en: Black takes the pawn at once, the only piece that can capture there. The d5 pawn has done its capturing and Black is now a clean pawn up.
+        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le pion d5 a fait sa capture et les Noirs ont maintenant un pion net d'avance.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, còn Trắng chưa có gì cụ thể để bù lại ngoài cột c nửa mở và ý định phát triển nhanh bằng e3 rồi Bxc4.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and White has nothing concrete yet to show for it beyond the half-open c-file and the intention to develop quickly with e3 and Bxc4.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance, et les Blancs n'ont encore rien de concret à montrer, hormis la colonne c semi-ouverte et l'intention de se développer rapidement par e3 puis Bxc4.
+        plan:
+          vi: Trắng chơi e3, Bxc4 và Nf3, phát triển nhanh và gây sức ép lên f7 cùng cột c, cố tạo đủ hoạt động để bù cho con tốt đã mất. Đen chơi Nf6, g6 hay e6, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa vào tàn cuộc.
+          en: White plays e3, Bxc4 and Nf3, developing quickly and pressuring f7 and the c-file, trying to create enough activity to make up for the lost pawn. Black plays ...Nf6, ...g6 or ...e6, completing development soundly and holding onto the extra pawn for the endgame.
+          fr: Les Blancs jouent e3, Bxc4 et Nf3, se développant rapidement et faisant pression sur f7 et la colonne c, essayant de créer assez d'activité pour compenser le pion perdu. Les Noirs jouent ...Nf6, ...g6 ou ...e6, achevant leur développement solidement et gardant le pion supplémentaire pour la finale.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,66 @@
+# Benoni Defense: Benoni Gambit, Schlenker Defense. Frozen defining line 1.d4 c5 2.dxc5 Na6,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 3.b4 Nxb4: White defends the extra pawn with a
+# second one, and Black simply takes that pawn instead of recapturing on c5. Nothing is
+# hanging at the resulting position. searchMate at 4 moves from this position returns
+# no-mate, so no forced mate is claimed anywhere in this entry.
+id: benoni-defense-benoni-gambit-schlenker-defense
+name: 'Benoni Defense: Benoni Gambit, Schlenker Defense'
+eco: A43
+category: gambit
+side: black
+definingLine: [d4, c5, dxc5, Na6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Developing the
+      knight to a6 rather than recapturing at once lets White add a second pawn to hold the
+      extra material, and Black is left chasing compensation rather than the pawn itself. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Trắng ăn tốt bằng 2.dxc5, Đen không ăn lại ngay mà chơi 2...Na6, đưa mã tới rìa bàn cờ để chuẩn bị ăn lại ở c5 vào nước sau.
+    en: After White takes the pawn with 2.dxc5, Black does not recapture at once but plays 2...Na6, sending the knight to the edge of the board to prepare a recapture on c5 next move.
+    fr: Après la prise blanche par 2.dxc5, les Noirs ne reprennent pas tout de suite mais jouent 2...Na6, envoyant le cavalier au bord de l'échiquier pour préparer une reprise en c5 au coup suivant.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 3.b4. Các nước khác như Nf3 hay g3 để nguyên con tốt c5 cho mã a6 ăn lại ngay ở nước sau, nghĩa là Trắng chưa thật sự bảo vệ được phần vật chất đã có.
+      en: White does not play 3.b4. Anything else, such as Nf3 or g3, leaves the c5 pawn for the a6 knight to recapture next move, meaning White has not really secured the material gained.
+      fr: Les Blancs ne jouent pas 3.b4. Tout le reste, comme Nf3 ou g3, laisse le pion c5 à la merci d'une reprise du cavalier a6 au coup suivant, ce qui veut dire que les Blancs n'ont pas vraiment sécurisé le matériel gagné.
+  children:
+    - ply: b4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng đẩy thêm một con tốt để đỡ cho tốt c5, giữ vững phần vật chất đã ăn được thay vì chỉ để nó đó chờ bị lấy lại.
+        en: White pushes a second pawn to defend c5, holding onto the material gained instead of just leaving it there to be won back.
+        fr: Les Blancs poussent un second pion pour défendre c5, conservant le matériel gagné au lieu de le laisser simplement à la merci d'une reprise.
+      children:
+        - ply: Nxb4
+          annotation:
+            vi: Đen bỏ ý định ăn lại ở c5 và thay vào đó ăn luôn con tốt b4, con tốt vừa đẩy lên mà chưa ai đỡ.
+            en: Black gives up on recapturing at c5 and instead takes the b4 pawn, which has just advanced and is not defended by anything.
+            fr: Les Noirs renoncent à reprendre en c5 et prennent plutôt le pion b4, qui vient d'avancer et que rien ne défend.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì bảy đều, vì Đen đã đổi việc đòi lại tốt c5 lấy việc ăn tốt b4 thay thế. Trắng vẫn giữ được con tốt tiến khá xa ở c5, một con tốt mà chưa quân Đen nào tấn công được ngay, còn con mã Đen ở b4 lại đứng khá xa vua của chính nó và có thể bị Trắng đuổi bằng a3 ở nước sau.
+              en: Count the pawns and it is seven each, since Black has traded the recapture on c5 for taking the b4 pawn instead. White still holds the far-advanced pawn on c5, which no black piece is attacking right now, while Black's knight on b4 sits well away from its own king and can be chased with a3 next move.
+              fr: Comptez les pions, sept de chaque côté, les Noirs ayant échangé la reprise en c5 contre la prise du pion b4. Les Blancs conservent le pion bien avancé en c5, qu'aucune pièce noire n'attaque pour l'instant, tandis que le cavalier noir en b4 se trouve assez loin de son propre roi et peut être chassé par a3 au coup suivant.
+            plan:
+              vi: Trắng chơi a3 đuổi mã, rồi Nf3, e3 và Bd3, cố giữ con tốt c5 làm bàn đạp và hoàn thiện phát triển. Đen chơi Nc5 hay Na6 lùi mã về an toàn, rồi Nf6, g6 và Bg7, tìm cách bao vây và ăn lại con tốt c5 khi có dịp.
+              en: White plays a3 to chase the knight, then Nf3, e3 and Bd3, trying to keep the c5 pawn as a foothold and complete development. Black plays ...Nc5 or retreats with ...Na6 to safety, then ...Nf6, ...g6 and ...Bg7, looking to surround and win back the c5 pawn when the chance comes.
+              fr: Les Blancs jouent a3 pour chasser le cavalier, puis Nf3, e3 et Bd3, cherchant à garder le pion c5 comme point d'appui et à achever leur développement. Les Noirs jouent ...Nc5 ou reculent par ...Na6 pour se mettre à l'abri, puis ...Nf6, ...g6 et ...Bg7, cherchant à encercler et à reprendre le pion c5 à l'occasion.
+            basis:
+              by: chan
+              at: '2026-09-25'

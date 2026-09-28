@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Three hundred and fifty-nine entries are authored — three from #15, eleven from #73, ten
+   * Four hundred and nine entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -180,7 +180,13 @@ describe('the catalogue this repository ships', () => {
    * Semi-Slav, Tarrasch, Torre/Trompowsky, Two Knights, Van Geet, Vant Kruijs, Vienna,
    * Ware and Zukertort among them, authored by five parallel sub-agents against a shared,
    * pre-verified move/material spec — each a single root-to-leaf line, listed individually
-   * in the PR rather than here) — and the other 665
+   * in the PR rather than here), and fifty more from #148 batch g (Accelerated London
+   * System, Benko Gambit Declined sub-variations, Benoni Defense family entries, Bird
+   * Opening, Bishop's Opening, Blackmar-Diemer Gambit sub-variations, Budapest Gambit
+   * Accepted sub-variations, Caro-Kann Defense, Center Game, Danish Gambit Accepted
+   * sub-variations, Dutch Defense, English Opening, Englund Gambit Declined sub-variations
+   * and other family heads and named sub-variations, each a single root-to-leaf line,
+   * listed individually in the PR rather than here) — and the other 615
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -202,6 +208,8 @@ describe('the catalogue this repository ships', () => {
    * on sight the next time it changes.
    */
   const AUTHORED: ReadonlyMap<string, number> = new Map([
+    ['accelerated-london-system-steinitz-countergambit', 1],
+    ['accelerated-london-system-steinitz-countergambit-accepted', 1],
     ['alekhine-defense-krejcik-variation-krejcik-gambit', 1],
     ['alekhine-defense-osullivan-gambit', 1],
     ['alekhine-defense-scandinavian-variation-geschev-gambit', 1],
@@ -211,61 +219,109 @@ describe('the catalogue this repository ships', () => {
     ['benko-gambit', 9],
     ['benko-gambit-accepted', 1],
     ['benko-gambit-declined-bishop-attack', 1],
+    ['benko-gambit-declined-hjorring-countergambit', 1],
+    ['benko-gambit-declined-main-line', 1],
+    ['benko-gambit-declined-pseudo-samisch', 1],
+    ['benko-gambit-declined-quiet-line', 1],
+    ['benko-gambit-declined-sosonko-variation', 1],
     ['benko-gambit-fianchetto-variation', 0],
+    ['benko-gambit-mutkin-countergambit', 1],
     ['benoni-defense-benoni-gambit-accepted', 1],
+    ['benoni-defense-benoni-gambit-schlenker-defense', 1],
+    ['benoni-defense-cormorant-gambit', 1],
+    ['benoni-defense-zilbermints-benoni-gambit', 1],
     ['bird-opening-froms-gambit', 3],
     ['bird-opening-froms-gambit-bahr-gambit', 1],
     ['bird-opening-hobbs-gambit', 1],
     ['bird-opening-lasker-gambit', 1],
+    ['bird-opening-sturm-gambit', 1],
+    ['bird-opening-wagner-zwitersch-gambit', 1],
+    ['bird-opening-williams-gambit', 1],
     ['bishops-opening-anderssen-gambit', 1],
     ['bishops-opening-calabrese-countergambit', 3],
     ['bishops-opening-khan-gambit', 1],
     ['bishops-opening-lewis-countergambit', 1],
     ['bishops-opening-lewis-gambit', 1],
+    ['bishops-opening-mcdonnell-gambit', 1],
+    ['bishops-opening-mcdonnell-gambit-la-bourdonnais-denker-gambit', 1],
+    ['bishops-opening-mcdonnell-gambit-mcdonnell-double-gambit', 1],
     ['bishops-opening-ponziani-gambit', 1],
     ['bishops-opening-stein-gambit', 1],
+    ['bishops-opening-urusov-gambit', 1],
     ['bishops-opening-warsaw-gambit', 1],
     ['blackmar-diemer-gambit', 5],
     ['blackmar-diemer-gambit-accepted', 1],
+    ['blackmar-diemer-gambit-accepted-euwe-defense', 1],
+    ['blackmar-diemer-gambit-accepted-ryder-gambit', 1],
     ['blackmar-diemer-gambit-blackmar-gambit', 1],
     ['blackmar-diemer-gambit-declined-brombacher-countergambit', 1],
+    ['blackmar-diemer-gambit-diemer-rosenberg-attack', 1],
+    ['blackmar-diemer-gambit-fritz-attack', 1],
+    ['blackmar-diemer-gambit-lemberger-countergambit', 1],
     ['blackmar-diemer-gambit-reversed-albin-countergambit', 1],
+    ['blackmar-diemer-gambit-zeller-defense', 1],
     ['blumenfeld-countergambit', 1],
     ['blumenfeld-countergambit-accepted', 1],
     ['borg-defense-borg-gambit', 1],
     ['borg-defense-troon-gambit', 1],
     ['borg-defense-zilbermints-gambit', 1],
+    ['budapest-gambit-accepted-fajarowicz-defense-bonsdorf-variation', 1],
+    ['budapest-gambit-accepted-fajarowicz-defense-steiner-variation', 1],
+    ['budapest-gambit-accepted-main-line-adler-variation', 1],
+    ['budapest-gambit-accepted-main-line-alekhine-variation', 1],
+    ['budapest-gambit-accepted-main-line-rubinstein-variation', 1],
+    ['caro-kann-defense-alekhine-gambit', 1],
     ['caro-kann-defense-labahn-attack-double-gambit', 2],
     ['caro-kann-defense-mieses-gambit', 1],
+    ['caro-kann-defense-von-hennig-gambit', 1],
     ['carr-defense-zilbermints-gambit', 1],
     ['catalan-opening-hungarian-gambit', 1],
     ['center-game-halasz-mcdonnell-gambit', 1],
+    ['center-game-lanc-arnold-gambit', 1],
+    ['center-game-ross-gambit', 1],
+    ['center-game-von-der-lasa-gambit', 1],
     ['damiano-defence-refutation', 2],
     ['danish-gambit', 4],
     ['danish-gambit-accepted', 1],
+    ['danish-gambit-accepted-chigorin-defense', 1],
     ['danish-gambit-accepted-classical-defense', 1],
+    ['danish-gambit-accepted-copenhagen-defense', 1],
+    ['danish-gambit-accepted-schlechter-defense', 1],
     ['danish-gambit-accepted-svenonius-defense', 1],
     ['danish-gambit-declined-sorensen-defense', 1],
     ['duras-gambit', 1],
     ['dutch-defense-bellon-gambit', 1],
     ['dutch-defense-krejcik-gambit', 1],
+    ['dutch-defense-omega-isis-gambit', 1],
+    ['dutch-defense-staunton-gambit', 1],
+    ['dutch-defense-staunton-gambit-accepted', 1],
+    ['dutch-defense-staunton-gambit-tartakower-variation', 1],
     ['elephant-gambit', 1],
     ['elephant-gambit-maroczy-gambit', 1],
     ['elephant-gambit-paulsen-countergambit', 1],
     ['elephant-trap', 1],
     ['english-defense-eastbourne-gambit', 1],
+    ['english-opening-achilles-omega-gambit', 1],
+    ['english-opening-anglo-dutch-defense-hickmann-gambit', 1],
+    ['english-opening-anglo-scandinavian-defense-lohn-gambit', 1],
     ['english-opening-jaenisch-gambit', 1],
+    ['english-opening-wade-gambit', 1],
     ['english-opening-wing-gambit', 1],
     ['englund-gambit', 5],
     ['englund-gambit-declined', 1],
+    ['englund-gambit-declined-reversed-alekhine', 1],
+    ['englund-gambit-declined-reversed-french', 1],
+    ['englund-gambit-declined-reversed-krebs', 1],
     ['englund-gambit-felbecker-gambit', 1],
     ['englund-gambit-hartlaub-charlick-gambit', 1],
     ['englund-gambit-main-line', 1],
     ['englund-gambit-mosquito-gambit', 1],
     ['englund-gambit-soller-gambit', 1],
     ['englund-gambit-soller-gambit-deferred', 1],
+    ['englund-gambit-stockholm-variation', 1],
     ['englund-gambit-trap', 6],
     ['englund-gambit-zilbermints-gambit', 1],
+    ['falkbeer-countergambit-charousek-gambit-accepted', 1],
     ['falkbeer-countergambit-charousek-gambit-old-line', 1],
     ['falkbeer-countergambit-milner-barry-variation', 1],
     ['falkbeer-countergambit-nimzowitsch-marshall-countergambit', 1],
@@ -563,7 +619,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored three hundred and fifty-nine have any', () => {
+  it('bakes keys on all 1024 entries, and only the authored four hundred and nine have any', () => {
     expect(result.value.records).toHaveLength(1024)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

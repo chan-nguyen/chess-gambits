@@ -1,0 +1,60 @@
+# Blackmar-Diemer Gambit: Diemer-Rosenberg Attack. Frozen defining line 1.d4 d5 2.e4 dxe4
+# 3.Be3, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 3...Nf6: Black develops rather than holding
+# onto the extra pawn by force. Nothing is hanging at the resulting position. searchMate at
+# 4 moves from this position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: blackmar-diemer-gambit-diemer-rosenberg-attack
+name: 'Blackmar-Diemer Gambit: Diemer-Rosenberg Attack'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Be3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Skipping the usual
+      3.Nc3 to develop the bishop first is a real try at rapid piece play, but it leaves the
+      e4 pawn unrecovered for a while and the whole family's compensation is real but unproven
+      by force. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì chơi 3.Nc3 theo lối thông thường, Trắng đưa tượng ra e3 ngay, chuẩn bị nhập thành cánh hậu và dồn quân nhanh mà chưa vội đòi lại con tốt e4.
+    en: Instead of the usual 3.Nc3, White brings the bishop straight to e3, preparing to castle queenside and develop quickly without hurrying to win the e4 pawn back.
+    fr: Au lieu du traditionnel 3.Nc3, les Blancs amènent directement le fou en e3, se préparant à roquer côté dame et à développer rapidement sans se presser de reprendre le pion e4.
+  dismissRest:
+    reason:
+      vi: Đen không phát triển bằng 3...Nf6. Các nước như e5 hay c5 phản công ngay ở trung tâm cũng giữ được con tốt thừa nhưng theo cách khác, còn con tốt e4 vẫn chưa ai đỡ thêm.
+      en: Black does not develop with 3...Nf6. Moves such as ...e5 or ...c5, counterattacking the centre at once, also keep the extra pawn but in a different way, and the e4 pawn still has no extra defender.
+      fr: Les Noirs ne développent pas par 3...Nf6. Des coups comme ...e5 ou ...c5, contre-attaquant aussitôt le centre, gardent eux aussi le pion supplémentaire mais d'une autre façon, et le pion e4 n'a toujours pas de défenseur supplémentaire.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã tự nhiên và giữ vững con tốt thừa, chưa cần vội vàng làm gì thêm vì chưa quân Trắng nào đe dọa được nó.
+        en: Black develops the knight naturally and simply keeps the extra pawn, with no need to do anything more urgent yet since no white piece threatens it.
+        fr: Les Noirs développent naturellement le cavalier et gardent simplement le pion supplémentaire, sans rien devoir faire de plus urgent puisqu'aucune pièce blanche ne le menace.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn đúng một tốt sạch và con tốt ấy chưa hề bị đe dọa. Trắng có tượng e3 đã phát triển và dự định Nc3, Qd2 rồi O-O-O để dồn quân nhanh vào cánh vua Đen, đổi lại việc phát triển chậm hơn một nhịp so với các biến đã ăn lại tốt.
+          en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up and that pawn is not under any threat. White has the bishop out on e3 and plans Nc3, Qd2 and O-O-O to throw pieces at Black's kingside quickly, in exchange for being a tempo slower to develop than the lines that recapture the pawn.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion net d'avance et ce pion n'est sous aucune menace. Les Blancs ont le fou sorti en e3 et prévoient Nc3, Qd2 puis O-O-O pour jeter rapidement leurs pièces sur l'aile roi noire, en échange d'un temps de retard de développement par rapport aux lignes qui reprennent le pion.
+        plan:
+          vi: Trắng chơi Nc3, Qd2 và O-O-O, dồn quân nhanh vào cánh vua Đen và tìm cách đòi lại con tốt e4 khi có dịp, ví dụ bằng f3 sau này. Đen chơi g6, Bg7 và O-O theo lối chắc chắn, hoặc e6 và Be7, hoàn tất phát triển và giữ vững con tốt thừa vào tàn cuộc nếu có thể đổi bớt quân.
+          en: White plays Nc3, Qd2 and O-O-O, throwing pieces at Black's kingside quickly and looking to win the e4 pawn back later, for instance with f3. Black plays ...g6, ...Bg7 and ...O-O for safety, or ...e6 and ...Be7, completing development and holding the extra pawn for the endgame if pieces can be traded off.
+          fr: Les Blancs jouent Nc3, Qd2 et O-O-O, jetant rapidement leurs pièces sur l'aile roi noire et cherchant à reprendre le pion e4 à l'occasion, par exemple par f3 plus tard. Les Noirs jouent ...g6, ...Bg7 et ...O-O pour la sécurité, ou ...e6 et ...Be7, achevant leur développement et gardant le pion supplémentaire pour la finale si des pièces peuvent être échangées.
+        basis:
+          by: chan
+          at: '2026-09-25'

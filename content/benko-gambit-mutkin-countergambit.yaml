@@ -1,0 +1,81 @@
+# Benko Gambit: Mutkin Countergambit. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 4.g4 Nxg4 5.cxb5: White answers one gambit with another
+# instead of just taking on b5, Black grabs the free g4 pawn, and White grabs back on b5. At
+# every stopping point checked, no capture was left going free until the position after
+# 5.cxb5, where material settles at seven pawns each. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: benko-gambit-mutkin-countergambit
+name: 'Benko Gambit: Mutkin Countergambit'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Throwing in a
+      second, completely undefended pawn does not punish Black for offering the first one —
+      it simply gives back the material White would otherwise have to fight for, so the
+      position that results favours Black's activity. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 3...b5 theo đúng tinh thần Benko Gambit, thí tốt cánh hậu để đổi lấy áp lực trên hai cột a và b. Ở đây Trắng đáp lại bằng chính một nước thí khác, đẩy tốt lên g4 mà chẳng ai đỡ.
+    en: Black plays 3...b5 in true Benko Gambit style, offering the queenside pawn for pressure on the a- and b-files. Here White answers with a countergambit of its own, pushing the pawn to g4 where nothing defends it.
+    fr: Les Noirs jouent 3...b5 dans le pur style du Gambit Benko, offrant le pion de l'aile dame contre la pression sur les colonnes a et b. Ici, les Blancs répondent par un contre-gambit, poussant le pion en g4 où rien ne le défend.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.g4. Ăn tốt ngay bằng 4.cxb5 dẫn vào các nhánh Benko Gambit đã được chấp nhận, còn những nước như 4.Nf3, 4.f3 hay 4.a4 để nguyên tốt b5 nằm đó theo cách khác, mỗi nước ấy có cách chơi riêng của Đen.
+      en: White does not play 4.g4. Taking at once with 4.cxb5 leads into the accepted Benko Gambit branches, while moves such as 4.Nf3, 4.f3 or 4.a4 leave the b5 pawn there in their own way, each with Black's own way of meeting it.
+      fr: Les Blancs ne jouent pas 4.g4. Prendre tout de suite par 4.cxb5 mène vers les branches acceptées du Gambit Benko, tandis que des coups comme 4.Nf3, 4.f3 ou 4.a4 laissent le pion b5 en place à leur manière, chacun avec sa propre réponse noire.
+  children:
+    - ply: g4
+      replyQuality: mistake
+      frequency: rare
+      annotation:
+        vi: Trắng chơi một nước rất mạo hiểm, thí luôn con tốt g để mở đường cho tượng c1 và tạo khoảng không ở cánh vua, thay vì tranh cãi về con tốt b5. Con mã f6 lập tức có thể ăn con tốt này.
+        en: White plays a very risky move, throwing in the g-pawn as well to open a diagonal for the c1 bishop and grab kingside space, instead of arguing about the b5 pawn. The f6 knight can take this pawn at once.
+        fr: Les Blancs jouent un coup très risqué, sacrifiant aussi le pion g pour ouvrir une diagonale au fou c1 et prendre de l'espace à l'aile roi, au lieu de discuter du pion b5. Le cavalier f6 peut prendre ce pion aussitôt.
+      children:
+        - ply: Nxg4
+          annotation:
+            vi: Đen ăn con tốt cho không này. Con mã tạm thời đứng hơi xa trung tâm ở g4, nhưng Trắng vẫn còn phải giải quyết con tốt b5.
+            en: Black takes the free pawn. The knight sits a little offside on g4 for the moment, but White still has the b5 pawn to deal with.
+            fr: Les Noirs prennent le pion offert. Le cavalier se retrouve un peu excentré en g4 pour l'instant, mais les Blancs doivent toujours régler le sort du pion b5.
+          dismissRest:
+            reason:
+              vi: Trắng không ăn ngay ở b5. Các nước như Nc3 hay Bg2 vẫn để tốt b5 nằm đó thêm một lúc, nhưng không đổi được gì so với việc ăn nó luôn, vì Đen không có cách nào đỡ thêm cho con tốt ấy.
+              en: White does not take on b5 straight away. Moves such as Nc3 or Bg2 leave the b5 pawn there a little longer, but change nothing compared with simply taking it, because Black has no way to add a defender to that pawn.
+              fr: Les Blancs ne prennent pas tout de suite en b5. Des coups comme Nc3 ou Bg2 laissent le pion b5 en place un peu plus longtemps, mais ne changent rien par rapport à le prendre tout de suite, car les Noirs n'ont aucun moyen de le défendre davantage.
+          children:
+            - ply: cxb5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Trắng lấy lại thế cân bằng vật chất bằng cách ăn nốt con tốt b5 đã bỏ ngỏ từ đầu.
+                en: White restores material balance by finally taking the b5 pawn that has been on offer from the start.
+                fr: Les Blancs rétablissent l'équilibre matériel en prenant enfin le pion b5 offert depuis le début.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đếm tốt thì bảy đều, nên cả hai nước thí đã triệt tiêu lẫn nhau về mặt vật chất. Con mã Đen ở g4 hơi lệch khỏi trung tâm nhưng vẫn nhòm vào e3, f2 và h2, còn Trắng có cặp tốt b5-d5 chiếm không gian ở cánh hậu và trung tâm. Cả hai bên đều chưa phát triển thêm quân nào khác, và Đen sẽ cần một nhịp để đưa mã về vị trí tốt hơn.
+                  en: Count the pawns and it is seven each, so the two sacrifices have cancelled each other out materially. Black's knight on g4 sits a little away from the centre but still eyes e3, f2 and h2, while White has the b5-d5 pawn pair claiming space on the queenside and in the centre. Neither side has developed anything else yet, and Black will need a tempo to bring the knight back to a better square.
+                  fr: Comptez les pions, sept de chaque côté, les deux sacrifices s'annulent donc matériellement. Le cavalier noir en g4 est un peu éloigné du centre mais vise encore e3, f2 et h2, tandis que les Blancs ont le duo de pions b5-d5 qui prend de l'espace à l'aile dame et au centre. Aucun des deux camps n'a encore développé autre chose, et les Noirs auront besoin d'un temps pour ramener le cavalier vers une meilleure case.
+                plan:
+                  vi: Đen chơi Nf6 để đưa mã về vị trí tốt hơn, rồi d6, g6, Bg7 và O-O theo đúng cấu trúc Benko quen thuộc. Trắng chơi Nc3, Nf3, g3 và Bg2, cố khai thác cặp tốt b5-d5 để chiếm không gian trước khi Đen kịp hoàn thiện phát triển.
+                  en: Black plays ...Nf6 to bring the knight back to a better square, then ...d6, ...g6, ...Bg7 and ...O-O in the familiar Benko structure. White plays Nc3, Nf3, g3 and Bg2, trying to make the b5-d5 pawn pair count for space before Black finishes developing.
+                  fr: Les Noirs jouent ...Nf6 pour ramener le cavalier vers une meilleure case, puis ...d6, ...g6, ...Bg7 et ...O-O dans la structure Benko habituelle. Les Blancs jouent Nc3, Nf3, g3 et Bg2, essayant de faire valoir le duo de pions b5-d5 en termes d'espace avant que les Noirs n'achèvent leur développement.
+                basis:
+                  by: chan
+                  at: '2026-09-25'

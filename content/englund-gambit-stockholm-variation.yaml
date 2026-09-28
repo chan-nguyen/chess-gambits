@@ -1,0 +1,59 @@
+# Englund Gambit: Stockholm Variation. Frozen defining line 1.d4 e5 2.dxe5 Nc6 3.Nf3 Qe7,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 4.Qd5: White centralises the queen, defending
+# the e5 pawn and attacking the c6 knight and the f7 pawn at the same time. Nothing is
+# hanging at the resulting position. searchMate at 4 moves from this position returns
+# no-mate, so no forced mate is claimed anywhere in this entry.
+id: englund-gambit-stockholm-variation
+name: 'Englund Gambit: Stockholm Variation'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5, dxe5, Nc6, Nf3, Qe7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Pinning down the e5 pawn with the queen before playing ...Qb4+ has real
+      point, but 4.Qd5 meets it with a queen move of its own that holds the extra pawn and
+      creates threats of its own. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ăn tốt e5 và phát triển mã, Trắng thấy Đen chơi 3...Qe7, chuẩn bị đòi lại con tốt bằng cách ghim nó vào chính con mã f3. Trắng đáp lại bằng một nước hậu trung tâm hóa.
+    en: After taking the e5 pawn and developing the knight, White sees Black play 3...Qe7, preparing to win the pawn back by pinning it to the f3 knight itself. White answers with a centralising queen move.
+    fr: Après avoir pris le pion e5 et développé le cavalier, les Blancs voient les Noirs jouer 3...Qe7, préparant à reprendre le pion en le clouant au cavalier f3 lui-même. Les Blancs répondent par un coup de dame centralisateur.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Qd5. Đỡ tốt bằng Bf4 hay Bg5 giữ được con tốt theo cách khác mà không đưa hậu ra sớm, mỗi cách có trang riêng của nó.
+      en: White does not play 4.Qd5. Defending the pawn with Bf4 or Bg5 holds it in a different way, without bringing the queen out early, each with its own page.
+      fr: Les Blancs ne jouent pas 4.Qd5. Défendre le pion par Bf4 ou Bg5 le garde d'une autre façon, sans sortir tôt la dame, chacun avec sa propre page.
+  children:
+    - ply: Qd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Hậu Trắng nhảy vào giữa bàn cờ, vừa đỡ thêm cho tốt e5 vừa tấn công cùng lúc mã c6 và tốt f7. Đen buộc phải trả lời ngay lập tức.
+        en: The white queen jumps into the centre, adding a defender to e5 while attacking the c6 knight and the f7 pawn at the same time. Black must answer at once.
+        fr: La dame blanche saute au centre, ajoutant un défenseur à e5 tout en attaquant à la fois le cavalier c6 et le pion f7. Les Noirs doivent répondre aussitôt.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt sạch. Con hậu Trắng ở d5 đang làm hai việc cùng lúc, đỡ tốt e5 và tấn công cả mã c6 lẫn tốt f7, trong khi Đen mới chỉ đưa ra được một mã và con hậu.
+          en: Count the pawns and it is eight for White, seven for Black — White is a clean pawn up. The queen on d5 is doing two jobs at once, defending e5 and attacking both the c6 knight and the f7 pawn, while Black has only brought out one knight and the queen.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net d'avance. La dame en d5 fait deux choses à la fois, défendant e5 et attaquant à la fois le cavalier c6 et le pion f7, tandis que les Noirs n'ont sorti qu'un cavalier et la dame.
+        plan:
+          vi: Đen chơi Nd8 hay Kd8 để đỡ tốt f7, hoặc d6 chặn hậu và đẩy lùi áp lực, rồi Nf6 hoàn tất phát triển. Trắng chơi Nc3, Bf4 hay Bg5, hoàn thiện phát triển và giữ vững con tốt thừa trong khi hậu vẫn đứng tích cực ở trung tâm.
+          en: Black plays ...Nd8 or ...Kd8 to defend f7, or ...d6 to block the queen and push back the pressure, then ...Nf6 to finish developing. White plays Nc3, Bf4 or Bg5, completing development and holding the extra pawn while the queen remains actively placed in the centre.
+          fr: Les Noirs jouent ...Nd8 ou ...Kd8 pour défendre f7, ou ...d6 pour bloquer la dame et repousser la pression, puis ...Nf6 pour achever leur développement. Les Blancs jouent Nc3, Bf4 ou Bg5, achevant leur développement et gardant le pion supplémentaire tandis que la dame reste activement placée au centre.
+        basis:
+          by: chan
+          at: '2026-09-25'

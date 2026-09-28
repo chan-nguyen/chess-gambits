@@ -1,0 +1,60 @@
+# Blackmar-Diemer Gambit Accepted: Ryder Gambit. Frozen defining line 1.d4 d5 2.e4 dxe4
+# 3.Nc3 Nf6 4.f3 exf3 5.Qxf3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5...c6: Black plays a solid
+# waiting move, ruling out Nb5 and Bb5+ ideas and adding a defender to d5. Nothing is hanging
+# at the resulting position. searchMate at 4 moves from this position returns unknown, which
+# the stopping rule treats the same as no-mate, so no forced mate is claimed in this entry.
+id: blackmar-diemer-gambit-accepted-ryder-gambit
+name: 'Blackmar-Diemer Gambit Accepted: Ryder Gambit'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3, exf3, Qxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Recapturing with
+      the queen brings it out early with real threats against f7 and b7 combined, but it
+      offers Black a tempo to attack the queen later, and the compensation for the pawn is
+      real but unproven by force. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại bằng mã, Trắng chơi 5.Qxf3, đưa hậu ra sớm để nhắm đồng thời vào b7 và f7 qua các nước Qb3 hay Bc4 sau này.
+    en: Instead of recapturing with the knight, White plays 5.Qxf3, bringing the queen out early to take aim at both b7 and f7 with Qb3 or Bc4 to follow.
+    fr: Au lieu de reprendre avec le cavalier, les Blancs jouent 5.Qxf3, sortant tôt la dame pour viser à la fois b7 et f7, avec Qb3 ou Bc4 à suivre.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 5...c6. Các nước như g6 hay e6 phát triển bình thường cũng giữ được con tốt thừa, nhưng để ngỏ ô b5 cho Nb5 hay Bb5+ của Trắng theo cách mà c6 ngăn chặn được ngay.
+      en: Black does not play 5...c6. Ordinary developing moves such as ...g6 or ...e6 also keep the extra pawn, but leave the b5 square open to White's Nb5 or Bb5+ in a way that ...c6 rules out immediately.
+      fr: Les Noirs ne jouent pas 5...c6. Des coups de développement ordinaires comme ...g6 ou ...e6 gardent eux aussi le pion supplémentaire, mais laissent la case b5 ouverte à Nb5 ou Bb5+ des Blancs, ce que ...c6 écarte d'emblée.
+  children:
+    - ply: c6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi một nước chờ vững chắc, thêm một quân đỡ cho tốt d5 cũ và loại bỏ hẳn mọi ý đồ Nb5 hay Bb5+ của Trắng trước khi chúng kịp xảy ra.
+        en: Black plays a solid waiting move, adding a defender to the old d5 square and ruling out any Nb5 or Bb5+ idea from White before it can happen.
+        fr: Les Noirs jouent un solide coup d'attente, ajoutant un défenseur à l'ancienne case d5 et écartant d'emblée toute idée de Nb5 ou Bb5+ des Blancs.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen bảy, Trắng sáu, Trắng kém một tốt. Đổi lại, hậu Trắng ở f3 đã sẵn sàng chuyển sang b3 hay đi cùng Bc4 để nhắm vào f7, trong khi Đen mới chỉ đưa ra một mã và chưa nhập thành. Ô b5 đã bị con tốt c6 khóa chặt nên các đòn phối hợp dựa vào đó không còn nữa.
+          en: Count the pawns and it is seven for Black, six for White, White a pawn down. In return the queen on f3 is ready to swing to b3 or work with Bc4 to aim at f7, while Black has only the one knight out and has not castled yet. The b5 square is now firmly shut by the c6 pawn, so any combination built on it is gone.
+          fr: Comptez les pions, sept pour les Noirs, six pour les Blancs, les Blancs ont un pion de moins. En échange, la dame en f3 est prête à basculer en b3 ou à collaborer avec Bc4 pour viser f7, tandis que les Noirs n'ont sorti qu'un seul cavalier et n'ont pas encore roqué. La case b5 est désormais solidement fermée par le pion c6, si bien que toute combinaison fondée dessus a disparu.
+        plan:
+          vi: Trắng chơi Bc4, Bg5 hoặc Bd2, O-O-O và Qb3 hay Rhe1, dồn quân nhanh vào trung tâm và cánh vua trước khi Đen kịp củng cố hoàn toàn. Đen chơi Bf5 hoặc g6, Bg7, O-O và Nbd7, hoàn tất phát triển một cách chắc chắn và tìm cách đổi bớt quân để giữ vững con tốt thừa.
+          en: White plays Bc4, Bg5 or Bd2, castles queenside and Qb3 or Rhe1, throwing pieces at the centre and kingside before Black fully consolidates. Black plays ...Bf5 or ...g6, ...Bg7, ...O-O and ...Nbd7, completing development soundly and looking to trade pieces to hold onto the extra pawn.
+          fr: Les Blancs jouent Bc4, Bg5 ou Bd2, roquent côté dame et Qb3 ou Rhe1, jetant rapidement leurs pièces sur le centre et l'aile roi avant que les Noirs ne consolident complètement. Les Noirs jouent ...Bf5 ou ...g6, ...Bg7, ...O-O et ...Nbd7, achevant leur développement solidement et cherchant à échanger des pièces pour garder le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'
