@@ -47,6 +47,8 @@ type RouteLoad = {
   readonly requested: readonly string[]
   readonly scripts: readonly Resource[]
   readonly data: readonly Resource[]
+  /** Stockfish's files, which are neither JavaScript the page runs nor data it reads. */
+  readonly engine: readonly Resource[]
   readonly total: number
 }
 
@@ -54,6 +56,9 @@ const sum = (resources: readonly Resource[]): number =>
   resources.reduce((bytes, resource) => bytes + resource.gzipped, 0)
 
 const pathOf = (url: string): string => new URL(url).pathname
+
+/** Stockfish's worker and WASM, served from `public/engine/` (ADR-0012). */
+const isEngine = (url: string): boolean => pathOf(url).includes('/engine/')
 
 /**
  * Cold-load a route and record everything that crossed the wire.
@@ -93,6 +98,7 @@ const load = async (browser: Browser, route: string): Promise<RouteLoad> => {
     requested,
     scripts: received.filter((resource) => pathOf(resource.url).endsWith('.js')),
     data: received.filter((resource) => pathOf(resource.url).endsWith('.json')),
+    engine: received.filter((resource) => isEngine(resource.url)),
     total: sum(received),
   }
 }
@@ -118,7 +124,13 @@ const ROUTES: readonly string[] = [
   `vi/${routeSegments.catalogue}/benko-gambit?line=cxb5+a6`,
   `en/${routeSegments.catalogue}/legals-mate`,
   `fr/${routeSegments.catalogue}/italian-game-evans-gambit`,
+  // Lazy-loaded (#154): its own chunk is the incremental JavaScript, and its engine is
+  // measured by the budget of its own below.
+  `vi/${routeSegments.analysis}?moves=e4_e5`,
 ]
+
+/** The analysis route, and the only route allowed to download the engine (ADR-0012). */
+const ANALYSIS_ROUTE = `vi/${routeSegments.analysis}?moves=e4_e5`
 
 test.describe('what each route costs (AC 1)', () => {
   test('every route stays inside all three budgets', async ({ browser }) => {
@@ -166,6 +178,27 @@ test.describe('what each route costs (AC 1)', () => {
         `${route} downloads ${asKb(payload)} of data gzipped, past the ` +
           `${asKb(BUDGET_BYTES.routePayload)} payload budget`,
       ).toBeLessThanOrEqual(BUDGET_BYTES.routePayload)
+
+      /*
+       * The engine (docs/performance-budgets.md, *Why the engine has two rows*). Asserted
+       * from both sides, because each alone passes vacuously: no route but analysis may
+       * request it, and the analysis route must — a recorder that could not see the
+       * worker's own fetch would otherwise report the engine as free everywhere.
+       */
+      const { engine } = measured
+      if (route === ANALYSIS_ROUTE) {
+        expect(
+          engine.map((resource) => pathOf(resource.url).split('/').pop()).sort(),
+        ).toStrictEqual(['stockfish-19-lite-single.js', 'stockfish-19-lite-single.wasm'])
+        expect(
+          sum(engine),
+          `${route} downloads ${asKb(sum(engine))} of engine, past its budget`,
+        ).toBeLessThan(BUDGET_BYTES.engine)
+      } else {
+        expect(measured.requested.filter(isEngine), `${route} requested the engine`).toStrictEqual(
+          [],
+        )
+      }
     }
 
     // Printed, not just asserted: AC 5 records these in docs/PROJECT-PLAN.md, and a number

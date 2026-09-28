@@ -35,6 +35,21 @@ export const routes: RouteObject[] = [
           { path: routeSegments.catalogue, element: <CatalogueRoute /> },
           { path: `${routeSegments.catalogue}/:${gambitIdParam}`, element: <GambitRoute /> },
           { path: routeSegments.about, element: <AboutRoute /> },
+          /*
+           * Lazy, and the only route that is (#154): its code and the engine behind it are
+           * for the visitors who open it, and no other route should download either
+           * (`e2e/route-budgets.spec.ts`). Arriving on it directly, the router renders the
+           * fallback for the moment its chunk is on the wire: the header and footer are
+           * already there, and an empty, busy `main` is honest about the rest.
+           */
+          {
+            path: routeSegments.analysis,
+            hydrateFallbackElement: <main aria-busy="true" />,
+            lazy: () =>
+              import('./routes/analysis.tsx').then(({ AnalysisRoute }) => ({
+                Component: AnalysisRoute,
+              })),
+          },
         ],
       },
       { path: '*', element: <NotFoundRoute /> },

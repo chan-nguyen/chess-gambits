@@ -1,0 +1,32 @@
+/*
+ * The piece colours, so the bar is the two sides of the board and not two new colours:
+ * light and dark body tokens already hold 4.5:1 of each other in both themes
+ * (`board-contrast.test.ts`), which is what makes the split point visible in greyscale.
+ */
+/*
+ * The canvas is taken out of flow, so it contributes no height of its own and the bar is
+ * exactly as tall as the board it stands beside.
+ */
+.eval-bar {
+  position: relative;
+  flex: 0 0 auto;
+  inline-size: var(--space-4);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.eval-bar__canvas {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.eval-bar__black {
+  fill: var(--color-piece-black-fill);
+}
+
+.eval-bar__white {
+  fill: var(--color-piece-white-fill);
+}

@@ -45,6 +45,10 @@ const mimeTypes: Readonly<Record<string, string>> = {
   '.ico': 'image/x-icon',
   '.woff2': 'font/woff2',
   '.txt': 'text/plain; charset=utf-8',
+  '.md': 'text/markdown; charset=utf-8',
+  // As GitHub Pages serves it. Without it streaming compilation refuses the engine and its
+  // loader falls back to a slower path, which is not the site a visitor gets (ADR-0012).
+  '.wasm': 'application/wasm',
 }
 
 /**

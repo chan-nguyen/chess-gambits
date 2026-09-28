@@ -36,6 +36,22 @@
 }
 
 /*
+ * The navigator and the flip control share one row, so turning the board costs the page no
+ * height: a row of its own would be height the board has to give up at 360x640, which is
+ * exactly what `e2e/move-navigation.spec.ts` measures.
+ */
+.learning-surface__controls {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.learning-surface__controls > .move-navigator {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+/*
  * The same box the board will occupy, reserved before the tree arrives, so the swap is
  * not a layout shift (docs/design-system.md §6, CLS).
  */
@@ -88,4 +104,8 @@
   .learning-surface__recovered {
     grid-column: 1 / -1;
   }
+}
+
+.learning-surface__analyse {
+  margin-block: 0;
 }

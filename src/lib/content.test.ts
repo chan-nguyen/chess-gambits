@@ -223,17 +223,19 @@ describe('the runtime guard', () => {
  * bundle. The rules engine did too, until #131 gave the home page's free-play board a real
  * `chess.js` instance at runtime — a deliberate, narrow exception, confined to
  * `src/components/home/` and covered by its own tripwire (ADR-0003's amendment for #131,
- * and `board-tripwire.test.ts` for `src/components/board/` specifically). This describe
- * block is what still holds unconditionally: the parser, everywhere, and the engine,
- * everywhere *except* the one directory that now needs it.
+ * and `board-tripwire.test.ts` for `src/components/board/` specifically). #154's analysis
+ * page is the second directory, and the last one with a reason: it replays pasted PGN and
+ * turns Stockfish's UCI lines into SAN, both of which are rules questions (ADR-0012). This
+ * describe block is what still holds unconditionally: the parser, everywhere, and the rules
+ * engine, everywhere *except* the two directories that need it.
  */
 describe('the content pipeline never reaches the browser (ADR-0004)', () => {
   const sources = Object.entries(
     import.meta.glob('../**/*.{ts,tsx}', { query: '?raw', import: 'default', eager: true }),
   ).filter(([path]) => !path.includes('.test.'))
 
-  /** The one directory `chess.js` is allowed to reach at runtime (#131). */
-  const homeDirectory = '../components/home/'
+  /** The directories `chess.js` is allowed to reach at runtime (#131, #154). */
+  const engineDirectories = ['../components/home/', '../components/analysis/']
 
   it('finds the application source to check', () => {
     expect(sources.length).toBeGreaterThan(10)
@@ -267,9 +269,9 @@ describe('the content pipeline never reaches the browser (ADR-0004)', () => {
     expect(offenders).toStrictEqual([])
   })
 
-  it('imports the engine from nowhere under src/ except src/components/home/', () => {
+  it('imports the rules engine from nowhere under src/ except home/ and analysis/', () => {
     const offenders = sources
-      .filter(([path]) => !path.includes(homeDirectory))
+      .filter(([path]) => !engineDirectories.some((directory) => path.includes(directory)))
       .filter(([, text]) => typeof text === 'string' && /['"]chess\.js['"]/.test(text))
       .map(([path]) => path)
 

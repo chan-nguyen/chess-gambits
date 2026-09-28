@@ -5,6 +5,7 @@ import { I18nProvider } from '../../i18n/I18nProvider.tsx'
 import type { LocaleLoader } from '../../i18n/i18n.ts'
 import type { PartialTranslations } from '../../i18n/translations.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
+import { withFlip } from '../../lib/flip.ts'
 import { lineSearch } from '../../lib/line.ts'
 import { encodeMate } from '../../lib/mate-step.ts'
 import { preludeSearch } from '../../lib/prelude.ts'
@@ -86,9 +87,18 @@ type Options = {
    * what the tests that stub a *failure* depend on.
    */
   readonly entry?: CompiledEntry
+  /** Open with the board turned round (`?flip=1`). */
+  readonly flip?: boolean
 }
 
-const renderGambit = ({ locale = 'vi', line = [], prelude, mate, entry }: Options = {}) => {
+const renderGambit = ({
+  locale = 'vi',
+  line = [],
+  prelude,
+  mate,
+  entry,
+  flip = false,
+}: Options = {}) => {
   if (entry !== undefined) serve(entry)
   const id = entry?.id ?? MAPPED_ENTRY.id
   const search =
@@ -109,7 +119,7 @@ const renderGambit = ({ locale = 'vi', line = [], prelude, mate, entry }: Option
         children: [{ path: 'gambits/:id', element: <GambitRoute /> }],
       },
     ],
-    { initialEntries: [`/${locale}/gambits/${id}${search}`] },
+    { initialEntries: [`/${locale}/gambits/${id}${withFlip(search, flip)}`] },
   )
   render(<RouterProvider router={router} />)
   return router
@@ -705,6 +715,74 @@ describe('a line that is not in this gambit', () => {
     await surface({ line: MAIN_LINE })
 
     expect(screen.queryByRole('alert')).toBeNull()
+  })
+})
+
+describe('turning the board round (F2)', () => {
+  const flipButton = () => screen.getByRole('button', { name: viCatalogue.board.flip })
+  const corners = () => {
+    const cells = screen.getAllByRole('gridcell')
+    return [cells[0]?.getAttribute('data-square'), cells.at(-1)?.getAttribute('data-square')]
+  }
+
+  it("opens on the learner's side, with the control not pressed", async () => {
+    await surface()
+
+    expect(flipButton()).toHaveAttribute('aria-pressed', 'false')
+    expect(corners()).toStrictEqual(['a8', 'h1'])
+  })
+
+  it('turns the board, and only the board: the position and its address stay put', async () => {
+    const router = await surface({ line: ['fxe5'] })
+
+    fireEvent.click(flipButton())
+
+    await waitFor(() => expect(router.state.location.search).toBe('?line=fxe5&flip=1'))
+    expect(corners()).toStrictEqual(['h1', 'a8'])
+    expect(flipButton()).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('turns back on a second press, leaving no parameter behind', async () => {
+    const router = await surface({ line: ['fxe5'], flip: true })
+
+    fireEvent.click(flipButton())
+
+    await waitFor(() => expect(router.state.location.search).toBe('?line=fxe5'))
+    expect(corners()).toStrictEqual(['a8', 'h1'])
+  })
+
+  it('stays turned while the learner moves through the line', async () => {
+    const router = await surface({ flip: true })
+
+    expect(control(VI.nextPly)).toHaveAttribute('href', expect.stringContaining('flip=1'))
+    fireEvent.keyDown(window, { key: 'ArrowRight' })
+
+    await waitFor(() => expect(router.state.location.search).toBe('?line=fxe5&flip=1'))
+    expect(corners()).toStrictEqual(['h1', 'a8'])
+  })
+
+  it('turns the reply previews with it', async () => {
+    await surface({ entry: EVANS_ENTRY, locale: 'en', flip: true })
+
+    const previews = document.querySelectorAll('.board-preview [data-square]')
+    expect(previews.length).toBeGreaterThan(0)
+    expect(previews[0]?.getAttribute('data-square')).toBe('h1')
+  })
+
+  it('flips on f, under the same switch as the other shortcuts', async () => {
+    const router = await surface()
+
+    fireEvent.keyDown(window, { key: 'f' })
+    await waitFor(() => expect(router.state.location.search).toBe('?flip=1'))
+  })
+
+  it('leaves f alone once single-key shortcuts are off', async () => {
+    window.localStorage.setItem(shortcutStorageKey, 'off')
+    const router = await surface()
+
+    fireEvent.keyDown(window, { key: 'f' })
+
+    expect(router.state.location.search).toBe('')
   })
 })
 

@@ -12,11 +12,24 @@ every one of them can fail a pull request.
 | LCP, mid-tier mobile         | < 2.5s    | `lighthouserc.json`, blocking                                     |
 | CLS, mid-tier mobile         | < 0.1     | `lighthouserc.json`, blocking, and `e2e/layout-stability.spec.ts` |
 | Third-party requests, fonts  | 0         | `e2e/route-budgets.spec.ts`, and the CSP                          |
+| The engine, off its route    | 0 bytes   | `e2e/route-budgets.spec.ts`                                       |
+| The engine, on its route     | < 1.5MB   | `e2e/route-budgets.spec.ts`                                       |
 
 `tools/perf/lighthouse-budget.test.ts` reads the two Lighthouse rows back out of
 `lighthouserc.json` and fails if a threshold has moved or an assertion has stopped blocking.
 The CLS row is why it exists: that assertion sat at `warn` from #19 until #57 fixed the shift
 under it, and nothing but a ticket was holding it there.
+
+## Why the engine has two rows
+
+Stockfish (ADR-0012) is ≈1.8MB of WebAssembly, ≈1.2MB gzipped — six times the whole JavaScript
+budget of any other route. It is not JavaScript, so neither JavaScript row would ever see it, and
+it is not route data. So it has rows of its own, and the one that matters more is the first: **every
+other route downloads none of it.** The analysis route is lazy-loaded and the worker is started
+only when that page asks its first question, so a visitor who never opens it never pays for it. The
+second row is a ceiling on the page that does, and it is 1.5MB rather than the measured figure so
+that it catches the engine being swapped for the ≈94MB full build rather than an upstream patch
+release.
 
 ## Why pressing next is measured twice
 

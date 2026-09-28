@@ -52,10 +52,22 @@ export type BoardProps = {
   readonly check?: Square | undefined
   /**
    * Arbitrary squares to mark with a background tint (#131; a ring before it). The home
-   * board is the only caller today, and uses it for the clicked square and its legal
-   * destinations — but this component does not know or care what a mark means.
+   * board is the only caller today, and uses it for the selected square — its legal
+   * destinations are `targets` below — but this component does not know or care what a
+   * mark means.
    */
   readonly marks?: readonly Square[] | undefined
+  /**
+   * Squares to draw a dot on — or, where a piece stands, a ring around it. The home board
+   * passes the selected piece's legal destinations; this component does not know that
+   * either, only that these squares get a dot and say so in their accessible name.
+   */
+  readonly targets?: readonly Square[] | undefined
+  /**
+   * Arrows from one square to another, drawn over everything. The analysis page passes the
+   * engine's best move (#154); what an arrow means is the caller's business.
+   */
+  readonly arrows?: readonly LastMove[] | undefined
   /** Off for previews, which are small and carry no coordinates. */
   readonly showCoordinates?: boolean | undefined
 }
@@ -76,8 +88,42 @@ const squareOf = (element: EventTarget | null): FocusedSquare | undefined => {
 
 const SQUARE_CENTRE = 0.5
 const CHECK_RADIUS = 0.45
+// A third of the square across, and a ring just inside its edge, as chess.com draws them.
+const TARGET_RADIUS = 0.16
+const TARGET_RING_RADIUS = 0.45
 // Unitless SVG user units, so no px reaches the stylesheet (see Board.css).
 const COORDINATE_SIZE = 0.2
+const ARROW_SHAFT = 0.16
+const ARROW_HEAD_WIDTH = 0.42
+const ARROW_HEAD_LENGTH = 0.42
+
+type Point = { readonly x: number; readonly y: number }
+
+/**
+ * One arrow as a single polygon, square centre to square centre: a shaft, then a head whose
+ * point lands on the centre of the square it names. One shape rather than a line and a
+ * marker, because a marker needs a document-unique id and every board on a page would share
+ * one.
+ */
+const arrowPoints = (from: Point, to: Point): string => {
+  const length = Math.hypot(to.x - from.x, to.y - from.y)
+  const dx = (to.x - from.x) / length
+  const dy = (to.y - from.y) / length
+  const neck = length - ARROW_HEAD_LENGTH
+  // `along` the arrow from the centre of `from`, and `across` it, perpendicular.
+  const at = (along: number, across: number): string =>
+    `${(from.x + SQUARE_CENTRE + dx * along - dy * across).toFixed(3)},` +
+    `${(from.y + SQUARE_CENTRE + dy * along + dx * across).toFixed(3)}`
+  return [
+    at(0, ARROW_SHAFT / 2),
+    at(neck, ARROW_SHAFT / 2),
+    at(neck, ARROW_HEAD_WIDTH / 2),
+    at(length, 0),
+    at(neck, -ARROW_HEAD_WIDTH / 2),
+    at(neck, -ARROW_SHAFT / 2),
+    at(0, -ARROW_SHAFT / 2),
+  ].join(' ')
+}
 
 /**
  * A chessboard that displays a position and never accepts a move.
@@ -102,12 +148,15 @@ export const Board = ({
   captured,
   check,
   marks,
+  targets,
+  arrows,
   showCoordinates = true,
 }: BoardProps) => {
   const position = useMemo(() => parseFen(fen), [fen])
   const files = useMemo(() => orientedFiles(orientation), [orientation])
   const ranks = useMemo(() => orientedRanks(orientation), [orientation])
   const markedSquares = useMemo(() => new Set(marks ?? []), [marks])
+  const targetSquares = useMemo(() => new Set(targets ?? []), [targets])
   const gridRef = useRef<HTMLDivElement>(null)
 
   // Stripped to letters and digits so the id is safe in a `#fragment` reference.
@@ -248,6 +297,22 @@ export const Board = ({
           })
           .sort((one, other) => ((one.key ?? '') < (other.key ?? '') ? -1 : 1))}
 
+        {/* Over the pieces: a ring must stay visible around the piece it would take. */}
+        {cells
+          .filter((cell) => targetSquares.has(cell.square))
+          .map((cell) => {
+            const occupied = position.has(cell.square)
+            return (
+              <circle
+                key={`target-${cell.square}`}
+                className={`board__target${occupied ? ' board__target--occupied' : ''}`}
+                cx={cell.x + SQUARE_CENTRE}
+                cy={cell.y + SQUARE_CENTRE}
+                r={occupied ? TARGET_RING_RADIUS : TARGET_RADIUS}
+              />
+            )
+          })}
+
         {showCoordinates &&
           cells.map((cell) => (
             <g key={`coordinate-${cell.square}`}>
@@ -273,6 +338,19 @@ export const Board = ({
               )}
             </g>
           ))}
+
+        {(arrows ?? []).flatMap((arrow) => {
+          const from = cells.find((cell) => cell.square === arrow.from)
+          const to = cells.find((cell) => cell.square === arrow.to)
+          if (from === undefined || to === undefined) return []
+          return [
+            <polygon
+              key={`arrow-${arrow.from}${arrow.to}`}
+              className="board__arrow"
+              points={arrowPoints(from, to)}
+            />,
+          ]
+        })}
       </svg>
 
       {/* One tab stop for the whole board. Thirty-two focusable pieces across seven
@@ -299,7 +377,12 @@ export const Board = ({
                   data-square={square}
                   data-file={file}
                   data-rank={rank}
-                  aria-label={squareLabel(square, position.get(square), labels)}
+                  aria-label={squareLabel(
+                    square,
+                    position.get(square),
+                    labels,
+                    targetSquares.has(square),
+                  )}
                 />
               )
             })}

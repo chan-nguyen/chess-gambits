@@ -138,6 +138,7 @@ describe('accessible names (AC 3)', () => {
         labels={{
           board: 'Échiquier',
           emptySquare: 'case vide',
+          target: 'déplacement possible',
           pieces: { ...VIETNAMESE_LABELS.pieces, whiteKnight: 'cavalier blanc' },
         }}
       />,
@@ -274,6 +275,42 @@ describe('highlights (AC 6)', () => {
     expect(container.querySelectorAll('.board__square--to')).toHaveLength(0)
     expect(container.querySelectorAll('.board__check')).toHaveLength(0)
     expect(container.querySelectorAll('.board__square--marked')).toHaveLength(0)
+  })
+})
+
+describe('targets (2026-09-28)', () => {
+  // After 1.e4 e5: e2 is empty, e5 holds a black pawn.
+  const AFTER_E4_E5 = 'rnbqkbnr/pppp1ppp/8/4p3/4P3/8/PPPP1PPP/RNBQKBNR w KQkq - 0 2'
+  const targeted = () =>
+    render(<Board fen={AFTER_E4_E5} labels={VIETNAMESE_LABELS} targets={['e2', 'e5']} />).container
+
+  it('draws a dot on an empty target and a ring around an occupied one', () => {
+    const container = targeted()
+    expect(container.querySelectorAll('circle.board__target')).toHaveLength(2)
+    const rings = container.querySelectorAll('circle.board__target--occupied')
+    expect(rings).toHaveLength(1)
+    // e5: file e is x=4, rank 5 is y=3 with White at the bottom.
+    expect(rings[0]?.getAttribute('cx')).toBe('4.5')
+    expect(rings[0]?.getAttribute('cy')).toBe('3.5')
+  })
+
+  it('draws them over the pieces, so a ring stays visible around the piece it would take', () => {
+    const nodes = [...(targeted().querySelector('svg')?.children ?? [])]
+    const lastPiece = nodes.findLastIndex((node) => node.tagName === 'use')
+    const firstTarget = nodes.findIndex((node) => node.classList.contains('board__target'))
+    expect(firstTarget).toBeGreaterThan(lastPiece)
+  })
+
+  it('says it in the accessible name, so the dot is not a sighted-only signal', () => {
+    targeted()
+    expect(cellNamed('e2, ô trống, đi được tới đây')).toBeInTheDocument()
+    expect(cellNamed('e5, tốt đen, đi được tới đây')).toBeInTheDocument()
+    expect(cellNamed('e4, tốt trắng')).toBeInTheDocument()
+  })
+
+  it('draws no target when none is passed', () => {
+    const { container } = render(<Board fen={AFTER_E4_E5} labels={VIETNAMESE_LABELS} />)
+    expect(container.querySelectorAll('.board__target')).toHaveLength(0)
   })
 })
 

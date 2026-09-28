@@ -192,3 +192,54 @@ test('is fully operable by keyboard, with no pointer event anywhere in the walk'
   await expect(page).toHaveURL(/moves=e4$/)
   await expect(page.locator('.board__announcement')).toHaveText('Đã đi e4')
 })
+
+test('a selected piece shows where it can go: a dot on an empty square, a ring on a capture', async ({
+  page,
+}) => {
+  await page.goto(home)
+  await move(page, 'e2', 'e4', 'Đã đi e4')
+  await move(page, 'd7', 'd5', 'Đã đi d5')
+
+  await square(page, 'e4').click()
+
+  // exd5 and e5: one of each. Nothing else is a target, and the tint is on e4 alone.
+  await expect(page.locator('circle.board__target')).toHaveCount(2)
+  await expect(page.locator('circle.board__target--occupied')).toHaveCount(1)
+  await expect(page.locator('.board__square--marked')).toHaveCount(1)
+
+  // The dot is said in words too, so it is not a sighted-only signal.
+  await expect(square(page, 'e5')).toHaveAttribute('aria-label', 'e5, ô trống, đi được tới đây')
+  await expect(square(page, 'd5')).toHaveAttribute('aria-label', 'd5, tốt đen, đi được tới đây')
+  await expect(square(page, 'e3')).toHaveAttribute('aria-label', 'e3, ô trống')
+
+  // Committing clears them with the selection.
+  await square(page, 'd5').click()
+  await expect(page.locator('.board__announcement')).toHaveText('Đã đi exd5')
+  await expect(page.locator('circle.board__target')).toHaveCount(0)
+})
+
+test('the flip control turns the board, and moves keep it turned', async ({ page }) => {
+  await page.goto(home)
+  const flip = page.getByRole('button', { name: 'Lật bàn cờ' })
+  const cells = page.getByRole('gridcell')
+
+  await expect(flip).toHaveAttribute('aria-pressed', 'false')
+  await expect(cells.first()).toHaveAttribute('data-square', 'a8')
+
+  await flip.click()
+  await expect(page).toHaveURL(/\?flip=1$/)
+  await expect(flip).toHaveAttribute('aria-pressed', 'true')
+  await expect(cells.first()).toHaveAttribute('data-square', 'h1')
+
+  // Black at the bottom, and a move played that way round keeps it that way round.
+  await move(page, 'e2', 'e4', 'Đã đi e4')
+  await expect(page).toHaveURL(/\?moves=e4&flip=1$/)
+  await expect(cells.first()).toHaveAttribute('data-square', 'h1')
+
+  // Flipping is a history step like a move: back undoes it, and only it.
+  await page.goBack()
+  await expect(page).toHaveURL(/\?flip=1$/)
+  await flip.click()
+  await expect(page).not.toHaveURL(/flip=/)
+  await expect(cells.first()).toHaveAttribute('data-square', 'a8')
+})

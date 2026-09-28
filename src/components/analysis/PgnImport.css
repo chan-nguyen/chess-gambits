@@ -1,0 +1,38 @@
+.pgn-import {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.pgn-import__label {
+  font-weight: 600;
+}
+
+.pgn-import__hint {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.pgn-import__input {
+  inline-size: 100%;
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  resize: vertical;
+}
+
+.pgn-import__actions,
+.pgn-import__problem {
+  margin-block: 0;
+}
+
+/* A refusal carries a rule on its inline start, so it is not told apart by colour alone. */
+.pgn-import__problem:not(:empty) {
+  padding-inline-start: var(--space-3);
+  border-inline-start: var(--focus-ring-width) solid var(--color-border-strong);
+}

@@ -1,0 +1,84 @@
+.engine-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.engine-panel__heading {
+  margin-block: 0;
+  font-size: var(--text-lg);
+}
+
+/* The disclaimer comes first and is never muted into nothing: it is the panel's premise. */
+.engine-panel__estimate,
+.engine-panel__note,
+.engine-panel__depth {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.engine-panel__status,
+.engine-panel__mate,
+.engine-panel__chances {
+  margin-block: 0;
+}
+
+.engine-panel__score {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-block: 0;
+}
+
+/*
+ * Monospace, so a figure that changes every few hundred milliseconds does not make the text
+ * after it jitter sideways as its digits change width.
+ */
+.engine-panel__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.engine-panel__lines-heading {
+  margin-block: var(--space-2) 0;
+  font-size: var(--text-base);
+}
+
+.engine-panel__lines {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.engine-panel__line {
+  display: block;
+  inline-size: 100%;
+  min-block-size: var(--target-size-touch);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  text-align: start;
+  cursor: pointer;
+}
+
+.engine-panel__line:hover {
+  background-color: var(--color-surface-raised);
+}
+
+.engine-panel__line-score {
+  font-weight: 700;
+}

@@ -33,6 +33,8 @@ const copy = (word: string): LocaleCopy => ({
   catalogue: `${word} catalogue`,
   catalogueIntro: `${word} intro`,
   about: `${word} about`,
+  analysis: `${word} analysis`,
+  analysisIntro: `${word} analysis intro`,
   tagline: `${word} tagline`,
 })
 
@@ -141,7 +143,7 @@ describe('which shells get metadata', () => {
 
     const result = built({ gambitIds: ids, entries: { vi: entries, en: entries, fr: entries } })
 
-    expect(result.shells.size).toBe(locales.length * (3 + ids.length))
+    expect(result.shells.size).toBe(locales.length * (4 + ids.length))
   })
 
   it('refuses to publish a URL a locale has no name for, naming the id and the file', () => {
@@ -162,7 +164,8 @@ describe('the language of the page (AC 1)', () => {
   it.each([...locales])('gives every %s shell that locale, not the source locale', (locale) => {
     const paths = [...built().shells].filter(([path]) => path.split('/')[0] === locale)
 
-    expect(paths).toHaveLength(4)
+    // Home, catalogue, about and analysis, plus the one gambit `built()` publishes.
+    expect(paths).toHaveLength(5)
     for (const [path, data] of paths) expect(data.lang, path).toBe(locale)
   })
 

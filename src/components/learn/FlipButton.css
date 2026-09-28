@@ -1,0 +1,36 @@
+/*
+ * Drawn like a navigator control, but in the page's text colour rather than the accent: it
+ * changes how the position is shown, not which position it is. The pressed state needs no
+ * style of its own — the board beside it is the state, and `aria-pressed` says it in words.
+ *
+ * An icon, at every width, measured rather than assumed: a written label took 159px of the
+ * gambit page's row at 360px and 225px of its board column at 1024x600 in French, and either
+ * squeezed "précédent" out of its own control. The words are the accessible name and the
+ * tooltip.
+ */
+.flip-button {
+  position: relative;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--target-size-touch);
+  min-inline-size: var(--target-size-touch);
+  padding: 0;
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.flip-button__icon {
+  flex: none;
+  inline-size: var(--space-5);
+  block-size: var(--space-5);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

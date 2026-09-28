@@ -1,6 +1,7 @@
 import { Link, useLocation } from 'react-router'
 import './MateNet.css'
 import { Translated } from '../../i18n/Translated.tsx'
+import { useFlip } from './use-flip.ts'
 import { addressSearch } from './walk.ts'
 import { numberSequence } from './mate-sequence.ts'
 
@@ -50,6 +51,7 @@ export type MateNetProps = {
 
 export const MateNet = ({ fen, leaf, sequence, provedBy, step }: MateNetProps) => {
   const { pathname } = useLocation()
+  const { keepFlip } = useFlip()
   const plies = numberSequence(fen, sequence)
 
   return (
@@ -71,7 +73,10 @@ export const MateNet = ({ fen, leaf, sequence, provedBy, step }: MateNetProps) =
             <Link
               className="mate-net__ply-link"
               aria-current={step === index + 1 ? 'step' : undefined}
-              to={{ pathname, search: addressSearch({ at: 'mate', leaf, ply: index + 1 }) }}
+              to={{
+                pathname,
+                search: keepFlip(addressSearch({ at: 'mate', leaf, ply: index + 1 })),
+              }}
             >
               {numbered.label}
             </Link>

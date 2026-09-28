@@ -88,9 +88,11 @@ describe('the tokens the design system documents', () => {
   // `--color-board-highlight-from` (30 → 29); 2026-09-18 restored it (29 → 30); 2026-09-18
   // merged it with `--color-board-highlight-to` into `--color-board-highlight` (30 → 29);
   // a follow-up to #131 retired `--color-board-mark`, reusing `--color-board-highlight`
-  // for the home board's mark instead of its own token (29 → 28).
+  // for the home board's mark instead of its own token (29 → 28); 2026-09-28 gave
+  // `--color-board-legal` a value for the home board's target dots (28 → 29), and #154
+  // added `--color-board-arrow` for the analysis page's best move (29 → 30).
   it('finds both tables, so this file is asserting something', () => {
-    expect(COLOURS.size).toBeGreaterThanOrEqual(28)
+    expect(COLOURS.size).toBeGreaterThanOrEqual(30)
     expect(SCALARS.size).toBeGreaterThanOrEqual(30)
   })
 
@@ -120,13 +122,6 @@ describe('the tokens the design system documents', () => {
   it('defines nothing the design system has not agreed to', () => {
     const documented = new Set([...COLOURS.keys(), ...SCALARS.keys()])
     expect([...LIGHT.keys()].filter((name) => !documented.has(name))).toStrictEqual([])
-  })
-
-  it('leaves --color-board-legal undefined, as §2 says', () => {
-    // "v1 shows no legal moves, so nothing renders it." A value here would be decoration
-    // pretending to be a decision.
-    expect(LIGHT.has('--color-board-legal')).toBe(false)
-    expect(COLOURS.has('--color-board-legal')).toBe(false)
   })
 
   it('redefines only colours in the dark blocks', () => {

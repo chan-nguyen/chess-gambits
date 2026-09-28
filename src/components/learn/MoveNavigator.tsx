@@ -4,6 +4,7 @@ import './MoveNavigator.css'
 import { Translated } from '../../i18n/Translated.tsx'
 import type { TranslationKey } from '../../i18n/translations.ts'
 import { useTranslated } from '../../i18n/useTranslated.ts'
+import { useFlip } from './use-flip.ts'
 import { addressSearch, type Address } from './walk.ts'
 
 /**
@@ -62,6 +63,7 @@ export const MoveNavigator = ({ start, root, previous, next }: MoveNavigatorProp
   const { pathname } = useLocation()
   const translated = useTranslated()
   const edgeId = useId()
+  const { keepFlip } = useFlip()
 
   const atStart = start === null
   const atRoot = root === null
@@ -86,7 +88,7 @@ export const MoveNavigator = ({ start, root, previous, next }: MoveNavigatorProp
     return (
       <Link
         className={className}
-        to={{ pathname, search: addressSearch(target) }}
+        to={{ pathname, search: keepFlip(addressSearch(target)) }}
         rel={RELATIONS[kind]}
       >
         <Translated id={LABELS[kind]} />
