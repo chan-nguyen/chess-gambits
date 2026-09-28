@@ -1,0 +1,59 @@
+# Englund Gambit Declined: Reversed Alekhine. Frozen defining line 1.d4 e5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 2.Nf3: White develops and attacks the e5 pawn with a piece instead
+# of taking it with the d-pawn. Nothing is hanging at the resulting position. searchMate at
+# 4 moves from this position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: englund-gambit-declined-reversed-alekhine
+name: 'Englund Gambit Declined: Reversed Alekhine'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Attacking e5 with the knight instead of taking it outright is at least as
+      good for White as the ordinary accepted lines, and it gives Black no fresh trick to work
+      with. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen mời Trắng ăn tốt e5 ngay từ nước đầu tiên. Ở đây Trắng không ăn ngay mà đưa mã ra tấn công con tốt ấy, gợi nhớ đến chính Phòng thủ Alekhine nhưng đảo màu.
+    en: Black offers the e5 pawn as early as the first reply. Here White does not take at once but develops a knight to attack the pawn instead, echoing the Alekhine Defense with colours reversed.
+    fr: Les Noirs offrent le pion e5 dès la première réponse. Ici, les Blancs ne prennent pas tout de suite mais développent un cavalier pour attaquer le pion, rappelant la Défense Alekhine avec les couleurs inversées.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 2.Nf3. Ăn tốt bằng 2.dxe5 dẫn vào các nhánh Englund Gambit đã được chấp nhận, còn 2.d5 hay 2.e3 từ chối theo cách khác, mỗi cách có trang riêng của nó.
+      en: White does not play 2.Nf3. Taking the pawn with 2.dxe5 leads into the accepted Englund Gambit branches, while 2.d5 or 2.e3 decline in a different way, each with its own page.
+      fr: Les Blancs ne jouent pas 2.Nf3. Prendre le pion par 2.dxe5 mène vers les branches acceptées du Gambit Englund, tandis que 2.d5 ou 2.e3 refusent d'une autre façon, chacun avec sa propre page.
+  children:
+    - ply: Nf3
+      replyQuality: best
+      frequency: occasional
+      annotation:
+        vi: Trắng phát triển mã và tấn công thẳng vào tốt e5 thay vì ăn nó bằng tốt d. Đen buộc phải quyết định ngay giữa việc đỡ, đẩy tiếp hay để mất con tốt.
+        en: White develops a knight and attacks the e5 pawn directly instead of taking it with the d-pawn. Black must decide at once between defending it, pushing on, or letting it go.
+        fr: Les Blancs développent un cavalier et attaquent directement le pion e5 au lieu de le prendre avec le pion d. Les Noirs doivent trancher aussitôt entre le défendre, pousser ou le laisser filer.
+      outcome:
+        type: position
+        evaluation:
+          vi: Quân số ngang nhau, tám tốt mỗi bên, và con tốt e5 đang bị tấn công nhưng chưa ai ăn được nó ngay. Trắng đã phát triển một quân trong khi Đen mới chỉ đi một nước tốt, nên Trắng đi trước một nhịp phát triển thật sự dù chưa hề bỏ ra thứ gì.
+          en: Material is level, eight pawns each, and the e5 pawn is under attack but nobody can take it yet. White has developed a piece while Black has only played a pawn move, so White is a genuine tempo ahead in development without having given up anything at all.
+          fr: Le matériel est égal, huit pions de chaque côté, et le pion e5 est attaqué sans que personne ne puisse encore le prendre. Les Blancs ont développé une pièce tandis que les Noirs n'ont joué qu'un coup de pion, si bien que les Blancs ont un véritable temps d'avance en développement sans avoir rien cédé du tout.
+        plan:
+          vi: Đen chơi e4 đẩy tiếp và đuổi mã, hoặc Nc6 và d6 để đỡ chắc con tốt, rồi Nf6 và Be7 hoàn tất phát triển. Trắng chơi Nxe5 nếu Đen bỏ mặc con tốt, hoặc lùi mã bằng Nd4 hay Ng1 nếu bị đẩy, sau đó c4 và Nc3 để chiếm không gian.
+          en: Black plays ...e4 to push on and chase the knight, or ...Nc6 and ...d6 to defend the pawn firmly, then ...Nf6 and ...Be7 to finish developing. White plays Nxe5 if Black neglects the pawn, or retreats with Nd4 or Ng1 if pushed, then c4 and Nc3 for space.
+          fr: Les Noirs jouent ...e4 pour pousser et chasser le cavalier, ou ...Nc6 et ...d6 pour défendre fermement le pion, puis ...Nf6 et ...Be7 pour achever leur développement. Les Blancs jouent Nxe5 si les Noirs négligent le pion, ou reculent par Nd4 ou Ng1 s'ils sont poussés, puis c4 et Nc3 pour l'espace.
+        basis:
+          by: chan
+          at: '2026-09-25'

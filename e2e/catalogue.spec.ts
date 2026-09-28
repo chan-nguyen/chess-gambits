@@ -199,12 +199,13 @@ test('a listed entry opens on its identity and its moves, never an error', async
    * which needs a sibling with **no content file at all** (a missing file is what routes to
    * `EmptyTree`, docs/CONTEXT.md — an authored-but-unmapped file instead renders its own,
    * different "branch not mapped" state). `benko-gambit-accepted` and
-   * `benko-gambit-declined-bishop-attack` were this sibling until #102 mapped them, so
-   * `benko-gambit-mutkin-countergambit`, still unauthored, is the one addressed here now.
+   * `benko-gambit-declined-bishop-attack` were this sibling until #102 mapped them, and
+   * `benko-gambit-mutkin-countergambit` was it until #148 batch g mapped that one too, so
+   * `benko-gambit-zaitsev-system`, still unauthored, is the one addressed here now.
    */
   await page
     .getByRole('main')
-    .locator(`a[href$="/vi/${routeSegments.catalogue}/benko-gambit-mutkin-countergambit"]`)
+    .locator(`a[href$="/vi/${routeSegments.catalogue}/benko-gambit-zaitsev-system"]`)
     .click()
 
   await expect(page.getByText('Gambit này chưa được dạy sâu.')).toBeVisible()

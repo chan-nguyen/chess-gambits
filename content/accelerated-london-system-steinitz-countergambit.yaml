@@ -1,0 +1,61 @@
+# Accelerated London System: Steinitz Countergambit. Frozen defining line 1.d4 d5 2.Bf4 c5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 3.e3: White declines to resolve the central
+# tension and simply supports the bishop's diagonal instead. Nothing is hanging at the
+# resulting position. searchMate at 4 moves from this position returns no-mate, so no forced
+# mate is claimed anywhere in this entry.
+id: accelerated-london-system-steinitz-countergambit
+name: 'Accelerated London System: Steinitz Countergambit'
+eco: D00
+category: gambit
+side: black
+definingLine: [d4, d5, Bf4, c5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Black's central
+      challenge is a real try against the accelerated bishop deployment, but 3.dxc5, covered
+      in the accepted branch, is thought to be White's most testing answer, which is why the
+      whole countergambit is rated a notch below sound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 2...c5, thách thức trung tâm ngay từ sớm trước khi Trắng kịp hoàn tất cách xếp quân London. Con tốt c5 và con tốt d4 của Trắng đang chĩa thẳng vào nhau.
+    en: Black plays 2...c5, challenging the centre early, before White finishes the London set-up. The pawns on c5 and d4 are now pointing straight at each other.
+    fr: Les Noirs jouent 2...c5, défiant le centre tôt, avant que les Blancs n'achèvent leur dispositif London. Les pions c5 et d4 se font désormais face directement.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 3.e3. Ăn tốt ngay bằng 3.dxc5 dẫn vào nhánh đã được chấp nhận, còn những nước như 3.c3 cũng chỉ trì hoãn việc quyết định theo cách tương tự.
+      en: White does not play 3.e3. Taking at once with 3.dxc5 leads into the accepted branch, while a move such as 3.c3 only postpones the decision in a similar way.
+      fr: Les Blancs ne jouent pas 3.e3. Prendre tout de suite par 3.dxc5 mène à la branche acceptée, tandis qu'un coup comme 3.c3 ne fait que reporter la décision de façon similaire.
+  children:
+    - ply: e3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chống lưng cho con tốt d4 và giữ nguyên đường chéo của tượng f4, chưa vội quyết định chuyện con tốt c5. Đây là cách chơi chắc chắn nhất, để dành việc ăn tốt cho một thời điểm có lợi hơn.
+        en: White props up the d4 pawn and keeps the f4 bishop's diagonal intact, without yet deciding what to do about c5. This is the safest way to play it, saving the capture for a more favourable moment.
+        fr: Les Blancs étayent le pion d4 et laissent intacte la diagonale du fou f4, sans encore décider du sort de c5. C'est la façon la plus sûre de jouer, gardant la capture pour un moment plus favorable.
+      outcome:
+        type: position
+        evaluation:
+          vi: Quân số ngang nhau, tám tốt mỗi bên, và cả tốt c5 lẫn d4 vẫn còn nguyên trên bàn cờ, chưa ai ăn ai. Tượng f4 của Trắng đã ra ngoài trước khi tốt e3 khóa đường, đúng điểm mạnh mà hệ thống London luôn nhắm tới, còn Đen thì vẫn giữ được sự căng thẳng ở trung tâm để tự mình chọn thời điểm giải quyết.
+          en: Material is level, eight pawns each, and both the c5 and d4 pawns are still on the board, neither having taken the other. White's bishop is already out on f4 before the e3 pawn shuts its own diagonal in, exactly the strong point every London set-up aims for, while Black keeps the central tension alive to resolve on its own terms.
+          fr: Le matériel est égal, huit pions de chaque côté, et les pions c5 et d4 sont tous deux encore sur l'échiquier, sans qu'aucun n'ait pris l'autre. Le fou blanc est déjà sorti en f4 avant que le pion e3 ne referme sa propre diagonale, exactement le point fort que vise tout dispositif London, tandis que les Noirs gardent la tension centrale pour la résoudre à leur convenance.
+        plan:
+          vi: Trắng chơi Nf3, c3 và Bd3 hoặc Be2, hoàn thiện phát triển và chờ đổi tốt ở c5 hay d4 vào lúc có lợi nhất, sau đó O-O. Đen chơi Nc6, Nf6 và e6 hoặc g6, hoàn tất phát triển rồi mới quyết định giữa ...cxd4 và ...c4 tùy theo cách Trắng xếp quân.
+          en: White plays Nf3, c3 and Bd3 or Be2, completing development and waiting to trade on c5 or d4 at the most favourable moment, then castles. Black plays Nc6, Nf6 and e6 or g6, finishing development before choosing between ...cxd4 and ...c4 depending on how White sets up.
+          fr: Les Blancs jouent Nf3, c3 et Bd3 ou Be2, achevant leur développement et attendant d'échanger en c5 ou d4 au moment le plus favorable, puis roquent. Les Noirs jouent Nc6, Nf6 et e6 ou g6, achevant leur développement avant de choisir entre ...cxd4 et ...c4 selon la façon dont les Blancs se sont installés.
+        basis:
+          by: chan
+          at: '2026-09-25'

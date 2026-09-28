@@ -1,0 +1,66 @@
+# English Opening: Anglo-Scandinavian Defense, Löhn Gambit. Frozen defining line 1.c4 d5
+# 2.cxd5 e6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 3.dxe6 Bxe6: White takes
+# the second pawn offered, and Black recaptures with the bishop, the only piece that can
+# reach e6. Nothing is hanging at the resulting position. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: english-opening-anglo-scandinavian-defense-lohn-gambit
+name: 'English Opening: Anglo-Scandinavian Defense, Löhn Gambit'
+eco: A10
+category: gambit
+side: black
+definingLine: [c4, d5, cxd5, e6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers a second pawn purely to open the centre and get the c8
+      bishop out at once rather than by hand later, and White can simply take both pawns and
+      hold on, so there is no shown compensation to match the material given up. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại ngay ở d5, Đen chơi 2...e6, mời Trắng ăn thêm một con tốt nữa để đổi lấy việc đưa tượng c8 ra ngoài ngay lập tức thay vì phải chuẩn bị bằng tay.
+    en: Instead of recapturing at d5 right away, Black plays 2...e6, inviting White to take a second pawn in exchange for getting the c8 bishop out at once instead of preparing it by hand.
+    fr: Au lieu de reprendre tout de suite en d5, les Noirs jouent 2...e6, invitant les Blancs à prendre un second pion en échange de la sortie immédiate du fou c8 au lieu de la préparer à la main.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e6. Nước Nf3 hay Nc3 để nguyên cả tốt d5 lẫn tốt e6 trên bàn cờ, nghĩa là lời mời thứ hai vẫn chưa hề được nhận, còn con tốt d5 vẫn có thể bị ăn lại bằng exd5 sau đó.
+      en: White does not take the e6 pawn. A move such as Nf3 or Nc3 leaves both the d5 and e6 pawns on the board, meaning the second offer has still not actually been accepted, and the d5 pawn can still be recaptured later with ...exd5.
+      fr: Les Blancs ne prennent pas le pion e6. Un coup comme Nf3 ou Nc3 laisse à la fois les pions d5 et e6 sur l'échiquier, ce qui veut dire que la seconde offre n'a toujours pas été acceptée, et le pion d5 peut encore être repris plus tard par ...exd5.
+  children:
+    - ply: dxe6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn nốt con tốt thứ hai. Con tốt Trắng bây giờ đứng ở e6, sâu trong phần sân của Đen, và chỉ có tượng c8 mới ăn lại được nó.
+        en: White takes the second pawn as well. The white pawn now stands on e6, deep in Black's half of the board, and only the c8 bishop can recapture it.
+        fr: Les Blancs prennent aussi le second pion. Le pion blanc se trouve maintenant en e6, loin dans le camp noir, et seul le fou c8 peut le reprendre.
+      children:
+        - ply: Bxe6
+          annotation:
+            vi: Đen ăn lại bằng tượng, quân duy nhất có thể ăn tại đó. Tượng c8 đã ra ngoài ngay lập tức, đúng như ý đồ ban đầu, nhưng Đen vẫn kém vật chất.
+            en: Black recaptures with the bishop, the only piece that can reach that square. The c8 bishop is out at once, exactly as intended, but Black is still down material.
+            fr: Les Noirs reprennent avec le fou, la seule pièce pouvant atteindre cette case. Le fou c8 est sorti aussitôt, exactement comme prévu, mais les Noirs sont toujours en retard de matériel.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Trắng bảy, Đen sáu, Trắng hơn đúng một tốt sạch. Đổi lại, tượng c8 của Đen đã ra ngoài mà không cần chuẩn bị gì thêm và đứng khá hoạt bát ở e6, nhưng đó là toàn bộ những gì Đen có để bù cho con tốt đã mất, và Trắng chưa hề mất một nhịp phát triển nào cho việc ăn tốt cả.
+              en: Count the pawns, seven for White, six for Black — White is a clean pawn up. In return Black's c8 bishop is out without any further preparation and sits fairly actively on e6, but that is everything Black has to show for the lost pawn, and White has not spent a single tempo of development to win it.
+              fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — les Blancs ont un pion net d'avance. En échange, le fou c8 noir est sorti sans préparation supplémentaire et se tient assez activement en e6, mais c'est tout ce que les Noirs ont à montrer pour le pion perdu, et les Blancs n'ont pas dépensé le moindre temps de développement pour le gagner.
+            plan:
+              vi: Đen chơi Nf6, Bd6 hay Be7 và O-O, tận dụng việc tượng đã ra ngoài để phát triển nhanh phần còn lại và tìm cách gây sức ép bù cho con tốt đã mất. Trắng chơi Nf3, Nc3 và g3, hoàn thiện phát triển và giữ vững con tốt thừa, không cần vội vàng vì Đen chưa có mối đe dọa cụ thể nào.
+              en: Black plays ...Nf6, ...Bd6 or ...Be7 and ...O-O, using the bishop already being out to develop the rest quickly and looking to build pressure to compensate for the lost pawn. White plays Nf3, Nc3 and g3, completing development and holding the extra pawn, with no need to hurry since Black has no concrete threat yet.
+              fr: Les Noirs jouent ...Nf6, ...Bd6 ou ...Be7 et ...O-O, profitant du fou déjà sorti pour développer rapidement le reste et cherchant à créer une pression compensant le pion perdu. Les Blancs jouent Nf3, Nc3 et g3, achevant leur développement et gardant le pion supplémentaire, sans devoir se presser puisque les Noirs n'ont encore aucune menace concrète.
+            basis:
+              by: chan
+              at: '2026-09-25'

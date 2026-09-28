@@ -1,0 +1,60 @@
+# Budapest Gambit Accepted: Fajarowicz Defense, Bonsdorf Variation. Frozen defining line
+# 1.d4 Nf6 2.c4 e5 3.dxe5 Ne4, which ends on Black's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4.a3: White rules out
+# ...Bb4+ before doing anything else. Nothing is hanging at the resulting position.
+# searchMate at 4 moves from this position returns unknown, which the stopping rule treats
+# the same as no-mate, so no forced mate is claimed anywhere in this entry.
+id: budapest-gambit-accepted-fajarowicz-defense-bonsdorf-variation
+name: 'Budapest Gambit Accepted: Fajarowicz Defense, Bonsdorf Variation'
+eco: A51
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e5, dxe5, Ne4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Ruling out
+      ...Bb4+ in advance is a useful precaution, but it is a slow way to spend a move against
+      a knight that has to justify itself quickly or be chased off e4 for good. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì 3...Ng4 theo lối chính thống, Đen chơi 3...Ne4, đưa mã thẳng vào giữa bàn cờ ngay lập tức thay vì tấn công con tốt e5 trước.
+    en: Instead of the orthodox 3...Ng4, Black plays 3...Ne4, jumping the knight straight into the centre at once instead of attacking the e5 pawn first.
+    fr: Au lieu du traditionnel 3...Ng4, les Noirs jouent 3...Ne4, envoyant directement le cavalier au centre au lieu d'attaquer d'abord le pion e5.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.a3. Nd2 hay Nf3 phát triển và đe dọa đuổi mã ngay theo cách khác, mỗi cách có trang riêng của nó, còn con mã e4 vẫn chưa bị ai đe dọa trực tiếp ở đây.
+      en: White does not play 4.a3. Nd2 or Nf3, developing and threatening to chase the knight at once, do the same job in a different way, each with its own page, and the knight on e4 is not under any direct threat here either way.
+      fr: Les Blancs ne jouent pas 4.a3. Nd2 ou Nf3, en développant et en menaçant de chasser aussitôt le cavalier, font le même travail d'une autre façon, chacun avec sa propre page, et le cavalier en e4 n'est de toute façon sous aucune menace directe ici.
+  children:
+    - ply: a3
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Trắng dùng một nước tốt để loại bỏ hẳn khả năng Bb4+ trong tương lai, nhưng đây là nước chậm nhất trong các cách đáp lại, chưa phát triển được quân nào và cũng chưa đe dọa gì tới con mã e4.
+        en: White spends a pawn move to rule out ...Bb4+ for good, but this is the slowest of the replies, developing nothing and not yet threatening the e4 knight either.
+        fr: Les Blancs utilisent un coup de pion pour écarter définitivement ...Bb4+, mais c'est la plus lente des réponses, ne développant rien et ne menaçant pas non plus encore le cavalier e4.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt sạch. Con mã Đen ở e4 đứng rất tích cực và chưa bị ai đe dọa, còn Trắng mới chỉ đi một nước tốt bên cánh hậu mà chưa đưa ra được quân nào, nên Đen vẫn còn nguyên thời gian để tổ chức áp lực bù cho con tốt đã mất.
+          en: Count the pawns, eight for White, seven for Black — White is a clean pawn up. Black's knight on e4 stands very actively and is not under threat, while White has only played a queenside pawn move and has not developed a single piece, so Black still has plenty of time to organise pressure to compensate for the lost pawn.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net d'avance. Le cavalier noir en e4 est très actif et n'est sous aucune menace, tandis que les Blancs n'ont joué qu'un coup de pion à l'aile dame sans développer la moindre pièce, si bien que les Noirs ont encore tout le temps pour organiser une pression compensant le pion perdu.
+        plan:
+          vi: Đen chơi Bc5 hay Qh4 nhắm vào f2, rồi Nc6 và O-O, khai thác thời gian Trắng vừa bỏ lỡ. Trắng chơi Nf3, Nbd2 để đuổi mã e4, rồi g3 và Bg2, hoàn tất phát triển và giữ vững con tốt thừa.
+          en: Black plays ...Bc5 or ...Qh4 aiming at f2, then ...Nc6 and ...O-O, making use of the tempo White has just spent elsewhere. White plays Nf3, Nbd2 to chase the e4 knight, then g3 and Bg2, completing development and holding the extra pawn.
+          fr: Les Noirs jouent ...Bc5 ou ...Qh4 en visant f2, puis ...Nc6 et ...O-O, profitant du temps que les Blancs viennent de dépenser ailleurs. Les Blancs jouent Nf3, Nbd2 pour chasser le cavalier e4, puis g3 et Bg2, achevant leur développement et gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

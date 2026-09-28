@@ -1,0 +1,60 @@
+# Budapest Gambit Accepted: Main Line, Rubinstein Variation. Frozen defining line 1.d4 Nf6
+# 2.c4 e5 3.dxe5 Ng4, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4.Bf4: White develops the
+# bishop and defends e5 with a piece. Nothing is hanging at the resulting position.
+# searchMate at 4 moves from this position returns no-mate, so no forced mate is claimed
+# anywhere in this entry.
+id: budapest-gambit-accepted-main-line-rubinstein-variation
+name: 'Budapest Gambit Accepted: Main Line, Rubinstein Variation'
+eco: A52
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e5, dxe5, Ng4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Defending e5 with
+      the bishop develops a piece at the same time, a reasonable alternative to 4.Nf3, though
+      the bishop can become a target for ...Nc6-d4 ideas later. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ăn tốt e5, Đen đáp lại bằng 3...Ng4, tấn công ngay con tốt e5 và dọa ăn lại nó bằng mã trước khi Trắng kịp phát triển.
+    en: After the e5 pawn is taken, Black answers with 3...Ng4, attacking the e5 pawn at once and threatening to win it back with the knight before White can develop.
+    fr: Après la prise du pion e5, les Noirs répondent par 3...Ng4, attaquant aussitôt le pion e5 et menaçant de le reprendre avec le cavalier avant que les Blancs ne se développent.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Bf4. Nf3 đỡ tốt bằng mã theo lối đơn giản hơn, còn e4 trả lại tốt để lấy không gian, mỗi cách có trang riêng của nó.
+      en: White does not play 4.Bf4. Nf3 defends the pawn with the knight in a simpler way, while e4 gives the pawn back for space, each with its own page.
+      fr: Les Blancs ne jouent pas 4.Bf4. Nf3 défend le pion avec le cavalier de façon plus simple, tandis que e4 rend le pion pour l'espace, chacun avec sa propre page.
+  children:
+    - ply: Bf4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng phát triển tượng ra f4, vừa đỡ thêm cho tốt e5 vừa đưa quân ra ngoài, kết hợp phòng thủ với phát triển trong cùng một nước.
+        en: White develops the bishop to f4, both adding a defender to e5 and bringing a piece out, combining defence with development in one move.
+        fr: Les Blancs développent le fou en f4, ajoutant à la fois un défenseur à e5 et sortant une pièce, combinant défense et développement en un seul coup.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy, Trắng hơn đúng một tốt sạch. Tượng f4 đã phát triển và vẫn đỡ được tốt e5, nhưng nó cũng có thể trở thành mục tiêu sau này nếu Đen chơi Nc6 rồi Ngxe5 hay Nd4 nhắm vào nó, còn con mã g4 của Đen vẫn cần thêm thời gian để phối hợp.
+          en: Count the pawns, eight for White, seven for Black — White is a clean pawn up. The f4 bishop is developed and still defends e5, but it can also become a target later if Black plays ...Nc6 and then ...Ngxe5 or ...Nd4 to aim at it, while Black's knight on g4 still needs time to coordinate.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion net d'avance. Le fou f4 est développé et défend toujours e5, mais il peut aussi devenir une cible plus tard si les Noirs jouent ...Nc6 puis ...Ngxe5 ou ...Nd4 pour le viser, tandis que le cavalier noir en g4 a encore besoin de temps pour se coordonner.
+        plan:
+          vi: Đen chơi Bc5 hay Nc6, nhắm vào f2 và tượng f4, chuẩn bị Ngxe5 hay Nd4 khi có dịp. Trắng chơi Nf3, e3 và Be2, hoàn tất phát triển một cách chắc chắn, bảo vệ tượng f4 và giữ vững con tốt thừa.
+          en: Black plays ...Bc5 or ...Nc6, aiming at f2 and the f4 bishop, preparing ...Ngxe5 or ...Nd4 when the chance comes. White plays Nf3, e3 and Be2, completing development soundly, guarding the f4 bishop and holding the extra pawn.
+          fr: Les Noirs jouent ...Bc5 ou ...Nc6, visant f2 et le fou f4, préparant ...Ngxe5 ou ...Nd4 à l'occasion. Les Blancs jouent Nf3, e3 et Be2, achevant leur développement solidement, protégeant le fou f4 et gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

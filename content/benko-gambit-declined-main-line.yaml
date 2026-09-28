@@ -1,0 +1,66 @@
+# Benko Gambit Declined: Main Line. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 4.Nf3 bxc4: White develops instead of taking on b5, and
+# Black simply takes on c4, since nothing defends that pawn yet. No capture is left going
+# free at the resulting position. searchMate at 4 moves from this position returns no-mate,
+# so no forced mate is claimed anywhere in this entry.
+id: benko-gambit-declined-main-line
+name: 'Benko Gambit Declined: Main Line'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries. Developing with
+      4.Nf3 instead of taking on b5 simply hands Black the c4 pawn for nothing, which is why
+      this quiet decline is not thought to trouble Black at all. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 3...b5 theo đúng tinh thần Benko Gambit, thí tốt cánh hậu để đổi lấy áp lực trên hai cột a và b. Ở đây Trắng phát triển mã thay vì quyết định ngay chuyện con tốt b5.
+    en: Black plays 3...b5 in true Benko Gambit style, offering the queenside pawn for pressure on the a- and b-files. Here White develops a knight instead of deciding the fate of the b5 pawn right away.
+    fr: Les Noirs jouent 3...b5 dans le pur style du Gambit Benko, offrant le pion de l'aile dame contre la pression sur les colonnes a et b. Ici, les Blancs développent un cavalier au lieu de trancher tout de suite le sort du pion b5.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Nf3. Ăn tốt ngay bằng 4.cxb5 dẫn vào các nhánh Benko Gambit đã được chấp nhận, còn những nước như 4.a4, 4.f3 hay 4.g4 để nguyên tốt b5 nằm đó theo cách khác, mỗi nước ấy có cách chơi riêng của Đen.
+      en: White does not play 4.Nf3. Taking at once with 4.cxb5 leads into the accepted Benko Gambit branches, while moves such as 4.a4, 4.f3 or 4.g4 leave the b5 pawn there in their own way, each with Black's own way of meeting it.
+      fr: Les Blancs ne jouent pas 4.Nf3. Prendre tout de suite par 4.cxb5 mène vers les branches acceptées du Gambit Benko, tandis que des coups comme 4.a4, 4.f3 ou 4.g4 laissent le pion b5 en place à leur manière, chacun avec sa propre réponse noire.
+  children:
+    - ply: Nf3
+      replyQuality: inaccuracy
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã tự nhiên nhưng bỏ qua câu hỏi về tốt c4, con tốt vừa bị tốt b5 nhắm tới. Đây là nước phổ biến nhất trong các nước từ chối, nhưng nó cho Đen một cách ăn tốt sạch sẽ.
+        en: White develops naturally but ignores the question hanging over c4, the pawn b5 is now aiming at. This is the most common of the declining tries, but it hands Black a clean way to win a pawn.
+        fr: Les Blancs développent naturellement mais ignorent la question qui pèse sur c4, le pion que b5 vise désormais. C'est le plus courant des refus, mais il offre aux Noirs un moyen net de gagner un pion.
+      children:
+        - ply: bxc4
+          annotation:
+            vi: Đen ăn con tốt c4 vì không có quân Trắng nào đỡ nó. Đây là cách đáp lại đơn giản và hiệu quả nhất trước một nước từ chối thụ động như vậy.
+            en: Black takes the c4 pawn, since nothing white defends it. This is the simplest and most effective answer to such a passive decline.
+            fr: Les Noirs prennent le pion c4, que rien ne défend côté blanc. C'est la réponse la plus simple et la plus efficace à un refus aussi passif.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn hẳn một tốt sạch và con tốt ấy chưa có cách nào bị ăn lại ngay. Trắng có mã f3 đã ra ngoài, nhưng đó là quân phát triển duy nhất, còn Đen coi như đã thu được phần thưởng của cả ván gambit mà chưa phải nhượng bộ gì. Cấu trúc tốt của cả hai bên đều lành lặn.
+              en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up and that pawn cannot be recaptured immediately. White has the f3 knight out, but that is the only piece developed, while Black has effectively collected the reward of the whole gambit without having given up anything yet. Both pawn structures are perfectly sound.
+              fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion net d'avance et ce pion ne peut pas être repris tout de suite. Les Blancs ont sorti le cavalier f3, mais c'est la seule pièce développée, tandis que les Noirs ont pour ainsi dire empoché la récompense de tout le gambit sans encore rien avoir cédé. Les deux structures de pions sont parfaitement saines.
+            plan:
+              vi: Đen chơi g6, Bg7 và O-O theo cấu trúc quen thuộc, giữ chắc con tốt c4 bằng ...Na6-b4 hay ...Qa5 nếu cần, và không vội trả lại tốt. Trắng chơi Nc3 hoặc e4 để giành lại không gian trung tâm, rồi Bxc4 hay Nd2-Nxc4 để lấy lại con tốt khi có dịp, chấp nhận đi sau một nhịp phát triển.
+              en: Black plays ...g6, ...Bg7 and ...O-O in the familiar structure, holds the c4 pawn firmly with ...Na6-b4 or ...Qa5 if needed, and is in no hurry to give it back. White plays Nc3 or e4 to regain central space, then Bxc4 or Nd2-Nxc4 to win the pawn back when the chance comes, accepting a lag of one tempo in development.
+              fr: Les Noirs jouent ...g6, ...Bg7 et ...O-O dans la structure habituelle, tiennent fermement le pion c4 par ...Na6-b4 ou ...Qa5 au besoin, et ne sont pas pressés de le rendre. Les Blancs jouent Nc3 ou e4 pour regagner de l'espace central, puis Bxc4 ou Nd2-Nxc4 pour reprendre le pion à l'occasion, en acceptant un temps de retard de développement.
+            basis:
+              by: chan
+              at: '2026-09-25'

@@ -1,0 +1,59 @@
+# Bishop's Opening: McDonnell Gambit. Frozen defining line 1.e4 e5 2.Bc4 Bc5 3.b4, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3...Bxb4: Black takes the pawn at once, the only piece that
+# can capture there. Nothing is hanging at the resulting position. searchMate at 4 moves from
+# this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: bishops-opening-mcdonnell-gambit
+name: "Bishop's Opening: McDonnell Gambit"
+eco: C23
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Bc5, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The Evans Gambit idea borrowed one move order later — White offers the
+      b-pawn to pull the bishop off c5 and open the diagonal for the c1 bishop — and it costs
+      a genuine pawn for a lead in development rather than a proven advantage. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.b4, mời Đen ăn con tốt để đổi lấy việc kéo tượng c5 ra khỏi vị trí và mở đường chéo cho tượng c1, đúng ý tưởng của Evans Gambit nhưng đến một nhịp sau.
+    en: White plays 3.b4, inviting Black to take the pawn in exchange for pulling the bishop off c5 and opening the diagonal for the c1 bishop, the same idea as the Evans Gambit one move later.
+    fr: Les Blancs jouent 3.b4, invitant les Noirs à prendre le pion en échange du déplacement du fou de c5 et de l'ouverture de la diagonale pour le fou c1, la même idée que le Gambit Evans avec un temps de retard.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt b4. Các nước khác như Nf6 hay d6 để nguyên con tốt b4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the b4 pawn. Anything else, such as ...Nf6 or ...d6, leaves the b4 pawn sitting on the board, meaning the offer has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion b4. Tout le reste, comme ...Nf6 ou ...d6, laisse le pion b4 sur l'échiquier, ce qui veut dire que l'offre n'a toujours pas été acceptée.
+  children:
+    - ply: Bxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tượng c5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt.
+        en: Black takes the pawn at once, the only piece that can capture there. The c5 bishop has done its capturing and Black is now a clean pawn up.
+        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le fou c5 a fait sa capture et les Noirs ont maintenant un pion net d'avance.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, còn Trắng chưa có gì cụ thể để bù lại ngoài đường chéo a1-h8 vừa mở cho tượng c1 và ý định phát triển nhanh trước khi Đen kịp củng cố.
+          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and White has nothing concrete yet to show for it beyond the a1-h8 diagonal just opened for the c1 bishop and the intention to develop quickly before Black can consolidate.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance, et les Blancs n'ont encore rien de concret à montrer, hormis la diagonale a1-h8 tout juste ouverte pour le fou c1 et l'intention de se développer rapidement avant que les Noirs ne consolident.
+        plan:
+          vi: Trắng chơi c3 đuổi tượng, rồi d4 và Nf3 hoặc Qb3, phát triển nhanh và gây sức ép lên f7 trước khi Đen kịp nhập thành. Đen chơi Ba5 hay Bc5 lùi tượng, rồi Nf6, d6 và O-O, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa.
+          en: White plays c3 to chase the bishop, then d4 and Nf3 or Qb3, developing quickly and pressuring f7 before Black can castle. Black retreats with ...Ba5 or ...Bc5, then plays ...Nf6, ...d6 and ...O-O, completing development soundly and holding onto the extra pawn.
+          fr: Les Blancs jouent c3 pour chasser le fou, puis d4 et Nf3 ou Qb3, se développant rapidement et faisant pression sur f7 avant que les Noirs ne roquent. Les Noirs reculent le fou par ...Ba5 ou ...Bc5, puis jouent ...Nf6, ...d6 et ...O-O, achevant leur développement solidement et gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

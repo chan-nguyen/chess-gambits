@@ -1,0 +1,58 @@
+# Dutch Defense: Omega-Isis Gambit. Frozen defining line 1.d4 f5 2.Nf3 e5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 3.Nxe5: White takes the pawn at once, the only piece that can capture
+# there. Nothing is hanging at the resulting position. searchMate at 4 moves from this
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: dutch-defense-omega-isis-gambit
+name: 'Dutch Defense: Omega-Isis Gambit'
+eco: A80
+category: gambit
+side: black
+definingLine: [d4, f5, Nf3, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers a central pawn for a lead in development that has not been
+      shown to be worth it, and White can simply take the pawn and hold it with normal moves.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi 2...e5, thí ngay con tốt trung tâm để đổi lấy việc mở đường cho tượng f8 và hậu, cùng một nhịp phát triển nào đó bù lại về sau.
+    en: Black plays 2...e5, offering the central pawn at once in exchange for opening a line for the f8 bishop and the queen, with some development to show for it later.
+    fr: Les Noirs jouent 2...e5, offrant aussitôt le pion central en échange de l'ouverture d'une ligne pour le fou f8 et la dame, avec un peu de développement à montrer plus tard.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e5. Các nước như dxe5 hay Nc3 để nguyên con tốt e5 trên bàn cờ theo cách khác, nghĩa là lời mời vẫn chưa hề được nhận theo đúng nghĩa của gambit này.
+      en: White does not take the e5 pawn. Moves such as dxe5 or Nc3 leave the e5 pawn on the board in a different way, meaning the offer has still not actually been accepted in the sense this gambit intends.
+      fr: Les Blancs ne prennent pas le pion e5. Des coups comme dxe5 ou Nc3 laissent le pion e5 sur l'échiquier d'une autre façon, ce qui veut dire que l'offre n'a pas été acceptée au sens où ce gambit l'entend.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn con tốt bằng mã ngay lập tức, quân tự nhiên nhất để ăn tại đó. Con tốt e5 đã mất và Trắng giờ hơn hẳn một tốt.
+        en: White takes the pawn with the knight at once, the most natural piece to capture there. The e5 pawn is gone and White is now a clean pawn up.
+        fr: Les Blancs prennent aussitôt le pion avec le cavalier, la pièce la plus naturelle pour capturer là. Le pion e5 a disparu et les Blancs ont maintenant un pion net d'avance.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy. Trắng hơn đúng một tốt sạch, con mã e5 đứng vững ở trung tâm và chưa quân Đen nào tấn công được nó, còn Đen chưa có gì cụ thể để bù lại ngoài ý định mở đường chéo cho tượng f8 bằng d6 hay Nf6 sau này.
+          en: Count the pawns and it is eight for White, seven for Black. White is a clean pawn up, the knight on e5 sits solidly in the centre with no black piece attacking it, and Black has nothing concrete yet to show for it beyond the intention to open the f8 bishop's diagonal with ...d6 or ...Nf6 later.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs. Les Blancs ont un pion net d'avance, le cavalier en e5 est solidement installé au centre sans qu'aucune pièce noire ne l'attaque, et les Noirs n'ont encore rien de concret à montrer, hormis l'intention d'ouvrir la diagonale du fou f8 par ...d6 ou ...Nf6 plus tard.
+        plan:
+          vi: Trắng chơi Nc3, g3 và Bg2, phát triển vững chắc và giữ con tốt thừa, không cần vội vàng vì Đen chưa có mối đe dọa cụ thể nào. Đen chơi Nf6 hay d6 đuổi mã, rồi Be7 và O-O, cố tạo hoạt động quân cờ để bù cho con tốt đã mất.
+          en: White plays Nc3, g3 and Bg2, developing solidly and keeping the extra pawn, with no need to hurry since Black has no concrete threat yet. Black plays ...Nf6 or ...d6 to chase the knight, then ...Be7 and ...O-O, trying to build piece activity to compensate for the lost pawn.
+          fr: Les Blancs jouent Nc3, g3 et Bg2, se développant solidement et gardant le pion supplémentaire, sans devoir se presser puisque les Noirs n'ont encore aucune menace concrète. Les Noirs jouent ...Nf6 ou ...d6 pour chasser le cavalier, puis ...Be7 et ...O-O, essayant de créer de l'activité pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-25'
