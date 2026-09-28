@@ -89,9 +89,10 @@ describe('the tokens the design system documents', () => {
   // merged it with `--color-board-highlight-to` into `--color-board-highlight` (30 → 29);
   // a follow-up to #131 retired `--color-board-mark`, reusing `--color-board-highlight`
   // for the home board's mark instead of its own token (29 → 28); 2026-09-28 gave
-  // `--color-board-legal` a value for the home board's target dots (28 → 29).
+  // `--color-board-legal` a value for the home board's target dots (28 → 29), and #154
+  // added `--color-board-arrow` for the analysis page's best move (29 → 30).
   it('finds both tables, so this file is asserting something', () => {
-    expect(COLOURS.size).toBeGreaterThanOrEqual(29)
+    expect(COLOURS.size).toBeGreaterThanOrEqual(30)
     expect(SCALARS.size).toBeGreaterThanOrEqual(30)
   })
 

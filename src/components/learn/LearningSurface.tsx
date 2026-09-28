@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useLocation, useNavigate } from 'react-router'
+import { Link, useLocation, useNavigate } from 'react-router'
 import './LearningSurface.css'
 import { useBoardLabels } from '../../i18n/board-labels.ts'
 import { Translated } from '../../i18n/Translated.tsx'
@@ -8,9 +8,12 @@ import { useTranslated } from '../../i18n/useTranslated.ts'
 import type { CompiledEntry } from '../../lib/content-types.ts'
 import { orient, withFlip } from '../../lib/flip.ts'
 import { defaultLocale, isLocale } from '../../lib/locale.ts'
+import { routePath, routeSegments } from '../../lib/routes.ts'
 import { Board } from '../board/Board.tsx'
+import { movesSearch } from '../home/moves-param.ts'
 import { AnnotationPanel } from './AnnotationPanel.tsx'
 import { BranchChoices } from './BranchChoices.tsx'
+import { FlipButton } from './FlipButton.tsx'
 import { MoveList } from './MoveList.tsx'
 import { MoveNavigator } from './MoveNavigator.tsx'
 import { OutcomeCard } from './OutcomeCard.tsx'
@@ -20,6 +23,7 @@ import { announcementOf, localiseAnnotation } from './annotation.ts'
 import { lastPlyBetween } from './last-ply.ts'
 import { plyMotionBetween } from './ply-motion.ts'
 import {
+  belongsToSomethingElse,
   branchShortcutIndex,
   rememberShortcutSetting,
   readShortcutSetting,
@@ -52,22 +56,6 @@ export type LearningSurfaceProps = {
    * or (decided by `walkEntry`, not here) not standing on a leaf that claims one (#123).
    */
   readonly mate: number | null
-}
-
-/**
- * Whether a key press belongs to something else on the page.
- *
- * The board owns the arrow keys inside its own grid — they walk its roving tabindex from
- * square to square — so a global handler that also fired would move the cursor *and* leave
- * the position, which is two things from one press. Text fields are excluded for the usual
- * reason, which is emphatically **not** how AC 2 is satisfied: suppressing a shortcut
- * inside an input does not meet 2.1.4, the switch in `shortcuts.ts` does.
- */
-const belongsToSomethingElse = (target: EventTarget | null): boolean => {
-  if (!(target instanceof HTMLElement)) return false
-  if (target.isContentEditable) return true
-  if (target.closest('[role="grid"]') !== null) return true
-  return target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.tagName === 'SELECT'
 }
 
 export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSurfaceProps) => {
@@ -328,29 +316,10 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
             previous={previous}
             next={next}
           />
-          {/* A button rather than a link like its neighbours: it toggles a view of this
-              position rather than going to another one, and `aria-pressed` says which way
-              round the board is, which a link cannot. An icon, with its label read but not
-              drawn: the row has no room for the words (LearningSurface.css). */}
-          <button
-            type="button"
-            className="learning-surface__flip"
-            aria-pressed={flipped}
-            title={translated('board.flip').text}
-            onClick={() => void navigate({ pathname, search: flipTarget })}
-          >
-            <svg
-              className="learning-surface__flip-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <path d="M7 20V4M3 8l4-4 4 4M17 4v16M13 16l4 4 4-4" />
-            </svg>
-            <span className="visually-hidden">
-              <Translated id="board.flip" />
-            </span>
-          </button>
+          <FlipButton
+            flipped={flipped}
+            onFlip={() => void navigate({ pathname, search: flipTarget })}
+          />
         </div>
       </div>
 
@@ -433,6 +402,26 @@ export const LearningSurface = ({ entry, requested, prelude, mate }: LearningSur
         )}
 
         <MoveList steps={walk.steps} start={walk.start} />
+        {/*
+         * The position on screen, handed to Stockfish on its own page (#154) — a link, not an
+         * evaluation here: this page's assessments are authored and say so (ADR-0010), and an
+         * engine's figure beside them would read as a second opinion of the same kind. It
+         * opens the same way up as this board, which the analysis page's default (White at
+         * the bottom) would otherwise undo for a Black gambit.
+         */}
+        <p className="learning-surface__analyse">
+          <Link
+            to={{
+              pathname: routePath(locale, routeSegments.analysis),
+              search: withFlip(
+                movesSearch(walk.steps.map((step) => step.ply)),
+                orientation === 'black',
+              ),
+            }}
+          >
+            <Translated id="analysis.openHere" />
+          </Link>
+        </p>
         <ShortcutToggle
           setting={shortcuts}
           onChange={(setting) => {

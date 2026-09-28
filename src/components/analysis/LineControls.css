@@ -1,0 +1,72 @@
+/* The same row-sharing rule as the gambit page's navigator: the flip control costs no height. */
+.line-controls {
+  display: flex;
+  gap: var(--space-2);
+  align-items: flex-start;
+}
+
+.line-controls__nav {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.line-controls__row {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.line-controls__control {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--target-size-touch);
+  min-inline-size: var(--target-size-touch);
+  padding-inline: var(--space-1);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+.line-controls__control--next {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.line-controls__control:hover {
+  text-decoration: underline;
+}
+
+/* Unavailable, said three ways: a dashed border, no hover underline, and the sentence. */
+.line-controls__control--unavailable {
+  border-style: dashed;
+  border-color: var(--color-border);
+  color: var(--color-text-muted);
+  cursor: default;
+}
+
+.line-controls__control--unavailable:hover {
+  text-decoration: none;
+}
+
+.line-controls__edge {
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+@media (min-width: 768px) {
+  .line-controls__control {
+    padding-inline: var(--space-3);
+    font-size: var(--text-base);
+  }
+}

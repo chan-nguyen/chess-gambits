@@ -262,7 +262,7 @@ test.describe('at 360px in French', () => {
       navigator.bottom,
       `the controls reach ${navigator.bottom}px of ${navigator.viewport}px`,
     ).toBeLessThanOrEqual(navigator.viewport)
-    const flip = await geometryOf(page.locator('.learning-surface__flip'))
+    const flip = await geometryOf(page.locator('.flip-button'))
     expect(flip.bottom, `the flip control reaches ${flip.bottom}px`).toBeLessThanOrEqual(
       flip.viewport,
     )

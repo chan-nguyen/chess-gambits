@@ -1,0 +1,41 @@
+/*
+ * Board first at every width, the engine beside it from 1024px — the gambit page's layout
+ * (LearningSurface.css), for the same reason: the position is what the page is about.
+ */
+.analysis-surface {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.analysis-surface__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* The bar takes the board's height, so it reads as the board's own edge. */
+.analysis-surface__board-row {
+  display: flex;
+  gap: var(--space-2);
+  align-items: stretch;
+}
+
+.analysis-surface__board {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.analysis-surface__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .analysis-surface {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}

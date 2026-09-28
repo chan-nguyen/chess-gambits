@@ -9,7 +9,7 @@ import { themeStorageKey } from '../src/styles/theme.ts'
  * than shortly after it (AC 8).
  */
 
-const ROUTES = ['vi/', 'vi/gambits', 'vi/about', 'vi/definitely-not-a-route']
+const ROUTES = ['vi/', 'vi/gambits', 'vi/about', 'vi/analysis', 'vi/definitely-not-a-route']
 
 const WIDTHS = [
   { name: '360 — the smallest phone the product targets', width: 360 },

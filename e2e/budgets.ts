@@ -17,6 +17,11 @@ export const BUDGET_BYTES = {
   routeIncrementalJavaScript: 50 * 1024,
   /** `≤ 100KB` gzipped, regardless of catalogue size. Also the budget for any route's data. */
   routePayload: 100 * 1024,
+  /**
+   * `< 1.5MB` gzipped, and only on the analysis route: Stockfish's worker and WASM (ADR-0012).
+   * Measured at ≈1.2MB; the ceiling is there to catch the ≈94MB full build, not a patch release.
+   */
+  engine: 1.5 * 1024 * 1024,
 } as const
 
 /**

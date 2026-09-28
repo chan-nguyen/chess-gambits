@@ -128,6 +128,8 @@ const copyFor = (locale: Locale): LocaleCopy => {
     catalogue: bundle.catalogue?.heading ?? vi.catalogue.heading,
     catalogueIntro: bundle.catalogue?.intro ?? vi.catalogue.intro,
     about: bundle.nav?.about ?? vi.nav.about,
+    analysis: bundle.analysis?.heading ?? vi.analysis.heading,
+    analysisIntro: bundle.analysis?.intro ?? vi.analysis.intro,
     tagline: bundle.home?.tagline ?? vi.home.tagline,
   }
 }

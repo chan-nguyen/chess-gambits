@@ -43,8 +43,11 @@ export const movesSearch = (plies: readonly string[]): string =>
 
 /**
  * Read a decoded `moves` value into its shape only — a list of SAN-shaped tokens, capped at
- * `maxMovesPlies`. Never throws. Whether each token is actually a legal move at its
- * position is for the caller to check by replaying it (`replay` in `chess-engine.ts`).
+ * `limit`. Never throws. Whether each token is actually a legal move at its position is for
+ * the caller to check by replaying it (`replay` in `chess-engine.ts`).
+ *
+ * The analysis page (#154) reads the same parameter with a higher cap, because a whole game
+ * pasted in as PGN is routinely longer than anything played on the home board.
  */
-export const parseMovesShape = (raw: string): readonly string[] =>
-  raw === '' ? [] : raw.split(plySeparator).slice(0, maxMovesPlies)
+export const parseMovesShape = (raw: string, limit = maxMovesPlies): readonly string[] =>
+  raw === '' ? [] : raw.split(plySeparator).slice(0, limit)

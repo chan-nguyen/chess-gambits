@@ -59,6 +59,7 @@ const EXPECTED_TOKENS: readonly string[] = [
   '--color-board-check',
   '--color-board-coordinate',
   '--color-board-legal',
+  '--color-board-arrow',
   '--color-piece-white-fill',
   '--color-piece-white-stroke',
   '--color-piece-black-fill',

@@ -23,6 +23,10 @@ Everything that is _not_ machine-proved — soundness, evaluations, middlegame p
 is — is labelled as a judgement, because a proof sitting next to an unlabelled opinion does not make
 the opinion true, only convincing.
 
+The rule is about what the site _claims_. The analysis page is the one place a mate score appears
+that no build has proved: it is Stockfish, running in your browser, saying what it sees at the
+depth it reached — and the page labels it as that estimate, never as a proof (ADR-0012).
+
 ## Running it
 
 ```bash
@@ -67,8 +71,11 @@ A static single-page application. No backend, no database, no accounts, no cooki
 and **no third-party request at runtime** — which is why the project has no personal data and no
 compliance obligations at all. That is a design property, not an accident of being small.
 
-Correctness lives in the **build**, not at runtime: the PGN parser, the rules engine and the mate
-prover all run in CI and none of them ship to the browser.
+Correctness lives in the **build**, not at runtime: the PGN parser and the mate prover run in CI and
+never ship to the browser. Two things do, on purpose: the rules engine (`chess.js`, MIT) for the two
+boards a visitor can play on, and Stockfish (GPL-3.0, a separate program in a Web Worker) for the
+analysis page, which is the only page that downloads it (ADR-0012). Neither is asked to prove
+anything the site claims.
 
 ## Documentation
 

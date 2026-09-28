@@ -99,6 +99,18 @@
 }
 
 /*
+ * An arrow (#154): the analysis page's best move. Green, as lichess draws engine arrows,
+ * so it cannot be mistaken for the gold last-ply and selection tints it may cross, and
+ * translucent so the pieces under it still read. Like the target dots it is well under
+ * 3:1 against the squares; it never carries anything alone — the same move is the first
+ * move of the best line, in text, beside the board. §2 records it with the dots.
+ */
+.board__arrow {
+  fill: var(--color-board-arrow);
+  fill-opacity: 0.8;
+}
+
+/*
  * The slide (#72).
  *
  * `Board` positions every piece with a transform and keeps the element that moved, so the

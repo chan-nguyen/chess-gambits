@@ -60,6 +60,9 @@ export const Header = ({ locale }: HeaderProps) => {
             >
               <Translated id="nav.traps" />
             </Link>
+            <Link to={routePath(locale, routeSegments.analysis)} onClick={close}>
+              <Translated id="nav.analysis" />
+            </Link>
             <Link to={routePath(locale, routeSegments.about)} onClick={close}>
               <Translated id="nav.about" />
             </Link>

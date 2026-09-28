@@ -1,5 +1,6 @@
 import { aboutAnchors } from '../components/catalogue/about-anchors.ts'
 import { Translated } from '../i18n/Translated.tsx'
+import { withBasePath } from '../lib/base-path.ts'
 
 /**
  * Placeholder: the real copy is #7 and #17. The dataset credit below is #12 and is not.
@@ -79,6 +80,16 @@ export const AboutRoute = () => (
       damages or other liability, whether in an action of contract, tort or otherwise, arising from,
       out of or in connection with the Software or the use or other dealings in the Software. What
       was changed, and which other sets were considered, is recorded in <code>NOTICE</code>.
+    </p>
+    <p>
+      The analysis page runs <a href="https://stockfishchess.org/">Stockfish 19</a> in your browser,
+      in the WebAssembly build <a href="https://github.com/nmrugg/stockfish.js">stockfish.js</a> by
+      Nathan Rugg and Chess.com. Stockfish is a separate program, free software under the{' '}
+      <a href={withBasePath('engine/COPYING.txt')}>GNU General Public License, version 3</a>, and
+      comes with no warranty. This site talks to it only in UCI text, and ships it unmodified;{' '}
+      <a href={withBasePath('engine/README.md')}>what is shipped, and where its source is</a> sits
+      beside the engine itself. Its evaluations are estimates: unlike a mate this site claims, they
+      are not proved.
     </p>
   </main>
 )

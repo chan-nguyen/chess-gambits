@@ -24,6 +24,7 @@ Locale is the first path segment on every route, so every URL is shareable with 
 | `/:locale/gambits`     | The full catalogue. Search and filter                                          | `q`, `side`, `category`, `soundness`, `tier`     |
 | `/:locale/gambits/:id` | The learning surface: board, navigation, tree, annotation                      | `line` (SAN path), `prelude` (ply count), `flip` |
 | `/:locale/about`       | What the coverage tiers mean, how mate claims are verified, credits, licences  | —                                                |
+| `/:locale/analysis`    | Play or paste a line and see Stockfish's estimate of each position (#154)      | `moves` (the whole line), `ply`, `flip`          |
 | `*`                    | Not found, with a route back to the catalogue                                  | —                                                |
 
 `/` with no locale resolves the visitor's preferred language and redirects once. The chosen locale
@@ -140,6 +141,7 @@ edited here without re-checking contrast fails that test rather than shipping.
 | `--color-board-check`        | `#d14b3f` | `#c4544a` | Disc behind a king in check                           |
 | `--color-board-coordinate`   | `#1f1a14` | `#14110c` | File letters and rank numbers                         |
 | `--color-board-legal`        | `#1f1a14` | `#14110c` | Dot or ring on a square the selected piece can reach  |
+| `--color-board-arrow`        | `#15781b` | `#3a9142` | The engine's best move, on the analysis page          |
 | `--color-piece-white-fill`   | `#faf7f2` | `#e8e2d8` | White piece body                                      |
 | `--color-piece-white-stroke` | `#16120d` | `#14110c` | White piece outline                                   |
 | `--color-piece-black-fill`   | `#2a2520` | `#221e19` | Black piece body                                      |
@@ -276,6 +278,11 @@ Binding rule, and the one most likely to be violated by an agent in a hurry.
   chess.com look. Two things keep this from being colour-only information: every target cell's
   accessible name ends with `BoardLabels.target` ("đi được tới đây"), and a click on a square that
   is not a target does nothing harmful — it selects another piece or is ignored.
+- **The analysis page's best-move arrow is the same kind of exception** (#154):
+  `--color-board-arrow`, green as lichess draws engine arrows so it is never read as the gold
+  last-ply or selection tint it may cross, at `0.8` opacity so the pieces under it still read. It
+  measures under 3:1 against the dark square. It carries nothing alone: the move it draws is the
+  first move of the best line, written out in the engine panel beside the board.
 - Every colour-coded element passes a greyscale screenshot review. This is a review step, not a
   suggestion.
 

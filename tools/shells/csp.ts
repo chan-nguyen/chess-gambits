@@ -63,6 +63,10 @@ export const inlineScriptHashes = (html: string): readonly string[] =>
  *   `e2e/content-security-policy.spec.ts` is what keeps it true.
  * - `img-src 'self'` — the SVG favicon. The pieces are inline SVG, not images.
  * - `connect-src 'self'` — the catalogue and gambit JSON, which are files on this origin.
+ * - `worker-src 'self'` — the analysis page's Stockfish worker (ADR-0012). `script-src 'self'`
+ *   would already allow it, and it is written out anyway because this list is the list of
+ *   what the site does. The worker's own policy is whatever its response carries, which on
+ *   this host is none: that is where its WASM compiles.
  * - `font-src 'none'` — `docs/design-system.md` §6 budgets **zero** downloaded fonts, and
  *   `src/styles/tokens.css` uses system stacks. Redundant under `default-src 'none'` and
  *   written out anyway, because a budget the policy states is a budget the browser
@@ -80,6 +84,7 @@ export const contentSecurityPolicy = (scriptHashes: readonly string[]): string =
     "style-src 'self'",
     "img-src 'self'",
     "connect-src 'self'",
+    "worker-src 'self'",
     "font-src 'none'",
     "base-uri 'none'",
     "form-action 'none'",

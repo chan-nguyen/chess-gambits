@@ -38,6 +38,8 @@ export type HomeBoardProps = {
   readonly announcement: string | undefined
   /** Which side sits at the bottom; the caller reads it from the URL. */
   readonly orientation: Orientation
+  /** Arrows to draw, passed straight to `Board`: the analysis page's best move (#154). */
+  readonly arrows?: readonly LastMove[] | undefined
   readonly onCommit: (san: string) => void
 }
 
@@ -75,6 +77,7 @@ export const HomeBoard = ({
   ended,
   announcement,
   orientation,
+  arrows,
   onCommit,
 }: HomeBoardProps) => {
   const labels = useBoardLabels()
@@ -169,6 +172,7 @@ export const HomeBoard = ({
           check={check}
           marks={marks}
           targets={targets}
+          arrows={arrows}
           announcement={announcement}
         />
       </div>
