@@ -1,0 +1,65 @@
+# Ruy Lopez: Steinitz Defense, Center Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5
+# d6 4.d4 exd4 5.O-O, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated; White has two attackers on the d4 pawn (the knight on f3 and the queen on d1)
+# against Black's single defender (the knight on c6), so Nxd4 and Qxd4 are both noted as
+# free rather than modelled further.
+id: ruy-lopez-steinitz-defense-center-gambit
+name: 'Ruy Lopez: Steinitz Defense, Center Gambit'
+eco: C62
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, d6, d4, exd4, O-O]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White gives up the d4 pawn for a move to castle quickly, and that pawn is
+      not even safely Black's to keep — two White pieces already attack it against a single
+      defender, so material stays close either way, and the label reflects a gambit that is
+      objectively balanced rather than clearly winning for either side. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại con tốt d4 ngay, Trắng chơi 5.O-O, nhập thành trước và tạm gác việc đòi lại con tốt vừa mất sang sau.
+    en: Instead of recapturing the d4 pawn straight away, White plays 5.O-O, castling first and putting off winning the pawn back for later.
+    fr: Au lieu de reprendre immédiatement le pion d4, les Blancs jouent 5.O-O, roquant d'abord et remettant à plus tard la récupération du pion qui vient d'être perdu.
+  dismissRest:
+    reason:
+      vi: Đen không phát triển mã sang f6. Các nước khác như ...Be7 hay chuẩn bị ...Nf6 bằng ...Bd7 trước vẫn để nguyên tình huống con tốt d4 y như cũ, và Trắng vẫn đòi lại nó theo đúng cách được mô tả ở đây.
+      en: Black does not develop the knight to f6. Anything else, such as ...Be7 or preparing ...Nf6 with ...Bd7 first, leaves the situation around the d4 pawn exactly the same, and White still wins it back the way described here.
+      fr: Les Noirs ne développent pas le cavalier en f6. Tout le reste, comme ...Be7 ou la préparation de ...Nf6 par ...Bd7 d'abord, laisse la situation autour du pion d4 tout à fait identique, et les Blancs le regagnent de la même façon décrite ici.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã sang f6, tấn công tốt e4 và tiếp tục lấy quân ra thay vì lo giữ con tốt d4 đang thừa.
+        en: Black develops the knight to f6, attacking the e4 pawn and getting on with development instead of worrying about holding on to the extra pawn on d4.
+        fr: Les Noirs développent le cavalier en f6, attaquant le pion e4 et poursuivant leur développement au lieu de se soucier de conserver le pion supplémentaire en d4.
+      unsettled: >-
+        Both Nxd4 and Qxd4 are going free — White has two attackers on the d4 pawn, the knight
+        on f3 and the queen on d1, against only the c6 knight defending it, so the pawn comes
+        back in the exchanges regardless of which piece captures first.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây, Trắng 38 còn Đen 39 — Trắng đang kém một tốt, nhưng con tốt d4 chỉ được đúng một quân (mã c6) bảo vệ trong khi có tới hai quân Trắng nhắm vào nó (mã f3 và hậu d1), nên nó sẽ quay về tay Trắng qua vài nước đổi quân. Tượng f8 của Đen cũng đang bị chính con tốt d6 của mình chắn đường, chưa thể phát triển.
+          en: Count the pawns right here, 38 for White against 39 for Black — White is down a pawn, but the pawn on d4 is defended by only one piece (the c6 knight) while two White pieces attack it (the f3 knight and the d1 queen), so it comes back to White through a short exchange. Black's bishop on f8 is also still shut in behind its own d6 pawn, unable to develop yet.
+          fr: Comptez les pions ici même, 38 pour les Blancs contre 39 pour les Noirs — les Blancs sont en retard d'un pion, mais le pion d4 n'est défendu que par une seule pièce (le cavalier c6) alors que deux pièces blanches l'attaquent (le cavalier f3 et la dame d1), si bien qu'il revient aux Blancs après un court échange. Le fou f8 noir reste lui aussi enfermé derrière son propre pion d6, incapable de se développer pour l'instant.
+        plan:
+          vi: Trắng chơi Nxd4 rồi Qxd4 sau khi Đen đổi mã, lấy lại con tốt và đứng với một con hậu khá tích cực ở trung tâm, sau đó Nc3 và Re1 hoàn tất phát triển. Đen chơi Be7, O-O và Re8, chấp nhận mất lại tốt để đổi lấy phát triển nhanh và một thế trận vững chắc, dễ chơi.
+          en: White plays Nxd4, then Qxd4 once Black trades knights, winning the pawn back and landing with a fairly active queen in the centre, followed by Nc3 and Re1 to finish developing. Black plays Be7, O-O and Re8, accepting the loss of the pawn back in exchange for quick development and a solid, easy position to play.
+          fr: Les Blancs jouent Nxd4, puis Qxd4 une fois que les Noirs ont échangé les cavaliers, regagnant le pion et se retrouvant avec une dame assez active au centre, avant Nc3 et Re1 pour achever leur développement. Les Noirs jouent Be7, O-O et Re8, acceptant de perdre le pion en retour contre un développement rapide et une position solide et facile à jouer.
+        basis:
+          by: chan
+          at: '2026-09-25'

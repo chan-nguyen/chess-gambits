@@ -1,0 +1,59 @@
+# Vienna Gambit, with Max Lange Defense: Pierce Gambit. Frozen defining line 1.e4 e5 2.Nc3
+# Nc6 3.f4 exf4 4.Nf3 g5 5.d4, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Continues past 4...g5, where Black chooses to hold
+# the pawn rather than strike back with d5. Replayed with chess.js before being annotated.
+id: vienna-gambit-with-max-lange-defense-pierce-gambit
+name: 'Vienna Gambit, with Max Lange Defense: Pierce Gambit'
+eco: C25
+category: gambit
+side: white
+definingLine: [e4, e5, Nc3, Nc6, f4, exf4, Nf3, g5, d4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black has held on to the gambit pawn but had to play ...g5 to do it,
+      permanently weakening f5 and h5. White answers with a full e4-d4 centre that is
+      completely safe — Nc6 attacks d4, but both the f3 knight and the queen on d1 defend it
+      — so the long-term compensation is real and lasting. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 4...g5, Đen chọn cách giữ chắc tốt thừa nhưng phải nới lỏng cánh vua của chính mình. Trắng đáp lại bằng 5.d4, dựng một trung tâm tốt rộng với e4 và d4, chuẩn bị mở đường tấn công đúng vào nơi Đen vừa làm yếu.
+    en: After 4...g5, Black chooses to hold the extra pawn but has to loosen his own kingside to do it. White answers with 5.d4, building a broad pawn centre with e4 and d4 and preparing to open lines exactly where Black has just weakened things.
+    fr: Après 4...g5, les Noirs choisissent de garder le pion supplémentaire mais doivent pour cela desserrer leur propre aile roi. Les Blancs répondent par 5.d4, bâtissant un large centre de pions avec e4 et d4 et se préparant à ouvrir des lignes exactement là où les Noirs viennent de s'affaiblir.
+  dismissRest:
+    reason:
+      vi: Đen không chơi 5...d6. Nước ...Nxd4 ăn tốt thì bị mã f3 và hậu d1 đỡ sẵn, không mang lại gì thêm, còn ...g4 đuổi mã hay các nước phát triển khác như ...Bg7 cũng không thay đổi được ý đồ của Trắng ở trung tâm và trên cánh vua Đen.
+      en: Black does not play 5...d6. Capturing with ...Nxd4 runs into a pawn already covered twice, by the f3 knight and the queen on d1, and gains nothing; ...g4 chasing the knight or a developing move like ...Bg7 do not change White's plan in the centre and on Black's kingside either.
+      fr: Les Noirs ne jouent pas 5...d6. La prise ...Nxd4 tombe sur un pion déjà couvert deux fois, par le cavalier f3 et la dame en d1, sans rien y gagner ; ...g4 chassant le cavalier ou un coup de développement comme ...Bg7 ne changent pas non plus le plan des Blancs au centre et sur l'aile roi noire.
+  children:
+    - ply: d6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi thật vững chắc, hỗ trợ thêm cho chuỗi tốt g5-f4 và chuẩn bị phát triển quân bình thường thay vì thử thách ngay trung tâm của Trắng.
+        en: Black plays solidly, giving extra support to the g5-f4 pawn chain and preparing to develop normally rather than testing White's centre right away.
+        fr: Les Noirs jouent solidement, apportant un soutien supplémentaire à la chaîne de pions g5-f4 et se préparant à développer normalement plutôt que de tester tout de suite le centre blanc.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy, Đen vẫn giữ đúng một tốt thừa. Nhưng để giữ được nó, Đen đã phải đẩy tốt g lên g5, khiến hai ô f5 và h5 vĩnh viễn không còn tốt nào của Đen có thể che chắn được nữa — đúng những ô mà quân Trắng sẽ nhắm tới.
+          en: Count the pawns and it is eight for Black, seven for White — Black still holds the extra pawn. But holding it has cost the g-pawn's advance to g5, and that leaves f5 and h5 as squares no black pawn can ever guard again, precisely the squares White's pieces will be aiming for.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs gardent toujours le pion supplémentaire. Mais pour le garder, il a fallu pousser le pion g jusqu'en g5, ce qui laisse f5 et h5 comme des cases qu'aucun pion noir ne pourra plus jamais surveiller, exactement les cases que les pièces blanches vont viser.
+        plan:
+          vi: Trắng chơi Bc4 hoặc Bd3, chuẩn bị h4 để chọc vào tốt g5 và mở cột h, nhắm các ô f5, h5 cho mã hay tượng sau này. Đen chơi ...Bg7, ...Nf6 và ...h6, cố hoàn thiện phát triển và giữ vững tốt thừa trước khi Trắng phá được hàng phòng ngự.
+          en: White plays Bc4 or Bd3, preparing h4 to hit the g5 pawn and open the h-file, aiming a knight or bishop at the f5 and h5 holes later on. Black plays ...Bg7, ...Nf6 and ...h6, trying to finish developing and hold on to the extra pawn before White breaks through.
+          fr: Les Blancs jouent Bc4 ou Bd3, préparant h4 pour frapper le pion g5 et ouvrir la colonne h, visant plus tard les cases f5 et h5 avec un cavalier ou un fou. Les Noirs jouent ...Bg7, ...Nf6 et ...h6, essayant d'achever leur développement et de conserver le pion supplémentaire avant que les Blancs ne percent.
+        basis:
+          by: chan
+          at: '2026-09-25'

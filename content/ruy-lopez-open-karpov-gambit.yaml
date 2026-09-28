@@ -1,0 +1,81 @@
+# Ruy Lopez: Open, Karpov Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6
+# 5.O-O Nxe4 6.d4 b5 7.Bb3 d5 8.dxe5 Be6 9.Nbd2 Nc5 10.c3 d4 11.Ng5, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line below
+# was replayed with chess.js before being annotated.
+id: ruy-lopez-open-karpov-gambit
+name: 'Ruy Lopez: Open, Karpov Gambit'
+eco: C80
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bb5,
+    a6,
+    Ba4,
+    Nf6,
+    O-O,
+    Nxe4,
+    d4,
+    b5,
+    Bb3,
+    d5,
+    dxe5,
+    Be6,
+    Nbd2,
+    Nc5,
+    c3,
+    d4,
+    Ng5,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White throws in a whole knight with 11.Ng5, and if Black simply takes it
+      the point is 12.Qh5!, hitting the queen on g5 and the weak f7 square at the same time —
+      a genuine double attack rather than a hope, which is why this specific piece sacrifice
+      is judged to hold up for White. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Ở một thế trận Open Ruy Lopez căng thẳng, Trắng chơi 11.Ng5, thí hẳn con mã để nhắm vào tượng e6 và ô f7 yếu, thay vì lùi quân hay chơi những nước củng cố bình thường.
+    en: In a sharp Open Ruy Lopez position, White plays 11.Ng5, sacrificing a whole knight to take aim at the bishop on e6 and the weak f7 square, instead of retreating or playing a quiet consolidating move.
+    fr: Dans une position tendue de la Ruy Lopez ouverte, les Blancs jouent 11.Ng5, sacrifiant carrément un cavalier pour viser le fou en e6 et la case faible f7, au lieu de reculer ou de jouer un coup de consolidation tranquille.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con mã g5. Các nước khác như ...Bxb3 đổi tượng trước hay ...h6 đuổi mã đều để ngỏ con mã ấy trên bàn cờ, và ý đồ đôi công của Trắng vẫn y nguyên như kế hoạch ban đầu.
+      en: Black does not take the knight on g5. Anything else, such as ...Bxb3 trading bishops first or ...h6 chasing the knight, leaves that knight on the board, and White's intended tactic proceeds exactly as planned.
+      fr: Les Noirs ne prennent pas le cavalier en g5. Tout le reste, comme ...Bxb3 pour échanger les fous d'abord ou ...h6 pour chasser le cavalier, laisse ce cavalier sur l'échiquier, et l'idée tactique blanche se déroule exactement comme prévu.
+  children:
+    - ply: Qxg5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thẳng con mã bằng hậu, lựa chọn tự nhiên nhất vì đó là quân duy nhất ăn được ngay mà không mất tốc độ.
+        en: Black simply takes the knight with the queen, the most natural choice since it is the only piece that can capture at once without losing time.
+        fr: Les Noirs prennent tout simplement le cavalier avec la dame, le choix le plus naturel puisque c'est la seule pièce capable de capturer aussitôt sans perdre de temps.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân ngay tại đây, Trắng 35 còn Đen 38 — Trắng đang kém hẳn một mã, chưa có gì đòi lại được ngay lập tức. Đen cũng chưa hề nhập thành, cả hai xe (a8 và h8) vẫn còn nguyên tại chỗ, nên sẽ tốn không ít thời gian để đưa chúng vào cuộc, trong khi con hậu vừa ăn quân trên g5 đứng khá lộ liễu.
+          en: Counting material right here, White has 35 to Black's 38 — White is down a full knight with nothing won back yet. Black has also not castled at all, and both rooks (on a8 and h8) are still sitting at home, which will cost real time to bring into play, while the queen that just captured on g5 stands rather exposed.
+          fr: En comptant le matériel ici même, les Blancs ont 35 contre 38 pour les Noirs — les Blancs sont en retard d'un cavalier entier sans rien avoir regagné pour l'instant. Les Noirs n'ont pas non plus roqué, et les deux tours (en a8 et h8) restent encore à la maison, ce qui coûtera un temps réel à mettre en jeu, tandis que la dame qui vient de prendre en g5 se retrouve plutôt exposée.
+        plan:
+          vi: Trắng chơi Qh5!, tấn công đồng thời con hậu trên g5 và ô f7 yếu, buộc Đen phải nhượng bộ vật chất hoặc chấp nhận thế công nguy hiểm nhắm vào vua còn kẹt ở giữa bàn cờ. Đen cố gắng lùi hậu về nơi an toàn như ...Qe7 hay ...Qf6 trong lúc vẫn giữ nguyên quân dư, rồi tranh thủ đưa vua và xe h8 về nơi an toàn càng sớm càng tốt.
+          en: White plays Qh5!, attacking both the queen on g5 and the weak f7 square at once, forcing Black to give back material or face a dangerous attack on a king still stuck in the centre. Black tries to pull the queen back to safety with ...Qe7 or ...Qf6 while holding on to the extra piece, then rushes to get the king and the h8 rook to safety as quickly as possible.
+          fr: Les Blancs jouent Qh5!, attaquant à la fois la dame en g5 et la case faible f7, forçant les Noirs à rendre du matériel ou à affronter une attaque dangereuse contre un roi toujours coincé au centre. Les Noirs tentent de replier la dame en sécurité par ...Qe7 ou ...Qf6 tout en conservant la pièce supplémentaire, puis se dépêchent de mettre le roi et la tour h8 à l'abri le plus vite possible.
+        basis:
+          by: chan
+          at: '2026-09-25'

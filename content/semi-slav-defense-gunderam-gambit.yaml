@@ -1,0 +1,65 @@
+# Semi-Slav Defense: Gunderam Gambit. Frozen defining line 1.d4 d5 2.c4 e6 3.Nc3 c6 4.e4 dxe4
+# 5.f3, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). White strikes the centre open with 4.e4, and even after Black grabs that pawn,
+# presses on with a second sacrifice, 5.f3, trying to blow the position open before Black can
+# untangle. The line was replayed with chess.js before being annotated, and the leaf carries
+# three free captures (gxf3, Qxf3, Nxf3), covered below with `unsettled`.
+id: semi-slav-defense-gunderam-gambit
+name: 'Semi-Slav Defense: Gunderam Gambit'
+eco: D31
+category: gambit
+side: white
+definingLine: [d4, d5, c4, e6, Nc3, c6, e4, dxe4, f3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      White has now sacrificed two pawns in a row to blow the centre open, and with three ways to
+      recapture on f3 next move the true deficit is only one pawn, propped up by a solid c4-d4
+      pawn duo and a lead in development against a Black position that has not made a single piece
+      move yet. That is real compensation but nothing has been proven, so dubious fits better than
+      sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Ngay từ đầu ván, Trắng đã phá tung trung tâm bằng 4.e4, và ngay cả sau khi Đen ăn con tốt đó, Trắng vẫn tiếp tục thí thêm một tốt nữa bằng 5.f3, cố mở toang thế cờ trước khi Đen kịp gỡ rối các quân.
+    en: Right from the opening, White blows the centre open with 4.e4, and even after Black takes that pawn, White presses on with a second sacrifice, 5.f3, trying to rip the position open before Black can untangle its pieces.
+    fr: Dès l'ouverture, les Blancs font exploser le centre par 4.e4, et même après que les Noirs ont pris ce pion, les Blancs persistent avec un second sacrifice, 5.f3, cherchant à ouvrir la position avant que les Noirs ne démêlent leurs pièces.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt f3. Nếu chọn cách khác, chẳng hạn phát triển bằng ...Nf6 hay ...Bb4, Trắng vẫn có thể tự giải quyết chuyện con tốt e4 vào lúc thuận tiện, và vị trí vẫn được đánh giá như nhau, đó là khoảng không trung tâm của Trắng đối lại hai con tốt mà Đen đã thu được.
+      en: Black does not take on f3. If something else is chosen instead, such as developing with ...Nf6 or ...Bb4, White can still settle the question of the e4 pawn in its own time, and the position is judged the same way either way — White's central space against the two pawns Black has banked.
+      fr: Les Noirs ne prennent pas en f3. Si autre chose est choisi, comme développer par ...Nf6 ou ...Bb4, les Blancs peuvent toujours régler la question du pion e4 à leur convenance, et la position est jugée de la même façon dans les deux cas — l'espace central blanc face aux deux pions engrangés par les Noirs.
+  children:
+    - ply: exf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn luôn con tốt thứ hai vì không có gì ngăn cản, thu về hai con tốt sạch trong khi Trắng vẫn chưa đưa được thêm quân nào ra ngoài mã c3.
+        en: Black grabs the second pawn since nothing guards it, banking two clean pawns while White still has not brought out anything beyond the c3 knight.
+        fr: Les Noirs prennent le second pion puisque rien ne le garde, engrangeant deux pions nets tandis que les Blancs n'ont encore rien sorti d'autre que le cavalier c3.
+      unsettled: >-
+        gxf3 is going free and the evaluation is built on it — White has three ways to take back
+        the pawn on f3 (gxf3, Qxf3 or Nxf3), so the two-pawn count below is only the picture for
+        the one ply before White collects one of them back.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng chỉ còn sáu và Đen còn tám, tức là Đen hơn hai tốt ngay lúc này. Nhưng Đen chưa hề đi một nước phát triển quân nào — mọi nước đi từ đầu chỉ toàn là đẩy tốt — nên xe a8 và tượng c8 vẫn còn nguyên ở vị trí xuất phát, cần ít nhất hai, ba nhịp nữa mới có thể vào cuộc, trong khi Trắng sắp bổ sung thêm một quân nhẹ ngay khi ăn lại tốt f3.
+          en: Count the pawns and White has only six left to Black's eight, so Black is up two pawns right now. But Black has not made a single developing move yet — every move so far has been a pawn move — so the rook on a8 and the bishop on c8 are still on their starting squares, needing at least two or three more tempi before they see daylight, while White is about to add a fresh minor piece to the game with the recapture on f3.
+          fr: En comptant les pions, il ne reste que six pions aux Blancs contre huit aux Noirs, donc les Noirs ont deux pions de plus en ce moment. Mais les Noirs n'ont encore fait aucun coup de développement — chaque coup jusqu'ici n'a été qu'un coup de pion — si bien que la tour a8 et le fou c8 sont toujours sur leurs cases de départ, ayant besoin d'au moins deux ou trois temps de plus avant d'entrer en jeu, tandis que les Blancs s'apprêtent à ajouter une pièce mineure fraîche en reprenant le pion f3.
+        plan:
+          vi: Trắng ăn lại bằng Nxf3, vừa phát triển vừa lấy lại một tốt, rồi chơi Bc4 hay Bd3, Qc2 và nhập thành, dựa vào khoảng cách phát triển và cặp tốt trung tâm c4-d4 vững chắc để bù cho con tốt còn thiếu. Đen chơi ...Nf6, ...Be7 hay ...Bb4 và ...O-O để bắt kịp về phát triển, giữ con tốt còn thừa như phần đền bù cho việc phải bắt đầu chậm.
+          en: White recaptures with Nxf3, developing while winning back a pawn, then plays Bc4 or Bd3, Qc2 and castles, relying on the development gap and the solid c4-d4 pawn duo to offset the remaining pawn deficit. Black plays ...Nf6, ...Be7 or ...Bb4 and ...O-O to catch up in development, banking the remaining extra pawn as compensation for the slow start.
+          fr: Les Blancs reprennent par Nxf3, développant tout en regagnant un pion, puis jouent Bc4 ou Bd3, Qc2 et roquent, comptant sur l'écart de développement et le solide duo de pions c4-d4 pour compenser le déficit de pion restant. Les Noirs jouent ...Nf6, ...Be7 ou ...Bb4 et ...O-O pour rattraper leur développement, gardant le pion supplémentaire restant comme compensation pour le départ lent.
+        basis:
+          by: chan
+          at: '2026-09-25'

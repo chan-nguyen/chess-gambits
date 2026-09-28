@@ -1,0 +1,76 @@
+# King's Gambit Accepted, Bishop's Gambit, First Jaenisch Variation. One of a batch of
+# entries authored for issue #148 (batch h), sharing the trunk `1.e4 e5 2.f4 exf4 3.Bc4`
+# with `kings-gambit-accepted-bishops-gambit.yaml` and its existing siblings. Defining line
+# ends on White's 3.Bc4 (invariant 5). Every ply below was replayed with chess.js before
+# being written.
+id: kings-gambit-accepted-bishops-gambit-first-jaenisch-variation
+name: "King's Gambit Accepted: Bishop's Gambit, First Jaenisch Variation"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The same judgement the family head `kings-gambit-accepted-bishops-gambit.yaml` carries.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra c4, Gambit Tượng. Mục này đi sâu riêng vào 3...Qh4+, buộc vua Trắng phải nhúc nhích ngay.
+    en: White has just played the bishop to c4, the Bishop's Gambit. This entry follows specifically 3...Qh4+, forcing the White king to move at once.
+    fr: Les Blancs viennent de jouer le fou en c4, le Gambit du Fou. Cette entrée suit spécifiquement 3...Dh4+, forçant aussitôt le roi blanc à bouger.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 3.Bc4 bằng một nước khác ngoài 3...Qh4+ — giữ tốt bằng 3...g5, đánh trung tâm bằng 3...d5, hay phát triển bằng 3...Nf6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 3.Bc4 with something other than 3...Qh4+ — holding the pawn with 3...g5, striking the centre with 3...d5, or developing with 3...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 3.Bc4 par autre chose que 3...Dh4+ — conserver le pion par 3...g5, une frappe centrale par 3...d5, ou un développement par 3...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: 'Qh4+'
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chiếu ngay bằng hậu, quân duy nhất có thể chiếu ở đây, buộc Trắng phải trả lời trước khi làm gì khác.
+        en: Black checks at once with the queen, the only piece that can check here, forcing White to answer before doing anything else.
+        fr: Les Noirs donnent échec aussitôt avec la dame, la seule pièce pouvant le faire ici, forçant les Blancs à répondre avant toute autre chose.
+      children:
+        - ply: Kf1
+          annotation:
+            vi: Trắng chỉ có một cách hợp lệ để đáp lại chiếu này, vì không quân nào có thể chặn hay ăn con hậu ở h4. Vua mất quyền nhập thành ngay từ đầu.
+            en: White has exactly one legal way to answer this check, since nothing can block or capture the queen on h4. The king loses castling rights right at the start.
+            fr: Les Blancs n'ont qu'une seule façon légale de répondre à cet échec, car rien ne peut bloquer ou prendre la dame en h4. Le roi perd le droit de roquer dès le début.
+          dismissRest:
+            reason:
+              vi: Đen đáp lại Kf1 bằng một nước khác ngoài 4...Nf6 — giữ tốt bằng 4...g5, phát triển bằng 4...Nc6, hay chơi 4...d6. Mỗi lựa chọn nằm ngoài phạm vi mục này.
+              en: Black meets Kf1 with something other than 4...Nf6 — holding the pawn with 4...g5, developing with 4...Nc6, or playing 4...d6. Each is outside the scope of this entry.
+              fr: Les Noirs répondent à Kf1 par autre chose que 4...Cf6 — conserver le pion par 4...g5, un développement par 4...Cc6, ou 4...d6. Chacun sort du cadre de cette entrée.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: occasional
+              annotation:
+                vi: Biến Jaenisch Thứ Nhất. Đen phát triển mã và tấn công thẳng vào tốt e4, tiếp tục gây sức ép trong khi vua Trắng vẫn còn kẹt ở f1.
+                en: The First Jaenisch Variation. Black develops the knight and attacks the e4 pawn directly, keeping up the pressure while White's king is still stuck on f1.
+                fr: La Première Variante Jaenisch. Les Noirs développent le cavalier et attaquent directement le pion e4, maintenant la pression pendant que le roi blanc reste coincé en f1.
+              outcome:
+                type: position
+                evaluation:
+                  vi: Đen vẫn hơn đúng con tốt f4 ban đầu. Vua Trắng đã mất quyền nhập thành, và giờ tốt e4 cũng đang bị mã f6 nhòm tới, nên Trắng phải lo cả hai việc cùng lúc.
+                  en: Black is still exactly one pawn up, the original f4 pawn. White's king has lost castling rights, and now the e4 pawn is eyed by the f6 knight too, so White has two things to worry about at once.
+                  fr: Les Noirs restent exactement un pion devant, le pion f4 initial. Le roi blanc a perdu le droit de roquer, et le pion e4 est désormais aussi visé par le cavalier f6, si bien que les Blancs doivent gérer deux soucis à la fois.
+                plan:
+                  vi: Trắng chơi Nc3 để đỡ tốt e4, rồi Nf3 đuổi hậu và tìm cách đưa vua về g2 hay g1. Đen lui hậu về h5 hay h6 khi bị đuổi, chơi d5 hoặc Bc5, giữ con tốt f4 làm vốn liếng lâu dài.
+                  en: White plays Nc3 to defend e4, then Nf3 to chase the queen and looks for a way to tuck the king onto g2 or g1. Black drops the queen back to h5 or h6 when chased, plays d5 or Bc5, banking the f4 pawn as a long-term asset.
+                  fr: Les Blancs jouent Nc3 pour défendre e4, puis Nf3 pour chasser la dame et cherchent à ranger le roi en g2 ou g1. Les Noirs replient la dame en h5 ou h6 quand elle est chassée, jouent d5 ou Bc5, conservant le pion f4 comme atout durable.
+                basis:
+                  by: chan
+                  at: '2026-09-25'

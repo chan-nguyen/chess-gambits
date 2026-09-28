@@ -1,0 +1,62 @@
+# Van Geet Opening: Berlin Gambit. Frozen defining line 1.e4 Nc6 2.d4 d5 3.Nc3 dxe4 4.d5,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The line below was replayed with chess.js before being annotated.
+id: van-geet-opening-berlin-gambit
+name: 'Van Geet Opening: Berlin Gambit'
+eco: B00
+category: gambit
+side: white
+definingLine: [e4, Nc6, d4, d5, Nc3, dxe4, d5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White has already let Black win the e4 pawn with 3...dxe4 and now plays
+      4.d5, hoping to win it back with tempo by kicking the c6-knight. Black simply steps
+      the knight aside with 4...Ne5, and once White plays Nxe4 next move material is only
+      level again — four moves spent to reach a bare equality with a slightly cramped
+      Black position, nothing that has been shown to be an actual advantage. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi để Đen ăn tốt e4, Trắng tung tốt lên d5 ngay lập tức, tấn công thẳng vào mã c6 và ép nó phải nhường ô trung tâm. Đây là ý tưởng của Berlin Gambit trong Van Geet Opening — dùng nhịp để đòi lại con tốt đã mất.
+    en: Having let Black win the e4 pawn, White immediately pushes the pawn to d5, attacking the c6-knight directly and forcing it to give up its central square. This is the idea behind the Berlin Gambit in the Van Geet Opening — using tempo to try to win the pawn back.
+    fr: Ayant laissé les Noirs gagner le pion e4, les Blancs poussent aussitôt le pion en d5, attaquant directement le cavalier c6 et le forçant à céder sa case centrale. C'est l'idée du Gambit Berlin dans le Van Geet — utiliser le temps pour tenter de regagner le pion.
+  dismissRest:
+    reason:
+      vi: Đen không lùi mã về e5. Các nước khác — để mã c6 bị ăn, đưa nó đi ô khác như b8 hay b4, hay bỏ qua và đi nước riêng — đều không dẫn tới con mã đứng vững ở trung tâm như đang xét ở đây.
+      en: Black does not step the knight back to e5. Anything else — letting the c6-knight be captured, moving it somewhere else such as b8 or b4, or ignoring the attack and playing another move — does not lead to the knight standing firm in the centre as examined here.
+      fr: Les Noirs ne reculent pas le cavalier en e5. Tout le reste — laisser prendre le cavalier c6, le déplacer ailleurs comme en b8 ou b4, ou ignorer l'attaque pour jouer autre chose — ne mène pas au cavalier solidement planté au centre comme étudié ici.
+  children:
+    - ply: Ne5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Mã Đen lùi về e5, một ô trung tâm vững chãi, tránh được đòn tấn công của tốt d5 mà không mất tempo thực sự nào. Con tốt Đen ăn được ở e4 vẫn còn nguyên trên bàn cờ, hiện chưa ai bảo vệ.
+        en: Black's knight steps back to e5, a solid central square, sidestepping the attack from the d5 pawn without really losing any time. The pawn Black won on e4 is still sitting on the board, currently undefended.
+        fr: Le cavalier noir recule en e5, une case centrale solide, esquivant l'attaque du pion d5 sans réellement perdre de temps. Le pion gagné par les Noirs en e4 est toujours sur l'échiquier, actuellement indéfendu.
+      unsettled: >-
+        Nxe4 is going free and the evaluation says so — nothing defends the pawn on e4,
+        and White's own c3-knight is the piece that will collect it next move.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm thì Đen 39, Trắng 38 — hơn đúng một tốt, nhưng chỉ vì Trắng chưa ăn lại được. Con tốt e4 hiện không ai bảo vệ, và Nxe4 sẽ đưa quân số về ngang nhau ngay nước tiếp theo. Bù lại Trắng có tốt d5 tiến sâu, chiếm không gian và đẩy mã Đen ra khỏi ô c6 tự nhiên của nó, dù bản thân mã e5 hiện chưa có tốt nào chống lưng.
+          en: Count the points and it is 39 for Black, 38 for White — a pawn up, but only because White has not recaptured yet. The e4 pawn is currently undefended, and Nxe4 will bring material back level on the very next move. In return, White has the advanced d5 pawn, gaining space and having already driven the knight off its natural c6 post, though the e5-knight itself currently has no pawn support of its own.
+          fr: En comptant les points, 39 pour les Noirs, 38 pour les Blancs — un pion d'avance, mais seulement parce que les Blancs n'ont pas encore repris. Le pion e4 est actuellement indéfendu, et Nxe4 ramènera le matériel à l'égalité dès le coup suivant. En contrepartie, les Blancs ont le pion avancé d5, gagnant de l'espace et ayant déjà chassé le cavalier de sa case naturelle c6, bien que le cavalier e5 lui-même ne soit pour l'instant soutenu par aucun pion.
+        plan:
+          vi: Trắng chơi Nxe4, rồi Nf3 và Bd3 hay Be2, hoàn tất phát triển và tận dụng không gian từ tốt d5. Đen chơi Nf6 hay g6, phát triển và tìm cách gây sức ép lên tốt d5 hoặc đổi bớt quân để giảm bớt sự chật chội.
+          en: White plays Nxe4, then Nf3 and Bd3 or Be2, finishing development and making use of the space granted by the d5 pawn. Black plays Nf6 or g6, developing and looking to pressure the d5 pawn or trade off pieces to ease the cramped position.
+          fr: Les Blancs jouent Nxe4, puis Nf3 et Bd3 ou Be2, achevant leur développement et profitant de l'espace offert par le pion d5. Les Noirs jouent Nf6 ou g6, se développant et cherchant à faire pression sur le pion d5 ou à échanger des pièces pour desserrer l'étau.
+        basis:
+          by: chan
+          at: '2026-09-25'

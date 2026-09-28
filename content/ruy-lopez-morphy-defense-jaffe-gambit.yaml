@@ -1,0 +1,58 @@
+# Ruy Lopez: Morphy Defense, Jaffe Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6
+# 4.Ba4 Nf6 5.c3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated.
+id: ruy-lopez-morphy-defense-jaffe-gambit
+name: 'Ruy Lopez: Morphy Defense, Jaffe Gambit'
+eco: C77
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, Nf6, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White offers the e4 pawn outright with 5.c3, planning a broad centre with
+      d4, but the c3 pawn also takes away the knight's natural developing square, so White's
+      compensation is a matter of tempo rather than anything forced yet. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì bảo vệ tốt e4 bằng Nc3 hay Qe2 như thường lệ, Trắng chơi 5.c3, chuẩn bị dựng một trung tâm tốt lớn bằng d4 và mặc kệ con tốt e4 đang bị mã f6 nhắm tới.
+    en: Instead of guarding the e4 pawn the usual way with Nc3 or Qe2, White plays 5.c3, preparing a big pawn centre with d4 and simply leaving the e4 pawn to whatever Black's f6 knight wants to do with it.
+    fr: Au lieu de défendre le pion e4 comme d'habitude par Nc3 ou Qe2, les Blancs jouent 5.c3, préparant un grand centre de pions par d4 et laissant le pion e4 à la merci du cavalier noir en f6.
+  dismissRest:
+    reason:
+      vi: Đen không ăn con tốt e4. Các nước khác như ...Be7 hay ...b5 phát triển trước và để nguyên con tốt ấy trên bàn cờ, khi đó Trắng vẫn tiếp tục kế hoạch d4 như dự định mà chẳng mất gì.
+      en: Black does not take the e4 pawn. Anything else, such as ...Be7 or ...b5 developing first, leaves that pawn sitting on the board, and White simply carries on with the planned d4 without losing anything.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme ...Be7 ou ...b5 qui développent d'abord, laisse ce pion sur l'échiquier, et les Blancs poursuivent alors leur plan d4 comme prévu sans rien perdre.
+  children:
+    - ply: Nxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thẳng con tốt e4 đang bỏ ngỏ bằng chính con mã đang tấn công nó, thử thách trực tiếp nhất đối với ý tưởng của Trắng.
+        en: Black simply takes the undefended e4 pawn with the very knight attacking it, the most direct test of White's idea.
+        fr: Les Noirs prennent tout simplement le pion e4 sans défenseur avec le cavalier qui l'attaque déjà, le test le plus direct de l'idée blanche.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng 38 còn Đen 39 — Trắng kém đúng một tốt sạch. Nước c3 vừa chơi lại chiếm mất chính ô phát triển tự nhiên của mã b1, nên con mã ấy giờ phải đi vòng qua d2 mất thêm một nhịp, trong khi con mã e4 của Đen đang đứng vững giữa bàn cờ mà chưa có gì đe doạ được nó.
+          en: Count the pawns, 38 for White against 39 for Black — White is down a clean pawn. The c3 pawn just played also takes away the natural developing square for the b1 knight, so that knight now needs an extra tempo to reach d2 instead, while Black's knight on e4 sits actively in the centre with nothing yet threatening it.
+          fr: Comptez les pions, 38 pour les Blancs contre 39 pour les Noirs — les Blancs sont en retard d'un pion net. Le coup c3 qui vient d'être joué prive aussi le cavalier b1 de sa case naturelle, si bien qu'il devra maintenant passer par d2 en perdant un temps, tandis que le cavalier noir en e4 se tient activement au centre sans que rien ne le menace pour l'instant.
+        plan:
+          vi: Trắng chơi d4, Bd3 hoặc Qc2 nhắm vào con mã e4, rồi Nbd2 và O-O, hy vọng nhịp phát triển và trung tâm lớn bù lại được con tốt đã mất. Đen chơi d5 củng cố mã e4, cùng Be7, O-O và Be6 hay Bf5, giữ chắc con tốt thừa qua giai đoạn khai cuộc.
+          en: White plays d4, Bd3 or Qc2 aiming at the knight on e4, then Nbd2 and O-O, hoping the development lead and the big centre make up for the missing pawn. Black plays d5 to support the knight on e4, along with Be7, O-O and Be6 or Bf5, holding on to the extra pawn through the opening.
+          fr: Les Blancs jouent d4, Bd3 ou Qc2 en visant le cavalier e4, puis Nbd2 et O-O, espérant que l'avance de développement et le grand centre compensent le pion manquant. Les Noirs jouent d5 pour soutenir le cavalier e4, avec Be7, O-O et Be6 ou Bf5, conservant le pion supplémentaire tout au long de l'ouverture.
+        basis:
+          by: chan
+          at: '2026-09-25'

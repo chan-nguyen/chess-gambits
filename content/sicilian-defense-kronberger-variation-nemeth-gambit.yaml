@@ -1,0 +1,58 @@
+# Sicilian Defense: Kronberger Variation, Nemeth Gambit. Frozen defining line 1.e4 c5 2.Na3
+# Nc6 3.d4 cxd4 4.Bc4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js.
+id: sicilian-defense-kronberger-variation-nemeth-gambit
+name: 'Sicilian Defense: Kronberger Variation, Nemeth Gambit'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, Na3, Nc6, d4, cxd4, Bc4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White never actually gets the d4 pawn back: 4.Bc4 develops instead of
+      recapturing, and 4...e6 simply blocks the bishop's own diagonal toward f7 while
+      preparing ...d5. The knight on a3, needed to reach the game at all through c2 or b5,
+      is doing nothing yet, so White is a clean pawn down with no immediate follow-up in
+      sight. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau 2.Na3 khác thường, Trắng chơi 3.d4 thí một tốt trung tâm rồi đưa tượng ra c4 thay vì ăn lại ngay, nhắm vào đường chéo tới f7. Đây chính là Nemeth Gambit — đổi tốt lấy một nhịp phát triển và áp lực sớm lên cánh vua Đen.
+    en: After the unusual 2.Na3, White plays 3.d4, offering a central pawn, and then develops the bishop to c4 instead of recapturing at once, aiming down the diagonal toward f7. This is the Nemeth Gambit — a pawn traded for a tempo of development and early pressure on Black's kingside.
+    fr: Après l'inhabituel 2.Na3, les Blancs jouent 3.d4, offrant un pion central, puis développent le fou en c4 au lieu de reprendre aussitôt, visant la diagonale vers f7. C'est le Gambit Nemeth — un pion échangé contre un temps de développement et une pression précoce sur l'aile roi noire.
+  dismissRest:
+    reason:
+      vi: Đen không chơi e6. Các nước khác như Nf6 hay g6 vẫn giữ nguyên con tốt d4 đã ăn được và không hề chặn đường chéo của tượng Trắng, nên kế hoạch của Đen về cơ bản không đổi.
+      en: Black does not play e6. Anything else, such as Nf6 or g6, still keeps the already-won d4 pawn on the board and does not block White's bishop diagonal either, so Black's underlying plan does not really change.
+      fr: Les Noirs ne jouent pas e6. Tout le reste, comme Nf6 ou g6, garde le pion d4 déjà gagné sur l'échiquier sans bloquer non plus la diagonale du fou blanc, donc le plan de fond des Noirs ne change pas vraiment.
+  children:
+    - ply: e6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi e6, một nước đi vững chắc vừa chuẩn bị ...d5 vừa chặn luôn đường chéo của tượng Trắng hướng tới f7, xóa bỏ ý tưởng tấn công chính của gambit này.
+        en: Black plays e6, a solid move that both prepares ...d5 and blocks White's bishop diagonal toward f7, removing the gambit's main attacking idea at a stroke.
+        fr: Les Noirs jouent e6, un coup solide qui prépare à la fois ...d5 et bloque la diagonale du fou blanc vers f7, supprimant d'un coup l'idée d'attaque principale du gambit.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 38, Đen 39 — Đen hơn đúng một tốt sạch, con tốt d4 vẫn chưa hề được lấy lại. Con mã Trắng trên a3 vẫn đứng ở biên, chưa tham gia được gì vào ván cờ, và giờ đường chéo của tượng c4 cũng đã bị chính tốt e6 của Đen chặn mất.
+          en: Count the point values and it is 38 for White, 39 for Black — Black is a clean pawn up, the d4 pawn never having been won back. White's knight on a3 is still sitting on the rim, not yet part of the game at all, and now the c4 bishop's diagonal has also been blocked by Black's own e6 pawn.
+          fr: En comptant les points, cela donne 38 pour les Blancs, 39 pour les Noirs — les Noirs ont un pion net d'avance, le pion d4 n'ayant jamais été regagné. Le cavalier blanc en a3 reste sur le bord de l'échiquier, ne participant encore à rien, et la diagonale du fou en c4 vient elle aussi d'être bloquée par le propre pion e6 des Noirs.
+        plan:
+          vi: Trắng chơi Nf3 hay Qe2 và O-O, cố gắng hoàn tất phát triển và tìm cách đưa con mã a3 trở lại cuộc chơi qua c2. Đen chơi d5 tiếp theo, đẩy lùi tượng c4 và củng cố vững chắc con tốt thừa đã có.
+          en: White plays Nf3 or Qe2 and O-O, trying to complete development and find a way to bring the a3 knight back into the game via c2. Black follows up with d5, pushing back the c4 bishop and consolidating the extra pawn already in hand.
+          fr: Les Blancs jouent Nf3 ou Qe2 puis O-O, essayant d'achever leur développement et de trouver un moyen de ramener le cavalier en a3 dans la partie via c2. Les Noirs enchaînent avec d5, repoussant le fou en c4 et consolidant le pion supplémentaire déjà en poche.
+        basis:
+          by: chan
+          at: '2026-09-25'

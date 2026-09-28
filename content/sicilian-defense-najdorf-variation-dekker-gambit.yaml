@@ -1,0 +1,59 @@
+# Sicilian Defense: Najdorf Variation, Dekker Gambit. Frozen defining line 1.e4 c5 2.Nf3 d6
+# 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.g4, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js.
+id: sicilian-defense-najdorf-variation-dekker-gambit
+name: 'Sicilian Defense: Najdorf Variation, Dekker Gambit'
+eco: B90
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, d4, cxd4, Nxd4, Nf6, Nc3, a6, g4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The g-pawn is simply undefended once it advances two squares to g4, so
+      6...Nxg4 wins it cleanly with no trick involved. What White gets in return is real:
+      the g-file is already half-open for a future rook, and the knight now sitting on g4
+      has no safe square once White plays h3 or Be2, so there is genuine practical pressure —
+      enough to call the try dubious rather than outright unsound, but not enough to call it
+      sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trong biến Najdorf quen thuộc, sau khi Đen chơi a6, Trắng đáp lại bằng 6.g4!?, một nước thí tốt sắc bén nhằm giành không gian và mở cột g cho xe, thay vì tiếp tục phát triển bình thường.
+    en: In the familiar Najdorf, after Black plays a6, White answers with the sharp pawn sacrifice 6.g4!?, aiming to grab space and open the g-file for the rook instead of continuing with normal development.
+    fr: Dans la Najdorf bien connue, après que les Noirs ont joué a6, les Blancs répondent par le tranchant sacrifice de pion 6.g4!?, cherchant à gagner de l'espace et à ouvrir la colonne g pour la tour plutôt que de poursuivre un développement normal.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt g4. Các nước khác như e5 hay e6 để nguyên con tốt ấy trên bàn cờ và Trắng tiếp tục đẩy nó lên g5 để giành thêm không gian.
+      en: Black does not take the g4 pawn. Anything else, such as e5 or e6, leaves that pawn on the board and White simply pushes it on to g5 to gain even more space.
+      fr: Les Noirs ne prennent pas le pion g4. Tout le reste, comme e5 ou e6, laisse ce pion sur l'échiquier et les Blancs le poussent simplement en g5 pour gagner encore plus d'espace.
+  children:
+    - ply: Nxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn ngay con tốt g4 đang bị bỏ trống bằng mã f6, cách đáp trả tự nhiên nhất trước một con tốt không được bảo vệ.
+        en: Black takes the undefended g4 pawn at once with the f6 knight, the most natural answer to a pawn that is simply not guarded.
+        fr: Les Noirs prennent aussitôt le pion g4 sans défense avec le cavalier f6, la réponse la plus naturelle face à un pion qui n'est tout simplement pas gardé.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 37, Đen 38 — Trắng kém đúng một tốt sạch. Bù lại, cột g giờ đã nửa mở cho xe h1, và con mã Đen trên g4 chưa có ô an toàn nào để đứng lâu dài, sẽ phải lùi lại ngay khi Trắng chơi h3 hay Be2, khiến Đen mất bớt thời gian vừa tranh thủ được.
+          en: Count the point values and it is 37 for White, 38 for Black — White is a clean pawn down. In return, the g-file is now half-open for the h1 rook, and Black's knight on g4 has no safe square to sit on for long, having to retreat as soon as White plays h3 or Be2, costing back some of the time Black has just gained.
+          fr: En comptant les points, cela donne 37 pour les Blancs, 38 pour les Noirs — les Blancs ont un pion net de moins. En contrepartie, la colonne g est désormais semi-ouverte pour la tour en h1, et le cavalier noir en g4 n'a aucune case sûre où rester longtemps, devant reculer dès que les Blancs joueront h3 ou Be2, ce qui lui fait perdre une partie du temps qu'il vient de gagner.
+        plan:
+          vi: Trắng chơi Be2 hay h3 để đuổi mã, rồi Rg1, tận dụng cột g mở và gây sức ép lên cánh vua Đen. Đen chơi Nf6 rút lui, rồi e5 và Be7, cố gắng hoàn tất phát triển an toàn trong khi vẫn giữ con tốt vừa ăn được.
+          en: White plays Be2 or h3 to chase the knight, then Rg1, putting the open g-file to use and pressuring Black's kingside. Black plays Nf6 to retreat, then e5 and Be7, trying to complete development safely while still holding the pawn just won.
+          fr: Les Blancs jouent Be2 ou h3 pour chasser le cavalier, puis Rg1, exploitant la colonne g ouverte et faisant pression sur l'aile roi noire. Les Noirs jouent Nf6 pour reculer, puis e5 et Be7, essayant d'achever leur développement en toute sécurité tout en conservant le pion tout juste gagné.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,65 @@
+# Four Knights Game: Scotch Variation, Krause Gambit, Leonhardt Defense. Frozen defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Nc3 Nf6 4.d4 Bb4 5.Nxe5 Qe7 6.Qe2, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...Qe7 confronts the knight
+# that just grabbed the e5 pawn while the bishop keeps the c3 knight pinned to the king. The line
+# was replayed with chess.js before being annotated, and the leaf carries one free capture
+# (Nxd4), covered below with `unsettled`.
+id: scotch-variation-krause-gambit-leonhardt-defense
+name: 'Four Knights Game: Scotch Variation, Krause Gambit, Leonhardt Defense'
+eco: C47
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Nc3, Nf6, d4, Bb4, Nxe5, Qe7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      White's extra pawn from 5.Nxe5 is already under real pressure — the knight on e5 is
+      attacked twice and defended only once, and the pawn on d4 has no defender at all once the
+      queen moves to e2 — so the material is likely to even out within a move or two. What White
+      keeps is a small development edge and the standing pin on c3, which is not nothing but is
+      far from a proven advantage. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Trắng vừa ăn tốt e5 bằng mã, Đen đáp trả bằng 5...Qe7, đưa hậu ra tấn công thẳng vào con mã đó dọc cột e đang mở, trong khi vẫn giữ nguyên thế ghim tượng b4 lên con mã c3.
+    en: Right after White grabs the e5 pawn with the knight, Black answers with 5...Qe7, bringing the queen out to attack that knight straight down the open e-file, while keeping the bishop's pin on the c3 knight in reserve.
+    fr: Juste après que les Blancs ont pris le pion e5 avec le cavalier, les Noirs répondent par 5...Qe7, amenant la dame attaquer directement ce cavalier le long de la colonne e ouverte, tout en gardant en réserve le clouage du fou sur le cavalier c3.
+  dismissRest:
+    reason:
+      vi: Trắng không đáp lại bằng Qe2. Dù chọn cách nào khác, chẳng hạn đổi mã bằng Nxc6 hay lùi mã về d3, tình huống căng thẳng vẫn giữ nguyên như cũ — con mã e5 đang bị tấn công hai lần mà chỉ có một quân đỡ, còn hậu và mã Đen đã sẵn sàng lấy lại ít nhất một tốt — nên vị trí được đánh giá như nhau.
+      en: White does not answer with Qe2. Whatever else is tried instead, such as trading with Nxc6 or retreating the knight to d3, the same tension holds — the knight on e5 is attacked twice and defended only once, and Black's queen and knight are already lined up to win at least a pawn back — so the position is judged the same way.
+      fr: Les Blancs ne répondent pas par Qe2. Quel que soit l'autre essai, comme échanger par Nxc6 ou reculer le cavalier en d3, la même tension demeure — le cavalier en e5 est attaqué deux fois et défendu une seule — et la dame et le cavalier noirs sont déjà alignés pour regagner au moins un pion, si bien que la position est jugée de la même façon.
+  children:
+    - ply: Qe2
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đưa hậu ra e2, thêm một quân bảo vệ cho tình huống ghim ở c3 và chuẩn bị lối thoát cho con mã e5 nếu cần, nhưng đổi lại phải bỏ mặc con tốt d4 không còn ai che chở.
+        en: White brings the queen to e2, adding support around the pin on c3 and preparing an escape route for the e5 knight if needed, but in return leaves the pawn on d4 with no defender at all.
+        fr: Les Blancs amènent la dame en e2, renforçant le soutien autour du clouage en c3 et préparant une échappatoire pour le cavalier e5 si besoin, mais laissent en échange le pion d4 sans aucun défenseur.
+      unsettled: >-
+        Nxd4 is going free and the evaluation is built on it — nothing defends the pawn on d4,
+        and the knight also lands eyeing the queen on e2 next, which is exactly why the leaf stops
+        here rather than one move later.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn tám và Đen còn bảy, tức là Trắng hơn đúng một tốt lúc này. Nhưng con mã c3 vẫn đang bị ghim vào vua bởi tượng b4, và con tốt d4 thì hoàn toàn không có ai bảo vệ, nên mã c6 của Đen có thể ăn nó bất cứ lúc nào mà còn nhắm sẵn vào con hậu vừa đứng ở e2.
+          en: Count the pawns and White has eight left to Black's seven, so White is up exactly one pawn for now. But the knight on c3 is still pinned to the king by the bishop on b4, and the pawn on d4 has no defender at all, so Black's c6 knight can take it whenever it likes while also eyeing the queen that has just landed on e2.
+          fr: En comptant les pions, il reste huit pions aux Blancs contre sept aux Noirs, donc les Blancs ont exactement un pion de plus pour l'instant. Mais le cavalier c3 reste cloué au roi par le fou b4, et le pion d4 n'a aucun défenseur, si bien que le cavalier noir en c6 peut le prendre quand il veut tout en visant la dame qui vient de se poser en e2.
+        plan:
+          vi: Trắng tìm cách gỡ ghim ở c3 bằng a3 hay Bd2, đồng thời cố hoàn tất phát triển với Be3 hay O-O-O, giữ con mã e5 và trông chờ hoạt động quân bù lại cho con tốt d4 sắp mất. Đen chơi ...Nxd4 ngay để lấy lại quân số ngang nhau và tạo áp lực mới lên hậu Trắng, hoặc trước tiên giải quyết luôn thế ghim bằng ...Bxc3+, chấp nhận làm chồng tốt Trắng để đổi lấy một cột b nửa mở.
+          en: White looks to untangle the pin on c3 with a3 or Bd2, while also trying to finish development with Be3 or O-O-O, holding on to the e5 knight and hoping the piece activity offsets the pawn about to be lost on d4. Black plays ...Nxd4 at once to restore material equality and create fresh pressure on White's queen, or settles the pin first with ...Bxc3+, accepting doubled White pawns in exchange for a half-open b-file.
+          fr: Les Blancs cherchent à se dégager du clouage en c3 par a3 ou Bd2, tout en essayant de terminer leur développement par Be3 ou O-O-O, conservant le cavalier e5 et espérant que l'activité des pièces compense le pion sur le point d'être perdu en d4. Les Noirs jouent ...Nxd4 aussitôt pour rétablir l'égalité matérielle et créer une pression nouvelle sur la dame blanche, ou règlent d'abord le clouage par ...Bxc3+, acceptant des pions blancs doublés en échange d'une colonne b semi-ouverte.
+        basis:
+          by: chan
+          at: '2026-09-25'

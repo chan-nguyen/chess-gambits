@@ -1,0 +1,59 @@
+# Sicilian Defense: Coles Sicilian Gambit. Frozen defining line 1.e4 c5 2.d4 cxd4 3.Qxd4
+# Nc6 4.Qd1 Nf6 5.Bc4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js.
+id: sicilian-defense-coles-sicilian-gambit
+name: 'Sicilian Defense: Coles Sicilian Gambit'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, Qxd4, Nc6, Qd1, Nf6, Bc4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White has already moved the queen twice, 3.Qxd4 and then 4.Qd1, just to
+      get back home, and now the bishop on c4 is hit at once by 5...d5, meaning it must move
+      a third time before White has completed a single piece's worth of useful development.
+      Material never actually leaves the board — both sides still have everything — so the
+      whole point of calling this a gambit evaporates into a string of lost tempi rather
+      than a genuine sacrifice. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi hậu Trắng phải đi đi lại lại, Qxd4 rồi Qd1, chỉ để về lại gần ô xuất phát, Trắng đưa tượng ra c4 ở nước thứ năm. Đen đáp trả ngay bằng 5...d5, tấn công thẳng vào con tượng vừa ra quân và biến gambit này thành một chuỗi mất nhịp cho Trắng chứ không phải một sự hy sinh vật chất thực sự.
+    en: After White's queen has already gone back and forth, 3.Qxd4 and then 4.Qd1, just to return near its starting square, White brings the bishop out to c4 on move five. Black answers at once with 5...d5, hitting the bishop the moment it arrives and turning this so-called gambit into a string of lost White tempi rather than an actual material sacrifice.
+    fr: Après que la dame blanche a déjà fait l'aller-retour, 3.Qxd4 puis 4.Qd1, pour revenir près de sa case de départ, les Blancs sortent le fou en c4 au cinquième coup. Les Noirs répondent aussitôt par 5...d5, attaquant le fou dès son arrivée et transformant ce prétendu gambit en une série de temps perdus pour les Blancs plutôt qu'en un véritable sacrifice matériel.
+  dismissRest:
+    reason:
+      vi: Đen không chơi d5 ngay. Các nước khác như e6 hay g6 để con tượng c4 yên ổn thêm một lúc và Trắng có thêm thời gian hoàn tất phát triển trước khi trung tâm bị thách thức.
+      en: Black does not play d5 straight away. Anything else, such as e6 or g6, leaves the bishop on c4 undisturbed a little longer and gives White more time to finish development before the centre is challenged.
+      fr: Les Noirs ne jouent pas d5 tout de suite. Tout le reste, comme e6 ou g6, laisse le fou en c4 tranquille un peu plus longtemps et donne aux Blancs plus de temps pour achever leur développement avant que le centre ne soit remis en question.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi d5, tấn công thẳng vào con tượng vừa ra quân và giành ngay không gian trung tâm. Đây là cách đáp trả tự nhiên và hiệu quả nhất, khai thác việc hậu Trắng đã mất quá nhiều thời gian.
+        en: Black plays d5, hitting the newly developed bishop directly and grabbing central space at once. This is the most natural and effective answer, exploiting the fact that White's queen has already burned so much time.
+        fr: Les Noirs jouent d5, attaquant directement le fou tout juste développé et gagnant aussitôt de l'espace central. C'est la réponse la plus naturelle et la plus efficace, exploitant le fait que la dame blanche a déjà perdu tant de temps.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì hai bên đều 38 — vật chất hoàn toàn cân bằng, chưa hề có tốt hay quân nào đổi chác. Nhưng con tượng c4 giờ không còn ô nào thực sự tốt — lui về b3 hay d3 đều thụ động, còn đổi ở d5 thì chỉ giúp Đen phát triển thêm, trong khi cả hai mã Đen đã đứng ở vị trí lý tưởng của mình.
+          en: Count the point values and both sides are at 38 — material is perfectly level, nothing has actually been traded. But the bishop on c4 no longer has a genuinely good square — retreating to b3 or d3 is passive, and trading on d5 simply helps Black develop further, while both of Black's knights are already sitting on their ideal squares.
+          fr: En comptant les points, les deux camps sont à 38 — le matériel est parfaitement égal, rien n'a encore été échangé. Mais le fou en c4 n'a plus aucune case vraiment bonne — reculer en b3 ou d3 est passif, et échanger en d5 ne fait qu'aider les Noirs à développer davantage, tandis que les deux cavaliers noirs occupent déjà leurs cases idéales.
+        plan:
+          vi: Trắng chơi exd5 hay Bb3 và Nc3, cố gắng ổn định lại và bắt kịp về phát triển sau khi đã mất quá nhiều nhịp. Đen chơi Nxd5 hay đơn giản là tiếp tục với e6 và Be7, hoàn tất phát triển thoải mái với thế cờ dễ chơi hơn hẳn.
+          en: White plays exd5 or Bb3 and Nc3, trying to settle the position down and catch up on development after burning so many tempi. Black plays Nxd5, or simply continues with e6 and Be7, completing development comfortably with the easier position.
+          fr: Les Blancs jouent exd5 ou Bb3 et Nc3, essayant de stabiliser la position et de rattraper leur retard de développement après avoir perdu tant de temps. Les Noirs jouent Nxd5, ou poursuivent simplement par e6 et Be7, achevant leur développement confortablement avec la position la plus facile à jouer.
+        basis:
+          by: chan
+          at: '2026-09-25'

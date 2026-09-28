@@ -1,0 +1,65 @@
+# Semi-Slav Defense: Marshall Gambit, Main Line. Frozen defining line 1.d4 d5 2.c4 e6
+# 3.Nc3 c6 4.e4 dxe4 5.Nxe4 Bb4+ 6.Bd2, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js.
+# The modelled reply 6...Qxd4 leaves Black's own bishop on b4 hanging once the pawn on c4
+# cuts the queen's defence of it, which is exactly what `unsettled` records below.
+id: semi-slav-defense-marshall-gambit-main-line
+name: 'Semi-Slav Defense: Marshall Gambit, Main Line'
+eco: D31
+category: gambit
+side: white
+definingLine: [d4, d5, c4, e6, Nc3, c6, e4, dxe4, Nxe4, Bb4+, Bd2]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White gives up the e4 pawn and wins it straight back with 5.Nxe4, so
+      material is level the moment 5...Bb4+ forces 6.Bd2. The only pawn genuinely in
+      question is the one Black then grabs with 6...Qxd4, and that capture leaves the
+      bishop on b4 hanging for White to win back at once, so the position settles into a
+      simple, balanced one with an actively centralised knight on e4. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi thí tốt e4 và lấy lại ngay bằng 5.Nxe4, Trắng đối mặt với 5...Bb4+, một nước chiếu tranh thủ buộc phải chặn bằng 6.Bd2 trước khi có thể hoàn tất phát triển. Đây là nhánh chính của Marshall Gambit trong phòng thủ Nửa-Slav, nơi Đen dùng nhịp chiếu để câu giờ trước khi quyết định có ăn thêm tốt d4 hay không.
+    en: After offering the e4 pawn and winning it straight back with 5.Nxe4, White meets 5...Bb4+, a check that gains a tempo and forces 6.Bd2 before development can continue. This is the main line of the Marshall Gambit in the Semi-Slav, where Black uses the check to stall for time before deciding whether to grab the d4 pawn as well.
+    fr: Après avoir offert le pion e4 et l'avoir aussitôt récupéré par 5.Nxe4, les Blancs font face à 5...Bb4+, un échec qui gagne un temps et force 6.Bd2 avant de pouvoir poursuivre le développement. C'est la ligne principale du Gambit Marshall dans la défense semi-slave, où les Noirs utilisent l'échec pour gagner du temps avant de décider de prendre aussi le pion d4.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tiếp con tốt d4. Các nước khác như lui tượng về e7 hay Bd6, hoặc đơn giản là phát triển bằng Nf6, để nguyên con tốt d4 trên bàn cờ và giữ thế cân bằng vật chất đơn giản mà không mạo hiểm gì thêm.
+      en: Black does not take the d4 pawn as well. Anything else, such as retreating the bishop to e7 or d6, or simply developing with Nf6, leaves the d4 pawn on the board and keeps a simple, materially even position without taking on any extra risk.
+      fr: Les Noirs ne prennent pas aussi le pion d4. Tout le reste, comme reculer le fou en e7 ou d6, ou simplement développer par Nf6, laisse le pion d4 sur l'échiquier et conserve une position simple et matériellement égale sans prendre de risque supplémentaire.
+  children:
+    - ply: Qxd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen tranh thủ ăn luôn con tốt d4 bằng hậu, tận dụng việc tượng Trắng vừa phải lui về d2 để chặn chiếu. Đây là cách chơi tham vọng nhất, biến nhịp chiếu vừa rồi thành một tốt thực sự.
+        en: Black grabs the d4 pawn with the queen as well, exploiting the fact that White's bishop has just had to retreat to d2 to block the check. This is the most ambitious way to play it, turning the check just given into an actual extra pawn.
+        fr: Les Noirs prennent aussi le pion d4 avec la dame, profitant du fait que le fou blanc vient de devoir reculer en d2 pour bloquer l'échec. C'est la manière la plus ambitieuse de jouer, transformant l'échec qui vient d'être donné en un véritable pion supplémentaire.
+      unsettled: >-
+        Bxb4 is going free and the evaluation says so — White's dark-squared bishop simply
+        takes back the piece that was left unguarded once the pawn on c4 cut the queen's
+        defence of b4, so the pawn Black just grabbed on d4 is not the end of the story.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 37, Đen 38, nghĩa là Đen tạm thời hơn đúng một tốt sau khi ăn ở d4. Nhưng con tượng Đen trên b4 hiện không còn được hậu che chở nữa — vì tốt c4 của Trắng chắn mất đường chéo — nên nó đang bị treo trước Bxb4 của Trắng, sẽ đổi cán cân vật chất ngay lập tức.
+          en: Count the point values and it is 37 for White, 38 for Black, meaning Black is nominally up a pawn after grabbing the one on d4. But Black's bishop on b4 is no longer protected by the queen — White's own pawn on c4 blocks that diagonal — so it is hanging to White's Bxb4, which will flip the material balance back at once.
+          fr: En comptant les points, cela donne 37 pour les Blancs, 38 pour les Noirs, ce qui signifie que les Noirs ont nominalement un pion d'avance après avoir pris celui en d4. Mais le fou noir en b4 n'est plus protégé par la dame — le propre pion c4 des Blancs bloque cette diagonale — il est donc en prise à Bxb4, ce qui rétablira aussitôt l'équilibre matériel.
+        plan:
+          vi: Trắng chơi Bxb4 ngay, lấy lại quân và giành lại thế cân bằng vật chất, sau đó tiếp tục với Nf3 và Be2 để hoàn tất phát triển với một mã trung tâm rất mạnh trên e4. Đen chơi Qd8 hay Qb6 rút hậu về nơi an toàn, chấp nhận đổi ngang vật chất và tìm cách hoàn tất phát triển của mình.
+          en: White plays Bxb4 at once, winning back the piece and restoring material balance, then continues with Nf3 and Be2 to finish development with a very strong centralised knight on e4. Black plays Qd8 or Qb6, pulling the queen back to safety, accepting the material trade and looking to complete development in turn.
+          fr: Les Blancs jouent aussitôt Bxb4, regagnant la pièce et rétablissant l'équilibre matériel, puis poursuivent par Nf3 et Be2 pour achever leur développement avec un cavalier très fort et centralisé en e4. Les Noirs jouent Qd8 ou Qb6, ramenant la dame en sécurité, acceptant l'échange matériel et cherchant à leur tour à achever leur développement.
+        basis:
+          by: chan
+          at: '2026-09-25'

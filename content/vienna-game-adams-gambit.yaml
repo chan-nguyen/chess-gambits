@@ -1,0 +1,61 @@
+# Vienna Game: Adams' Gambit. Frozen defining line 1.e4 e5 2.Nc3 Nf6 3.Bc4 Nxe4 4.Qh5 Nd6
+# 5.Bb3 Nc6 6.d4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). It shares its first four plies with the Frankenstein-
+# Dracula Variation before diverging at move 6. Replayed with chess.js before being
+# annotated.
+id: vienna-game-adams-gambit
+name: "Vienna Game: Adams' Gambit"
+eco: C27
+category: gambit
+side: white
+definingLine: [e4, e5, Nc3, Nf6, Bc4, Nxe4, Qh5, Nd6, Bb3, Nc6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White has given up the e- and d-pawns for a queen sortie and quick
+      development, but nothing here forces anything: no white piece yet attacks f7 or any
+      other target near Black's king, and the real return is modest — Black's own knight,
+      chased to d6 earlier, still blocks its own d-pawn and its own dark-squared bishop. Two
+      clean pawns is a lot to ask that single inconvenience to make up for. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đi theo đúng nhịp độ ép buộc của biến Frankenstein-Dracula, Trắng đã bỏ hai tốt trung tâm để đuổi mã Đen về ô d6 vốn không thoải mái. Sau 5...Nc6, Trắng lập tức đánh trung tâm bằng 6.d4, mở đường cho hậu và tượng ngay khi con mã ấy vẫn còn cản trở tốt d và tượng ô đen của chính Đen.
+    en: Following the same forcing start as the Frankenstein-Dracula Variation, White has already spent two central pawns to chase Black's knight to the awkward square d6. After 5...Nc6, White strikes at once with 6.d4, opening the centre for the queen and bishop while that knight is still in the way of Black's own d-pawn and dark-squared bishop.
+    fr: En suivant le même début forcé que la Variante Frankenstein-Dracula, les Blancs ont déjà sacrifié deux pions centraux pour chasser le cavalier noir vers la case inconfortable d6. Après 5...Nc6, les Blancs frappent aussitôt au centre par 6.d4, ouvrant la voie à la dame et au fou pendant que ce cavalier gêne encore le pion d et le fou de cases noires des Noirs eux-mêmes.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt d4. Những nước khác như ...Nb4 nhắm vào tượng b3, hay các nước phát triển bình thường, đều để nguyên tốt d4 của Trắng trên bàn cờ và không giải quyết được sự cồng kềnh của mã d6, nên câu trả lời của Trắng không đổi trong các trường hợp đó.
+      en: Black does not capture on d4. Other tries, such as ...Nb4 hitting the bishop on b3 or a plain developing move, leave White's d4 pawn standing and do nothing to untangle the awkward knight on d6, so White's answer does not change in those cases.
+      fr: Les Noirs ne prennent pas en d4. D'autres essais, comme ...Nb4 attaquant le fou en b3 ou un simple coup de développement, laissent le pion d4 blanc sur l'échiquier et ne résolvent en rien l'encombrement du cavalier en d6, donc la réponse blanche ne change pas dans ces cas.
+  children:
+    - ply: exd4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt d4 bằng chính con tốt e5, cách chơi trực diện nhất, giữ nguyên vật chất hơn mà không cần giải quyết ngay sự cồng kềnh của mã d6.
+        en: Black captures on d4 with the e5 pawn, the most direct choice, banking the extra material without yet having to deal with the awkwardness of the knight on d6.
+        fr: Les Noirs prennent en d4 avec le pion e5, le choix le plus direct, engrangeant le matériel supplémentaire sans avoir encore à régler l'inconfort du cavalier en d6.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm quân, Trắng 37 điểm, Đen 39 điểm, nghĩa là Trắng đang kém đúng hai tốt sạch mà chưa đòi lại được gì. Bù lại, con mã Đen ở d6, bị buộc phải lui về đó từ trước, hiện đang chắn ngay trước mặt tốt d7 lẫn tượng ô đen f8 của chính Đen, khiến cả hai quân ấy chưa thể ra sân.
+          en: Count the material and it is 37 for White against 39 for Black — White is down two clean pawns with nothing won back yet. In return, Black's own knight on d6, forced there earlier, sits directly in front of both the d7 pawn and the f8 bishop, keeping both of those pieces stuck at home for now.
+          fr: Comptez le matériel, 37 pour les Blancs contre 39 pour les Noirs — les Blancs sont en retard de deux pions nets sans rien avoir récupéré. En échange, le propre cavalier noir en d6, contraint de s'y réfugier plus tôt, se tient juste devant le pion d7 et le fou de cases noires f8, empêchant ces deux pièces de sortir pour l'instant.
+        plan:
+          vi: Trắng chơi Nf3, nhập thành và Re1 hay Bd2, cố dùng nhịp phát triển để tạo sức ép trước khi Đen kịp gỡ rối đội hình. Đen chơi ...Be7, nhập thành, rồi tìm cách đưa mã d6 đi nơi khác, chẳng hạn ...Nf5, để giải phóng tốt d7 và tượng f8, củng cố vật chất đang có.
+          en: White plays Nf3, castles and follows with Re1 or Bd2, trying to use the development lead to create threats before Black can untangle. Black plays ...Be7, castles, and looks to reroute the knight away from d6, for instance with ...Nf5, freeing the d7 pawn and the f8 bishop and consolidating the extra material.
+          fr: Les Blancs jouent Nf3, roquent puis enchaînent par Re1 ou Bd2, essayant d'utiliser l'avance de développement pour créer des menaces avant que les Noirs ne démêlent leur position. Les Noirs jouent ...Be7, roquent, puis cherchent à reloger le cavalier hors de d6, par exemple par ...Nf5, libérant le pion d7 et le fou f8 et consolidant le matériel supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

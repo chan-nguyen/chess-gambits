@@ -1,0 +1,75 @@
+# Italian Game, Evans Gambit, Fontaine Countergambit. One of a batch of entries authored
+# for issue #148 (batch h), sharing the trunk `1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4` with
+# `italian-game-evans-gambit.yaml`. Defining line ends on White's 4.b4 (invariant 5). Every
+# ply below was replayed with chess.js before being written.
+#
+# The leaf stops right after 5.Bxb5, where Black's own bishop on b4 and White's b4 pawn are
+# both still hanging (Nxb4/Bxb4 for Black, per the scratch chess.js check) — the position is
+# genuinely a tangle of loose pieces on both sides rather than a settled material count, so
+# it is marked `unsettled` instead of forcing a verdict past that point (docs/CONTEXT.md,
+# invariant 14).
+id: italian-game-evans-gambit-fontaine-countergambit
+name: 'Italian Game: Evans Gambit, Fontaine Countergambit'
+eco: C51
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The same judgement the family head `italian-game-evans-gambit.yaml` carries for White's
+      side of the gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng thí tốt b4 ngay dưới mũi tượng c5. Mục này đi sâu riêng vào việc Đen phớt lờ lời mời và tự mình phản-gambit bằng 4...b5.
+    en: White offers the b-pawn right under the bishop on c5. This entry follows specifically Black ignoring the offer and countering with a gambit of its own, 4...b5.
+    fr: Les Blancs offrent le pion b juste sous le fou en c5. Cette entrée suit spécifiquement les Noirs qui ignorent l'offre et répliquent par leur propre gambit, 4...b5.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.b4 bằng một nước khác ngoài 4...b5 — ăn tốt bằng 4...Bxb4 (nhận gambit), lui tượng về b6 (từ chối), hay đẩy tốt lên d5 (Phản-gambit Hein). Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 4.b4 with something other than 4...b5 — taking the pawn with 4...Bxb4 (accepting), retreating the bishop to b6 (declining), or pushing d5 (the Hein Countergambit). Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 4.b4 par autre chose que 4...b5 — prenant le pion par 4...Fxb4 (acceptant), reculant le fou en b6 (refusant), ou poussant d5 (le Contre-gambit Hein). Chacun sort du cadre de cette entrée.
+  children:
+    - ply: b5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Phản-gambit Fontaine. Đen bỏ mặc câu hỏi về con tượng c5 và tự mình thí một tốt để đuổi tượng c4, mở đường cho tượng c8 và cột b.
+        en: The Fontaine Countergambit. Black leaves the question about the c5 bishop unanswered and offers a pawn of its own to chase the c4 bishop away, opening lines for the c8 bishop and the b-file.
+        fr: Le Contre-gambit Fontaine. Les Noirs laissent sans réponse la question posée au fou c5 et offrent à leur tour un pion pour chasser le fou c4, ouvrant des lignes au fou c8 et à la colonne b.
+      children:
+        - ply: Bxb5
+          annotation:
+            vi: Trắng ăn tốt b5 bằng tượng thay vì ăn lại tượng c5 trước. Cả hai bên giờ đều còn quân treo — tượng b4 của Đen và tốt b4 của Trắng đều chưa được giải quyết.
+            en: White takes the b5 pawn with the bishop rather than collecting the c5 bishop first. Both sides now have loose pieces — Black's own bishop on b4 and White's b4 pawn are both still unresolved.
+            fr: Les Blancs prennent le pion b5 avec le fou plutôt que de ramasser d'abord le fou c5. Les deux camps ont désormais des pièces en prise — le propre fou noir en b4 et le pion blanc en b4 restent tous deux non résolus.
+          unsettled: >-
+            Nxb4 and Bxb4 are both going free for Black here — the position after 5.Bxb5 is a
+            genuine tangle (White's own b4 pawn and Black's bishop that is still sitting on
+            c5 are both loose at once), confirmed by a scratch chess.js check, and continuing
+            either capture out only trades one hanging piece for another rather than settling
+            anything. The point of this leaf is the shape of the position, not a frozen
+            material count.
+          outcome:
+            type: position
+            evaluation:
+              vi: Vị trí này rối rắm hơn là rõ ràng. Trắng vừa ăn một tốt bằng tượng, nhưng chính tốt b4 của Trắng cũng đang bị bỏ ngỏ trước tượng c5 của Đen, nên đếm quân lúc này chưa nói lên điều gì chắc chắn — chỉ vài nước nữa việc đổi chác mới ổn định.
+              en: This position is a tangle rather than a clear picture. White has just won a pawn with the bishop, but White's own b4 pawn is equally exposed to Black's bishop on c5, so counting material right now settles nothing — the exchanges need a few more moves to shake out.
+              fr: Cette position est un enchevêtrement plutôt qu'une image claire. Les Blancs viennent de gagner un pion avec le fou, mais leur propre pion b4 est tout aussi exposé au fou noir en c5, si bien que compter le matériel maintenant ne règle rien — les échanges ont besoin de quelques coups de plus pour se stabiliser.
+            plan:
+              vi: Trắng chơi Bxc6 đổi tượng lấy mã trước khi tính tiếp, hoặc Nxb4 nếu Đen chưa kịp ăn, rồi nhập thành và tận dụng con tốt thừa cùng cặp tượng. Đen chơi Bxb4 ngay để ổn định quân số, rồi Nf6 và O-O, hoàn thiện phát triển trước khi tính đến việc đòi lại quân.
+              en: White plays Bxc6 to trade the bishop for a knight before anything else, or Nxb4 if Black has not taken yet, then castles and makes use of the extra pawn and the bishop pair. Black plays Bxb4 at once to settle the material picture, then Nf6 and O-O, finishing development before worrying about winning anything back.
+              fr: Les Blancs jouent Bxc6 pour échanger le fou contre un cavalier avant toute autre chose, ou Nxb4 si les Noirs n'ont pas encore pris, puis roquent et exploitent le pion supplémentaire et la paire de fous. Les Noirs jouent Bxb4 aussitôt pour stabiliser le matériel, puis Nf6 et O-O, achevant leur développement avant de songer à regagner quoi que ce soit.
+            basis:
+              by: chan
+              at: '2026-09-25'

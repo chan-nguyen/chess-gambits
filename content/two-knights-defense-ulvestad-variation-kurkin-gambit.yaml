@@ -1,0 +1,68 @@
+# Italian Game: Two Knights Defense, Ulvestad Variation, Kurkin Gambit. Frozen defining
+# line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 b5 6.Bf1 h6 7.Nxf7, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Two
+# more captures — dxc6 and Bxb5 — are still hanging after the modelled reply, and the
+# entry says so with `unsettled`. The line below was replayed with chess.js before being
+# annotated.
+id: two-knights-defense-ulvestad-variation-kurkin-gambit
+name: 'Italian Game: Two Knights Defense, Ulvestad Variation, Kurkin Gambit'
+eco: C57
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, b5, Bf1, h6, Nxf7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White gives up a whole knight for one pawn to drag Black's king to f7.
+      Two more captures are hanging next move — dxc6 wins back a whole knight, and Bxb5
+      wins a further pawn — so White's follow-up here is more concrete than a bare piece
+      sacrifice, and once the more significant of the two, dxc6, is cashed in, White is
+      only slightly worse rather than a full piece down. But nothing forces mate, Black's
+      king on f7 is not under any immediate fire, and that is still short of full
+      compensation for the piece given up. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng hy sinh cả một con mã bằng 7.Nxf7, buộc vua Đen phải rời khỏi vị trí ban đầu để ăn lại. Đây là ý tưởng của Kurkin Gambit trong biến Ulvestad — đổi mã lấy tốt và quyền nhập thành của Đen, cộng thêm hai đòn ăn quân khác vẫn còn treo lơ lửng.
+    en: White sacrifices an entire knight with 7.Nxf7, forcing Black's king to leave its starting square to recapture. This is the idea behind the Kurkin Gambit in the Ulvestad Variation — a knight for a pawn and Black's castling rights, plus two more captures still hanging.
+    fr: Les Blancs sacrifient un cavalier entier avec 7.Nxf7, forçant le roi noir à quitter sa case de départ pour reprendre. C'est l'idée du Gambit Kurkin dans la Variante Ulvestad — un cavalier contre un pion et le droit au roque des Noirs, plus deux autres captures encore en suspens.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại con mã bằng vua. Bất kỳ nước nào khác đều để con mã Trắng đứng nguyên trên f7, nơi nó vừa ăn tốt vừa dọa xe h8, nên lời đề nghị đổi chác này vẫn chưa được giải quyết theo cách khác.
+      en: Black does not recapture the knight with the king. Anything else leaves White's knight sitting on f7, where it has just won a pawn and is attacking the h8-rook, so this particular trade is not resolved any other way.
+      fr: Les Noirs ne reprennent pas le cavalier avec le roi. Tout le reste laisse le cavalier blanc en f7, où il vient de gagner un pion et attaque la tour h8, donc cet échange précis n'est pas résolu autrement.
+  children:
+    - ply: Kxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại con mã bằng vua, cách duy nhất hợp lý để không mất thêm xe h8 và giải quyết dứt điểm con mã trên f7. Vua Đen giờ đứng lộ ở f7, mất hẳn quyền nhập thành.
+        en: Black recaptures the knight with the king, the only sensible way to avoid losing the h8-rook as well and to deal with the knight on f7 once and for all. Black's king now stands exposed on f7, having lost the right to castle entirely.
+        fr: Les Noirs reprennent le cavalier avec le roi, la seule façon sensée d'éviter de perdre aussi la tour h8 et de régler définitivement le sort du cavalier en f7. Le roi noir se retrouve maintenant exposé en f7, ayant perdu tout droit au roque.
+      unsettled: >-
+        dxc6 is going free and wins back a whole knight — the pawn sitting on d5 attacks
+        the completely undefended knight on c6, and Bxb5 is hanging too, so White's
+        follow-up here is more than a bare piece sacrifice.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm ngay bây giờ thì Trắng 36, Đen 37 — Trắng kém đúng một điểm, tức là đổi một mã lấy một tốt rồi trừ đi hai tốt Trắng đã ăn được trước đó (ở d5 và f7). Nhưng dxc6 đang treo, ăn không con mã c6 hoàn toàn không ai bảo vệ, và Bxb5 cũng treo nốt tốt b5 — nếu đổi được dxc6, Trắng chỉ còn kém rất ít chứ không phải thiếu hẳn một quân. Bù lại, vua Đen đã dạt ra f7, mất quyền nhập thành và đứng ngay trên đường chéo a2-g8 lẫn cột f, dù hiện tại chưa có quân Trắng nào trực tiếp nhắm vào đó.
+          en: Counting points right now, it is 36 for White, 37 for Black — White is down exactly one point, a knight traded for a pawn after netting out the two pawns White had already won (on d5 and f7). But dxc6 is hanging, winning the completely undefended knight on c6 outright, and Bxb5 hangs a further pawn too — if dxc6 is cashed in, White is only barely worse rather than a full piece down. In return, Black's king has been driven to f7, has lost the right to castle, and now sits on both the a2-g8 diagonal and the f-file, though nothing White has is bearing on either of those yet.
+          fr: En comptant les points maintenant, 36 pour les Blancs, 37 pour les Noirs — les Blancs sont en retard d'exactement un point, un cavalier échangé contre un pion après déduction des deux pions déjà gagnés par les Blancs (en d5 et f7). Mais dxc6 est en suspens, gagnant purement et simplement le cavalier c6 totalement indéfendu, et Bxb5 met aussi un pion en jeu — si dxc6 est encaissé, les Blancs ne seront que très légèrement en retard plutôt qu'une pièce entière en moins. En contrepartie, le roi noir a été poussé en f7, a perdu le droit au roque, et se trouve désormais à la fois sur la diagonale a2-g8 et sur la colonne f, bien que rien du côté blanc ne vise encore l'une ou l'autre.
+        plan:
+          vi: Trắng chơi dxc6 ngay để đòi lại quân, hoặc Bxb5 trước rồi tính tiếp, cố khai thác vị trí vua Đen bằng Qf3+ hay d4 trước khi Đen kịp củng cố. Đen chơi Kg8 hay Qd6, gấp rút đưa vua về nơi an toàn hơn và giữ chặt con mã c6 hoặc tốt b5 nếu còn kịp.
+          en: White plays dxc6 at once to win back material, or Bxb5 first and figures out the rest, trying to exploit Black's king position with Qf3+ or d4 before Black can consolidate. Black plays Kg8 or Qd6, rushing the king to safety and trying to hold on to the c6-knight or the b5-pawn if there is still time.
+          fr: Les Blancs jouent dxc6 aussitôt pour regagner du matériel, ou Bxb5 d'abord et avisent ensuite, essayant d'exploiter la position du roi noir par Qf3+ ou d4 avant que les Noirs ne puissent consolider. Les Noirs jouent Kg8 ou Qd6, mettant le roi à l'abri au plus vite et essayant de sauver le cavalier c6 ou le pion b5 s'il est encore temps.
+        basis:
+          by: chan
+          at: '2026-09-25'

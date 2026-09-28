@@ -1,0 +1,57 @@
+# Ware Opening: Ware Gambit. Frozen defining line 1.a4 e5 2.a5 d5 3.e3 f5 4.a6, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated.
+id: ware-opening-ware-gambit
+name: 'Ware Opening: Ware Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [a4, e5, a5, d5, e3, f5, a6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Four moves in, White has played the a-pawn three times and developed
+      nothing at all, while Black has built an imposing centre with pawns on d5, e5 and f5.
+      4.a6 simply hands over the a-pawn for nothing, since bxa6 wins it cleanly with no
+      follow-up in sight. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Đen đã dựng một trung tâm áp đảo với ba tốt d5, e5, f5, Trắng vẫn đẩy tốt a lần thứ ba lên a6, tấn công b7 và mời Đen ăn lại bằng bxa6, hy vọng những điểm yếu để lại còn quan trọng hơn con tốt vừa mất.
+    en: After Black has already built an imposing centre with three pawns on d5, e5 and f5, White pushes the a-pawn a third time, to a6, attacking b7 and inviting bxa6, hoping the resulting weaknesses matter more than the pawn just given up.
+    fr: Alors que les Noirs ont déjà bâti un centre imposant avec trois pions en d5, e5 et f5, les Blancs poussent le pion a une troisième fois, jusqu'en a6, attaquant b7 et invitant bxa6, en espérant que les faiblesses laissées comptent plus que le pion abandonné.
+  dismissRest:
+    reason:
+      vi: Đen không bỏ mặc con tốt a6. Bất kỳ nước nào khác ngoài bxa6 đều để Trắng chơi tiếp axb7, đánh chĩa vào cả xe a8 lẫn tượng c8 cùng lúc, nên ăn ngay gần như là lựa chọn hợp lý duy nhất; mọi nước hợp lệ khác đều rơi vào đúng cú chĩa đó.
+      en: Black does not leave the a6 pawn alone. Anything other than bxa6 lets White continue with axb7, forking the rook on a8 and the bishop on c8 at once, so capturing right away is effectively the only reasonable choice; every other legal try walks straight into that fork.
+      fr: Les Noirs ne laissent pas le pion a6 tranquille. Tout coup autre que bxa6 permet aux Blancs de poursuivre par axb7, fourchettant à la fois la tour en a8 et le fou en c8, si bien que capturer tout de suite est en pratique le seul choix raisonnable ; tout autre coup légal tombe droit dans cette fourchette.
+  children:
+    - ply: bxa6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại bằng tốt b, cách duy nhất vừa loại bỏ con tốt đang tấn công b7 vừa hóa giải luôn đe dọa axb7 chĩa vào xe và tượng.
+        en: Black recaptures with the b-pawn, the only way to remove the pawn attacking b7 while also meeting the threat of axb7 forking the rook and bishop.
+        fr: Les Noirs reprennent avec le pion b, la seule façon de supprimer le pion qui attaque b7 tout en parant la menace d'axb7 fourchettant la tour et le fou.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy — Trắng kém đúng một tốt sạch sau bốn nước chỉ toàn đẩy tốt a mà chưa đưa ra được lấy một quân nhẹ nào. Việc ăn lại khiến tốt a của Đen bị chồng ở a6 và a7, một khiếm khuyết nhỏ, nhưng chẳng thấm vào đâu so với việc Trắng chưa phát triển gì trong khi Đen đã có sẵn cả một trung tâm ba tốt d5-e5-f5.
+          en: Count the pawns and it is eight for Black, seven for White — White is down a clean pawn after four moves that did nothing but push the a-pawn, without a single minor piece out yet. The recapture does leave Black's a-pawns doubled on a6 and a7, a minor blemish, but that is nothing next to White having no development at all against Black's ready-made three-pawn centre on d5, e5 and f5.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Blancs sont en retard d'un pion net après quatre coups qui n'ont fait que pousser le pion a, sans la moindre pièce mineure sortie. La reprise laisse certes les pions a noirs doublés en a6 et a7, un défaut mineur, mais cela ne pèse rien face à l'absence totale de développement des Blancs contre le centre de trois pions d5-e5-f5 déjà en place chez les Noirs.
+        plan:
+          vi: Trắng cố gắng bắt kịp bằng Nf3, d4 và Nc3 hay Bc4, tranh thủ những nước phát triển muộn màng và hy vọng khai thác được cặp tốt a chồng của Đen về sau. Đen chơi Nf6, Nc6 hay Bd6, hoàn tất phát triển, giữ vững trung tâm lớn và con tốt thừa đã có.
+          en: White tries to catch up with Nf3, d4 and Nc3 or Bc4, playing the belated development moves and hoping to target Black's doubled a-pawns later. Black plays Nf6, Nc6 or Bd6, finishing development and holding on to both the big centre and the extra pawn.
+          fr: Les Blancs essaient de rattraper leur retard avec Nf3, d4 et Nc3 ou Bc4, jouant ces coups de développement tardifs et espérant viser plus tard les pions a doublés des Noirs. Les Noirs jouent Nf6, Nc6 ou Bd6, achevant leur développement et conservant à la fois le grand centre et le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

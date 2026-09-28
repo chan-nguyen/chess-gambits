@@ -1,0 +1,65 @@
+# Sicilian Defense: Double-Dutch Gambit. Frozen defining line 1.e4 c5 2.Nf3 f5 3.exf5 Nh6,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Every ply below was replayed with chess.js. The modelled reply 4.d4 leaves
+# White's own f5 pawn hanging to the knight on h6, which is exactly what `unsettled` records
+# below.
+id: sicilian-defense-double-dutch-gambit
+name: 'Sicilian Defense: Double-Dutch Gambit'
+eco: B27
+category: gambit
+side: black
+definingLine: [e4, c5, Nf3, f5, exf5, Nh6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers the f-pawn at once with 2...f5, and after 3.exf5 does not
+      even recapture straight away, instead developing with 3...Nh6 and leaving the pawn on
+      f5 hanging for a move. Even once the pawn does come back with ...Nxf5, Black's own
+      kingside has already been loosened by the f-pawn's advance, and the knight's detour to
+      h6 is time that could have gone to normal development. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Ngay từ nước thứ hai, Đen chơi f5!?, mời Trắng ăn tốt bằng exf5. Thay vì ăn lại ngay, Đen chơi 3...Nh6, định sẽ ăn lại tốt f5 bằng mã sau, đổi lấy việc câu giờ và một cấu trúc tốt khá lỏng lẻo ở cánh vua.
+    en: As early as move two, Black plays f5!?, inviting White to take the pawn with exf5. Rather than recapturing at once, Black plays 3...Nh6, planning to win the f5 pawn back with the knight later, in exchange for stalling and a rather loose kingside pawn structure.
+    fr: Dès le deuxième coup, les Noirs jouent f5!?, invitant les Blancs à prendre le pion par exf5. Plutôt que de reprendre aussitôt, les Noirs jouent 3...Nh6, avec l'idée de regagner le pion f5 avec le cavalier plus tard, en échange de gagner du temps et d'une structure de pions assez lâche à l'aile roi.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi d4. Các nước khác như Nc3 hay Be2 vẫn để tốt f5 đứng đó, và Đen sẽ ăn lại bằng Nxf5 ngay khi có dịp mà không mất thêm gì.
+      en: White does not play d4. Anything else, such as Nc3 or Be2, still leaves the f5 pawn where it is, and Black recaptures it with Nxf5 at the first opportunity without losing anything more.
+      fr: Les Blancs ne jouent pas d4. Tout le reste, comme Nc3 ou Be2, laisse toujours le pion f5 en place, et les Noirs le reprennent par Nxf5 à la première occasion sans rien perdre de plus.
+  children:
+    - ply: d4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng không vội bảo vệ tốt f5 mà chơi thẳng d4, mở trung tâm và tấn công tốt c5 của Đen, mặc kệ chuyện tốt f5 đang bị treo trước con mã h6.
+        en: Instead of worrying about the f5 pawn, White plays the direct d4, opening the centre and hitting Black's c5 pawn, leaving the f5 pawn hanging to the knight on h6 for the moment.
+        fr: Plutôt que de se soucier du pion f5, les Blancs jouent directement d4, ouvrant le centre et attaquant le pion c5 noir, laissant pour l'instant le pion f5 en prise au cavalier en h6.
+      unsettled: >-
+        Nxf5 is going free and the evaluation says so — Black simply collects the pawn back
+        next move, which is the whole point of stopping the line exactly here rather than
+        one ply later.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 39, Đen 38 — Trắng tạm thời hơn một tốt, chính là con tốt f5 chưa bị ăn lại. Nhưng cột f giờ đã nửa mở đối với Đen, vì không còn tốt f nữa, một nhược điểm lâu dài sẽ luôn hướng về phía vua Đen bất cứ khi nào vua nhập thành cánh đó, còn con mã h6 thì vẫn đứng khá lệch, chưa tham gia được vào cuộc chơi trung tâm.
+          en: Count the point values and it is 39 for White, 38 for Black — White is nominally a pawn up, and that pawn is the one on f5 that has not been recaptured yet. But the f-file is already half-open for Black, since there is no f-pawn left to defend it, a lasting concern that will point straight at Black's own king whenever it castles that way, and the knight on h6 is still sitting off to the side, not yet part of the fight for the centre.
+          fr: En comptant les points, cela donne 39 pour les Blancs, 38 pour les Noirs — les Blancs ont nominalement un pion d'avance, celui en f5 qui n'a pas encore été repris. Mais la colonne f est déjà semi-ouverte pour les Noirs, puisqu'il n'y a plus de pion f pour la défendre, un souci durable qui visera directement le roi noir dès qu'il roquera de ce côté, et le cavalier en h6 reste excentré, pas encore impliqué dans la lutte pour le centre.
+        plan:
+          vi: Trắng chơi dxc5 hay Nc3, tranh thủ ưu thế trung tâm và sự phát triển nhanh hơn trong khi tốt f5 tự lo liệu. Đen chơi Nxf5 lấy lại tốt, rồi g6 và Bg7, cố gắng hoàn tất phát triển và che chắn cho ô yếu quanh vua trước khi nhập thành.
+          en: White plays dxc5 or Nc3, pressing the central and development lead while the f5 pawn takes care of itself. Black plays Nxf5 to win the pawn back, then g6 and Bg7, trying to complete development and shore up the weak squares around the king before castling.
+          fr: Les Blancs jouent dxc5 ou Nc3, exploitant leur avance centrale et leur avance de développement pendant que le pion f5 se règle de lui-même. Les Noirs jouent Nxf5 pour regagner le pion, puis g6 et Bg7, essayant d'achever leur développement et de protéger les cases faibles autour du roi avant de roquer.
+        basis:
+          by: chan
+          at: '2026-09-25'

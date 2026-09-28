@@ -1,0 +1,59 @@
+# Torre Attack: Classical Defense, Petrosian Gambit. Frozen defining line 1.d4 Nf6 2.Nf3
+# e6 3.Bg5 c5 4.e3 b6 5.d5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js before being
+# annotated.
+id: torre-attack-classical-defense-petrosian-gambit
+name: 'Torre Attack: Classical Defense, Petrosian Gambit'
+eco: A46
+category: gambit
+side: white
+definingLine: [d4, Nf6, Nf3, e6, Bg5, c5, e3, b6, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. White pushes the d-pawn into Black's position, offering it in exchange
+      for saddling Black with doubled d-pawns after the natural recapture. Black simply
+      takes with 5...exd5 and ends up a clean pawn up with a slightly worse pawn structure
+      to show for it — real, but not shown to be worth a full pawn yet. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đẩy tốt lên d5, thí con tốt này để đổi lấy việc buộc Đen phải ăn lại bằng tốt e, tạo ra cặp tốt d chồng lên nhau cho Đen sau này. Đây là ý tưởng của Petrosian Gambit trong Torre Attack.
+    en: White pushes the pawn to d5, offering it in exchange for forcing Black to recapture with the e-pawn, which will leave Black with doubled d-pawns later on. This is the idea behind the Petrosian Gambit in the Torre Attack.
+    fr: Les Blancs poussent le pion en d5, l'offrant en échange de forcer les Noirs à reprendre avec le pion e, ce qui leur laissera des pions d doublés par la suite. C'est l'idée du Gambit Petrosian dans l'Attaque Torre.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại tốt d5 bằng tốt e. Con mã f6 đang bị ghim vào hậu d8 bởi tượng g5, nên nó không thể là quân đứng ra giải quyết con tốt d5; các nước khác — để tốt e6 bị ăn, đẩy nó lên e5, hay tìm cách khác — đều không dẫn tới cấu trúc tốt d kép đang được phân tích ở đây.
+      en: Black does not recapture the d5 pawn with the e-pawn. The f6-knight is pinned to the queen on d8 by the bishop on g5, so it cannot be the piece that deals with the pawn on d5; anything else — letting the e6 pawn be taken, pushing it to e5, or some other try — does not lead to the doubled d-pawn structure analysed here.
+      fr: Les Noirs ne reprennent pas le pion d5 avec le pion e. Le cavalier f6 est cloué à la dame d8 par le fou en g5, il ne peut donc pas être la pièce qui règle le pion d5 ; tout le reste — laisser prendre le pion e6, le pousser en e5, ou tenter autre chose — ne mène pas à la structure de pions d doublés analysée ici.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại tốt d5 bằng tốt e6, quân duy nhất hợp lý có thể làm việc này vì mã f6 đang bị ghim. Đổi lại, Đen có thêm một tốt d nữa, đứng chồng lên tốt d7 sẵn có.
+        en: Black recaptures on d5 with the e6 pawn, the only sensible piece available since the f6-knight is pinned. In return, Black ends up with an extra d-pawn, doubled on top of the one already on d7.
+        fr: Les Noirs reprennent en d5 avec le pion e6, la seule pièce raisonnable disponible puisque le cavalier f6 est cloué. En échange, les Noirs se retrouvent avec un pion d supplémentaire, doublé sur celui déjà présent en d7.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm thì Đen 39, Trắng 38 — Đen hơn đúng một tốt sạch, cái giá Trắng trả cho ván cờ này. Bù lại, Đen giờ có hai tốt d chồng nhau (d5 và d7), một nhược điểm cấu trúc không thể sửa được — chỉ một trong hai tốt đó có thể tiến lên mà không mất quyền kiểm soát ô phía trước.
+          en: Count the points and it is 39 for Black, 38 for White — Black is a clean pawn up, the price White paid for this line. In return, Black now has doubled d-pawns (d5 and d7), an unrepairable structural defect — only one of the two can ever advance without giving up control of the square ahead of it.
+          fr: En comptant les points, 39 pour les Noirs, 38 pour les Blancs — les Noirs ont un pion net de plus, le prix payé par les Blancs dans cette ligne. En contrepartie, les Noirs ont désormais des pions d doublés (d5 et d7), un défaut structurel irréparable — un seul des deux pourra jamais avancer sans céder le contrôle de la case devant lui.
+        plan:
+          vi: Trắng chơi Nc3, Bd3 và O-O, phát triển nhanh và nhắm vào con tốt d kép cùng ô e4/c4 để khai thác về sau. Đen chơi Be7, O-O và Bb7, hoàn tất phát triển và cố gắng đổi bớt quân trước khi nhược điểm cấu trúc bị khai thác.
+          en: White plays Nc3, Bd3 and O-O, developing quickly and aiming at the doubled d-pawns and the e4/c4 squares to exploit later. Black plays Be7, O-O and Bb7, completing development and trying to trade pieces off before the structural weakness can be targeted.
+          fr: Les Blancs jouent Nc3, Bd3 et O-O, se développant rapidement et visant les pions d doublés ainsi que les cases e4/c4 à exploiter plus tard. Les Noirs jouent Be7, O-O et Bb7, achevant leur développement et essayant d'échanger des pièces avant que la faiblesse structurelle ne soit exploitée.
+        basis:
+          by: chan
+          at: '2026-09-25'

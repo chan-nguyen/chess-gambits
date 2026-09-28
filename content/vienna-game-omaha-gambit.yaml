@@ -1,0 +1,59 @@
+# Vienna Game: Omaha Gambit. Frozen defining line 1.e4 e5 2.Nc3 d6 3.f4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The line
+# below was replayed with chess.js before being annotated.
+id: vienna-game-omaha-gambit
+name: 'Vienna Game: Omaha Gambit'
+eco: C25
+category: gambit
+side: white
+definingLine: [e4, e5, Nc3, d6, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Against the modest 2...d6, White offers the f-pawn for a lead in
+      development and the half-open f-file, real assets but nothing forcing. Black can
+      simply take the pawn, and beyond the doubled pawn the capture itself creates there is
+      no weakness yet for White to point at, so the level of compensation is genuinely
+      unclear rather than obviously enough. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đối đầu với lối chơi khiêm tốn 2...d6 kiểu Philidor, Trắng vẫn chơi 3.f4 theo đúng tinh thần Gambit Vienna, thí tốt để mở cột f cho xe và chuẩn bị dựng một trung tâm lớn.
+    en: Facing the modest, Philidor-style 2...d6, White still plays 3.f4 in true Vienna Gambit spirit, offering the pawn to open the f-file for the rook and preparing to build a big centre.
+    fr: Face au modeste 2...d6 de style Philidor, les Blancs jouent quand même 3.f4 dans le pur esprit du Gambit Vienne, offrant le pion pour ouvrir la colonne f à la tour et préparant un grand centre.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt f4. Các nước khác như ...Nf6 hay ...Nc6 để nguyên tốt f4 trên bàn cờ, nghĩa là Trắng có toàn quyền hoàn tất trung tâm mà không cần chứng minh gì thêm.
+      en: Black does not take the f4 pawn. Anything else, such as ...Nf6 or ...Nc6, leaves the f4 pawn sitting on the board, meaning White gets a completely free hand to finish building the centre without having to prove anything further.
+      fr: Les Noirs ne prennent pas le pion f4. Tout le reste, comme ...Nf6 ou ...Nc6, laisse le pion f4 sur l'échiquier, ce qui veut dire que les Blancs ont carte blanche pour achever leur centre sans avoir à prouver quoi que ce soit de plus.
+  children:
+    - ply: exf4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt f4, cách chơi trực diện và thử thách nhất, nhận lấy con tốt trong khi nó còn đang được mời.
+        en: Black accepts, taking the f4 pawn in the most direct, testing way while it is still on offer.
+        fr: Les Noirs acceptent, prenant le pion f4 de la façon la plus directe et la plus exigeante, tant qu'il est encore offert.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Đen tám, Trắng bảy, Đen hơn đúng một tốt. Nhưng cũng như trong các nhánh Vienna Gambit khác, con tốt ấy lại chồng lên tốt f7 của chính Đen trên cùng cột f, một điểm yếu cấu trúc có sẵn ngay từ khi vừa ăn tốt, đối lại với việc Trắng đã đưa được mã c3 ra và còn nguyên quyền chọn cách phát triển.
+          en: Count the pawns and it is eight for Black, seven for White — Black is a clean pawn up. But just as in the other Vienna Gambit branches, that pawn is doubled with Black's own f7 pawn on the same file, a structural weakness that exists from the moment the capture is made, against White having the c3 knight out and a completely free choice of development.
+          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs — les Noirs ont un pion de plus. Mais comme dans les autres branches du Gambit Vienne, ce pion est doublé avec le propre pion f7 des Noirs sur la même colonne, une faiblesse structurelle présente dès l'instant de la prise, face à des Blancs qui ont sorti le cavalier c3 et gardent un choix de développement totalement libre.
+        plan:
+          vi: Trắng chơi Nf3 để giữ ô h4, rồi Bc4 hay Bd3 và nhập thành, tính chuyện g3 sau này để vây bắt tốt f4. Đen chơi Nf6, Be7 hay Nc6, hoàn tất phát triển bình thường và cố giữ tốt thừa càng lâu càng tốt.
+          en: White plays Nf3 to cover h4, then Bc4 or Bd3 and castles, planning a later g3 to round up the f4 pawn. Black plays Nf6, Be7 or Nc6, developing normally and trying to hold the extra pawn as long as possible.
+          fr: Les Blancs jouent Nf3 pour couvrir h4, puis Bc4 ou Bd3 et roquent, prévoyant un futur g3 pour encercler le pion f4. Les Noirs jouent Nf6, Be7 ou Nc6, se développant normalement et essayant de garder le pion supplémentaire aussi longtemps que possible.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,64 @@
+# Scandinavian Defense: Kádas Gambit. Frozen defining line 1.e4 d5 2.exd5 Nf6 3.d4 c6 4.dxc6 e5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Black offers a third pawn with 4...e5 after already letting the c-pawn go, betting everything on
+# open lines and piece activity. The line was replayed with chess.js before being annotated, and
+# the leaf carries two free captures (Nxc6, bxc6), covered below with `unsettled`.
+id: scandinavian-defense-kadas-gambit
+name: 'Scandinavian Defense: Kádas Gambit'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, c6, dxc6, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      Black gives away three pawns in quick succession for open lines and a lead in piece
+      activity, and even after winning one straight back on c6 the deficit is still a real two
+      pawns with nothing concrete yet on the board beyond an open e-file. That is a lot of
+      material to trust to development alone, so this stays dubious rather than sound. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã để mất tốt d và tốt c, Đen chơi tiếp 4...e5, thí luôn con tốt trung tâm còn lại để tấn công tốt d4 của Trắng thay vì lo lấy lại con tốt c6 đang treo lơ lửng trước.
+    en: Having already given up the d-pawn and the c-pawn, Black plays 4...e5, throwing in the remaining central pawn to attack White's d4 pawn instead of first worrying about winning back the loose pawn sitting on c6.
+    fr: Après avoir déjà cédé le pion d et le pion c, les Noirs jouent 4...e5, sacrifiant le pion central restant pour attaquer le pion d4 blanc au lieu de d'abord s'inquiéter de récupérer le pion qui traîne en c6.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e5. Dù chọn cách nào khác, chẳng hạn đẩy tiếp c7 hay ăn luôn b7 bằng cxb7, tình huống về vật chất và việc Đen phải tìm cách lấy lại quân vẫn giữ nguyên như vậy, nên kế hoạch bên dưới không đổi.
+      en: White does not take on e5. Whatever else is chosen instead, such as pushing on with c7 or grabbing b7 with cxb7, the material situation and Black's need to win material back stay exactly the same, so the plan below does not change.
+      fr: Les Blancs ne prennent pas en e5. Quel que soit l'autre choix, comme pousser encore avec c7 ou prendre b7 par cxb7, la situation matérielle et le besoin des Noirs de récupérer du matériel restent exactement les mêmes, si bien que le plan ci-dessous ne change pas.
+  children:
+    - ply: dxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn luôn con tốt được thí, vì chưa có gì đỡ nó, và tạm thời để mặc con tốt c6 đang treo ở phía sau lưng để dồn thêm vốn liếng vật chất.
+        en: White takes the offered pawn at once, since nothing yet defends it, and leaves the loose pawn on c6 hanging behind for now to bank even more material.
+        fr: Les Blancs prennent aussitôt le pion offert, puisque rien ne le défend encore, et laissent pour l'instant le pion en c6 qui traîne derrière pour engranger encore plus de matériel.
+      unsettled: >-
+        Nxc6 is going free and the evaluation is built on it — Black wins one of the extra pawns
+        straight back, whether with the knight or with ...bxc6, which is exactly why the material
+        count looks so lopsided for only the one ply before that happens.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn tám và Đen chỉ còn năm, tức là Trắng hơn tới ba tốt ngay lúc này. Cột e đã mở hoàn toàn vì cả hai bên đều không còn tốt e, và vua Trắng vẫn đứng nguyên ở e1, nên xe Đen sẽ nhắm thẳng vào đó qua ...Re8 một khi con mã hay tốt b lấy lại được con tốt c6 đang đứng lẻ loi.
+          en: Count the pawns and White has eight left to Black's five, so White is up a full three pawns right now. The e-file is completely open since neither side has an e-pawn left, and the White king is still sitting on e1, so a black rook will point straight at it with ...Re8 once the knight or b-pawn wins back the lone pawn on c6.
+          fr: En comptant les pions, il reste huit pions aux Blancs contre cinq aux Noirs, donc les Blancs ont trois pions de plus en ce moment même. La colonne e est totalement ouverte puisqu'aucun camp n'a plus de pion e, et le roi blanc est toujours en e1, si bien qu'une tour noire visera directement cette case par ...Re8 une fois que le cavalier ou le pion b aura repris le pion isolé en c6.
+        plan:
+          vi: Đen chơi ...Nxc6 hoặc ...bxc6 ngay để lấy lại một tốt, rồi ...Bc5, ...O-O và ...Re8 dồn áp lực lên cột e đang mở thẳng vào vua Trắng còn ở nguyên chỗ cũ. Trắng chơi Nc3, Be3 hay Bd3 và nhanh chóng nhập thành, cố hoàn tất phát triển trước khi bị bắt kịp, dựa vào hai tốt còn thừa để bù cho việc chậm một nhịp.
+          en: Black plays ...Nxc6 or ...bxc6 at once to win back a pawn, then ...Bc5, ...O-O and ...Re8, piling pressure down the open e-file straight at the White king still on its original square. White plays Nc3, Be3 or Bd3 and castles quickly, trying to finish development before getting caught, banking on the two remaining extra pawns to offset being a tempo behind.
+          fr: Les Noirs jouent ...Nxc6 ou ...bxc6 aussitôt pour récupérer un pion, puis ...Bc5, ...O-O et ...Re8, accumulant la pression sur la colonne e ouverte qui vise directement le roi blanc resté sur sa case d'origine. Les Blancs jouent Nc3, Be3 ou Bd3 et roquent rapidement, essayant de terminer leur développement avant de se faire rattraper, comptant sur les deux pions restants pour compenser un temps de retard.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,60 @@
+# Sicilian Defense: Moscow Variation, Haag Gambit. Frozen defining line 1.e4 c5 2.Nf3 d6
+# 3.Bb5+ Bd7 4.Bxd7+ Qxd7 5.O-O Nc6 6.c3 Nf6 7.d4, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Every ply below was replayed
+# with chess.js.
+id: sicilian-defense-moscow-variation-haag-gambit
+name: 'Sicilian Defense: Moscow Variation, Haag Gambit'
+eco: B52
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, Bb5+, Bd7, Bxd7+, Qxd7, O-O, Nc6, c3, Nf6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The pawn White pushes with 7.d4 is properly defended by the c3 pawn and,
+      after the coming recapture, by the knight on f3 as well, so Black cannot simply keep
+      it for nothing — Black's own knight on c6 is what makes 7...cxd4 possible at all,
+      since it defends the pawn a second time. White gets full central presence and a lead
+      in development for the pawn this trades away, real compensation but nothing that is
+      proven to be enough. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đổi tượng sớm và Trắng đã nhập thành, Trắng chơi 7.d4, mở trung tâm và mời Đen ăn tốt lần nữa. Con tốt ấy được bảo vệ vững, nên đây không phải một sự hy sinh vật chất thật sự mà là một cách đổi cấu trúc lấy không gian trung tâm và nhịp phát triển.
+    en: After the early bishop trade and White having already castled, White plays 7.d4, opening the centre and inviting Black to take a pawn once more. That pawn is well defended, so this is not really a material sacrifice but a way of trading structure for central space and a lead in development.
+    fr: Après l'échange précoce des fous et le roque déjà effectué par les Blancs, ceux-ci jouent 7.d4, ouvrant le centre et invitant les Noirs à prendre encore un pion. Ce pion est bien défendu, il ne s'agit donc pas vraiment d'un sacrifice matériel mais d'un échange de structure contre de l'espace central et une avance de développement.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt d4. Các nước khác như e5 hay O-O-O để nguyên căng thẳng ở trung tâm và Trắng có thể tự mình quyết định thời điểm đổi tốt.
+      en: Black does not take the d4 pawn. Anything else, such as e5 or O-O-O, leaves the central tension in place and lets White choose the moment to resolve it.
+      fr: Les Noirs ne prennent pas le pion d4. Tout le reste, comme e5 ou O-O-O, laisse la tension centrale en place et permet aux Blancs de choisir eux-mêmes le moment de la résoudre.
+  children:
+    - ply: cxd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt d4 bằng tốt c5, giải tỏa căng thẳng trung tâm ngay lập tức. Con mã c6 bảo vệ thêm cho tốt này, nên nó không hề bị treo cho một cú ăn miễn phí.
+        en: Black takes the d4 pawn with the c5 pawn, resolving the central tension at once. The knight on c6 defends that pawn a second time, so it is not simply hanging to a free capture.
+        fr: Les Noirs prennent le pion d4 avec le pion c5, résolvant aussitôt la tension centrale. Le cavalier en c6 défend ce pion une seconde fois, il n'est donc pas simplement en prise à une capture gratuite.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 35, Đen 36 — chênh lệch đúng bằng giá trị một tốt, và khi Trắng ăn lại, bằng tốt c3 hay mã f3, Đen sẽ ăn lại lần nữa bằng mã c6, nên phần thiệt tốt này sẽ còn nguyên với Trắng. Bù lại, vua Đen vẫn còn đứng ở e8 chưa nhập thành, trong khi Trắng đã nhập thành cánh vua từ trước, và cột d sắp mở hoàn toàn ngay khi tốt được đổi hết.
+          en: Count the point values and it is 35 for White, 36 for Black — a gap worth exactly one pawn, and once White recaptures, with the c3 pawn or the f3 knight, Black recaptures again with the c6 knight, so this pawn deficit is going to stay with White. In return, Black's king is still standing on e8, not yet castled, while White has already castled kingside, and the d-file is about to open completely once the pawns are fully traded off.
+          fr: En comptant les points, cela donne 35 pour les Blancs, 36 pour les Noirs — un écart exactement égal à un pion, et une fois que les Blancs reprendront, avec le pion c3 ou le cavalier f3, les Noirs reprendront à nouveau avec le cavalier c6, ce déficit d'un pion restera donc acquis aux Blancs. En contrepartie, le roi noir se trouve toujours en e8, pas encore roqué, tandis que les Blancs ont déjà roqué à l'aile roi, et la colonne d va s'ouvrir complètement dès que les pions seront entièrement échangés.
+        plan:
+          vi: Trắng chơi Nxd4 hay cxd4, rồi Re1 và Qb3, gây sức ép lên trung tâm và vua Đen còn đứng giữa bàn cờ. Đen chơi O-O-O hay e5, nhanh chóng đưa vua đi nơi khác trước khi cột d mở ra gây nguy hiểm.
+          en: White plays Nxd4 or cxd4, then Re1 and Qb3, pressing on the centre and on Black's king still stuck in the middle. Black plays O-O-O or e5, hurrying the king off the centre before the open d-file becomes dangerous.
+          fr: Les Blancs jouent Nxd4 ou cxd4, puis Re1 et Qb3, faisant pression sur le centre et sur le roi noir toujours coincé au milieu. Les Noirs jouent O-O-O ou e5, pressant le roi de quitter le centre avant que la colonne d ouverte ne devienne dangereuse.
+        basis:
+          by: chan
+          at: '2026-09-25'

@@ -1,0 +1,65 @@
+# Sicilian Defense: Smith-Morra Gambit Accepted, Danish Variation. Frozen defining line
+# 1.e4 c5 2.d4 cxd4 3.c3 dxc3 4.Nf3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js.
+# The modelled reply 4...cxb2 is Black grabbing a third pawn, and it leaves that pawn
+# hanging to White's dark-squared bishop, which is exactly what `unsettled` records below.
+id: sicilian-defense-smith-morra-gambit-accepted-danish-variation
+name: 'Sicilian Defense: Smith-Morra Gambit Accepted, Danish Variation'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, c3, dxc3, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement, and the same label the catalogue's family rule carries for the wider
+      Smith-Morra family. This particular branch is Black overreaching with a third pawn
+      grab, ...cxb2, which invites Bxb2 and gives White back a full pawn plus an actively
+      placed bishop — a good outcome for White within this specific line, even though the
+      family as a whole is not proven sound against calmer, more disciplined defence. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đã ăn hai tốt, cxd4 rồi dxc3, và Trắng chơi 4.Nf3 chưa vội ăn lại, Đen tham lam ăn tiếp một tốt thứ ba bằng 4...cxb2!?, dọa cả xe a1. Đây chính là cái bẫy kinh điển của Smith-Morra — tốt quá tham thường phải trả giá.
+    en: Having already taken two pawns, cxd4 and then dxc3, and with White not yet recapturing after 4.Nf3, Black greedily grabs a third pawn with 4...cxb2!?, even threatening the rook on a1. This is the classic Smith-Morra trap — being too greedy with the pawns usually costs something.
+    fr: Après avoir déjà pris deux pions, cxd4 puis dxc3, et alors que les Blancs n'ont pas encore repris après 4.Nf3, les Noirs prennent avidement un troisième pion par 4...cxb2!?, menaçant même la tour en a1. C'est le piège classique du Smith-Morra — trop de gourmandise sur les pions finit généralement par coûter cher.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tiếp tốt b2. Các nước khác như Nf6 hay Nc6 đơn giản là phát triển và để nguyên con tốt c3 đã ăn được, không mạo hiểm gì thêm.
+      en: Black does not take the b2 pawn as well. Anything else, such as Nf6 or Nc6, simply develops and leaves the already-won c3 pawn where it is, without taking on any further risk.
+      fr: Les Noirs ne prennent pas aussi le pion b2. Tout le reste, comme Nf6 ou Nc6, se contente de développer et laisse le pion c3 déjà gagné là où il est, sans prendre de risque supplémentaire.
+  children:
+    - ply: cxb2
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Đen tham lam ăn tiếp tốt b2 bằng chính con tốt vừa ăn được, dọa luôn xe a1 bằng ...bxa1=Q. Nước đi rất hấp dẫn về mặt vật chất, nhưng con tốt trên b2 lại không hề được bảo vệ.
+        en: Black greedily takes the b2 pawn as well with the very pawn just won, even threatening the a1 rook with ...bxa1=Q. It is a tempting move materially, but the pawn now on b2 is completely undefended.
+        fr: Les Noirs prennent avidement aussi le pion b2 avec le pion tout juste gagné, menaçant même la tour en a1 par ...bxa1=Q. C'est un coup matériellement tentant, mais le pion désormais en b2 n'est absolument pas défendu.
+      unsettled: >-
+        Bxb2 is going free and the evaluation says so — White's dark-squared bishop simply
+        removes the pawn that was threatening the rook, clawing back a full pawn and landing
+        on an active diagonal before Black's greed pays off with anything.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 36, Đen 39 — chênh lệch tới ba tốt, phản ánh việc Đen đã ăn liền ba tốt của Trắng, d4, c3 và giờ là b2. Nhưng con tốt b2 ấy không có ai bảo vệ, trong khi Đen thì chưa hề đưa được một quân nhẹ nào ra khỏi hàng ngang xuất phát, kể cả xe a8 vẫn còn bị chính các quân của mình chặn kín.
+          en: Count the point values and it is 36 for White, 39 for Black — a gap worth three pawns, reflecting that Black has now taken three White pawns in a row, d4, c3 and now b2. But that b2 pawn has nobody defending it, while Black has not yet brought a single minor piece off the back rank, and even the a8 rook is still boxed in behind its own pieces.
+          fr: En comptant les points, cela donne 36 pour les Blancs, 39 pour les Noirs — un écart de trois pions, reflétant le fait que les Noirs ont maintenant pris trois pions blancs d'affilée, d4, c3 et maintenant b2. Mais ce pion en b2 n'a personne pour le défendre, tandis que les Noirs n'ont encore sorti aucune pièce mineure de leur rangée de départ, et même la tour en a8 reste bloquée derrière ses propres pièces.
+        plan:
+          vi: Trắng chơi Bxb2 ngay, lấy lại một tốt và đặt tượng lên đường chéo chủ động nhắm về phía vua Đen, sau đó tiếp tục với Bc4 và O-O để hoàn tất phát triển thật nhanh. Đen chơi Nf6 hay d6, cố gắng bắt kịp phát triển sau khi đã dành quá nhiều nước đi để ăn tốt.
+          en: White plays Bxb2 at once, winning back a pawn and putting the bishop on an active diagonal aimed toward Black's king, then continues with Bc4 and O-O to finish developing very quickly. Black plays Nf6 or d6, trying to catch up on development after spending so many moves grabbing pawns.
+          fr: Les Blancs jouent aussitôt Bxb2, regagnant un pion et plaçant le fou sur une diagonale active visant le roi noir, puis poursuivent par Bc4 et O-O pour achever très rapidement leur développement. Les Noirs jouent Nf6 ou d6, essayant de rattraper leur retard de développement après avoir passé tant de coups à prendre des pions.
+        basis:
+          by: chan
+          at: '2026-09-25'

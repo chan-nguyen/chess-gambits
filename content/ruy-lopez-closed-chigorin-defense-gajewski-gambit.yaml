@@ -1,0 +1,65 @@
+# Ruy Lopez: Closed, Chigorin Defense, Gajewski Gambit. Frozen defining line 1.e4 e5 2.Nf3
+# Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 O-O 9.h3 Na5 10.Bc2 d5, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The
+# line below was replayed with chess.js before being annotated; after 11.exd5 the pawn on
+# d5 is undefended, so both Qxd5 and Nxd5 are noted as free recaptures rather than modelled
+# further.
+id: ruy-lopez-closed-chigorin-defense-gajewski-gambit
+name: 'Ruy Lopez: Closed, Chigorin Defense, Gajewski Gambit'
+eco: C96
+category: gambit
+side: black
+definingLine:
+  [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, Nf6, O-O, Be7, Re1, b5, Bb3, d6, c3, O-O, h3, Na5, Bc2, d5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black strikes in the centre with 10...d5 from a fully mobilised position,
+      and even though White captures first, nothing defends the pawn on d5 afterwards, so the
+      material comes straight back — a well-tested central break from the main Chigorin
+      complex, judged sound because Black is never actually worse off for having played it.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi hoàn tất khai triển và đưa mã sang a5, Đen chơi 10...d5, phá vỡ trung tâm ngay lập tức và thách thức tốt e4 của Trắng.
+    en: Having finished mobilising and rerouted the knight to a5, Black plays 10...d5, breaking open the centre at once and challenging White's e4 pawn.
+    fr: Une fois la mobilisation achevée et le cavalier réorienté en a5, les Noirs jouent 10...d5, ouvrant le centre d'un coup et défiant le pion e4 blanc.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt d5. Các nước khác như Nbd2 hay chưa vội ăn liền vẫn để nguyên căng thẳng trung tâm, và Đen tiếp tục kế hoạch của mình mà không gặp trở ngại gì đặc biệt.
+      en: White does not take the d5 pawn. Anything else, such as Nbd2 or simply not rushing to capture, leaves the central tension on the board, and Black continues with the plan without meeting any particular obstacle.
+      fr: Les Blancs ne prennent pas le pion d5. Tout le reste, comme Nbd2 ou le fait de ne pas se presser de capturer, laisse la tension centrale sur l'échiquier, et les Noirs poursuivent leur plan sans rencontrer d'obstacle particulier.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay bằng chính tốt e4, quân duy nhất có thể ăn tại đó.
+        en: White takes the pawn at once with the e4 pawn, the only piece that can capture there.
+        fr: Les Blancs prennent aussitôt le pion avec leur propre pion e4, la seule pièce pouvant capturer là.
+      unsettled: >-
+        Both Qxd5 and Nxd5 are going free — nothing of White's defends the d5 square, so Black
+        recaptures the pawn at once with either piece.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây, Trắng 39 còn Đen 38, nhưng con tốt d5 chẳng có quân nào của Trắng bảo vệ, nên Qxd5 hay Nxd5 sẽ lấy lại nó ngay tức khắc. Trong khi đó, toàn bộ cánh hậu của Trắng (mã b1, tượng c1) vẫn còn nguyên trên hàng một, chưa hề động đậy, còn Đen đã hoàn tất phát triển và nhập thành từ trước.
+          en: Count the pawns right here, 39 for White against 38 for Black, but nothing of White's defends the pawn on d5, so Qxd5 or Nxd5 wins it straight back at once. Meanwhile the whole of White's queenside (the knight on b1, the bishop on c1) is still sitting untouched on the back rank, while Black finished developing and castled long ago.
+          fr: Comptez les pions ici même, 39 pour les Blancs contre 38 pour les Noirs, mais rien du côté blanc ne défend le pion d5, si bien que Qxd5 ou Nxd5 le reprend aussitôt. Pendant ce temps, toute l'aile dame blanche (le cavalier b1, le fou c1) reste intacte sur la première rangée, alors que les Noirs ont depuis longtemps achevé leur développement et roqué.
+        plan:
+          vi: Đen chơi Nxd5 hoặc Qxd5 lấy lại tốt, rồi tiếp tục với Nc4 hay Bf6, cùng Re8, khai thác việc cánh hậu Trắng còn chậm phát triển. Trắng chơi Nbd2, Nf1 và Ng3, cố gắng gỡ rối cánh hậu và bắt kịp Đen về mặt thời gian trước khi bị ép phải phòng thủ.
+          en: Black plays Nxd5 or Qxd5 to win the pawn back, then continues with Nc4 or Bf6, along with Re8, exploiting White's slow queenside development. White plays Nbd2, Nf1 and Ng3, trying to untangle the queenside and catch up on time before being forced onto the back foot.
+          fr: Les Noirs jouent Nxd5 ou Qxd5 pour reprendre le pion, puis poursuivent par Nc4 ou Bf6, avec Re8, exploitant le développement lent de l'aile dame blanche. Les Blancs jouent Nbd2, Nf1 et Ng3, essayant de dénouer l'aile dame et de rattraper leur retard de temps avant d'être poussés sur la défensive.
+        basis:
+          by: chan
+          at: '2026-09-25'

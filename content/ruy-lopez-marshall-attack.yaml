@@ -1,0 +1,59 @@
+# Ruy Lopez: Marshall Attack. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6
+# 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d5, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). The line below was replayed with chess.js
+# before being annotated.
+id: ruy-lopez-marshall-attack
+name: 'Ruy Lopez: Marshall Attack'
+eco: C89
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, Nf6, O-O, Be7, Re1, b5, Bb3, O-O, c3, d5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black gives up a clean pawn on move eight for a lasting initiative against
+      a White king whose queenside pieces have not moved at all — this has been mainline
+      theory since Marshall unveiled it in 1918, and correct play for Black holds the balance
+      even where it does not win outright. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi nhập thành và chờ đến tận nước tám, Đen bất ngờ chơi 8...d5, thí hẳn con tốt để mở toang trung tâm và nhắm thẳng vào nhà vua Trắng còn chưa kịp điều quân cánh hậu. Đây chính là điểm khởi đầu của toàn bộ thế công Marshall.
+    en: Having castled and waited until move eight, Black suddenly plays 8...d5, offering up a pawn outright to blow open the centre and take direct aim at a White king whose queenside pieces have not even started moving. This is the starting point of the whole Marshall Attack.
+    fr: Après avoir roqué et attendu jusqu'au huitième coup, les Noirs jouent soudain 8...d5, offrant carrément un pion pour ouvrir le centre et viser directement un roi blanc dont les pièces de l'aile dame n'ont même pas commencé à bouger. C'est le point de départ de toute l'attaque Marshall.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt d5. Các nước khác như Nbd2 hay a4 để nguyên con tốt ấy trên bàn cờ, và Đen vẫn phải tự tìm cách khai thác trung tâm mà không có được thế công Marshall thật sự.
+      en: White does not take the pawn on d5. Anything else, such as Nbd2 or a4, leaves that pawn sitting on the board, and Black still has to find its own way to exploit the centre without getting the real Marshall Attack.
+      fr: Les Blancs ne prennent pas le pion d5. Tout le reste, comme Nbd2 ou a4, laisse ce pion sur l'échiquier, et les Noirs doivent alors trouver eux-mêmes comment exploiter le centre sans obtenir la vraie attaque Marshall.
+  children:
+    - ply: exd5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt ngay bằng chính tốt e4, chấp nhận bước vào thế trận tiêu chuẩn nhất của toàn bộ hệ thống Marshall Attack.
+        en: White takes the pawn at once with the e4 pawn, accepting the most standard tabiya of the entire Marshall Attack.
+        fr: Les Blancs prennent aussitôt le pion avec leur propre pion e4, acceptant la position la plus classique de toute l'attaque Marshall.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng 39 còn Đen 38 — Đen kém đúng một tốt sạch. Bù lại, toàn bộ cánh hậu của Trắng (xe a1, mã b1, tượng c1, hậu d1) vẫn còn nguyên trên hàng một, chưa hề động đậy, trong khi Đen đã nhập thành xong và sẵn sàng tung quân tấn công ngay lập tức.
+          en: Count the pawns and it is 39 for White against 38 for Black — Black is down a clean pawn. In exchange, the whole of White's queenside (the rook on a1, the knight on b1, the bishop on c1, the queen on d1) is still sitting untouched on the back rank, while Black has already castled and is ready to throw pieces forward at once.
+          fr: Comptez les pions, 39 pour les Blancs contre 38 pour les Noirs — les Noirs sont en retard d'un pion net. En échange, toute l'aile dame blanche (la tour a1, le cavalier b1, le fou c1, la dame d1) reste intacte sur la première rangée, alors que les Noirs ont déjà roqué et sont prêts à lancer leurs pièces à l'attaque sur-le-champ.
+        plan:
+          vi: Đen chơi Nxd5 đổi quân trước rồi triển khai Bd6, Qh4 hoặc Qd7-h3, cùng Re8 và Bg4, dồn toàn bộ lực lượng vào cánh vua trong lúc Trắng còn loay hoay. Trắng chơi Nd2-f1-g3 hoặc Qf3 để gỡ rối cánh hậu càng nhanh càng tốt, cố giữ vững tốt thừa qua giai đoạn nguy hiểm nhất của ván đấu.
+          en: Black plays Nxd5 to trade first, then brings out Bd6, Qh4 or Qd7-h3, along with Re8 and Bg4, throwing everything at the kingside while White is still untangling. White plays Nd2-f1-g3 or Qf3 to sort out the queenside as fast as possible, trying to survive the most dangerous stretch of the game while holding on to the extra pawn.
+          fr: Les Noirs jouent Nxd5 pour échanger d'abord, puis sortent Bd6, Qh4 ou Qd7-h3, avec Re8 et Bg4, jetant toutes leurs forces sur l'aile roi pendant que les Blancs se démêlent encore. Les Blancs jouent Nd2-f1-g3 ou Qf3 pour dénouer l'aile dame le plus vite possible, essayant de survivre au passage le plus dangereux de la partie tout en gardant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-25'

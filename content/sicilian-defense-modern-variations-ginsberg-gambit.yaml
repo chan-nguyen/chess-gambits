@@ -1,0 +1,58 @@
+# Sicilian Defense: Modern Variations, Ginsberg Gambit. Frozen defining line 1.e4 c5 2.Nf3
+# d6 3.d4 cxd4 4.Nxd4 Nf6 5.Bc4, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Every ply below was replayed with chess.js.
+id: sicilian-defense-modern-variations-ginsberg-gambit
+name: 'Sicilian Defense: Modern Variations, Ginsberg Gambit'
+eco: B54
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, d4, cxd4, Nxd4, Nf6, Bc4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The pawn on e4 is simply undefended once the bishop goes to c4 instead of
+      a piece or a pawn covering it, so 5...Nxe4 is a clean pawn win with no trick attached.
+      The bishop's diagonal toward f7 is open, since Black has not yet played e6, but
+      nothing else supports an attack there yet, so the open diagonal alone is not enough to
+      justify the missing pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi mã Trắng nhảy tới d4 rồi Nf6 của Đen, Trắng chơi 5.Bc4, nhắm thẳng vào f7 nhưng lại bỏ trống con tốt e4. Đây là Ginsberg Gambit — đổi hẳn một tốt lấy một đường chéo mở, mà không có gì bảo vệ nó ngay lập tức.
+    en: After White's knight jumps to d4 and Black replies Nf6, White plays 5.Bc4, aiming straight at f7 but leaving the e4 pawn undefended. This is the Ginsberg Gambit — a pawn given up outright for an open diagonal, with nothing yet guarding it.
+    fr: Après que le cavalier blanc a sauté en d4 et que les Noirs ont répondu Nf6, les Blancs jouent 5.Bc4, visant directement f7 mais laissant le pion e4 sans défense. C'est le Gambit Ginsberg — un pion cédé purement et simplement pour une diagonale ouverte, sans que rien ne le protège pour l'instant.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4. Các nước khác như Nc6 hay e6 để nguyên con tốt ấy trên bàn cờ, và Trắng có thêm thời gian để hoàn tất phát triển và chuẩn bị bảo vệ nó.
+      en: Black does not take the e4 pawn. Anything else, such as Nc6 or e6, leaves that pawn on the board and gives White extra time to complete development and prepare to defend it.
+      fr: Les Noirs ne prennent pas le pion e4. Tout le reste, comme Nc6 ou e6, laisse ce pion sur l'échiquier et donne aux Blancs davantage de temps pour achever leur développement et préparer sa défense.
+  children:
+    - ply: Nxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn ngay con tốt e4 đang bị bỏ trống, cách đáp trả tự nhiên và mạnh nhất trước một con tốt không hề được bảo vệ.
+        en: Black takes the undefended e4 pawn at once, the most natural and strongest answer to a pawn that simply is not guarded.
+        fr: Les Noirs prennent aussitôt le pion e4 sans défense, la réponse la plus naturelle et la plus forte face à un pion qui n'est tout simplement pas gardé.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm quân thì Trắng 37, Đen 38 — Trắng kém đúng một tốt sạch. Bù lại, đường chéo của tượng c4 hướng tới f7 hiện đang mở hoàn toàn vì Đen chưa chơi e6, nhưng chưa có quân nào khác của Trắng hỗ trợ để biến điều đó thành một mối đe dọa thực sự.
+          en: Count the point values and it is 37 for White, 38 for Black — White is a clean pawn down. In return, the c4 bishop's diagonal toward f7 is currently wide open since Black has not played e6 yet, but no other White piece is backing it up yet to turn that into a real threat.
+          fr: En comptant les points, cela donne 37 pour les Blancs, 38 pour les Noirs — les Blancs ont un pion net de moins. En contrepartie, la diagonale du fou en c4 vers f7 est actuellement grande ouverte puisque les Noirs n'ont pas encore joué e6, mais aucune autre pièce blanche ne la soutient encore pour en faire une réelle menace.
+        plan:
+          vi: Trắng chơi Nc3 hay Qe2, cố gắng nhanh chóng đưa thêm quân vào cuộc để khai thác đường chéo c4-f7 trước khi Đen kịp chơi e6 đóng nó lại. Đen chơi e6 hay d5, khóa chặt đường chéo nguy hiểm đó và củng cố con tốt vừa ăn được.
+          en: White plays Nc3 or Qe2, trying to quickly bring more pieces into play to exploit the c4-f7 diagonal before Black can close it with e6. Black plays e6 or d5, shutting that dangerous diagonal down and consolidating the pawn just won.
+          fr: Les Blancs jouent Nc3 ou Qe2, essayant de mettre rapidement davantage de pièces en jeu pour exploiter la diagonale c4-f7 avant que les Noirs ne puissent la fermer par e6. Les Noirs jouent e6 ou d5, fermant cette diagonale dangereuse et consolidant le pion qui vient d'être gagné.
+        basis:
+          by: chan
+          at: '2026-09-25'

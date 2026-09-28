@@ -1,0 +1,64 @@
+# Scandinavian Defense: Icelandic-Palme Gambit. Frozen defining line 1.e4 d5 2.exd5 Nf6 3.c4 e6,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Black offers a second central pawn with 3...e6 on top of the one already given up to exd5. The
+# line was replayed with chess.js before being annotated, and the leaf carries two free captures
+# (Bxe6, fxe6), covered below with `unsettled`.
+id: scandinavian-defense-icelandic-palme-gambit
+name: 'Scandinavian Defense: Icelandic-Palme Gambit'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, c4, e6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      White ends up two pawns ahead for only a moment, since both ...Bxe6 and ...fxe6 win the
+      second pawn straight back, leaving a fairly ordinary opening question of piece activity
+      against safe development. Black gets full-speed development and open lines for the
+      sacrifice, but nothing about White's position is actually broken, so this sits at dubious
+      rather than sound or refuted. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Trắng đã ăn tốt d5 và giữ nó bằng c4, Đen chơi 3...e6, tấn công thẳng vào con tốt d5 và mời Trắng ăn thêm một tốt nữa thay vì chỉ đơn giản đòi lại con tốt cũ bằng ...exd5.
+    en: With White having grabbed the d5 pawn and propped it up with c4, Black plays 3...e6, striking straight at the d5 pawn and inviting White to take yet another pawn rather than simply winning the old one back with ...exd5.
+    fr: Alors que les Blancs ont pris le pion d5 et l'ont soutenu par c4, les Noirs jouent 3...e6, frappant directement le pion d5 et invitant les Blancs à prendre encore un pion plutôt que de simplement récupérer l'ancien par ...exd5.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn con tốt e6. Các nước khác như d3 hay Nc3 để nguyên tình trạng căng thẳng giữa hai tốt d5 và e6, nghĩa là Đen vẫn có thể ăn lại tốt d5 bằng ...exd5 ở nước sau và ván cờ trở về một thế cờ Scandinavian bình thường.
+      en: White does not take on e6. Anything else, such as d3 or Nc3, leaves the tension between the d5 and e6 pawns unresolved, meaning Black can still win the d5 pawn back with ...exd5 next and reach an ordinary Scandinavian structure.
+      fr: Les Blancs ne prennent pas en e6. Tout le reste, comme d3 ou Nc3, laisse intacte la tension entre les pions d5 et e6, ce qui veut dire que les Noirs peuvent toujours reprendre le pion d5 par ...exd5 au coup suivant et atteindre une structure scandinave ordinaire.
+  children:
+    - ply: dxe6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn luôn con tốt thứ hai, vì hiện tại chưa có quân nào của Đen đứng canh ô e6, chấp nhận thử thách và xem liệu sự đền bù của Đen có thực sự đáng giá hay không.
+        en: White takes the second pawn at once, since nothing of Black's is yet guarding e6, accepting the challenge and testing whether Black's compensation is really worth it.
+        fr: Les Blancs prennent aussitôt le second pion, puisque rien du côté noir ne garde encore la case e6, acceptant le défi et testant si la compensation noire en vaut vraiment la peine.
+      unsettled: >-
+        Bxe6 is going free and the evaluation is built on it — Black recaptures at once, whether
+        with the bishop or with ...fxe6, so the pawn on e6 is never really banked by White for
+        more than one ply.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn tám và Đen chỉ còn sáu, tức là Trắng hơn hai tốt ngay lúc này. Nhưng con tốt trên e6 không có quân nào của Trắng bảo vệ, đứng sâu trong trại Đen, nên nó sẽ quay về tay Đen ngay ở nước tiếp theo bằng ...Bxe6 hoặc ...fxe6, và khoản lợi vật chất thực sự chỉ còn lại đúng một tốt.
+          en: Count the pawns and White has eight left to Black's six, so White is up two pawns right at this instant. But the pawn on e6 has no defender of White's, sitting deep in Black's camp, so it comes straight back next move with ...Bxe6 or ...fxe6, and the real material gain shrinks to a single pawn.
+          fr: En comptant les pions, il reste huit pions aux Blancs contre six aux Noirs, donc les Blancs ont deux pions de plus à cet instant précis. Mais le pion en e6 n'a aucun défenseur blanc, planté au fond du camp noir, si bien qu'il revient aussitôt aux Noirs par ...Bxe6 ou ...fxe6, et le gain matériel réel se réduit à un seul pion.
+        plan:
+          vi: Đen chơi ...fxe6 để mở cột f cho xe f8, chấp nhận cặp tốt e chồng nhau, hoặc ...Bxe6 để giữ cấu trúc lành lặn và phát triển tượng cùng lúc. Trắng chơi Nc3, Nf3, Be2 hay Bd3 rồi nhập thành, cố dùng con tốt sạch còn lại và việc Đen chậm phát triển hơn để bù cho việc Đen có được cột mở và đôi tượng linh hoạt.
+          en: Black plays ...fxe6, opening the f-file for the f8 rook and accepting doubled e-pawns, or ...Bxe6, keeping the structure sound while developing the bishop at the same time. White plays Nc3, Nf3, Be2 or Bd3 and then castles, trying to use the one clean pawn still in hand and Black's slower development to offset the open lines and active bishops Black gets in return.
+          fr: Les Noirs jouent ...fxe6, ouvrant la colonne f pour la tour f8 et acceptant des pions e doublés, ou ...Bxe6, gardant une structure saine tout en développant le fou. Les Blancs jouent Nc3, Nf3, Be2 ou Bd3 puis roquent, essayant d'utiliser le seul pion net qui reste et le développement plus lent des Noirs pour compenser les lignes ouvertes et les fous actifs que les Noirs obtiennent en retour.
+        basis:
+          by: chan
+          at: '2026-09-25'

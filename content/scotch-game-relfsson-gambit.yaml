@@ -1,0 +1,60 @@
+# Scotch Game: Relfsson Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.d4 exd4 4.Bb5, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Rather than
+# recapturing on d4 or supporting it with c3, White develops the bishop to b5 with an apparent pin
+# on the c6 knight. The line was replayed with chess.js before being annotated; the leaf has no
+# free capture (the pawn on d7 blocks the diagonal beyond c6, so the pin is not real and the pawn
+# on d4 stays defended), so no `unsettled` is written here.
+id: scotch-game-relfsson-gambit
+name: 'Scotch Game: Relfsson Gambit'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, Bb5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      5.Bb5 only looks like a pin, since the pawn on d7 blocks the diagonal beyond c6, so the
+      knight keeps defending the extra pawn on d4 exactly as before. White is simply down a pawn
+      for a developing move and the standing threat of Bxc6, doubling Black's pawns, which is real
+      but modest compensation. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại con tốt d4 hay đỡ nó bằng c3 như bình thường, Trắng chơi 4.Bb5, đưa tượng ra với vẻ như ghim con mã c6 vào vua Đen, phát triển thêm một nước trước khi tính chuyện lấy lại tốt.
+    en: Instead of recapturing on d4 or defending it with c3 as usual, White plays 4.Bb5, developing the bishop with the look of a pin on the c6 knight, getting in an extra developing move before worrying about winning the pawn back.
+    fr: Au lieu de reprendre en d4 ou de le défendre par c3 comme d'habitude, les Blancs jouent 4.Bb5, développant le fou avec l'apparence d'un clouage sur le cavalier c6, gagnant un coup de développement de plus avant de se soucier de récupérer le pion.
+  dismissRest:
+    reason:
+      vi: Đen không hỏi thẳng con tượng bằng a6. Dù chọn cách khác, chẳng hạn phát triển bằng ...Bc5 hay ...d6, con mã c6 vẫn đang đỡ vững con tốt d4, vì đường chéo b5-e8 bị chính tốt d7 của Đen chặn lại, nên vị trí được đánh giá như nhau.
+      en: Black does not immediately question the bishop with a6. Whatever else is played instead, such as developing with ...Bc5 or ...d6, the c6 knight is still solidly defending the pawn on d4, since the b5-e8 diagonal is blocked by Black's own d7 pawn anyway, so the position is judged the same way.
+      fr: Les Noirs ne posent pas tout de suite la question au fou par a6. Quel que soit l'autre coup joué, comme développer par ...Bc5 ou ...d6, le cavalier c6 défend toujours solidement le pion d4, puisque la diagonale b5-e8 est de toute façon bloquée par le pion d7 noir, si bien que la position est jugée de la même façon.
+  children:
+    - ply: a6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen hỏi thẳng con tượng ngay lập tức, vì cái ghim đó không thật sự tồn tại — đường chéo bị chặn bởi chính tốt d7 — nên không có lý do gì để sợ giải toả căng thẳng trong khi vẫn giữ nguyên con tốt thừa.
+        en: Black asks the bishop the question at once, since the pin is not really there — the diagonal is blocked by Black's own d7 pawn — so there is no reason to fear releasing the tension while the extra pawn stays exactly as well defended as before.
+        fr: Les Noirs posent aussitôt la question au fou, puisque le clouage n'existe pas vraiment — la diagonale est bloquée par le propre pion d7 des Noirs — il n'y a donc aucune raison de craindre de relâcher la tension, tandis que le pion supplémentaire reste tout aussi bien défendu qu'avant.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt, Trắng còn bảy và Đen còn tám, tức là Đen hơn đúng một tốt. Cái ghim của tượng b5 chỉ là vẻ ngoài, vì tốt d7 chặn đường chéo ngay sau ô c6, nên mã Đen vẫn đỡ vững con tốt d4 và Nxd4 hay Qxd4 của Trắng chỉ đơn giản bị ăn lại bằng ...Nxd4. Đổi lại, nước ...a6 vừa chơi cũng để lộ một chút yếu điểm ở ô b6 khi con tượng rút lui sau này.
+          en: Count the pawns and White has seven left to Black's eight, so Black is up exactly one pawn. The pin from the bishop on b5 is only for show, since Black's own d7 pawn blocks the diagonal right behind c6, so the knight still solidly defends d4 and either Nxd4 or Qxd4 for White is simply met by ...Nxd4. In exchange, the ...a6 just played also leaves a small weakness on b6 once the bishop eventually retreats.
+          fr: En comptant les pions, il reste sept pions aux Blancs contre huit aux Noirs, donc les Noirs ont exactement un pion de plus. Le clouage du fou b5 n'est qu'apparent, puisque le propre pion d7 des Noirs bloque la diagonale juste derrière c6, si bien que le cavalier défend toujours solidement d4 et que Nxd4 ou Qxd4 pour les Blancs se heurte simplement à ...Nxd4. En échange, le ...a6 qui vient d'être joué laisse aussi une petite faiblesse en b6 une fois que le fou finira par se replier.
+        plan:
+          vi: Trắng chơi Bxc6 để đổi lấy đôi tốt chồng nhau của Đen, hoặc lui về Ba4, Be2 hay Bd3, rồi tiếp tục Nxd4 hay c3, O-O và Re1, dùng thời gian và áp lực trung tâm để bù cho con tốt đã mất. Đen ăn lại Bxc6 bằng ...bxc6 hoặc ...dxc6 tuỳ theo cấu trúc mong muốn, rồi phát triển bằng ...d6, ...Be7 hay ...Bc5 và ...Nf6, giữ chắc con tốt thừa như phần thưởng cho một nhịp đã mất.
+          en: White plays Bxc6 to trade for Black's doubled pawns, or retreats with Ba4, Be2 or Bd3, then continues with Nxd4 or c3, O-O and Re1, using the extra time and central pressure to offset the lost pawn. Black recaptures Bxc6 with ...bxc6 or ...dxc6 depending on the preferred structure, then develops with ...d6, ...Be7 or ...Bc5 and ...Nf6, holding on to the extra pawn as the reward for one lost tempo.
+          fr: Les Blancs jouent Bxc6 pour échanger contre des pions noirs doublés, ou se replient par Ba4, Be2 ou Bd3, puis poursuivent par Nxd4 ou c3, O-O et Re1, utilisant le temps gagné et la pression centrale pour compenser le pion perdu. Les Noirs reprennent Bxc6 par ...bxc6 ou ...dxc6 selon la structure préférée, puis développent par ...d6, ...Be7 ou ...Bc5 et ...Nf6, conservant le pion supplémentaire comme récompense pour un temps perdu.
+        basis:
+          by: chan
+          at: '2026-09-25'

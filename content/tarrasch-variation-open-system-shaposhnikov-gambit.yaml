@@ -1,0 +1,64 @@
+# French Defense: Tarrasch Variation, Open System, Shaposhnikov Gambit. Frozen defining
+# line 1.e4 e6 2.d4 d5 3.Nd2 c5 4.exd5 Nf6, which ends on Black's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). The line below was replayed with
+# chess.js before being annotated.
+id: tarrasch-variation-open-system-shaposhnikov-gambit
+name: 'French Defense: Tarrasch Variation, Open System, Shaposhnikov Gambit'
+eco: C07
+category: gambit
+side: black
+definingLine: [e4, e6, d4, d5, Nd2, c5, exd5, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black leaves the pawn on d5 sitting for one more move rather than
+      recapturing it at once, developing with 4...Nf6 first and handing White the choice
+      of how to meet it. Once Black does recapture, in any of three ways, material is
+      level again, so nothing is actually sacrificed — the concession is one of move order
+      and resulting structure, and it has not been shown to give Black anything extra for
+      giving White that choice. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì ăn lại tốt d5 ngay, Đen chơi 4...Nf6, phát triển mã trước và để nguyên câu hỏi về con tốt d5 cho nước sau. Đây là ý tưởng của Shaposhnikov Gambit trong hệ thống Mở của biến Tarrassch.
+    en: Rather than recapturing on d5 immediately, Black plays 4...Nf6, developing the knight first and leaving the question of the d5 pawn for later. This is the idea behind the Shaposhnikov Gambit in the Open System of the Tarrasch Variation.
+    fr: Plutôt que de reprendre aussitôt en d5, les Noirs jouent 4...Nf6, développant le cavalier d'abord et laissant pour plus tard la question du pion d5. C'est l'idée du Gambit Shaposhnikov dans le Système Ouvert de la Variante Tarrasch.
+  dismissRest:
+    reason:
+      vi: Trắng không phát triển mã còn lại ra f3. Các nước khác như Bd3, c4 hay Qe2 đều là những cách hợp lý khác để xử lý con tốt d5 đang chờ bị ăn lại, nhưng không dẫn tới đúng thế cờ đang được phân tích ở đây.
+      en: White does not develop the remaining knight to f3. Anything else, such as Bd3, c4 or Qe2, is another reasonable way to handle the d5 pawn waiting to be recaptured, but it does not lead to the exact position analysed here.
+      fr: Les Blancs ne développent pas l'autre cavalier en f3. Tout le reste, comme Bd3, c4 ou Qe2, est une autre façon raisonnable de gérer le pion d5 en attente d'être repris, mais ne mène pas à la position précise analysée ici.
+  children:
+    - ply: Ngf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã còn lại ra f3 (viết Ngf3 để phân biệt với mã d2), hoàn tất phát triển cả hai mã trong khi con tốt d5 vẫn còn nguyên trên bàn cờ, chưa ai ăn lại.
+        en: White develops the remaining knight to f3 (written Ngf3 to distinguish it from the one on d2), completing both knights' development while the pawn on d5 is still sitting there, unrecaptured.
+        fr: Les Blancs développent l'autre cavalier en f3 (noté Ngf3 pour le distinguer de celui en d2), achevant le développement des deux cavaliers alors que le pion en d5 est toujours là, non repris.
+      unsettled: >-
+        exd5 is going free and the evaluation says so — White's pawn on d5 has had nothing
+        defending it since it captured there, and Black can also take it with the queen or
+        the f6-knight instead.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm điểm thì Trắng 39, Đen 38 — hơn đúng một tốt, nhưng chỉ vì Đen chưa ăn lại. Con tốt Trắng ở d5 hiện đang đứng đôi cùng tốt d4 (tốt chồng trên cột d), và không có quân nào bảo vệ nó, nên Đen sẽ ăn lại ngay bằng một trong ba cách — exd5, Qxd5 hay Nxd5 — đưa quân số về ngang nhau.
+          en: Count the points and it is 39 for White, 38 for Black — a single pawn up, but only because Black has not recaptured yet. White's pawn on d5 is currently doubled with the one on d4 on the same file, and nothing defends it, so Black will take it straight back one of three ways — exd5, Qxd5 or Nxd5 — bringing material back level.
+          fr: En comptant les points, 39 pour les Blancs, 38 pour les Noirs — un seul pion d'avance, mais seulement parce que les Noirs n'ont pas encore repris. Le pion blanc en d5 est pour l'instant doublé avec celui en d4 sur la même colonne, et rien ne le défend, donc les Noirs le reprendront aussitôt d'une des trois façons — exd5, Qxd5 ou Nxd5 — ramenant le matériel à l'égalité.
+        plan:
+          vi: Trắng chơi c4, Be2 hay Bd3 và O-O, cố dựng trung tâm và hoàn tất phát triển sau khi con tốt d5 chắc chắn sẽ bị ăn lại. Đen chơi exd5 (giữ cấu trúc tốt cân đối nhất trong ba lựa chọn), rồi Be7, O-O và c4 hoặc Nc6, hoàn tất phát triển với quân số ngang nhau.
+          en: White plays c4, Be2 or Bd3 and O-O, trying to build a centre and finish developing once the d5 pawn is inevitably taken back. Black plays exd5 (the most balanced pawn structure of the three options), then Be7, O-O and c4 or Nc6, completing development with material level.
+          fr: Les Blancs jouent c4, Be2 ou Bd3 et O-O, essayant de construire un centre et d'achever leur développement une fois le pion d5 inévitablement repris. Les Noirs jouent exd5 (la structure de pions la plus équilibrée des trois options), puis Be7, O-O et c4 ou Nc6, achevant leur développement avec un matériel égal.
+        basis:
+          by: chan
+          at: '2026-09-25'

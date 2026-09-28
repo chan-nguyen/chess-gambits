@@ -1,0 +1,73 @@
+# Italian Game, Evans Gambit, Hein Countergambit. One of a batch of entries authored for
+# issue #148 (batch h), sharing the trunk `1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4` with
+# `italian-game-evans-gambit.yaml`. Defining line ends on White's 4.b4 (invariant 5). Every
+# ply below was replayed with chess.js before being written.
+#
+# The leaf stops right after 5.bxc5, where Black still has two more captures going free
+# (dxe4 and dxc4, per the scratch chess.js check) — the position is a genuine tangle rather
+# than a settled material count, so it is marked `unsettled` instead of forcing a verdict
+# past that point (docs/CONTEXT.md, invariant 14).
+id: italian-game-evans-gambit-hein-countergambit
+name: 'Italian Game: Evans Gambit, Hein Countergambit'
+eco: C51
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      The same judgement the family head `italian-game-evans-gambit.yaml` carries for White's
+      side of the gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng thí tốt b4 ngay dưới mũi tượng c5. Mục này đi sâu riêng vào việc Đen phớt lờ lời mời và đánh thẳng vào trung tâm bằng 4...d5.
+    en: White offers the b-pawn right under the bishop on c5. This entry follows specifically Black ignoring the offer and striking the centre with 4...d5.
+    fr: Les Blancs offrent le pion b juste sous le fou en c5. Cette entrée suit spécifiquement les Noirs qui ignorent l'offre et frappent le centre par 4...d5.
+  dismissRest:
+    reason:
+      vi: Đen đáp lại 4.b4 bằng một nước khác ngoài 4...d5 — ăn tốt bằng 4...Bxb4 (nhận gambit), lui tượng về b6 (từ chối), hay đẩy tốt lên b5 (Phản-gambit Fontaine). Mỗi lựa chọn nằm ngoài phạm vi mục này.
+      en: Black meets 4.b4 with something other than 4...d5 — taking the pawn with 4...Bxb4 (accepting), retreating the bishop to b6 (declining), or pushing b5 (the Fontaine Countergambit). Each is outside the scope of this entry.
+      fr: Les Noirs répondent à 4.b4 par autre chose que 4...d5 — prenant le pion par 4...Fxb4 (acceptant), reculant le fou en b6 (refusant), ou poussant b5 (le Contre-gambit Fontaine). Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Phản-gambit Hein. Đen bỏ mặc câu hỏi về con tượng c5 và đánh thẳng vào tượng c4 cùng trung tâm, mời Trắng đổi chác trước khi tính đến tốt b4.
+        en: The Hein Countergambit. Black leaves the question about the c5 bishop unanswered and strikes at the c4 bishop and the centre at once, inviting exchanges before the b4 pawn is even dealt with.
+        fr: Le Contre-gambit Hein. Les Noirs laissent sans réponse la question posée au fou c5 et frappent aussitôt le fou c4 et le centre, invitant aux échanges avant même de régler le sort du pion b4.
+      children:
+        - ply: bxc5
+          annotation:
+            vi: Trắng ăn thẳng con tượng c5 thay vì lo cho tượng c4 đang bị tốt d5 đánh. Con tốt b4 vừa dùng để ăn tượng, còn tốt e4 và tượng c4 của Trắng vẫn chưa được giải quyết.
+            en: White simply captures the c5 bishop rather than worrying about the c4 bishop that d5 is attacking. The b4 pawn has just done its job by winning the bishop, while White's e4 pawn and c4 bishop remain unresolved.
+            fr: Les Blancs prennent tout simplement le fou c5 plutôt que de s'inquiéter du fou c4 attaqué par d5. Le pion b4 vient de faire son office en gagnant le fou, tandis que le pion e4 et le fou c4 blancs restent non résolus.
+          unsettled: >-
+            dxe4 and dxc4 are both going free for Black here, confirmed by a scratch chess.js
+            check — White has just won a full piece with bxc5, but the d5 pawn still attacks
+            both the e4 pawn and the c4 bishop, and the position is a genuine tangle rather
+            than a frozen material count. The point of this leaf is the shape of the
+            position and the piece White has already banked, not a settled figure past it.
+          outcome:
+            type: position
+            evaluation:
+              vi: Trắng vừa ăn hẳn một tượng bằng bxc5, một khoản lời vật chất rõ ràng, nhưng đổi lại tốt d5 của Đen đang đánh vào cả tốt e4 lẫn tượng c4 cùng lúc, nên còn ít nhất một trong hai quân ấy sẽ mất trước khi bụi lắng xuống.
+              en: White has just won a whole bishop with bxc5, a clear material gain, but in exchange Black's d5 pawn attacks both the e4 pawn and the c4 bishop at once, so at least one of those two will be lost before the dust settles.
+              fr: Les Blancs viennent de gagner un fou entier par bxc5, un gain matériel net, mais en échange le pion d5 noir attaque à la fois le pion e4 et le fou c4, si bien qu'au moins l'une des deux pièces tombera avant que la position ne se stabilise.
+            plan:
+              vi: Trắng chơi Bxd5 giữ lại quân đã ăn thêm, hoặc exd5 nếu tượng c4 cần lui, rồi nhập thành và tận dụng quân hơn. Đen chơi dxc4 hoặc dxe4 tùy Trắng chọn gì, rồi Nf6 và O-O, cố tìm hoạt động bù cho quân đã mất.
+              en: White plays Bxd5 to hold on to the extra material, or exd5 if the c4 bishop needs to step back, then castles and makes use of the extra piece. Black plays dxc4 or dxe4 depending on White's choice, then Nf6 and O-O, looking for activity to compensate for the lost piece.
+              fr: Les Blancs jouent Bxd5 pour conserver le matériel supplémentaire, ou exd5 si le fou c4 doit reculer, puis roquent et exploitent la pièce d'avance. Les Noirs jouent dxc4 ou dxe4 selon le choix des Blancs, puis Nf6 et O-O, cherchant de l'activité pour compenser la pièce perdue.
+            basis:
+              by: chan
+              at: '2026-09-25'
