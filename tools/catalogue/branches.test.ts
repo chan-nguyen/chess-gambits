@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Three hundred and nine entries are authored — three from #15, eleven from #73, ten
+   * Three hundred and fifty-nine entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -166,14 +166,21 @@ describe('the catalogue this repository ships', () => {
    * intermediate check before their leaf, still one branch each), and three more from #136
    * batch f (danish-gambit-accepted-classical-defense, italian-game-two-knights-defense-fried-liver-attack
    * and petrovs-defense-cochrane-gambit, each a single root-to-leaf line ending on the
-   * forced recapture after the gambit's own knight sacrifice), and one new named trap from
-   * #137 batch c (the Milner-Barry Trap, French Defense Advance Variation), and fifty-
-   * three more from #148 batch j (a broad, diverse spread of family heads and named sub-
-   * variations across dozens of opening families — Ruy Lopez, Scandinavian, Scotch,
-   * Sicilian, Semi-Slav, Tarrasch, Torre/Trompowsky, Two Knights, Van Geet, Vant Kruijs,
-   * Vienna, Ware and Zukertort among them, authored by five parallel sub-agents against a
-   * shared, pre-verified move/material spec — each a single root-to-leaf line, listed
-   * individually in the PR rather than here) — and the other 715
+   * forced recapture after the gambit's own knight sacrifice), one new named trap from
+   * #137 batch c (the Milner-Barry Trap, French Defense Advance Variation), fifty more
+   * from #148 batch h (eight King's Gambit Accepted Bishop's Gambit sub-variations, nine
+   * Evans Gambit sub-variations, four Falkbeer Countergambit sub-variations, three Four
+   * Knights Game sub-variations, seven French Defense family entries, five Grob Opening
+   * family entries, one Grünfeld Gambit Accepted, one Gunderam Defense sub-variation, two
+   * Hamppe-Allgaier Gambit sub-variations, three Hungarian Opening family entries, five
+   * Indian Defense family entries, the Two Knights Defense Traxler Counterattack and the
+   * Scotch Gambit family head, each a single root-to-leaf line), and fifty-three more
+   * from #148 batch j (a broad, diverse spread of family heads and named sub-variations
+   * across dozens of opening families — Ruy Lopez, Scandinavian, Scotch, Sicilian,
+   * Semi-Slav, Tarrasch, Torre/Trompowsky, Two Knights, Van Geet, Vant Kruijs, Vienna,
+   * Ware and Zukertort among them, authored by five parallel sub-agents against a shared,
+   * pre-verified move/material spec — each a single root-to-leaf line, listed individually
+   * in the PR rather than here) — and the other 665
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -259,28 +266,70 @@ describe('the catalogue this repository ships', () => {
     ['englund-gambit-soller-gambit-deferred', 1],
     ['englund-gambit-trap', 6],
     ['englund-gambit-zilbermints-gambit', 1],
+    ['falkbeer-countergambit-charousek-gambit-old-line', 1],
+    ['falkbeer-countergambit-milner-barry-variation', 1],
+    ['falkbeer-countergambit-nimzowitsch-marshall-countergambit', 1],
+    ['falkbeer-countergambit-rubinstein-variation', 1],
     ['fishing-pole-trap', 3],
     ['four-knights-game-halloween-gambit', 1],
+    ['four-knights-game-italian-variation-noa-gambit', 1],
+    ['four-knights-game-scotch-variation-belgrade-gambit', 1],
+    ['four-knights-game-scotch-variation-krause-gambit', 1],
+    ['french-defense-advance-variation-milner-barry-gambit', 1],
+    ['french-defense-alapin-gambit', 1],
     ['french-defense-banzai-leong-gambit', 3],
+    ['french-defense-carlson-gambit', 1],
+    ['french-defense-diemer-duhm-gambit', 1],
+    ['french-defense-diemer-duhm-gambit-accepted', 1],
+    ['french-defense-marshall-gambit', 1],
+    ['french-defense-morphy-gambit', 1],
     ['french-defense-wing-gambit', 1],
     ['grob-opening-alessi-gambit', 1],
+    ['grob-opening-grob-gambit', 1],
+    ['grob-opening-grob-gambit-basman-gambit', 1],
     ['grob-opening-grob-gambit-declined', 1],
+    ['grob-opening-grob-gambit-fritz-gambit', 1],
+    ['grob-opening-grob-gambit-richter-grob-gambit', 1],
+    ['grob-opening-romford-countergambit', 1],
+    ['grunfeld-defense-brinckmann-attack-grunfeld-gambit-accepted', 1],
     ['grunfeld-defense-gibbon-gambit', 1],
+    ['gunderam-defense-stader-variation', 1],
     ['halosar-trap', 3],
+    ['hamppe-allgaier-gambit-alapin-variation', 1],
+    ['hamppe-allgaier-gambit-thorold-variation', 1],
     ['horwitz-defense-zilbermints-gambit', 1],
     ['hungarian-opening-asten-gambit', 1],
+    ['hungarian-opening-bucker-gambit', 1],
+    ['hungarian-opening-pachman-gambit', 1],
     ['hungarian-opening-van-kuijk-gambit', 1],
+    ['hungarian-opening-winterberg-gambit', 1],
+    ['indian-defense-anti-grunfeld-adorjan-gambit', 1],
     ['indian-defense-budapest-gambit', 5],
+    ['indian-defense-budapest-gambit-accepted', 1],
     ['indian-defense-budapest-gambit-accepted-fajarowicz-defense', 1],
     ['indian-defense-gibbins-weidenhagen-gambit', 3],
+    ['indian-defense-gibbins-weidenhagen-gambit-accepted', 1],
+    ['indian-defense-gibbins-weidenhagen-gambit-oshima-defense', 1],
     ['indian-defense-lazard-gambit', 2],
+    ['indian-defense-omega-gambit', 1],
     ['irish-gambit', 1],
     ['italian-game-blackburne-kostic-gambit', 2],
     ['italian-game-evans-gambit', 6],
+    ['italian-game-evans-gambit-accepted', 1],
+    ['italian-game-evans-gambit-anderssen-variation', 1],
+    ['italian-game-evans-gambit-declined', 1],
+    ['italian-game-evans-gambit-fontaine-countergambit', 1],
+    ['italian-game-evans-gambit-hein-countergambit', 1],
+    ['italian-game-evans-gambit-main-line', 1],
+    ['italian-game-evans-gambit-mayet-defense', 1],
+    ['italian-game-evans-gambit-mcdonnell-defense', 1],
+    ['italian-game-evans-gambit-stone-ware-variation', 1],
     ['italian-game-jerome-gambit', 1],
     ['italian-game-rosentreter-gambit', 1],
     ['italian-game-rousseau-gambit', 1],
+    ['italian-game-scotch-gambit', 1],
     ['italian-game-two-knights-defense-fried-liver-attack', 1],
+    ['italian-game-two-knights-defense-traxler-counterattack', 1],
     ['kadas-opening-kadas-gambit', 1],
     ['kadas-opening-schneider-gambit', 1],
     ['kadas-opening-steinbok-gambit', 1],
@@ -291,11 +340,19 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-accepted-becker-defense', 1],
     ['kings-gambit-accepted-bishops-gambit', 1],
     ['kings-gambit-accepted-bishops-gambit-anderssen-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit-anderssen-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-bledow-countergambit', 1],
     ['kings-gambit-accepted-bishops-gambit-bledow-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-boden-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-bogoljubow-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-cozio-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit-cozio-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-first-jaenisch-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-gianutio-gambit', 1],
+    ['kings-gambit-accepted-bishops-gambit-greco-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-kieseritzky-gambit', 1],
     ['kings-gambit-accepted-bishops-gambit-lopez-defense', 1],
+    ['kings-gambit-accepted-bishops-gambit-lopez-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-maurian-defense', 1],
     ['kings-gambit-accepted-bishops-gambit-steinitz-defense', 1],
     ['kings-gambit-accepted-bonsch-osmolovsky-variation', 1],
@@ -506,7 +563,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored three hundred and nine have any', () => {
+  it('bakes keys on all 1024 entries, and only the authored three hundred and fifty-nine have any', () => {
     expect(result.value.records).toHaveLength(1024)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
