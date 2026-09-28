@@ -101,6 +101,10 @@ export type LocaleCopy = {
   readonly catalogueIntro: string
   /** `nav.about`. */
   readonly about: string
+  /** `analysis.heading` — the analysis page's own h1 (#154). */
+  readonly analysis: string
+  /** `analysis.intro`. */
+  readonly analysisIntro: string
   /** `home.tagline`. */
   readonly tagline: string
 }
@@ -210,6 +214,16 @@ export const shellMetadata = (input: MetadataInput): ShellSet => {
       description: words.tagline,
       canonical: url(origin, basePath, at(routeSegments.about)),
       alternates: alternates((other) => routePath(other, routeSegments.about)),
+      csp,
+    })
+
+    shells.set(`${locale}/${routeSegments.analysis}`, {
+      lang: locale,
+      name: words.analysis,
+      title: titled(words.analysis),
+      description: words.analysisIntro,
+      canonical: url(origin, basePath, at(routeSegments.analysis)),
+      alternates: alternates((other) => routePath(other, routeSegments.analysis)),
       csp,
     })
 

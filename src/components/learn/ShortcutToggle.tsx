@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import './ShortcutToggle.css'
 import { Translated } from '../../i18n/Translated.tsx'
+import type { TranslationKey } from '../../i18n/translations.ts'
 import type { ShortcutSetting } from './shortcuts.ts'
 
 /**
@@ -15,9 +16,18 @@ import type { ShortcutSetting } from './shortcuts.ts'
 export type ShortcutToggleProps = {
   readonly setting: ShortcutSetting
   readonly onChange: (setting: ShortcutSetting) => void
+  /**
+   * Which keys this page has, in words. The analysis page (#154) shares the switch — it is
+   * one setting about how the visitor uses a keyboard — but not the `1`–`9` keys.
+   */
+  readonly hint?: TranslationKey
 }
 
-export const ShortcutToggle = ({ setting, onChange }: ShortcutToggleProps) => {
+export const ShortcutToggle = ({
+  setting,
+  onChange,
+  hint = 'learn.shortcutsHint',
+}: ShortcutToggleProps) => {
   const inputId = useId()
   const hintId = useId()
 
@@ -35,7 +45,7 @@ export const ShortcutToggle = ({ setting, onChange }: ShortcutToggleProps) => {
         <Translated id="learn.shortcuts" />
       </label>
       <p className="shortcut-toggle__hint" id={hintId}>
-        <Translated id="learn.shortcutsHint" />
+        <Translated id={hint} />
       </p>
     </div>
   )

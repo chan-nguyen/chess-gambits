@@ -30,6 +30,7 @@ not about the running site.
 | B3  | GitHub Actions → GitHub Pages | The built bundle                                         | Anyone who can run a privileged workflow or alter one   |
 | B4  | Visitor's URL → application   | `line`, `q`, `side`, `soundness`, `tier`, `flip`, locale | Anyone who can get a visitor to open a link             |
 | B5  | Application → `localStorage`  | Progress data                                            | Any script running on the origin                        |
+| B6  | Engine worker → application   | UCI text from Stockfish (#154, ADR-0012)                 | Whoever could replace the vendored engine files         |
 
 There is deliberately no browser-to-server boundary, and no server-to-database boundary.
 
@@ -85,6 +86,11 @@ equivalent of a data breach, so content validation is a security control and not
 - Licence check in CI: every dependency's licence is recorded, and a copyleft licence appearing in
   the runtime dependency tree fails the build rather than quietly changing the project's licensing
   obligations.
+- **The one copyleft component is outside that tree on purpose, so the check above cannot see it.**
+  Stockfish (GPL-3.0) is vendored under `public/engine/` rather than installed, by the owner's
+  decision in ADR-0012. What stands in for the licence check there: `tools/engine/vendored.test.ts`
+  holds the three files to SHA-256 hashes recorded in `public/engine/README.md`, so the engine cannot
+  be replaced or updated without a reviewed diff to both, and `NOTICE` records the obligation.
 
 ### B3 — Build and deployment integrity
 
@@ -107,6 +113,10 @@ Every URL parameter is attacker-controlled, because a link can be sent to anyone
 - An invalid `line` recovers to the nearest valid node and says so. It never throws, never renders
   a blank screen, and never round-trips unvalidated text into the DOM.
 - No URL parameter is ever interpolated into HTML or used to choose a module to load.
+- The analysis page's `moves` is bounded at 600 plies and replayed with `chess.js`, stopping at the
+  first move that is not legal; `ply` is at most four digits and clamped to the line. A pasted PGN is
+  refused above 50,000 characters before it is parsed, refused with a `FEN` tag rather than replayed
+  from the wrong board, and never reaches the DOM except as the SAN `chess.js` gives back (#154).
 - **One parameter does build a URL for a request, and it is bounded rather than forbidden**: the
   gambit id, which selects the compiled entry to fetch. Per-entry lazy loading is impossible
   otherwise. The id is matched against the schema's slug shape and a 64-character bound **before any
@@ -127,6 +137,19 @@ Every URL parameter is attacker-controlled, because a link can be sent to anyone
   helper uses, validates against the same closed set, degrades to the system preference on any
   failure, and reads one key holding one of three words. `src/styles/theme.test.ts` asserts the key
   and the attribute still match `src/styles/theme.ts`, so the two spellings cannot drift.
+
+### B6 — Engine output
+
+Stockfish is a program this project did not write, so what it sends is read as untrusted text.
+
+- `src/components/analysis/uci.ts` parses it into numbers and move tokens and nothing else; a line
+  it does not recognise is ignored, never thrown on. Every move of a line is replayed with `chess.js`
+  from the analysed position and the line is cut at the first one that is not legal, so the engine
+  cannot put a move on screen that the rules do not allow.
+- None of it is rendered as markup: the page shows the SAN `chess.js` produces and figures it
+  formats itself.
+- The worker is same-origin (`worker-src 'self'`) and loaded from a fixed path; no URL parameter
+  chooses it.
 
 ### Transport and browser-level controls
 

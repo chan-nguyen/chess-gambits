@@ -140,6 +140,20 @@ export const OpeningExplorer = ({ locale, catalogue }: OpeningExplorerProps) => 
               <Translated id="board.flip" />
             </button>
           </p>
+          {/*
+           * The same query string, on the analysis page (#154): `moves` means the same line
+           * there and `flip` the same way up, so the board opens exactly as it is here.
+           */}
+          <p className="opening-explorer__analyse">
+            <Link
+              to={{
+                pathname: routePath(locale, routeSegments.analysis),
+                search: withFlip(movesSearch(plies), flipped),
+              }}
+            >
+              <Translated id="analysis.openHere" />
+            </Link>
+          </p>
         </div>
 
         <div className="opening-explorer__matches">

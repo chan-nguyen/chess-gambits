@@ -63,6 +63,11 @@ export type BoardProps = {
    * either, only that these squares get a dot and say so in their accessible name.
    */
   readonly targets?: readonly Square[] | undefined
+  /**
+   * Arrows from one square to another, drawn over everything. The analysis page passes the
+   * engine's best move (#154); what an arrow means is the caller's business.
+   */
+  readonly arrows?: readonly LastMove[] | undefined
   /** Off for previews, which are small and carry no coordinates. */
   readonly showCoordinates?: boolean | undefined
 }
@@ -88,6 +93,37 @@ const TARGET_RADIUS = 0.16
 const TARGET_RING_RADIUS = 0.45
 // Unitless SVG user units, so no px reaches the stylesheet (see Board.css).
 const COORDINATE_SIZE = 0.2
+const ARROW_SHAFT = 0.16
+const ARROW_HEAD_WIDTH = 0.42
+const ARROW_HEAD_LENGTH = 0.42
+
+type Point = { readonly x: number; readonly y: number }
+
+/**
+ * One arrow as a single polygon, square centre to square centre: a shaft, then a head whose
+ * point lands on the centre of the square it names. One shape rather than a line and a
+ * marker, because a marker needs a document-unique id and every board on a page would share
+ * one.
+ */
+const arrowPoints = (from: Point, to: Point): string => {
+  const length = Math.hypot(to.x - from.x, to.y - from.y)
+  const dx = (to.x - from.x) / length
+  const dy = (to.y - from.y) / length
+  const neck = length - ARROW_HEAD_LENGTH
+  // `along` the arrow from the centre of `from`, and `across` it, perpendicular.
+  const at = (along: number, across: number): string =>
+    `${(from.x + SQUARE_CENTRE + dx * along - dy * across).toFixed(3)},` +
+    `${(from.y + SQUARE_CENTRE + dy * along + dx * across).toFixed(3)}`
+  return [
+    at(0, ARROW_SHAFT / 2),
+    at(neck, ARROW_SHAFT / 2),
+    at(neck, ARROW_HEAD_WIDTH / 2),
+    at(length, 0),
+    at(neck, -ARROW_HEAD_WIDTH / 2),
+    at(neck, -ARROW_SHAFT / 2),
+    at(0, -ARROW_SHAFT / 2),
+  ].join(' ')
+}
 
 /**
  * A chessboard that displays a position and never accepts a move.
@@ -113,6 +149,7 @@ export const Board = ({
   check,
   marks,
   targets,
+  arrows,
   showCoordinates = true,
 }: BoardProps) => {
   const position = useMemo(() => parseFen(fen), [fen])
@@ -301,6 +338,19 @@ export const Board = ({
               )}
             </g>
           ))}
+
+        {(arrows ?? []).flatMap((arrow) => {
+          const from = cells.find((cell) => cell.square === arrow.from)
+          const to = cells.find((cell) => cell.square === arrow.to)
+          if (from === undefined || to === undefined) return []
+          return [
+            <polygon
+              key={`arrow-${arrow.from}${arrow.to}`}
+              className="board__arrow"
+              points={arrowPoints(from, to)}
+            />,
+          ]
+        })}
       </svg>
 
       {/* One tab stop for the whole board. Thirty-two focusable pieces across seven

@@ -113,6 +113,7 @@ test.describe('the axe sweep (AC 1)', () => {
       { name: 'catalogue', path: `${locale}/${routeSegments.catalogue}` },
       { name: 'gambit', path: `${locale}/${routeSegments.catalogue}/${PUBLISHED_GAMBIT}` },
       { name: 'about', path: `${locale}/${routeSegments.about}` },
+      { name: 'analysis', path: `${locale}/${routeSegments.analysis}?moves=e4_e5` },
     ]
 
     for (const { name, path } of routes) {

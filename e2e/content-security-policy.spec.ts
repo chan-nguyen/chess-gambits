@@ -94,6 +94,9 @@ const ROUTES: readonly { readonly path: string; readonly status: number }[] = [
   { path: 'vi/', status: 200 },
   { path: `vi/${routeSegments.catalogue}`, status: 200 },
   { path: `vi/${routeSegments.about}`, status: 200 },
+  // The one route that starts a worker and compiles WASM (ADR-0012): if either needed the
+  // policy widened, this is where it would show.
+  { path: `vi/${routeSegments.analysis}?moves=e4_e5`, status: 200 },
   { path: `vi/${routeSegments.catalogue}/damiano-defence-refutation`, status: 200 },
   { path: `vi/${routeSegments.catalogue}/benko-gambit?line=cxb5+a6`, status: 200 },
   { path: `en/${routeSegments.catalogue}/legals-mate`, status: 200 },

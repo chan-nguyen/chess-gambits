@@ -92,7 +92,9 @@ Each item is phrased so a test can fail against it.
 - **Accounts, login, cross-device sync** — v2 at the earliest; requires a backend, which this v1
   deliberately does not have.
 - **In-browser engine analysis (Stockfish WASM)** — v2. The architecture must isolate evaluation
-  behind a seam so it can be added without a rewrite, but no engine ships in v1.
+  behind a seam so it can be added without a rewrite, but no engine ships in v1. **Brought forward
+  on 2026-09-28 by the owner** as a page of its own, `/:locale/analysis` (#154, ADR-0012); the gambit
+  pages still show no engine output.
 - **Practice / quiz mode** (machine plays the opponent, learner must find the move) — v2.
 - **Spaced repetition scheduling** — v2, and depends on practice mode.
 - **Playing a full game against a computer** — not wanted.
