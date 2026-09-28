@@ -1,0 +1,70 @@
+# Italian Game, Two Knights Defense, Traxler Counterattack. One entry in a batch authored
+# for issue #148 (batch h). Defining line ends on Black's 4...Bc5 (invariant 5). Every ply
+# below was replayed with chess.js before being written.
+#
+# The leaf stops right after 5.Nxf7, where White's knight forks the queen and rook but
+# Black's own Nxe4 is going free at the same time (confirmed by a scratch chess.js check) —
+# this is the single most tactically loaded position in the whole batch, the starting point
+# of one of chess's most analysed sacrificial complexes, and reducing it to a settled
+# material count would misrepresent it. It is marked `unsettled` rather than forced into a
+# verdict (docs/CONTEXT.md, invariant 14).
+id: italian-game-two-knights-defense-traxler-counterattack
+name: 'Italian Game: Two Knights Defense, Traxler Counterattack'
+eco: C57
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, Bc5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. Black offers the f7 pawn back and lets the fork on f7 stand, betting on
+      the counterattack that follows rather than defending passively, and the complications
+      have never been shown to fail for Black even where White finds the critical tries. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...Bc5, Phản công Traxler. Thay vì lui mã hay đỡ trước mối đe dọa Nxf7, Đen phớt lờ hẳn nó và tự mình phát triển tấn công, đặt cược rằng con mã g5 sẽ phải trả giá vì đã rời quá xa phần còn lại của quân Trắng.
+    en: Black has just played 4...Bc5, the Traxler Counterattack. Rather than retreating the knight or defending against the Nxf7 threat, Black ignores it entirely and develops with its own attacking idea, betting that the g5 knight will pay for having strayed so far from the rest of White's army.
+    fr: Les Noirs viennent de jouer 4...Fc5, le Contre-Traxler. Plutôt que de reculer le cavalier ou de parer la menace Nxf7, les Noirs l'ignorent entièrement et développent avec leur propre idée d'attaque, pariant que le cavalier g5 paiera pour s'être autant éloigné du reste de l'armée blanche.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt f7 bằng mã ngay — chơi 5.Bxf7+ trước (một thứ tự nước đi khác dẫn tới ý tưởng tương tự) hay lui mã về an toàn bằng 5.Nf3. Mỗi lựa chọn khác nằm ngoài phạm vi mục này.
+      en: White does not take the f7 pawn with the knight at once — playing 5.Bxf7+ first instead (a different move order toward a similar idea), or retreating the knight to safety with 5.Nf3. Any other choice is outside the scope of this entry.
+      fr: Les Blancs ne prennent pas aussitôt le pion f7 avec le cavalier — jouant plutôt 5.Bxf7+ d'abord (un ordre de coups différent vers une idée similaire), ou repliant le cavalier en sécurité par 5.Nf3. Tout autre choix sort du cadre de cette entrée.
+  children:
+    - ply: Nxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng thực hiện đúng mối đe dọa, ăn tốt f7 bằng mã và chĩa đôi vào hậu d8 lẫn xe h8. Nhưng đây cũng chính là điều Đen đã tính tới.
+        en: White carries out the threat, capturing the f7 pawn with the knight and forking the d8 queen and the h8 rook. But this is exactly what Black was counting on.
+        fr: Les Blancs exécutent la menace, capturant le pion f7 avec le cavalier et faisant fourchette sur la dame d8 et la tour h8. Mais c'est précisément ce sur quoi comptaient les Noirs.
+      unsettled: >-
+        Nxe4 is going free for Black here, confirmed by a scratch chess.js check, on top
+        of the fork the knight on f7 has just landed — this is the starting point of the
+        Traxler's famous forcing complications (10...Bxf2+ and similar sacrifices are the
+        actual point several moves from here), not a position with a settled material
+        count. The leaf records the shape of the position rather than a frozen figure.
+      outcome:
+        type: position
+        evaluation:
+          vi: Vị trí này là điểm khởi đầu của một trong những mê cung chiến thuật được phân tích nhiều nhất trong cờ vua. Con mã Trắng ở f7 vừa chĩa đôi vào hậu và xe, nhưng con tốt e4 của Trắng cũng đang bị mã f6 ăn tự do, và những đòn hy sinh nổi tiếng của Đen (như ...Bxf2+) vẫn còn ở phía trước — đây không phải một khoản lời vật chất đã yên mà là một thế cờ sắc bén cần tính cụ thể từng nước.
+          en: This position is the starting point of one of the most heavily analysed tactical mazes in chess. White's knight on f7 has just forked the queen and rook, but White's own e4 pawn is also hanging to the f6 knight, and Black's famous sacrifices (such as ...Bxf2+) are still ahead — this is not a settled material gain but a sharp position that needs move-by-move calculation.
+          fr: Cette position est le point de départ de l'un des labyrinthes tactiques les plus analysés aux échecs. Le cavalier blanc en f7 vient de faire fourchette sur la dame et la tour, mais le propre pion e4 blanc est aussi en prise pour le cavalier f6, et les fameux sacrifices noirs (comme ...Fxf2+) restent à venir — ce n'est pas un gain matériel stabilisé mais une position tranchante qui exige un calcul coup par coup.
+        plan:
+          vi: Trắng chơi Nxh8 ăn hẳn xe nếu dám, chấp nhận vua bị vây ráp sau các đòn hy sinh của Đen, hoặc Nxd8 đổi hậu trước để giảm rủi ro. Đen chơi Bxf2+ hay Nxe4 ngay, lao vào biến phức tạp nổi tiếng để bù lại phần vật chất bằng một cuộc tấn công trực diện vào vua Trắng.
+          en: White plays Nxh8 to take the rook outright if brave enough, accepting a besieged king after Black's sacrifices, or Nxd8 to trade the queen off first and cut the risk. Black plays Bxf2+ or Nxe4 at once, diving into the famous complications to make up for the material with a direct attack on White's king.
+          fr: Les Blancs jouent Nxh8 pour prendre carrément la tour s'ils l'osent, acceptant un roi assiégé après les sacrifices noirs, ou Nxd8 pour échanger d'abord la dame et réduire le risque. Les Noirs jouent Bxf2+ ou Nxe4 aussitôt, plongeant dans les fameuses complications pour compenser le matériel par une attaque directe sur le roi blanc.
+        basis:
+          by: chan
+          at: '2026-09-25'

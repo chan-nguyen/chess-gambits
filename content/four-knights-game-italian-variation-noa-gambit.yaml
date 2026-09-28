@@ -1,0 +1,80 @@
+# Four Knights Game, Italian Variation, Noa Gambit. One entry in a batch authored for issue
+# #148 (batch h). Defining line ends on White's 4.Nc3 (invariant 5). Every ply below was
+# replayed with chess.js before being written.
+id: four-knights-game-italian-variation-noa-gambit
+name: 'Four Knights Game: Italian Variation, Noa Gambit'
+eco: C47
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Nc3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-25'
+  basis:
+    by: chan
+    at: '2026-09-25'
+    source: >-
+      A judgement. The bishop sacrifice regains exactly the knight it cost and nothing more,
+      leaving White's material back to level with no lasting structural or king-safety edge
+      shown. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-25'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa phát triển mã lên c3 thay vì lo cho tốt e4 đang bị mã f6 đánh. Đây là lời mời ăn tốt của Trắng.
+    en: White has just developed the knight to c3 instead of worrying about the e4 pawn the f6 knight is attacking. This is White's invitation to take it.
+    fr: Les Blancs viennent de développer le cavalier en c3 au lieu de se soucier du pion e4 attaqué par le cavalier f6. C'est l'invitation blanche à le prendre.
+  dismissRest:
+    reason:
+      vi: Đen không ăn tốt e4 — phát triển bằng 4...Bc5 hay 4...Bb4, hay chơi 4...d6. Mỗi lựa chọn để nguyên con tốt e4 trên bàn cờ, nghĩa là lời mời vẫn chưa hề được nhận.
+      en: Black does not take the e4 pawn — developing with 4...Bc5 or 4...Bb4, or playing 4...d6. Each leaves the e4 pawn sitting on the board, meaning the invitation has still not actually been accepted.
+      fr: Les Noirs ne prennent pas le pion e4 — développant par 4...Fc5 ou 4...Fb4, ou jouant 4...d6. Chacun laisse le pion e4 sur l'échiquier, ce qui veut dire que l'invitation n'a toujours pas été acceptée.
+  children:
+    - ply: Nxe4
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Đen ăn con tốt e4, quân duy nhất có thể ăn tại đó. Trông có vẻ tự nhiên, nhưng con mã ấy giờ đứng trên đường chéo mà tượng c4 nhìn thẳng tới f7.
+        en: Black takes the e4 pawn, the only piece that can capture there. It looks natural, but that knight now stands right on the diagonal the c4 bishop looks down toward f7.
+        fr: Les Noirs prennent le pion e4, la seule pièce pouvant capturer là. Cela semble naturel, mais ce cavalier se retrouve juste sur la diagonale que le fou c4 regarde vers f7.
+      children:
+        - ply: 'Bxf7+'
+          annotation:
+            vi: Gambit Noa. Trắng thí tượng để lôi vua Đen ra giữa bàn cờ, chiếu và buộc vua phải ăn lại.
+            en: The Noa Gambit. White sacrifices the bishop to drag Black's king into the open, giving check and forcing the king to recapture.
+            fr: Le Gambit Noa. Les Blancs sacrifient le fou pour attirer le roi noir au centre de l'échiquier, donnant échec et le forçant à reprendre.
+          dismissed:
+            - ply: Ke7
+              reason: >-
+                Steps aside instead of recapturing, leaving the bishop on f7 alive as well.
+                Nxe4 next still wins back the knight, and White keeps the extra bishop on
+                top of it.
+          children:
+            - ply: Kxf7
+              annotation:
+                vi: Vua Đen ăn lại con tượng, cách xử lý tự nhiên nhất — ít nhất cũng lấy lại được quân tượng. Nhưng vua giờ đứng giữa bàn cờ và con mã e4 vẫn chưa có ai đỡ.
+                en: Black's king recaptures the bishop, the most natural handling — at least the bishop comes back. But the king now stands in the open, and the knight on e4 is still defended by nothing.
+                fr: Le roi noir reprend le fou, le traitement le plus naturel — au moins le fou est-il récupéré. Mais le roi se retrouve à découvert, et le cavalier en e4 reste sans défenseur.
+              children:
+                - ply: Nxe4
+                  annotation:
+                    vi: Mã c3 ăn lại con mã e4. Trắng đã lấy lại đúng quân tượng đã thí, và vua Đen thì đứng phơi ra giữa bàn cờ.
+                    en: The c3 knight recaptures the e4 knight. White has won back exactly the bishop that was sacrificed, and Black's king stands exposed in the middle of the board.
+                    fr: Le cavalier c3 reprend le cavalier e4. Les Blancs ont regagné exactement le fou sacrifié, et le roi noir se retrouve exposé au milieu de l'échiquier.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm quân nhẹ thì mỗi bên còn một mã và hai tượng — Trắng đã lấy lại đúng con tượng đã thí, vật chất trở về ngang nhau hoàn toàn. Cái Trắng có được để bù lại một nhịp là vua Đen đứng ở f7, mất quyền nhập thành, giữa lúc các quân Trắng còn lại vẫn chưa ra hết.
+                      en: Count the minor pieces and each side has one knight and two bishops left — White has won back exactly the sacrificed bishop, and material is fully level again. What White has to show for the tempo spent is Black's king stuck on f7, castling rights gone, while White's remaining pieces are not out yet either.
+                      fr: Comptez les pièces mineures, chaque camp a un cavalier et deux fous — les Blancs ont regagné exactement le fou sacrifié, et le matériel est de nouveau parfaitement égal. Ce que les Blancs ont à montrer pour le temps dépensé, c'est le roi noir coincé en f7, ayant perdu le droit de roquer, alors que le reste des pièces blanches n'est pas encore sorti non plus.
+                    plan:
+                      vi: Trắng chơi d4 và Bc4+ nếu vua còn ở f7 hoặc gần đó, rồi O-O và tận dụng vua Đen chưa an toàn để tạo sức ép. Đen chơi Kg8 hay Ke8 tìm chỗ trú, rồi d6 và Be7, cố hoàn thiện phát triển trước khi Trắng kịp mở thêm đường tấn công.
+                      en: White plays d4 and Bc4+ if the king is still on or near f7, then castles and uses Black's unsafe king to build pressure. Black plays Kg8 or Ke8 looking for shelter, then d6 and Be7, trying to finish developing before White can open further lines of attack.
+                      fr: Les Blancs jouent d4 et Bc4+ si le roi est encore en f7 ou à proximité, puis roquent et exploitent l'insécurité du roi noir pour construire une pression. Les Noirs jouent Kg8 ou Ke8 en quête d'un abri, puis d6 et Be7, essayant d'achever leur développement avant que les Blancs n'ouvrent encore plus de lignes d'attaque.
+                    basis:
+                      by: chan
+                      at: '2026-09-25'
