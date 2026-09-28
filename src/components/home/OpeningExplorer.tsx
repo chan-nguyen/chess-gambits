@@ -5,6 +5,7 @@ import { Translated } from '../../i18n/Translated.tsx'
 import { useTranslated } from '../../i18n/useTranslated.ts'
 import type { Catalogue } from '../../lib/catalogue.ts'
 import { fullName } from '../../lib/catalogue.ts'
+import { flipParam, orient, parseFlip, withFlip } from '../../lib/flip.ts'
 import type { Locale } from '../../lib/locale.ts'
 import { routePath, routeSegments } from '../../lib/routes.ts'
 import {
@@ -49,17 +50,27 @@ export const OpeningExplorer = ({ locale, catalogue }: OpeningExplorerProps) => 
     [searchParams],
   )
 
+  const flipped = parseFlip(searchParams.get(flipParam))
   const { chess, plies, lastMove } = useMemo(() => replay(requested), [requested])
   const check = useMemo(() => checkedKingSquare(chess) ?? undefined, [chess])
   const ended = useMemo(() => gameEnd(chess), [chess])
 
-  const goTo = (nextPlies: readonly string[]): void => {
-    void navigate({ pathname, search: movesSearch(nextPlies) }, { preventScrollReset: true })
+  /*
+   * The flip is URL state too, and every move keeps it: a board that turned back round on
+   * the next click would be answering a question nobody asked. Flipping is a history step
+   * like a move is, so the back button undoes whichever of the two came last.
+   */
+  const goTo = (nextPlies: readonly string[], nextFlipped = flipped): void => {
+    void navigate(
+      { pathname, search: withFlip(movesSearch(nextPlies), nextFlipped) },
+      { preventScrollReset: true },
+    )
   }
 
   const commit = (san: string): void => goTo([...plies, san])
   const undo = (): void => goTo(plies.slice(0, -1))
   const reset = (): void => goTo([])
+  const flip = (): void => goTo(plies, !flipped)
 
   /** What the board's live region says: the move played, plus how the game ended, if it did. */
   const announcement = useMemo(() => {
@@ -114,6 +125,7 @@ export const OpeningExplorer = ({ locale, catalogue }: OpeningExplorerProps) => 
             check={check}
             ended={ended}
             announcement={announcement}
+            orientation={orient('white', flipped)}
             onCommit={commit}
           />
 
@@ -123,6 +135,9 @@ export const OpeningExplorer = ({ locale, catalogue }: OpeningExplorerProps) => 
             </button>
             <button type="button" onClick={reset} disabled={plies.length === 0}>
               <Translated id="home.reset" />
+            </button>
+            <button type="button" onClick={flip} aria-pressed={flipped}>
+              <Translated id="board.flip" />
             </button>
           </p>
         </div>

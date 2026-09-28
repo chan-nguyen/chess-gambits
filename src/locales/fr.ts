@@ -36,6 +36,8 @@ const fr: PartialTranslations = {
   board: {
     label: 'Échiquier',
     emptySquare: 'case vide',
+    target: 'déplacement possible',
+    flip: 'Retourner l’échiquier',
     whiteKing: 'roi blanc',
     whiteQueen: 'dame blanche',
     whiteRook: 'tour blanche',
@@ -68,7 +70,7 @@ const fr: PartialTranslations = {
     plyList: 'Coups de cette ligne',
     shortcuts: 'Raccourcis clavier',
     shortcutsHint:
-      'Utilisez les flèches gauche et droite pour parcourir la ligne, et les touches 1 à 9 pour choisir une réponse.',
+      'Utilisez les flèches gauche et droite pour parcourir la ligne, les touches 1 à 9 pour choisir une réponse, et la touche F pour retourner l’échiquier.',
     branchNotFound: 'Ce gambit n’a pas ce coup ; la position la plus proche est affichée :',
     capture: 'prise',
     check: 'échec',

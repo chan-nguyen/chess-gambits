@@ -7,6 +7,7 @@ import type { Orientation } from '../board/board-model.ts'
 import { BoardPreview } from './BoardPreview.tsx'
 import { lastPlyBetween } from './last-ply.ts'
 import { plyLabel } from './tree-path.ts'
+import { useFlip } from './use-flip.ts'
 
 /**
  * One continuation, as a control a learner can press (acceptance criteria 5, 8 and 9).
@@ -70,11 +71,12 @@ export const ChoiceLink = ({
   children,
 }: ChoiceLinkProps) => {
   const { pathname } = useLocation()
+  const { keepFlip } = useFlip()
 
   return (
     <Link
       className={`choice-link choice-link--${variant}`}
-      to={{ pathname, search: lineSearch(path) }}
+      to={{ pathname, search: keepFlip(lineSearch(path)) }}
       aria-describedby={describedBy}
     >
       {/*

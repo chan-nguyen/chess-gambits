@@ -77,6 +77,28 @@
 }
 
 /*
+ * Where the selected piece can go, drawn the way chess.com draws it: a dot on an empty
+ * square, a ring around a piece that can be taken. A shape rather than a tint, so §2's
+ * binding rule holds without an exception — but translucent, and therefore well under 3:1
+ * against either square, by product decision; §2 records that exception and why. The
+ * gridcell's accessible name carries the same fact in words.
+ *
+ * `pointer-events: none` is inherited from the canvas: a click lands on the grid cell
+ * above, which is the square, whatever is drawn on it.
+ */
+.board__target {
+  fill: var(--color-board-legal);
+  fill-opacity: 0.18;
+}
+
+.board__target--occupied {
+  fill: none;
+  stroke: var(--color-board-legal);
+  stroke-opacity: 0.18;
+  stroke-width: 0.09;
+}
+
+/*
  * The slide (#72).
  *
  * `Board` positions every piece with a transform and keeps the element that moved, so the

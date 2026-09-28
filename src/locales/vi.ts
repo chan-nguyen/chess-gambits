@@ -55,6 +55,8 @@ const vi = {
   board: {
     label: 'Bàn cờ',
     emptySquare: 'ô trống',
+    target: 'đi được tới đây',
+    flip: 'Lật bàn cờ',
     whiteKing: 'vua trắng',
     whiteQueen: 'hậu trắng',
     whiteRook: 'xe trắng',
@@ -108,7 +110,7 @@ const vi = {
     plyList: 'Các nước trong biến',
     shortcuts: 'Phím tắt bàn phím',
     shortcutsHint:
-      'Dùng phím mũi tên trái và phải để đi trong biến, và phím 1–9 để chọn một nước trả lời.',
+      'Dùng phím mũi tên trái và phải để đi trong biến, phím 1–9 để chọn một nước trả lời, và phím F để lật bàn cờ.',
     branchNotFound: 'Gambit này không có nước sau đây, nên trang hiển thị thế gần nhất:',
     capture: 'ăn quân',
     check: 'chiếu',

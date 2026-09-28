@@ -3,6 +3,7 @@ import './MoveList.css'
 import { Translated } from '../../i18n/Translated.tsx'
 import { useTranslated } from '../../i18n/useTranslated.ts'
 import { plyLabel } from './tree-path.ts'
+import { useFlip } from './use-flip.ts'
 import { addressKey, addressSearch, type Address, type WalkStep } from './walk.ts'
 
 /**
@@ -32,6 +33,7 @@ export type MoveListProps = {
 
 export const MoveList = ({ steps, start }: MoveListProps) => {
   const { pathname } = useLocation()
+  const { keepFlip } = useFlip()
   const translated = useTranslated()
   const lastIndex = steps.length - 1
 
@@ -41,7 +43,7 @@ export const MoveList = ({ steps, start }: MoveListProps) => {
         <li className="move-list__item">
           <Link
             className="move-list__ply move-list__ply--start"
-            to={{ pathname, search: addressSearch(start) }}
+            to={{ pathname, search: keepFlip(addressSearch(start)) }}
             aria-current={steps.length === 0 ? 'true' : undefined}
           >
             <Translated id="learn.startingPosition" />
@@ -52,7 +54,7 @@ export const MoveList = ({ steps, start }: MoveListProps) => {
           <li className="move-list__item" key={addressKey(step.address)}>
             <Link
               className="move-list__ply"
-              to={{ pathname, search: addressSearch(step.address) }}
+              to={{ pathname, search: keepFlip(addressSearch(step.address)) }}
               aria-current={index === lastIndex ? 'true' : undefined}
             >
               {plyLabel(step.ply, step.fen)}

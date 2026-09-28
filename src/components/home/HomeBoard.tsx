@@ -9,10 +9,10 @@ import { useTranslated } from '../../i18n/useTranslated.ts'
 import { useBoardLabels } from '../../i18n/board-labels.ts'
 import { Board } from '../board/Board.tsx'
 import type { LastMove } from '../board/Board.tsx'
-import type { PieceColour, PieceKey, Square } from '../board/board-model.ts'
+import type { Orientation, PieceColour, PieceKey, Square } from '../board/board-model.ts'
 import { resolveActivation } from './board-interaction.ts'
 import { isSquare } from './board-square.ts'
-import { commitMove, promotionRoles } from './chess-engine.ts'
+import { commitMove, legalDestinationsFrom, promotionRoles } from './chess-engine.ts'
 import type { GameEnd, PromotionRole } from './chess-engine.ts'
 
 /**
@@ -36,6 +36,8 @@ export type HomeBoardProps = {
   /** `null` while the game continues; otherwise how it ended. */
   readonly ended: GameEnd | null
   readonly announcement: string | undefined
+  /** Which side sits at the bottom; the caller reads it from the URL. */
+  readonly orientation: Orientation
   readonly onCommit: (san: string) => void
 }
 
@@ -72,6 +74,7 @@ export const HomeBoard = ({
   check,
   ended,
   announcement,
+  orientation,
   onCommit,
 }: HomeBoardProps) => {
   const labels = useBoardLabels()
@@ -92,10 +95,12 @@ export const HomeBoard = ({
     if (pending !== null) setPending(null)
   }
 
-  // Only the selected square itself, by user request — not its legal destinations too.
-  // `resolveActivation` still finds those internally to resolve the *next* click; nothing
-  // here needs to know them just to draw a mark.
+  // The selected square is tinted; its legal destinations get a dot, or a ring where a
+  // piece would be taken (2026-09-28, by user request, "giống như chess.com") — not the
+  // background tint on every destination that a follow-up to #131 asked to remove.
   const marks = selected === null ? [] : [selected]
+  const targets =
+    selected === null ? [] : legalDestinationsFrom(chess, selected).map(({ to }) => to)
 
   const attemptCommit = (from: Square, to: Square, promotion?: PromotionRole): void => {
     // A scratch copy: this component only ever reads `chess`, never mutates the instance
@@ -153,12 +158,17 @@ export const HomeBoard = ({
   return (
     <div className="home-board">
       <div onClick={handleClick} onKeyDown={handleKeyDown}>
+        {/* Keyed by orientation so a flip redraws in place: the same pieces with new
+            transforms would otherwise all slide across the board at once (#72). */}
         <Board
+          key={orientation}
           fen={chess.fen()}
           labels={labels}
+          orientation={orientation}
           lastMove={lastMove}
           check={check}
           marks={marks}
+          targets={targets}
           announcement={announcement}
         />
       </div>
