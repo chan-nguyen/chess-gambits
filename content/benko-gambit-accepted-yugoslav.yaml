@@ -1,0 +1,58 @@
+# Benko Gambit Accepted: Yugoslav. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5
+# 4.cxb5 a6 5.bxa6 Bxa6 6.Nc3 d6, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 7.e4.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: benko-gambit-accepted-yugoslav
+name: 'Benko Gambit Accepted: Yugoslav'
+eco: A59
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5, cxb5, a6, bxa6, Bxa6, Nc3, d6]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established opening theory, one of the main gambits Black has against 1.d4: the
+      queenside pawn majority and open files provide durable practical compensation for the
+      pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen đã ăn lại tốt bằng ...Bxa6 rồi chuẩn bị trung tâm bằng ...d6, đạt cấu trúc Benko tiêu chuẩn: kém một tốt (bảy so với sáu) nhưng bù lại bằng tượng hoạt động và cột a mở. Trắng phải quyết định có nên chiếm hẳn trung tâm hay không.'
+    en: 'Black has recaptured with ...Bxa6 and prepared the centre with ...d6, reaching the standard Benko structure: down one pawn (seven against six) but compensated by the active bishop and the open a-file. White must decide whether to claim the full centre.'
+    fr: "Les Noirs ont repris par ...Bxa6 et préparé le centre par ...d6, atteignant la structure Benko standard : un pion de moins (sept contre six) mais compensé par le fou actif et la colonne a ouverte. Les Blancs doivent décider s'ils réclament tout le centre."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 7.e4 ở đây, ví dụ Nf3 phát triển thông thường hơn. Đánh giá tương tự: Trắng giữ một tốt dư trong khi Đen luôn có đền bù nhờ tượng hoạt động và cột a mở, bất kể Trắng chọn hướng nào.'
+      en: 'White plays something other than 7.e4 here, for instance the more usual developing Nf3. The assessment is similar throughout: White holds an extra pawn while Black always has compensation from the active bishop and the open a-file, whichever way White goes.'
+      fr: "Les Blancs jouent autre chose que 7.e4 ici, par exemple le développement plus habituel Nf3. L'évaluation reste similaire : les Blancs gardent un pion de plus tandis que les Noirs disposent toujours d'une compensation grâce au fou actif et à la colonne a ouverte, quelle que soit la voie choisie."
+  children:
+    - ply: e4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi 7.e4, chiếm hẳn trung tâm lớn ngay lập tức thay vì phát triển từ từ, chấp nhận tượng a6 của Đen sẽ nhắm vào ô f1 sau khi tượng f1 phải di chuyển.
+        en: White plays 7.e4, claiming a big centre at once instead of developing gradually, accepting that the bishop on a6 will bear on f1 once the f1-bishop has to move.
+        fr: Les Blancs jouent 7.e4, réclamant aussitôt un grand centre au lieu de se développer progressivement, acceptant que le fou noir en a6 vise f1 une fois que le fou f1 devra bouger.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Vật chất không đổi: Trắng bảy tốt, Đen sáu. Trung tâm tốt d5-e4 của Trắng rất rộng, nhưng tượng f1 giờ phải tìm đường vòng (qua e2 hoặc d3) vì đường chéo f1-a6 đã bị tượng Đen chiếm giữ.'
+          en: "Material is unchanged: White seven pawns, Black six. White's d5-e4 pawn centre is very broad, but the f1-bishop now has to find a roundabout square (e2 or d3) since Black's bishop already commands the f1-a6 diagonal."
+          fr: 'Le matériel est inchangé : sept pions pour les Blancs, six pour les Noirs. Le centre de pions d5-e4 des Blancs est très large, mais le fou f1 doit désormais trouver une case de repli (e2 ou d3), la diagonale f1-a6 étant déjà tenue par le fou noir.'
+        plan:
+          vi: Trắng chơi Nf3, Be2 và O-O, cố củng cố trung tâm lớn trước khi Đen kịp tấn công nó. Đen chơi ...Bg7, ...O-O và ...Nbd7, nhắm vào các tốt trung tâm bằng ...Nb6 hoặc ...Rb8 gây sức ép cánh hậu.
+          en: White plays Nf3, Be2 and O-O, trying to consolidate the big centre before Black can attack it. Black plays ...Bg7, ...O-O and ...Nbd7, targeting the central pawns with ...Nb6 or piling up queenside pressure with ...Rb8.
+          fr: "Les Blancs jouent Nf3, Be2 et O-O, essayant de consolider le grand centre avant que les Noirs ne l'attaquent. Les Noirs jouent ...Bg7, ...O-O et ...Nbd7, visant les pions centraux par ...Nb6 ou accumulant la pression à l'aile dame par ...Rb8."
+        basis:
+          by: chan
+          at: '2026-09-29'

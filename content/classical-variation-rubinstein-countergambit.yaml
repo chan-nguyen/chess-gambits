@@ -1,0 +1,59 @@
+# King's Gambit Declined: Classical Variation, Rubinstein Countergambit. Frozen
+# defining line 1.e4 e5 2.f4 Bc5 3.Nf3 d6 4.c3, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js
+# through 4...f5. searchMate at 3 moves from the resulting position returns no-mate,
+# so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: classical-variation-rubinstein-countergambit
+name: "King's Gambit Declined: Classical Variation, Rubinstein Countergambit"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Bc5, Nf3, d6, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established King's Gambit Declined theory. White keeps the standard King's Gambit
+      edge in the centre; declining is a sound, if slightly passive, way for Black to meet it.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: "Trắng đã chuẩn bị xong d4 với 4.c3 trong King's Gambit Declined, Classical Variation. Đen đáp trả bằng chính một đòn phản-gambit của riêng mình."
+    en: "White has prepared d4 with 4.c3 in the King's Gambit Declined, Classical Variation. Black answers with a countergambit of their own."
+    fr: Les Blancs ont préparé d4 par 4.c3 dans la Défense du Gambit Roi, Variante Classique. Les Noirs répondent par leur propre contre-offre.
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...f5 ở đây, ví dụ phát triển bình thường bằng ...Nf6. Đánh giá tương tự: Trắng luôn giữ được trung tâm và lợi thế nhỏ về không gian, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...f5 here, for instance the normal developing ...Nf6. The assessment is similar throughout: White always keeps the centre and a small space advantage, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...f5 ici, par exemple le développement normal par ...Nf6. L'évaluation reste similaire : les Blancs gardent toujours le centre et un léger avantage d'espace, quelle que soit la voie choisie."
+  children:
+    - ply: f5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen phản công bằng ...f5, tấn công ngược lại tốt e4 và f4 của Trắng thay vì chỉ phòng thủ.
+        en: "Black counterattacks with ...f5, striking back at White's own e4 and f4 pawns instead of just defending."
+        fr: Les Noirs contre-attaquent par ...f5, frappant à leur tour les pions e4 et f4 des Blancs plutôt que de se contenter de défendre.
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất cân bằng, tám tốt mỗi bên. Trung tâm rất căng thẳng với ba tốt liên quan (e4, f4 của Trắng và f5 của Đen), và cả hai vua đều chưa nhập thành.
+          en: "Material is level, eight pawns each. The centre is very tense with three pawns involved (White's e4 and f4, Black's f5), and neither king has castled yet."
+          fr: "Le matériel est égal, huit pions de chaque côté. Le centre est très tendu avec trois pions impliqués (e4 et f4 pour les Blancs, f5 pour les Noirs), et aucun roi n'a encore roqué."
+        plan:
+          vi: Trắng chơi fxe5 hoặc exf5 mở đường, sẵn sàng vào một cuộc chiến thuật rõ ràng. Đen ăn lại theo hướng đã mở, tìm cách tận dụng đường chéo cho tượng c5 nhắm vào f2.
+          en: White plays fxe5 or exf5, opening lines and heading into a clearly tactical fight. Black recaptures accordingly, looking to use the diagonal for the c5-bishop aimed at f2.
+          fr: Les Blancs jouent fxe5 ou exf5, ouvrant les lignes et se dirigeant vers une lutte nettement tactique. Les Noirs reprennent en conséquence, cherchant à exploiter la diagonale du fou c5 visant f2.
+        basis:
+          by: chan
+          at: '2026-09-29'

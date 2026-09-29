@@ -1,0 +1,58 @@
+# Bird Opening: Dutch Variation, Batavo Gambit. Frozen defining line 1.e4 c5 2.f4 d5
+# 3.Nf3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 3...dxe4. searchMate
+# at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: bird-opening-dutch-variation-batavo-gambit
+name: 'Bird Opening: Dutch Variation, Batavo Gambit'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, f4, d5, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White offers the e4 pawn for a lead in development in a reversed-Dutch move
+      order; real practical chances, not a refutation of correct play. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã chơi xong 1.e4 c5 2.f4 d5 3.Nf3 theo kiểu chuyển vị Bird/Hà Lan đảo, để ngỏ tốt e4 cho Đen ăn. Đen phải quyết định có nhận tốt hay không.
+    en: White has played 1.e4 c5 2.f4 d5 3.Nf3, a Bird-like reversed Dutch move order, leaving the e4 pawn open for Black to take. Black must decide whether to accept.
+    fr: "Les Blancs ont joué 1.e4 c5 2.f4 d5 3.Nf3, un ordre de coups à la Bird façon Hollandaise inversée, laissant le pion e4 à prendre pour les Noirs. Les Noirs doivent décider s'ils l'acceptent."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...dxe4 ở đây, ví dụ giữ căng thẳng bằng ...Nc6. Đánh giá tương tự: Trắng luôn có đền bù về phát triển cho tốt đã để ngỏ, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...dxe4 here, for instance keeping the tension with ...Nc6. The assessment is similar throughout: White always gets development in return for the pawn left open, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...dxe4 ici, par exemple en gardant la tension par ...Nc6. L'évaluation reste similaire : les Blancs obtiennent toujours du développement en échange du pion laissé libre."
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt e4, chấp nhận đòn Batavo Gambit của Trắng.
+        en: "Black captures the e4 pawn, accepting White's Batavo Gambit."
+        fr: Les Noirs prennent le pion e4, acceptant le Gambit Batavo des Blancs.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt. Đổi lại, mã Trắng đã phát triển ra f3 và có thể tiếp tục Nc3 tấn công lại tốt e4, trong khi Đen chưa đưa quân nào ra.'
+          en: "Count the pawns: White seven, Black eight — White is down one pawn. In return, White's knight is already out on f3 and can follow with Nc3 to attack the e4 pawn again, while Black has not developed a single piece."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins. En contrepartie, le cavalier blanc est déjà sorti en f3 et peut enchaîner par Nc3 pour attaquer à nouveau le pion e4, tandis que les Noirs n'ont développé aucune pièce."
+        plan:
+          vi: Trắng chơi Nc3 tấn công tốt e4 lần nữa, sẵn sàng lấy lại vật chất hoặc chấp nhận đổi lấy phát triển nhanh. Đen củng cố tốt e4 bằng ...Nc6 hoặc ...Nf6, hoặc trả lại tốt bằng ...e5 để đơn giản hoá.
+          en: White plays Nc3, attacking the e4 pawn again, ready either to win the material back or to accept trading it for fast development. Black defends the e4 pawn with ...Nc6 or ...Nf6, or hands it back with ...e5 to simplify.
+          fr: "Les Blancs jouent Nc3, attaquant à nouveau le pion e4, prêts soit à regagner le matériel soit à l'échanger contre un développement rapide. Les Noirs défendent le pion e4 par ...Nc6 ou ...Nf6, ou le rendent par ...e5 pour simplifier."
+        basis:
+          by: chan
+          at: '2026-09-29'

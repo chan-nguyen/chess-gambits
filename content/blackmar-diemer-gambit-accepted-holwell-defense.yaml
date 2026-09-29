@@ -1,0 +1,60 @@
+# Blackmar-Diemer Gambit Accepted, Holwell Defense. Frozen defining line 1.d4 d5 2.e4
+# dxe4 3.Nc3 Nf6 4.f3 exf3 5.Nxf3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 5...Qd6. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: blackmar-diemer-gambit-accepted-holwell-defense
+name: 'Blackmar-Diemer Gambit Accepted: Holwell Defense'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3, exf3, Nxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Blackmar-Diemer Gambit theory. White accepts being a pawn down
+      permanently in exchange for fast, open development — real practical chances at club
+      level, not a refutation of correct defence. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa ăn lại trên f3 bằng mã, hoàn tất đợt đổi tốt của Gambit Blackmar-Diemer: kém một tốt (sáu so với bảy) nhưng đã phát triển đầy đủ — mã đã đứng vững ở f3, thế trận thoáng, và Trắng sẽ tiếp tục với Bc4 hoặc Bd3 rồi nhập thành nhanh. Đen phải chọn cách đối phó với lợi thế phát triển này.'
+    en: "White has just recaptured on f3 with the knight, completing the Blackmar-Diemer's pawn exchange: down one pawn (six against seven) but fully mobilised, the knight already anchored on f3, an open position, and Bc4 or Bd3 plus quick castling still to come. Black must now choose how to meet this lead in development."
+    fr: "Les Blancs viennent de reprendre en f3 avec le cavalier, achevant l'échange de pions du Gambit Blackmar-Diemer : un pion de retard (six contre sept) mais un développement complet, le cavalier déjà solidement posté en f3, une position ouverte, et Bc4 ou Bd3 suivi d'un roque rapide à venir. Les Noirs doivent maintenant choisir comment répondre à cette avance de développement."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách phát triển khác thay vì ...Qd6 ở đây. Đánh giá hầu như không đổi: Trắng luôn kém đúng một tốt nhưng bù lại bằng quân mã đã đứng vững ở f3, hai tượng sẵn sàng xuất quân và cột f đang mở cho xe, bất kể Đen chọn nước nào khác.'
+      en: 'Black develops some other way instead of ...Qd6 here. The assessment barely changes: White is always down exactly one pawn but compensated by the knight already anchored on f3, both bishops ready to develop, and the open f-file for the rook, whichever other move Black picks.'
+      fr: "Les Noirs se développent autrement qu'avec ...Qd6 ici. L'évaluation change à peine : les Blancs ont toujours exactement un pion de moins mais compensent avec le cavalier déjà solidement posté en f3, les deux fous prêts à se développer et la colonne f ouverte pour la tour, quel que soit l'autre coup choisi par les Noirs."
+  children:
+    - ply: Qd6
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Đen đưa hậu ra sớm bằng ...Qd6, vừa bảo vệ tốt e5 tiềm năng vừa nhắm vào tốt d4 nếu nó xuất hiện, nhưng lại cản đường tượng f8 và có thể bị Trắng tranh thủ thời gian.
+        en: Black brings the queen out early with ...Qd6, eyeing a future ...e5 and the d4 square, but this blocks the f8-bishop and can cost time if White gains a tempo on it.
+        fr: Les Noirs sortent la dame tôt par ...Qd6, en visant un futur ...e5 et la case d4, mais cela bloque le fou f8 et peut coûter du temps si les Blancs gagnent un tempo dessus.
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất là sáu so với bảy tốt, nghiêng về Đen, nhưng hậu Đen trên d6 chắn đường ra của tượng f8 trong khi Trắng đã hoàn tất phát triển mã và có thể tiếp tục Bc4, Bf4 tranh thủ thời gian nhắm vào hậu.
+          en: "Material is six pawns to seven in Black's favour, but Black's queen on d6 blocks the f8-bishop's diagonal while White has already finished developing the knight and can follow with Bc4 or Bf4, gaining time by hitting the queen."
+          fr: Le matériel est de six pions contre sept en faveur des Noirs, mais la dame noire en d6 bloque la diagonale du fou f8, tandis que les Blancs ont déjà terminé le développement du cavalier et peuvent enchaîner avec Bc4 ou Bf4, gagnant du temps en attaquant la dame.
+        plan:
+          vi: Trắng chơi Bf4 tấn công hậu ngay lập tức, buộc Đen mất thêm nước tính giờ. Đen phải tìm ô an toàn cho hậu, ví dụ ...Qd8 hoặc ...Qb4+, trước khi hoàn tất phát triển bằng ...Nc6 và ...e5.
+          en: White plays Bf4, attacking the queen at once and forcing Black to spend another tempo. Black must find the queen a safe square, for instance ...Qd8 or ...Qb4+, before completing development with ...Nc6 and ...e5.
+          fr: "Les Blancs jouent Bf4, attaquant aussitôt la dame et forçant les Noirs à perdre un tempo de plus. Les Noirs doivent trouver une case sûre pour la dame, par exemple ...Qd8 ou ...Qb4+, avant d'achever leur développement par ...Nc6 et ...e5."
+        basis:
+          by: chan
+          at: '2026-09-29'

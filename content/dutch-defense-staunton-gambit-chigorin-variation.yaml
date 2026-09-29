@@ -1,0 +1,58 @@
+# Dutch Defense: Staunton Gambit, Chigorin Variation. Frozen defining line 1.d4 f5
+# 2.e4 fxe4 3.Nc3 Nf6 4.Bg5, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...c6.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: dutch-defense-staunton-gambit-chigorin-variation
+name: 'Dutch Defense: Staunton Gambit, Chigorin Variation'
+eco: A83
+category: gambit
+side: white
+definingLine: [d4, f5, e4, fxe4, Nc3, Nf6, Bg5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Staunton Gambit theory. White's pin and development lead give real
+      practical compensation for the pawn, without amounting to a proven refutation. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã chơi xong 4.Bg5 trong Staunton Gambit, ghim mã f6 và chuẩn bị lấy lại tốt e4. Đen phải chọn cách phòng thủ.
+    en: White has played 4.Bg5 in the Staunton Gambit, pinning the f6-knight and preparing to win the e4 pawn back. Black must choose how to defend.
+    fr: Les Blancs ont joué 4.Bg5 dans le Gambit Staunton, clouant le cavalier f6 et se préparant à regagner le pion e4. Les Noirs doivent choisir comment se défendre.
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...c6 ở đây, ví dụ ...g6 hay ...e6. Đánh giá tương tự: Đen luôn giữ được tốt dư trong ngắn hạn nhưng phải trả giá bằng thời gian phát triển, bất kể chọn cách nào.'
+      en: 'Black plays something other than ...c6 here, for instance ...g6 or ...e6. The assessment is similar throughout: Black always keeps the extra pawn for now but pays for it in development time, whichever way is chosen.'
+      fr: "Les Noirs jouent autre chose que ...c6 ici, par exemple ...g6 ou ...e6. L'évaluation reste similaire : les Noirs gardent toujours le pion supplémentaire pour l'instant mais le paient en temps de développement, quelle que soit la voie choisie."
+  children:
+    - ply: c6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen chơi ...c6, chuẩn bị ...Qa5 ghim ngược lại mã c3 hoặc đơn giản củng cố thêm trước khi trả lại tốt.
+        en: Black plays ...c6, preparing ...Qa5 to pin the c3-knight in return, or simply reinforcing before giving the pawn back.
+        fr: Les Noirs jouent ...c6, préparant ...Qa5 pour clouer à leur tour le cavalier c3, ou simplement pour renforcer avant de rendre le pion.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — Đen giữ tốt dư. Nhưng mã f6 của Đen đang bị ghim, còn Trắng đã phát triển đầy đủ mã và tượng, sẵn sàng nhập thành.'
+          en: "Count the pawns: White seven, Black eight — Black holds the extra pawn. But Black's f6-knight is pinned, while White has fully developed the knight and bishop and is ready to castle."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs — les Noirs gardent le pion supplémentaire. Mais le cavalier noir en f6 est cloué, tandis que les Blancs ont pleinement développé cavalier et fou et sont prêts à roquer.'
+        plan:
+          vi: Trắng chơi Qd2 hoặc Nxe4 lấy lại tốt, tận dụng việc mã f6 bị ghim. Đen chơi ...Qa5 ghim lại mã c3, hoặc ...h6 thách thức tượng g5 ngay.
+          en: White plays Qd2 or Nxe4 to win the pawn back, exploiting the pin on f6. Black plays ...Qa5 to pin the c3-knight in return, or ...h6 to challenge the g5-bishop at once.
+          fr: Les Blancs jouent Qd2 ou Nxe4 pour regagner le pion, exploitant le clouage en f6. Les Noirs jouent ...Qa5 pour clouer à leur tour le cavalier c3, ou ...h6 pour défier aussitôt le fou g5.
+        basis:
+          by: chan
+          at: '2026-09-29'

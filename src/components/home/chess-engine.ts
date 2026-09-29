@@ -103,9 +103,12 @@ export type Replay = {
  * chess.js will not play. Never throws: a URL is attacker-controlled
  * (docs/security.md, B4), and a malformed or truncated value recovers to its longest valid
  * prefix rather than taking the page down.
+ *
+ * `start` is the analysis page's set-up position (2026-09-29), already validated by
+ * `readStart`; absent, the line is played from the initial position.
  */
-export const replay = (requested: readonly string[]): Replay => {
-  const chess = new Chess()
+export const replay = (requested: readonly string[], start?: string): Replay => {
+  const chess = new Chess(start)
   const plies: string[] = []
   let lastMove: PlayedMove | null = null
 

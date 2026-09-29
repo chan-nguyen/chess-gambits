@@ -1,0 +1,58 @@
+# Benko Gambit: Nd2 Variation. Frozen defining line 1.d4 Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6
+# 5.bxa6 Bxa6 6.Nc3 d6 7.Nf3 g6, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 8.Nd2.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: benko-gambit-nd2-variation
+name: 'Benko Gambit: Nd2 Variation'
+eco: A58
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5, cxb5, a6, bxa6, Bxa6, Nc3, d6, Nf3, g6]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established opening theory, one of the main gambits Black has against 1.d4: the
+      queenside pawn majority and open files provide durable practical compensation for the
+      pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen đã hoàn tất việc ăn lại tốt và chuẩn bị fianchetto bằng ...g6, đạt cấu trúc Benko tiêu chuẩn: kém một tốt (bảy so với sáu) nhưng bù lại bằng tượng a6 hoạt động và cột a mở. Trắng chọn cách bố trí tiếp theo cho các quân nhẹ.'
+    en: 'Black has finished recapturing the pawn and prepared the fianchetto with ...g6, reaching the standard Benko structure: down one pawn (seven against six) but compensated by the active a6-bishop and the open a-file. White chooses how to place the minor pieces next.'
+    fr: 'Les Noirs ont fini de reprendre le pion et préparé le fianchetto par ...g6, atteignant la structure Benko standard : un pion de moins (sept contre six) mais compensé par le fou actif en a6 et la colonne a ouverte. Les Blancs choisissent comment placer leurs pièces mineures.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 8.Nd2 ở đây, ví dụ g3 theo hướng fianchetto thông thường hơn. Đánh giá tương tự: Trắng giữ một tốt dư trong khi Đen luôn có đền bù nhờ tượng hoạt động và cột a mở, bất kể Trắng chọn hướng nào.'
+      en: 'White plays something other than 8.Nd2 here, for instance the more usual fianchetto with g3. The assessment is similar throughout: White holds an extra pawn while Black always has compensation from the active bishop and the open a-file, whichever way White goes.'
+      fr: "Les Blancs jouent autre chose que 8.Nd2 ici, par exemple le fianchetto plus habituel par g3. L'évaluation reste similaire : les Blancs gardent un pion de plus tandis que les Noirs disposent toujours d'une compensation grâce au fou actif et à la colonne a ouverte."
+  children:
+    - ply: Nd2
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng lui mã về d2, định chuyển sang c4 để đổi lấy tượng a6 đầy hoạt động của Đen, thay vì fianchetto tượng f1 theo cách thông thường.
+        en: "White retreats the knight to d2, intending to reroute it to c4 to trade off Black's active a6-bishop, instead of fianchettoing the f1-bishop the usual way."
+        fr: "Les Blancs reculent le cavalier en d2, avec l'idée de le rediriger vers c4 pour échanger le fou noir actif en a6, au lieu du fianchetto habituel du fou f1."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Vật chất không đổi: Trắng bảy tốt, Đen sáu. Kế hoạch Nc4 của Trắng nhắm đúng vào quân bù đắp quan trọng nhất của Đen, nhưng lại làm chậm việc nhập thành so với hướng fianchetto quen thuộc.'
+          en: "Material is unchanged: White seven pawns, Black six. White's Nc4 plan takes direct aim at Black's single most important compensating piece, but it slows down castling compared with the usual fianchetto approach."
+          fr: 'Le matériel est inchangé : sept pions pour les Blancs, six pour les Noirs. Le plan Nc4 des Blancs vise directement la pièce compensatrice la plus importante des Noirs, mais il ralentit le roque par rapport au fianchetto habituel.'
+        plan:
+          vi: Trắng chơi Nc4 đổi tượng hoạt động của Đen, rồi hoàn tất phát triển bằng g3 và Bg2. Đen tranh thủ chơi ...Bg7, ...O-O nhanh, và có thể lui tượng về b7 hoặc chấp nhận đổi nếu Nc4 xảy ra.
+          en: "White plays Nc4 to trade off Black's active bishop, then finishes developing with g3 and Bg2. Black hurries with ...Bg7 and quick ...O-O, and may retreat the bishop to b7 or accept the trade if Nc4 happens."
+          fr: "Les Blancs jouent Nc4 pour échanger le fou actif des Noirs, puis achèvent leur développement par g3 et Bg2. Les Noirs se hâtent avec ...Bg7 et un roque rapide, et peuvent reculer le fou en b7 ou accepter l'échange si Nc4 survient."
+        basis:
+          by: chan
+          at: '2026-09-29'

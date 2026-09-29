@@ -1,0 +1,65 @@
+# Bishop's Opening: Boden-Kieseritzky Gambit, Lichtenhein Defense. Frozen defining
+# line 1.e4 e5 2.Nf3 Nf6 3.Bc4 Nxe4 4.Nc3, which ends on White's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 4...d5 5.Nxe5 — the e5 pawn is left undefended once the f6-knight moved away.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: bishops-opening-boden-kieseritzky-gambit-lichtenhein-defense
+name: "Bishop's Opening: Boden-Kieseritzky Gambit, Lichtenhein Defense"
+eco: C27
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nf6, Bc4, Nxe4, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established theory. White's early pawn offer is repaid at once here since Black's
+      own e5 pawn was left loose; a fair, roughly balanced position rather than a proven
+      refutation either way. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa phát triển mã ra c3, tấn công lại mã e4 của Đen sau khi tốt e4 đã bị ăn ở nước trước. Đen phải quyết định cách bảo vệ con mã đang bị tấn công.
+    en: "White has just developed the knight to c3, attacking Black's knight on e4 again after the e4 pawn was captured the move before. Black must decide how to defend the attacked knight."
+    fr: Les Blancs viennent de développer le cavalier en c3, attaquant à nouveau le cavalier noir en e4 après la capture du pion e4 au coup précédent. Les Noirs doivent décider comment défendre le cavalier attaqué.
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...d5 ở đây, ví dụ đổi ngay bằng ...Nxc3. Đánh giá tương tự về tổng thể: cả hai bên đều còn nhiều khả năng chiến thuật trong một thế trận thoáng, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...d5 here, for instance trading at once with ...Nxc3. The overall assessment is similar: both sides still have plenty of tactical chances in an open position, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...d5 ici, par exemple échanger aussitôt par ...Nxc3. L'évaluation générale reste similaire : les deux camps ont encore de nombreuses chances tactiques dans une position ouverte, quelle que soit la voie choisie."
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chống trả bằng ...d5, bảo vệ mã e4 bằng một tốt thay vì phải đổi hay lui ngay.
+        en: Black hits back with ...d5, defending the e4-knight with a pawn instead of having to trade or retreat it at once.
+        fr: "Les Noirs ripostent par ...d5, défendant le cavalier e4 par un pion au lieu de devoir l'échanger ou le reculer aussitôt."
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: Trắng ăn tốt e5 bằng mã f3, vì con tốt đó không còn được Đen bảo vệ sau khi mã f6 đã rời đi.
+            en: White captures the e5 pawn with the f3-knight, since that pawn is no longer defended once the f6-knight has moved away.
+            fr: "Les Blancs capturent le pion e5 avec le cavalier f3, ce pion n'étant plus défendu depuis que le cavalier f6 est parti."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Vật chất trở lại cân bằng: bảy tốt mỗi bên. Trắng có hai mã đã phát triển tích cực (c3 và e5), trong khi Đen có tốt trung tâm d5 vững chắc và vẫn chưa nhập thành.'
+              en: 'Material is level again: seven pawns each. White has two actively developed knights (on c3 and e5), while Black has a solid central pawn on d5 and has not yet castled.'
+              fr: "Le matériel est de nouveau égal : sept pions de chaque côté. Les Blancs ont deux cavaliers activement développés (en c3 et e5), tandis que les Noirs ont un pion central solide en d5 et n'ont pas encore roqué."
+            plan:
+              vi: Trắng tiếp tục d4 củng cố trung tâm và phát triển tượng c1, tận dụng việc đi trước trong phát triển. Đen chơi ...Bd6 hoặc ...Be7 và nhập thành nhanh, thách thức mã e5 bằng ...Nc6 sau đó.
+              en: White continues with d4 to firm up the centre and develop the c1-bishop, making use of being ahead in development. Black plays ...Bd6 or ...Be7 and castles quickly, challenging the e5-knight with ...Nc6 afterwards.
+              fr: Les Blancs poursuivent par d4 pour raffermir le centre et développer le fou c1, profitant de leur avance de développement. Les Noirs jouent ...Bd6 ou ...Be7 et roquent rapidement, défiant le cavalier e5 par ...Nc6 ensuite.
+            basis:
+              by: chan
+              at: '2026-09-29'

@@ -1,0 +1,60 @@
+# Blackmar-Diemer Gambit Accepted, Bogoljubow Defense. Frozen defining line 1.d4 d5
+# 2.e4 dxe4 3.Nc3 Nf6 4.f3 exf3 5.Nxf3, which ends on White's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 5...g6. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: blackmar-diemer-gambit-accepted-bogoljubow-defense
+name: 'Blackmar-Diemer Gambit Accepted: Bogoljubow Defense'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3, exf3, Nxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Blackmar-Diemer Gambit theory. White accepts being a pawn down
+      permanently in exchange for fast, open development — real practical chances at club
+      level, not a refutation of correct defence. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa ăn lại trên f3 bằng mã, hoàn tất đợt đổi tốt của Gambit Blackmar-Diemer: kém một tốt (sáu so với bảy) nhưng đã phát triển đầy đủ — mã đã đứng vững ở f3, thế trận thoáng, và Trắng sẽ tiếp tục với Bc4 hoặc Bd3 rồi nhập thành nhanh. Đen phải chọn cách đối phó với lợi thế phát triển này.'
+    en: "White has just recaptured on f3 with the knight, completing the Blackmar-Diemer's pawn exchange: down one pawn (six against seven) but fully mobilised, the knight already anchored on f3, an open position, and Bc4 or Bd3 plus quick castling still to come. Black must now choose how to meet this lead in development."
+    fr: "Les Blancs viennent de reprendre en f3 avec le cavalier, achevant l'échange de pions du Gambit Blackmar-Diemer : un pion de retard (six contre sept) mais un développement complet, le cavalier déjà solidement posté en f3, une position ouverte, et Bc4 ou Bd3 suivi d'un roque rapide à venir. Les Noirs doivent maintenant choisir comment répondre à cette avance de développement."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách phát triển khác thay vì ...g6 ở đây. Đánh giá hầu như không đổi: Trắng luôn kém đúng một tốt nhưng bù lại bằng quân mã đã đứng vững ở f3, hai tượng sẵn sàng xuất quân và cột f đang mở cho xe, bất kể Đen chọn nước nào khác.'
+      en: 'Black develops some other way instead of ...g6 here. The assessment barely changes: White is always down exactly one pawn but compensated by the knight already anchored on f3, both bishops ready to develop, and the open f-file for the rook, whichever other move Black picks.'
+      fr: "Les Noirs se développent autrement qu'avec ...g6 ici. L'évaluation change à peine : les Blancs ont toujours exactement un pion de moins mais compensent avec le cavalier déjà solidement posté en f3, les deux fous prêts à se développer et la colonne f ouverte pour la tour, quel que soit l'autre coup choisi par les Noirs."
+  children:
+    - ply: g6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi ...g6, chuẩn bị fianchetto tượng sang g7 để nhắm vào đường chéo dài và gây sức ép lên tốt d4 của Trắng — cách đối phó phổ biến và vững chắc nhất với thế phát triển của Trắng.
+        en: "Black plays ...g6, preparing to fianchetto the bishop to g7 where it eyes the long diagonal and pressures White's d4 pawn — the most common and solid answer to White's development lead."
+        fr: Les Noirs jouent ...g6, préparant le fianchetto du fou en g7 pour viser la grande diagonale et faire pression sur le pion d4 des Blancs — la réponse la plus courante et la plus solide au développement des Blancs.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém đúng một tốt sau toàn bộ loạt đổi tốt e và f. Bù lại, mã Trắng đã đứng ở f3, hai tượng đều sẵn sàng xuất quân, và Đen chưa nhập thành trong khi cột f đang mở cho xe Trắng.'
+          en: "Count the pawns: White six, Black seven — White is down exactly one pawn after the whole e/f exchange. In return, White's knight already stands on f3, both bishops are ready to develop, and Black has not yet castled while the f-file stands open for White's rook."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins après tout l'échange des pions e et f. En contrepartie, le cavalier blanc est déjà en f3, les deux fous sont prêts à sortir, et les Noirs n'ont pas encore roqué alors que la colonne f est ouverte pour la tour blanche."
+        plan:
+          vi: Trắng chơi Bc4 nhắm vào f7 rồi O-O đưa xe vào cột f đang mở, giữ sức ép trước khi Đen kịp củng cố. Đen hoàn tất fianchetto bằng ...Bg7, nhập thành sớm, và tìm cách trả lại tốt dư để đổi lấy thế trận yên ổn.
+          en: White plays Bc4 aiming at f7, then O-O to bring the rook onto the open f-file, keeping up the pressure before Black can consolidate. Black completes the fianchetto with ...Bg7, castles quickly, and looks to hand the extra pawn back later for a settled position.
+          fr: Les Blancs jouent Bc4 en visant f7, puis O-O pour amener la tour sur la colonne f ouverte, maintenant la pression avant que les Noirs ne consolident. Les Noirs achèvent le fianchetto par ...Bg7, roquent rapidement, et chercheront à rendre le pion supplémentaire plus tard pour une position stabilisée.
+        basis:
+          by: chan
+          at: '2026-09-29'

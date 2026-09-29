@@ -1,0 +1,58 @@
+# Bird Opening: Dutch Variation, Dudweiler Gambit. Frozen defining line 1.f4 d5 2.g4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 2...h5. searchMate at 3 moves from the
+# resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: bird-opening-dutch-variation-dudweiler-gambit
+name: 'Bird Opening: Dutch Variation, Dudweiler Gambit'
+eco: A03
+category: gambit
+side: white
+definingLine: [f4, d5, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: offering the g-pawn this early for open lines is a real practical try, but
+      objectively too loosening to be more than dubious, and this direct challenge is a known
+      refutation attempt. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 2.g4!?, thí tốt g để mở đường cho tượng f1 và xe h1 ngay từ đầu ván, một cách chơi rất mạo hiểm trong Bird Opening.
+    en: White plays 2.g4!?, offering the g-pawn to open lines for the f1-bishop and h1-rook right from the start, a very risky approach in the Bird Opening.
+    fr: Les Blancs jouent 2.g4!?, offrant le pion g pour ouvrir des lignes au fou f1 et à la tour h1 dès le début, une approche très risquée dans le Début Bird.
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...h5 ở đây, ví dụ phát triển bằng ...Nf6 trước. Đánh giá tương tự: Trắng luôn phải chứng minh đền bù cụ thể cho con tốt đã thí, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...h5 here, for instance developing with ...Nf6 first. The assessment is similar throughout: White always has to prove concrete compensation for the pawn offered, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...h5 ici, par exemple se développer par ...Nf6 d'abord. L'évaluation reste similaire : les Blancs doivent toujours prouver une compensation concrète pour le pion offert, quelle que soit la voie choisie."
+  children:
+    - ply: h5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen thách thức ngay tốt g4 bằng ...h5, buộc Trắng phải quyết định ngay giữa việc đẩy tiếp, đổi tốt, hay để tốt g bị cô lập.
+        en: Black immediately challenges the g4 pawn with ...h5, forcing White to decide at once between pushing on, trading, or leaving the g-pawn isolated.
+        fr: Les Noirs défient aussitôt le pion g4 par ...h5, forçant les Blancs à décider immédiatement entre pousser, échanger, ou laisser le pion g isolé.
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất cân bằng, tám tốt mỗi bên. Tốt g4 của Trắng đang bị tấn công trực tiếp và không có quân nào bảo vệ, trong khi Đen chưa phát triển quân nào nhưng đã tạo được vấn đề cụ thể.
+          en: "Material is level, eight pawns each. White's g4 pawn is directly attacked and defended by nothing, while Black has developed no pieces yet but has created a concrete problem."
+          fr: "Le matériel est égal, huit pions de chaque côté. Le pion g4 des Blancs est directement attaqué et non défendu, tandis que les Noirs n'ont encore développé aucune pièce mais ont créé un problème concret."
+        plan:
+          vi: Trắng chơi g5 đẩy tiếp hoặc gxh5 đổi tốt để mở cột g cho xe, chấp nhận cấu trúc tốt bị xáo trộn để đổi lấy đường mở. Đen ăn tốt nếu được hoặc tiếp tục ...Nf6 và ...e6 phát triển bình thường.
+          en: White plays g5 to push on, or gxh5 to trade and open the g-file for the rook, accepting a disrupted pawn structure in exchange for open lines. Black takes the pawn if allowed, or continues normal development with ...Nf6 and ...e6.
+          fr: Les Blancs jouent g5 pour pousser, ou gxh5 pour échanger et ouvrir la colonne g pour la tour, acceptant une structure de pions perturbée en échange de lignes ouvertes. Les Noirs prennent le pion si possible, ou poursuivent un développement normal par ...Nf6 et ...e6.
+        basis:
+          by: chan
+          at: '2026-09-29'

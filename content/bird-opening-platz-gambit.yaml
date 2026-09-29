@@ -1,0 +1,58 @@
+# Bird Opening: Platz Gambit. Frozen defining line 1.f4 e5 2.fxe5 Ne7, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3.Nf3. searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: bird-opening-platz-gambit
+name: 'Bird Opening: Platz Gambit'
+eco: A02
+category: gambit
+side: black
+definingLine: [f4, e5, fxe5, Ne7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: rerouting the knight via g6 to win back the pawn is a real practical try,
+      but slower than ...Nc6 and objectively favours White. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: "Đen đáp trả theo kiểu From's Gambit bằng ...Ne7, định đưa mã sang g6 để ăn lại tốt e5 thay vì ...d6 truyền thống. Trắng phải chọn cách phát triển tiếp."
+    en: "Black answers in From's Gambit style with ...Ne7, intending to reroute the knight to g6 to win back the e5 pawn instead of the traditional ...d6. White must choose how to continue developing."
+    fr: "Les Noirs répondent à la manière du Gambit From par ...Ne7, avec l'idée de rediriger le cavalier vers g6 pour regagner le pion e5 au lieu du traditionnel ...d6. Les Blancs doivent choisir comment poursuivre leur développement."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 3.Nf3 ở đây, ví dụ d4 củng cố tốt e5 ngay. Đánh giá tương tự: Trắng giữ tốt dư trong khi Đen luôn có kế hoạch ăn lại qua ngả ...Ng6, bất kể Trắng chọn hướng nào.'
+      en: 'White plays something other than 3.Nf3 here, for instance d4 to firm up the e5 pawn at once. The assessment is similar throughout: White holds the extra pawn while Black always has the ...Ng6 recapture plan, whichever way White goes.'
+      fr: "Les Blancs jouent autre chose que 3.Nf3 ici, par exemple d4 pour raffermir aussitôt le pion e5. L'évaluation reste similaire : les Blancs gardent le pion supplémentaire tandis que les Noirs ont toujours le plan de reprise par ...Ng6, quelle que soit la voie choisie."
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã ra f3 một cách tự nhiên, vừa bảo vệ thêm trung tâm vừa chuẩn bị nhập thành.
+        en: White develops the knight naturally to f3, adding cover to the centre and preparing to castle.
+        fr: Les Blancs développent naturellement le cavalier en f3, renforçant le centre et se préparant à roquer.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Trắng giữ đúng một tốt dư. Mã e7 của Đen đang trên đường tới g6 để đe doạ ăn lại tốt e5, còn Trắng đã có mã phát triển và sẵn sàng nhập thành.'
+          en: "Count the pawns: White eight, Black seven — White holds exactly one extra pawn. Black's knight on e7 is heading for g6 to threaten winning the e5 pawn back, while White already has a developed knight and is ready to castle."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs — les Blancs gardent exactement un pion de plus. Le cavalier noir en e7 se dirige vers g6 pour menacer de regagner le pion e5, tandis que les Blancs ont déjà un cavalier développé et sont prêts à roquer.'
+        plan:
+          vi: Trắng chơi d4 củng cố tốt e5 hoặc e4 chiếm thêm không gian, chuẩn bị nhập thành sớm. Đen chơi ...Ng6 đe doạ ăn lại tốt e5 ngay, gây sức ép đầu tiên lên vị trí Trắng.
+          en: "White plays d4 to firm up the e5 pawn, or e4 to grab more space, preparing to castle soon. Black plays ...Ng6, threatening to win the e5 pawn back at once, the first bit of pressure on White's position."
+          fr: "Les Blancs jouent d4 pour raffermir le pion e5, ou e4 pour gagner plus d'espace, se préparant à roquer bientôt. Les Noirs jouent ...Ng6, menaçant de regagner aussitôt le pion e5, première pression sur la position blanche."
+        basis:
+          by: chan
+          at: '2026-09-29'

@@ -29,8 +29,16 @@ const fakeSource = () => {
       }
     },
   }
-  const current = (): Asked => {
-    const request = asked.filter((one) => !one.stopped).at(-1)
+  const live = (): Asked | undefined => asked.filter((one) => !one.stopped).at(-1)
+  /**
+   * The request the page is making now, waited for. The page asks from an effect, and an
+   * effect runs after the commit a query has already seen: on a loaded runner it can run
+   * after the query has resolved, and reading the request at once then finds none (seen on
+   * CI for #159, in a test this file has had since #154).
+   */
+  const current = async (): Promise<Asked> => {
+    await waitFor(() => expect(live(), 'nothing is being analysed').toBeDefined())
+    const request = live()
     if (request === undefined) throw new Error('nothing is being analysed')
     return request
   }
@@ -79,8 +87,10 @@ const renderAt = (search: string, source: EvaluationSource) => {
   return router
 }
 
-const answer = (fake: ReturnType<typeof fakeSource>, evaluation: Evaluation) =>
-  act(() => fake.current().listener.onUpdate(evaluation))
+const answer = async (fake: ReturnType<typeof fakeSource>, evaluation: Evaluation) => {
+  const request = await fake.current()
+  act(() => request.listener.onUpdate(evaluation))
+}
 
 beforeEach(() => window.localStorage.clear())
 afterEach(() => {
@@ -94,7 +104,9 @@ describe('before the engine has answered', () => {
     renderAt('?moves=e4', fake.source)
 
     expect(await screen.findByText(A.loading)).toBeInTheDocument()
-    expect(fake.current().fen).toBe('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1')
+    expect((await fake.current()).fen).toBe(
+      'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1',
+    )
   })
 
   it('labels everything as an estimate, before there is anything to label', async () => {
@@ -108,7 +120,7 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
 
     expect(document.querySelector('.engine-panel__value')).toHaveTextContent('+0.32')
     expect(screen.getByText(/Độ sâu 18/)).toHaveTextContent(A.searching)
@@ -121,7 +133,7 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
 
     expect(document.querySelectorAll('polygon.board__arrow')).toHaveLength(1)
   })
@@ -130,7 +142,7 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     renderAt('?moves=f3_e5_g4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, {
+    await answer(fake, {
       depth: 8,
       complete: true,
       lines: [
@@ -151,18 +163,19 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     const router = renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    const first = fake.current()
+    const first = await fake.current()
 
     await act(() => router.navigate('/vi/analysis?moves=e4_e5'))
     expect(first.stopped).toBe(true)
-    expect(fake.current().fen).toContain(' w ')
+    expect((await fake.current()).fen).toContain(' w ')
   })
 
   it('says so when the engine cannot run', async () => {
     const fake = fakeSource()
     renderAt('', fake.source)
     await screen.findByText(A.loading)
-    act(() => fake.current().listener.onFailure())
+    const request = await fake.current()
+    act(() => request.listener.onFailure())
 
     expect(screen.getByRole('alert')).toHaveTextContent(A.failed)
   })
@@ -183,7 +196,7 @@ describe('moving through the line', () => {
     const fake = fakeSource()
     const router = renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
 
     fireEvent.click(screen.getByRole('button', { name: /Đi c5/ }))
     await waitFor(() => expect(router.state.location.search).toBe('?moves=e4_c5'))
@@ -199,7 +212,7 @@ describe('moving through the line', () => {
     fireEvent.keyDown(window, { key: 'ArrowLeft' })
     await waitFor(() => expect(router.state.location.search).toBe('?moves=e4_e5_Nf3&ply=1'))
 
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
     fireEvent.click(screen.getByRole('button', { name: /Đi c5/ }))
     await waitFor(() => expect(router.state.location.search).toBe('?moves=e4_c5'))
   })
@@ -276,5 +289,186 @@ describe('pasting a game', () => {
 
     expect(await screen.findByText(A.pgnInvalid)).toBeInTheDocument()
     expect(router.state.location.search).toBe('?moves=e4')
+  })
+})
+
+describe('a position set up by hand', () => {
+  const EMPTY = encodeURIComponent('8/8/8/8/8/8/8/8 w - - 0 1')
+  const square = (name: string) => {
+    const cell = document.querySelector(`[data-square="${name}"]`)
+    if (cell === null) throw new Error(`no ${name} on the board`)
+    return cell
+  }
+  const setupIn = (router: ReturnType<typeof renderAt>) =>
+    new URLSearchParams(router.state.location.search).get('setup')
+
+  it('opens from the position on the board, beside the line, and asks the engine nothing', async () => {
+    const fake = fakeSource()
+    const router = renderAt('?moves=e4', fake.source)
+    const open = await screen.findByRole('link', { name: A.setupOpen })
+    expect(open).toHaveAttribute(
+      'href',
+      `/vi/analysis?moves=e4&setup=${encodeURIComponent(
+        'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1',
+      )}`,
+    )
+
+    const asked = fake.asked.length
+    fireEvent.click(open)
+    expect(await screen.findByRole('heading', { name: A.setupHeading })).toBeInTheDocument()
+    expect(fake.asked.filter((one) => !one.stopped)).toHaveLength(0)
+    expect(fake.asked.length).toBe(asked)
+    expect(router.state.location.search).toContain('moves=e4&setup=')
+  })
+
+  it('puts pieces down, says why it cannot be analysed yet, then analyses it', async () => {
+    const fake = fakeSource()
+    const router = renderAt(`?setup=${EMPTY}`, fake.source)
+    const analyse = await screen.findByRole('button', { name: A.setupAnalyse })
+
+    expect(analyse).toHaveAttribute('aria-disabled', 'true')
+    expect(analyse).toHaveAccessibleDescription(A.setupWhiteKing)
+    fireEvent.click(analyse)
+    expect(router.state.location.search).toBe(`?setup=${EMPTY}`)
+
+    fireEvent.click(screen.getByRole('button', { name: vi.board.whiteKing }))
+    fireEvent.click(square('e1'))
+    // Said by the board's own live region, in the words its squares use.
+    expect(document.querySelector('.board__announcement')).toHaveTextContent(
+      `e1, ${vi.board.whiteKing}`,
+    )
+    fireEvent.click(screen.getByRole('button', { name: vi.board.blackKing }))
+    fireEvent.click(square('e8'))
+    fireEvent.click(screen.getByRole('button', { name: vi.board.whiteQueen }))
+    fireEvent.click(square('d1'))
+    fireEvent.click(screen.getByRole('radio', { name: A.setupBlackToMove }))
+
+    await waitFor(() => expect(setupIn(router)).toBe('4k3/8/8/8/8/8/8/3QK3 b - - 0 1'))
+    expect(analyse).toHaveAttribute('aria-disabled', 'false')
+    expect(analyse).toHaveAccessibleDescription(A.setupReady)
+
+    fireEvent.click(analyse)
+    await waitFor(() =>
+      expect(router.state.location.search).toBe(
+        `?fen=${encodeURIComponent('4k3/8/8/8/8/8/8/3QK3 b - - 0 1')}`,
+      ),
+    )
+    expect((await fake.current()).fen).toBe('4k3/8/8/8/8/8/8/3QK3 b - - 0 1')
+  })
+
+  it('takes a piece off with the same piece again, or with the eraser', async () => {
+    const router = renderAt(`?setup=${EMPTY}`, fakeSource().source)
+    fireEvent.click(await screen.findByRole('button', { name: vi.board.whiteKnight }))
+    fireEvent.click(square('f3'))
+    expect(square('f3')).toHaveAccessibleName(`f3, ${vi.board.whiteKnight}`)
+    fireEvent.click(square('f3'))
+    expect(square('f3')).toHaveAccessibleName(`f3, ${vi.board.emptySquare}`)
+
+    fireEvent.click(square('g3'))
+    fireEvent.click(screen.getByRole('button', { name: A.setupErase }))
+    fireEvent.click(square('g3'))
+    await waitFor(() => expect(setupIn(router)).toBe('8/8/8/8/8/8/8/8 w - - 0 1'))
+  })
+
+  it('picks a piece up and puts it down elsewhere with the move tool', async () => {
+    const router = renderAt(
+      `?setup=${encodeURIComponent('4k3/8/8/8/8/8/8/4K3 w - - 0 1')}`,
+      fakeSource().source,
+    )
+    expect(await screen.findByRole('button', { name: A.setupMove })).toHaveAttribute(
+      'aria-pressed',
+      'true',
+    )
+
+    fireEvent.click(square('e1'))
+    fireEvent.click(square('d2'))
+    await waitFor(() => expect(setupIn(router)).toBe('4k3/8/8/8/8/8/3K4/8 w - - 0 1'))
+    // An empty square picks nothing up, so the next click puts nothing down.
+    fireEvent.click(square('a1'))
+    fireEvent.click(square('b1'))
+    expect(setupIn(router)).toBe('4k3/8/8/8/8/8/3K4/8 w - - 0 1')
+  })
+
+  it('offers castling only while the king and rook are at home', async () => {
+    renderAt(
+      `?setup=${encodeURIComponent('r3k2r/8/8/8/8/8/8/4K2R w Kkq - 0 1')}`,
+      fakeSource().source,
+    )
+
+    expect(await screen.findByRole('checkbox', { name: A.setupWhiteShort })).toBeChecked()
+    expect(screen.getByRole('checkbox', { name: A.setupWhiteLong })).toBeDisabled()
+    expect(screen.getByRole('checkbox', { name: A.setupBlackLong })).toBeEnabled()
+    fireEvent.click(screen.getByRole('checkbox', { name: A.setupBlackLong }))
+    expect(screen.getByRole('textbox', { name: A.setupFen })).toHaveValue(
+      'r3k2r/8/8/8/8/8/8/4K2R w Kk - 0 1',
+    )
+  })
+
+  it('opens a pasted FEN, and keeps one it cannot read as typed', async () => {
+    const router = renderAt(`?setup=${EMPTY}`, fakeSource().source)
+    const field = await screen.findByRole('textbox', { name: A.setupFen })
+
+    fireEvent.change(field, { target: { value: '8/8/8/8/8/8/8/9 w' } })
+    expect(field).toHaveValue('8/8/8/8/8/8/8/9 w')
+    expect(screen.getByText(A.setupFenUnreadable)).toBeInTheDocument()
+
+    fireEvent.change(field, { target: { value: '4k3/8/8/8/8/8/8/4K3 b' } })
+    expect(field).toHaveValue('4k3/8/8/8/8/8/8/4K3 b')
+    expect(square('e8')).toHaveAccessibleName(`e8, ${vi.board.blackKing}`)
+    await waitFor(() => expect(setupIn(router)).toBe('4k3/8/8/8/8/8/8/4K3 b - - 0 1'))
+    expect(screen.queryByText(A.setupFenUnreadable)).toBeNull()
+  })
+
+  it('cancels back to exactly what was on screen', async () => {
+    renderAt(`?moves=e4_e5&ply=1&flip=1&setup=${EMPTY}`, fakeSource().source)
+    expect(await screen.findByRole('link', { name: A.setupCancel })).toHaveAttribute(
+      'href',
+      '/vi/analysis?moves=e4_e5&ply=1&flip=1',
+    )
+  })
+
+  it('turns the board round with the board as it stands, not as the URL last had it', async () => {
+    const router = renderAt(`?setup=${EMPTY}`, fakeSource().source)
+    fireEvent.click(await screen.findByRole('button', { name: vi.board.whiteKing }))
+    fireEvent.click(square('e1'))
+    fireEvent.click(screen.getByRole('button', { name: vi.board.flip }))
+
+    await waitFor(() => expect(router.state.location.search).toContain('flip=1'))
+    expect(setupIn(router)).toBe('8/8/8/8/8/8/8/4K3 w - - 0 1')
+    expect(square('e1')).toHaveAccessibleName(`e1, ${vi.board.whiteKing}`)
+    expect(document.querySelector('[role="grid"] [data-square]')).toHaveAttribute(
+      'data-square',
+      'h1',
+    )
+  })
+
+  it('leaves the page keys to the editor while it is open', async () => {
+    const router = renderAt(`?moves=e4&setup=${EMPTY}`, fakeSource().source)
+    await screen.findByRole('heading', { name: A.setupHeading })
+    fireEvent.keyDown(window, { key: 'ArrowLeft' })
+    fireEvent.keyDown(window, { key: 'f' })
+    expect(router.state.location.search).toBe(`?moves=e4&setup=${EMPTY}`)
+  })
+})
+
+describe('a line from a set-up position', () => {
+  const START = '4k3/8/8/8/8/8/8/3QK3 b - - 0 14'
+
+  it('is analysed from that position, and numbered from its move', async () => {
+    const fake = fakeSource()
+    renderAt(`?fen=${encodeURIComponent(START)}&moves=Kf7_Qd7%2B`, fake.source)
+
+    expect(await screen.findByRole('link', { current: 'step' })).toHaveTextContent('Qd7+')
+    expect(document.querySelector('.analysis-moves__list')).toHaveTextContent('14.…Kf715.Qd7+')
+    expect((await fake.current()).fen).toBe('8/3Q1k2/8/8/8/8/8/4K3 b - - 2 15')
+  })
+
+  it('starts from the initial position when the FEN cannot be analysed', async () => {
+    const fake = fakeSource()
+    renderAt(`?fen=${encodeURIComponent('8/8/8/8/8/8/8/8 w - - 0 1')}&moves=e4`, fake.source)
+    await screen.findByText(A.loading)
+    expect((await fake.current()).fen).toBe(
+      'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1',
+    )
   })
 })
