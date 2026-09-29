@@ -1,0 +1,58 @@
+# Dutch Defense: Staunton Gambit, Nimzowitsch Variation. Frozen defining line 1.d4 f5
+# 2.e4 fxe4 3.Nc3 Nf6 4.Bg5, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...b6.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: dutch-defense-staunton-gambit-nimzowitsch-variation
+name: 'Dutch Defense: Staunton Gambit, Nimzowitsch Variation'
+eco: A83
+category: gambit
+side: white
+definingLine: [d4, f5, e4, fxe4, Nc3, Nf6, Bg5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Staunton Gambit theory. White's pin and development lead give real
+      practical compensation for the pawn, without amounting to a proven refutation. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã chơi xong 4.Bg5 trong Staunton Gambit, ghim mã f6 và chuẩn bị lấy lại tốt e4. Đen phải chọn cách phòng thủ.
+    en: White has played 4.Bg5 in the Staunton Gambit, pinning the f6-knight and preparing to win the e4 pawn back. Black must choose how to defend.
+    fr: Les Blancs ont joué 4.Bg5 dans le Gambit Staunton, clouant le cavalier f6 et se préparant à regagner le pion e4. Les Noirs doivent choisir comment se défendre.
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...b6 ở đây, ví dụ ...c6 hay ...g6. Đánh giá tương tự: Đen luôn giữ được tốt dư trong ngắn hạn nhưng phải trả giá bằng thời gian phát triển, bất kể chọn cách nào.'
+      en: 'Black plays something other than ...b6 here, for instance ...c6 or ...g6. The assessment is similar throughout: Black always keeps the extra pawn for now but pays for it in development time, whichever way is chosen.'
+      fr: "Les Noirs jouent autre chose que ...b6 ici, par exemple ...c6 ou ...g6. L'évaluation reste similaire : les Noirs gardent toujours le pion supplémentaire pour l'instant mais le paient en temps de développement, quelle que soit la voie choisie."
+  children:
+    - ply: b6
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Đen chơi ...b6, chuẩn bị fianchetto tượng sang b7 để nhắm vào trung tâm Trắng thay vì phòng thủ trực tiếp mã f6.
+        en: "Black plays ...b6, preparing to fianchetto the bishop to b7 aiming at White's centre, instead of directly shoring up the f6-knight."
+        fr: Les Noirs jouent ...b6, préparant le fianchetto du fou en b7 visant le centre blanc, au lieu de renforcer directement le cavalier f6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — Đen giữ tốt dư, nhưng mã f6 vẫn đang bị ghim và chưa được hỗ trợ thêm, trong khi Trắng đã sẵn sàng nhập thành.'
+          en: 'Count the pawns: White seven, Black eight — Black holds the extra pawn, but the f6-knight is still pinned and unsupported, while White is ready to castle.'
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs — les Noirs gardent le pion supplémentaire, mais le cavalier f6 reste cloué et sans soutien, tandis que les Blancs sont prêts à roquer.'
+        plan:
+          vi: Trắng chơi Qd2 hoặc O-O-O rồi tận dụng ghim để gây sức ép lên mã f6, có thể tính đến Nxe4 lấy lại tốt. Đen hoàn tất fianchetto bằng ...Bb7 và tìm cách phá ghim bằng ...e6 và ...Be7.
+          en: White plays Qd2 or O-O-O, then uses the pin to pressure the f6-knight, perhaps with Nxe4 to win the pawn back. Black completes the fianchetto with ...Bb7 and looks to break the pin with ...e6 and ...Be7.
+          fr: Les Blancs jouent Qd2 ou O-O-O, puis utilisent le clouage pour faire pression sur le cavalier f6, envisageant éventuellement Nxe4 pour regagner le pion. Les Noirs achèvent le fianchetto par ...Bb7 et cherchent à rompre le clouage par ...e6 et ...Be7.
+        basis:
+          by: chan
+          at: '2026-09-29'

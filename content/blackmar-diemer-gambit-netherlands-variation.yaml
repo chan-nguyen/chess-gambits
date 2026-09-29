@@ -1,0 +1,57 @@
+# Blackmar-Diemer Gambit: Netherlands Variation. Frozen defining line 1.d4 d5 2.e4
+# dxe4 3.Nc3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 3...f5. searchMate at
+# 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: blackmar-diemer-gambit-netherlands-variation
+name: 'Blackmar-Diemer Gambit: Netherlands Variation'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Blackmar-Diemer Gambit theory: White offers the e4 pawn for open lines
+      and fast development. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa phát triển mã ra c3, mời Đen ăn lại tốt e4 hoặc tìm cách khác để giữ nó. Trên bàn cờ Trắng đang kém một tốt (bảy so với tám) nhưng đã đưa được một quân ra và chuẩn bị f3 để mở lại trung tâm.
+    en: White has just developed the knight to c3, hoping to recapture the e4 pawn or gain enough for it. On the board White is down one pawn (seven against eight) but has one piece out and is preparing f3 to reopen the centre.
+    fr: "Les Blancs viennent de développer le cavalier en c3, espérant reprendre le pion e4 ou en obtenir une compensation suffisante. Sur l'échiquier, les Blancs ont un pion de moins (sept contre huit) mais ont sorti une pièce et se préparent à jouer f3 pour rouvrir le centre."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi cách khác thay vì ...f5 ở đây, ví dụ ...Nf6 chuyển sang các thế đã biết. Đánh giá tương tự: Trắng luôn kém một tốt tại thời điểm này nhưng bù lại bằng mã đã phát triển, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...f5 here, for instance ...Nf6 transposing into the known lines. The assessment is similar throughout: White is always a pawn down at this point but compensated by the developed knight, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...f5 ici, par exemple ...Nf6 transposant dans les lignes connues. L'évaluation reste similaire dans tous les cas : les Blancs sont toujours un pion de moins à ce stade, compensé par le cavalier développé, quelle que soit la direction choisie par les Noirs."
+  children:
+    - ply: f5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Đen chơi ...f5, cố giữ chắc tốt e4 bằng cách kiểm soát thêm ô e4 và g4, nhưng làm suy yếu ô e6 và đường chéo a2-g8 trước vua mình.
+        en: Black plays ...f5, trying to hold the e4 pawn firmly by controlling e4 and g4 further, but this weakens the e6 square and the a2-g8 diagonal in front of the king.
+        fr: Les Noirs jouent ...f5, essayant de tenir fermement le pion e4 en contrôlant encore e4 et g4, mais cela affaiblit la case e6 et la diagonale a2-g8 devant leur roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen giữ tốt dư (tám so với bảy) nhưng đã làm suy yếu ô e6 và đường chéo a2-g8 trước khi phát triển quân nào. Trắng đã có mã trên c3 sẵn sàng nhắm vào những điểm yếu này.
+          en: Black holds the extra pawn (eight against seven) but has weakened the e6 square and the a2-g8 diagonal before developing a single piece. White already has the knight on c3 ready to target these weaknesses.
+          fr: "Les Noirs conservent le pion supplémentaire (huit contre sept) mais ont affaibli la case e6 et la diagonale a2-g8 avant même d'avoir développé une pièce. Les Blancs ont déjà le cavalier en c3, prêt à viser ces faiblesses."
+        plan:
+          vi: Trắng chơi Bc4 nhắm ngay vào ô e6 yếu, rồi f3 mở lại trung tâm để khai thác đường chéo đã suy yếu. Đen phải vội hoàn tất phát triển bằng ...Nf6 và ...e6 để bịt điểm yếu.
+          en: White plays Bc4, aiming straight at the weak e6 square, then f3 to reopen the centre and exploit the weakened diagonal. Black must hurry to finish development with ...Nf6 and ...e6 to plug the weakness.
+          fr: "Les Blancs jouent Bc4, visant directement la case e6 affaiblie, puis f3 pour rouvrir le centre et exploiter la diagonale affaiblie. Les Noirs doivent se hâter d'achever leur développement par ...Nf6 et ...e6 pour combler la faiblesse."
+        basis:
+          by: chan
+          at: '2026-09-29'

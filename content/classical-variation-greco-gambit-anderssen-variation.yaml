@@ -1,0 +1,66 @@
+# Italian Game: Classical Variation, Greco Gambit, Anderssen Variation. Frozen
+# defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.e5 d5 7.Bb5 Ne4
+# 8.cxd4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 8...Bb4+ 9.Nc3 — the
+# check along the now-open c1-h6 diagonal is blocked by developing the b1-knight.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: classical-variation-greco-gambit-anderssen-variation
+name: 'Italian Game: Classical Variation, Greco Gambit, Anderssen Variation'
+eco: C54
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, c3, Nf6, d4, exd4, e5, d5, Bb5, Ne4, cxd4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Giuoco Piano theory. White's space and development in this sharp line
+      give real practical chances without being a forced advantage. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa ăn lại trên d4 bằng tốt c3, mở lại trung tâm trong Giuoco Piano, Greco Gambit. Đen đáp trả bằng một nước chiếu.
+    en: "White has just recaptured on d4 with the c3 pawn, reopening the centre in the Italian Game's Greco Gambit. Black answers with a check."
+    fr: Les Blancs viennent de reprendre en d4 avec le pion c3, rouvrant le centre dans le Gambit Greco de la Partie Italienne. Les Noirs répondent par un échec.
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...Bb4+ ở đây, ví dụ ...Bxc3+ đổi ngay. Đánh giá tương tự về tổng thể: cả hai bên đều còn nhiều khả năng chiến thuật trong một thế trận rất thoáng, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...Bb4+ here, for instance trading at once with ...Bxc3+. The overall assessment is similar: both sides still have plenty of tactical chances in a very open position, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...Bb4+ ici, par exemple échanger aussitôt par ...Bxc3+. L'évaluation générale reste similaire : les deux camps ont encore de nombreuses chances tactiques dans une position très ouverte, quelle que soit la voie choisie."
+  children:
+    - ply: Bb4+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chiếu bằng tượng từ b4, tận dụng việc tốt c3 chưa kịp bảo vệ ô đó theo cách khác.
+        en: Black gives check with the bishop from b4, making use of the fact that the c3 pawn has not yet covered that square any other way.
+        fr: Les Noirs donnent échec avec le fou depuis b4, profitant du fait que le pion c3 ne couvre pas encore cette case autrement.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng chặn chiếu bằng cách phát triển mã ra c3, vừa giải quyết chiếu vừa đưa thêm một quân vào cuộc.
+            en: White blocks the check by developing the knight to c3, resolving the check while bringing another piece into play.
+            fr: "Les Blancs bloquent l'échec en développant le cavalier en c3, réglant l'échec tout en mettant une pièce supplémentaire en jeu."
+          outcome:
+            type: position
+            evaluation:
+              vi: Vật chất cân bằng, bảy tốt mỗi bên. Trắng đã phát triển ba quân nhẹ và có tốt d5 tiến xa kiểm soát không gian, trong khi mã e4 của Đen khá năng động nhưng thiếu hỗ trợ.
+              en: "Material is level, seven pawns each. White has three minor pieces developed and an advanced d5 pawn controlling space, while Black's knight on e4 is fairly active but lacks support."
+              fr: "Le matériel est égal, sept pions de chaque côté. Les Blancs ont trois pièces mineures développées et un pion d5 avancé contrôlant l'espace, tandis que le cavalier noir en e4 est assez actif mais manque de soutien."
+            plan:
+              vi: Trắng chơi Qb3 hoặc O-O, gây sức ép lên mã e4 và chuẩn bị tận dụng tốt d5. Đen chơi ...Nxc3 đổi quân để giảm áp lực, hoặc ...O-O nhập thành nhanh trước khi Trắng triển khai hết lực lượng.
+              en: White plays Qb3 or O-O, pressuring the e4-knight and preparing to make use of the d5 pawn. Black plays ...Nxc3 to trade off and relieve the pressure, or ...O-O to castle quickly before White fully mobilises.
+              fr: Les Blancs jouent Qb3 ou O-O, faisant pression sur le cavalier e4 et se préparant à exploiter le pion d5. Les Noirs jouent ...Nxc3 pour échanger et soulager la pression, ou ...O-O pour roquer rapidement avant que les Blancs ne se mobilisent pleinement.
+            basis:
+              by: chan
+              at: '2026-09-29'

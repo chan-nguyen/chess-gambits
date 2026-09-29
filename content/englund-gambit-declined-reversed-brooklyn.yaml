@@ -1,0 +1,58 @@
+# Englund Gambit Declined: Reversed Brooklyn. Frozen defining line 1.d4 e5 2.Nf3 e4,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 3.Ng1. searchMate at 3 moves from the
+# resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: englund-gambit-declined-reversed-brooklyn
+name: 'Englund Gambit Declined: Reversed Brooklyn'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5, Nf3, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: 2...e4 is a real, if slightly loosening, counter-thrust; declining it and
+      retreating the knight all the way home costs White real time. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đẩy tốt lên ...e4 tấn công mã f3, một phản-gambit chủ động chống lại 1.d4. Trắng phải quyết định lui mã đi đâu.
+    en: Black pushes ...e4, attacking the f3-knight, an active countergambit reply to 1.d4. White must decide where to retreat the knight.
+    fr: Les Noirs poussent ...e4, attaquant le cavalier f3, une contre-offre active contre 1.d4. Les Blancs doivent décider où reculer le cavalier.
+  dismissRest:
+    reason:
+      vi: 'Trắng lui mã đi nơi khác thay vì 3.Ng1, ví dụ Nfd2 hay Ne5. Đánh giá tương tự: Đen luôn giữ được không gian trung tâm nhờ tốt e4, bất kể Trắng lui mã về đâu.'
+      en: 'White retreats the knight somewhere else instead of 3.Ng1, for instance Nfd2 or Ne5. The assessment is similar throughout: Black always keeps central space thanks to the e4 pawn, wherever White retreats the knight.'
+      fr: "Les Blancs reculent le cavalier ailleurs qu'en 3.Ng1, par exemple Nfd2 ou Ne5. L'évaluation reste similaire : les Noirs gardent toujours l'espace central grâce au pion e4, où que le cavalier blanc recule."
+  children:
+    - ply: Ng1
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Trắng lui hẳn mã về lại g1, chấp nhận mất trọn thời gian để giữ mã an toàn thay vì tìm ô năng động hơn.
+        en: White retreats the knight all the way back to g1, giving up all the tempo spent on it in order to keep it safe rather than seeking a more active square.
+        fr: Les Blancs reculent complètement le cavalier en g1, sacrifiant tout le temps investi pour le mettre en sécurité plutôt que de chercher une case plus active.
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất cân bằng, tám tốt mỗi bên. Đen đang kiểm soát nhiều không gian trung tâm hơn với tốt e4, còn mã Trắng đã mất hai nước đi để quay lại đúng ô xuất phát.
+          en: "Material is level at eight pawns each. Black controls more central space with the pawn on e4, while White's knight has spent two moves only to return to its starting square."
+          fr: "Le matériel est égal, huit pions de chaque côté. Les Noirs contrôlent davantage d'espace central grâce au pion e4, tandis que le cavalier blanc a dépensé deux coups pour revenir sur sa case de départ."
+        plan:
+          vi: Trắng chơi lại Nf3 hoặc chuyển hướng bằng d3 để thách thức tốt e4 sau đó. Đen củng cố trung tâm bằng ...Nf6 hoặc ...d5, tận dụng thời gian Trắng đã mất.
+          en: White replays Nf3 or switches to d3 to challenge the e4 pawn later. Black reinforces the centre with ...Nf6 or ...d5, making use of the time White has lost.
+          fr: Les Blancs rejouent Nf3 ou passent par d3 pour défier le pion e4 plus tard. Les Noirs renforcent le centre par ...Nf6 ou ...d5, profitant du temps perdu par les Blancs.
+        basis:
+          by: chan
+          at: '2026-09-29'

@@ -1,0 +1,60 @@
+# Blackmar-Diemer Gambit Accepted, Schlutter Defense. Frozen defining line 1.d4 d5
+# 2.e4 dxe4 3.Nc3 Nf6 4.f3 exf3 5.Nxf3, which ends on White's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 5...Nbd7. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: blackmar-diemer-gambit-accepted-schlutter-defense
+name: 'Blackmar-Diemer Gambit Accepted: Schlutter Defense'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3, exf3, Nxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Blackmar-Diemer Gambit theory. White accepts being a pawn down
+      permanently in exchange for fast, open development — real practical chances at club
+      level, not a refutation of correct defence. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa ăn lại trên f3 bằng mã, hoàn tất đợt đổi tốt của Gambit Blackmar-Diemer: kém một tốt (sáu so với bảy) nhưng đã phát triển đầy đủ — mã đã đứng vững ở f3, thế trận thoáng, và Trắng sẽ tiếp tục với Bc4 hoặc Bd3 rồi nhập thành nhanh. Đen phải chọn cách đối phó với lợi thế phát triển này.'
+    en: "White has just recaptured on f3 with the knight, completing the Blackmar-Diemer's pawn exchange: down one pawn (six against seven) but fully mobilised, the knight already anchored on f3, an open position, and Bc4 or Bd3 plus quick castling still to come. Black must now choose how to meet this lead in development."
+    fr: "Les Blancs viennent de reprendre en f3 avec le cavalier, achevant l'échange de pions du Gambit Blackmar-Diemer : un pion de retard (six contre sept) mais un développement complet, le cavalier déjà solidement posté en f3, une position ouverte, et Bc4 ou Bd3 suivi d'un roque rapide à venir. Les Noirs doivent maintenant choisir comment répondre à cette avance de développement."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách phát triển khác thay vì ...Nbd7 ở đây. Đánh giá hầu như không đổi: Trắng luôn kém đúng một tốt nhưng bù lại bằng quân mã đã đứng vững ở f3, hai tượng sẵn sàng xuất quân và cột f đang mở cho xe, bất kể Đen chọn nước nào khác.'
+      en: 'Black develops some other way instead of ...Nbd7 here. The assessment barely changes: White is always down exactly one pawn but compensated by the knight already anchored on f3, both bishops ready to develop, and the open f-file for the rook, whichever other move Black picks.'
+      fr: "Les Noirs se développent autrement qu'avec ...Nbd7 ici. L'évaluation change à peine : les Blancs ont toujours exactement un pion de moins mais compensent avec le cavalier déjà solidement posté en f3, les deux fous prêts à se développer et la colonne f ouverte pour la tour, quel que soit l'autre coup choisi par les Noirs."
+  children:
+    - ply: Nbd7
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen phát triển mã sang d7 một cách linh hoạt, để dành ô c6 cho tốt c và chuẩn bị ...e5 sau này.
+        en: Black develops the other knight flexibly to d7, leaving the c6 square free for the c-pawn and preparing a later ...e5.
+        fr: "Les Noirs développent l'autre cavalier avec souplesse en d7, laissant la case c6 libre pour le pion c et préparant un futur ...e5."
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất là sáu so với bảy tốt, nghiêng về Đen. Trắng có mã f3 và hai tượng sẵn sàng; mã d7 của Đen linh hoạt nhưng tạm thời che tầm hoạt động của tượng c8.
+          en: "Material is six pawns to seven in Black's favour. White has the f3-knight and both bishops ready; Black's knight on d7 is flexible but temporarily blocks the c8-bishop."
+          fr: Le matériel est de six pions contre sept en faveur des Noirs. Les Blancs ont le cavalier f3 et les deux fous prêts ; le cavalier noir en d7 est souple mais bloque provisoirement le fou c8.
+        plan:
+          vi: Trắng chơi Bc4 và O-O, giữ nhịp phát triển nhanh hơn. Đen tiếp tục ...e5 hoặc ...g6 để giải phóng tượng c8 và hoàn tất nhập thành.
+          en: White plays Bc4 and O-O, keeping the faster development pace. Black follows with ...e5 or ...g6 to free the c8-bishop and finish castling.
+          fr: Les Blancs jouent Bc4 et O-O, gardant un rythme de développement plus rapide. Les Noirs enchaînent par ...e5 ou ...g6 pour libérer le fou c8 et achever le roque.
+        basis:
+          by: chan
+          at: '2026-09-29'

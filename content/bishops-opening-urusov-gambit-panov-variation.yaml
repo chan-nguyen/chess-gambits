@@ -1,0 +1,66 @@
+# Bishop's Opening: Urusov Gambit, Panov Variation. Frozen defining line 1.e4 e5 2.Bc4
+# Nf6 3.d4 exd4 4.Nf3 d5 5.exd5 Bb4+ 6.c3, which ends on White's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 6...Qe7+ 7.Be3 — the check along the fully open e-file is blocked by developing the
+# c1-bishop. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: bishops-opening-urusov-gambit-panov-variation
+name: "Bishop's Opening: Urusov Gambit, Panov Variation"
+eco: C24
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, d4, exd4, Nf3, d5, exd5, Bb4+, c3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Urusov Gambit theory: White's rapid development and the open e-file
+      give lasting compensation for the pawn. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã chơi 6.c3 chặn chiếu của tượng b4, mở đường phát triển tiếp. Đen tiếp tục tấn công bằng một nước chiếu thứ hai.
+    en: White has played 6.c3, blocking the check from the bishop on b4 and preparing to continue developing. Black keeps up the attack with a second check.
+    fr: "Les Blancs ont joué 6.c3, bloquant l'échec du fou b4 et se préparant à poursuivre leur développement. Les Noirs maintiennent l'attaque par un second échec."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...Qe7+ ở đây, ví dụ lui tượng ngay bằng ...Be7. Đánh giá tương tự về tổng thể: Trắng luôn có đền bù về phát triển và trung tâm cho các tốt đã thí, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...Qe7+ here, for instance retreating the bishop at once with ...Be7. The overall assessment is similar: White always has development and central compensation for the sacrificed pawns, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...Qe7+ ici, par exemple reculer aussitôt le fou par ...Be7. L'évaluation générale reste similaire : les Blancs disposent toujours d'une compensation en développement et au centre pour les pions sacrifiés, quelle que soit la voie choisie."
+  children:
+    - ply: Qe7+
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Đen chiếu tiếp bằng hậu dọc theo cột e đang hoàn toàn mở, thay vì lo giải quyết con tượng b4 đang bị tấn công.
+        en: Black gives check again with the queen along the completely open e-file, instead of first dealing with the attacked bishop on b4.
+        fr: "Les Noirs donnent un nouvel échec avec la dame le long de la colonne e totalement ouverte, au lieu de d'abord s'occuper du fou b4 attaqué."
+      children:
+        - ply: Be3
+          annotation:
+            vi: Trắng chặn chiếu bằng tượng, vừa giải quyết được nước chiếu vừa phát triển thêm một quân.
+            en: White blocks the check with the bishop, resolving the check while developing another piece at the same time.
+            fr: "Les Blancs bloquent l'échec avec le fou, réglant l'échec tout en développant une pièce supplémentaire."
+          outcome:
+            type: position
+            evaluation:
+              vi: Vật chất cân bằng, bảy tốt mỗi bên. Trắng đã phát triển ba quân nhẹ (Bc4, Nf3, Be3) và sắp nhập thành, trong khi tượng Đen trên b4 vẫn đang bị tốt c3 tấn công và cần di chuyển.
+              en: "Material is level, seven pawns each. White has developed three minor pieces (Bc4, Nf3, Be3) and is about to castle, while Black's bishop on b4 is still attacked by the c3 pawn and needs to move."
+              fr: Le matériel est égal, sept pions de chaque côté. Les Blancs ont développé trois pièces mineures (Bc4, Nf3, Be3) et vont bientôt roquer, tandis que le fou noir en b4 reste attaqué par le pion c3 et doit bouger.
+            plan:
+              vi: Trắng chuẩn bị O-O và có thể cxb4 nếu tượng Đen không rút kịp, khai thác lợi thế phát triển vượt trội. Đen phải lui tượng ngay, ví dụ ...Ba5 hoặc ...Bd6, rồi tìm cách nhập thành để đưa vua vào nơi an toàn.
+              en: "White prepares O-O and may play cxb4 if Black's bishop does not retreat in time, exploiting a sizeable development lead. Black must retreat the bishop at once, for instance ...Ba5 or ...Bd6, then looks to castle and get the king to safety."
+              fr: Les Blancs préparent O-O et peuvent jouer cxb4 si le fou noir ne recule pas à temps, exploitant une avance de développement considérable. Les Noirs doivent reculer le fou aussitôt, par exemple ...Ba5 ou ...Bd6, puis chercher à roquer pour mettre le roi en sécurité.
+            basis:
+              by: chan
+              at: '2026-09-29'
