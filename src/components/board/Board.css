@@ -43,13 +43,22 @@
  * highlight now marks "the last move happened here" as a pair, not "which end is which".
  * `--color-board-highlight-from` and its luminance-difference exception in
  * docs/design-system.md §2 are retired; see the dated entry there.
+ *
+ * The selected square on the home and analysis boards (`marked`) shares the same gold: see
+ * the note on it below.
+ *
+ * Translucent, so the square underneath still reads as light or dark (2026-09-29, by user
+ * request: "vừa biết là ô highlight nhưng cũng vừa thấy được ô bàn cờ bên dưới"). The gold is
+ * mixed over the square's own colour rather than drawn at an opacity, because the square *is*
+ * the rect: an opacity would show the page through it, not the wood. `color-mix` in sRGB is
+ * exactly what alpha compositing at 60% paints. §2 records the strength and what it costs.
  */
-.board__square--from {
-  fill: var(--color-board-highlight);
+.board__square--light:is(.board__square--from, .board__square--to, .board__square--marked) {
+  fill: color-mix(in srgb, var(--color-board-highlight) 60%, var(--color-board-light));
 }
 
-.board__square--to {
-  fill: var(--color-board-highlight);
+.board__square--dark:is(.board__square--from, .board__square--to, .board__square--marked) {
+  fill: color-mix(in srgb, var(--color-board-highlight) 60%, var(--color-board-dark));
 }
 
 .board__square {
@@ -62,9 +71,10 @@
 }
 
 /*
- * A background tint, not a ring (#131; a ring before it, by user request — no ring
- * anywhere on the board any more). Drawn the same way the last-ply highlight is: on the
- * square itself, under whatever piece stands there, so an occupied square still reads.
+ * The selected square, `marked`, is a background tint, not a ring (#131; a ring before it,
+ * by user request — no ring anywhere on the board any more). Drawn the same way the last-ply
+ * highlight is, by the two rules above: on the square itself, under whatever piece stands
+ * there, so an occupied square still reads.
  *
  * Shares `--color-board-highlight` with the last-ply squares rather than a token of its
  * own (a follow-up to #131, by user request): the two never appear on screen together —
@@ -72,9 +82,6 @@
  * meaning ("this square matters right now") instead of two. The token this replaced is
  * retired; `docs/design-system.md` §2 records why.
  */
-.board__square--marked {
-  fill: var(--color-board-highlight);
-}
 
 /*
  * Where the selected piece can go, drawn the way chess.com draws it: a dot on an empty
