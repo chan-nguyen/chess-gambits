@@ -23,6 +23,7 @@ import type { BoardPoint } from './board-drag.ts'
 import { squareFromTarget } from './board-square.ts'
 import { commitMove, isSelectable, legalDestinationsFrom, promotionRoles } from './chess-engine.ts'
 import type { GameEnd, PromotionRole } from './chess-engine.ts'
+import type { PlyMotion } from '../learn/ply-motion.ts'
 import { LiftedPiece } from './LiftedPiece.tsx'
 
 /**
@@ -55,6 +56,11 @@ export type HomeBoardProps = {
   readonly orientation: Orientation
   /** Arrows to draw, passed straight to `Board`: the analysis page's best move (#154). */
   readonly arrows?: readonly LastMove[] | undefined
+  /**
+   * The ply that produced `chess`, for the pieces to slide (#72; `learn/ply-motion.ts`). Absent
+   * draws the position with nothing moving, which is what the home page passes.
+   */
+  readonly motion?: PlyMotion | undefined
   readonly onCommit: (san: string) => void
 }
 
@@ -91,6 +97,7 @@ export const HomeBoard = ({
   announcement,
   orientation,
   arrows,
+  motion,
   onCommit,
 }: HomeBoardProps) => {
   const labels = useBoardLabels()
@@ -102,6 +109,10 @@ export const HomeBoard = ({
   // navigates inside a transition, and without this the dropped piece would flash back to
   // its square for the frames in between.
   const [landed, setLanded] = useState<string | null>(null)
+  // The position whose slide is not drawn: the one a drag was picked up from, or the one a drop
+  // produced — where the piece is already, and where a slide would replay from the square it
+  // was lifted off.
+  const [still, setStill] = useState<string | null>(null)
   const press = useRef<Press | null>(null)
   // Set by a drop, so the click the browser may send after it is not read as a second one.
   const dropped = useRef(false)
@@ -120,6 +131,7 @@ export const HomeBoard = ({
     if (pending !== null) setPending(null)
     if (drag !== null) setDrag(null)
     if (landed !== null) setLanded(null)
+    if (still !== null && still !== chess.fen()) setStill(null)
   }
 
   // The selected square is tinted; its legal destinations get a dot, or a ring where a
@@ -223,6 +235,7 @@ export const HomeBoard = ({
     press.current = null
     event.currentTarget.setPointerCapture(event.pointerId)
     setSelected(pressed.from)
+    setStill(chess.fen())
     setDrag({ from: pressed.from, piece, at: point })
   }
 
@@ -238,7 +251,11 @@ export const HomeBoard = ({
     setSelected(null)
     if (to === null) return
     const activation = resolveActivation(chess, drag.from, to)
-    if (activation.kind === 'commit') setLanded(attemptCommit(activation.from, activation.to))
+    if (activation.kind === 'commit') {
+      const produced = attemptCommit(activation.from, activation.to)
+      setLanded(produced)
+      setStill(produced)
+    }
     if (activation.kind === 'promote') setPending({ from: activation.from, to: activation.to })
   }
 
@@ -248,6 +265,10 @@ export const HomeBoard = ({
   }
 
   const promotionColour = pending === null ? null : colourOf(chess.turn())
+  // Only over the position itself: a slide drawn over the board with a piece lifted off it
+  // would bring back, for a moment, the piece the last ply took.
+  const sliding =
+    landed === null && liftedFen === null && still !== chess.fen() ? motion : undefined
 
   return (
     <div className="home-board">
@@ -272,6 +293,8 @@ export const HomeBoard = ({
           marks={marks}
           targets={targets}
           arrows={arrows}
+          arrivedFrom={sliding?.arrivedFrom}
+          captured={sliding?.captured}
           announcement={announcement}
         />
         {drag !== null && <LiftedPiece piece={drag.piece} at={drag.at} ref={lifted} />}

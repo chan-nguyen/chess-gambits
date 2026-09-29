@@ -7,6 +7,7 @@ import { flipParam, orient, parseFlip, withFlip } from '../../lib/flip.ts'
 import { HomeBoard } from '../home/HomeBoard.tsx'
 import { checkedKingSquare, gameEnd, replay } from '../home/chess-engine.ts'
 import { movesParam } from '../home/moves-param.ts'
+import { plyMotionBetween } from '../learn/ply-motion.ts'
 import { ShortcutToggle } from '../learn/ShortcutToggle.tsx'
 import {
   belongsToSomethingElse,
@@ -71,6 +72,12 @@ export const AnalysisSurface = ({ source }: AnalysisSurfaceProps) => {
   const fen = here.chess.fen()
   const check = useMemo(() => checkedKingSquare(here.chess) ?? undefined, [here])
   const ended = useMemo(() => gameEnd(here.chess), [here])
+  // The ply that produced this position, for the pieces to slide (#72), stepping back as well as
+  // forward, exactly as on the gambit page (`LearningSurface`). None at the start of a line.
+  const motion = useMemo(() => {
+    const before = here.chess.history({ verbose: true }).at(-1)?.before
+    return before === undefined ? undefined : plyMotionBetween(before, here.chess.fen())
+  }, [here])
 
   // Nothing is analysed while the editor has the page: its board is not a position yet.
   const analysis = useAnalysis(source, ended === null && editing === null ? fen : null)
@@ -204,6 +211,7 @@ export const AnalysisSurface = ({ source }: AnalysisSurfaceProps) => {
               announcement={announcement}
               orientation={orientation}
               arrows={arrow === null ? undefined : [arrow]}
+              motion={motion}
               onCommit={play}
             />
           </div>
