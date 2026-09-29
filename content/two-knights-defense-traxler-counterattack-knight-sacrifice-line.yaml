@@ -1,0 +1,109 @@
+id: two-knights-defense-traxler-counterattack-knight-sacrifice-line
+name: 'Italian Game: Two Knights Defense, Traxler Counterattack, Knight Sacrifice Line'
+eco: C57
+category: gambit
+side: black
+definingLine:
+  - e4
+  - e5
+  - Nf3
+  - Nc6
+  - Bc4
+  - Nf6
+  - Ng5
+  - Bc5
+soundness:
+  value: dubious
+  reviewedAt: 2026-09-29
+  basis:
+    by: chan
+    at: 2026-09-29
+    source: A judgement, deepened from the frozen listed-tier classification in
+      tools/catalogue/source/classification.yaml. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: 2026-09-29
+  source:
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi:
+      Sau 3...Nf6 4.Ng5 Bc5!?, Đen phớt lờ đòn doạ Nxf7 thông thường và phản công thẳng vào f2 — đây
+      là nhánh Trắng chọn ăn tốt bằng mã thay vì bằng tượng.
+    en:
+      After 3...Nf6 4.Ng5 Bc5!?, Black ignores the usual Nxf7 threat and counterattacks f2 directly —
+      this is the branch where White chooses to grab the pawn with the knight rather than the
+      bishop.
+    fr: Après 3...Nf6 4.Ng5 Bc5!?, les Noirs ignorent la menace habituelle Nxf7 et contre-attaquent
+      directement f2 — voici la branche où les Blancs choisissent de prendre le pion avec le
+      cavalier plutôt qu'avec le fou.
+  dismissRest:
+    reason:
+      vi:
+        Trắng chơi nước khác ngoài Nxf7, ví dụ Bxf7+ (nhánh thí tượng) hoặc lùi mã về f3/h3. Mỗi lựa
+        chọn dẫn tới một thế cờ và đánh giá rất khác nhau, và đây là nhánh chọn riêng đòn ăn tốt
+        bằng mã.
+      en: White plays something other than Nxf7, for instance Bxf7+ (the bishop sacrifice branch) or
+        retreating the knight to f3 or h3. Each choice leads to a quite different position and
+        assessment, and this is the branch that specifically chooses to capture with the knight.
+      fr:
+        Les Blancs jouent autre chose que Nxf7, par exemple Bxf7+ (la branche du sacrifice du fou) ou
+        reculent le cavalier en f3 ou h3. Chaque choix mène à une position et une évaluation bien
+        différentes, et c'est ici la branche qui choisit spécifiquement la capture par le cavalier.
+  children:
+    - ply: Nxf7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi:
+          Trắng ăn tốt bằng mã thay vì tượng — Nxf7 không chiếu, cho Đen thêm một nước để phản ứng trước
+          khi vua bị đe doạ trực tiếp.
+        en:
+          White grabs the pawn with the knight instead of the bishop — Nxf7 gives no check, leaving Black
+          an extra move to react before the king is directly threatened.
+        fr:
+          Les Blancs prennent le pion avec le cavalier plutôt qu'avec le fou — Nxf7 ne donne pas échec,
+          laissant aux Noirs un coup de plus pour réagir avant que le roi ne soit directement
+          menacé.
+      children:
+        - ply: Rf8
+          annotation:
+            vi: Đen không vội ăn lại mà đưa xe về f8, tấn công thẳng vào con mã Trắng đang lạc ở f7.
+            en:
+              Instead of rushing to capture, Black brings the rook to f8, attacking White's knight stranded on
+              f7 directly.
+            fr:
+              Plutôt que de se précipiter à capturer, les Noirs amènent la tour en f8, attaquant directement
+              le cavalier blanc égaré en f7.
+          outcome:
+            type: position
+            evaluation:
+              vi:
+                Đếm tốt, Trắng 8 còn Đen 7 — Trắng hơn đúng một tốt sạch nhờ vừa ăn tốt f7. Đổi lại, con mã ấy
+                hiện không có quân nào bảo vệ và đang bị chính xe f8 của Đen tấn công trực tiếp.
+              en:
+                Count the pawns and it is 8 for White against 7 for Black — White is up a clean pawn from the
+                capture on f7. In exchange, that knight currently has no defender and is now
+                directly attacked by Black's own rook on f8.
+              fr:
+                Comptez les pions, 8 pour les Blancs contre 7 pour les Noirs — les Blancs sont en avance d'un
+                pion net grâce à la prise en f7. En échange, ce cavalier n'a actuellement aucun
+                défenseur et se trouve directement attaqué par la tour noire en f8.
+            plan:
+              vi:
+                Trắng tìm đường rút mã về an toàn, ví dụ Ng5 hay Nh6+, hoặc chấp nhận đổi nó lấy một quân nhẹ
+                của Đen nếu cần. Đen tiếp tục hoàn thiện phát triển và tận dụng nhịp độ có được từ
+                việc dồn ép con mã lạc lõng ấy.
+              en:
+                White looks for a way to bring the knight home safely, for instance Ng5 or Nh6+, or accepts
+                trading it for one of Black's minor pieces if needed. Black continues developing and
+                makes use of the tempo gained from harassing that stranded knight.
+              fr:
+                Les Blancs cherchent à ramener le cavalier en sécurité, par exemple Ng5 ou Nh6+, ou acceptent de
+                l'échanger contre une pièce mineure noire si besoin. Les Noirs poursuivent leur
+                développement et profitent du temps gagné en harcelant ce cavalier égaré.
+            basis:
+              by: chan
+              at: 2026-09-29
