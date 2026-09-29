@@ -97,6 +97,7 @@ const ROUTES: readonly { readonly path: string; readonly status: number }[] = [
   // The one route that starts a worker and compiles WASM (ADR-0012): if either needed the
   // policy widened, this is where it would show.
   { path: `vi/${routeSegments.analysis}?moves=e4_e5`, status: 200 },
+  { path: `vi/${routeSegments.analysis}?setup=4k3%2F8%2F8%2F8%2F8%2F8%2F8%2F4K3`, status: 200 },
   { path: `vi/${routeSegments.catalogue}/damiano-defence-refutation`, status: 200 },
   { path: `vi/${routeSegments.catalogue}/benko-gambit?line=cxb5+a6`, status: 200 },
   { path: `en/${routeSegments.catalogue}/legals-mate`, status: 200 },
@@ -206,10 +207,7 @@ test.describe('the site under its own policy', () => {
     await page.keyboard.press('Escape')
 
     await page.setViewportSize({ width: 1280, height: 800 })
-    await page
-      .getByRole('group', { name: vi.appearance.label })
-      .getByRole('button', { name: vi.appearance.dark })
-      .click()
+    await page.getByRole('button', { name: vi.appearance.dark }).click()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 
     expect(await violations(page)).toEqual([])

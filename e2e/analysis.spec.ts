@@ -77,6 +77,44 @@ test('steps back through the line with the keyboard, keeping the rest of it', as
   )
 })
 
+/**
+ * The position editor (2026-09-29) end to end: a position that exists nowhere in a game from
+ * the start, set up by hand with Black to move, handed to the real engine. King and queen
+ * against king is a forced mate, so the engine's answer is checkable without trusting it to
+ * be fast.
+ */
+test('sets up a position by hand and has Stockfish analyse it', async ({ page }) => {
+  await page.goto(`${analysis}?moves=e4_e5`)
+  await page.getByRole('link', { name: A.setupOpen }).click()
+  await expect(page.getByRole('heading', { name: A.setupHeading })).toBeVisible()
+
+  await page.getByRole('button', { name: A.setupClear }).click()
+  const analyse = page.getByRole('button', { name: A.setupAnalyse })
+  await expect(analyse).toHaveAttribute('aria-disabled', 'true')
+  await expect(analyse).toHaveAccessibleDescription(A.setupWhiteKing)
+
+  const place = async (piece: string, square: string) => {
+    await page.getByRole('button', { name: piece, exact: true }).click()
+    await page.locator(`[data-square="${square}"]`).click()
+  }
+  await place(vi.board.whiteKing, 'e1')
+  await place(vi.board.blackKing, 'e8')
+  await place(vi.board.whiteQueen, 'd1')
+  await page.getByRole('radio', { name: A.setupBlackToMove }).check()
+
+  await expect(page.getByRole('textbox', { name: A.setupFen })).toHaveValue(
+    '4k3/8/8/8/8/8/8/3QK3 b - - 0 2',
+  )
+  await expect(analyse).toHaveAttribute('aria-disabled', 'false')
+  await analyse.click()
+
+  await expect(page).toHaveURL(/\?fen=4k3%2F8%2F8%2F8%2F8%2F8%2F8%2F3QK3%20b%20-%20-%200%202$/)
+  await expect(score(page)).toHaveText(/^M\d+$/, { timeout: 60_000 })
+  await expect(page.locator('.engine-panel__chances')).toHaveText(/Trắng thắng \d+%/)
+  // Black to move, and the counters kept from 1.e4 e5: the line starts on Black's half of move 2.
+  await expect(page.locator('.engine-panel__line').first()).toContainText(/2\.\.\.K/)
+})
+
 test('the home board opens its position here', async ({ page }) => {
   await page.goto(`${basePath}vi/`)
   await page.locator('[data-square="e2"]').click()

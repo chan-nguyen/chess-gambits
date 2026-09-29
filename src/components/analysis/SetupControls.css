@@ -1,0 +1,121 @@
+.setup-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.setup-controls__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.setup-controls__group legend {
+  padding-inline: var(--space-1);
+  font-weight: 600;
+}
+
+.setup-controls__hint {
+  flex-basis: 100%;
+  margin-block: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* The whole label is the target, and it is a touch target's height. */
+.setup-controls__choice {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  min-block-size: var(--target-size-touch);
+  cursor: pointer;
+}
+
+.setup-controls__choice:has(input:disabled) {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.setup-controls__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.setup-controls__button {
+  flex: 1 1 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--target-size-touch);
+  padding-inline: var(--space-3);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.setup-controls__button:hover {
+  background-color: var(--color-surface-raised);
+}
+
+.setup-controls__button--primary {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+  font-weight: 600;
+}
+
+.setup-controls__button--primary:hover {
+  background-color: var(--color-accent);
+}
+
+/* Unavailable, and said so beside it: the button stays reachable and says why (§4). */
+.setup-controls__button--primary[aria-disabled='true'] {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.setup-controls__fen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.setup-controls__fen label {
+  font-weight: 600;
+}
+
+.setup-controls__fen-input {
+  inline-size: 100%;
+  min-block-size: var(--target-size-touch);
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.setup-controls__problem,
+.setup-controls__verdict {
+  margin-block: 0;
+}
+
+/* A refusal carries a rule on its inline start, so it is not told apart by colour alone. */
+.setup-controls__problem:not(:empty),
+.setup-controls__verdict--problem {
+  padding-inline-start: var(--space-3);
+  border-inline-start: var(--focus-ring-width) solid var(--color-border-strong);
+}

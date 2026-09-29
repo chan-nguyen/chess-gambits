@@ -117,6 +117,13 @@ Every URL parameter is attacker-controlled, because a link can be sent to anyone
   first move that is not legal; `ply` is at most four digits and clamped to the line. A pasted PGN is
   refused above 50,000 characters before it is parsed, refused with a `FEN` tag rather than replayed
   from the wrong board, and never reaches the DOM except as the SAN `chess.js` gives back (#154).
+- The analysis page's `fen` and `setup` (a position set up by hand, 2026-09-29) are refused above
+  100 characters and read field by field against FEN's shape (`readSetup`), never parsed by
+  anything more permissive. `setup` only ever draws a board. `fen` reaches the engine only after
+  `setupProblem` has passed it — one king a side, no pawn on a back rank, at most 16 pieces a
+  side, the side not to move not in check, and `chess.js`'s own `validateFen` — and anything it
+  refuses is read as the initial position, so a hand-edited link cannot hand Stockfish a board it
+  was not built for.
 - **One parameter does build a URL for a request, and it is bounded rather than forbidden**: the
   gambit id, which selects the compiled entry to fetch. Per-entry lazy loading is impossible
   otherwise. The id is matched against the schema's slug shape and a 64-character bound **before any
