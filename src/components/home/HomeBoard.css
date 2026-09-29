@@ -22,3 +22,35 @@
   margin-block-start: var(--space-3);
   font-weight: 600;
 }
+
+/*
+ * The board and, during a mouse drag (#167), the piece in the hand drawn over it. Nothing on
+ * the board is text to select, and a drag that left it would otherwise select the page.
+ */
+.home-board__surface {
+  position: relative;
+  user-select: none;
+}
+
+.home-board__surface--dragging {
+  cursor: grabbing;
+}
+
+/*
+ * The same 8×8 units as the board under it, and allowed to draw past its edge: the piece
+ * follows the pointer off the board, where letting go puts it back. It never takes a pointer
+ * event itself, so the board's own cells stay what the pointer is over.
+ */
+.home-board__lifted {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* The board slides a piece between squares (#72); a piece in the hand keeps up instead. */
+.home-board__lifted .board__piece {
+  transition: none;
+}
