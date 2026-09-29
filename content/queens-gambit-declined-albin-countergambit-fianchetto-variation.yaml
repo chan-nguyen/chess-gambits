@@ -1,0 +1,61 @@
+# Queen's Gambit Declined, Albin Countergambit, Fianchetto Variation, taught. Frozen
+# defining line 1.d4 d5 2.c4 e5 3.dxe5 d4 4.Nf3 Nc6, which ends on Black's own 4...Nc6 — the
+# learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's
+# 5.g3, preparing the fianchetto that gives this entry its name, is modelled as the root's
+# single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. `d4` and `e5`
+# were both independently confirmed mutually attacked and defended with `chess.js`'s
+# `isAttacked`.
+id: queens-gambit-declined-albin-countergambit-fianchetto-variation
+name: "Queen's Gambit Declined: Albin Countergambit, Fianchetto Variation"
+eco: D09
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4, Nf3, Nc6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White prepares to fianchetto the bishop against Black's advanced and
+      cramping d4 pawn, a calm and flexible reply rather than a proven refutation of the
+      Albin's space and piece activity. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi g3, chuẩn bị fianchetto tượng để nhắm vào con tốt d4 đang lấn sân của Đen.
+    en: White plays g3, preparing to fianchetto the bishop to take aim at Black's advanced, cramping d4 pawn.
+    fr: Les Blancs jouent g3, préparant le fianchetto du fou pour viser le pion d4 noir avancé et gênant.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 5.g3 — chẳng hạn phát triển bằng Nbd2 hay a3. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 5.g3 — for instance developing with Nbd2 or a3. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 5.g3 — par exemple se développer par Nbd2 ou a3. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: g3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chọn cách triển khai linh hoạt và ít bị ràng buộc nhất trước con tốt d4 đang lấn sân.
+        en: White chooses the most flexible and least-committal way to meet the advanced d4 pawn.
+        fr: Les Blancs choisissent la manière la plus flexible et la moins engageante de répondre au pion d4 avancé.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng đang hơn đúng một tốt. Con tốt d4 của Đen đang bị mã f3 tấn công nhưng vẫn được mã c6 bảo vệ, và con tốt e5 của Trắng cũng đang bị tấn công nhưng vẫn được mã f3 bảo vệ (cả hai điều đã kiểm tra lại bằng chess.js), nên chưa quân nào rơi vào thế mất không.
+          en: Count the pawns and it is eight for White, seven for Black — White is up exactly one pawn. Black's d4 pawn is attacked by the f3 knight but remains defended by the c6 knight, and White's e5 pawn is also attacked but remains defended by the f3 knight, both independently confirmed with chess.js, so nothing is yet lost for free.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs sont en avance d'exactement un pion. Le pion d4 noir est attaqué par le cavalier f3 mais reste défendu par le cavalier c6, et le pion e5 blanc est lui aussi attaqué mais reste défendu par le cavalier f3, ce qui a été vérifié avec chess.js dans les deux cas, donc rien n'est encore perdu gratuitement.
+        plan:
+          vi: Trắng chơi Bg2 hoàn tất fianchetto rồi O-O, gây sức ép dài hạn lên con tốt d4 qua đường chéo dài. Đen chơi ...Bg4 hoặc ...f6 để bảo vệ thêm và giữ vững con tốt e5 vừa chiếm được, đặt cược vào không gian và hoạt động quân để bù lại con tốt đã mất.
+          en: White plays Bg2 to complete the fianchetto then O-O, building long-term pressure on the d4 pawn down the long diagonal. Black plays ...Bg4 or ...f6 to add support and hold on to the newly won e5 pawn, banking on space and piece activity to make up for the lost pawn.
+          fr: Les Blancs jouent Bg2 pour achever le fianchetto puis O-O, construisant une pression durable sur le pion d4 le long de la grande diagonale. Les Noirs jouent ...Bg4 ou ...f6 pour ajouter du soutien et conserver le pion e5 tout juste gagné, misant sur l'espace et l'activité des pièces pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'

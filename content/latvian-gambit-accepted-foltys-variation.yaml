@@ -1,0 +1,61 @@
+# Latvian Gambit Accepted, Foltys Variation, taught. Frozen defining line 1.e4 e5 2.Nf3 f5
+# 3.Nxe5 Qf6 4.Nc4 fxe4, which ends on Black's own 4...fxe4 — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). White's 5.d3 is modelled as the
+# root's single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture (from the side to
+# move, Black). `e4` was independently confirmed attacked by White and undefended by Black
+# with `chess.js`'s `isAttacked` — a threat for White's next move, not a free capture for
+# the side actually to move at this leaf.
+id: latvian-gambit-accepted-foltys-variation
+name: 'Latvian Gambit Accepted: Foltys Variation'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Nxe5, Qf6, Nc4, fxe4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White strikes at the e4 pawn immediately with d3 rather than developing
+      first, a direct and effective way to expose Black's early queen sortie as premature.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi ngay d3, tấn công thẳng vào con tốt e4 mà Đen vừa ăn được, thay vì phát triển quân trước.
+    en: White plays d3 immediately, attacking directly the e4 pawn Black just captured, instead of developing a piece first.
+    fr: Les Blancs jouent aussitôt d3, attaquant directement le pion e4 que les Noirs viennent de capturer, plutôt que de développer une pièce d'abord.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 5.d3 — chẳng hạn phát triển bằng Nc3 hay Be2 trước, để nguyên con tốt e4 của Đen ở đó thêm một lúc. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 5.d3 — for instance developing with Nc3 or Be2 first, leaving Black's e4 pawn alone for a while longer. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 5.d3 — par exemple se développer d'abord par Nc3 ou Be2, laissant encore un peu le pion e4 noir tranquille. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen chưa kịp phản ứng, và con tốt e4 mà mình vừa ăn được giờ đã bị tấn công trực tiếp và không có quân nào bảo vệ.
+        en: Black has not yet had a chance to react, and the e4 pawn just captured is now directly attacked and defended by nothing.
+        fr: Les Noirs n'ont pas encore eu l'occasion de réagir, et le pion e4 tout juste capturé est maintenant directement attaqué et n'est défendu par rien.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên bảy — con tốt Đen thí ban đầu đã được Trắng lấy lại qua Nxe5. Con tốt e4 hiện tại đang bị tốt d3 tấn công trực tiếp và không quân Đen nào bảo vệ nó (đã kiểm tra lại bằng chess.js), nên Đen sẽ phải trả lại con tốt này hoặc tốn thêm nước để giữ nó.
+          en: Count the pawns and the two sides are level, seven each — the pawn Black originally offered was won back by White's Nxe5. The current e4 pawn is now directly attacked by the d3 pawn and defended by no Black piece, independently confirmed with chess.js, so Black must either give it back or spend an extra move holding it.
+          fr: Comptez les pions, les deux camps sont à égalité, sept de chaque côté — le pion initialement offert par les Noirs a été regagné par le Nxe5 blanc. Le pion e4 actuel est maintenant directement attaqué par le pion d3 et n'est défendu par aucune pièce noire, ce qui a été vérifié avec chess.js, si bien que les Noirs devront soit le rendre, soit dépenser un coup supplémentaire pour le conserver.
+        plan:
+          vi: Trắng chơi dxe4 ăn lại tốt nếu Đen không bảo vệ kịp, giữ vững lợi thế phát triển và con mã c4 tích cực. Đen chơi ...d5 để bảo vệ tốt e4 và đuổi luôn con mã c4, chấp nhận thêm vài nước phòng thủ để giữ phần vật chất đang có.
+          en: White plays dxe4 to win the pawn back if Black cannot defend it in time, keeping the development edge and the active knight on c4. Black plays ...d5 to defend the e4 pawn and chase the c4 knight at the same time, accepting a few more defensive moves to hold on to the material in hand.
+          fr: Les Blancs jouent dxe4 pour regagner le pion si les Noirs ne peuvent le défendre à temps, conservant leur avance de développement et leur cavalier actif en c4. Les Noirs jouent ...d5 pour défendre le pion e4 et chasser en même temps le cavalier c4, acceptant quelques coups défensifs supplémentaires pour conserver le matériel en main.
+        basis:
+          by: chan
+          at: '2026-09-29'

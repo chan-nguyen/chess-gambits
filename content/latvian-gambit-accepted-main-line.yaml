@@ -1,0 +1,68 @@
+# Latvian Gambit Accepted, Main Line, taught. Shares its 6-ply root, 1.e4 e5 2.Nf3 f5
+# 3.Nxe5 Qf6, with `latvian-gambit-accepted-foltys-leonhardt-variation`, so `definingLine`
+# is the same, ending on Black's own 3...Qf6 (docs/CONTEXT.md, invariant 5). White's 4.d4 is
+# modelled as the root's single reply here, in place of the Foltys-Leonhardt Variation's
+# 4.Nc4. Every ply was replayed with chess.js, and the leaf was checked with `searchMate`
+# (bounded to 2 moves): no-mate, not in check. fxe4 was independently confirmed as a free
+# capture for Black (the side to move at this leaf) with `resolution.ts`'s `freeCaptures`,
+# which is why the leaf carries `unsettled` rather than stopping silently.
+id: latvian-gambit-accepted-main-line
+name: 'Latvian Gambit Accepted: Main Line'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Nxe5, Qf6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White builds the centre with d4 rather than defending e4, and Black wins
+      that pawn straight back — the sharpness of the Latvian Gambit's most established line
+      rather than a sound equaliser, since White's development lead and Black's exposed
+      queen remain the real story. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi d4, dựng trung tâm vững chắc và bảo vệ thêm cho con mã e5, nhưng để lộ con tốt e4 không ai bảo vệ.
+    en: White plays d4, building a solid centre and adding a defender to the e5 knight, but leaves the e4 pawn with no defender.
+    fr: Les Blancs jouent d4, bâtissant un centre solide et ajoutant un défenseur au cavalier e5, mais laissent le pion e4 sans défense.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 4.d4 — chẳng hạn lùi mã về c4 (xem mục Foltys-Leonhardt Variation) hay f3. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 4.d4 — for instance retreating the knight to c4 (see the Foltys-Leonhardt Variation entry) or f3. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 4.d4 — par exemple replier le cavalier en c4 (voir l'entrée Foltys-Leonhardt Variation) ou f3. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng chơi nước phổ biến nhất trong toàn bộ hệ thống, dựng trung tâm và củng cố thêm cho mã e5, nhưng con tốt e4 giờ không còn quân nào bảo vệ.
+        en: White plays the most established move in the whole system, building the centre and reinforcing the e5 knight, but the e4 pawn is now defended by nothing.
+        fr: Les Blancs jouent le coup le plus établi de tout le système, bâtissant le centre et renforçant le cavalier e5, mais le pion e4 n'est désormais plus défendu par rien.
+      unsettled: >-
+        fxe4 is going free for Black — the side to move at this leaf. White's 4.d4 leaves e4
+        completely undefended, so Black wins that pawn back at once. The evaluation below
+        already counts the pawns as if that recapture has happened, since it is the obvious
+        and only sensible reply, so extending the line one more ply would add nothing a
+        reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì Trắng tám, Đen bảy, nhưng con tốt e4 của Trắng đang không được bảo vệ và Đen sẽ ăn lại nó ngay bằng ...fxe4, đưa vật chất về thế cân bằng hoàn toàn. Con hậu Đen trên f6 vẫn đứng khá lộ liễu và cũng đang nhắm vào con mã e5, trong khi Đen chưa phát triển được quân nhẹ nào.
+          en: Count the pawns right here and it is eight for White, seven for Black, but White's e4 pawn is undefended and Black will win it straight back with ...fxe4, bringing material to a full equality. Black's queen on f6 remains fairly exposed and is also eyeing the e5 knight, while Black has not developed a single minor piece yet.
+          fr: Comptez les pions ici même, huit pour les Blancs, sept pour les Noirs, mais le pion e4 blanc est sans défense et les Noirs vont le regagner aussitôt par ...fxe4, ramenant le matériel à une égalité totale. La dame noire en f6 reste assez exposée et vise aussi le cavalier e5, tandis que les Noirs n'ont encore développé aucune pièce mineure.
+        plan:
+          vi: Trắng chơi Nc3 phát triển và bảo vệ thêm cho mã e5, khai thác việc con hậu Đen còn đứng lộ trên f6. Đen chơi ...fxe4 ăn lại tốt trước, rồi ...d6 đuổi mã e5 và hoàn tất phát triển.
+          en: White plays Nc3 to develop and add further support to the e5 knight, exploiting Black's queen still standing exposed on f6. Black plays ...fxe4 to win the pawn back first, then ...d6 to chase the e5 knight and finish developing.
+          fr: Les Blancs jouent Nc3 pour se développer et soutenir davantage le cavalier e5, exploitant la dame noire toujours exposée en f6. Les Noirs jouent ...fxe4 pour regagner d'abord le pion, puis ...d6 pour chasser le cavalier e5 et achever leur développement.
+        basis:
+          by: chan
+          at: '2026-09-29'

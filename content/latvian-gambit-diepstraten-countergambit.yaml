@@ -1,0 +1,71 @@
+# Latvian Gambit, Diepstraten Countergambit, taught. Frozen defining line 1.e4 e5 2.Nf3 f5,
+# which ends on Black's own 2...f5 — the learner's ply — so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White's 3.c4 is modelled as the root's single reply. Every
+# ply was replayed with chess.js, and the leaf was checked with `searchMate` (bounded to 2
+# moves): no-mate, not in check. fxe4 was independently confirmed as a free capture for
+# Black (the side to move at this leaf) with `resolution.ts`'s `freeCaptures` — and
+# separately, Black's own e5 pawn was confirmed attacked by White and undefended too, a
+# threat for White's next move rather than a free capture right now — which is why the leaf
+# carries `unsettled` rather than stopping silently.
+id: latvian-gambit-diepstraten-countergambit
+name: 'Latvian Gambit: Diepstraten Countergambit'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White expands on the queenside with c4 rather than defending e4, but
+      Black's own e5 pawn is equally loose, so the pawn Black is about to win back may simply
+      be traded for the one White is about to win — a sharp race rather than a sound
+      equaliser. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi c4, giành thêm không gian cánh hậu thay vì lo giữ tốt e4.
+    en: White plays c4, grabbing more queenside space instead of worrying about the e4 pawn.
+    fr: Les Blancs jouent c4, gagnant plus d'espace à l'aile dame plutôt que de se soucier du pion e4.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 3.c4 — chẳng hạn ăn tốt ngay bằng Nxe5 hay phát triển bằng Bc4. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 3.c4 — for instance capturing at once with Nxe5 or developing with Bc4. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 3.c4 — par exemple capturer aussitôt par Nxe5 ou se développer par Bc4. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: c4
+      replyQuality: good
+      frequency: rare
+      annotation:
+        vi: Trắng chọn mở rộng không gian cánh hậu, để nguyên con tốt e4 cho Đen ăn lại nếu muốn.
+        en: White chooses to expand on the queenside, leaving the e4 pawn there for Black to take if wanted.
+        fr: Les Blancs choisissent d'étendre leur espace à l'aile dame, laissant le pion e4 aux Noirs s'ils veulent le prendre.
+      unsettled: >-
+        fxe4 is going free for Black — the side to move at this leaf. White's 3.c4 does
+        nothing for e4, so Black could win it back at once, but Black's own e5 pawn is
+        independently confirmed attacked by White's knight and undefended too — a threat for
+        White's next move rather than a free capture right now, since it is Black's turn.
+        The evaluation below treats the position as the pawn race it is rather than assuming
+        either capture happens first, so extending the line one more ply would only replace
+        one open question with another.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì hai bên bằng nhau, mỗi bên tám. Con tốt e4 của Trắng đang không được bảo vệ và Đen có thể ăn lại bằng ...fxe4, nhưng chính con tốt e5 của Đen cũng đang bị mã f3 tấn công và không quân nào bảo vệ, nên đây là một cuộc đua đổi tốt trung tâm chứ chưa nghiêng hẳn về bên nào.
+          en: Count the pawns right here and the two sides are level, eight each. White's e4 pawn is undefended and Black could win it back with ...fxe4, but Black's own e5 pawn is likewise attacked by the f3 knight and defended by nothing, so this is a central pawn-trading race rather than a position clearly favouring either side.
+          fr: Comptez les pions ici même, les deux camps sont à égalité, huit de chaque côté. Le pion e4 blanc est sans défense et les Noirs pourraient le regagner par ...fxe4, mais le pion e5 noir lui-même est de même attaqué par le cavalier f3 et défendu par rien, donc c'est une course aux échanges de pions centraux plutôt qu'une position clairement favorable à un camp.
+        plan:
+          vi: Trắng chơi Nxe5 ăn tốt nếu Đen chậm trễ, hoặc chờ xem Đen xử lý thế nào trước khi quyết định. Đen chơi ...fxe4 ăn lại tốt trước, chấp nhận rủi ro mất tốt e5 để đổi lấy thế trận nhanh và chủ động hơn.
+          en: White plays Nxe5 to win the pawn if Black is slow, or waits to see how Black handles the tension before deciding. Black plays ...fxe4 to win the pawn back first, accepting the risk of losing the e5 pawn in exchange for a faster, more active game.
+          fr: Les Blancs jouent Nxe5 pour gagner le pion si les Noirs tardent, ou attendent de voir comment les Noirs gèrent la tension avant de décider. Les Noirs jouent ...fxe4 pour regagner d'abord le pion, acceptant le risque de perdre le pion e5 en échange d'un jeu plus rapide et plus actif.
+        basis:
+          by: chan
+          at: '2026-09-29'

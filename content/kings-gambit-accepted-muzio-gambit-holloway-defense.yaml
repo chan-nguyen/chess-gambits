@@ -1,0 +1,69 @@
+# King's Gambit Accepted, Muzio Gambit, Holloway Defense, taught. Shares its 11-ply root,
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.O-O gxf3 6.Qxf3, with
+# `kings-gambit-accepted-muzio-gambit-sarratt-defense` and
+# `kings-gambit-accepted-muzio-gambit-accepted-froms-defense`, so `definingLine` stops there
+# — the learner's own 6.Qxf3 — and Black's 6...Nc6, the move that gives this entry its name,
+# is modelled as the root's own reply (docs/CONTEXT.md, invariant 5). Every ply was replayed
+# with chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate,
+# not in check. Qxf4 was independently confirmed as a free capture for White with
+# `resolution.ts`'s `freeCaptures` (Nc6 does not attack or defend f4), which is why the leaf
+# carries `unsettled` rather than stopping silently.
+id: kings-gambit-accepted-muzio-gambit-holloway-defense
+name: "King's Gambit Accepted: Muzio Gambit, Holloway Defense"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, O-O, gxf3, Qxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black develops the queenside knight without defending the f4 pawn,
+      letting White win it straight back and cut Black's material deficit down to a single
+      pawn for the piece. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa ăn lại tốt bằng hậu, hoàn tất việc hiến hẳn con mã đổi lấy cột f mở và hậu đứng ngay giữa bàn.
+    en: White has just recaptured the pawn with the queen, completing the sacrifice of a whole knight for the open f-file and a queen planted right in the centre.
+    fr: Les Blancs viennent de reprendre le pion avec la dame, achevant le sacrifice d'un cavalier entier contre la colonne f ouverte et une dame plantée au centre.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 6...Nc6 — chẳng hạn đưa hậu ra bằng ...Qe7 (xem mục From's Defense) hay phát triển bằng ...Bg7. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 6...Nc6 — for instance bringing the queen out with ...Qe7 (see the From's Defense entry) or developing with ...Bg7. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 6...Nc6 — par exemple sortir la dame par ...Qe7 (voir l'entrée From's Defense) ou se développer par ...Bg7. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc6
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Đen phát triển mã sang c6, một cách phát triển tự nhiên nhưng bỏ mặc con tốt f4 không ai bảo vệ.
+        en: Black develops the knight to c6, a natural developing move, but leaves the f4 pawn with no defender at all.
+        fr: Les Noirs développent le cavalier en c6, un coup de développement naturel, mais laissent le pion f4 totalement sans défense.
+      unsettled: >-
+        Qxf4 is going free for White — Black's 6...Nc6 neither attacks nor defends f4, so
+        White simply regains it next move. The evaluation below already counts the pawns as
+        if that recapture has happened, since it changes the material balance but nothing
+        about the position's character, so extending the line one more ply would add nothing
+        a reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì hai bên bằng nhau, mỗi bên bảy, nhưng con tốt f4 đang không được bảo vệ và Trắng sẽ ăn lại nó ngay nước sau bằng Qxf4. Sau đó tính cả quân thì Trắng 14 còn Đen vẫn 15, tức Trắng chỉ còn kém đúng một tốt đổi lấy nguyên một con mã — đúng bản chất thí quân của Muzio Gambit.
+          en: Count the pawns right here and the two sides are level, seven each, but the f4 pawn is undefended and White will win it straight back next move with Qxf4. After that, counting every piece, it is fourteen for White against still fifteen for Black — White is down just one further pawn for a whole knight, exactly the sacrifice the Muzio Gambit is built on.
+          fr: Comptez les pions ici même, les deux camps sont à égalité, sept de chaque côté, mais le pion f4 est sans défense et les Blancs vont le regagner dès le coup suivant par Qxf4. Ensuite, en comptant toutes les pièces, c'est quatorze pour les Blancs contre toujours quinze pour les Noirs — les Blancs ne sont en retard que d'un pion supplémentaire pour un cavalier entier, exactement le sacrifice sur lequel repose le gambit Muzio.
+        plan:
+          vi: Trắng chơi Qxf4 ăn lại tốt rồi Nc3 và d4 hoàn thiện trung tâm, dồn toàn lực vào cột f và đường chéo nhắm vua Đen còn ở giữa bàn. Đen chơi ...Bg7 hoặc ...O-O-O hoàn tất phát triển, cố giữ vững phần vật chất còn lại.
+          en: White plays Qxf4 to win back the pawn, then Nc3 and d4 to complete the centre, throwing everything at the f-file and the diagonal aimed at Black's still-central king. Black plays ...Bg7 or ...O-O-O to finish developing, trying to hold on to the material still in hand.
+          fr: Les Blancs jouent Qxf4 pour regagner le pion, puis Nc3 et d4 pour compléter le centre, jetant toutes leurs forces sur la colonne f et la diagonale visant le roi noir resté au centre. Les Noirs jouent ...Bg7 ou ...O-O-O pour achever leur développement, essayant de conserver le matériel encore en main.
+        basis:
+          by: chan
+          at: '2026-09-29'

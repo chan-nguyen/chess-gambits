@@ -1,0 +1,61 @@
+# King's Gambit Accepted, Kieseritzky Gambit, Rice Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Nf6 6.Bc4 d5 7.exd5 Bd6 8.O-O, which ends on
+# White's own 8.O-O — the learner's ply — so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Black's 8...Bxe5, capturing the undefended knight and giving the whole
+# gambit its name, is modelled as the root's single reply. Every ply was replayed with
+# chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check, no free capture.
+id: kings-gambit-accepted-kieseritzky-gambit-rice-gambit
+name: "King's Gambit Accepted: Kieseritzky Gambit, Rice Gambit"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5, Nf6, Bc4, d5, exd5, Bd6, O-O]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White castles instead of saving the e5 knight, offering it outright for
+      the open f-file and a lead in development — a genuine piece sacrifice with real
+      attacking chances, not a proven win. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì cứu con mã e5 đang bị tượng d6 tấn công, Trắng nhập thành ngay, hiến hẳn con mã để đổi lấy cột f mở và tốc độ phát triển.
+    en: Instead of saving the e5 knight, which the bishop on d6 attacks, White castles at once, offering the knight outright for the open f-file and a lead in development.
+    fr: Plutôt que de sauver le cavalier e5, attaqué par le fou d6, les Blancs roquent aussitôt, offrant carrément le cavalier contre la colonne f ouverte et une avance de développement.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 8...Bxe5 — chẳng hạn ăn lại tốt bằng ...Nxd5 hoặc phát triển tiếp bằng ...O-O, để con mã Trắng còn nguyên trên e5. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 8...Bxe5 — for instance recapturing the pawn with ...Nxd5 or continuing to develop with ...O-O, leaving the White knight sitting on e5. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 8...Bxe5 — par exemple reprendre le pion par ...Nxd5 ou poursuivre leur développement par ...O-O, laissant le cavalier blanc en e5. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bxe5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen nhận lời, ăn luôn con mã e5 đang không được bảo vệ, bỏ túi một quân nhẹ.
+        en: Black accepts, capturing the undefended e5 knight and pocketing a whole minor piece.
+        fr: Les Noirs acceptent, capturant le cavalier e5 sans défense et empochant une pièce mineure entière.
+      outcome:
+        type: position
+        evaluation:
+          vi: Tốt thì ngang nhau, Trắng bảy Đen bảy, nhưng tổng quân thì Trắng 14 còn Đen 15 — Trắng đang thiếu hẳn một mã. Đổi lại, vua Trắng đã an toàn sau khi nhập thành, và xe f1 đứng trên cột f đang mở, nhắm thẳng vào tốt f4 của Đen, trong khi vua Đen vẫn còn ở giữa bàn.
+          en: Pawns are level, seven each, but total material is fourteen for White against fifteen for Black — White is down a whole knight. In exchange, White's king is already safe after castling, and the rook on f1 sits on the open f-file, aimed straight at Black's f4 pawn, while Black's king is still in the centre.
+          fr: Les pions sont à égalité, sept de chaque côté, mais le matériel total est de quatorze pour les Blancs contre quinze pour les Noirs — les Blancs manquent un cavalier entier. En échange, le roi blanc est déjà en sécurité après le roque, et la tour f1 occupe la colonne f ouverte, braquée droit sur le pion f4 noir, tandis que le roi noir reste au centre.
+        plan:
+          vi: Trắng chơi Bxf4 ăn lại một phần vật chất và mở thêm đường cho quân, rồi Nc3 và Qe1-h4 dồn lực lượng vào cánh vua Đen còn chưa nhập thành. Đen chơi ...Be6 hoặc ...O-O gấp để đưa vua vào chỗ an toàn trước khi Trắng kịp tập trung đủ quân tấn công.
+          en: White plays Bxf4 to win back some material and open more lines, then Nc3 and Qe1-h4 to mass pieces against Black's still-uncastled king. Black plays ...Be6 or castles urgently with ...O-O to get the king to safety before White can mass enough force to attack.
+          fr: Les Blancs jouent Bxf4 pour regagner un peu de matériel et ouvrir davantage de lignes, puis Nc3 et Qe1-h4 pour masser leurs pièces contre le roi noir toujours non roqué. Les Noirs jouent ...Be6 ou roquent d'urgence par ...O-O pour mettre le roi à l'abri avant que les Blancs ne rassemblent assez de forces pour attaquer.
+        basis:
+          by: chan
+          at: '2026-09-29'

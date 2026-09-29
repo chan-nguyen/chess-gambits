@@ -1,0 +1,61 @@
+# King's Gambit Declined, Soller-Zilbermints Gambit, taught. Frozen defining line 1.e4 e5
+# 2.f4 f6 3.fxe5, which ends on White's own 3.fxe5 — the learner's ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Black's 3...Nc6 is modelled as the root's
+# single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture (from the side to
+# move, White). `e5` was independently confirmed attacked by Black and undefended by White
+# with `chess.js`'s `isAttacked` — a threat for Black's next move, not a free capture for the
+# side actually to move at this leaf.
+id: kings-gambit-declined-soller-zilbermints-gambit
+name: "King's Gambit Declined: Soller-Zilbermints Gambit"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, f6, fxe5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black's 2...f6 weakens the centre without defending e5, and White simply
+      captures it — a real extra pawn for the moment, though Black can still win it straight
+      back with ...fxe5 next. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng ăn luôn con tốt e5 mà nước 2...f6 của Đen không hề bảo vệ được.
+    en: White simply captures the e5 pawn, which Black's 2...f6 did nothing to defend.
+    fr: Les Blancs capturent simplement le pion e5, que le 2...f6 noir ne défendait en rien.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 3...Nc6 — chẳng hạn ăn lại tốt ngay bằng ...fxe5. Nằm ngoài phạm vi mục này.
+      en: Black plays something other than 3...Nc6 — for instance recapturing at once with ...fxe5. Outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 3...Nc6 — par exemple reprendre aussitôt par ...fxe5. Hors du cadre de cette entrée.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen chưa vội ăn lại tốt mà phát triển mã ra c6 trước, giữ nguyên khả năng ăn lại tốt e5 ở nước sau.
+        en: Black holds off on recapturing and develops the knight to c6 instead, keeping the option of recapturing the e5 pawn for a later move.
+        fr: Les Noirs retardent la reprise et développent d'abord le cavalier en c6, gardant la possibilité de reprendre le pion e5 plus tard.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng đang tạm thời hơn một tốt. Tốt e5 của Trắng vẫn đang bị tốt f6 của Đen tấn công và hiện không quân nào của Trắng bảo vệ nó (đã kiểm tra lại bằng chess.js), nên đây là mối đe doạ cho nước đi tiếp theo của Đen chứ chưa phải quân ăn miễn phí ngay lúc này, vì đang đến lượt Trắng đi.
+          en: Count the pawns and it is eight for White, seven for Black — White is temporarily a pawn up. White's e5 pawn is still attacked by Black's f6 pawn and currently defended by nothing, independently confirmed with chess.js, so it is a threat for Black's next move rather than a free capture right now, since it is White's turn to move.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs sont temporairement en avance d'un pion. Le pion e5 blanc reste attaqué par le pion f6 noir et n'est actuellement défendu par rien, ce qui a été vérifié avec chess.js, ce qui en fait une menace pour le prochain coup noir plutôt qu'une capture gratuite dès maintenant, puisque c'est aux Blancs de jouer.
+        plan:
+          vi: Trắng chơi Nf3 hoặc d4 để bảo vệ thêm cho tốt e5 trước khi Đen kịp ăn lại, giữ phần vật chất hơn đã có. Đen chơi ...fxe5 ăn lại tốt ngay khi có thể nếu Trắng chậm trễ, đưa thế cờ về lại cân bằng vật chất.
+          en: White plays Nf3 or d4 to add a defender to the e5 pawn before Black can recapture, holding on to the material already won. Black plays ...fxe5 to win the pawn straight back as soon as possible if White is slow, restoring material equality.
+          fr: Les Blancs jouent Nf3 ou d4 pour ajouter un défenseur au pion e5 avant que les Noirs ne puissent le reprendre, conservant le matériel déjà gagné. Les Noirs jouent ...fxe5 pour regagner aussitôt le pion si les Blancs tardent, rétablissant l'égalité matérielle.
+        basis:
+          by: chan
+          at: '2026-09-29'

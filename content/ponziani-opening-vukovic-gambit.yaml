@@ -1,0 +1,60 @@
+# Ponziani Opening, Vukovic Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.c3 Nf6
+# 4.d4 Nxe4 5.d5, which ends on White's own 5.d5 — the learner's ply, driving the pawn
+# forward with tempo on the c6 knight — so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Black's 5...Bc5 is modelled as the root's single reply. Every ply was
+# replayed with chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check, no free capture. `c6` and `f2` were both independently confirmed
+# attacked but defended with `chess.js`'s `isAttacked`.
+id: ponziani-opening-vukovic-gambit
+name: 'Ponziani Opening: Vukovic Gambit'
+eco: C44
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, c3, Nf6, d4, Nxe4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White pushes the pawn to d5 to gain time on the c6 knight instead of
+      trying to win back the e4 pawn at once, real practical chances from the space gained
+      rather than a proven equaliser. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đẩy tốt lên d5, tấn công con mã c6 của Đen và giành thêm không gian trung tâm.
+    en: White pushes the pawn to d5, attacking Black's knight on c6 and gaining more central space.
+    fr: Les Blancs poussent le pion en d5, attaquant le cavalier noir en c6 et gagnant plus d'espace central.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 5...Bc5 — chẳng hạn lùi mã bằng ...Ne7 hay ...Nb8. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 5...Bc5 — for instance retreating the knight with ...Ne7 or ...Nb8. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 5...Bc5 — par exemple reculer le cavalier par ...Ne7 ou ...Nb8. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bc5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen chưa vội lùi mã mà đưa tượng ra c5 trước, nhắm thẳng đường chéo về phía tốt f2.
+        en: Black holds off on retreating the knight and instead plays the bishop to c5, aiming straight down the diagonal at the f2 pawn.
+        fr: Les Noirs retardent le recul du cavalier et jouent d'abord le fou en c5, visant directement la diagonale vers le pion f2.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng vẫn kém một tốt. Con mã c6 của Đen đang bị tốt d5 tấn công nhưng vẫn được tốt b7 bảo vệ, và con tốt f2 của Trắng đang bị tượng c5 nhắm tới nhưng vẫn được vua bảo vệ (cả hai điều đã kiểm tra lại bằng chess.js), nên chưa quân nào rơi vào thế mất không.
+          en: Count the pawns and it is seven for White, eight for Black — White is still a pawn down. Black's knight on c6 is attacked by the d5 pawn but remains defended by the b7 pawn, and White's f2 pawn is aimed at by the bishop on c5 but remains defended by the king, both independently confirmed with chess.js, so nothing is yet lost for free.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs restent en retard d'un pion. Le cavalier noir en c6 est attaqué par le pion d5 mais reste défendu par le pion b7, et le pion blanc en f2 est visé par le fou c5 mais reste défendu par le roi, ce qui a été vérifié avec chess.js dans les deux cas, donc rien n'est encore perdu gratuitement.
+        plan:
+          vi: Trắng chơi dxc6 ăn mã và phá vỡ cấu trúc tốt của Đen, hoặc Be2 phát triển và chuẩn bị nhập thành trước. Đen chơi ...Ne7 lùi mã nếu Trắng chậm trễ, hoặc ...bxc6 sau khi đổi mã, giữ vững tượng c5 đang chủ động.
+          en: White plays dxc6 to win the knight and wreck Black's pawn structure, or Be2 to develop and prepare to castle first. Black plays ...Ne7 to retreat the knight if White is slow, or ...bxc6 after the trade, keeping the active bishop on c5.
+          fr: Les Blancs jouent dxc6 pour gagner le cavalier et briser la structure de pions noire, ou Be2 pour se développer et préparer le roque d'abord. Les Noirs jouent ...Ne7 pour reculer le cavalier si les Blancs tardent, ou ...bxc6 après l'échange, gardant le fou actif en c5.
+        basis:
+          by: chan
+          at: '2026-09-29'

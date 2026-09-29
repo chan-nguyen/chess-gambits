@@ -1,0 +1,63 @@
+# King's Gambit Declined, Falkbeer Countergambit, Alapin Variation, taught. Frozen defining
+# line 1.e4 e5 2.f4 d5 3.exd5 e4 4.d3 Nf6 5.dxe4 Nxe4 6.Nf3 Bc5 7.Qe2 Bf2+ 8.Kd1 Qxd5+, which
+# ends on Black's own 8...Qxd5+ — the learner's ply, a check that also wins back the d5 pawn
+# — so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's king is in check
+# at the root and only six replies are legal; 9.Nfd2, blocking with the f3 knight, is
+# modelled as the root's single reply. Every ply was replayed with chess.js, and the leaf
+# was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+# `f2` and `e4` were independently confirmed attacked but defended on both sides with
+# `chess.js`'s `isAttacked`.
+id: kings-gambit-declined-falkbeer-countergambit-alapin-variation
+name: "King's Gambit Declined: Falkbeer Countergambit, Alapin Variation"
+eco: C32
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, e4, d3, Nf6, dxe4, Nxe4, Nf3, Bc5, Qe2, Bf2+, Kd1, Qxd5+]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black's check on f2 drives the White king to d1, and the follow-up
+      Qxd5+ wins the pawn back with check as well — real, dangerous practical chances rather
+      than a proven advantage, since both the bishop on f2 and the knight on e4 are already
+      attacked once White untangles. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ép vua Trắng phải sang d1 bằng nước chiếu ...Bf2+, Đen chơi tiếp ...Qxd5+, vừa ăn lại con tốt d5 vừa chiếu tướng lần nữa.
+    en: Having forced the White king to d1 with the check ...Bf2+, Black follows up with ...Qxd5+, winning back the d5 pawn while giving check again.
+    fr: Après avoir forcé le roi blanc à aller en d1 par l'échec ...Bf2+, les Noirs enchaînent avec ...Qxd5+, regagnant le pion d5 tout en redonnant échec.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại nước chiếu bằng cách khác ngoài 9.Nfd2 — chỉ còn năm nước hợp lệ nữa để thoát chiếu, mỗi nước nằm ngoài phạm vi mục này.
+      en: White answers the check some other way than 9.Nfd2 — only five other legal moves get out of check, each outside the scope of this entry.
+      fr: Les Blancs répondent à l'échec autrement que par 9.Nfd2 — seuls cinq autres coups légaux permettent de sortir de l'échec, chacun hors du cadre de cette entrée.
+  children:
+    - ply: Nfd2
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng chặn chiếu bằng con mã từ f3, giữ được quân và tạm thời ổn định tình hình.
+        en: White blocks the check with the knight from f3, holding on to the piece and steadying the position for the moment.
+        fr: Les Blancs bloquent l'échec avec le cavalier venu de f3, conservant la pièce et stabilisant momentanément la position.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên sáu — con tốt thí ban đầu đã được lấy lại hoàn toàn qua chuỗi đổi chác. Cả tượng f2 lẫn mã e4 của Đen đều đang bị Trắng tấn công nhưng vẫn được quân khác của Đen bảo vệ, điều đã kiểm tra lại bằng chess.js, nên chưa quân nào bị mất không công. Vua Trắng đã mất quyền nhập thành và còn kẹt ở d1.
+          en: Count the pawns and the two sides are level, six each — the pawn originally sacrificed has been fully won back through the exchanges. Both Black's bishop on f2 and knight on e4 are attacked by White but remain defended by another Black piece, independently confirmed with chess.js, so nothing is yet lost for free. White's king has lost the right to castle and is still stuck on d1.
+          fr: Comptez les pions, les deux camps sont à égalité, six de chaque côté — le pion initialement sacrifié a été entièrement regagné au fil des échanges. Le fou noir en f2 et le cavalier en e4 sont tous deux attaqués par les Blancs mais restent défendus par une autre pièce noire, ce qui a été vérifié avec chess.js, donc rien n'est encore perdu gratuitement. Le roi blanc a perdu le droit de roquer et reste coincé en d1.
+        plan:
+          vi: Trắng chơi Nxe4 đổi mã trước, sau đó tìm cách đưa tượng f2 về hoặc ăn nó nếu Đen sơ hở, cố gắng gỡ rối và đưa vua vào chỗ an toàn hơn. Đen chơi ...Nc6 hoàn tất phát triển, giữ tượng f2 làm quân gây rối và khai thác việc vua Trắng còn kẹt ở giữa bàn, không còn quyền nhập thành.
+          en: White plays Nxe4 to trade off the knight first, then looks to win back or reroute the f2 bishop if Black slips, trying to untangle and get the king somewhere safer. Black plays ...Nc6 to finish developing, keeps the f2 bishop as a nuisance, and looks to exploit White's king being stuck in the centre with no right to castle.
+          fr: Les Blancs jouent Nxe4 pour échanger d'abord le cavalier, puis cherchent à regagner ou reloger le fou f2 si les Noirs se relâchent, essayant de se démêler et de mettre le roi plus en sécurité. Les Noirs jouent ...Nc6 pour achever leur développement, gardent le fou f2 comme gêneur et cherchent à exploiter le roi blanc resté coincé au centre, sans plus aucun droit de roquer.
+        basis:
+          by: chan
+          at: '2026-09-29'

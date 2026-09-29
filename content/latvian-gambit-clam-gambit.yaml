@@ -1,0 +1,58 @@
+# Latvian Gambit, Clam Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.d3 f5,
+# which ends on Black's own 3...f5 — the learner's ply — so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White's 4.exf5 is modelled as the root's single reply.
+# Every ply was replayed with chess.js, and the leaf was checked with `searchMate` (bounded
+# to 2 moves): no-mate, not in check, no free capture.
+id: latvian-gambit-clam-gambit
+name: 'Latvian Gambit: Clam Gambit'
+eco: C44
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, d3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black offers the f5 pawn a move later than the main Latvian Gambit, after
+      White has already played the useful d3, and White simply takes it with no compensation
+      yet in view. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng ăn luôn con tốt f5 mà Đen vừa đẩy lên, đơn giản nhận lấy tốt thừa.
+    en: White simply captures the f5 pawn Black just pushed, taking the free pawn on offer.
+    fr: Les Blancs capturent simplement le pion f5 que les Noirs viennent de pousser, prenant le pion offert.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 4.exf5 — chẳng hạn phát triển bằng Bc4 hay Nc3, để nguyên con tốt f5 trên bàn. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 4.exf5 — for instance developing with Bc4 or Nc3, leaving the f5 pawn on the board. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 4.exf5 — par exemple se développer par Bc4 ou Nc3, laissant le pion f5 sur l'échiquier. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng chính con tốt e4, bỏ túi một tốt sạch mà chưa cần lo lắng gì.
+        en: White captures with the e4 pawn itself, pocketing a clean pawn with nothing to worry about yet.
+        fr: Les Blancs capturent avec leur propre pion e4, empochant un pion net sans rien à craindre pour l'instant.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng đang hơn đúng một tốt sạch, chưa hề đổi lại gì. Cả hai bên đều chưa nhập thành, nhưng Đen giờ phải tốn thêm nước để đòi lại con tốt f5 hoặc chấp nhận kém tốt lâu dài.
+          en: Count the pawns and it is eight for White, seven for Black — White is up a clean pawn with nothing given back yet. Neither side has castled, but Black now has to spend extra moves trying to win the f5 pawn back or accept being a pawn down for the long haul.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs sont en avance d'un pion net, sans rien avoir cédé en retour. Aucun camp n'a roqué, mais les Noirs doivent maintenant dépenser des coups supplémentaires pour regagner le pion f5 ou accepter d'être en retard d'un pion durablement.
+        plan:
+          vi: Trắng chơi Nc3 và Bc4 hoàn tất phát triển, giữ vững tốt thừa và tìm cách nhập thành an toàn. Đen chơi ...d6 mở đường cho tượng c8 rồi tính ăn lại tốt f5 bằng ...Bxf5, hoặc ...Nf6 phát triển trước, cố gắng tạo đủ sức ép bù lại con tốt đã mất.
+          en: White plays Nc3 and Bc4 to finish developing, holding on to the extra pawn and looking to castle safely. Black plays ...d6 to free the c8 bishop and follow up with ...Bxf5, or ...Nf6 to develop first, trying to build enough pressure to compensate for the lost pawn.
+          fr: Les Blancs jouent Nc3 et Bc4 pour achever leur développement, conservant le pion supplémentaire et cherchant à roquer en sécurité. Les Noirs jouent ...d6 pour libérer le fou c8 puis ...Bxf5, ou ...Nf6 pour se développer d'abord, essayant de créer assez de pression pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'

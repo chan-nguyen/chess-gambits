@@ -1,0 +1,61 @@
+# King's Gambit Accepted, Muzio Gambit, Sarratt Defense, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.O-O gxf3 6.Qxf3, which ends on White's own
+# 6.Qxf3 — the learner's ply, completing the Muzio knight sacrifice — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Black's 6...Qf6, giving this defence its
+# name, is modelled as the root's single reply. Every ply was replayed with chess.js, and
+# the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free
+# capture. `f3` was independently confirmed not attacked by Black (the f4 pawn blocks the
+# file) and `b2` confirmed attacked but defended, with `chess.js`'s `isAttacked`.
+id: kings-gambit-accepted-muzio-gambit-sarratt-defense
+name: "King's Gambit Accepted: Muzio Gambit, Sarratt Defense"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, O-O, gxf3, Qxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White has now completed the full Muzio sacrifice — a whole knight for one
+      pawn — for the queen on an open f-file and a large lead in development. Real attacking
+      chances, not a proven win. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa ăn lại tốt bằng hậu, hoàn tất việc hiến hẳn con mã đổi lấy cột f mở và hậu đứng ngay giữa bàn.
+    en: White has just recaptured the pawn with the queen, completing the sacrifice of a whole knight for the open f-file and a queen planted right in the centre.
+    fr: Les Blancs viennent de reprendre le pion avec la dame, achevant le sacrifice d'un cavalier entier contre la colonne f ouverte et une dame plantée au centre.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 6...Qf6 — chẳng hạn phát triển bằng ...Nc6 hay ...Bg7. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 6...Qf6 — for instance developing with ...Nc6 or ...Bg7. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 6...Qf6 — par exemple se développer par ...Nc6 ou ...Bg7. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Qf6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đưa hậu ra f6, vừa bảo vệ con tốt f4 đang thừa vừa nhắm đường chéo dài xuống b2, dù hậu Trắng trên f3 hiện đang bị chính con tốt f4 che chắn nên chưa bị đe doạ trực tiếp.
+        en: Black brings the queen to f6, defending the extra f4 pawn while eyeing the long diagonal down to b2, though the White queen on f3 is currently shielded by that same f4 pawn and is not directly threatened.
+        fr: Les Noirs amènent la dame en f6, défendant le pion f4 supplémentaire tout en visant la grande diagonale jusqu'en b2, bien que la dame blanche en f3 soit pour l'instant protégée par ce même pion f4 et ne soit pas directement menacée.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên bảy, nhưng tính cả quân thì Trắng 14 còn Đen 15 — Trắng đang thiếu hẳn một mã đổi lấy một tốt, đúng như bản chất thí quân của Muzio Gambit. Con tốt b2 của Trắng tuy bị hậu Đen nhắm tới nhưng vẫn được bảo vệ, điều đã kiểm tra lại bằng chess.js.
+          en: Count the pawns and the two sides are level, seven each, but counting every piece it is fourteen for White against fifteen for Black — White is down a full knight for a pawn, exactly the sacrifice the whole Muzio Gambit is built on. White's b2 pawn is aimed at by Black's queen but remains defended, independently confirmed with chess.js.
+          fr: Comptez les pions, les deux camps sont à égalité, sept de chaque côté, mais en comptant toutes les pièces c'est quatorze pour les Blancs contre quinze pour les Noirs — les Blancs sont en retard d'un cavalier entier pour un pion, exactement le sacrifice sur lequel repose tout le gambit Muzio. Le pion b2 blanc, visé par la dame noire, reste défendu, ce qui a été vérifié avec chess.js.
+        plan:
+          vi: Trắng chơi Nc3 và d4 hoàn thiện trung tâm, hoặc e5 xua đuổi hậu Đen, dồn toàn lực vào cột f và đường chéo nhắm vua Đen còn ở giữa bàn. Đen chơi ...Ne7 hoặc ...Bh6 hoàn tất phát triển và tìm cách nhập thành sớm, cố giữ vững phần vật chất hơn hẳn đã có.
+          en: White plays Nc3 and d4 to complete the centre, or e5 to chase the Black queen away, throwing everything at the f-file and the diagonal aimed at Black's still-central king. Black plays ...Ne7 or ...Bh6 to finish developing and look to castle early, trying to hold on to the material advantage already banked.
+          fr: Les Blancs jouent Nc3 et d4 pour compléter le centre, ou e5 pour chasser la dame noire, jetant toutes leurs forces sur la colonne f et la diagonale visant le roi noir resté au centre. Les Noirs jouent ...Ne7 ou ...Bh6 pour achever leur développement et chercher à roquer tôt, essayant de conserver l'avantage matériel déjà engrangé.
+        basis:
+          by: chan
+          at: '2026-09-29'

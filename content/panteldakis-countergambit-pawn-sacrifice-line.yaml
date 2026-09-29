@@ -1,0 +1,62 @@
+# King's Gambit Declined, Panteldakis Countergambit, Pawn Sacrifice Line, taught. Frozen
+# defining line 1.e4 e5 2.f4 f5 3.exf5 exf4 4.Qh5+ g6 5.fxg6 Qe7+, which ends on Black's own
+# 5...Qe7+ — the learner's ply, a check — so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). White's king is in check at the root and only six replies are legal; 6.Kd1
+# is modelled as the root's single reply. Every ply was replayed with chess.js, and the leaf
+# was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free
+# capture. `g6` was independently confirmed attacked by Black but defended by White's queen
+# with `chess.js`'s `isAttacked`.
+id: panteldakis-countergambit-pawn-sacrifice-line
+name: "King's Gambit Declined: Panteldakis Countergambit, Pawn Sacrifice Line"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, e5, f4, f5, exf5, exf4, 'Qh5+', g6, fxg6, 'Qe7+']
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black's counter-check drives the White king to d1, but White ends the
+      forcing sequence a full pawn up with a dangerous passed pawn on g6 — a practical try
+      that costs Black material without full compensation. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau một loạt nước bắt buộc, Đen chiếu lại bằng ...Qe7+, và vua Trắng phải tìm đường thoát.
+    en: After a forced sequence, Black checks back with ...Qe7+, and the White king has to find a way out.
+    fr: Après une séquence forcée, les Noirs redonnent échec par ...Qe7+, et le roi blanc doit trouver une issue.
+  dismissRest:
+    reason:
+      vi: Trắng đáp lại nước chiếu bằng cách khác ngoài 6.Kd1 — chỉ còn năm nước hợp lệ nữa để thoát chiếu, mỗi nước nằm ngoài phạm vi mục này.
+      en: White answers the check some other way than 6.Kd1 — only five other legal moves get out of check, each outside the scope of this entry.
+      fr: Les Blancs répondent à l'échec autrement que par 6.Kd1 — seuls cinq autres coups légaux permettent de sortir de l'échec, chacun hors du cadre de cette entrée.
+  children:
+    - ply: Kd1
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng đưa vua sang d1, thoát chiếu trong khi vẫn giữ được con hậu đang chủ động trên h5.
+        en: White steps the king to d1, escaping check while keeping the queen active on h5.
+        fr: Les Blancs déplacent le roi en d1, échappant à l'échec tout en gardant la dame active en h5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen sáu — Trắng đang hơn đúng một tốt. Con tốt g6 của Trắng đã cắm sâu vào trận địa Đen; tốt h7 có thể ăn nó (hxg6) nhưng con tốt ấy vẫn đang được hậu h5 bảo vệ, điều đã kiểm tra lại bằng chess.js, nên đây chỉ là một cuộc đổi chác chứ không phải mất quân miễn phí. Vua Trắng đã mất quyền nhập thành.
+          en: Count the pawns and it is seven for White, six for Black — White is up exactly one pawn. White's g6 pawn has driven deep into Black's position; the h7 pawn can take it (hxg6) but that pawn remains defended by the queen on h5, independently confirmed with chess.js, so it would only be a trade rather than a free loss. White's king has lost the right to castle.
+          fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — les Blancs sont en avance d'exactement un pion. Le pion blanc en g6 s'est enfoncé profondément dans le camp noir ; le pion h7 peut le prendre (hxg6) mais ce pion reste défendu par la dame en h5, ce qui a été vérifié avec chess.js, donc ce ne serait qu'un échange plutôt qu'une perte gratuite. Le roi blanc a perdu le droit de roquer.
+        plan:
+          vi: Trắng chơi Nf3 và Nc3 hoàn tất phát triển, tìm chỗ tương đối an toàn cho vua trong lúc vẫn giữ tốt thừa. Đen chơi ...hxg6 đổi lại con hậu tấn công của Trắng lấy chút không gian, hoặc ...Nf6 phát triển trước, cố gắng bù lại con tốt đã mất bằng hoạt động quân.
+          en: White plays Nf3 and Nc3 to finish developing, looking for a relatively safe spot for the king while holding on to the extra pawn. Black plays ...hxg6 to trade off White's active queen's target for a little space, or ...Nf6 to develop first, trying to make up for the lost pawn with piece activity.
+          fr: Les Blancs jouent Nf3 et Nc3 pour achever leur développement, cherchant un abri relativement sûr pour le roi tout en conservant le pion supplémentaire. Les Noirs jouent ...hxg6 pour échanger la cible de la dame blanche active contre un peu d'espace, ou ...Nf6 pour se développer d'abord, essayant de compenser le pion perdu par l'activité des pièces.
+        basis:
+          by: chan
+          at: '2026-09-29'

@@ -1,0 +1,69 @@
+# King's Gambit Accepted, Salvio Gambit, Anderssen Counterattack, taught. Frozen defining
+# line 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.Ne5 Qh4+ 6.Kf1 Nh6 7.d4, which ends on White's
+# own 7.d4 — the learner's ply — so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Black's 7...d6 is modelled as the root's single reply. Every ply was
+# replayed with chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check. Bxf4 was independently confirmed as a free capture for White with
+# `resolution.ts`'s `freeCaptures` (the c1 bishop's diagonal opened once the d-pawn moved),
+# and the e5 knight confirmed attacked but still defended (not free), which is why the leaf
+# carries `unsettled` rather than stopping silently.
+id: kings-gambit-accepted-salvio-gambit-anderssen-counterattack
+name: "King's Gambit Accepted: Salvio Gambit, Anderssen Counterattack"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Ne5, 'Qh4+', Kf1, Nh6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black attacks the e5 knight with d6 but ignores that the c1 bishop's
+      diagonal to f4 has just opened, letting White win that pawn back for nothing. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi d4, dựng trung tâm và mở luôn đường chéo cho tượng c1, tranh thủ lúc vua đã tạm ổn ở f1.
+    en: White plays d4, building the centre and opening a diagonal for the bishop on c1 as well, using the moment the king has settled on f1.
+    fr: Les Blancs jouent d4, bâtissant le centre et ouvrant du même coup la diagonale du fou c1, profitant du moment où le roi s'est installé en f1.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 7...d6 — chẳng hạn phát triển bằng ...Nc6 hay ...Bg7. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 7...d6 — for instance developing with ...Nc6 or ...Bg7. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 7...d6 — par exemple se développer par ...Nc6 ou ...Bg7. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d6
+      replyQuality: mistake
+      frequency: rare
+      annotation:
+        vi: Đen tấn công thẳng vào con mã e5, nhưng bỏ quên việc tượng c1 của Trắng vừa được mở đường tới f4.
+        en: Black attacks the e5 knight directly, but overlooks that White's bishop on c1 has just had its diagonal to f4 opened.
+        fr: Les Noirs attaquent directement le cavalier e5, mais oublient que le fou blanc en c1 vient d'avoir sa diagonale vers f4 ouverte.
+      unsettled: >-
+        Bxf4 is going free for White — Black's 7...d6 attacks the e5 knight (which remains
+        defended) but does nothing about the c1 bishop's newly opened diagonal, so White
+        simply wins the f4 pawn back. The evaluation below already counts the pawns as if
+        that capture has happened, since it changes the material balance but nothing about
+        the position's character, so extending the line one more ply would add nothing a
+        reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì Trắng bảy, Đen tám, nhưng con tốt f4 đang không được bảo vệ và Trắng sẽ ăn lại nó ngay bằng Bxf4, đưa vật chất về thế cân bằng hoàn toàn. Con mã e5 của Trắng tuy bị tốt d6 tấn công nhưng vẫn được bảo vệ (đã kiểm tra lại bằng chess.js), nên chưa quân nào khác rơi vào thế mất không.
+          en: Count the pawns right here and it is seven for White, eight for Black, but the f4 pawn is undefended and White will win it straight back with Bxf4, bringing material to a full equality. White's e5 knight, though attacked by the d6 pawn, remains defended, independently confirmed with chess.js, so nothing else is lost for free.
+          fr: Comptez les pions ici même, sept pour les Blancs, huit pour les Noirs, mais le pion f4 est sans défense et les Blancs vont le regagner aussitôt par Bxf4, ramenant le matériel à une égalité totale. Le cavalier blanc en e5, bien qu'attaqué par le pion d6, reste défendu, ce qui a été vérifié avec chess.js, donc rien d'autre n'est perdu gratuitement.
+        plan:
+          vi: Trắng chơi Bxf4 ăn lại tốt rồi Nc3 hoàn tất phát triển, giữ vững con mã e5 làm bàn đạp tấn công. Đen chơi ...dxe5 đổi mã lấy tốt nếu muốn đơn giản hoá, hoặc ...Bg7 tiếp tục phát triển, cố gắng bù lại con tốt vừa mất.
+          en: White plays Bxf4 to win back the pawn, then Nc3 to finish developing, keeping the e5 knight as a springboard for the attack. Black plays ...dxe5 to trade the knight for the pawn if wanting to simplify, or ...Bg7 to keep developing, trying to make up for the pawn just lost.
+          fr: Les Blancs jouent Bxf4 pour regagner le pion, puis Nc3 pour achever leur développement, gardant le cavalier e5 comme tremplin pour l'attaque. Les Noirs jouent ...dxe5 pour échanger le cavalier contre le pion s'ils veulent simplifier, ou ...Bg7 pour poursuivre leur développement, essayant de compenser le pion qui vient d'être perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'

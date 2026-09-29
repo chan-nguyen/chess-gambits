@@ -1,0 +1,68 @@
+# King's Gambit Declined, Falkbeer Countergambit, Charousek Gambit, taught. Frozen defining
+# line 1.e4 e5 2.f4 d5 3.exd5 e4, which ends on Black's own 3...e4 — the learner's ply — so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.d3 is modelled as
+# the root's single reply. Every ply was replayed with chess.js, and the leaf was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check. Qxd5 was independently
+# confirmed as a free capture for Black (the side to move at this leaf) with
+# `resolution.ts`'s `freeCaptures`, which is why the leaf carries `unsettled` rather than
+# stopping silently.
+id: kings-gambit-declined-falkbeer-countergambit-charousek-gambit
+name: "King's Gambit Declined: Falkbeer Countergambit, Charousek Gambit"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White strikes at the e4 pawn with d3 at once, but Black's own d5 pawn is
+      just as loose, so Black gets to win it straight back with Qxd5 before White's own
+      threat matters — real, sharp compensation rather than a proven equaliser. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi ngay d3, tấn công thẳng vào con tốt e4 mà Đen vừa đẩy lên.
+    en: White plays d3 immediately, attacking directly the e4 pawn Black just pushed.
+    fr: Les Blancs jouent aussitôt d3, attaquant directement le pion e4 que les Noirs viennent de pousser.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 4.d3 — chẳng hạn phát triển bằng Nc3 hay giữ nguyên con tốt d5 bằng c4. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 4.d3 — for instance developing with Nc3 or holding on to the d5 pawn with c4. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 4.d3 — par exemple se développer par Nc3 ou conserver le pion d5 par c4. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng tấn công tốt e4, nhưng chính con tốt d5 của mình cũng đang bị bỏ ngỏ trước con hậu Đen.
+        en: White attacks the e4 pawn, but White's own d5 pawn is just as exposed to Black's queen.
+        fr: Les Blancs attaquent le pion e4, mais leur propre pion d5 est tout aussi exposé face à la dame noire.
+      unsettled: >-
+        Qxd5 is going free for Black — the side to move at this leaf. White's 4.d3 attacks
+        e4 but leaves d5 completely undefended, so Black wins that pawn back at once. The
+        evaluation below already counts the pawns as if that recapture has happened, since
+        it is the obvious and only sensible reply, so extending the line one more ply would
+        add nothing a reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì Trắng tám, Đen bảy, nhưng con tốt d5 của Trắng đang không được bảo vệ và Đen sẽ ăn lại nó ngay bằng Qxd5, đưa vật chất về thế cân bằng hoàn toàn. Con tốt e4 của Đen khi đó sẽ lại đến lượt bị tấn công, nên cuộc đua đổi tốt ở trung tâm vẫn còn tiếp diễn.
+          en: Count the pawns right here and it is eight for White, seven for Black, but White's d5 pawn is undefended and Black will win it straight back with Qxd5, bringing material to a full equality. Black's e4 pawn will then be under attack again in turn, so the central pawn-trading race is still ongoing.
+          fr: Comptez les pions ici même, huit pour les Blancs, sept pour les Noirs, mais le pion d5 blanc est sans défense et les Noirs vont le regagner aussitôt par Qxd5, ramenant le matériel à une égalité totale. Le pion e4 noir sera alors de nouveau attaqué à son tour, donc la course aux échanges de pions centraux se poursuit.
+        plan:
+          vi: Trắng chơi dxe4 ăn lại tốt ngay khi có thể, hoặc Nc3 hoàn tất phát triển trước, tuỳ vào việc con hậu Đen đứng ở đâu sau khi ăn d5. Đen chơi ...Qxd5 ăn lại tốt trước, rồi tìm cách bảo vệ con tốt e4 còn lại bằng ...Nc6 hoặc ...f5.
+          en: White plays dxe4 to win the pawn back as soon as possible, or Nc3 to finish developing first, depending on where Black's queen ends up after taking on d5. Black plays ...Qxd5 to win the pawn back first, then looks to defend the remaining e4 pawn with ...Nc6 or ...f5.
+          fr: Les Blancs jouent dxe4 pour regagner le pion dès que possible, ou Nc3 pour se développer d'abord, selon l'endroit où finit la dame noire après avoir pris en d5. Les Noirs jouent ...Qxd5 pour regagner d'abord le pion, puis cherchent à défendre le pion e4 restant par ...Nc6 ou ...f5.
+        basis:
+          by: chan
+          at: '2026-09-29'

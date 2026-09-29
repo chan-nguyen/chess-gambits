@@ -1,0 +1,67 @@
+# Latvian Gambit Accepted, Bilguer Variation, taught. Frozen defining line 1.e4 e5 2.Nf3 f5
+# 3.Nxe5 Qf6 4.d4 d6, which ends on Black's own 4...d6 — the learner's ply — so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). White's 5.Nc4 is modelled as the root's
+# single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check. fxe4 was independently confirmed
+# as a free capture for Black (the side to move at this leaf) with `resolution.ts`'s
+# `freeCaptures`, which is why the leaf carries `unsettled` rather than stopping silently.
+id: latvian-gambit-accepted-bilguer-variation
+name: 'Latvian Gambit Accepted: Bilguer Variation'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Nxe5, Qf6, d4, d6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White retreats the knight to c4 rather than defending e4, and Black wins
+      that pawn straight back — the sharpness of the Latvian Gambit rather than a sound
+      equaliser, since White's development lead and Black's exposed queen remain the real
+      story. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng lùi mã về c4, tránh bị tốt d6 đuổi thêm nữa, nhưng để lộ con tốt e4 không ai bảo vệ.
+    en: White retreats the knight to c4, sidestepping the d6 pawn's attack, but leaves the e4 pawn with no defender.
+    fr: Les Blancs replient le cavalier en c4, évitant l'attaque du pion d6, mais laissent le pion e4 sans défense.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 5.Nc4 — chẳng hạn lùi mã về f3 hay g4. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 5.Nc4 — for instance retreating the knight to f3 or g4. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 5.Nc4 — par exemple replier le cavalier en f3 ou g4. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng đưa mã về c4, một ô tương đối tích cực, nhưng con tốt e4 giờ không còn quân nào bảo vệ.
+        en: White brings the knight back to c4, a fairly active square, but the e4 pawn is now defended by nothing.
+        fr: Les Blancs replacent le cavalier en c4, une case assez active, mais le pion e4 n'est désormais plus défendu par rien.
+      unsettled: >-
+        fxe4 is going free for Black — the side to move at this leaf. White's 5.Nc4 leaves
+        e4 completely undefended, so Black wins that pawn back at once. The evaluation below
+        already counts the pawns as if that recapture has happened, since it is the obvious
+        and only sensible reply, so extending the line one more ply would add nothing a
+        reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì Trắng tám, Đen bảy, nhưng con tốt e4 của Trắng đang không được bảo vệ và Đen sẽ ăn lại nó ngay bằng ...fxe4, đưa vật chất về thế cân bằng hoàn toàn. Con hậu Đen trên f6 vẫn đứng khá lộ liễu, và Đen chưa phát triển được quân nhẹ nào.
+          en: Count the pawns right here and it is eight for White, seven for Black, but White's e4 pawn is undefended and Black will win it straight back with ...fxe4, bringing material to a full equality. Black's queen on f6 remains fairly exposed, and Black has not developed a single minor piece yet.
+          fr: Comptez les pions ici même, huit pour les Blancs, sept pour les Noirs, mais le pion e4 blanc est sans défense et les Noirs vont le regagner aussitôt par ...fxe4, ramenant le matériel à une égalité totale. La dame noire en f6 reste assez exposée, et les Noirs n'ont encore développé aucune pièce mineure.
+        plan:
+          vi: Trắng chơi Nc3 hoặc Be2 hoàn tất phát triển, khai thác việc con hậu Đen còn đứng lộ trên f6. Đen chơi ...fxe4 ăn lại tốt trước, rồi ...Nf6 hoặc ...Be7 hoàn tất phát triển gấp.
+          en: White plays Nc3 or Be2 to finish developing, exploiting Black's queen still standing exposed on f6. Black plays ...fxe4 to win the pawn back first, then ...Nf6 or ...Be7 to finish developing urgently.
+          fr: Les Blancs jouent Nc3 ou Be2 pour achever leur développement, exploitant la dame noire toujours exposée en f6. Les Noirs jouent ...fxe4 pour regagner d'abord le pion, puis ...Nf6 ou ...Be7 pour achever leur développement en urgence.
+        basis:
+          by: chan
+          at: '2026-09-29'

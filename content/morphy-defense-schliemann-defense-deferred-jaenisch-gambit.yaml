@@ -1,0 +1,61 @@
+# Ruy Lopez, Morphy Defense, Schliemann Defense Deferred, Jaenisch Gambit Deferred, taught.
+# Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 f5, which ends on Black's own 4...f5
+# — the learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# White's 5.exf5 is modelled as the root's single reply. Every ply was replayed with
+# chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check, no free capture. No Black move recaptures on f5 at this leaf, independently
+# confirmed with `chess.js` (the c8 bishop is still blocked by its own d7 pawn).
+id: morphy-defense-schliemann-defense-deferred-jaenisch-gambit
+name: 'Ruy Lopez: Morphy Defense, Schliemann Defense Deferred, Jaenisch Gambit Deferred'
+eco: C70
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black delays the Schliemann's ...f5 until after ...a6 Ba4, and White
+      simply captures the pawn since nothing recaptures on f5 immediately — real practical
+      chances for Black's piece activity later, not a proven equaliser. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng ăn luôn con tốt f5, vì hiện tại không quân Đen nào ăn lại được ngay.
+    en: White simply captures the f5 pawn, since no Black piece can recapture there right away.
+    fr: Les Blancs capturent simplement le pion f5, puisqu'aucune pièce noire ne peut le reprendre immédiatement.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 5.exf5 — chẳng hạn nhập thành O-O trước hoặc phát triển bằng Nc3, để nguyên con tốt f5 trên bàn. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 5.exf5 — for instance castling O-O first or developing with Nc3, leaving the f5 pawn on the board. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 5.exf5 — par exemple roquer d'abord par O-O ou se développer par Nc3, laissant le pion f5 sur l'échiquier. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: exf5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng chính con tốt e4, bỏ túi một tốt sạch mà Đen chưa thể đòi lại ngay.
+        en: White captures with the e4 pawn itself, pocketing a clean pawn Black cannot win back immediately.
+        fr: Les Blancs capturent avec leur propre pion e4, empochant un pion net que les Noirs ne peuvent regagner immédiatement.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng đang hơn đúng một tốt sạch. Tượng c8 của Đen vẫn còn bị chính tốt d7 của mình chắn đường nên chưa thể ăn lại tốt f5 ngay, và cả hai bên đều chưa nhập thành.
+          en: Count the pawns and it is eight for White, seven for Black — White is up a clean pawn. Black's bishop on c8 is still shut in by its own d7 pawn and so cannot recapture the f5 pawn right away, and neither side has castled yet.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs sont en avance d'un pion net. Le fou noir en c8 reste enfermé par son propre pion d7 et ne peut donc pas reprendre le pion f5 immédiatement, et aucun des deux camps n'a encore roqué.
+        plan:
+          vi: Trắng chơi O-O và d4 hoàn tất phát triển, giữ vững tốt thừa và xây trung tâm vững chắc. Đen chơi ...d6 mở đường cho tượng c8 rồi tính ăn lại tốt f5, hoặc ...Nf6 phát triển trước, đặt cược vào hoạt động quân để bù đắp con tốt đã mất.
+          en: White plays O-O and d4 to finish developing, holding on to the extra pawn and building a solid centre. Black plays ...d6 to free the c8 bishop and look to recapture on f5, or ...Nf6 to develop first, banking on piece activity to make up for the lost pawn.
+          fr: Les Blancs jouent O-O et d4 pour achever leur développement, conservant le pion supplémentaire et bâtissant un centre solide. Les Noirs jouent ...d6 pour libérer le fou c8 et chercher à reprendre en f5, ou ...Nf6 pour se développer d'abord, misant sur l'activité des pièces pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'

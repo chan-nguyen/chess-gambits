@@ -1,0 +1,72 @@
+# King's Gambit Accepted, Salvio Gambit, Cochrane Gambit, taught. Shares its 11-ply root,
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.Ne5 Qh4+ 6.Kf1, with the other Salvio Gambit
+# siblings, so `definingLine` stops there — the learner's own 6.Kf1 — and Black's 6...f3,
+# the move that gives this entry its name, is modelled as the root's own reply
+# (docs/CONTEXT.md, invariant 5). Every ply was replayed with chess.js, and the leaf was
+# checked with `searchMate` (bounded to 2 moves): no-mate, not in check. Nxf7 and Bxf7+ were
+# independently confirmed as free captures for White with `resolution.ts`'s
+# `freeCaptures`, and separately confirmed by chess.js that after Nxf7 the only legal king
+# move is 7...Ke7 (not Kxf7, which would walk into check from the bishop on c4 down the
+# newly opened diagonal) — which is why the leaf carries `unsettled` rather than stopping
+# silently.
+id: kings-gambit-accepted-salvio-gambit-cochrane-gambit
+name: "King's Gambit Accepted: Salvio Gambit, Cochrane Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Ne5, 'Qh4+', Kf1]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black pushes the pawn to f3 rather than defending f7, and the square is
+      not actually defended the way it looks — the king cannot recapture there because doing
+      so would walk into a discovered attack from the bishop on c4. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chấp nhận mất quyền nhập thành, đưa vua sang f1 để né chiếu, chứ không lùi mã hay chặn hậu.
+    en: White accepts the loss of castling rights, sidestepping to f1 to dodge the check rather than retreating the knight or blocking the queen.
+    fr: Les Blancs acceptent de perdre le droit de roquer, esquivant en f1 pour échapper à l'échec plutôt que de reculer le cavalier ou de bloquer la dame.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 6...f3 — chẳng hạn phát triển bằng ...Nh6 (xem mục Silberschmidt Defense) hay ...d6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 6...f3 — for instance developing with ...Nh6 (see the Silberschmidt Defense entry) or ...d6. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 6...f3 — par exemple se développer par ...Nh6 (voir l'entrée Silberschmidt Defense) ou ...d6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: f3
+      replyQuality: mistake
+      frequency: rare
+      annotation:
+        vi: Đen tiếp tục đẩy tốt lên f3 giành không gian, nhưng để f7 hở ra trong khi con mã e5 và tượng c4 đều đang nhắm vào đó.
+        en: Black keeps pushing the pawn to f3 for space, but leaves f7 exposed while both the e5 knight and the c4 bishop are aimed at it.
+        fr: Les Noirs continuent de pousser le pion en f3 pour gagner de l'espace, mais laissent f7 exposé alors que le cavalier e5 et le fou c4 le visent tous deux.
+      unsettled: >-
+        Nxf7 (and also Bxf7+) is going free for White. It looks like the king could simply
+        recapture, but chess.js confirms 7...Kxf7 is not a legal reply after 7.Nxf7 — the
+        square is only defended against the knight, and taking it opens the c4 bishop's
+        diagonal onto the king, so the only legal king move is 7...Ke7. The evaluation below
+        already reflects White having won the pawn, since the recapture that would undo it
+        does not exist.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì Trắng bảy, Đen tám, nhưng tốt f7 chỉ có vẻ được vua bảo vệ — nếu Trắng chơi Nxf7, vua Đen không thể ăn lại vì sẽ lộ mình trước tượng c4 đang nhắm f7 qua đường chéo, điều đã kiểm chứng lại bằng chess.js. Sau Nxf7, vật chất trở về cân bằng bảy đều, còn vua Đen buộc phải đi ra ...Ke7, mất hẳn quyền nhập thành và còn kẹt giữa bàn.
+          en: Count the pawns right here and it is seven for White, eight for Black, but the f7 pawn is only apparently defended by the king — if White plays Nxf7, Black's king cannot recapture, since doing so would walk into the c4 bishop's diagonal aimed at f7, independently confirmed with chess.js. After Nxf7, material returns to level at seven each, and Black's king is forced out to ...Ke7, losing the right to castle and remaining stuck in the centre.
+          fr: Comptez les pions ici même, sept pour les Blancs, huit pour les Noirs, mais le pion f7 n'est qu'en apparence défendu par le roi — si les Blancs jouent Nxf7, le roi noir ne peut pas reprendre, car cela reviendrait à s'exposer à la diagonale du fou c4 braquée sur f7, ce qui a été vérifié avec chess.js. Après Nxf7, le matériel revient à l'égalité à sept de chaque côté, et le roi noir est forcé de sortir en ...Ke7, perdant le droit de roquer et restant coincé au centre.
+        plan:
+          vi: Trắng chơi Nxf7 ăn tốt và buộc vua Đen phải lộ diện, sau đó Nxh8 ăn luôn xe góc nếu có dịp, khai thác triệt để việc vua Đen mất an toàn. Đen chơi ...Ke7 bắt buộc, rồi cố gắng hoàn tất phát triển nhanh nhất có thể để bù lại vị trí vua đã hỏng.
+          en: White plays Nxf7 to win the pawn and force the king out into the open, then Nxh8 to also pick up the corner rook if the chance comes, fully exploiting Black's ruined king safety. Black is forced into ...Ke7, then tries to finish developing as fast as possible to make up for the wrecked king position.
+          fr: Les Blancs jouent Nxf7 pour gagner le pion et forcer le roi à sortir à découvert, puis Nxh8 pour ramasser aussi la tour du coin si l'occasion se présente, exploitant pleinement la sécurité royale noire ruinée. Les Noirs sont contraints à ...Ke7, puis tentent d'achever leur développement aussi vite que possible pour compenser la position de roi abîmée.
+        basis:
+          by: chan
+          at: '2026-09-29'

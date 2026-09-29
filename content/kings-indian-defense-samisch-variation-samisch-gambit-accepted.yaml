@@ -1,0 +1,61 @@
+# King's Indian Defense, Sämisch Variation, Sämisch Gambit Accepted, taught. Frozen
+# defining line 1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.f3 O-O 6.Be3 c5 7.dxc5 dxc5 8.Qxd8 Rxd8,
+# which ends on Black's own 8...Rxd8 — the learner's ply, recapturing the queen — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). White's 9.Bxc5 is modelled as the
+# root's single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. The d-file was
+# independently confirmed fully open (no pawn of either colour on it) with `chess.js`.
+id: kings-indian-defense-samisch-variation-samisch-gambit-accepted
+name: "King's Indian Defense: Sämisch Variation, Sämisch Gambit Accepted"
+eco: E81
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, g6, Nc3, Bg7, e4, d6, f3, O-O, Be3, c5, dxc5, dxc5, Qxd8, Rxd8]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black gives up the c5 pawn for a fully open d-file, a rook already active
+      on it, and a fianchettoed bishop that will only grow stronger as the position opens —
+      established compensation rather than a proven refutation of White's extra pawn. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đổi hậu, Đen ăn lại bằng xe, đưa quân xe này lên ngay cột d đang hoàn toàn mở.
+    en: After the queen trade, Black recaptures with the rook, landing it at once on the fully open d-file.
+    fr: Après l'échange des dames, les Noirs reprennent avec la tour, la plaçant aussitôt sur la colonne d entièrement ouverte.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 9.Bxc5 — chẳng hạn phát triển bằng Nge2 hay nhập thành O-O-O trước, để nguyên con tốt c5 của Đen trên bàn. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 9.Bxc5 — for instance developing with Nge2 or castling O-O-O first, leaving Black's c5 pawn on the board. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 9.Bxc5 — par exemple se développer par Nge2 ou roquer d'abord par O-O-O, laissant le pion c5 noir sur l'échiquier. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bxc5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn luôn con tốt c5 đang bỏ ngỏ bằng tượng e3, bỏ túi một tốt sạch.
+        en: White simply captures the loose c5 pawn with the bishop on e3, pocketing a clean pawn.
+        fr: Les Blancs capturent simplement le pion c5 resté sans défense avec le fou e3, empochant un pion net.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen sáu — Trắng đang hơn đúng một tốt. Đổi lại, cột d đã hoàn toàn mở (không còn tốt nào của bên nào trên đó), và xe Đen đã chiếm sẵn cột này trong khi xe a1 của Trắng còn chưa đặt chân lên đó; tượng g7 của Đen cũng nhòm thẳng đường chéo dài về phía mã c3 và xe a1.
+          en: Count the pawns and it is seven for White, six for Black — White is up exactly one pawn. In exchange, the d-file is now fully open (no pawn of either colour left on it), and Black's rook already occupies it while White's own rook on a1 has not yet set foot there; Black's bishop on g7 also aims straight down the long diagonal at the c3 knight and the a1 rook.
+          fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — les Blancs sont en avance d'exactement un pion. En échange, la colonne d est désormais entièrement ouverte (plus aucun pion d'aucune couleur dessus), et la tour noire l'occupe déjà tandis que la tour blanche en a1 n'y a pas encore posé le pied ; le fou noir en g7 vise aussi directement la grande diagonale vers le cavalier c3 et la tour a1.
+        plan:
+          vi: Trắng chơi Bd3 hoặc Rd1 để tranh chấp lại cột d và trung hoà áp lực, tìm cách giữ vững tốt thừa đã có. Đen chơi ...Nc6 và ...Be6 hoàn tất phát triển, giữ sức ép trên cột d và đường chéo dài, đặt cược vào hoạt động quân để bù lại con tốt đã mất.
+          en: White plays Bd3 or Rd1 to contest the d-file and neutralise the pressure, trying to hold on to the extra pawn already won. Black plays ...Nc6 and ...Be6 to finish developing, keeping up the pressure on the d-file and the long diagonal, banking on piece activity to make up for the lost pawn.
+          fr: Les Blancs jouent Bd3 ou Rd1 pour contester la colonne d et neutraliser la pression, essayant de conserver le pion supplémentaire déjà gagné. Les Noirs jouent ...Nc6 et ...Be6 pour achever leur développement, maintenant la pression sur la colonne d et la grande diagonale, misant sur l'activité de leurs pièces pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'
