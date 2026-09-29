@@ -9,12 +9,15 @@
 }
 
 /*
- * A scoresheet: numbers in their own column, moves side by side, wrapping into as many
- * columns as the width allows rather than one very long list.
+ * A scoresheet: each row is a move number and its moves, as wide as they are and never broken
+ * across lines, wrapping between rows like the gambit page's move list. A grid of equal columns
+ * was tried first and a row wider than its column ran under the next one (`13. Kxd2 Qf4+` in a
+ * 96px column); how wide a row is depends on the moves in it, so the columns cannot be sized
+ * ahead of them.
  */
 .analysis-moves__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(var(--space-10), 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--space-1) var(--space-3);
   margin: 0;
   padding: 0;
@@ -24,8 +27,10 @@
 
 .analysis-moves__pair {
   display: flex;
+  flex: none;
   gap: var(--space-1);
   align-items: baseline;
+  white-space: nowrap;
 }
 
 .analysis-moves__number,
@@ -33,7 +38,7 @@
   color: var(--color-text-muted);
 }
 
-/* The half of a first row a set-up position did not play: as wide as a move, so rows line up. */
+/* The half of a first row a set-up position did not play: padded like a move beside it. */
 .analysis-moves__gap {
   padding-inline: var(--space-1);
 }

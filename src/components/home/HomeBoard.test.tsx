@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { I18nProvider } from '../../i18n/I18nProvider.tsx'
 import viLocale from '../../locales/vi.ts'
 import type { LastMove } from '../board/Board.tsx'
+import { plyMotionBetween, type PlyMotion } from '../learn/ply-motion.ts'
 import { HomeBoard } from './HomeBoard.tsx'
 
 /**
@@ -27,18 +28,20 @@ const mouse = { pointerType: 'mouse', button: 0, pointerId: 1 }
 
 afterEach(cleanup)
 
-const renderBoard = async (chess = new Chess()) => {
+const renderBoard = async (chess = new Chess(), motion?: PlyMotion) => {
   const onCommit = vi.fn()
+  let shown = { chess, motion }
   const page = (arrows?: readonly LastMove[]) => (
     <I18nProvider locale="vi" load={() => Promise.resolve(viLocale)}>
       <HomeBoard
-        chess={chess}
+        chess={shown.chess}
         lastMove={undefined}
         check={undefined}
         ended={null}
         announcement={undefined}
         orientation="white"
         arrows={arrows}
+        motion={shown.motion}
         onCommit={onCommit}
       />
     </I18nProvider>
@@ -61,6 +64,8 @@ const renderBoard = async (chess = new Chess()) => {
   const lifted = () => container.querySelector('.home-board__lifted use')
   const marked = () => container.querySelectorAll('.board__square--marked').length
   const targets = () => container.querySelectorAll('.board__target').length
+  /** The pieces the last ply took, held under the mover while it slides in. */
+  const taken = () => container.querySelectorAll('.board__piece--gone').length
 
   /** Press on `from`, then move the mouse to each point in turn; the button stays down. */
   const press = (from: string, ...through: readonly { clientX: number; clientY: number }[]) => {
@@ -75,7 +80,28 @@ const renderBoard = async (chess = new Chess()) => {
   /** The page drawing the board again with a new engine arrow, as the analysis page does. */
   const redraw = (arrows: readonly LastMove[]) => rerender(page(arrows))
 
-  return { onCommit, cell, lifted, marked, targets, press, moveTo, release, redraw }
+  /** The page's next position arriving, as it does once a move it was told of has been played. */
+  const arrive = (next: Chess, nextMotion?: PlyMotion) => {
+    shown = { chess: next, motion: nextMotion }
+    rerender(page())
+  }
+
+  return { onCommit, cell, lifted, marked, targets, taken, press, moveTo, release, redraw, arrive }
+}
+
+/** 1.e4 d5, White to move: the position an `exd5` is played from. */
+const beforeCapture = () => {
+  const chess = new Chess()
+  for (const san of ['e4', 'd5']) chess.move(san)
+  return chess
+}
+
+/** The position after 2.exd5, and the ply that took the pawn on d5 to reach it. */
+const capture = () => {
+  const before = beforeCapture()
+  const chess = new Chess(before.fen())
+  chess.move('exd5')
+  return { chess, motion: plyMotionBetween(before.fen(), chess.fen()) }
 }
 
 describe('dragging a piece with the mouse', () => {
@@ -185,5 +211,42 @@ describe('what does not start a drag', () => {
     fireEvent.pointerMove(board.cell('e2'), { ...mouse, pointerType: 'touch', ...at('e4') })
     expect(board.lifted()).toBeNull()
     expect(board.marked()).toBe(0)
+  })
+})
+
+describe('the slide the caller asks for (#72)', () => {
+  it('draws the piece the last ply took under the mover, and nothing when it is not asked', async () => {
+    const { chess, motion } = capture()
+    expect((await renderBoard(chess, motion)).taken()).toBe(1)
+    cleanup()
+    expect((await renderBoard(chess)).taken()).toBe(0)
+  })
+
+  it('does not bring that piece back while another is in the hand, or when it is put down', async () => {
+    const { chess, motion } = capture()
+    const board = await renderBoard(chess, motion)
+    board.press('g8', at('g7'))
+    expect(board.lifted()).not.toBeNull()
+    expect(board.taken()).toBe(0)
+
+    board.release(at('g8'))
+    expect(board.taken()).toBe(0)
+  })
+
+  it('does not bring back the piece a drop took, when its position arrives', async () => {
+    const before = beforeCapture()
+    const board = await renderBoard(before)
+    board.press('e4', at('e5'), at('d5'))
+    board.release(at('d5'))
+
+    const { chess: took, motion } = capture()
+    board.arrive(took, motion)
+    expect(board.taken()).toBe(0)
+
+    // The next ply is drawn as usual: the silence was for the drop and not for the board.
+    const answered = new Chess(took.fen())
+    answered.move('Qxd5')
+    board.arrive(answered, plyMotionBetween(took.fen(), answered.fen()))
+    expect(board.taken()).toBe(1)
   })
 })
