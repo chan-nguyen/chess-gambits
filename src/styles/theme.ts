@@ -5,7 +5,8 @@ import { readStored, writeStored } from '../lib/storage.ts'
  *
  * Three settings rather than two: without an explicit `system`, a visitor who tries dark
  * mode can never get back to following their operating system, because there would be no
- * way to say "no override" other than clearing site data by hand.
+ * way to say "no override" other than clearing site data by hand. The control is a two-way
+ * toggle since 2026-09-29, and `toggledSetting` is what keeps `system` reachable from it.
  *
  * Kept next to `tokens.css` because the two share one contract — the settings here are
  * exactly the `data-theme` values that file styles, and `tokens.test.ts` asserts it.
@@ -56,3 +57,28 @@ export const applyThemeSetting = (setting: ThemeSetting): void => {
 /** Remember a setting, so the next visit paints in it before any script runs. */
 export const rememberThemeSetting = (setting: ThemeSetting): void =>
   writeStored(themeStorageKey, setting)
+
+/** What the page is actually painted in: a setting, resolved against the system's preference. */
+export type Theme = 'light' | 'dark'
+
+/** The query `tokens.css` switches its dark block on. */
+export const darkSchemeQuery = '(prefers-color-scheme: dark)'
+
+/** The theme the operating system asks for, which is what `system` paints. */
+export const systemTheme = (): Theme =>
+  window.matchMedia(darkSchemeQuery).matches ? 'dark' : 'light'
+
+export const resolveTheme = (setting: ThemeSetting, system: Theme): Theme =>
+  setting === 'system' ? system : setting
+
+/**
+ * Where one press of the light/dark toggle leads (2026-09-29, by user request): to the other
+ * theme from the one on screen — and back to `system` when the other theme is what the
+ * system would paint anyway. So an override exists only while it disagrees with the
+ * operating system, and following it is never more than two presses away — which is what
+ * the third button used to be for.
+ */
+export const toggledSetting = (setting: ThemeSetting, system: Theme): ThemeSetting => {
+  const next: Theme = resolveTheme(setting, system) === 'dark' ? 'light' : 'dark'
+  return next === system ? 'system' : next
+}

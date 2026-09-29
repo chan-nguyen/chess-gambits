@@ -2,13 +2,18 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import indexHtml from '../../index.html?raw'
 import {
   applyThemeSetting,
+  darkSchemeQuery,
   defaultThemeSetting,
   isThemeSetting,
   readThemeSetting,
   rememberThemeSetting,
+  resolveTheme,
+  systemTheme,
   themeAttribute,
   themeSettings,
   themeStorageKey,
+  toggledSetting,
+  type Theme,
   type ThemeSetting,
 } from './theme.ts'
 
@@ -76,6 +81,64 @@ describe('applying a setting', () => {
 
     expect(document.documentElement.hasAttribute(themeAttribute)).toBe(false)
   })
+})
+
+describe('the light/dark toggle', () => {
+  it('reads the system theme off the same query tokens.css switches on', () => {
+    const asked: string[] = []
+    vi.spyOn(window, 'matchMedia').mockImplementation((query: string) => {
+      asked.push(query)
+      return {
+        media: query,
+        matches: true,
+        onchange: null,
+        addListener: () => {},
+        removeListener: () => {},
+        addEventListener: () => {},
+        removeEventListener: () => {},
+        dispatchEvent: () => true,
+      }
+    })
+
+    expect(systemTheme()).toBe('dark')
+    expect(asked).toStrictEqual([darkSchemeQuery])
+  })
+
+  it.each<[ThemeSetting, Theme, Theme]>([
+    ['system', 'light', 'light'],
+    ['system', 'dark', 'dark'],
+    ['light', 'dark', 'light'],
+    ['dark', 'light', 'dark'],
+  ])('resolves %s on a %s system to %s', (setting, system, painted) => {
+    expect(resolveTheme(setting, system)).toBe(painted)
+  })
+
+  /**
+   * The whole of the 2026-09-29 behaviour. A press always paints the other theme, and it is
+   * an override only while that theme disagrees with the system.
+   */
+  it.each<[ThemeSetting, Theme, ThemeSetting]>([
+    ['system', 'light', 'dark'],
+    ['system', 'dark', 'light'],
+    ['dark', 'light', 'system'],
+    ['light', 'dark', 'system'],
+    // A stale override that the system has since come round to agreeing with.
+    ['dark', 'dark', 'light'],
+    ['light', 'light', 'dark'],
+  ])('from %s on a %s system, goes to %s', (setting, system, next) => {
+    expect(toggledSetting(setting, system)).toBe(next)
+    expect(resolveTheme(next, system)).not.toBe(resolveTheme(setting, system))
+  })
+
+  it.each<Theme>(['light', 'dark'])(
+    'is never more than two presses from following a %s system',
+    (system) => {
+      for (const setting of themeSettings) {
+        const once = toggledSetting(setting, system)
+        expect([once, toggledSetting(once, system)]).toContain('system')
+      }
+    },
+  )
 })
 
 describe('the pre-paint script in index.html', () => {
