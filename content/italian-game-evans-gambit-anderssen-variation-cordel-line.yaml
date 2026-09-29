@@ -1,0 +1,106 @@
+# Italian Game: Evans Gambit, Anderssen Variation, Cordel Line. Defining line ends on white's own ply (invariant 5); the single
+# modelled reply Na5 is the line the dataset (tools/catalogue/source/ids.json)
+# gives this id. The line runs one ply further to Nxe5, picking up the piece left en prise, so the leaf stops at a settled position (docs/CONTEXT.md, invariant 14).
+# Every ply was replayed with chess.js; the leaf was checked with searchMate (no forced
+# mate within 3 moves) and against resolution.ts (no check, no mate in one, no free
+# capture) before being written.
+id: italian-game-evans-gambit-anderssen-variation-cordel-line
+name: 'Italian Game: Evans Gambit, Anderssen Variation, Cordel Line'
+eco: C51
+category: gambit
+side: white
+definingLine:
+  - e4
+  - e5
+  - Nf3
+  - Nc6
+  - Bc4
+  - Bc5
+  - b4
+  - Bxb4
+  - c3
+  - Be7
+  - d4
+soundness:
+  value: sound
+  reviewedAt: 2026-09-29
+  basis:
+    by: chan
+    at: 2026-09-29
+    source: A judgement inherited from this family’s review in
+      tools/catalogue/source/classification.yaml. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: 2026-09-29
+  source:
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đây là thế cờ sau 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Be7 6.d4, đến lượt Đen chọn kế
+      hoạch. Mục này đi sâu riêng vào nước Na5, tức Cordel Line.
+    en:
+      This is the position after 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Be7 6.d4, with Black to
+      choose a plan. This entry follows specifically Na5, the Cordel Line.
+    fr:
+      Voici la position après 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Be7 6.d4, où c'est aux Noirs
+      de choisir un plan. Cette entrée suit spécifiquement Na5, la Cordel Line.
+  dismissRest:
+    reason:
+      vi:
+        Đen đáp lại bằng nước khác ngoài Na5 — chẳng hạn đưa quân khác ra hoặc nhập thành — dẫn sang một
+        nhánh có tên riêng khác của khai cuộc này. Tương quan lực lượng tại đây không đổi dù chọn
+        nước nào, nên những lựa chọn đó nằm ngoài phạm vi của mục này.
+      en:
+        Black answers here with anything other than Na5 — for instance developing a different piece or
+        castling — heading into a different named branch of this family. Material at this point is
+        unaffected by that choice, so those tries fall outside the scope of this entry.
+      fr:
+        Les Noirs répondent ici par autre chose que Na5 — par exemple développer une autre pièce ou
+        roquer — menant vers une autre branche nommée de cette famille. Le matériel à ce stade ne
+        change pas selon ce choix, donc ces essais sortent du cadre de cette entrée.
+  children:
+    - ply: Na5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Cordel Line. Đen chơi Na5, đưa mã tới a5.
+        en: The Cordel Line. Black plays Na5, bringing the knight to a5.
+        fr: La Cordel Line. Les Noirs jouent Na5, en plaçant le cavalier en a5.
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: Trắng đơn giản ăn tốt đang bỏ trống trên e5 bằng Nxe5, vì không còn quân nào bảo vệ nó.
+            en: White simply picks up the loose pawn on e5 with Nxe5, since nothing was left to defend it.
+            fr:
+              Les Blancs ramassent tout simplement le pion laissé sans défense en e5 par Nxe5, puisque plus
+              rien ne le protégeait.
+          outcome:
+            type: position
+            evaluation:
+              vi:
+                Đếm tốt, Trắng có 7 còn Đen có 7 — tương quan lực lượng ngang nhau. Cả hai vua đều chưa nhập
+                thành, vẫn còn đứng giữa bàn cờ.
+              en:
+                Count the pawns and it is 7 for White, 7 for Black — material is level. Neither king has castled
+                yet; both are still in the centre.
+              fr:
+                Comptez les pions, 7 pour les Blancs, 7 pour les Noirs — le matériel est égal. Aucun des deux
+                rois n'a encore roqué ; tous deux restent au centre.
+            plan:
+              vi:
+                Đen hoàn thiện phát triển và tìm cách chứng minh nhịp độ bỏ ra là xứng đáng. Trắng tiếp tục phát
+                triển tự nhiên, hướng tới việc mở thế cờ nơi sự chủ động của ván thí quân phát huy
+                tác dụng.
+              en:
+                Black completes development and looks to prove the extra tempo was worth it. White continues
+                natural development, aiming to open the position where the gambit's activity can
+                tell.
+              fr:
+                Les Noirs terminent leur développement et cherchent à prouver que le temps investi en valait la
+                peine. Les Blancs poursuivent un développement naturel, cherchant à ouvrir la
+                position là où l'activité du gambit peut se faire sentir.
+            basis:
+              by: chan
+              at: 2026-09-29

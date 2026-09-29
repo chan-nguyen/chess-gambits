@@ -1,29 +1,41 @@
+/*
+ * An icon button, drawn like the flip control: the words are its accessible name and its
+ * tooltip. The pressed state needs no style of its own — the whole page is the state, and
+ * `aria-pressed` says it in words.
+ */
+/*
+ * `align-self`, because below 768px the header's menu is a column that stretches what it
+ * holds: a full-width bar with one icon in it reads as a divider, not as a control.
+ */
 .theme-control {
-  display: flex;
-  gap: var(--space-1);
-}
-
-.theme-control__option {
+  position: relative;
+  flex: 0 0 auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-block-size: var(--target-size-touch);
-  padding-inline: var(--space-3);
+  min-inline-size: var(--target-size-touch);
+  padding: 0;
   border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-sm);
   background-color: var(--color-surface);
-  color: var(--color-text-muted);
-  font: inherit;
-  font-size: var(--text-sm);
+  color: var(--color-text);
   cursor: pointer;
   transition: background-color var(--duration-fast) ease;
 }
 
-.theme-control__option:hover {
+.theme-control:hover {
   background-color: var(--color-surface-raised);
 }
 
-/* Border, weight and colour together, so the pressed option is not a hue difference. */
-.theme-control__option[aria-pressed='true'] {
-  border-color: var(--color-border-strong);
-  background-color: var(--color-surface-raised);
-  color: var(--color-text);
-  font-weight: 600;
+.theme-control__icon {
+  flex: none;
+  inline-size: var(--space-5);
+  block-size: var(--space-5);
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
