@@ -24,8 +24,11 @@ Locale is the first path segment on every route, so every URL is shareable with 
 | `/:locale/gambits`     | The full catalogue. Search and filter                                          | `q`, `side`, `category`, `soundness`, `tier`     |
 | `/:locale/gambits/:id` | The learning surface: board, navigation, tree, annotation                      | `line` (SAN path), `prelude` (ply count), `flip` |
 | `/:locale/about`       | What the coverage tiers mean, how mate claims are verified, credits, licences  | —                                                |
-| `/:locale/analysis`    | Play or paste a line and see Stockfish's estimate of each position (#154)      | `moves` (the whole line), `ply`, `flip`          |
+| `/:locale/analysis`    | Play, paste or set up a position and see Stockfish's estimate of it (#154)     | `fen`, `moves`, `ply`, `flip`, `setup`           |
 | `*`                    | Not found, with a route back to the catalogue                                  | —                                                |
+
+On the analysis page `fen` is the position a line starts from when it is not the initial one, and
+`setup` holds the position editor's board while it is open; `analysis-line.ts` describes both.
 
 `/` with no locale resolves the visitor's preferred language and redirects once. The chosen locale
 is remembered in `localStorage` so the redirect is stable on return visits.

@@ -111,6 +111,27 @@ analysis page, not an evaluation.
   feature on the board is the one that trips the review, and that review should happen before it
   starts rather than halfway through.
 
+## Amended 2026-09-29: positions set up by hand
+
+The owner asked for a position editor on the analysis page ("sắp xếp vị trí các quân cờ, chọn quân
+trắng hay quân đen đi trước, rồi phân tích"). Until now every position the engine saw was one
+`chess.js` had reached by legal moves from the start, so it was legal by construction. A hand-set
+position is not, and the engine is a separate program that trusts what it is sent — Stockfish's
+network has room for 32 pieces, and a position whose side not to move is in check is one whose
+king can be taken.
+
+- **One gate, before the engine.** `setupProblem` (`src/components/analysis/setup-position.ts`)
+  refuses a board without exactly one king a side, with a pawn on a back rank, with more than 16
+  pieces a side, or with the side not to move in check, then runs `chess.js`'s `validateFen`. The
+  editor says which in words and will not analyse until it is fixed; `readStart` applies the same
+  gate to the `fen` parameter, so a link cannot skip it (`docs/security.md` B4).
+- **Castling rights are what the pieces allow.** A right is written out only while its king and
+  rook are on their home squares, which `chess.js` does not check and the engine would otherwise be
+  told.
+- **Nothing else changes.** The editor draws on `Board` exactly as it ships — no line of
+  `src/components/board/` moved, so ADR-0003's count is still 437 — and the engine output from a
+  set-up position is the same estimate, labelled the same way.
+
 ## What would change this
 
 A licensing finding that the worker boundary does not hold, which would move the engine behind

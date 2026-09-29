@@ -11,7 +11,7 @@ import { Board } from '../board/Board.tsx'
 import type { LastMove } from '../board/Board.tsx'
 import type { Orientation, PieceColour, PieceKey, Square } from '../board/board-model.ts'
 import { resolveActivation } from './board-interaction.ts'
-import { isSquare } from './board-square.ts'
+import { squareFromTarget } from './board-square.ts'
 import { commitMove, legalDestinationsFrom, promotionRoles } from './chess-engine.ts'
 import type { GameEnd, PromotionRole } from './chess-engine.ts'
 
@@ -41,14 +41,6 @@ export type HomeBoardProps = {
   /** Arrows to draw, passed straight to `Board`: the analysis page's best move (#154). */
   readonly arrows?: readonly LastMove[] | undefined
   readonly onCommit: (san: string) => void
-}
-
-const squareFromTarget = (target: EventTarget | null): Square | null => {
-  if (!(target instanceof Element)) return null
-  const cell = target.closest('[data-square]')
-  if (!(cell instanceof HTMLElement)) return null
-  const value = cell.dataset['square']
-  return value !== undefined && isSquare(value) ? value : null
 }
 
 const colourOf = (turn: Color): PieceColour => (turn === 'w' ? 'white' : 'black')

@@ -1,0 +1,28 @@
+/* The analysis surface's layout (AnalysisSurface.css): the board first, the rest beside it from 1024px. */
+.position-setup__heading {
+  font-size: var(--text-xl);
+}
+
+.position-setup__intro {
+  color: var(--color-text-muted);
+}
+
+.position-setup__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.position-setup__stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (min-width: 1024px) {
+  .position-setup__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
