@@ -207,10 +207,7 @@ test.describe('the site under its own policy', () => {
     await page.keyboard.press('Escape')
 
     await page.setViewportSize({ width: 1280, height: 800 })
-    await page
-      .getByRole('group', { name: vi.appearance.label })
-      .getByRole('button', { name: vi.appearance.dark })
-      .click()
+    await page.getByRole('button', { name: vi.appearance.dark }).click()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 
     expect(await violations(page)).toEqual([])

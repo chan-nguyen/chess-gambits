@@ -67,17 +67,44 @@ const EXPECTED_TOKENS: readonly string[] = [
 ]
 
 /**
- * Everything a piece can be drawn on top of.
+ * How much of the gold a highlighted square is, read out of the stylesheet that ships it
+ * (2026-09-29): the highlight is mixed over the square beneath rather than painted opaque,
+ * so what a piece stands on is a blend this file has to compute, not a token it can look up.
+ * Read rather than restated, so a strength changed in `Board.css` is re-checked here.
+ */
+const highlightStrength = (square: 'light' | 'dark'): number => {
+  const rule = new RegExp(
+    `color-mix\\(in srgb, var\\(--color-board-highlight\\) (\\d+)%, var\\(--color-board-${square}\\)\\)`,
+  )
+  const percent = boardStyles.match(rule)?.[1]
+  if (percent === undefined) throw new Error(`Board.css mixes no highlight over a ${square} square`)
+  return Number(percent) / 100
+}
+
+/** `color-mix(in srgb, top p, bottom)`: what alpha compositing `top` at `p` paints. */
+const mix = (top: string, bottom: string, p: number): string =>
+  `#${[1, 3, 5]
+    .map((offset) => {
+      const channelOf = (hex: string) => Number.parseInt(hex.slice(offset, offset + 2), 16)
+      return Math.round(channelOf(top) * p + channelOf(bottom) * (1 - p))
+        .toString(16)
+        .padStart(2, '0')
+    })
+    .join('')}`
+
+/**
+ * Everything a piece can be drawn on top of, by name and by what it resolves to.
  *
- * `--color-board-highlight` covers the square a ply left as well as the one it reached
- * (2026-09-18): no board state ever draws a piece on the square a ply left, but every
- * other surface here is checked whether or not the realistic case arises, and this one is
- * cheap to hold to the same bar.
+ * The highlight covers the square a ply left as well as the one it reached (2026-09-18): no
+ * board state ever draws a piece on the square a ply left, but every other surface here is
+ * checked whether or not the realistic case arises, and this one is cheap to hold to the
+ * same bar. It is two surfaces now, one over each square colour (2026-09-29).
  */
 const SURFACES: readonly string[] = [
   '--color-board-light',
   '--color-board-dark',
-  '--color-board-highlight',
+  'highlight over light',
+  'highlight over dark',
   '--color-board-check',
 ]
 
@@ -96,8 +123,20 @@ describe('the token table itself', () => {
   })
 })
 
+/** A surface's colour in one theme: a token, or the highlight mixed over a square. */
+const surfaceOf = (surface: string, theme: keyof TokenValues): string => {
+  const over = /^highlight over (light|dark)$/.exec(surface)?.[1]
+  if (over !== 'light' && over !== 'dark') return valueOf(surface, theme)
+  return mix(
+    valueOf('--color-board-highlight', theme),
+    valueOf(`--color-board-${over}`, theme),
+    highlightStrength(over),
+  )
+}
+
 describe.each(THEMES)('in the %s theme', (theme) => {
   const value = (token: string) => valueOf(token, theme)
+  const surface = (name: string) => surfaceOf(name, theme)
 
   // The headline of AC 7: with colour removed, a white piece and a black one are not
   // the same object.
@@ -122,10 +161,10 @@ describe.each(THEMES)('in the %s theme', (theme) => {
    * So the requirement is that one of the two reaches 3:1 on every surface.
    */
   describe.each(['white', 'black'])('a %s piece', (colour) => {
-    it.each(SURFACES)('is legible on %s', (surface) => {
+    it.each(SURFACES)('is legible on %s', (name) => {
       const best = Math.max(
-        contrast(value(`--color-piece-${colour}-fill`), value(surface)),
-        contrast(value(`--color-piece-${colour}-stroke`), value(surface)),
+        contrast(value(`--color-piece-${colour}-fill`), surface(name)),
+        contrast(value(`--color-piece-${colour}-stroke`), surface(name)),
       )
       expect(best).toBeGreaterThanOrEqual(3)
     })
@@ -139,6 +178,18 @@ describe.each(THEMES)('in the %s theme', (theme) => {
 
   it('distinguishes the two board squares from each other', () => {
     expect(contrast(value('--color-board-light'), value('--color-board-dark'))).toBeGreaterThan(1.5)
+  })
+
+  /**
+   * What the translucent highlight is for (2026-09-29): a highlighted square still says
+   * whether it is a light or a dark one. Measured at 60%: 1.37:1 in the light theme and
+   * 1.26:1 in the dark, against 1.00:1 when the gold was opaque. 1.2 is the floor, so a
+   * strength raised back towards opaque fails here rather than quietly undoing the request.
+   */
+  it('keeps a highlighted light square apart from a highlighted dark one', () => {
+    expect(
+      contrast(surface('highlight over light'), surface('highlight over dark')),
+    ).toBeGreaterThan(1.2)
   })
 })
 
@@ -170,17 +221,26 @@ describe('the contrast maths', () => {
  * each other.
  */
 describe('the last-ply highlight is a documented exception to the shape rule', () => {
-  it.each(THEMES)('is the same token colour on both squares, in the %s theme', (theme) => {
-    const highlight = valueOf('--color-board-highlight', theme)
-    const plain = valueOf('--color-board-light', theme)
-    expect(highlight).not.toBe(plain)
+  it.each(THEMES)('still differs from the plain square beneath it, in the %s theme', (theme) => {
+    for (const square of ['light', 'dark'] as const) {
+      expect(surfaceOf(`highlight over ${square}`, theme)).not.toBe(
+        valueOf(`--color-board-${square}`, theme),
+      )
+    }
   })
 
+  /** The rule for each square colour, whatever else its selector lists. */
+  const highlightRule = (square: 'light' | 'dark'): string =>
+    boardStyles.match(new RegExp(`\\.board__square--${square}:is\\([^)]*\\)\\s*{[^}]*}`))?.[0] ?? ''
+
   it('draws both squares in the one highlight token, and neither with a border', () => {
-    const fromRule = boardStyles.match(/\.board__square--from\s*{[^}]*}/)?.[0] ?? ''
-    const toRule = boardStyles.match(/\.board__square--to\s*{[^}]*}/)?.[0] ?? ''
-    expect(fromRule).toContain('var(--color-board-highlight)')
-    expect(toRule).toContain('var(--color-board-highlight)')
+    for (const square of ['light', 'dark'] as const) {
+      const rule = highlightRule(square)
+      expect(rule).toContain('.board__square--from')
+      expect(rule).toContain('.board__square--to')
+      expect(rule).toContain('var(--color-board-highlight)')
+      expect(rule).not.toContain('stroke')
+    }
     expect(boardStyles).not.toContain('board__last-ply')
   })
 
@@ -193,8 +253,9 @@ describe('the last-ply highlight is a documented exception to the shape rule', (
    * still reads as one meaning.
    */
   it('draws a marked square in the one highlight token too, and no board colour is unused', () => {
-    const markedRule = boardStyles.match(/\.board__square--marked\s*{[^}]*}/)?.[0] ?? ''
-    expect(markedRule).toContain('var(--color-board-highlight)')
+    for (const square of ['light', 'dark'] as const) {
+      expect(highlightRule(square)).toContain('.board__square--marked')
+    }
     expect(boardStyles).not.toContain('--color-board-mark')
   })
 })

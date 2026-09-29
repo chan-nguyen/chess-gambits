@@ -31,10 +31,8 @@ const vi = {
     language: 'Ngôn ngữ',
   },
   appearance: {
-    label: 'Giao diện',
-    system: 'Theo hệ thống',
-    light: 'Sáng',
-    dark: 'Tối',
+    /** The light/dark toggle's name; `aria-pressed` says whether it is on. */
+    dark: 'Giao diện tối',
   },
   footer: {
     source: 'Mã nguồn trên GitHub',
