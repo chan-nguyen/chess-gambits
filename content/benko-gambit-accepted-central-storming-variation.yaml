@@ -1,0 +1,59 @@
+# Benko Gambit Accepted: Central Storming Variation. Frozen defining line 1.d4 Nf6
+# 2.c4 c5 3.d5 b5 4.cxb5 a6 5.bxa6 g6 6.Nc3 Bxa6, which ends on Black's own ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js
+# through 7.f4. searchMate at 3 moves from the resulting position returns no-mate, so
+# no forced mate is claimed anywhere in this entry, and no capture is left going free
+# at the leaf.
+id: benko-gambit-accepted-central-storming-variation
+name: 'Benko Gambit Accepted: Central Storming Variation'
+eco: A58
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5, cxb5, a6, bxa6, g6, Nc3, Bxa6]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established opening theory, one of the main gambits Black has against 1.d4: the
+      queenside pawn majority and open files provide durable practical compensation for the
+      pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen đã ăn lại tốt qua ngả ...g6 rồi ...Bxa6, đạt cấu trúc Benko tiêu chuẩn: kém một tốt (bảy so với sáu, nghiêng về Trắng) nhưng có tượng đang hoạt động mạnh trên đường chéo dài và cột a sẵn sàng mở cho xe. Trắng phải chọn cách triển khai tiếp.'
+    en: "Black has recaptured the pawn via ...g6 and ...Bxa6, reaching the standard Benko structure: down one pawn (seven against six in White's favour) but with the bishop already active on the long diagonal and the a-file ready to open for the rook. White must choose how to continue."
+    fr: "Les Noirs ont repris le pion par ...g6 puis ...Bxa6, atteignant la structure Benko standard : un pion de moins (sept contre six en faveur des Blancs) mais avec le fou déjà actif sur la grande diagonale et la colonne a prête à s'ouvrir pour la tour. Les Blancs doivent choisir comment poursuivre."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách phát triển khác thay vì 7.f4 ở đây, ví dụ Nf3 theo hướng thông thường hơn. Đánh giá tương tự: Trắng giữ đúng một tốt dư trong khi Đen luôn có đền bù nhờ tượng hoạt động và cột a mở, bất kể Trắng chọn hướng nào.'
+      en: 'White develops some other way instead of 7.f4 here, for instance the more usual Nf3. The assessment is similar throughout: White holds exactly one extra pawn while Black always has compensation from the active bishop and the open a-file, whichever way White goes.'
+      fr: "Les Blancs se développent autrement qu'avec 7.f4 ici, par exemple par le plus habituel Nf3. L'évaluation reste similaire : les Blancs ont exactement un pion de plus tandis que les Noirs disposent toujours d'une compensation grâce au fou actif et à la colonne a ouverte, quelle que soit la voie choisie par les Blancs."
+  children:
+    - ply: f4
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Trắng chơi 7.f4, một cách tiếp cận bốc lửa nhằm chiếm thêm không gian trung tâm và cánh vua ngay lập tức thay vì hoàn tất phát triển thông thường bằng Nf3.
+        en: White plays 7.f4, a fiery approach grabbing extra space in the centre and on the kingside right away instead of the usual developing Nf3.
+        fr: "Les Blancs jouent 7.f4, une approche fougueuse gagnant immédiatement de l'espace au centre et à l'aile roi au lieu du Nf3 habituel."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Vật chất không đổi: Trắng bảy tốt, Đen sáu. Tốt f4 mở đường cho tượng c1 và chiếm không gian, nhưng cũng làm suy yếu ô e3 và e4, đồng thời trì hoãn việc phát triển mã g1.'
+          en: 'Material is unchanged: White seven pawns, Black six. The f4 pawn opens a diagonal for the c1-bishop and grabs space, but it also weakens the e3 and e4 squares and delays developing the g1-knight.'
+          fr: "Le matériel est inchangé : sept pions pour les Blancs, six pour les Noirs. Le pion f4 ouvre une diagonale pour le fou c1 et gagne de l'espace, mais il affaiblit aussi les cases e3 et e4 et retarde le développement du cavalier g1."
+        plan:
+          vi: Trắng tiếp tục Nf3 và Bd3, cố tận dụng không gian vừa chiếm được trước khi Đen kịp phản công. Đen chơi ...Bg7 và ...O-O, rồi nhắm vào các ô yếu e3/e4 bằng ...Nfd7 hoặc ...Qb6 sau này.
+          en: White continues with Nf3 and Bd3, trying to make use of the space just gained before Black can counterattack. Black plays ...Bg7 and ...O-O, then targets the weak e3/e4 squares with ...Nfd7 or ...Qb6 later.
+          fr: "Les Blancs poursuivent par Nf3 et Bd3, essayant de tirer parti de l'espace gagné avant que les Noirs ne contre-attaquent. Les Noirs jouent ...Bg7 et ...O-O, puis visent les cases faibles e3/e4 par ...Nfd7 ou ...Qb6 plus tard."
+        basis:
+          by: chan
+          at: '2026-09-29'

@@ -1,0 +1,65 @@
+# Benko Gambit Accepted: Pawn Return Variation. Frozen defining line 1.d4 Nf6 2.c4 c5
+# 3.d5 b5 4.cxb5 a6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 9.b6 9...Qxb6.
+# White's own move leaves the b5 pawn en prise, so Black's forced Qxb6 recaptures it.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: benko-gambit-accepted-pawn-return-variation
+name: 'Benko Gambit Accepted: Pawn Return Variation'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5, cxb5, a6]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established opening theory, one of the main gambits Black has against 1.d4: the
+      queenside pawn majority and open files provide durable practical compensation for the
+      pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 8...a6, thách thức đặc trưng của Benko Gambit Accepted: tấn công tốt b5 của Trắng để đổi lấy sự đền bù lâu dài — cột a và b mở, tượng hoạt động mạnh, sức ép cánh hậu — vốn là ý tưởng cốt lõi của cả ván gambit này. Trắng phải quyết định cách đáp trả.'
+    en: "Black has just played 8...a6, the defining challenge of the Benko Gambit Accepted: attacking White's pawn on b5 in exchange for the long-term compensation — open a- and b-files, an active bishop, queenside pressure — that is the whole point of the gambit. White must decide how to answer."
+    fr: "Les Noirs viennent de jouer 8...a6, le défi caractéristique du Gambit Benko Accepté : attaquer le pion blanc en b5 en échange de la compensation à long terme — colonnes a et b ouvertes, fou actif, pression à l'aile dame — qui fait tout l'intérêt du gambit. Les Blancs doivent décider comment répondre."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 9.b6 ở đây. Đánh giá tương tự: Đen luôn có đền bù nhất định cho tốt đã mất — cột mở, tượng hoạt động, sức ép cánh hậu — bất kể Trắng chọn cách nào để đối phó với đòn ...a6.'
+      en: 'White plays something other than 9.b6 here. The assessment is similar throughout: Black always gets some compensation for the pawn — open files, an active bishop, queenside pressure — whichever way White chooses to meet the ...a6 attack.'
+      fr: "Les Blancs jouent autre chose que 9.b6 ici. L'évaluation reste similaire dans tous les cas : les Noirs obtiennent toujours une certaine compensation pour le pion — colonnes ouvertes, fou actif, pression à l'aile dame — quelle que soit la façon dont les Blancs répondent à l'attaque ...a6."
+  children:
+    - ply: b6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chủ động trả lại tốt bằng 9.b6, đơn giản hoá vị trí thay vì cố giữ tốt dư, đổi lấy việc phát triển nhanh và một cấu trúc rõ ràng.
+        en: White voluntarily hands the pawn back with 9.b6, simplifying the position rather than trying to hold the extra pawn, in exchange for quick development and a clear structure.
+        fr: "Les Blancs rendent volontairement le pion par 9.b6, simplifiant la position plutôt que d'essayer de garder le pion supplémentaire, en échange d'un développement rapide et d'une structure claire."
+      children:
+        - ply: Qxb6
+          annotation:
+            vi: Đen ăn lại tốt bằng hậu, vì không ai bảo vệ nó, đưa hậu ra một ô khá tích cực nhắm vào tốt b2.
+            en: Black recaptures the pawn with the queen, since nothing defends it, placing the queen on a fairly active square eyeing the b2 pawn.
+            fr: "Les Noirs reprennent le pion avec la dame, celui-ci n'étant pas défendu, plaçant la dame sur une case assez active visant le pion b2."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: bảy tốt cho mỗi bên — vật chất hoàn toàn cân bằng sau khi Trắng tự nguyện trả tốt. Hậu Đen trên b6 nhắm vào b2 nhưng chưa tạo đe doạ cụ thể, còn Trắng đã đơn giản hoá cấu trúc và có thể phát triển thoải mái.'
+              en: "Count the pawns: seven each — material is exactly level after White's voluntary pawn return. Black's queen on b6 eyes the b2 pawn but creates no concrete threat yet, while White has simplified the structure and can develop freely."
+              fr: "Comptez les pions : sept de chaque côté — le matériel est parfaitement égal après le retour volontaire du pion. La dame noire en b6 vise le pion b2 mais sans menace concrète pour l'instant, tandis que les Blancs ont simplifié la structure et peuvent se développer librement."
+            plan:
+              vi: Trắng chơi Nc3 và Bd2 hoặc Qc1 bảo vệ b2, rồi nhập thành, chấp nhận một ván cờ cân bằng nhưng dễ chơi. Đen tiếp tục ...g6, ...Bg7 và ...O-O, tận dụng hậu đã phát triển để gây sức ép nhẹ.
+              en: White plays Nc3 and Bd2 or Qc1 to guard b2, then castles, accepting a level but easy position to play. Black continues with ...g6, ...Bg7 and ...O-O, making use of the already-developed queen for light pressure.
+              fr: Les Blancs jouent Nc3 et Bd2 ou Qc1 pour garder b2, puis roquent, acceptant une position égale mais facile à jouer. Les Noirs poursuivent par ...g6, ...Bg7 et ...O-O, profitant de leur dame déjà développée pour une pression légère.
+            basis:
+              by: chan
+              at: '2026-09-29'

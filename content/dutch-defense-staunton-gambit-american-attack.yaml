@@ -1,0 +1,58 @@
+# Dutch Defense: Staunton Gambit, American Attack. Frozen defining line 1.d4 f5 2.e4
+# fxe4 3.Nd2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 3...Nf6. searchMate
+# at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: dutch-defense-staunton-gambit-american-attack
+name: 'Dutch Defense: Staunton Gambit, American Attack'
+eco: A82
+category: gambit
+side: white
+definingLine: [d4, f5, e4, fxe4, Nd2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Staunton Gambit theory. Rerouting the knight to c4 to regain the pawn
+      gives real practical chances rather than a proven refutation of Black's defence. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 3.Nd2 trong Staunton Gambit — lối chơi American Attack — định đưa mã sang c4 rồi ăn lại tốt e4, thay vì ghim ngay bằng Bg5 hay phát triển Nc3 truyền thống.
+    en: White plays 3.Nd2 in the Staunton Gambit — the American Attack approach — intending to reroute the knight via c4 to win back the e4 pawn, instead of the traditional Bg5 pin or Nc3 development.
+    fr: "Les Blancs jouent 3.Nd2 dans le Gambit Staunton — l'approche American Attack — avec l'idée de rediriger le cavalier par c4 pour regagner le pion e4, au lieu du clouage traditionnel par Bg5 ou du développement Nc3."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...Nf6 ở đây, ví dụ ...g6 hay ...e5. Đánh giá tương tự: Đen giữ tốt dư trong ngắn hạn còn Trắng luôn có kế hoạch Nc4 để đòi lại nó, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...Nf6 here, for instance ...g6 or ...e5. The assessment is similar throughout: Black keeps the extra pawn for now while White always has the Nc4 plan to claim it back, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...Nf6 ici, par exemple ...g6 ou ...e5. L'évaluation reste similaire : les Noirs gardent le pion supplémentaire pour l'instant tandis que les Blancs ont toujours le plan Nc4 pour le récupérer, quelle que soit la voie choisie."
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen phát triển mã ra f6 một cách tự nhiên, bảo vệ thêm trung tâm và chuẩn bị nhập thành.
+        en: Black develops the knight naturally to f6, adding cover to the centre and preparing to castle.
+        fr: Les Noirs développent naturellement le cavalier en f6, renforçant le centre et se préparant à roquer.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — Đen giữ tốt dư. Mã Trắng đang trên đường tới c4 để tấn công tốt e4, trong khi Đen mới chỉ có một quân phát triển.'
+          en: "Count the pawns: White seven, Black eight — Black holds the extra pawn. White's knight is on its way to c4 to attack the e4 pawn, while Black has only one piece developed so far."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — les Noirs gardent le pion supplémentaire. Le cavalier blanc est en route vers c4 pour attaquer le pion e4, tandis que les Noirs n'ont qu'une seule pièce développée."
+        plan:
+          vi: Trắng chơi Nc4 tấn công tốt e4 và nhắm cả vào d6, sẵn sàng lấy lại vật chất. Đen chơi ...d5 bảo vệ tốt e4 và củng cố trung tâm, hoặc ...e5 phản công ngay.
+          en: White plays Nc4, attacking the e4 pawn and also eyeing d6, ready to win the material back. Black plays ...d5 to defend the e4 pawn and reinforce the centre, or ...e5 to counterattack at once.
+          fr: Les Blancs jouent Nc4, attaquant le pion e4 et visant aussi d6, prêts à regagner le matériel. Les Noirs jouent ...d5 pour défendre le pion e4 et renforcer le centre, ou ...e5 pour contre-attaquer aussitôt.
+        basis:
+          by: chan
+          at: '2026-09-29'

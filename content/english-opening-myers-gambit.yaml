@@ -1,0 +1,58 @@
+# English Opening: Myers Gambit. Frozen defining line 1.c4 g5 2.d4 Bg7, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3.h4. searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: english-opening-myers-gambit
+name: 'English Opening: Myers Gambit'
+eco: A10
+category: gambit
+side: black
+definingLine: [c4, g5, d4, Bg7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: weakening the kingside this early for one fianchettoed bishop is
+      objectively unsound, and directly challenging the loose pawn is the natural test. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi ...g5 rồi ...Bg7 theo phong cách Myers Gambit, chiếm không gian cánh vua ngay từ đầu và fianchetto tượng nhắm vào trung tâm Trắng. Trắng phải chọn cách đáp trả.
+    en: "Black plays ...g5 and ...Bg7 in Myers Gambit style, grabbing kingside space right away and fianchettoing the bishop at White's centre. White must choose how to respond."
+    fr: "Les Noirs jouent ...g5 puis ...Bg7 dans l'esprit du Gambit Myers, gagnant aussitôt de l'espace à l'aile roi et fianchettant le fou vers le centre blanc. Les Blancs doivent choisir comment répondre."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 3.h4 ở đây, ví dụ phát triển bình thường bằng Nc3. Đánh giá tương tự: tốt g5 của Đen vẫn là một điểm yếu tiềm tàng mà Trắng có thể nhắm tới sau này, bất kể chọn hướng nào.'
+      en: "White plays something other than 3.h4 here, for instance the normal developing Nc3. The assessment is similar throughout: Black's g5 pawn remains a potential weakness White can target later, whichever way is chosen."
+      fr: "Les Blancs jouent autre chose que 3.h4 ici, par exemple le développement normal par Nc3. L'évaluation reste similaire : le pion g5 noir demeure une faiblesse potentielle que les Blancs peuvent viser plus tard, quelle que soit la voie choisie."
+  children:
+    - ply: h4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng thách thức ngay tốt g5 bằng 3.h4, buộc Đen phải quyết định giữa đẩy tiếp, đổi tốt, hay để căng thẳng.
+        en: White immediately challenges the g5 pawn with 3.h4, forcing Black to decide between pushing on, trading, or leaving the tension.
+        fr: Les Blancs défient aussitôt le pion g5 par 3.h4, forçant les Noirs à décider entre pousser, échanger, ou laisser la tension.
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất cân bằng, tám tốt mỗi bên. Tốt g5 của Đen đang bị tấn công trực tiếp và cấu trúc tốt cánh vua đã hơi lỏng lẻo, trong khi tượng g7 của Đen vẫn đang nhắm vào trung tâm Trắng.
+          en: "Material is level, eight pawns each. Black's g5 pawn is directly attacked and the kingside pawn structure is already a little loose, while Black's g7-bishop still eyes White's centre."
+          fr: "Le matériel est égal, huit pions de chaque côté. Le pion g5 noir est directement attaqué et la structure de pions à l'aile roi est déjà un peu relâchée, tandis que le fou noir en g7 vise toujours le centre blanc."
+        plan:
+          vi: Trắng chơi hxg5 mở cột h cho xe, hoặc h5 chiếm thêm không gian, khai thác điểm yếu cánh vua Đen. Đen chơi ...g4 đẩy tiếp giữ cấu trúc liền, hoặc ...c6 và ...d5 tranh chấp trung tâm để bù lại.
+          en: "White plays hxg5 to open the h-file for the rook, or h5 to gain more space, exploiting the weakness on Black's kingside. Black plays ...g4 to push on and keep the structure connected, or ...c6 and ...d5 to contest the centre in compensation."
+          fr: "Les Blancs jouent hxg5 pour ouvrir la colonne h à la tour, ou h5 pour gagner plus d'espace, exploitant la faiblesse à l'aile roi noire. Les Noirs jouent ...g4 pour pousser et garder la structure liée, ou ...c6 et ...d5 pour contester le centre en compensation."
+        basis:
+          by: chan
+          at: '2026-09-29'
