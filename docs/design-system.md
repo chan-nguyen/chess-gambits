@@ -47,10 +47,9 @@ unchanged. `docs/CONTEXT.md`, _Prelude_, is the normative description.
 ### Navigation model
 
 **Header**, on every route: site name (links home) · Catalogue · About · language switcher ·
-the appearance control (system / light / dark), which is where §2's persisted dark-mode override is
-set. At
-narrow widths the links collapse behind a single menu button; the language switcher stays visible
-because it is the one control a visitor may need before they can read the menu.
+the appearance control, which is where §2's persisted dark-mode override is set. At narrow widths
+the links collapse behind a single menu button; the language switcher stays visible because it is
+the one control a visitor may need before they can read the menu.
 
 **Footer**: source repository · content licence · credits for the opening dataset · a link to the
 About page's explanation of how mate claims are proved.
@@ -124,7 +123,11 @@ decoration:
 silhouette and its colour by these four, so white and black survive greyscale (§5).
 
 Both themes must pass WCAG 2.2 AA. Dark mode follows the system preference and is overridable by the
-user; the override is persisted.
+user; the override is persisted. The control is **one light/dark toggle** (an icon button, a sun or a
+moon for the theme on screen, `aria-pressed` for dark), as of 2026-09-29 by user request, where it
+was three buttons. It still reaches "follow my system": a press that lands on the theme the system
+would paint anyway drops the override rather than storing it (`toggledSetting` in
+`src/styles/theme.ts`), so a first visit and any visit after toggling back follow the system.
 
 #### Board and piece colour values
 

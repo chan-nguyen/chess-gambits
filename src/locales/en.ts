@@ -23,10 +23,7 @@ const en: PartialTranslations = {
     language: 'Language',
   },
   appearance: {
-    label: 'Appearance',
-    system: 'System',
-    light: 'Light',
-    dark: 'Dark',
+    dark: 'Dark theme',
   },
   footer: {
     source: 'Source on GitHub',

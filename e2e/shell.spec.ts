@@ -98,7 +98,7 @@ test.describe('the header from 768px', () => {
 
       await expect(page.getByRole('navigation', { name: vi.nav.primary })).toBeVisible()
       await expect(page.getByRole('navigation', { name: vi.nav.language })).toBeVisible()
-      await expect(page.getByRole('group', { name: vi.appearance.label })).toBeVisible()
+      await expect(page.getByRole('button', { name: vi.appearance.dark })).toBeVisible()
       await expect(page.getByRole('button', { name: vi.nav.menu })).toBeHidden()
     })
   }
@@ -210,8 +210,9 @@ test.describe('the theme', () => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto('vi/about')
 
-    const appearance = page.getByRole('group', { name: vi.appearance.label })
-    await appearance.getByRole('button', { name: vi.appearance.dark }).click()
+    const toggle = page.getByRole('button', { name: vi.appearance.dark })
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false')
+    await toggle.click()
     await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark')
 
     await recordFirstFrame(page)
@@ -219,10 +220,33 @@ test.describe('the theme', () => {
 
     const { dark } = await palette(page)
     expect((await firstFrame(page)).background).toBe(dark)
-    await expect(appearance.getByRole('button', { name: vi.appearance.dark })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    )
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true')
+
+    await context.close()
+  })
+
+  /**
+   * The one toggle still reaches "follow my system" (2026-09-29): landing on the theme the
+   * system paints drops the override, so the next visit follows the system again — here
+   * checked by changing the system between visits, which a stored `light` would ignore.
+   */
+  test('goes back to following the system when toggled onto its theme', async ({ browser }) => {
+    const context = await browser.newContext({ colorScheme: 'dark' })
+    const page = await context.newPage()
+    await page.setViewportSize({ width: 1280, height: 800 })
+    await page.goto('vi/about')
+
+    const toggle = page.getByRole('button', { name: vi.appearance.dark })
+    await expect(toggle).toHaveAttribute('aria-pressed', 'true')
+    await toggle.click()
+    await expect(page.locator('html')).toHaveAttribute('data-theme', 'light')
+    await toggle.click()
+    await expect(page.locator('html')).not.toHaveAttribute('data-theme')
+
+    await page.emulateMedia({ colorScheme: 'light' })
+    await page.reload()
+    await expect(page.locator('html')).not.toHaveAttribute('data-theme')
+    await expect(toggle).toHaveAttribute('aria-pressed', 'false')
 
     await context.close()
   })

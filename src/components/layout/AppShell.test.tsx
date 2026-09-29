@@ -1,11 +1,11 @@
 import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import { RouterProvider, createMemoryRouter } from 'react-router'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi as vi_ } from 'vitest'
 import { storedLocaleKey } from '../../lib/locale.ts'
 import fr from '../../locales/fr.ts'
 import vi from '../../locales/vi.ts'
 import { routes } from '../../router.tsx'
-import { themeAttribute, themeStorageKey } from '../../styles/theme.ts'
+import { darkSchemeQuery, themeAttribute, themeStorageKey } from '../../styles/theme.ts'
 
 /**
  * AC 3 and AC 4 of #2, the parts of its AC 8 that do not need a browser, and #7's AC 1 and
@@ -217,40 +217,70 @@ describe('the language switcher', () => {
 })
 
 describe('the appearance control', () => {
-  it('starts on system, and says so', async () => {
-    renderAt('/vi/about')
-    await openMenu(vi.nav.menu)
+  /** `test-setup.ts` answers every non-width query false, so jsdom's system is light. */
+  const onADarkSystem = () =>
+    vi_.spyOn(window, 'matchMedia').mockImplementation((query: string) => ({
+      media: query,
+      matches: query === darkSchemeQuery,
+      onchange: null,
+      addListener: () => {},
+      removeListener: () => {},
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      dispatchEvent: () => true,
+    }))
 
-    const group = await screen.findByRole('group', { name: vi.appearance.label })
-    expect(within(group).getByRole('button', { name: vi.appearance.system })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    )
+  afterEach(() => vi_.restoreAllMocks())
+
+  const toggle = async () => {
+    await openMenu(vi.nav.menu)
+    return await screen.findByRole('button', { name: vi.appearance.dark })
+  }
+
+  it('follows the system on a first visit, and says which theme that is', async () => {
+    renderAt('/vi/about')
+    expect(await toggle()).toHaveAttribute('aria-pressed', 'false')
+    expect(document.documentElement.hasAttribute(themeAttribute)).toBe(false)
   })
 
-  it('applies a choice to the document and remembers it', async () => {
+  it('says it is dark on a dark system, with nothing chosen', async () => {
+    onADarkSystem()
     renderAt('/vi/about')
-    await openMenu(vi.nav.menu)
+    expect(await toggle()).toHaveAttribute('aria-pressed', 'true')
+  })
 
-    const group = await screen.findByRole('group', { name: vi.appearance.label })
-    fireEvent.click(within(group).getByRole('button', { name: vi.appearance.dark }))
+  it('toggles to the other theme, applies it and remembers it', async () => {
+    renderAt('/vi/about')
+    const button = await toggle()
+    fireEvent.click(button)
 
     expect(document.documentElement.getAttribute(themeAttribute)).toBe('dark')
     expect(window.localStorage.getItem(themeStorageKey)).toBe('dark')
-    expect(within(group).getByRole('button', { name: vi.appearance.dark })).toHaveAttribute(
-      'aria-pressed',
-      'true',
-    )
+    expect(button).toHaveAttribute('aria-pressed', 'true')
   })
 
-  it('goes back to following the system, which a two-way toggle could not', async () => {
+  it('goes back to following the system when it lands on what the system paints', async () => {
     window.localStorage.setItem(themeStorageKey, 'dark')
     renderAt('/vi/about')
-    await openMenu(vi.nav.menu)
+    const button = await toggle()
+    expect(button).toHaveAttribute('aria-pressed', 'true')
+    fireEvent.click(button)
 
-    const group = await screen.findByRole('group', { name: vi.appearance.label })
-    fireEvent.click(within(group).getByRole('button', { name: vi.appearance.system }))
+    expect(document.documentElement.hasAttribute(themeAttribute)).toBe(false)
+    expect(window.localStorage.getItem(themeStorageKey)).toBe('system')
+    expect(button).toHaveAttribute('aria-pressed', 'false')
+  })
 
+  it('overrides a dark system with light, and returns to it on the next press', async () => {
+    onADarkSystem()
+    renderAt('/vi/about')
+    const button = await toggle()
+
+    fireEvent.click(button)
+    expect(document.documentElement.getAttribute(themeAttribute)).toBe('light')
+    expect(window.localStorage.getItem(themeStorageKey)).toBe('light')
+
+    fireEvent.click(button)
     expect(document.documentElement.hasAttribute(themeAttribute)).toBe(false)
     expect(window.localStorage.getItem(themeStorageKey)).toBe('system')
   })

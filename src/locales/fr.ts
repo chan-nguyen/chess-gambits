@@ -17,10 +17,7 @@ const fr: PartialTranslations = {
     language: 'Langue',
   },
   appearance: {
-    label: 'Apparence',
-    system: 'Système',
-    light: 'Clair',
-    dark: 'Sombre',
+    dark: 'Thème sombre',
   },
   footer: {
     source: 'Code source sur GitHub',
