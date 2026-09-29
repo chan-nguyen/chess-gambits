@@ -152,10 +152,10 @@ edited here without re-checking contrast fails that test rather than shipping.
 
 Three rules hold over this table in both themes, and each is asserted:
 
-1. **A piece is legible on every surface it can sit on.** For each piece and each of the four square
-   or highlight colours, the fill _or_ the stroke reaches 3:1. Neither alone can: a white piece's
-   body vanishes on a light square and a black piece's body vanishes on a dark one, which is exactly
-   what the outline is for.
+1. **A piece is legible on every surface it can sit on.** For each piece and each of the five
+   surfaces — the two squares, the highlight mixed over each of them, and the check disc — the fill
+   _or_ the stroke reaches 3:1. Neither alone can: a white piece's body vanishes on a light square
+   and a black piece's body vanishes on a dark one, which is exactly what the outline is for.
 2. **White and black survive greyscale.** The two fills reach 4.5:1 of each other, and each fill
    reaches 3:1 of its own stroke.
 3. **Coordinates are readable on both squares.** `--color-board-coordinate` reaches 4.5:1 against
@@ -188,6 +188,15 @@ removed the ring from both squares (§2's binding rule, exception below) rather 
 kept the two squares apart by giving them different, luminance-distinct tokens. This entry drops
 that distinction too, by product decision: both squares now share the one token above, so the
 highlight marks the last move as a pair of squares rather than telling departure from arrival.
+
+**The highlight is translucent, as of 2026-09-29, by user request** ("giảm opacity … để vừa biết là
+ô highlight nhưng cũng vừa thấy được ô bàn cờ bên dưới là light hay dark"). The token above stays
+opaque, like every value in this table; `Board.css` mixes it at **60%** over the square beneath
+with `color-mix(in srgb, …)`, which is what alpha compositing paints, and draws the selected square
+the same way. So a highlighted light square and a highlighted dark one differ: 1.37:1 in the light
+theme and 1.26:1 in the dark, where the opaque gold was 1.00:1. `board-contrast.test.ts` reads the
+strength out of the stylesheet, computes both mixes, holds rule 1 on them and holds the pair above
+1.2:1. The cost is recorded in §5's review log.
 
 #### Interface, outcome and reply-quality colour values
 
@@ -839,6 +848,28 @@ traded away this time.
   from the plain wood around them at every theme and square-colour combination tried, including the
   1.10:1 case above, which is faint but not absent. **Not performed:** 360px, the choice previews,
   and the screen-reader row.
+
+**2026-09-29 — the highlight made translucent, at the product owner's request.** Not a release
+review; it changes what the two documented tint exceptions paint, not whether they are exceptions.
+
+- **What changed.** `.board__square--from`, `--to` and `--marked` no longer paint
+  `--color-board-highlight` opaque. They paint it mixed at 60% over the square they sit on, one rule
+  per square colour, so the wood under the gold still says light or dark. The token, the classes
+  and the squares that get them are unchanged.
+- **What is gained.** A highlighted light square and a highlighted dark one read apart, in colour
+  and under `grayscale(1)`: 1.37:1 (light theme) and 1.26:1 (dark), against 1.00:1 before.
+  `e2e/move-navigation.spec.ts` paints it: on the Damiano root's `Nxe5`, f3 and e5 resolve to two
+  different fills with the colour gone, each different from a plain square of its own colour.
+- **What is given up.** The gold stands out less from the square it tints. Against a plain light
+  square it measures 1.15:1 (light theme) and 1.05:1 (dark), down from 1.26:1 and 1.10:1; against
+  a plain dark square, 1.44:1 and 1.35:1, down from 1.80:1 and 1.63:1. In colour the hue still
+  carries it. Under `grayscale(1)`, a highlighted light square in the dark theme is now faint —
+  the case the 2026-09-18 entry already called faint, fainter. As before, nothing depends on it
+  alone: the move is in the `aria-live` announcement and in the move list.
+- **Pieces stay legible.** The weakest piece-on-highlight pairing is 6.95:1 (light theme) and
+  5.58:1 (dark), both well over rule 1's 3:1.
+- **Looked at by hand:** the analysis board after `1.e4 e5 2.Nf3`, in both themes, at desktop.
+  **Not performed:** 360px, the choice previews, and the screen-reader row.
 
 ---
 

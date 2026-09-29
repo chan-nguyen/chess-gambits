@@ -311,6 +311,12 @@ test.describe('the viewport measurement itself', () => {
  * are now the same token, by product decision, so the greyscale check below is "do the two
  * squares read as one identical fill" rather than "are they still two" — the opposite claim
  * from before, and just as checkable.
+ *
+ * **Since 2026-09-29 that holds only on one square colour.** The gold is mixed over the
+ * square beneath at 60%, by product decision, so a highlighted light square and a
+ * highlighted dark one are meant to differ — that difference is the request ("vừa thấy được
+ * ô bàn cờ bên dưới là light hay dark"). `fxe5` is dark to dark; the root's `Nxe5` is light
+ * to dark, and it is where the second claim is checked.
  */
 test.describe('the last-ply highlight', () => {
   /** `f6-e5`: which two squares a board marks, read back off the tinted squares' geometry. */
@@ -416,7 +422,7 @@ test.describe('the last-ply highlight', () => {
         document.documentElement.style.filter = 'grayscale(1)'
       })
 
-    test('reads both last-ply squares as the identical fill, with the colour gone', async ({
+    test('reads both last-ply squares as the identical fill on one square colour, with the colour gone', async ({
       page,
     }) => {
       await open(page, ['fxe5'])
@@ -427,6 +433,35 @@ test.describe('the last-ply highlight', () => {
       const resolved = await fills(page)
       for (const fill of resolved) expect(fill).not.toBe('')
       expect(new Set(resolved).size, `squares read as ${resolved.join(' / ')}`).toBe(1)
+    })
+
+    /**
+     * The translucent gold, painted: the square under it still shows through. Checked with
+     * the colour gone, because light against dark is a luminance difference and survives it
+     * — and against plain squares of each colour, so "two different fills" cannot pass by
+     * one of them having lost its highlight.
+     */
+    test('lets a highlighted light square and a highlighted dark one read apart', async ({
+      page,
+    }) => {
+      await open(page)
+      await expect.poll(() => marked(page, BOARD)).toBe('f3-e5')
+      await greyscale(page)
+
+      const [from, to] = await fills(page)
+      const [plainLight, plainDark] = await page.evaluate(() =>
+        ['.board__square--light', '.board__square--dark'].map((kind) => {
+          const plain = document.querySelector(
+            `.learning-surface__board ${kind}:not(.board__square--from):not(.board__square--to)`,
+          )
+          return plain === null ? '' : window.getComputedStyle(plain).fill
+        }),
+      )
+
+      expect(from, 'f3 is a light square').not.toBe(to)
+      expect(from).not.toBe(plainLight)
+      expect(to).not.toBe(plainDark)
+      for (const fill of [from, to, plainLight, plainDark]) expect(fill).not.toBe('')
     })
 
     /**
