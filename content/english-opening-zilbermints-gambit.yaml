@@ -1,0 +1,58 @@
+# English Opening: Zilbermints Gambit. Frozen defining line 1.c4 g5 2.d4 e5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5). Replayed with chess.js through 3.dxe5. searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: english-opening-zilbermints-gambit
+name: 'English Opening: Zilbermints Gambit'
+eco: A10
+category: gambit
+side: black
+definingLine: [c4, g5, d4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: offering a second pawn this early for central space and a future ...Bg7 is
+      objectively unsound, and accepting is the direct, testing reply. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi ...g5 rồi ...e5, một đòn phản-gambit trực tiếp thí thêm một tốt để chiếm không gian trung tâm ngay lập tức. Trắng phải quyết định có ăn tốt hay không.
+    en: Black plays ...g5 and then ...e5, a direct countergambit offering a further pawn to seize central space right away. White must decide whether to take it.
+    fr: "Les Noirs jouent ...g5 puis ...e5, une contre-offre directe offrant un pion supplémentaire pour saisir aussitôt l'espace central. Les Blancs doivent décider s'ils le prennent."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 3.dxe5 ở đây, ví dụ giữ căng thẳng bằng Nc3. Đánh giá tương tự: Đen luôn có được không gian trung tâm hoặc đền bù nào đó cho tốt đã thí, bất kể Trắng chọn hướng nào.'
+      en: 'White plays something other than 3.dxe5 here, for instance keeping the tension with Nc3. The assessment is similar throughout: Black always gets central space or some compensation for the pawn offered, whichever way White goes.'
+      fr: "Les Blancs jouent autre chose que 3.dxe5 ici, par exemple garder la tension par Nc3. L'évaluation reste similaire : les Noirs obtiennent toujours de l'espace central ou une certaine compensation pour le pion offert, quelle que soit la voie choisie."
+  children:
+    - ply: dxe5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng ăn tốt e5, chấp nhận đầy đủ lời mời của Đen.
+        en: "White captures the e5 pawn, fully accepting Black's offer."
+        fr: "Les Blancs prennent le pion e5, acceptant pleinement l'offre des Noirs."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Trắng giữ đúng một tốt dư. Đổi lại, tượng g7 tiềm năng của Đen sẽ nhắm thẳng vào tốt e5 vừa ăn được, và Đen có thể lấy lại vật chất bằng ...Bg7 rồi ...Qe7 hoặc ...Nc6 sau này.'
+          en: "Count the pawns: White eight, Black seven — White holds exactly one extra pawn. In exchange, Black's future ...Bg7 will aim straight at the newly won e5 pawn, and Black can look to win the material back with ...Bg7 and later ...Qe7 or ...Nc6."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs — les Blancs gardent exactement un pion de plus. En contrepartie, le futur ...Bg7 noir visera directement le pion e5 tout juste gagné, et les Noirs pourront chercher à regagner le matériel par ...Bg7 puis ...Qe7 ou ...Nc6 plus tard.'
+        plan:
+          vi: Trắng chơi Nc3 và e4 củng cố tốt e5 vừa ăn được, cố giữ vật chất. Đen chơi ...Bg7 gây sức ép ngay lên tốt e5, tiếp theo là ...Ne7 hoặc ...Nc6 để tìm cách ăn lại.
+          en: White plays Nc3 and e4 to reinforce the newly won e5 pawn, trying to hold the material. Black plays ...Bg7, pressuring the e5 pawn at once, followed by ...Ne7 or ...Nc6 to look for a way to win it back.
+          fr: Les Blancs jouent Nc3 et e4 pour renforcer le pion e5 tout juste gagné, essayant de garder le matériel. Les Noirs jouent ...Bg7, faisant aussitôt pression sur le pion e5, suivi de ...Ne7 ou ...Nc6 pour chercher à le regagner.
+        basis:
+          by: chan
+          at: '2026-09-29'

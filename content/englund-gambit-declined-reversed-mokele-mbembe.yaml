@@ -1,0 +1,57 @@
+# Englund Gambit Declined: Reversed Mokele Mbembe. Frozen defining line 1.d4 e5 2.Nf3
+# e4, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 3.Ne5. searchMate at 3 moves from the
+# resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: englund-gambit-declined-reversed-mokele-mbembe
+name: 'Englund Gambit Declined: Reversed Mokele Mbembe'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e5, Nf3, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: an active central outpost rather than a retreat, though it can be chased
+      away at once. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đẩy tốt lên ...e4 tấn công mã f3, một phản-gambit chủ động chống lại 1.d4. Trắng phải quyết định lui mã đi đâu.
+    en: Black pushes ...e4, attacking the f3-knight, an active countergambit reply to 1.d4. White must decide where to retreat the knight.
+    fr: Les Noirs poussent ...e4, attaquant le cavalier f3, une contre-offre active contre 1.d4. Les Blancs doivent décider où reculer le cavalier.
+  dismissRest:
+    reason:
+      vi: 'Trắng lui mã đi nơi khác thay vì 3.Ne5 ở đây, ví dụ Nfd2 hay Ng1. Đánh giá tương tự: Đen luôn giữ được không gian trung tâm nhờ tốt e4, bất kể Trắng lui mã về đâu.'
+      en: 'White retreats the knight somewhere else instead of 3.Ne5 here, for instance Nfd2 or Ng1. The assessment is similar throughout: Black always keeps central space thanks to the e4 pawn, wherever White retreats the knight.'
+      fr: "Les Blancs reculent le cavalier ailleurs qu'en 3.Ne5 ici, par exemple Nfd2 ou Ng1. L'évaluation reste similaire : les Noirs gardent toujours l'espace central grâce au pion e4, où que le cavalier blanc recule."
+  children:
+    - ply: Ne5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng nhảy mã sang e5, một ô trung tâm năng động thay vì lui về thủ, khai thác việc ô đó không còn bị tốt Đen kiểm soát nữa.
+        en: "White jumps the knight to e5, an active central square instead of retreating passively, since Black's pawn no longer covers that square."
+        fr: "Les Blancs sautent le cavalier en e5, une case centrale active plutôt qu'un recul passif, cette case n'étant plus couverte par le pion noir."
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất cân bằng, tám tốt mỗi bên. Mã Trắng trên e5 khá năng động và nhắm vào f7, d7, c6, nhưng lại có thể bị tốt Đen đuổi bằng ...d6 ngay sau đó.
+          en: "Material is level at eight pawns each. White's knight on e5 is quite active, eyeing f7, d7 and c6, but it can be chased away by ...d6 right away."
+          fr: Le matériel est égal, huit pions de chaque côté. Le cavalier blanc en e5 est assez actif, visant f7, d7 et c6, mais il peut être chassé aussitôt par ...d6.
+        plan:
+          vi: Trắng chơi Nc4 hoặc Nc6 nếu được phép, tận dụng thời gian trước khi bị đuổi. Đen chơi ...d6 đuổi mã ngay, rồi phát triển bằng ...Nf6 và ...Be7.
+          en: White plays Nc4 or even Nc6 if allowed, making use of time before being chased off. Black plays ...d6 to chase the knight at once, then develops with ...Nf6 and ...Be7.
+          fr: "Les Blancs jouent Nc4 ou même Nc6 si possible, profitant du temps avant d'être chassés. Les Noirs jouent ...d6 pour chasser aussitôt le cavalier, puis se développent par ...Nf6 et ...Be7."
+        basis:
+          by: chan
+          at: '2026-09-29'

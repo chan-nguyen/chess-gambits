@@ -18,3 +18,17 @@ const isRankNumber = (value: string | undefined): value is RankNumber =>
 
 export const isSquare = (value: string): value is Square =>
   value.length === 2 && isFileLetter(value[0]) && isRankNumber(value[1])
+
+/**
+ * The square a click or a key press landed on, read off the grid cell `Board` renders for
+ * it. `Board` takes no input itself (ADR-0003), so each board that does — the home and
+ * analysis boards, and the analysis page's position editor — listens on a wrapper and asks
+ * this which square it was.
+ */
+export const squareFromTarget = (target: EventTarget | null): Square | null => {
+  if (!(target instanceof Element)) return null
+  const cell = target.closest('[data-square]')
+  if (!(cell instanceof HTMLElement)) return null
+  const value = cell.dataset['square']
+  return value !== undefined && isSquare(value) ? value : null
+}

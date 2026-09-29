@@ -1,0 +1,58 @@
+# Blackmar-Diemer Gambit Declined, Vienna Defense. Frozen defining line 1.d4 d5 2.e4
+# dxe4 3.Nc3 Nf6 4.f3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...Bf5. searchMate
+# at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: blackmar-diemer-gambit-declined-vienna-defense
+name: 'Blackmar-Diemer Gambit Declined: Vienna Defense'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Blackmar-Diemer Gambit theory. White offers a further pawn purely for
+      open lines and quick development; declining the capture keeps the extra material but
+      costs time. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.f3, mời Đen ăn lại tốt e4 để chuyển sang thế Accepted; ở đây Đen chọn không ăn (declined) và chơi cách khác. Trắng đã phát triển mã c3 và chuẩn bị mở đường cho tượng c1, đổi lại tạm thời chỉ kém một tốt trên bàn cờ (bảy so với tám) mà chưa lấy lại được.
+    en: White has just played 4.f3, inviting Black to recapture on e4 and transpose to the Accepted lines; here Black declines that capture and plays something else instead. White has developed the knight to c3 and is preparing to open the diagonal for the c1-bishop, currently down one pawn on the board (seven against eight) with no recapture yet.
+    fr: "Les Blancs viennent de jouer 4.f3, invitant les Noirs à reprendre en e4 pour transposer dans les lignes Accepted ; ici, les Noirs refusent cette capture et jouent autre chose. Les Blancs ont développé le cavalier en c3 et se préparent à ouvrir la diagonale du fou c1, actuellement un pion de moins sur l'échiquier (sept contre huit) sans reprise encore effectuée."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi cách khác thay vì ...Bf5 ở đây, kể cả việc ăn lại bằng ...exf3 để chuyển hẳn sang các thế Accepted đã biết. Đánh giá tương tự: Trắng luôn kém một tốt trên bàn tại thời điểm này nhưng bù lại bằng mã đã phát triển và trung tâm thoáng, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...Bf5 here, including recapturing with ...exf3 to transpose into the known Accepted lines. The assessment is similar throughout: White is always a pawn down on the board at this point but compensated by the developed knight and the open centre, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...Bf5 ici, y compris reprendre par ...exf3 pour transposer dans les lignes Accepted connues. L'évaluation reste similaire dans tous les cas : les Blancs sont toujours un pion de moins sur l'échiquier à ce stade, compensé par le cavalier développé et le centre ouvert, quelle que soit la direction choisie par les Noirs."
+  children:
+    - ply: Bf5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen phát triển tượng ra ngoài ngay bằng ...Bf5, giữ tốt e4 và tránh bị nhốt tượng sau các tốt.
+        en: Black develops the bishop outside the pawn chain at once with ...Bf5, holding the e4 pawn and avoiding shutting the bishop in behind the pawns.
+        fr: "Les Noirs développent aussitôt le fou à l'extérieur par ...Bf5, gardant le pion e4 et évitant que le fou ne soit enfermé derrière les pions."
+      outcome:
+        type: position
+        evaluation:
+          vi: Đen giữ tốt dư (tám so với bảy) và đã đưa tượng ra ngoài an toàn, trong khi Trắng có mã trên c3 và sắp chơi fxe4 để cân bằng vật chất.
+          en: Black holds the extra pawn (eight against seven) and has the bishop safely developed, while White has the knight on c3 and is about to play fxe4 to level material.
+          fr: "Les Noirs conservent le pion supplémentaire (huit contre sept) et ont sorti le fou en sécurité, tandis que les Blancs ont le cavalier en c3 et s'apprêtent à jouer fxe4 pour égaliser le matériel."
+        plan:
+          vi: Trắng chơi fxe4 cân bằng vật chất, mời đổi tượng trên e4 hoặc tiếp tục Bc4. Đen chơi ...e6 và ...Nf6 để hoàn tất phát triển, giữ thế trận chắc chắn.
+          en: White plays fxe4, levelling material and inviting a trade on e4, or continues with Bc4. Black plays ...e6 and ...Nf6 to finish developing, keeping a sound position.
+          fr: Les Blancs jouent fxe4, égalisant le matériel et proposant un échange en e4, ou poursuivent par Bc4. Les Noirs jouent ...e6 et ...Nf6 pour achever leur développement, gardant une position saine.
+        basis:
+          by: chan
+          at: '2026-09-29'

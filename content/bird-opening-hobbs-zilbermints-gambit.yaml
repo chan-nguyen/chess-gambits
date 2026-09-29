@@ -1,0 +1,58 @@
+# Bird Opening: Hobbs-Zilbermints Gambit. Frozen defining line 1.f4 h6 2.Nf3 g5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5). Replayed with chess.js through 3.fxg5. searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: bird-opening-hobbs-zilbermints-gambit
+name: 'Bird Opening: Hobbs-Zilbermints Gambit'
+eco: A02
+category: gambit
+side: black
+definingLine: [f4, h6, Nf3, g5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: offering a second weakening pawn move so early is objectively unsound, and
+      accepting it is the direct, testing reply. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen chơi ...g5, một đòn phản-gambit khiêu khích nhằm mở cột g cho xe h8 sau ...hxg5 hoặc lôi kéo Trắng vào biến phức tạp. Trắng phải quyết định có ăn tốt hay không.
+    en: Black plays ...g5, a provocative countergambit aiming to open the g-file for the h8-rook after ...hxg5, or to lure White into complications. White must decide whether to take the pawn.
+    fr: "Les Noirs jouent ...g5, une contre-offre provocante visant à ouvrir la colonne g pour la tour h8 après ...hxg5, ou à entraîner les Blancs dans des complications. Les Blancs doivent décider s'ils prennent le pion."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 3.fxg5 ở đây, ví dụ Nxg5 ăn bằng mã hoặc từ chối bằng e4. Đánh giá tương tự: Trắng có thể giữ tốt dư nhưng phải cẩn thận với cột g đang mở cho Đen, bất kể chọn hướng nào.'
+      en: 'White plays something other than 3.fxg5 here, for instance Nxg5, or declining with e4. The assessment is similar throughout: White can hold the extra pawn but must be careful of the open g-file for Black, whichever way is chosen.'
+      fr: "Les Blancs jouent autre chose que 3.fxg5 ici, par exemple Nxg5, ou refuser par e4. L'évaluation reste similaire : les Blancs peuvent garder le pion supplémentaire mais doivent se méfier de la colonne g ouverte pour les Noirs, quelle que soit la voie choisie."
+  children:
+    - ply: fxg5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng ăn tốt bằng tốt f4, chấp nhận đầy đủ lời mời của Đen và mở cột f cho chính mình.
+        en: "White captures with the f4 pawn, fully accepting Black's offer and opening the f-file for itself in the process."
+        fr: "Les Blancs capturent avec le pion f4, acceptant pleinement l'offre des Noirs et ouvrant du même coup la colonne f pour eux-mêmes."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Trắng giữ đúng một tốt dư. Đổi lại, cột h đang mở cho xe h8 của Đen sau ...hxg5 tiếp theo, và tốt g5 của Trắng có thể trở thành mục tiêu.'
+          en: "Count the pawns: White eight, Black seven — White holds exactly one extra pawn. In exchange, the h-file will open for Black's h8-rook after a following ...hxg5, and White's pawn on g5 could become a target."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs — les Blancs gardent exactement un pion de plus. En contrepartie, la colonne h s'ouvrira pour la tour noire en h8 après un futur ...hxg5, et le pion blanc en g5 pourrait devenir une cible."
+        plan:
+          vi: Trắng chơi d4 và Nc3 củng cố trung tâm, tính đến việc bảo vệ tốt g5 bằng h4 nếu cần. Đen chơi ...hxg5 mở cột h ngay và tiếp tục ...Rxh2 hoặc ...Bg7 gây sức ép cánh vua.
+          en: White plays d4 and Nc3 to reinforce the centre, planning to defend the g5 pawn with h4 if needed. Black plays ...hxg5 to open the h-file at once and continues with ...Rxh2 or ...Bg7 for kingside pressure.
+          fr: "Les Blancs jouent d4 et Nc3 pour renforcer le centre, prévoyant de défendre le pion g5 par h4 si nécessaire. Les Noirs jouent ...hxg5 pour ouvrir aussitôt la colonne h et poursuivent par ...Rxh2 ou ...Bg7 pour la pression à l'aile roi."
+        basis:
+          by: chan
+          at: '2026-09-29'

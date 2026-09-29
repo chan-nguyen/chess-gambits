@@ -1,0 +1,59 @@
+# Benko Gambit Accepted: Fianchetto Variation. Frozen defining line 1.d4 Nf6 2.c4 c5
+# 3.d5 b5 4.cxb5 a6 5.bxa6 g6 6.Nc3 Bxa6 7.g3 d6 8.Bg2 Bg7, which ends on Black's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 9.Nf3. searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left
+# going free at the leaf.
+id: benko-gambit-accepted-fianchetto-variation
+name: 'Benko Gambit Accepted: Fianchetto Variation'
+eco: A58
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5, cxb5, a6, bxa6, g6, Nc3, Bxa6, g3, d6, Bg2, Bg7]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established opening theory, one of the main gambits Black has against 1.d4: the
+      queenside pawn majority and open files provide durable practical compensation for the
+      pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Cả hai bên đã hoàn tất fianchetto: Trắng với Bg2, Đen với Bg7, đạt cấu trúc Benko chủ đạo nhất trong lý thuyết hiện đại. Vật chất là bảy so với sáu tốt, nghiêng về Trắng, nhưng Đen có đền bù lâu dài rõ ràng.'
+    en: "Both sides have completed their fianchettoes — White with Bg2, Black with Bg7 — reaching the single most mainstream Benko structure in modern theory. Material is seven pawns to six in White's favour, but Black has clear, durable compensation."
+    fr: "Les deux camps ont achevé leur fianchetto — les Blancs avec Bg2, les Noirs avec Bg7 — atteignant la structure Benko la plus répandue de la théorie moderne. Le matériel est de sept pions contre six en faveur des Blancs, mais les Noirs disposent d'une compensation durable et claire."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 9.Nf3 ở đây, ví dụ Nge2 hay Rb1 trước. Đánh giá tương tự: Trắng giữ một tốt dư trong khi Đen luôn có đền bù nhờ tượng g7 và cột a mở, bất kể thứ tự nước đi.'
+      en: 'White plays something other than 9.Nf3 here, for instance Nge2 or Rb1 first. The assessment is similar throughout: White holds an extra pawn while Black always has compensation from the g7-bishop and the open a-file, whatever the move order.'
+      fr: "Les Blancs jouent autre chose que 9.Nf3 ici, par exemple Nge2 ou Rb1 d'abord. L'évaluation reste similaire : les Blancs gardent un pion de plus tandis que les Noirs disposent toujours d'une compensation grâce au fou g7 et à la colonne a ouverte, quel que soit l'ordre des coups."
+  children:
+    - ply: Nf3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã ra f3 theo cách tự nhiên nhất, chuẩn bị nhập thành và hoàn tất bố trí quân.
+        en: White develops the knight to f3 in the most natural way, preparing to castle and finish setting up the pieces.
+        fr: Les Blancs développent le cavalier en f3 de la façon la plus naturelle, se préparant à roquer et à achever la mise en place des pièces.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Vật chất không đổi: Trắng bảy tốt, Đen sáu — trạng thái tiêu biểu của cả hệ thống Benko Fianchetto. Cả hai bên đều đã fianchetto và sắp nhập thành, nhưng Đen đã có sẵn tượng g7 và tượng a6 cùng nhắm vào trung tâm và cánh hậu Trắng.'
+          en: "Material is unchanged: White seven pawns, Black six — the typical state of the whole Benko Fianchetto system. Both sides have fianchettoed and are about to castle, but Black already has the g7- and a6-bishops both aimed at White's centre and queenside."
+          fr: "Le matériel est inchangé : sept pions pour les Blancs, six pour les Noirs — l'état typique de tout le système Benko Fianchetto. Les deux camps ont fianchetté et vont bientôt roquer, mais les Noirs disposent déjà des fous g7 et a6, tous deux braqués sur le centre et l'aile dame blancs."
+        plan:
+          vi: Trắng nhập thành và chơi Rb1 chuẩn bị b3 để giữ chắc cánh hậu, cố phát huy tốt dư về lâu dài. Đen nhập thành, rồi đưa xe ra a8 và b8, dùng cả hai tượng để duy trì sức ép thường trực lên cấu trúc tốt của Trắng.
+          en: "White castles and plays Rb1, preparing b3 to firm up the queenside, trying to make the extra pawn count in the long run. Black castles, brings rooks to a8 and b8, and uses both bishops to keep constant pressure on White's pawn structure."
+          fr: "Les Blancs roquent et jouent Rb1, préparant b3 pour raffermir l'aile dame, cherchant à faire valoir le pion supplémentaire à long terme. Les Noirs roquent, amènent leurs tours en a8 et b8, et utilisent les deux fous pour maintenir une pression constante sur la structure de pions blanche."
+        basis:
+          by: chan
+          at: '2026-09-29'

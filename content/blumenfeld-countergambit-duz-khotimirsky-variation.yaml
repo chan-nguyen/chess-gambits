@@ -1,0 +1,66 @@
+# Blumenfeld Countergambit: Duz-Khotimirsky Variation. Frozen defining line 1.d4 Nf6
+# 2.c4 e6 3.Nf3 c5 4.d5 b5, which ends on Black's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5.Bg5 5...bxc4 —
+# White's own c4 pawn is left undefended once the b1-knight developed to f3, so
+# Black's reply simply wins it. searchMate at 3 moves from the resulting position
+# returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture
+# is left going free at the leaf.
+id: blumenfeld-countergambit-duz-khotimirsky-variation
+name: 'Blumenfeld Countergambit: Duz-Khotimirsky Variation'
+eco: E10
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nf3, c5, d5, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White's pin sidesteps the main-line capture on e6 or b5 but leaves a pawn
+      hanging on c4; a real, if slightly inaccurate, try rather than a refutation of the
+      Blumenfeld. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chơi 5.Bg5, ghim mã f6 thay vì ăn tốt trên e6 hoặc b5 ngay — hướng đi mang tên Duz-Khotimirsky trong Blumenfeld Countergambit. Đen phải chọn cách đáp trả.
+    en: White plays 5.Bg5, pinning the f6-knight instead of capturing on e6 or b5 right away — the Duz-Khotimirsky approach in the Blumenfeld Countergambit. Black must choose how to answer.
+    fr: "Les Blancs jouent 5.Bg5, clouant le cavalier f6 au lieu de capturer aussitôt en e6 ou b5 — l'approche Duz-Khotimirsky dans la Contre-offre Blumenfeld. Les Noirs doivent choisir comment répondre."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...bxc4 ở đây, ví dụ ...exd5 mở trung tâm trước. Đánh giá tương tự: Đen luôn có cơ hội giành lại vật chất hoặc mở đường cho các quân, bất kể chọn hướng nào.'
+      en: 'Black plays something other than ...bxc4 here, for instance ...exd5 opening the centre first. The assessment is similar throughout: Black always has chances to win back material or open lines for the pieces, whichever way is chosen.'
+      fr: "Les Noirs jouent autre chose que ...bxc4 ici, par exemple ...exd5 pour ouvrir le centre d'abord. L'évaluation reste similaire : les Noirs ont toujours des chances de regagner du matériel ou d'ouvrir des lignes, quelle que soit la voie choisie."
+  children:
+    - ply: Bg5
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Đen chấp nhận bị ghim và chưa vội giải quyết, mà tranh thủ đổi tốt ngay ở cánh hậu để giành lợi thế vật chất tạm thời.
+        en: Black tolerates the pin for now and, rather than resolving it immediately, seizes the moment to trade on the queenside for a temporary material edge.
+        fr: "Les Noirs tolèrent le clouage pour l'instant et, plutôt que de le résoudre tout de suite, saisissent l'occasion d'échanger à l'aile dame pour un avantage matériel temporaire."
+      children:
+        - ply: bxc4
+          annotation:
+            vi: Đen ăn lại ngay trên c4, vì con tốt đó không còn được Trắng bảo vệ sau khi mã b1 đã chuyển sang f3.
+            en: Black recaptures on c4 at once, since that pawn is no longer defended once the b1-knight has moved to f3.
+            fr: "Les Noirs reprennent aussitôt en c4, ce pion n'étant plus défendu depuis que le cavalier b1 est passé en f3."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen tám — Đen đang dẫn một tốt sau khi ăn lại trên c4, bù cho tốt b đã thí trước đó. Mã f6 của Đen vẫn đang bị ghim, và Trắng chưa lấy lại được vật chất.'
+              en: "Count the pawns: White seven, Black eight — Black is up a pawn after the recapture on c4, making up for the earlier b-pawn sacrifice. Black's f6-knight is still pinned, and White has not won back the material yet."
+              fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — les Noirs ont un pion d'avance après la reprise en c4, compensant le sacrifice initial du pion b. Le cavalier noir f6 reste cloué, et les Blancs n'ont pas encore regagné le matériel."
+            plan:
+              vi: Trắng chơi dxe6 mở đường ăn thêm hoặc e4 củng cố trung tâm, tận dụng ghim vào mã f6 để gây sức ép. Đen chơi ...exd5 hoàn tất việc mở trung tâm hoặc ...Be7 phá ghim, cố giữ tốt dư.
+              en: White plays dxe6 to open lines for more material, or e4 to reinforce the centre, exploiting the pin on f6 for pressure. Black plays ...exd5 to finish opening the centre, or ...Be7 to break the pin, trying to hold the extra pawn.
+              fr: "Les Blancs jouent dxe6 pour ouvrir des lignes vers plus de matériel, ou e4 pour renforcer le centre, exploitant le clouage sur f6 pour la pression. Les Noirs jouent ...exd5 pour achever l'ouverture du centre, ou ...Be7 pour rompre le clouage, essayant de garder le pion supplémentaire."
+            basis:
+              by: chan
+              at: '2026-09-29'

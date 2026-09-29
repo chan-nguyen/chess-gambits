@@ -12,11 +12,20 @@ import { encodeMoves, movesParam, parseMovesShape } from '../home/moves-param.ts
  * so a link that names no position lands on the last one, and every home-board URL is
  * already a valid analysis URL.
  *
+ * `fen` is the position the line starts from when it is not the initial one (2026-09-29):
+ * a position set up by hand, and absent otherwise, so every address that existed before it
+ * means what it meant. `setup` is present while that position is being set up, and holds
+ * the editor's board; the rest of the address is kept beside it, so leaving the editor
+ * without analysing goes back to exactly what was on screen.
+ *
  * Shape only, like every URL parser here: the moves are replayed by `replay` in
- * `chess-engine.ts`, which stops at the first one that is not legal.
+ * `chess-engine.ts`, which stops at the first one that is not legal, and `fen` is read by
+ * `readStart`, which refuses a position the engine should not be given.
  */
 
 export const plyParam = 'ply'
+export const startParam = 'fen'
+export const setupParam = 'setup'
 
 /**
  * Longer than the home board's cap: a pasted game is routinely past 128 plies, and the
@@ -25,8 +34,15 @@ export const plyParam = 'ply'
  */
 export const maxAnalysisPlies = 600
 
-/** Where on a line the board stands. `ply` runs from 0 (the start) to `line.length`. */
-export type LinePosition = { readonly line: readonly string[]; readonly ply: number }
+/**
+ * Where on a line the board stands. `ply` runs from 0 (the start) to `line.length`, and
+ * `start` is the FEN the line is played from, or null for the initial position.
+ */
+export type LinePosition = {
+  readonly start: string | null
+  readonly line: readonly string[]
+  readonly ply: number
+}
 
 export const parseLine = (raw: string | null): readonly string[] =>
   parseMovesShape(raw ?? '', maxAnalysisPlies)
@@ -41,8 +57,9 @@ export const parsePly = (raw: string | null, length: number): number => {
 }
 
 /** The query string for a position on a line: no `ply` at the end, no `moves` when empty. */
-export const analysisSearch = ({ line, ply }: LinePosition, flipped: boolean): string => {
+export const analysisSearch = ({ start, line, ply }: LinePosition, flipped: boolean): string => {
   const parts = [
+    ...(start === null ? [] : [`${startParam}=${encodeURIComponent(start)}`]),
     ...(line.length === 0 ? [] : [`${movesParam}=${encodeMoves(line)}`]),
     ...(ply >= line.length ? [] : [`${plyParam}=${ply}`]),
   ]
@@ -55,8 +72,56 @@ export const analysisSearch = ({ line, ply }: LinePosition, flipped: boolean): s
  * from here, which is what chess.com and lichess do with a move off the main line when they
  * are not keeping variations.
  */
-export const playAt = ({ line, ply }: LinePosition, san: string): LinePosition =>
-  line[ply] === san ? { line, ply: ply + 1 } : { line: [...line.slice(0, ply), san], ply: ply + 1 }
+export const playAt = (position: LinePosition, san: string): LinePosition => {
+  const { line, ply } = position
+  return line[ply] === san
+    ? { ...position, ply: ply + 1 }
+    : { ...position, line: [...line.slice(0, ply), san], ply: ply + 1 }
+}
+
+const isSetupPart = (part: string): boolean =>
+  part === setupParam || part.startsWith(`${setupParam}=`)
+
+/**
+ * `search` with the editor's board set to `fen`, or the editor closed when it is null, and
+ * every other parameter left byte for byte as it was — `withFlip`'s rule, for its reason.
+ */
+export const withSetup = (search: string, fen: string | null): string => {
+  const kept = search
+    .replace(/^\?/, '')
+    .split('&')
+    .filter((part) => part !== '' && !isSetupPart(part))
+  const parts = fen === null ? kept : [...kept, `${setupParam}=${encodeURIComponent(fen)}`]
+  return parts.length === 0 ? '' : `?${parts.join('&')}`
+}
+
+/** One row of a scoresheet: its move number, and the index into the line of each side's ply. */
+export type ScoresheetRow = {
+  readonly number: number
+  readonly white: number | null
+  readonly black: number | null
+}
+
+/**
+ * A line laid out as a scoresheet, from the position it starts in. From the initial
+ * position that is `1. e4 e5`; from a set-up position with Black to move at move 14, the
+ * first row is `14. … Rxe7`, as every scoresheet writes it.
+ */
+export const scoresheet = (start: string | null, length: number): readonly ScoresheetRow[] => {
+  const fields = (start ?? '').split(' ')
+  // With Black to move, the first ply is the second half of the first row.
+  const offset = fields[1] === 'b' ? 1 : 0
+  const firstMove = Number(fields[5] ?? '1') || 1
+  const rows = length === 0 ? 0 : Math.ceil((length + offset) / 2)
+  return Array.from({ length: rows }, (_, row) => {
+    const white = row * 2 - offset
+    return {
+      number: firstMove + row,
+      white: white >= 0 ? white : null,
+      black: white + 1 < length ? white + 1 : null,
+    }
+  })
+}
 
 /** Why a pasted PGN was refused. */
 export type PgnProblem = 'empty' | 'invalid' | 'custom-start' | 'too-long'

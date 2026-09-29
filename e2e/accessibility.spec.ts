@@ -114,6 +114,11 @@ test.describe('the axe sweep (AC 1)', () => {
       { name: 'gambit', path: `${locale}/${routeSegments.catalogue}/${PUBLISHED_GAMBIT}` },
       { name: 'about', path: `${locale}/${routeSegments.about}` },
       { name: 'analysis', path: `${locale}/${routeSegments.analysis}?moves=e4_e5` },
+      // The position editor, on a board it refuses, so its problem message is on screen too.
+      {
+        name: 'analysis position editor',
+        path: `${locale}/${routeSegments.analysis}?setup=${encodeURIComponent('8/8/8/8/8/8/8/4K3 w - - 0 1')}`,
+      },
     ]
 
     for (const { name, path } of routes) {
