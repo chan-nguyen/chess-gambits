@@ -1,0 +1,60 @@
+# Blackmar-Diemer Gambit Accepted, Teichmann Defense. Frozen defining line 1.d4 d5
+# 2.e4 dxe4 3.Nc3 Nf6 4.f3 exf3 5.Nxf3, which ends on White's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 5...Bg4. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: blackmar-diemer-gambit-accepted-teichmann-defense
+name: 'Blackmar-Diemer Gambit Accepted: Teichmann Defense'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3, exf3, Nxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Blackmar-Diemer Gambit theory. White accepts being a pawn down
+      permanently in exchange for fast, open development — real practical chances at club
+      level, not a refutation of correct defence. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa ăn lại trên f3 bằng mã, hoàn tất đợt đổi tốt của Gambit Blackmar-Diemer: kém một tốt (sáu so với bảy) nhưng đã phát triển đầy đủ — mã đã đứng vững ở f3, thế trận thoáng, và Trắng sẽ tiếp tục với Bc4 hoặc Bd3 rồi nhập thành nhanh. Đen phải chọn cách đối phó với lợi thế phát triển này.'
+    en: "White has just recaptured on f3 with the knight, completing the Blackmar-Diemer's pawn exchange: down one pawn (six against seven) but fully mobilised, the knight already anchored on f3, an open position, and Bc4 or Bd3 plus quick castling still to come. Black must now choose how to meet this lead in development."
+    fr: "Les Blancs viennent de reprendre en f3 avec le cavalier, achevant l'échange de pions du Gambit Blackmar-Diemer : un pion de retard (six contre sept) mais un développement complet, le cavalier déjà solidement posté en f3, une position ouverte, et Bc4 ou Bd3 suivi d'un roque rapide à venir. Les Noirs doivent maintenant choisir comment répondre à cette avance de développement."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách phát triển khác thay vì ...Bg4 ở đây. Đánh giá hầu như không đổi: Trắng luôn kém đúng một tốt nhưng bù lại bằng quân mã đã đứng vững ở f3, hai tượng sẵn sàng xuất quân và cột f đang mở cho xe, bất kể Đen chọn nước nào khác.'
+      en: 'Black develops some other way instead of ...Bg4 here. The assessment barely changes: White is always down exactly one pawn but compensated by the knight already anchored on f3, both bishops ready to develop, and the open f-file for the rook, whichever other move Black picks.'
+      fr: "Les Noirs se développent autrement qu'avec ...Bg4 ici. L'évaluation change à peine : les Blancs ont toujours exactement un pion de moins mais compensent avec le cavalier déjà solidement posté en f3, les deux fous prêts à se développer et la colonne f ouverte pour la tour, quel que soit l'autre coup choisi par les Noirs."
+  children:
+    - ply: Bg4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ghim mã f3 vào hậu d1 bằng ...Bg4, một trong những cách đối phó chính và tích cực nhất với thế phát triển của Trắng.
+        en: "Black pins the f3-knight to the queen with ...Bg4, one of the main and most active answers to White's development lead."
+        fr: "Les Noirs clouent le cavalier f3 contre la dame par ...Bg4, l'une des réponses principales et les plus actives au développement des Blancs."
+      outcome:
+        type: position
+        evaluation:
+          vi: Vật chất là sáu so với bảy tốt, nghiêng về Đen. Mã f3 của Trắng nay bị ghim, nhưng Trắng vẫn có cả hai tượng sẵn sàng và có thể chơi Be2 hoặc h3 để giải quyết ghim.
+          en: "Material is six pawns to seven in Black's favour. White's f3-knight is now pinned, but White still has both bishops ready and can play Be2 or h3 to deal with the pin."
+          fr: Le matériel est de six pions contre sept en faveur des Noirs. Le cavalier f3 des Blancs est désormais cloué, mais les Blancs gardent les deux fous prêts et peuvent jouer Be2 ou h3 pour régler le clouage.
+        plan:
+          vi: Trắng chơi Be2 chuẩn bị nhập thành và phá ghim, hoặc h3 buộc tượng phải quyết định ngay. Đen hoàn tất phát triển bằng ...e6 hoặc ...Nbd7 rồi nhập thành, giữ tốt dư.
+          en: White plays Be2, preparing to castle and break the pin, or h3 to make the bishop decide at once. Black finishes developing with ...e6 or ...Nbd7 and castles, banking the extra pawn.
+          fr: Les Blancs jouent Be2, préparant le roque et rompant le clouage, ou h3 pour forcer le fou à se décider tout de suite. Les Noirs achèvent leur développement par ...e6 ou ...Nbd7 puis roquent, en conservant le pion supplémentaire.
+        basis:
+          by: chan
+          at: '2026-09-29'

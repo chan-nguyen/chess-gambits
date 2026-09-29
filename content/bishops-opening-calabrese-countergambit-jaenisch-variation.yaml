@@ -1,0 +1,57 @@
+# Bishop's Opening: Calabrese Countergambit, Jaenisch Variation. Frozen defining line
+# 1.e4 e5 2.Bc4 f5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 3.d3. searchMate at 3
+# moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: bishops-opening-calabrese-countergambit-jaenisch-variation
+name: "Bishop's Opening: Calabrese Countergambit, Jaenisch Variation"
+eco: C23
+category: gambit
+side: black
+definingLine: [e4, e5, Bc4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established theory: 2...f5 loosens the centre and the kingside for no lasting gain,
+      and objective play favours White. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: "Đen đáp lại Bishop's Opening bằng đòn phản-gambit ...f5, sẵn sàng nới lỏng trung tâm để đổi lấy không gian và đường mở cho các quân. Trắng phải quyết định có nhận tốt hay không."
+    en: "Black meets the Bishop's Opening with the countergambit ...f5, ready to loosen the centre in exchange for space and open lines for the pieces. White must decide whether to take the pawn."
+    fr: "Les Noirs répondent au Début du Fou par la contre-offre ...f5, prêts à desserrer le centre en échange d'espace et de lignes ouvertes pour leurs pièces. Les Blancs doivent décider s'ils prennent le pion."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 3.d3 ở đây, kể cả việc ăn tốt bằng exf5. Đánh giá tương tự về tổng thể: đây là một đòn phản-gambit sắc bén mà Trắng luôn phải xử lý cẩn thận dù chọn hướng nào.'
+      en: 'White plays something other than 3.d3 here, including capturing with exf5. The overall assessment is similar: this is a sharp countergambit that White always has to handle carefully, whichever way is chosen.'
+      fr: "Les Blancs jouent autre chose que 3.d3 ici, y compris la capture par exf5. L'évaluation générale reste similaire : c'est une contre-offre tranchante que les Blancs doivent toujours traiter avec soin, quelle que soit la voie choisie."
+  children:
+    - ply: d3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng chơi 3.d3, từ chối ăn tốt ngay và chọn củng cố trung tâm một cách thận trọng, giữ nguyên căng thẳng ở trung tâm.
+        en: White plays 3.d3, declining the immediate capture and choosing to firm up the centre cautiously, keeping the central tension.
+        fr: Les Blancs jouent 3.d3, refusant la capture immédiate et choisissant de consolider prudemment le centre, gardant la tension centrale.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Vật chất hoàn toàn cân bằng: tám tốt mỗi bên. Trung tâm vẫn căng thẳng với tốt e4 của Trắng bị tốt f5 của Đen đe doạ, trong khi cả hai bên đều chưa phát triển quân nhẹ nào.'
+          en: "Material is exactly level: eight pawns each. The centre is still tense, with White's e4 pawn under threat from Black's f5 pawn, while neither side has developed a single minor piece yet."
+          fr: "Le matériel est parfaitement égal : huit pions de chaque côté. Le centre reste tendu, le pion e4 des Blancs étant menacé par le pion f5 noir, alors qu'aucun camp n'a encore développé de pièce mineure."
+        plan:
+          vi: Trắng phát triển Nc3 và Nf3, chuẩn bị nhập thành trong khi giữ căng thẳng trung tâm. Đen chơi ...Nf6 rồi ...fxe4, mở đường cho các quân và tranh chấp trung tâm.
+          en: White develops with Nc3 and Nf3, preparing to castle while keeping the central tension. Black plays ...Nf6 and then ...fxe4, opening lines for the pieces and contesting the centre.
+          fr: Les Blancs se développent par Nc3 et Nf3, se préparant à roquer tout en gardant la tension centrale. Les Noirs jouent ...Nf6 puis ...fxe4, ouvrant des lignes pour leurs pièces et contestant le centre.
+        basis:
+          by: chan
+          at: '2026-09-29'

@@ -1,0 +1,66 @@
+# Blackmar-Diemer Gambit Declined, Elbert Countergambit. Frozen defining line 1.d4 d5
+# 2.e4 dxe4 3.Nc3 Nf6 4.f3, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...e5 5.dxe5.
+# Black's ...e5 leaves that pawn undefended, so White's forced reply dxe5 simply wins
+# it back, levelling material. searchMate at 3 moves from the resulting position
+# returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture
+# is left going free at the leaf.
+id: blackmar-diemer-gambit-declined-elbert-countergambit
+name: 'Blackmar-Diemer Gambit Declined: Elbert Countergambit'
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, e4, dxe4, Nc3, Nf6, f3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established Blackmar-Diemer Gambit theory. White offers a further pawn purely for
+      open lines and quick development; declining the capture keeps the extra material but
+      costs time. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.f3, mời Đen ăn lại tốt e4 để chuyển sang thế Accepted; ở đây Đen chọn không ăn (declined) và chơi cách khác. Trắng đã phát triển mã c3 và chuẩn bị mở đường cho tượng c1, đổi lại tạm thời chỉ kém một tốt trên bàn cờ (bảy so với tám) mà chưa lấy lại được.
+    en: White has just played 4.f3, inviting Black to recapture on e4 and transpose to the Accepted lines; here Black declines that capture and plays something else instead. White has developed the knight to c3 and is preparing to open the diagonal for the c1-bishop, currently down one pawn on the board (seven against eight) with no recapture yet.
+    fr: "Les Blancs viennent de jouer 4.f3, invitant les Noirs à reprendre en e4 pour transposer dans les lignes Accepted ; ici, les Noirs refusent cette capture et jouent autre chose. Les Blancs ont développé le cavalier en c3 et se préparent à ouvrir la diagonale du fou c1, actuellement un pion de moins sur l'échiquier (sept contre huit) sans reprise encore effectuée."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi cách khác thay vì ...e5 ở đây, kể cả việc ăn lại bằng ...exf3 để chuyển hẳn sang các thế Accepted đã biết. Đánh giá tương tự: Trắng luôn kém một tốt trên bàn tại thời điểm này nhưng bù lại bằng mã đã phát triển và trung tâm thoáng, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...e5 here, including recapturing with ...exf3 to transpose into the known Accepted lines. The assessment is similar throughout: White is always a pawn down on the board at this point but compensated by the developed knight and the open centre, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...e5 ici, y compris reprendre par ...exf3 pour transposer dans les lignes Accepted connues. L'évaluation reste similaire dans tous les cas : les Blancs sont toujours un pion de moins sur l'échiquier à ce stade, compensé par le cavalier développé et le centre ouvert, quelle que soit la direction choisie par les Noirs."
+  children:
+    - ply: e5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Đen đáp trả bằng một gambit khác, ...e5, đẩy thêm một tốt ra trung tâm thay vì giữ tốt e4 đã có, nhưng con tốt mới này không được bảo vệ.
+        en: Black answers with a countergambit of their own, ...e5, pushing another pawn into the centre instead of holding the e4 pawn already won, but this new pawn is left undefended.
+        fr: Les Noirs répondent par une contre-offre, ...e5, poussant un autre pion au centre plutôt que de garder le pion e4 déjà gagné, mais ce nouveau pion reste sans défense.
+      children:
+        - ply: dxe5
+          annotation:
+            vi: Tốt d4 đơn giản ăn lại trên e5, vì Đen chưa kịp bảo vệ con tốt đó.
+            en: The d4 pawn simply captures on e5, since Black had no time to defend that pawn.
+            fr: "Le pion d4 capture simplement en e5, les Noirs n'ayant pas eu le temps de le défendre."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Sau khi ăn lại, vật chất cân bằng: bảy tốt mỗi bên. Trắng vẫn giữ mã đã phát triển trên c3 và một tốt đã lên e5 kiểm soát trung tâm, còn Đen vẫn giữ tốt phụ trên e4 từ nước đi đầu.'
+              en: 'After the recapture material is level: seven pawns each. White still has the developed knight on c3 and a pawn now on e5 controlling the centre, while Black still holds the extra pawn on e4 from the opening capture.'
+              fr: 'Après la reprise, le matériel est égal : sept pions de chaque côté. Les Blancs gardent le cavalier développé en c3 et un pion désormais en e5 contrôlant le centre, tandis que les Noirs conservent le pion supplémentaire en e4 depuis la capture initiale.'
+            plan:
+              vi: Trắng tiếp tục phát triển với Bc4 hoặc Nxe4 để dọn con tốt phiền phức của Đen trên e4, rồi nhập thành nhanh. Đen tìm cách giữ tốt e4 bằng ...Nc6 và ...Bf5, cố gắng hoàn thiện phát triển.
+              en: White continues developing with Bc4, or plays Nxe4 to clear the annoying pawn on e4, then castles quickly. Black tries to hold the e4 pawn with ...Nc6 and ...Bf5, aiming to finish development.
+              fr: Les Blancs poursuivent leur développement avec Bc4, ou jouent Nxe4 pour éliminer le pion gênant en e4, puis roquent rapidement. Les Noirs essaient de garder le pion e4 par ...Nc6 et ...Bf5, cherchant à achever leur développement.
+            basis:
+              by: chan
+              at: '2026-09-29'

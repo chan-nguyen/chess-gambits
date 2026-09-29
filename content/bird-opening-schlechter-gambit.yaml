@@ -1,0 +1,58 @@
+# Bird Opening: Schlechter Gambit. Frozen defining line 1.f4 e5 2.fxe5 Nc6, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3.Nf3. searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: bird-opening-schlechter-gambit
+name: 'Bird Opening: Schlechter Gambit'
+eco: A02
+category: gambit
+side: black
+definingLine: [f4, e5, fxe5, Nc6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: direct pressure on the e5 pawn is well met by simply defending it, keeping
+      the extra material with a solid position. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen đáp trả bằng ...Nc6, tấn công trực tiếp tốt e5 thay vì chuẩn bị từ từ như ...d6. Trắng phải chọn cách bảo vệ con tốt đó.
+    en: Black answers with ...Nc6, directly attacking the e5 pawn instead of preparing gradually with ...d6. White must choose how to defend that pawn.
+    fr: Les Noirs répondent par ...Nc6, attaquant directement le pion e5 au lieu de préparer progressivement par ...d6. Les Blancs doivent choisir comment défendre ce pion.
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 3.Nf3 ở đây, ví dụ d4 bảo vệ tốt e5 bằng tốt. Đánh giá tương tự: Trắng giữ tốt dư trong khi Đen luôn gây sức ép trực tiếp lên nó, bất kể Trắng chọn hướng nào.'
+      en: 'White plays something other than 3.Nf3 here, for instance d4 to defend the e5 pawn with a pawn. The assessment is similar throughout: White holds the extra pawn while Black always presses on it directly, whichever way White goes.'
+      fr: "Les Blancs jouent autre chose que 3.Nf3 ici, par exemple d4 pour défendre le pion e5 par un pion. L'évaluation reste similaire : les Blancs gardent le pion supplémentaire tandis que les Noirs font toujours pression dessus directement, quelle que soit la voie choisie."
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng bảo vệ tốt e5 bằng mã f3, vừa giữ vật chất vừa phát triển quân.
+        en: White defends the e5 pawn with the knight on f3, holding the material while developing a piece.
+        fr: Les Blancs défendent le pion e5 avec le cavalier en f3, gardant le matériel tout en développant une pièce.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Trắng giữ đúng một tốt dư, được bảo vệ chắc chắn bởi mã f3. Đen đã phát triển một mã nhưng chưa tạo được đe doạ cụ thể nào khác.'
+          en: 'Count the pawns: White eight, Black seven — White holds exactly one extra pawn, now solidly defended by the f3-knight. Black has one knight developed but has not created any other concrete threat.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs — les Blancs gardent exactement un pion de plus, désormais solidement défendu par le cavalier f3. Les Noirs ont un cavalier développé mais n'ont créé aucune autre menace concrète."
+        plan:
+          vi: Trắng tiếp tục d4 và Nc3, củng cố trung tâm và chuẩn bị nhập thành, giữ tốt dư làm vốn lâu dài. Đen chơi ...Bc5 hoặc ...d6 gây sức ép trở lại lên tốt e5 và mã f3.
+          en: White continues with d4 and Nc3, reinforcing the centre and preparing to castle, banking the extra pawn as a long-term asset. Black plays ...Bc5 or ...d6 to press again on the e5 pawn and the f3-knight.
+          fr: Les Blancs poursuivent par d4 et Nc3, renforçant le centre et se préparant à roquer, conservant le pion supplémentaire comme atout durable. Les Noirs jouent ...Bc5 ou ...d6 pour faire à nouveau pression sur le pion e5 et le cavalier f3.
+        basis:
+          by: chan
+          at: '2026-09-29'

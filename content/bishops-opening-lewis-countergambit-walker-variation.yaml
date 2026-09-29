@@ -1,0 +1,60 @@
+# Bishop's Opening: Lewis Countergambit, Walker Variation. Frozen defining line 1.e4
+# e5 2.Bc4 Bc5 3.c3 d5 4.Bxd5 Nf6, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5.d4 —
+# the d5-bishop is defended by White's own e4 pawn, so the mutual attack does not drop
+# a piece. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: bishops-opening-lewis-countergambit-walker-variation
+name: "Bishop's Opening: Lewis Countergambit, Walker Variation"
+eco: C23
+category: gambit
+side: black
+definingLine: [e4, e5, Bc4, Bc5, c3, d5, Bxd5, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement: White's countergambit wins a pawn and holds the initiative, matching the
+      Lewis Countergambit's usual assessment as favourable for White without being a forced
+      win. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi Trắng ăn tốt d5 bằng tượng, Đen phát triển mã ra f6 tấn công lại tượng đó. Trắng phải chọn cách xử lý con tượng đang bị nhắm tới.
+    en: After White captured the d5 pawn with the bishop, Black developed the knight to f6, attacking that bishop in turn. White must choose how to handle the targeted bishop.
+    fr: Après que les Blancs ont capturé le pion d5 avec le fou, les Noirs ont développé le cavalier en f6, attaquant à leur tour ce fou. Les Blancs doivent décider comment gérer le fou visé.
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 5.d4 ở đây, ví dụ lui tượng ngay bằng Bb3. Đánh giá tương tự: thế trận vẫn căng thẳng và cân bằng gần như tuyệt đối về vật chất, bất kể Trắng chọn hướng nào.'
+      en: 'White plays something other than 5.d4 here, for instance retreating the bishop at once with Bb3. The assessment is similar throughout: the position stays tense with material close to level, whichever way White goes.'
+      fr: "Les Blancs jouent autre chose que 5.d4 ici, par exemple reculer aussitôt le fou par Bb3. L'évaluation reste similaire : la position demeure tendue, le matériel restant proche de l'égalité, quelle que soit la voie choisie."
+  children:
+    - ply: d4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng phớt lờ đòn tấn công vào tượng d5 và phản công lại tượng c5 của Đen bằng 5.d4, một pha đôi công qua lại.
+        en: "White ignores the attack on the d5-bishop and counterattacks Black's own bishop on c5 with 5.d4, a mutual tit-for-tat."
+        fr: "Les Blancs ignorent l'attaque sur le fou d5 et contre-attaquent à leur tour le fou noir en c5 par 5.d4, un échange de menaces réciproques."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Trắng đang dẫn một tốt từ nước Bxd5 trước đó. Tượng c5 của Đen hiện bị tốt d4 tấn công và chưa được bảo vệ, phải di chuyển ngay ở nước tiếp theo.'
+          en: "Count the pawns: White eight, Black seven — White is up one pawn from the earlier Bxd5. Black's bishop on c5 is now attacked by the d4 pawn and undefended, needing to move next."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs — les Blancs ont un pion d'avance depuis le Bxd5 précédent. Le fou noir en c5 est désormais attaqué par le pion d4 et sans défense, devant bouger au coup suivant."
+        plan:
+          vi: Trắng chờ đợi Đen phải lui hoặc đổi tượng, rồi tiếp tục phát triển Ne2 hoặc Nf3. Đen lui tượng về b6 hoặc chiếu bằng ...Bb4+, đồng thời tính đến ...Nxd5 ăn lại tượng Trắng ở lượt sau.
+          en: White waits for Black to retreat or trade the bishop, then continues developing with Ne2 or Nf3. Black retreats the bishop to b6, or plays ...Bb4+ picking up a check, while also planning ...Nxd5 to win the White bishop back next move.
+          fr: Les Blancs attendent que les Noirs reculent ou échangent le fou, puis poursuivent leur développement par Ne2 ou Nf3. Les Noirs reculent le fou en b6, ou jouent ...Bb4+ en gagnant un échec, tout en prévoyant ...Nxd5 pour regagner le fou blanc au coup suivant.
+        basis:
+          by: chan
+          at: '2026-09-29'

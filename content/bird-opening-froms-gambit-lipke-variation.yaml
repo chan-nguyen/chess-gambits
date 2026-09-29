@@ -1,0 +1,58 @@
+# Bird Opening: From's Gambit, Lipke Variation. Frozen defining line 1.f4 e5 2.fxe5 d6
+# 3.exd6 Bxd6 4.Nf3 Nh6, which ends on Black's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5.d4. searchMate
+# at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: bird-opening-froms-gambit-lipke-variation
+name: "Bird Opening: From's Gambit, Lipke Variation"
+eco: A02
+category: gambit
+side: black
+definingLine: [f4, e5, fxe5, d6, exd6, Bxd6, Nf3, Nh6]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established theory: Black's rapid development and pressure toward White's weakened
+      kingside (after 2.fxe5 and no g3) give durable practical compensation for the pawn. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: "Đen đã hoàn tất một loạt thí tốt của From's Gambit và triển khai xong tượng, mã: sau ...Nh6 chuẩn bị ...O-O và giữ áp lực lên tốt e5/h2 hướng vua Trắng. Trắng phải chọn cách phản ứng ở trung tâm."
+    en: "Black has completed From's Gambit's opening sacrifice and developed the bishop and knight: after ...Nh6, preparing ...O-O and keeping pressure toward White's kingside. White must choose how to react in the centre."
+    fr: "Les Noirs ont achevé le sacrifice initial du Gambit From et développé le fou et le cavalier : après ...Nh6, préparant ...O-O et maintenant la pression vers l'aile roi blanche. Les Blancs doivent choisir comment réagir au centre."
+  dismissRest:
+    reason:
+      vi: 'Trắng chọn cách khác thay vì 5.d4 ở đây, ví dụ g3 chuẩn bị fianchetto phòng thủ. Đánh giá tương tự: Trắng vẫn kém một tốt và phải phòng thủ cẩn thận trước áp lực của Đen lên cánh vua, bất kể chọn hướng nào.'
+      en: "White plays something other than 5.d4 here, for instance g3 preparing a defensive fianchetto. The assessment is similar throughout: White is still down a pawn and must defend carefully against Black's kingside pressure, whichever way is chosen."
+      fr: "Les Blancs jouent autre chose que 5.d4 ici, par exemple g3 préparant un fianchetto défensif. L'évaluation reste similaire : les Blancs ont toujours un pion de moins et doivent se défendre prudemment contre la pression noire à l'aile roi, quelle que soit la voie choisie."
+  children:
+    - ply: d4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chơi 5.d4, chiếm không gian trung tâm và mở đường cho tượng c1, chấp nhận tiếp tục chơi với một tốt kém.
+        en: White plays 5.d4, grabbing central space and opening a diagonal for the c1-bishop, accepting to keep playing a pawn down.
+        fr: "Les Blancs jouent 5.d4, gagnant de l'espace central et ouvrant une diagonale pour le fou c1, acceptant de continuer à jouer avec un pion de moins."
+      outcome:
+        type: position
+        evaluation:
+          vi: "Đếm tốt: Trắng bảy, Đen sáu — Đen dẫn đúng một tốt, khoản đầu tư ban đầu của From's Gambit. Đổi lại, Trắng đã chiếm trung tâm rộng và có thể phát triển tượng c1 tự do, trong khi vua Đen vẫn ở giữa bàn."
+          en: "Count the pawns: White seven, Black six — Black is up exactly one pawn, From's Gambit's original investment. In exchange, White has a broad centre and can develop the c1-bishop freely, while Black's king is still in the centre."
+          fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs — les Noirs ont exactement un pion d'avance, la mise de départ du Gambit From. En contrepartie, les Blancs ont un centre large et peuvent développer librement le fou c1, tandis que le roi noir reste au centre."
+        plan:
+          vi: Trắng phát triển Bg5 hoặc Bf4 và Nc3, nhắm khai thác việc vua Đen chưa nhập thành. Đen nhập thành nhanh bằng ...O-O và tiếp tục gây sức ép cánh vua bằng ...Re8 hoặc ...Qe7.
+          en: "White develops with Bg5 or Bf4 and Nc3, aiming to exploit Black's uncastled king. Black castles quickly with ...O-O and keeps up kingside pressure with ...Re8 or ...Qe7."
+          fr: "Les Blancs se développent par Bg5 ou Bf4 et Nc3, cherchant à exploiter le roi noir non roqué. Les Noirs roquent rapidement par ...O-O et maintiennent la pression à l'aile roi par ...Re8 ou ...Qe7."
+        basis:
+          by: chan
+          at: '2026-09-29'

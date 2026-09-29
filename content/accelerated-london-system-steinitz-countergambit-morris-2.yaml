@@ -1,0 +1,67 @@
+# Queen's Pawn Game: Accelerated London System, Steinitz Countergambit, Morris
+# Countergambit Accepted. Frozen defining line 1.d4 d5 2.Bf4 c5 3.e4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3...dxe4 4.dxc5 — Black's c5 pawn is left undefended
+# once Black captures on e4, so the recapture simply wins it back. searchMate at 3
+# moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: accelerated-london-system-steinitz-countergambit-morris-2
+name: "Queen's Pawn Game: Accelerated London System, Steinitz Countergambit, Morris Countergambit Accepted"
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, Bf4, c5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White's second pawn offer opens the position further for the bishop already
+      on f4, and the following in-between capture on c5 restores material at once — real
+      compensation, not a refutation of correct defence. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.e4, hi sinh thêm một tốt trong Steinitz Countergambit để mở trung tâm và đường chéo cho tượng f4. Đen phải quyết định có ăn tốt hay không.
+    en: "White has just played 3.e4, offering a further pawn in the Steinitz Countergambit to open the centre and the f4-bishop's diagonal. Black must decide whether to take it."
+    fr: "Les Blancs viennent de jouer 3.e4, offrant un pion supplémentaire dans la Contre-offre Steinitz pour ouvrir le centre et la diagonale du fou f4. Les Noirs doivent décider s'ils le prennent."
+  dismissRest:
+    reason:
+      vi: 'Đen chọn cách khác thay vì ...dxe4 ở đây, ví dụ giữ căng thẳng bằng ...Nc6. Đánh giá tương tự: Trắng luôn có đền bù về phát triển và trung tâm thoáng cho tốt đã hi sinh, bất kể Đen chọn hướng nào.'
+      en: 'Black plays something other than ...dxe4 here, for instance keeping the tension with ...Nc6. The assessment is similar throughout: White always gets development and an open centre in return for the sacrificed pawn, whichever way Black goes.'
+      fr: "Les Noirs jouent autre chose que ...dxe4 ici, par exemple en gardant la tension par ...Nc6. L'évaluation reste similaire : les Blancs obtiennent toujours du développement et un centre ouvert en échange du pion sacrifié, quelle que soit la voie choisie."
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen ăn tốt e4, chấp nhận đầy đủ đòn phản-gambit của Trắng (Morris Countergambit Accepted) thay vì từ chối.
+        en: "Black captures the e4 pawn, fully accepting White's countergambit (the Morris Countergambit Accepted) rather than declining it."
+        fr: Les Noirs prennent le pion e4, acceptant pleinement la contre-offre des Blancs (le Morris Countergambit Accepted) plutôt que de la refuser.
+      children:
+        - ply: dxc5
+          annotation:
+            vi: Tốt d4 của Trắng ăn lại ngay trên c5, vì con tốt đó của Đen chưa được bảo vệ, lấy lại thế cân bằng vật chất.
+            en: "White's d4 pawn simply recaptures on c5, since Black's pawn there was undefended, restoring material balance."
+            fr: "Le pion d4 blanc reprend simplement en c5, ce pion noir étant sans défense, rétablissant l'équilibre matériel."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Vật chất trở lại cân bằng: bảy tốt mỗi bên sau hai lần đổi tốt liên tiếp. Tượng f4 của Trắng đã đứng khá tích cực, còn Đen chưa phát triển quân nào.'
+              en: "Material is level again: seven pawns each after the two quick exchanges. White's bishop on f4 is already fairly active, while Black has not developed a single piece yet."
+              fr: "Le matériel est de nouveau égal : sept pions de chaque côté après les deux échanges rapides. Le fou blanc en f4 est déjà assez actif, tandis que les Noirs n'ont encore développé aucune pièce."
+            plan:
+              vi: Trắng tiếp tục Nf3 và Nc3, khai thác lợi thế phát triển và trung tâm thoáng. Đen vội đưa quân ra bằng ...Nf6 và ...Nc6 để bắt kịp.
+              en: White continues with Nf3 and Nc3, making use of the development lead and the open centre. Black hurries to bring pieces out with ...Nf6 and ...Nc6 to catch up.
+              fr: Les Blancs poursuivent par Nf3 et Nc3, exploitant leur avance de développement et le centre ouvert. Les Noirs se hâtent de sortir leurs pièces par ...Nf6 et ...Nc6 pour rattraper leur retard.
+            basis:
+              by: chan
+              at: '2026-09-29'

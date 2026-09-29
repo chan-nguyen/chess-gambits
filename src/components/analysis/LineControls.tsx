@@ -61,7 +61,7 @@ export const LineControls = ({ position, flipped, onFlip }: LineControlsProps) =
               <Link
                 key={kind}
                 className={`line-controls__control line-controls__control--${kind}`}
-                to={{ pathname, search: analysisSearch({ line, ply: target }, flipped) }}
+                to={{ pathname, search: analysisSearch({ ...position, ply: target }, flipped) }}
                 preventScrollReset
               >
                 <Translated id={label} />

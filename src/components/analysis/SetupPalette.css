@@ -1,0 +1,73 @@
+.setup-palette {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Holds the shapes the buttons below refer to, and takes no room. */
+.setup-palette__sprite {
+  position: absolute;
+  inline-size: 0;
+  block-size: 0;
+  overflow: hidden;
+}
+
+.setup-palette__tools {
+  display: flex;
+  gap: var(--space-2);
+}
+
+/* Six a row, at every width: 360px leaves each piece more than the 44px touch target. */
+.setup-palette__pieces {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-1);
+}
+
+.setup-palette__tool,
+.setup-palette__piece {
+  min-block-size: var(--target-size-touch);
+  border: var(--border-width) solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+
+.setup-palette__tool {
+  flex: 1 1 0;
+  padding-inline: var(--space-3);
+}
+
+.setup-palette__piece {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  background-color: var(--color-board-light);
+}
+
+.setup-palette__piece svg {
+  inline-size: 100%;
+  max-inline-size: var(--space-7);
+  aspect-ratio: 1;
+}
+
+.setup-palette__tool:hover,
+.setup-palette__piece:hover {
+  border-color: var(--color-text);
+}
+
+/*
+ * The tool in hand: a thicker ring in the text colour, and the tool's label in bold. A shape
+ * difference, not a tint, because the piece buttons are already coloured by the pieces on
+ * them (§2).
+ */
+.setup-palette__tool[aria-pressed='true'],
+.setup-palette__piece[aria-pressed='true'] {
+  border-color: var(--color-text);
+  box-shadow: inset 0 0 0 var(--focus-ring-width) var(--color-text);
+  font-weight: 700;
+}

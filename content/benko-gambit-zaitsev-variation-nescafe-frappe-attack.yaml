@@ -1,0 +1,66 @@
+# Benko Gambit: Zaitsev Variation, Nescafe Frappe Attack. Frozen defining line 1.d4
+# Nf6 2.c4 c5 3.d5 b5 4.cxb5 a6 5.Nc3 axb5 6.e4 b4, which ends on Black's own ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js
+# through 7.Nb5 Nxe4 — White's own e4 pawn is left undefended once the c3-knight jumps
+# to b5. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: benko-gambit-zaitsev-variation-nescafe-frappe-attack
+name: 'Benko Gambit: Zaitsev Variation, Nescafe Frappe Attack'
+eco: A57
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, c5, d5, b5, cxb5, a6, Nc3, axb5, e4, b4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      Long-established opening theory, one of the main gambits Black has against 1.d4: the
+      queenside pawn majority and open files provide durable practical compensation for the
+      pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi đổi tốt cánh hậu, Đen đẩy tiếp ...b4 đuổi mã c3. Trắng phải quyết định lui mã đi đâu.
+    en: After the queenside trade, Black pushes ...b4 to chase the c3-knight. White must decide where to move it.
+    fr: "Après l'échange à l'aile dame, les Noirs poussent ...b4 pour chasser le cavalier c3. Les Blancs doivent décider où le déplacer."
+  dismissRest:
+    reason:
+      vi: 'Trắng lui mã đi nơi khác thay vì 7.Nb5 ở đây, ví dụ Nd5 hay Ne2. Đánh giá tương tự về tổng thể: Trắng luôn có một phần đền bù cho trung tâm bị suy yếu, bất kể lui mã về đâu.'
+      en: 'White moves the knight elsewhere instead of 7.Nb5 here, for instance Nd5 or Ne2. The overall assessment is similar: White always has some compensation for the weakened centre, wherever the knight goes.'
+      fr: "Les Blancs déplacent le cavalier ailleurs qu'en 7.Nb5 ici, par exemple Nd5 ou Ne2. L'évaluation générale reste similaire : les Blancs ont toujours une certaine compensation pour le centre affaibli, où que le cavalier aille."
+  children:
+    - ply: Nb5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng lao mã sang b5 — một nước phiêu lưu, sẵn sàng dấn sâu vào trại Đen (chuẩn bị Nd6+ hoặc Na7) hơn là lo giữ trung tâm.
+        en: "White launches the knight to b5 — an adventurous move heading deep into Black's camp (preparing Nd6+ or Na7) rather than tending to the centre."
+        fr: Les Blancs lancent le cavalier en b5 — un coup aventureux qui plonge dans le camp noir (préparant Nd6+ ou Na7) plutôt que de veiller sur le centre.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Đen ăn ngay tốt e4 đang bỏ ngỏ, vì con mã vừa nhảy sang b5 không còn bảo vệ nó nữa.
+            en: Black grabs the undefended e4 pawn at once, since the knight that has just jumped to b5 no longer guards it.
+            fr: Les Noirs prennent aussitôt le pion e4 sans défense, le cavalier venant de sauter en b5 ne le gardant plus.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy — Đen đang dẫn một tốt sau khi ăn thêm tốt e4, cộng với việc đã có một tốt dư từ đầu ván Benko. Đổi lại, mã Trắng trên b5 đang thâm nhập sâu, đe doạ Nd6+ gây rối loạn hàng ngũ Đen.'
+              en: "Count the pawns: White six, Black seven — Black is now up a pawn after also winning the e4 pawn, on top of the extra pawn already banked from the start of the Benko. In exchange, White's knight on b5 is deep in enemy territory, threatening Nd6+ to disrupt Black's position."
+              fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — les Noirs ont désormais un pion d'avance après avoir aussi gagné le pion e4, en plus du pion supplémentaire déjà engrangé depuis le début du Benko. En contrepartie, le cavalier blanc en b5 est profondément infiltré, menaçant Nd6+ pour désorganiser la position noire."
+            plan:
+              vi: Trắng chơi Nd6+ nếu được phép, hoặc Qf3 phối hợp tấn công mã e4 và f7, tìm cách bù lại tốt đã mất bằng sức ép cụ thể. Đen chơi ...exd6 nếu bị chiếu, hoặc củng cố bằng ...g6 và ...Bg7, cố giữ vật chất đã có.
+              en: White plays Nd6+ if allowed, or Qf3 combining pressure on the e4-knight and f7, trying to make up for the lost pawn with concrete threats. Black plays ...exd6 if checked, or consolidates with ...g6 and ...Bg7, trying to hold onto the material won.
+              fr: "Les Blancs jouent Nd6+ si possible, ou Qf3 combinant la pression sur le cavalier e4 et sur f7, cherchant à compenser le pion perdu par des menaces concrètes. Les Noirs jouent ...exd6 en cas d'échec, ou consolident par ...g6 et ...Bg7, essayant de garder le matériel gagné."
+            basis:
+              by: chan
+              at: '2026-09-29'
