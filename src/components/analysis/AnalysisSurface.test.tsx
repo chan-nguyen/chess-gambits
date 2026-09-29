@@ -29,8 +29,16 @@ const fakeSource = () => {
       }
     },
   }
-  const current = (): Asked => {
-    const request = asked.filter((one) => !one.stopped).at(-1)
+  const live = (): Asked | undefined => asked.filter((one) => !one.stopped).at(-1)
+  /**
+   * The request the page is making now, waited for. The page asks from an effect, and an
+   * effect runs after the commit a query has already seen: on a loaded runner it can run
+   * after the query has resolved, and reading the request at once then finds none (seen on
+   * CI for #159, in a test this file has had since #154).
+   */
+  const current = async (): Promise<Asked> => {
+    await waitFor(() => expect(live(), 'nothing is being analysed').toBeDefined())
+    const request = live()
     if (request === undefined) throw new Error('nothing is being analysed')
     return request
   }
@@ -79,8 +87,10 @@ const renderAt = (search: string, source: EvaluationSource) => {
   return router
 }
 
-const answer = (fake: ReturnType<typeof fakeSource>, evaluation: Evaluation) =>
-  act(() => fake.current().listener.onUpdate(evaluation))
+const answer = async (fake: ReturnType<typeof fakeSource>, evaluation: Evaluation) => {
+  const request = await fake.current()
+  act(() => request.listener.onUpdate(evaluation))
+}
 
 beforeEach(() => window.localStorage.clear())
 afterEach(() => {
@@ -94,7 +104,9 @@ describe('before the engine has answered', () => {
     renderAt('?moves=e4', fake.source)
 
     expect(await screen.findByText(A.loading)).toBeInTheDocument()
-    expect(fake.current().fen).toBe('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1')
+    expect((await fake.current()).fen).toBe(
+      'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1',
+    )
   })
 
   it('labels everything as an estimate, before there is anything to label', async () => {
@@ -108,7 +120,7 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
 
     expect(document.querySelector('.engine-panel__value')).toHaveTextContent('+0.32')
     expect(screen.getByText(/Độ sâu 18/)).toHaveTextContent(A.searching)
@@ -121,7 +133,7 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
 
     expect(document.querySelectorAll('polygon.board__arrow')).toHaveLength(1)
   })
@@ -130,7 +142,7 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     renderAt('?moves=f3_e5_g4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, {
+    await answer(fake, {
       depth: 8,
       complete: true,
       lines: [
@@ -151,18 +163,19 @@ describe('what the engine says', () => {
     const fake = fakeSource()
     const router = renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    const first = fake.current()
+    const first = await fake.current()
 
     await act(() => router.navigate('/vi/analysis?moves=e4_e5'))
     expect(first.stopped).toBe(true)
-    expect(fake.current().fen).toContain(' w ')
+    expect((await fake.current()).fen).toContain(' w ')
   })
 
   it('says so when the engine cannot run', async () => {
     const fake = fakeSource()
     renderAt('', fake.source)
     await screen.findByText(A.loading)
-    act(() => fake.current().listener.onFailure())
+    const request = await fake.current()
+    act(() => request.listener.onFailure())
 
     expect(screen.getByRole('alert')).toHaveTextContent(A.failed)
   })
@@ -183,7 +196,7 @@ describe('moving through the line', () => {
     const fake = fakeSource()
     const router = renderAt('?moves=e4', fake.source)
     await screen.findByText(A.loading)
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
 
     fireEvent.click(screen.getByRole('button', { name: /Đi c5/ }))
     await waitFor(() => expect(router.state.location.search).toBe('?moves=e4_c5'))
@@ -199,7 +212,7 @@ describe('moving through the line', () => {
     fireEvent.keyDown(window, { key: 'ArrowLeft' })
     await waitFor(() => expect(router.state.location.search).toBe('?moves=e4_e5_Nf3&ply=1'))
 
-    answer(fake, AFTER_E4)
+    await answer(fake, AFTER_E4)
     fireEvent.click(screen.getByRole('button', { name: /Đi c5/ }))
     await waitFor(() => expect(router.state.location.search).toBe('?moves=e4_c5'))
   })
@@ -340,7 +353,7 @@ describe('a position set up by hand', () => {
         `?fen=${encodeURIComponent('4k3/8/8/8/8/8/8/3QK3 b - - 0 1')}`,
       ),
     )
-    expect(fake.current().fen).toBe('4k3/8/8/8/8/8/8/3QK3 b - - 0 1')
+    expect((await fake.current()).fen).toBe('4k3/8/8/8/8/8/8/3QK3 b - - 0 1')
   })
 
   it('takes a piece off with the same piece again, or with the eraser', async () => {
@@ -447,13 +460,15 @@ describe('a line from a set-up position', () => {
 
     expect(await screen.findByRole('link', { current: 'step' })).toHaveTextContent('Qd7+')
     expect(document.querySelector('.analysis-moves__list')).toHaveTextContent('14.…Kf715.Qd7+')
-    expect(fake.current().fen).toBe('8/3Q1k2/8/8/8/8/8/4K3 b - - 2 15')
+    expect((await fake.current()).fen).toBe('8/3Q1k2/8/8/8/8/8/4K3 b - - 2 15')
   })
 
   it('starts from the initial position when the FEN cannot be analysed', async () => {
     const fake = fakeSource()
     renderAt(`?fen=${encodeURIComponent('8/8/8/8/8/8/8/8 w - - 0 1')}&moves=e4`, fake.source)
     await screen.findByText(A.loading)
-    expect(fake.current().fen).toBe('rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1')
+    expect((await fake.current()).fen).toBe(
+      'rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1',
+    )
   })
 })
