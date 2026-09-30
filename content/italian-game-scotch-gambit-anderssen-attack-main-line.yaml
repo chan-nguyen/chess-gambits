@@ -1,0 +1,84 @@
+# Italian Game: Scotch Gambit, Anderssen Attack, Main Line. Defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bc4 Nf6 4.d4 exd4 5.O-O Nxe4 6.Re1 d5 7.Bxd5 Qxd5 8.Nc3 Qa5 9.Nxe4 Be6 10.Bd2 Qd5
+# 11.Bg5, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-scotch-gambit-anderssen-attack-main-line
+name: 'Italian Game: Scotch Gambit, Anderssen Attack, Main Line'
+eco: C56
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bc4,
+    Nf6,
+    d4,
+    exd4,
+    O-O,
+    Nxe4,
+    Re1,
+    d5,
+    Bxd5,
+    Qxd5,
+    Nc3,
+    Qa5,
+    Nxe4,
+    Be6,
+    Bd2,
+    Qd5,
+    Bg5,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. The pieces are level again after the exchanges on d5 and e4, White is a
+      pawn down, but White's king is castled while Black's king is still on e8 and the
+      e-file is open; that is treated as enough compensation for the line to be labelled
+      sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 11.Bg5. Tượng g5 bị hậu d5 tấn công và được hai mã e4 và f3 bảo vệ, mã e4 bị hậu tấn công và được xe e1 bảo vệ, còn tốt a2 bị hậu tấn công và được xe a1 bảo vệ. Trắng có sáu tốt, Đen bảy tốt, và số quân nhẹ bằng nhau. Mục này đi theo nước 11...Be7.
+    en: White has just played 11.Bg5. The bishop is attacked by the queen on d5 and defended by the knights on e4 and f3, the knight on e4 is attacked by the queen and defended by the rook on e1, and the a2 pawn is attacked by the queen and defended by the rook on a1. White has six pawns to Black's seven, and the minor pieces are level. This entry follows 11...Be7.
+    fr: Les Blancs viennent de jouer 11.Bg5. Le fou est attaqué par la dame d5 et défendu par les cavaliers e4 et f3, le cavalier e4 est attaqué par la dame et défendu par la tour e1, et le pion a2 est attaqué par la dame et défendu par la tour a1. Les Blancs ont six pions contre sept aux Noirs, et les pièces mineures sont à égalité. Cette entrée suit 11...Be7.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 11...Be7 ở đây, chẳng hạn 11...f6. Mục này chỉ mô hình hóa nước đi tượng lên e7.
+      en: Black plays something other than 11...Be7 here, for instance 11...f6. This entry models only the bishop move to e7.
+      fr: Les Noirs jouent autre chose que 11...Be7 ici, par exemple 11...f6. Cette entrée ne modélise que le coup de fou en e7.
+  children:
+    - ply: Be7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển tượng lên e7, nơi nó tấn công tượng g5 và được vua cùng mã c6 bảo vệ.
+        en: Black develops the bishop to e7, where it attacks the bishop on g5 and is defended by the king and the knight on c6.
+        fr: Les Noirs développent le fou en e7, où il attaque le fou g5 et où il est défendu par le roi et le cavalier c6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, và số quân nhẹ bằng nhau: một tượng và hai mã của Trắng so với hai tượng và một mã của Đen. Tượng g5 bị tượng e7 và hậu d5 tấn công và được hai mã e4 và f3 bảo vệ; tốt d4 bị tấn công hai lần và được bảo vệ hai lần. Trắng đã nhập thành trong khi vua Đen vẫn ở e8, và cột e đang mở.'
+          en: "Count the pawns: White six, Black seven, and the minor pieces are level, a bishop and two knights against two bishops and a knight. The bishop on g5 is attacked by the bishop on e7 and the queen on d5 and defended by the knights on e4 and f3; the d4 pawn is attacked twice and defended twice. White has castled while Black's king is still on e8, and the e-file is open."
+          fr: 'Comptez les pions : six pour les Blancs, sept pour les Noirs, et les pièces mineures sont à égalité, un fou et deux cavaliers contre deux fous et un cavalier. Le fou g5 est attaqué par le fou e7 et la dame d5 et défendu par les cavaliers e4 et f3 ; le pion d4 est attaqué deux fois et défendu deux fois. Les Blancs ont roqué alors que le roi noir est toujours en e8, et la colonne e est ouverte.'
+        plan:
+          vi: Trắng đổi tượng bằng Bxe7, hoặc chơi Nc3 để đánh hậu. Đen đổi trên g5 bằng ...Bxg5 và nhập thành cánh hậu bằng ...O-O-O, đưa xe lên cột d.
+          en: White trades with Bxe7, or plays Nc3 to hit the queen. Black trades on g5 with ...Bxg5 and castles long with ...O-O-O, bringing a rook to the d-file.
+          fr: Les Blancs échangent par Bxe7, ou jouent Nc3 pour frapper la dame. Les Noirs échangent en g5 par ...Bxg5 et roquent du côté dame par ...O-O-O, amenant une tour sur la colonne d.
+        basis:
+          by: chan
+          at: 2026-09-30

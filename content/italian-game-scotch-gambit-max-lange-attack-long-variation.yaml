@@ -1,0 +1,84 @@
+# Italian Game: Scotch Gambit, Max Lange Attack, Long Variation. Defining line 1.e4 e5 2.Nf3
+# Nc6 3.d4 exd4 4.Bc4 Nf6 5.O-O Bc5 6.e5 d5 7.exf6 dxc4 8.Re1+ Be6 9.Ng5 Qd5 10.Nc3 Qf5
+# 11.Nce4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-scotch-gambit-max-lange-attack-long-variation
+name: 'Italian Game: Scotch Gambit, Max Lange Attack, Long Variation'
+eco: C56
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    d4,
+    exd4,
+    Bc4,
+    Nf6,
+    O-O,
+    Bc5,
+    e5,
+    d5,
+    exf6,
+    dxc4,
+    Re1+,
+    Be6,
+    Ng5,
+    Qd5,
+    Nc3,
+    Qf5,
+    Nce4,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is a pawn down at this point, but both knights are aimed at Black's
+      kingside, the f6 pawn attacks g7 and Black's c-pawns are doubled; that is treated as
+      enough compensation for the line to be labelled sound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 11.Nce4, con mã từ c3 cùng mã g5 nhắm vào cánh vua của Đen. Trắng có bảy tốt, Đen tám tốt, tính cả tốt f6 đã tiến của Trắng, và số quân nhẹ bằng nhau. Tốt f6 bị tốt g7 và hậu f5 tấn công và được mã e4 bảo vệ, còn tốt g7 bị tốt f6 tấn công mà không có quân nào bảo vệ. Mục này đi theo nước Đen nhập thành.
+    en: White has just played 11.Nce4, with the knight from c3 joining the knight on g5 against Black's kingside. White has seven pawns to Black's eight, counting the advanced pawn on f6, and the minor pieces are level. The f6 pawn is attacked by the g7 pawn and the queen on f5 and defended by the knight on e4, and the g7 pawn is attacked by the f6 pawn and nothing defends it. This entry follows Black castling.
+    fr: Les Blancs viennent de jouer 11.Nce4, le cavalier de c3 rejoignant le cavalier g5 contre l'aile roi des Noirs. Les Blancs ont sept pions contre huit aux Noirs, en comptant le pion avancé f6, et les pièces mineures sont à égalité. Le pion f6 est attaqué par le pion g7 et la dame f5 et défendu par le cavalier e4, et le pion g7 est attaqué par le pion f6 et rien ne le défend. Cette entrée suit le roque des Noirs.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 11...O-O ở đây, chẳng hạn 11...gxf6 hoặc 11...Qe5. Mục này chỉ mô hình hóa nước nhập thành.
+      en: Black plays something other than 11...O-O here, for instance 11...gxf6 or 11...Qe5. This entry models only castling.
+      fr: Les Noirs jouent autre chose que 11...O-O ici, par exemple 11...gxf6 ou 11...Qe5. Cette entrée ne modélise que le roque.
+  children:
+    - ply: O-O
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhập thành, dùng vua bảo vệ tốt g7 và đưa vua ra sau các tốt f, g và h.
+        en: Black castles, which defends the g7 pawn with the king and puts the king behind the f-, g- and h-pawns.
+        fr: Les Noirs roquent, ce qui défend le pion g7 avec le roi et met le roi derrière les pions f, g et h.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt, và hai tốt c7 và c4 của Đen bị chồng. Tốt f6 bị tốt g7 và hậu f5 tấn công và chỉ được mã e4 bảo vệ một lần; mã g5 tấn công tượng e6, quân được tốt f7 và hậu bảo vệ, tốt f7, quân được xe, vua và tượng bảo vệ, và tốt h7, quân được vua và hậu bảo vệ. Đen đã nhập thành, và cột e mở.'
+          en: "Count the pawns: White seven, Black eight — White is a pawn down, and Black's pawns on c7 and c4 are doubled. The pawn on f6 is attacked by the g7 pawn and the queen on f5 and defended once, by the knight on e4; the knight on g5 attacks the bishop on e6, which the f7 pawn and the queen defend, the pawn on f7, which the rook, the king and the bishop defend, and the pawn on h7, which the king and the queen defend. Black has castled, and the e-file is open."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins, et les pions noirs c7 et c4 sont doublés. Le pion f6 est attaqué par le pion g7 et la dame f5 et défendu une fois, par le cavalier e4 ; le cavalier g5 attaque le fou e6, que le pion f7 et la dame défendent, le pion f7, que la tour, le roi et le fou défendent, et le pion h7, que le roi et la dame défendent. Les Noirs ont roqué, et la colonne e est ouverte.'
+        plan:
+          vi: Trắng ăn trên g7 bằng fxg7, tấn công xe f8, và giữ hai mã nhắm vào e6, f7 và h7. Đen ăn tốt đã tiến bằng ...gxf6, nước đi cũng tấn công mã g5.
+          en: White takes on g7 with fxg7, attacking the rook on f8, and keeps the knights aimed at e6, f7 and h7. Black takes the advanced pawn with ...gxf6, which also attacks the knight on g5.
+          fr: Les Blancs prennent en g7 par fxg7, attaquant la tour f8, et gardent les cavaliers braqués sur e6, f7 et h7. Les Noirs prennent le pion avancé par ...gxf6, qui attaque aussi le cavalier g5.
+        basis:
+          by: chan
+          at: 2026-09-30

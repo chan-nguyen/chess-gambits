@@ -1,0 +1,59 @@
+# Italian Game: Two Knights Defense, Ponziani-Steinitz Gambit. Defining line 1.e4 e5 2.Nf3
+# Nc6 3.Bc4 Nf6 4.Ng5 Nxe4, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-two-knights-defense-ponziani-steinitz-gambit
+name: 'Italian Game: Two Knights Defense, Ponziani-Steinitz Gambit'
+eco: C57
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, Nxe4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 5.Nxe4 Black is a knight down for a pawn and has to win the piece
+      back at once with the fork ...d5; the chances are practical rather than objective,
+      which is what dubious means here. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...Nxe4, ăn tốt e4 bằng mã. Mã e4 bị mã g5 tấn công mà không có quân nào bảo vệ, trong khi mã g5 của Trắng bị mã e4 và hậu d8 tấn công và cũng không được bảo vệ; tốt f7 bị mã và tượng c4 tấn công và chỉ có vua bảo vệ. Mục này đi theo nước Trắng ăn mã bằng 5.Nxe4.
+    en: Black has just played 4...Nxe4, taking the e4 pawn. The knight on e4 is attacked by the knight on g5 and nothing defends it, while White's knight on g5 is attacked by the knight on e4 and the queen on d8 and is undefended too; the f7 pawn is attacked by the knight and the bishop on c4 and defended only by the king. This entry follows White taking the knight with 5.Nxe4.
+    fr: Les Noirs viennent de jouer 4...Nxe4, prenant le pion e4. Le cavalier e4 est attaqué par le cavalier g5 et rien ne le défend, tandis que le cavalier g5 des Blancs est attaqué par le cavalier e4 et la dame d8 et n'est pas défendu non plus ; le pion f7 est attaqué par le cavalier et le fou c4 et défendu seulement par le roi. Cette entrée suit la prise du cavalier par les Blancs, 5.Nxe4.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 5.Nxe4 ở đây, chẳng hạn 5.Nxf7 hoặc 5.Qh5. Mục này chỉ mô hình hóa nước ăn mã.
+      en: White plays something other than 5.Nxe4 here, for instance 5.Nxf7 or 5.Qh5. This entry models only the capture of the knight.
+      fr: Les Blancs jouent autre chose que 5.Nxe4 ici, par exemple 5.Nxf7 ou 5.Qh5. Cette entrée ne modélise que la prise du cavalier.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn mã e4 bằng mã từ g5, được một quân đổi lấy một tốt. Tốt f7 vẫn bị tượng c4 tấn công và chỉ có vua bảo vệ.
+        en: White takes the knight on e4 with the knight from g5, winning a piece for a pawn. The f7 pawn is still attacked by the bishop on c4 and defended only by the king.
+        fr: Les Blancs prennent le cavalier e4 avec le cavalier de g5, gagnant une pièce contre un pion. Le pion f7 est toujours attaqué par le fou c4 et défendu seulement par le roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — nhưng Trắng hơn một mã: hai tượng và hai mã so với hai tượng và một mã của Đen. Đen còn nước ...d5, đánh cùng lúc tượng c4 và mã e4. Tốt f7 của Đen bị tượng c4 tấn công và chỉ có vua bảo vệ.'
+          en: "Count the pawns: White seven, Black eight — but White has an extra knight: two bishops and two knights to Black's two bishops and one knight. Black's resource is the move ...d5, which attacks the bishop on c4 and the knight on e4 at the same time. Black's f7 pawn is attacked by the bishop on c4 and defended only by the king."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs — mais les Blancs ont un cavalier de plus : deux fous et deux cavaliers contre deux fous et un cavalier pour les Noirs. La ressource des Noirs est le coup ...d5, qui attaque en même temps le fou c4 et le cavalier e4. Le pion f7 des Noirs est attaqué par le fou c4 et défendu seulement par le roi.'
+        plan:
+          vi: Đen chơi ...d5, đánh cùng lúc tượng c4 và mã e4, để lấy lại quân, rồi phát triển bằng ...Bd6 và ...O-O.
+          en: Black plays ...d5, hitting the bishop on c4 and the knight on e4 at once, to win the piece back, then develops with ...Bd6 and ...O-O.
+          fr: Les Noirs jouent ...d5, frappant à la fois le fou c4 et le cavalier e4, pour regagner la pièce, puis se développent par ...Bd6 et ...O-O.
+        basis:
+          by: chan
+          at: 2026-09-30

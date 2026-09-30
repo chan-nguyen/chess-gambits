@@ -1,0 +1,59 @@
+# Italian Game: Scotch Gambit, Max Lange Attack Accepted. Defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bc4 Bc5 4.O-O Nf6 5.d4 exd4 6.e5 d5 7.exf6 dxc4 8.Re1+ Be6 9.fxg7, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-scotch-gambit-max-lange-attack-accepted
+name: 'Italian Game: Scotch Gambit, Max Lange Attack Accepted'
+eco: C56
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, O-O, Nf6, d4, exd4, e5, d5, exf6, dxc4, Re1+, Be6, fxg7]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. Material is level after the exchanges, the rook on e1 pins the bishop on
+      e6 to the king and Black's pawns on f7 and h7 are isolated; the line holds up for
+      White. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.fxg7, ăn trên g7 bằng tốt, con tốt giờ tấn công xe h8, quân không được bảo vệ, trong khi xe e1 tấn công tượng e6, quân được tốt f7 bảo vệ. Hai bên có bảy tốt, tính cả tốt g7 đã tiến của Trắng, và số quân nhẹ bằng nhau. Mục này đi theo nước 9...Rg8.
+    en: White has just played 9.fxg7, capturing on g7 with the pawn, which now attacks the rook on h8, undefended, while the rook on e1 attacks the bishop on e6, defended by the f7 pawn. Each side has seven pawns, counting White's advanced pawn on g7, and the minor pieces are level. This entry follows 9...Rg8.
+    fr: Les Blancs viennent de jouer 9.fxg7, prenant en g7 avec le pion, qui attaque maintenant la tour h8, sans défense, tandis que la tour e1 attaque le fou e6, défendu par le pion f7. Chaque camp a sept pions, en comptant le pion avancé g7 des Blancs, et les pièces mineures sont à égalité. Cette entrée suit 9...Rg8.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 9...Rg8 ở đây, chẳng hạn 9...Qf6, nước để xe h8 vẫn bị tốt g7 tấn công. Mục này chỉ mô hình hóa nước đi xe lên g8.
+      en: Black plays something other than 9...Rg8 here, for instance 9...Qf6, which leaves the rook on h8 attacked by the g7 pawn. This entry models only the rook move to g8.
+      fr: Les Noirs jouent autre chose que 9...Rg8 ici, par exemple 9...Qf6, qui laisse la tour h8 attaquée par le pion g7. Cette entrée ne modélise que le coup de tour en g8.
+  children:
+    - ply: Rg8
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa xe đang bị tấn công về g8, nơi nó tấn công tốt g7, quân không có gì bảo vệ.
+        en: Black moves the attacked rook to g8, where it attacks the g7 pawn, which nothing defends.
+        fr: Les Noirs mettent la tour attaquée en g8, où elle attaque le pion g7, que rien ne défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen bảy. Hai tốt g7 và g2 của Trắng bị chồng, và tốt g7 bị xe g8 tấn công mà không có quân nào bảo vệ; hai tốt c7 và c4 của Đen bị chồng còn các tốt f7 và h7 bị cô lập. Xe e1 ghim tượng e6 vào vua, và tốt d4 bị tấn công hai lần và được bảo vệ ba lần.'
+          en: "Count the pawns: White seven, Black seven. White's pawns on g7 and g2 are doubled, and the g7 pawn is attacked by the rook on g8 and nothing defends it; Black's pawns on c7 and c4 are doubled and the pawns on f7 and h7 are isolated. The rook on e1 pins the bishop on e6 to the king, and the d4 pawn is attacked twice and defended three times."
+          fr: 'Comptez les pions : sept pour les Blancs, sept pour les Noirs. Les pions blancs g7 et g2 sont doublés, et le pion g7 est attaqué par la tour g8 et rien ne le défend ; les pions noirs c7 et c4 sont doublés et les pions f7 et h7 sont isolés. La tour e1 cloue le fou e6 au roi, et le pion d4 est attaqué deux fois et défendu trois fois.'
+        plan:
+          vi: Trắng bảo vệ con tốt đã tiến bằng Bh6, rồi phát triển bằng Nc3 và giữ xe e1 ghim tượng e6. Đen chơi ...Qd7 để bảo vệ tượng e6 lần thứ hai, và ăn tốt g7 bằng ...Rxg7 nếu nó bị bỏ lại.
+          en: White defends the advanced pawn with Bh6, then develops with Nc3 and keeps the rook on e1 pinning the bishop on e6. Black plays ...Qd7 to defend the bishop on e6 a second time, and takes the g7 pawn with ...Rxg7 if it is left.
+          fr: Les Blancs défendent le pion avancé par Bh6, puis se développent par Nc3 et gardent la tour e1 qui cloue le fou e6. Les Noirs jouent ...Qd7 pour défendre le fou e6 une deuxième fois, et prennent le pion g7 par ...Rxg7 s'il est laissé.
+        basis:
+          by: chan
+          at: 2026-09-30

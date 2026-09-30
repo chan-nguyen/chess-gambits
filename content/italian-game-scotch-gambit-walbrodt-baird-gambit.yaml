@@ -1,0 +1,60 @@
+# Italian Game: Scotch Gambit, Walbrodt-Baird Gambit. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4
+# Bc5 4.c3 Nf6 5.d4 exd4 6.O-O, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-scotch-gambit-walbrodt-baird-gambit
+name: 'Italian Game: Scotch Gambit, Walbrodt-Baird Gambit'
+eco: C56
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, c3, Nf6, d4, exd4, O-O]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is two pawns down at this point, but White has castled, the open
+      e-file points at Black's king, which has not castled, and the d4 pawn is attacked
+      three times; that is treated as enough compensation for the line to be labelled sound.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa nhập thành bằng 6.O-O thay vì ăn lại trên d4. Trắng có bảy tốt, Đen tám tốt. Tốt e4 bị mã f6 tấn công mà không có quân nào bảo vệ, tốt c3 bị tốt d4 tấn công và được bảo vệ hai lần, bởi tốt b2 và mã b1, còn tốt d4 bị tấn công ba lần và được bảo vệ hai lần. Mục này đi theo nước ăn tốt 6...Nxe4.
+    en: White has just castled with 6.O-O instead of recapturing on d4. White has seven pawns to Black's eight. The e4 pawn is attacked by the knight on f6 and nothing defends it, the c3 pawn is attacked by the d4 pawn and defended twice, by the b2 pawn and the knight on b1, and the d4 pawn is attacked three times and defended twice. This entry follows the capture 6...Nxe4.
+    fr: Les Blancs viennent de roquer par 6.O-O au lieu de reprendre en d4. Les Blancs ont sept pions contre huit aux Noirs. Le pion e4 est attaqué par le cavalier f6 et rien ne le défend, le pion c3 est attaqué par le pion d4 et défendu deux fois, par le pion b2 et le cavalier b1, et le pion d4 est attaqué trois fois et défendu deux fois. Cette entrée suit la prise 6...Nxe4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Nxe4 ở đây, chẳng hạn 6...d6 hoặc 6...O-O. Mục này chỉ mô hình hóa nước ăn tốt trên e4.
+      en: Black plays something other than 6...Nxe4 here, for instance 6...d6 or 6...O-O. This entry models only the capture on e4.
+      fr: Les Noirs jouent autre chose que 6...Nxe4 ici, par exemple 6...d6 ou 6...O-O. Cette entrée ne modélise que la prise en e4.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt e4 bằng mã, con mã giờ tấn công các tốt c3 và f2.
+        en: Black takes the e4 pawn with the knight, which now attacks the c3 and f2 pawns.
+        fr: Les Noirs prennent le pion e4 avec le cavalier, qui attaque maintenant les pions c3 et f2.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám — Trắng kém hai tốt, và hai tốt d7 và d4 của Đen bị chồng. Tốt d4 bị tấn công ba lần và được bảo vệ hai lần, còn tốt c3 bị tấn công hai lần và được bảo vệ hai lần. Cột e mở, Trắng đã nhập thành còn vua Đen vẫn ở e8, và tượng c4 tấn công f7, ô chỉ có vua bảo vệ.'
+          en: "Count the pawns: White six, Black eight — White is two pawns down, and Black's pawns on d7 and d4 are doubled. The d4 pawn is attacked three times and defended twice, and the c3 pawn is attacked twice and defended twice. The e-file is open, White has castled while Black's king is still on e8, and the bishop on c4 attacks f7, which only the king defends."
+          fr: 'Comptez les pions : six pour les Blancs, huit pour les Noirs — les Blancs ont deux pions de moins, et les pions noirs d7 et d4 sont doublés. Le pion d4 est attaqué trois fois et défendu deux fois, et le pion c3 est attaqué deux fois et défendu deux fois. La colonne e est ouverte, les Blancs ont roqué alors que le roi noir est toujours en e8, et le fou c4 attaque f7, que seul le roi défend.'
+        plan:
+          vi: Trắng chơi cxd4, tấn công tượng c5, và Re1, đánh mã e4 theo cột e mở. Đen chơi ...d5 để đánh tượng c4 và hỗ trợ mã e4, rồi ...O-O.
+          en: White plays cxd4, attacking the bishop on c5, and Re1, hitting the knight on e4 down the open e-file. Black plays ...d5 to hit the bishop on c4 and support the knight on e4, then ...O-O.
+          fr: Les Blancs jouent cxd4, attaquant le fou c5, et Re1, frappant le cavalier e4 par la colonne e ouverte. Les Noirs jouent ...d5 pour frapper le fou c4 et soutenir le cavalier e4, puis ...O-O.
+        basis:
+          by: chan
+          at: 2026-09-30
