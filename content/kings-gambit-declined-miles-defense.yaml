@@ -1,0 +1,67 @@
+# King's Gambit Declined, Miles Defense, taught. Frozen defining line 1.e4 e5 2.f4 Nc6
+# 3.Nf3, which ends on White's own 3.Nf3 — the learner's ply — so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Black's 3...f5, the countergambit that gives this
+# entry its name, is modelled as the root's single reply. Every ply was replayed with
+# chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check. exf5 was independently confirmed as a free capture for White with
+# `resolution.ts`'s `freeCaptures`, which is why the leaf carries `unsettled` rather than
+# stopping silently.
+id: kings-gambit-declined-miles-defense
+name: "King's Gambit Declined: Miles Defense"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Nc6, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black answers one gambit pawn with a countergambit pawn of their own,
+      but the new pawn on f5 is left completely undefended, letting White simply capture it.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng phát triển mã ra f3, sẵn sàng ăn lại con tốt f4 nếu Đen không hành động.
+    en: White develops the knight to f3, ready to recapture the f4 pawn if Black does nothing about it.
+    fr: Les Blancs développent le cavalier en f3, prêts à reprendre le pion f4 si les Noirs ne réagissent pas.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 3...f5 — chẳng hạn nhận gambit bằng ...exf4 hoặc phát triển bằng ...Nf6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 3...f5 — for instance accepting the gambit with ...exf4 or developing with ...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 3...f5 — par exemple accepter le gambit par ...exf4 ou se développer par ...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: f5
+      replyQuality: mistake
+      frequency: rare
+      annotation:
+        vi: Đen đáp lại bằng chính một con tốt gambit khác, đẩy tốt lên f5, nhưng con tốt này lại không được quân nào bảo vệ.
+        en: Black answers with a countergambit pawn of its own, pushing to f5, but that pawn is left with no defender at all.
+        fr: Les Noirs répondent par leur propre pion de contre-gambit, poussant en f5, mais ce pion reste totalement sans défense.
+      unsettled: >-
+        exf5 is going free for White — Black's 3...f5 leaves the pawn completely undefended,
+        so White simply captures it next move. The evaluation below already counts the
+        pawns as if that capture has happened, since it changes the material balance but
+        nothing about the position's character, so extending the line one more ply would add
+        nothing a reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì hai bên bằng nhau, mỗi bên tám, nhưng con tốt f5 của Đen đang không được bảo vệ và Trắng sẽ ăn nó ngay bằng exf5, vượt lên hơn một tốt sạch. Con tốt e5 của Đen thì vẫn đang được bảo vệ, nên không có gì bù lại cho con tốt f5 vừa mất.
+          en: Count the pawns right here and the two sides are level, eight each, but Black's f5 pawn is undefended and White will simply capture it with exf5, moving a clean pawn ahead. Black's e5 pawn remains defended, so there is nothing to show in return for the f5 pawn just lost.
+          fr: Comptez les pions ici même, les deux camps sont à égalité, huit de chaque côté, mais le pion f5 noir est sans défense et les Blancs vont simplement le capturer par exf5, prenant un pion net d'avance. Le pion e5 noir reste défendu, donc rien ne compense le pion f5 qui vient d'être perdu.
+        plan:
+          vi: Trắng chơi exf5 ăn tốt rồi tiếp tục phát triển bằng Bc4, giữ vững tốt thừa qua cả ván đấu. Đen chơi ...d6 mở đường cho tượng c8 rồi tính ăn lại tốt f5, hoặc ...Nf6 phát triển trước, cố gắng tạo đủ sức ép bù lại con tốt đã mất.
+          en: White plays exf5 to win the pawn, then continues developing with Bc4, holding on to the extra pawn for the rest of the game. Black plays ...d6 to free the c8 bishop and look to recapture on f5, or ...Nf6 to develop first, trying to build enough pressure to compensate for the lost pawn.
+          fr: Les Blancs jouent exf5 pour gagner le pion, puis poursuivent leur développement par Bc4, conservant le pion supplémentaire pour le reste de la partie. Les Noirs jouent ...d6 pour libérer le fou c8 et chercher à reprendre en f5, ou ...Nf6 pour se développer d'abord, essayant de créer assez de pression pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'

@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Salvio Gambit, Silberschmidt Defense, taught. Shares its 11-ply
+# root, 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.Ne5 Qh4+ 6.Kf1, with the other Salvio Gambit
+# siblings, so `definingLine` stops there — the learner's own 6.Kf1 — and Black's 6...Nh6,
+# the move that gives this entry its name, is modelled as the root's own reply
+# (docs/CONTEXT.md, invariant 5). Every ply was replayed with chess.js, and the leaf was
+# checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+id: kings-gambit-accepted-salvio-gambit-silberschmidt-defense
+name: "King's Gambit Accepted: Salvio Gambit, Silberschmidt Defense"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Ne5, Qh4+, Kf1]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White accepts the loss of castling rights to keep the e5 knight and the
+      extra tempo the check cost Black, real practical chances rather than a proven
+      advantage. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chấp nhận mất quyền nhập thành, đưa vua sang f1 để né chiếu, chứ không lùi mã hay chặn hậu.
+    en: White accepts the loss of castling rights, sidestepping to f1 to dodge the check rather than retreating the knight or blocking the queen.
+    fr: Les Blancs acceptent de perdre le droit de roquer, esquivant en f1 pour échapper à l'échec plutôt que de reculer le cavalier ou de bloquer la dame.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 6...Nh6 — chẳng hạn ăn tốt bằng ...Qxe4 hay phát triển bằng ...d6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 6...Nh6 — for instance grabbing a pawn with ...Qxe4 or developing with ...d6. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 6...Nh6 — par exemple ramasser un pion par ...Qxe4 ou se développer par ...d6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nh6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đưa mã ra h6, vừa phát triển vừa bảo vệ thêm cho con tốt g4 đang được giữ.
+        en: Black develops the knight to h6, both developing and adding a second defender to the g4 pawn.
+        fr: Les Noirs développent le cavalier en h6, se développant tout en ajoutant un second défenseur au pion g4.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng vẫn kém một tốt. Vua Trắng đã mất quyền nhập thành và đang đứng ngay trên cột f nửa mở (vì tốt f của Trắng đã mất từ nước hai), dù chưa quân Đen nào trực tiếp khai thác được điều đó ngay lúc này.
+          en: Count the pawns and it is seven for White, eight for Black — White is still a pawn down. White's king has already lost the right to castle and sits right on the half-open f-file, its own f-pawn gone since move two, though no Black piece is yet in position to exploit that directly.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs restent en retard d'un pion. Le roi blanc a déjà perdu le droit de roquer et se trouve justement sur la colonne f semi-ouverte, son propre pion f ayant disparu dès le deuxième coup, même si aucune pièce noire n'est encore en position d'en profiter directement.
+        plan:
+          vi: Trắng chơi Bxf4 lấy lại tốt và mở đường cho quân, tìm chỗ tương đối an toàn cho vua qua Kg1 sau này. Đen chơi ...d6 đuổi mã e5 và hoàn tất phát triển, tính chuyện dùng cột f nửa mở cùng con hậu đang chủ động để tạo sức ép lâu dài lên vua Trắng.
+          en: White plays Bxf4 to win back the pawn and open lines for the pieces, looking for a relatively safe spot for the king with Kg1 later. Black plays ...d6 to chase the e5 knight and finish developing, planning to use the half-open f-file together with the already-active queen to keep long-term pressure on White's king.
+          fr: Les Blancs jouent Bxf4 pour regagner le pion et ouvrir des lignes pour leurs pièces, cherchant un abri relativement sûr pour le roi avec Kg1 plus tard. Les Noirs jouent ...d6 pour chasser le cavalier e5 et achever leur développement, prévoyant d'utiliser la colonne f semi-ouverte avec la dame déjà active pour maintenir une pression durable sur le roi blanc.
+        basis:
+          by: chan
+          at: '2026-09-29'

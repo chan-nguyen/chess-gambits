@@ -1,0 +1,61 @@
+# King's Gambit Accepted, Middleton Countergambit, taught. Frozen defining line 1.e4 e5
+# 2.f4 exf4 3.Nf3 g5 4.Bc4 d6 5.O-O Bg4 6.h3 h5 7.hxg4, which ends on White's own 7.hxg4 —
+# the learner's ply, capturing the bishop Black chose to defend rather than retreat — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 7...hxg4, recapturing the
+# pawn, is modelled as the root's single reply. Every ply was replayed with chess.js, and the
+# leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free
+# capture.
+id: kings-gambit-accepted-middleton-countergambit
+name: "King's Gambit Accepted: Middleton Countergambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, d6, O-O, Bg4, h3, h5, hxg4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black defends the pinning bishop with 6...h5 instead of retreating it,
+      and White simply takes it — a genuine try for Black in blitz practice, but not one
+      that holds up against the simple capture. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chọn giữ tượng g4 bằng ...h5 thay vì rút lui, và Trắng đơn giản ăn luôn con tượng bằng chính con tốt đang tấn công nó.
+    en: Black has just chosen to hold the bishop on g4 with ...h5 instead of retreating it, and White simply captures the bishop with the very pawn attacking it.
+    fr: Les Noirs viennent de choisir de défendre le fou en g4 par ...h5 plutôt que de le reculer, et les Blancs capturent simplement le fou avec le pion même qui l'attaquait.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 7...hxg4 — thực ra đây là nước bắt buộc duy nhất để ăn lại quân vừa mất; mọi nước khác bỏ luôn con tượng đã bị ăn mà không được gì bù lại. Nằm ngoài phạm vi mục này.
+      en: Black plays something other than 7...hxg4 — this is in fact the only move that recaptures anything at all; every other move simply abandons the bishop just lost for nothing in return. Outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 7...hxg4 — c'est en réalité le seul coup qui reprenne quoi que ce soit ; tout autre coup abandonne purement et simplement le fou qui vient d'être perdu, sans rien en retour. Hors du cadre de cette entrée.
+  children:
+    - ply: hxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn lại tốt bằng chính con tốt h5, lấy lại một phần vật chất sau khi đã mất tượng.
+        en: Black recaptures the pawn with the very h5 pawn, winning back some material after losing the bishop.
+        fr: Les Noirs reprennent le pion avec leur propre pion h5, regagnant un peu de matériel après la perte du fou.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng sáu, Đen tám — nhìn thoáng qua tưởng Trắng kém hẳn hai tốt. Nhưng tính cả toàn bộ quân thì Trắng 14, Đen 15 — Trắng chỉ thiệt đúng một tốt về tổng thể, bởi con tốt h vừa mất đã đổi được nguyên một con tượng của Đen. Vua Trắng đã an toàn sau khi nhập thành, còn vua Đen vẫn ở giữa bàn.
+          en: Count the pawns and it is six for White, eight for Black — at a glance White looks down two whole pawns. But counting every piece it is fourteen for White against fifteen for Black — White is really down just one pawn's worth overall, because the h-pawn just lost bought a whole bishop from Black in return. White's king is already safe after castling, while Black's king is still in the centre.
+          fr: Comptez les pions, six pour les Blancs, huit pour les Noirs — à première vue, les Blancs semblent en retard de deux pions entiers. Mais en comptant toutes les pièces, c'est quatorze pour les Blancs contre quinze pour les Noirs — les Blancs ne sont en réalité en retard que de l'équivalent d'un pion, car le pion h perdu a acheté un fou entier aux Noirs en retour. Le roi blanc est déjà en sécurité après le roque, tandis que le roi noir reste au centre.
+        plan:
+          vi: Trắng chơi Nxg4 ăn nốt con tốt vừa đổi lại và mở toang cánh vua Đen, hoặc Bxf4 lấy lại tốt trung tâm trước, tất cả trong lúc vua đã an toàn. Đen chơi ...Nf6 hoặc ...Qf6 hoàn tất phát triển gấp, cố gắng bù đắp cho việc mất quân bằng sức ép trên đường chéo và cột mở.
+          en: White plays Nxg4, picking up the just-traded pawn and blowing open Black's kingside, or Bxf4 to win back the central pawn first, all while the king is already safe. Black plays ...Nf6 or ...Qf6 to develop urgently, trying to make up for the lost material with pressure down the open diagonals and files.
+          fr: Les Blancs jouent Nxg4, ramassant le pion tout juste échangé et ouvrant l'aile roi noire, ou Bxf4 pour regagner d'abord le pion central, tout cela le roi déjà en sécurité. Les Noirs jouent ...Nf6 ou ...Qf6 pour se développer en urgence, essayant de compenser la perte de matériel par la pression sur les diagonales et colonnes ouvertes.
+        basis:
+          by: chan
+          at: '2026-09-29'

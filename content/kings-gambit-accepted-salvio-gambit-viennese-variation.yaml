@@ -1,0 +1,72 @@
+# King's Gambit Accepted, Salvio Gambit, Viennese Variation, taught. Shares its 11-ply
+# root, 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.Ne5 Qh4+ 6.Kf1, with the other Salvio Gambit
+# siblings, so `definingLine` stops there — the learner's own 6.Kf1 — and Black's 6...Nc6,
+# the move that gives this entry its name, is modelled as the root's own reply
+# (docs/CONTEXT.md, invariant 5). Every ply was replayed with chess.js, and the leaf was
+# checked with `searchMate` (bounded to 2 moves): no-mate, not in check. Nxf7 and Bxf7+ were
+# independently confirmed as free captures for White with `resolution.ts`'s
+# `freeCaptures`, and separately confirmed by chess.js that after Nxf7 the only legal king
+# move is 7...Ke7 (not Kxf7, which would walk into check from the bishop on c4 down the
+# newly opened diagonal), after which Nxh8 also wins the undefended corner rook — which is
+# why the leaf carries `unsettled` rather than stopping silently.
+id: kings-gambit-accepted-salvio-gambit-viennese-variation
+name: "King's Gambit Accepted: Salvio Gambit, Viennese Variation"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Ne5, 'Qh4+', Kf1]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black develops the queenside knight rather than defending f7, and the
+      square is not actually defended the way it looks — the king cannot recapture there
+      because doing so would walk into a discovered attack from the bishop on c4. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chấp nhận mất quyền nhập thành, đưa vua sang f1 để né chiếu, chứ không lùi mã hay chặn hậu.
+    en: White accepts the loss of castling rights, sidestepping to f1 to dodge the check rather than retreating the knight or blocking the queen.
+    fr: Les Blancs acceptent de perdre le droit de roquer, esquivant en f1 pour échapper à l'échec plutôt que de reculer le cavalier ou de bloquer la dame.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 6...Nc6 — chẳng hạn phát triển bằng ...Nh6 (xem mục Silberschmidt Defense) hay đẩy tốt bằng ...f3 (xem mục Cochrane Gambit). Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 6...Nc6 — for instance developing with ...Nh6 (see the Silberschmidt Defense entry) or pushing ...f3 (see the Cochrane Gambit entry). Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 6...Nc6 — par exemple se développer par ...Nh6 (voir l'entrée Silberschmidt Defense) ou pousser ...f3 (voir l'entrée Cochrane Gambit). Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc6
+      replyQuality: mistake
+      frequency: rare
+      annotation:
+        vi: Đen phát triển mã sang c6, một nước tự nhiên nhưng để f7 hở ra trong khi con mã e5 và tượng c4 đều đang nhắm vào đó.
+        en: Black develops the knight to c6, a natural move, but leaves f7 exposed while both the e5 knight and the c4 bishop are aimed at it.
+        fr: Les Noirs développent le cavalier en c6, un coup naturel, mais laissent f7 exposé alors que le cavalier e5 et le fou c4 le visent tous deux.
+      unsettled: >-
+        Nxf7 (and also Bxf7+) is going free for White. It looks like the king could simply
+        recapture, but chess.js confirms 7...Kxf7 is not a legal reply after 7.Nxf7 — the
+        square is only defended against the knight, and taking it opens the c4 bishop's
+        diagonal onto the king, so the only legal king move is 7...Ke7, after which Nxh8 also
+        wins the undefended corner rook. The evaluation below already reflects White having
+        won the pawn, since the recapture that would undo it does not exist.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì Trắng bảy, Đen tám, nhưng tốt f7 chỉ có vẻ được vua bảo vệ — nếu Trắng chơi Nxf7, vua Đen không thể ăn lại vì sẽ lộ mình trước tượng c4 đang nhắm f7 qua đường chéo, điều đã kiểm chứng lại bằng chess.js. Sau Nxf7 buộc ...Ke7, con mã còn tiếp tục ăn luôn xe h8 đang bỏ ngỏ bằng Nxh8.
+          en: Count the pawns right here and it is seven for White, eight for Black, but the f7 pawn is only apparently defended by the king — if White plays Nxf7, Black's king cannot recapture, since doing so would walk into the c4 bishop's diagonal aimed at f7, independently confirmed with chess.js. After the forced 7...Ke7, the knight goes on to win the undefended h8 rook as well with Nxh8.
+          fr: Comptez les pions ici même, sept pour les Blancs, huit pour les Noirs, mais le pion f7 n'est qu'en apparence défendu par le roi — si les Blancs jouent Nxf7, le roi noir ne peut pas reprendre, car cela reviendrait à s'exposer à la diagonale du fou c4 braquée sur f7, ce qui a été vérifié avec chess.js. Après le 7...Ke7 forcé, le cavalier va aussi gagner la tour h8 sans défense par Nxh8.
+        plan:
+          vi: Trắng chơi Nxf7 ăn tốt, buộc vua Đen ra ...Ke7, rồi Nxh8 ăn luôn xe góc, thu về lợi thế vật chất rõ rệt. Đen chơi ...Ke7 bắt buộc, rồi cố gắng dùng con mã c6 và các quân còn lại tổ chức phản công bù lại phần vật chất đã mất.
+          en: White plays Nxf7 to win the pawn, forces the king to ...Ke7, then Nxh8 to also win the corner rook, banking a clear material edge. Black is forced into ...Ke7, then tries to use the c6 knight and the remaining pieces to organise counterplay for the material lost.
+          fr: Les Blancs jouent Nxf7 pour gagner le pion, forcent le roi à ...Ke7, puis Nxh8 pour gagner aussi la tour du coin, engrangeant un net avantage matériel. Les Noirs sont contraints à ...Ke7, puis tentent d'utiliser le cavalier c6 et les pièces restantes pour organiser un contre-jeu compensant le matériel perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'

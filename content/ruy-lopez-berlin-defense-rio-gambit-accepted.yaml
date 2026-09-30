@@ -1,0 +1,61 @@
+# Ruy Lopez, Berlin Defense, Rio Gambit Accepted, taught. Frozen defining line 1.e4 e5
+# 2.Nf3 Nc6 3.Bb5 Nf6 4.O-O, which ends on White's own 4.O-O — the learner's ply — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 4...Nxe4 is modelled as
+# the root's single reply. Every ply was replayed with chess.js, and the leaf was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. The e4
+# knight was independently confirmed not attacked by White at this leaf with `chess.js`'s
+# `isAttacked`, and the c6 knight confirmed pinned-and-defended (attacked but not free).
+id: ruy-lopez-berlin-defense-rio-gambit-accepted
+name: 'Ruy Lopez: Berlin Defense, Rio Gambit Accepted'
+eco: C67
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, Nf6, O-O]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White castles rather than defending the e4 pawn, accepting a temporary
+      pawn deficit for a lasting lead in development and pressure on the pinned c6 knight —
+      well-established, long-held theory rather than a refutation, and a genuine practical
+      choice at every level. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng nhập thành thay vì lo giữ tốt e4, đặt cược vào sự phát triển nhanh hơn và áp lực lên con mã c6 đang bị ghim.
+    en: White castles instead of worrying about the e4 pawn, banking on faster development and pressure on the pinned c6 knight.
+    fr: Les Blancs roquent au lieu de se soucier du pion e4, misant sur un développement plus rapide et la pression sur le cavalier c6 cloué.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 4...Nxe4 — chẳng hạn phát triển bằng ...Bc5 hay ...Be7 mà không ăn tốt. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 4...Nxe4 — for instance developing with ...Bc5 or ...Be7 without taking the pawn. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 4...Nxe4 — par exemple se développer par ...Bc5 ou ...Be7 sans prendre le pion. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhận lấy con tốt e4, bước vào chính thế trận tiêu chuẩn của toàn bộ hệ thống Berlin Defense.
+        en: Black accepts the e4 pawn, stepping into the standard tabiya of the entire Berlin Defense system.
+        fr: Les Noirs acceptent le pion e4, entrant dans la position standard de tout le système de la Défense Berlinoise.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng kém một tốt sạch. Con mã e4 của Đen hiện chưa bị quân nào của Trắng tấn công, nhưng con mã c6 của Đen đang bị ghim bởi tượng b5, bị tấn công và tuy vẫn được một tốt bảo vệ, đó vẫn là mục tiêu lâu dài cho Trắng khai thác.
+          en: Count the pawns and it is seven for White, eight for Black — White is down a clean pawn. Black's knight on e4 is currently attacked by nothing White has, but Black's c6 knight is pinned by the bishop on b5, attacked and though still defended by a pawn, remains a long-term target for White to work on.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs sont en retard d'un pion net. Le cavalier noir en e4 n'est pour l'instant attaqué par aucune pièce blanche, mais le cavalier noir en c6, cloué par le fou b5, attaqué et bien que toujours défendu par un pion, reste une cible à long terme pour les Blancs.
+        plan:
+          vi: Trắng chơi d4 dựng trung tâm và Re1 gây thêm sức ép lên mã e4, khai thác dần con mã c6 bị ghim. Đen chơi ...Nd6 lùi mã về ô an toàn, đổi tượng b5 và tìm cách hoàn tất phát triển với con tốt thừa trong tay.
+          en: White plays d4 to build the centre and Re1 to add pressure on the e4 knight, gradually working on the pinned c6 knight. Black plays ...Nd6 to retreat the knight to a safe square, trade off the bishop on b5, and look to finish developing with the extra pawn in hand.
+          fr: Les Blancs jouent d4 pour bâtir le centre et Re1 pour ajouter de la pression sur le cavalier e4, travaillant progressivement le cavalier c6 cloué. Les Noirs jouent ...Nd6 pour reculer le cavalier vers une case sûre, échanger le fou b5 et chercher à achever leur développement avec le pion supplémentaire en poche.
+        basis:
+          by: chan
+          at: '2026-09-29'

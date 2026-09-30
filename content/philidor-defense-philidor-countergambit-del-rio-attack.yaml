@@ -1,0 +1,61 @@
+# Philidor Defense, Philidor Countergambit, del Rio Attack, taught. Frozen defining line
+# 1.e4 e5 2.Nf3 d6 3.d4 f5 4.dxe5 fxe4 5.Ng5 d5, which ends on Black's own 5...d5 — the
+# learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's
+# 6.e6, the further advance that gives this entry its name, is modelled as the root's single
+# reply. Every ply was replayed with chess.js, and the leaf was checked with `searchMate`
+# (bounded to 2 moves): no-mate, not in check, no free capture. `e6` was independently
+# confirmed attacked by Black but defended by the g5 knight with `chess.js`'s `isAttacked`.
+id: philidor-defense-philidor-countergambit-del-rio-attack
+name: 'Philidor Defense: Philidor Countergambit, del Rio Attack'
+eco: C41
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d6, d4, f5, dxe5, fxe4, Ng5, d5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White pushes the pawn to e6 rather than retreating the attacked knight,
+      driving a deep and defended wedge into Black's position — real practical difficulties
+      for Black rather than a proven refutation. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Thay vì lùi mã, Trắng đẩy luôn con tốt lên e6, cắm sâu vào trận địa Đen và được chính con mã g5 bảo vệ.
+    en: Instead of retreating the knight, White pushes the pawn on to e6, driving deep into Black's position and defended by the very knight on g5.
+    fr: Plutôt que de reculer le cavalier, les Blancs poussent le pion jusqu'en e6, s'enfonçant dans le camp noir et défendu par le cavalier même en g5.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 6.e6 — chẳng hạn lùi mã bằng Nf3 hay phát triển bằng Bb5+. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 6.e6 — for instance retreating the knight with Nf3 or developing with Bb5+. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 6.e6 — par exemple reculer le cavalier par Nf3 ou se développer par Bb5+. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: e6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chọn đẩy tốt cắm sâu thay vì rút lui, giữ nguyên sức ép và làm chậm hẳn việc phát triển của Đen.
+        en: White chooses to plant the pawn deeper rather than retreat, keeping up the pressure and slowing Black's development considerably.
+        fr: Les Blancs choisissent d'enfoncer le pion plutôt que de reculer, maintenant la pression et ralentissant considérablement le développement noir.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên bảy. Con tốt e6 của Trắng đang bị tượng c8 của Đen tấn công nhưng vẫn được chính con mã g5 bảo vệ (đã kiểm tra lại bằng chess.js), nên chưa phải quân ăn miễn phí; đổi lại nó cản trở hẳn đường phát triển tự nhiên của tượng c8.
+          en: Count the pawns and the two sides are level, seven each. White's e6 pawn is attacked by Black's c8 bishop but remains defended by the very knight on g5, independently confirmed with chess.js, so it is not yet a free capture; in exchange, it visibly blocks the c8 bishop's natural development.
+          fr: Comptez les pions, les deux camps sont à égalité, sept de chaque côté. Le pion blanc en e6 est attaqué par le fou c8 noir mais reste défendu par le cavalier même en g5, ce qui a été vérifié avec chess.js, donc ce n'est pas encore une capture gratuite ; en échange, il bloque visiblement le développement naturel du fou c8.
+        plan:
+          vi: Trắng chơi Nc3 và Bb5+ tiếp tục phát triển, khai thác việc Đen còn kẹt bởi con tốt e6 khó chịu. Đen chơi ...Bxe6 ăn con tốt ấy ngay khi có thể để giải toả thế bí, chấp nhận đổi tượng lấy sự thông thoáng.
+          en: White plays Nc3 and Bb5+ to keep developing, exploiting the fact that Black is still tangled up by the awkward e6 pawn. Black plays ...Bxe6 to remove that pawn as soon as possible to relieve the cramp, accepting the trade for freedom of movement.
+          fr: Les Blancs jouent Nc3 et Bb5+ pour poursuivre leur développement, exploitant le fait que les Noirs restent gênés par le pion e6 incommode. Les Noirs jouent ...Bxe6 pour retirer ce pion dès que possible et soulager l'étau, acceptant l'échange pour retrouver de la liberté.
+        basis:
+          by: chan
+          at: '2026-09-29'

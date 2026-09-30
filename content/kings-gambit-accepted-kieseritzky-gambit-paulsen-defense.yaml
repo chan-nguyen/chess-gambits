@@ -1,0 +1,67 @@
+# King's Gambit Accepted, Kieseritzky Gambit, Paulsen Defense, taught. Shares its 9-ply
+# root, 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5, with `kings-gambit-accepted-kieseritzky-gambit`,
+# so `definingLine` stops there — the learner's own 5.Ne5 — and Black's 5...Bg7, the move
+# that gives this entry its name, is modelled as the root's own reply (docs/CONTEXT.md,
+# invariant 5). Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check. Both Nxg4 and Qxg4 were
+# independently confirmed as free captures for White with `resolution.ts`'s
+# `freeCaptures`, which is why the leaf carries `unsettled` rather than stopping silently.
+id: kings-gambit-accepted-kieseritzky-gambit-paulsen-defense
+name: "King's Gambit Accepted: Kieseritzky Gambit, Paulsen Defense"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black fianchettoes rather than defending the g4 pawn, a known but not
+      especially testing try, since it hands White the chance to equalise material at once.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Sau khi ép Đen phải đẩy tốt lên g4 bằng 4.h4, Trắng nhảy mã vào e5, một ô trung tâm mà con mã khó bị đuổi và đang nhòm thẳng vào f7.
+    en: Having provoked ...g4 with 4.h4, White jumps the knight into e5, a central square from which it is hard to evict and from which it already eyes f7.
+    fr: Après avoir provoqué ...g4 par 4.h4, les Blancs sautent le cavalier en e5, une case centrale d'où il est difficile à déloger et d'où il vise déjà f7.
+  dismissRest:
+    reason:
+      vi: Đen chọn một cách phòng thủ khác thay vì 5...Bg7 — nhiều biến trong số đó đã có tên riêng và mục riêng, chẳng hạn ...Nf6, ...Nh6 hay ...d6, mỗi cách nhằm hoặc đuổi mã e5, hoặc hoàn tất phát triển, hoặc cả hai. Nằm ngoài phạm vi mục này.
+      en: Black chooses a different defence instead of 5...Bg7 — several of these already have their own name and their own entry, such as ...Nf6, ...Nh6 or ...d6, each aiming to chase the e5 knight, finish development, or both. Outside the scope of this entry.
+      fr: Les Noirs choisissent une autre défense que 5...Bg7 — plusieurs d'entre elles ont déjà leur propre nom et leur propre entrée, comme ...Nf6, ...Nh6 ou ...d6, chacune visant à chasser le cavalier e5, à achever le développement, ou les deux. Hors du cadre de cette entrée.
+  children:
+    - ply: Bg7
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Đen fianchetto tượng sang g7, nhắm đường chéo dài nhưng bỏ mặc con tốt g4 không ai bảo vệ.
+        en: Black fianchettoes the bishop to g7, aiming down the long diagonal but leaving the g4 pawn with no defender at all.
+        fr: Les Noirs fianchettent le fou en g7, visant la grande diagonale mais laissant le pion g4 totalement sans défense.
+      unsettled: >-
+        Both Nxg4 and Qxg4 are going free for White — Black's 5...Bg7 does nothing to defend
+        the g4 pawn, so White simply regains it next move. The evaluation below already
+        counts the pawns as if that recapture has happened, since it changes the material
+        balance but nothing about the position's character, so extending the line one more
+        ply would add nothing a reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì Trắng bảy, Đen tám, nhưng con tốt g4 đang không được bảo vệ và Trắng sẽ ăn lại nó ngay nước sau bằng Nxg4 hoặc Qxg4, đưa vật chất về thế cân bằng hoàn toàn. Con mã e5 của Trắng vẫn đứng vững, nhòm thẳng f7, trong khi tượng g7 của Đen dù nhắm đường chéo dài nhưng chưa tạo được đe doạ cụ thể nào.
+          en: Count the pawns right here and it is seven for White, eight for Black, but the g4 pawn is undefended and White will win it straight back next move with Nxg4 or Qxg4, bringing material to a full equality. White's knight on e5 remains well placed, eyeing f7, while Black's bishop on g7, though aiming down the long diagonal, has not yet created any concrete threat.
+          fr: Comptez les pions ici même, sept pour les Blancs, huit pour les Noirs, mais le pion g4 est sans défense et les Blancs vont le regagner dès le coup suivant par Nxg4 ou Qxg4, ramenant le matériel à une égalité totale. Le cavalier blanc en e5 reste bien placé, visant f7, tandis que le fou noir en g7, bien que visant la grande diagonale, n'a encore créé aucune menace concrète.
+        plan:
+          vi: Trắng chơi Nxg4 ăn lại tốt và tiếp tục phát triển bằng Bc4, giữ vững con mã e5 làm bàn đạp tấn công. Đen chơi ...d6 đuổi mã e5 và tiếp tục phát triển, chấp nhận mất tốt để đổi lấy đường chéo dài đã có sẵn cho tượng.
+          en: White plays Nxg4 to win back the pawn and continues developing with Bc4, keeping the e5 knight as a springboard for the attack. Black plays ...d6 to chase the e5 knight and continue developing, accepting the lost pawn in exchange for the long diagonal already secured for the bishop.
+          fr: Les Blancs jouent Nxg4 pour regagner le pion et poursuivent leur développement par Bc4, gardant le cavalier e5 comme tremplin pour l'attaque. Les Noirs jouent ...d6 pour chasser le cavalier e5 et poursuivre leur développement, acceptant la perte du pion contre la grande diagonale déjà acquise pour le fou.
+        basis:
+          by: chan
+          at: '2026-09-29'

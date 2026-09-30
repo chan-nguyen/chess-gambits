@@ -1,0 +1,60 @@
+# King's Gambit Accepted, Kieseritzky Gambit, Anderssen Defense, taught. Frozen defining
+# line 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Nf6 6.Bc4 d5 7.exd5, which ends on White's
+# own 7.exd5 — the learner's ply — so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Black's 7...Bd6 is modelled as the root's single reply. Every ply was
+# replayed with chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves):
+# no-mate, not in check, no free capture. `e5` was independently confirmed attacked by
+# Black and undefended by White with `chess.js`'s `isAttacked`.
+id: kings-gambit-accepted-kieseritzky-gambit-anderssen-defense
+name: "King's Gambit Accepted: Kieseritzky Gambit, Anderssen Defense"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5, Nf6, Bc4, d5, exd5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White trades the e-pawn for Black's d-pawn and keeps the e5 knight and
+      the bishop pair for the moment, real compensation for the pawn rather than a proven
+      advantage. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đổi tốt e4 lấy tốt d5 của Đen, mở đường cho tượng c4 và giữ nguyên con mã tiền tiêu trên e5.
+    en: White has just traded the e4 pawn for Black's d5 pawn, opening a path for the bishop on c4 and keeping the outpost knight on e5.
+    fr: Les Blancs viennent d'échanger le pion e4 contre le pion d5 noir, ouvrant une voie au fou c4 et conservant le cavalier avancé en e5.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 7...Bd6 — chẳng hạn ăn lại tốt ngay bằng ...Nxd5 hay phát triển bằng ...Bg7. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 7...Bd6 — for instance recapturing at once with ...Nxd5 or developing with ...Bg7. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 7...Bd6 — par exemple reprendre aussitôt par ...Nxd5 ou se développer par ...Bg7. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bd6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen chưa vội ăn lại tốt d5 mà đưa tượng ra d6, tấn công thẳng vào con mã e5 đang không có quân nào bảo vệ.
+        en: Black holds off on recapturing the d5 pawn and instead plays the bishop to d6, attacking the e5 knight directly, which nothing currently defends.
+        fr: Les Noirs retardent la reprise du pion d5 et jouent le fou en d6, attaquant directement le cavalier e5, que rien ne défend pour l'instant.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen bảy — quân ngang nhau, không bên nào còn hơn tốt tại đây (tốt bị ăn ở move hai đã được bù lại bằng việc đổi tốt trung tâm). Con mã Trắng trên e5 đang bị tượng d6 tấn công trực tiếp và hiện không quân nào của Trắng bảo vệ nó, điều đã được kiểm chứng lại bằng chess.js.
+          en: Count the pawns and it is seven for White, seven for Black — level material, the pawn given up on move two has been balanced out by the central pawn trade. White's knight on e5 is directly attacked by the bishop on d6 and is currently defended by nothing, independently confirmed with chess.js.
+          fr: Comptez les pions, sept pour les Blancs, sept pour les Noirs — matériel égal, le pion cédé au deuxième coup a été compensé par l'échange de pions centraux. Le cavalier blanc en e5 est directement attaqué par le fou d6 et n'est actuellement défendu par rien, ce qui a été vérifié indépendamment avec chess.js.
+        plan:
+          vi: Trắng chơi Nxf7 ăn tốt và phá thế nhập thành của Đen, hoặc rút lui bằng Nd3 để giữ quân, rồi tiếp tục phát triển với O-O. Đen chơi ...Nxd5 lấy lại tốt nếu mã Trắng rút lui, hoặc chấp nhận đổi quân sau Nxf7 để đổi lại việc phá vỡ an toàn của vua Trắng.
+          en: White plays Nxf7, grabbing a pawn and wrecking Black's castling, or retreats with Nd3 to save the piece and continues developing with O-O. Black plays ...Nxd5 to win the pawn back if the knight retreats, or accepts the trade after Nxf7 in exchange for wrecking White's own king safety.
+          fr: Les Blancs jouent Nxf7, gagnant un pion et ruinant le roque noir, ou reculent par Nd3 pour sauver la pièce, puis poursuivent leur développement par O-O. Les Noirs jouent ...Nxd5 pour regagner le pion si le cavalier recule, ou acceptent l'échange après Nxf7 en contrepartie de la sécurité du roi blanc compromise.
+        basis:
+          by: chan
+          at: '2026-09-29'

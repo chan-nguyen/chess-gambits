@@ -1,0 +1,68 @@
+# Ponziani Opening, Ponziani Countergambit, Schmidt Attack, taught. Frozen defining line
+# 1.e4 e5 2.Nf3 Nc6 3.c3 f5 4.d4 d6, which ends on Black's own 4...d6 — the learner's ply —
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). White's 5.d5 is modelled
+# as the root's single reply. Every ply was replayed with chess.js, and the leaf was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check. fxe4 was independently
+# confirmed as a free capture for Black (the side to move at this leaf) with
+# `resolution.ts`'s `freeCaptures`, and the c6 knight confirmed attacked but still defended
+# (not free), which is why the leaf carries `unsettled` rather than stopping silently.
+id: ponziani-opening-ponziani-countergambit-schmidt-attack
+name: 'Ponziani Opening: Ponziani Countergambit, Schmidt Attack'
+eco: C44
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, c3, f5, d4, d6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White pushes the pawn to d5 to gain time on the c6 knight, but Black's
+      countergambit pawn on e4 is left undefended too, so Black wins it straight back — real,
+      sharp play rather than a proven equaliser for either side. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đẩy tốt lên d5, tấn công con mã c6 của Đen và giành thêm không gian, nhưng con tốt e4 giờ không còn quân nào bảo vệ.
+    en: White pushes the pawn to d5, attacking Black's knight on c6 and gaining space, but the e4 pawn is now defended by nothing.
+    fr: Les Blancs poussent le pion en d5, attaquant le cavalier noir en c6 et gagnant de l'espace, mais le pion e4 n'est désormais plus défendu par rien.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 5.d5 — chẳng hạn ăn tốt ngay bằng dxe5 hay dxf5. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 5.d5 — for instance capturing at once with dxe5 or dxf5. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 5.d5 — par exemple capturer aussitôt par dxe5 ou dxf5. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chọn đẩy tốt tấn công mã, để nguyên con tốt e4 cho Đen ăn lại nếu muốn.
+        en: White chooses to push the pawn and attack the knight, leaving the e4 pawn there for Black to take if wanted.
+        fr: Les Blancs choisissent de pousser le pion et d'attaquer le cavalier, laissant le pion e4 aux Noirs s'ils veulent le prendre.
+      unsettled: >-
+        fxe4 is going free for Black — the side to move at this leaf. White's 5.d5 does
+        nothing for e4, so Black wins that pawn back at once. The evaluation below already
+        counts the pawns as if that recapture has happened, since it is the obvious and only
+        sensible reply, so extending the line one more ply would add nothing a reviewer
+        cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì hai bên bằng nhau, mỗi bên tám, nhưng con tốt e4 của Trắng đang không được bảo vệ và Đen sẽ ăn lại nó ngay bằng ...fxe4, vượt lên hơn một tốt sạch. Con mã c6 của Đen đang bị tốt d5 tấn công nhưng vẫn được bảo vệ (đã kiểm tra lại bằng chess.js), nên chưa quân nào khác rơi vào thế mất không.
+          en: Count the pawns right here and the two sides are level, eight each, but White's e4 pawn is undefended and Black will win it straight back with ...fxe4, moving a clean pawn ahead. Black's c6 knight is attacked by the d5 pawn but remains defended, independently confirmed with chess.js, so nothing else is lost for free.
+          fr: Comptez les pions ici même, les deux camps sont à égalité, huit de chaque côté, mais le pion e4 blanc est sans défense et les Noirs vont le regagner aussitôt par ...fxe4, prenant un pion net d'avance. Le cavalier noir en c6 est attaqué par le pion d5 mais reste défendu, ce qui a été vérifié avec chess.js, donc rien d'autre n'est perdu gratuitement.
+        plan:
+          vi: Trắng chơi dxc6 ăn mã và phá vỡ cấu trúc tốt của Đen, chấp nhận để Đen ăn lại tốt e4. Đen chơi ...fxe4 ăn lại tốt trước, rồi ...bxc6 sau khi đổi mã, giữ vững phần vật chất đã có.
+          en: White plays dxc6 to win the knight and wreck Black's pawn structure, accepting that Black will win back the e4 pawn. Black plays ...fxe4 to win the pawn back first, then ...bxc6 after the trade, holding on to the material already gained.
+          fr: Les Blancs jouent dxc6 pour gagner le cavalier et briser la structure de pions noire, acceptant que les Noirs regagnent le pion e4. Les Noirs jouent ...fxe4 pour regagner d'abord le pion, puis ...bxc6 après l'échange, conservant le matériel déjà gagné.
+        basis:
+          by: chan
+          at: '2026-09-29'

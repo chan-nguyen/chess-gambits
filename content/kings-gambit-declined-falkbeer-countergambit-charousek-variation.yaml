@@ -1,0 +1,62 @@
+# King's Gambit Declined, Falkbeer Countergambit, Charousek Variation, taught. Frozen
+# defining line 1.e4 e5 2.f4 d5 3.exd5 e4 4.d3 Nf6 5.dxe4 Nxe4 6.Qe2 Qxd5 7.Nd2 f5, which
+# ends on Black's own 7...f5 — the learner's ply, bolstering the e4 knight — so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). White's 8.g4 is modelled as the root's
+# single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. `f5` and `e4`
+# were independently confirmed attacked but defended on both sides with `chess.js`'s
+# `isAttacked`.
+id: kings-gambit-declined-falkbeer-countergambit-charousek-variation
+name: "King's Gambit Declined: Falkbeer Countergambit, Charousek Variation"
+eco: C32
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, e4, d3, Nf6, dxe4, Nxe4, Qe2, Qxd5, Nd2, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black has already won back the sacrificed pawn and holds a strong knight
+      on e4 shored up by f5, real practical comfort rather than a decisive edge, since White
+      still has a try with g4 to challenge that very pawn chain. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi ...f5 để củng cố thêm cho con mã e4 đang đứng vững, sau khi đã ăn lại đủ con tốt bị thí ban đầu.
+    en: Black has just played ...f5 to add further support to the well-placed knight on e4, having already won back the pawn originally sacrificed.
+    fr: Les Noirs viennent de jouer ...f5 pour renforcer encore le cavalier bien posté en e4, ayant déjà regagné le pion initialement sacrifié.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 8.g4 — chẳng hạn phát triển bằng Ngf3 hay Nxe4. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 8.g4 — for instance developing with Ngf3 or Nxe4. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 8.g4 — par exemple se développer par Ngf3 ou Nxe4. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: g4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng đẩy tốt lên g4 ngay lập tức, tấn công thẳng vào con tốt f5 vừa được Đen đẩy lên để chống đỡ cho mã.
+        en: White immediately pushes the pawn to g4, attacking the f5 pawn Black just advanced to prop up the knight.
+        fr: Les Blancs poussent aussitôt le pion en g4, attaquant le pion f5 que les Noirs viennent d'avancer pour soutenir le cavalier.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên sáu. Con tốt f5 và con mã e4 của Đen đều đang bị Trắng tấn công nhưng cả hai vẫn được bảo vệ (đã kiểm tra lại bằng chess.js), nên chưa quân nào rơi vào thế mất không. Cả hai vua đều chưa nhập thành.
+          en: Count the pawns and the two sides are level, six each. Black's f5 pawn and e4 knight are both attacked by White but both remain defended, independently confirmed with chess.js, so nothing is yet going free. Neither king has castled.
+          fr: Comptez les pions, les deux camps sont à égalité, six de chaque côté. Le pion f5 et le cavalier e4 noirs sont tous deux attaqués par les Blancs mais restent tous deux défendus, ce qui a été vérifié avec chess.js, donc rien n'est encore perdu gratuitement. Aucun des deux rois n'a roqué.
+        plan:
+          vi: Trắng chơi gxf5 mở cột g và thử khai thác vị trí vua Đen còn ở giữa, hoặc Ngf3 hoàn tất phát triển trước khi tính chuyện ăn tốt. Đen chơi ...g6 giữ vững tốt f5 và chuẩn bị nhập thành cánh vua, hoặc đổi mã bằng ...Nxd2 nếu muốn đơn giản hoá thế cờ.
+          en: White plays gxf5 to open the g-file and try to exploit Black's still-central king, or Ngf3 to finish developing before thinking about winning the pawn. Black plays ...g6 to firmly hold the f5 pawn and prepare to castle kingside, or trades with ...Nxd2 to simplify the position.
+          fr: Les Blancs jouent gxf5 pour ouvrir la colonne g et tenter d'exploiter le roi noir resté au centre, ou Ngf3 pour achever leur développement avant de songer à gagner le pion. Les Noirs jouent ...g6 pour tenir fermement le pion f5 et préparer le roque côté roi, ou échangent par ...Nxd2 pour simplifier la position.
+        basis:
+          by: chan
+          at: '2026-09-29'

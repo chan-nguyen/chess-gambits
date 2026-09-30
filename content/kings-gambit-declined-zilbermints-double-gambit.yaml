@@ -1,0 +1,61 @@
+# King's Gambit Declined, Zilbermints Double Gambit, taught. Frozen defining line 1.e4 e5
+# 2.f4 Nc6 3.Nf3, which ends on White's own 3.Nf3 — the learner's ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Black's 3...g5, the countergambit that gives
+# this entry its name, is modelled as the root's single reply. Every ply was replayed with
+# chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check, no free capture (from the side to move, White). `f4` was independently confirmed
+# attacked by Black and undefended by White with `chess.js`'s `isAttacked` — a threat for
+# Black's next move, not a free capture for the side actually to move at this leaf.
+id: kings-gambit-declined-zilbermints-double-gambit
+name: "King's Gambit Declined: Zilbermints Double Gambit"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Nc6, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black answers one gambit pawn with a countergambit pawn of their own
+      rather than developing, real practical tries in blitz but a loosening of the kingside
+      that is not obviously sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng phát triển mã ra f3, sẵn sàng ăn lại con tốt f4 nếu Đen không hành động.
+    en: White develops the knight to f3, ready to recapture the f4 pawn if Black does nothing about it.
+    fr: Les Blancs développent le cavalier en f3, prêts à reprendre le pion f4 si les Noirs ne réagissent pas.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 3...g5 — chẳng hạn nhận gambit bằng ...exf4 hoặc phát triển bằng ...Nf6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 3...g5 — for instance accepting the gambit with ...exf4 or developing with ...Nf6. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 3...g5 — par exemple accepter le gambit par ...exf4 ou se développer par ...Nf6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: g5
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Đen đáp lại bằng chính một con tốt gambit khác, đẩy tốt lên g5 để giữ tốt e5 và đồng thời tấn công tốt f4 của Trắng, bất chấp việc làm yếu cánh vua mình.
+        en: Black answers with a countergambit pawn of its own, pushing to g5 to hold the e5 pawn while also attacking White's f4 pawn, regardless of the resulting weakness on Black's own kingside.
+        fr: Les Noirs répondent par leur propre pion de contre-gambit, poussant en g5 pour tenir le pion e5 tout en attaquant le pion f4 blanc, malgré l'affaiblissement qui en résulte sur leur propre aile roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên tám — chưa quân nào bị mất. Tốt f4 của Trắng đang bị tốt g5 tấn công và hiện không quân nào bảo vệ (đã kiểm tra lại bằng chess.js), là mối đe doạ cho nước tiếp theo của Đen chứ chưa phải quân mất không ngay lúc này vì đang đến lượt Trắng. Đổi lại, tốt g5 đã làm cánh vua Đen lỏng lẻo hẳn đi.
+          en: Count the pawns and the two sides are level, eight each — nothing has been lost yet. White's f4 pawn is attacked by the g5 pawn and currently defended by nothing, independently confirmed with chess.js, a threat for Black's next move rather than a loss right now since it is White's turn. In exchange, the g5 pawn has visibly loosened Black's own kingside.
+          fr: Comptez les pions, les deux camps sont à égalité, huit de chaque côté — rien n'est encore perdu. Le pion f4 blanc est attaqué par le pion g5 et n'est actuellement défendu par rien, ce qui a été vérifié avec chess.js, une menace pour le prochain coup noir plutôt qu'une perte immédiate puisque c'est aux Blancs de jouer. En échange, le pion g5 a visiblement affaibli l'aile roi noire.
+        plan:
+          vi: Trắng chơi h4 ngay lập tức, khoét sâu thêm vào cánh vua Đen đã lỏng lẻo trước khi tính chuyện ăn lại tốt f4. Đen chơi ...g4 đuổi mã f3 nếu Trắng chậm trễ, hoặc ...h6 củng cố thêm cho tốt g5, chấp nhận rủi ro nơi cánh vua để giữ phần tốt đã có.
+          en: White plays h4 at once, digging further into Black's already loosened kingside before thinking about winning back the f4 pawn. Black plays ...g4 to chase the f3 knight if White is slow, or ...h6 to further support the g5 pawn, accepting the kingside risk to hold on to the extra pawn already gained.
+          fr: Les Blancs jouent h4 aussitôt, creusant davantage dans l'aile roi noire déjà affaiblie avant de songer à regagner le pion f4. Les Noirs jouent ...g4 pour chasser le cavalier f3 si les Blancs tardent, ou ...h6 pour soutenir davantage le pion g5, acceptant le risque sur l'aile roi pour conserver le pion déjà gagné.
+        basis:
+          by: chan
+          at: '2026-09-29'

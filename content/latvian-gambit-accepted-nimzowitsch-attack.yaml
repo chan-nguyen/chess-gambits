@@ -1,0 +1,59 @@
+# Latvian Gambit Accepted, Nimzowitsch Attack, taught. Shares its 10-ply root, 1.e4 e5
+# 2.Nf3 f5 3.Nxe5 Qf6 4.d4 d6 5.Nc4 fxe4, with `latvian-gambit-accepted-bronstein-attack`,
+# so `definingLine` is the same, ending on Black's own 5...fxe4 (docs/CONTEXT.md,
+# invariant 5). White's 6.Ne3 is modelled as the root's single reply here, in place of the
+# Bronstein Attack's 6.Be2. Every ply was replayed with chess.js, and the leaf was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+id: latvian-gambit-accepted-nimzowitsch-attack
+name: 'Latvian Gambit Accepted: Nimzowitsch Attack'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Nxe5, Qf6, d4, d6, Nc4, fxe4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White retreats the knight to e3 pre-emptively rather than let ...d5 hit it
+      with tempo, a tidy way to keep the development lead the Latvian Gambit Accepted
+      already grants White. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng rút mã từ c4 về e3, tránh trước việc bị tốt d6 đẩy lên ...d5 vừa tấn công mã vừa bảo vệ tốt e4.
+    en: White retreats the knight from c4 to e3, pre-empting ...d5, which would have attacked the knight while defending the e4 pawn at the same time.
+    fr: Les Blancs replient le cavalier de c4 en e3, devançant ...d5, qui aurait attaqué le cavalier tout en défendant le pion e4 en même temps.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 6.Ne3 — chẳng hạn phát triển bằng Be2 (xem mục Bronstein Attack) hay Nc3. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 6.Ne3 — for instance developing with Be2 (see the Bronstein Attack entry) or Nc3. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 6.Ne3 — par exemple se développer par Be2 (voir l'entrée Bronstein Attack) ou Nc3. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Ne3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng đưa mã về e3, một ô an toàn hơn, tránh mất tốc độ nếu Đen chơi ...d5.
+        en: White brings the knight back to e3, a safer square, avoiding a loss of tempo if Black plays ...d5.
+        fr: Les Blancs replacent le cavalier en e3, une case plus sûre, évitant une perte de temps si les Noirs jouent ...d5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên bảy — con tốt Đen thí ban đầu đã được lấy lại qua Nxe5, và tốt e4 hiện tại chỉ là kết quả đổi chác. Đen chưa phát triển được quân nhẹ nào, trong khi con mã Trắng đã đứng ở một ô an toàn không còn bị tốt d6 doạ.
+          en: Count the pawns and the two sides are level, seven each — the pawn Black originally offered was won back by Nxe5, and the current e4 pawn is simply the product of an exchange. Black has not developed a single minor piece yet, while White's knight now sits on a safe square no longer threatened by the d6 pawn.
+          fr: Comptez les pions, les deux camps sont à égalité, sept de chaque côté — le pion initialement offert par les Noirs a été regagné par Nxe5, et le pion e4 actuel n'est que le résultat d'un échange. Les Noirs n'ont encore développé aucune pièce mineure, tandis que le cavalier blanc occupe désormais une case sûre, qui n'est plus menacée par le pion d6.
+        plan:
+          vi: Trắng chơi Be2 và O-O, tận dụng phát triển nhanh hơn và con hậu Đen đứng lộ trên f6. Đen chơi ...Nf6 hoặc ...Be7 gấp để bắt kịp phát triển trước khi Trắng kịp dồn quân tấn công.
+          en: White plays Be2 and O-O, using the faster development and Black's exposed queen on f6. Black plays ...Nf6 or ...Be7 urgently to catch up on development before White can mass an attack.
+          fr: Les Blancs jouent Be2 et O-O, exploitant leur développement plus rapide et la dame noire exposée en f6. Les Noirs jouent ...Nf6 ou ...Be7 en urgence pour rattraper leur développement avant que les Blancs ne puissent masser une attaque.
+        basis:
+          by: chan
+          at: '2026-09-29'

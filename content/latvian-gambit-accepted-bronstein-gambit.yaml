@@ -1,0 +1,68 @@
+# Latvian Gambit Accepted, Bronstein Gambit, taught. Frozen defining line 1.e4 e5 2.Nf3 f5
+# 3.Nxe5 Qf6 4.d4 d6 5.Nc4 fxe4 6.Qh5+ g6, which ends on Black's own 6...g6 — the learner's
+# ply, blocking the check — so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# White's 7.Qe2 is modelled as the root's single reply. Every ply was replayed with
+# chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check. Qxd4 was independently confirmed as a free capture for Black (the side to move at
+# this leaf) with `resolution.ts`'s `freeCaptures`, which is why the leaf carries
+# `unsettled` rather than stopping silently.
+id: latvian-gambit-accepted-bronstein-gambit
+name: 'Latvian Gambit Accepted: Bronstein Gambit'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5, Nxe5, Qf6, d4, d6, Nc4, fxe4, 'Qh5+', g6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White retreats the queen to e2 rather than defending d4, and Black wins
+      that pawn straight back — sharp and roughly balanced material rather than a sound
+      equaliser for Black overall, since the queen on f6 is still exposed. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng rút hậu về e2 sau khi bị chặn chiếu, nhưng con tốt d4 giờ không còn quân nào bảo vệ.
+    en: White retreats the queen to e2 after the check was blocked, but the d4 pawn is now defended by nothing.
+    fr: Les Blancs replient la dame en e2 après que l'échec a été bloqué, mais le pion d4 n'est désormais plus défendu par rien.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 7.Qe2 — chẳng hạn rút hậu về d1 hay f3. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 7.Qe2 — for instance retreating the queen to d1 or f3. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 7.Qe2 — par exemple replier la dame en d1 ou f3. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Qe2
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng đưa hậu về e2, một ô tương đối an toàn, nhưng con tốt d4 giờ không còn quân nào bảo vệ.
+        en: White brings the queen back to e2, a fairly safe square, but the d4 pawn is now defended by nothing.
+        fr: Les Blancs replacent la dame en e2, une case assez sûre, mais le pion d4 n'est désormais plus défendu par rien.
+      unsettled: >-
+        Qxd4 is going free for Black — the side to move at this leaf. White's 7.Qe2 leaves
+        d4 completely undefended, so Black wins that pawn back at once. The evaluation below
+        already counts the pawns as if that recapture has happened, since it is the obvious
+        and only sensible reply, so extending the line one more ply would add nothing a
+        reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì hai bên bằng nhau, mỗi bên bảy, nhưng con tốt d4 của Trắng đang không được bảo vệ và Đen sẽ ăn lại nó ngay bằng ...Qxd4, vượt lên hơn một tốt sạch. Con hậu Đen tuy vậy vẫn đứng khá lộ liễu ở trung tâm bàn cờ.
+          en: Count the pawns right here and the two sides are level, seven each, but White's d4 pawn is undefended and Black will win it straight back with ...Qxd4, moving a clean pawn ahead. Black's queen, however, remains fairly exposed in the centre of the board.
+          fr: Comptez les pions ici même, les deux camps sont à égalité, sept de chaque côté, mais le pion d4 blanc est sans défense et les Noirs vont le regagner aussitôt par ...Qxd4, prenant un pion net d'avance. La dame noire reste cependant assez exposée au centre de l'échiquier.
+        plan:
+          vi: Trắng chơi Nc3 hoặc Be3 phát triển và tấn công con hậu Đen, tranh thủ thời gian con hậu ấy phải di chuyển để bù lại con tốt đã mất. Đen chơi ...Qxd4 ăn tốt trước, rồi tìm chỗ an toàn hơn cho hậu và hoàn tất phát triển.
+          en: White plays Nc3 or Be3 to develop and attack Black's queen, using the tempo the queen must spend moving to make up for the lost pawn. Black plays ...Qxd4 to win the pawn first, then looks for a safer square for the queen and finishes developing.
+          fr: Les Blancs jouent Nc3 ou Be3 pour se développer et attaquer la dame noire, utilisant le temps que la dame doit passer à se déplacer pour compenser le pion perdu. Les Noirs jouent ...Qxd4 pour gagner d'abord le pion, puis cherchent une case plus sûre pour la dame et achèvent leur développement.
+        basis:
+          by: chan
+          at: '2026-09-29'

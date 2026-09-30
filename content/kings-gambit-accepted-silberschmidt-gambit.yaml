@@ -1,0 +1,61 @@
+# King's Gambit Accepted, Silberschmidt Gambit, taught. Frozen defining line 1.e4 e5 2.f4
+# exf4 3.Nf3 g5 4.Bc4 g4 5.Ne5 Qh4+ 6.Kf1 Nh6 7.d4, which ends on White's own 7.d4 — the
+# learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's
+# 7...f3, the further pawn thrust that gives this entry its name, is modelled as the root's
+# single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. `g2` was
+# independently confirmed attacked by Black and defended by White with `chess.js`'s
+# `isAttacked`.
+id: kings-gambit-accepted-silberschmidt-gambit
+name: "King's Gambit Accepted: Silberschmidt Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Ne5, Qh4+, Kf1, Nh6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White builds the centre with d4 while the king is already stuck on f1,
+      real attacking chances against Black's own exposed queen and knight rather than a
+      proven win. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng dựng trung tâm bằng d4, tranh thủ lúc vua đã tạm ổn ở f1 để chuẩn bị ăn lại con tốt f4.
+    en: White builds the centre with d4, using the moment the king has settled on f1 to prepare winning back the f4 pawn.
+    fr: Les Blancs bâtissent le centre par d4, profitant du moment où le roi s'est installé en f1 pour préparer à regagner le pion f4.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 7...f3 — chẳng hạn phát triển bằng ...d6 hay ...Bg7. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 7...f3 — for instance developing with ...d6 or ...Bg7. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 7...f3 — par exemple se développer par ...d6 ou ...Bg7. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: f3
+      replyQuality: good
+      frequency: rare
+      annotation:
+        vi: Đen đẩy tiếp con tốt lên f3, giành thêm không gian và tấn công thẳng tốt g2, dù tốt này vẫn đang được bảo vệ.
+        en: Black pushes the pawn on to f3, grabbing more space and attacking the g2 pawn directly, though it remains defended.
+        fr: Les Noirs poussent encore le pion jusqu'en f3, gagnant plus d'espace et attaquant directement le pion g2, bien que celui-ci reste défendu.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng vẫn kém một tốt. Con tốt f3 vừa đẩy đang tấn công tốt g2, nhưng g2 hiện vẫn được bảo vệ (đã kiểm tra lại bằng chess.js), nên chưa phải quân ăn miễn phí; đổi lại con tốt f3 đã cắm sâu, chật hẹp hoá cánh vua Trắng.
+          en: Count the pawns and it is seven for White, eight for Black — White is still a pawn down. The pawn just pushed to f3 attacks the g2 pawn, but g2 remains defended for now, independently confirmed with chess.js, so it is not yet a free target; in exchange, the f3 pawn is now deeply planted, cramping White's kingside.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs restent en retard d'un pion. Le pion qui vient de pousser en f3 attaque le pion g2, mais celui-ci reste défendu pour l'instant, ce qui a été vérifié avec chess.js, donc ce n'est pas encore une cible gratuite ; en échange, le pion f3 est désormais profondément planté, gênant l'aile roi blanche.
+        plan:
+          vi: Trắng chơi gxf3 hoặc g3 để giải toả sức ép trên g2, rồi Bxf4 lấy lại tốt và tiếp tục phát triển với vua đã tạm ổn ở f1. Đen chơi ...d6 và ...Bg7, hoàn tất phát triển trong lúc cột f cùng con tốt f3 tiếp tục gây khó chịu cho cánh vua Trắng.
+          en: White plays gxf3 or g3 to relieve the pressure on g2, then Bxf4 to win back the pawn and keep developing with the king already settled on f1. Black plays ...d6 and ...Bg7, finishing development while the f-file and the f3 pawn keep bothering White's kingside.
+          fr: Les Blancs jouent gxf3 ou g3 pour soulager la pression sur g2, puis Bxf4 pour regagner le pion et poursuivre leur développement, le roi déjà installé en f1. Les Noirs jouent ...d6 et ...Bg7, achevant leur développement pendant que la colonne f et le pion f3 continuent de gêner l'aile roi blanche.
+        basis:
+          by: chan
+          at: '2026-09-29'

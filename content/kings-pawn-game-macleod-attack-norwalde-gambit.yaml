@@ -1,0 +1,67 @@
+# King's Pawn Game, MacLeod Attack, Norwalde Gambit, taught. Frozen defining line 1.e4 e5
+# 2.c3 d5 3.Qh5, which ends on White's own 3.Qh5 — the learner's ply — so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Black's 3...Bd6 is modelled as the root's
+# single reply. Every ply was replayed with chess.js, and the leaf was checked with
+# `searchMate` (bounded to 2 moves): no-mate, not in check. exd5 was independently confirmed
+# as a free capture for White with `resolution.ts`'s `freeCaptures`, which is why the leaf
+# carries `unsettled` rather than stopping silently.
+id: kings-pawn-game-macleod-attack-norwalde-gambit
+name: "King's Pawn Game: MacLeod Attack, Norwalde Gambit"
+eco: C20
+category: gambit
+side: white
+definingLine: [e4, e5, c3, d5, Qh5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White brings the queen out early rather than recapturing on d5, and
+      Black's 3...Bd6 does not even defend d5, but the early queen sortie is itself a
+      well-known liability once Black finishes developing. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đưa hậu ra h5 sớm, tấn công tốt e5 lẫn tốt f7 cùng lúc, tạm chưa lo chuyện đổi tốt trung tâm.
+    en: White brings the queen out to h5 early, attacking both the e5 pawn and f7 at once, not yet worrying about the central pawn trade.
+    fr: Les Blancs sortent tôt la dame en h5, attaquant à la fois le pion e5 et f7, sans encore se soucier de l'échange central.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 3...Bd6 — chẳng hạn ăn lại tốt ngay bằng ...dxe4 hay bảo vệ e5 bằng ...Nc6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 3...Bd6 — for instance recapturing at once with ...dxe4 or defending e5 with ...Nc6. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 3...Bd6 — par exemple reprendre aussitôt par ...dxe4 ou défendre e5 par ...Nc6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bd6
+      replyQuality: inaccuracy
+      frequency: rare
+      annotation:
+        vi: Đen phát triển tượng ra d6, bảo vệ thêm cho tốt e5 nhưng lại bỏ mặc con tốt d5 của chính mình.
+        en: Black develops the bishop to d6, adding a defender to the e5 pawn but leaving Black's own d5 pawn undefended.
+        fr: Les Noirs développent le fou en d6, ajoutant un défenseur au pion e5 mais laissant leur propre pion d5 sans défense.
+      unsettled: >-
+        exd5 is going free for White — Black's 3...Bd6 defends e5 but does nothing for d5,
+        so White simply captures it next move. The evaluation below already counts the
+        pawns as if that capture has happened, since it changes the material balance but
+        nothing about the position's character, so extending the line one more ply would add
+        nothing a reviewer cannot already see from this leaf.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt ngay tại đây thì hai bên bằng nhau, mỗi bên tám, nhưng con tốt d5 của Đen đang không được bảo vệ và Trắng sẽ ăn nó ngay bằng exd5, vượt lên hơn một tốt sạch. Con tốt f7 của Đen đang bị hậu h5 nhắm tới nhưng vẫn được vua bảo vệ, nên chưa phải mối nguy ngay lập tức.
+          en: Count the pawns right here and the two sides are level, eight each, but Black's d5 pawn is undefended and White will simply capture it with exd5, moving a clean pawn ahead. Black's f7 pawn is aimed at by the queen on h5 but remains defended by the king, so it is not an immediate danger.
+          fr: Comptez les pions ici même, les deux camps sont à égalité, huit de chaque côté, mais le pion d5 noir est sans défense et les Blancs vont simplement le capturer par exd5, prenant un pion net d'avance. Le pion f7 noir est visé par la dame en h5 mais reste défendu par le roi, ce qui n'est donc pas un danger immédiat.
+        plan:
+          vi: Trắng chơi exd5 ăn tốt rồi tiếp tục phát triển, nhưng phải cẩn thận vì con hậu ra sớm có thể bị Đen tấn công mất thời gian. Đen chơi ...Nf6 đuổi hậu và hoàn tất phát triển, đặt cược vào việc con hậu Trắng phải chạy tới chạy lui để bù lại con tốt đã mất.
+          en: White plays exd5 to win the pawn and continues developing, but must be careful since the early queen sortie can be attacked and lose time. Black plays ...Nf6 to chase the queen and finish developing, banking on the White queen having to run around to make up for the lost pawn.
+          fr: Les Blancs jouent exd5 pour gagner le pion et poursuivent leur développement, mais doivent rester prudents car la dame sortie tôt peut être attaquée et perdre du temps. Les Noirs jouent ...Nf6 pour chasser la dame et achever leur développement, misant sur les allers-retours de la dame blanche pour compenser le pion perdu.
+        basis:
+          by: chan
+          at: '2026-09-29'

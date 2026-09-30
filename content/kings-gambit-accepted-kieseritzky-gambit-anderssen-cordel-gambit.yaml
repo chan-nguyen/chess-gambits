@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Kieseritzky Gambit, Anderssen-Cordel Gambit, taught. Frozen
+# defining line 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Nf6 6.Bc4 d5 7.exd5 Bd6 8.d4 Nh5
+# 9.Bxf4, which ends on White's own 9.Bxf4 — the learner's ply — so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Black's 9...Nxf4 is modelled as the root's single
+# reply. Every ply was replayed with chess.js, and the leaf was checked with `searchMate`
+# (bounded to 2 moves): no-mate, not in check, no free capture.
+id: kings-gambit-accepted-kieseritzky-gambit-anderssen-cordel-gambit
+name: "King's Gambit Accepted: Kieseritzky Gambit, Anderssen-Cordel Gambit"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5, Nf6, Bc4, d5, exd5, Bd6, d4, Nh5, Bxf4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White gives back the bishop pair to win back the f4 pawn and keep the e5
+      knight, sharp and roughly balanced rather than a proven advantage for either side. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Con mã Đen trên h5 đang nhắm tượng f4, và Trắng chủ động ăn luôn con tốt f4 bằng chính tượng của mình trước khi bị đuổi.
+    en: Black's knight on h5 is eyeing the bishop on f4, and White gets in first, capturing the f4 pawn with that very bishop before it can be chased off.
+    fr: Le cavalier noir en h5 vise le fou en f4, et les Blancs prennent les devants en capturant le pion f4 avec ce même fou avant d'être chassés.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 9...Nxf4 — chẳng hạn phát triển bằng ...Nc6 hay ...O-O, để tượng Trắng yên vị trên f4. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 9...Nxf4 — for instance developing with ...Nc6 or ...O-O, leaving the White bishop sitting on f4. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 9...Nxf4 — par exemple se développer par ...Nc6 ou ...O-O, laissant le fou blanc s'installer en f4. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nxf4
+      replyQuality: best
+      frequency: occasional
+      annotation:
+        vi: Đen ăn lại ngay con tượng bằng mã, đổi tượng lấy mã và đưa quân mã tiến sâu vào trận địa Trắng.
+        en: Black recaptures the bishop with the knight at once, trading bishop for knight and landing a piece deep in White's position.
+        fr: Les Noirs reprennent aussitôt le fou avec le cavalier, échangeant fou contre cavalier et plaçant une pièce profondément dans le camp blanc.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen sáu — nước Bxf4 vừa rồi đã lấy lại con tốt thừa và giờ Trắng thậm chí hơn đúng một tốt. Về quân nặng thì ngang nhau (14 đều, tượng đổi lấy mã), nhưng con mã Đen trên f4 đứng khá xa hậu phương, trong khi tốt d5 của Trắng đã được tượng c4 bảo vệ nên không phải quân ăn miễn phí.
+          en: Count the pawns and it is seven for White, six for Black — the just-played Bxf4 won back the extra pawn, and White is now actually a pawn up. Total material is level at fourteen apiece, a bishop traded for a knight, but Black's knight on f4 sits well away from its own camp, while White's pawn on d5 is already guarded by the bishop on c4, so it is not a free target.
+          fr: Comptez les pions, sept pour les Blancs, six pour les Noirs — le Bxf4 qui vient d'être joué a regagné le pion supplémentaire, et les Blancs sont même désormais en avance d'un pion. Le matériel total est égal à quatorze de chaque côté, un fou échangé contre un cavalier, mais le cavalier noir en f4 se retrouve loin de sa base, tandis que le pion blanc en d5 est déjà gardé par le fou c4 et n'est donc pas une cible gratuite.
+        plan:
+          vi: Trắng chơi O-O hoặc Bd3 để vừa nhập thành vừa đuổi hoặc trung hoà con mã f4 đang lạc lõng, giữ vững tốt thừa. Đen chơi ...Nc6 hoặc ...O-O để hoàn tất phát triển, tính chuyện đổi mã f4 lấy một quân Trắng trước khi nó bị bắt không công.
+          en: White plays O-O or Bd3, both castling and dealing with the stranded f4 knight, while holding on to the extra pawn. Black plays ...Nc6 or ...O-O to finish developing, looking to trade the f4 knight for a White piece before it is simply won.
+          fr: Les Blancs jouent O-O ou Bd3, roquant tout en s'occupant du cavalier f4 esseulé, tout en conservant le pion supplémentaire. Les Noirs jouent ...Nc6 ou ...O-O pour achever leur développement, cherchant à échanger le cavalier f4 contre une pièce blanche avant qu'il ne soit simplement gagné.
+        basis:
+          by: chan
+          at: '2026-09-29'

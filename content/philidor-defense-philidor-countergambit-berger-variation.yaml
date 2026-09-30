@@ -1,0 +1,61 @@
+# Philidor Defense, Philidor Countergambit, Berger Variation, taught. Frozen defining line
+# 1.e4 e5 2.Nf3 d6 3.d4 f5 4.dxe5 fxe4 5.Ng5 d5 6.e6 Bc5, which ends on Black's own 6...Bc5
+# — the learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# White's 7.Nc3 is modelled as the root's single reply. Every ply was replayed with
+# chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in
+# check, no free capture. `e4` and `e6` were independently confirmed mutually attacked and
+# defended on both sides with `chess.js`'s `isAttacked`.
+id: philidor-defense-philidor-countergambit-berger-variation
+name: 'Philidor Defense: Philidor Countergambit, Berger Variation'
+eco: C41
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d6, d4, f5, dxe5, fxe4, Ng5, d5, e6, Bc5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White's e6 pawn is a deep, well-defended wedge cramping Black's
+      development, and Black's bishop on c5 does not immediately solve that problem — real
+      practical difficulties for Black rather than a proven equaliser. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng phát triển mã ra c3, tấn công thêm vào con tốt e4 của Đen trong khi con tốt e6 của Trắng vẫn cắm sâu và được bảo vệ.
+    en: White develops the knight to c3, adding another attacker to Black's e4 pawn while the White pawn on e6 remains deeply planted and defended.
+    fr: Les Blancs développent le cavalier en c3, ajoutant un attaquant sur le pion e4 noir pendant que le pion blanc en e6 reste profondément planté et défendu.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 7.Nc3 — chẳng hạn ăn tốt bằng Nxe4 ngay hoặc phát triển bằng Be2. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 7.Nc3 — for instance capturing at once with Nxe4 or developing with Be2. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 7.Nc3 — par exemple capturer aussitôt par Nxe4 ou se développer par Be2. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chọn phát triển thêm một quân trước khi tính chuyện ăn tốt e4, giữ nguyên áp lực.
+        en: White chooses to develop another piece before thinking about capturing the e4 pawn, keeping up the pressure.
+        fr: Les Blancs choisissent de développer une autre pièce avant de songer à capturer le pion e4, maintenant la pression.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên bảy. Con tốt e4 của Đen và con tốt e6 của Trắng đều đang bị tấn công nhưng cả hai vẫn được bảo vệ (đã kiểm tra lại bằng chess.js). Con tốt e6 của Trắng cắm sâu trong trận địa Đen, cản trở hẳn đường phát triển tự nhiên của tượng c8.
+          en: Count the pawns and the two sides are level, seven each. Both Black's e4 pawn and White's e6 pawn are attacked but both remain defended, independently confirmed with chess.js. White's e6 pawn sits deep inside Black's position, visibly blocking the c8 bishop's natural development.
+          fr: Comptez les pions, les deux camps sont à égalité, sept de chaque côté. Le pion e4 noir et le pion e6 blanc sont tous deux attaqués mais restent tous deux défendus, ce qui a été vérifié avec chess.js. Le pion blanc en e6, profondément planté dans le camp noir, gêne visiblement le développement naturel du fou c8.
+        plan:
+          vi: Trắng chơi Nxe4 đổi mã lấy tốt khi thuận tiện, giữ vững con tốt e6 làm vật cản lâu dài cho Đen. Đen chơi ...Bxe6 ăn lại con tốt gây khó chịu ấy càng sớm càng tốt, chấp nhận đổi tượng để giải toả thế bí.
+          en: White plays Nxe4 to trade the knight for the pawn when convenient, keeping the e6 pawn as a long-term obstacle for Black. Black plays ...Bxe6 to remove that irritating pawn as soon as possible, accepting the bishop trade to relieve the cramp.
+          fr: Les Blancs jouent Nxe4 pour échanger le cavalier contre le pion quand cela convient, gardant le pion e6 comme obstacle durable pour les Noirs. Les Noirs jouent ...Bxe6 pour retirer ce pion gênant dès que possible, acceptant l'échange de fous pour soulager l'étau.
+        basis:
+          by: chan
+          at: '2026-09-29'

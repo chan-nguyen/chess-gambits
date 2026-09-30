@@ -1,0 +1,59 @@
+# King's Gambit Accepted, Greco Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 d6 4.Bc4 h6 5.d4 g5 6.h4, which ends on White's own 6.h4 — the learner's ply — so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 6...Bg7 is modelled
+# as the root's single reply. Every ply was replayed with chess.js, and the leaf was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+id: kings-gambit-accepted-greco-gambit
+name: "King's Gambit Accepted: Greco Gambit"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, d6, Bc4, h6, d4, g5, h4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White builds a full pawn centre with d4 and challenges the g5 pawn that
+      shields Black's extra pawn on f4, real practical chances rather than a proven
+      refutation of Black's slow set-up. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã dựng xong trung tâm tốt bằng d4 và giờ chơi h4, thách thức con tốt g5 đang che chắn cho con tốt f4 mà Đen đã ăn được.
+    en: White has built a full pawn centre with d4 and now plays h4, challenging the g5 pawn that shields the f4 pawn Black picked up.
+    fr: Les Blancs ont bâti un centre de pions complet avec d4 et jouent maintenant h4, défiant le pion g5 qui protège le pion f4 gagné par les Noirs.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 6...Bg7 — chẳng hạn đổi tốt ngay bằng ...gxh4 hoặc củng cố bằng ...f6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 6...Bg7 — for instance trading at once with ...gxh4 or reinforcing with ...f6. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 6...Bg7 — par exemple échanger tout de suite par ...gxh4 ou renforcer par ...f6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bg7
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen phớt lờ sức ép trên cột h và đưa tượng vào g7, nhắm đường chéo dài a1-h8 và chuẩn bị nhập thành.
+        en: Black ignores the pressure on the h-file and fianchettoes the bishop to g7, aiming down the long a1-h8 diagonal and preparing to castle.
+        fr: Les Noirs ignorent la pression sur la colonne h et fianchettent le fou en g7, visant la grande diagonale a1-h8 et préparant le roque.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám, Đen vẫn giữ tốt thừa từ nước 2...exf4. Cả hai vua đều chưa nhập thành, nhưng Trắng đã đưa ra hai quân (tượng c4, mã f3) trong khi Đen mới có một (tượng g7 vừa đi), và hai tốt trung tâm d4-e4 của Trắng đã đứng cạnh nhau vững chãi.
+          en: Count the pawns and it is seven for White, eight for Black — Black still holds the extra pawn from 2...exf4. Neither king has castled, but White already has two pieces out (the bishop on c4, the knight on f3) against Black's one (the bishop just placed on g7), and White's central d4-e4 pawns stand side by side, unchallenged.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Noirs gardent le pion supplémentaire depuis 2...exf4. Aucun roi n'a roqué, mais les Blancs ont déjà deux pièces sorties (le fou c4, le cavalier f3) contre une seule pour les Noirs (le fou tout juste placé en g7), et le duo de pions centraux d4-e4 blanc reste soudé et non contesté.
+        plan:
+          vi: Trắng chơi hxg5 mở cột h, rồi O-O hoặc Rh3-e3 lao vào cánh vua Đen còn chưa an toàn. Đen chơi ...Nc6 hoặc ...c6, hoàn tất phát triển và tìm cách nhập thành trước khi cột h hoặc đường chéo mở ra thêm nguy hiểm.
+          en: White plays hxg5 to open the h-file, then O-O or Rh3-e3 to pour pieces into Black's still-unsafe kingside. Black plays ...Nc6 or ...c6, finishing development and looking to castle before the open h-file or diagonal brings more danger.
+          fr: Les Blancs jouent hxg5 pour ouvrir la colonne h, puis O-O ou Rh3-e3 pour lancer leurs pièces vers l'aile roi noire encore peu sûre. Les Noirs jouent ...Nc6 ou ...c6, achevant leur développement et cherchant à roquer avant que la colonne h ouverte ou la diagonale n'apportent plus de danger.
+        basis:
+          by: chan
+          at: '2026-09-29'

@@ -1,0 +1,61 @@
+# Latvian Gambit, Mlotkowski Variation, taught. Frozen defining line 1.e4 e5 2.Nf3 f5,
+# which ends on Black's own 2...f5 — the learner's ply — so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White's 3.Nc3 is modelled as the root's single reply.
+# Every ply was replayed with chess.js, and the leaf was checked with `searchMate` (bounded
+# to 2 moves): no-mate, not in check, no free capture (from the side to move, Black). `e5`
+# was independently confirmed attacked by White and undefended by Black with `chess.js`'s
+# `isAttacked` — a threat for White's next move, not a free capture for the side actually to
+# move at this leaf.
+id: latvian-gambit-mlotkowski-variation
+name: 'Latvian Gambit: Mlotkowski Variation'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White simply develops with Nc3 rather than grabbing a pawn at once, but
+      the e5 pawn Black's own 2...f5 left undefended is still there for the taking next move.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng phát triển mã ra c3 một cách nhẹ nhàng, chưa vội ăn con tốt e5 mà 2...f5 đã bỏ ngỏ.
+    en: White develops the knight to c3 calmly, not yet rushing to grab the e5 pawn that 2...f5 left undefended.
+    fr: Les Blancs développent tranquillement le cavalier en c3, sans se précipiter pour prendre le pion e5 que 2...f5 a laissé sans défense.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 3.Nc3 — chẳng hạn ăn tốt ngay bằng Nxe5 hay phát triển bằng Bc4. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 3.Nc3 — for instance capturing at once with Nxe5 or developing with Bc4. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 3.Nc3 — par exemple capturer aussitôt par Nxe5 ou se développer par Bc4. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chọn phát triển thêm một quân trước, giữ nguyên lựa chọn ăn tốt e5 cho những nước sau.
+        en: White chooses to bring out another piece first, keeping the option of capturing on e5 for a later move.
+        fr: Les Blancs choisissent de sortir une autre pièce d'abord, gardant la possibilité de capturer en e5 pour plus tard.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên tám — chưa quân nào bị mất. Con tốt e5 của Đen vẫn đang bị mã f3 tấn công và không quân nào bảo vệ (đã kiểm tra lại bằng chess.js), nên đây là mối đe doạ thật sự cho nước tiếp theo của Trắng nếu Đen không xử lý.
+          en: Count the pawns and the two sides are level, eight each — nothing has been lost yet. Black's e5 pawn is still attacked by the f3 knight and defended by nothing, independently confirmed with chess.js, so it is a real threat for White's next move if Black does not address it.
+          fr: Comptez les pions, les deux camps sont à égalité, huit de chaque côté — rien n'est encore perdu. Le pion e5 noir reste attaqué par le cavalier f3 et n'est défendu par rien, ce qui a été vérifié avec chess.js, ce qui constitue une vraie menace pour le prochain coup blanc si les Noirs n'y remédient pas.
+        plan:
+          vi: Trắng chơi Nxe5 ăn tốt nếu Đen chậm trễ, hoặc tiếp tục phát triển bằng Bc4 nếu Đen đã kịp bảo vệ. Đen chơi ...Nc6 hoặc ...d6 để bảo vệ thêm cho tốt e5 trước khi bị ăn mất không công.
+          en: White plays Nxe5 to win the pawn if Black is slow, or continues developing with Bc4 if Black has managed to defend it. Black plays ...Nc6 or ...d6 to add a further defender to the e5 pawn before it is simply won for free.
+          fr: Les Blancs jouent Nxe5 pour gagner le pion si les Noirs tardent, ou poursuivent leur développement par Bc4 si les Noirs ont réussi à le défendre. Les Noirs jouent ...Nc6 ou ...d6 pour ajouter un défenseur au pion e5 avant qu'il ne soit simplement gagné gratuitement.
+        basis:
+          by: chan
+          at: '2026-09-29'

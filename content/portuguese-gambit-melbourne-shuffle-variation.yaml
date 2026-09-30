@@ -1,0 +1,61 @@
+# Scandinavian Defense, Portuguese Gambit, Melbourne Shuffle Variation, taught. Frozen
+# defining line 1.e4 d5 2.exd5 Nf6 3.d4 Bg4 4.f3 Bf5 5.Bb5+ Nbd7, which ends on Black's own
+# 5...Nbd7 — the learner's ply, blocking the check — so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White's 6.Nc3 is modelled as the root's single reply.
+# Every ply was replayed with chess.js, and the leaf was checked with `searchMate` (bounded
+# to 2 moves): no-mate, not in check, no free capture. `d5` was independently confirmed
+# attacked by Black but defended by White with `chess.js`'s `isAttacked`.
+id: portuguese-gambit-melbourne-shuffle-variation
+name: 'Scandinavian Defense: Portuguese Gambit, Melbourne Shuffle Variation'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, Bg4, f3, Bf5, 'Bb5+', Nbd7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black gives up a pawn for fast piece development and pressure on d5 and
+      the long diagonal, real practical compensation rather than a proven equaliser, since
+      White's extra pawn on d5 is currently defended. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng phát triển mã ra c3, thêm một quân bảo vệ cho con tốt d5 đang bị Đen gây sức ép.
+    en: White develops the knight to c3, adding a further defender to the d5 pawn Black is pressuring.
+    fr: Les Blancs développent le cavalier en c3, ajoutant un défenseur supplémentaire au pion d5 sous la pression noire.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 6.Nc3 — chẳng hạn phát triển bằng Ne2 hay nhập thành O-O sau khi chuẩn bị. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 6.Nc3 — for instance developing with Ne2 or preparing to castle O-O. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 6.Nc3 — par exemple se développer par Ne2 ou préparer le roque O-O. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chọn phát triển mã theo cách tự nhiên nhất, củng cố thêm cho con tốt d5 đang thừa.
+        en: White chooses the most natural developing square for the knight, further shoring up the extra pawn on d5.
+        fr: Les Blancs choisissent la case de développement la plus naturelle pour le cavalier, renforçant encore le pion supplémentaire en d5.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng tám, Đen bảy — Trắng đang hơn đúng một tốt. Con tốt d5 ấy đang bị Đen tấn công nhưng vẫn được bảo vệ (đã kiểm tra lại bằng chess.js), đổi lại Đen đã đưa ra được ba quân nhẹ (hai tượng và một mã) trong khi Trắng mới chỉ có một mã.
+          en: Count the pawns and it is eight for White, seven for Black — White is up exactly one pawn. That d5 pawn is attacked by Black but remains defended, independently confirmed with chess.js; in exchange Black already has three minor pieces out (both bishops and a knight) against White's one knight.
+          fr: Comptez les pions, huit pour les Blancs, sept pour les Noirs — les Blancs sont en avance d'exactement un pion. Ce pion d5 est attaqué par les Noirs mais reste défendu, ce qui a été vérifié avec chess.js ; en échange, les Noirs ont déjà sorti trois pièces mineures (les deux fous et un cavalier) contre un seul cavalier blanc.
+        plan:
+          vi: Trắng chơi Nge2 và O-O, hoàn tất phát triển và cố gắng giữ vững con tốt thừa qua giai đoạn nguy hiểm nhất. Đen chơi ...e6 mở đường cho tượng f8, rồi ...Bb4 hoặc ...O-O, tiếp tục dồn quân khai thác cột e và cột d còn chưa ổn định của Trắng.
+          en: White plays Nge2 and O-O, finishing development and trying to hold on to the extra pawn through the most dangerous stretch of the game. Black plays ...e6 to free the f8 bishop, then ...Bb4 or ...O-O, continuing to mass pieces to exploit White's not-yet-settled e- and d-files.
+          fr: Les Blancs jouent Nge2 et O-O, achevant leur développement et essayant de conserver le pion supplémentaire pendant la phase la plus dangereuse de la partie. Les Noirs jouent ...e6 pour libérer le fou f8, puis ...Bb4 ou ...O-O, continuant à masser leurs pièces pour exploiter les colonnes e et d blanches encore instables.
+        basis:
+          by: chan
+          at: '2026-09-29'

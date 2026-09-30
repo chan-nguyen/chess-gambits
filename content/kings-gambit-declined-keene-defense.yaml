@@ -1,0 +1,59 @@
+# King's Gambit Declined, Keene Defense, taught. Frozen defining line 1.e4 e5 2.f4 Qh4+
+# 3.g3, which ends on White's own 3.g3 — the learner's ply, deflecting the check — so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 3...Qe7 is modelled as
+# the root's single reply. Every ply was replayed with chess.js, and the leaf was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture.
+id: kings-gambit-declined-keene-defense
+name: "King's Gambit Declined: Keene Defense"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, 'Qh4+', g3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black checks immediately instead of taking the f4 pawn, spending the
+      queen's own tempo to make White loosen the kingside with g3 — a real practical try
+      rather than a proven equaliser, since the queen itself now has to find a good square.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng chặn nước chiếu bằng g3, đẩy con hậu Đen phải tìm chỗ khác trong khi tạm thời làm yếu đi cánh vua của chính mình.
+    en: White blocks the check with g3, forcing Black's queen to find another square while loosening its own kingside for the moment.
+    fr: Les Blancs bloquent l'échec par g3, obligeant la dame noire à trouver une autre case tout en affaiblissant momentanément leur propre aile roi.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 3...Qe7 — chẳng hạn rút hậu về d8 hay f6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 3...Qe7 — for instance retreating the queen to d8 or f6. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 3...Qe7 — par exemple ramener la dame en d8 ou f6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Qe7
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen rút hậu về e7, một ô khiêm tốn nhưng lại tạm thời chắn mất đường phát triển tự nhiên của chính con tượng f8.
+        en: Black retreats the queen to e7, a modest square that for now blocks the f8 bishop's own natural way out.
+        fr: Les Noirs replient la dame en e7, une case modeste qui bloque pour l'instant la voie de développement naturelle du fou f8.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên tám — chưa quân nào bị đổi hay mất. Trắng đã bỏ ra một nước g3 thay vì phát triển quân, nhưng con hậu Đen trên e7 lại đang tạm thời chắn mất các ô phát triển tự nhiên nhất (e7, d6, c5) của chính con tượng f8.
+          en: Count the pawns and the two sides are level, eight each — nothing has been traded or lost. White has spent a move on g3 instead of developing a piece, but Black's queen on e7 is itself temporarily blocking the f8 bishop's most natural development squares (e7, d6, c5).
+          fr: Comptez les pions, les deux camps sont à égalité, huit de chaque côté — rien n'a encore été échangé ou perdu. Les Blancs ont consacré un coup à g3 au lieu de développer une pièce, mais la dame noire en e7 bloque elle-même temporairement les cases de développement les plus naturelles (e7, d6, c5) du fou f8.
+        plan:
+          vi: Trắng chơi Nf3 và Bg2, hoàn thiện phát triển trên nền tảng cấu trúc tốt g3 đã chọn, rồi tính chuyện ăn lại quyền chủ động ở trung tâm bằng d4. Đen chơi ...Nc6 và tìm đường khác cho tượng f8 qua ...g6-Bg7 hoặc chuyển hậu đi nơi khác trước khi tiếp tục phát triển.
+          en: White plays Nf3 and Bg2, completing development on the g3 pawn structure already chosen, then looks to claim the centre with d4. Black plays ...Nc6 and finds another route for the f8 bishop via ...g6-Bg7, or relocates the queen before continuing to develop.
+          fr: Les Blancs jouent Nf3 et Bg2, achevant leur développement sur la structure de pions g3 déjà choisie, puis cherchent à s'emparer du centre par d4. Les Noirs jouent ...Nc6 et trouvent une autre voie pour le fou f8 via ...g6-Bg7, ou déplacent la dame avant de poursuivre leur développement.
+        basis:
+          by: chan
+          at: '2026-09-29'

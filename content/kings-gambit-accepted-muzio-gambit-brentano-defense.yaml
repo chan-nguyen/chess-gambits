@@ -1,0 +1,61 @@
+# King's Gambit Accepted, Muzio Gambit, Brentano Defense, taught. Shares its 9-ply root,
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.O-O, with `muzio-gambit-kling-and-horwitz-counterattack`
+# and other Muzio siblings, so `definingLine` stops there — the learner's own 5.O-O — and
+# Black's 5...d5, the countergambit that gives this entry its name, is modelled as the
+# root's own reply (docs/CONTEXT.md, invariant 5). Every ply was replayed with chess.js, and
+# the leaf was checked with `searchMate` (bounded to 2 moves): no-mate, not in check, no free
+# capture. `c4` and `e4` were independently confirmed attacked by Black and undefended by
+# White with `chess.js`'s `isAttacked`.
+id: kings-gambit-accepted-muzio-gambit-brentano-defense
+name: "King's Gambit Accepted: Muzio Gambit, Brentano Defense"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, O-O]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. White gives up the knight outright by castling rather than retreating it
+      from f3, real attacking chances for the piece down the open f-file rather than a
+      proven win. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng nhập thành thay vì cứu con mã f3 đang bị tốt g4 tấn công, hiến hẳn quân mã để đổi lấy cột f mở nhắm vào vua Đen.
+    en: White castles instead of saving the knight on f3, which the g4 pawn attacks, offering the piece outright for the open f-file aimed at Black's king.
+    fr: Les Blancs roquent au lieu de sauver le cavalier f3, attaqué par le pion g4, offrant carrément la pièce contre la colonne f ouverte braquée sur le roi noir.
+  dismissRest:
+    reason:
+      vi: Đen chơi khác 5...d5 — chẳng hạn ăn luôn mã bằng ...gxf3 hay phát triển bằng ...Bg7. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 5...d5 — for instance capturing the knight at once with ...gxf3 or developing with ...Bg7. Each is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 5...d5 — par exemple capturer aussitôt le cavalier par ...gxf3 ou se développer par ...Bg7. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Thay vì ăn luôn con mã, Đen phản công ngay ở trung tâm bằng ...d5, tấn công cùng lúc cả tượng c4 lẫn tốt e4.
+        en: Instead of capturing the knight at once, Black counterattacks in the centre with ...d5, hitting both the bishop on c4 and the e4 pawn at the same time.
+        fr: Plutôt que de capturer aussitôt le cavalier, les Noirs contre-attaquent au centre par ...d5, visant à la fois le fou c4 et le pion e4.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì Trắng bảy, Đen tám — Trắng vẫn kém một tốt. Con tốt d5 vừa đi đang tấn công cùng lúc cả tượng c4 lẫn tốt e4, và hiện tại không quân Trắng nào bảo vệ được cả hai (điều đã kiểm tra lại bằng chess.js), nên Trắng buộc phải bỏ một trong hai ngay lượt đi tới.
+          en: Count the pawns and it is seven for White, eight for Black — White is still a pawn down. The pawn just played to d5 attacks both the bishop on c4 and the e4 pawn at the same time, and right now no White piece defends either of them, independently confirmed with chess.js, so White must give up one of the two on the very next move.
+          fr: Comptez les pions, sept pour les Blancs, huit pour les Noirs — les Blancs restent en retard d'un pion. Le pion qui vient de jouer en d5 attaque à la fois le fou c4 et le pion e4, et pour l'instant aucune pièce blanche ne défend l'un ou l'autre, ce qui a été vérifié avec chess.js, si bien que les Blancs doivent céder l'un des deux dès le coup suivant.
+        plan:
+          vi: Trắng chơi Bxd5 đổi tượng lấy tốt và giữ nguyên áp lực trên cột f, chấp nhận mất bớt vật chất để giữ thế công. Đen chơi ...gxf3 ăn nốt con mã sau khi tượng đã bị đổi, hoặc phát triển tiếp bằng ...Nf6 nếu Trắng chọn cách khác, cố gắng giữ vững phần vật chất đã có.
+          en: White plays Bxd5, trading the bishop for the pawn and keeping up the pressure on the open f-file, accepting more lost material to keep the attack going. Black plays ...gxf3 to also win the knight once the bishop trade is done, or continues developing with ...Nf6 if White chooses otherwise, trying to hold on to the material already won.
+          fr: Les Blancs jouent Bxd5, échangeant le fou contre le pion et maintenant la pression sur la colonne f ouverte, acceptant de céder encore du matériel pour garder l'attaque. Les Noirs jouent ...gxf3 pour gagner aussi le cavalier une fois l'échange de fous effectué, ou poursuivent leur développement par ...Nf6 si les Blancs choisissent autrement, essayant de conserver le matériel déjà gagné.
+        basis:
+          by: chan
+          at: '2026-09-29'

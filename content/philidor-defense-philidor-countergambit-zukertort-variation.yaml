@@ -1,0 +1,61 @@
+# Philidor Defense, Philidor Countergambit, Zukertort Variation, taught. Frozen defining
+# line 1.e4 e5 2.Nf3 d6 3.d4 f5, which ends on Black's own 3...f5 — the learner's ply — so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). White's 4.Nc3 is modelled as
+# the root's single reply. Every ply was replayed with chess.js, and the leaf was checked
+# with `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. `e5` and
+# `f5` were both independently confirmed attacked but defended with `chess.js`'s
+# `isAttacked`.
+id: philidor-defense-philidor-countergambit-zukertort-variation
+name: 'Philidor Defense: Philidor Countergambit, Zukertort Variation'
+eco: C41
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d6, d4, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Black offers a countergambit pawn with 3...f5 but both central pawns
+      remain defended for the moment, and White simply develops rather than resolving the
+      tension at once — real complications, not a proven equaliser for Black. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng phát triển mã ra c3, chưa vội giải quyết căng thẳng ở trung tâm giữa các con tốt.
+    en: White develops the knight to c3, not yet rushing to resolve the central pawn tension.
+    fr: Les Blancs développent le cavalier en c3, sans se précipiter pour résoudre la tension centrale entre les pions.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 4.Nc3 — chẳng hạn ăn tốt ngay bằng dxe5 hay exf5. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 4.Nc3 — for instance capturing at once with dxe5 or exf5. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 4.Nc3 — par exemple capturer aussitôt par dxe5 ou exf5. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chọn phát triển quân trước, để nguyên cả hai con tốt trung tâm đang căng thẳng.
+        en: White chooses to develop a piece first, leaving both central pawns in tension for now.
+        fr: Les Blancs choisissent de développer une pièce d'abord, laissant les deux pions centraux en tension pour l'instant.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên tám — chưa quân nào bị đổi. Cả tốt e5 của Đen lẫn tốt f5 của Đen đều đang bị Trắng tấn công nhưng cả hai vẫn được bảo vệ (đã kiểm tra lại bằng chess.js), nên chưa quân nào rơi vào thế mất không ngay lúc này.
+          en: Count the pawns and the two sides are level, eight each — nothing has been traded yet. Both Black's e5 pawn and f5 pawn are attacked by White but both remain defended, independently confirmed with chess.js, so nothing is lost for free right now.
+          fr: Comptez les pions, les deux camps sont à égalité, huit de chaque côté — rien n'a encore été échangé. Le pion e5 noir et le pion f5 noir sont tous deux attaqués par les Blancs mais restent tous deux défendus, ce qui a été vérifié avec chess.js, donc rien n'est encore perdu gratuitement.
+        plan:
+          vi: Trắng chơi exf5 mở đường trước, hoặc dxe5 để giành lợi thế tốt qua trung tâm, tuỳ vào cách Đen tiếp tục phát triển. Đen chơi ...Nf6 hoàn tất phát triển, giữ vững căng thẳng trung tâm và chuẩn bị đáp trả tuỳ theo Trắng chọn ăn quân nào trước.
+          en: White plays exf5 to open lines first, or dxe5 to try to win the pawn battle in the centre, depending on how Black continues developing. Black plays ...Nf6 to finish developing, keeping the central tension alive and ready to react to whichever capture White chooses first.
+          fr: Les Blancs jouent exf5 pour ouvrir des lignes d'abord, ou dxe5 pour tenter de gagner la bataille des pions au centre, selon la façon dont les Noirs poursuivent leur développement. Les Noirs jouent ...Nf6 pour achever leur développement, maintenant la tension centrale et prêts à réagir selon la capture choisie en premier par les Blancs.
+        basis:
+          by: chan
+          at: '2026-09-29'

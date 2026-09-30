@@ -1,0 +1,60 @@
+# King's Gambit Declined, Panteldakis Countergambit, Symmetrical Variation, taught. Frozen
+# defining line 1.e4 e5 2.f4 f5 3.exf5 exf4 4.Nf3 d5 5.d4 Bd6, which ends on Black's own
+# 5...Bd6 — the learner's ply — so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). White's 6.Bd3 is modelled as the root's single reply. Every ply was replayed
+# with chess.js, and the leaf was checked with `searchMate` (bounded to 2 moves): no-mate,
+# not in check, no free capture. `f4` was independently confirmed attacked by White and
+# defended by Black's bishop on d6 with `chess.js`'s `isAttacked`.
+id: panteldakis-countergambit-symmetrical-variation
+name: "King's Gambit Declined: Panteldakis Countergambit, Symmetrical Variation"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, e5, f4, f5, exf5, exf4, Nf3, d5, d4, Bd6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-29'
+  basis:
+    by: chan
+    at: '2026-09-29'
+    source: >-
+      A judgement. Both sides have built a matching pawn structure and both are still owed a
+      pawn back somewhere on the board, a level and quiet continuation rather than a proven
+      equaliser for either side. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-29'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đưa tượng ra d3 đối xứng lại với tượng d6 của Đen, hoàn thiện phát triển trên cùng một cấu trúc tốt.
+    en: White develops the bishop to d3, mirroring Black's bishop on d6, completing development on a matching pawn structure.
+    fr: Les Blancs développent le fou en d3, en miroir du fou noir en d6, achevant leur développement sur une structure de pions symétrique.
+  dismissRest:
+    reason:
+      vi: Trắng chơi khác 6.Bd3 — chẳng hạn ăn tốt bằng Bxf4 trước hay phát triển bằng Bc4. Mỗi cách nằm ngoài phạm vi mục này.
+      en: White plays something other than 6.Bd3 — for instance capturing the pawn with Bxf4 first or developing with Bc4. Each is outside the scope of this entry.
+      fr: Les Blancs jouent autre chose que 6.Bd3 — par exemple capturer le pion par Bxf4 d'abord ou se développer par Bc4. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Bd3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chọn phát triển tượng trước, tạm để nguyên cả tốt d5 lẫn tốt f4 trên bàn cờ.
+        en: White chooses to develop the bishop first, leaving both the d5 pawn and the f4 pawn on the board for now.
+        fr: Les Blancs choisissent de développer le fou d'abord, laissant pour l'instant le pion d5 et le pion f4 sur l'échiquier.
+      outcome:
+        type: position
+        evaluation:
+          vi: Đếm tốt thì hai bên bằng nhau, mỗi bên bảy — cấu trúc tốt gần như đối xứng, đúng như tên gọi của biến này. Con tốt f4 của Đen đang bị mã f3 tấn công nhưng vẫn được tượng d6 bảo vệ (đã kiểm tra lại bằng chess.js), nên chưa quân nào rơi vào thế mất không.
+          en: Count the pawns and the two sides are level, seven each — the pawn structure is nearly a mirror image, matching this variation's name. Black's f4 pawn is attacked by the f3 knight but remains defended by the bishop on d6, independently confirmed with chess.js, so nothing is yet lost for free.
+          fr: Comptez les pions, les deux camps sont à égalité, sept de chaque côté — la structure de pions est presque un miroir, ce qui correspond au nom de cette variante. Le pion f4 noir est attaqué par le cavalier f3 mais reste défendu par le fou d6, ce qui a été vérifié avec chess.js, donc rien n'est encore perdu gratuitement.
+        plan:
+          vi: Trắng chơi O-O rồi Re1, hoàn tất phát triển và tìm cách khai thác thế cờ đối xứng bằng một nước đi thêm. Đen chơi ...Ne7 và ...O-O, hoàn tất phát triển tương tự, cố gắng giữ vững con tốt f4 làm vốn liếng lâu dài.
+          en: White plays O-O then Re1, finishing development and looking to exploit the extra move in this otherwise symmetrical position. Black plays ...Ne7 and ...O-O, completing development in kind, trying to hold on to the f4 pawn as a long-term asset.
+          fr: Les Blancs jouent O-O puis Re1, achevant leur développement et cherchant à exploiter le coup supplémentaire dans cette position par ailleurs symétrique. Les Noirs jouent ...Ne7 et ...O-O, achevant leur développement de la même manière, essayant de conserver le pion f4 comme atout durable.
+        basis:
+          by: chan
+          at: '2026-09-29'
