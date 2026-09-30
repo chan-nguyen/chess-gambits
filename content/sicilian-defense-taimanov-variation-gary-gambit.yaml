@@ -1,0 +1,91 @@
+# Sicilian Defense: Taimanov Variation, Gary Gambit. Frozen defining line 1.e4 c5 2.Nf3 e6 3.d4
+# cxd4 4.Nxd4 Nc6 5.Nb5 d6 6.c4 Nf6 7.N1c3 a6 8.Na3 d5, which ends on Black's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 9.cxd5 Nxd5 10.Nxd5
+# exd5 11.exd5. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-taimanov-variation-gary-gambit
+name: 'Sicilian Defense: Taimanov Variation, Gary Gambit'
+eco: B44
+category: gambit
+side: black
+definingLine: [e4, c5, Nf3, e6, d4, cxd4, Nxd4, Nc6, Nb5, d6, c4, Nf6, N1c3, a6, Na3, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: "A judgement. At the leaf Black is a pawn down, five pawns to six, and Black's only compensation is structural: White's d5 pawn is isolated, with the c- and e-files open beside it, and the queen on d8 faces it on the half-open d-file, defended once against one attacker. The knight on c6 is attacked by that pawn and defended only by the b7 pawn. No engine was consulted and no database was queried."
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 8...d5, thí một tốt: tốt d5 bị bốn quân tấn công (tốt c4, tốt e4, mã c3 và hậu d1) và có ba quân bảo vệ (hậu d8, tốt e6 và mã f6). Số tốt hai bên bằng nhau, bảy mỗi bên.'
+    en: 'Black has just played 8...d5, offering a pawn: the d5 pawn is attacked four times (by the c4 pawn, the e4 pawn, the knight on c3 and the queen on d1) and defended three times (by the queen on d8, the e6 pawn and the knight on f6). The pawn count is level, seven each.'
+    fr: 'Les Noirs viennent de jouer 8...d5, offrant un pion : le pion d5 est attaqué quatre fois (par le pion c4, le pion e4, le cavalier c3 et la dame d1) et défendu trois fois (par la dame d8, le pion e6 et le cavalier f6). Le compte de pions est égal, sept de chaque côté.'
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 9.cxd5, chẳng hạn 9.exd5 hoặc 9.Nxd5. Đánh giá trong mục này dành cho nhánh Trắng ăn tốt d5 bằng tốt c.
+      en: White plays something other than 9.cxd5, for example 9.exd5 or 9.Nxd5. The assessment in this entry is for the line where White takes on d5 with the c-pawn.
+      fr: Les Blancs jouent autre chose que 9.cxd5, par exemple 9.exd5 ou 9.Nxd5. L'évaluation de cette fiche porte sur la ligne où les Blancs prennent en d5 avec le pion c.
+  children:
+    - ply: cxd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt d5 bằng tốt c: Trắng hơn một tốt, bảy so với sáu, và tốt d5 mới tấn công mã c6, con mã chỉ có tốt b7 bảo vệ.'
+        en: 'White takes the d5 pawn with the c-pawn: White is a pawn up, seven to six, and the new pawn on d5 attacks the knight on c6, which only the b7 pawn defends.'
+        fr: 'Les Blancs prennent le pion d5 avec le pion c : les Blancs ont un pion de plus, sept contre six, et le nouveau pion d5 attaque le cavalier c6, que seul le pion b7 défend.'
+      children:
+        - ply: Nxd5
+          annotation:
+            vi: 'Đen ăn lại tốt d5 bằng mã f6: số tốt về bằng nhau, sáu mỗi bên. Mã d5 bị tốt e4, mã c3 và hậu d1 tấn công và có hậu d8 cùng tốt e6 bảo vệ.'
+            en: 'Black takes back on d5 with the knight from f6: the pawn count is level again, six each. The knight on d5 is attacked by the e4 pawn, the knight on c3 and the queen on d1 and defended by the queen on d8 and the e6 pawn.'
+            fr: 'Les Noirs reprennent en d5 avec le cavalier de f6 : le compte de pions est de nouveau égal, six de chaque côté. Le cavalier d5 est attaqué par le pion e4, le cavalier c3 et la dame d1 et défendu par la dame d8 et le pion e6.'
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 10.Nxd5, chẳng hạn 10.exd5 hoặc 10.Nab5. Đánh giá trong mục này dành cho nhánh Trắng đổi mã ở d5.
+              en: White plays something other than 10.Nxd5, for example 10.exd5 or 10.Nab5. The assessment in this entry is for the line where White trades knights on d5.
+              fr: Les Blancs jouent autre chose que 10.Nxd5, par exemple 10.exd5 ou 10.Nab5. L'évaluation de cette fiche porte sur la ligne où les Blancs échangent les cavaliers en d5.
+          children:
+            - ply: Nxd5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng đổi mã lấy mã ở d5. Mã d5 của Trắng bị hậu d8 và tốt e6 tấn công và có tốt e4 cùng hậu d1 bảo vệ.
+                en: White trades knights on d5. White's knight on d5 is attacked by the queen on d8 and the e6 pawn and defended by the e4 pawn and the queen on d1.
+                fr: Les Blancs échangent les cavaliers en d5. Le cavalier d5 des Blancs est attaqué par la dame d8 et le pion e6 et défendu par le pion e4 et la dame d1.
+              children:
+                - ply: exd5
+                  annotation:
+                    vi: 'Đen ăn lại bằng tốt e: tốt d5 mới tấn công tốt e4, tốt mà không quân nào bảo vệ.'
+                    en: 'Black recaptures with the e-pawn: the new pawn on d5 attacks the e4 pawn, which nothing defends.'
+                    fr: 'Les Noirs reprennent avec le pion e : le nouveau pion d5 attaque le pion e4, que rien ne défend.'
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi nước khác thay vì 11.exd5, chẳng hạn 11.e5 hoặc 11.Bc4. Đánh giá trong mục này dành cho nhánh Trắng ăn tốt d5.
+                      en: White plays something other than 11.exd5, for example 11.e5 or 11.Bc4. The assessment in this entry is for the line where White takes the d5 pawn.
+                      fr: Les Blancs jouent autre chose que 11.exd5, par exemple 11.e5 ou 11.Bc4. L'évaluation de cette fiche porte sur la ligne où les Blancs prennent le pion d5.
+                  children:
+                    - ply: exd5
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: 'Trắng ăn tốt d5 bằng tốt e: Trắng hơn một tốt, sáu so với năm, và tốt d5 tấn công mã c6.'
+                        en: 'White takes the d5 pawn with the e-pawn: White is a pawn up, six to five, and the d5 pawn attacks the knight on c6.'
+                        fr: 'Les Blancs prennent le pion d5 avec le pion e : les Blancs ont un pion de plus, six contre cinq, et le pion d5 attaque le cavalier c6.'
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: Trắng sáu, Đen năm — Đen kém một tốt. Bù lại, tốt d5 của Trắng bị cô lập, hai cột c và e mở hoàn toàn bên cạnh nó, và hậu d8 của Đen nhắm vào nó trên cột d nửa mở, một quân tấn công đối một quân bảo vệ là hậu d1. Mã c6 của Đen bị tốt d5 tấn công và chỉ có tốt b7 bảo vệ.'
+                          en: "Count the pawns: White six, Black five — Black is a pawn down. In return White's d5 pawn is isolated, the c- and e-files beside it are completely open, and Black's queen on d8 bears on it on the half-open d-file, one attacker against one defender, the queen on d1. Black's knight on c6 is attacked by the d5 pawn and defended only by the b7 pawn."
+                          fr: 'Comptons les pions : six pour les Blancs, cinq pour les Noirs — les Noirs ont un pion de moins. En contrepartie, le pion d5 blanc est isolé, les colonnes c et e à côté de lui sont entièrement ouvertes, et la dame d8 noire le vise sur la colonne d semi-ouverte, un attaquant contre un défenseur, la dame d1. Le cavalier c6 noir est attaqué par le pion d5 et défendu seulement par le pion b7.'
+                        plan:
+                          vi: Đen dời mã đi với nước có lợi, chẳng hạn ...Nb4 để tấn công d5 lần thứ hai, rồi phát triển nốt tượng và nhập thành. Trắng bảo vệ tốt d5 bằng Bc4, rồi Be3 và nhập thành, mang mã a3 về chơi.
+                          en: Black moves the knight with a useful move, for example ...Nb4 to attack d5 a second time, then develops the bishops and castles. White defends the d5 pawn with Bc4, then plays Be3 and castles, bringing the knight on a3 back into play.
+                          fr: Les Noirs déplacent le cavalier avec un coup utile, par exemple ...Nb4 pour attaquer d5 une seconde fois, puis développent les fous et roquent. Les Blancs défendent le pion d5 par Bc4, puis jouent Be3 et roquent, remettant en jeu le cavalier a3.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'

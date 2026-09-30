@@ -1,0 +1,79 @@
+# Sicilian Defense: Scheveningen Variation, Delayed Keres Attack, Perenyi Gambit. Frozen defining
+# line 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Be3 e6 7.g4 e5 8.Nf5 g6 9.g5, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 9...gxf5 10.gxf6 Qxf6 11.Qd2. The leaf has Black to move, but every capture open
+# to Black there is answered by a recapture. searchMate at 3 moves from the resulting position
+# returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: scheveningen-variation-delayed-keres-attack-perenyi-gambit
+name: 'Sicilian Defense: Scheveningen Variation, Delayed Keres Attack, Perenyi Gambit'
+eco: B90
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, d4, cxd4, Nxd4, Nf6, Nc3, a6, Be3, e6, g4, e5, Nf5, g6, g5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: "A judgement. At the leaf White is a pawn down, six pawns to seven, and what White has for it is structural: Black's pawns are doubled on the f-file (f5 and f7), both h-pawns are isolated and the g-file is open for White's rook. The pawn itself is not paid for yet. No engine was consulted and no database was queried."
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.g5. Mã f5 của Trắng bị tượng c8 và tốt g6 tấn công và chỉ có tốt e4 bảo vệ, còn mã f6 của Đen bị tốt g5 tấn công và chỉ có hậu d8 bảo vệ. Số tốt hai bên bằng nhau, bảy mỗi bên.
+    en: White has just played 9.g5. White's knight on f5 is attacked by the bishop on c8 and the g6 pawn and defended only by the e4 pawn, while Black's knight on f6 is attacked by the g5 pawn and defended only by the queen on d8. The pawn count is level, seven each.
+    fr: Les Blancs viennent de jouer 9.g5. Le cavalier f5 des Blancs est attaqué par le fou c8 et le pion g6 et défendu seulement par le pion e4, tandis que le cavalier f6 des Noirs est attaqué par le pion g5 et défendu seulement par la dame d8. Le compte de pions est égal, sept de chaque côté.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 9...gxf5, chẳng hạn 9...Bxf5 hoặc 9...Nxe4. Đánh giá trong mục này dành cho nhánh Đen ăn mã f5 bằng tốt g.
+      en: Black plays something other than 9...gxf5, for example 9...Bxf5 or 9...Nxe4. The assessment in this entry is for the line where Black takes the knight on f5 with the g-pawn.
+      fr: Les Noirs jouent autre chose que 9...gxf5, par exemple 9...Bxf5 ou 9...Nxe4. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le cavalier f5 avec le pion g.
+  children:
+    - ply: gxf5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn mã f5 bằng tốt g. Tốt f5 mới bị tốt e4 tấn công, và tốt g5 của Trắng vẫn đang tấn công mã f6.
+        en: Black takes the knight on f5 with the g-pawn. The new pawn on f5 is attacked by the e4 pawn, and White's g5 pawn still attacks the knight on f6.
+        fr: Les Noirs prennent le cavalier f5 avec le pion g. Le nouveau pion f5 est attaqué par le pion e4, et le pion g5 des Blancs attaque toujours le cavalier f6.
+      children:
+        - ply: gxf6
+          annotation:
+            vi: Trắng ăn mã f6 bằng tốt g, lấy lại quân đã mất; tốt f6 bị hậu d8 tấn công và không có quân nào bảo vệ.
+            en: White takes the knight on f6 with the g-pawn, regaining the piece; the f6 pawn is attacked by the queen on d8 with nothing defending it.
+            fr: Les Blancs prennent le cavalier f6 avec le pion g, regagnant la pièce ; le pion f6 est attaqué par la dame d8 sans aucune défense.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 10...Qxf6, chẳng hạn 10...Bg7 hoặc 10...Nc6. Đánh giá trong mục này dành cho nhánh Đen ăn lại tốt f6 bằng hậu.
+              en: Black plays something other than 10...Qxf6, for example 10...Bg7 or 10...Nc6. The assessment in this entry is for the line where Black takes the f6 pawn with the queen.
+              fr: Les Noirs jouent autre chose que 10...Qxf6, par exemple 10...Bg7 ou 10...Nc6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion f6 avec la dame.
+          children:
+            - ply: Qxf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Đen ăn tốt f6 bằng hậu: Đen hơn một tốt, bảy so với sáu, và hậu f6 cùng tượng c8 bảo vệ tốt f5.'
+                en: 'Black takes the f6 pawn with the queen: Black is a pawn up, seven to six, and the queen on f6 and the bishop on c8 defend the f5 pawn.'
+                fr: 'Les Noirs prennent le pion f6 avec la dame : les Noirs ont un pion de plus, sept contre six, et la dame f6 et le fou c8 défendent le pion f5.'
+              children:
+                - ply: Qd2
+                  annotation:
+                    vi: Trắng đưa hậu ra d2, tấn công tốt d6 và chuẩn bị nhập thành dài.
+                    en: White brings the queen out to d2, attacking the d6 pawn and preparing to castle long.
+                    fr: Les Blancs sortent la dame en d2, attaquant le pion d6 et se préparant à roquer côté dame.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém một tốt. Tốt Đen bị chồng ở cột f (f5 và f7), cả hai tốt h đều bị cô lập vì không còn tốt g nào, và cột g hoàn toàn mở. Tốt f5 của Đen bị tốt e4 tấn công nhưng có tượng c8 và hậu f6 bảo vệ, còn tốt d6 bị hậu d2 tấn công nhưng có tượng f8 và hậu f6 bảo vệ.'
+                      en: "Count the pawns: White six, Black seven — White is a pawn down. Black's pawns are doubled on the f-file (f5 and f7), both h-pawns are isolated because neither side has a g-pawn left, and the g-file is completely open. Black's f5 pawn is attacked by the e4 pawn but defended by the bishop on c8 and the queen on f6, and the d6 pawn is attacked by the queen on d2 but defended by the bishop on f8 and the queen on f6."
+                      fr: "Comptons les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins. Les pions noirs sont doublés sur la colonne f (f5 et f7), les deux pions h sont isolés puisqu'aucun camp n'a plus de pion g, et la colonne g est entièrement ouverte. Le pion f5 noir est attaqué par le pion e4 mais défendu par le fou c8 et la dame f6, et le pion d6 est attaqué par la dame d2 mais défendu par le fou f8 et la dame f6."
+                    plan:
+                      vi: Trắng chơi O-O-O rồi Rg1 để chiếm cột g mở, hoặc Nd5 để tấn công hậu f6. Đen chơi ...Nc6 và ...Be7 rồi ...Be6, hoặc ăn ...fxe4 để mở đường cho quân.
+                      en: White plays O-O-O and then Rg1 to take the open g-file, or Nd5 to attack the queen on f6. Black plays ...Nc6 and ...Be7 and ...Be6, or takes ...fxe4 to open lines for the pieces.
+                      fr: Les Blancs jouent O-O-O puis Rg1 pour prendre la colonne g ouverte, ou Nd5 pour attaquer la dame f6. Les Noirs jouent ...Nc6 et ...Be7 puis ...Be6, ou prennent ...fxe4 pour ouvrir des lignes aux pièces.
+                    basis:
+                      by: chan
+                      at: '2026-09-30'

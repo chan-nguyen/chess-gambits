@@ -1,0 +1,93 @@
+# Sicilian Defense: Smith-Morra Gambit Declined, Scandinavian Formation. The catalogue's line is
+# 1.e4 c5 2.d4 cxd4 3.c3 d5, which ends on Black's ply; with White as the learner that would make the
+# root a learner node, so the defining line here stops at 3.c3 and 3...d5 is modelled as the
+# opponent's reply (docs/CONTEXT.md, invariant 5; the catalogue check accepts a prefix). Replayed with
+# chess.js through 4.exd5 Qxd5 5.cxd4 Nf6. searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: smith-morra-gambit-declined-scandinavian-formation
+name: 'Sicilian Defense: Smith-Morra Gambit Declined, Scandinavian Formation'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf the pawn count is level, six each, but White's d4 pawn is isolated, with no c-pawn or e-pawn left beside it, and Black's queen on d5 attacks it together with the a2 and g2 pawns, each of them defended only once. White's only way to gain time is Nc3 against the queen. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 3.c3, lời đề nghị Smith-Morra: tốt d4 của Đen bị tốt c3 và hậu d1 tấn công mà không quân nào bảo vệ. Đen hơn một tốt, tám so với bảy.'
+    en: "White has just played 3.c3, the Smith-Morra offer: Black's pawn on d4 is attacked by the c3 pawn and the queen on d1 with nothing defending it. Black is a pawn up, eight to seven."
+    fr: "Les Blancs viennent de jouer 3.c3, l'offre Smith-Morra : le pion d4 des Noirs est attaqué par le pion c3 et la dame d1 sans aucune défense. Les Noirs ont un pion de plus, huit contre sept."
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 3...d5, chẳng hạn 3...Nf6 hoặc 3...dxc3. Đánh giá trong mục này dành cho nhánh Đen đẩy tốt d lên d5.
+      en: Black plays something other than 3...d5, for example 3...Nf6 or 3...dxc3. The assessment in this entry is for the line where Black pushes the d-pawn to d5.
+      fr: Les Noirs jouent autre chose que 3...d5, par exemple 3...Nf6 ou 3...dxc3. L'évaluation de cette fiche porte sur la ligne où les Noirs poussent le pion d en d5.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đẩy tốt d lên d5, tấn công tốt e4 mà không quân Trắng nào bảo vệ, trong khi tốt d4 của Đen vẫn đang bị hai quân tấn công.
+        en: Black pushes the d-pawn to d5, attacking the e4 pawn, which no White piece defends, while Black's d4 pawn is still attacked twice.
+        fr: Les Noirs poussent le pion d en d5, attaquant le pion e4, qu'aucune pièce blanche ne défend, tandis que le pion d4 des Noirs reste attaqué deux fois.
+      children:
+        - ply: exd5
+          annotation:
+            vi: 'Trắng ăn tốt d5 bằng tốt e: số tốt về bằng nhau, bảy mỗi bên, và tốt d5 vừa ăn bị hậu d8 tấn công mà không quân nào bảo vệ.'
+            en: 'White takes the d5 pawn with the e-pawn: the pawn count is level, seven each, and the pawn just captured on d5 is attacked by the queen on d8 with nothing defending it.'
+            fr: 'Les Blancs prennent le pion d5 avec le pion e : le compte de pions est égal, sept de chaque côté, et le pion qui vient de capturer en d5 est attaqué par la dame d8 sans aucune défense.'
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 4...Qxd5, chẳng hạn 4...Nf6. Đánh giá trong mục này dành cho nhánh Đen ăn tốt d5 bằng hậu.
+              en: Black plays something other than 4...Qxd5, for example 4...Nf6. The assessment in this entry is for the line where Black takes the d5 pawn with the queen.
+              fr: Les Noirs jouent autre chose que 4...Qxd5, par exemple 4...Nf6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion d5 avec la dame.
+          children:
+            - ply: Qxd5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Đen ăn tốt d5 bằng hậu: Trắng kém một tốt, sáu so với bảy, và hậu d5 bảo vệ tốt d4 của Đen đồng thời tấn công các tốt a2 và g2.'
+                en: "Black takes the d5 pawn with the queen: White is a pawn down, six to seven, and the queen on d5 defends Black's d4 pawn while attacking the a2 and g2 pawns."
+                fr: 'Les Noirs prennent le pion d5 avec la dame : les Blancs ont un pion de moins, six contre sept, et la dame d5 défend le pion d4 des Noirs tout en attaquant les pions a2 et g2.'
+              children:
+                - ply: cxd4
+                  annotation:
+                    vi: Trắng ăn tốt d4 bằng tốt c, đưa số tốt về bằng nhau, sáu mỗi bên. Tốt d4 bị hậu d5 tấn công và có hậu d1 bảo vệ.
+                    en: White takes the d4 pawn with the c-pawn, levelling the pawn count at six each. The d4 pawn is attacked by the queen on d5 and defended by the queen on d1.
+                    fr: Les Blancs prennent le pion d4 avec le pion c, égalisant le compte de pions à six de chaque côté. Le pion d4 est attaqué par la dame d5 et défendu par la dame d1.
+                  dismissRest:
+                    reason:
+                      vi: Đen chơi nước khác thay vì 5...Nf6, chẳng hạn 5...e6 hoặc 5...Nc6. Đánh giá trong mục này dành cho nhánh Đen phát triển mã f6.
+                      en: Black plays something other than 5...Nf6, for example 5...e6 or 5...Nc6. The assessment in this entry is for the line where Black develops the knight to f6.
+                      fr: Les Noirs jouent autre chose que 5...Nf6, par exemple 5...e6 ou 5...Nc6. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le cavalier en f6.
+                  children:
+                    - ply: Nf6
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen đưa mã ra f6, phát triển thêm một quân trong khi hậu vẫn đứng giữa bàn.
+                        en: Black develops the knight to f6, bringing out a second piece while the queen stays in the centre.
+                        fr: Les Noirs développent le cavalier en f6, sortant une seconde pièce tandis que la dame reste au centre.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: sáu mỗi bên, nên con tốt thí đã lấy lại được. Nhưng tốt d4 của Trắng bị cô lập vì không còn tốt c hay tốt e bên cạnh, và hậu d5 của Đen tấn công nó cùng các tốt a2 và g2, mỗi tốt chỉ có một quân bảo vệ. Cách duy nhất để Trắng có tempo là Nc3 tấn công hậu.'
+                          en: "Count the pawns: six each, so the pawn offered has come back. But White's d4 pawn is isolated, with no c-pawn or e-pawn beside it, and Black's queen on d5 attacks it together with the a2 and g2 pawns, each defended only once. White's way to gain a tempo is Nc3 against the queen."
+                          fr: "Comptons les pions : six de chaque côté, donc le pion offert est revenu. Mais le pion d4 blanc est isolé, sans pion c ni pion e à côté de lui, et la dame d5 noire l'attaque avec les pions a2 et g2, chacun défendu une seule fois. Le moyen pour les Blancs de gagner un tempo est Nc3 contre la dame."
+                        plan:
+                          vi: Trắng chơi Nc3 để đuổi hậu, rồi Nf3 và Be2 hoặc Bd3, nhập thành và dùng cột e nửa mở. Đen dời hậu sau Nc3, chẳng hạn ...Qa5 hoặc ...Qd6, rồi phát triển nốt bằng ...e6 và ...Nc6.
+                          en: White plays Nc3 to drive the queen away, then Nf3 and Be2 or Bd3, castles and uses the half-open e-file. Black moves the queen after Nc3, for example ...Qa5 or ...Qd6, then finishes developing with ...e6 and ...Nc6.
+                          fr: Les Blancs jouent Nc3 pour chasser la dame, puis Nf3 et Be2 ou Bd3, roquent et utilisent la colonne e semi-ouverte. Les Noirs déplacent la dame après Nc3, par exemple ...Qa5 ou ...Qd6, puis achèvent leur développement par ...e6 et ...Nc6.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'

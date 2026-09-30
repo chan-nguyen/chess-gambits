@@ -1,0 +1,72 @@
+# Sicilian Defense: Wing Gambit Deferred. Frozen defining line 1.e4 c5 2.Nf3 e6 3.b4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 3...cxb4 4.a3 Nc6. searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: sicilian-defense-wing-gambit-deferred
+name: 'Sicilian Defense: Wing Gambit Deferred'
+eco: B40
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, e6, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf White is a pawn down, seven pawns to eight, and the a3 pawn is isolated now that the b-pawn is gone. Black's pawns are doubled on the b-file, but the pawn on b4 is defended twice against one attacker, so White has no way to win it back at once. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 3.b4, thí tốt b: tốt b4 bị tốt c5 tấn công mà không quân nào bảo vệ, còn tốt c5 của Đen bị tốt b4 tấn công và có tượng f8 bảo vệ. Số tốt hai bên bằng nhau, tám mỗi bên.'
+    en: "White has just played 3.b4, offering the b-pawn: the b4 pawn is attacked by the c5 pawn with nothing defending it, while Black's c5 pawn is attacked by the b4 pawn and defended by the bishop on f8. The pawn count is level, eight each."
+    fr: 'Les Blancs viennent de jouer 3.b4, offrant le pion b : le pion b4 est attaqué par le pion c5 sans aucune défense, tandis que le pion c5 des Noirs est attaqué par le pion b4 et défendu par le fou f8. Le compte de pions est égal, huit de chaque côté.'
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 3...cxb4, chẳng hạn 3...Nc6 hoặc 3...d6. Đánh giá trong mục này dành cho nhánh Đen ăn tốt b4.
+      en: Black plays something other than 3...cxb4, for example 3...Nc6 or 3...d6. The assessment in this entry is for the line where Black takes the b4 pawn.
+      fr: Les Noirs jouent autre chose que 3...cxb4, par exemple 3...Nc6 ou 3...d6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion b4.
+  children:
+    - ply: cxb4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b4 bằng tốt c: Trắng kém một tốt, bảy so với tám, và Đen bị chồng tốt ở cột b.'
+        en: 'Black takes the b4 pawn with the c-pawn: White is a pawn down, seven to eight, and Black has doubled pawns on the b-file.'
+        fr: 'Les Noirs prennent le pion b4 avec le pion c : les Blancs ont un pion de moins, sept contre huit, et les Noirs ont des pions doublés sur la colonne b.'
+      children:
+        - ply: a3
+          annotation:
+            vi: Trắng chơi a3, tấn công tốt b4. Tốt a3 bị tốt b4 tấn công nhưng có xe a1, mã b1 và tượng c1 bảo vệ.
+            en: White plays a3, attacking the b4 pawn. The a3 pawn is attacked by the b4 pawn but defended by the rook on a1, the knight on b1 and the bishop on c1.
+            fr: Les Blancs jouent a3, attaquant le pion b4. Le pion a3 est attaqué par le pion b4 mais défendu par la tour a1, le cavalier b1 et le fou c1.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 4...Nc6, chẳng hạn 4...bxa3 hoặc 4...d5. Đánh giá trong mục này dành cho nhánh Đen bảo vệ tốt b4 bằng mã c6.
+              en: Black plays something other than 4...Nc6, for example 4...bxa3 or 4...d5. The assessment in this entry is for the line where Black defends the b4 pawn with the knight on c6.
+              fr: Les Noirs jouent autre chose que 4...Nc6, par exemple 4...bxa3 ou 4...d5. L'évaluation de cette fiche porte sur la ligne où les Noirs défendent le pion b4 avec le cavalier c6.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Đen phát triển mã lên c6, thêm một quân bảo vệ tốt b4: tốt b4 giờ có tượng f8 và mã c6 bảo vệ trước một quân tấn công.'
+                en: 'Black develops the knight to c6, adding a defender to the b4 pawn: it now has the bishop on f8 and the knight on c6 defending it against one attacker.'
+                fr: 'Les Noirs développent le cavalier en c6, ajoutant un défenseur au pion b4 : il a maintenant le fou f8 et le cavalier c6 pour le défendre face à un seul attaquant.'
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt, và tốt a3 của Trắng bị cô lập vì không còn tốt b. Đen bị chồng tốt ở cột b (b4 và b7), nhưng tốt b4 được tượng f8 và mã c6 bảo vệ trước một quân tấn công, nên Trắng chưa thể lấy lại ngay. Cột b nửa mở cho Trắng.'
+                  en: "Count the pawns: White seven, Black eight — White is a pawn down, and White's a3 pawn is isolated now that the b-pawn is gone. Black's pawns are doubled on the b-file (b4 and b7), but the b4 pawn is defended by the bishop on f8 and the knight on c6 against one attacker, so White cannot win it back at once. The b-file is half-open for White."
+                  fr: 'Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins, et le pion a3 blanc est isolé maintenant que le pion b a disparu. Les pions noirs sont doublés sur la colonne b (b4 et b7), mais le pion b4 est défendu par le fou f8 et le cavalier c6 face à un seul attaquant, si bien que les Blancs ne peuvent pas le regagner tout de suite. La colonne b est semi-ouverte pour les Blancs.'
+                plan:
+                  vi: Trắng chơi Bb2 và d4 để dựng trung tâm, hoặc axb4 rồi c3 để đuổi quân Đen vừa ăn lại. Đen bảo vệ tốt b4 bằng ...a5 hoặc ăn ...bxa3, rồi phát triển nốt bằng ...Nf6 và ...Be7.
+                  en: White plays Bb2 and d4 to build a centre, or axb4 followed by c3 to chase the piece that recaptures. Black supports the b4 pawn with ...a5 or takes ...bxa3, then develops with ...Nf6 and ...Be7.
+                  fr: Les Blancs jouent Bb2 et d4 pour construire un centre, ou axb4 suivi de c3 pour chasser la pièce qui reprend. Les Noirs soutiennent le pion b4 par ...a5 ou prennent ...bxa3, puis se développent par ...Nf6 et ...Be7.
+                basis:
+                  by: chan
+                  at: '2026-09-30'
