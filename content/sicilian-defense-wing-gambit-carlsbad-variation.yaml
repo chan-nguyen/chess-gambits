@@ -1,0 +1,73 @@
+# Sicilian Defense: Wing Gambit, Carlsbad Variation. The catalogue's line is 1.e4 c5 2.b4 cxb4
+# 3.a3 bxa3, which ends on Black's ply; with White as the learner that would make the root a learner
+# node, so the defining line here stops at 3.a3 and 3...bxa3 is modelled as the opponent's reply
+# (docs/CONTEXT.md, invariant 5; the catalogue check accepts a prefix). Replayed with chess.js through
+# 4.Nxa3 Nc6. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-wing-gambit-carlsbad-variation
+name: 'Sicilian Defense: Wing Gambit, Carlsbad Variation'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b4, cxb4, a3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf White is a pawn down, six pawns to seven, with no pawn left on the a- or b-file, so Black's a7 pawn is passed, and the knight on a3 stands on the rim with only three moves. The half-open a- and b-files are what White has for the pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.a3, tấn công tốt b4 của Đen mà không quân nào bảo vệ. Tốt a3 của Trắng bị tốt b4 tấn công nhưng có xe a1, mã b1 và tượng c1 bảo vệ. Đen hơn một tốt, tám so với bảy.
+    en: White has just played 3.a3, attacking Black's b4 pawn, which nothing defends. White's a3 pawn is attacked by the b4 pawn but defended by the rook on a1, the knight on b1 and the bishop on c1. Black is a pawn up, eight to seven.
+    fr: Les Blancs viennent de jouer 3.a3, attaquant le pion b4 des Noirs, que rien ne défend. Le pion a3 des Blancs est attaqué par le pion b4 mais défendu par la tour a1, le cavalier b1 et le fou c1. Les Noirs ont un pion de plus, huit contre sept.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 3...bxa3, chẳng hạn 3...Nc6 hoặc 3...d5. Đánh giá trong mục này dành cho nhánh Đen ăn tốt a3.
+      en: Black plays something other than 3...bxa3, for example 3...Nc6 or 3...d5. The assessment in this entry is for the line where Black takes the a3 pawn.
+      fr: Les Noirs jouent autre chose que 3...bxa3, par exemple 3...Nc6 ou 3...d5. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion a3.
+  children:
+    - ply: bxa3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt a3 bằng tốt b: Trắng kém hai tốt, sáu so với tám, và tốt a3 của Đen bị xe a1, mã b1 và tượng c1 tấn công mà không ai bảo vệ.'
+        en: "Black takes the a3 pawn with the b-pawn: White is two pawns down, six to eight, and Black's pawn on a3 is attacked by the rook on a1, the knight on b1 and the bishop on c1 with nothing defending it."
+        fr: 'Les Noirs prennent le pion a3 avec le pion b : les Blancs ont deux pions de moins, six contre huit, et le pion a3 des Noirs est attaqué par la tour a1, le cavalier b1 et le fou c1 sans aucune défense.'
+      children:
+        - ply: Nxa3
+          annotation:
+            vi: 'Trắng ăn tốt a3 bằng mã, lấy lại một tốt: sáu so với bảy. Mã a3 không bị quân nào tấn công.'
+            en: 'White takes the a3 pawn with the knight, regaining a pawn: six to seven. The knight on a3 is not attacked by anything.'
+            fr: "Les Blancs prennent le pion a3 avec le cavalier, regagnant un pion : six contre sept. Le cavalier a3 n'est attaqué par rien."
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 4...Nc6, chẳng hạn 4...d6 hoặc 4...e6. Đánh giá trong mục này dành cho nhánh Đen phát triển mã c6.
+              en: Black plays something other than 4...Nc6, for example 4...d6 or 4...e6. The assessment in this entry is for the line where Black develops the knight to c6.
+              fr: Les Noirs jouent autre chose que 4...Nc6, par exemple 4...d6 ou 4...e6. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le cavalier en c6.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã lên c6, không quân nào của Trắng bị tấn công.
+                en: Black develops the knight to c6; none of White's pieces is attacked.
+                fr: Les Noirs développent le cavalier en c6 ; aucune pièce blanche n'est attaquée.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém một tốt, và Trắng không còn tốt nào trên cột a và b nên tốt a7 của Đen là tốt tự do. Mã a3 đứng sát mép bàn với chỉ ba nước đi, tới b1, b5 và c4. Bù lại, cột a và b nửa mở cho Trắng.'
+                  en: "Count the pawns: White six, Black seven — White is a pawn down, and White has no pawn left on the a- or b-file, so Black's a7 pawn is passed. The knight on a3 stands on the rim with only three moves, to b1, b5 and c4. In return the a- and b-files are half-open for White."
+                  fr: "Comptons les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins, et n'ont plus de pion sur les colonnes a et b, si bien que le pion a7 noir est passé. Le cavalier a3 se trouve au bord de l'échiquier avec seulement trois coups, vers b1, b5 et c4. En contrepartie, les colonnes a et b sont semi-ouvertes pour les Blancs."
+                plan:
+                  vi: Trắng chơi Nb5 nhắm vào a7 và c7, rồi Bb2, Nf3 và d4 để dựng trung tâm. Đen chơi ...e6 và ...Nf6, hoặc ...d5 để đánh vào tốt e4, giữ tốt thừa.
+                  en: White plays Nb5 aiming at a7 and c7, then Bb2, Nf3 and d4 to build a centre. Black plays ...e6 and ...Nf6, or ...d5 to hit the e4 pawn, keeping the extra pawn.
+                  fr: Les Blancs jouent Nb5 visant a7 et c7, puis Bb2, Nf3 et d4 pour construire un centre. Les Noirs jouent ...e6 et ...Nf6, ou ...d5 pour frapper le pion e4, en gardant le pion supplémentaire.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

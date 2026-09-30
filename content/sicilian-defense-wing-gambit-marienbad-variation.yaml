@@ -1,0 +1,59 @@
+# Sicilian Defense: Wing Gambit, Marienbad Variation. Frozen defining line 1.e4 c5 2.b4 cxb4
+# 3.a3 d5 4.exd5 Qxd5 5.Bb2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5...bxa3 6.Nxa3. The leaf is left
+# with Black to move. searchMate at 3 moves from the resulting position returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-wing-gambit-marienbad-variation
+name: 'Sicilian Defense: Wing Gambit, Marienbad Variation'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b4, cxb4, a3, d5, exd5, Qxd5, Bb2]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf White is a pawn down, five pawns to six, and the knight stands on the rim at a3. What White has for the pawn is the bishop on b2 bearing on g7, and the chance to attack the queen on d5 with c4. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Bb2. Đen hơn một tốt, bảy so với sáu, và có hai tốt b chồng nhau. Tốt b4 của Đen bị tốt a3 tấn công mà không ai bảo vệ, còn tốt a3 của Trắng bị tốt b4 tấn công nhưng có tượng b2, xe a1 và mã b1 bảo vệ. Hậu d5 của Đen nhắm vào d2 và g2, cả hai đều có quân bảo vệ, còn tượng b2 nhắm vào g7, ô mà tượng f8 bảo vệ.
+    en: White has just played 5.Bb2. Black is a pawn up, seven to six, and has doubled b-pawns. Black's b4 pawn is attacked by the a3 pawn and undefended, while White's a3 pawn is attacked by the b4 pawn but defended by the bishop on b2, the rook on a1 and the knight on b1. Black's queen on d5 hits d2 and g2, both defended, and the bishop on b2 bears on g7, which the bishop on f8 defends.
+    fr: Les Blancs viennent de jouer 5.Bb2. Les Noirs ont un pion de plus, sept contre six, et des pions b doublés. Le pion b4 des Noirs est attaqué par le pion a3 et n'est pas défendu, tandis que le pion a3 des Blancs est attaqué par le pion b4 mais défendu par le fou b2, la tour a1 et le cavalier b1. La dame d5 des Noirs attaque d2 et g2, tous deux défendus, et le fou b2 vise g7, que le fou f8 défend.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 5...bxa3, chẳng hạn 5...Nc6 hoặc 5...Nf6. Đánh giá trong mục này dành cho nhánh Đen ăn tốt a3.
+      en: Black plays something other than 5...bxa3, for example 5...Nc6 or 5...Nf6. The assessment in this entry is for the line where Black takes the a3 pawn.
+      fr: Les Noirs jouent autre chose que 5...bxa3, par exemple 5...Nc6 ou 5...Nf6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion a3.
+  children:
+    - ply: bxa3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt a3 bằng tốt b: Trắng kém hai tốt, năm so với bảy. Tốt a3 của Đen giờ tấn công tượng b2, quân không có ai bảo vệ, và nó bị tượng b2, xe a1 và mã b1 tấn công mà không có quân nào bảo vệ.'
+        en: "Black takes the a3 pawn with the b-pawn: White is two pawns down, five to seven. Black's pawn on a3 now attacks the bishop on b2, which nothing defends, and is itself attacked by the bishop on b2, the rook on a1 and the knight on b1 with nothing defending it."
+        fr: 'Les Noirs prennent le pion a3 avec le pion b : les Blancs ont deux pions de moins, cinq contre sept. Le pion a3 des Noirs attaque maintenant le fou b2, que rien ne défend, et il est lui-même attaqué par le fou b2, la tour a1 et le cavalier b1 sans aucune défense.'
+      children:
+        - ply: Nxa3
+          annotation:
+            vi: 'Trắng ăn tốt a3 bằng mã, lấy lại một tốt: năm so với sáu. Tượng vẫn ở b2, và tốt d2 giờ chỉ còn hậu d1 và vua e1 bảo vệ.'
+            en: 'White takes the a3 pawn with the knight, regaining a pawn: five to six. The bishop stays on b2, and the d2 pawn is now defended only by the queen on d1 and the king on e1.'
+            fr: "Les Blancs prennent le pion a3 avec le cavalier, regagnant un pion : cinq contre six. Le fou reste en b2, et le pion d2 n'est plus défendu que par la dame d1 et le roi e1."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng năm, Đen sáu — Trắng kém một tốt, và Trắng không còn tốt nào trên cột a và b nên tốt a7 của Đen là tốt tự do. Mã a3 đứng sát mép bàn. Bù lại, tượng b2 nhắm vào g7, ô mà chỉ có tượng f8 bảo vệ, và hậu d5 của Đen đứng ở nơi tốt c có thể đánh vào nó bằng c4. Hậu Đen nhắm vào d2 và g2 nhưng d2 có hậu và vua bảo vệ, g2 có tượng f1 bảo vệ. Đến lượt Đen.'
+              en: "Count the pawns: White five, Black six — White is a pawn down, and White has no pawn left on the a- or b-file, so Black's a7 pawn is passed. The knight on a3 stands on the rim. In return the bishop on b2 bears on g7, which only the bishop on f8 defends, and Black's queen on d5 stands where the c-pawn can attack it with c4. Black's queen hits d2 and g2, but d2 is defended by the queen and king and g2 by the bishop on f1. It is Black's move."
+              fr: "Comptons les pions : cinq pour les Blancs, six pour les Noirs — les Blancs ont un pion de moins, et n'ont plus de pion sur les colonnes a et b, si bien que le pion a7 noir est passé. Le cavalier a3 se trouve au bord de l'échiquier. En contrepartie, le fou b2 vise g7, que seul le fou f8 défend, et la dame noire d5 se tient là où le pion c peut l'attaquer par c4. La dame noire attaque d2 et g2, mais d2 est défendu par la dame et le roi et g2 par le fou f1. C'est aux Noirs de jouer."
+            plan:
+              vi: Trắng chơi c4 để đánh vào hậu nếu nó còn ở d5, rồi Nf3 và Nb5 nhắm vào a7 và c7. Đen chơi ...e5 để chặn đường chéo dài của tượng b2, hoặc ...Nc6 và ...Nf6 để phát triển.
+              en: White plays c4 to hit the queen if it stays on d5, then Nf3 and Nb5 aiming at a7 and c7. Black plays ...e5 to shut the long diagonal of the bishop on b2, or ...Nc6 and ...Nf6 to develop.
+              fr: Les Blancs jouent c4 pour attaquer la dame si elle reste en d5, puis Nf3 et Nb5 visant a7 et c7. Les Noirs jouent ...e5 pour fermer la grande diagonale du fou b2, ou ...Nc6 et ...Nf6 pour se développer.
+            basis:
+              by: chan
+              at: '2026-09-30'

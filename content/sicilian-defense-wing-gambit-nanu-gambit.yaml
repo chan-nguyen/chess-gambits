@@ -1,0 +1,59 @@
+# Sicilian Defense: Wing Gambit, Nanu Gambit. Frozen defining line 1.e4 c5 2.b4 cxb4 3.a3 d5
+# 4.exd5 Qxd5 5.Nf3 e5 6.c4 Qe6 7.Bd3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 7...Nf6 8.O-O. The leaf is left with
+# Black to move. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate
+# is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-wing-gambit-nanu-gambit
+name: 'Sicilian Defense: Wing Gambit, Nanu Gambit'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b4, cxb4, a3, d5, exd5, Qxd5, Nf3, e5, c4, Qe6, Bd3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf White is a pawn down, six pawns to seven, with an isolated a-pawn against Black's doubled b-pawns. The pressure White has is on the e5 pawn, attacked by the knight on f3 and defended only by the queen, and the b4 pawn, defended only by the bishop on f8. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.Bd3. Đen hơn một tốt, bảy so với sáu, và có hai tốt b chồng nhau ở b4 và b7. Tốt b4 của Đen bị tốt a3 tấn công và chỉ có tượng f8 bảo vệ, còn tốt a3 của Trắng bị tốt b4 tấn công nhưng có xe a1, mã b1 và tượng c1 bảo vệ. Hậu e6 của Đen tấn công tốt c4, được tượng d3 bảo vệ, và mã f3 của Trắng tấn công tốt e5, chỉ có hậu bảo vệ.
+    en: White has just played 7.Bd3. Black is a pawn up, seven to six, and has doubled b-pawns on b4 and b7. Black's b4 pawn is attacked by the a3 pawn and defended only by the bishop on f8, while White's a3 pawn is attacked by the b4 pawn but defended by the rook on a1, the knight on b1 and the bishop on c1. Black's queen on e6 attacks the c4 pawn, which the bishop on d3 defends, and White's knight on f3 attacks the e5 pawn, which only the queen defends.
+    fr: Les Blancs viennent de jouer 7.Bd3. Les Noirs ont un pion de plus, sept contre six, et des pions b doublés en b4 et b7. Le pion b4 des Noirs est attaqué par le pion a3 et défendu seulement par le fou f8, tandis que le pion a3 des Blancs est attaqué par le pion b4 mais défendu par la tour a1, le cavalier b1 et le fou c1. La dame e6 des Noirs attaque le pion c4, que le fou d3 défend, et le cavalier f3 des Blancs attaque le pion e5, que seule la dame défend.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 7...Nf6, chẳng hạn 7...Nc6 hoặc 7...bxa3. Đánh giá trong mục này dành cho nhánh Đen phát triển mã lên f6.
+      en: Black plays something other than 7...Nf6, for example 7...Nc6 or 7...bxa3. The assessment in this entry is for the line where Black develops the knight to f6.
+      fr: Les Noirs jouent autre chose que 7...Nf6, par exemple 7...Nc6 ou 7...bxa3. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le cavalier en f6.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã lên f6, bảo vệ thêm tốt h7 đang bị tượng d3 tấn công. Số tốt không đổi, Trắng sáu, Đen bảy.
+        en: Black develops the knight to f6, adding a defender to the h7 pawn, which the bishop on d3 attacks. The pawn count is unchanged, White six and Black seven.
+        fr: Les Noirs développent le cavalier en f6, ajoutant un défenseur au pion h7, que le fou d3 attaque. Le compte de pions ne change pas, six pour les Blancs et sept pour les Noirs.
+      children:
+        - ply: O-O
+          annotation:
+            vi: Trắng nhập thành, vua lên g1 và xe lên f1. Tốt c4 bị hậu e6 tấn công nhưng có tượng d3 bảo vệ, và tốt a3 bị tốt b4 tấn công nhưng có xe a1, mã b1 và tượng c1 bảo vệ.
+            en: White castles, the king going to g1 and the rook to f1. The c4 pawn is attacked by the queen on e6 but defended by the bishop on d3, and the a3 pawn is attacked by the b4 pawn but defended by the rook on a1, the knight on b1 and the bishop on c1.
+            fr: Les Blancs roquent, le roi allant en g1 et la tour en f1. Le pion c4 est attaqué par la dame e6 mais défendu par le fou d3, et le pion a3 est attaqué par le pion b4 mais défendu par la tour a1, le cavalier b1 et le fou c1.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém một tốt, Đen có hai tốt b chồng nhau ở b4 và b7, còn tốt a3 của Trắng bị cô lập. Tốt e5 bị mã f3 tấn công và chỉ có hậu e6 bảo vệ, tốt b4 bị tốt a3 tấn công và chỉ có tượng f8 bảo vệ. Quân Trắng nào cũng có bảo vệ. Đến lượt Đen.'
+              en: "Count the pawns: White six, Black seven — White is a pawn down, Black has doubled b-pawns on b4 and b7, and White's a3 pawn is isolated. The e5 pawn is attacked by the knight on f3 and defended only by the queen on e6, and the b4 pawn is attacked by the a3 pawn and defended only by the bishop on f8. Everything White has under attack is defended. It is Black's move."
+              fr: "Comptons les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins, les Noirs ont des pions b doublés en b4 et b7, et le pion a3 blanc est isolé. Le pion e5 est attaqué par le cavalier f3 et défendu seulement par la dame e6, et le pion b4 est attaqué par le pion a3 et défendu seulement par le fou f8. Tout ce qui est attaqué chez les Blancs est défendu. C'est aux Noirs de jouer."
+            plan:
+              vi: Trắng chơi Bb2 để thêm một quân tấn công tốt e5, và axb4 để mở cột a cho xe a1 nhắm vào a7. Đen chơi ...Nc6 để thêm quân bảo vệ tốt e5 và b4, rồi ...Be7 và ...O-O.
+              en: White plays Bb2 to add a second attacker to the e5 pawn, and axb4 to open the a-file for the rook on a1 aiming at a7. Black plays ...Nc6 to add a defender to the e5 and b4 pawns, then ...Be7 and ...O-O.
+              fr: Les Blancs jouent Bb2 pour ajouter un second attaquant au pion e5, et axb4 pour ouvrir la colonne a à la tour a1 visant a7. Les Noirs jouent ...Nc6 pour ajouter un défenseur aux pions e5 et b4, puis ...Be7 et ...O-O.
+            basis:
+              by: chan
+              at: '2026-09-30'
