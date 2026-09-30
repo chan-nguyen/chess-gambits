@@ -1,0 +1,61 @@
+# Italian Game: Evans Gambit, Ulvestad Variation. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5
+# 4.b4 Bxb4 5.c3 Bc5 6.d4 exd4 7.O-O d6 8.cxd4 Bb6 9.d5 Na5 10.Bb2, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-ulvestad-variation
+name: 'Italian Game: Evans Gambit, Ulvestad Variation'
+eco: C51
+category: gambit
+side: white
+definingLine:
+  [e4, e5, Nf3, Nc6, Bc4, Bc5, b4, Bxb4, c3, Bc5, d4, exd4, O-O, d6, cxd4, Bb6, d5, Na5, Bb2]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is a pawn down with an isolated a-pawn, but the bishop on b2 bears
+      on the long diagonal toward g7 and the d5 and e4 pawns take space in the centre; that
+      is treated as enough compensation for the line to be labelled sound. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 10.Bb2, đặt tượng lên đường chéo dài nơi nó tấn công tốt g7, quân không được bảo vệ. Tượng c4 của Trắng bị mã a5 tấn công mà không có quân nào bảo vệ, và Trắng có sáu tốt, Đen bảy tốt. Mục này đi theo nước 10...Nf6.
+    en: White has just played 10.Bb2, placing the bishop on the long diagonal where it attacks the g7 pawn, which nothing defends. White's bishop on c4 is attacked by the knight on a5 and nothing defends it, and White has six pawns to Black's seven. This entry follows 10...Nf6.
+    fr: Les Blancs viennent de jouer 10.Bb2, plaçant le fou sur la grande diagonale où il attaque le pion g7, que rien ne défend. Le fou c4 blanc est attaqué par le cavalier a5 et rien ne le défend, et les Blancs ont six pions contre sept aux Noirs. Cette entrée suit 10...Nf6.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 10...Nf6 ở đây, chẳng hạn 10...Ne7, nước có mục riêng. Mục này chỉ mô hình hóa nước đi mã lên f6.
+      en: Black plays something other than 10...Nf6 here, for instance 10...Ne7, which has its own entry. This entry models only the knight move to f6.
+      fr: Les Noirs jouent autre chose que 10...Nf6 ici, par exemple 10...Ne7, qui a sa propre entrée. Cette entrée ne modélise que le coup de cavalier en f6.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã lên f6, nơi nó tấn công tốt e4, quân không có gì bảo vệ, và tốt d5, quân được tượng c4, tốt e4 và hậu bảo vệ. Mã f6 bị tượng b2 tấn công và được hậu cùng tốt g7 bảo vệ.
+        en: Black develops the knight to f6, where it attacks the e4 pawn, which nothing defends, and the d5 pawn, which the bishop on c4, the e4 pawn and the queen defend. The knight on f6 is attacked by the bishop on b2 and defended by the queen and the g7 pawn.
+        fr: Les Noirs développent le cavalier en f6, où il attaque le pion e4, que rien ne défend, et le pion d5, que le fou c4, le pion e4 et la dame défendent. Le cavalier f6 est attaqué par le fou b2 et défendu par la dame et le pion g7.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy — con tốt đã thí chưa lấy lại được, tốt a của Trắng bị cô lập và các cột b và c bán mở cho Trắng. Tượng c4 bị mã a5 tấn công và tốt e4 bị mã f6 tấn công, và không có gì bảo vệ cả hai, nên Trắng phải xử lý hai mối đe dọa cùng lúc. Mã f6 của Đen bị tượng b2 tấn công và được hậu cùng tốt g7 bảo vệ.'
+          en: "Count the pawns: White six, Black seven — the sacrificed pawn has not come back, White's a-pawn is isolated and the b- and c-files are half-open for White. The bishop on c4 is attacked by the knight on a5 and the e4 pawn by the knight on f6, and nothing defends either, so White has two threats to meet at once. Black's knight on f6 is attacked by the bishop on b2 and defended by the queen and the g7 pawn."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — le pion sacrifié n'est pas revenu, le pion a blanc est isolé et les colonnes b et c sont semi-ouvertes pour les Blancs. Le fou c4 est attaqué par le cavalier a5 et le pion e4 par le cavalier f6, et rien ne défend ni l'un ni l'autre, donc les Blancs ont deux menaces à parer à la fois. Le cavalier f6 des Noirs est attaqué par le fou b2 et défendu par la dame et le pion g7."
+        plan:
+          vi: Trắng phải cứu tượng c4 và tốt e4 ngay, chẳng hạn bằng Bxf6, loại con mã đang tấn công, rồi Bd3. Đen ăn tượng bằng ...Nxc4 nếu Trắng bỏ mặc, và đáp lại Bxf6 bằng ...Qxf6 hoặc ...gxf6.
+          en: White has to save the bishop on c4 and the e4 pawn at once, for instance with Bxf6, which removes the attacking knight, and then Bd3. Black takes the bishop with ...Nxc4 if White neglects it, and meets Bxf6 with ...Qxf6 or ...gxf6.
+          fr: Les Blancs doivent sauver tout de suite le fou c4 et le pion e4, par exemple avec Bxf6, qui retire le cavalier attaquant, puis Bd3. Les Noirs prennent le fou par ...Nxc4 si les Blancs le négligent, et répondent à Bxf6 par ...Qxf6 ou ...gxf6.
+        basis:
+          by: chan
+          at: 2026-09-30
