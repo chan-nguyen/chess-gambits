@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Bishop's Gambit, McDonnell Attack, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 g5 5.Nc3 Bg7 6.g3 ends on White's own 6.g3, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Black's 6...fxg3 is modelled as the
+# root's single reply, so the leaf has White to move. Every ply was replayed with chess.js;
+# searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check and no
+# capture is going free.
+id: kings-gambit-accepted-bishops-gambit-mcdonnell-attack
+name: "King's Gambit Accepted: Bishop's Gambit, McDonnell Attack"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4, Qh4+, Kf1, g5, Nc3, Bg7, g3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 6.g3 attacks the queen, but after 6...fxg3 Black is two pawns up with the new
+      pawn on g3 attacking h2, and White has to spend a move winning one of them back while its
+      king has no right to castle. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.g3, dùng tốt tấn công hậu h4. Tốt g3 bị tốt f4 và hậu h4 tấn công, và được tốt h2 bảo vệ; còn hậu được tốt g5 bảo vệ.
+    en: White has just played 6.g3, attacking the queen on h4 with a pawn. The pawn on g3 is attacked by the pawn on f4 and the queen on h4 and defended by the pawn on h2, while the queen is defended by the pawn on g5.
+    fr: Les Blancs viennent de jouer 6.g3, attaquant la dame h4 avec un pion. Le pion g3 est attaqué par le pion f4 et la dame h4 et défendu par le pion h2, tandis que la dame est défendue par le pion g5.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì ăn g3, chẳng hạn 6...Qh6, đưa hậu đi chỗ khác và vẫn giữ f4 nhờ tốt g5. Phần lớn các nước còn lại chỉ mất hậu đổi lấy một tốt vì gxh4.
+      en: Black plays something other than capturing on g3, for example 6...Qh6, which moves the queen away and keeps f4 defended by the pawn on g5. Most other moves simply lose the queen for a pawn to gxh4.
+      fr: Les Noirs jouent autre chose que de prendre en g3, par exemple 6...Qh6, qui écarte la dame et garde f4 défendu par le pion g5. La plupart des autres coups perdent simplement la dame contre un pion après gxh4.
+  children:
+    - ply: fxg3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn g3 bằng tốt f. Nước đó loại bỏ con tốt đang tấn công hậu, và tốt mới ở g3 đánh vào h2, con tốt mà hậu h4 cũng đang đánh.
+        en: Black takes on g3 with the f-pawn. That removes the pawn attacking the queen, and the new pawn on g3 attacks h2, which the queen on h4 attacks as well.
+        fr: Les Noirs prennent en g3 avec le pion f. Cela supprime le pion qui attaquait la dame, et le nouveau pion en g3 attaque h2, que la dame h4 attaque elle aussi.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, nên Đen hơn hai tốt. Vua Trắng ở f1 đã mất quyền nhập thành và không còn tốt nào ở cột f hay cột g che phía trước, còn tốt h2 bị đánh hai lần, bởi hậu h4 và tốt g3, mà chỉ có xe h1 bảo vệ.'
+          en: "Count the pawns: White six, Black eight, so Black is two pawns up. White's king on f1 has lost the right to castle and has no pawn left on the f-file or the g-file in front of it, and the pawn on h2 is attacked twice, by the queen on h4 and the pawn on g3, and defended once, by the rook on h1."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, si bien que les Noirs ont deux pions d'avance. Le roi blanc en f1 a perdu le droit de roquer et n'a plus aucun pion sur la colonne f ni sur la colonne g devant lui, et le pion h2 est attaqué deux fois, par la dame h4 et le pion g3, et défendu une seule fois, par la tour h1."
+        plan:
+          vi: Trắng có thể chơi hxg3, ăn tốt g3 và tấn công hậu, hoặc Nf3, cũng tấn công hậu. Đen muốn giữ các tốt hơn, phát triển bằng ...Nh6 và ...d6, rồi nhập thành.
+          en: White can play hxg3, capturing the pawn on g3 with an attack on the queen, or Nf3, which also attacks the queen. Black wants to keep the extra pawns, develop with ...Nh6 and ...d6, and then castle.
+          fr: Les Blancs peuvent jouer hxg3, prenant le pion g3 avec une attaque sur la dame, ou Nf3, qui attaque aussi la dame. Les Noirs veulent garder les pions de plus, se développer par ...Nh6 et ...d6, puis roquer.
+        basis:
+          by: chan
+          at: '2026-09-30'

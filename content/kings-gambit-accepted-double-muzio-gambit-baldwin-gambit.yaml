@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Double Muzio Gambit, Baldwin Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.O-O gxf3 6.Qxf3 Qf6 7.Nc3 Qd4+ 8.Kh1 Qxc4 9.Nd5 ends
+# on White's own 9.Nd5, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Black's 9...Bd6 is modelled as the root's single reply, so the leaf has White to move.
+# Every ply was replayed with chess.js; searchMate at 3 moves from the leaf returns no-mate,
+# the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-double-muzio-gambit-baldwin-gambit
+name: "King's Gambit Accepted: Double Muzio Gambit, Baldwin Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, O-O, gxf3, Qxf3, Qf6, Nc3, Qd4+, Kh1, Qxc4, Nd5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White has given a knight and a bishop in this line, and after 9.Nd5 Bd6 nothing
+      on the board wins either back: the knight on d5 threatens f4 and c7, but the bishop on d6
+      defends both. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.Nd5, nước mã đánh vào c7 và f4 trong khi chính con mã chỉ có tốt e4 bảo vệ. Hậu Đen ở c4 đang đánh con mã này, cùng với tốt c2 không có ai bảo vệ.
+    en: White has just played 9.Nd5, a knight move that attacks c7 and f4 while the knight itself is defended only by the pawn on e4. Black's queen on c4 attacks that knight, and also the pawn on c2, which nothing defends.
+    fr: Les Blancs viennent de jouer 9.Nd5, un coup de cavalier qui attaque c7 et f4 alors que le cavalier n'est défendu que par le pion e4. La dame noire en c4 attaque ce cavalier, ainsi que le pion c2, que rien ne défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 9...Bd6, chẳng hạn 9...Bh6, cũng bảo vệ tốt f4. Phần lớn các nước còn lại để Trắng ăn f4 bằng Nxf4 hoặc Qxf4 mà không quân nào ăn lại được.
+      en: Black plays something other than 9...Bd6, for example 9...Bh6, which also defends the pawn on f4. Most other moves leave f4 to be taken by Nxf4 or Qxf4 with nothing able to recapture.
+      fr: Les Noirs jouent autre chose que 9...Bd6, par exemple 9...Bh6, qui défend aussi le pion f4. La plupart des autres coups laissent f4 à prendre par Nxf4 ou Qxf4 sans que rien puisse reprendre.
+  children:
+    - ply: Bd6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen dùng tượng bảo vệ cùng lúc tốt f4 và tốt c7. Mã d5 của Trắng vì thế chẳng còn ăn được gì mà không mất quân.
+        en: Black defends the pawn on f4 and the pawn on c7 with the bishop at the same time, so the knight on d5 has nothing left to take without being taken back.
+        fr: Les Noirs défendent à la fois le pion f4 et le pion c7 avec le fou, si bien que le cavalier d5 n'a plus rien à prendre sans être repris.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: mỗi bên bảy tốt, nhưng Trắng đã cho đi một mã và một tượng mà chưa lấy lại được, nên Trắng kém hai quân nhẹ. Vua Trắng ở h1 đã nhập thành và không còn quyền nhập thành nào, tốt c2 bị hậu c4 đánh mà không có ai bảo vệ, còn tốt f4 bị đánh hai lần và chỉ được bảo vệ một lần.'
+          en: "Count the material: seven pawns each, but White has given a knight and a bishop and has not won them back, so White is two minor pieces down. White's king on h1 has castled and has no castling left, the pawn on c2 is attacked by the queen on c4 and defended by nothing, and the pawn on f4 is attacked twice and defended once."
+          fr: "Comptez le matériel : sept pions de chaque côté, mais les Blancs ont donné un cavalier et un fou sans les avoir récupérés, si bien qu'ils sont en moins deux pièces mineures. Le roi blanc en h1 a roqué et n'a plus de roque possible, le pion c2 est attaqué par la dame c4 et défendu par rien, et le pion f4 est attaqué deux fois et défendu une seule fois."
+        plan:
+          vi: Trắng phải lo cho tốt c2, chẳng hạn bằng Qd3, vừa bảo vệ c2 vừa mời đổi hậu, hoặc chấp nhận mất nó để ăn f4 bằng Nxf4. Đen muốn ăn c2 bằng ...Qxc2 hoặc đổi hậu, và phát triển bằng ...Ne7.
+          en: White has to look after the pawn on c2, for example with Qd3, which defends it and offers a queen trade, or accept losing it and take f4 with Nxf4. Black wants to take c2 with ...Qxc2 or trade queens, and to develop with ...Ne7.
+          fr: Les Blancs doivent s'occuper du pion c2, par exemple avec Qd3, qui le défend et offre l'échange des dames, ou accepter de le perdre et prendre f4 par Nxf4. Les Noirs veulent prendre c2 par ...Qxc2 ou échanger les dames, et se développer par ...Ne7.
+        basis:
+          by: chan
+          at: '2026-09-30'

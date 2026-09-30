@@ -1,0 +1,64 @@
+# King's Gambit Accepted: Double Muzio Gambit, taught. Frozen defining line 1.e4 e5 2.f4
+# exf4 3.Nf3 g5 4.Bc4 g4 5.O-O gxf3 6.Qxf3 Qf6 7.e5 Qxe5 8.Bxf7+ ends on White's own
+# 8.Bxf7+, so the root is an opponent node, and it is in check (docs/CONTEXT.md, invariant
+# 5). Black's 8...Kxf7 is modelled as the root's reply, so the leaf has White to move. The
+# root's three legal replies are a declared count (ADR-0011). Every ply was replayed with
+# chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check
+# and no capture is going free.
+id: kings-gambit-accepted-double-muzio-gambit
+name: "King's Gambit Accepted: Double Muzio Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, O-O, gxf3, Qxf3, Qf6, e5, Qxe5, Bxf7+]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 8.Bxf7+ Kxf7 White has given a knight and a bishop and has only level
+      pawns and pressure on the f-file to show for it, although Qxf4+ does win a pawn back with
+      check. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  counts:
+    legal:
+      count: legalReplies
+      expect: 3
+  annotation:
+    vi: Trắng vừa chơi 8.Bxf7+, ăn tốt f7 kèm chiếu. Tượng f7 không có quân nào bảo vệ, và vua Đen có thể ăn nó.
+    en: White has just played 8.Bxf7+, taking the pawn on f7 with check. The bishop on f7 is defended by nothing, and the king can take it.
+    fr: Les Blancs viennent de jouer 8.Bxf7+, prenant le pion f7 avec échec. Le fou f7 n'est défendu par rien, et le roi peut le prendre.
+  dismissRest:
+    reason:
+      vi: Đen có {legal} nước hợp lệ để đáp lại nước chiếu. Ngoài việc ăn tượng bằng 8...Kxf7, các nước còn lại là đi vua sang e7 hoặc d8, để tượng f7 yên.
+      en: Black has {legal} legal replies to the check. Apart from taking the bishop with 8...Kxf7, the others are king moves, to e7 or d8, which leave the bishop on f7 alone.
+      fr: Les Noirs ont {legal} réponses légales à l'échec. À part la prise du fou par 8...Kxf7, les autres sont des coups de roi, en e7 ou en d8, qui laissent le fou f7 tranquille.
+  children:
+    - ply: Kxf7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen dùng vua ăn tượng. Vua đứng ở f7, không còn quyền nhập thành, và Đen đã thắng lại một quân nhẹ.
+        en: Black takes the bishop with the king. The king stands on f7, can no longer castle, and Black has won a minor piece.
+        fr: Les Noirs prennent le fou avec le roi. Le roi se trouve en f7, ne peut plus roquer, et les Noirs ont gagné une pièce mineure.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: mỗi bên sáu tốt, nhưng Trắng đã cho đi một mã và một tượng mà chưa lấy lại được, nên Trắng kém hai quân nhẹ. Vua Đen ở f7 không còn quyền nhập thành, và tốt f4 là thứ duy nhất trên cột f nằm giữa hậu Trắng, có xe f1 đứng sau, và con vua đó; tốt f4 chỉ có hậu e5 bảo vệ.'
+          en: "Count the material: six pawns each, but White has given a knight and a bishop and has not won them back, so White is two minor pieces down. Black's king on f7 can no longer castle, and the pawn on f4 is the only thing on the f-file between the white queen, backed by the rook on f1, and that king; it is defended once, by the queen on e5."
+          fr: "Comptez le matériel : six pions de chaque côté, mais les Blancs ont donné un cavalier et un fou sans les avoir récupérés, si bien qu'ils sont en moins deux pièces mineures. Le roi noir en f7 ne peut plus roquer, et le pion f4 est la seule chose sur la colonne f entre la dame blanche, soutenue par la tour f1, et ce roi ; il n'est défendu qu'une fois, par la dame e5."
+        plan:
+          vi: Trắng chơi Qxf4+, và sau ...Qxf4 Rxf4+ thì ăn được tốt f4 kèm chiếu, đưa tỷ số tốt thành sáu trên năm trong khi vua f7 vẫn bị lộ. Đen phải đáp lại bằng một nước như ...Nf6 hoặc đi vua, rồi tận dụng mã và tượng hơn.
+          en: White plays Qxf4+, and after ...Qxf4 Rxf4+ wins the pawn on f4 with check, making the pawn count six to five while the king on f7 is still exposed. Black has to answer with a move such as ...Nf6 or a king step, and then use the extra knight and bishop.
+          fr: Les Blancs jouent Qxf4+, et après ...Qxf4 Rxf4+ gagnent le pion f4 avec échec, portant le compte de pions à six contre cinq tandis que le roi f7 reste exposé. Les Noirs doivent répondre par un coup comme ...Nf6 ou un pas de roi, puis exploiter le cavalier et le fou de plus.
+        basis:
+          by: chan
+          at: '2026-09-30'

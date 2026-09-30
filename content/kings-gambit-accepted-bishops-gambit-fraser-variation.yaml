@@ -1,0 +1,60 @@
+# King's Gambit Accepted: Bishop's Gambit, Fraser Variation, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 g5 5.Nc3 Bg7 6.g3 fxg3 7.Qf3 ends on White's own 7.Qf3,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 7...Nh6 is
+# modelled as the root's single reply, so the leaf has White to move. Every ply was replayed
+# with chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in
+# check and no capture is going free in the machine's sense (every capture on the board can
+# be recaptured).
+id: kings-gambit-accepted-bishops-gambit-fraser-variation
+name: "King's Gambit Accepted: Bishop's Gambit, Fraser Variation"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4, Qh4+, Kf1, g5, Nc3, Bg7, g3, fxg3, Qf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 7.Qf3 the queen and the bishop both attack f7, but the knight can defend
+      it from h6, and Black is left two pawns up with only the pawn on g3 attacked twice. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.Qf3. Hậu và tượng c4 giờ cùng tấn công tốt f7, con tốt chỉ có vua bảo vệ, và hậu cũng đánh vào tốt g3 mà Đen vừa ăn ở nước trước.
+    en: White has just played 7.Qf3. The queen and the bishop on c4 now both attack the pawn on f7, which only the king defends, and the queen also attacks the pawn on g3 that Black captured a move ago.
+    fr: Les Blancs viennent de jouer 7.Qf3. La dame et le fou c4 attaquent maintenant tous deux le pion f7, que seul le roi défend, et la dame attaque aussi le pion g3 que les Noirs ont pris au coup précédent.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 7...Nh6. Mọi nước khác đều phải lo cho f7, chẳng hạn 7...Nf6, đặt mã chắn đường hậu, hoặc 7...Qf4, dùng hậu chắn cột f. Phần lớn các nước còn lại để f7 bị ăn kèm chiếu bằng Bxf7+ hoặc Qxf7+.
+      en: Black plays something other than 7...Nh6. Any other move has to deal with f7, for example 7...Nf6, which puts the knight in the queen's path, or 7...Qf4, which blocks the f-file with the queen. Most of the remaining moves leave f7 to be taken with check by Bxf7+ or Qxf7+.
+      fr: Les Noirs jouent autre chose que 7...Nh6. Tout autre coup doit s'occuper de f7, par exemple 7...Nf6, qui met le cavalier sur le chemin de la dame, ou 7...Qf4, qui bloque la colonne f avec la dame. La plupart des autres coups laissent f7 à prendre avec échec par Bxf7+ ou Qxf7+.
+  children:
+    - ply: Nh6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa mã lên h6, nơi nó bảo vệ f7 trước cặp quân ở c4 và f3. Bây giờ f7 bị tấn công hai lần và được bảo vệ hai lần.
+        en: Black brings the knight to h6, where it defends f7 against the pair on c4 and f3. Now f7 is attacked twice and defended twice.
+        fr: Les Noirs amènent le cavalier en h6, où il défend f7 contre la paire de c4 et f3. Maintenant f7 est attaqué deux fois et défendu deux fois.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, nên trên bàn Đen hơn hai tốt. Nhưng tốt g3 bị đánh hai lần, bởi hậu f3 và tốt h2, mà chỉ có hậu h4 bảo vệ, nên một con tốt sắp trở về tay Trắng bằng hxg3. Vua Trắng ở f1 đã mất quyền nhập thành, và tốt h2 cũng bị đánh hai lần mà chỉ có một quân bảo vệ.'
+          en: "Count the pawns: White six, Black eight, so Black is two pawns up on the board. But the pawn on g3 is attacked twice, by the queen on f3 and the pawn on h2, and defended once, by the queen on h4, so one pawn is about to come back with hxg3. White's king on f1 has lost the right to castle, and the pawn on h2 is attacked twice and defended once as well."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, si bien que sur l'échiquier les Noirs ont deux pions d'avance. Mais le pion g3 est attaqué deux fois, par la dame f3 et par le pion h2, et défendu une seule fois, par la dame h4, si bien qu'un pion est sur le point de revenir par hxg3. Le roi blanc en f1 a perdu le droit de roquer, et le pion h2 est lui aussi attaqué deux fois et défendu une seule fois."
+        plan:
+          vi: Trắng chơi hxg3, lấy lại một tốt và tấn công luôn hậu, đồng thời giữ hậu và tượng nhắm vào f7. Đen phải để mắt đến h2 và f7, và tìm cách đổi hậu hoặc đưa vua ra khỏi tầm bắn bằng nhập thành, nước đi vẫn còn hợp lệ.
+          en: White plays hxg3, which regains a pawn and attacks the queen, while keeping the bishop and queen aimed at f7. Black has to watch h2 and f7, and looks to trade queens or to get the king out of the f7 fire by castling, which is still possible.
+          fr: Les Blancs jouent hxg3, qui regagne un pion et attaque la dame, tout en gardant le fou et la dame braqués sur f7. Les Noirs doivent surveiller h2 et f7, et cherchent à échanger les dames ou à sortir le roi du feu de f7 par le roque, encore possible.
+        basis:
+          by: chan
+          at: '2026-09-30'

@@ -1,0 +1,58 @@
+# King's Gambit Accepted: Fischer Defense, Schulder Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 d6 4.b4 ends on White's own 4.b4, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Black's 4...Nc6 is modelled as the root's single reply, so
+# the leaf has White to move. Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-fischer-defense-schulder-gambit
+name: "King's Gambit Accepted: Fischer Defense, Schulder Gambit"
+eco: C34
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, d6, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 4.b4 offers a second pawn, but nothing on the board gives White compensation
+      for it yet: the pawn on b4 has no defender, and 4...Nc6 attacks it at once. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.b4, dâng thêm một tốt nữa. Tốt b4 không có quân nào bảo vệ, nhưng tượng f8 của Đen không ăn được nó vì tốt d6 chắn mất đường chéo.
+    en: White has just played 4.b4, offering a second pawn. The pawn on b4 has no defender, but Black's bishop on f8 cannot take it, because the pawn on d6 blocks the diagonal.
+    fr: Les Blancs viennent de jouer 4.b4, offrant un second pion. Le pion b4 n'a aucun défenseur, mais le fou f8 des Noirs ne peut pas le prendre, car le pion d6 bloque la diagonale.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 4...Nc6, chẳng hạn 4...Nf6, 4...Bd7 hoặc 4...a5. Lúc này chưa quân nào bị tấn công ở cả hai bên, nên Đen có nhiều lựa chọn.
+      en: Black plays something other than 4...Nc6, for example 4...Nf6, 4...Bd7 or 4...a5. Nothing is attacked on either side at this moment, so Black has a wide choice.
+      fr: Les Noirs jouent autre chose que 4...Nc6, par exemple 4...Nf6, 4...Bd7 ou 4...a5. Rien n'est attaqué de part et d'autre pour le moment, si bien que les Noirs ont un large choix.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã lên c6, nơi nó tấn công tốt b4 không có ai bảo vệ.
+        en: Black develops the knight to c6, where it attacks the undefended pawn on b4.
+        fr: Les Noirs développent le cavalier en c6, où il attaque le pion b4 sans défense.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Đen hơn một tốt, và tốt b4 bị mã c6 đánh mà không ai bảo vệ, nên tốt thứ hai đang bị đe dọa. Tượng f1 và mã b1 của Trắng chưa phát triển, còn hai vua vẫn còn quyền nhập thành.'
+          en: "Count the pawns: White seven, Black eight, so Black is a pawn up, and the pawn on b4 is attacked by the knight on c6 and defended by nothing, so a second pawn is under threat. White's bishop on f1 and knight on b1 are undeveloped, and both kings still have the right to castle."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, si bien que les Noirs ont un pion d'avance, et le pion b4 est attaqué par le cavalier c6 et défendu par rien, si bien qu'un second pion est menacé. Le fou f1 et le cavalier b1 des Blancs ne sont pas développés, et les deux rois ont encore le droit de roquer."
+        plan:
+          vi: Trắng chọn giữa b5, đuổi con mã, và a3, bảo vệ con tốt, rồi phát triển bằng Bc4 và d4. Đen ăn b4 bằng ...Nxb4 nếu nó bị bỏ lại, hoặc phát triển bằng ...Nf6 và ...Be7 và giữ con tốt f4.
+          en: White chooses between b5, which chases the knight, and a3, which defends the pawn, and then develops with Bc4 and d4. Black takes b4 with ...Nxb4 if it is left hanging, or develops with ...Nf6 and ...Be7 and keeps the pawn on f4.
+          fr: Les Blancs choisissent entre b5, qui chasse le cavalier, et a3, qui défend le pion, puis se développent par Bc4 et d4. Les Noirs prennent b4 par ...Nxb4 s'il reste en prise, ou se développent par ...Nf6 et ...Be7 en gardant le pion f4.
+        basis:
+          by: chan
+          at: '2026-09-30'

@@ -1,0 +1,83 @@
+# King's Gambit Accepted: Double Muzio Gambit, Paulsen Defense, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.O-O gxf3 6.Qxf3 Qf6 7.e5 Qxe5 8.d3 Bh6 9.Nc3 Ne7
+# 10.Bd2 Nbc6 11.Rae1 ends on White's own 11.Rae1, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Black's 11...Qf6 is modelled as the root's single reply,
+# so the leaf has White to move. Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free in
+# the machine's sense.
+id: kings-gambit-accepted-double-muzio-gambit-paulsen-defense
+name: "King's Gambit Accepted: Double Muzio Gambit, Paulsen Defense"
+eco: C37
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    f4,
+    exf4,
+    Nf3,
+    g5,
+    Bc4,
+    g4,
+    O-O,
+    gxf3,
+    Qxf3,
+    Qf6,
+    e5,
+    Qxe5,
+    d3,
+    Bh6,
+    Nc3,
+    Ne7,
+    Bd2,
+    Nbc6,
+    Rae1,
+  ]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 11.Rae1 Qf6 White has given a knight and a pawn and has only the pin on
+      the e-file to show for it, and Black can break that pin by castling. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 11.Rae1, đặt xe lên cột e, nơi nó tấn công hậu e5. Hậu được mã c6 bảo vệ, nên Đen phải đưa hậu đi, nếu không sẽ mất hậu để đổi lấy một xe.
+    en: White has just played 11.Rae1, putting the rook on the e-file, where it attacks the queen on e5. The queen is defended by the knight on c6, so Black has to move it or lose it for a rook.
+    fr: Les Blancs viennent de jouer 11.Rae1, plaçant la tour sur la colonne e, où elle attaque la dame e5. La dame est défendue par le cavalier c6, si bien que les Noirs doivent la déplacer ou la perdre contre une tour.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 11...Qf6, chẳng hạn 11...Qg5 hoặc 11...Qd6, cũng đưa hậu đi. Mọi nước để hậu ở lại e5 đều cho Trắng thắng quân bằng Rxe5.
+      en: Black plays something other than 11...Qf6, for example 11...Qg5 or 11...Qd6, which also move the queen. Every move that leaves the queen on e5 lets White win material with Rxe5.
+      fr: Les Noirs jouent autre chose que 11...Qf6, par exemple 11...Qg5 ou 11...Qd6, qui déplacent aussi la dame. Tout coup qui laisse la dame en e5 permet aux Blancs de gagner du matériel avec Rxe5.
+  children:
+    - ply: Qf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa hậu về f6, nơi nó cùng tượng h6 giữ tốt f4 hai lần và che f7 lẫn e7. Cột e giờ mở giữa xe e1 và mã e7, con mã đứng ngay trước vua.
+        en: Black steps the queen to f6, where together with the bishop it keeps the pawn on f4 defended twice and covers f7 and e7. The e-file is now open between the rook on e1 and the knight on e7, which stands in front of its king.
+        fr: Les Noirs mettent la dame en f6, où, avec le fou, elle garde le pion f4 défendu deux fois et couvre f7 et e7. La colonne e est maintenant ouverte entre la tour e1 et le cavalier e7, qui se tient devant son roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: Trắng sáu tốt, Đen bảy, và Trắng còn kém một mã, nên Đen hơn một mã và một tốt. Mã e7 bị xe e1 ghim vào vua e8 và không có nước đi hợp lệ nào, một quân không có ô tốt; nhưng nó được bảo vệ ba lần nên không mất. Vua Trắng ở g1 đã nhập thành.'
+          en: "Count the material: White has six pawns to Black's seven and is a knight down as well, so Black is ahead by a knight and a pawn. The knight on e7 is pinned to the king on e8 by the rook on e1 and has no legal move, a piece with no good square; it is defended three times, so it is not lost. White's king on g1 has castled."
+          fr: "Comptez le matériel : les Blancs ont six pions contre sept et sont en plus en moins un cavalier, si bien que les Noirs ont un cavalier et un pion d'avance. Le cavalier e7 est cloué contre le roi e8 par la tour e1 et n'a aucun coup légal, une pièce sans case ; mais il est défendu trois fois, donc il n'est pas perdu. Le roi blanc en g1 a roqué."
+        plan:
+          vi: Trắng có thể tăng sức ép lên thế ghim bằng Nd5, nước đánh cả hậu f6 lẫn mã e7 bị ghim. Đen có thể phá thế ghim bằng cách nhập thành, nước đi hợp lệ ở đây, rồi dùng phần vật chất hơn.
+          en: White can add to the pin with Nd5, which attacks both the queen on f6 and the pinned knight on e7. Black can break the pin by castling, which is legal here, and then use the extra material.
+          fr: Les Blancs peuvent renforcer le clouage par Nd5, qui attaque à la fois la dame f6 et le cavalier e7 cloué. Les Noirs peuvent briser le clouage en roquant, ce qui est légal ici, puis exploiter le matériel de plus.
+        basis:
+          by: chan
+          at: '2026-09-30'
