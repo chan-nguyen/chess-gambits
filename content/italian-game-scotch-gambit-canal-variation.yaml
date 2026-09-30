@@ -1,0 +1,60 @@
+# Italian Game: Scotch Gambit, Canal Variation. Defining line 1.e4 e5 2.Nf3 Nc6 3.d4 exd4
+# 4.Bc4 Nf6 5.O-O Nxe4 6.Re1 d5 7.Nc3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-scotch-gambit-canal-variation
+name: 'Italian Game: Scotch Gambit, Canal Variation'
+eco: C56
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, d4, exd4, Bc4, Nf6, O-O, Nxe4, Re1, d5, Nc3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is two pawns down but the pieces are level, the e-file is open for
+      the rook on e1 and Black's king is still on e8; with the knight on e4 and the pawns on
+      d5 and d4 all under attack, that is treated as enough compensation for the line to be
+      labelled sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.Nc3, tấn công mã e4 lần thứ hai và tốt d5. Tốt d5 bị tấn công hai lần, bởi tượng c4 và mã c3, và chỉ được hậu bảo vệ một lần, còn mã e4 bị tấn công hai lần, bởi mã c3 và xe e1, và chỉ được tốt d5 bảo vệ một lần. Trắng có sáu tốt, Đen tám tốt, và hai tốt d5 và d4 của Đen bị chồng. Mục này đi theo nước 7...Be6, bảo vệ d5 lần thứ hai.
+    en: White has just played 7.Nc3, attacking the knight on e4 a second time and the pawn on d5. The d5 pawn is attacked twice, by the bishop on c4 and the knight on c3, and defended once, by the queen, and the knight on e4 is attacked twice, by the knight on c3 and the rook on e1, and defended once, by the d5 pawn. White has six pawns to Black's eight, and Black's pawns on d5 and d4 are doubled. This entry follows 7...Be6, which defends d5 a second time.
+    fr: Les Blancs viennent de jouer 7.Nc3, attaquant le cavalier e4 une deuxième fois et le pion d5. Le pion d5 est attaqué deux fois, par le fou c4 et le cavalier c3, et défendu une fois, par la dame, et le cavalier e4 est attaqué deux fois, par le cavalier c3 et la tour e1, et défendu une fois, par le pion d5. Les Blancs ont six pions contre huit aux Noirs, et les pions noirs d5 et d4 sont doublés. Cette entrée suit 7...Be6, qui défend d5 une deuxième fois.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 7...Be6 ở đây, chẳng hạn 7...Bf5 hoặc 7...Bg4. Mục này chỉ mô hình hóa nước đi tượng lên e6.
+      en: Black plays something other than 7...Be6 here, for instance 7...Bf5 or 7...Bg4. This entry models only the bishop move to e6.
+      fr: Les Noirs jouent autre chose que 7...Be6 ici, par exemple 7...Bf5 ou 7...Bg4. Cette entrée ne modélise que le coup de fou en e6.
+  children:
+    - ply: Be6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển tượng lên e6, nơi nó bảo vệ tốt d5 lần thứ hai và được tốt f7 bảo vệ.
+        en: Black develops the bishop to e6, where it defends the d5 pawn a second time and is defended by the f7 pawn.
+        fr: Les Noirs développent le fou en e6, où il défend le pion d5 une deuxième fois et est défendu par le pion f7.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám — Trắng kém hai tốt, và hai tốt d5 và d4 của Đen bị chồng. Tượng c4 bị tốt d5 tấn công mà không có quân nào bảo vệ, còn mã c3 bị tấn công hai lần, bởi tốt d4 và mã e4, và chỉ được tốt b2 bảo vệ một lần. Tốt d5 bị tấn công hai lần và được bảo vệ hai lần, còn mã e4 bị tấn công hai lần, bởi mã c3 và xe e1, và chỉ được tốt d5 bảo vệ một lần.'
+          en: "Count the pawns: White six, Black eight — White is two pawns down, and Black's pawns on d5 and d4 are doubled. The bishop on c4 is attacked by the d5 pawn and nothing defends it, and the knight on c3 is attacked twice, by the d4 pawn and the knight on e4, and defended once, by the b2 pawn. The d5 pawn is attacked twice and defended twice, and the knight on e4 is attacked twice, by the knight on c3 and the rook on e1, and defended once, by the d5 pawn."
+          fr: 'Comptez les pions : six pour les Blancs, huit pour les Noirs — les Blancs ont deux pions de moins, et les pions noirs d5 et d4 sont doublés. Le fou c4 est attaqué par le pion d5 et rien ne le défend, et le cavalier c3 est attaqué deux fois, par le pion d4 et le cavalier e4, et défendu une fois, par le pion b2. Le pion d5 est attaqué deux fois et défendu deux fois, et le cavalier e4 est attaqué deux fois, par le cavalier c3 et la tour e1, et défendu une fois, par le pion d5.'
+        plan:
+          vi: 'Trắng phải đối phó với ...dxc4 ngay, chẳng hạn bằng Bxd5. Nước thử Nxe4 chỉ hiệu quả nếu Đen ăn lại bằng ...dxe4: sau Nxe4 dxe4 Rxe4, tượng e6 bị ghim vào vua và bị tấn công hai lần, nhưng ...dxc4 vẫn ăn được tượng. Đen ăn tượng bằng ...dxc4 nếu Trắng bỏ mặc, rồi hoàn tất phát triển bằng ...Qd7 và ...O-O-O.'
+          en: 'White has to meet ...dxc4 at once, for instance with Bxd5. The try Nxe4 works only if Black recaptures with ...dxe4: after Nxe4 dxe4 Rxe4 the bishop on e6 is pinned to the king and attacked twice, but ...dxc4 would still take the bishop. Black takes the bishop with ...dxc4 if White neglects it, and otherwise completes development with ...Qd7 and ...O-O-O.'
+          fr: "Les Blancs doivent parer tout de suite ...dxc4, par exemple avec Bxd5. L'essai Nxe4 ne marche que si les Noirs reprennent par ...dxe4 : après Nxe4 dxe4 Rxe4, le fou e6 est cloué au roi et attaqué deux fois, mais ...dxc4 prendrait quand même le fou. Les Noirs prennent le fou par ...dxc4 si les Blancs le négligent, et sinon achèvent leur développement par ...Qd7 et ...O-O-O."
+        basis:
+          by: chan
+          at: 2026-09-30

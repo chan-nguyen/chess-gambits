@@ -1,0 +1,60 @@
+# Bishop's Opening: Lopez Gambit. Defining line 1.e4 e5 2.Bc4 Bc5 3.Qe2 Nc6 4.c3 Nf6 5.f4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-lopez-gambit
+name: "Bishop's Opening: Lopez Gambit"
+eco: C23
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Bc5, Qe2, Nc6, c3, Nf6, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. Black can take the f4 pawn and White has no quick way to win it back:
+      the queen on e2 is the only defender of the e4 pawn against the knight on f6, and the
+      bishop on c5 already bears on g1. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.f4, dùng tốt f tấn công tốt e5. Tốt f4 đang bị tốt e5 tấn công mà không được bảo vệ, còn tốt e4 bị mã f6 tấn công nhưng được hậu e2 bảo vệ. Mục này đi theo nước Đen ăn tốt trên f4.
+    en: White has just played 5.f4, attacking the e5 pawn with the f-pawn. The f4 pawn is attacked by the e5 pawn and nothing defends it, while the e4 pawn is attacked by the knight on f6 and defended by the queen on e2. This entry follows Black taking on f4.
+    fr: Les Blancs viennent de jouer 5.f4, attaquant le pion e5 avec le pion f. Le pion f4 est attaqué par le pion e5 et rien ne le défend, tandis que le pion e4 est attaqué par le cavalier f6 et défendu par la dame e2. Cette entrée suit la prise en f4 par les Noirs.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...exf4 ở đây, chẳng hạn 5...d6, bảo vệ tốt e5 lần thứ hai. Mục này chỉ mô hình hóa nước ăn tốt trên f4.
+      en: Black plays something other than 5...exf4 here, for instance 5...d6, which defends the e5 pawn a second time. This entry models only the capture on f4.
+      fr: Les Noirs jouent autre chose que 5...exf4 ici, par exemple 5...d6, qui défend le pion e5 une deuxième fois. Cette entrée ne modélise que la prise en f4.
+  children:
+    - ply: exf4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt thí bằng tốt e. Giờ tốt f đã rời f2, tượng c5 nhìn thẳng theo đường chéo mở tới mã g1, quân mà xe h1 đang bảo vệ.
+        en: Black takes the gambit pawn with the e-pawn. Now that the f-pawn has left f2, the bishop on c5 looks along an open diagonal at the knight on g1, which the rook on h1 defends.
+        fr: Les Noirs prennent le pion du gambit avec le pion e. Maintenant que le pion f a quitté f2, le fou c5 regarde le long d'une diagonale ouverte le cavalier g1, que la tour h1 défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — tốt f chưa lấy lại được, và hai tốt f7 và f4 của Đen bị chồng. Tốt e4 được hậu e2 bảo vệ trước mã f6, nhưng mã g1 bị tượng c5 tấn công và chỉ có xe h1 bảo vệ. Đền bù của Trắng là cột f bán mở, tốt c3 sẵn sàng cho d4, và tượng c4 nhắm vào f7.'
+          en: "Count the pawns: White seven, Black eight — the f-pawn has not come back, and Black's pawns on f7 and f4 are doubled. The e4 pawn is defended by the queen on e2 against the knight on f6, but the knight on g1 is attacked by the bishop on c5 and has only the rook on h1 to defend it. White's compensation is the half-open f-file, the pawn on c3 ready for d4, and the bishop on c4 aimed at f7."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — le pion f n'est pas revenu, et les pions noirs f7 et f4 sont doublés. Le pion e4 est défendu par la dame e2 face au cavalier f6, mais le cavalier g1 est attaqué par le fou c5 et n'a que la tour h1 pour le défendre. La compensation des Blancs est la colonne f semi-ouverte, le pion c3 prêt pour d4 et le fou c4 braqué sur f7."
+        plan:
+          vi: Trắng chơi d4 để đánh tượng và chiếm trung tâm, rồi Nf3 và O-O, hy vọng lấy lại tốt f4 hoặc mở đường tấn công vua. Đen đáp bằng ...d5 đánh tượng và tốt e4, hoặc ...d6 và ...O-O để hoàn tất phát triển mà vẫn giữ tốt dư.
+          en: White plays d4 to hit the bishop and gain the centre, then Nf3 and O-O, hoping to win the f4 pawn back or open lines against the king. Black answers with ...d5 to hit the bishop and the e4 pawn, or with ...d6 and ...O-O to finish development while keeping the extra pawn.
+          fr: Les Blancs jouent d4 pour frapper le fou et prendre le centre, puis Nf3 et O-O, espérant regagner le pion f4 ou ouvrir des lignes contre le roi. Les Noirs répondent par ...d5 pour frapper le fou et le pion e4, ou par ...d6 et ...O-O pour achever leur développement tout en gardant le pion de plus.
+        basis:
+          by: chan
+          at: 2026-09-30

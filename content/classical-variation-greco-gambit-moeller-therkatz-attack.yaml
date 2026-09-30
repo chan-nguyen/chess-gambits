@@ -1,0 +1,99 @@
+# Italian Game: Classical Variation, Greco Gambit, Moeller-Therkatz Attack. Defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 Nxe4 8.O-O Bxc3 9.d5,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: classical-variation-greco-gambit-moeller-therkatz-attack
+name: 'Italian Game: Classical Variation, Greco Gambit, Moeller-Therkatz Attack'
+eco: C54
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, c3, Nf6, d4, exd4, cxd4, Bb4+, Nc3, Nxe4, O-O, Bxc3, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. Once the piece is regained on e4, White is a pawn down with an isolated pawn on d5; the open e-file and the
+      castled king, against a Black king still on e8, give some play, but the pieces are
+      level in number and nothing on the board wins the pawn back. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.d5, dùng tốt tấn công mã c6. Tượng c3 của Đen bị tốt b2 tấn công và được mã e4 bảo vệ, còn mã c6 được hai tốt b7 và d7 bảo vệ. Trắng có sáu tốt, Đen bảy tốt, và Đen tạm thời hơn một quân vì con tượng vừa ăn trên c3 chưa bị bắt. Mục này đi theo nước lui tượng 9...Bf6.
+    en: White has just played 9.d5, attacking the knight on c6 with a pawn. Black's bishop on c3 is attacked by the b2 pawn and defended by the knight on e4, and the knight on c6 is defended twice, by the b7 and d7 pawns. White has six pawns to Black's seven, and Black is temporarily a piece up because the bishop that took on c3 has not yet been captured. This entry follows the retreat 9...Bf6.
+    fr: Les Blancs viennent de jouer 9.d5, attaquant le cavalier c6 avec un pion. Le fou noir c3 est attaqué par le pion b2 et défendu par le cavalier e4, et le cavalier c6 est défendu deux fois, par les pions b7 et d7. Les Blancs ont six pions contre sept aux Noirs, et les Noirs ont temporairement une pièce de plus parce que le fou qui a pris en c3 n'a pas encore été capturé. Cette entrée suit le repli 9...Bf6.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 9...Bf6 ở đây, chẳng hạn 9...Bxb2, ăn tốt bằng tượng. Mục này chỉ mô hình hóa nước lui tượng về f6.
+      en: Black plays something other than 9...Bf6 here, for instance 9...Bxb2, which takes a pawn with the bishop. This entry models only the retreat to f6.
+      fr: Les Noirs jouent autre chose que 9...Bf6 ici, par exemple 9...Bxb2, qui prend un pion avec le fou. Cette entrée ne modélise que le repli en f6.
+  children:
+    - ply: Bf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen cứu tượng bằng cách lui về f6, nơi nó tấn công tốt b2, quân được tượng c1 bảo vệ.
+        en: Black saves the bishop by retreating it to f6, where it attacks the b2 pawn, which the bishop on c1 defends.
+        fr: Les Noirs sauvent le fou en le repliant en f6, où il attaque le pion b2, que le fou c1 défend.
+      children:
+        - ply: Re1
+          annotation:
+            vi: Trắng dùng xe tấn công mã e4. Mã e4 không có quân nào bảo vệ.
+            en: White attacks the knight on e4 with the rook. Nothing defends the knight on e4.
+            fr: Les Blancs attaquent le cavalier e4 avec la tour. Rien ne défend le cavalier e4.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 10...Ne7 ở đây. Mục này chỉ mô hình hóa nước đi mã từ c6 sang e7.
+              en: Black plays something other than 10...Ne7 here. This entry models only the knight move from c6 to e7.
+              fr: Les Noirs jouent autre chose que 10...Ne7 ici. Cette entrée ne modélise que le coup de cavalier de c6 en e7.
+          children:
+            - ply: Ne7
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đưa mã c6 ra khỏi đòn tấn công của tốt d5 và nhắm vào chính tốt d5, nhưng mã e4 vẫn không được bảo vệ.
+                en: Black takes the knight on c6 out of the attack of the d5 pawn and aims it at the d5 pawn itself, but the knight on e4 stays undefended.
+                fr: Les Noirs sortent le cavalier c6 de l'attaque du pion d5 et le dirigent vers le pion d5 lui-même, mais le cavalier e4 reste sans défense.
+              children:
+                - ply: Rxe4
+                  annotation:
+                    vi: Trắng ăn mã e4 bằng xe, lấy lại quân đã mất; hai bên giờ có số quân nhẹ bằng nhau.
+                    en: White takes the knight on e4 with the rook, regaining the piece; the two sides now have the same number of minor pieces.
+                    fr: Les Blancs prennent le cavalier e4 avec la tour, regagnant la pièce ; les deux camps ont maintenant le même nombre de pièces mineures.
+                  dismissRest:
+                    reason:
+                      vi: Đen chơi một nước khác thay vì 11...d6 ở đây, chẳng hạn 11...O-O. Mục này chỉ mô hình hóa 11...d6.
+                      en: Black plays something other than 11...d6 here, for instance 11...O-O. This entry models only 11...d6.
+                      fr: Les Noirs jouent autre chose que 11...d6 ici, par exemple 11...O-O. Cette entrée ne modélise que 11...d6.
+                  children:
+                    - ply: d6
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen chơi ...d6, mở đường cho tượng c8 và khống chế ô e5.
+                        en: Black plays ...d6, which opens the diagonal for the bishop on c8 and covers the e5 square.
+                        fr: Les Noirs jouent ...d6, qui ouvre la diagonale du fou c8 et contrôle la case e5.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: Trắng sáu, Đen bảy — con tốt thí trên e4 chưa lấy lại được, nhưng số quân nhẹ đã bằng nhau, mỗi bên hai tượng và một mã. Tốt d5 của Trắng bị cô lập và được tượng c4 cùng hậu bảo vệ; mã e7 nhắm vào nó nhưng bị xe e4 ghim vào vua nên không thể ăn. Xe e4 tấn công mã e7, quân được hậu, vua và tượng f6 bảo vệ, và cột e đang mở.'
+                          en: "Count the pawns: White six, Black seven — the pawn sacrificed on e4 has not come back, but the minor pieces are level, two bishops and a knight each. White's pawn on d5 is isolated and defended by the bishop on c4 and the queen; the knight on e7 eyes it but is pinned to the king by the rook on e4, so it cannot take. The rook on e4 attacks the knight on e7, which the queen, the king and the bishop on f6 defend, and the e-file is open."
+                          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — le pion sacrifié en e4 n'est pas revenu, mais les pièces mineures sont à égalité, deux fous et un cavalier chacun. Le pion d5 blanc est isolé et défendu par le fou c4 et la dame ; le cavalier e7 le vise mais il est cloué au roi par la tour e4 et ne peut donc pas prendre. La tour e4 attaque le cavalier e7, que la dame, le roi et le fou f6 défendent, et la colonne e est ouverte."
+                        plan:
+                          vi: Trắng chơi Bg5 để đổi tượng f6, hoặc g4 chuẩn bị g5 đánh tượng đó, tận dụng cột e mở. Đen chơi ...O-O, ...Bd7 và ...Ng6 để hoàn tất phát triển và giữ tốt dư.
+                          en: White plays Bg5 to trade off the bishop on f6, or g4 to prepare g5 against it, making use of the open e-file. Black plays ...O-O, ...Bd7 and ...Ng6 to finish development and keep the extra pawn.
+                          fr: Les Blancs jouent Bg5 pour échanger le fou f6, ou g4 pour préparer g5 contre lui, en exploitant la colonne e ouverte. Les Noirs jouent ...O-O, ...Bd7 et ...Ng6 pour achever leur développement et garder le pion de plus.
+                        basis:
+                          by: chan
+                          at: 2026-09-30

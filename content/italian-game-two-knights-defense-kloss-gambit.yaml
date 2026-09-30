@@ -1,0 +1,60 @@
+# Italian Game: Two Knights Defense, Kloss Gambit. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6
+# 4.Ng5 d5 5.exd5 Nb4, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-two-knights-defense-kloss-gambit
+name: 'Italian Game: Two Knights Defense, Kloss Gambit'
+eco: C57
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Nb4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White can simply castle: the knight on b4 attacks the c2 and a2 pawns,
+      both defended, and is offside, while the knight on g5 presses on f7 and h7; Black can
+      regain the pawn with ...Nbxd5, but then White is castled, the knight on g5 still presses on f7 and h7 and Black's king is still on e8, so the line is labelled unsound.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Nb4, tấn công tốt c2, quân được hậu bảo vệ, tốt a2, quân được tượng và xe bảo vệ, và tốt d5. Tốt d5 dư của Trắng bị tấn công ba lần, bởi hậu, mã f6 và mã b4, và chỉ được tượng c4 bảo vệ một lần; mã g5 tấn công f7 và h7. Trắng có tám tốt, Đen bảy tốt. Mục này đi theo nước Trắng nhập thành 6.O-O.
+    en: Black has just played 5...Nb4, which attacks the c2 pawn, defended by the queen, the a2 pawn, defended by the bishop and the rook, and the d5 pawn. White's extra pawn on d5 is attacked three times, by the queen, the knight on f6 and the knight on b4, and defended once, by the bishop on c4; the knight on g5 attacks f7 and h7. White has eight pawns to Black's seven. This entry follows White castling with 6.O-O.
+    fr: Les Noirs viennent de jouer 5...Nb4, qui attaque le pion c2, défendu par la dame, le pion a2, défendu par le fou et la tour, et le pion d5. Le pion d5 en plus des Blancs est attaqué trois fois, par la dame, le cavalier f6 et le cavalier b4, et défendu une fois, par le fou c4 ; le cavalier g5 attaque f7 et h7. Les Blancs ont huit pions contre sept aux Noirs. Cette entrée suit le roque des Blancs, 6.O-O.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 6.O-O ở đây, chẳng hạn 6.c3 hoặc 6.d3. Mục này chỉ mô hình hóa nước nhập thành.
+      en: White plays something other than 6.O-O here, for instance 6.c3 or 6.d3. This entry models only castling.
+      fr: Les Blancs jouent autre chose que 6.O-O ici, par exemple 6.c3 ou 6.d3. Cette entrée ne modélise que le roque.
+  children:
+    - ply: O-O
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng nhập thành, đưa vua ra khỏi đòn chiếu đôi trên c2: mã b4 giờ có thể ăn tốt c2, nhưng hậu d1 bảo vệ tốt đó.'
+        en: 'White castles, which takes the king out of the fork on c2: the knight on b4 can now take the c2 pawn, but the queen on d1 defends it.'
+        fr: 'Les Blancs roquent, ce qui sort le roi de la fourchette en c2 : le cavalier b4 peut maintenant prendre le pion c2, mais la dame d1 le défend.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — tốt d5 là con tốt dư của Trắng, nhưng nó bị tấn công ba lần, bởi hậu, mã f6 và mã b4, và chỉ được tượng c4 bảo vệ một lần. Hai tốt d5 và d2 của Trắng bị chồng. Mã g5 tấn công f7, ô chỉ có vua bảo vệ, và h7, ô được xe và mã f6 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven — the d5 pawn is White's extra pawn, but it is attacked three times, by the queen, the knight on f6 and the knight on b4, and defended once, by the bishop on c4. White's pawns on d5 and d2 are doubled. The knight on g5 attacks f7, which only the king defends, and h7, which the rook and the knight on f6 defend."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs — le pion d5 est le pion en plus des Blancs, mais il est attaqué trois fois, par la dame, le cavalier f6 et le cavalier b4, et défendu une fois, par le fou c4. Les pions blancs d5 et d2 sont doublés. Le cavalier g5 attaque f7, que seul le roi défend, et h7, que la tour et le cavalier f6 défendent.'
+        plan:
+          vi: Đen lấy lại tốt bằng ...Nbxd5, giữ mã f6 che h7, rồi phát triển bằng ...Bd6. Trắng chơi Re1, tấn công tốt e5, và c3 để đuổi mã b4 nếu nó còn ở đó.
+          en: Black regains the pawn with ...Nbxd5, keeping the knight on f6 to cover h7, then develops with ...Bd6. White plays Re1, attacking the e5 pawn, and c3 to drive the knight from b4 if it is still there.
+          fr: Les Noirs regagnent le pion par ...Nbxd5, gardant le cavalier f6 pour couvrir h7, puis se développent par ...Bd6. Les Blancs jouent Re1, attaquant le pion e5, et c3 pour chasser le cavalier de b4 s'il y est encore.
+        basis:
+          by: chan
+          at: 2026-09-30

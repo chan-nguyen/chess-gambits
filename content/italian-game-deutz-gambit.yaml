@@ -1,0 +1,60 @@
+# Italian Game: Deutz Gambit. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.O-O Nf6 5.d4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-deutz-gambit
+name: 'Italian Game: Deutz Gambit'
+eco: C50
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, O-O, Nf6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 5...exd4 White has not yet recovered the d-pawn and the e4 pawn is
+      undefended, but the d4 pawn is attacked twice and White's king is already castled; it
+      is a risk rather than a sound investment. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã nhập thành rồi chơi 5.d4, tấn công tượng c5 và tốt e5. Tượng bị tốt tấn công mà không có quân nào bảo vệ, tốt d4 bị tấn công ba lần và được bảo vệ hai lần, còn tốt e4 của Trắng bị mã f6 tấn công và cũng không được bảo vệ. Mục này đi theo nước ăn tốt 5...exd4.
+    en: White has castled and then played 5.d4, attacking the bishop on c5 and the e5 pawn. The bishop is attacked by the pawn and nothing defends it, the d4 pawn is attacked three times and defended twice, and White's e4 pawn is attacked by the knight on f6 and is undefended. This entry follows the capture 5...exd4.
+    fr: Les Blancs ont roqué puis joué 5.d4, attaquant le fou c5 et le pion e5. Le fou est attaqué par le pion et rien ne le défend, le pion d4 est attaqué trois fois et défendu deux fois, et le pion e4 blanc est attaqué par le cavalier f6 sans être défendu. Cette entrée suit la prise 5...exd4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...exd4 ở đây, chẳng hạn 5...Nxe4. Mục này chỉ mô hình hóa nước ăn tốt trên d4.
+      en: Black plays something other than 5...exd4 here, for instance 5...Nxe4. This entry models only the capture on d4.
+      fr: Les Noirs jouent autre chose que 5...exd4 ici, par exemple 5...Nxe4. Cette entrée ne modélise que la prise en d4.
+  children:
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt d4 bằng tốt e. Con tốt này bị mã f3 và hậu tấn công, và được mã c6 cùng tượng c5 bảo vệ.
+        en: Black takes the d4 pawn with the e-pawn. The pawn is attacked by the knight on f3 and the queen, and defended by the knight on c6 and the bishop on c5.
+        fr: Les Noirs prennent le pion d4 avec le pion e. Ce pion est attaqué par le cavalier f3 et la dame, et défendu par le cavalier c6 et le fou c5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — tốt d chưa lấy lại được, và hai tốt d7 và d4 của Đen bị chồng. Tốt d4 bị tấn công hai lần, bởi mã và hậu, và được bảo vệ hai lần, bởi mã c6 và tượng c5. Tốt e4 của Trắng bị mã f6 tấn công mà không ai bảo vệ, và Trắng đã nhập thành trong khi vua Đen vẫn ở e8.'
+          en: "Count the pawns: White seven, Black eight — the d-pawn has not come back, and Black's pawns on d7 and d4 are doubled. The d4 pawn is attacked twice, by the knight and the queen, and defended twice, by the knight on c6 and the bishop on c5. White's e4 pawn is attacked by the knight on f6 and nothing defends it, and White has castled while Black's king is still on e8."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — le pion d n'est pas revenu, et les pions noirs d7 et d4 sont doublés. Le pion d4 est attaqué deux fois, par le cavalier et la dame, et défendu deux fois, par le cavalier c6 et le fou c5. Le pion e4 blanc est attaqué par le cavalier f6 et rien ne le défend, et les Blancs ont roqué alors que le roi noir est toujours en e8."
+        plan:
+          vi: Trắng chơi e5 để đánh mã f6, hoặc Re1 để bảo vệ tốt e4, và cố lấy lại tốt d4 bằng c3, nước thêm quân tấn công thứ ba. Đáp lại e5, Đen có ...d5 đánh tượng c4; đáp lại Re1, Đen hỗ trợ tượng c5 bằng ...d6; và nếu tốt e4 bị bỏ không bảo vệ, Đen ăn nó bằng ...Nxe4.
+          en: White plays e5 to hit the knight on f6, or Re1 to defend the e4 pawn, and tries to win the d4 pawn back with c3, which adds a third attacker. Against e5 Black has ...d5, which hits the bishop on c4; against Re1 Black supports the bishop on c5 with ...d6; and if the e4 pawn is left undefended Black takes it with ...Nxe4.
+          fr: Les Blancs jouent e5 pour frapper le cavalier f6, ou Re1 pour défendre le pion e4, et tentent de regagner le pion d4 par c3, qui ajoute un troisième attaquant. Contre e5, les Noirs ont ...d5, qui frappe le fou c4 ; contre Re1, ils soutiennent le fou c5 par ...d6 ; et si le pion e4 est laissé sans défense, ils le prennent par ...Nxe4.
+        basis:
+          by: chan
+          at: 2026-09-30

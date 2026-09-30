@@ -1,0 +1,79 @@
+# Italian Game: Scotch Gambit, Anderssen Attack. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6
+# 4.d4 exd4 5.O-O Nxe4 6.Re1 d5 7.Bxd5 Qxd5 8.Nc3, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-scotch-gambit-anderssen-attack
+name: 'Italian Game: Scotch Gambit, Anderssen Attack'
+eco: C56
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, d4, exd4, O-O, Nxe4, Re1, d5, Bxd5, Qxd5, Nc3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is a pawn down after the exchanges, but the piece given on d5
+      comes straight back: the knight on e4 is attacked twice and defended once, and Black's
+      king is still on e8; that is treated as enough compensation for the line to be
+      labelled sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.Nc3, tấn công hậu d5, quân không có gì bảo vệ. Trắng có sáu tốt, Đen bảy tốt, và Đen hơn một quân nhẹ, bốn quân so với ba của Trắng, vì tượng Trắng đã đổi lấy tốt d5. Mã e4 bị tấn công hai lần, bởi mã c3 và xe e1, và chỉ được hậu bảo vệ một lần. Mục này đi theo nước đi hậu 8...Qa5.
+    en: White has just played 8.Nc3, attacking the queen on d5, which nothing defends. White has six pawns to Black's seven, and Black has an extra minor piece, four to White's three, because White's bishop was given up for the d5 pawn. The knight on e4 is attacked twice, by the knight on c3 and the rook on e1, and defended once, by the queen. This entry follows the queen move 8...Qa5.
+    fr: Les Blancs viennent de jouer 8.Nc3, attaquant la dame d5, que rien ne défend. Les Blancs ont six pions contre sept aux Noirs, et les Noirs ont une pièce mineure de plus, quatre contre trois, parce que le fou blanc a été donné contre le pion d5. Le cavalier e4 est attaqué deux fois, par le cavalier c3 et la tour e1, et défendu une fois, par la dame. Cette entrée suit le coup de dame 8...Qa5.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 8...Qa5 ở đây, chẳng hạn 8...Qe6 hoặc 8...Qf5. Mục này chỉ mô hình hóa nước đi hậu lên a5.
+      en: Black plays something other than 8...Qa5 here, for instance 8...Qe6 or 8...Qf5. This entry models only the queen move to a5.
+      fr: Les Noirs jouent autre chose que 8...Qa5 ici, par exemple 8...Qe6 ou 8...Qf5. Cette entrée ne modélise que le coup de dame en a5.
+  children:
+    - ply: Qa5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa hậu đang bị tấn công lên a5, nơi nó tấn công mã c3 và tốt a2. Mã e4 giờ không có gì bảo vệ.
+        en: Black moves the attacked queen to a5, where it attacks the knight on c3 and the a2 pawn. The knight on e4 is now defended by nothing.
+        fr: Les Noirs portent la dame attaquée en a5, où elle attaque le cavalier c3 et le pion a2. Le cavalier e4 n'est plus défendu par rien.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Trắng ăn mã e4 bằng mã từ c3, lấy lại quân đã mất và đưa số quân nhẹ về ngang nhau.
+            en: White takes the knight on e4 with the knight from c3, winning the piece back and leaving the minor pieces level.
+            fr: Les Blancs prennent le cavalier e4 avec le cavalier de c3, regagnant la pièce et ramenant les pièces mineures à égalité.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 9...Be6 ở đây, chẳng hạn 9...Bd7. Mục này chỉ mô hình hóa nước đi tượng lên e6.
+              en: Black plays something other than 9...Be6 here, for instance 9...Bd7. This entry models only the bishop move to e6.
+              fr: Les Noirs jouent autre chose que 9...Be6 ici, par exemple 9...Bd7. Cette entrée ne modélise que le coup de fou en e6.
+          children:
+            - ply: Be6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển tượng lên e6, nơi nó cùng hậu a5 tấn công tốt a2.
+                en: Black develops the bishop to e6, where it attacks the a2 pawn together with the queen on a5.
+                fr: Les Noirs développent le fou en e6, où il attaque le pion a2 avec la dame a5.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen bảy, và số quân nhẹ bằng nhau: hai mã và một tượng của Trắng so với một mã và hai tượng của Đen. Tốt a2 bị tấn công hai lần, bởi tượng e6 và hậu a5, và chỉ được xe a1 bảo vệ một lần, còn tốt d4 bị tấn công hai lần, bởi mã f3 và hậu d1, và chỉ được mã c6 bảo vệ một lần. Xe e1 bị hậu tấn công và được bảo vệ hai lần.'
+                  en: 'Count the pawns: White six, Black seven, and the minor pieces are level, two knights and a bishop for White against a knight and two bishops for Black. The a2 pawn is attacked twice, by the bishop on e6 and the queen on a5, and defended once, by the rook on a1, while the d4 pawn is attacked twice, by the knight on f3 and the queen on d1, and defended once, by the knight on c6. The rook on e1 is attacked by the queen and defended twice.'
+                  fr: 'Comptez les pions : six pour les Blancs, sept pour les Noirs, et les pièces mineures sont à égalité, deux cavaliers et un fou pour les Blancs contre un cavalier et deux fous pour les Noirs. Le pion a2 est attaqué deux fois, par le fou e6 et la dame a5, et défendu une fois, par la tour a1, tandis que le pion d4 est attaqué deux fois, par le cavalier f3 et la dame d1, et défendu une fois, par le cavalier c6. La tour e1 est attaquée par la dame et défendue deux fois.'
+                plan:
+                  vi: Trắng chơi Bd2, tấn công hậu a5 và chặn đường chéo của nó tới xe e1. Đen bảo vệ tốt d4 bằng ...Qb6 và hoàn tất phát triển bằng ...O-O-O.
+                  en: White plays Bd2, attacking the queen on a5 and blocking its diagonal to the rook on e1. Black defends the d4 pawn with ...Qb6 and completes development with ...O-O-O.
+                  fr: Les Blancs jouent Bd2, attaquant la dame a5 et bloquant sa diagonale vers la tour e1. Les Noirs défendent le pion d4 par ...Qb6 et achèvent leur développement par ...O-O-O.
+                basis:
+                  by: chan
+                  at: 2026-09-30

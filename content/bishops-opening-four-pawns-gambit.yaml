@@ -1,0 +1,60 @@
+# Bishop's Opening: Four Pawns Gambit. Defining line 1.e4 e5 2.Bc4 Bc5 3.b4 Bxb4 4.f4 exf4
+# 5.Nf3 Be7 6.d4 Bh4+ 7.g3 fxg3 8.O-O gxh2+ 9.Kh1, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-four-pawns-gambit
+name: "Bishop's Opening: Four Pawns Gambit"
+eco: C23
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Bc5, b4, Bxb4, f4, exf4, Nf3, Be7, d4, Bh4+, g3, fxg3, O-O, gxh2+, Kh1]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. By this point White has given up four pawns — the b-, f-, g- and h-pawns
+      — and has only a lead in development and half-open files to show for them, while
+      Black can defend the h2 pawn with ...Bg3 and Black's king has not been attacked. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng đã nhập thành rồi đưa vua sang h1 sau khi tốt Đen ăn trên h2 kèm chiếu. Đếm tốt: Trắng bốn, Đen tám. Tốt h2 bị mã f3 và vua tấn công mà không ai bảo vệ, còn tượng h4 cũng đang bị chính con mã đó tấn công. Đen phải quyết định giữ vật chất bằng cách nào.'
+    en: "White has castled and then stepped to h1 after Black's pawn took on h2 with check. Count the pawns: White four, Black eight. The pawn on h2 is attacked by the knight on f3 and by the king and nothing defends it, and the bishop on h4 is attacked by that same knight. Black must decide how to hold on to the material."
+    fr: 'Les Blancs ont roqué puis se sont mis en h1 après que le pion noir a pris en h2 avec échec. Comptez les pions : quatre pour les Blancs, huit pour les Noirs. Le pion h2 est attaqué par le cavalier f3 et par le roi et rien ne le défend, et le fou h4 est attaqué par ce même cavalier. Les Noirs doivent décider comment conserver leur matériel.'
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 9...Bg3 ở đây. Mục này chỉ mô hình hóa nước lui tượng vừa cứu tượng vừa giữ tốt h2 được bảo vệ.
+      en: Black plays something other than 9...Bg3 here. This entry models only the bishop move that both saves the bishop and keeps the h2 pawn defended.
+      fr: Les Noirs jouent autre chose que 9...Bg3 ici. Cette entrée ne modélise que le coup de fou qui sauve le fou tout en gardant le pion h2 défendu.
+  children:
+    - ply: Bg3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa con tượng đang bị tấn công về g3, nơi nó bảo vệ tốt h2 và không quân Trắng nào tấn công được nó.
+        en: Black moves the attacked bishop to g3, where it defends the pawn on h2 and is attacked by none of White's pieces.
+        fr: Les Noirs mettent le fou attaqué en g3, où il défend le pion h2 et n'est attaqué par aucune pièce blanche.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bốn, Đen tám — món thí là bốn tốt và chưa lấy lại được con nào. Tốt h2 của Đen đứng sát vua Trắng và được tượng g3 bảo vệ. Trắng chỉ có các cột b, f, g, h đang bán mở, tượng c4 nhắm vào f7 chỉ có vua bảo vệ, và xe đã đứng sẵn trên f1.'
+          en: "Count the pawns: White four, Black eight — the sacrifice is four pawns and none has come back. The Black pawn on h2 stands right beside White's king, defended by the bishop on g3. What White has for it is the half-open b-, f-, g- and h-files, the bishop on c4 aimed at f7, which only the king defends, and a rook already on f1."
+          fr: "Comptez les pions : quatre pour les Blancs, huit pour les Noirs — le sacrifice est de quatre pions et aucun n'est revenu. Le pion noir h2 se tient juste à côté du roi blanc, défendu par le fou g3. En échange, les Blancs ont les colonnes b, f, g et h semi-ouvertes, le fou c4 braqué sur f7, que seul le roi défend, et une tour déjà en f1."
+        plan:
+          vi: Trắng tìm cách chơi Ng5, thêm một quân tấn công f7 và mở cột f cho xe f1. Đen giữ tượng g3 để che h2, phát triển mã bằng ...Nf6 hoặc ...Nh6 và tìm cách nhập thành.
+          en: White's idea is Ng5, which adds a second attacker to f7 and unblocks the f-file for the rook on f1. Black keeps the bishop on g3 covering h2, develops a knight with ...Nf6 or ...Nh6 and looks to castle.
+          fr: L'idée des Blancs est Ng5, qui ajoute un second attaquant sur f7 et libère la colonne f pour la tour f1. Les Noirs gardent le fou en g3 pour couvrir h2, développent un cavalier par ...Nf6 ou ...Nh6 et cherchent à roquer.
+        basis:
+          by: chan
+          at: 2026-09-30

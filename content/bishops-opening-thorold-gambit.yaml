@@ -1,0 +1,59 @@
+# Bishop's Opening: Thorold Gambit. Defining line 1.e4 e5 2.Bc4 b5 3.Bxb5 f5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-thorold-gambit
+name: "Bishop's Opening: Thorold Gambit"
+eco: C23
+category: gambit
+side: black
+definingLine: [e4, e5, Bc4, b5, Bxb5, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White can simply take the f5 pawn as well: after 4.exf5 White has two
+      extra pawns, Black's a-pawn is isolated and no Black piece attacks the new pawn on f5,
+      so the counter-attack on e4 has bought nothing back. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...f5, phản công tốt e4 ngay sau khi đã thí tốt b. Tốt e4 đang bị tốt f5 tấn công mà không ai bảo vệ, còn tốt f5 cũng bị tốt e4 tấn công và không được bảo vệ. Đen đã kém sẵn một tốt; mục này đi theo nước Trắng ăn thêm tốt thứ hai trên f5.
+    en: Black has just played 3...f5, counter-attacking the e4 pawn a move after giving up the b-pawn. The e4 pawn is attacked by the f5 pawn and nothing defends it, and the f5 pawn is attacked by the e4 pawn and nothing defends it either. Black is already a pawn down; this entry follows White taking a second pawn on f5.
+    fr: Les Noirs viennent de jouer 3...f5, contre-attaquant le pion e4 un coup après avoir sacrifié le pion b. Le pion e4 est attaqué par le pion f5 et rien ne le défend, et le pion f5 est attaqué par le pion e4 et rien ne le défend non plus. Les Noirs ont déjà un pion de moins ; cette entrée suit la prise d'un second pion en f5 par les Blancs.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 4.exf5 ở đây, chẳng hạn 4.Qh5+. Mục này chỉ mô hình hóa nước ăn tốt trên f5.
+      en: White plays something other than 4.exf5 here, for instance 4.Qh5+. This entry models only the capture on f5.
+      fr: Les Blancs jouent autre chose que 4.exf5 ici, par exemple 4.Qh5+. Cette entrée ne modélise que la prise en f5.
+  children:
+    - ply: exf5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt f bằng tốt e, hơn hai tốt. Hiện không quân Đen nào tấn công được tốt f5.
+        en: White takes the f-pawn with the e-pawn, going two pawns up. None of Black's pieces attacks the pawn on f5 at the moment.
+        fr: Les Blancs prennent le pion f avec le pion e, avec deux pions d'avance. Aucune pièce noire n'attaque pour l'instant le pion f5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen sáu — hai tốt đã mất và chưa lấy lại được con nào. Tốt a của Đen bị cô lập, tốt d7 bị tượng b5 ghim vào vua, còn cột b và cột f bán mở cho Đen. Hai tốt f5 và f2 của Trắng bị chồng, nhưng Đen không có quân nào tấn công tốt f5.'
+          en: "Count the pawns: White eight, Black six — two pawns are gone and none has come back. Black's a-pawn is isolated, the d7 pawn is pinned to the king by the bishop on b5, and the b- and f-files are half-open for Black. White's pawns on f5 and f2 are doubled, but Black has no piece attacking the pawn on f5."
+          fr: "Comptez les pions : huit pour les Blancs, six pour les Noirs — deux pions ont disparu et aucun n'est revenu. Le pion a noir est isolé, le pion d7 est cloué au roi par le fou b5, et les colonnes b et f sont semi-ouvertes pour les Noirs. Les pions blancs f5 et f2 sont doublés, mais les Noirs n'ont aucune pièce qui attaque le pion f5."
+        plan:
+          vi: Trắng chơi Nf3, d4 đánh e5 và O-O, giữ hai tốt dư bằng cách phát triển quân. Đen thách thức tượng bằng ...c6, nước cũng giải tỏa thế ghim tốt d7, rồi phát triển bằng ...Nf6 và ...Bc5.
+          en: White plays Nf3, d4 to hit e5 and O-O, keeping the two extra pawns by developing the pieces. Black challenges the bishop with ...c6, which also breaks the pin on the d7 pawn, then develops with ...Nf6 and ...Bc5.
+          fr: Les Blancs jouent Nf3, d4 pour frapper e5, et O-O, gardant les deux pions de plus en développant leurs pièces. Les Noirs défient le fou par ...c6, qui rompt aussi le clouage du pion d7, puis se développent par ...Nf6 et ...Bc5.
+        basis:
+          by: chan
+          at: 2026-09-30

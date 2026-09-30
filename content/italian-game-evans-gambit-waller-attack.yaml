@@ -1,0 +1,60 @@
+# Italian Game: Evans Gambit, Waller Attack. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4
+# Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d6 8.Qb3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-waller-attack
+name: 'Italian Game: Evans Gambit, Waller Attack'
+eco: C52
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4, Bxb4, c3, Ba5, d4, exd4, O-O, d6, Qb3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. At this point White is two pawns down, with isolated a- and c-pawns, but
+      the queen and the bishop aim at b7 and f7 and Black's pawns on d6 and d4 are doubled;
+      that is treated as enough compensation for the line to be labelled sound. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.Qb3, tấn công tốt b7, quân được tượng c8 bảo vệ, trong khi tượng c4 đã nhắm sẵn vào f7. Trắng có sáu tốt, Đen tám tốt, các tốt c3 và a2 của Trắng bị cô lập còn hai tốt d6 và d4 của Đen bị chồng. Tốt c3 bị tấn công hai lần, bởi tượng a5 và tốt d4, và được bảo vệ hai lần, bởi hậu và mã b1. Mục này đi theo nước 8...Qf6.
+    en: White has just played 8.Qb3, attacking the b7 pawn, which the bishop on c8 defends, with the bishop on c4 already aimed at f7. White has six pawns to Black's eight, and White's pawns on c3 and a2 are isolated while Black's pawns on d6 and d4 are doubled. The c3 pawn is attacked twice, by the bishop on a5 and the d4 pawn, and defended twice, by the queen and the knight on b1. This entry follows 8...Qf6.
+    fr: Les Blancs viennent de jouer 8.Qb3, attaquant le pion b7, que le fou c8 défend, tandis que le fou c4 vise déjà f7. Les Blancs ont six pions contre huit aux Noirs, et les pions blancs c3 et a2 sont isolés tandis que les pions noirs d6 et d4 sont doublés. Le pion c3 est attaqué deux fois, par le fou a5 et le pion d4, et défendu deux fois, par la dame et le cavalier b1. Cette entrée suit 8...Qf6.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 8...Qf6 ở đây, chẳng hạn 8...Qd7 hoặc 8...Nh6. Mục này chỉ mô hình hóa nước đi hậu lên f6.
+      en: Black plays something other than 8...Qf6 here, for instance 8...Qd7 or 8...Nh6. This entry models only the queen move to f6.
+      fr: Les Noirs jouent autre chose que 8...Qf6 ici, par exemple 8...Qd7 ou 8...Nh6. Cette entrée ne modélise que le coup de dame en f6.
+  children:
+    - ply: Qf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa hậu lên f6, nơi nó tấn công mã f3 và bảo vệ cả tốt d4 lẫn tốt f7.
+        en: Black develops the queen to f6, where it attacks the knight on f3 and defends both the d4 pawn and the f7 pawn.
+        fr: Les Noirs développent la dame en f6, où elle attaque le cavalier f3 et défend à la fois le pion d4 et le pion f7.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám — Trắng kém hai tốt, các tốt c3 và a2 của Trắng bị cô lập còn hai tốt d6 và d4 của Đen bị chồng. Tốt d4 bị tấn công hai lần, bởi tốt c3 và mã f3, và được bảo vệ hai lần, bởi mã c6 và hậu f6; tốt c3 bị tấn công hai lần, bởi tượng a5 và tốt d4, và được bảo vệ hai lần, bởi hậu b3 và mã b1. Hậu b3 tấn công b7, ô chỉ có tượng c8 bảo vệ.'
+          en: "Count the pawns: White six, Black eight — White is two pawns down, and White's pawns on c3 and a2 are isolated while Black's pawns on d6 and d4 are doubled. The d4 pawn is attacked twice, by the c3 pawn and the knight on f3, and defended twice, by the knight on c6 and the queen on f6; the c3 pawn is attacked twice, by the bishop on a5 and the d4 pawn, and defended twice, by the queen on b3 and the knight on b1. The queen on b3 attacks b7, which only the bishop on c8 defends."
+          fr: 'Comptez les pions : six pour les Blancs, huit pour les Noirs — les Blancs ont deux pions de moins, et les pions blancs c3 et a2 sont isolés tandis que les pions noirs d6 et d4 sont doublés. Le pion d4 est attaqué deux fois, par le pion c3 et le cavalier f3, et défendu deux fois, par le cavalier c6 et la dame f6 ; le pion c3 est attaqué deux fois, par le fou a5 et le pion d4, et défendu deux fois, par la dame b3 et le cavalier b1. La dame b3 attaque b7, que seul le fou c8 défend.'
+        plan:
+          vi: Trắng ăn trên d4, bằng cxd4 hoặc Nxd4, để lấy lại một tốt, rồi đưa tượng ra bằng Ba3. Đen có thể ăn tốt thứ ba bằng ...dxc3, hoặc hoàn tất phát triển bằng ...Nge7 và ...O-O.
+          en: White takes on d4, with cxd4 or Nxd4, to win a pawn back, then brings the bishop out with Ba3. Black can win a third pawn with ...dxc3, or complete development with ...Nge7 and ...O-O.
+          fr: Les Blancs prennent en d4, par cxd4 ou Nxd4, pour regagner un pion, puis sortent le fou par Ba3. Les Noirs peuvent gagner un troisième pion par ...dxc3, ou achever leur développement par ...Nge7 et ...O-O.
+        basis:
+          by: chan
+          at: 2026-09-30
