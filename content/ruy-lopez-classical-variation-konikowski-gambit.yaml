@@ -1,9 +1,11 @@
 # Ruy Lopez: Classical Variation, Konikowski Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6
 # 3.Bb5 Bc5 4.c3 d5, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
-# invariant 5). Replayed with chess.js through 5.exd5 Qxd5 6.O-O. With the d-pawn gone from d7, the
-# knight on c6 is pinned to the king by the bishop on b5 (it has no legal move at the root or at
-# the leaf). searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
-# claimed anywhere in this entry, and no capture is left going free at the leaf.
+# invariant 5). Replayed with chess.js through 5.exd5 Qxd5. The leaf is left with White to move. With
+# the d-pawn gone from d7, the knight on c6 is pinned to the king by the bishop on b5 (it has no legal
+# move at the root or at the leaf). The line deliberately stops before 6.O-O: after 6.O-O the c5 bishop
+# can move with check, ...Bxf2+, and the queen then takes the bishop on b5. searchMate at 3 moves
+# from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture
+# is left going free at the leaf.
 id: ruy-lopez-classical-variation-konikowski-gambit
 name: 'Ruy Lopez: Classical Variation, Konikowski Gambit'
 eco: C64
@@ -16,7 +18,7 @@ soundness:
   basis:
     by: chan
     at: '2026-09-30'
-    source: A judgement. At the leaf the pawn count is level, but the knight on c6 is pinned to the king, it is one of only two defenders of the e5 pawn (the queen on d5 is the other), and White threatens Bxc6+ to remove it. Black has nothing on the board that pays for being the side with a pinned piece and an early queen. No engine was consulted and no database was queried.
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
 judgement:
   by: chan
   at: '2026-09-30'
@@ -45,29 +47,16 @@ tree:
             vi: Đen lấy lại tốt bằng hậu, số tốt lại bằng nhau, bảy mỗi bên. Hậu d5 giờ nhắm vào mã f3 và các tốt a2, d2, nhưng cả ba đều có quân bảo vệ.
             en: Black takes the pawn back with the queen, levelling the pawn count at seven each. The queen on d5 now eyes the knight on f3 and the pawns on a2 and d2, but all three are defended.
             fr: Les Noirs reprennent le pion avec la dame, égalisant le compte de pions à sept de chaque côté. La dame d5 vise maintenant le cavalier f3 et les pions a2 et d2, mais tous les trois sont défendus.
-          dismissRest:
-            reason:
-              vi: Trắng chơi nước khác thay vì 6.O-O, chẳng hạn 6.d4. Đánh giá trong mục này dành cho nhánh Trắng nhập thành ngay.
-              en: White plays something other than 6.O-O, for example 6.d4. The assessment in this entry is for the line where White castles at once.
-              fr: Les Blancs jouent autre chose que 6.O-O, par exemple 6.d4. L'évaluation de cette fiche porte sur la ligne où les Blancs roquent tout de suite.
-          children:
-            - ply: O-O
-              replyQuality: good
-              frequency: common
-              annotation:
-                vi: Trắng nhập thành, đưa vua khỏi cột e và để tượng b5 tiếp tục ghim mã c6.
-                en: White castles, taking the king off the e-file and leaving the bishop on b5 to keep pinning the knight on c6.
-                fr: Les Blancs roquent, mettant le roi à l'abri de la colonne e et laissant le fou b5 continuer de clouer le cavalier c6.
-              outcome:
-                type: position
-                evaluation:
-                  vi: 'Đếm tốt: bảy mỗi bên, nên tốt Đen thí ở d5 đã lấy lại được. Nhưng mã c6 bị tượng b5 ghim vào vua nên không còn nước đi hợp lệ nào, và nó cùng hậu d5 là hai quân duy nhất bảo vệ tốt e5 đang bị mã f3 tấn công. Trắng đe dọa Bxc6+ để loại bỏ quân bảo vệ bị ghim đó.'
-                  en: 'Count the pawns: seven each, so the pawn Black gave on d5 has come back. But the knight on c6 is pinned to the king by the bishop on b5 and has no legal move, and it is one of only two defenders, with the queen on d5, of the e5 pawn that the knight on f3 attacks. White threatens Bxc6+ to remove that pinned defender.'
-                  fr: "Comptons les pions : sept de chaque côté, donc le pion donné par les Noirs en d5 est revenu. Mais le cavalier c6 est cloué au roi par le fou b5 et n'a aucun coup légal, et il est l'un des deux seuls défenseurs, avec la dame d5, du pion e5 que le cavalier f3 attaque. Les Blancs menacent Bxc6+ pour éliminer ce défenseur cloué."
-                plan:
-                  vi: Trắng chơi Bxc6+ để loại quân bảo vệ bị ghim; nếu Đen ăn lại bằng hậu thì Nxe5 ăn tốt e5 và tấn công luôn hậu. Trắng cũng có thể chơi d4 để mở trung tâm. Đen chơi ...Bd7 để gỡ ghim cho mã, rồi ...O-O-O và ...Nge7 để hoàn thành phát triển.
-                  en: White plays Bxc6+ to remove the pinned defender; if Black recaptures with the queen, Nxe5 takes the e5 pawn with an attack on the queen. White can also open the centre with d4. Black plays ...Bd7 to unpin the knight, then ...O-O-O and ...Nge7 to finish developing.
-                  fr: Les Blancs jouent Bxc6+ pour éliminer le défenseur cloué ; si les Noirs reprennent avec la dame, Nxe5 prend le pion e5 en attaquant la dame. Les Blancs peuvent aussi ouvrir le centre par d4. Les Noirs jouent ...Bd7 pour déclouer le cavalier, puis ...O-O-O et ...Nge7 pour achever leur développement.
-                basis:
-                  by: chan
-                  at: '2026-09-30'
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: bảy mỗi bên, nên tốt Đen thí ở d5 đã lấy lại được. Nhưng mã c6 bị tượng b5 ghim vào vua và không có nước đi hợp lệ nào, nên nó không thể ăn lại ở e5, con tốt đang bị mã f3 tấn công: thực chất chỉ có hậu d5 bảo vệ nó. Tượng b5 của Trắng không có quân nào bảo vệ, và chỉ có tượng c5 của Đen đứng giữa nó và hậu d5. Đến lượt Trắng.'
+              en: "Count the pawns: seven each, so the pawn Black gave on d5 has come back. But the knight on c6 is pinned to the king by the bishop on b5 and has no legal move, so it cannot recapture on e5, the pawn that the knight on f3 attacks: only the queen on d5 really defends it. White's bishop on b5 has no defender, and only Black's bishop on c5 stands between it and the queen on d5. It is White's move."
+              fr: "Comptons les pions : sept de chaque côté, donc le pion donné par les Noirs en d5 est revenu. Mais le cavalier c6 est cloué au roi par le fou b5 et n'a aucun coup légal, si bien qu'il ne peut pas reprendre en e5, le pion que le cavalier f3 attaque : seule la dame d5 le défend vraiment. Le fou b5 blanc n'a aucun défenseur, et seul le fou c5 noir se tient entre lui et la dame d5. C'est aux Blancs de jouer."
+            plan:
+              vi: 'Trắng chơi Bxc6+ để ăn con mã bị ghim; nếu Đen ăn lại bằng hậu thì Nxe5 ăn tốt e5 và tấn công luôn hậu. Trắng cũng có thể chơi c4, vừa tấn công hậu vừa bảo vệ tượng b5. Trắng không nên nhập thành ngay: khi đó ...Bxf2+ mở đường cho hậu Đen đánh vào tượng b5, và ...Qxb5 theo sau. Đen chơi ...Bd7 để gỡ ghim cho mã, rồi ...O-O-O và ...Nge7 để hoàn thành phát triển.'
+              en: "White plays Bxc6+ to take the pinned knight; if Black recaptures with the queen, Nxe5 takes the e5 pawn with an attack on the queen. White can also play c4, which attacks the queen and defends the bishop on b5. White should not castle at once: then ...Bxf2+ opens the queen's line to the bishop on b5, and ...Qxb5 follows. Black plays ...Bd7 to unpin the knight, then ...O-O-O and ...Nge7 to finish developing."
+              fr: 'Les Blancs jouent Bxc6+ pour prendre le cavalier cloué ; si les Noirs reprennent avec la dame, Nxe5 prend le pion e5 en attaquant la dame. Les Blancs peuvent aussi jouer c4, qui attaque la dame et défend le fou b5. Les Blancs ne devraient pas roquer tout de suite : ...Bxf2+ ouvre alors la ligne de la dame vers le fou b5, et ...Qxb5 suit. Les Noirs jouent ...Bd7 pour déclouer le cavalier, puis ...O-O-O et ...Nge7 pour achever leur développement.'
+            basis:
+              by: chan
+              at: '2026-09-30'
