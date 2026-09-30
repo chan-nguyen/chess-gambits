@@ -212,7 +212,7 @@ const CASES: readonly Case[] = [
   },
   {
     name: 'a Tier 0 gambit page',
-    path: `vi/${routeSegments.catalogue}/alekhine-defense-four-pawns-attack-cambridge-gambit`,
+    path: `vi/${routeSegments.catalogue}/van-geet-opening-damhaug-gambit`,
     settled: (page) => page.getByRole('heading', { level: 2, name: vi.emptyTree.notTaught }),
   },
 ]

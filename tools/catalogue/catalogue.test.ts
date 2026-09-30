@@ -272,15 +272,16 @@ describe('AC 7 — tier is derived from content and absent from every source fil
 
   /**
    * The Evans was the example here until it was authored (#15), and "Evans Gambit
-   * Accepted" was the still-listed sibling until #148 (batch h) authored it too. The
-   * pairing is kept rather than swapped for a different family, with "Slow Variation"
-   * taking over as the still-listed sibling: a tier follows the content and nothing
-   * else, so the entry with a file reads `taught` and its sibling without one still
-   * reads `listed`.
+   * Accepted" was the still-listed sibling until #148 (batch h) authored it too, then
+   * "Slow Variation" until #172 (batch p) authored that one as well, which left no
+   * Evans Gambit entry unauthored. The Bird Opening's From's Gambit takes over as the
+   * pairing, with "Langheld Gambit" as the still-listed sibling: a tier follows the
+   * content and nothing else, so the entry with a file reads `taught` and its sibling
+   * without one still reads `listed`.
    */
   it('defaults an imported entry to listed, which is all the dataset can support', () => {
-    expect(named('Italian Game: Evans Gambit')?.tier).toBe('taught')
-    expect(named('Italian Game: Evans Gambit, Slow Variation')?.tier).toBe('listed')
+    expect(named("Bird Opening: From's Gambit")?.tier).toBe('taught')
+    expect(named("Bird Opening: From's Gambit, Langheld Gambit")?.tier).toBe('listed')
   })
 
   it('takes the tier from the authored entry where one exists', () => {
