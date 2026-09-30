@@ -1,0 +1,67 @@
+# King's Gambit Declined: Falkbeer Countergambit, Anderssen Attack, taught. The frozen line
+# 1.e4 e5 2.f4 d5 3.exd5 e4 4.Bb5+ ends on White's ply, which the validator does not allow
+# as a defining line for a Black entry (docs/CONTEXT.md, invariant 5), so `definingLine`
+# stops at Black's own 3...e4, the root it shares with the Staunton Line entry, and White's
+# 4.Bb5+, the check that names this entry, is modelled as the root's reply. The modelled
+# line is 4.Bb5+ Nd7, so the leaf has White to move. Every ply was replayed with chess.js;
+# searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check and no
+# capture is going free.
+id: kings-gambit-declined-falkbeer-countergambit-anderssen-attack
+name: "King's Gambit Declined: Falkbeer Countergambit, Anderssen Attack"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 4.Bb5+ keeps the extra pawn on d5 for the moment and pins the blocking knight,
+      but 4...Nd7 also shuts the queen's file to that pawn, and the pawn on e4 already takes the
+      squares d3 and f3 from White. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa đẩy tốt lên e4 thay vì ăn lại ở d5. Tốt d5 của Trắng bị hậu tấn công mà không có ai bảo vệ, và tốt e4 của Đen chiếm mất các ô d3 và f3.
+    en: Black has just pushed the pawn to e4 instead of recapturing on d5. White's pawn on d5 is attacked by the queen and defended by nothing, and Black's pawn on e4 takes the squares d3 and f3 away.
+    fr: Les Noirs viennent de pousser le pion en e4 au lieu de reprendre en d5. Le pion d5 des Blancs est attaqué par la dame et défendu par rien, et le pion e4 des Noirs enlève les cases d3 et f3.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Bb5+, chẳng hạn chơi 4.Nc3 hoặc 4.d3. Phần lớn các nước khác để tốt d5 cho Qxd5 ăn mà không quân nào ăn lại được.
+      en: White plays something other than 4.Bb5+, for example 4.Nc3 or 4.d3. Most other moves leave the pawn on d5 to Qxd5, which nothing can recapture.
+      fr: Les Blancs jouent autre chose que 4.Bb5+, par exemple 4.Nc3 ou 4.d3. La plupart des autres coups laissent le pion d5 à Qxd5, sans que rien puisse reprendre.
+  children:
+    - ply: Bb5+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chiếu bằng tượng theo đường chéo b5–e8, và tạm giữ được tốt d5.
+        en: White checks with the bishop along the diagonal from b5 to e8 and keeps the pawn on d5 for the moment.
+        fr: Les Blancs donnent échec avec le fou le long de la diagonale de b5 à e8 et gardent pour le moment le pion d5.
+      children:
+        - ply: Nd7
+          annotation:
+            vi: Đen chắn nước chiếu bằng mã. Mã đứng giữa tượng và vua nên bị ghim, không đi được, nhưng nó được bảo vệ ba lần. Mã cũng chắn cột của hậu nhìn vào tốt d5.
+            en: Black blocks the check with the knight. The knight stands between the bishop and the king, so it is pinned and cannot move, but it is defended three times. It also shuts the queen's file to the pawn on d5.
+            fr: Les Noirs interposent le cavalier. Le cavalier se tient entre le fou et le roi, si bien qu'il est cloué et ne peut pas bouger, mais il est défendu trois fois. Il ferme aussi à la dame la colonne menant au pion d5.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt, đó là tốt d5. Mã d7 của Đen bị tượng b5 ghim vào vua e8 và không có nước đi hợp lệ nào, một quân không có ô tốt; tốt d5 hiện không bị quân nào tấn công.'
+              en: "Count the pawns: White eight, Black seven, so White is a pawn up, the extra pawn being the one on d5. Black's knight on d7 is pinned to the king on e8 by the bishop on b5 and has no legal move, a piece with no good square; the pawn on d5 is attacked by nothing at the moment."
+              fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, si bien que les Blancs ont un pion d'avance, le pion d5. Le cavalier d7 des Noirs est cloué contre le roi e8 par le fou b5 et n'a aucun coup légal, une pièce sans case ; le pion d5 n'est attaqué par rien pour le moment."
+            plan:
+              vi: Trắng bảo vệ tốt d5 bằng Nc3 và tiếp tục phát triển. Đen muốn phá thế ghim và tấn công d5 bằng ...c6, hoặc thêm quân bằng ...Nf6.
+              en: White defends the pawn on d5 with Nc3 and goes on developing. Black wants to break the pin and attack d5 with ...c6, or to add a piece with ...Nf6.
+              fr: Les Blancs défendent le pion d5 par Nc3 et continuent leur développement. Les Noirs veulent briser le clouage et attaquer d5 par ...c6, ou ajouter une pièce par ...Nf6.
+            basis:
+              by: chan
+              at: '2026-09-30'
