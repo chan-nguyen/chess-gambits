@@ -1,0 +1,59 @@
+# Bishop's Opening: Urusov Gambit, Keidansky Gambit. Defining line 1.e4 e5 2.Bc4 Nf6 3.d4
+# exd4 4.Nf3 Nxe4 5.Qxd4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-urusov-gambit-keidansky-gambit
+name: "Bishop's Opening: Urusov Gambit, Keidansky Gambit"
+eco: C43
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, d4, exd4, Nf3, Nxe4, Qxd4]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is a pawn down after 5.Qxd4, but the queen and bishop are active,
+      the knight on e4 is attacked and has no defender and the e-file is open; that is fair compensation for
+      one pawn. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 5.Qxd4, lấy lại tốt d4 bằng hậu; hậu giờ tấn công mã e4 và cũng nhắm vào các tốt a7 và g7. Mã e4 không có quân nào bảo vệ. Trắng sáu tốt, Đen bảy tốt: con tốt thí chưa lấy lại được. Mục này đi theo nước lui mã 5...Nf6.'
+    en: White has just played 5.Qxd4, taking back the pawn on d4 with the queen, which now attacks the knight on e4 and also eyes the a7 and g7 pawns. The knight on e4 is undefended. White has six pawns to Black's seven, so the gambit pawn has not come back. This entry follows the retreat 5...Nf6.
+    fr: "Les Blancs viennent de jouer 5.Qxd4, reprenant le pion d4 avec la dame, qui attaque maintenant le cavalier e4 et vise aussi les pions a7 et g7. Le cavalier e4 n'est pas défendu. Les Blancs ont six pions contre sept aux Noirs : le pion du gambit n'est pas revenu. Cette entrée suit le repli 5...Nf6."
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...Nf6 ở đây, chẳng hạn 5...Nd6, tấn công tượng c4. Mục này chỉ mô hình hóa nước lui mã về f6.
+      en: Black plays something other than 5...Nf6 here, for instance 5...Nd6, which attacks the bishop on c4. This entry models only the retreat to f6.
+      fr: Les Noirs jouent autre chose que 5...Nf6 ici, par exemple 5...Nd6, qui attaque le fou c4. Cette entrée ne modélise que le repli en f6.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen lui mã về f6, nơi nó bảo vệ tốt d7 và chặn đường chéo của hậu tới g7. Hậu d4 tấn công mã f6, nhưng mã được hậu d8 và tốt g7 bảo vệ.
+        en: Black retreats the knight to f6, where it guards the d7 pawn and blocks the queen's diagonal to g7. The queen on d4 attacks the knight, but the queen on d8 and the g7 pawn defend it.
+        fr: Les Noirs replient le cavalier en f6, où il garde le pion d7 et bloque la diagonale de la dame vers g7. La dame d4 attaque le cavalier, mais la dame d8 et le pion g7 le défendent.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém một tốt và chưa lấy lại được. Đền bù nằm ở phát triển và đường cột: Trắng đã ra tượng, mã và hậu trong khi Đen mới ra một mã, và cột e mở hoàn toàn vì hai bên đều không còn tốt e. Hậu d4 tấn công mã f6, quân được bảo vệ hai lần, và tấn công tốt a7.'
+          en: "Count the pawns: White six, Black seven — White is a pawn down and has not yet got it back. The compensation is in development and files: White has the bishop, the knight and the queen out against Black's single knight, and neither side has a pawn on the e-file, which is open. The queen on d4 attacks the knight on f6, which is defended twice, and the a7 pawn."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins et ne l'ont pas encore regagné. La compensation est dans le développement et les colonnes : les Blancs ont sorti le fou, le cavalier et la dame contre un seul cavalier noir, et aucun camp n'a de pion sur la colonne e, qui est ouverte. La dame d4 attaque le cavalier f6, défendu deux fois, et le pion a7."
+        plan:
+          vi: Trắng chơi Nc3, Bg5 và O-O rồi đưa xe lên cột e mở trong khi vua Đen vẫn ở giữa bàn cờ. Đen chơi ...Nc6 để đánh hậu, rồi ...Be7 và ...O-O để bắt kịp phát triển.
+          en: White plays Nc3, Bg5 and O-O, then puts a rook on the open e-file while Black's king is still in the centre. Black plays ...Nc6 to gain a tempo on the queen, then ...Be7 and ...O-O to catch up in development.
+          fr: Les Blancs jouent Nc3, Bg5 et O-O, puis placent une tour sur la colonne e ouverte tant que le roi noir est encore au centre. Les Noirs jouent ...Nc6 pour gagner un temps sur la dame, puis ...Be7 et ...O-O pour rattraper leur retard de développement.
+        basis:
+          by: chan
+          at: 2026-09-30

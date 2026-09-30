@@ -1,0 +1,65 @@
+# Vienna Game: Mieses Variation, Erben Gambit. Defining line 1.e4 e5 2.Nc3 Nf6 3.g3 d5 4.exd5 c6.
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: vienna-game-mieses-variation-erben-gambit
+name: 'Vienna Game: Mieses Variation, Erben Gambit'
+eco: C26
+category: gambit
+side: black
+definingLine:
+  - e4
+  - e5
+  - Nc3
+  - Nf6
+  - g3
+  - d5
+  - exd5
+  - c6
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 4...c6, hiến tốt thứ hai: tốt d5 của Trắng bị hậu, tốt c6 và mã f6 tấn công ba lần mà chỉ có mã c3 bảo vệ. Trắng hơn một tốt, tám đối bảy.'
+    en: "Black has just played 4...c6, offering a second pawn: White's pawn on d5 is attacked three times, by the queen, the c6 pawn and the knight on f6, and defended only by the knight on c3. White is a pawn up, eight to seven."
+    fr: 'Les Noirs viennent de jouer 4...c6, offrant un second pion : le pion d5 blanc est attaqué trois fois, par la dame, le pion c6 et le cavalier f6, et défendu seulement par le cavalier c3. Les Blancs ont un pion de plus, huit contre sept.'
+  dismissRest:
+    reason:
+      vi: Trắng chọn một nước khác thay vì 5.dxc6. Bài này chỉ đi theo nhánh ăn tốt 5.dxc6; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: White plays something other than 5.dxc6 here. This entry follows the capture 5.dxc6 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 5.dxc6. Cette fiche ne suit que la prise 5.dxc6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt thứ hai bằng 5.dxc6. Đen có thể ăn lại bằng mã, Nxc6, hoặc bằng tốt b.
+        en: White takes the second pawn with 5.dxc6. Black can recapture with the knight, Nxc6, or with the b-pawn.
+        fr: Les Blancs prennent le second pion par 5.dxc6. Les Noirs peuvent reprendre avec le cavalier, Nxc6, ou avec le pion b.
+      children:
+        - ply: Nxc6
+          annotation:
+            vi: Đen ăn lại bằng mã từ b8, 5...Nxc6, đưa thêm một quân vào cuộc; Đen kém một tốt, sáu đối bảy.
+            en: Black recaptures with the knight from b8, 5...Nxc6, bringing another piece into play; Black is a pawn down, six to seven.
+            fr: Les Noirs reprennent avec le cavalier de b8, 5...Nxc6, mettant une pièce de plus en jeu ; les Noirs sont un pion en moins, six contre sept.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên con tốt Đen hiến chưa được lấy lại. Đen không còn tốt c và d nên hai cột này nửa mở cho quân Đen, và hậu d8 nhìn xuống tốt d2, được tượng, hậu và vua bảo vệ. Đen đã phát triển hai mã còn Trắng mới có mã c3.'
+              en: "Count the pawns: White seven, Black six, so the pawn Black offered has not come back. Black has no c- or d-pawn, so both files are half open for Black's pieces, and the queen on d8 looks down at the d2 pawn, which the bishop, the queen and the king defend. Black has two knights developed and White only the knight on c3."
+              fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs ; le pion offert par les Noirs n'est donc pas récupéré. Les Noirs n'ont plus de pion c ni d, si bien que ces deux colonnes sont semi-ouvertes pour leurs pièces, et la dame d8 regarde le pion d2, que le fou, la dame et le roi défendent. Les Noirs ont deux cavaliers développés et les Blancs seulement le cavalier c3."
+            plan:
+              vi: Đen đưa quân ra bằng ...Bg4 và ...Bc5, dùng các cột nửa mở để buộc Trắng luôn phải đối phó. Trắng hoàn tất phát triển bằng Bg2 và Nf3 rồi nhập thành, cố giữ tốt thừa.
+              en: Black brings the pieces out with ...Bg4 and ...Bc5, using the half-open files to keep White busy. White completes development with Bg2 and Nf3 and castles, trying to keep the extra pawn.
+              fr: Les Noirs sortent leurs pièces par ...Bg4 et ...Bc5, en utilisant les colonnes semi-ouvertes pour tenir les Blancs en haleine. Les Blancs achèvent leur développement par Bg2 et Nf3 puis roquent, en cherchant à garder le pion en plus.
+            basis:
+              by: chan
+              at: '2026-09-30'

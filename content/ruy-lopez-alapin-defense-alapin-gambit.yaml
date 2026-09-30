@@ -1,0 +1,53 @@
+# Ruy Lopez: Alapin Defense, Alapin Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 Bb4
+# 4.c3 Ba5 5.Bxc6 dxc6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 6.Nxe5. searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: ruy-lopez-alapin-defense-alapin-gambit
+name: 'Ruy Lopez: Alapin Defense, Alapin Gambit'
+eco: C60
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, Bb4, c3, Ba5, Bxc6, dxc6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has a queen, two rooks, a bishop and two knights and eight pawns, whereas Black has a queen, two rooks, two bishops and a knight and eight pawns; Black's pawns are doubled on the c-file. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa ăn lại bằng 5...dxc6 nên bị tốt chồng ở cột c (c6 và c7). Tốt e5 của Đen bị mã f3 tấn công mà không quân Đen nào bảo vệ, nên Trắng có thể ăn nó ngay.
+    en: Black has just recaptured with 5...dxc6 and now has doubled pawns on the c-file (c6 and c7). Black's pawn on e5 is attacked by the knight on f3 with no Black piece defending it, so White can take it at once.
+    fr: Les Noirs viennent de reprendre par 5...dxc6 et ont maintenant des pions doublés sur la colonne c (c6 et c7). Le pion e5 noir est attaqué par le cavalier f3 sans qu'aucune pièce noire ne le défende, si bien que les Blancs peuvent le prendre tout de suite.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 6.Nxe5, chẳng hạn 6.O-O hoặc 6.d4. Đánh giá trong mục này dành cho nhánh Trắng ăn ngay con tốt e5.
+      en: White plays something other than 6.Nxe5, for example 6.O-O or 6.d4. The assessment in this entry is for the line where White takes the e5 pawn at once.
+      fr: Les Blancs jouent autre chose que 6.Nxe5, par exemple 6.O-O ou 6.d4. L'évaluation de cette fiche porte sur la ligne où les Blancs prennent tout de suite le pion e5.
+  children:
+    - ply: Nxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt e5 bằng mã: mã e5 không bị quân nào tấn công và nhắm vào c6 cùng f7.'
+        en: 'White takes the e5 pawn with the knight: the knight on e5 is not attacked by anything and bears on c6 and f7.'
+        fr: "Les Blancs prennent le pion e5 avec le cavalier : le cavalier e5 n'est attaqué par rien et vise c6 et f7."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Đen kém một tốt, lại bị tốt chồng ở cột c (c6 và c7). Bù lại, Đen có hai tượng (a5 và c8) đối với một tượng duy nhất của Trắng ở c1, cùng hai cột d và e nửa mở cho Đen.'
+          en: "Count the pawns: White eight, Black seven — Black is a pawn down, and its pawns are doubled on the c-file (c6 and c7). In return Black has two bishops (on a5 and c8) against White's single bishop on c1, and the d- and e-files are half-open for Black."
+          fr: "Comptons les pions : huit pour les Blancs, sept pour les Noirs — les Noirs ont un pion de moins, et leurs pions sont doublés sur la colonne c (c6 et c7). En contrepartie, les Noirs ont deux fous (en a5 et c8) contre l'unique fou blanc en c1, et les colonnes d et e sont semi-ouvertes pour les Noirs."
+        plan:
+          vi: Trắng củng cố bằng d4 để bảo vệ mã e5, rồi phát triển Be3 và Nd2 và nhập thành, giữ tốt thừa. Đen chơi ...Qg5 hoặc ...Qf6 để đánh vào mã e5, rồi phát triển bằng ...Be6, tận dụng cặp tượng.
+          en: White consolidates with d4 to support the e5 knight, then develops with Be3 and Nd2 and castles, keeping the extra pawn. Black plays ...Qg5 or ...Qf6 to hit the e5 knight, then develops with ...Be6, making use of the bishop pair.
+          fr: Les Blancs se consolident par d4 pour soutenir le cavalier e5, puis se développent par Be3 et Nd2 et roquent, en gardant le pion supplémentaire. Les Noirs jouent ...Qg5 ou ...Qf6 pour attaquer le cavalier e5, puis se développent par ...Be6, en tirant parti de la paire de fous.
+        basis:
+          by: chan
+          at: '2026-09-30'

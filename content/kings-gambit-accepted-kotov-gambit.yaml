@@ -1,0 +1,78 @@
+# King's Gambit Accepted: Kotov Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4 3.Nf3
+# g5 4.Bc4 g4 5.d4 gxf3 6.Bxf4 ends on White's own 6.Bxf4, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). The modelled line is 6...Nc6 7.gxf3 Nf6, so the leaf has
+# White to move; the recapture on f3 is played out as the learner's move so that it is not
+# left going free. Every ply was replayed with chess.js; searchMate at 3 moves from the leaf
+# returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-kotov-gambit
+name: "King's Gambit Accepted: Kotov Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, d4, gxf3, Bxf4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 5.d4 gxf3 6.Bxf4 Nc6 7.gxf3 Nf6 White has the pawn count seven to six but
+      is a whole knight down for it, and the two bishops aimed at f7 and c7 each meet a defender.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Bxf4, ăn tốt f4 bằng tượng, nay đánh vào tốt c7. Tốt f3 của Đen bị tốt g2 và hậu d1 tấn công mà không có ai bảo vệ, và nó cũng đang đánh tốt g2 của Trắng.
+    en: White has just played 6.Bxf4, taking the pawn on f4 with the bishop, which now attacks the pawn on c7. Black's pawn on f3 is attacked by the pawn on g2 and the queen on d1 and defended by nothing, and it attacks White's pawn on g2 in turn.
+    fr: Les Blancs viennent de jouer 6.Bxf4, prenant le pion f4 avec le fou, qui attaque maintenant le pion c7. Le pion f3 des Noirs est attaqué par le pion g2 et la dame d1 et défendu par rien, et il attaque à son tour le pion g2 des Blancs.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Nc6, chẳng hạn 6...fxg2, ăn tốt g2 và đánh luôn xe h1. Phần lớn các nước còn lại để tốt f3 cho gxf3 hoặc Qxf3 ăn mà không quân nào ăn lại được.
+      en: Black plays something other than 6...Nc6, for example 6...fxg2, which takes the pawn on g2 and attacks the rook on h1. Most other moves leave the pawn on f3 to gxf3 or Qxf3, with nothing able to recapture.
+      fr: Les Noirs jouent autre chose que 6...Nc6, par exemple 6...fxg2, qui prend le pion g2 et attaque la tour h1. La plupart des autres coups laissent le pion f3 à gxf3 ou Qxf3, sans que rien puisse reprendre.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã lên c6, tấn công tốt d4, con tốt mà hậu đang bảo vệ.
+        en: Black develops the knight to c6, attacking the pawn on d4, which the queen defends.
+        fr: Les Noirs développent le cavalier en c6, attaquant le pion d4, que la dame défend.
+      children:
+        - ply: gxf3
+          annotation:
+            vi: Trắng ăn tốt f3 bằng tốt g, đưa tỷ số tốt thành bảy trên sáu có lợi cho Trắng và giữ hậu ở d1.
+            en: White takes the pawn on f3 with the g-pawn, making the pawn count seven to six in White's favour and keeping the queen on d1.
+            fr: Les Blancs prennent le pion f3 avec le pion g, portant le compte de pions à sept contre six en leur faveur et gardant la dame en d1.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 7...Nf6, chẳng hạn 7...Nge7 hoặc 7...Bg7. Mọi quân đang bị tấn công ở cả hai bên đều có quân bảo vệ.
+              en: Black plays something other than 7...Nf6, for example 7...Nge7 or 7...Bg7. Every unit that is attacked on either side is defended.
+              fr: Les Noirs jouent autre chose que 7...Nf6, par exemple 7...Nge7 ou 7...Bg7. Toute unité attaquée de part et d'autre est défendue.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã và tấn công tốt e4, con tốt mà tốt f3 đang bảo vệ.
+                en: Black develops the knight and attacks the pawn on e4, which the pawn on f3 defends.
+                fr: Les Noirs développent le cavalier et attaquent le pion e4, que le pion f3 défend.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm quân: Trắng bảy tốt, Đen sáu, nhưng Trắng kém một mã, nên Đen hơn một mã đổi lấy một tốt. Tượng c4 đánh vào f7, được vua bảo vệ, và tượng f4 đánh vào c7, được hậu bảo vệ, nên cả hai con tốt đều bị đánh một lần và được bảo vệ một lần.'
+                  en: "Count the material: White has seven pawns to Black's six, but White is a knight down, so Black is ahead by a knight for a pawn. The bishop on c4 attacks f7, defended by the king, and the bishop on f4 attacks c7, defended by the queen, so both pawns are attacked once and defended once."
+                  fr: "Comptez le matériel : les Blancs ont sept pions contre six, mais il leur manque un cavalier, si bien que les Noirs ont un cavalier contre un pion d'avance. Le fou c4 attaque f7, défendu par le roi, et le fou f4 attaque c7, défendu par la dame, si bien que les deux pions sont attaqués une fois et défendus une fois."
+                plan:
+                  vi: Trắng có thể nhập thành và đưa mã ra bằng Nc3, giữ hai tượng nhắm vào f7 và c7. Đen thách thức các tượng bằng ...Bd6 và ...d5 rồi hoàn tất phát triển.
+                  en: White can castle and bring the knight out with Nc3, keeping the two bishops aimed at f7 and c7. Black challenges the bishops with ...Bd6 and ...d5 and finishes developing.
+                  fr: Les Blancs peuvent roquer et sortir le cavalier par Nc3, en gardant les deux fous braqués sur f7 et c7. Les Noirs contestent les fous par ...Bd6 et ...d5 et achèvent leur développement.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

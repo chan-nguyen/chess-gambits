@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Bishop's Gambit, Grimm Attack, taught. Frozen defining line 1.e4
+# e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 g5 5.Nc3 Bg7 6.d4 d6 7.e5 ends on White's own 7.e5, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 7...Nc6 is modelled as
+# the root's single reply, so the leaf has White to move. Every ply was replayed with
+# chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check
+# and no capture is going free.
+id: kings-gambit-accepted-bishops-gambit-grimm-attack
+name: "King's Gambit Accepted: Bishop's Gambit, Grimm Attack"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4, Qh4+, Kf1, g5, Nc3, Bg7, d4, d6, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 7.e5 attacks the pawn on d6, but after 7...Nc6 the pawn on e5 faces three
+      attackers with one defender, while Black keeps an extra pawn and White's king has lost the
+      right to castle. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.e5, tấn công tốt d6 bằng tốt e, được tốt d4 hỗ trợ. Tốt e5 bị đánh hai lần, bởi tượng g7 và tốt d6, mà chỉ có tốt d4 bảo vệ.
+    en: White has just played 7.e5, attacking the pawn on d6 with the e-pawn, supported by the pawn on d4. The pawn on e5 is attacked twice, by the bishop on g7 and the pawn on d6, and defended once, by the pawn on d4.
+    fr: Les Blancs viennent de jouer 7.e5, attaquant le pion d6 avec le pion e, soutenu par le pion d4. Le pion e5 est attaqué deux fois, par le fou g7 et par le pion d6, et défendu une seule fois, par le pion d4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 7...Nc6, chẳng hạn 7...dxe5, ăn tốt và để tốt e5 mới được tượng g7 bảo vệ, hoặc 7...Be6, tấn công tượng c4.
+      en: Black plays something other than 7...Nc6, for example 7...dxe5, which takes the pawn and leaves a pawn on e5 defended by the bishop on g7, or 7...Be6, which attacks the bishop on c4.
+      fr: Les Noirs jouent autre chose que 7...Nc6, par exemple 7...dxe5, qui prend le pion et laisse un pion en e5 défendu par le fou g7, ou 7...Be6, qui attaque le fou c4.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa mã lên c6, nơi nó tấn công cả tốt e5 lẫn tốt d4. Tốt e5 giờ bị đánh ba lần mà chỉ có một quân bảo vệ.
+        en: Black brings the knight to c6, where it attacks both the pawn on e5 and the pawn on d4. The pawn on e5 is now attacked three times and defended once.
+        fr: Les Noirs amènent le cavalier en c6, où il attaque à la fois le pion e5 et le pion d4. Le pion e5 est maintenant attaqué trois fois et défendu une seule fois.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Đen hơn một tốt. Tốt e5 bị đánh ba lần, bởi tượng g7, mã c6 và tốt d6, mà chỉ có tốt d4 bảo vệ, còn chính tốt d4 lại bị mã c6 đánh và chỉ có hậu bảo vệ. Vua Trắng ở f1 đã mất quyền nhập thành.'
+          en: "Count the pawns: White seven, Black eight, so Black is a pawn up. The pawn on e5 is attacked three times, by the bishop on g7, the knight on c6 and the pawn on d6, and defended once, by the pawn on d4, which is itself attacked by the knight on c6 and defended only by the queen. White's king on f1 has lost the right to castle."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, si bien que les Noirs ont un pion d'avance. Le pion e5 est attaqué trois fois, par le fou g7, le cavalier c6 et le pion d6, et défendu une seule fois, par le pion d4, qui est lui-même attaqué par le cavalier c6 et défendu seulement par la dame. Le roi blanc en f1 a perdu le droit de roquer."
+        plan:
+          vi: Trắng phải giải quyết thế căng ở e5, hoặc bằng exd6, hoặc thêm một quân bảo vệ với Nf3, nước cũng tấn công hậu h4 và tốt g5. Đen muốn thắng tốt e5 bằng mã c6 và tượng g7, đồng thời giữ con tốt f4 thừa nhờ tốt g5 và hậu.
+          en: White has to settle the tension on e5, either with exd6 or by adding a defender with Nf3, which also attacks the queen on h4 and the pawn on g5. Black aims to win the pawn on e5 with the knight on c6 and the bishop on g7, while keeping the extra pawn on f4 defended by the pawn on g5 and the queen.
+          fr: Les Blancs doivent régler la tension en e5, soit par exd6, soit en ajoutant un défenseur avec Nf3, qui attaque aussi la dame h4 et le pion g5. Les Noirs visent à gagner le pion e5 avec le cavalier c6 et le fou g7, tout en gardant le pion de plus en f4 défendu par le pion g5 et la dame.
+        basis:
+          by: chan
+          at: '2026-09-30'

@@ -1,0 +1,68 @@
+# Alekhine Defense: Hunt Variation, Matsukevich Gambit. Frozen defining line 1.e4 Nf6 2.e5 Nd5
+# 3.c4 Nb6 4.c5 Nd5 5.Nc3 Nxc3 6.dxc3 d6 7.Bg5, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 7...dxe5 8.Qxd8+
+# Kxd8; the queen trade is forced, since Kxd8 is Black's only legal reply to 8.Qxd8+. searchMate at 3
+# moves from the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: alekhine-defense-hunt-variation-matsukevich-gambit
+name: 'Alekhine Defense: Hunt Variation, Matsukevich Gambit'
+eco: B02
+category: gambit
+side: white
+definingLine: [e4, Nf6, e5, Nd5, c4, Nb6, c5, Nd5, Nc3, Nxc3, dxc3, d6, Bg5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each; White's pawns are doubled on the c-file. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 7.Bg5. Cả hai tốt c5 và e5 của Trắng đều bị tốt d6 của Đen tấn công và không quân Trắng nào bảo vệ chúng. Đổi lại, cột d nửa mở: nếu tốt d của Đen rời cột, hậu hai bên đối mặt nhau ngay.'
+    en: "White has just played 7.Bg5. Both of White's pawns on c5 and e5 are attacked by Black's d6 pawn and no White piece defends either. In return the d-file is half-open: if Black's d-pawn leaves it, the two queens face each other at once."
+    fr: 'Les Blancs viennent de jouer 7.Bg5. Les deux pions blancs c5 et e5 sont attaqués par le pion d6 noir et aucune pièce blanche ne les défend. En contrepartie, la colonne d est semi-ouverte : si le pion d noir la quitte, les deux dames se font face aussitôt.'
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 7...dxe5, chẳng hạn 7...dxc5, cũng mở cột d giữa hai hậu. Đánh giá trong mục này dành cho nhánh Đen ăn tốt e5.
+      en: Black plays something other than 7...dxe5, for example 7...dxc5, which opens the d-file between the queens in the same way. The assessment in this entry is for the line where Black takes on e5.
+      fr: Les Noirs jouent autre chose que 7...dxe5, par exemple 7...dxc5, qui ouvre de la même façon la colonne d entre les dames. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent en e5.
+  children:
+    - ply: dxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e5 bằng tốt d, mở cột d: hậu d8 của Đen giờ đối mặt hậu d1 của Trắng và chỉ có vua e8 bảo vệ.'
+        en: "Black takes the e5 pawn with the d-pawn, opening the d-file: Black's queen on d8 now faces White's queen on d1 and is defended only by the king on e8."
+        fr: "Les Noirs prennent le pion e5 avec le pion d, ouvrant la colonne d : la dame d8 noire fait maintenant face à la dame d1 blanche et n'est défendue que par le roi e8."
+      children:
+        - ply: Qxd8+
+          annotation:
+            vi: 'Trắng ăn hậu với nước chiếu, buộc vua Đen phải ăn lại. Đây là ý tưởng của cả gambit: kéo vua Đen ra d8 và lấy mất quyền nhập thành của nó.'
+            en: 'White takes the queen with check, forcing the black king to recapture. This is the idea of the whole gambit: drag the black king to d8 and take away its right to castle.'
+            fr: "Les Blancs prennent la dame avec échec, forçant le roi noir à reprendre. C'est l'idée de tout le gambit : attirer le roi noir en d8 et lui ôter le droit au roque."
+          children:
+            - ply: Kxd8
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen chỉ có một nước hợp lệ là vua ăn lại hậu. Vua đứng trên d8, không còn quyền nhập thành, trên cột d đang mở.
+                en: 'Black has a single legal reply: the king recaptures the queen. The king stands on d8, with castling gone, on the open d-file.'
+                fr: "Les Noirs n'ont qu'une seule réponse légale : le roi reprend la dame. Le roi se trouve en d8, sans roque possible, sur la colonne d ouverte."
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — Đen hơn một tốt, và cả hai bên đều bị tốt chồng (Trắng ở cột c với c3 và c5, Đen ở cột e với e5 và e7). Vua Đen đứng trên d8, mất quyền nhập thành, trên cột d không còn tốt nào của hai bên, nên xe Trắng có thể vào d1 với nước chiếu bằng O-O-O+ hoặc Rd1+. Trắng mới phát triển một quân là tượng g5, Đen chưa phát triển quân nào.'
+                  en: "Count the pawns: White seven, Black eight — Black is a pawn up, and both sides have doubled pawns (White on the c-file with c3 and c5, Black on the e-file with e5 and e7). Black's king stands on d8 with no castling rights, on a file with no pawn of either side, so a white rook can come to d1 with check by O-O-O+ or Rd1+. White has developed one piece, the bishop on g5; Black has developed none."
+                  fr: "Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Noirs ont un pion de plus, et les deux camps ont des pions doublés (les Blancs sur la colonne c avec c3 et c5, les Noirs sur la colonne e avec e5 et e7). Le roi noir se tient en d8, sans droit au roque, sur une colonne sans pion des deux camps, si bien qu'une tour blanche peut venir en d1 avec échec par O-O-O+ ou Rd1+. Les Blancs n'ont développé qu'une pièce, le fou g5 ; les Noirs n'en ont développé aucune."
+                plan:
+                  vi: Trắng chơi O-O-O+ để đưa xe lên cột d với nước chiếu, rồi phát triển tượng f1 và mã g1 trong lúc vua Đen còn chưa yên vị. Đen đỡ chiếu bằng ...Nd7 hoặc ...Bd7, rồi đưa vua về an toàn và giữ tốt thừa.
+                  en: White plays O-O-O+ to put a rook on the d-file with check, then develops the bishop on f1 and the knight on g1 while Black's king is still unsettled. Black meets the check with ...Nd7 or ...Bd7, then tucks the king away and keeps the extra pawn.
+                  fr: Les Blancs jouent O-O-O+ pour placer une tour sur la colonne d avec échec, puis développent le fou f1 et le cavalier g1 tant que le roi noir n'est pas installé. Les Noirs parent l'échec par ...Nd7 ou ...Bd7, puis mettent le roi à l'abri et gardent le pion supplémentaire.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

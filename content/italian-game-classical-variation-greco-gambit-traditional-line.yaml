@@ -1,0 +1,60 @@
+# Italian Game: Classical Variation, Greco Gambit, Traditional Line. Defining line 1.e4 e5
+# 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.cxd4, which ends on White's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-classical-variation-greco-gambit-traditional-line
+name: 'Italian Game: Classical Variation, Greco Gambit, Traditional Line'
+eco: C54
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, c3, Nf6, d4, exd4, cxd4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 6...Bb6 Black has lost nothing, and White's e4 pawn needs a move of
+      defence against the knight on f6 while the d4 pawn is attacked twice; White keeps a
+      broad centre, but the line holds no concrete advantage for the side that plays it. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa ăn lại 6.cxd4, tốt d4 tấn công tượng c5 và tạo ra hai tốt trung tâm d4 và e4. Tượng c5 bị tốt tấn công mà không có quân nào bảo vệ, còn tốt e4 bị mã f6 tấn công và cũng không được bảo vệ. Mục này đi theo nước lui tượng 6...Bb6.
+    en: White has just recaptured 6.cxd4, attacking the bishop on c5 with the d4 pawn and leaving a pair of centre pawns on d4 and e4. The bishop on c5 is attacked by the pawn and nothing defends it, and the e4 pawn is attacked by the knight on f6 and nothing defends it either. This entry follows the retreat 6...Bb6.
+    fr: Les Blancs viennent de reprendre 6.cxd4, attaquant le fou c5 avec le pion d4 et laissant deux pions au centre, en d4 et e4. Le fou c5 est attaqué par le pion et rien ne le défend, et le pion e4 est attaqué par le cavalier f6 et rien ne le défend non plus. Cette entrée suit le repli 6...Bb6.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Bb6 ở đây, chẳng hạn 6...Bb4+, chiếu vua. Mục này chỉ mô hình hóa nước lui tượng về b6.
+      en: Black plays something other than 6...Bb6 here, for instance 6...Bb4+, which gives check. This entry models only the retreat of the bishop to b6.
+      fr: Les Noirs jouent autre chose que 6...Bb6 ici, par exemple 6...Bb4+, qui donne échec. Cette entrée ne modélise que le repli du fou en b6.
+  children:
+    - ply: Bb6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen lui tượng về b6, nơi tốt d4 không còn tấn công được nó và nó vẫn nhắm vào d4.
+        en: Black retreats the bishop to b6, where the d4 pawn no longer attacks it and from where it still bears on d4.
+        fr: Les Noirs replient le fou en b6, où le pion d4 ne l'attaque plus et d'où il vise toujours d4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen bảy — chưa bên nào ăn được tốt. Tốt e4 của Trắng bị mã f6 tấn công mà không ai bảo vệ, còn tốt d4 bị tấn công hai lần, bởi tượng b6 và mã c6, và được bảo vệ hai lần, bởi mã f3 và hậu. Cột c bán mở cho Trắng, và hai bên chưa nhập thành.'
+          en: "Count the pawns: White seven, Black seven — nothing has been won yet. White's e4 pawn is attacked by the knight on f6 and nothing defends it, and the d4 pawn is attacked twice, by the bishop on b6 and the knight on c6, and defended twice, by the knight on f3 and the queen. The c-file is half-open for White, and neither side has castled."
+          fr: "Comptez les pions : sept pour les Blancs, sept pour les Noirs — rien n'a encore été gagné. Le pion e4 blanc est attaqué par le cavalier f6 et rien ne le défend, et le pion d4 est attaqué deux fois, par le fou b6 et le cavalier c6, et défendu deux fois, par le cavalier f3 et la dame. La colonne c est semi-ouverte pour les Blancs, et aucun camp n'a roqué."
+        plan:
+          vi: Trắng chơi Nc3 để bảo vệ e4 rồi O-O, giữ hai tốt trung tâm đi cùng nhau; e5 là cách khác, tấn công mã f6. Đen chơi ...d6 và ...O-O, và ăn e4 bằng ...Nxe4 nếu tốt ấy bị bỏ không bảo vệ.
+          en: White plays Nc3 to defend e4 and then O-O, keeping the two centre pawns together; e5 is the alternative, hitting the knight on f6. Black plays ...d6 and ...O-O, and takes on e4 with ...Nxe4 if the pawn is left undefended.
+          fr: Les Blancs jouent Nc3 pour défendre e4 puis O-O, gardant ensemble les deux pions du centre ; e5 est l'alternative, frappant le cavalier f6. Les Noirs jouent ...d6 et ...O-O, et prennent en e4 par ...Nxe4 si le pion est laissé sans défense.
+        basis:
+          by: chan
+          at: 2026-09-30

@@ -1,0 +1,83 @@
+# King's Gambit Accepted: Allgaier Gambit, Urusov Attack, taught. Frozen defining line 1.e4
+# e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ng5 h6 6.Nxf7 Kxf7 7.Bc4+ ends on White's own 7.Bc4+, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5), and it is in check. Black's
+# 7...d5 is modelled as the root's reply, White's 8.Bxd5+ as the learner's move and Black's
+# 8...Kg7 as the reply, so the leaf has White to move. The root's six legal replies are a
+# declared count (ADR-0011). Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-allgaier-gambit-urusov-attack
+name: "King's Gambit Accepted: Allgaier Gambit, Urusov Attack"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ng5, h6, Nxf7, Kxf7, Bc4+]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 7.Bc4+ wins the pawn on d5 back with a second check, but the net price is still
+      a knight for a pawn, and the king reaches g7 beside its own knight and rook. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  counts:
+    legal:
+      count: legalReplies
+      expect: 6
+  annotation:
+    vi: Trắng vừa chơi 7.Bc4+, chiếu con vua vừa ăn mã ở f7 theo đường chéo từ c4. Đen phải đáp lại nước chiếu này.
+    en: White has just played 7.Bc4+, checking the king that took the knight on f7 along the diagonal from c4. Black has to answer the check.
+    fr: Les Blancs viennent de jouer 7.Bc4+, donnant échec le long de la diagonale partant de c4 au roi qui a pris le cavalier en f7. Les Noirs doivent parer l'échec.
+  dismissRest:
+    reason:
+      vi: Đen có {legal} nước hợp lệ để đáp lại nước chiếu. Ngoài cách chắn bằng 7...d5, tất cả đều là nước đi của vua, và nước nào cũng để tốt g4 cho Qxg4 mà không quân nào ăn lại được.
+      en: Black has {legal} legal replies to the check. Apart from the block 7...d5, they are all king moves, and each of them leaves the pawn on g4 to Qxg4, which nothing can recapture.
+      fr: Les Noirs ont {legal} réponses légales à l'échec. À part le blocage 7...d5, ce sont toutes des coups de roi, et chacun laisse le pion g4 à Qxg4, sans que rien puisse reprendre.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chắn bằng con tốt, tấn công tượng c4 và mở đường cho tượng c8 bảo vệ tốt g4.
+        en: Black blocks with the pawn, which attacks the bishop on c4 and opens the bishop on c8 to defend the pawn on g4.
+        fr: Les Noirs interposent le pion, qui attaque le fou c4 et ouvre le fou c8 pour défendre le pion g4.
+      children:
+        - ply: Bxd5+
+          annotation:
+            vi: Trắng ăn tốt d5 và tượng lại chiếu lần nữa. Tượng được tốt e4 bảo vệ và đánh vào tốt b7.
+            en: White takes the pawn on d5 and the bishop gives check again. It is defended by the pawn on e4 and attacks the pawn on b7.
+            fr: Les Blancs prennent le pion d5 et le fou donne de nouveau échec. Il est défendu par le pion e4 et attaque le pion b7.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì đưa vua về g7, chẳng hạn chắn chiếu hay đi vua sang ô khác.
+              en: Black plays something other than stepping the king to g7, such as another king move or a block.
+              fr: Les Noirs jouent autre chose que le roi en g7, par exemple un autre coup de roi ou une interposition.
+          children:
+            - ply: Kg7
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đưa vua về g7, ra khỏi đường chéo, nơi nó bảo vệ mã g8 (giờ bị tượng d5 tấn công) và tốt h6.
+                en: Black steps the king to g7, off the diagonal, where it defends the knight on g8, which the bishop on d5 now attacks, and the pawn on h6.
+                fr: Les Noirs mettent le roi en g7, hors de la diagonale, où il défend le cavalier g8, que le fou d5 attaque maintenant, et le pion h6.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm quân: Trắng bảy tốt, Đen sáu, nhưng Trắng kém một mã, tức là Đen hơn một mã đổi lấy một tốt. Vua Đen đứng ở g7 và đã mất quyền nhập thành; tượng d5 đánh vào tốt b7 và mã g8, còn tốt g4 chỉ được tượng c8 bảo vệ.'
+                  en: "Count the material: seven pawns to six in White's favour, but White is a knight short, so Black is ahead by a knight for a pawn. Black's king stands on g7 and has lost the right to castle; the bishop on d5 attacks the pawn on b7 and the knight on g8, and the pawn on g4 is defended only by the bishop on c8."
+                  fr: "Comptez le matériel : sept pions contre six en faveur des Blancs, mais il leur manque un cavalier, si bien que les Noirs ont un cavalier contre un pion d'avance. Le roi noir est en g7 et a perdu le droit de roquer ; le fou d5 attaque le pion b7 et le cavalier g8, et le pion g4 n'est défendu que par le fou c8."
+                plan:
+                  vi: Trắng chơi d4 để mở tượng c1 nhắm vào tốt f4 và vẫn giữ tượng d5 nhờ tốt e4. Đen thách thức tượng bằng ...Nf6, nước cũng bảo vệ g4, và cố giữ con mã hơn.
+                  en: White plays d4 to open the c1 bishop against the pawn on f4 while the e4 pawn keeps supporting the bishop on d5. Black challenges the bishop with ...Nf6, which also defends g4, and tries to hold the extra knight.
+                  fr: Les Blancs jouent d4 pour ouvrir le fou c1 contre le pion f4 tandis que le pion e4 continue de soutenir le fou d5. Les Noirs contestent le fou par ...Nf6, qui défend aussi g4, et essaient de garder le cavalier de plus.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

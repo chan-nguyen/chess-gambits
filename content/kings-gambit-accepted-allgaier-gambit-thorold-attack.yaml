@@ -1,0 +1,79 @@
+# King's Gambit Accepted: Allgaier Gambit, Thorold Attack, taught. Frozen defining line 1.e4
+# e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ng5 h6 6.Nxf7 Kxf7 7.d4 ends on White's own 7.d4, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 7...d5 is modelled as the
+# root's reply, White's 8.Bxf4 as the learner's move and Black's 8...dxe4 as the reply, so
+# the leaf has White to move. Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-allgaier-gambit-thorold-attack
+name: "King's Gambit Accepted: Allgaier Gambit, Thorold Attack"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ng5, h6, Nxf7, Kxf7, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 7.d4 opens lines against the undefended pawns on f4 and g4, but White is still
+      a whole knight down for the pawn on f7, and Black can answer with ...d5, which hits e4 and
+      opens the bishop to defend g4 in a single move. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.d4, mở đường cho tượng c1 nhắm vào tốt f4; cùng với hậu d1 vốn đã nhắm vào g4, cả hai con tốt đều bị tấn công và không con nào có ai bảo vệ.
+    en: White has just played 7.d4, which opens the c1 bishop against the pawn on f4; with the queen on d1 already eyeing g4, both pawns are attacked and neither has a defender.
+    fr: Les Blancs viennent de jouer 7.d4, qui ouvre le fou c1 contre le pion f4 ; avec la dame d1 qui visait déjà g4, les deux pions sont attaqués et aucun n'est défendu.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 7...d5, chẳng hạn 7...Nf6, bảo vệ g4 nhưng để f4 cho tượng ăn, hoặc 7...Bg7, để cả hai tốt bị ăn.
+      en: Black plays something other than 7...d5, such as 7...Nf6, which guards g4 but leaves f4 to the bishop, or 7...Bg7, which leaves both pawns to be taken.
+      fr: Les Noirs jouent autre chose que 7...d5, par exemple 7...Nf6, qui protège g4 mais laisse f4 au fou, ou 7...Bg7, qui laisse prendre les deux pions.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen tấn công trung tâm. Tốt d5 đánh vào e4, nơi không có ai bảo vệ, và mở đường cho tượng c8, giờ bảo vệ tốt g4.
+        en: Black hits the centre. The pawn on d5 attacks e4, which nothing defends, and it opens the bishop on c8, which now guards the pawn on g4.
+        fr: Les Noirs frappent au centre. Le pion d5 attaque e4, que rien ne défend, et il ouvre le fou c8, qui garde désormais le pion g4.
+      children:
+        - ply: Bxf4
+          annotation:
+            vi: Trắng ăn tốt f4 bằng tượng. Đó là lấy lại con tốt gambit, và từ f4 tượng đánh cùng lúc c7 và h6.
+            en: White takes the pawn on f4 with the bishop. That wins the gambit pawn back, and from f4 the bishop attacks both c7 and h6.
+            fr: Les Blancs prennent le pion f4 avec le fou. Cela regagne le pion du gambit, et depuis f4 le fou attaque à la fois c7 et h6.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 8...dxe4, nước ăn con tốt e4 không có ai bảo vệ.
+              en: Black plays something other than 8...dxe4 here, which takes the pawn on e4 that nothing defends.
+              fr: Les Noirs jouent autre chose que 8...dxe4, qui prend le pion e4 sans défense.
+          children:
+            - ply: dxe4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen ăn tốt e4. Số tốt lại ngang nhau, mỗi bên sáu, và giờ tốt d4 bị hậu d8 tấn công, còn hậu d1 bảo vệ nó.
+                en: Black takes the pawn on e4. The pawn count is level again, six each, and the pawn on d4 is now the one under attack, from the queen on d8, with the queen on d1 defending it.
+                fr: Les Noirs prennent le pion e4. Le nombre de pions est de nouveau égal, six de chaque côté, et c'est maintenant le pion d4 qui est attaqué, par la dame d8, la dame d1 le défendant.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm quân: mỗi bên sáu tốt, và Trắng kém một mã, con mã đã đưa ra ở f7 vẫn chưa lấy lại được. Vua Đen đứng ở f7 và không còn quyền nhập thành, còn đường chéo từ c4 đến f7 đang mở, nên Bc4+ có thể đi ngay.'
+                  en: "Count the material: six pawns each, and White is a knight down, the piece given on f7 not having come back. Black's king stands on f7 and can no longer castle, and the diagonal from c4 to f7 is open, so Bc4+ is available at once."
+                  fr: "Comptez le matériel : six pions de chaque côté, et les Blancs sont en moins un cavalier, la pièce donnée en f7 n'ayant pas été récupérée. Le roi noir est en f7 et ne peut plus roquer, et la diagonale de c4 à f7 est ouverte, si bien que Bc4+ est possible tout de suite."
+                plan:
+                  vi: Trắng chơi Bc4+ để đuổi vua khỏi f7; sau ...Kg7, Be5+ là một nước chiếu nữa. Đen muốn đưa vua vào nơi an toàn bằng ...Kg7 và hoàn tất phát triển, giữ con mã hơn.
+                  en: White plays Bc4+ to drive the king off f7; after ...Kg7, Be5+ is a second check. Black wants to reach safety with ...Kg7 and finish developing, keeping the extra knight.
+                  fr: Les Blancs jouent Bc4+ pour chasser le roi de f7 ; après ...Kg7, Be5+ donne un second échec. Les Noirs veulent mettre leur roi à l'abri par ...Kg7 et achever leur développement, en gardant le cavalier de plus.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

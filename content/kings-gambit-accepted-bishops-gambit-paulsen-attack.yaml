@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Bishop's Gambit, Paulsen Attack, taught. Frozen defining line 1.e4
+# e5 2.f4 exf4 3.Bc4 Nf6 4.Nc3 Bb4 5.e5 ends on White's own 5.e5, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Black's 5...Qe7 is modelled as the root's single
+# reply, so the leaf has White to move. Every ply was replayed with chess.js; searchMate at
+# 3 moves from the leaf returns no-mate, the leaf is not in check and no capture is going
+# free.
+id: kings-gambit-accepted-bishops-gambit-paulsen-attack
+name: "King's Gambit Accepted: Bishop's Gambit, Paulsen Attack"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4, Nf6, Nc3, Bb4, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 5.e5 attacks the knight, but 5...Qe7 pins the pawn to the king along the
+      e-file, so exf6 is not even legal, and Black is left a pawn up with the pawn on e5 attacked
+      and undefended. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.e5, dùng tốt tấn công mã f6. Mã được hậu và tốt g7 bảo vệ, còn tượng b4 thì đang đánh vào mã c3.
+    en: White has just played 5.e5, attacking the knight on f6 with the pawn. The knight is defended by the queen and the pawn on g7, while the bishop on b4 attacks the knight on c3.
+    fr: Les Blancs viennent de jouer 5.e5, attaquant le cavalier f6 avec le pion. Le cavalier est défendu par la dame et le pion g7, tandis que le fou b4 attaque le cavalier c3.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...Qe7, chẳng hạn 5...Ng8, rút mã về. Phần lớn các nước còn lại để mã f6 bị exf6 ăn mất, được một mã đổi lấy một tốt.
+      en: Black plays something other than 5...Qe7, for example 5...Ng8, which retreats the knight. Most other moves leave the knight on f6 to be taken by exf6, winning a knight for a pawn.
+      fr: Les Noirs jouent autre chose que 5...Qe7, par exemple 5...Ng8, qui replie le cavalier. La plupart des autres coups laissent le cavalier f6 à prendre par exf6, gagnant un cavalier contre un pion.
+  children:
+    - ply: Qe7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đặt hậu lên e7, nơi nó tấn công tốt e5 và ghim nó vào vua e1 theo cột e, nên exf6 không còn đi được. Hậu cũng bảo vệ mã f6.
+        en: Black puts the queen on e7, where it attacks the pawn on e5 and pins it against the king on e1 along the e-file, so exf6 is no longer possible. The queen also defends the knight on f6.
+        fr: Les Noirs placent la dame en e7, où elle attaque le pion e5 et le cloue contre le roi e1 le long de la colonne e, si bien que exf6 n'est plus possible. La dame défend aussi le cavalier f6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Đen hơn một tốt. Tốt e5 bị hậu e7 đánh mà không có ai bảo vệ, và nó bị ghim vào vua e1 nên chỉ còn nước đi e6, còn mã f6 của Đen vì thế không bị đe dọa thật sự.'
+          en: 'Count the pawns: White seven, Black eight, so Black is a pawn up. The pawn on e5 is attacked by the queen on e7 and defended by nothing, and it is pinned to the king on e1, so its only move is e6, which means the knight on f6 is not really threatened.'
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, si bien que les Noirs ont un pion d'avance. Le pion e5 est attaqué par la dame e7 et défendu par rien, et il est cloué contre le roi e1, si bien que son seul coup est e6, ce qui fait que le cavalier f6 n'est pas réellement menacé."
+        plan:
+          vi: Trắng phải bảo vệ tốt e5 ngay, chẳng hạn bằng Nf3 hoặc d4, nếu không Qxe5+ sẽ ăn nó kèm chiếu. Đen nhắm ăn tốt e5 bằng Qxe5+ và giữ con tốt f4 đang hơn.
+          en: White has to defend the pawn on e5 at once, for example with Nf3 or d4, or Qxe5+ takes it with check. Black aims to win the pawn on e5 with Qxe5+ and to keep the extra pawn on f4.
+          fr: Les Blancs doivent défendre tout de suite le pion e5, par exemple par Nf3 ou d4, faute de quoi Qxe5+ le prend avec échec. Les Noirs visent à gagner le pion e5 par Qxe5+ et à garder le pion de plus en f4.
+        basis:
+          by: chan
+          at: '2026-09-30'

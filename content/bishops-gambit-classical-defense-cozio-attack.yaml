@@ -1,0 +1,60 @@
+# King's Gambit Accepted: Bishop's Gambit, Classical Defense, Cozio Attack, taught. Frozen
+# defining line 1.e4 e5 2.f4 exf4 3.Bc4 Qh4+ 4.Kf1 g5 5.Qf3 ends on White's own 5.Qf3, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 5...Nc6 is modelled
+# as the root's single reply, so the leaf has White to move. Every ply was replayed with
+# chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check
+# and no capture is going free.
+id: bishops-gambit-classical-defense-cozio-attack
+name: "King's Gambit Accepted: Bishop's Gambit, Classical Defense, Cozio Attack"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4, Qh4+, Kf1, g5, Qf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 5.Qf3 puts an attacker on f4 and aims down the f-file at f7 behind it,
+      but the pawn chain on g5 and f4 is defended twice and White's king has already lost the
+      right to castle on f1, so Black keeps the extra pawn without difficulty. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Qf3, đặt hậu lên cột f phía sau tốt f4, nơi nó tấn công con tốt đó. Vua Trắng đứng ở f1 và đã mất quyền nhập thành.
+    en: White has just played 5.Qf3, putting the queen on the f-file behind the pawn on f4, where it attacks that pawn. White's king stands on f1 and has lost the right to castle.
+    fr: Les Blancs viennent de jouer 5.Qf3, plaçant la dame sur la colonne f derrière le pion f4, qu'elle attaque. Le roi blanc est en f1 et a perdu le droit de roquer.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 5...Nc6, chẳng hạn 5...Bg7 hoặc 5...Nf6. Không có gì trong thế cờ của Trắng buộc Đen phải đi nước nào: tốt f4 bị tấn công một lần và được bảo vệ hai lần, còn f7 bị tấn công một lần và có vua bảo vệ.'
+      en: "Black plays something other than 5...Nc6, for example 5...Bg7 or 5...Nf6. Nothing in White's position forces Black's hand: the pawn on f4 is attacked once and defended twice, and f7 is attacked once and defended by the king."
+      fr: 'Les Noirs jouent autre chose que 5...Nc6, par exemple 5...Bg7 ou 5...Nf6. Rien dans la position des Blancs ne force la main aux Noirs : le pion f4 est attaqué une fois et défendu deux fois, et f7 est attaqué une fois et défendu par le roi.'
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã về trung tâm. Mã c6 cũng canh ô d4, và chuỗi tốt g5–f4 vẫn được hậu cùng tốt bảo vệ.
+        en: Black develops the knight toward the centre. The knight on c6 also watches d4, and the pawn chain on g5 and f4 is still held by the queen and the pawn.
+        fr: Les Noirs développent le cavalier vers le centre. Le cavalier c6 surveille aussi d4, et la chaîne de pions g5 et f4 reste tenue par la dame et par le pion.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Đen hơn một tốt, và con tốt f4 của gambit vẫn còn đó, được hai quân bảo vệ. Vua Trắng ở f1 không còn quyền nhập thành, còn vua Đen vẫn giữ quyền nhập thành ở cả hai cánh.'
+          en: "Count the pawns: White seven, Black eight, so Black is a pawn up, and the gambit pawn on f4 is still there, defended twice. White's king on f1 has lost the right to castle, while Black's king still keeps it on both wings."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, si bien que les Noirs ont un pion d'avance, et le pion f4 du gambit est toujours là, défendu deux fois. Le roi blanc en f1 a perdu le droit de roquer, tandis que le roi noir le garde des deux côtés."
+        plan:
+          vi: Trắng phát triển bằng Nc3 và Nge2 để củng cố trung tâm và vẫn giữ tượng c4 nhắm vào f7. Đen củng cố bằng ...Bg7 và ...d6, rồi ...Nge7 và nhập thành.
+          en: White develops with Nc3 and Nge2 to support the centre while keeping the bishop on c4 aimed at f7. Black consolidates with ...Bg7 and ...d6, then ...Nge7 and castling.
+          fr: Les Blancs se développent par Nc3 et Nge2 pour soutenir le centre tout en gardant le fou c4 braqué sur f7. Les Noirs se consolident par ...Bg7 et ...d6, puis ...Nge7 et le roque.
+        basis:
+          by: chan
+          at: '2026-09-30'

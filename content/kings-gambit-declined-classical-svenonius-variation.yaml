@@ -1,0 +1,69 @@
+# King's Gambit Declined: Classical, Svenonius Variation, taught. The frozen line 1.e4 e5
+# 2.Bc4 Nc6 3.Nc3 Nf6 4.d3 Bc5 5.f4 d6 6.Nf3 Bg4 7.h3 Bxf3 8.Qxf3 exf4 ends on Black's ply,
+# which the validator does not allow as a defining line for a White entry (docs/CONTEXT.md,
+# invariant 5), so `definingLine` stops at White's own 8.Qxf3 and 8...exf4, the capture that
+# names this entry, is modelled as the root's reply. The modelled line is 8...exf4 9.Bxf4,
+# so the leaf has Black to move; White's recapture on f4 is played out as the learner's move
+# so that the pawn is not left going free. Every ply was replayed with chess.js; searchMate
+# at 3 moves from the leaf returns no-mate, the leaf is not in check and no capture is going
+# free.
+id: kings-gambit-declined-classical-svenonius-variation
+name: "King's Gambit Declined: Classical, Svenonius Variation"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nc6, Nc3, Nf6, d3, Bc5, f4, d6, Nf3, Bg4, h3, Bxf3, Qxf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 8...exf4 9.Bxf4 material is level, with seven pawns each and the same
+      piece values, and White has two bishops against Black's bishop and two knights, but White
+      can castle only on the queenside while the bishop on c5 covers g1. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa ăn lại ở f3 bằng hậu. Tốt f4 bị tốt e5 tấn công và được bảo vệ hai lần, bởi hậu và tượng c1.
+    en: White has just recaptured on f3 with the queen. The pawn on f4 is attacked by the pawn on e5 and defended twice, by the queen and the bishop on c1.
+    fr: Les Blancs viennent de reprendre en f3 avec la dame. Le pion f4 est attaqué par le pion e5 et défendu deux fois, par la dame et le fou c1.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 8...exf4, chẳng hạn 8...Qd7 hoặc 8...Nd4, giữ nguyên thế căng ở f4 và e5.
+      en: Black plays something other than 8...exf4, for example 8...Qd7 or 8...Nd4, keeping the tension on f4 and e5.
+      fr: Les Noirs jouent autre chose que 8...exf4, par exemple 8...Qd7 ou 8...Nd4, en gardant la tension sur f4 et e5.
+  children:
+    - ply: exf4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt f4, con tốt bị hậu f3 và tượng c1 tấn công mà không có ai bảo vệ.
+        en: Black takes the pawn on f4, which the queen on f3 and the bishop on c1 both attack and nothing defends.
+        fr: Les Noirs prennent le pion f4, que la dame f3 et le fou c1 attaquent tous deux et que rien ne défend.
+      children:
+        - ply: Bxf4
+          annotation:
+            vi: Trắng ăn lại bằng tượng. Tượng f4 giờ đánh vào tốt d6, tượng c4 đánh vào f7, và Trắng có hai tượng.
+            en: White takes back with the bishop. The bishop on f4 now attacks the pawn on d6, the bishop on c4 attacks f7, and White has the two bishops.
+            fr: Les Blancs reprennent avec le fou. Le fou f4 attaque maintenant le pion d6, le fou c4 attaque f7, et les Blancs ont les deux fous.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm quân: mỗi bên bảy tốt và giá trị quân ngang nhau, nhưng Trắng có hai tượng và một mã, còn Đen có một tượng và hai mã. Tốt d6 bị tượng f4 đánh và được bảo vệ ba lần, còn tốt f7 bị tượng c4 đánh và chỉ có vua bảo vệ.'
+              en: "Count the material: seven pawns each and the same piece values, but White has two bishops and a knight against Black's one bishop and two knights. The pawn on d6 is attacked by the bishop on f4 and defended three times, and the pawn on f7 is attacked by the bishop on c4 and defended only by the king."
+              fr: 'Comptez le matériel : sept pions de chaque côté et la même valeur de pièces, mais les Blancs ont deux fous et un cavalier contre un fou et deux cavaliers pour les Noirs. Le pion d6 est attaqué par le fou f4 et défendu trois fois, et le pion f7 est attaqué par le fou c4 et défendu seulement par le roi.'
+            plan:
+              vi: Trắng chỉ có thể nhập thành bên cánh hậu, vì tượng c5 đang canh g1. Đen nhập thành O-O và tấn công hậu f3 bằng ...Nd4.
+              en: White can castle only on the queenside, since the bishop on c5 covers g1. Black castles with O-O and attacks the queen on f3 with ...Nd4.
+              fr: Les Blancs ne peuvent roquer que côté dame, puisque le fou c5 couvre g1. Les Noirs roquent par O-O et attaquent la dame f3 par ...Nd4.
+            basis:
+              by: chan
+              at: '2026-09-30'

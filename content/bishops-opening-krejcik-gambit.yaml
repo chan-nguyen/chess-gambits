@@ -1,0 +1,59 @@
+# Bishop's Opening: Krejcik Gambit. Defining line 1.e4 e5 2.Bc4 Nf6 3.f3 Bc5 4.Ne2 Nc6 5.b4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-krejcik-gambit
+name: "Bishop's Opening: Krejcik Gambit"
+eco: C24
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, f3, Bc5, Ne2, Nc6, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. Black can simply take the pawn: after 5...Bxb4 White is a pawn down with
+      an isolated a-pawn, and nothing on the board makes up for it at once. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.b4, tấn công tượng c5. Tốt b4 bị tượng và mã c6 tấn công mà không được bảo vệ, còn tượng c5 bị tốt tấn công và cũng không được bảo vệ. Mục này đi theo nước Đen ăn tốt bằng tượng.
+    en: White has just played 5.b4, attacking the bishop on c5. The b4 pawn is attacked by the bishop and by the knight on c6 and nothing defends it, and the bishop on c5 is attacked by the pawn and is undefended too. This entry follows Black taking the pawn with the bishop.
+    fr: Les Blancs viennent de jouer 5.b4, attaquant le fou c5. Le pion b4 est attaqué par le fou et par le cavalier c6 et rien ne le défend, et le fou c5 est attaqué par le pion et n'est pas défendu non plus. Cette entrée suit la prise du pion par le fou.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...Bxb4 ở đây, chẳng hạn 5...Nxb4. Mục này chỉ mô hình hóa nước ăn tốt bằng tượng.
+      en: Black plays something other than 5...Bxb4 here, for instance 5...Nxb4. This entry models only the capture with the bishop.
+      fr: Les Noirs jouent autre chose que 5...Bxb4 ici, par exemple 5...Nxb4. Cette entrée ne modélise que la prise avec le fou.
+  children:
+    - ply: Bxb4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt b4 bằng tượng, đồng thời cứu tượng khỏi đòn tấn công. Tượng b4 giờ tấn công tốt d2.
+        en: Black takes the b4 pawn with the bishop, which also saves the bishop from the attack. The bishop on b4 now attacks the d2 pawn.
+        fr: Les Noirs prennent le pion b4 avec le fou, qui échappe ainsi à l'attaque. Le fou b4 attaque maintenant le pion d2.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — tốt b chưa lấy lại được. Tốt a của Trắng giờ bị cô lập, cột b bán mở cho Trắng, và hai bên chưa nhập thành. Tốt e4 được tốt f3 bảo vệ trước mã f6, nhưng tốt f3 cùng mã e2 không cho Trắng đền bù cụ thể nào.'
+          en: "Count the pawns: White seven, Black eight — the b-pawn has not come back. White's a-pawn is now isolated, the b-file is half-open for White, and neither side has castled. The e4 pawn is defended by the f3 pawn against the knight on f6, but the f3 pawn and the knight on e2 give White nothing concrete in return."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — le pion b n'est pas revenu. Le pion a blanc est désormais isolé, la colonne b est semi-ouverte pour les Blancs, et aucun camp n'a roqué. Le pion e4 est défendu par le pion f3 face au cavalier f6, mais le pion f3 et le cavalier e2 ne donnent rien de concret aux Blancs en échange."
+        plan:
+          vi: Trắng chơi c3 để tấn công tượng và d4 để dựng trung tâm, dùng các nhịp đó để bù lại con tốt. Đen lùi tượng, chẳng hạn về c5 hoặc e7, rồi hoàn tất phát triển bằng ...d6 và ...O-O.
+          en: White plays c3 to attack the bishop and d4 to build the centre, using the tempi to make up for the pawn. Black retreats the bishop, for instance to c5 or e7, and completes development with ...d6 and ...O-O.
+          fr: Les Blancs jouent c3 pour attaquer le fou et d4 pour bâtir le centre, utilisant ces temps pour compenser le pion. Les Noirs replient le fou, par exemple en c5 ou en e7, et achèvent leur développement par ...d6 et ...O-O.
+        basis:
+          by: chan
+          at: 2026-09-30

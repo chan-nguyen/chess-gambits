@@ -1,0 +1,67 @@
+# King's Gambit Declined: Falkbeer Countergambit, Blackburne Attack, taught. The frozen line
+# 1.e4 e5 2.f4 d5 3.Nf3 ends on White's ply, which the validator does not allow as a
+# defining line for a Black entry (docs/CONTEXT.md, invariant 5), so `definingLine` stops at
+# Black's own 2...d5, the root it shares with the Falkbeer Countergambit entry, and White's
+# 3.Nf3, the move that names this entry, is modelled as the root's reply. The modelled line
+# is 3.Nf3 Nc6, so the leaf has White to move. Every ply was replayed with chess.js;
+# searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check and no
+# capture is going free.
+id: kings-gambit-declined-falkbeer-countergambit-blackburne-attack
+name: "King's Gambit Declined: Falkbeer Countergambit, Blackburne Attack"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 3.Nf3 Nc6 neither side has won anything yet: both of White's centre pawns
+      are attacked and undefended, but Black's own pawn on e5 is attacked twice and defended once,
+      and White is the one to move. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa đáp lại Gambit Vua bằng 2...d5, đánh ngay vào tốt e4. Tốt e4 bị tốt d5 tấn công và tốt f4 bị tốt e5 tấn công, và cả hai đều không có ai bảo vệ.
+    en: Black has just answered the King's Gambit with 2...d5, striking at the pawn on e4 at once. The pawn on e4 is attacked by the pawn on d5 and the pawn on f4 by the pawn on e5, and neither has a defender.
+    fr: Les Noirs viennent de répondre au Gambit du Roi par 2...d5, frappant aussitôt le pion e4. Le pion e4 est attaqué par le pion d5 et le pion f4 par le pion e5, et aucun n'a de défenseur.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 3.Nf3, chẳng hạn chơi 3.exd5, ăn tốt, hoặc 3.fxe5.
+      en: White plays something other than 3.Nf3, for example 3.exd5, which takes a pawn, or 3.fxe5.
+      fr: Les Blancs jouent autre chose que 3.Nf3, par exemple 3.exd5, qui prend un pion, ou 3.fxe5.
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đưa mã ra, tấn công tốt e5 lần thứ hai. Tốt e5 giờ bị tốt f4 và mã tấn công mà không có ai bảo vệ, còn hai tốt e4, f4 của Trắng vẫn bị tấn công mà không có ai bảo vệ.
+        en: White brings the knight out, attacking the pawn on e5 a second time. The pawn on e5 is now attacked by the pawn on f4 and the knight and defended by nothing, while White's pawns on e4 and f4 are still attacked and undefended.
+        fr: Les Blancs sortent le cavalier, attaquant le pion e5 une seconde fois. Le pion e5 est maintenant attaqué par le pion f4 et le cavalier et défendu par rien, tandis que les pions e4 et f4 des Blancs sont toujours attaqués et sans défense.
+      children:
+        - ply: Nc6
+          annotation:
+            vi: Đen bảo vệ tốt e5 bằng mã, vừa phát triển một quân, và để cả hai tốt e4 và f4 của Trắng vẫn bị tấn công.
+            en: Black defends the pawn on e5 with the knight, which develops a piece and leaves both of White's pawns on e4 and f4 still under attack.
+            fr: Les Noirs défendent le pion e5 avec le cavalier, ce qui développe une pièce et laisse les deux pions e4 et f4 des Blancs toujours sous attaque.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: mỗi bên tám, nên chưa ai thắng được gì. Nhưng hai tốt e4 và f4 của Trắng đều bị đánh một lần và không có ai bảo vệ, trong khi tốt e5 của Đen bị đánh hai lần và được mã c6 bảo vệ một lần, còn tốt d5 bị tốt e4 đánh và được hậu bảo vệ một lần.'
+              en: "Count the pawns: eight each, so nothing has been won yet. But White's pawns on e4 and f4 are each attacked once and defended by nothing, while Black's pawn on e5 is attacked twice and defended once, by the knight on c6, and the pawn on d5 is attacked by the pawn on e4 and defended once, by the queen."
+              fr: "Comptez les pions : huit de chaque côté, si bien que rien n'a encore été gagné. Mais les pions e4 et f4 des Blancs sont chacun attaqués une fois et défendus par rien, tandis que le pion e5 des Noirs est attaqué deux fois et défendu une fois, par le cavalier c6, et que le pion d5 est attaqué par le pion e4 et défendu une fois, par la dame."
+            plan:
+              vi: 'Trắng phải giải quyết thế căng: exd5 ăn tốt, fxe5 ăn tốt e5. Đen đe dọa ...dxe4 và ...exf4 nếu Trắng để yên.'
+              en: 'White has to settle the tension: exd5 takes a pawn and fxe5 takes the pawn on e5. Black threatens ...dxe4 and ...exf4 if White leaves things alone.'
+              fr: "Les Blancs doivent régler la tension : exd5 prend un pion et fxe5 prend le pion e5. Les Noirs menacent ...dxe4 et ...exf4 si les Blancs laissent les choses en l'état."
+            basis:
+              by: chan
+              at: '2026-09-30'

@@ -1,0 +1,59 @@
+# Italian Game: Classical Variation, Greco Gambit, Modern Line. Defining line 1.e4 e5 2.Nf3
+# Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.e5, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-classical-variation-greco-gambit-modern-line
+name: 'Italian Game: Classical Variation, Greco Gambit, Modern Line'
+eco: C54
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, c3, Nf6, d4, exd4, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White has given the d4 pawn and pushed e5, but Black can step away with
+      6...Ne4 and keep the pawn, and the e5 pawn is defended only by the knight on f3. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.e5, dùng tốt tấn công mã f6. Mã được bảo vệ hai lần, bởi hậu và tốt g7; tốt e5 bị mã c6 tấn công và được mã f3 bảo vệ; còn tốt d4 của Đen bị tấn công ba lần và được bảo vệ hai lần. Mục này đi theo nước 6...Ne4.
+    en: White has just played 6.e5, attacking the knight on f6 with the pawn. The knight is defended twice, by the queen and the g7 pawn; the e5 pawn is attacked by the knight on c6 and defended by the knight on f3; and Black's pawn on d4 is attacked three times and defended twice. This entry follows 6...Ne4.
+    fr: Les Blancs viennent de jouer 6.e5, attaquant le cavalier f6 avec le pion. Le cavalier est défendu deux fois, par la dame et le pion g7 ; le pion e5 est attaqué par le cavalier c6 et défendu par le cavalier f3 ; et le pion d4 des Noirs est attaqué trois fois et défendu deux fois. Cette entrée suit 6...Ne4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Ne4 ở đây, chẳng hạn 6...d5, đánh ngay tượng c4. Mục này chỉ mô hình hóa nước nhảy mã lên e4.
+      en: Black plays something other than 6...Ne4 here, for instance 6...d5, which hits the bishop on c4 at once. This entry models only the jump to e4.
+      fr: Les Noirs jouent autre chose que 6...Ne4 ici, par exemple 6...d5, qui frappe aussitôt le fou c4. Cette entrée ne modélise que le saut en e4.
+  children:
+    - ply: Ne4
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đưa mã đang bị tấn công lên e4, nơi không quân Trắng nào tấn công được nó và từ đó nó đánh vào các tốt c3 và f2.
+        en: Black moves the attacked knight to e4, where none of White's pieces attacks it and from where it hits the pawns on c3 and f2.
+        fr: Les Noirs portent le cavalier attaqué en e4, où aucune pièce blanche ne l'attaque et d'où il frappe les pions c3 et f2.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, và hai tốt d7 và d4 của Đen bị chồng. Tốt d4 bị tấn công ba lần và được bảo vệ hai lần, còn tốt c3 bị tấn công hai lần, bởi tốt d4 và mã e4, và được bảo vệ hai lần, bởi tốt b2 và mã b1. Tốt e5 của Trắng được mã f3 bảo vệ trước mã c6, và hai bên chưa nhập thành.'
+          en: "Count the pawns: White seven, Black eight, and Black's pawns on d7 and d4 are doubled. The d4 pawn is attacked three times and defended twice, and the c3 pawn is attacked twice, by the d4 pawn and the knight on e4, and defended twice, by the b2 pawn and the knight on b1. White's e5 pawn is defended by the knight on f3 against the knight on c6, and neither side has castled."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, et les pions noirs d7 et d4 sont doublés. Le pion d4 est attaqué trois fois et défendu deux fois, et le pion c3 est attaqué deux fois, par le pion d4 et le cavalier e4, et défendu deux fois, par le pion b2 et le cavalier b1. Le pion e5 blanc est défendu par le cavalier f3 face au cavalier c6, et aucun camp n'a roqué."
+        plan:
+          vi: Trắng chơi cxd4, tấn công tượng c5 và hỗ trợ tốt e5, rồi Nc3 để thách thức mã e4, cố lấy lại tốt. Đen chơi ...d5 để hỗ trợ mã và đánh tượng c4, rồi ...Bb6 hoặc ...O-O.
+          en: White plays cxd4, which attacks the bishop on c5 and supports the e5 pawn, then Nc3 to challenge the knight on e4, trying to win the pawn back. Black plays ...d5 to support the knight and hit the bishop on c4, then ...Bb6 or ...O-O.
+          fr: Les Blancs jouent cxd4, qui attaque le fou c5 et soutient le pion e5, puis Nc3 pour défier le cavalier e4, essayant de regagner le pion. Les Noirs jouent ...d5 pour soutenir le cavalier et frapper le fou c4, puis ...Bb6 ou ...O-O.
+        basis:
+          by: chan
+          at: 2026-09-30

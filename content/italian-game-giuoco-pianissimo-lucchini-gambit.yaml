@@ -1,0 +1,60 @@
+# Italian Game: Giuoco Pianissimo, Lucchini Gambit. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4
+# Bc5 4.d3 f5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-giuoco-pianissimo-lucchini-gambit
+name: 'Italian Game: Giuoco Pianissimo, Lucchini Gambit'
+eco: C50
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, d3, f5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 4...f5 White simply takes the pawn: 5.exf5 leaves Black a pawn
+      down with the f-file opened and the knight on g8 attacked by the bishop on c4 and
+      defended only by the rook; Black gets no concrete return for the pawn. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...f5, tấn công tốt e4. Tốt e4 bị tốt f5 tấn công và được tốt d3 bảo vệ, còn tốt f5 bị tốt e4 tấn công mà không có quân nào bảo vệ. Mục này đi theo nước Trắng ăn tốt 5.exf5.
+    en: Black has just played 4...f5, attacking the e4 pawn. The e4 pawn is attacked by the f5 pawn and defended by the d3 pawn, while the f5 pawn is attacked by the e4 pawn and nothing defends it. This entry follows White taking the pawn with 5.exf5.
+    fr: Les Noirs viennent de jouer 4...f5, attaquant le pion e4. Le pion e4 est attaqué par le pion f5 et défendu par le pion d3, tandis que le pion f5 est attaqué par le pion e4 et rien ne le défend. Cette entrée suit la prise du pion par les Blancs, 5.exf5.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 5.exf5 ở đây, chẳng hạn 5.Bb5. Mục này chỉ mô hình hóa nước ăn tốt trên f5.
+      en: White plays something other than 5.exf5 here, for instance 5.Bb5. This entry models only the capture on f5.
+      fr: Les Blancs jouent autre chose que 5.exf5 ici, par exemple 5.Bb5. Cette entrée ne modélise que la prise en f5.
+  children:
+    - ply: exf5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt f bằng tốt e, hơn một tốt. Đen không còn tốt f, nên đường chéo a2-g8 mở cho tượng c4.
+        en: White takes the f-pawn with the e-pawn, winning a pawn. Black no longer has an f-pawn, so the a2-g8 diagonal is open for the bishop on c4.
+        fr: Les Blancs prennent le pion f avec le pion e, gagnant un pion. Les Noirs n'ont plus de pion f, donc la diagonale a2-g8 est ouverte pour le fou c4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Đen đã thí tốt f mà chưa lấy lại được gì. Hai tốt f5 và f2 của Trắng bị chồng, nhưng cột f bán mở cho Đen. Tượng c4 tấn công mã g8, quân chỉ có xe h8 bảo vệ, còn tượng c5 của Đen tấn công f2, ô chỉ có vua bảo vệ.'
+          en: "Count the pawns: White eight, Black seven — Black has given the f-pawn and nothing has come back. White's pawns on f5 and f2 are doubled, but the f-file is half-open for Black. The bishop on c4 attacks the knight on g8, which only the rook on h8 defends, and Black's bishop on c5 attacks f2, which only the king defends."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs — les Noirs ont donné le pion f et rien n'est revenu. Les pions blancs f5 et f2 sont doublés, mais la colonne f est semi-ouverte pour les Noirs. Le fou c4 attaque le cavalier g8, que seule la tour h8 défend, et le fou c5 des Noirs attaque f2, que seul le roi défend."
+        plan:
+          vi: Đen chơi ...Nf6 và ...d5 để đánh tượng c4 và mở thế cờ, rồi ...O-O và dùng cột f bán mở. Trắng chơi c3 và d4 để tranh trung tâm và đuổi tượng khỏi c5, rồi Nbd2 để phát triển.
+          en: Black plays ...Nf6 and ...d5 to hit the bishop on c4 and free the position, then ...O-O and uses the half-open f-file. White plays c3 and d4 to challenge the centre and drive the bishop from c5, and Nbd2 to develop.
+          fr: Les Noirs jouent ...Nf6 et ...d5 pour frapper le fou c4 et libérer la position, puis ...O-O et utilisent la colonne f semi-ouverte. Les Blancs jouent c3 et d4 pour contester le centre et chasser le fou de c5, et Nbd2 pour se développer.
+        basis:
+          by: chan
+          at: 2026-09-30

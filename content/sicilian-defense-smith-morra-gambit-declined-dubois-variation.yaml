@@ -1,0 +1,72 @@
+# Sicilian Defense: Smith-Morra Gambit Declined, Dubois Variation. Frozen defining line 1.e4 c5
+# 2.d4 cxd4 3.c3 d3 4.c4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...Nf6 5.Bxd3 Nc6. searchMate at 3
+# moves from the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: sicilian-defense-smith-morra-gambit-declined-dubois-variation
+name: 'Sicilian Defense: Smith-Morra Gambit Declined, Dubois Variation'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, c3, d3, c4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has seven pawns to Black's eight, so White is a pawn down; Black's pawns are doubled on the d-file. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.c4 sau khi Đen đẩy tốt d lên d3. Tốt d3 của Đen bị hậu d1 và tượng f1 tấn công mà không quân nào bảo vệ. Đen hơn một tốt, tám so với bảy.
+    en: White has just played 4.c4 after Black pushed the d-pawn to d3. Black's pawn on d3 is attacked by the queen on d1 and the bishop on f1 with nothing defending it. Black is a pawn up, eight to seven.
+    fr: Les Blancs viennent de jouer 4.c4 après que les Noirs ont poussé le pion d en d3. Le pion d3 des Noirs est attaqué par la dame d1 et le fou f1 sans aucune défense. Les Noirs ont un pion de plus, huit contre sept.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 4...Nf6, chẳng hạn 4...Nc6 hoặc 4...e5. Đánh giá trong mục này dành cho nhánh Đen phát triển mã f6, tấn công tốt e4.
+      en: Black plays something other than 4...Nf6, for example 4...Nc6 or 4...e5. The assessment in this entry is for the line where Black develops the knight to f6, attacking the e4 pawn.
+      fr: Les Noirs jouent autre chose que 4...Nf6, par exemple 4...Nc6 ou 4...e5. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le cavalier en f6, attaquant le pion e4.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa mã ra f6, tấn công tốt e4 mà không quân Trắng nào bảo vệ, trong khi tốt d3 của Đen vẫn đang bị hai quân tấn công.
+        en: Black develops the knight to f6, attacking the e4 pawn, which no White piece defends, while Black's d3 pawn is still attacked twice.
+        fr: Les Noirs développent le cavalier en f6, attaquant le pion e4, qu'aucune pièce blanche ne défend, tandis que le pion d3 des Noirs reste attaqué deux fois.
+      children:
+        - ply: Bxd3
+          annotation:
+            vi: Trắng ăn tốt d3 bằng tượng, đưa số tốt về bằng nhau, bảy mỗi bên, và tượng d3 bảo vệ luôn tốt e4.
+            en: White takes the d3 pawn with the bishop, levelling the pawn count at seven each, and the bishop on d3 also defends the e4 pawn.
+            fr: Les Blancs prennent le pion d3 avec le fou, égalisant le compte de pions à sept de chaque côté, et le fou d3 défend aussi le pion e4.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 5...Nc6, chẳng hạn 5...e5 hoặc 5...e6. Đánh giá trong mục này dành cho nhánh Đen phát triển mã c6.
+              en: Black plays something other than 5...Nc6, for example 5...e5 or 5...e6. The assessment in this entry is for the line where Black develops the knight to c6.
+              fr: Les Noirs jouent autre chose que 5...Nc6, par exemple 5...e5 ou 5...e6. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le cavalier en c6.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đưa mã lên c6, nhắm vào ô d4 mà không tốt Trắng nào còn khống chế được.
+                en: Black brings the knight to c6, eyeing the d4 square, which no White pawn can cover any more.
+                fr: Les Noirs amènent le cavalier en c6, visant la case d4, que plus aucun pion blanc ne peut couvrir.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: bảy mỗi bên, nên con tốt Đen ăn ở d4 đã trả lại. Tốt c4 và e4 của Trắng đã đi qua c3 và e3 nên không tốt Trắng nào tấn công d4, cũng không tốt nào có thể đến những ô sẽ tấn công nó bằng cách đi tiếp. Mã c6 của Đen có thể nhảy vào d4, còn tượng d3 chắn cột d của hậu Trắng. Tốt e4 bị mã f6 tấn công và có tượng d3 bảo vệ.'
+                  en: "Count the pawns: seven each, so the pawn Black took on d4 has been given back. White's c4 and e4 pawns have passed c3 and e3, so no White pawn attacks d4 and none can reach the squares that would by pushing on. Black's knight on c6 can jump to d4, while the bishop on d3 blocks the d-file for White's queen. The e4 pawn is attacked by the knight on f6 and defended by the bishop on d3."
+                  fr: "Comptons les pions : sept de chaque côté, donc le pion que les Noirs avaient pris en d4 a été rendu. Les pions c4 et e4 des Blancs ont dépassé c3 et e3, si bien qu'aucun pion blanc n'attaque d4 et qu'aucun ne peut atteindre en avançant les cases qui le feraient. Le cavalier c6 noir peut sauter en d4, tandis que le fou d3 bloque la colonne d pour la dame blanche. Le pion e4 est attaqué par le cavalier f6 et défendu par le fou d3."
+                plan:
+                  vi: Trắng chơi Nf3 để khống chế d4 bằng quân, rồi nhập thành và Nc3. Đen chơi ...e5 và ...d6, hoặc ...Nd4 nếu Trắng chưa khống chế ô đó, rồi ...Be7 và nhập thành.
+                  en: White plays Nf3 to cover d4 with a piece, then castles and Nc3. Black plays ...e5 and ...d6, or ...Nd4 if White has not covered the square, then ...Be7 and castles.
+                  fr: Les Blancs jouent Nf3 pour couvrir d4 avec une pièce, puis roquent et Nc3. Les Noirs jouent ...e5 et ...d6, ou ...Nd4 si les Blancs ne couvrent pas encore la case, puis ...Be7 et roquent.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

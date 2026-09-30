@@ -1,0 +1,66 @@
+# King's Gambit Declined: Falkbeer Countergambit, Charousek Gambit, Morphy Defense, taught.
+# Frozen defining line 1.e4 e5 2.Nc3 Nf6 3.f4 d5 4.exd5 e4 5.d3 Bb4 6.Bd2 e3 ends on Black's
+# own 6...e3, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The modelled
+# line is 7.Bxe3 Qxd5, so the leaf has White to move; the capture on e3 is White's reply and
+# the recapture on d5 is Black's own move, so no capture is left going free. Every ply was
+# replayed with chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is
+# not in check and no capture is going free.
+id: falkbeer-countergambit-charousek-gambit-morphy-defense
+name: "King's Gambit Declined: Falkbeer Countergambit, Charousek Gambit, Morphy Defense"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, Nc3, Nf6, f4, d5, exd5, e4, d3, Bb4, Bd2, e3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 6...e3 7.Bxe3 Qxd5 White is still a pawn up, and Black's only return is a
+      pin on the knight on c3, which cannot move while the bishop on b4 stays and the bishop on d2
+      has gone. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa đẩy tốt lên e3, tấn công tượng d2. Tượng d2 được hậu và vua bảo vệ, còn tốt e3 không có ai bảo vệ.
+    en: Black has just pushed the pawn to e3, attacking the bishop on d2. The bishop on d2 is defended by the queen and the king, and the pawn on e3 is defended by nothing.
+    fr: Les Noirs viennent de pousser le pion en e3, attaquant le fou d2. Le fou d2 est défendu par la dame et le roi, et le pion e3 est défendu par rien.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 7.Bxe3, chẳng hạn chơi 7.Bc1 hoặc 7.Qe2, và trong mọi trường hợp Đen đều thắng được quân bằng cách ăn quân.
+      en: White plays something other than 7.Bxe3, for example 7.Bc1 or 7.Qe2, and in every case Black can win material with a capture.
+      fr: Les Blancs jouent autre chose que 7.Bxe3, par exemple 7.Bc1 ou 7.Qe2, et dans tous les cas les Noirs peuvent gagner du matériel par une capture.
+  children:
+    - ply: Bxe3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt e3 bằng tượng, hơn hai tốt. Nhưng tượng rời d2 nên tượng b4 giờ ghim mã c3 vào vua, vì d2 đã trống.
+        en: White takes the pawn on e3 with the bishop and is two pawns up. But the bishop has left d2, so the bishop on b4 now pins the knight on c3 to the king, since d2 is empty.
+        fr: Les Blancs prennent le pion e3 avec le fou et ont deux pions d'avance. Mais le fou a quitté d2, si bien que le fou b4 cloue maintenant le cavalier c3 contre le roi, d2 étant vide.
+      children:
+        - ply: Qxd5
+          annotation:
+            vi: Đen ăn tốt d5 bằng hậu. Mã c3 đánh vào hậu nhưng không ăn được, vì nó bị tượng b4 ghim vào vua.
+            en: Black takes the pawn on d5 with the queen. The knight on c3 attacks the queen but cannot take it, because it is pinned to the king by the bishop on b4.
+            fr: Les Noirs prennent le pion d5 avec la dame. Le cavalier c3 attaque la dame mais ne peut pas la prendre, car il est cloué contre le roi par le fou b4.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Trắng hơn một tốt. Mã c3 bị tượng b4 ghim vào vua e1 và không có nước đi hợp lệ nào, dù nó đang tấn công hậu d5; hậu Đen đánh vào các tốt a2, d3 và g2, cả ba đều có quân bảo vệ.'
+              en: "Count the pawns: White seven, Black six, so White is a pawn up. The knight on c3 is pinned to the king on e1 by the bishop on b4 and has no legal move, although it attacks the black queen on d5; Black's queen attacks the pawns on a2, d3 and g2, all of them defended."
+              fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs, si bien que les Blancs ont un pion d'avance. Le cavalier c3 est cloué contre le roi e1 par le fou b4 et n'a aucun coup légal, bien qu'il attaque la dame noire d5 ; la dame noire attaque les pions a2, d3 et g2, tous trois défendus."
+            plan:
+              vi: Trắng phá thế ghim bằng a3, đánh tượng b4, hoặc Bd2 hay Qd2, rồi nhập thành. Đen có thể đổi tượng lấy mã bằng ...Bxc3+ hoặc nhập thành.
+              en: White breaks the pin with a3, which attacks the bishop on b4, or with Bd2 or Qd2, and then castles. Black can trade the bishop for the knight with ...Bxc3+ or castle.
+              fr: Les Blancs brisent le clouage par a3, qui attaque le fou b4, ou par Bd2 ou Qd2, puis roquent. Les Noirs peuvent échanger le fou contre le cavalier par ...Bxc3+ ou roquer.
+            basis:
+              by: chan
+              at: '2026-09-30'

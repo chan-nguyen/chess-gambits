@@ -1,0 +1,78 @@
+# King's Gambit Accepted: Rosentreter Gambit, Testa Variation, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.d4 g4 5.Bxf4 ends on White's own 5.Bxf4, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). The modelled line is 5...gxf3 6.Qxf3 Nc6, so
+# the leaf has White to move; the recapture on f3 is played out as the learner's move. Every
+# ply was replayed with chess.js; searchMate at 3 moves from the leaf returns no-mate, the
+# leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-rosentreter-gambit-testa-variation
+name: "King's Gambit Accepted: Rosentreter Gambit, Testa Variation"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, d4, g4, Bxf4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 5.Bxf4 gxf3 6.Qxf3 White has the pawn count seven to six, but it has paid
+      a whole knight for it, and 6...Nc6 attacks the pawn on d4 with nothing behind it. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Bxf4, ăn tốt f4 bằng tượng, nay đánh vào tốt c7. Mã f3 bị tốt g4 tấn công và được bảo vệ hai lần, bởi tốt g2 và hậu d1.
+    en: White has just played 5.Bxf4, taking the pawn on f4 with the bishop, which now attacks the pawn on c7. The knight on f3 is attacked by the pawn on g4 and defended twice, by the pawn on g2 and the queen on d1.
+    fr: Les Blancs viennent de jouer 5.Bxf4, prenant le pion f4 avec le fou, qui attaque maintenant le pion c7. Le cavalier f3 est attaqué par le pion g4 et défendu deux fois, par le pion g2 et la dame d1.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...gxf3, chẳng hạn 5...Nc6 hoặc 5...Nf6, để mã f3 cho Trắng tự xử lý.
+      en: Black plays something other than 5...gxf3, for example 5...Nc6 or 5...Nf6, leaving the knight on f3 for White to deal with.
+      fr: Les Noirs jouent autre chose que 5...gxf3, par exemple 5...Nc6 ou 5...Nf6, laissant le cavalier f3 aux Blancs de régler.
+  children:
+    - ply: gxf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen dùng tốt ăn mã. Tốt f3 bị tốt g2 và hậu d1 tấn công mà không có ai bảo vệ, nên đây là đổi một mã lấy một tốt.
+        en: Black takes the knight with the pawn. The pawn on f3 is attacked by the pawn on g2 and the queen on d1 and defended by nothing, so this is a knight traded for a pawn.
+        fr: Les Noirs prennent le cavalier avec le pion. Le pion f3 est attaqué par le pion g2 et la dame d1 et défendu par rien, si bien que c'est un cavalier échangé contre un pion.
+      children:
+        - ply: Qxf3
+          annotation:
+            vi: Trắng ăn lại bằng hậu, đưa tỷ số tốt thành bảy trên sáu có lợi cho Trắng.
+            en: White recaptures with the queen, making the pawn count seven to six in White's favour.
+            fr: Les Blancs reprennent avec la dame, portant le compte de pions à sept contre six en leur faveur.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 6...Nc6, chẳng hạn 6...Nf6 hoặc 6...Bg7. Chỉ có một quân đang bị tấn công, là tốt c7, và hậu đang bảo vệ nó.
+              en: Black plays something other than 6...Nc6, for example 6...Nf6 or 6...Bg7. Only one unit is attacked, the pawn on c7, and the queen defends it.
+              fr: Les Noirs jouent autre chose que 6...Nc6, par exemple 6...Nf6 ou 6...Bg7. Une seule unité est attaquée, le pion c7, et la dame le défend.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã lên c6, tấn công tốt d4, con tốt không có ai bảo vệ.
+                en: Black develops the knight to c6, attacking the pawn on d4, which nothing defends.
+                fr: Les Noirs développent le cavalier en c6, attaquant le pion d4, que rien ne défend.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm quân: Trắng bảy tốt, Đen sáu, nhưng Trắng kém một mã, nên Đen hơn một mã đổi lấy một tốt. Tốt d4 của Trắng bị mã c6 đánh mà không có ai bảo vệ, còn tượng f4 đánh vào c7, con tốt được hậu bảo vệ.'
+                  en: "Count the material: White has seven pawns to Black's six, but White is a knight down, so Black is ahead by a knight for a pawn. White's pawn on d4 is attacked by the knight on c6 and defended by nothing, and the bishop on f4 attacks c7, which the queen defends."
+                  fr: "Comptez le matériel : les Blancs ont sept pions contre six, mais il leur manque un cavalier, si bien que les Noirs ont un cavalier contre un pion d'avance. Le pion d4 des Blancs est attaqué par le cavalier c6 et défendu par rien, et le fou f4 attaque c7, que la dame défend."
+                plan:
+                  vi: 'Trắng phải lo cho tốt d4: c3 và Be3 đều bảo vệ được nó, còn d5 thì tấn công con mã. Đen muốn ăn d4 bằng ...Nxd4 và thêm ...Bg7 để đánh nó lần thứ hai.'
+                  en: 'White has to look after the pawn on d4: c3 and Be3 both defend it, while d5 attacks the knight. Black wants to win d4 with ...Nxd4 and adds ...Bg7 to attack it a second time.'
+                  fr: "Les Blancs doivent s'occuper du pion d4 : c3 et Be3 le défendent tous deux, tandis que d5 attaque le cavalier. Les Noirs veulent gagner d4 par ...Nxd4 et ajoutent ...Bg7 pour l'attaquer une seconde fois."
+                basis:
+                  by: chan
+                  at: '2026-09-30'

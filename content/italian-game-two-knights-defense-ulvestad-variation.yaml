@@ -1,0 +1,60 @@
+# Italian Game: Two Knights Defense, Ulvestad Variation. Defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bc4 Nf6 4.Ng5 d5 5.exd5 b5, which ends on Black's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-two-knights-defense-ulvestad-variation
+name: 'Italian Game: Two Knights Defense, Ulvestad Variation'
+eco: C57
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 6.Bb3 White keeps the extra pawn for the moment and the knight on
+      c6 is attacked by the d5 pawn with nothing defending it, while the knight on g5
+      presses on f7; Black has to win the pawn back at once and the chances are practical
+      rather than objective. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...b5, tấn công tượng c4, quân không có gì bảo vệ. Tốt d5 của Trắng tấn công mã c6, quân cũng không có gì bảo vệ, và mã g5 tấn công f7 và h7. Trắng có tám tốt, Đen bảy tốt. Mục này đi theo nước Trắng cứu tượng bằng 6.Bb3.
+    en: Black has just played 5...b5, attacking the bishop on c4, which nothing defends. White's pawn on d5 attacks the knight on c6, which nothing defends either, and the knight on g5 attacks f7 and h7. White has eight pawns to Black's seven. This entry follows White saving the bishop with 6.Bb3.
+    fr: Les Noirs viennent de jouer 5...b5, attaquant le fou c4, que rien ne défend. Le pion d5 des Blancs attaque le cavalier c6, que rien ne défend non plus, et le cavalier g5 attaque f7 et h7. Les Blancs ont huit pions contre sept aux Noirs. Cette entrée suit le fou blanc qui se sauve par 6.Bb3.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 6.Bb3 ở đây, chẳng hạn 6.Bf1 hoặc 6.Qe2. Mục này chỉ mô hình hóa nước đi tượng lên b3.
+      en: White plays something other than 6.Bb3 here, for instance 6.Bf1 or 6.Qe2. This entry models only the bishop move to b3.
+      fr: Les Blancs jouent autre chose que 6.Bb3 ici, par exemple 6.Bf1 ou 6.Qe2. Cette entrée ne modélise que le coup de fou en b3.
+  children:
+    - ply: Bb3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng cứu tượng bằng cách đưa nó về b3, nơi nó bảo vệ tốt d5.
+        en: White saves the bishop by moving it to b3, where it defends the d5 pawn.
+        fr: Les Blancs sauvent le fou en le mettant en b3, où il défend le pion d5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — tốt d5 là con tốt dư của Trắng, bị hậu và mã f6 tấn công hai lần và chỉ được tượng b3 bảo vệ một lần. Mã c6 của Đen bị tốt d5 tấn công mà không có quân nào bảo vệ, còn mã g5 tấn công f7, ô chỉ có vua bảo vệ, và h7, ô được xe và mã f6 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven — the d5 pawn is White's extra pawn, attacked twice, by the queen and the knight on f6, and defended once, by the bishop on b3. Black's knight on c6 is attacked by the d5 pawn and nothing defends it, and the knight on g5 attacks f7, which only the king defends, and h7, which the rook and the knight on f6 defend."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs — le pion d5 est le pion en plus des Blancs, attaqué deux fois, par la dame et le cavalier f6, et défendu une fois, par le fou b3. Le cavalier c6 des Noirs est attaqué par le pion d5 et rien ne le défend, et le cavalier g5 attaque f7, que seul le roi défend, et h7, que la tour et le cavalier f6 défendent.'
+        plan:
+          vi: Đen lấy lại tốt bằng ...Nxd5; khi đó Trắng có Nxf7, đánh cùng lúc hậu d8 và xe h8, dù vua có thể ăn mã vì đường chéo của tượng b3 đã bị mã d5 chặn.
+          en: Black regains the pawn with ...Nxd5; White then has Nxf7, which forks the queen on d8 and the rook on h8, though the king can take the knight because the knight on d5 blocks the bishop's diagonal from b3.
+          fr: Les Noirs regagnent le pion par ...Nxd5 ; les Blancs ont alors Nxf7, qui fourche la dame d8 et la tour h8, bien que le roi puisse prendre le cavalier parce que le cavalier d5 bloque la diagonale du fou b3.
+        basis:
+          by: chan
+          at: 2026-09-30

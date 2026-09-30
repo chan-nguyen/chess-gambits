@@ -1,0 +1,60 @@
+# Italian Game: Evans Gambit, Morphy Attack. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.b4
+# Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O d6 8.cxd4 Bb6 9.Nc3, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-morphy-attack
+name: 'Italian Game: Evans Gambit, Morphy Attack'
+eco: C51
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4, Bxb4, c3, Ba5, d4, exd4, O-O, d6, cxd4, Bb6, Nc3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. At this point White is a pawn down but has castled and developed the
+      bishop on c4 and both knights, the d4 pawn is defended as often as it is attacked, and
+      the bishop on c4 bears on f7; that is treated as enough compensation for the line to
+      be labelled sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.Nc3, phát triển mã và tăng sức ép lên trung tâm. Trắng có sáu tốt, Đen bảy tốt, và tốt d4 bị tấn công hai lần, bởi tượng b6 và mã c6, và được bảo vệ hai lần, bởi mã f3 và hậu. Mục này đi theo nước 9...Nf6.
+    en: White has just played 9.Nc3, developing the knight and adding pressure to the centre. White has six pawns to Black's seven, and the d4 pawn is attacked twice, by the bishop on b6 and the knight on c6, and defended twice, by the knight on f3 and the queen. This entry follows 9...Nf6.
+    fr: Les Blancs viennent de jouer 9.Nc3, développant le cavalier et renforçant la pression sur le centre. Les Blancs ont six pions contre sept aux Noirs, et le pion d4 est attaqué deux fois, par le fou b6 et le cavalier c6, et défendu deux fois, par le cavalier f3 et la dame. Cette entrée suit 9...Nf6.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 9...Nf6 ở đây, chẳng hạn 9...Na5 hoặc 9...Bg4. Mục này chỉ mô hình hóa nước phát triển mã lên f6.
+      en: Black plays something other than 9...Nf6 here, for instance 9...Na5 or 9...Bg4. This entry models only the development of the knight to f6.
+      fr: Les Noirs jouent autre chose que 9...Nf6 ici, par exemple 9...Na5 ou 9...Bg4. Cette entrée ne modélise que le développement du cavalier en f6.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã lên f6, nơi nó tấn công tốt e4, quân được mã c3 bảo vệ.
+        en: Black develops the knight to f6, where it attacks the e4 pawn, which the knight on c3 defends.
+        fr: Les Noirs développent le cavalier en f6, où il attaque le pion e4, que le cavalier c3 défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy — con tốt đã thí chưa lấy lại được, tốt a của Trắng bị cô lập và các cột b và c bán mở cho Trắng. Tốt d4 bị tấn công hai lần và được bảo vệ hai lần, tốt e4 bị mã f6 tấn công và được mã c3 bảo vệ, còn tượng c4 tấn công f7, ô chỉ có vua bảo vệ.'
+          en: "Count the pawns: White six, Black seven — the sacrificed pawn has not come back, White's a-pawn is isolated and the b- and c-files are half-open for White. The d4 pawn is attacked twice and defended twice, the e4 pawn is attacked by the knight on f6 and defended by the knight on c3, and the bishop on c4 attacks f7, which only the king defends."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — le pion sacrifié n'est pas revenu, le pion a blanc est isolé et les colonnes b et c sont semi-ouvertes pour les Blancs. Le pion d4 est attaqué deux fois et défendu deux fois, le pion e4 est attaqué par le cavalier f6 et défendu par le cavalier c3, et le fou c4 attaque f7, que seul le roi défend."
+        plan:
+          vi: Trắng chơi Bg5, ghim mã f6 vào hậu, hoặc d5, đánh mã c6, rồi Re1. Đen chơi ...O-O, ...Bg4 để tấn công mã f3 và ...Na5 để thách thức tượng c4.
+          en: White plays Bg5, pinning the knight on f6 to the queen, or d5, hitting the knight on c6, and follows with Re1. Black plays ...O-O, ...Bg4 to attack the knight on f3 and ...Na5 to challenge the bishop on c4.
+          fr: Les Blancs jouent Bg5, clouant le cavalier f6 à la dame, ou d5, frappant le cavalier c6, puis Re1. Les Noirs jouent ...O-O, ...Bg4 pour attaquer le cavalier f3 et ...Na5 pour défier le fou c4.
+        basis:
+          by: chan
+          at: 2026-09-30

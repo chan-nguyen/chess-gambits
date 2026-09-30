@@ -1,0 +1,94 @@
+# Spanish Countergambit, Harding Countergambit, Fricke Gambit. The catalogue's line is 1.e4 e5
+# 2.Nf3 Nc6 3.Bb5 d5 4.Nxe5 Qg5 5.O-O, which ends on White's ply; with Black as the learner that
+# would make the root a learner node, so the defining line here stops at 4...Qg5 and 5.O-O is
+# modelled as the opponent's reply (docs/CONTEXT.md, invariant 5; the catalogue check accepts a
+# prefix). Replayed with chess.js through 5...Qxe5 6.Re1 Be7 7.d3. In this branch it is White who has
+# sacrificed, which is why the branch diverges from the family-level label. searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: spanish-countergambit-harding-countergambit-fricke-gambit
+name: 'Ruy Lopez: Spanish Countergambit, Harding Countergambit, Fricke Gambit'
+eco: C60
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, d5, Nxe5, Qg5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has eight pawns to Black's seven, so Black is a pawn down. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...Qg5. Mã e5 của Trắng bị hậu g5 tấn công mà không có quân nào bảo vệ; mã c6 cũng nhắm vào nó nhưng bị tượng b5 ghim vào vua nên không thể ăn. Hậu g5 cũng tấn công tốt g2. Trắng hơn một tốt, tám so với bảy.
+    en: Black has just played 4...Qg5. White's knight on e5 is attacked by the queen on g5 with nothing defending it; the knight on c6 also eyes it but is pinned to the king by the bishop on b5 and cannot capture. The queen also attacks the g2 pawn. White is a pawn up, eight to seven.
+    fr: Les Noirs viennent de jouer 4...Qg5. Le cavalier e5 des Blancs est attaqué par la dame g5 sans aucune défense ; le cavalier c6 le vise aussi mais il est cloué au roi par le fou b5 et ne peut pas capturer. La dame attaque aussi le pion g2. Les Blancs ont un pion de plus, huit contre sept.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 5.O-O, chẳng hạn 5.Nxc6 hoặc 5.Nf3. Đánh giá trong mục này dành cho nhánh Trắng nhập thành ngay và bỏ mặc mã e5.
+      en: White plays something other than 5.O-O, for example 5.Nxc6 or 5.Nf3. The assessment in this entry is for the line where White castles at once and leaves the knight on e5 to its fate.
+      fr: Les Blancs jouent autre chose que 5.O-O, par exemple 5.Nxc6 ou 5.Nf3. L'évaluation de cette fiche porte sur la ligne où les Blancs roquent tout de suite et abandonnent le cavalier e5 à son sort.
+  children:
+    - ply: O-O
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: Trắng nhập thành và để mặc mã e5, con mã bị hậu g5 tấn công mà không quân nào bảo vệ; mã c6 bị ghim nên không ăn được nó.
+        en: White castles and leaves the knight on e5, which the queen on g5 attacks and nothing defends; the pinned knight on c6 cannot take it.
+        fr: Les Blancs roquent et laissent le cavalier e5, que la dame g5 attaque et que rien ne défend ; le cavalier c6 cloué ne peut pas le prendre.
+      children:
+        - ply: Qxe5
+          annotation:
+            vi: 'Đen ăn mã e5 bằng hậu. Đen giờ có hai mã đối với một mã của Trắng, đổi lại kém một tốt: bảy tốt so với tám.'
+            en: "Black takes the knight on e5 with the queen. Black now has two knights to White's one, at the cost of a pawn: seven pawns to eight."
+            fr: "Les Noirs prennent le cavalier e5 avec la dame. Les Noirs ont maintenant deux cavaliers contre un pour les Blancs, au prix d'un pion : sept pions contre huit."
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 6.Re1, chẳng hạn 6.Bxc6+ hoặc 6.exd5. Đánh giá trong mục này dành cho nhánh Trắng đưa xe lên cột e.
+              en: White plays something other than 6.Re1, for example 6.Bxc6+ or 6.exd5. The assessment in this entry is for the line where White brings the rook to the e-file.
+              fr: Les Blancs jouent autre chose que 6.Re1, par exemple 6.Bxc6+ ou 6.exd5. L'évaluation de cette fiche porte sur la ligne où les Blancs amènent la tour sur la colonne e.
+          children:
+            - ply: Re1
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng đưa xe lên cột e phía sau tốt e4, nhắm vào hậu e5 và vua e8 đứng cùng cột; nếu tốt e4 rời đi với tempo thì hậu Đen sẽ bị ghim vào vua.
+                en: White puts the rook on the e-file behind the e4 pawn, lining it up with Black's queen on e5 and king on e8; if the e4 pawn moves with tempo, Black's queen is pinned against the king.
+                fr: Les Blancs placent la tour sur la colonne e derrière le pion e4, l'alignant avec la dame e5 et le roi e8 des Noirs ; si le pion e4 s'écarte avec tempo, la dame noire est clouée au roi.
+              children:
+                - ply: Be7
+                  annotation:
+                    vi: Đen đặt tượng f8 lên e7, chắn giữa hậu và vua trên cột e, nên hậu không thể bị ghim vào vua nữa.
+                    en: Black puts the bishop from f8 on e7, between the queen and the king on the e-file, so the queen can no longer be pinned against the king.
+                    fr: Les Noirs placent le fou de f8 en e7, entre la dame et le roi sur la colonne e, si bien que la dame ne peut plus être clouée au roi.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi nước khác thay vì 7.d3, chẳng hạn 7.c3 hoặc 7.Nc3. Đánh giá trong mục này dành cho nhánh Trắng bảo vệ tốt e4 lần thứ hai bằng d3.
+                      en: White plays something other than 7.d3, for example 7.c3 or 7.Nc3. The assessment in this entry is for the line where White defends the e4 pawn a second time with d3.
+                      fr: Les Blancs jouent autre chose que 7.d3, par exemple 7.c3 ou 7.Nc3. L'évaluation de cette fiche porte sur la ligne où les Blancs défendent le pion e4 une seconde fois par d3.
+                  children:
+                    - ply: d3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: 'Trắng bảo vệ tốt e4 bằng tốt d3: tốt e4 giờ có hai quân bảo vệ trước hai quân tấn công.'
+                        en: 'White defends the e4 pawn with the d-pawn: the e4 pawn now has two defenders against two attackers.'
+                        fr: 'Les Blancs défendent le pion e4 avec le pion d : le pion e4 a maintenant deux défenseurs contre deux attaquants.'
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm vật chất: Trắng tám tốt, Đen bảy tốt, nhưng Đen có hai mã còn Trắng chỉ có một, nên Đen đã thắng một mã để đổi lấy một tốt. Tốt e4 bị tốt d5 và hậu e5 tấn công và có tốt d3 cùng xe e1 bảo vệ, còn tượng e7 chắn giữa hậu và vua trên cột e. Nhánh này lệch khỏi nhãn chung của họ: ở đây chính Trắng là bên đã hy sinh.'
+                          en: "Count the material: White has eight pawns to Black's seven, but Black has two knights to White's one, so Black has won a knight for a pawn. The e4 pawn is attacked by the d5 pawn and the queen on e5 and defended by the d3 pawn and the rook on e1, and the bishop on e7 stands between the queen and the king on the e-file. This branch diverges from the family label: here it is White who has made the sacrifice."
+                          fr: "Comptons le matériel : les Blancs ont huit pions contre sept aux Noirs, mais les Noirs ont deux cavaliers contre un, donc les Noirs ont gagné un cavalier pour un pion. Le pion e4 est attaqué par le pion d5 et la dame e5 et défendu par le pion d3 et la tour e1, et le fou e7 se trouve entre la dame et le roi sur la colonne e. Cette branche s'écarte de l'étiquette de la famille : ici, c'est le camp blanc qui a fait le sacrifice."
+                        plan:
+                          vi: Trắng chơi Nc3 để thêm một quân bảo vệ tốt e4, hoặc Bxc6+ để phá cấu trúc tốt của Đen, hoặc f4 để đuổi hậu. Đen chơi ...Nf6 để thêm một quân tấn công e4, rồi ...Bd7 để hoàn thành phát triển, giữ vững quân thừa.
+                          en: White plays Nc3 to add a defender to the e4 pawn, or Bxc6+ to damage Black's pawn structure, or f4 to drive the queen away. Black plays ...Nf6 to add an attacker against e4, then ...Bd7 to finish developing, keeping the extra piece.
+                          fr: Les Blancs jouent Nc3 pour ajouter un défenseur au pion e4, ou Bxc6+ pour abîmer la structure de pions noire, ou f4 pour chasser la dame. Les Noirs jouent ...Nf6 pour ajouter un attaquant contre e4, puis ...Bd7 pour achever leur développement, en gardant la pièce supplémentaire.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'

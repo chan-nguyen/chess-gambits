@@ -1,0 +1,66 @@
+# King's Gambit Declined: Senechaud Countergambit, taught. The frozen line 1.e4 e5 2.f4 Bc5
+# 3.Nf3 g5 ends on Black's ply, which the validator does not allow as a defining line for a
+# White entry (docs/CONTEXT.md, invariant 5), so `definingLine` stops at White's own 3.Nf3
+# and 3...g5, the move that names this entry, is modelled as the root's reply. The modelled
+# line is 3...g5 4.fxe5, so the leaf has Black to move. Every ply was replayed with
+# chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check
+# and no capture is going free.
+id: kings-gambit-declined-senechaud-countergambit
+name: "King's Gambit Declined: Senechaud Countergambit"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Bc5, Nf3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 3...g5 offers a pawn to gain time against f4, but after 4.fxe5 White is a pawn
+      up with nothing of its own attacked, the price being a doubled pair of pawns on the e-file.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.Nf3, tấn công tốt e5, con tốt cũng bị tốt f4 đánh và không có ai bảo vệ. Tốt f4 của Trắng bị tốt e5 tấn công mà cũng không có ai bảo vệ.
+    en: White has just played 3.Nf3, attacking the pawn on e5, which the pawn on f4 also attacks and nothing defends. White's pawn on f4 is attacked by the pawn on e5 and defended by nothing either.
+    fr: Les Blancs viennent de jouer 3.Nf3, attaquant le pion e5, que le pion f4 attaque aussi et que rien ne défend. Le pion f4 des Blancs est attaqué par le pion e5 et n'est lui non plus défendu par rien.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 3...g5, chẳng hạn 3...exf4, ăn tốt f4, hoặc 3...d6, bảo vệ e5.
+      en: Black plays something other than 3...g5, for example 3...exf4, which takes the pawn on f4, or 3...d6, which defends e5.
+      fr: Les Noirs jouent autre chose que 3...g5, par exemple 3...exf4, qui prend le pion f4, ou 3...d6, qui défend e5.
+  children:
+    - ply: g5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: 'Đen tấn công tốt f4 lần thứ hai bằng tốt g, và đưa ra một con tốt: tốt g5 bị tốt f4 và mã f3 tấn công, chỉ có hậu d8 bảo vệ.'
+        en: 'Black attacks the pawn on f4 a second time with the g-pawn and offers a pawn: the pawn on g5 is attacked by the pawn on f4 and the knight on f3 and defended only by the queen on d8.'
+        fr: 'Les Noirs attaquent le pion f4 une seconde fois avec le pion g et offrent un pion : le pion g5 est attaqué par le pion f4 et le cavalier f3 et défendu seulement par la dame d8.'
+      children:
+        - ply: fxe5
+          annotation:
+            vi: Trắng ăn tốt e5 bằng tốt f, nên hơn một tốt, và mã f3 giờ đánh vào tốt g5.
+            en: White takes the pawn on e5 with the f-pawn and is a pawn up, and the knight on f3 now attacks the pawn on g5.
+            fr: Les Blancs prennent le pion e5 avec le pion f et ont un pion d'avance, et le cavalier f3 attaque maintenant le pion g5.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt, nhưng hai tốt e4 và e5 của Trắng bị chồng trên cột e. Tốt g5 của Đen bị mã f3 tấn công và được hậu bảo vệ, còn Trắng không có quân nào đang bị tấn công.'
+              en: "Count the pawns: White eight, Black seven, so White is a pawn up, but two of White's pawns stand doubled on the e-file, on e4 and e5. Black's pawn on g5 is attacked by the knight on f3 and defended by the queen, and nothing of White's is attacked."
+              fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, si bien que les Blancs ont un pion d'avance, mais deux pions blancs sont doublés sur la colonne e, en e4 et e5. Le pion g5 des Noirs est attaqué par le cavalier f3 et défendu par la dame, et rien chez les Blancs n'est attaqué."
+            plan:
+              vi: Trắng chơi d4, đánh tượng c5 và hỗ trợ e5, hoặc phát triển bằng Bc4. Đen chơi ...g4, đuổi mã f3, hoặc ...d6 và ...Nc6, cùng đánh vào e5.
+              en: White plays d4, which attacks the bishop on c5 and supports e5, or develops with Bc4. Black plays ...g4 to chase the knight on f3, or ...d6 and ...Nc6, which both attack e5.
+              fr: Les Blancs jouent d4, qui attaque le fou c5 et soutient e5, ou se développent par Bc4. Les Noirs jouent ...g4 pour chasser le cavalier f3, ou ...d6 et ...Nc6, qui attaquent tous deux e5.
+            basis:
+              by: chan
+              at: '2026-09-30'

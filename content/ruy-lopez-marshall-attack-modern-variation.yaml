@@ -1,0 +1,77 @@
+# Ruy Lopez: Marshall Attack, Modern Variation. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6
+# 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d5 9.exd5 Nxd5 10.Nxe5 Nxe5 11.Rxe5 c6, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 12.d4. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: ruy-lopez-marshall-attack-modern-variation
+name: 'Ruy Lopez: Marshall Attack, Modern Variation'
+eco: C89
+category: gambit
+side: black
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bb5,
+    a6,
+    Ba4,
+    Nf6,
+    O-O,
+    Be7,
+    Re1,
+    b5,
+    Bb3,
+    O-O,
+    c3,
+    d5,
+    exd5,
+    Nxd5,
+    Nxe5,
+    Nxe5,
+    Rxe5,
+    c6,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has seven pawns to Black's six, so Black is a pawn down. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 11...c6, củng cố mã d5. Mã d5 bị xe e5 và tượng b3 tấn công, nhưng có hậu d8 và tốt c6 bảo vệ. Đen đang kém một tốt, sáu so với bảy.
+    en: Black has just played 11...c6, shoring up the knight on d5. The knight is attacked by the rook on e5 and the bishop on b3 and defended by the queen on d8 and the c6 pawn. Black is a pawn down, six to seven.
+    fr: Les Noirs viennent de jouer 11...c6, consolidant le cavalier d5. Le cavalier est attaqué par la tour e5 et le fou b3 et défendu par la dame d8 et le pion c6. Les Noirs ont un pion de moins, six contre sept.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 12.d4, chẳng hạn 12.d3 hoặc 12.Re1. Đánh giá trong mục này dành cho nhánh Trắng chơi d4 ngay.
+      en: White plays something other than 12.d4, for example 12.d3 or 12.Re1. The assessment in this entry is for the line where White plays d4 at once.
+      fr: Les Blancs jouent autre chose que 12.d4, par exemple 12.d3 ou 12.Re1. L'évaluation de cette fiche porte sur la ligne où les Blancs jouent d4 tout de suite.
+  children:
+    - ply: d4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi d4, dùng tốt này bảo vệ xe e5 và mở đường cho tượng c1.
+        en: White plays d4, using the pawn to defend the rook on e5 and opening the diagonal for the bishop on c1.
+        fr: Les Blancs jouent d4, utilisant le pion pour défendre la tour e5 et ouvrant la diagonale du fou c1.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen sáu — con tốt Marshall chưa lấy lại được. Bù lại, mã d5 của Đen bị xe e5 và tượng b3 tấn công nhưng có hậu d8 và tốt c6 bảo vệ, còn mã b1, tượng c1 và xe a1 của Trắng vẫn chưa rời ô xuất phát.'
+          en: "Count the pawns: White seven, Black six — the Marshall pawn has not come back. In return Black's knight on d5 is attacked by the rook on e5 and the bishop on b3 but defended by the queen on d8 and the c6 pawn, and White's knight on b1, bishop on c1 and rook on a1 have not yet left their starting squares."
+          fr: "Comptons les pions : sept pour les Blancs, six pour les Noirs — le pion Marshall n'est pas revenu. En contrepartie, le cavalier d5 noir est attaqué par la tour e5 et le fou b3 mais défendu par la dame d8 et le pion c6, et le cavalier b1, le fou c1 et la tour a1 des Blancs n'ont pas encore quitté leur case de départ."
+        plan:
+          vi: Trắng chơi Re1 khi tượng d6 tấn công xe, rồi Be3 và Nd2 để phát triển nốt. Đen chơi ...Bd6, ...Qh4 và ...Bg4 để dồn quân vào cánh vua Trắng.
+          en: White plays Re1 once the bishop on d6 attacks the rook, then Be3 and Nd2 to finish developing. Black plays ...Bd6, ...Qh4 and ...Bg4, bringing the pieces towards White's kingside.
+          fr: Les Blancs jouent Re1 lorsque le fou d6 attaque la tour, puis Be3 et Nd2 pour achever leur développement. Les Noirs jouent ...Bd6, ...Qh4 et ...Bg4, amenant les pièces vers l'aile roi blanche.
+        basis:
+          by: chan
+          at: '2026-09-30'

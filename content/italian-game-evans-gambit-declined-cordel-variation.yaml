@@ -1,0 +1,60 @@
+# Italian Game: Evans Gambit Declined, Cordel Variation. Defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bc4 Bc5 4.b4 Bb6 5.Bb2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-declined-cordel-variation
+name: 'Italian Game: Evans Gambit Declined, Cordel Variation'
+eco: C51
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4, Bb6, Bb2]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 5.Bb2 the bishop bears on e5 at once, so Black has to keep e5
+      defended while the b4 pawn needs care of its own; White has three pieces developed and
+      no pawn has been lost, so the position holds up. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Bb2, đặt tượng lên đường chéo dài nhắm vào e5 qua c3 và d4. Tốt e5 bị tấn công hai lần, bởi mã f3 và tượng, và chỉ được một quân bảo vệ là mã c6. Tốt b4 bị mã c6 tấn công mà không ai bảo vệ. Mục này đi theo nước 5...d6, bảo vệ e5.
+    en: White has just played 5.Bb2, placing the bishop on the long diagonal where it bears on e5 through c3 and d4. The e5 pawn is attacked twice, by the knight on f3 and the bishop, and defended once, by the knight on c6. The b4 pawn is attacked by the knight on c6 and nothing defends it. This entry follows 5...d6, which defends e5.
+    fr: Les Blancs viennent de jouer 5.Bb2, plaçant le fou sur la grande diagonale où il vise e5 par c3 et d4. Le pion e5 est attaqué deux fois, par le cavalier f3 et le fou, et défendu une fois, par le cavalier c6. Le pion b4 est attaqué par le cavalier c6 et rien ne le défend. Cette entrée suit 5...d6, qui défend e5.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...d6 ở đây, chẳng hạn 5...Nf6. Mục này chỉ mô hình hóa nước bảo vệ tốt e5 bằng tốt d.
+      en: Black plays something other than 5...d6 here, for instance 5...Nf6. This entry models only the defence of the e5 pawn with the d-pawn.
+      fr: Les Noirs jouent autre chose que 5...d6 ici, par exemple 5...Nf6. Cette entrée ne modélise que la défense du pion e5 avec le pion d.
+  children:
+    - ply: d6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen bảo vệ tốt e5 lần thứ hai bằng tốt d, đồng thời mở đường chéo cho tượng c8.
+        en: Black defends the e5 pawn a second time with the d-pawn, which also opens the diagonal for the bishop on c8.
+        fr: Les Noirs défendent le pion e5 une deuxième fois avec le pion d, ce qui ouvre aussi la diagonale du fou c8.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen tám — chưa có tốt nào bị ăn. Tốt b4 bị mã c6 tấn công mà không ai bảo vệ, còn tốt e5, bị mã f3 và tượng b2 tấn công hai lần, được bảo vệ hai lần, bởi mã c6 và tốt d6. Hai bên chưa nhập thành.'
+          en: 'Count the pawns: White eight, Black eight — nothing has been captured yet. The b4 pawn is attacked by the knight on c6 and nothing defends it, while the e5 pawn, attacked twice by the knight on f3 and the bishop on b2, is defended twice, by the knight on c6 and the d6 pawn. Neither side has castled.'
+          fr: "Comptez les pions : huit pour les Blancs, huit pour les Noirs — aucun pion n'a encore été pris. Le pion b4 est attaqué par le cavalier c6 et rien ne le défend, tandis que le pion e5, attaqué deux fois par le cavalier f3 et le fou b2, est défendu deux fois, par le cavalier c6 et le pion d6. Aucun camp n'a roqué."
+        plan:
+          vi: Trắng chơi a3 để bảo vệ tốt b4, rồi d3 và O-O, giữ tượng b2 nhắm vào e5. Đen chơi ...Nf6 để đánh tốt e4 và ...O-O, dùng tượng b6 nhắm vào f2.
+          en: White plays a3 to defend the b4 pawn, then d3 and O-O, keeping the bishop on b2 aimed at e5. Black plays ...Nf6 to hit the e4 pawn and ...O-O, using the bishop on b6 against f2.
+          fr: Les Blancs jouent a3 pour défendre le pion b4, puis d3 et O-O, gardant le fou b2 braqué sur e5. Les Noirs jouent ...Nf6 pour frapper le pion e4 et ...O-O, utilisant le fou b6 contre f2.
+        basis:
+          by: chan
+          at: 2026-09-30

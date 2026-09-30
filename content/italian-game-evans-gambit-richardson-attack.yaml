@@ -1,0 +1,60 @@
+# Italian Game: Evans Gambit, Richardson Attack. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5
+# 4.b4 Bxb4 5.c3 Ba5 6.O-O Nf6 7.d4 O-O 8.Nxe5, which ends on White's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-richardson-attack
+name: 'Italian Game: Evans Gambit, Richardson Attack'
+eco: C52
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4, Bxb4, c3, Ba5, O-O, Nf6, d4, O-O, Nxe5]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. Material is level at the end of the defining line. Black can take the e4
+      pawn, but the knight on e5 attacks c6, d7 and f7, both kings have castled and the
+      e-file is then open; that is treated as enough for the line to be labelled sound. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.Nxe5, ăn tốt e5 bằng mã, con mã giờ tấn công mã c6 cùng các tốt d7 và f7. Mã được tốt d4 bảo vệ và bị mã c6 tấn công, còn tốt e4 của Trắng bị mã f6 tấn công mà không có quân nào bảo vệ. Vật chất ngang nhau với bảy tốt mỗi bên, và hai vua đều đã nhập thành. Mục này đi theo nước 8...Nxe4.
+    en: White has just played 8.Nxe5, capturing the e5 pawn with the knight, which now attacks the knight on c6 and the d7 and f7 pawns. The knight is defended by the d4 pawn and attacked by the knight on c6, and White's e4 pawn is attacked by the knight on f6 and nothing defends it. Material is level at seven pawns each, and both kings have castled. This entry follows 8...Nxe4.
+    fr: Les Blancs viennent de jouer 8.Nxe5, prenant le pion e5 avec le cavalier, qui attaque maintenant le cavalier c6 et les pions d7 et f7. Le cavalier est défendu par le pion d4 et attaqué par le cavalier c6, et le pion e4 blanc est attaqué par le cavalier f6 et rien ne le défend. Le matériel est égal, sept pions de chaque côté, et les deux rois ont roqué. Cette entrée suit 8...Nxe4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 8...Nxe4 ở đây, chẳng hạn 8...Nxe5. Mục này chỉ mô hình hóa nước ăn tốt trên e4.
+      en: Black plays something other than 8...Nxe4 here, for instance 8...Nxe5. This entry models only the capture on e4.
+      fr: Les Noirs jouent autre chose que 8...Nxe4 ici, par exemple 8...Nxe5. Cette entrée ne modélise que la prise en e4.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt e4 bằng mã, con mã giờ tấn công các tốt c3 và f2.
+        en: Black takes the e4 pawn with the knight, which now attacks the c3 and f2 pawns.
+        fr: Les Noirs prennent le pion e4 avec le cavalier, qui attaque maintenant les pions c3 et f2.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy — con tốt e4 chưa lấy lại được. Tốt c3 bị tấn công hai lần, bởi tượng a5 và mã e4, và chỉ được một quân bảo vệ là mã b1; mã e5 bị mã c6 tấn công và được tốt d4 bảo vệ; còn f7 bị tấn công hai lần, bởi mã e5 và tượng c4, và được bảo vệ hai lần, bởi xe và vua. Hai vua đều đã nhập thành và cột e mở.'
+          en: 'Count the pawns: White six, Black seven — the e4 pawn has not come back. The c3 pawn is attacked twice, by the bishop on a5 and the knight on e4, and defended once, by the knight on b1; the knight on e5 is attacked by the knight on c6 and defended by the d4 pawn; and f7 is attacked twice, by the knight on e5 and the bishop on c4, and defended twice, by the rook and the king. Both kings have castled, and the e-file is open.'
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — le pion e4 n'est pas revenu. Le pion c3 est attaqué deux fois, par le fou a5 et le cavalier e4, et défendu une fois, par le cavalier b1 ; le cavalier e5 est attaqué par le cavalier c6 et défendu par le pion d4 ; et f7 est attaqué deux fois, par le cavalier e5 et le fou c4, et défendu deux fois, par la tour et le roi. Les deux rois ont roqué, et la colonne e est ouverte."
+        plan:
+          vi: Trắng chơi Nxc6 để loại mã đang tấn công d4, rồi Nd2 để thách thức mã e4. Đen chơi ...d6 để đánh mã e5 và ...Bf5 để đưa tượng c8 ra.
+          en: White plays Nxc6, which removes the knight attacking d4, and then Nd2 to challenge the knight on e4. Black plays ...d6 to attack the knight on e5 and ...Bf5 to bring the bishop on c8 out.
+          fr: Les Blancs jouent Nxc6, qui retire le cavalier attaquant d4, puis Nd2 pour défier le cavalier e4. Les Noirs jouent ...d6 pour attaquer le cavalier e5 et ...Bf5 pour sortir le fou c8.
+        basis:
+          by: chan
+          at: 2026-09-30

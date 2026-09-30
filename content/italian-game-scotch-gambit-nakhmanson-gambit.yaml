@@ -1,0 +1,79 @@
+# Italian Game: Scotch Gambit, Nakhmanson Gambit. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6
+# 4.d4 exd4 5.O-O Nxe4 6.Nc3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-scotch-gambit-nakhmanson-gambit
+name: 'Italian Game: Scotch Gambit, Nakhmanson Gambit'
+eco: C56
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, d4, exd4, O-O, Nxe4, Nc3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White has given two pawns, and three after 7...dxc3, but the open e-file bears on Black's king,
+      which has not castled, and the bishop on c4 eyes f7; that is treated as enough
+      compensation for the line to be labelled sound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Nc3, tấn công mã e4, quân không có gì bảo vệ. Mã c3 bị tấn công hai lần, bởi tốt d4 và mã e4, và chỉ được tốt b2 bảo vệ một lần. Trắng có sáu tốt, Đen tám tốt, và hai tốt d7 và d4 của Đen bị chồng. Mục này đi theo nước đổi mã 6...Nxc3.
+    en: White has just played 6.Nc3, attacking the knight on e4, which nothing defends. The knight on c3 is attacked twice, by the d4 pawn and the knight on e4, and defended once, by the b2 pawn. White has six pawns to Black's eight, and Black's pawns on d7 and d4 are doubled. This entry follows the trade 6...Nxc3.
+    fr: Les Blancs viennent de jouer 6.Nc3, attaquant le cavalier e4, que rien ne défend. Le cavalier c3 est attaqué deux fois, par le pion d4 et le cavalier e4, et défendu une fois, par le pion b2. Les Blancs ont six pions contre huit aux Noirs, et les pions noirs d7 et d4 sont doublés. Cette entrée suit l'échange 6...Nxc3.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Nxc3 ở đây, chẳng hạn 6...d5 hoặc 6...Nf6. Mục này chỉ mô hình hóa nước đổi mã trên c3.
+      en: Black plays something other than 6...Nxc3 here, for instance 6...d5 or 6...Nf6. This entry models only the trade on c3.
+      fr: Les Noirs jouent autre chose que 6...Nxc3 ici, par exemple 6...d5 ou 6...Nf6. Cette entrée ne modélise que l'échange en c3.
+  children:
+    - ply: Nxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn mã c3 bằng mã từ e4, tạm thời được thêm một quân; Trắng ăn lại bằng tốt b.
+        en: Black takes the knight on c3 with the knight from e4, winning material for a moment; White recaptures with the b-pawn.
+        fr: Les Noirs prennent le cavalier c3 avec le cavalier de e4, gagnant du matériel pour un instant ; les Blancs reprennent avec le pion b.
+      children:
+        - ply: bxc3
+          annotation:
+            vi: Trắng ăn lại bằng tốt b, nước đi làm hai tốt c của Trắng bị chồng và để tốt c3 bị tốt d4 tấn công mà không có quân nào bảo vệ.
+            en: White recaptures with the b-pawn, which doubles White's pawns on the c-file and leaves the pawn on c3 attacked by the d4 pawn with nothing to defend it.
+            fr: Les Blancs reprennent avec le pion b, ce qui double les pions blancs sur la colonne c et laisse le pion c3 attaqué par le pion d4 sans rien pour le défendre.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 7...dxc3 ở đây, chẳng hạn 7...d5, đánh tượng c4. Mục này chỉ mô hình hóa nước ăn tốt trên c3.
+              en: Black plays something other than 7...dxc3 here, for instance 7...d5, which attacks the bishop on c4. This entry models only the capture on c3.
+              fr: Les Noirs jouent autre chose que 7...dxc3 ici, par exemple 7...d5, qui attaque le fou c4. Cette entrée ne modélise que la prise en c3.
+          children:
+            - ply: dxc3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen ăn tốt c3 bằng tốt d, hơn ba tốt.
+                en: Black takes the pawn on c3 with the d-pawn, going three pawns up.
+                fr: Les Noirs prennent le pion c3 avec le pion d, avec trois pions d'avance.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng năm, Đen tám — món thí là ba tốt và chưa lấy lại được con nào. Các tốt a2 và c2 của Trắng bị cô lập, còn hai tốt c7 và c3 của Đen bị chồng. Cột e mở trong khi vua Đen vẫn ở e8, và tượng c4 tấn công f7, ô chỉ có vua bảo vệ; hậu d1 tấn công d7, ô được tượng, hậu và vua bảo vệ.'
+                  en: "Count the pawns: White five, Black eight — the sacrifice is three pawns and none has come back. White's pawns on a2 and c2 are isolated, and Black's pawns on c7 and c3 are doubled. The e-file is open with Black's king still on e8, and the bishop on c4 attacks f7, which only the king defends; the queen on d1 attacks d7, which the bishop, the queen and the king defend."
+                  fr: "Comptez les pions : cinq pour les Blancs, huit pour les Noirs — le sacrifice est de trois pions et aucun n'est revenu. Les pions blancs a2 et c2 sont isolés, et les pions noirs c7 et c3 sont doublés. La colonne e est ouverte avec le roi noir toujours en e8, et le fou c4 attaque f7, que seul le roi défend ; la dame d1 attaque d7, que le fou, la dame et le roi défendent."
+                plan:
+                  vi: Trắng chơi Re1+, dùng cột e mở chống lại vua trên e8, và Ba3, tấn công tượng f8. Đen đáp nước chiếu bằng ...Be7 hoặc ...Qe7, rồi đánh tượng c4 bằng ...d5.
+                  en: White plays Re1+, using the open e-file against the king on e8, and Ba3, which attacks the bishop on f8. Black answers the check with ...Be7 or ...Qe7 and then hits the bishop on c4 with ...d5.
+                  fr: Les Blancs jouent Re1+, utilisant la colonne e ouverte contre le roi en e8, et Ba3, qui attaque le fou f8. Les Noirs répondent à l'échec par ...Be7 ou ...Qe7 puis frappent le fou c4 par ...d5.
+                basis:
+                  by: chan
+                  at: 2026-09-30

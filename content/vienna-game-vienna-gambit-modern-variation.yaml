@@ -1,0 +1,66 @@
+# Vienna Game: Vienna Gambit, Modern Variation. Defining line 1.e4 e5 2.Nc3 Nf6 3.f4 d5 4.fxe5 Nxe4 5.d3.
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: vienna-game-vienna-gambit-modern-variation
+name: 'Vienna Game: Vienna Gambit, Modern Variation'
+eco: C29
+category: gambit
+side: white
+definingLine:
+  - e4
+  - e5
+  - Nc3
+  - Nf6
+  - f4
+  - d5
+  - fxe5
+  - Nxe4
+  - d3
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 5.d3, tấn công mã e4 lần thứ hai: mã bị mã c3 và tốt d3 tấn công mà chỉ có tốt d5 bảo vệ. Mỗi bên có bảy tốt.'
+    en: 'White has just played 5.d3, attacking the knight on e4 a second time: it is attacked by the knight on c3 and the d3 pawn and defended only by the d5 pawn. Each side has seven pawns.'
+    fr: 'Les Blancs viennent de jouer 5.d3, attaquant le cavalier e4 une seconde fois : il est attaqué par le cavalier c3 et le pion d3 et défendu seulement par le pion d5. Chaque camp a sept pions.'
+  dismissRest:
+    reason:
+      vi: Đen chọn một nước khác thay vì 5...Nxc3. Bài này chỉ đi theo nhánh đổi mã 5...Nxc3; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: Black plays something other than 5...Nxc3 here. This entry follows the knight trade 5...Nxc3 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 5...Nxc3. Cette fiche ne suit que l'échange de cavaliers 5...Nxc3 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi con mã bị tấn công bằng 5...Nxc3, loại bỏ một quân tấn công. Cách ăn lại duy nhất là bxc3.
+        en: Black trades the attacked knight with 5...Nxc3, removing one of the attackers. The only way to recapture is bxc3.
+        fr: Les Noirs échangent le cavalier attaqué par 5...Nxc3, supprimant l'un des attaquants. La seule reprise possible est bxc3.
+      children:
+        - ply: bxc3
+          annotation:
+            vi: Trắng ăn lại bằng tốt b, 6.bxc3, nước ăn lại duy nhất; nó làm đôi tốt c và để tốt a cô lập, nhưng để cột b nửa mở cho quân Trắng.
+            en: White recaptures with the b-pawn, 6.bxc3, the only recapture; it doubles the c-pawns and leaves the a-pawn isolated, but makes the b-file half open for White's pieces.
+            fr: Les Blancs reprennent avec le pion b, 6.bxc3, la seule reprise ; cela double les pions c et isole le pion a, mais rend la colonne b semi-ouverte pour les pièces blanches.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: mỗi bên bảy tốt, nên vật chất cân bằng. Trắng có hai tốt c bị đôi (c2 và c3) và tốt a cô lập ở a2; tốt e5 đã tiến xa và không có quân bảo vệ. Cột b nửa mở cho quân Trắng vì Trắng không còn tốt b còn Đen vẫn có tốt b7.'
+              en: "Count the pawns: seven each, so material is level. White has doubled c-pawns (c2 and c3) and an isolated pawn on a2; the e5 pawn is advanced and has no defender. The b-file is half open for White's pieces, since White has no b-pawn and Black still has b7."
+              fr: "Comptez les pions : sept de chaque côté, donc le matériel est égal. Les Blancs ont des pions c doublés (c2 et c3) et un pion a isolé en a2 ; le pion e5 est avancé et n'a aucun défenseur. La colonne b est semi-ouverte pour les pièces blanches, puisque les Blancs n'ont plus de pion b et que les Noirs ont encore b7."
+            plan:
+              vi: Trắng hỗ trợ e5 bằng d4, phát triển bằng Nf3 và Be2, và có thể dùng cột b bằng Rb1 nhắm vào b7. Đen tấn công e5 bằng ...Nc6 và ...Qe7, nhắm vào cánh hậu bị hỏng của Trắng.
+              en: White supports e5 with d4, develops with Nf3 and Be2, and can use the b-file with Rb1 against b7. Black attacks e5 with ...Nc6 and ...Qe7, aiming at White's broken queenside.
+              fr: Les Blancs soutiennent e5 par d4, se développent par Nf3 et Be2, et peuvent utiliser la colonne b par Rb1 contre b7. Les Noirs attaquent e5 par ...Nc6 et ...Qe7, visant l'aile dame abîmée des Blancs.
+            basis:
+              by: chan
+              at: '2026-09-30'

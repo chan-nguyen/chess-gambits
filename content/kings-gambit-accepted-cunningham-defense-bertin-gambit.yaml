@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Cunningham Defense, Bertin Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 Be7 4.Bc4 Bh4+ 5.g3 ends on White's own 5.g3, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Black's 5...fxg3 is modelled as the root's
+# single reply, so the leaf has White to move. Every ply was replayed with chess.js;
+# searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check and no
+# capture is going free.
+id: kings-gambit-accepted-cunningham-defense-bertin-gambit
+name: "King's Gambit Accepted: Cunningham Defense, Bertin Gambit"
+eco: C35
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, Be7, Bc4, Bh4+, g3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 5.g3 offers a second pawn to drive the bishop off h4, but after 5...fxg3 Black
+      is two pawns up and the bishop is still defended by the queen. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.g3, tấn công tượng h4, con tượng vốn đã bị mã f3 đánh và chỉ có hậu d8 bảo vệ. Tốt g3 có thể bị tốt f4 hoặc tượng ăn.
+    en: White has just played 5.g3, attacking the bishop on h4, which the knight on f3 already attacks and which only the queen on d8 defends. The pawn on g3 can be captured by the pawn on f4 or by the bishop.
+    fr: Les Blancs viennent de jouer 5.g3, attaquant le fou h4, que le cavalier f3 attaquait déjà et que seule la dame d8 défend. Le pion g3 peut être pris par le pion f4 ou par le fou.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...fxg3, chẳng hạn 5...d5, phản công tượng c4 và tốt e4, hoặc 5...Bg5, rút tượng về. Phần lớn các nước còn lại để Trắng ăn tượng h4 bằng Nxh4 hoặc gxh4 mà thắng quân.
+      en: Black plays something other than 5...fxg3, for example 5...d5, which counterattacks the bishop on c4 and the pawn on e4, or 5...Bg5, which retreats the bishop. Most other moves let White win a piece by taking the bishop on h4 with Nxh4 or gxh4.
+      fr: Les Noirs jouent autre chose que 5...fxg3, par exemple 5...d5, qui contre-attaque le fou c4 et le pion e4, ou 5...Bg5, qui replie le fou. La plupart des autres coups laissent les Blancs gagner une pièce en prenant le fou h4 par Nxh4 ou gxh4.
+  children:
+    - ply: fxg3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn g3 bằng tốt f. Tượng h4 giờ chỉ bị mã f3 đánh và có hậu bảo vệ, còn tốt mới ở g3 đánh vào h2, nơi mã và xe đang bảo vệ.
+        en: Black takes on g3 with the f-pawn. The bishop on h4 is now attacked only by the knight on f3 and defended by the queen, and the new pawn on g3 attacks h2, which the knight and the rook defend.
+        fr: Les Noirs prennent en g3 avec le pion f. Le fou h4 n'est plus attaqué que par le cavalier f3 et défendu par la dame, et le nouveau pion en g3 attaque h2, que le cavalier et la tour défendent.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, nên Đen hơn hai tốt. Vua Trắng vẫn còn quyền nhập thành, và tượng h4 của Đen bị đánh một lần, bởi mã f3, và được bảo vệ một lần, bởi hậu d8.'
+          en: "Count the pawns: White six, Black eight, so Black is two pawns up. White's king has kept the right to castle, and Black's bishop on h4 is attacked once, by the knight on f3, and defended once, by the queen on d8."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, si bien que les Noirs ont deux pions d'avance. Le roi blanc a gardé le droit de roquer, et le fou noir h4 est attaqué une fois, par le cavalier f3, et défendu une fois, par la dame d8."
+        plan:
+          vi: 'Trắng có thể nhập thành ngay, đưa vua ra khỏi đường chéo của tượng h4, vì sau Nxh4 Qxh4 tốt g3 đe dọa ...g2+, một nước chiếu lộ đồng thời đánh vào xe h1. Đen muốn giữ hai tốt hơn và chơi ...d5 để thách thức tượng c4.'
+          en: 'White can castle at once, taking the king off the diagonal of the bishop on h4, because after Nxh4 Qxh4 the pawn on g3 threatens ...g2+, a discovered check that also attacks the rook on h1. Black wants to keep the two extra pawns and plays ...d5 to challenge the bishop on c4.'
+          fr: 'Les Blancs peuvent roquer tout de suite, ce qui écarte le roi de la diagonale du fou h4, car après Nxh4 Qxh4 le pion g3 menace ...g2+, un échec à la découverte qui attaque aussi la tour h1. Les Noirs veulent garder les deux pions de plus et jouent ...d5 pour contester le fou c4.'
+        basis:
+          by: chan
+          at: '2026-09-30'

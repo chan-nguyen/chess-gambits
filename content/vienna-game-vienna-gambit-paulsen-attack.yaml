@@ -1,0 +1,66 @@
+# Vienna Game: Vienna Gambit, Paulsen Attack. Defining line 1.e4 e5 2.Nc3 Nf6 3.f4 d5 4.fxe5 Nxe4 5.Qf3.
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: vienna-game-vienna-gambit-paulsen-attack
+name: 'Vienna Game: Vienna Gambit, Paulsen Attack'
+eco: C29
+category: gambit
+side: white
+definingLine:
+  - e4
+  - e5
+  - Nc3
+  - Nf6
+  - f4
+  - d5
+  - fxe5
+  - Nxe4
+  - Qf3
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Qf3, tấn công mã e4 lần thứ hai và nhắm vào f7. Mã e4 bị mã c3 và hậu tấn công mà chỉ có tốt d5 bảo vệ, và f7 chỉ có vua bảo vệ. Mỗi bên có bảy tốt.
+    en: White has just played 5.Qf3, attacking the knight on e4 a second time and eyeing f7. The knight on e4 is attacked by the knight on c3 and the queen and defended only by the d5 pawn, and f7 is defended only by the king. Each side has seven pawns.
+    fr: Les Blancs viennent de jouer 5.Qf3, attaquant le cavalier e4 une seconde fois et visant f7. Le cavalier e4 est attaqué par le cavalier c3 et la dame et défendu seulement par le pion d5, et f7 n'est défendu que par le roi. Chaque camp a sept pions.
+  dismissRest:
+    reason:
+      vi: Đen chọn một nước khác thay vì 5...Nxc3. Bài này chỉ đi theo nhánh đổi mã 5...Nxc3; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: Black plays something other than 5...Nxc3 here. This entry follows the knight trade 5...Nxc3 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 5...Nxc3. Cette fiche ne suit que l'échange de cavaliers 5...Nxc3 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi con mã bị tấn công bằng 5...Nxc3, loại bỏ một quân tấn công. Trắng có thể ăn lại bằng tốt b, tốt d hoặc hậu.
+        en: Black trades the attacked knight with 5...Nxc3, removing one of the attackers. White can recapture with the b-pawn, the d-pawn or the queen.
+        fr: Les Noirs échangent le cavalier attaqué par 5...Nxc3, supprimant l'un des attaquants. Les Blancs peuvent reprendre avec le pion b, le pion d ou la dame.
+      children:
+        - ply: dxc3
+          annotation:
+            vi: Trắng ăn lại bằng tốt d, 6.dxc3, mở đường cho tượng c1 và để hậu f3 tiếp tục tấn công f7 và d5.
+            en: White recaptures with the d-pawn, 6.dxc3, which opens the way for the bishop on c1 and leaves the queen on f3 attacking f7 and d5.
+            fr: Les Blancs reprennent avec le pion d, 6.dxc3, ce qui ouvre la voie au fou c1 et laisse la dame f3 attaquer f7 et d5.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: mỗi bên bảy tốt, nên vật chất cân bằng. Thế tốt Trắng bị hỏng: hai tốt c bị đôi (c2 và c3) và tốt e5 cô lập vì không còn tốt nào ở cột d và f. Hậu f3 của Trắng tấn công d5, được hậu d8 bảo vệ, và f7, chỉ có vua bảo vệ.'
+              en: "Count the pawns: seven each, so material is level. White's pawn structure is damaged: the c-pawns are doubled (c2 and c3) and the pawn on e5 is isolated, with no pawn left on the d- or f-file. White's queen on f3 attacks d5, which the queen on d8 defends, and f7, which only the king defends."
+              fr: 'Comptez les pions : sept de chaque côté, donc le matériel est égal. La structure de pions blanche est abîmée : les pions c sont doublés (c2 et c3) et le pion e5 est isolé, sans aucun pion sur les colonnes d et f. La dame blanche f3 attaque d5, que la dame d8 défend, et f7, que seul le roi défend.'
+            plan:
+              vi: Trắng bảo vệ tốt e5 cô lập bằng Bf4 và phát triển bằng Ne2. Đen tấn công e5 bằng ...Nc6 và bảo vệ d5 bằng ...Be6, nhắm vào các tốt yếu.
+              en: White supports the isolated e5 pawn with Bf4 and develops with Ne2. Black attacks e5 with ...Nc6 and protects d5 with ...Be6, aiming at the weak pawns.
+              fr: Les Blancs soutiennent le pion e5 isolé par Bf4 et se développent par Ne2. Les Noirs attaquent e5 par ...Nc6 et protègent d5 par ...Be6, visant les pions faibles.
+            basis:
+              by: chan
+              at: '2026-09-30'

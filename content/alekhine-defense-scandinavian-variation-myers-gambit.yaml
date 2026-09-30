@@ -1,0 +1,53 @@
+# Alekhine Defense: Scandinavian Variation, Myers Gambit. Frozen defining line 1.e4 Nf6 2.Nc3 d5
+# 3.d3 dxe4 4.Bg5, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 4...Bf5. searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture is
+# left going free at the leaf.
+id: alekhine-defense-scandinavian-variation-myers-gambit
+name: 'Alekhine Defense: Scandinavian Variation, Myers Gambit'
+eco: B02
+category: gambit
+side: white
+definingLine: [e4, Nf6, Nc3, d5, d3, dxe4, Bg5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has seven pawns to Black's eight, so White is a pawn down; Black's pawns are doubled on the e-file. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.Bg5 và đang kém một tốt: bảy tốt so với tám. Tốt e4 của Đen bị mã c3 và tốt d3 cùng tấn công, chỉ có mã f6 bảo vệ, còn tượng g5 tấn công chính mã f6 ấy.'
+    en: White has just played 4.Bg5 and is a pawn down, seven pawns to eight. Black's pawn on e4 is attacked by both the knight on c3 and the pawn on d3 and defended only by the knight on f6, while the bishop on g5 attacks that same knight.
+    fr: Les Blancs viennent de jouer 4.Bg5 et sont en retard d'un pion, sept pions contre huit. Le pion e4 noir est attaqué à la fois par le cavalier c3 et par le pion d3 et n'est défendu que par le cavalier f6, tandis que le fou g5 attaque ce même cavalier.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 4...Bf5, chẳng hạn 4...Nc6. Khi đó Trắng có thể chơi dxe4 và số tốt lại bằng nhau, bảy mỗi bên; đánh giá trong mục này dành cho nhánh Đen bảo vệ con tốt.
+      en: Black plays something other than 4...Bf5, for example 4...Nc6. White can then play dxe4 and the pawn count is level again, seven each; the assessment in this entry is for the line where Black defends the pawn.
+      fr: Les Noirs jouent autre chose que 4...Bf5, par exemple 4...Nc6. Les Blancs peuvent alors jouer dxe4 et le compte de pions est de nouveau égal, sept de chaque côté ; l'évaluation de cette fiche porte sur la ligne où les Noirs défendent le pion.
+  children:
+    - ply: Bf5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen đưa tượng ra f5 để bảo vệ tốt e4 lần thứ hai: giờ tốt e4 bị hai quân tấn công và cũng có hai quân bảo vệ.'
+        en: 'Black brings the bishop out to f5 to defend the e4 pawn a second time: the pawn is now attacked twice and defended twice.'
+        fr: 'Les Noirs sortent le fou en f5 pour défendre une seconde fois le pion e4 : le pion est maintenant attaqué deux fois et défendu deux fois.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt. Tốt thừa của Đen nằm ở e4, bị mã c3 và tốt d3 tấn công nhưng có mã f6 và tượng f5 bảo vệ, và Đen bị tốt chồng ở cột e (e4 và e7). Tượng g5 tấn công mã f6, quân được cả tốt e7 lẫn g7 bảo vệ; nếu mã bị đổi đi thì tốt e4 mất một trong hai quân bảo vệ.'
+          en: "Count the pawns: White seven, Black eight — White is a pawn down. Black's extra pawn stands on e4, attacked by the knight on c3 and the pawn on d3 and defended by the knight on f6 and the bishop on f5, and Black's pawns are doubled on the e-file (e4 and e7). The bishop on g5 attacks the knight on f6, which both the e7 and g7 pawns defend; if the knight is traded off, the e4 pawn loses one of its two defenders."
+          fr: "Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins. Le pion supplémentaire des Noirs se trouve en e4, attaqué par le cavalier c3 et le pion d3 et défendu par le cavalier f6 et le fou f5, et les pions noirs sont doublés sur la colonne e (e4 et e7). Le fou g5 attaque le cavalier f6, que les pions e7 et g7 défendent tous les deux ; si le cavalier est échangé, le pion e4 perd l'un de ses deux défenseurs."
+        plan:
+          vi: 'Trắng chơi Bxf6, lấy đi một quân bảo vệ tốt e4: sau ...exf6 hoặc ...gxf6, dxe4 lấy lại tốt và tấn công tượng f5. Khi đó Đen phải xử lý tượng f5, chẳng hạn bằng ...Be6 hoặc ...Bg6.'
+          en: 'White plays Bxf6, taking a defender away from the e4 pawn: after ...exf6 or ...gxf6, dxe4 wins the pawn back and attacks the bishop on f5. Black then has to deal with that bishop, for example with ...Be6 or ...Bg6.'
+          fr: "Les Blancs jouent Bxf6, qui ôte un défenseur au pion e4 : après ...exf6 ou ...gxf6, dxe4 regagne le pion et attaque le fou f5. Les Noirs doivent alors s'occuper de ce fou, par exemple par ...Be6 ou ...Bg6."
+        basis:
+          by: chan
+          at: '2026-09-30'

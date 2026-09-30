@@ -1,0 +1,60 @@
+# Sicilian Defense: Taimanov Variation, Bastrikov Variation, Ponomariov Gambit. Frozen defining line
+# 1.e4 c5 2.Nf3 e6 3.d4 cxd4 4.Nxd4 Nc6 5.Nc3 Qc7 6.Ndb5 Qb8 7.Be3 a6 8.Bb6, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 8...axb5 9.Nxb5. The leaf has Black to move, but every capture open to Black there is answered by a
+# recapture. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: taimanov-variation-bastrikov-variation-ponomariov-gambit
+name: 'Sicilian Defense: Taimanov Variation, Bastrikov Variation, Ponomariov Gambit'
+eco: B47
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, e6, d4, cxd4, Nxd4, Nc6, Nc3, Qc7, Ndb5, Qb8, Be3, a6, Bb6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at seven each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.Bb6. Tượng b6 không bị quân nào tấn công và lấy mất các ô a7 và c7 của hậu Đen ở b8. Mã b5 của Trắng bị tốt a6 tấn công và có mã c3 cùng tượng f1 bảo vệ. Số tốt hai bên bằng nhau, bảy mỗi bên.
+    en: White has just played 8.Bb6. The bishop on b6 is attacked by nothing and takes the a7 and c7 squares away from Black's queen on b8. White's knight on b5 is attacked by the a6 pawn and defended by the knight on c3 and the bishop on f1. The pawn count is level, seven each.
+    fr: Les Blancs viennent de jouer 8.Bb6. Le fou b6 n'est attaqué par rien et retire les cases a7 et c7 à la dame noire en b8. Le cavalier b5 des Blancs est attaqué par le pion a6 et défendu par le cavalier c3 et le fou f1. Le compte de pions est égal, sept de chaque côté.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 8...axb5, chẳng hạn 8...Nf6 hoặc 8...Nge7. Đánh giá trong mục này dành cho nhánh Đen ăn mã b5.
+      en: Black plays something other than 8...axb5, for example 8...Nf6 or 8...Nge7. The assessment in this entry is for the line where Black takes the knight on b5.
+      fr: Les Noirs jouent autre chose que 8...axb5, par exemple 8...Nf6 ou 8...Nge7. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le cavalier b5.
+  children:
+    - ply: axb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn mã b5 bằng tốt a: Đen hơn một mã, và tốt b5 mới bị mã c3 cùng tượng f1 tấn công mà không quân nào bảo vệ.'
+        en: 'Black takes the knight on b5 with the a-pawn: Black is a knight up, and the new pawn on b5 is attacked by the knight on c3 and the bishop on f1 with nothing defending it.'
+        fr: 'Les Noirs prennent le cavalier b5 avec le pion a : les Noirs ont un cavalier de plus, et le nouveau pion b5 est attaqué par le cavalier c3 et le fou f1 sans aucune défense.'
+      children:
+        - ply: Nxb5
+          annotation:
+            vi: 'Trắng ăn tốt b5 bằng mã c3: Trắng kém một mã nhưng hơn một tốt, bảy so với sáu. Mã b5 nhắm vào c7 và d6.'
+            en: 'White takes the b5 pawn with the knight from c3: White is a knight down but a pawn up, seven pawns to six. The knight on b5 aims at c7 and d6.'
+            fr: 'Les Blancs prennent le pion b5 avec le cavalier de c3 : les Blancs ont un cavalier de moins mais un pion de plus, sept pions contre six. Le cavalier b5 vise c7 et d6.'
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm vật chất: Trắng bảy tốt, Đen sáu tốt, nhưng Đen có hai mã còn Trắng chỉ có một, nên Trắng kém một mã để đổi lấy một tốt. Hậu b8 của Đen mất cả hai ô a7 và c7 vì tượng b6 khống chế, tốt b7 của Đen bị cô lập, và Trắng đe dọa Nc7+, nước chiếu đồng thời tấn công xe a8.'
+              en: "Count the material: White has seven pawns to Black's six, but Black has two knights to White's one, so White is a knight down for a pawn. Black's queen on b8 has lost both the a7 and c7 squares to the bishop on b6, Black's b7 pawn is isolated, and White threatens Nc7+, a check that also attacks the rook on a8."
+              fr: 'Comptons le matériel : les Blancs ont sept pions contre six, mais les Noirs ont deux cavaliers contre un, donc les Blancs ont un cavalier de moins pour un pion. La dame b8 noire a perdu les deux cases a7 et c7 au profit du fou b6, le pion b7 noir est isolé, et les Blancs menacent Nc7+, un échec qui attaque aussi la tour a8.'
+            plan:
+              vi: Trắng chơi Nc7+ để chiếu và tấn công xe a8, rồi dùng tượng b6 và hậu để tận dụng hậu Đen bị nhốt. Việc đầu tiên của Đen là đối phó với Nc7+, rồi tận dụng con mã thừa.
+              en: White plays Nc7+ to give check and attack the rook on a8, then uses the bishop on b6 and the queen to exploit the boxed-in black queen. Black's first task is to deal with Nc7+, and then to make use of the extra knight.
+              fr: Les Blancs jouent Nc7+ pour donner échec et attaquer la tour a8, puis utilisent le fou b6 et la dame pour exploiter la dame noire enfermée. La première tâche des Noirs est de parer Nc7+, puis de tirer parti du cavalier supplémentaire.
+            basis:
+              by: chan
+              at: '2026-09-30'

@@ -1,0 +1,85 @@
+# King's Gambit Accepted: Salvio Gambit, Santa Maria Defense, taught. The frozen line 1.e4
+# e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.Ne5 Qh4+ 6.Kf1 Nf6 ends on Black's ply, which the
+# validator does not allow as a defining line for a White entry (docs/CONTEXT.md, invariant
+# 5), so `definingLine` stops at White's own 6.Kf1 and 6...Nf6, the move that names this
+# entry, is modelled as the root's reply. The modelled line is 6...Nf6 7.Bxf7+ Kd8, so the
+# leaf has White to move; the capture on f7 is played out as the learner's move so that it
+# is not left going free, and the root of that exchange has two legal replies, a declared
+# count (ADR-0011). Every ply was replayed with chess.js; searchMate at 3 moves from the
+# leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-salvio-gambit-santa-maria-defense
+name: "King's Gambit Accepted: Salvio Gambit, Santa Maria Defense"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Ne5, Qh4+, Kf1]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 6...Nf6 leaves f7 attacked twice, and after 7.Bxf7+ Kd8 White has won the pawn
+      back, both kings have lost the right to castle, and White's pawn on e4 is the one now under
+      attack. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Kf1, đưa vua ra khỏi e1 sau nước chiếu, và đã mất quyền nhập thành. Mã e5 và tượng c4 cùng nhắm vào f7, con tốt chỉ có vua bảo vệ, còn tốt g4 bị đánh hai lần mà chỉ có hậu bảo vệ.
+    en: White has just played 6.Kf1, stepping the king off e1 after the check, and has lost the right to castle. The knight on e5 and the bishop on c4 both attack f7, which only the king defends, and the pawn on g4 is attacked twice and defended once, by the queen.
+    fr: Les Blancs viennent de jouer 6.Kf1, écartant le roi de e1 après l'échec, et ont perdu le droit de roquer. Le cavalier e5 et le fou c4 attaquent tous deux f7, que seul le roi défend, et le pion g4 est attaqué deux fois et défendu une seule fois, par la dame.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Nf6, chẳng hạn 6...Nh6, vừa bảo vệ f7 vừa bảo vệ g4. Phần lớn các nước còn lại để f7 bị ăn bằng Nxf7 hoặc Bxf7+.
+      en: Black plays something other than 6...Nf6, for example 6...Nh6, which defends f7 and g4 at the same time. Most other moves leave f7 to be taken with Nxf7 or Bxf7+.
+      fr: Les Noirs jouent autre chose que 6...Nf6, par exemple 6...Nh6, qui défend à la fois f7 et g4. La plupart des autres coups laissent f7 à prendre par Nxf7 ou Bxf7+.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã, bảo vệ tốt g4 lần thứ hai và tấn công tốt e4, con tốt không có ai bảo vệ. Tốt f7 vẫn bị đánh hai lần mà chỉ có vua bảo vệ.
+        en: Black develops the knight, defending the pawn on g4 a second time and attacking the pawn on e4, which nothing defends. The pawn on f7 is still attacked twice and defended only by the king.
+        fr: Les Noirs développent le cavalier, défendant le pion g4 une seconde fois et attaquant le pion e4, que rien ne défend. Le pion f7 est toujours attaqué deux fois et défendu seulement par le roi.
+      children:
+        - ply: Bxf7+
+          counts:
+            legal:
+              count: legalReplies
+              expect: 2
+          annotation:
+            vi: Trắng ăn tốt f7 kèm chiếu. Mã e5 bảo vệ tượng, nên vua không ăn được nó và phải đi chỗ khác.
+            en: White takes the pawn on f7 with check. The knight on e5 defends the bishop, so the king cannot take it and has to step aside.
+            fr: Les Blancs prennent le pion f7 avec échec. Le cavalier e5 défend le fou, si bien que le roi ne peut pas le prendre et doit s'écarter.
+          dismissRest:
+            reason:
+              vi: 'Đen có {legal} nước hợp lệ để đáp lại nước chiếu: 7...Kd8, được mô hình ở đây, và 7...Ke7.'
+              en: 'Black has {legal} legal replies to the check: 7...Kd8, modelled here, and 7...Ke7.'
+              fr: "Les Noirs ont {legal} réponses légales à l'échec : 7...Kd8, modélisée ici, et 7...Ke7."
+          children:
+            - ply: Kd8
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đưa vua về d8 và mất quyền nhập thành. Tượng f7 không bị quân nào tấn công và được mã e5 bảo vệ.
+                en: Black steps the king to d8 and loses the right to castle. The bishop on f7 is attacked by nothing and defended by the knight on e5.
+                fr: Les Noirs mettent le roi en d8 et perdent le droit de roquer. Le fou f7 n'est attaqué par rien et défendu par le cavalier e5.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: mỗi bên bảy, nên Trắng đã lấy lại con tốt đã cho. Cả hai vua đều mất quyền nhập thành, vua Trắng ở f1 và vua Đen ở d8. Tốt e4 của Trắng bị mã f6 đánh mà không có ai bảo vệ, còn tốt h2 bị hậu đánh và được xe bảo vệ.'
+                  en: "Count the pawns: seven each, so White has won back the pawn it gave. Both kings have lost the right to castle, White's on f1 and Black's on d8. White's pawn on e4 is attacked by the knight on f6 and defended by nothing, and the pawn on h2 is attacked by the queen and defended by the rook."
+                  fr: "Comptez les pions : sept de chaque côté, si bien que les Blancs ont regagné le pion qu'ils avaient donné. Les deux rois ont perdu le droit de roquer, celui des Blancs en f1 et celui des Noirs en d8. Le pion e4 des Blancs est attaqué par le cavalier f6 et défendu par rien, et le pion h2 est attaqué par la dame et défendu par la tour."
+                plan:
+                  vi: Trắng phải lo cho tốt e4, chẳng hạn bằng d3 hoặc Nc3, trong khi mã e5 giữ sức ép lên d7 và g4. Đen đe dọa ...Nxe4 và muốn giữ các tốt f4, g4 có quân bảo vệ.
+                  en: White has to look after the pawn on e4, for example with d3 or Nc3, while the knight on e5 keeps up the pressure on d7 and g4. Black threatens ...Nxe4 and wants to keep the pawns on f4 and g4 supported.
+                  fr: Les Blancs doivent s'occuper du pion e4, par exemple par d3 ou Nc3, tandis que le cavalier e5 maintient la pression sur d7 et g4. Les Noirs menacent ...Nxe4 et veulent garder les pions f4 et g4 soutenus.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

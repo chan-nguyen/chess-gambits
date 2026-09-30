@@ -1,0 +1,53 @@
+# Ruy Lopez: Schliemann Defense, Kostic Defense. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 f5
+# 4.Nc3 fxe4 5.Nxe4 Be7, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 6.O-O. searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: ruy-lopez-schliemann-defense-kostic-defense
+name: 'Ruy Lopez: Schliemann Defense, Kostić Defense'
+eco: C63
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, f5, Nc3, fxe4, Nxe4, Be7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at seven each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Be7. Số tốt hai bên đang bằng nhau, bảy mỗi bên, vì tốt f của Đen đã đổi lấy tốt e của Trắng. Tốt e5 của Đen bị mã f3 tấn công và chỉ có mã c6 bảo vệ, còn mã c6 bị tượng b5 tấn công.
+    en: Black has just played 5...Be7. The pawn count is level, seven each, because Black's f-pawn has been traded for White's e-pawn. Black's e5 pawn is attacked by the knight on f3 and defended only by the knight on c6, and the bishop on b5 attacks that knight.
+    fr: Les Noirs viennent de jouer 5...Be7. Le compte de pions est égal, sept de chaque côté, car le pion f noir a été échangé contre le pion e blanc. Le pion e5 noir est attaqué par le cavalier f3 et défendu seulement par le cavalier c6, et le fou b5 attaque ce cavalier.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 6.O-O, chẳng hạn 6.Nc3 hoặc 6.d4. Đánh giá trong mục này dành cho nhánh Trắng nhập thành ngay.
+      en: White plays something other than 6.O-O, for example 6.Nc3 or 6.d4. The assessment in this entry is for the line where White castles at once.
+      fr: Les Blancs jouent autre chose que 6.O-O, par exemple 6.Nc3 ou 6.d4. L'évaluation de cette fiche porte sur la ligne où les Blancs roquent tout de suite.
+  children:
+    - ply: O-O
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng nhập thành, đưa vua ra khỏi cột e nửa mở và giữ nguyên áp lực của tượng b5 lên mã c6.
+        en: White castles, taking the king off the half-open e-file and keeping the bishop on b5 pressing on the knight on c6.
+        fr: Les Blancs roquent, mettant le roi à l'abri de la colonne e semi-ouverte et gardant le fou b5 en pression sur le cavalier c6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: bảy mỗi bên, nên Đen không còn nợ gì cho con tốt f. Nhưng tốt e5 chỉ có mã c6 bảo vệ, mà tượng b5 có thể đổi mã đó đi: sau Bxc6, dù Đen ăn lại bằng tốt nào thì tốt e5 cũng không còn quân nào bảo vệ. Cột f nửa mở cho Đen và cột e nửa mở cho Trắng.'
+          en: 'Count the pawns: seven each, so Black owes nothing for the f-pawn. But the e5 pawn is defended only by the knight on c6, and the bishop on b5 can trade that knight off: after Bxc6, whichever pawn Black recaptures with, nothing defends the e5 pawn. The f-file is half-open for Black and the e-file is half-open for White.'
+          fr: "Comptons les pions : sept de chaque côté, donc les Noirs ne doivent plus rien pour le pion f. Mais le pion e5 n'est défendu que par le cavalier c6, et le fou b5 peut échanger ce cavalier : après Bxc6, quel que soit le pion avec lequel les Noirs reprennent, plus rien ne défend le pion e5. La colonne f est semi-ouverte pour les Noirs et la colonne e semi-ouverte pour les Blancs."
+        plan:
+          vi: Trắng chơi Bxc6 để tốt e5 mất quân bảo vệ duy nhất, rồi Nxe5, hoặc d4 để tấn công e5 lần thứ hai. Đen chơi ...d6 để bảo vệ tốt e5 bằng tốt, hoặc ...Nf6 tấn công mã e4, rồi nhập thành.
+          en: White plays Bxc6 to take the e5 pawn's only defender away, followed by Nxe5, or d4 to attack e5 a second time. Black plays ...d6 to defend the e5 pawn with a pawn, or ...Nf6 to attack the knight on e4, then castles.
+          fr: Les Blancs jouent Bxc6 pour retirer au pion e5 son seul défenseur, puis Nxe5, ou d4 pour attaquer e5 une seconde fois. Les Noirs jouent ...d6 pour défendre le pion e5 avec un pion, ou ...Nf6 pour attaquer le cavalier e4, puis roquent.
+        basis:
+          by: chan
+          at: '2026-09-30'

@@ -1,0 +1,60 @@
+# King's Gambit Declined: Falkbeer Countergambit, Pickler Gambit, taught. Frozen defining
+# line 1.e4 e5 2.f4 d5 3.exd5 c6 4.dxc6 Bc5 ends on Black's own 4...Bc5, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). White's 5.Qf3 is modelled as the root's
+# single reply, so the leaf has Black to move. Every ply was replayed with chess.js;
+# searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check and no
+# capture is going free in the machine's sense (every capture on the board can be
+# recaptured).
+id: kings-gambit-declined-falkbeer-countergambit-pickler-gambit
+name: "King's Gambit Declined: Falkbeer Countergambit, Pickler Gambit"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, c6, dxc6, Bc5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 3...c6 4.dxc6 Black is two pawns down, and after 4...Bc5 5.Qf3 Nxc6 it
+      wins one back, but the queen still holds f4 and White is left a pawn up. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...Bc5. Trắng đang hơn hai tốt, nhưng tốt c6 bị mã b8 và tốt b7 tấn công mà không có ai bảo vệ, tốt f4 bị tốt e5 tấn công, và mã g1 bị tượng c5 tấn công.
+    en: Black has just played 4...Bc5. White is two pawns up, but the pawn on c6 is attacked by the knight on b8 and the pawn on b7 and defended by nothing, the pawn on f4 is attacked by the pawn on e5, and the knight on g1 is attacked by the bishop on c5.
+    fr: Les Noirs viennent de jouer 4...Bc5. Les Blancs ont deux pions d'avance, mais le pion c6 est attaqué par le cavalier b8 et le pion b7 et défendu par rien, le pion f4 est attaqué par le pion e5, et le cavalier g1 est attaqué par le fou c5.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 5.Qf3, chẳng hạn chơi 5.fxe5 hoặc 5.cxb7. Phần lớn các nước khác để Đen lấy lại tốt c6 hoặc f4 mà không quân nào ăn lại được.
+      en: White plays something other than 5.Qf3, for example 5.fxe5 or 5.cxb7. Most other moves let Black take back the pawn on c6 or on f4 with nothing able to recapture.
+      fr: Les Blancs jouent autre chose que 5.Qf3, par exemple 5.fxe5 ou 5.cxb7. La plupart des autres coups permettent aux Noirs de reprendre le pion c6 ou f4 sans que rien puisse reprendre.
+  children:
+    - ply: Qf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng dùng hậu bảo vệ cùng lúc tốt c6 và tốt f4.
+        en: White defends the pawn on c6 and the pawn on f4 with the queen at the same time.
+        fr: Les Blancs défendent avec la dame le pion c6 et le pion f4 à la fois.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen sáu, nên Trắng hơn hai tốt. Nhưng tốt c6 bị mã b8 và tốt b7 đánh hai lần mà chỉ có hậu f3 bảo vệ, nên một trong hai con tốt hơn sắp trở về: sau ...Nxc6, hậu Trắng không thể ăn lại trên c6 mà không bị ...bxc6 ăn mất.'
+          en: 'Count the pawns: White eight, Black six, so White is two pawns up. But the pawn on c6 is attacked twice, by the knight on b8 and the pawn on b7, and defended once, by the queen on f3, so one of the two extra pawns is about to go back: after ...Nxc6 the white queen cannot recapture on c6 without being taken by ...bxc6.'
+          fr: "Comptez les pions : huit pour les Blancs, six pour les Noirs, si bien que les Blancs ont deux pions d'avance. Mais le pion c6 est attaqué deux fois, par le cavalier b8 et le pion b7, et défendu une seule fois, par la dame f3, si bien qu'un des deux pions de plus est sur le point de revenir : après ...Nxc6, la dame blanche ne peut pas reprendre en c6 sans être prise par ...bxc6."
+        plan:
+          vi: Đen lấy lại bằng ...Nxc6 hoặc ...bxc6. Trắng có cxb7, ăn thêm một tốt bằng tốt c, hoặc fxe5, ăn tốt e5, hoặc phát triển bằng Nc3 và Bc4.
+          en: Black takes back with ...Nxc6 or ...bxc6. White has cxb7, which takes another pawn with the c-pawn, or fxe5, which takes the pawn on e5, or development with Nc3 and Bc4.
+          fr: Les Noirs reprennent par ...Nxc6 ou ...bxc6. Les Blancs ont cxb7, qui prend un autre pion avec le pion c, ou fxe5, qui prend le pion e5, ou le développement par Nc3 et Bc4.
+        basis:
+          by: chan
+          at: '2026-09-30'

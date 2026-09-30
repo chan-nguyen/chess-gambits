@@ -1,0 +1,66 @@
+# Italian Game: Evans Gambit, Harding Variation. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5
+# 4.b4 Bxb4 5.c3 Bc5 6.d4 exd4 7.cxd4 Bb4+ 8.Bd2, which ends on White's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-harding-variation
+name: 'Italian Game: Evans Gambit, Harding Variation'
+eco: C51
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4, Bxb4, c3, Bc5, d4, exd4, cxd4, Bb4+, Bd2]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After the trade of bishops White is a pawn down with an isolated a-pawn,
+      but has a lead in development and the bishop on c4 bears on f7; that is treated as
+      enough compensation for the line to be labelled sound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.Bd2, đỡ nước chiếu và mời đổi tượng. Tượng d2 bị tượng b4 tấn công và được bảo vệ bốn lần, còn tượng b4 được mã c6 bảo vệ. Trắng có sáu tốt, Đen bảy tốt, và tốt d4 bị mã c6 tấn công và được mã f3 bảo vệ. Mục này đi theo nước đổi tượng 8...Bxd2+.
+    en: White has just played 8.Bd2, answering the check and offering a trade of bishops. The bishop on d2 is attacked by the bishop on b4 and defended four times, and the bishop on b4 is defended by the knight on c6. White has six pawns to Black's seven, and the d4 pawn is attacked by the knight on c6 and defended by the knight on f3. This entry follows the trade 8...Bxd2+.
+    fr: Les Blancs viennent de jouer 8.Bd2, parant l'échec et offrant l'échange des fous. Le fou d2 est attaqué par le fou b4 et défendu quatre fois, et le fou b4 est défendu par le cavalier c6. Les Blancs ont six pions contre sept aux Noirs, et le pion d4 est attaqué par le cavalier c6 et défendu par le cavalier f3. Cette entrée suit l'échange 8...Bxd2+.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 8...Bxd2+ ở đây, chẳng hạn 8...Nxd4, ăn tốt d4 bằng mã. Mục này chỉ mô hình hóa nước đổi tượng.
+      en: Black plays something other than 8...Bxd2+ here, for instance 8...Nxd4, which takes the d4 pawn with the knight. This entry models only the trade of bishops.
+      fr: Les Noirs jouent autre chose que 8...Bxd2+ ici, par exemple 8...Nxd4, qui prend le pion d4 avec le cavalier. Cette entrée ne modélise que l'échange des fous.
+  children:
+    - ply: Bxd2+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi tượng kèm chiếu. Bốn quân Trắng có thể ăn lại trên d2.
+        en: Black trades bishops with check. Four White pieces can recapture on d2.
+        fr: Les Noirs échangent les fous avec échec. Quatre pièces blanches peuvent reprendre en d2.
+      children:
+        - ply: Nbxd2
+          annotation:
+            vi: Trắng ăn lại bằng mã từ b1, vừa phát triển nó vừa giữ vua ở e1 và hậu ở d1.
+            en: White recaptures with the knight from b1, which develops it and leaves the king on e1 and the queen on d1 where they are.
+            fr: Les Blancs reprennent avec le cavalier de b1, qui se développe ainsi et laisse le roi en e1 et la dame en d1 à leur place.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy — con tốt đã thí chưa lấy lại được, tốt a của Trắng bị cô lập và các cột b và c bán mở cho Trắng. Quân đều nhau về số lượng, mỗi bên một tượng và hai mã, và hai bên chưa nhập thành. Tốt d4 bị mã c6 tấn công và được mã f3 bảo vệ, còn tượng c4 tấn công f7, ô chỉ có vua bảo vệ.'
+              en: "Count the pawns: White six, Black seven — the sacrificed pawn has not come back, White's a-pawn is isolated and the b- and c-files are half-open for White. The pieces are level in number, a bishop and two knights each, and neither side has castled. The d4 pawn is attacked by the knight on c6 and defended by the knight on f3, and the bishop on c4 attacks f7, which only the king defends."
+              fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — le pion sacrifié n'est pas revenu, le pion a blanc est isolé et les colonnes b et c sont semi-ouvertes pour les Blancs. Les pièces sont en nombre égal, un fou et deux cavaliers chacun, et aucun camp n'a roqué. Le pion d4 est attaqué par le cavalier c6 et défendu par le cavalier f3, et le fou c4 attaque f7, que seul le roi défend."
+            plan:
+              vi: Trắng nhập thành rồi chơi Qb3, hậu đứng sau tượng trên đường chéo b3-g8, và sau đó e5 để chiếm không gian. Đen chơi ...d5 để đánh tượng, rồi ...Nf6 và ...O-O.
+              en: White castles and plays Qb3, with the queen behind the bishop on the b3-g8 diagonal, and later e5 to gain space. Black plays ...d5 to hit the bishop, then ...Nf6 and ...O-O.
+              fr: Les Blancs roquent puis jouent Qb3, la dame derrière le fou sur la diagonale b3-g8, et plus tard e5 pour gagner de l'espace. Les Noirs jouent ...d5 pour frapper le fou, puis ...Nf6 et ...O-O.
+            basis:
+              by: chan
+              at: 2026-09-30

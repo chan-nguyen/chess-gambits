@@ -1,0 +1,91 @@
+# Ruy Lopez: Closed, Basque Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6
+# 5.O-O Be7 6.d4 exd4 7.e5 Ne4 8.c3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 8...dxc3 9.Nxc3 Nxc3 10.bxc3 Bc5.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: ruy-lopez-closed-basque-gambit
+name: 'Ruy Lopez: Closed, Basque Gambit'
+eco: C84
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, Nf6, O-O, Be7, d4, exd4, e5, Ne4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has seven pawns to Black's eight, so White is a pawn down; Black's pawns are doubled on the d-file. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 8.c3, thí tốt c: tốt d4 của Đen bị tốt c3, mã f3 và hậu d1 tấn công mà chỉ có mã c6 bảo vệ, nhưng mã e4 của Đen cũng tấn công tốt c3 và f2. Trắng đang kém một tốt, bảy so với tám.'
+    en: "White has just played 8.c3, offering the c-pawn: Black's d4 pawn is attacked by the c3 pawn, the knight on f3 and the queen on d1 and defended only by the knight on c6, but Black's knight on e4 attacks c3 and f2 in turn. White is a pawn down, seven to eight."
+    fr: 'Les Blancs viennent de jouer 8.c3, offrant le pion c : le pion d4 noir est attaqué par le pion c3, le cavalier f3 et la dame d1 et défendu seulement par le cavalier c6, mais le cavalier e4 noir attaque à son tour c3 et f2. Les Blancs ont un pion de moins, sept contre huit.'
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 8...dxc3, chẳng hạn 8...Nxc3 hoặc 8...Nc5. Đánh giá trong mục này dành cho nhánh Đen ăn tốt c3 bằng tốt d.
+      en: Black plays something other than 8...dxc3, for example 8...Nxc3 or 8...Nc5. The assessment in this entry is for the line where Black takes on c3 with the d-pawn.
+      fr: Les Noirs jouent autre chose que 8...dxc3, par exemple 8...Nxc3 ou 8...Nc5. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent en c3 avec le pion d.
+  children:
+    - ply: dxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt c3 bằng tốt d: Trắng kém hai tốt trong chốc lát, sáu so với tám, và tốt c3 được mã e4 bảo vệ.'
+        en: 'Black takes the c3 pawn with the d-pawn: White is two pawns down for the moment, six to eight, and the pawn on c3 is defended by the knight on e4.'
+        fr: "Les Noirs prennent le pion c3 avec le pion d : les Blancs ont deux pions de moins pour l'instant, six contre huit, et le pion c3 est défendu par le cavalier e4."
+      children:
+        - ply: Nxc3
+          annotation:
+            vi: Trắng ăn lại bằng mã b1, và mã c3 nhắm thẳng vào mã e4 của Đen, một con mã không có quân nào bảo vệ.
+            en: White recaptures with the knight from b1, and the knight on c3 attacks Black's knight on e4, which nothing defends.
+            fr: Les Blancs reprennent avec le cavalier de b1, et le cavalier c3 attaque le cavalier e4 noir, que rien ne défend.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 9...Nxc3. Trong thế cờ này mã e4 bị mã c3 tấn công và không có quân nào bảo vệ.
+              en: Black plays something other than 9...Nxc3. In this position the knight on e4 is attacked by the knight on c3 and is undefended.
+              fr: Les Noirs jouent autre chose que 9...Nxc3. Dans cette position, le cavalier e4 est attaqué par le cavalier c3 et n'est pas défendu.
+          children:
+            - ply: Nxc3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đổi mã lấy mã ở c3. Con mã mới trên c3 tấn công cả tượng a4 lẫn hậu d1, nên Trắng phải ăn lại ngay.
+                en: Black trades knights on c3. The new knight on c3 attacks both the bishop on a4 and the queen on d1, so White has to recapture at once.
+                fr: Les Noirs échangent les cavaliers en c3. Le nouveau cavalier c3 attaque à la fois le fou a4 et la dame d1, si bien que les Blancs doivent reprendre aussitôt.
+              children:
+                - ply: bxc3
+                  annotation:
+                    vi: Trắng ăn lại bằng tốt b. Trắng còn sáu tốt, Đen bảy, và hai tốt a2 cùng c3 của Trắng đều không còn tốt nào bên cạnh.
+                    en: White recaptures with the b-pawn. White has six pawns to Black's seven, and the pawns on a2 and c3 both have no pawn beside them.
+                    fr: Les Blancs reprennent avec le pion b. Les Blancs ont six pions contre sept, et les pions a2 et c3 n'ont plus aucun pion à côté d'eux.
+                  dismissRest:
+                    reason:
+                      vi: Đen chơi nước khác thay vì 10...Bc5, chẳng hạn 10...d5 hoặc 10...O-O. Đánh giá trong mục này dành cho nhánh Đen phát triển tượng ra c5.
+                      en: Black plays something other than 10...Bc5, for example 10...d5 or 10...O-O. The assessment in this entry is for the line where Black develops the bishop to c5.
+                      fr: Les Noirs jouent autre chose que 10...Bc5, par exemple 10...d5 ou 10...O-O. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le fou en c5.
+                  children:
+                    - ply: Bc5
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen đưa tượng ra c5, nhắm vào f2.
+                        en: Black brings the bishop out to c5, bearing on f2.
+                        fr: Les Noirs sortent le fou en c5, visant f2.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém một tốt, và hai tốt a2 và c3 của Trắng đều bị cô lập. Tốt e5 bị mã c6 tấn công và chỉ có mã f3 bảo vệ. Tượng c5 của Đen nhắm vào f2 nhưng ô đó có xe f1 và vua g1 bảo vệ, còn cột d nửa mở cho Trắng chỉ nhắm vào tốt d7 vốn đã có ba quân bảo vệ.'
+                          en: "Count the pawns: White six, Black seven — White is a pawn down, and White's pawns on a2 and c3 are both isolated. The e5 pawn is attacked by the knight on c6 and defended only by the knight on f3. Black's bishop on c5 bears on f2, but the rook on f1 and the king on g1 defend it, and the d-file, half-open for White, bears only on the d7 pawn, which three Black pieces already defend."
+                          fr: 'Comptons les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins, et les pions a2 et c3 blancs sont tous deux isolés. Le pion e5 est attaqué par le cavalier c6 et défendu seulement par le cavalier f3. Le fou c5 noir vise f2, mais la tour f1 et le roi g1 le défendent, et la colonne d, semi-ouverte pour les Blancs, ne vise que le pion d7, que trois pièces noires défendent déjà.'
+                        plan:
+                          vi: Trắng chơi Bf4 để bảo vệ tốt e5, cùng Re1 và Qe2, cố giữ vững thế trận. Đen nhập thành, chơi ...b5 để đuổi tượng khỏi a4, rồi ...d6 để đánh vào e5.
+                          en: White plays Bf4 to support the e5 pawn, with Re1 and Qe2, trying to hold the position together. Black castles, plays ...b5 to drive the bishop from a4, then ...d6 to hit e5.
+                          fr: Les Blancs jouent Bf4 pour soutenir le pion e5, avec Re1 et Qe2, en essayant de tenir la position. Les Noirs roquent, jouent ...b5 pour chasser le fou de a4, puis ...d6 pour attaquer e5.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'
