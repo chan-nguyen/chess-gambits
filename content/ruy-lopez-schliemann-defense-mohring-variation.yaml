@@ -1,0 +1,93 @@
+# Ruy Lopez: Schliemann Defense, Mohring Variation. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5
+# f5 4.Nc3 fxe4 5.Nxe4 d5 6.Nxe5 dxe4 7.Nxc6 Qd5, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 8.Nd4+ Bd7 9.Bxd7+
+# Kxd7 10.c3. Every knight move from c6 is a discovered check from the bishop on b5; 8.Nd4+ is the
+# one where the knight then defends that bishop, and 10.c3 is the move that defends the knight in
+# turn. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: ruy-lopez-schliemann-defense-mohring-variation
+name: 'Ruy Lopez: Schliemann Defense, Möhring Variation'
+eco: C63
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, f5, Nc3, fxe4, Nxe4, d5, Nxe5, dxe4, Nxc6, Qd5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf Black is a pawn down, six pawns to seven, its e4 pawn is isolated, its king stands on d7 without castling rights, and the knight on g8, the bishop on f8 and both rooks have not moved. The queen on d5 attacks the pawn on a2 and the knight on d4, and both are defended. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 7...Qd5. Trắng hơn một tốt, bảy so với sáu. Mã c6 của Trắng bị tốt b7 và hậu d5 tấn công và chỉ có tượng b5 bảo vệ, còn tượng b5 cũng bị hậu d5 tấn công mà không có quân nào bảo vệ. Mọi nước đi của mã c6 đều là chiếu lộ của tượng b5.
+    en: Black has just played 7...Qd5. White is a pawn up, seven to six. White's knight on c6 is attacked by the b7 pawn and the queen on d5 and defended only by the bishop on b5, and the bishop on b5 is also attacked by the queen with nothing defending it. Every move of the knight on c6 is a discovered check from the bishop on b5.
+    fr: Les Noirs viennent de jouer 7...Qd5. Les Blancs ont un pion de plus, sept contre six. Le cavalier c6 blanc est attaqué par le pion b7 et la dame d5 et défendu seulement par le fou b5, et le fou b5 est lui aussi attaqué par la dame sans aucune défense. Chaque coup du cavalier c6 est un échec à la découverte du fou b5.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 8.Nd4+, chẳng hạn 8.Nxa7+ hoặc 8.Ne5+. Đánh giá trong mục này dành cho nhánh Trắng đưa mã tới d4, vừa chiếu lộ vừa bảo vệ tượng b5.
+      en: White plays something other than 8.Nd4+, for example 8.Nxa7+ or 8.Ne5+. The assessment in this entry is for the line where White puts the knight on d4, giving the discovered check and defending the bishop on b5 at once.
+      fr: Les Blancs jouent autre chose que 8.Nd4+, par exemple 8.Nxa7+ ou 8.Ne5+. L'évaluation de cette fiche porte sur la ligne où les Blancs placent le cavalier en d4, donnant l'échec à la découverte et défendant en même temps le fou b5.
+  children:
+    - ply: Nd4+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đưa mã tới d4 với nước chiếu lộ của tượng b5. Mã d4 bảo vệ tượng b5, nhưng bản thân nó bị hậu d5 tấn công và chưa có quân nào bảo vệ.
+        en: White puts the knight on d4 with a discovered check from the bishop on b5. The knight on d4 defends that bishop, but it is itself attacked by the queen on d5 and not yet defended.
+        fr: Les Blancs placent le cavalier en d4 avec un échec à la découverte du fou b5. Le cavalier d4 défend ce fou, mais il est lui-même attaqué par la dame d5 et pas encore défendu.
+      children:
+        - ply: Bd7
+          annotation:
+            vi: Đen chặn chiếu bằng tượng từ c8, giữ vua ở lại e8 thêm một nước.
+            en: Black blocks the check with the bishop from c8, keeping the king on e8 for one more move.
+            fr: Les Noirs parent l'échec avec le fou de c8, gardant le roi en e8 un coup de plus.
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 9.Bxd7+, chẳng hạn 9.Bf1. Đánh giá trong mục này dành cho nhánh Trắng đổi tượng ngay.
+              en: White plays something other than 9.Bxd7+, for example 9.Bf1. The assessment in this entry is for the line where White trades the bishops at once.
+              fr: Les Blancs jouent autre chose que 9.Bxd7+, par exemple 9.Bf1. L'évaluation de cette fiche porte sur la ligne où les Blancs échangent les fous tout de suite.
+          children:
+            - ply: Bxd7+
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn tượng d7 với nước chiếu. Vua Đen có thể ăn lại hoặc né sang d8, e7 hay f7.
+                en: White takes the bishop on d7 with check. The black king can recapture or step to d8, e7 or f7.
+                fr: Les Blancs prennent le fou d7 avec échec. Le roi noir peut reprendre ou se mettre en d8, e7 ou f7.
+              children:
+                - ply: Kxd7
+                  annotation:
+                    vi: Vua Đen ăn lại tượng. Vua đứng trên d7 và mất quyền nhập thành, còn hậu d5 đang tấn công mã d4 mà không quân nào bảo vệ.
+                    en: The black king recaptures the bishop. The king stands on d7 and has lost the right to castle, while the queen on d5 attacks the knight on d4, which nothing defends.
+                    fr: Le roi noir reprend le fou. Le roi se trouve en d7 et a perdu le droit au roque, tandis que la dame d5 attaque le cavalier d4, que rien ne défend.
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi nước khác thay vì 10.c3, chẳng hạn 10.Nb3 hoặc 10.Ne2. Đánh giá trong mục này dành cho nhánh Trắng bảo vệ mã d4 bằng tốt c.
+                      en: White plays something other than 10.c3, for example 10.Nb3 or 10.Ne2. The assessment in this entry is for the line where White defends the knight on d4 with the c-pawn.
+                      fr: Les Blancs jouent autre chose que 10.c3, par exemple 10.Nb3 ou 10.Ne2. L'évaluation de cette fiche porte sur la ligne où les Blancs défendent le cavalier d4 avec le pion c.
+                  children:
+                    - ply: c3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Trắng bảo vệ mã d4 bằng tốt c3, nên hậu d5 không còn mục tiêu nào chưa được bảo vệ.
+                        en: White defends the knight on d4 with the c3 pawn, so the queen on d5 has no undefended target left.
+                        fr: Les Blancs défendent le cavalier d4 avec le pion c3, si bien que la dame d5 n'a plus de cible non défendue.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: Trắng bảy, Đen sáu — Đen kém một tốt, và tốt e4 của Đen bị cô lập vì không còn tốt d hay tốt f. Vua Đen đứng trên d7 và mất quyền nhập thành, còn mã g8, tượng f8 và cả hai xe vẫn chưa rời ô xuất phát. Hậu d5 tấn công tốt a2 và mã d4 nhưng cả hai đều có quân bảo vệ.'
+                          en: "Count the pawns: White seven, Black six — Black is a pawn down, and Black's e4 pawn is isolated with no d-pawn or f-pawn beside it. Black's king stands on d7 and has lost the right to castle, and the knight on g8, the bishop on f8 and both rooks have not yet left their starting squares. The queen on d5 attacks the a2 pawn and the knight on d4, but both are defended."
+                          fr: "Comptons les pions : sept pour les Blancs, six pour les Noirs — les Noirs ont un pion de moins, et le pion e4 noir est isolé, sans pion d ni pion f à côté de lui. Le roi noir se trouve en d7 et a perdu le droit au roque, et le cavalier g8, le fou f8 et les deux tours n'ont pas encore quitté leur case de départ. La dame d5 attaque le pion a2 et le cavalier d4, mais tous deux sont défendus."
+                        plan:
+                          vi: Trắng nhập thành rồi chơi d3 để tấn công tốt e4 bị cô lập và mở đường cho tượng c1. Đen chơi ...Nf6 để bảo vệ tốt e4, ...Re8 và ...Kc8 để đưa vua về chỗ an toàn hơn.
+                          en: White castles, then plays d3 to attack the isolated e4 pawn and open the diagonal for the bishop on c1. Black plays ...Nf6 to defend the e4 pawn, then ...Re8 and ...Kc8 to bring the king to a safer square.
+                          fr: Les Blancs roquent, puis jouent d3 pour attaquer le pion e4 isolé et ouvrir la diagonale du fou c1. Les Noirs jouent ...Nf6 pour défendre le pion e4, puis ...Re8 et ...Kc8 pour mettre le roi sur une case plus sûre.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'

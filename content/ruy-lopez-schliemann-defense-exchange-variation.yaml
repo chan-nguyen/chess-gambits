@@ -1,0 +1,73 @@
+# Ruy Lopez: Schliemann Defense, Exchange Variation. The catalogue's line is 1.e4 e5 2.Nf3 Nc6
+# 3.Bb5 f5 4.Bxc6, which ends on White's ply; with Black as the learner that would make the root a
+# learner node, so the defining line here stops at 3...f5 and 4.Bxc6 is modelled as the opponent's
+# reply (docs/CONTEXT.md, invariant 5; the catalogue check accepts a prefix). Replayed with chess.js
+# through 4...dxc6 5.d3. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: ruy-lopez-schliemann-defense-exchange-variation
+name: 'Ruy Lopez: Schliemann Defense, Exchange Variation'
+eco: C63
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. After 5.d3 the pawn count is level, eight each, but Black's pawns are doubled on the c-file, which cannot be repaired, and the e5 pawn is attacked by the knight on f3 with nothing defending it. Black's two bishops against one are the only concrete asset on the board. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...f5, phản công vào tốt e4. Tốt f5 bị tốt e4 tấn công mà không quân nào bảo vệ, và tốt e4 cũng bị tốt f5 tấn công mà không quân Trắng nào bảo vệ. Tượng b5 của Trắng đang tấn công mã c6.
+    en: Black has just played 3...f5, a counterattack on the e4 pawn. The f5 pawn is attacked by the e4 pawn with nothing defending it, and the e4 pawn is attacked by the f5 pawn with no White piece defending it. White's bishop on b5 attacks the knight on c6.
+    fr: Les Noirs viennent de jouer 3...f5, une contre-attaque contre le pion e4. Le pion f5 est attaqué par le pion e4 sans aucune défense, et le pion e4 est attaqué par le pion f5 sans qu'aucune pièce blanche ne le défende. Le fou b5 des Blancs attaque le cavalier c6.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 4.Bxc6, chẳng hạn 4.exf5 hoặc 4.Nc3. Đánh giá trong mục này dành cho nhánh Trắng đổi tượng lấy mã ngay.
+      en: White plays something other than 4.Bxc6, for example 4.exf5 or 4.Nc3. The assessment in this entry is for the line where White trades the bishop for the knight at once.
+      fr: Les Blancs jouent autre chose que 4.Bxc6, par exemple 4.exf5 ou 4.Nc3. L'évaluation de cette fiche porte sur la ligne où les Blancs échangent tout de suite le fou contre le cavalier.
+  children:
+    - ply: Bxc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đổi tượng lấy mã ở c6. Tượng c6 bị cả tốt b7 lẫn d7 tấn công, nên Đen sẽ ăn lại ngay.
+        en: White trades the bishop for the knight on c6. The bishop is attacked by both the b7 and d7 pawns, so Black will recapture at once.
+        fr: Les Blancs échangent le fou contre le cavalier en c6. Le fou est attaqué par les deux pions b7 et d7, si bien que les Noirs reprendront aussitôt.
+      children:
+        - ply: dxc6
+          annotation:
+            vi: Đen ăn lại bằng tốt d, mở đường cho tượng c8 và hậu d8 nhưng để lại hai tốt chồng ở cột c (c6 và c7).
+            en: Black recaptures with the d-pawn, opening lines for the bishop on c8 and the queen on d8 but leaving doubled pawns on the c-file (c6 and c7).
+            fr: Les Noirs reprennent avec le pion d, ouvrant des lignes pour le fou c8 et la dame d8 mais laissant des pions doublés sur la colonne c (c6 et c7).
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 5.d3, chẳng hạn 5.Nxe5 hoặc 5.Nc3. Đánh giá trong mục này dành cho nhánh Trắng bảo vệ tốt e4 bằng d3.
+              en: White plays something other than 5.d3, for example 5.Nxe5 or 5.Nc3. The assessment in this entry is for the line where White defends the e4 pawn with d3.
+              fr: Les Blancs jouent autre chose que 5.d3, par exemple 5.Nxe5 ou 5.Nc3. L'évaluation de cette fiche porte sur la ligne où les Blancs défendent le pion e4 par d3.
+          children:
+            - ply: d3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng bảo vệ tốt e4 bằng tốt d3 và vẫn giữ mã f3 nhắm vào tốt e5 của Đen.
+                en: White defends the e4 pawn with the d-pawn and keeps the knight on f3 aimed at Black's e5 pawn.
+                fr: Les Blancs défendent le pion e4 avec le pion d et gardent le cavalier f3 braqué sur le pion e5 des Noirs.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: tám mỗi bên, nhưng tốt Đen bị chồng ở cột c (c6 và c7), một khuyết điểm không sửa được. Tốt e5 của Đen bị mã f3 tấn công mà không quân nào bảo vệ. Bù lại, Đen có hai tượng (c8 và f8) đối với một tượng duy nhất của Trắng ở c1.'
+                  en: "Count the pawns: eight each, but Black's pawns are doubled on the c-file (c6 and c7), a defect that cannot be repaired. Black's e5 pawn is attacked by the knight on f3 with nothing defending it. In return Black has two bishops (on c8 and f8) against White's single bishop on c1."
+                  fr: "Comptons les pions : huit de chaque côté, mais les pions noirs sont doublés sur la colonne c (c6 et c7), un défaut irréparable. Le pion e5 noir est attaqué par le cavalier f3 sans aucune défense. En contrepartie, les Noirs ont deux fous (en c8 et f8) contre l'unique fou blanc en c1."
+                plan:
+                  vi: Trắng chơi Nxe5 để thắng tốt e5 nếu Đen không lo kịp. Đen bảo vệ tốt e5 bằng ...Bd6 hoặc chơi ...fxe4 để mở đường cho cặp tượng.
+                  en: White plays Nxe5 to win the e5 pawn if Black does not see to it in time. Black defends the e5 pawn with ...Bd6 or plays ...fxe4 to open lines for the bishop pair.
+                  fr: Les Blancs jouent Nxe5 pour gagner le pion e5 si les Noirs n'y veillent pas à temps. Les Noirs défendent le pion e5 par ...Bd6 ou jouent ...fxe4 pour ouvrir des lignes à la paire de fous.
+                basis:
+                  by: chan
+                  at: '2026-09-30'
