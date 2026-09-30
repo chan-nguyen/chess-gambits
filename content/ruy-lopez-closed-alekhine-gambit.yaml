@@ -1,0 +1,103 @@
+# Ruy Lopez: Closed, Alekhine Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6
+# 5.O-O Be7 6.Re1 b5 7.Bb3 d6 8.c3 Na5 9.Bc2 c5 10.d4 Qc7 11.Nbd2 O-O 12.Nf1 Bg4 13.Ne3 Bxf3
+# 14.Qxf3, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 14...cxd4 15.cxd4 exd4. At the leaf the pawn on d4
+# attacks the knight on e3, but it is White's move, so nothing is left going free. searchMate at 3
+# moves from the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: ruy-lopez-closed-alekhine-gambit
+name: 'Ruy Lopez: Closed, Alekhine Gambit'
+eco: C88
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bb5,
+    a6,
+    Ba4,
+    Nf6,
+    O-O,
+    Be7,
+    Re1,
+    b5,
+    Bb3,
+    d6,
+    c3,
+    Na5,
+    Bc2,
+    c5,
+    d4,
+    Qc7,
+    Nbd2,
+    O-O,
+    Nf1,
+    Bg4,
+    Ne3,
+    Bxf3,
+    Qxf3,
+  ]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the root the d4 pawn is attacked twice and defended once, and White lets it go. At the leaf White has six pawns to Black's seven and the pawn on d4 attacks the knight on e3. The one thing on the board in White's favour is the square d5, which no Black pawn can ever guard again because Black has no c-pawn or e-pawn left. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 14.Qxf3 và tốt d4 đang bị hai tốt c5, e5 của Đen tấn công mà chỉ có tốt c3 bảo vệ. Đây là con tốt Trắng sẵn sàng để mất: số tốt hai bên đang bằng nhau, tám mỗi bên.'
+    en: 'White has just played 14.Qxf3 and the d4 pawn is attacked by both the c5 and e5 pawns and defended only by the pawn on c3. This is the pawn White is ready to let go: the pawn count is level for now, eight each.'
+    fr: "Les Blancs viennent de jouer 14.Qxf3 et le pion d4 est attaqué par les deux pions c5 et e5 et défendu seulement par le pion c3. C'est le pion que les Blancs sont prêts à laisser partir : le compte de pions est pour l'instant égal, huit de chaque côté."
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 14...cxd4, chẳng hạn 14...exd4. Đánh giá trong mục này dành cho nhánh Đen ăn tốt d4 bằng tốt c.
+      en: Black plays something other than 14...cxd4, for example 14...exd4. The assessment in this entry is for the line where Black takes on d4 with the c-pawn.
+      fr: Les Noirs jouent autre chose que 14...cxd4, par exemple 14...exd4. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent en d4 avec le pion c.
+  children:
+    - ply: cxd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt d4 bằng tốt c, và tốt d4 vừa ăn được tốt e5 bảo vệ. Đen hơn một tốt cho đến khi Trắng ăn lại.
+        en: Black takes the d4 pawn with the c-pawn, and the pawn now on d4 is defended by the e5 pawn. Black is a pawn up until White recaptures.
+        fr: Les Noirs prennent le pion d4 avec le pion c, et le pion maintenant en d4 est défendu par le pion e5. Les Noirs ont un pion de plus jusqu'à ce que les Blancs reprennent.
+      children:
+        - ply: cxd4
+          annotation:
+            vi: 'Trắng ăn lại bằng tốt c. Tốt d4 mới này bị tốt e5 tấn công và không quân nào bảo vệ: đó là con tốt mà Trắng sẵn sàng từ bỏ.'
+            en: 'White recaptures with the c-pawn. The new pawn on d4 is attacked by the e5 pawn and defended by nothing: it is the pawn White is prepared to give up.'
+            fr: "Les Blancs reprennent avec le pion c. Le nouveau pion d4 est attaqué par le pion e5 et n'est défendu par rien : c'est le pion que les Blancs sont prêts à abandonner."
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 15...exd4, chẳng hạn 15...Nc6. Đánh giá trong mục này dành cho nhánh Đen ăn tốt d4 ngay.
+              en: Black plays something other than 15...exd4, for example 15...Nc6. The assessment in this entry is for the line where Black takes the d4 pawn at once.
+              fr: Les Noirs jouent autre chose que 15...exd4, par exemple 15...Nc6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent tout de suite le pion d4.
+          children:
+            - ply: exd4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Đen ăn tốt d4 bằng tốt e: Đen hơn một tốt, và tốt d4 mới tấn công luôn mã e3 của Trắng.'
+                en: "Black takes the d4 pawn with the e-pawn: Black is a pawn up, and the new pawn on d4 attacks White's knight on e3."
+                fr: 'Les Noirs prennent le pion d4 avec le pion e : les Noirs ont un pion de plus, et le nouveau pion d4 attaque le cavalier e3 des Blancs.'
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém một tốt, và tốt d4 của Đen đang tấn công mã e3 nên mã phải rời chỗ. Điều duy nhất có lợi cho Trắng trên bàn là ô d5: Đen không còn tốt c hay tốt e nào nên không tốt nào của Đen có thể bảo vệ d5 nữa, và mã e3 chỉ cần một nước để tới đó; hiện chỉ có mã f6 của Đen canh ô này.'
+                  en: "Count the pawns: White six, Black seven — White is a pawn down, and Black's pawn on d4 attacks the knight on e3, so the knight has to move. The one thing on the board in White's favour is the square d5: Black has no c-pawn or e-pawn left, so no Black pawn can guard d5 again, and the knight on e3 needs a single move to reach it; only Black's knight on f6 watches the square now."
+                  fr: "Comptons les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins, et le pion d4 noir attaque le cavalier e3, qui doit donc bouger. La seule chose en faveur des Blancs sur l'échiquier est la case d5 : les Noirs n'ont plus de pion c ni de pion e, si bien qu'aucun pion noir ne pourra plus garder d5, et le cavalier e3 n'a besoin que d'un coup pour y arriver ; seul le cavalier f6 noir surveille maintenant cette case."
+                plan:
+                  vi: Trắng phải đưa mã khỏi e3 ngay, hợp lý nhất là tới d5, ô mà không tốt Đen nào đuổi được; nếu Đen đổi bằng ...Nxd5 thì exd5 đặt một tốt lên đó. Đen cố giữ tốt thừa bằng cách bảo vệ tốt d4.
+                  en: White has to move the knight off e3 at once, most purposefully to d5, a square no Black pawn can challenge; if Black trades with ...Nxd5, exd5 puts a pawn on it. Black tries to keep the extra pawn by supporting the pawn on d4.
+                  fr: Les Blancs doivent déplacer le cavalier de e3 tout de suite, le plus utilement en d5, une case qu'aucun pion noir ne peut contester ; si les Noirs échangent par ...Nxd5, exd5 place un pion dessus. Les Noirs essaient de garder le pion supplémentaire en soutenant le pion d4.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

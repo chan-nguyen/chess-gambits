@@ -1,0 +1,92 @@
+# Ruy Lopez: Marshall Attack, Main Line, Spassky Variation. Frozen defining line 1.e4 e5 2.Nf3
+# Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d5 9.exd5 Nxd5 10.Nxe5 Nxe5 11.Rxe5 c6
+# 12.d4 Bd6 13.Re1 Qh4 14.g3 Qh3 15.Be3 Bg4 16.Qd3 Rae8 17.Nd2 Re6 18.a4 Qh5, which ends on Black's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js
+# through 19.f3. searchMate at 3 moves from the resulting position returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: ruy-lopez-marshall-attack-main-line-spassky-variation
+name: 'Ruy Lopez: Marshall Attack, Main Line, Spassky Variation'
+eco: C89
+category: gambit
+side: black
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bb5,
+    a6,
+    Ba4,
+    Nf6,
+    O-O,
+    Be7,
+    Re1,
+    b5,
+    Bb3,
+    O-O,
+    c3,
+    d5,
+    exd5,
+    Nxd5,
+    Nxe5,
+    Nxe5,
+    Rxe5,
+    c6,
+    d4,
+    Bd6,
+    Re1,
+    Qh4,
+    g3,
+    Qh3,
+    Be3,
+    Bg4,
+    Qd3,
+    Rae8,
+    Nd2,
+    Re6,
+    a4,
+    Qh5,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: 'A judgement. At the leaf Black is still a pawn down, six pawns to seven, and pays for it with pieces, not with pawns: the bishop on d6 attacks g3, which only the h2 pawn defends, and the queen on h5 attacks h2, which only the king defends. No engine was consulted and no database was queried.'
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 18...Qh5. Đen vẫn kém một tốt, sáu so với bảy, và đền lại bằng các quân hoạt động: hậu h5 tấn công tốt h2, tượng d6 tấn công tốt g3, còn mã d5 và xe e6 cùng tấn công tượng e3 của Trắng.'
+    en: "Black has just played 18...Qh5. Black is still a pawn down, six pawns to seven, and pays for it with active pieces: the queen on h5 attacks the h2 pawn, the bishop on d6 attacks the g3 pawn, and the knight on d5 and the rook on e6 both attack White's bishop on e3."
+    fr: 'Les Noirs viennent de jouer 18...Qh5. Les Noirs ont toujours un pion de moins, six contre sept, et le paient par des pièces actives : la dame h5 attaque le pion h2, le fou d6 attaque le pion g3, et le cavalier d5 et la tour e6 attaquent tous deux le fou e3 des Blancs.'
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 19.f3, chẳng hạn 19.Bxd5 hoặc 19.axb5. Đánh giá trong mục này dành cho nhánh Trắng tấn công tượng g4 bằng f3.
+      en: White plays something other than 19.f3, for example 19.Bxd5 or 19.axb5. The assessment in this entry is for the line where White attacks the bishop on g4 with f3.
+      fr: Les Blancs jouent autre chose que 19.f3, par exemple 19.Bxd5 ou 19.axb5. L'évaluation de cette fiche porte sur la ligne où les Blancs attaquent le fou g4 par f3.
+  children:
+    - ply: f3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi f3, tấn công tượng g4. Tốt f3 có mã d2 bảo vệ, còn tượng g4 của Đen có hậu h5 bảo vệ.
+        en: White plays f3, attacking the bishop on g4. The f3 pawn is defended by the knight on d2, and Black's bishop on g4 is defended by the queen on h5.
+        fr: Les Blancs jouent f3, attaquant le fou g4. Le pion f3 est défendu par le cavalier d2, et le fou g4 noir est défendu par la dame h5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen sáu — con tốt Marshall chưa lấy lại được. Bù lại, tượng d6 của Đen tấn công tốt g3, nơi chỉ có tốt h2 bảo vệ, và hậu h5 tấn công tốt h2, nơi chỉ có vua g1 bảo vệ.'
+          en: "Count the pawns: White seven, Black six — the Marshall pawn has not come back. In return Black's bishop on d6 attacks the g3 pawn, which only the h2 pawn defends, and the queen on h5 attacks the h2 pawn, which only the king on g1 defends."
+          fr: "Comptons les pions : sept pour les Blancs, six pour les Noirs — le pion Marshall n'est pas revenu. En contrepartie, le fou d6 noir attaque le pion g3, que seul le pion h2 défend, et la dame h5 attaque le pion h2, que seul le roi g1 défend."
+        plan:
+          vi: Trắng tìm cách đổi bớt quân tấn công của Đen, chẳng hạn Bxd5 cxd5 rồi axb5, vừa đơn giản hoá vừa giữ tốt thừa. Đen giữ nguyên lực lượng tấn công bằng ...Bh3 hoặc ...Bxf3 và ...Nxe3 hay ...Rfe8, tiếp tục gây áp lực lên g3 và h2.
+          en: White looks to trade off Black's attackers, for example with Bxd5 cxd5 and axb5, simplifying while keeping the extra pawn. Black keeps the attackers on with ...Bh3 or ...Bxf3 and ...Nxe3 or ...Rfe8, continuing the pressure on g3 and h2.
+          fr: Les Blancs cherchent à échanger les attaquants noirs, par exemple par Bxd5 cxd5 puis axb5, en simplifiant tout en gardant le pion supplémentaire. Les Noirs gardent leurs attaquants avec ...Bh3 ou ...Bxf3 et ...Nxe3 ou ...Rfe8, en continuant la pression sur g3 et h2.
+        basis:
+          by: chan
+          at: '2026-09-30'

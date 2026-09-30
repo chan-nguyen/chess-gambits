@@ -1,0 +1,91 @@
+# Ruy Lopez: Open, Harksen Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6
+# 5.O-O Nxe4 6.d4 b5 7.Bb3 d5 8.c4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 8...exd4 9.Nxd4 Nxd4 10.Qxd4 Be6.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: ruy-lopez-open-harksen-gambit
+name: 'Ruy Lopez: Open, Harksen Gambit'
+eco: C80
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, Nf6, O-O, Nxe4, d4, b5, Bb3, d5, c4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: 'A judgement. At the leaf White is a pawn down, six pawns to seven, and the centre is in tension with nothing to spare on either side: the c4 pawn is attacked twice and defended twice, and so is the d5 pawn. The queen on d4 is well placed but attacks nothing Black has left undefended. No engine was consulted and no database was queried.'
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.c4. Các tốt b5, d5 và e5 của Đen cùng bị tấn công, nhưng Trắng đang kém một tốt, bảy so với tám, và tốt c4 của Trắng bị cả tốt b5 lẫn d5 tấn công mà chỉ có tượng b3 bảo vệ.
+    en: White has just played 8.c4. Black's pawns on b5, d5 and e5 are all attacked, but White is a pawn down, seven to eight, and White's c4 pawn is attacked by both the b5 and d5 pawns and defended only by the bishop on b3.
+    fr: Les Blancs viennent de jouer 8.c4. Les pions noirs b5, d5 et e5 sont tous attaqués, mais les Blancs ont un pion de moins, sept contre huit, et le pion c4 blanc est attaqué par les deux pions b5 et d5 et défendu seulement par le fou b3.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 8...exd4, chẳng hạn 8...bxc4 hoặc 8...dxc4. Đánh giá trong mục này dành cho nhánh Đen ăn tốt d4 bằng tốt e.
+      en: Black plays something other than 8...exd4, for example 8...bxc4 or 8...dxc4. The assessment in this entry is for the line where Black takes on d4 with the e-pawn.
+      fr: Les Noirs jouent autre chose que 8...exd4, par exemple 8...bxc4 ou 8...dxc4. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent en d4 avec le pion e.
+  children:
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt d4 bằng tốt e: Trắng tạm thời kém hai tốt, sáu so với tám, và tốt d4 mới được mã c6 bảo vệ.'
+        en: 'Black takes the d4 pawn with the e-pawn: White is two pawns down for the moment, six to eight, and the new pawn on d4 is defended by the knight on c6.'
+        fr: "Les Noirs prennent le pion d4 avec le pion e : les Blancs ont deux pions de moins pour l'instant, six contre huit, et le nouveau pion d4 est défendu par le cavalier c6."
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Trắng ăn lại bằng mã f3, và mã d4 tấn công mã c6 của Đen, con mã mà lúc này không quân nào bảo vệ.
+            en: White recaptures with the knight from f3, and the knight on d4 attacks Black's knight on c6, which nothing defends at this moment.
+            fr: Les Blancs reprennent avec le cavalier de f3, et le cavalier d4 attaque le cavalier c6 noir, que rien ne défend pour l'instant.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 9...Nxd4, chẳng hạn 9...bxc4. Lúc này mã c6 đang bị mã d4 tấn công và không có quân nào bảo vệ.
+              en: Black plays something other than 9...Nxd4, for example 9...bxc4. At this moment the knight on c6 is attacked by the knight on d4 and is undefended.
+              fr: Les Noirs jouent autre chose que 9...Nxd4, par exemple 9...bxc4. À ce moment, le cavalier c6 est attaqué par le cavalier d4 et n'est pas défendu.
+          children:
+            - ply: Nxd4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đổi mã lấy mã ở d4.
+                en: Black trades knights on d4.
+                fr: Les Noirs échangent les cavaliers en d4.
+              children:
+                - ply: Qxd4
+                  annotation:
+                    vi: Trắng ăn lại bằng hậu. Hậu d4 tấn công mã e4 của Đen, nhưng mã ấy có tốt d5 bảo vệ.
+                    en: White recaptures with the queen. The queen on d4 attacks Black's knight on e4, but the d5 pawn defends that knight.
+                    fr: Les Blancs reprennent avec la dame. La dame d4 attaque le cavalier e4 noir, mais le pion d5 défend ce cavalier.
+                  dismissRest:
+                    reason:
+                      vi: Đen chơi nước khác thay vì 10...Be6, chẳng hạn 10...Nc5 hoặc 10...Nf6. Đánh giá trong mục này dành cho nhánh Đen thêm một quân bảo vệ d5 bằng tượng.
+                      en: Black plays something other than 10...Be6, for example 10...Nc5 or 10...Nf6. The assessment in this entry is for the line where Black adds a defender to d5 with the bishop.
+                      fr: Les Noirs jouent autre chose que 10...Be6, par exemple 10...Nc5 ou 10...Nf6. L'évaluation de cette fiche porte sur la ligne où les Noirs ajoutent un défenseur à d5 avec le fou.
+                  children:
+                    - ply: Be6
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: 'Đen đưa tượng ra e6, thêm một quân bảo vệ tốt d5: tốt d5 giờ bị hai quân tấn công và cũng có hai quân bảo vệ.'
+                        en: 'Black brings the bishop out to e6, adding a second defender to the d5 pawn: that pawn is now attacked twice and defended twice.'
+                        fr: 'Les Noirs sortent le fou en e6, ajoutant un second défenseur au pion d5 : ce pion est maintenant attaqué deux fois et défendu deux fois.'
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng kém một tốt. Trung tâm đang căng thẳng mà không bên nào còn dư quân: tốt c4 bị hai tốt b5 và d5 tấn công và có hậu d4 cùng tượng b3 bảo vệ, còn tốt d5 bị tốt c4 và hậu d4 tấn công và có hậu d8 cùng tượng e6 bảo vệ. Mã e4 của Đen bị hậu d4 tấn công nhưng có tốt d5 bảo vệ.'
+                          en: "Count the pawns: White six, Black seven — White is a pawn down. The centre is in tension with nothing to spare on either side: the c4 pawn is attacked by the b5 and d5 pawns and defended by the queen on d4 and the bishop on b3, and the d5 pawn is attacked by the c4 pawn and the queen on d4 and defended by the queen on d8 and the bishop on e6. Black's knight on e4 is attacked by the queen on d4 but defended by the d5 pawn."
+                          fr: "Comptons les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont un pion de moins. Le centre est en tension sans qu'aucun camp ait de pièce en trop : le pion c4 est attaqué par les pions b5 et d5 et défendu par la dame d4 et le fou b3, et le pion d5 est attaqué par le pion c4 et la dame d4 et défendu par la dame d8 et le fou e6. Le cavalier e4 noir est attaqué par la dame d4 mais défendu par le pion d5."
+                        plan:
+                          vi: Trắng chơi Nc3 để tấn công mã e4 và thêm một quân vào d5, hoặc cxd5 để mở trung tâm. Đen có thể đổi ...Nxc3 hoặc giữ mã bằng ...Nc5, cố giữ tốt thừa.
+                          en: White plays Nc3 to attack the knight on e4 and add a piece against d5, or cxd5 to open the centre. Black can trade with ...Nxc3 or keep the knight with ...Nc5, trying to hold the extra pawn.
+                          fr: Les Blancs jouent Nc3 pour attaquer le cavalier e4 et ajouter une pièce contre d5, ou cxd5 pour ouvrir le centre. Les Noirs peuvent échanger par ...Nxc3 ou garder le cavalier par ...Nc5, en essayant de conserver le pion supplémentaire.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'

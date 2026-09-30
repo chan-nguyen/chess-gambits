@@ -1,0 +1,84 @@
+# Ruy Lopez: Marshall Attack, Modern Main Line. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6
+# 4.Ba4 Nf6 5.O-O Be7 6.Re1 b5 7.Bb3 O-O 8.c3 d5 9.exd5 Nxd5 10.Nxe5 Nxe5 11.Rxe5 c6 12.d4 Bd6
+# 13.Re1 Qh4 14.g3 Qh3, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 15.Be3. searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: ruy-lopez-marshall-attack-modern-main-line
+name: 'Ruy Lopez: Marshall Attack, Modern Main Line'
+eco: C89
+category: gambit
+side: black
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bb5,
+    a6,
+    Ba4,
+    Nf6,
+    O-O,
+    Be7,
+    Re1,
+    b5,
+    Bb3,
+    O-O,
+    c3,
+    d5,
+    exd5,
+    Nxd5,
+    Nxe5,
+    Nxe5,
+    Rxe5,
+    c6,
+    d4,
+    Bd6,
+    Re1,
+    Qh4,
+    g3,
+    Qh3,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf Black is a pawn down, six pawns to seven, and pays for it with pressure on the g3 pawn, which the bishop on d6 and the queen on h3 attack and only the f2 and h2 pawns defend, while White's knight on b1 and rook on a1 are still at home. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 14...Qh3. Đen vẫn kém một tốt, sáu so với bảy, và tốt g3 của Trắng đang bị tượng d6 cùng hậu h3 tấn công, còn tốt h2 bị hậu h3 tấn công mà chỉ có vua g1 bảo vệ.
+    en: Black has just played 14...Qh3. Black is still a pawn down, six to seven, and White's g3 pawn is attacked by the bishop on d6 and the queen on h3, while the h2 pawn is attacked by the queen and defended only by the king on g1.
+    fr: Les Noirs viennent de jouer 14...Qh3. Les Noirs ont toujours un pion de moins, six contre sept, et le pion g3 des Blancs est attaqué par le fou d6 et la dame h3, tandis que le pion h2 est attaqué par la dame et défendu seulement par le roi g1.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 15.Be3, chẳng hạn 15.Nd2 hoặc 15.Qf3. Đánh giá trong mục này dành cho nhánh Trắng phát triển tượng ra e3.
+      en: White plays something other than 15.Be3, for example 15.Nd2 or 15.Qf3. The assessment in this entry is for the line where White develops the bishop to e3.
+      fr: Les Blancs jouent autre chose que 15.Be3, par exemple 15.Nd2 ou 15.Qf3. L'évaluation de cette fiche porte sur la ligne où les Blancs développent le fou en e3.
+  children:
+    - ply: Be3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đưa tượng ra e3, nơi nó bị mã d5 tấn công nhưng có tốt f2 và xe e1 bảo vệ.
+        en: White brings the bishop out to e3, where the knight on d5 attacks it but the f2 pawn and the rook on e1 defend it.
+        fr: Les Blancs sortent le fou en e3, où le cavalier d5 l'attaque mais où le pion f2 et la tour e1 le défendent.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen sáu — con tốt Marshall chưa lấy lại được. Tốt g3 bị tượng d6 và hậu h3 tấn công và có tốt f2 cùng h2 bảo vệ, tốt h2 bị hậu h3 tấn công và chỉ có vua g1 bảo vệ, còn mã b1 và xe a1 của Trắng vẫn chưa rời ô xuất phát.'
+          en: "Count the pawns: White seven, Black six — the Marshall pawn has not come back. The g3 pawn is attacked by the bishop on d6 and the queen on h3 and defended by the f2 and h2 pawns, the h2 pawn is attacked by the queen and defended only by the king on g1, and White's knight on b1 and rook on a1 have not yet left their starting squares."
+          fr: "Comptons les pions : sept pour les Blancs, six pour les Noirs — le pion Marshall n'est pas revenu. Le pion g3 est attaqué par le fou d6 et la dame h3 et défendu par les pions f2 et h2, le pion h2 est attaqué par la dame et défendu seulement par le roi g1, et le cavalier b1 et la tour a1 des Blancs n'ont pas encore quitté leur case de départ."
+        plan:
+          vi: Trắng chơi Nd2 và Qd3 để gỡ thế bó của cánh hậu, rồi đổi mã d5 bằng Bxd5 nếu cần. Đen chơi ...Bg4 để tấn công hậu d1 và ...Rae8 để đưa xe vào cột e.
+          en: White plays Nd2 and Qd3 to untangle the queenside, then trades the knight on d5 with Bxd5 if needed. Black plays ...Bg4 to attack the queen on d1 and ...Rae8 to bring a rook to the e-file.
+          fr: Les Blancs jouent Nd2 et Qd3 pour dénouer l'aile dame, puis échangent le cavalier d5 par Bxd5 si nécessaire. Les Noirs jouent ...Bg4 pour attaquer la dame d1 et ...Rae8 pour amener une tour sur la colonne e.
+        basis:
+          by: chan
+          at: '2026-09-30'
