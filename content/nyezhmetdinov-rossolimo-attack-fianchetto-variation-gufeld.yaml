@@ -1,0 +1,98 @@
+# Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, Fianchetto Variation, Gufeld Gambit. Frozen
+# defining line 1.e4 c5 2.Nf3 Nc6 3.Bb5 g6 4.O-O Bg7 5.c3 e5 6.d4, which ends on White's own ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 6...exd4 7.cxd4 cxd4 8.Bxc6 bxc6 9.Nxd4. searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: nyezhmetdinov-rossolimo-attack-fianchetto-variation-gufeld
+name: 'Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, Fianchetto Variation, Gufeld Gambit'
+eco: B31
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, Nc6, Bb5, g6, O-O, Bg7, c3, e5, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf the pawn count is level, six each, so the gambit pawn has come back, but Black has two bishops against one, the a7 pawn is isolated, and the knight on d4 is attacked by the bishop on g7 and defended only by the queen. White's compensation is the half-open c- and d-files, not material. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.d4. Tốt d4 bị ba quân tấn công (mã c6, tốt c5 và tốt e5) và cũng có ba quân bảo vệ (tốt c3, mã f3 và hậu d1), còn tốt c5 của Đen bị tốt d4 tấn công mà không quân nào bảo vệ. Số tốt hai bên bằng nhau, tám mỗi bên.
+    en: White has just played 6.d4. The d4 pawn is attacked three times (by the knight on c6 and the c5 and e5 pawns) and defended three times (by the c3 pawn, the knight on f3 and the queen on d1), while Black's c5 pawn is attacked by the d4 pawn with nothing defending it. The pawn count is level, eight each.
+    fr: Les Blancs viennent de jouer 6.d4. Le pion d4 est attaqué trois fois (par le cavalier c6 et les pions c5 et e5) et défendu trois fois (par le pion c3, le cavalier f3 et la dame d1), tandis que le pion c5 noir est attaqué par le pion d4 sans aucune défense. Le compte de pions est égal, huit de chaque côté.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 6...exd4, chẳng hạn 6...cxd4 hoặc 6...d6. Đánh giá trong mục này dành cho nhánh Đen ăn tốt d4 bằng tốt e.
+      en: Black plays something other than 6...exd4, for example 6...cxd4 or 6...d6. The assessment in this entry is for the line where Black takes on d4 with the e-pawn.
+      fr: Les Noirs jouent autre chose que 6...exd4, par exemple 6...cxd4 ou 6...d6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent en d4 avec le pion e.
+  children:
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt d4 bằng tốt e: Trắng kém một tốt, bảy so với tám, và tốt d4 mới được tốt c5, mã c6 và tượng g7 bảo vệ.'
+        en: 'Black takes the d4 pawn with the e-pawn: White is a pawn down, seven to eight, and the new pawn on d4 is defended by the c5 pawn, the knight on c6 and the bishop on g7.'
+        fr: 'Les Noirs prennent le pion d4 avec le pion e : les Blancs ont un pion de moins, sept contre huit, et le nouveau pion d4 est défendu par le pion c5, le cavalier c6 et le fou g7.'
+      children:
+        - ply: cxd4
+          annotation:
+            vi: Trắng ăn lại bằng tốt c, đưa số tốt về bằng nhau, bảy mỗi bên. Tốt d4 của Trắng bị ba quân tấn công và chỉ có hai quân bảo vệ.
+            en: White recaptures with the c-pawn, levelling the pawn count at seven each. White's d4 pawn is attacked three times and defended only twice.
+            fr: Les Blancs reprennent avec le pion c, égalisant le compte de pions à sept de chaque côté. Le pion d4 blanc est attaqué trois fois et défendu seulement deux fois.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 7...cxd4, chẳng hạn 7...d6. Đánh giá trong mục này dành cho nhánh Đen ăn tốt d4 lần nữa.
+              en: Black plays something other than 7...cxd4, for example 7...d6. The assessment in this entry is for the line where Black takes on d4 again.
+              fr: Les Noirs jouent autre chose que 7...cxd4, par exemple 7...d6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent de nouveau en d4.
+          children:
+            - ply: cxd4
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Đen ăn tốt d4 lần nữa: Trắng lại kém một tốt, sáu so với bảy, và tốt d4 của Đen có tượng g7 và mã c6 bảo vệ.'
+                en: "Black takes the d4 pawn again: White is a pawn down once more, six to seven, and Black's pawn on d4 is defended by the bishop on g7 and the knight on c6."
+                fr: 'Les Noirs prennent de nouveau le pion d4 : les Blancs ont à nouveau un pion de moins, six contre sept, et le pion d4 noir est défendu par le fou g7 et le cavalier c6.'
+              children:
+                - ply: Bxc6
+                  annotation:
+                    vi: 'Trắng ăn mã c6 bằng tượng, loại bỏ một trong hai quân bảo vệ tốt d4: sau khi Đen ăn lại, tốt d4 chỉ còn tượng g7 bảo vệ trước hai quân tấn công.'
+                    en: 'White takes the knight on c6 with the bishop, removing one of the two defenders of the d4 pawn: once Black recaptures, the d4 pawn has only the bishop on g7 defending it against two attackers.'
+                    fr: "Les Blancs prennent le cavalier c6 avec le fou, éliminant l'un des deux défenseurs du pion d4 : une fois que les Noirs ont repris, le pion d4 n'a plus que le fou g7 pour le défendre face à deux attaquants."
+                  dismissRest:
+                    reason:
+                      vi: Đen chơi nước khác thay vì 8...bxc6, chẳng hạn 8...dxc6. Đánh giá trong mục này dành cho nhánh Đen ăn lại bằng tốt b.
+                      en: Black plays something other than 8...bxc6, for example 8...dxc6. The assessment in this entry is for the line where Black recaptures with the b-pawn.
+                      fr: Les Noirs jouent autre chose que 8...bxc6, par exemple 8...dxc6. L'évaluation de cette fiche porte sur la ligne où les Noirs reprennent avec le pion b.
+                  children:
+                    - ply: bxc6
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen ăn lại bằng tốt b. Tốt a7 của Đen giờ đứng một mình vì không còn tốt b, và tốt d4 chỉ còn tượng g7 bảo vệ.
+                        en: Black recaptures with the b-pawn. Black's a7 pawn now stands alone with no b-pawn, and the d4 pawn has only the bishop on g7 defending it.
+                        fr: Les Noirs reprennent avec le pion b. Le pion a7 noir est maintenant seul, sans pion b, et le pion d4 n'a plus que le fou g7 pour le défendre.
+                      children:
+                        - ply: Nxd4
+                          annotation:
+                            vi: 'Trắng lấy lại tốt d4 bằng mã: số tốt lại bằng nhau, sáu mỗi bên. Mã d4 bị tượng g7 tấn công và chỉ có hậu d1 bảo vệ.'
+                            en: 'White takes back the d4 pawn with the knight: the pawn count is level again, six each. The knight on d4 is attacked by the bishop on g7 and defended only by the queen on d1.'
+                            fr: 'Les Blancs reprennent le pion d4 avec le cavalier : le compte de pions est de nouveau égal, six de chaque côté. Le cavalier d4 est attaqué par le fou g7 et défendu seulement par la dame d1.'
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: 'Đếm tốt: sáu mỗi bên, nên con tốt thí đã lấy lại được. Nhưng Đen có hai tượng (c8 và g7) đối với một tượng của Trắng ở c1, tốt a7 của Đen bị cô lập, và mã d4 bị tượng g7 tấn công mà chỉ có hậu d1 bảo vệ. Bù lại, cột c và d nửa mở cho Trắng.'
+                              en: "Count the pawns: six each, so the pawn sacrificed has come back. But Black has two bishops (on c8 and g7) against White's single bishop on c1, Black's a7 pawn is isolated, and the knight on d4 is attacked by the bishop on g7 and defended only by the queen on d1. In return the c- and d-files are half-open for White."
+                              fr: "Comptons les pions : six de chaque côté, donc le pion sacrifié est revenu. Mais les Noirs ont deux fous (en c8 et g7) contre l'unique fou blanc en c1, le pion a7 noir est isolé, et le cavalier d4 est attaqué par le fou g7 et défendu seulement par la dame d1. En contrepartie, les colonnes c et d sont semi-ouvertes pour les Blancs."
+                            plan:
+                              vi: Trắng chơi Be3 để bảo vệ mã d4, rồi Nc3 và Qd2 hoặc Qf3 để tận dụng cột c và d nửa mở. Đen chơi ...Bxd4 và ...Qf6 để đổi hậu, hoặc ...Ne7 rồi nhập thành, tận dụng cặp tượng.
+                              en: White plays Be3 to defend the knight on d4, then Nc3 and Qd2 or Qf3 to use the half-open c- and d-files. Black plays ...Bxd4 and ...Qf6 to trade queens, or ...Ne7 and castles, making use of the bishop pair.
+                              fr: Les Blancs jouent Be3 pour défendre le cavalier d4, puis Nc3 et Qd2 ou Qf3 pour utiliser les colonnes c et d semi-ouvertes. Les Noirs jouent ...Bxd4 et ...Qf6 pour échanger les dames, ou ...Ne7 et roquent, en tirant parti de la paire de fous.
+                            basis:
+                              by: chan
+                              at: '2026-09-30'

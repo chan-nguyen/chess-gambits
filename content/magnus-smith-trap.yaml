@@ -1,0 +1,55 @@
+# Sicilian Defense: Magnus Smith Trap. Frozen defining line (traps.yaml) 1.e4 c5 2.Nf3 Nc6 3.d4
+# cxd4 4.Nxd4 Nf6 5.Nc3 d6 6.Bc4 g6 7.Nxc6 bxc6 8.e5 dxe5 9.Bxf7+ Kxf7 10.Qxd8, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). The trap wins a queen, not a
+# mate, so no leaf claims a mate and no certificate is needed. Replayed with chess.js through 10...Ng4.
+# searchMate at 3 moves from the resulting position returns no-mate, and no capture is left going
+# free at the leaf.
+id: magnus-smith-trap
+name: Magnus Smith Trap
+eco: B57
+category: trap
+side: white
+definingLine:
+  [e4, c5, Nf3, Nc6, d4, cxd4, Nxd4, Nf6, Nc3, d6, Bc4, g6, Nxc6, bxc6, e5, dxe5, Bxf7+, Kxf7, Qxd8]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: "A judgement, kept from the catalogue's label. The trap costs Black its queen: at the leaf White has a queen, a bishop, a knight and two rooks against two bishops, a knight and two rooks, with six pawns each, and Black's king stands on f7 without castling rights. The reply modelled here is one of several; the others are not assessed. No engine was consulted and no database was queried."
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 10.Qxd8, ăn hậu Đen. Không quân Đen nào ăn lại được: tượng c8 chắn đường của xe a8, vua đứng trên f7 cách d8 hai cột, và không quân nào khác của Đen tấn công d8. Đây chính là cái bẫy: sau 9.Bxf7+ Kxf7, vua Đen không còn bảo vệ ô d8.'
+    en: "White has just played 10.Qxd8, taking Black's queen. No black piece can take it back: the bishop on c8 blocks the rook on a8, the king on f7 is two files away from d8, and nothing else of Black's attacks d8. That is the trap: after 9.Bxf7+ Kxf7, the black king no longer guards the d8 square."
+    fr: "Les Blancs viennent de jouer 10.Qxd8, prenant la dame noire. Aucune pièce noire ne peut la reprendre : le fou c8 bloque la tour a8, le roi f7 est à deux colonnes de d8, et rien d'autre du côté noir n'attaque d8. C'est tout le piège : après 9.Bxf7+ Kxf7, le roi noir ne garde plus la case d8."
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 10...Ng4, chẳng hạn 10...Bg4 hoặc 10...Bb7. Đánh giá trong mục này dành cho nhánh Đen chơi 10...Ng4.
+      en: Black plays something other than 10...Ng4, for example 10...Bg4 or 10...Bb7. The assessment in this entry is for the line with 10...Ng4.
+      fr: Les Noirs jouent autre chose que 10...Ng4, par exemple 10...Bg4 ou 10...Bb7. L'évaluation de cette fiche porte sur la ligne avec 10...Ng4.
+  children:
+    - ply: Ng4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa mã ra g4, tấn công f2 và h2, nhưng f2 có vua e1 bảo vệ và h2 có xe h1 bảo vệ.
+        en: Black puts the knight on g4, attacking f2 and h2, but the king on e1 defends f2 and the rook on h1 defends h2.
+        fr: Les Noirs placent le cavalier en g4, attaquant f2 et h2, mais le roi e1 défend f2 et la tour h1 défend h2.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm vật chất: Trắng có hậu, tượng, mã và hai xe, Đen có hai tượng, mã và hai xe, và tốt là sáu mỗi bên, nên Trắng hơn một hậu đổi một tượng. Vua Đen đứng trên f7 và mất quyền nhập thành. Tốt Đen bị phân tán: a7, c6 và hai tốt chồng e5, e7 đều không có tốt nào bên cạnh. Tượng c8 là quân duy nhất chắn giữa hậu d8 của Trắng và xe a8.'
+          en: "Count the material: White has a queen, a bishop, a knight and two rooks against Black's two bishops, a knight and two rooks, and the pawns are six each, so White is a queen up for a bishop. Black's king stands on f7 and has lost the right to castle. Black's pawns are scattered: a7, c6 and the doubled e-pawns on e5 and e7 all have no pawn beside them. The bishop on c8 is the only piece standing between White's queen on d8 and the rook on a8."
+          fr: "Comptons le matériel : les Blancs ont une dame, un fou, un cavalier et deux tours contre deux fous, un cavalier et deux tours pour les Noirs, et les pions sont six de chaque côté, donc les Blancs ont une dame de plus pour un fou. Le roi noir se trouve en f7 et a perdu le droit au roque. Les pions noirs sont dispersés : a7, c6 et les pions doublés e5 et e7 n'ont tous aucun pion à côté d'eux. Le fou c8 est la seule pièce entre la dame d8 des Blancs et la tour a8."
+        plan:
+          vi: Trắng nhập thành và đưa tượng ra f4, giữ hậu hoạt động và đổi bớt quân. Đen chơi ...Bb7 hoặc ...Be6 để mở đường cho xe a8 tấn công hậu d8, rồi tìm cách tận dụng mã g4 và hai tượng.
+          en: White castles and brings the bishop out to f4, keeping the queen active and trading pieces. Black plays ...Bb7 or ...Be6 to open the line for the rook on a8 against the queen on d8, then looks to make use of the knight on g4 and the two bishops.
+          fr: Les Blancs roquent et sortent le fou en f4, gardant la dame active et échangeant des pièces. Les Noirs jouent ...Bb7 ou ...Be6 pour ouvrir la ligne à la tour a8 contre la dame d8, puis cherchent à tirer parti du cavalier g4 et des deux fous.
+        basis:
+          by: chan
+          at: '2026-09-30'

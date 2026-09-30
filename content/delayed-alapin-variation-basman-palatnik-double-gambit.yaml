@@ -1,0 +1,73 @@
+# Sicilian Defense: Delayed Alapin Variation, Basman-Palatnik Double Gambit. Frozen defining line
+# 1.e4 c5 2.Nf3 d6 3.c3 Nf6 4.Be2 Nc6 5.d4 cxd4 6.cxd4 Nxe4 7.d5 Qa5+ 8.Nc3 Nxc3 9.bxc3, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with
+# chess.js through 9...Qxc3+ 10.Bd2 Qb2. searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: delayed-alapin-variation-basman-palatnik-double-gambit
+name: 'Sicilian Defense: Delayed Alapin Variation, Basman-Palatnik Double Gambit'
+eco: B50
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, c3, Nf6, Be2, Nc6, d4, cxd4, cxd4, Nxe4, d5, Qa5+, Nc3, Nxc3, bxc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf White is two pawns down, five pawns to seven, and White's pawns on a2 and d5 are both isolated. Black's queen is far from its king and White can harass it with Bc1 or Rb1, but the queen is attacked by nothing yet and White's compensation is a matter of time, not of material. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa ăn lại bằng 9.bxc3, để tốt c3 không có quân nào bảo vệ: hậu a5 của Đen đang tấn công nó, và nếu ăn sẽ chiếu. Trắng đã cho đi tốt e và tốt d nên đang kém một tốt, sáu so với bảy, còn tốt d5 của Trắng tấn công mã c6.'
+    en: "White has just recaptured with 9.bxc3, leaving the c3 pawn with no defender: Black's queen on a5 attacks it, and taking it gives check. White has given up the e-pawn and the d-pawn and is a pawn down, six to seven, while White's d5 pawn attacks the knight on c6."
+    fr: "Les Blancs viennent de reprendre par 9.bxc3, laissant le pion c3 sans défenseur : la dame a5 des Noirs l'attaque, et le prendre donne échec. Les Blancs ont donné le pion e et le pion d et ont un pion de moins, six contre sept, tandis que le pion d5 blanc attaque le cavalier c6."
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 9...Qxc3+, chẳng hạn 9...Nb8 hoặc 9...Ne5. Đánh giá trong mục này dành cho nhánh Đen ăn tốt c3 với nước chiếu.
+      en: Black plays something other than 9...Qxc3+, for example 9...Nb8 or 9...Ne5. The assessment in this entry is for the line where Black takes the c3 pawn with check.
+      fr: Les Noirs jouent autre chose que 9...Qxc3+, par exemple 9...Nb8 ou 9...Ne5. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion c3 avec échec.
+  children:
+    - ply: Qxc3+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt c3 với nước chiếu: Trắng kém hai tốt, năm so với bảy. Hậu c3 tấn công luôn xe a1 và tượng c1.'
+        en: 'Black takes the c3 pawn with check: White is two pawns down, five to seven. The queen on c3 also attacks the rook on a1 and the bishop on c1.'
+        fr: 'Les Noirs prennent le pion c3 avec échec : les Blancs ont deux pions de moins, cinq contre sept. La dame c3 attaque aussi la tour a1 et le fou c1.'
+      children:
+        - ply: Bd2
+          annotation:
+            vi: Trắng chặn chiếu bằng tượng c1 lên d2, đồng thời tượng d2 tấn công hậu c3 mà hậu đó không có quân nào bảo vệ.
+            en: White blocks the check with the bishop from c1 to d2, and the bishop on d2 attacks the queen on c3, which nothing defends.
+            fr: Les Blancs parent l'échec avec le fou de c1 en d2, et le fou d2 attaque la dame c3, que rien ne défend.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 10...Qb2, chẳng hạn 10...Qb4 hoặc 10...Qa5. Đánh giá trong mục này dành cho nhánh Đen đưa hậu sang b2.
+              en: Black plays something other than 10...Qb2, for example 10...Qb4 or 10...Qa5. The assessment in this entry is for the line where Black moves the queen to b2.
+              fr: Les Noirs jouent autre chose que 10...Qb2, par exemple 10...Qb4 ou 10...Qa5. L'évaluation de cette fiche porte sur la ligne où les Noirs déplacent la dame en b2.
+          children:
+            - ply: Qb2
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đưa hậu sang b2, tấn công xe a1, tượng d2 và tốt a2, nhưng xe được hậu d1 bảo vệ, tượng được ba quân bảo vệ và tốt a2 được xe a1 bảo vệ.
+                en: Black moves the queen to b2, attacking the rook on a1, the bishop on d2 and the a2 pawn, but the rook is defended by the queen on d1, the bishop three times and the a2 pawn by the rook on a1.
+                fr: Les Noirs déplacent la dame en b2, attaquant la tour a1, le fou d2 et le pion a2, mais la tour est défendue par la dame d1, le fou trois fois et le pion a2 par la tour a1.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng năm, Đen bảy — Trắng kém hai tốt, và hai tốt a2 và d5 của Trắng đều bị cô lập. Tốt d5 tấn công mã c6, con mã chỉ có tốt b7 bảo vệ. Quân Đen ngoài hậu và mã c6 vẫn chưa rời ô xuất phát, nên Trắng hiện chỉ có lợi thế phát triển chứ chưa có vật chất.'
+                  en: "Count the pawns: White five, Black seven — White is two pawns down, and White's pawns on a2 and d5 are both isolated. The d5 pawn attacks the knight on c6, which only the b7 pawn defends. Black's pieces other than the queen and the knight on c6 have not left their starting squares, so for now White has a lead in development but no material."
+                  fr: "Comptons les pions : cinq pour les Blancs, sept pour les Noirs — les Blancs ont deux pions de moins, et les pions blancs a2 et d5 sont tous deux isolés. Le pion d5 attaque le cavalier c6, que seul le pion b7 défend. Les pièces noires autres que la dame et le cavalier c6 n'ont pas quitté leur case de départ, si bien que les Blancs n'ont pour l'instant qu'une avance de développement et aucun matériel."
+                plan:
+                  vi: Trắng chơi Bc1 hoặc Rb1 để quấy rối hậu Đen, giữ dxc6 trong tay để phá các tốt cánh hậu của Đen. Đen phát triển bằng ...Bd7 hoặc ...e6 và đưa hậu khỏi nguy hiểm khi bị tấn công.
+                  en: White harasses the black queen with Bc1 or Rb1 and keeps dxc6 in reserve to break up Black's queenside pawns. Black develops with ...Bd7 or ...e6 and moves the queen out of danger when it is attacked.
+                  fr: Les Blancs harcèlent la dame noire par Bc1 ou Rb1 et gardent dxc6 en réserve pour casser les pions de l'aile dame noire. Les Noirs se développent par ...Bd7 ou ...e6 et mettent la dame à l'abri lorsqu'elle est attaquée.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

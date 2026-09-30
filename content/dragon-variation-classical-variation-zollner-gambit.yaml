@@ -1,0 +1,61 @@
+# Sicilian Defense: Dragon Variation, Classical Variation, Zollner Gambit. Frozen defining line
+# 1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 g6 5.Be3 Bg7 6.Be2 Nf6 7.Nc3 O-O 8.O-O d6 9.f4 Qb6 10.e5, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed
+# with chess.js through 10...Qxb2 11.Ncb5. The leaf has Black to move, but every capture open to
+# Black there is answered by a recapture. searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry.
+id: dragon-variation-classical-variation-zollner-gambit
+name: 'Sicilian Defense: Dragon Variation, Classical Variation, Zollner Gambit'
+eco: B73
+category: gambit
+side: white
+definingLine:
+  [e4, c5, Nf3, Nc6, d4, cxd4, Nxd4, g6, Be3, Bg7, Be2, Nf6, Nc3, O-O, O-O, d6, f4, Qb6, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: "A judgement. At the leaf White is a pawn down, six pawns to seven, and the pawn lost on b2 has not been recovered. What White has in return is on the board: the d6 pawn is attacked twice and defended once, and Black's queen on b2 has to keep watching pieces that are all defended. That is a lead in activity, not a recovered pawn. No engine was consulted and no database was queried."
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 10.e5, đẩy tốt e lên và để tốt b2 không có quân nào bảo vệ: hậu b6 của Đen đang tấn công cả tốt b2 lẫn mã d4. Số tốt hai bên đang bằng nhau, bảy mỗi bên.'
+    en: "White has just played 10.e5, pushing the e-pawn and leaving the b2 pawn undefended: Black's queen on b6 attacks both the b2 pawn and the knight on d4. The pawn count is level for now, seven each."
+    fr: "Les Blancs viennent de jouer 10.e5, poussant le pion e et laissant le pion b2 sans défense : la dame b6 des Noirs attaque à la fois le pion b2 et le cavalier d4. Le compte de pions est pour l'instant égal, sept de chaque côté."
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 10...Qxb2, chẳng hạn 10...dxe5 hoặc 10...Nxd4. Đánh giá trong mục này dành cho nhánh Đen ăn tốt b2 ngay.
+      en: Black plays something other than 10...Qxb2, for example 10...dxe5 or 10...Nxd4. The assessment in this entry is for the line where Black takes the b2 pawn at once.
+      fr: Les Noirs jouent autre chose que 10...Qxb2, par exemple 10...dxe5 ou 10...Nxd4. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent tout de suite le pion b2.
+  children:
+    - ply: Qxb2
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b2 bằng hậu: Đen hơn một tốt, sáu so với bảy, và hậu b2 tấn công mã c3, xe a1 cùng các tốt a2, c2.'
+        en: 'Black takes the b2 pawn with the queen: Black is a pawn up, seven to six, and the queen on b2 attacks the knight on c3, the rook on a1 and the a2 and c2 pawns.'
+        fr: 'Les Noirs prennent le pion b2 avec la dame : les Noirs ont un pion de plus, sept contre six, et la dame b2 attaque le cavalier c3, la tour a1 et les pions a2 et c2.'
+      children:
+        - ply: Ncb5
+          annotation:
+            vi: Trắng đưa mã c3 lên b5, nhắm vào d6 và a7, và mã b5 được mã d4 cùng tượng e2 bảo vệ.
+            en: White puts the knight from c3 on b5, aiming at d6 and a7, and the knight on b5 is defended by the knight on d4 and the bishop on e2.
+            fr: Les Blancs placent le cavalier de c3 en b5, visant d6 et a7, et le cavalier b5 est défendu par le cavalier d4 et le fou e2.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy — Trắng vẫn kém một tốt; con tốt mất ở b2 chưa lấy lại được. Bù lại, tốt d6 của Đen bị hai quân tấn công (mã b5 và tốt e5) mà chỉ có tốt e7 bảo vệ. Hậu b2 của Đen tấn công xe a1, tốt a2, tốt c2 và mã b5, nhưng tất cả đều đã có quân bảo vệ.'
+              en: "Count the pawns: White six, Black seven — White is still a pawn down; the pawn lost on b2 has not been recovered. In return Black's d6 pawn is attacked twice (by the knight on b5 and the e5 pawn) and defended only by the e7 pawn. Black's queen on b2 attacks the rook on a1, the a2 and c2 pawns and the knight on b5, but every one of them is already defended."
+              fr: "Comptons les pions : six pour les Blancs, sept pour les Noirs — les Blancs ont toujours un pion de moins ; le pion perdu en b2 n'a pas été récupéré. En contrepartie, le pion d6 noir est attaqué deux fois (par le cavalier b5 et le pion e5) et défendu seulement par le pion e7. La dame b2 noire attaque la tour a1, les pions a2 et c2 et le cavalier b5, mais chacun est déjà défendu."
+            plan:
+              vi: Trắng chơi exd6 hoặc Nxd6 để lấy lại tốt, rồi dồn quân vào cánh hậu Đen. Đen chơi ...a6 để đuổi mã b5 hoặc ...dxe5 để mở trung tâm.
+              en: White plays exd6 or Nxd6 to win the pawn back, then piles pieces onto Black's queenside. Black plays ...a6 to chase the knight from b5 or ...dxe5 to open the centre.
+              fr: Les Blancs jouent exd6 ou Nxd6 pour regagner le pion, puis amassent des pièces contre l'aile dame noire. Les Noirs jouent ...a6 pour chasser le cavalier de b5 ou ...dxe5 pour ouvrir le centre.
+            basis:
+              by: chan
+              at: '2026-09-30'

@@ -1,0 +1,92 @@
+# Sicilian Defense: O'Kelly Variation, Venice System, Gambit Line. Frozen defining line 1.e4 c5
+# 2.Nf3 a6 3.c3 d5 4.exd5 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5.c4 e6 6.dxe6 Bxe6 7.Nc3. Note that
+# 5.Bb5+ is not modelled: after 4...Nf6 it loses the bishop to ...axb5, since the a6 pawn attacks
+# b5. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-okelly-variation-venice-system-gambit-line
+name: "Sicilian Defense: O'Kelly Variation, Venice System, Gambit Line"
+eco: B28
+category: gambit
+side: black
+definingLine: [e4, c5, Nf3, a6, c3, d5, exd5, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: 'A judgement. At the leaf Black is a pawn down, six pawns to seven, and what it has is on the board: the d-file is half-open for the queen on d8 against the d2 pawn, and the bishop on e6 attacks the c4 pawn. Both targets are defended, so the pawn is not yet paid for. No engine was consulted and no database was queried.'
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...Nf6. Trắng hơn một tốt, tám so với bảy, và tốt d5 của Trắng bị hậu d8 cùng mã f6 tấn công mà không quân nào bảo vệ.
+    en: Black has just played 4...Nf6. White is a pawn up, eight to seven, and White's d5 pawn is attacked by the queen on d8 and the knight on f6 with nothing defending it.
+    fr: Les Noirs viennent de jouer 4...Nf6. Les Blancs ont un pion de plus, huit contre sept, et le pion d5 blanc est attaqué par la dame d8 et le cavalier f6 sans aucune défense.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 5.c4, chẳng hạn 5.d4 hoặc 5.Be2. Đánh giá trong mục này dành cho nhánh Trắng bảo vệ tốt d5 bằng tốt c.
+      en: White plays something other than 5.c4, for example 5.d4 or 5.Be2. The assessment in this entry is for the line where White defends the d5 pawn with the c-pawn.
+      fr: Les Blancs jouent autre chose que 5.c4, par exemple 5.d4 ou 5.Be2. L'évaluation de cette fiche porte sur la ligne où les Blancs défendent le pion d5 avec le pion c.
+  children:
+    - ply: c4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng bảo vệ tốt d5 bằng tốt c: tốt d5 giờ bị hai quân tấn công và có một quân bảo vệ.'
+        en: 'White defends the d5 pawn with the c-pawn: the d5 pawn is now attacked twice and defended once.'
+        fr: 'Les Blancs défendent le pion d5 avec le pion c : le pion d5 est maintenant attaqué deux fois et défendu une fois.'
+      children:
+        - ply: e6
+          annotation:
+            vi: 'Đen chơi e6, tấn công tốt d5 lần thứ ba: tốt d5 bị hậu d8, tốt e6 và mã f6 tấn công, chỉ có tốt c4 bảo vệ.'
+            en: 'Black plays e6, attacking the d5 pawn a third time: it is attacked by the queen on d8, the e6 pawn and the knight on f6, and defended only by the c4 pawn.'
+            fr: 'Les Noirs jouent e6, attaquant le pion d5 une troisième fois : il est attaqué par la dame d8, le pion e6 et le cavalier f6, et défendu seulement par le pion c4.'
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 6.dxe6, chẳng hạn 6.Nc3. Đánh giá trong mục này dành cho nhánh Trắng ăn tốt e6.
+              en: White plays something other than 6.dxe6, for example 6.Nc3. The assessment in this entry is for the line where White takes the e6 pawn.
+              fr: Les Blancs jouent autre chose que 6.dxe6, par exemple 6.Nc3. L'évaluation de cette fiche porte sur la ligne où les Blancs prennent le pion e6.
+          children:
+            - ply: dxe6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Trắng ăn tốt e6: Trắng hơn hai tốt, tám so với sáu, nhưng tốt e6 vừa ăn bị tượng c8 và tốt f7 tấn công mà không quân nào bảo vệ.'
+                en: 'White takes the e6 pawn: White is two pawns up, eight to six, but the pawn just arrived on e6 is attacked by the bishop on c8 and the f7 pawn with nothing defending it.'
+                fr: "Les Blancs prennent le pion e6 : les Blancs ont deux pions de plus, huit contre six, mais le pion qui vient d'arriver en e6 est attaqué par le fou c8 et le pion f7 sans aucune défense."
+              children:
+                - ply: Bxe6
+                  annotation:
+                    vi: 'Đen ăn lại bằng tượng: Trắng còn hơn một tốt, bảy so với sáu. Tượng e6 tấn công tốt c4, và cột d nửa mở cho hậu d8.'
+                    en: 'Black recaptures with the bishop: White is left one pawn up, seven to six. The bishop on e6 attacks the c4 pawn, and the d-file is half-open for the queen on d8.'
+                    fr: "Les Noirs reprennent avec le fou : les Blancs n'ont plus qu'un pion de plus, sept contre six. Le fou e6 attaque le pion c4, et la colonne d est semi-ouverte pour la dame d8."
+                  dismissRest:
+                    reason:
+                      vi: Trắng chơi nước khác thay vì 7.Nc3, chẳng hạn 7.d4. Đánh giá trong mục này dành cho nhánh Trắng phát triển mã.
+                      en: White plays something other than 7.Nc3, for example 7.d4. The assessment in this entry is for the line where White develops the knight.
+                      fr: Les Blancs jouent autre chose que 7.Nc3, par exemple 7.d4. L'évaluation de cette fiche porte sur la ligne où les Blancs développent le cavalier.
+                  children:
+                    - ply: Nc3
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Trắng phát triển mã ra c3. Tốt c4 bị tượng e6 tấn công nhưng có tượng f1 bảo vệ, và tốt d2 bị hậu d8 tấn công nhưng có bốn quân bảo vệ.
+                        en: White develops the knight to c3. The c4 pawn is attacked by the bishop on e6 but defended by the bishop on f1, and the d2 pawn is attacked by the queen on d8 but defended four times.
+                        fr: Les Blancs développent le cavalier en c3. Le pion c4 est attaqué par le fou e6 mais défendu par le fou f1, et le pion d2 est attaqué par la dame d8 mais défendu quatre fois.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: Trắng bảy, Đen sáu — Đen kém một tốt. Đen có cột d nửa mở, nơi hậu d8 nhắm vào tốt d2, và tượng e6 nhắm vào tốt c4, nhưng cả hai đều đã có quân bảo vệ đủ, nên con tốt chưa được bù đắp.'
+                          en: 'Count the pawns: White seven, Black six — Black is a pawn down. Black has the half-open d-file, where the queen on d8 bears on the d2 pawn, and the bishop on e6 bears on the c4 pawn, but both targets are defended enough, so the pawn is not yet paid for.'
+                          fr: "Comptons les pions : sept pour les Blancs, six pour les Noirs — les Noirs ont un pion de moins. Les Noirs ont la colonne d semi-ouverte, où la dame d8 vise le pion d2, et le fou e6 vise le pion c4, mais les deux cibles sont suffisamment défendues, si bien que le pion n'est pas encore compensé."
+                        plan:
+                          vi: Trắng chơi d4 để thách thức tốt c5 và mở thế cờ, rồi Be2 và nhập thành. Đen phát triển bằng ...Nc6 và ...Be7 rồi nhập thành, dùng cột d nửa mở để gây áp lực.
+                          en: White plays d4 to challenge the c5 pawn and open the position, then Be2 and castles. Black develops with ...Nc6 and ...Be7 and castles, using the half-open d-file for pressure.
+                          fr: Les Blancs jouent d4 pour défier le pion c5 et ouvrir la position, puis Be2 et roquent. Les Noirs se développent par ...Nc6 et ...Be7 puis roquent, en utilisant la colonne d semi-ouverte pour exercer une pression.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'

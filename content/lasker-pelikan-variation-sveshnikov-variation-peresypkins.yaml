@@ -1,0 +1,150 @@
+# Sicilian Defense: Lasker-Pelikan Variation, Sveshnikov Variation, Peresypkin's Sacrifice. Frozen
+# defining line 1.e4 c5 2.Nf3 Nc6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 e5 6.Ndb5 d6 7.Bg5 a6 8.Na3 b5 9.Bxf6 gxf6
+# 10.Nd5 f5 11.Bxb5, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 11...axb5 12.Nxb5 Bd7 13.Nbc7+ Qxc7 14.Nxc7+ Kd8 15.Nxa8
+# fxe4. This entry models one Black reply, 12...Bd7, which allows a knight fork; every move of the fork
+# was replayed and each of Black's answers to the two checks is the only legal move or one of two
+# legal moves, both covered. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: lasker-pelikan-variation-sveshnikov-variation-peresypkins
+name: "Sicilian Defense: Lasker-Pelikan Variation, Sveshnikov Variation, Peresypkin's Sacrifice"
+eco: B33
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    c5,
+    Nf3,
+    Nc6,
+    d4,
+    cxd4,
+    Nxd4,
+    Nf6,
+    Nc3,
+    e5,
+    Ndb5,
+    d6,
+    Bg5,
+    a6,
+    Na3,
+    b5,
+    Bxf6,
+    gxf6,
+    Nd5,
+    f5,
+    Bxb5,
+  ]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: "A judgement, kept from the catalogue's label. This entry only models one Black reply to the sacrifice, 12...Bd7, and that reply is a mistake: after the knight fork White has a queen, two rooks and a knight against a rook, two bishops and a knight, and six pawns to five. The other replies to 12.Nxb5 are not assessed here. No engine was consulted and no database was queried."
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 11.Bxb5, thí tượng: tượng b5 bị tốt a6 tấn công và có mã a3 bảo vệ, còn nó tấn công mã c6 của Đen, con mã không có quân nào bảo vệ. Trắng hơn một tốt, bảy so với sáu.'
+    en: "White has just played 11.Bxb5, offering the bishop: it is attacked by the a6 pawn and defended by the knight on a3, and it attacks Black's knight on c6, which nothing defends. White is a pawn up, seven to six."
+    fr: 'Les Blancs viennent de jouer 11.Bxb5, offrant le fou : il est attaqué par le pion a6 et défendu par le cavalier a3, et il attaque le cavalier c6 des Noirs, que rien ne défend. Les Blancs ont un pion de plus, sept contre six.'
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 11...axb5, chẳng hạn 11...fxe4. Đánh giá trong mục này dành cho nhánh Đen ăn tượng.
+      en: Black plays something other than 11...axb5, for example 11...fxe4. The assessment in this entry is for the line where Black takes the bishop.
+      fr: Les Noirs jouent autre chose que 11...axb5, par exemple 11...fxe4. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le fou.
+  children:
+    - ply: axb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tượng bằng tốt a. Đen giờ có hai tượng và một mã đối với hai mã của Trắng, và tốt b5 vừa ăn bị mã a3 tấn công mà không quân nào bảo vệ.
+        en: Black takes the bishop with the a-pawn. Black now has two bishops and a knight against White's two knights, and the pawn just arrived on b5 is attacked by the knight on a3 with nothing defending it.
+        fr: Les Noirs prennent le fou avec le pion a. Les Noirs ont maintenant deux fous et un cavalier contre les deux cavaliers des Blancs, et le pion qui vient d'arriver en b5 est attaqué par le cavalier a3 sans aucune défense.
+      children:
+        - ply: Nxb5
+          annotation:
+            vi: 'Trắng ăn tốt b5 bằng mã a3, lấy lại hai tốt để đổi lấy tượng: bảy tốt so với năm. Hai mã b5 và d5 cùng nhắm vào ô c7.'
+            en: 'White takes the b5 pawn with the knight from a3, regaining two pawns for the bishop: seven pawns to five. The knights on b5 and d5 both aim at c7.'
+            fr: 'Les Blancs prennent le pion b5 avec le cavalier de a3, regagnant deux pions pour le fou : sept pions contre cinq. Les cavaliers b5 et d5 visent tous deux c7.'
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 12...Bd7, chẳng hạn 12...Rb8 hoặc 12...Bg7. Đánh giá trong mục này dành cho nhánh Đen đưa tượng ra d7.
+              en: Black plays something other than 12...Bd7, for example 12...Rb8 or 12...Bg7. The assessment in this entry is for the line where Black develops the bishop to d7.
+              fr: Les Noirs jouent autre chose que 12...Bd7, par exemple 12...Rb8 ou 12...Bg7. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le fou en d7.
+          children:
+            - ply: Bd7
+              replyQuality: mistake
+              frequency: rare
+              annotation:
+                vi: 'Đen đưa tượng ra d7, nhưng để lộ đòn chiếu đôi tại c7: mã tới c7 sẽ chiếu vua và tấn công xe a8.'
+                en: 'Black develops the bishop to d7, but this allows a fork on c7: a knight on c7 would give check and attack the rook on a8.'
+                fr: 'Les Noirs développent le fou en d7, mais cela permet une fourchette en c7 : un cavalier en c7 donnerait échec et attaquerait la tour a8.'
+              children:
+                - ply: Nbc7+
+                  annotation:
+                    vi: Trắng đưa mã từ b5 lên c7 với nước chiếu, đồng thời tấn công xe a8. Chỉ có hậu d8 đỡ được nước chiếu, và mã d5 sẽ ăn lại.
+                    en: White puts the knight from b5 on c7 with check, attacking the rook on a8 at the same time. Only the queen on d8 can answer the check, and the knight on d5 takes it back.
+                    fr: Les Blancs placent le cavalier de b5 en c7 avec échec, attaquant en même temps la tour a8. Seule la dame d8 peut répondre à l'échec, et le cavalier d5 reprend.
+                  children:
+                    - ply: Qxc7
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: 'Hậu Đen ăn mã c7: đây là nước hợp lệ duy nhất.'
+                        en: "Black's queen takes the knight on c7: it is the only legal move."
+                        fr: "La dame noire prend le cavalier c7 : c'est le seul coup légal."
+                      children:
+                        - ply: Nxc7+
+                          annotation:
+                            vi: Mã d5 ăn hậu c7, lại với nước chiếu, và xe a8 của Đen bị tấn công mà không có quân nào bảo vệ.
+                            en: The knight from d5 takes the queen on c7, again with check, and Black's rook on a8 is attacked with nothing defending it.
+                            fr: Le cavalier de d5 prend la dame c7, de nouveau avec échec, et la tour a8 noire est attaquée sans aucune défense.
+                          dismissRest:
+                            reason:
+                              vi: Đen chơi 14...Ke7 thay vì 14...Kd8. Với 15.Nxa8 Trắng vẫn ăn được xe a8 theo cùng một cách.
+                              en: Black plays 14...Ke7 instead of 14...Kd8. White still takes the rook on a8 with 15.Nxa8 in the same way.
+                              fr: Les Noirs jouent 14...Ke7 au lieu de 14...Kd8. Les Blancs prennent quand même la tour a8 par 15.Nxa8 de la même façon.
+                          children:
+                            - ply: Kd8
+                              replyQuality: good
+                              frequency: common
+                              annotation:
+                                vi: Vua Đen lùi về d8, nơi nó tấn công mã c7, nhưng xe a8 vẫn đang bị tấn công.
+                                en: Black's king steps back to d8, where it attacks the knight on c7, but the rook on a8 is still attacked.
+                                fr: Le roi noir se replie en d8, où il attaque le cavalier c7, mais la tour a8 reste attaquée.
+                              children:
+                                - ply: Nxa8
+                                  annotation:
+                                    vi: Mã c7 ăn xe a8. Trắng giờ có hậu, hai xe và một mã, còn Đen có một xe, hai tượng và một mã.
+                                    en: The knight on c7 takes the rook on a8. White now has a queen, two rooks and a knight, against Black's rook, two bishops and a knight.
+                                    fr: Le cavalier c7 prend la tour a8. Les Blancs ont maintenant une dame, deux tours et un cavalier, contre une tour, deux fous et un cavalier pour les Noirs.
+                                  dismissRest:
+                                    reason:
+                                      vi: Đen chơi nước khác thay vì 15...fxe4, chẳng hạn 15...Bc8 hoặc 15...Nb4. Không nước nào trong số đó thay đổi số quân hai bên, vốn là điều mục này nói đến.
+                                      en: Black plays something other than 15...fxe4, for example 15...Bc8 or 15...Nb4. None of them changes the piece count, which is what this entry is about.
+                                      fr: Les Noirs jouent autre chose que 15...fxe4, par exemple 15...Bc8 ou 15...Nb4. Aucun ne change le compte des pièces, qui est l'objet de cette fiche.
+                                  children:
+                                    - ply: fxe4
+                                      replyQuality: good
+                                      frequency: common
+                                      annotation:
+                                        vi: Đen ăn tốt e4, nhưng hai tốt e của Đen giờ bị chồng (e4 và e5).
+                                        en: Black takes the e4 pawn, but Black's two e-pawns are now doubled (e4 and e5).
+                                        fr: Les Noirs prennent le pion e4, mais leurs deux pions e sont maintenant doublés (e4 et e5).
+                                      outcome:
+                                        type: position
+                                        evaluation:
+                                          vi: 'Đếm vật chất: Trắng có hậu, hai xe và một mã, Đen có một xe, hai tượng và một mã, và tốt là sáu so với năm. Tốt Đen bị chồng ở cột e (e4 và e5) và tốt h7 bị cô lập. Mã a8 của Trắng đang ở góc bàn nhưng không bị quân nào tấn công.'
+                                          en: "Count the material: White has a queen, two rooks and a knight against Black's rook, two bishops and a knight, and the pawns are six to five. Black's pawns are doubled on the e-file (e4 and e5) and the h7 pawn is isolated. White's knight on a8 stands in the corner but nothing attacks it."
+                                          fr: "Comptons le matériel : les Blancs ont une dame, deux tours et un cavalier contre une tour, deux fous et un cavalier pour les Noirs, et les pions sont six contre cinq. Les pions noirs sont doublés sur la colonne e (e4 et e5) et le pion h7 est isolé. Le cavalier a8 blanc se trouve dans le coin mais rien ne l'attaque."
+                                        plan:
+                                          vi: Trắng đưa mã ra khỏi góc bằng Nb6 hoặc Nc7, rồi nhập thành và dùng hậu cùng hai xe. Đen đưa vua vào chỗ an toàn hơn bằng ...Kc8 hoặc ...Ke8 và phát triển hai tượng bằng ...Bg7 hoặc ...Bc8.
+                                          en: White brings the knight out of the corner with Nb6 or Nc7, then castles and uses the queen and the two rooks. Black brings the king to a safer square with ...Kc8 or ...Ke8 and develops the bishops with ...Bg7 or ...Bc8.
+                                          fr: Les Blancs sortent le cavalier du coin par Nb6 ou Nc7, puis roquent et utilisent la dame et les deux tours. Les Noirs mettent le roi sur une case plus sûre par ...Kc8 ou ...Ke8 et développent les fous par ...Bg7 ou ...Bc8.
+                                        basis:
+                                          by: chan
+                                          at: '2026-09-30'
