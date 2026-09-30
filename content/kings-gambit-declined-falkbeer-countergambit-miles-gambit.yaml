@@ -1,0 +1,58 @@
+# King's Gambit Declined: Falkbeer Countergambit, Miles Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 d5 3.exd5 Bc5 ends on Black's own 3...Bc5, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White's 4.Qf3 is modelled as the root's single reply, so
+# the leaf has Black to move. Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-declined-falkbeer-countergambit-miles-gambit
+name: "King's Gambit Declined: Falkbeer Countergambit, Miles Gambit"
+eco: C31
+category: gambit
+side: black
+definingLine: [e4, e5, f4, d5, exd5, Bc5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 3...Bc5 leaves Black a pawn down with its own pawn on e5 attacked and
+      undefended, and after 4.Qf3 White holds both the pawn on d5 and the pawn on f4 with a single
+      move. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Bc5, để tốt e5 bị tấn công mà không có ai bảo vệ, đồng thời tượng đánh vào mã g1. Hai tốt d5 và f4 của Trắng đều đang bị tấn công mà không có ai bảo vệ.
+    en: Black has just played 3...Bc5, leaving the pawn on e5 attacked and undefended while the bishop attacks the knight on g1. White's pawns on d5 and f4 are both attacked and undefended as well.
+    fr: Les Noirs viennent de jouer 3...Bc5, laissant le pion e5 attaqué et sans défense tandis que le fou attaque le cavalier g1. Les pions d5 et f4 des Blancs sont eux aussi tous deux attaqués et sans défense.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.Qf3, chẳng hạn chơi 4.fxe5 hoặc 4.Nc3. Phần lớn các nước khác để Đen ăn được tốt d5 hoặc f4 mà không quân nào ăn lại được.
+      en: White plays something other than 4.Qf3, for example 4.fxe5 or 4.Nc3. Most other moves let Black take the pawn on d5 or on f4 with nothing able to recapture.
+      fr: Les Blancs jouent autre chose que 4.Qf3, par exemple 4.fxe5 ou 4.Nc3. La plupart des autres coups permettent aux Noirs de prendre le pion d5 ou f4 sans que rien puisse reprendre.
+  children:
+    - ply: Qf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng dùng hậu bảo vệ cùng lúc cả hai tốt đang bị tấn công: hậu f3 bảo vệ d5 và f4.'
+        en: 'White defends both attacked pawns with the queen at once: the queen on f3 defends d5 and f4.'
+        fr: 'Les Blancs défendent avec la dame les deux pions attaqués à la fois : la dame f3 défend d5 et f4.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt, đó là tốt d5. Hậu f3 bảo vệ cả d5 lẫn f4, mỗi con bị đánh một lần, còn tốt e5 của Đen bị tốt f4 đánh mà không có ai bảo vệ, và tượng c5 đánh vào mã g1, con mã được xe h1 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven, so White is a pawn up, the extra pawn being the one on d5. The queen on f3 defends both d5 and f4, each attacked once, while Black's pawn on e5 is attacked by the pawn on f4 and defended by nothing, and the bishop on c5 attacks the knight on g1, which the rook on h1 defends."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, si bien que les Blancs ont un pion d'avance, le pion d5. La dame f3 défend à la fois d5 et f4, chacun attaqué une fois, tandis que le pion e5 des Noirs est attaqué par le pion f4 et défendu par rien, et que le fou c5 attaque le cavalier g1, que la tour h1 défend."
+        plan:
+          vi: Đen phải lo cho e5, chẳng hạn bằng ...Bd6 hoặc ...Qe7, hoặc đổi bằng ...exf4. Trắng ăn e5 bằng fxe5 nếu nó bị bỏ lại, hoặc phát triển bằng Nc3 và Bc4.
+          en: Black has to look after e5, for example with ...Bd6 or ...Qe7, or trade with ...exf4. White takes on e5 with fxe5 if it is left alone, or develops with Nc3 and Bc4.
+          fr: Les Noirs doivent s'occuper de e5, par exemple par ...Bd6 ou ...Qe7, ou échanger par ...exf4. Les Blancs prennent en e5 par fxe5 s'il est laissé seul, ou se développent par Nc3 et Bc4.
+        basis:
+          by: chan
+          at: '2026-09-30'

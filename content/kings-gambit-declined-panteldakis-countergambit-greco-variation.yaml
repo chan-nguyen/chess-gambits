@@ -1,0 +1,70 @@
+# King's Gambit Declined: Panteldakis Countergambit, Greco Variation, taught. Frozen
+# defining line 1.e4 e5 2.f4 f5 3.exf5 Qh4+ ends on Black's own 3...Qh4+, so the root is an
+# opponent node, and it is in check (docs/CONTEXT.md, invariant 5). White's 4.g3 is modelled
+# as the root's reply and Black's 4...Qf6 as the learner's move, so the leaf has White to
+# move. The root's two legal replies are a declared count (ADR-0011). Every ply was replayed
+# with chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in
+# check and no capture is going free.
+id: kings-gambit-declined-panteldakis-countergambit-greco-variation
+name: "King's Gambit Declined: Panteldakis Countergambit, Greco Variation"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, e5, f4, f5, exf5, Qh4+]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 3...Qh4+ wins no material: after 4.g3 the queen is attacked by a pawn and has
+      to retreat, and with White already a pawn up on f5, Black has only the pressure on the pawn
+      on f5 to show for it. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  counts:
+    legal:
+      count: legalReplies
+      expect: 2
+  annotation:
+    vi: Đen vừa chiếu bằng 3...Qh4+ theo đường chéo từ h4 tới e1. Trắng đã hơn một tốt ở f5, tám tốt đấu bảy, và tốt f4 bị tốt e5 cùng hậu tấn công mà không có ai bảo vệ.
+    en: Black has just given check with 3...Qh4+ along the diagonal from h4 to e1. White is already a pawn up on f5, eight pawns to seven, and the pawn on f4 is attacked by the pawn on e5 and the queen and defended by nothing.
+    fr: Les Noirs viennent de donner échec par 3...Qh4+ le long de la diagonale de h4 à e1. Les Blancs ont déjà un pion d'avance en f5, huit pions contre sept, et le pion f4 est attaqué par le pion e5 et la dame et défendu par rien.
+  dismissRest:
+    reason:
+      vi: 'Trắng có {legal} nước hợp lệ để đáp lại nước chiếu: 4.g3, được mô hình ở đây, và 4.Ke2, nước này bỏ quyền nhập thành và để tốt f4 cho exf4 hoặc Qxf4 ăn.'
+      en: 'White has {legal} legal replies to the check: 4.g3, modelled here, and 4.Ke2, which gives up the right to castle and leaves the pawn on f4 to exf4 or Qxf4.'
+      fr: "Les Blancs ont {legal} réponses légales à l'échec : 4.g3, modélisée ici, et 4.Ke2, qui renonce au droit de roquer et laisse le pion f4 à exf4 ou Qxf4."
+  children:
+    - ply: g3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chắn nước chiếu bằng tốt và tấn công hậu h4. Tốt g3 được tốt h2 bảo vệ. Nó bị hậu ghim vào vua nên không thể ăn lại ở f4, nhưng vẫn có thể ăn hậu.
+        en: White blocks the check with the pawn and attacks the queen on h4. The pawn on g3 is defended by the pawn on h2. It is pinned to the king by the queen, so it cannot recapture on f4, but it can still capture the queen.
+        fr: Les Blancs interposent le pion et attaquent la dame h4. Le pion g3 est défendu par le pion h2. Il est cloué contre le roi par la dame, si bien qu'il ne peut pas reprendre en f4, mais il peut encore prendre la dame.
+      children:
+        - ply: Qf6
+          annotation:
+            vi: Đen rút hậu về f6, vì hậu h4 bị tốt g3 tấn công mà không có ai bảo vệ. Ở f6 hậu bảo vệ e5 và tấn công tốt f5.
+            en: Black withdraws the queen to f6, because the queen on h4 was attacked by the pawn on g3 and defended by nothing. On f6 it defends e5 and attacks the pawn on f5.
+            fr: Les Noirs replient la dame en f6, car la dame h4 était attaquée par le pion g3 et défendue par rien. En f6, elle défend e5 et attaque le pion f5.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt, đó là tốt f5. Tốt f5 bị hậu f6 tấn công mà không có ai bảo vệ, còn tốt f4 được tốt g3 bảo vệ. Tốt e5 của Đen bị tốt f4 tấn công và được hậu bảo vệ.'
+              en: "Count the pawns: White eight, Black seven, so White is a pawn up, the extra pawn being the one on f5. That pawn is attacked by the queen on f6 and defended by nothing, while the pawn on f4 is defended by the pawn on g3. Black's pawn on e5 is attacked by the pawn on f4 and defended by the queen."
+              fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, si bien que les Blancs ont un pion d'avance, le pion f5. Ce pion est attaqué par la dame f6 et défendu par rien, tandis que le pion f4 est défendu par le pion g3. Le pion e5 des Noirs est attaqué par le pion f4 et défendu par la dame."
+            plan:
+              vi: Trắng bảo vệ tốt f5 bằng Bh3, hoặc ăn e5 bằng fxe5. Đen ăn f5 bằng ...Qxf5 nếu Trắng để yên, hoặc đổi tốt bằng ...exf4.
+              en: White defends the pawn on f5 with Bh3, or takes on e5 with fxe5. Black takes on f5 with ...Qxf5 if White leaves it alone, or trades pawns with ...exf4.
+              fr: Les Blancs défendent le pion f5 par Bh3, ou prennent en e5 par fxe5. Les Noirs prennent en f5 par ...Qxf5 si les Blancs le laissent seul, ou échangent les pions par ...exf4.
+            basis:
+              by: chan
+              at: '2026-09-30'

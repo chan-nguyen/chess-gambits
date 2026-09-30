@@ -1,0 +1,65 @@
+# King's Gambit Accepted: Allgaier, Cook Variation, taught. Frozen defining line 1.e4 e5
+# 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ng5 h6 6.Nxf7 Kxf7 7.d4 d5 8.Bxf4 dxe4 9.Bc4+ Kg7 10.Be5+
+# ends on White's own 10.Be5+, so the root is an opponent node, and it is in check
+# (docs/CONTEXT.md, invariant 5). Black's 10...Nf6 is modelled as the root's single reply,
+# so the leaf has White to move. The root's four legal replies are a declared count
+# (ADR-0011). Every ply was replayed with chess.js; searchMate at 3 moves from the leaf
+# returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-allgaier-cook-variation
+name: "King's Gambit Accepted: Allgaier, Cook Variation"
+eco: C39
+category: gambit
+side: white
+definingLine:
+  [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ng5, h6, Nxf7, Kxf7, d4, d5, Bxf4, dxe4, Bc4+, Kg7, Be5+]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. The checks 9.Bc4+ and 10.Be5+ drive the king to g7 and, after 10...Nf6, pin a knight to it, but
+      the piece given on f7 has not come back, and the pin can be met by challenging the bishop
+      with ...Bd6 or ...Nc6. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  counts:
+    legal:
+      count: legalReplies
+      expect: 4
+  annotation:
+    vi: Trắng vừa chơi 10.Be5+, chiếu vua ở g7 theo đường chéo từ e5, trong khi tượng c4 vẫn đánh vào mã g8.
+    en: White has just played 10.Be5+, checking the king on g7 along the diagonal from e5, while the bishop on c4 still attacks the knight on g8.
+    fr: Les Blancs viennent de jouer 10.Be5+, donnant échec au roi en g7 le long de la diagonale depuis e5, tandis que le fou c4 attaque toujours le cavalier g8.
+  dismissRest:
+    reason:
+      vi: Đen có {legal} nước hợp lệ để đáp lại nước chiếu, và chỉ cách chắn 10...Nf6 là không mất quân ngay. 10...Qf6 mất hậu đổi lấy một tượng sau Bxf6+, còn 10...Kh7 và 10...Kg6 để xe h8 bị tượng e5 ăn theo đường chéo đã mở.
+      en: Black has {legal} legal replies to the check, and only the block 10...Nf6 does not lose material at once. 10...Qf6 loses the queen for a bishop after Bxf6+, while 10...Kh7 and 10...Kg6 leave the rook on h8 to the bishop on e5 along the open diagonal.
+      fr: Les Noirs ont {legal} réponses légales à l'échec, et seule l'interposition 10...Nf6 ne perd pas de matériel tout de suite. 10...Qf6 perd la dame contre un fou après Bxf6+, tandis que 10...Kh7 et 10...Kg6 laissent la tour h8 au fou e5 le long de la diagonale ouverte.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chắn bằng mã. Con mã giờ bị tượng e5 ghim vào vua ở g7, nên tốt g4 thực chất chỉ được tượng c8 bảo vệ.
+        en: Black blocks with the knight. It is now pinned against the king on g7 by the bishop on e5, so the pawn on g4 is really defended only by the bishop on c8.
+        fr: Les Noirs interposent le cavalier. Il est maintenant cloué contre le roi en g7 par le fou e5, si bien que le pion g4 n'est en réalité défendu que par le fou c8.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: mỗi bên sáu tốt, và Trắng kém một mã. Vua Đen đứng ở g7 và không còn quyền nhập thành, còn mã f6 bị tượng e5 ghim vào vua nên không có nước đi nào, một quân không có ô tốt.'
+          en: "Count the material: six pawns each, and White is a knight down. Black's king stands on g7 and can no longer castle, and the knight on f6 is pinned to it by the bishop on e5, so it has no moves at all, a piece with no good square."
+          fr: "Comptez le matériel : six pions de chaque côté, et les Blancs sont en moins un cavalier. Le roi noir est en g7 et ne peut plus roquer, et le cavalier f6 est cloué contre lui par le fou e5, si bien qu'il n'a aucun coup, une pièce sans case."
+        plan:
+          vi: Trắng có thể giữ thế ghim và phát triển bằng Nc3 và Qd2, hoặc đổi tượng lấy mã đang bị ghim bằng Bxf6+. Đen muốn phá thế ghim bằng cách thách thức tượng e5 với ...Bd6 hoặc ...Nc6.
+          en: White can keep the pin and develop with Nc3 and Qd2, or trade the bishop for the pinned knight with Bxf6+. Black wants to break the pin by challenging the bishop on e5 with ...Bd6 or ...Nc6.
+          fr: Les Blancs peuvent garder le clouage et se développer par Nc3 et Qd2, ou échanger le fou contre le cavalier cloué par Bxf6+. Les Noirs veulent briser le clouage en contestant le fou e5 par ...Bd6 ou ...Nc6.
+        basis:
+          by: chan
+          at: '2026-09-30'

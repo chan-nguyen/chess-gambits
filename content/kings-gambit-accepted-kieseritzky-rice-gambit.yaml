@@ -1,0 +1,78 @@
+# King's Gambit Accepted: Kieseritzky, Rice Gambit, taught. Frozen defining line 1.e4 e5
+# 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Nf6 6.Bc4 d5 7.exd5 Bd6 8.O-O ends on White's own 8.O-O,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). The modelled line is
+# 8...Bxe5 9.Re1 Qe7, so the leaf has White to move. Every ply was replayed with chess.js;
+# searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check and no
+# capture is going free.
+id: kings-gambit-accepted-kieseritzky-rice-gambit
+name: "King's Gambit Accepted: Kieseritzky, Rice Gambit"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5, Nf6, Bc4, d5, exd5, Bd6, O-O]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 8.O-O Bxe5 9.Re1 Qe7 White has given a whole knight and the pawns are
+      level, and the only return on the board is the rook on the e-file, where the queen on e7
+      covers the bishop. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa nhập thành bằng 8.O-O, để mã e5 bị tượng d6 tấn công mà không có ai bảo vệ. Xe f1 của Trắng giờ đánh vào tốt f4, con tốt mà Đen không có quân nào bảo vệ.
+    en: White has just castled with 8.O-O, leaving the knight on e5 attacked by the bishop on d6 and defended by nothing. White's rook on f1 now attacks the pawn on f4, which nothing of Black's defends.
+    fr: Les Blancs viennent de roquer par 8.O-O, laissant le cavalier e5 attaqué par le fou d6 et défendu par rien. La tour f1 des Blancs attaque maintenant le pion f4, que rien chez les Noirs ne défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 8...Bxe5, chẳng hạn 8...Nh5 hoặc 8...O-O. Phần lớn các nước còn lại để tốt f4 cho Rxf4 mà không quân nào ăn lại được.
+      en: Black plays something other than 8...Bxe5, for example 8...Nh5 or 8...O-O. Most other moves leave the pawn on f4 to Rxf4, which nothing can recapture.
+      fr: Les Noirs jouent autre chose que 8...Bxe5, par exemple 8...Nh5 ou 8...O-O. La plupart des autres coups laissent le pion f4 à Rxf4, sans que rien puisse reprendre.
+  children:
+    - ply: Bxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn mã bằng tượng, và tượng e5 giờ bảo vệ tốt f4. Trắng đã cho đi một con mã nguyên vẹn mà chưa lấy lại được nó.
+        en: Black takes the knight with the bishop, and the bishop on e5 now defends the pawn on f4. White has given a whole knight and has not won it back yet.
+        fr: Les Noirs prennent le cavalier avec le fou, et le fou e5 défend maintenant le pion f4. Les Blancs ont donné un cavalier entier et ne l'ont pas encore regagné.
+      children:
+        - ply: Re1
+          annotation:
+            vi: Trắng đặt xe lên e1, tấn công tượng e5 không có ai bảo vệ. Tượng bị ghim vào vua e8, vì cột e không còn quân nào khác ở giữa, nên nó không có nước đi nào.
+            en: White puts the rook on e1, attacking the undefended bishop on e5. The bishop is pinned to the king on e8, because nothing else stands on the e-file between them, so it has no move.
+            fr: Les Blancs placent la tour en e1, attaquant le fou e5 sans défense. Le fou est cloué contre le roi e8, car rien d'autre ne se trouve sur la colonne e entre eux, si bien qu'il n'a aucun coup.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 9...Qe7, chẳng hạn 9...Nbd7 hoặc 9...Qd6, cũng bảo vệ tượng. Phần lớn các nước còn lại để tượng e5 bị Rxe5 ăn mất.
+              en: Black plays something other than 9...Qe7, for example 9...Nbd7 or 9...Qd6, which also defend the bishop. Most other moves leave the bishop on e5 to be taken by Rxe5.
+              fr: Les Noirs jouent autre chose que 9...Qe7, par exemple 9...Nbd7 ou 9...Qd6, qui défendent aussi le fou. La plupart des autres coups laissent le fou e5 à prendre par Rxe5.
+          children:
+            - ply: Qe7
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen bảo vệ tượng bị ghim bằng hậu, giờ đứng sau tượng trên cột e.
+                en: Black defends the pinned bishop with the queen, which now stands behind it on the e-file.
+                fr: Les Noirs défendent le fou cloué avec la dame, qui se tient maintenant derrière lui sur la colonne e.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm quân: mỗi bên bảy tốt, và Trắng kém một mã, vì con mã đã cho ở e5 chưa lấy lại được. Xe e1 đánh vào tượng e5, con tượng đứng trên cột e trước hậu và vua Đen và được hậu e7 bảo vệ. Tốt d5 bị mã f6 đánh một lần và được tượng c4 bảo vệ một lần.'
+                  en: 'Count the material: seven pawns each, and White is a knight down, because the piece given on e5 has not come back. The rook on e1 attacks the bishop on e5, which stands on the e-file in front of the black queen and king and is defended by the queen on e7. The pawn on d5 is attacked once, by the knight on f6, and defended once, by the bishop on c4.'
+                  fr: "Comptez le matériel : sept pions de chaque côté, et les Blancs sont en moins un cavalier, car la pièce donnée en e5 n'a pas été récupérée. La tour e1 attaque le fou e5, qui se tient sur la colonne e devant la dame et le roi noirs et qui est défendu par la dame e7. Le pion d5 est attaqué une fois, par le cavalier f6, et défendu une fois, par le fou c4."
+                plan:
+                  vi: Trắng có thể bảo vệ tốt d5 bằng Nc3 và giữ Bb5+ làm nước chiếu. Đen muốn thêm quân tấn công thứ hai vào d5 bằng ...c6 và đưa nốt mã b8 ra bằng ...Nbd7, cũng bảo vệ tượng e5.
+                  en: White can defend the pawn on d5 with Nc3 and keep Bb5+ in hand as a check. Black wants to add a second attacker to d5 with ...c6 and to bring out the other knight with ...Nbd7, which also defends the bishop on e5.
+                  fr: Les Blancs peuvent défendre le pion d5 par Nc3 et garder Bb5+ en réserve comme échec. Les Noirs veulent ajouter un second attaquant contre d5 par ...c6 et sortir l'autre cavalier par ...Nbd7, qui défend aussi le fou e5.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

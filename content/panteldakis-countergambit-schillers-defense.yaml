@@ -1,0 +1,59 @@
+# King's Gambit Declined: Panteldakis Countergambit, Schiller's Defense, taught. Frozen
+# defining line 1.e4 e5 2.f4 f5 3.exf5 Bc5 ends on Black's own 3...Bc5, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). White's 4.fxe5 is modelled as the root's
+# single reply, so the leaf has Black to move. Every ply was replayed with chess.js;
+# searchMate at 3 moves from the leaf returns no-mate, the leaf is not in check and no
+# capture is going free.
+id: panteldakis-countergambit-schillers-defense
+name: "King's Gambit Declined: Panteldakis Countergambit, Schiller's Defense"
+eco: C30
+category: gambit
+side: black
+definingLine: [e4, e5, f4, f5, exf5, Bc5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 3...Bc5 develops with a hit on the knight on g1, but it leaves White two pawns
+      up after 4.fxe5, with nothing of White's attacked except a knight that the rook defends. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Bc5, phát triển tượng và đánh vào mã g1, con mã được xe h1 bảo vệ. Tốt e5 bị tốt f4 tấn công mà không có ai bảo vệ. Trắng đã hơn một tốt, tám tốt đấu bảy.
+    en: Black has just played 3...Bc5, developing the bishop and attacking the knight on g1, which the rook on h1 defends. The pawn on e5 is attacked by the pawn on f4 and defended by nothing. White is already a pawn up, eight pawns to seven.
+    fr: Les Noirs viennent de jouer 3...Bc5, développant le fou et attaquant le cavalier g1, que la tour h1 défend. Le pion e5 est attaqué par le pion f4 et défendu par rien. Les Blancs ont déjà un pion d'avance, huit pions contre sept.
+  dismissRest:
+    reason:
+      vi: Trắng không chơi 4.fxe5, chẳng hạn chơi 4.Qh5+ hoặc 4.d3. Phần lớn các nước khác để tốt f4 cho exf4 ăn mà không quân nào ăn lại được.
+      en: White plays something other than 4.fxe5, for example 4.Qh5+ or 4.d3. Most other moves leave the pawn on f4 to exf4, with nothing able to recapture.
+      fr: Les Blancs jouent autre chose que 4.fxe5, par exemple 4.Qh5+ ou 4.d3. La plupart des autres coups laissent le pion f4 à exf4, sans que rien puisse reprendre.
+  children:
+    - ply: fxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt e5, nên hơn hai tốt, với hai tốt e5 và f5 đã đẩy xa mà không có quân nào của Đen tấn công. Mã g1 vẫn bị tượng c5 đánh và được xe h1 bảo vệ.
+        en: White takes the pawn on e5 and is two pawns up, with the pawns on e5 and f5 both advanced and attacked by nothing of Black's. The knight on g1 is still attacked by the bishop on c5 and defended by the rook on h1.
+        fr: Les Blancs prennent le pion e5 et ont deux pions d'avance, avec les pions e5 et f5 tous deux avancés et attaqués par rien chez les Noirs. Le cavalier g1 est toujours attaqué par le fou c5 et défendu par la tour h1.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen sáu, nên Trắng hơn hai tốt, đó là hai tốt e5 và f5 đã đẩy xa, hiện không bị quân nào tấn công. Quân duy nhất của Trắng đang bị tấn công là mã g1, bị tượng c5 đánh và được xe h1 bảo vệ.'
+          en: 'Count the pawns: White eight, Black six, so White is two pawns up, and the extra pawns are the advanced pair on e5 and f5, which nothing attacks at the moment. The only white unit under attack is the knight on g1, which the bishop on c5 attacks and the rook on h1 defends.'
+          fr: "Comptez les pions : huit pour les Blancs, six pour les Noirs, si bien que les Blancs ont deux pions d'avance, et les pions de plus sont la paire avancée e5 et f5, que rien n'attaque pour le moment. La seule unité blanche attaquée est le cavalier g1, que le fou c5 attaque et que la tour h1 défend."
+        plan:
+          vi: Trắng phát triển bằng Nf3, đưa mã ra khỏi tầm tượng và hỗ trợ e5, hoặc d4, đánh tượng c5 và cũng hỗ trợ e5. Đen cố lấy lại tốt bằng ...d6 hoặc ...Nc6, cùng đánh vào e5.
+          en: White develops with Nf3, which takes the knight out of the bishop's reach and supports e5, or d4, which attacks the bishop on c5 and also supports e5. Black tries to win a pawn back with ...d6 or ...Nc6, both of which attack e5.
+          fr: Les Blancs se développent par Nf3, qui met le cavalier hors de portée du fou et soutient e5, ou par d4, qui attaque le fou c5 et soutient aussi e5. Les Noirs essaient de regagner un pion par ...d6 ou ...Nc6, qui attaquent tous deux e5.
+        basis:
+          by: chan
+          at: '2026-09-30'

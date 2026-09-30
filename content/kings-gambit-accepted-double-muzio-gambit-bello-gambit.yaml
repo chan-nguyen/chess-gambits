@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Double Muzio Gambit, Bello Gambit, taught. Frozen defining line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.O-O gxf3 6.Qxf3 Qf6 7.Nc3 ends on White's own 7.Nc3,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 7...Bd6 is
+# modelled as the root's single reply, so the leaf has White to move. Every ply was replayed
+# with chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in
+# check and no capture is going free.
+id: kings-gambit-accepted-double-muzio-gambit-bello-gambit
+name: "King's Gambit Accepted: Double Muzio Gambit, Bello Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, O-O, gxf3, Qxf3, Qf6, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 7.Nc3 brings the knight toward d5 with a threat against the queen, but after
+      7...Bd6 White is still a whole knight down and the pawn on f4 is defended twice. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.Nc3, đưa mã tới ô mà từ đó nó có thể nhảy lên d5. Mã c3 bị hậu f6 tấn công và được bảo vệ ba lần, bởi hậu f3 và các tốt b2, d2.
+    en: White has just played 7.Nc3, bringing the knight to the square from which it can jump to d5. The knight is attacked by the queen on f6 and defended three times, by the queen on f3 and the pawns on b2 and d2.
+    fr: Les Blancs viennent de jouer 7.Nc3, amenant le cavalier sur la case d'où il peut sauter en d5. Le cavalier est attaqué par la dame f6 et défendu trois fois, par la dame f3 et les pions b2 et d2.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 7...Bd6, chẳng hạn 7...Bh6, cũng bảo vệ tốt f4. Tốt f4 đang bị hậu đánh với xe đứng sau mà chỉ có hậu f6 bảo vệ, nên phần lớn các nước không thêm quân bảo vệ sẽ mất con tốt đó vì Qxf4.
+      en: Black plays something other than 7...Bd6, for example 7...Bh6, which also defends the pawn on f4. That pawn is attacked by the queen with the rook behind it and defended only by the queen on f6, so most moves that add no defender lose it to Qxf4.
+      fr: Les Noirs jouent autre chose que 7...Bd6, par exemple 7...Bh6, qui défend aussi le pion f4. Ce pion est attaqué par la dame avec la tour derrière elle et défendu seulement par la dame f6, si bien que la plupart des coups qui n'ajoutent pas de défenseur le perdent après Qxf4.
+  children:
+    - ply: Bd6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen thêm quân bảo vệ thứ hai cho tốt f4, đồng thời che c7 và e5. Giờ tốt f4 được hậu và tượng bảo vệ.
+        en: Black adds a second defender to the pawn on f4, and covers c7 and e5 at the same time. The pawn on f4 is now defended by the queen and the bishop.
+        fr: Les Noirs ajoutent un second défenseur au pion f4, et couvrent en même temps c7 et e5. Le pion f4 est maintenant défendu par la dame et le fou.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: mỗi bên bảy tốt, nhưng Trắng kém một mã, dù vẫn còn cả hai tượng. Vua Trắng ở g1 đã nhập thành nên không còn quyền nhập thành. Tốt f7 bị tượng c4 đánh một lần và được bảo vệ hai lần, còn tốt f4 bị hậu đánh với xe đứng sau và được bảo vệ hai lần.'
+          en: "Count the material: seven pawns each, but White is a knight down, although both bishops are still on the board. White's king on g1 has castled and has no castling left. The pawn on f7 is attacked once, by the bishop on c4, and defended twice, and the pawn on f4 is attacked by the queen with the rook behind it and defended twice."
+          fr: "Comptez le matériel : sept pions de chaque côté, mais les Blancs sont en moins un cavalier, bien qu'ils aient toujours les deux fous. Le roi blanc en g1 a roqué et n'a plus de roque possible. Le pion f7 est attaqué une fois, par le fou c4, et défendu deux fois, et le pion f4 est attaqué par la dame avec la tour derrière elle et défendu deux fois."
+        plan:
+          vi: Trắng chơi Nd5, đánh vào hậu f6 và tốt c7; hậu chỉ có mã g8 bảo vệ nên phải di chuyển. Đen đưa hậu đi, chẳng hạn ...Qg6, rồi hoàn tất phát triển bằng ...Ne7 và ...Nc6.
+          en: White plays Nd5, hitting the queen on f6 and the pawn on c7; the queen is defended only by the knight on g8, so it has to move. Black moves the queen, for example with ...Qg6, and then completes development with ...Ne7 and ...Nc6.
+          fr: Les Blancs jouent Nd5, frappant la dame f6 et le pion c7 ; la dame n'est défendue que par le cavalier g8, elle doit donc bouger. Les Noirs déplacent la dame, par exemple par ...Qg6, puis achèvent leur développement par ...Ne7 et ...Nc6.
+        basis:
+          by: chan
+          at: '2026-09-30'

@@ -1,0 +1,63 @@
+# King's Gambit Accepted: Lolli Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4 3.Nf3
+# g5 4.Bc4 g4 5.Bxf7+ ends on White's own 5.Bxf7+, so the root is an opponent node, and it
+# is in check (docs/CONTEXT.md, invariant 5). Black's 5...Kxf7 is modelled as the root's
+# single reply, so the leaf has White to move. The root's two legal replies are a declared
+# count (ADR-0011). Every ply was replayed with chess.js; searchMate at 3 moves from the
+# leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-lolli-gambit
+name: "King's Gambit Accepted: Lolli Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Bxf7+]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 5.Bxf7+ gives a whole bishop for the pawn on f7, and the only returns on the
+      board are a king that can no longer castle and the pawn on g4, which a knight check on e5
+      attacks. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  counts:
+    legal:
+      count: legalReplies
+      expect: 2
+  annotation:
+    vi: Trắng vừa chơi 5.Bxf7+, hy sinh tượng để ăn tốt f7 kèm chiếu. Tượng f7 không có quân nào bảo vệ, và tốt g4 đang đánh vào mã f3.
+    en: White has just played 5.Bxf7+, giving up the bishop to take the pawn on f7 with check. The bishop is defended by nothing, and the pawn on g4 attacks the knight on f3.
+    fr: Les Blancs viennent de jouer 5.Bxf7+, sacrifiant le fou pour prendre le pion f7 avec échec. Le fou n'est défendu par rien, et le pion g4 attaque le cavalier f3.
+  dismissRest:
+    reason:
+      vi: 'Đen có {legal} nước hợp lệ để đáp lại nước chiếu: 5...Kxf7, được mô hình ở đây, và 5...Ke7, không ăn tượng.'
+      en: 'Black has {legal} legal replies to the check: 5...Kxf7, modelled here, and 5...Ke7, which does not take the bishop.'
+      fr: "Les Noirs ont {legal} réponses légales à l'échec : 5...Kxf7, modélisée ici, et 5...Ke7, qui ne prend pas le fou."
+  children:
+    - ply: Kxf7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen dùng vua ăn tượng. Vua giờ đứng ở f7 và không còn quyền nhập thành, và Đen được một tượng đổi lấy một tốt. Mã f3 vẫn đang bị tốt g4 tấn công.
+        en: Black takes the bishop with the king. The king now stands on f7 and can no longer castle, and Black has won a bishop for a pawn. The knight on f3 is still attacked by the pawn on g4.
+        fr: Les Noirs prennent le fou avec le roi. Le roi se trouve maintenant en f7 et ne peut plus roquer, et les Noirs ont gagné un fou contre un pion. Le cavalier f3 est toujours attaqué par le pion g4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: mỗi bên bảy tốt, và Trắng kém một tượng vì con tượng đã cho ở f7 chưa lấy lại được. Vua Đen đứng ở f7 và đã mất quyền nhập thành. Mã f3 của Trắng bị tốt g4 đánh và được bảo vệ hai lần, và Ne5+ sẽ chiếu vua đồng thời đánh vào tốt g4.'
+          en: "Count the material: seven pawns each, and White is a bishop down, because the piece given on f7 has not come back. Black's king stands on f7 and has lost the right to castle. White's knight on f3 is attacked by the pawn on g4 and defended twice, and Ne5+ would check the king and attack the pawn on g4 at the same time."
+          fr: "Comptez le matériel : sept pions de chaque côté, et les Blancs sont en moins un fou, car la pièce donnée en f7 n'a pas été récupérée. Le roi noir est en f7 et a perdu le droit de roquer. Le cavalier f3 des Blancs est attaqué par le pion g4 et défendu deux fois, et Ne5+ donnerait échec au roi tout en attaquant le pion g4."
+        plan:
+          vi: Trắng chơi Ne5+, sau đó mọi nước đáp hợp lệ đều là nước đi của vua và nước nào cũng để tốt g4 bị ăn. Đen đưa vua sang bên sau nước chiếu, chẳng hạn ...Kg7, rồi củng cố bằng ...Nf6 và ...d6, giữ con tượng hơn.
+          en: White plays Ne5+, after which every legal reply is a king move and each of them leaves the pawn on g4 to be taken. Black steps the king aside after the check, for example with ...Kg7, and then consolidates with ...Nf6 and ...d6, keeping the extra bishop.
+          fr: Les Blancs jouent Ne5+, après quoi toute réponse légale est un coup de roi et chacun laisse le pion g4 à prendre. Les Noirs écartent le roi après l'échec, par exemple par ...Kg7, puis se consolident par ...Nf6 et ...d6, en gardant le fou de plus.
+        basis:
+          by: chan
+          at: '2026-09-30'

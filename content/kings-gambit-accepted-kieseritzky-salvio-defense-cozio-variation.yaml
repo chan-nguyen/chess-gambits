@@ -1,0 +1,79 @@
+# King's Gambit Accepted: Kieseritzky, Salvio Defense, Cozio Variation, taught. Frozen
+# defining line 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Qe7 6.d4 f5 7.Bc4 ends on White's
+# own 7.Bc4, so the root is an opponent node (docs/CONTEXT.md, invariant 5). No reply to
+# 7.Bc4 leaves the board free of captures, so the modelled line is 7...d6 8.Bxf4 Nf6, and
+# the leaf has White to move. Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-kieseritzky-salvio-defense-cozio-variation
+name: "King's Gambit Accepted: Kieseritzky, Salvio Defense, Cozio Variation"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5, Qe7, d4, f5, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 7...d6 8.Bxf4 the gambit pawn is back and material is level, but the pawn
+      on e4 is attacked with nothing to defend it and the knight on e5 is attacked by a pawn, so
+      White has to spend its next move on those two. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.Bc4, tượng đánh vào mã g8, trong khi tốt e4 của Trắng bị tốt f5 tấn công mà không có ai bảo vệ, và tốt d4 đang giữ mã e5.
+    en: White has just played 7.Bc4, the bishop attacking the knight on g8, while White's pawn on e4 is attacked by the pawn on f5 and defended by nothing, and the pawn on d4 holds the knight on e5.
+    fr: Les Blancs viennent de jouer 7.Bc4, le fou attaquant le cavalier g8, tandis que le pion e4 des Blancs est attaqué par le pion f5 et défendu par rien, et que le pion d4 tient le cavalier e5.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 7...d6, chẳng hạn 7...Nf6 hoặc 7...Nc6. Tốt f4 không có ai bảo vệ, còn tốt e4 của Trắng bị tốt f5 đánh, nên thế cờ của cả hai bên vẫn chưa ổn định.
+      en: Black plays something other than 7...d6, for example 7...Nf6 or 7...Nc6. The pawn on f4 has no defender, and White's pawn on e4 is attacked by the pawn on f5, so neither side's position is settled yet.
+      fr: Les Noirs jouent autre chose que 7...d6, par exemple 7...Nf6 ou 7...Nc6. Le pion f4 n'a aucun défenseur, et le pion e4 des Blancs est attaqué par le pion f5, si bien que la position d'aucun camp n'est encore stable.
+  children:
+    - ply: d6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen tấn công mã e5 bằng tốt d. Mã bị đánh hai lần, bởi tốt d6 và hậu e7, mà chỉ có tốt d4 bảo vệ.
+        en: Black attacks the knight on e5 with the d-pawn. The knight is attacked twice, by the pawn on d6 and the queen on e7, and defended only by the pawn on d4.
+        fr: Les Noirs attaquent le cavalier e5 avec le pion d. Le cavalier est attaqué deux fois, par le pion d6 et la dame e7, et défendu seulement par le pion d4.
+      children:
+        - ply: Bxf4
+          annotation:
+            vi: Trắng ăn tốt f4 bằng tượng, lấy lại con tốt gambit và thêm một quân bảo vệ thứ hai cho mã e5.
+            en: White takes the pawn on f4 with the bishop, winning the gambit pawn back and adding a second defender to the knight on e5.
+            fr: Les Blancs prennent le pion f4 avec le fou, regagnant le pion du gambit et ajoutant un second défenseur au cavalier e5.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 8...Nf6, chẳng hạn 8...Nc6 hoặc 8...Bg7; tốt e4, con tốt bị tốt f5 đánh, vẫn không có ai bảo vệ.
+              en: Black plays something other than 8...Nf6, for example 8...Nc6 or 8...Bg7; the pawn on e4, which the pawn on f5 attacks, still has no defender.
+              fr: Les Noirs jouent autre chose que 8...Nf6, par exemple 8...Nc6 ou 8...Bg7 ; le pion e4, que le pion f5 attaque, n'a toujours aucun défenseur.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã, thêm một quân tấn công e4 và thêm một quân bảo vệ g4. Tốt e4 giờ bị đánh hai lần mà không có ai bảo vệ.
+                en: Black develops the knight, adding an attacker to e4 and a defender to g4. The pawn on e4 is now attacked twice and defended by nothing.
+                fr: Les Noirs développent le cavalier, ajoutant un attaquant à e4 et un défenseur à g4. Le pion e4 est maintenant attaqué deux fois et défendu par rien.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: mỗi bên bảy, nên con tốt gambit đã trở về. Nhưng hai quân của Trắng đang bị đánh: mã e5, bị tốt d6 và hậu e7 tấn công và được tốt d4 cùng tượng f4 bảo vệ, và tốt e4, bị mã f6 và tốt f5 đánh hai lần mà không có ai bảo vệ.'
+                  en: 'Count the pawns: seven each, so the gambit pawn has come back. But two White units are under fire: the knight on e5, attacked by the pawn on d6 and the queen on e7 and defended by the pawn on d4 and the bishop on f4, and the pawn on e4, attacked twice, by the knight on f6 and the pawn on f5, and defended by nothing.'
+                  fr: 'Comptez les pions : sept de chaque côté, si bien que le pion du gambit est revenu. Mais deux unités blanches sont sous le feu : le cavalier e5, attaqué par le pion d6 et la dame e7 et défendu par le pion d4 et le fou f4, et le pion e4, attaqué deux fois, par le cavalier f6 et le pion f5, et défendu par rien.'
+                plan:
+                  vi: Trắng có thể bảo vệ tốt e4 bằng Nc3, rồi phải lo cho mã e5. Đen đe dọa ...dxe5, ...fxe4 và ...Nxe4.
+                  en: White can defend the pawn on e4 with Nc3, and then has to look after the knight on e5. Black threatens ...dxe5, ...fxe4 and ...Nxe4.
+                  fr: Les Blancs peuvent défendre le pion e4 par Nc3, puis doivent s'occuper du cavalier e5. Les Noirs menacent ...dxe5, ...fxe4 et ...Nxe4.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

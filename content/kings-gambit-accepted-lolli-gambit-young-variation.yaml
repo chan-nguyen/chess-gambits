@@ -1,0 +1,61 @@
+# King's Gambit Accepted: Lolli Gambit, Young Variation, taught. Frozen defining line 1.e4
+# e5 2.f4 exf4 3.Nf3 g5 4.Bc4 g4 5.Bxf7+ Kxf7 6.O-O gxf3 7.Qxf3 Qf6 8.d4 Qxd4+ 9.Be3 Qf6
+# 10.Nc3 ends on White's own 10.Nc3, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Black's 10...Nc6 is modelled as the root's single reply, so the leaf has
+# White to move. Every ply was replayed with chess.js; searchMate at 3 moves from the leaf
+# returns no-mate, the leaf is not in check and no capture is going free in the machine's
+# sense (every capture on the board can be recaptured).
+id: kings-gambit-accepted-lolli-gambit-young-variation
+name: "King's Gambit Accepted: Lolli Gambit, Young Variation"
+eco: C37
+category: gambit
+side: white
+definingLine:
+  [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, Bxf7+, Kxf7, O-O, gxf3, Qxf3, Qf6, d4, Qxd4+, Be3, Qf6, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. By move ten White has given a knight and a bishop, and the only thing the board
+      offers in return is the pawn on f4, which is attacked twice and defended once, while Black
+      keeps both extra minor pieces. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 10.Nc3, đưa quân nhẹ cuối cùng vào cuộc. Hậu f3 và tượng e3 cùng tấn công tốt f4, con tốt mà hậu f6 đang bảo vệ; hậu Đen cũng đánh vào mã c3, con mã được tốt b2 bảo vệ.
+    en: White has just played 10.Nc3, bringing the last minor piece into play. The queen on f3 and the bishop on e3 both attack the pawn on f4, which the queen on f6 defends; Black's queen also attacks the knight on c3, which the pawn on b2 defends.
+    fr: Les Blancs viennent de jouer 10.Nc3, mettant en jeu la dernière pièce mineure. La dame f3 et le fou e3 attaquent tous deux le pion f4, que la dame f6 défend ; la dame noire attaque aussi le cavalier c3, que le pion b2 défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 10...Nc6, chẳng hạn 10...Nh6 hoặc 10...Ne7. Phần lớn các nước còn lại cho Trắng ăn được tốt f4, con tốt đang bị đánh hai lần mà chỉ có một quân bảo vệ.
+      en: Black plays something other than 10...Nc6, for example 10...Nh6 or 10...Ne7. Most other moves let White win the pawn on f4, which is attacked twice and defended once.
+      fr: Les Noirs jouent autre chose que 10...Nc6, par exemple 10...Nh6 ou 10...Ne7. La plupart des autres coups permettent aux Blancs de gagner le pion f4, attaqué deux fois et défendu une seule fois.
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã lên c6, nước đó cũng bảo vệ tốt a7, con tốt mà tượng e3 đang đánh.
+        en: Black develops a knight to c6, which also defends the pawn on a7 that the bishop on e3 attacks.
+        fr: Les Noirs développent un cavalier en c6, qui défend aussi le pion a7 que le fou e3 attaque.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: mỗi bên sáu tốt, nhưng Trắng kém hai quân nhẹ, một mã và một tượng. Mã c3 của Trắng bị hậu đánh và chỉ có tốt b2 bảo vệ, tượng e3 bị tốt f4 đánh và chỉ có hậu bảo vệ, còn tốt f4 của Đen bị đánh hai lần và chỉ có một quân bảo vệ.'
+          en: "Count the material: six pawns each, but White is two minor pieces down, a knight and a bishop. White's knight on c3 is attacked by the queen and defended only by the pawn on b2, the bishop on e3 is attacked by the pawn on f4 and defended only by the queen, and Black's pawn on f4 is attacked twice and defended once."
+          fr: 'Comptez le matériel : six pions de chaque côté, mais les Blancs sont en moins deux pièces mineures, un cavalier et un fou. Le cavalier c3 des Blancs est attaqué par la dame et défendu seulement par le pion b2, le fou e3 est attaqué par le pion f4 et défendu seulement par la dame, et le pion f4 des Noirs est attaqué deux fois et défendu une seule fois.'
+        plan:
+          vi: Trắng có thể ăn tốt f4 bằng Bxf4, nước đó cũng đánh vào tốt c7 không có ai bảo vệ. Đen muốn ăn tượng e3 bằng ...fxe3 và giữ hai quân nhẹ hơn.
+          en: White can take the pawn on f4 with Bxf4, which also attacks the undefended pawn on c7. Black wants to capture the bishop on e3 with ...fxe3 and keep the two extra minor pieces.
+          fr: Les Blancs peuvent prendre le pion f4 par Bxf4, qui attaque aussi le pion c7 sans défense. Les Noirs veulent prendre le fou e3 par ...fxe3 et garder les deux pièces mineures de plus.
+        basis:
+          by: chan
+          at: '2026-09-30'

@@ -1,0 +1,67 @@
+# Elephant Gambit: Wasp Variation, taught. Frozen defining line 1.e4 e5 2.Nf3 d5 3.Nxe5 dxe4
+# 4.Bc4 Qg5 ends on Black's own 4...Qg5, the learner's ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). White's 5.Bxf7+ is modelled as the root's single reply and
+# Black's 5...Kd8 as the learner's move, so the leaf has White to move. Every ply was
+# replayed with chess.js; searchMate at 3 moves from the leaf returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free for the side to
+# move.
+id: elephant-gambit-wasp-variation
+name: 'Elephant Gambit: Wasp Variation'
+eco: C40
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, d5, Nxe5, dxe4, Bc4, Qg5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 4...Qg5 attacks the knight on e5 and the pawn on g2 at once, but 5.Bxf7+ wins a
+      pawn with check and leaves Black's king unable to castle, so Black has to justify the queen
+      sortie by winning material back with that queen rather than by development. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...Qg5, cú đưa hậu ra ngoài làm nên Wasp Variation. Từ g5, hậu đánh cùng lúc vào mã e5 và tốt g2, mà không quân nào bảo vệ cả hai.
+    en: Black has just played 4...Qg5, the queen sortie the Wasp Variation is built on. From g5 the queen attacks the knight on e5 and the pawn on g2 at the same time, and nothing defends either of them.
+    fr: Les Noirs viennent de jouer 4...Qg5, la sortie de dame sur laquelle repose la variante Wasp. Depuis g5, la dame attaque à la fois le cavalier e5 et le pion g2, et rien ne défend ni l'un ni l'autre.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 5.Bxf7+. Phần lớn các nước khác để mã e5 hoặc tốt g2 cho hậu Đen ăn mà không quân nào ăn lại được.
+      en: White plays something other than 5.Bxf7+ here. Most other moves leave the knight on e5 or the pawn on g2 for Black's queen to take, with nothing able to recapture.
+      fr: Les Blancs jouent autre chose que 5.Bxf7+. La plupart des autres coups laissent le cavalier e5 ou le pion g2 à la dame noire, sans que rien puisse reprendre.
+  children:
+    - ply: Bxf7+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn f7 với chiếu. Đen không thể ăn lại bằng vua vì mã e5 đang bảo vệ f7, nên vua phải di chuyển, và bất kể đi đâu, Đen cũng mất quyền nhập thành.
+        en: White takes on f7 with check. Black cannot recapture with the king, because the knight on e5 defends f7, so the king has to move, and wherever it goes Black loses the right to castle.
+        fr: Les Blancs prennent en f7 avec échec. Les Noirs ne peuvent pas reprendre avec le roi, car le cavalier e5 défend f7 ; le roi doit donc bouger, et où qu'il aille, les Noirs perdent le droit de roquer.
+      children:
+        - ply: Kd8
+          annotation:
+            vi: 'Đen lùi vua về d8 (Ke7 là lựa chọn khác). Ở đó vua hết bị chiếu, và hậu vẫn giữ hai mục tiêu đã nhắm từ nước thứ tư: mã e5 và tốt g2.'
+            en: Black steps the king back to d8 (Ke7 is the alternative). The king is out of check there, and the queen keeps the two targets she has had since move four, the knight on e5 and the pawn on g2.
+            fr: "Les Noirs reculent le roi en d8 (Ke7 est l'alternative). Le roi y est à l'abri de l'échec, et la dame garde les deux cibles qu'elle vise depuis le quatrième coup : le cavalier e5 et le pion g2."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen sáu, vì Bxf7+ đã ăn tốt f7. Vua Đen đứng ở d8 và đã mất quyền nhập thành vĩnh viễn. Đổi lại, đến lượt Trắng đi với hai mục tiêu không được bảo vệ: mã e5 bị hậu đánh mà không quân nào đỡ, và tốt g2 cũng không có ai đỡ.'
+              en: "Count the pawns: White has seven, Black six, because Bxf7+ took the pawn on f7. Black's king stands on d8 and has lost the right to castle for good. Against that, it is White's move with two undefended targets: the knight on e5, attacked by the queen and defended by nothing, and the pawn on g2, which is also undefended."
+              fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs, car Bxf7+ a pris le pion f7. Le roi noir est en d8 et a perdu définitivement le droit de roquer. En contrepartie, c'est aux Blancs de jouer avec deux cibles sans défense : le cavalier e5, attaqué par la dame et défendu par rien, et le pion g2, lui aussi sans défense."
+            plan:
+              vi: Nước đi kế tiếp của Trắng phải đối phó với cả hai mục tiêu. d4 bảo vệ mã và mở tượng c1 nhắm vào hậu, nhưng hậu có thể đáp bằng cách ăn g2, đánh luôn xe h1. Đen nhắm lấy lại vật chất bằng hậu, đồng thời đưa mã g8, đang bị tượng f7 tấn công, vào cuộc.
+              en: White's next move has to cope with both targets. d4 guards the knight and opens the c1 bishop against the queen, but the queen can answer by taking on g2, which attacks the rook on h1. Black aims to win material back with the queen and to bring out the knight on g8, which the bishop on f7 attacks.
+              fr: Le prochain coup des Blancs doit faire face aux deux cibles. d4 protège le cavalier et ouvre le fou c1 contre la dame, mais celle-ci peut répondre en prenant en g2, ce qui attaque la tour h1. Les Noirs visent à regagner du matériel avec la dame et à sortir le cavalier g8, attaqué par le fou f7.
+            basis:
+              by: chan
+              at: '2026-09-30'
