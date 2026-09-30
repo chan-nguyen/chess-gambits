@@ -1,0 +1,86 @@
+# Italian Game: Classical Variation, Greco Gambit, Moeller-Bayonet Attack. Defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5 4.c3 Nf6 5.d4 exd4 6.cxd4 Bb4+ 7.Nc3 Nxe4 8.O-O Bxc3 9.d5 Bf6
+# 10.Re1 Ne7 11.Rxe4 d6 12.g4, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: classical-variation-greco-gambit-moeller-bayonet-attack
+name: 'Italian Game: Classical Variation, Greco Gambit, Moeller-Bayonet Attack'
+eco: C54
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bc4,
+    Bc5,
+    c3,
+    Nf6,
+    d4,
+    exd4,
+    cxd4,
+    Bb4+,
+    Nc3,
+    Nxe4,
+    O-O,
+    Bxc3,
+    d5,
+    Bf6,
+    Re1,
+    Ne7,
+    Rxe4,
+    d6,
+    g4,
+  ]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is a pawn down with an isolated pawn on d5; the open e-file and the
+      advance of the g-pawn give play, but Black's pieces defend one another and Black's
+      king has castled, so the pawn is not obviously repaid. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 12.g4, một nước tiến tốt đe dọa g5 để tấn công tượng f6. Trắng có sáu tốt, Đen bảy tốt, và tốt d5 của Trắng bị cô lập. Tốt g4 bị tượng c8 tấn công và được xe e4 bảo vệ. Mục này đi theo nước Đen nhập thành.
+    en: White has just played 12.g4, a pawn advance that threatens g5 to attack the bishop on f6. White has six pawns to Black's seven, and White's pawn on d5 is isolated. The g4 pawn is attacked by the bishop on c8 and defended by the rook on e4. This entry follows Black castling.
+    fr: Les Blancs viennent de jouer 12.g4, une avance de pion qui menace g5 pour attaquer le fou f6. Les Blancs ont six pions contre sept aux Noirs, et le pion d5 blanc est isolé. Le pion g4 est attaqué par le fou c8 et défendu par la tour e4. Cette entrée suit le roque des Noirs.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 12...O-O ở đây, chẳng hạn 12...Bd7. Mục này chỉ mô hình hóa nước nhập thành.
+      en: Black plays something other than 12...O-O here, for instance 12...Bd7. This entry models only castling.
+      fr: Les Noirs jouent autre chose que 12...O-O ici, par exemple 12...Bd7. Cette entrée ne modélise que le roque.
+  children:
+    - ply: O-O
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhập thành, đưa vua ra sau các tốt f, g và h. Mã e7, bị xe e4 tấn công, vẫn được hậu và tượng f6 bảo vệ.
+        en: Black castles, tucking the king behind the f-, g- and h-pawns. The knight on e7, attacked by the rook on e4, stays defended by the queen and the bishop on f6.
+        fr: Les Noirs roquent, mettant le roi à l'abri derrière les pions f, g et h. Le cavalier e7, attaqué par la tour e4, reste défendu par la dame et le fou f6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy — con tốt đã thí chưa lấy lại được. Tốt d5 của Trắng bị cô lập, bị mã e7 tấn công và được tượng c4 cùng hậu bảo vệ. Tốt g4 được xe e4 bảo vệ trước tượng c8, còn Đen đã nhập thành với các tốt f, g và h vẫn đứng trước vua.'
+          en: "Count the pawns: White six, Black seven — the sacrificed pawn has not come back. White's pawn on d5 is isolated, attacked by the knight on e7 and defended by the bishop on c4 and the queen. The g4 pawn is defended by the rook on e4 against the bishop on c8, and Black has castled with the f-, g- and h-pawns still in front of the king."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs — le pion sacrifié n'est pas revenu. Le pion d5 blanc est isolé, attaqué par le cavalier e7 et défendu par le fou c4 et la dame. Le pion g4 est défendu par la tour e4 face au fou c8, et les Noirs ont roqué avec les pions f, g et h toujours devant le roi."
+        plan:
+          vi: Trắng chơi g5 để tấn công tượng f6 và tìm cách mở cánh vua. Đen chơi ...Bd7, ...Ng6 và ...Re8 để hoàn tất phát triển, thách thức xe e4 và giữ tốt dư.
+          en: White plays g5 to attack the bishop on f6 and try to open the kingside. Black plays ...Bd7, ...Ng6 and ...Re8 to finish development, challenge the rook on e4 and keep the extra pawn.
+          fr: Les Blancs jouent g5 pour attaquer le fou f6 et tenter d'ouvrir l'aile roi. Les Noirs jouent ...Bd7, ...Ng6 et ...Re8 pour achever leur développement, défier la tour e4 et garder le pion de plus.
+        basis:
+          by: chan
+          at: 2026-09-30

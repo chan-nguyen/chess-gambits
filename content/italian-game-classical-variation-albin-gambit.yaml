@@ -1,0 +1,60 @@
+# Italian Game: Classical Variation, Albin Gambit. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5
+# 4.O-O Nf6 5.c3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-classical-variation-albin-gambit
+name: 'Italian Game: Classical Variation, Albin Gambit'
+eco: C50
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, O-O, Nf6, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 5.c3 Black can simply take the e4 pawn, and White's only immediate
+      follow-up is the centre break d4 while the f2 pawn is attacked twice and only just
+      defended; the pawn is not obviously repaid. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng đã nhập thành rồi chơi 5.c3, chuẩn bị cho d4. Tốt e4 đang bị mã f6 tấn công mà không có quân nào bảo vệ, còn tốt f2 bị tượng c5 tấn công và được xe cùng vua bảo vệ. Mục này đi theo nước ăn tốt 5...Nxe4.
+    en: White has castled and then played 5.c3, preparing d4. The e4 pawn is attacked by the knight on f6 and nothing defends it, and the f2 pawn is attacked by the bishop on c5 and defended by the rook and the king. This entry follows the capture 5...Nxe4.
+    fr: Les Blancs ont roqué puis joué 5.c3, préparant d4. Le pion e4 est attaqué par le cavalier f6 et rien ne le défend, et le pion f2 est attaqué par le fou c5 et défendu par la tour et le roi. Cette entrée suit la prise 5...Nxe4.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...Nxe4 ở đây, chẳng hạn 5...O-O. Mục này chỉ mô hình hóa nước ăn tốt trên e4.
+      en: Black plays something other than 5...Nxe4 here, for instance 5...O-O. This entry models only the capture on e4.
+      fr: Les Noirs jouent autre chose que 5...Nxe4 ici, par exemple 5...O-O. Cette entrée ne modélise que la prise en e4.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt e4 bằng mã, con mã giờ cùng tượng c5 tấn công tốt f2. Không quân nào của Trắng tấn công được mã e4.
+        en: Black takes the e4 pawn with the knight, which now attacks the f2 pawn together with the bishop on c5. None of White's pieces attacks the knight on e4.
+        fr: Les Noirs prennent le pion e4 avec le cavalier, qui attaque maintenant le pion f2 avec le fou c5. Aucune pièce blanche n'attaque le cavalier e4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — con tốt e4 chưa lấy lại được. Tốt f2 bị tấn công hai lần, bởi tượng c5 và mã e4, và được bảo vệ hai lần, bởi xe f1 và vua g1. Trắng đã nhập thành trong khi vua Đen vẫn ở e8, và cột e bán mở cho Trắng.'
+          en: "Count the pawns: White seven, Black eight — the e4 pawn has not come back. The f2 pawn is attacked twice, by the bishop on c5 and the knight on e4, and defended twice, by the rook on f1 and the king on g1. White has castled while Black's king is still on e8, and the e-file is half-open for White."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — le pion e4 n'est pas revenu. Le pion f2 est attaqué deux fois, par le fou c5 et le cavalier e4, et défendu deux fois, par la tour f1 et le roi g1. Les Blancs ont roqué alors que le roi noir est toujours en e8, et la colonne e est semi-ouverte pour les Blancs."
+        plan:
+          vi: Trắng chơi d4, đánh cùng lúc tượng c5 và tốt e5, để mở trung tâm khi vua Đen còn ở e8. Đen chơi ...d5, đánh tượng c4 và hỗ trợ mã e4, rồi ...O-O.
+          en: White plays d4, hitting the bishop on c5 and the e5 pawn together, to open the centre while Black's king is still on e8. Black plays ...d5, which hits the bishop on c4 and supports the knight on e4, and then ...O-O.
+          fr: Les Blancs jouent d4, frappant à la fois le fou c5 et le pion e5, pour ouvrir le centre tant que le roi noir est encore en e8. Les Noirs jouent ...d5, qui frappe le fou c4 et soutient le cavalier e4, puis ...O-O.
+        basis:
+          by: chan
+          at: 2026-09-30
