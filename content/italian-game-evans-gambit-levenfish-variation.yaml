@@ -1,0 +1,107 @@
+# Italian Game: Evans Gambit, Levenfish Variation. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Bc5
+# 4.b4 Bxb4 5.c3 Ba5 6.d4 d6 7.Qb3 Qd7 8.dxe5 dxe5 9.O-O Bb6 10.Ba3 Na5 11.Nxe5, which ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-levenfish-variation
+name: 'Italian Game: Evans Gambit, Levenfish Variation'
+eco: C52
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bc4,
+    Bc5,
+    b4,
+    Bxb4,
+    c3,
+    Ba5,
+    d4,
+    d6,
+    Qb3,
+    Qd7,
+    dxe5,
+    dxe5,
+    O-O,
+    Bb6,
+    Ba3,
+    Na5,
+    Nxe5,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After the queens come off the material is level, White's bishops on c4
+      and a3 bear on f7 and f8, and Black cannot castle short; that is treated as enough for
+      the line to be labelled sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 11.Nxe5, con mã tấn công hậu d7, quân được tượng c8 và vua bảo vệ, cùng tốt f7. Mã a5 của Đen tấn công hậu b3 của Trắng, quân được tượng c4 và tốt a2 bảo vệ. Trắng có sáu tốt, Đen sáu tốt. Mục này đi theo nước ăn hậu 11...Nxb3.
+    en: White has just played 11.Nxe5, and the knight attacks the queen on d7, which the bishop on c8 and the king defend, as well as the f7 pawn. Black's knight on a5 attacks White's queen on b3, which the bishop on c4 and the a2 pawn defend. White has six pawns to Black's six. This entry follows the capture 11...Nxb3.
+    fr: Les Blancs viennent de jouer 11.Nxe5, et le cavalier attaque la dame d7, que le fou c8 et le roi défendent, ainsi que le pion f7. Le cavalier a5 des Noirs attaque la dame b3 des Blancs, que le fou c4 et le pion a2 défendent. Les Blancs ont six pions contre six aux Noirs. Cette entrée suit la prise 11...Nxb3.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 11...Nxb3 ở đây, chẳng hạn 11...Qe6, nước để hậu vẫn bị tượng c4 tấn công. Mục này chỉ mô hình hóa nước đổi hậu.
+      en: Black plays something other than 11...Nxb3 here, for instance 11...Qe6, which leaves the queen attacked by the bishop on c4. This entry models only the queen trade.
+      fr: Les Noirs jouent autre chose que 11...Nxb3 ici, par exemple 11...Qe6, qui laisse la dame attaquée par le fou c4. Cette entrée ne modélise que l'échange de dames.
+  children:
+    - ply: Nxb3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn hậu của Trắng bằng mã từ a5. Mã b3 giờ tấn công xe a1, còn hậu d7 vẫn bị mã e5 tấn công.
+        en: Black takes White's queen with the knight from a5. The knight on b3 now attacks the rook on a1, and the queen on d7 is still attacked by the knight on e5.
+        fr: Les Noirs prennent la dame blanche avec le cavalier de a5. Le cavalier b3 attaque maintenant la tour a1, et la dame d7 est toujours attaquée par le cavalier e5.
+      children:
+        - ply: Nxd7
+          annotation:
+            vi: Trắng ăn hậu của Đen bằng mã, nên hai bên đổi hậu. Mã d7 bị tượng c8 và vua tấn công mà không có quân nào bảo vệ, còn mã b3 của Đen vẫn tấn công xe a1.
+            en: White takes Black's queen with the knight, so the queens come off. The knight on d7 is attacked by the bishop on c8 and the king and nothing defends it, while Black's knight on b3 still attacks the rook on a1.
+            fr: Les Blancs prennent la dame noire avec le cavalier, donc les dames sont échangées. Le cavalier d7 est attaqué par le fou c8 et le roi et rien ne le défend, tandis que le cavalier b3 des Noirs attaque toujours la tour a1.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 12...Bxd7 ở đây, chẳng hạn 12...Nxa1, ăn xe trước. Mục này chỉ mô hình hóa nước ăn lại bằng tượng.
+              en: Black plays something other than 12...Bxd7 here, for instance 12...Nxa1, which takes the rook first. This entry models only the recapture with the bishop.
+              fr: Les Noirs jouent autre chose que 12...Bxd7 ici, par exemple 12...Nxa1, qui prend d'abord la tour. Cette entrée ne modélise que la reprise avec le fou.
+          children:
+            - ply: Bxd7
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen ăn lại mã bằng tượng từ c8. Mã b3 của Đen bị tượng c4 và tốt a2 tấn công mà không có quân nào bảo vệ, và nó tấn công xe a1.
+                en: Black recaptures the knight with the bishop from c8. Black's knight on b3 is attacked by the bishop on c4 and the a2 pawn and nothing defends it, and it attacks the rook on a1.
+                fr: Les Noirs reprennent le cavalier avec le fou de c8. Le cavalier b3 des Noirs est attaqué par le fou c4 et le pion a2 et rien ne le défend, et il attaque la tour a1.
+              children:
+                - ply: axb3
+                  annotation:
+                    vi: Trắng ăn mã bằng tốt a, chấm dứt đòn tấn công vào xe a1 và để hai tốt b3 và c3 đứng cạnh nhau. Cột a giờ bán mở cho Trắng.
+                    en: White takes the knight with the a-pawn, which ends the attack on the rook on a1 and leaves the pawns on b3 and c3 side by side. The a-file is now half-open for White.
+                    fr: Les Blancs prennent le cavalier avec le pion a, ce qui met fin à l'attaque contre la tour a1 et laisse les pions b3 et c3 côte à côte. La colonne a est maintenant semi-ouverte pour les Blancs.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng sáu, Đen sáu, và quân hoàn toàn đều nhau: mỗi bên hai tượng, một mã và hai xe, còn hậu đã đổi. Đen không thể nhập thành cánh vua vì tượng a3 khống chế f8 dọc đường chéo a3-f8, và tượng c4 tấn công tốt f7, ô chỉ có vua bảo vệ.'
+                      en: 'Count the pawns: White six, Black six, and the pieces are fully level: two bishops, a knight and two rooks each, with the queens off. Black cannot castle short because the bishop on a3 covers f8 along the a3-f8 diagonal, and the bishop on c4 attacks the f7 pawn, which only the king defends.'
+                      fr: 'Comptez les pions : six pour les Blancs, six pour les Noirs, et les pièces sont parfaitement égales : deux fous, un cavalier et deux tours chacun, les dames étant échangées. Les Noirs ne peuvent pas roquer du côté roi parce que le fou a3 couvre f8 le long de la diagonale a3-f8, et le fou c4 attaque le pion f7, que seul le roi défend.'
+                    plan:
+                      vi: Trắng chơi Nd2, Rfe1 và Rad1 để dùng cột d mở, giữ các tượng a3 và c4 nhắm vào f8 và f7. Đen có thể nhập thành cánh hậu bằng ...O-O-O, vì cánh vua ngắn bị khống chế, rồi phát triển mã bằng ...Nf6.
+                      en: White plays Nd2, Rfe1 and Rad1 to use the open d-file, keeping the bishops on a3 and c4 aimed at f8 and f7. Black can castle long with ...O-O-O, since the short side is covered, and develops the knight with ...Nf6.
+                      fr: Les Blancs jouent Nd2, Rfe1 et Rad1 pour utiliser la colonne d ouverte, gardant les fous a3 et c4 braqués sur f8 et f7. Les Noirs peuvent roquer du côté dame par ...O-O-O, puisque le côté roi est couvert, et développent le cavalier par ...Nf6.
+                    basis:
+                      by: chan
+                      at: 2026-09-30

@@ -1,0 +1,84 @@
+# Italian Game: Evans Gambit, Compromised Defense, Potter Variation. Defining line 1.e4 e5
+# 2.Nf3 Nc6 3.Bc4 Bc5 4.b4 Bxb4 5.c3 Ba5 6.d4 exd4 7.O-O dxc3 8.Qb3 Qf6 9.e5 Qg6 10.Nxc3
+# Nge7 11.Rd1, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-compromised-defense-potter-variation
+name: 'Italian Game: Evans Gambit, Compromised Defense, Potter Variation'
+eco: C52
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bc4,
+    Bc5,
+    b4,
+    Bxb4,
+    c3,
+    Ba5,
+    d4,
+    exd4,
+    O-O,
+    dxc3,
+    Qb3,
+    Qf6,
+    e5,
+    Qg6,
+    Nxc3,
+    Nge7,
+    Rd1,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. White is two pawns down but has developed five pieces and castled, with
+      the bishop on c4, the queen on b3 and the rook on d1 bearing on f7, b7 and d7; that is
+      treated as enough compensation for the line to be labelled sound. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 11.Rd1, đặt xe lên cột d, nơi nó tấn công tốt d7, quân được tượng c8 và vua bảo vệ. Trắng có năm tốt, Đen bảy tốt, và tốt a bị cô lập. Tượng c1 và xe a1 vẫn chưa rời chỗ. Mục này đi theo nước Đen nhập thành.
+    en: White has just played 11.Rd1, putting a rook on the d-file where it attacks the d7 pawn, which the bishop on c8 and the king defend. White has five pawns to Black's seven, and the a-pawn is isolated. The bishop on c1 and the rook on a1 are still at home. This entry follows Black castling.
+    fr: Les Blancs viennent de jouer 11.Rd1, plaçant une tour sur la colonne d où elle attaque le pion d7, que le fou c8 et le roi défendent. Les Blancs ont cinq pions contre sept aux Noirs, et le pion a est isolé. Le fou c1 et la tour a1 sont encore chez eux. Cette entrée suit le roque des Noirs.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 11...O-O ở đây, chẳng hạn 11...d6. Mục này chỉ mô hình hóa nước nhập thành.
+      en: Black plays something other than 11...O-O here, for instance 11...d6. This entry models only castling.
+      fr: Les Noirs jouent autre chose que 11...O-O ici, par exemple 11...d6. Cette entrée ne modélise que le roque.
+  children:
+    - ply: O-O
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhập thành. Tốt d7 giờ chỉ còn tượng c8 bảo vệ, và con tượng đó cũng bảo vệ b7 trước hậu b3.
+        en: Black castles. The d7 pawn is now defended only by the bishop on c8, which also defends b7 against the queen on b3.
+        fr: Les Noirs roquent. Le pion d7 n'est plus défendu que par le fou c8, qui défend aussi b7 face à la dame b3.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng năm, Đen bảy — Trắng kém hai tốt, và tốt a của Trắng bị cô lập. Tượng c8 là quân duy nhất bảo vệ cả tốt b7, bị hậu b3 tấn công, lẫn tốt d7, bị xe d1 tấn công. Tốt e5 được mã f3 bảo vệ trước mã c6, và Trắng vẫn còn tượng c1 và xe a1 chưa ra.'
+          en: "Count the pawns: White five, Black seven — White is two pawns down, and White's a-pawn is isolated. The bishop on c8 is the only defender of both the b7 pawn, attacked by the queen on b3, and the d7 pawn, attacked by the rook on d1. The e5 pawn is defended by the knight on f3 against the knight on c6, and White still has the bishop on c1 and the rook on a1 to bring out."
+          fr: 'Comptez les pions : cinq pour les Blancs, sept pour les Noirs — les Blancs ont deux pions de moins, et le pion a blanc est isolé. Le fou c8 est le seul défenseur à la fois du pion b7, attaqué par la dame b3, et du pion d7, attaqué par la tour d1. Le pion e5 est défendu par le cavalier f3 face au cavalier c6, et les Blancs ont encore le fou c1 et la tour a1 à sortir.'
+        plan:
+          vi: Trắng đưa các quân còn lại ra bằng Ba3, tấn công mã e7, và Nd5 để thêm quân tấn công thứ hai vào mã đó. Đen chơi ...d6 để thách thức e5 và chặn cột d, rồi ...Bxc3 để đổi mã.
+          en: White brings the last pieces out with Ba3, which attacks the knight on e7, and Nd5 to add a second attacker to that knight. Black plays ...d6 to challenge e5 and block the d-file, and then ...Bxc3 to trade the knight.
+          fr: Les Blancs sortent les dernières pièces par Ba3, qui attaque le cavalier e7, et Nd5 pour ajouter un second attaquant sur ce cavalier. Les Noirs jouent ...d6 pour défier e5 et bloquer la colonne d, puis ...Bxc3 pour échanger le cavalier.
+        basis:
+          by: chan
+          at: 2026-09-30

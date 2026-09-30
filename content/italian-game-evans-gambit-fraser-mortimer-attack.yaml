@@ -1,0 +1,88 @@
+# Italian Game: Evans Gambit, Fraser-Mortimer Attack. Defining line 1.e4 e5 2.Nf3 Nc6 3.Bc4
+# Bc5 4.b4 Bxb4 5.c3 Bc5 6.d4 exd4 7.O-O d6 8.cxd4 Bb6 9.Nc3 Bg4 10.Qa4 Bd7 11.Qb3 Na5
+# 12.Bxf7+ Kf8 13.Qc2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-fraser-mortimer-attack
+name: 'Italian Game: Evans Gambit, Fraser-Mortimer Attack'
+eco: C51
+category: gambit
+side: white
+definingLine:
+  [
+    e4,
+    e5,
+    Nf3,
+    Nc6,
+    Bc4,
+    Bc5,
+    b4,
+    Bxb4,
+    c3,
+    Bc5,
+    d4,
+    exd4,
+    O-O,
+    d6,
+    cxd4,
+    Bb6,
+    Nc3,
+    Bg4,
+    Qa4,
+    Bd7,
+    Qb3,
+    Na5,
+    Bxf7+,
+    Kf8,
+    Qc2,
+  ]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. In this line White has given a bishop for the f7 pawn and gets a Black
+      king that can no longer castle and checks from the knight on f3; that is treated as
+      enough compensation for the line to be labelled sound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 13.Qc2, sau khi đã thí tượng trên f7. Tượng f7 bị vua tấn công mà không có quân nào bảo vệ, còn mã g8 bị tượng tấn công nhưng được bảo vệ hai lần. Trắng có sáu tốt, Đen sáu tốt. Mục này đi theo nước ăn tượng 13...Kxf7.
+    en: White has just played 13.Qc2, after giving the bishop on f7. The bishop is attacked by the king and nothing defends it, and the knight on g8 is attacked by the bishop and defended twice. White has six pawns to Black's six. This entry follows the capture 13...Kxf7.
+    fr: Les Blancs viennent de jouer 13.Qc2, après avoir donné le fou en f7. Le fou est attaqué par le roi et rien ne le défend, et le cavalier g8 est attaqué par le fou et défendu deux fois. Les Blancs ont six pions contre six aux Noirs. Cette entrée suit la prise 13...Kxf7.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 13...Kxf7 ở đây, chẳng hạn 13...Ke7. Mục này chỉ mô hình hóa nước ăn tượng.
+      en: Black plays something other than 13...Kxf7 here, for instance 13...Ke7. This entry models only the capture of the bishop.
+      fr: Les Noirs jouent autre chose que 13...Kxf7 ici, par exemple 13...Ke7. Cette entrée ne modélise que la prise du fou.
+  children:
+    - ply: Kxf7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tượng bằng vua. Vua giờ đứng trên f7, không thể nhập thành và có thể bị chiếu từ nhiều phía.
+        en: Black takes the bishop with the king. The king now stands on f7, where it can no longer castle and where checks can reach it.
+        fr: Les Noirs prennent le fou avec le roi. Le roi se tient maintenant en f7, où il ne peut plus roquer et où des échecs peuvent l'atteindre.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen sáu — nhưng Đen đã lấy được tượng để đổi lấy tốt f7, nên Đen có hai tượng và hai mã so với một tượng và hai mã của Trắng. Vua Đen trên f7 đã mất quyền nhập thành và Trắng có sẵn các nước chiếu Ne5+ và Ng5+. Tốt d4 bị tượng b6 tấn công và được mã f3 bảo vệ.'
+          en: "Count the pawns: White six, Black six — but Black has won the bishop for the f7 pawn, so Black has two bishops and two knights to White's bishop and two knights. Black's king on f7 has lost the right to castle, and White has the checks Ne5+ and Ng5+ available at once. The d4 pawn is attacked by the bishop on b6 and defended by the knight on f3."
+          fr: "Comptez les pions : six pour les Blancs, six pour les Noirs — mais les Noirs ont gagné le fou contre le pion f7, de sorte qu'ils ont deux fous et deux cavaliers contre un fou et deux cavaliers. Le roi noir en f7 a perdu le droit de roquer, et les Blancs ont à leur disposition les échecs Ne5+ et Ng5+. Le pion d4 est attaqué par le fou b6 et défendu par le cavalier f3."
+        plan:
+          vi: Trắng giữ thế chủ động bằng các nước chiếu của mã f3, Ng5+ hoặc Ne5+, và phát triển tượng c1 bằng Bf4, dựa vào vị trí hở của vua Đen. Đen đưa vua về bằng ...Ke8 rồi ...Nf6, và dùng quân dư.
+          en: White keeps the initiative with checks from the knight on f3, Ng5+ or Ne5+, and develops the bishop on c1 with Bf4, relying on the exposed king. Black brings the king back with ...Ke8 and then ...Nf6, and uses the extra piece.
+          fr: Les Blancs gardent l'initiative avec les échecs du cavalier f3, Ng5+ ou Ne5+, et développent le fou c1 par Bf4, en comptant sur le roi exposé. Les Noirs ramènent le roi par ...Ke8 puis ...Nf6, et exploitent la pièce de plus.
+        basis:
+          by: chan
+          at: 2026-09-30

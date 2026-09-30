@@ -1,0 +1,60 @@
+# Italian Game: Evans Gambit Declined, Showalter Variation. Defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bc4 Bc5 4.b4 Bb6 5.a4 a6 6.Nc3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: italian-game-evans-gambit-declined-showalter-variation
+name: 'Italian Game: Evans Gambit Declined, Showalter Variation'
+eco: C51
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Bc5, b4, Bb6, a4, a6, Nc3]
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      "A judgement. White has sacrificed nothing at this point and develops with tempo: the
+      knight on c3 defends e4 against ...Nf6, and the loose b4 pawn can be defended or
+      advanced at once, so nothing is lost. No engine was consulted and no database was
+      queried."
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Nc3, phát triển mã và chuẩn bị bảo vệ e4. Tốt b4 bị mã c6 tấn công mà không có quân nào bảo vệ, còn tốt f2 bị tượng b6 tấn công và được vua bảo vệ. Mục này đi theo nước 6...Nf6.
+    en: White has just played 6.Nc3, developing the knight and preparing to defend e4. The b4 pawn is attacked by the knight on c6 and nothing defends it, and the f2 pawn is attacked by the bishop on b6 and defended by the king. This entry follows 6...Nf6.
+    fr: Les Blancs viennent de jouer 6.Nc3, développant le cavalier et préparant la défense de e4. Le pion b4 est attaqué par le cavalier c6 et rien ne le défend, et le pion f2 est attaqué par le fou b6 et défendu par le roi. Cette entrée suit 6...Nf6.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Nf6 ở đây, chẳng hạn 6...Nxb4, ăn con tốt hở. Mục này chỉ mô hình hóa nước đi mã lên f6.
+      en: Black plays something other than 6...Nf6 here, for instance 6...Nxb4, which takes the loose pawn. This entry models only the knight move to f6.
+      fr: Les Noirs jouent autre chose que 6...Nf6 ici, par exemple 6...Nxb4, qui prend le pion en prise. Cette entrée ne modélise que le saut du cavalier en f6.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã lên f6, nơi nó tấn công tốt e4, quân được mã c3 bảo vệ.
+        en: Black develops the knight to f6, where it attacks the e4 pawn, which the knight on c3 defends.
+        fr: Les Noirs développent le cavalier en f6, où il attaque le pion e4, que le cavalier c3 défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen tám — chưa có tốt nào bị ăn. Tốt b4 bị mã c6 tấn công mà không có quân nào bảo vệ, nên Trắng phải xử lý ngay; tốt e4 bị mã f6 tấn công và được mã c3 bảo vệ, còn tốt e5 bị mã f3 tấn công và được mã c6 bảo vệ. Hai bên chưa nhập thành.'
+          en: 'Count the pawns: White eight, Black eight — nothing has been captured. The b4 pawn is attacked by the knight on c6 and nothing defends it, so White has to act on it at once; the e4 pawn is attacked by the knight on f6 and defended by the knight on c3, and the e5 pawn is attacked by the knight on f3 and defended by the knight on c6. Neither side has castled.'
+          fr: "Comptez les pions : huit pour les Blancs, huit pour les Noirs — rien n'a été pris. Le pion b4 est attaqué par le cavalier c6 et rien ne le défend, donc les Blancs doivent agir tout de suite ; le pion e4 est attaqué par le cavalier f6 et défendu par le cavalier c3, et le pion e5 est attaqué par le cavalier f3 et défendu par le cavalier c6. Aucun camp n'a roqué."
+        plan:
+          vi: Trắng chơi b5, đánh mã c6, hoặc Ba3, bảo vệ b4, rồi nhập thành. Đen chơi ...d6 và ...O-O để hoàn tất phát triển, và ăn tốt b4 bằng ...Nxb4 nếu Trắng bỏ mặc nó.
+          en: White plays b5, hitting the knight on c6, or Ba3, defending b4, and then castles. Black plays ...d6 and ...O-O to finish development, and takes the b4 pawn with ...Nxb4 if White leaves it.
+          fr: Les Blancs jouent b5, frappant le cavalier c6, ou Ba3, défendant b4, puis roquent. Les Noirs jouent ...d6 et ...O-O pour achever leur développement, et prennent le pion b4 par ...Nxb4 si les Blancs le laissent.
+        basis:
+          by: chan
+          at: 2026-09-30
