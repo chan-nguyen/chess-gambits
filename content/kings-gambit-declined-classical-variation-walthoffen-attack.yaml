@@ -1,0 +1,58 @@
+# King's Gambit Declined: Classical Variation, Walthoffen Attack, taught. Frozen defining
+# line 1.e4 e5 2.f4 Bc5 3.Qh5 ends on White's own 3.Qh5, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Black's 3...Qe7 is modelled as the root's single reply, so
+# the leaf has White to move. Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-declined-classical-variation-walthoffen-attack
+name: "King's Gambit Declined: Classical Variation, Walthoffen Attack"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Bc5, Qh5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 3.Qh5 attacks e5, f7 and h7 at once, but 3...Qe7 defends the first two and
+      leaves White's own pawn on f4 attacked and undefended. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.Qh5, đưa hậu ra sớm để đồng thời đánh vào tốt e5, tốt f7 và tốt h7. Tốt e5 bị đánh hai lần, bởi hậu và tốt f4, mà không có ai bảo vệ.
+    en: White has just played 3.Qh5, bringing the queen out early to attack the pawn on e5, the pawn on f7 and the pawn on h7 at once. The pawn on e5 is attacked twice, by the queen and the pawn on f4, and defended by nothing.
+    fr: Les Blancs viennent de jouer 3.Qh5, sortant la dame tôt pour attaquer à la fois le pion e5, le pion f7 et le pion h7. Le pion e5 est attaqué deux fois, par la dame et le pion f4, et défendu par rien.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 3...Qe7, chẳng hạn 3...Nc6 hoặc 3...d6, cũng bảo vệ e5. 3...exf4 ăn tốt nhưng mất tượng c5 vì Qxc5.
+      en: Black plays something other than 3...Qe7, for example 3...Nc6 or 3...d6, which also defend e5. 3...exf4 takes a pawn but loses the bishop on c5 to Qxc5.
+      fr: Les Noirs jouent autre chose que 3...Qe7, par exemple 3...Nc6 ou 3...d6, qui défendent aussi e5. 3...exf4 prend un pion mais perd le fou c5 après Qxc5.
+  children:
+    - ply: Qe7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Hậu Đen bảo vệ cùng lúc e5 và f7. Tốt e5 giờ bị đánh hai lần và được bảo vệ một lần, còn f7 bị đánh một lần và được bảo vệ hai lần.
+        en: The black queen defends e5 and f7 at the same time. The pawn on e5 is now attacked twice and defended once, and f7 is attacked once and defended twice.
+        fr: La dame noire défend à la fois e5 et f7. Le pion e5 est maintenant attaqué deux fois et défendu une fois, et f7 est attaqué une fois et défendu deux fois.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: mỗi bên tám, nên chưa ai thắng được gì. Tốt f4 của Trắng bị tốt e5 đánh mà không có ai bảo vệ, còn mã g1 bị tượng c5 đánh và có xe h1 bảo vệ. Tốt e5 của Đen bị đánh hai lần, bởi hậu h5 và tốt f4, và chỉ có hậu e7 bảo vệ.'
+          en: "Count the pawns: eight each, so nothing has been won yet. White's pawn on f4 is attacked by the pawn on e5 and defended by nothing, and the knight on g1 is attacked by the bishop on c5 and defended by the rook on h1. Black's pawn on e5 is attacked twice, by the queen on h5 and the pawn on f4, and defended only by the queen on e7."
+          fr: "Comptez les pions : huit de chaque côté, si bien que rien n'a encore été gagné. Le pion f4 des Blancs est attaqué par le pion e5 et défendu par rien, et le cavalier g1 est attaqué par le fou c5 et défendu par la tour h1. Le pion e5 des Noirs est attaqué deux fois, par la dame h5 et le pion f4, et défendu seulement par la dame e7."
+        plan:
+          vi: Trắng có thể phát triển bằng Nf3, thêm quân đánh e5 và đưa mã ra khỏi tầm tượng c5. Đen thêm quân bảo vệ e5 bằng ...d6 và tìm cách đuổi hậu Trắng.
+          en: White can develop with Nf3, which adds an attacker to e5 and takes the knight out of range of the bishop on c5. Black adds a defender to e5 with ...d6 and looks to chase the white queen.
+          fr: Les Blancs peuvent se développer par Nf3, qui ajoute un attaquant à e5 et met le cavalier hors de portée du fou c5. Les Noirs ajoutent un défenseur à e5 par ...d6 et cherchent à chasser la dame blanche.
+        basis:
+          by: chan
+          at: '2026-09-30'

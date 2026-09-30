@@ -1,0 +1,79 @@
+# King's Gambit Declined: Classical Variation, Rotlewi Countergambit, taught. Frozen
+# defining line 1.e4 e5 2.f4 Bc5 3.Nf3 d6 4.b4 ends on White's own 4.b4, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). The modelled line is 4...Bxb4 5.fxe5 Nc6, so
+# the leaf has White to move; the capture on e5 is played out as the learner's move so that
+# it is not left going free. Every ply was replayed with chess.js; searchMate at 3 moves
+# from the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-declined-classical-variation-rotlewi-countergambit
+name: "King's Gambit Declined: Classical Variation, Rotlewi Countergambit"
+eco: C30
+category: gambit
+side: white
+definingLine: [e4, e5, f4, Bc5, Nf3, d6, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 4.b4 offers a pawn on top of the pawn on f4, and after 4...Bxb4 5.fxe5 Nc6 the
+      pawn count is level again, but White's e-pawns are doubled, the pawn on e5 is attacked twice
+      and defended once, and the pawn on d2 is pinned to the king. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.b4, dâng thêm một tốt bên cạnh tốt f4. Tốt b4 bị tượng c5 tấn công mà không có ai bảo vệ, và tốt f4 bị tốt e5 tấn công mà cũng không có ai bảo vệ.
+    en: White has just played 4.b4, offering a pawn on top of the pawn on f4. The pawn on b4 is attacked by the bishop on c5 and defended by nothing, and the pawn on f4 is attacked by the pawn on e5 and defended by nothing.
+    fr: Les Blancs viennent de jouer 4.b4, offrant un pion en plus du pion f4. Le pion b4 est attaqué par le fou c5 et défendu par rien, et le pion f4 est attaqué par le pion e5 et défendu par rien.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 4...Bxb4, chẳng hạn 4...exf4, ăn con tốt kia, hoặc 4...Nc6. Cả hai con tốt đều bị tấn công mà không có ai bảo vệ, nên Đen ăn con nào cũng được.
+      en: Black plays something other than 4...Bxb4, for example 4...exf4, which takes the other pawn, or 4...Nc6. Both pawns are attacked and neither has a defender, so Black can take either.
+      fr: Les Noirs jouent autre chose que 4...Bxb4, par exemple 4...exf4, qui prend l'autre pion, ou 4...Nc6. Les deux pions sont attaqués et aucun n'a de défenseur, si bien que les Noirs peuvent prendre l'un ou l'autre.
+  children:
+    - ply: Bxb4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt b4 bằng tượng. Tượng b4 giờ đánh vào tốt d2, con tốt có năm quân bảo vệ, và tốt f4 của Trắng vẫn bị tốt e5 đánh mà không có ai bảo vệ.
+        en: Black takes the pawn on b4 with the bishop. The bishop on b4 now attacks the pawn on d2, which five pieces defend, and White's pawn on f4 is still attacked by the pawn on e5 and defended by nothing.
+        fr: Les Noirs prennent le pion b4 avec le fou. Le fou b4 attaque maintenant le pion d2, que cinq pièces défendent, et le pion f4 des Blancs est toujours attaqué par le pion e5 et défendu par rien.
+      children:
+        - ply: fxe5
+          annotation:
+            vi: Trắng ăn tốt e5, đánh vào tốt d6, và để hai tốt e4, e5 của mình bị chồng. Tốt e5 được mã f3 bảo vệ.
+            en: White takes the pawn on e5, which attacks the pawn on d6 and leaves the white pawns on e4 and e5 doubled. The pawn on e5 is defended by the knight on f3.
+            fr: Les Blancs prennent le pion e5, qui attaque le pion d6 et laisse les pions blancs e4 et e5 doublés. Le pion e5 est défendu par le cavalier f3.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 5...Nc6, chẳng hạn 5...Be6 hoặc 5...Qd7. Mọi quân đang bị tấn công ở cả hai bên đều có quân bảo vệ.
+              en: Black plays something other than 5...Nc6, for example 5...Be6 or 5...Qd7. Every unit that is attacked on either side is defended.
+              fr: Les Noirs jouent autre chose que 5...Nc6, par exemple 5...Be6 ou 5...Qd7. Toute unité attaquée de part et d'autre est défendue.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã lên c6, tấn công tốt e5 lần thứ hai.
+                en: Black develops the knight to c6, attacking the pawn on e5 a second time.
+                fr: Les Noirs développent le cavalier en c6, attaquant le pion e5 une seconde fois.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: mỗi bên bảy, nên con tốt đã cho ở b4 đã lấy lại ở e5. Nhưng hai tốt e4, e5 của Trắng bị chồng, tốt e5 bị đánh hai lần, bởi mã c6 và tốt d6, mà chỉ có mã f3 bảo vệ, và tốt d2 bị tượng b4 ghim vào vua nên d4 không đi được để hỗ trợ nó.'
+                  en: "Count the pawns: seven each, so the pawn given on b4 has been won back on e5. But White's pawns on e4 and e5 are doubled, the pawn on e5 is attacked twice, by the knight on c6 and the pawn on d6, and defended once, by the knight on f3, and the pawn on d2 is pinned to the king by the bishop on b4, so d4 is not available to support it."
+                  fr: "Comptez les pions : sept de chaque côté, si bien que le pion donné en b4 a été regagné en e5. Mais les pions e4 et e5 des Blancs sont doublés, le pion e5 est attaqué deux fois, par le cavalier c6 et le pion d6, et défendu une seule fois, par le cavalier f3, et le pion d2 est cloué contre le roi par le fou b4, si bien que d4 n'est pas disponible pour le soutenir."
+                plan:
+                  vi: Trắng có thể giải toả bằng exd6, hoặc chơi c3 để đánh tượng b4. Đen muốn ăn e5 bằng ...dxe5 hoặc ...Nxe5, hoặc đổi tượng lấy tốt d2 bằng ...Bxd2+.
+                  en: White can release the tension with exd6, or play c3 to attack the bishop on b4. Black wants to take on e5 with ...dxe5 or ...Nxe5, or trade the bishop for the pawn on d2 with ...Bxd2+.
+                  fr: Les Blancs peuvent relâcher la tension par exd6, ou jouer c3 pour attaquer le fou b4. Les Noirs veulent prendre en e5 par ...dxe5 ou ...Nxe5, ou échanger le fou contre le pion d2 par ...Bxd2+.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

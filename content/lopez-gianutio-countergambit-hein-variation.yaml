@@ -1,0 +1,81 @@
+# King's Gambit Accepted: Lopez-Gianutio Countergambit, Hein Variation, taught. The frozen
+# line 1.e4 e5 2.f4 exf4 3.Bc4 f5 4.Qe2 Qh4+ 5.Kd1 fxe4 6.Nc3 Kd8 ends on Black's ply, which
+# the validator does not allow as a defining line for a White entry (docs/CONTEXT.md,
+# invariant 5), so `definingLine` stops at White's own 6.Nc3 and 6...Kd8, the move that
+# names this entry, is modelled as the root's reply. The modelled line is 6...Kd8 7.Nxe4
+# Nc6, so the leaf has White to move; the capture on e4 is played out as the learner's move
+# so that it is not left going free. Every ply was replayed with chess.js; searchMate at 3
+# moves from the leaf returns no-mate, the leaf is not in check and no capture is going
+# free.
+id: lopez-gianutio-countergambit-hein-variation
+name: "King's Gambit Accepted: Lopez-Gianutio Countergambit, Hein Variation"
+eco: C33
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Bc4, f5, Qe2, Qh4+, Kd1, fxe4, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 6...Kd8 7.Nxe4 Black is one pawn up, but both kings have lost the right
+      to castle, so the extra pawn on f4 does not settle the game. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Nc3, nên tốt e4 mà Đen vừa ăn bị đánh hai lần, bởi mã và hậu, mà không có ai bảo vệ. Vua Trắng đứng ở d1 sau nước chiếu và đã mất quyền nhập thành.
+    en: White has just played 6.Nc3, so the pawn on e4 that Black took is attacked twice, by the knight and the queen, and defended by nothing. White's king stands on d1 after the check and has lost the right to castle.
+    fr: Les Blancs viennent de jouer 6.Nc3, si bien que le pion e4 que les Noirs ont pris est attaqué deux fois, par le cavalier et la dame, et défendu par rien. Le roi blanc est en d1 après l'échec et a perdu le droit de roquer.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...Kd8, chẳng hạn 6...Nf6, bảo vệ tốt e4, hoặc 6...Qe7. Phần lớn các nước còn lại để tốt e4 cho Nxe4 hoặc Qxe4 ăn.
+      en: Black plays something other than 6...Kd8, for example 6...Nf6, which defends the pawn on e4, or 6...Qe7. Most other moves leave the pawn on e4 to Nxe4 or Qxe4.
+      fr: Les Noirs jouent autre chose que 6...Kd8, par exemple 6...Nf6, qui défend le pion e4, ou 6...Qe7. La plupart des autres coups laissent le pion e4 à Nxe4 ou Qxe4.
+  children:
+    - ply: Kd8
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đưa vua về d8, để tốt e4 vẫn bị đánh hai lần mà không có ai bảo vệ, và cũng mất quyền nhập thành.
+        en: Black steps the king to d8, leaving the pawn on e4 attacked twice and undefended, and also giving up the right to castle.
+        fr: Les Noirs mettent le roi en d8, laissant le pion e4 attaqué deux fois et sans défense, et renonçant aussi au droit de roquer.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Trắng ăn tốt e4 bằng mã. Số tốt đổi từ sáu đấu tám thành sáu đấu bảy.
+            en: White takes the pawn on e4 with the knight. The pawn count goes from six against eight to six against seven.
+            fr: Les Blancs prennent le pion e4 avec le cavalier. Le compte de pions passe de six contre huit à six contre sept.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 7...Nc6, chẳng hạn 7...Nf6 hoặc 7...Be7. Không có quân nào đang bị tấn công mà thiếu quân bảo vệ ở cả hai bên.
+              en: Black plays something other than 7...Nc6, for example 7...Nf6 or 7...Be7. Nothing is attacked without a defender on either side.
+              fr: Les Noirs jouent autre chose que 7...Nc6, par exemple 7...Nf6 ou 7...Be7. Rien n'est attaqué sans défenseur de part et d'autre.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã, trong khi tượng c4 vẫn đánh vào mã g8, con mã được xe h8 bảo vệ.
+                en: Black develops the knight, while the bishop on c4 still attacks the knight on g8, which the rook on h8 defends.
+                fr: Les Noirs développent le cavalier, tandis que le fou c4 attaque toujours le cavalier g8, que la tour h8 défend.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Đen hơn một tốt, đó là tốt f4. Cả hai vua đều đã mất quyền nhập thành, vua Trắng ở d1 và vua Đen ở d8. Tượng c4 đánh vào mã g8, con mã được xe h8 bảo vệ.'
+                  en: 'Count the pawns: White six, Black seven, so Black is a pawn up, the extra pawn being the one on f4. Both kings have lost the right to castle, the white king on d1 and the black king on d8. The bishop on c4 attacks the knight on g8, which the rook on h8 defends.'
+                  fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, si bien que les Noirs ont un pion d'avance, le pion f4. Les deux rois ont perdu le droit de roquer, le roi blanc en d1 et le roi noir en d8. Le fou c4 attaque le cavalier g8, que la tour h8 défend."
+                plan:
+                  vi: Trắng có thể phát triển bằng d3, mở tượng c1 nhắm vào f4, và Nf3, đánh luôn hậu h4. Đen chơi ...d5, đánh đồng thời tượng c4 và mã e4.
+                  en: White can develop with d3, which opens the c1 bishop against f4, and Nf3, which also attacks the queen on h4. Black plays ...d5, which attacks both the bishop on c4 and the knight on e4.
+                  fr: Les Blancs peuvent se développer par d3, qui ouvre le fou c1 contre f4, et Nf3, qui attaque aussi la dame h4. Les Noirs jouent ...d5, qui attaque à la fois le fou c4 et le cavalier e4.
+                basis:
+                  by: chan
+                  at: '2026-09-30'
