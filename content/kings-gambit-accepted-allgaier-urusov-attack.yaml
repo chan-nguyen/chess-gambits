@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Allgaier, Urusov Attack, taught. Frozen defining line 1.e4 e5 2.f4
+# exf4 3.Nf3 g5 4.h4 g4 5.Ng5 h6 6.Nxf7 Kxf7 7.Bc4+ d5 8.Bxd5+ Kg7 9.d4 ends on White's own
+# 9.d4, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's 9...Bd6 is
+# modelled as the root's single reply, so the leaf has White to move. Every ply was replayed
+# with chess.js; searchMate at 3 moves from the leaf returns no-mate, the leaf is not in
+# check and no capture is going free.
+id: kings-gambit-accepted-allgaier-urusov-attack
+name: "King's Gambit Accepted: Allgaier, Urusov Attack"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ng5, h6, Nxf7, Kxf7, Bc4+, d5, Bxd5+, Kg7, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 9.d4 opens a second line against the pawn on f4, but White is still a knight
+      down for a single extra pawn, and 9...Bd6 holds f4 while developing a piece. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.d4, mở đường cho tượng c1 nhắm vào tốt f4, con tốt mà Đen không có quân nào bảo vệ. Tượng d5 được tốt e4 bảo vệ và đánh cùng lúc mã g8 lẫn tốt b7.
+    en: White has just played 9.d4, opening the c1 bishop against the pawn on f4, which nothing of Black's defends. The bishop on d5 is defended by the pawn on e4 and attacks both the knight on g8 and the pawn on b7.
+    fr: Les Blancs viennent de jouer 9.d4, ouvrant le fou c1 contre le pion f4, que rien chez les Noirs ne défend. Le fou d5 est défendu par le pion e4 et attaque à la fois le cavalier g8 et le pion b7.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì bảo vệ f4 bằng 9...Bd6, chẳng hạn 9...Nf6 thách thức tượng d5 nhưng để f4 cho Bxf4. Phần lớn các nước khác đều để Bxf4 mà không quân nào ăn lại được.
+      en: Black plays something other than defending f4 with 9...Bd6, for example 9...Nf6, which challenges the bishop on d5 but leaves f4 to Bxf4. Most other replies leave Bxf4 to be played with nothing able to recapture.
+      fr: Les Noirs jouent autre chose que de défendre f4 par 9...Bd6, par exemple 9...Nf6, qui conteste le fou d5 mais laisse f4 à Bxf4. La plupart des autres réponses laissent Bxf4 possible sans que rien puisse reprendre.
+  children:
+    - ply: Bd6
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen bảo vệ tốt f4 bằng tượng, đồng thời phát triển một quân.
+        en: Black defends the pawn on f4 with the bishop, developing a piece at the same time.
+        fr: Les Noirs défendent le pion f4 avec le fou, en développant une pièce du même coup.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm quân: Trắng bảy tốt, Đen sáu, nhưng Trắng kém một mã, tức là Đen hơn một mã đổi lấy một tốt. Vua Đen đứng ở g7 và không còn quyền nhập thành, còn hai tốt f4 và g4 mỗi con chỉ được một quân giữ, là tượng d6 và tượng c8.'
+          en: "Count the material: White has seven pawns and Black six, but White is a knight short, so Black is ahead by a knight for a pawn. Black's king stands on g7 and can no longer castle, and the pawns on f4 and g4 are each held by a single piece, the bishops on d6 and c8."
+          fr: "Comptez le matériel : sept pions pour les Blancs et six pour les Noirs, mais il manque un cavalier aux Blancs, si bien que les Noirs ont un cavalier contre un pion d'avance. Le roi noir est en g7 et ne peut plus roquer, et les pions f4 et g4 ne sont chacun tenus que par une seule pièce, les fous d6 et c8."
+        plan:
+          vi: Trắng giữ tượng d5 nhờ tốt e4 và thêm quân vào các tốt f4, g4 bằng những nước như Nc3 và g3, nước sau dùng tốt tấn công f4. Đen định chơi ...Nf6 để thách thức tượng d5 và ...Nc6 để phát triển.
+          en: White keeps the bishop on d5 supported by the e4 pawn and adds force against f4 and g4 with moves such as Nc3 and g3, the latter attacking f4 with a pawn. Black plans ...Nf6 to challenge the bishop on d5 and ...Nc6 to develop.
+          fr: Les Blancs gardent le fou d5 soutenu par le pion e4 et ajoutent des forces contre f4 et g4 avec des coups comme Nc3 et g3, ce dernier attaquant f4 avec un pion. Les Noirs prévoient ...Nf6 pour contester le fou d5 et ...Nc6 pour se développer.
+        basis:
+          by: chan
+          at: '2026-09-30'

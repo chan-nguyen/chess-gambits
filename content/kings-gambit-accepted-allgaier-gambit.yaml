@@ -1,0 +1,83 @@
+# King's Gambit Accepted: Allgaier Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 g5 4.h4 g4 5.Ng5 ends on White's own 5.Ng5, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Black's 5...h6 is modelled as the root's reply, White's
+# 6.Nxf7 as the learner's move and Black's 6...Kxf7 as the recapture, so the leaf has White
+# to move. Every ply was replayed with chess.js; searchMate at 3 moves from the leaf returns
+# no-mate. The leaf carries an `unsettled` note because Qxg4 is going free there.
+id: kings-gambit-accepted-allgaier-gambit
+name: "King's Gambit Accepted: Allgaier Gambit"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ng5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. The knight on g5 is defended by the pawn on h4 and eyes f7 and h7, but the
+      sacrifice on f7 that follows costs a knight for a single pawn, and what White gets in return
+      is an enemy king that can no longer castle. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Ng5. Mã được tốt h4 bảo vệ và nhắm cả f7 lẫn h7, trong khi tốt g4 của Đen không có ai đỡ còn hậu d8 thì đang đánh vào con mã.
+    en: White has just played 5.Ng5. The knight is defended by the pawn on h4 and attacks both f7 and h7, while Black's pawn on g4 has no defender and the queen on d8 attacks the knight.
+    fr: Les Blancs viennent de jouer 5.Ng5. Le cavalier est défendu par le pion h4 et attaque à la fois f7 et h7, tandis que le pion noir en g4 n'a aucun défenseur et que la dame d8 attaque le cavalier.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...h6, chẳng hạn 5...Nf6 hoặc 5...d6, phát triển thay vì đuổi mã ngay lập tức.
+      en: Black plays something other than 5...h6 here, for example 5...Nf6 or 5...d6, developing instead of chasing the knight at once.
+      fr: Les Noirs jouent autre chose que 5...h6, par exemple 5...Nf6 ou 5...d6, en se développant au lieu de chasser tout de suite le cavalier.
+  children:
+    - ply: h6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đuổi mã bằng tốt h. Lúc này mã bị đánh hai lần, bởi tốt h6 và hậu d8, và chỉ có tốt h4 bảo vệ.
+        en: Black chases the knight with the h-pawn. The knight is now attacked twice, by the pawn on h6 and by the queen on d8, and defended only by the pawn on h4.
+        fr: Les Noirs chassent le cavalier avec le pion h. Le cavalier est maintenant attaqué deux fois, par le pion h6 et par la dame d8, et défendu seulement par le pion h4.
+      children:
+        - ply: Nxf7
+          annotation:
+            vi: Trắng hy sinh mã để ăn tốt f7. Mã đánh cùng lúc hậu d8 và xe h8, và vua có thể ăn nó.
+            en: White gives up the knight for the pawn on f7. The knight attacks the queen on d8 and the rook on h8 at the same time, and the king can take it.
+            fr: Les Blancs sacrifient le cavalier contre le pion f7. Le cavalier attaque en même temps la dame d8 et la tour h8, et le roi peut le prendre.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì Kxf7, nên lúc này mã f7 vẫn còn trên bàn cờ, đang chiếu đồng thời hậu d8 và xe h8.
+              en: Black plays something other than Kxf7, so the knight on f7 stays on the board for the moment, forking the queen on d8 and the rook on h8.
+              fr: Les Noirs jouent autre chose que Kxf7, si bien que le cavalier f7 reste sur l'échiquier pour le moment, en fourchette sur la dame d8 et la tour h8.
+          children:
+            - ply: Kxf7
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen dùng vua ăn mã. Vua giờ đứng ở f7 và đã mất quyền nhập thành, còn Đen vừa được một mã đổi lấy một tốt.
+                en: Black takes the knight with the king. The king now stands on f7 and has lost the right to castle, and Black has won a knight for a pawn.
+                fr: Les Noirs prennent le cavalier avec le roi. Le roi se trouve maintenant en f7 et a perdu le droit de roquer, et les Noirs ont gagné un cavalier contre un pion.
+              unsettled: >-
+                Qxg4 is going free, because nothing of Black's defends the g4 pawn. The evaluation states it
+                and counts it: it is the capture that turns the pawn count from level to seven against six,
+                and playing it out adds nothing the evaluation has not already said.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm quân: mỗi bên bảy tốt, nhưng Trắng đã đưa một mã để lấy tốt f7, nên Trắng kém một mã. Qxg4 đang có thể ăn tốt g4, khi đó tỷ số tốt là bảy trên sáu, đổi lấy một con mã. Vua Đen đứng ở f7 và không còn quyền nhập thành.'
+                  en: "Count the material: seven pawns each, but White has given a knight for the pawn on f7, so White is a knight down. Qxg4 is available and would take the pawn on g4, making the pawn count seven to six, against a knight. Black's king stands on f7 and can no longer castle."
+                  fr: 'Comptez le matériel : sept pions de chaque côté, mais les Blancs ont donné un cavalier contre le pion f7, et sont donc en moins un cavalier. Qxg4 est possible et prendrait le pion g4, ce qui porterait le compte de pions à sept contre six, contre un cavalier. Le roi noir est en f7 et ne peut plus roquer.'
+                plan:
+                  vi: 'Trắng chọn giữa Bc4+, chiếu vua ngay, và các nước phát triển êm hơn như d4 hay Nc3. Đen muốn giữ chắc con mã hơn: ...d5 thách thức e4 và mở đường cho tượng c8, ...Kg7 đưa vua ra khỏi ô f7 nơi Bc4+ sẽ chiếu.'
+                  en: 'White chooses between Bc4+, which checks the king at once, and quieter developing moves such as d4 or Nc3. Black wants to hold on to the extra knight: ...d5 challenges e4 and opens the bishop on c8, and ...Kg7 takes the king off the f7 square where Bc4+ would check it.'
+                  fr: 'Les Blancs choisissent entre Bc4+, qui met le roi en échec tout de suite, et des coups de développement plus calmes comme d4 ou Nc3. Les Noirs veulent conserver le cavalier de plus : ...d5 conteste e4 et ouvre le fou c8, et ...Kg7 sort le roi de la case f7 où Bc4+ donnerait échec.'
+                basis:
+                  by: chan
+                  at: '2026-09-30'

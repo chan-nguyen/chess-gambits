@@ -1,0 +1,78 @@
+# King's Gambit Accepted: Australian Gambit, taught. Frozen defining line 1.e4 e5 2.f4 exf4
+# 3.Nf3 g5 4.Bc4 g4 5.h4 ends on White's own 5.h4, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Black's 5...gxf3 is modelled as the root's reply, White's
+# 6.Qxf3 as the learner's move and Black's 6...Qf6 as the reply, so the leaf has White to
+# move. Every ply was replayed with chess.js; searchMate at 3 moves from the leaf returns
+# no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-australian-gambit
+name: "King's Gambit Accepted: Australian Gambit"
+eco: C37
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, Bc4, g4, h4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After 5.h4 gxf3 6.Qxf3 White has given a whole knight and the pawns are level,
+      and the only compensation on the board is pressure on the pawns at f4 and f7, which Black
+      can meet with 6...Qf6. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 5.h4, bỏ mặc con mã f3 đang bị tốt g4 tấn công. Mã được hậu và tốt g2 bảo vệ, nên nếu tốt ăn mã thì sẽ bị ăn lại: Trắng chủ động cho đi một con mã.'
+    en: 'White has just played 5.h4, leaving the knight on f3 under attack from the pawn on g4. The knight is defended by the queen and by the pawn on g2, so if the pawn takes it the pawn is taken back: White is offering a knight.'
+    fr: 'Les Blancs viennent de jouer 5.h4, laissant le cavalier f3 attaqué par le pion g4. Le cavalier est défendu par la dame et par le pion g2, si bien que si le pion le prend, il est repris : les Blancs offrent un cavalier.'
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 5...gxf3, chẳng hạn 5...Nc6 hoặc 5...Bg7, để mã f3 vẫn bị tốt g4 tấn công và Trắng phải tự xử lý.
+      en: Black plays something other than 5...gxf3, for example 5...Nc6 or 5...Bg7, leaving the knight on f3 under attack from the g4 pawn for White to deal with.
+      fr: Les Noirs jouent autre chose que 5...gxf3, par exemple 5...Nc6 ou 5...Bg7, laissant le cavalier f3 attaqué par le pion g4 aux Blancs de régler.
+  children:
+    - ply: gxf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen dùng tốt ăn mã. Tốt f3 không có quân nào bảo vệ và có thể bị hậu hay tốt g2 ăn lại, nên đây là đổi một mã lấy một tốt.
+        en: Black takes the knight with the pawn. The pawn on f3 has no defender and can be taken back by the queen or by the pawn on g2, so this is a knight traded for a pawn.
+        fr: "Les Noirs prennent le cavalier avec le pion. Le pion f3 n'a aucun défenseur et peut être repris par la dame ou par le pion g2 : c'est un cavalier échangé contre un pion."
+      children:
+        - ply: Qxf3
+          annotation:
+            vi: Trắng ăn lại bằng hậu. Hậu đánh vào tốt f4, con tốt không có ai bảo vệ, và đồng thời được đưa ra khỏi d1.
+            en: White recaptures with the queen. The queen attacks the pawn on f4, which nothing defends, and comes out of d1 at the same time.
+            fr: Les Blancs reprennent avec la dame. La dame attaque le pion f4, que rien ne défend, et sort de d1 du même coup.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 6...Qf6, nước vừa bảo vệ f4 vừa bảo vệ f7. Phần lớn các nước khác để hậu Trắng ăn tốt f4 mà không bị ăn lại.
+              en: Black plays something other than 6...Qf6, which defends f4 and f7 at once. Most other moves leave the pawn on f4 for the white queen to take, with nothing able to recapture.
+              fr: Les Noirs jouent autre chose que 6...Qf6, qui défend à la fois f4 et f7. La plupart des autres coups laissent le pion f4 à la dame blanche, sans que rien puisse reprendre.
+          children:
+            - ply: Qf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Hậu Đen bảo vệ cả tốt f4 lẫn tốt f7, đồng thời đánh vào tốt b2 và tốt h4.
+                en: The black queen defends both the pawn on f4 and the pawn on f7, and attacks the pawns on b2 and h4.
+                fr: La dame noire défend à la fois le pion f4 et le pion f7, et attaque les pions b2 et h4.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm quân: mỗi bên bảy tốt, và Trắng kém một mã vì con mã đã cho ở f3 chưa lấy lại được. Bù lại, Trắng có hai mục tiêu: f7, bị tượng c4 tấn công và được vua cùng hậu bảo vệ, và f4, bị hậu f3 tấn công và được hậu f6 bảo vệ.'
+                  en: 'Count the material: seven pawns each, and White is a knight down because the piece given on f3 has not come back. In return White has two targets: f7, attacked by the bishop on c4 and defended by the king and the queen, and f4, attacked by the queen on f3 and defended by the queen on f6.'
+                  fr: "Comptez le matériel : sept pions de chaque côté, et les Blancs sont en moins un cavalier, car la pièce donnée en f3 n'a pas été récupérée. En contrepartie, les Blancs ont deux cibles : f7, attaqué par le fou c4 et défendu par le roi et la dame, et f4, attaqué par la dame f3 et défendu par la dame f6."
+                plan:
+                  vi: Trắng chơi d4 để mở tượng c1 nhắm vào f4, khi đó f4 bị đánh hai lần mà chỉ có một quân bảo vệ. Đen phải thêm quân bảo vệ f4, chẳng hạn ...Bd6 hoặc ...Bh6, rồi hoàn tất phát triển.
+                  en: White plays d4 to open the c1 bishop against f4, which would then be attacked twice and defended once. Black has to add a defender to f4, for example ...Bd6 or ...Bh6, and then finish developing.
+                  fr: Les Blancs jouent d4 pour ouvrir le fou c1 contre f4, qui serait alors attaqué deux fois et défendu une seule fois. Les Noirs doivent ajouter un défenseur à f4, par exemple ...Bd6 ou ...Bh6, puis achever leur développement.
+                basis:
+                  by: chan
+                  at: '2026-09-30'
