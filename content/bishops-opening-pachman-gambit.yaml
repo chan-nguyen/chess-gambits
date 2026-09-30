@@ -1,0 +1,77 @@
+# Bishop's Opening: Pachman Gambit. Defining line 1.e4 e5 2.Bc4 Nf6 3.Ne2 Nxe4 4.Nec3, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-pachman-gambit
+name: "Bishop's Opening: Pachman Gambit"
+eco: C24
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, Ne2, Nxe4, Nec3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After the trade on c3 Black is a clean pawn up with the pieces even in
+      number, and White has only a small lead in development and the pressure of the bishop
+      on c4 against f7 to show for it. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi Nec3 bằng con mã từ e2, tấn công mã e4 vừa ăn tốt ở nước trước. Mã e4 bị tấn công một lần và không có quân nào bảo vệ. Mục này đi theo nước Đen đổi mã trên c3.
+    en: White has just played Nec3 with the knight from e2, attacking the knight on e4 that took a pawn a move ago. That knight is attacked once and defended by nothing. This entry follows Black trading on c3.
+    fr: Les Blancs viennent de jouer Nec3 avec le cavalier de e2, attaquant le cavalier e4 qui a pris un pion au coup précédent. Ce cavalier est attaqué une fois et rien ne le défend. Cette entrée suit l'échange des Noirs en c3.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 4...Nxc3 ở đây, chẳng hạn lui mã về f6 bằng 4...Nf6. Mục này chỉ mô hình hóa nước đổi mã trên c3.
+      en: Black plays something other than 4...Nxc3 here, for instance retreating the knight with 4...Nf6. This entry models only the trade on c3.
+      fr: Les Noirs jouent autre chose que 4...Nxc3 ici, par exemple en repliant le cavalier par 4...Nf6. Cette entrée ne modélise que l'échange en c3.
+  children:
+    - ply: Nxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi con mã đang bị tấn công lấy mã c3 của Trắng và giữ lại con tốt ăn trên e4.
+        en: Black trades the attacked knight for the knight on c3 and keeps the pawn taken on e4.
+        fr: Les Noirs échangent le cavalier attaqué contre le cavalier c3 et gardent le pion pris en e4.
+      children:
+        - ply: Nxc3
+          annotation:
+            vi: Trắng ăn lại bằng con mã từ b1, giờ đã được phát triển ra c3.
+            en: White recaptures with the knight from b1, which is now developed on c3.
+            fr: Les Blancs reprennent avec le cavalier de b1, qui est maintenant développé en c3.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 5...Nc6 ở đây, chẳng hạn 5...Bc5. Mục này chỉ mô hình hóa 5...Nc6, nước bảo vệ tốt e5 và phát triển quân.
+              en: Black plays something other than 5...Nc6 here, for instance 5...Bc5. This entry models only 5...Nc6, which defends the e5 pawn and develops a piece.
+              fr: Les Noirs jouent autre chose que 5...Nc6 ici, par exemple 5...Bc5. Cette entrée ne modélise que 5...Nc6, qui défend le pion e5 et développe une pièce.
+          children:
+            - ply: Nc6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen bảo vệ tốt e5 bằng mã b8 và phát triển quân cùng lúc.
+                en: Black defends the e5 pawn with the knight from b8 and develops a piece at the same time.
+                fr: Les Noirs défendent le pion e5 avec le cavalier de b8 et développent une pièce en même temps.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — con tốt ăn trên e4 chưa lấy lại được. Quân đều nhau về số lượng, mỗi bên một mã và hai tượng, và hai bên chưa nhập thành. Trắng không còn tốt e nên cột e bán mở cho Trắng, còn tượng c4 tấn công tốt f7 mà chỉ có vua bảo vệ.'
+                  en: "Count the pawns: White seven, Black eight — the pawn taken on e4 has not come back. The pieces are even in number, one knight and two bishops each, and neither side has castled. White's e-pawn is gone, so the e-file is half-open for White, and the bishop on c4 attacks the f7 pawn, which only the king defends."
+                  fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — le pion pris en e4 n'est pas revenu. Les pièces sont en nombre égal, un cavalier et deux fous de chaque côté, et aucun camp n'a roqué. Les Blancs n'ont plus de pion e, donc la colonne e est semi-ouverte pour eux, et le fou c4 attaque le pion f7, que seul le roi défend."
+                plan:
+                  vi: Trắng chơi d3, Bg5 và O-O, hoặc thử Qh5 đánh vào e5 và f7 cùng lúc, tận dụng lợi thế phát triển. Đen chơi ...Bc5 và ...d6 để phát triển tượng và củng cố e5.
+                  en: White plays d3, Bg5 and O-O, or tries Qh5 to hit e5 and f7 together, making use of the lead in development. Black plays ...Bc5 and ...d6, developing the bishop and strengthening e5.
+                  fr: Les Blancs jouent d3, Bg5 et O-O, ou tentent Qh5 pour frapper e5 et f7 à la fois, profitant de leur avance de développement. Les Noirs jouent ...Bc5 et ...d6, développant le fou et consolidant e5.
+                basis:
+                  by: chan
+                  at: 2026-09-30

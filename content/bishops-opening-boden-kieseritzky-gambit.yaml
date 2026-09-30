@@ -1,0 +1,79 @@
+# Bishop's Opening: Boden-Kieseritzky Gambit. Defining line 1.e4 e5 2.Nf3 Nf6 3.Bc4 Nxe4
+# 4.Nc3, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-boden-kieseritzky-gambit
+name: "Bishop's Opening: Boden-Kieseritzky Gambit"
+eco: C27
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nf6, Bc4, Nxe4, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. After the trade on c3 White recaptures with the d-pawn, which leaves
+      doubled pawns on the c-file, and Black keeps the pawn taken on e4; the lead in
+      development and the open d-file are real but do not obviously make up for it. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Nc3, tấn công con mã e4 vừa ăn tốt ở nước trước. Mã e4 bị mã c3 tấn công mà không được bảo vệ, và tốt e5 của Đen cũng đang bị mã f3 tấn công mà không ai che. Mục này đi theo nước Đen đổi mã trên c3.
+    en: White has just played 4.Nc3, attacking the knight on e4, which took a pawn a move ago. That knight is attacked by the knight on c3 and defended by nothing, and Black's e5 pawn is attacked by the knight on f3 and is undefended too. This entry follows Black trading on c3.
+    fr: Les Blancs viennent de jouer 4.Nc3, attaquant le cavalier e4 qui a pris un pion au coup précédent. Ce cavalier est attaqué par le cavalier c3 et rien ne le défend, et le pion e5 noir est lui aussi attaqué par le cavalier f3 sans être défendu. Cette entrée suit l'échange des Noirs en c3.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 4...Nxc3 ở đây; chẳng hạn 4...d5 là Lichtenhein Defense và có mục riêng. Mục này chỉ mô hình hóa nước đổi mã trên c3.
+      en: Black plays something other than 4...Nxc3 here; 4...d5, for instance, is the Lichtenhein Defense and has its own entry. This entry models only the trade on c3.
+      fr: Les Noirs jouent autre chose que 4...Nxc3 ici ; 4...d5, par exemple, est la défense Lichtenhein et a sa propre entrée. Cette entrée ne modélise que l'échange en c3.
+  children:
+    - ply: Nxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi con mã đang bị tấn công lấy mã c3 của Trắng, giữ lại con tốt vừa ăn trên e4.
+        en: Black trades the attacked knight for the knight on c3, keeping the pawn it won on e4.
+        fr: Les Noirs échangent le cavalier attaqué contre le cavalier c3, gardant le pion gagné en e4.
+      children:
+        - ply: dxc3
+          annotation:
+            vi: Trắng ăn lại bằng tốt d, mở cột d cho hậu và mở đường cho tượng c1, nhưng phải chịu hai tốt chồng trên cột c.
+            en: White recaptures with the d-pawn, which opens the d-file for the queen and the diagonal for the c1 bishop, at the price of doubled pawns on the c-file.
+            fr: Les Blancs reprennent avec le pion d, ce qui ouvre la colonne d à la dame et la diagonale du fou c1, au prix de pions doublés sur la colonne c.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 5...f6 ở đây, chẳng hạn 5...d6 hoặc 5...Nc6, cũng bảo vệ tốt e5. Mục này chỉ mô hình hóa 5...f6.
+              en: Black plays something other than 5...f6 here, for instance 5...d6 or 5...Nc6, which also defend the e5 pawn. This entry models only 5...f6.
+              fr: Les Noirs jouent autre chose que 5...f6 ici, par exemple 5...d6 ou 5...Nc6, qui défendent eux aussi le pion e5. Cette entrée ne modélise que 5...f6.
+          children:
+            - ply: f6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen bảo vệ tốt e5 bằng tốt f. Nước đi cũng mở đường chéo e8-h5 vì tốt f7 đã rời khỏi đó.
+                en: Black defends the e5 pawn with the f-pawn. The move also opens the e8-h5 diagonal, because the f7 pawn has left it.
+                fr: Les Noirs défendent le pion e5 avec le pion f. Le coup ouvre aussi la diagonale e8-h5, le pion f7 ayant quitté celle-ci.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — con tốt ăn trên e4 chưa lấy lại được. Hai tốt c3 và c2 của Trắng bị chồng, cột d đang bán mở cho Trắng, còn vua Đen vẫn đứng trên e8 với đường chéo e8-h5 đã mở vì tốt f7 đã đi. Hai bên chưa nhập thành, và mỗi bên còn một mã cùng hai tượng.'
+                  en: "Count the pawns: White seven, Black eight — the pawn taken on e4 has not come back. White's pawns on c3 and c2 are doubled and the d-file is half-open for White, while Black's king still stands on e8 with the e8-h5 diagonal open now that the f7 pawn has moved. Neither side has castled, and each side has one knight and two bishops."
+                  fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — le pion pris en e4 n'est pas revenu. Les pions blancs c3 et c2 sont doublés et la colonne d est semi-ouverte pour les Blancs, tandis que le roi noir est toujours en e8 avec la diagonale e8-h5 ouverte maintenant que le pion f7 a bougé. Aucun camp n'a roqué, et chaque camp a un cavalier et deux fous."
+                plan:
+                  vi: Trắng nhập thành rồi chơi Nh4 và Qh5+ để tận dụng đường chéo e8-h5 đang mở, dùng cột d bán mở và lợi thế phát triển để bù lại con tốt. Đen chơi ...d6, ...Nc6 và ...Be6 để hoàn tất phát triển, thách thức tượng c4 và giữ tốt dư.
+                  en: White castles, then plays Nh4 and Qh5+ to make use of the open e8-h5 diagonal, and relies on the half-open d-file and the lead in development to make up for the pawn. Black plays ...d6, ...Nc6 and ...Be6, completing development, challenging the bishop on c4 and keeping the extra pawn.
+                  fr: Les Blancs roquent, puis jouent Nh4 et Qh5+ pour exploiter la diagonale e8-h5 ouverte, et comptent sur la colonne d semi-ouverte et l'avance de développement pour compenser le pion. Les Noirs jouent ...d6, ...Nc6 et ...Be6, achevant leur développement, défiant le fou c4 et gardant le pion de plus.
+                basis:
+                  by: chan
+                  at: 2026-09-30

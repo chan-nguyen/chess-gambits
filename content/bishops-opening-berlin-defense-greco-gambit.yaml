@@ -1,0 +1,60 @@
+# Bishop's Opening: Berlin Defense, Greco Gambit. Defining line 1.e4 e5 2.Bc4 Nf6 3.f4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch p of round 3 (#172). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: bishops-opening-berlin-defense-greco-gambit
+name: "Bishop's Opening: Berlin Defense, Greco Gambit"
+eco: C24
+category: gambit
+side: white
+definingLine: [e4, e5, Bc4, Nf6, f4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      "A judgement. After 3.f4 Black can simply take the pawn with 3...exf4, and White has
+      no quick way to win it back: no White piece attacks the pawn on f4, while White's own
+      e4 pawn is attacked by the knight on f6 and defended by nothing. No engine was
+      consulted and no database was queried."
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.f4, dùng tốt f tấn công tốt e5. Tốt e4 đang bị mã f6 tấn công mà không có quân nào bảo vệ, còn tốt f4 cũng đang bị tốt e5 tấn công và không được bảo vệ. Mục này đi theo nước Đen ăn tốt trên f4.
+    en: White has just played 3.f4, attacking the e5 pawn with the f-pawn. The e4 pawn is attacked by the knight on f6 and nothing defends it, and the f4 pawn is itself attacked by the e5 pawn and is undefended. This entry follows Black taking the pawn on f4.
+    fr: Les Blancs viennent de jouer 3.f4, attaquant le pion e5 avec le pion f. Le pion e4 est attaqué par le cavalier f6 et rien ne le défend, et le pion f4 est lui-même attaqué par le pion e5 et n'est pas défendu. Cette entrée suit la prise du pion en f4 par les Noirs.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 3...exf4 ở đây, chẳng hạn ăn tốt bằng 3...Nxe4. Mục này chỉ mô hình hóa nước ăn tốt trên f4.
+      en: Black plays something other than 3...exf4 here, for instance the capture 3...Nxe4. This entry models only the capture on f4.
+      fr: Les Noirs jouent autre chose que 3...exf4 ici, par exemple la prise 3...Nxe4. Cette entrée ne modélise que la prise en f4.
+  children:
+    - ply: exf4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn con tốt thí bằng tốt e. Không quân nào của Trắng tấn công được con tốt mới trên f4, còn mã f6 vẫn đang tấn công tốt e4.
+        en: Black takes the gambit pawn with the e-pawn. None of White's pieces attacks the new pawn on f4, and the knight on f6 still attacks the e4 pawn.
+        fr: Les Noirs prennent le pion du gambit avec le pion e. Aucune pièce blanche n'attaque le nouveau pion en f4, et le cavalier f6 attaque toujours le pion e4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — con tốt thí chưa lấy lại được. Tốt e4 của Trắng đang bị mã f6 tấn công mà không được bảo vệ, còn hai tốt f7 và f4 của Đen bị chồng trên cột f. Hai bên chưa nhập thành, cột f đang bán mở cho Trắng, và tượng c4 đã nhắm sẵn vào f7, ô chỉ có vua bảo vệ.'
+          en: "Count the pawns: White seven, Black eight — the gambit pawn has not come back. White's e4 pawn is attacked by the knight on f6 and nothing defends it, while Black's pawns on f7 and f4 are doubled on the f-file. Neither side has castled, and the f-file is half-open for White, with the bishop on c4 already aimed at f7, which only the king defends."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs — le pion du gambit n'est pas revenu. Le pion e4 blanc est attaqué par le cavalier f6 et rien ne le défend, tandis que les pions noirs f7 et f4 sont doublés sur la colonne f. Aucun camp n'a roqué, et la colonne f est semi-ouverte pour les Blancs, avec le fou c4 déjà braqué sur f7, que seul le roi défend."
+        plan:
+          vi: Trắng chơi Nc3 để bảo vệ e4, rồi Nf3 và O-O, cố lấy lại tốt f4 trong khi cột f và tượng c4 giữ sức ép lên f7. Đen tìm cách giữ tốt dư, chẳng hạn bằng ...d5 thách thức tượng hoặc ...Bd6 bảo vệ f4.
+          en: White plays Nc3 to cover e4, then Nf3 and O-O, and tries to win the f4 pawn back while the f-file and the bishop on c4 keep f7 under pressure. Black looks to keep the extra pawn, for instance with ...d5, which challenges the bishop, or with ...Bd6, which guards f4.
+          fr: Les Blancs jouent Nc3 pour couvrir e4, puis Nf3 et O-O, et tentent de regagner le pion f4 tandis que la colonne f et le fou c4 maintiennent la pression sur f7. Les Noirs cherchent à garder le pion de plus, par exemple avec ...d5, qui défie le fou, ou avec ...Bd6, qui garde f4.
+        basis:
+          by: chan
+          at: 2026-09-30
