@@ -1,0 +1,72 @@
+# Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, San Francisco Gambit. Frozen defining line
+# 1.e4 c5 2.Nf3 Nc6 3.Bb5 Na5 4.b4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 4...cxb4 5.Bb2 e6. searchMate at 3
+# moves from the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: nyezhmetdinov-rossolimo-attack-san-francisco-gambit
+name: 'Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, San Francisco Gambit'
+eco: B30
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, Nc6, Bb5, Na5, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.b4, thí tốt b: tốt b4 bị tốt c5 tấn công mà không quân nào bảo vệ, còn mã a5 của Đen bị tốt b4 tấn công và chỉ có hậu d8 bảo vệ. Số tốt hai bên bằng nhau, tám mỗi bên.'
+    en: "White has just played 4.b4, offering the b-pawn: the b4 pawn is attacked by the c5 pawn with nothing defending it, while Black's knight on a5 is attacked by the b4 pawn and defended only by the queen on d8. The pawn count is level, eight each."
+    fr: 'Les Blancs viennent de jouer 4.b4, offrant le pion b : le pion b4 est attaqué par le pion c5 sans aucune défense, tandis que le cavalier a5 des Noirs est attaqué par le pion b4 et défendu seulement par la dame d8. Le compte de pions est égal, huit de chaque côté.'
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 4...cxb4, chẳng hạn 4...Nc6 hoặc 4...a6. Đánh giá trong mục này dành cho nhánh Đen ăn tốt b4.
+      en: Black plays something other than 4...cxb4, for example 4...Nc6 or 4...a6. The assessment in this entry is for the line where Black takes the b4 pawn.
+      fr: Les Noirs jouent autre chose que 4...cxb4, par exemple 4...Nc6 ou 4...a6. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion b4.
+  children:
+    - ply: cxb4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b4 bằng tốt c: Trắng kém một tốt, bảy so với tám, và mã a5 thoát khỏi đòn tấn công của tốt.'
+        en: "Black takes the b4 pawn with the c-pawn: White is a pawn down, seven to eight, and the knight on a5 escapes the pawn's attack."
+        fr: "Les Noirs prennent le pion b4 avec le pion c : les Blancs ont un pion de moins, sept contre huit, et le cavalier a5 échappe à l'attaque du pion."
+      children:
+        - ply: Bb2
+          annotation:
+            vi: Trắng đưa tượng ra b2, nhắm vào tốt g7 dọc đường chéo dài, còn tượng b5 nhắm vào tốt d7.
+            en: White brings the bishop out to b2, aiming at the g7 pawn down the long diagonal, while the bishop on b5 aims at the d7 pawn.
+            fr: Les Blancs sortent le fou en b2, visant le pion g7 sur la grande diagonale, tandis que le fou b5 vise le pion d7.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 5...e6, chẳng hạn 5...Nf6 hoặc 5...a6. Đánh giá trong mục này dành cho nhánh Đen chơi e6.
+              en: Black plays something other than 5...e6, for example 5...Nf6 or 5...a6. The assessment in this entry is for the line with 5...e6.
+              fr: Les Noirs jouent autre chose que 5...e6, par exemple 5...Nf6 ou 5...a6. L'évaluation de cette fiche porte sur la ligne avec 5...e6.
+          children:
+            - ply: e6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen chơi e6, mở đường cho tượng f8 và hậu d8, và củng cố ô d5.
+                en: Black plays e6, opening lines for the bishop on f8 and the queen, and covering the d5 square.
+                fr: Les Noirs jouent e6, ouvrant des lignes pour le fou f8 et la dame, et couvrant la case d5.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt, và tốt a2 của Trắng bị cô lập, còn Đen bị chồng tốt ở cột b (b4 và b7). Mã a5 của Đen nằm sát mép bàn với chỉ ba nước đi, tới b3, c4 và c6; ô b3 bị hai tốt a2 và c2 khống chế, còn ô c4 bị tượng b5 khống chế.'
+                  en: "Count the pawns: White seven, Black eight — White is a pawn down, and White's a2 pawn is isolated while Black's pawns are doubled on the b-file (b4 and b7). Black's knight on a5 stands on the rim with only three moves, to b3, c4 and c6; the b3 square is covered by the a2 and c2 pawns and the c4 square by the bishop on b5."
+                  fr: "Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins, et le pion a2 blanc est isolé tandis que les pions noirs sont doublés sur la colonne b (b4 et b7). Le cavalier a5 noir se trouve au bord de l'échiquier avec seulement trois coups, vers b3, c4 et c6 ; la case b3 est couverte par les pions a2 et c2 et la case c4 par le fou b5."
+                plan:
+                  vi: Trắng chơi a3 để thách thức tốt b4, rồi nhập thành và phát triển mã b1. Đen chơi ...a6 để đuổi tượng b5 và ...Nf6 để tấn công tốt e4, rồi ...Be7 và nhập thành.
+                  en: White plays a3 to challenge the b4 pawn, then castles and develops the knight on b1. Black plays ...a6 to chase the bishop from b5 and ...Nf6 to attack the e4 pawn, then ...Be7 and castles.
+                  fr: Les Blancs jouent a3 pour défier le pion b4, puis roquent et développent le cavalier b1. Les Noirs jouent ...a6 pour chasser le fou de b5 et ...Nf6 pour attaquer le pion e4, puis ...Be7 et roquent.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

@@ -1,0 +1,78 @@
+# Sicilian Defense: Wing Gambit, Santasiere Variation. Frozen defining line 1.e4 c5 2.b4 cxb4
+# 3.c4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through 3...e6 4.d4 Nf6 5.Bd3. The leaf is left with Black to move.
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-wing-gambit-santasiere-variation
+name: 'Sicilian Defense: Wing Gambit, Santasiere Variation'
+eco: B20
+category: gambit
+side: white
+definingLine: [e4, c5, b4, cxb4, c4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has seven pawns to Black's eight, so White is a pawn down; White's a2 pawn is isolated; Black's pawns are doubled on the b-file. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.c4. Đen hơn một tốt, tám so với bảy, và có hai tốt b chồng nhau ở b4 và b7, còn tốt a2 của Trắng bị cô lập. Trắng không còn tốt b và Đen không còn tốt c. Không có quân nào đang bị tấn công, nhưng tốt c4 có thể bị tốt b4 bắt tốt qua đường.
+    en: White has just played 3.c4. Black is a pawn up, eight to seven, and has doubled b-pawns on b4 and b7, while White's a2 pawn is isolated. White has no b-pawn left and Black has no c-pawn. No piece is attacked, but the c4 pawn can be taken en passant by the b4 pawn.
+    fr: Les Blancs viennent de jouer 3.c4. Les Noirs ont un pion de plus, huit contre sept, et des pions b doublés en b4 et b7, tandis que le pion a2 des Blancs est isolé. Les Blancs n'ont plus de pion b et les Noirs n'ont plus de pion c. Aucune pièce n'est attaquée, mais le pion c4 peut être pris en passant par le pion b4.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 3...e6, chẳng hạn 3...Nc6 hoặc 3...Nf6. Đánh giá trong mục này dành cho nhánh Đen chơi e6.
+      en: Black plays something other than 3...e6, for example 3...Nc6 or 3...Nf6. The assessment in this entry is for the line where Black plays e6.
+      fr: Les Noirs jouent autre chose que 3...e6, par exemple 3...Nc6 ou 3...Nf6. L'évaluation de cette fiche porte sur la ligne où les Noirs jouent e6.
+  children:
+    - ply: e6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi e6, mở đường cho tượng f8 và chuẩn bị ...d5. Số tốt không đổi, Trắng bảy, Đen tám, và không quân nào bị tấn công.
+        en: Black plays e6, opening the way for the bishop on f8 and preparing ...d5. The pawn count is unchanged, White seven and Black eight, and nothing is attacked.
+        fr: Les Noirs jouent e6, ouvrant la voie au fou f8 et préparant ...d5. Le compte de pions ne change pas, sept pour les Blancs et huit pour les Noirs, et rien n'est attaqué.
+      children:
+        - ply: d4
+          annotation:
+            vi: 'Trắng dựng trung tâm tốt: c4, d4 và e4 đứng cạnh nhau trên hàng thứ tư. Không có tốt nào bị tấn công.'
+            en: 'White builds a pawn centre: c4, d4 and e4 stand side by side on the fourth rank. None of the pawns is attacked.'
+            fr: "Les Blancs construisent un centre de pions : c4, d4 et e4 se tiennent côte à côte sur la quatrième rangée. Aucun de ces pions n'est attaqué."
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 4...Nf6, chẳng hạn 4...Nc6 hoặc 4...d5. Đánh giá trong mục này dành cho nhánh Đen phát triển mã lên f6.
+              en: Black plays something other than 4...Nf6, for example 4...Nc6 or 4...d5. The assessment in this entry is for the line where Black develops the knight to f6.
+              fr: Les Noirs jouent autre chose que 4...Nf6, par exemple 4...Nc6 ou 4...d5. L'évaluation de cette fiche porte sur la ligne où les Noirs développent le cavalier en f6.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen phát triển mã lên f6, tấn công tốt e4, quân hiện chưa có ai bảo vệ.
+                en: Black develops the knight to f6, attacking the e4 pawn, which nothing defends at the moment.
+                fr: Les Noirs développent le cavalier en f6, attaquant le pion e4, que rien ne défend pour le moment.
+              children:
+                - ply: Bd3
+                  annotation:
+                    vi: Trắng bảo vệ tốt e4 bằng tượng d3. Số tốt vẫn là bảy so với tám.
+                    en: White defends the e4 pawn with the bishop on d3. The pawn count is still seven to eight.
+                    fr: Les Blancs défendent le pion e4 avec le fou d3. Le compte de pions reste sept contre huit.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt, tốt a2 của Trắng bị cô lập và Đen có hai tốt b chồng nhau ở b4 và b7. Bù lại, ba tốt c4, d4 và e4 của Trắng đứng cạnh nhau ở trung tâm; tốt e4 bị mã f6 tấn công và có tượng d3 bảo vệ. Đến lượt Đen.'
+                      en: "Count the pawns: White seven, Black eight — White is a pawn down, White's a2 pawn is isolated and Black has doubled b-pawns on b4 and b7. In return White's three pawns on c4, d4 and e4 stand side by side in the centre; the e4 pawn is attacked by the knight on f6 and defended by the bishop on d3. It is Black's move."
+                      fr: "Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins, leur pion a2 est isolé et les Noirs ont des pions b doublés en b4 et b7. En contrepartie, les trois pions blancs c4, d4 et e4 se tiennent côte à côte au centre ; le pion e4 est attaqué par le cavalier f6 et défendu par le fou d3. C'est aux Noirs de jouer."
+                    plan:
+                      vi: Trắng chơi Nf3 rồi O-O. Đen chơi ...d5 để đánh cả c4 lẫn e4, hoặc ...Nc6 để đánh vào d4, rồi ...Be7 và ...O-O.
+                      en: White plays Nf3 and then O-O. Black plays ...d5 to attack both c4 and e4, or ...Nc6 to attack d4, then ...Be7 and ...O-O.
+                      fr: Les Blancs jouent Nf3 puis O-O. Les Noirs jouent ...d5 pour attaquer à la fois c4 et e4, ou ...Nc6 pour attaquer d4, puis ...Be7 et ...O-O.
+                    basis:
+                      by: chan
+                      at: '2026-09-30'

@@ -1,0 +1,72 @@
+# Alekhine Defense: Hunt Variation, Lasker Simul Gambit. Frozen defining line 1.e4 Nf6 2.e5 Nd5
+# 3.c4 Nb6 4.c5 Nd5 5.Bc4 e6 6.Nc3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 6...Nxc3 7.bxc3 Bxc5. searchMate at
+# 3 moves from the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: alekhine-defense-hunt-variation-lasker-simul-gambit
+name: 'Alekhine Defense: Hunt Variation, Lasker Simul Gambit'
+eco: B02
+category: gambit
+side: white
+definingLine: [e4, Nf6, e5, Nd5, c4, Nb6, c5, Nd5, Bc4, e6, Nc3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Nc3. Mã d5 của Đen bị hai quân tấn công (tượng c4 và mã c3) và chỉ có tốt e6 bảo vệ, nhưng tốt c5 của Trắng cũng đang bị tượng f8 nhắm tới mà không có quân nào bảo vệ. Đen phải chọn đòn nào để ăn.
+    en: White has just played 6.Nc3. Black's knight on d5 is attacked twice (by the bishop on c4 and the knight on c3) and defended once, by the e6 pawn, but White's own pawn on c5 is attacked by the bishop on f8 with nothing defending it. Black has to choose which capture to make.
+    fr: Les Blancs viennent de jouer 6.Nc3. Le cavalier d5 des Noirs est attaqué deux fois (par le fou c4 et le cavalier c3) et défendu une seule fois, par le pion e6, mais le pion c5 des Blancs est lui aussi attaqué par le fou f8 sans qu'aucune pièce ne le défende. Les Noirs doivent choisir quelle capture effectuer.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 6...Nxc3, chẳng hạn ăn ngay tốt c5 bằng 6...Bxc5. Đánh giá trong mục này dành cho nhánh bắt đầu bằng cuộc đổi mã ở c3.
+      en: Black plays something other than 6...Nxc3, for example taking the c5 pawn at once with 6...Bxc5. The assessment in this entry is for the line that starts with the exchange on c3.
+      fr: Les Noirs jouent autre chose que 6...Nxc3, par exemple en prenant tout de suite le pion c5 par 6...Bxc5. L'évaluation de cette fiche porte sur la ligne qui commence par l'échange en c3.
+  children:
+    - ply: Nxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi mã lấy mã ngay, loại bỏ quân đang tấn công mã d5 và buộc Trắng phải ăn lại trước khi Đen lấy tốt c5.
+        en: Black trades knights at once, removing one of the two attackers of the d5 knight and forcing White to recapture before Black takes the c5 pawn.
+        fr: Les Noirs échangent aussitôt les cavaliers, éliminant l'un des deux attaquants du cavalier d5 et forçant les Blancs à reprendre avant que les Noirs ne prennent le pion c5.
+      children:
+        - ply: bxc3
+          annotation:
+            vi: Trắng ăn lại bằng tốt b, giữ tốt d ở nhà và mở cột b cho xe a1, nhưng đổi lại tốt a2 trở nên đứng trơ trọi.
+            en: White recaptures with the b-pawn, which keeps the d-pawn at home and opens the b-file for the rook on a1, at the price of leaving the a-pawn alone.
+            fr: Les Blancs reprennent avec le pion b, ce qui garde le pion d à la maison et ouvre la colonne b à la tour a1, au prix d'un pion a laissé seul.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 7...Bxc5, để tốt c5 — con tốt mà không quân Trắng nào bảo vệ — nằm lại trên bàn cờ lúc này.
+              en: Black plays something other than 7...Bxc5, leaving the c5 pawn, which no White piece defends, on the board for now.
+              fr: Les Noirs jouent autre chose que 7...Bxc5, laissant pour l'instant sur l'échiquier le pion c5, qu'aucune pièce blanche ne défend.
+          children:
+            - ply: Bxc5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Đen lấy tốt c5 bằng tượng: tốt đã thí không được lấy lại, và tượng c5 nhắm thẳng vào tốt f2.'
+                en: 'Black takes the c5 pawn with the bishop: the pawn offered is not won back, and the bishop on c5 now points straight at the f2 pawn.'
+                fr: "Les Noirs prennent le pion c5 avec le fou : le pion offert n'est pas regagné, et le fou c5 vise désormais directement le pion f2."
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng thiếu một tốt sạch. Tốt a2 của Trắng không còn tốt b nào bên cạnh nên bị cô lập. Tượng c5 của Đen nhắm vào f2, ô mà chỉ có vua e1 bảo vệ, còn tốt e6 của Đen được cả tốt d7 lẫn f7 bảo vệ nên tượng c4 chưa có mục tiêu nào.'
+                  en: "Count the pawns: White seven, Black eight — White is a clean pawn down. White's a2 pawn has no b-pawn beside it, so it is isolated. Black's bishop on c5 bears on f2, a square only the king on e1 defends, while Black's e6 pawn is defended by both the d7 and f7 pawns, so the bishop on c4 has no target yet."
+                  fr: "Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion net de moins. Le pion a2 blanc n'a plus de pion b à côté de lui, il est donc isolé. Le fou c5 noir vise f2, une case que seul le roi e1 défend, tandis que le pion e6 noir est défendu à la fois par les pions d7 et f7, si bien que le fou c4 n'a pas encore de cible."
+                plan:
+                  vi: Trắng chơi d4 để đuổi tượng c5, rồi Nf3 và nhập thành, dùng cột b nửa mở cho xe. Đen chơi ...Nc6 và ...d6 để đánh vào tốt e5, rồi nhập thành và giữ tốt thừa.
+                  en: White plays d4 to chase the bishop from c5, then Nf3 and castles, using the half-open b-file for a rook. Black plays ...Nc6 and ...d6 to hit the e5 pawn, then castles and keeps the extra pawn.
+                  fr: Les Blancs jouent d4 pour chasser le fou de c5, puis Nf3 et roquent, en utilisant la colonne b semi-ouverte pour une tour. Les Noirs jouent ...Nc6 et ...d6 pour attaquer le pion e5, puis roquent et gardent le pion supplémentaire.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

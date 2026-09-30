@@ -1,0 +1,72 @@
+# Ruy Lopez: Schliemann Defense, Tartakower Variation. Frozen defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bb5 f5 4.Nc3 fxe4 5.Nxe4 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 6.Nxf6+ Qxf6 7.O-O. searchMate at 3
+# moves from the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry, and no capture is left going free at the leaf.
+id: ruy-lopez-schliemann-defense-tartakower-variation
+name: 'Ruy Lopez: Schliemann Defense, Tartakower Variation'
+eco: C63
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, f5, Nc3, fxe4, Nxe4, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at seven each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Nf6, tấn công mã e4 của Trắng, con mã không có quân nào bảo vệ. Số tốt hai bên đang bằng nhau, bảy mỗi bên.
+    en: Black has just played 5...Nf6, attacking White's knight on e4, which nothing defends. The pawn count is level, seven each.
+    fr: Les Noirs viennent de jouer 5...Nf6, attaquant le cavalier e4 des Blancs, que rien ne défend. Le compte de pions est égal, sept de chaque côté.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 6.Nxf6+, chẳng hạn 6.Nc3 hoặc 6.d3. Đánh giá trong mục này dành cho nhánh Trắng đổi mã ngay bằng nước chiếu.
+      en: White plays something other than 6.Nxf6+, for example 6.Nc3 or 6.d3. The assessment in this entry is for the line where White trades knights at once with check.
+      fr: Les Blancs jouent autre chose que 6.Nxf6+, par exemple 6.Nc3 ou 6.d3. L'évaluation de cette fiche porte sur la ligne où les Blancs échangent tout de suite les cavaliers avec échec.
+  children:
+    - ply: Nxf6+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đổi mã với nước chiếu. Mã f6 vừa ăn bị cả hậu d8 lẫn tốt g7 tấn công mà không có quân nào bảo vệ.
+        en: White trades knights with check. The knight just arrived on f6 is attacked by both the queen on d8 and the g7 pawn, with nothing defending it.
+        fr: Les Blancs échangent les cavaliers avec échec. Le cavalier qui vient d'arriver en f6 est attaqué à la fois par la dame d8 et par le pion g7, sans aucune défense.
+      children:
+        - ply: Qxf6
+          annotation:
+            vi: Đen ăn lại bằng hậu thay vì tốt g, giữ nguyên các tốt cánh vua; hậu f6 tấn công mã f3 của Trắng.
+            en: Black recaptures with the queen rather than the g-pawn, keeping the kingside pawns as they were; the queen on f6 attacks White's knight on f3.
+            fr: Les Noirs reprennent avec la dame plutôt qu'avec le pion g, gardant les pions de l'aile roi tels quels ; la dame f6 attaque le cavalier f3 des Blancs.
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 7.O-O, chẳng hạn 7.Bxc6 hoặc 7.d4. Đánh giá trong mục này dành cho nhánh Trắng nhập thành ngay.
+              en: White plays something other than 7.O-O, for example 7.Bxc6 or 7.d4. The assessment in this entry is for the line where White castles at once.
+              fr: Les Blancs jouent autre chose que 7.O-O, par exemple 7.Bxc6 ou 7.d4. L'évaluation de cette fiche porte sur la ligne où les Blancs roquent tout de suite.
+          children:
+            - ply: O-O
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng nhập thành. Mã f3 bị hậu f6 tấn công nhưng có tốt g2 và hậu d1 bảo vệ.
+                en: White castles. The knight on f3 is attacked by the queen on f6 but defended by the g2 pawn and the queen on d1.
+                fr: Les Blancs roquent. Le cavalier f3 est attaqué par la dame f6 mais défendu par le pion g2 et la dame d1.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: bảy mỗi bên, và quân cũng ngang nhau, nên không bên nào nợ gì. Cột f nửa mở cho Đen và hậu f6 đứng trên cột đó, đối diện mã f3 của Trắng; cột e nửa mở cho Trắng. Tốt e5 của Đen bị mã f3 tấn công và có hai quân bảo vệ (mã c6 và hậu f6), còn mã c6 bị tượng b5 tấn công nhưng có ba quân bảo vệ.'
+                  en: "Count the pawns: seven each, and the pieces are level too, so neither side owes anything. The f-file is half-open for Black and the queen on f6 stands on it, facing White's knight on f3; the e-file is half-open for White. Black's e5 pawn is attacked by the knight on f3 and defended twice (by the knight on c6 and the queen on f6), and the knight on c6 is attacked by the bishop on b5 but defended three times."
+                  fr: "Comptons les pions : sept de chaque côté, et les pièces sont égales aussi, donc aucun camp ne doit rien. La colonne f est semi-ouverte pour les Noirs et la dame f6 s'y trouve, face au cavalier f3 des Blancs ; la colonne e est semi-ouverte pour les Blancs. Le pion e5 noir est attaqué par le cavalier f3 et défendu deux fois (par le cavalier c6 et la dame f6), et le cavalier c6 est attaqué par le fou b5 mais défendu trois fois."
+                plan:
+                  vi: Trắng chơi Re1 để tấn công e5 lần thứ hai và dùng cột e nửa mở. Đen chơi ...Bd6 để phát triển tượng và thêm một quân bảo vệ tốt e5, rồi nhập thành.
+                  en: White plays Re1 to attack e5 a second time and use the half-open e-file. Black plays ...Bd6 to develop the bishop and add a defender to the e5 pawn, then castles.
+                  fr: Les Blancs jouent Re1 pour attaquer e5 une seconde fois et utiliser la colonne e semi-ouverte. Les Noirs jouent ...Bd6 pour développer le fou et ajouter un défenseur au pion e5, puis roquent.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

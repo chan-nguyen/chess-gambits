@@ -1,0 +1,73 @@
+# Sicilian Defense: Smith-Morra Gambit Declined, Push Variation. The catalogue's line is 1.e4 c5
+# 2.d4 cxd4 3.c3 d3, which ends on Black's ply; with White as the learner that would make the root a
+# learner node, so the defining line here stops at 3.c3 and 3...d3 is modelled as the opponent's
+# reply (docs/CONTEXT.md, invariant 5; the catalogue check accepts a prefix). Replayed with chess.js
+# through 4.Bxd3 Nf6. searchMate at 3 moves from the resulting position returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-smith-morra-gambit-declined-push-variation
+name: 'Sicilian Defense: Smith-Morra Gambit Declined, Push Variation'
+eco: B21
+category: gambit
+side: white
+definingLine: [e4, c5, d4, cxd4, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has seven pawns to Black's eight, so White is a pawn down; Black's pawns are doubled on the d-file. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 3.c3, lời đề nghị Smith-Morra: tốt d4 của Đen bị tốt c3 và hậu d1 tấn công mà không quân nào bảo vệ. Đen hơn một tốt, tám so với bảy.'
+    en: "White has just played 3.c3, the Smith-Morra offer: Black's pawn on d4 is attacked by the c3 pawn and the queen on d1 with nothing defending it. Black is a pawn up, eight to seven."
+    fr: "Les Blancs viennent de jouer 3.c3, l'offre Smith-Morra : le pion d4 des Noirs est attaqué par le pion c3 et la dame d1 sans aucune défense. Les Noirs ont un pion de plus, huit contre sept."
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 3...d3, chẳng hạn 3...dxc3 hoặc 3...d5. Đánh giá trong mục này dành cho nhánh Đen đẩy tốt d lên d3.
+      en: Black plays something other than 3...d3, for example 3...dxc3 or 3...d5. The assessment in this entry is for the line where Black pushes the d-pawn to d3.
+      fr: Les Noirs jouent autre chose que 3...d3, par exemple 3...dxc3 ou 3...d5. L'évaluation de cette fiche porte sur la ligne où les Noirs poussent le pion d en d3.
+  children:
+    - ply: d3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: 'Đen đẩy tốt d lên d3, trả lại con tốt: tốt d3 bị hậu d1 và tượng f1 tấn công mà không quân nào bảo vệ.'
+        en: 'Black pushes the d-pawn to d3, giving the pawn back: the d3 pawn is attacked by the queen on d1 and the bishop on f1 with nothing defending it.'
+        fr: 'Les Noirs poussent le pion d en d3, rendant le pion : le pion d3 est attaqué par la dame d1 et le fou f1 sans aucune défense.'
+      children:
+        - ply: Bxd3
+          annotation:
+            vi: Trắng ăn tốt d3 bằng tượng, vừa đưa số tốt về bằng nhau, bảy mỗi bên, vừa phát triển tượng; tượng d3 bảo vệ luôn tốt e4.
+            en: White takes the d3 pawn with the bishop, levelling the pawn count at seven each and developing the bishop; the bishop on d3 also defends the e4 pawn.
+            fr: Les Blancs prennent le pion d3 avec le fou, égalisant le compte de pions à sept de chaque côté et développant le fou ; le fou d3 défend aussi le pion e4.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 4...Nf6, chẳng hạn 4...Nc6 hoặc 4...e6. Đánh giá trong mục này dành cho nhánh Đen tấn công tốt e4 bằng mã f6.
+              en: Black plays something other than 4...Nf6, for example 4...Nc6 or 4...e6. The assessment in this entry is for the line where Black attacks the e4 pawn with the knight on f6.
+              fr: Les Noirs jouent autre chose que 4...Nf6, par exemple 4...Nc6 ou 4...e6. L'évaluation de cette fiche porte sur la ligne où les Noirs attaquent le pion e4 avec le cavalier f6.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đưa mã ra f6, tấn công tốt e4; tốt e4 được tượng d3 bảo vệ.
+                en: Black develops the knight to f6, attacking the e4 pawn; the bishop on d3 defends it.
+                fr: Les Noirs développent le cavalier en f6, attaquant le pion e4 ; le fou d3 le défend.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: bảy mỗi bên, nên con tốt Đen ăn ở d4 đã trả lại. Tốt e4 bị mã f6 tấn công và có tượng d3 bảo vệ, một đối một. Cột d nửa mở cho Trắng và cột c nửa mở cho Đen, còn tượng d3 là quân duy nhất Trắng đã phát triển.'
+                  en: 'Count the pawns: seven each, so the pawn Black took on d4 has been given back. The e4 pawn is attacked by the knight on f6 and defended by the bishop on d3, one against one. The d-file is half-open for White and the c-file half-open for Black, and the bishop on d3 is the only piece White has developed.'
+                  fr: 'Comptons les pions : sept de chaque côté, donc le pion que les Noirs avaient pris en d4 a été rendu. Le pion e4 est attaqué par le cavalier f6 et défendu par le fou d3, un contre un. La colonne d est semi-ouverte pour les Blancs et la colonne c semi-ouverte pour les Noirs, et le fou d3 est la seule pièce que les Blancs aient développée.'
+                plan:
+                  vi: Trắng chơi e5 để đuổi mã f6 và giành không gian, rồi Nf3 và nhập thành. Đen chơi ...Nc6 và ...d5 để thách thức tốt e4, rồi phát triển nốt.
+                  en: White plays e5 to chase the knight from f6 and gain space, then Nf3 and castles. Black plays ...Nc6 and ...d5 to challenge the e4 pawn, then finishes developing.
+                  fr: Les Blancs jouent e5 pour chasser le cavalier de f6 et gagner de l'espace, puis Nf3 et roquent. Les Noirs jouent ...Nc6 et ...d5 pour défier le pion e4, puis achèvent leur développement.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

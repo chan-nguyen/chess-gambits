@@ -1,0 +1,73 @@
+# Ruy Lopez: Schliemann Defense, Schonemann Attack. The catalogue's line is 1.e4 e5 2.Nf3 Nc6
+# 3.Bb5 f5 4.d4, which ends on White's ply; with Black as the learner that would make the root a
+# learner node, so the defining line here stops at 3...f5 and 4.d4 is modelled as the opponent's
+# reply (docs/CONTEXT.md, invariant 5; the catalogue check accepts a prefix). Replayed with chess.js
+# through 4...fxe4 5.Nxe5. searchMate at 3 moves from the resulting position returns no-mate, so no
+# forced mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: ruy-lopez-schliemann-defense-schonemann-attack
+name: 'Ruy Lopez: Schliemann Defense, Schönemann Attack'
+eco: C63
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...f5, phản công vào tốt e4. Tốt f5 bị tốt e4 tấn công mà không quân nào bảo vệ, và tốt e4 cũng bị tốt f5 tấn công mà không quân Trắng nào bảo vệ. Trắng có thể đáp lại ngay ở trung tâm.
+    en: Black has just played 3...f5, a counterattack on the e4 pawn. The f5 pawn is attacked by the e4 pawn with nothing defending it, and the e4 pawn is attacked by the f5 pawn with no White piece defending it. White can answer at once in the centre.
+    fr: Les Noirs viennent de jouer 3...f5, une contre-attaque contre le pion e4. Le pion f5 est attaqué par le pion e4 sans aucune défense, et le pion e4 est attaqué par le pion f5 sans qu'aucune pièce blanche ne le défende. Les Blancs peuvent répondre aussitôt au centre.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 4.d4, chẳng hạn 4.exf5 hoặc 4.Nc3. Đánh giá trong mục này dành cho nhánh Trắng đánh ngay vào trung tâm bằng d4.
+      en: White plays something other than 4.d4, for example 4.exf5 or 4.Nc3. The assessment in this entry is for the line where White strikes in the centre at once with d4.
+      fr: Les Blancs jouent autre chose que 4.d4, par exemple 4.exf5 ou 4.Nc3. L'évaluation de cette fiche porte sur la ligne où les Blancs frappent tout de suite au centre par d4.
+  children:
+    - ply: d4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng đánh vào trung tâm bằng d4: tốt d4 tấn công tốt e5, và được mã f3 cùng hậu d1 bảo vệ.'
+        en: 'White strikes in the centre with d4: the d4 pawn attacks the e5 pawn and is defended by the knight on f3 and the queen on d1.'
+        fr: 'Les Blancs frappent au centre par d4 : le pion d4 attaque le pion e5 et est défendu par le cavalier f3 et la dame d1.'
+      children:
+        - ply: fxe4
+          annotation:
+            vi: 'Đen ăn tốt e4 bằng tốt f: Đen hơn một tốt trong chốc lát, và tốt e4 tấn công luôn mã f3.'
+            en: 'Black takes the e4 pawn with the f-pawn: Black is a pawn up for the moment, and the e4 pawn attacks the knight on f3.'
+            fr: "Les Noirs prennent le pion e4 avec le pion f : les Noirs ont un pion de plus pour l'instant, et le pion e4 attaque le cavalier f3."
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 5.Nxe5, chẳng hạn 5.Ng5. Đánh giá trong mục này dành cho nhánh Trắng ăn tốt e5 ngay.
+              en: White plays something other than 5.Nxe5, for example 5.Ng5. The assessment in this entry is for the line where White takes the e5 pawn at once.
+              fr: Les Blancs jouent autre chose que 5.Nxe5, par exemple 5.Ng5. L'évaluation de cette fiche porte sur la ligne où les Blancs prennent tout de suite le pion e5.
+          children:
+            - ply: Nxe5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn tốt e5 bằng mã, đưa số tốt về bằng nhau. Mã e5 được tốt d4 bảo vệ và cùng tượng b5 tấn công mã c6.
+                en: White takes the e5 pawn with the knight, levelling the pawn count. The knight on e5 is defended by the d4 pawn and joins the bishop on b5 in attacking the knight on c6.
+                fr: Les Blancs prennent le pion e5 avec le cavalier, égalisant le compte de pions. Le cavalier e5 est défendu par le pion d4 et rejoint le fou b5 pour attaquer le cavalier c6.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: bảy mỗi bên, nên chưa ai hơn tốt. Mã c6 của Đen bị hai quân tấn công (tượng b5 và mã e5) và có hai quân bảo vệ (tốt b7 và d7), còn mã e5 của Trắng được tốt d4 bảo vệ. Cột f nửa mở cho Đen vì Đen không còn tốt f, và cột e nửa mở cho Trắng.'
+                  en: "Count the pawns: seven each, so neither side is a pawn up. Black's knight on c6 is attacked twice (by the bishop on b5 and the knight on e5) and defended twice (by the b7 and d7 pawns), and White's knight on e5 is defended by the d4 pawn. The f-file is half-open for Black, who has no f-pawn left, and the e-file is half-open for White."
+                  fr: "Comptons les pions : sept de chaque côté, donc aucun camp n'a de pion d'avance. Le cavalier c6 noir est attaqué deux fois (par le fou b5 et le cavalier e5) et défendu deux fois (par les pions b7 et d7), et le cavalier e5 blanc est défendu par le pion d4. La colonne f est semi-ouverte pour les Noirs, qui n'ont plus de pion f, et la colonne e est semi-ouverte pour les Blancs."
+                plan:
+                  vi: Trắng chơi Nc3 để tấn công tốt e4, rồi nhập thành. Đen chơi ...Nf6 để bảo vệ tốt e4, rồi ...Be7 và nhập thành.
+                  en: White plays Nc3 to attack the e4 pawn, then castles. Black plays ...Nf6 to defend the e4 pawn, then ...Be7 and castles.
+                  fr: Les Blancs jouent Nc3 pour attaquer le pion e4, puis roquent. Les Noirs jouent ...Nf6 pour défendre le pion e4, puis ...Be7 et roquent.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

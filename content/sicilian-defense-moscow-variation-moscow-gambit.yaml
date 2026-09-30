@@ -1,0 +1,72 @@
+# Sicilian Defense: Moscow Variation, Moscow Gambit. Frozen defining line 1.e4 c5 2.Nf3 d6 3.Bb5+
+# Nc6 4.O-O Bd7 5.c3 Nf6 6.Re1 a6 7.Bxc6 Bxc6 8.d4 Bxe4 9.Bg5, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 9...Bxf3
+# 10.Qxf3 Qc7. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-moscow-variation-moscow-gambit
+name: 'Sicilian Defense: Moscow Variation, Moscow Gambit'
+eco: B51
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, Bb5+, Nc6, O-O, Bd7, c3, Nf6, Re1, a6, Bxc6, Bxc6, d4, Bxe4, Bg5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has a queen, two rooks, a bishop and two knights and seven pawns, whereas Black has a queen, two rooks, two bishops and a knight and eight pawns. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.Bg5. Đen hơn một tốt, tám so với bảy, vì đã ăn tốt e4. Tượng e4 của Đen bị xe e1 tấn công và có mã f6 bảo vệ, nhưng mã f6 lại bị tượng g5 tấn công.
+    en: White has just played 9.Bg5. Black is a pawn up, eight to seven, having taken the e4 pawn. Black's bishop on e4 is attacked by the rook on e1 and defended by the knight on f6, but that knight is itself attacked by the bishop on g5.
+    fr: Les Blancs viennent de jouer 9.Bg5. Les Noirs ont un pion de plus, huit contre sept, après avoir pris le pion e4. Le fou e4 des Noirs est attaqué par la tour e1 et défendu par le cavalier f6, mais ce cavalier est lui-même attaqué par le fou g5.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 9...Bxf3, chẳng hạn 9...cxd4 hoặc 9...Bg6. Đánh giá trong mục này dành cho nhánh Đen đổi tượng lấy mã f3.
+      en: Black plays something other than 9...Bxf3, for example 9...cxd4 or 9...Bg6. The assessment in this entry is for the line where Black trades the bishop for the knight on f3.
+      fr: Les Noirs jouent autre chose que 9...Bxf3, par exemple 9...cxd4 ou 9...Bg6. L'évaluation de cette fiche porte sur la ligne où les Noirs échangent le fou contre le cavalier f3.
+  children:
+    - ply: Bxf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn mã f3 bằng tượng, để tượng khỏi bị xe e1 tấn công. Tượng f3 bị tốt g2 và hậu d1 tấn công và không có quân nào bảo vệ, nên Trắng sẽ ăn lại.
+        en: Black takes the knight on f3 with the bishop, getting the bishop out of the rook's line. The bishop on f3 is attacked by the g2 pawn and the queen on d1 with nothing defending it, so White will recapture.
+        fr: Les Noirs prennent le cavalier f3 avec le fou, sortant le fou de la ligne de la tour. Le fou f3 est attaqué par le pion g2 et la dame d1 sans aucune défense, si bien que les Blancs reprendront.
+      children:
+        - ply: Qxf3
+          annotation:
+            vi: Trắng ăn lại bằng hậu. Hậu f3 tấn công tốt b7 mà không quân nào bảo vệ, và cùng tượng g5 tấn công mã f6.
+            en: White recaptures with the queen. The queen on f3 attacks the b7 pawn, which nothing defends, and joins the bishop on g5 in attacking the knight on f6.
+            fr: Les Blancs reprennent avec la dame. La dame f3 attaque le pion b7, que rien ne défend, et rejoint le fou g5 pour attaquer le cavalier f6.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 10...Qc7, chẳng hạn 10...Qc8 hoặc 10...Rb8; cả hai cũng bảo vệ tốt b7. Đánh giá trong mục này dành cho nhánh Đen đưa hậu sang c7.
+              en: Black plays something other than 10...Qc7, for example 10...Qc8 or 10...Rb8; both also defend the b7 pawn. The assessment in this entry is for the line where Black puts the queen on c7.
+              fr: Les Noirs jouent autre chose que 10...Qc7, par exemple 10...Qc8 ou 10...Rb8 ; tous deux défendent aussi le pion b7. L'évaluation de cette fiche porte sur la ligne où les Noirs placent la dame en c7.
+          children:
+            - ply: Qc7
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đưa hậu sang c7, bảo vệ cùng lúc tốt b7, tốt c5 và tốt e7.
+                en: Black puts the queen on c7, defending the b7, c5 and e7 pawns at once.
+                fr: Les Noirs placent la dame en c7, défendant à la fois les pions b7, c5 et e7.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng vẫn kém một tốt, nhưng đến lượt Trắng và Bxf6 gxf6 Qxf6 lấy lại tốt. Mã f6 bị tượng g5 và hậu f3 tấn công, có tốt g7 và tốt e7 bảo vệ, nhưng tốt e7 không thể ăn lại vì xe e1 ghim nó vào vua. Tốt b7 bị hậu f3 tấn công và có hậu c7 bảo vệ, còn tốt e7 bị xe e1 tấn công và có ba quân bảo vệ. Mã b1 và xe a1 của Trắng vẫn chưa rời ô xuất phát.'
+                  en: "Count the pawns: White seven, Black eight — White is still a pawn down, but it is White's move and Bxf6 gxf6 Qxf6 regains the pawn. The knight on f6 is attacked by the bishop on g5 and the queen on f3 and defended by the g7 pawn and the e7 pawn, but the e7 pawn cannot recapture because the rook on e1 pins it to the king. The b7 pawn is attacked by the queen on f3 and defended by the queen on c7, and the e7 pawn is attacked by the rook on e1 and defended three times. White's knight on b1 and rook on a1 have not yet left their starting squares."
+                  fr: "Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont toujours un pion de moins, mais c'est aux Blancs de jouer et Bxf6 gxf6 Qxf6 regagne le pion. Le cavalier f6 est attaqué par le fou g5 et la dame f3 et défendu par le pion g7 et le pion e7, mais le pion e7 ne peut pas reprendre car la tour e1 le cloue au roi. Le pion b7 est attaqué par la dame f3 et défendu par la dame c7, et le pion e7 est attaqué par la tour e1 et défendu trois fois. Le cavalier b1 et la tour a1 des Blancs n'ont pas encore quitté leur case de départ."
+                plan:
+                  vi: Trắng chơi Bxf6, sau đó Đen chỉ có thể ăn lại bằng tốt g và bị chồng tốt f, rồi Qxf6 lấy lại tốt và tấn công xe h8. Trắng đưa quân cuối cùng ra bằng Nd2. Sau Qxf6 Đen phải xử lý đòn đe dọa vào xe h8, chẳng hạn bằng ...Rg8.
+                  en: White plays Bxf6, after which Black can only recapture with the g-pawn and gets doubled f-pawns, and Qxf6 then regains the pawn with an attack on the rook on h8. White brings out the last piece with Nd2. After Qxf6 Black has to meet the attack on the rook on h8, for example with ...Rg8.
+                  fr: Les Blancs jouent Bxf6, après quoi les Noirs ne peuvent reprendre qu'avec le pion g et se retrouvent avec des pions f doublés, puis Qxf6 regagne le pion en attaquant la tour h8. Les Blancs sortent la dernière pièce par Nd2. Après Qxf6, les Noirs doivent parer l'attaque contre la tour h8, par exemple par ...Rg8.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

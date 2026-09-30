@@ -1,0 +1,53 @@
+# Ruy Lopez: Classical Variation, Zukertort Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bb5 Nf6 4.O-O Bc5 5.c3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 5...Nxe4. searchMate at 3 moves
+# from the resulting position returns no-mate, so no forced mate is claimed anywhere in this entry,
+# and no capture is left going free at the leaf.
+id: ruy-lopez-classical-variation-zukertort-gambit
+name: 'Ruy Lopez: Classical Variation, Zukertort Gambit'
+eco: C65
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, Nf6, O-O, Bc5, c3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.c3, chuẩn bị d4, nhưng tốt e4 đang bị mã f6 của Đen tấn công và không quân Trắng nào bảo vệ nó. Tượng c5 của Đen thì nhắm vào f2, ô được xe f1 và vua g1 bảo vệ.
+    en: White has just played 5.c3, preparing d4, but the e4 pawn is attacked by Black's knight on f6 and no White piece defends it. Black's bishop on c5 bears on f2, which the rook on f1 and the king on g1 defend.
+    fr: Les Blancs viennent de jouer 5.c3, préparant d4, mais le pion e4 est attaqué par le cavalier f6 noir et aucune pièce blanche ne le défend. Le fou c5 noir vise f2, que la tour f1 et le roi g1 défendent.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 5...Nxe4, chẳng hạn 5...d6 hoặc 5...O-O. Đánh giá trong mục này dành cho nhánh Đen ăn tốt e4 ngay.
+      en: Black plays something other than 5...Nxe4, for example 5...d6 or 5...O-O. The assessment in this entry is for the line where Black takes the e4 pawn at once.
+      fr: Les Noirs jouent autre chose que 5...Nxe4, par exemple 5...d6 ou 5...O-O. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent tout de suite le pion e4.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e4 bằng mã: Đen hơn một tốt, và mã e4 không bị quân nào của Trắng tấn công.'
+        en: 'Black takes the e4 pawn with the knight: Black is a pawn up, and nothing White has attacks the knight on e4.'
+        fr: "Les Noirs prennent le pion e4 avec le cavalier : les Noirs ont un pion de plus, et rien du côté blanc n'attaque le cavalier e4."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt. Mã e4 của Đen tấn công c3, d2 và f2, trong đó f2 bị hai quân tấn công (mã e4 và tượng c5) và có hai quân bảo vệ (xe f1 và vua g1). Tượng b5 của Trắng tấn công mã c6 nhưng mã ấy được tốt b7 và d7 bảo vệ, còn tốt e5 của Đen bị mã f3 tấn công và có mã c6 bảo vệ.'
+          en: "Count the pawns: White seven, Black eight — White is a pawn down. Black's knight on e4 attacks c3, d2 and f2, and f2 is attacked twice (by the knight on e4 and the bishop on c5) and defended twice (by the rook on f1 and the king on g1). White's bishop on b5 attacks the knight on c6, but the b7 and d7 pawns defend it, and Black's e5 pawn is attacked by the knight on f3 and defended by the knight on c6."
+          fr: 'Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins. Le cavalier e4 noir attaque c3, d2 et f2, et f2 est attaqué deux fois (par le cavalier e4 et le fou c5) et défendu deux fois (par la tour f1 et le roi g1). Le fou b5 blanc attaque le cavalier c6, mais les pions b7 et d7 le défendent, et le pion e5 noir est attaqué par le cavalier f3 et défendu par le cavalier c6.'
+        plan:
+          vi: 'Trắng chơi Bxc6: sau ...dxc6 hoặc ...bxc6, tốt e5 mất quân bảo vệ duy nhất nên Nxe5 ăn được nó. Trắng cũng có thể chơi d4 để đánh vào tượng c5 và tốt e5, hoặc Qc2 để tấn công mã e4. Đen chơi ...Bd6 để lùi tượng và bảo vệ tốt e5, rồi nhập thành.'
+          en: 'White plays Bxc6: after ...dxc6 or ...bxc6 the e5 pawn has lost its only defender, so Nxe5 takes it. White can also play d4 to hit the bishop on c5 and the e5 pawn, or Qc2 to attack the knight on e4. Black plays ...Bd6 to retreat the bishop and defend the e5 pawn, then castles.'
+          fr: 'Les Blancs jouent Bxc6 : après ...dxc6 ou ...bxc6, le pion e5 a perdu son seul défenseur et Nxe5 le prend. Les Blancs peuvent aussi jouer d4 pour attaquer le fou c5 et le pion e5, ou Qc2 pour attaquer le cavalier e4. Les Noirs jouent ...Bd6 pour replier le fou et défendre le pion e5, puis roquent.'
+        basis:
+          by: chan
+          at: '2026-09-30'

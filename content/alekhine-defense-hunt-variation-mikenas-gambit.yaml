@@ -1,0 +1,72 @@
+# Alekhine Defense: Hunt Variation, Mikenas Gambit. Frozen defining line 1.e4 Nf6 2.e5 Nd5 3.c4
+# Nb6 4.c5 Nd5 5.Bc4 e6 6.Nc3 d6 7.Nxd5 exd5 8.Bxd5, which ends on White's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 8...dxe5 9.Bb3
+# Bxc5. searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: alekhine-defense-hunt-variation-mikenas-gambit
+name: 'Alekhine Defense: Hunt Variation, Mikenas Gambit'
+eco: B02
+category: gambit
+side: white
+definingLine: [e4, Nf6, e5, Nd5, c4, Nb6, c5, Nd5, Bc4, e6, Nc3, d6, Nxd5, exd5, Bxd5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line White has eight pawns to Black's seven, so Black is a pawn down. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 8.Bxd5 và đang hơn một tốt: tám tốt so với bảy. Tượng d5 nhắm vào b7 và f7, nhưng cả hai tốt c5 và e5 của Trắng đều bị tốt d6 tấn công và không quân Trắng nào bảo vệ chúng.'
+    en: White has just played 8.Bxd5 and is a pawn up, eight pawns to seven. The bishop on d5 bears down on b7 and f7, but both White pawns on c5 and e5 are attacked by the d6 pawn and no White piece defends them.
+    fr: Les Blancs viennent de jouer 8.Bxd5 et ont un pion d'avance, huit pions contre sept. Le fou d5 vise b7 et f7, mais les deux pions blancs c5 et e5 sont attaqués par le pion d6 et aucune pièce blanche ne les défend.
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 8...dxe5, chẳng hạn 8...dxc5. Đánh giá trong mục này dành cho nhánh Đen ăn tốt e5.
+      en: Black plays something other than 8...dxe5, for example 8...dxc5. The assessment in this entry is for the line where Black takes on e5.
+      fr: Les Noirs jouent autre chose que 8...dxe5, par exemple 8...dxc5. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent en e5.
+  children:
+    - ply: dxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e5 bằng tốt d và mở cột d: hậu d8 của Đen giờ tấn công tượng d5 của Trắng mà không quân nào bảo vệ tượng ấy.'
+        en: "Black takes the e5 pawn with the d-pawn and opens the d-file: Black's queen on d8 now attacks White's bishop on d5, which nothing defends."
+        fr: 'Les Noirs prennent le pion e5 avec le pion d et ouvrent la colonne d : la dame d8 noire attaque maintenant le fou d5 blanc, que rien ne défend.'
+      children:
+        - ply: Bb3
+          annotation:
+            vi: Trắng lùi tượng về b3, nơi không quân nào tấn công nó và nó vẫn nhắm vào f7.
+            en: White retreats the bishop to b3, where nothing attacks it and it keeps aiming at f7.
+            fr: Les Blancs replient le fou en b3, où rien ne l'attaque et d'où il continue de viser f7.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 9...Bxc5. Lúc này tốt c5 của Trắng bị tượng f8 tấn công và không quân Trắng nào bảo vệ nó.
+              en: Black plays something other than 9...Bxc5. At this moment White's c5 pawn is attacked by the bishop on f8 and no White piece defends it.
+              fr: Les Noirs jouent autre chose que 9...Bxc5. À ce moment, le pion c5 blanc est attaqué par le fou f8 et aucune pièce blanche ne le défend.
+          children:
+            - ply: Bxc5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: 'Đen ăn tiếp tốt c5 bằng tượng: tốt Trắng đang giữ không những mất mà còn mất thêm một tốt, và tượng c5 nhắm vào f2.'
+                en: 'Black takes the c5 pawn as well with the bishop: the pawn White was holding has gone and a second has followed it, and the bishop on c5 now points at f2.'
+                fr: "Les Noirs prennent aussi le pion c5 avec le fou : le pion que les Blancs tenaient a disparu et un second l'a suivi, et le fou c5 vise maintenant f2."
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen bảy — Đen hơn một tốt. Tốt d2 của Trắng bị cô lập vì không còn tốt c hay tốt e. Tượng b3 nhắm vào f7, ô chỉ có vua e8 bảo vệ, nhưng tượng c5 của Đen cũng nhắm vào f2, ô chỉ có vua e1 bảo vệ.'
+                  en: "Count the pawns: White six, Black seven — Black is a pawn up. White's d2 pawn is isolated, with no c-pawn or e-pawn beside it. The bishop on b3 bears on f7, a square only the king on e8 defends, but Black's bishop on c5 likewise bears on f2, which only the king on e1 defends."
+                  fr: 'Comptons les pions : six pour les Blancs, sept pour les Noirs — les Noirs ont un pion de plus. Le pion d2 blanc est isolé, sans pion c ni pion e à côté de lui. Le fou b3 vise f7, une case que seul le roi e8 défend, mais le fou c5 noir vise lui aussi f2, que seul le roi e1 défend.'
+                plan:
+                  vi: Trắng chơi Qh5, nước này cùng tượng tấn công f7 và cũng tấn công e5, rồi Nf3 để tấn công e5 lần thứ hai. Đen chơi ...Be6, ...Nc6 và ...Qf6 hoặc ...Qe7 để che f7 và hoàn thành phát triển.
+                  en: White plays Qh5, which joins the bishop in attacking f7 and also attacks e5, then Nf3 to attack e5 a second time. Black plays ...Be6, ...Nc6 and ...Qf6 or ...Qe7 to cover f7 and finish developing.
+                  fr: Les Blancs jouent Qh5, qui s'ajoute au fou pour attaquer f7 et attaque aussi e5, puis Nf3 pour attaquer e5 une seconde fois. Les Noirs jouent ...Be6, ...Nc6 et ...Qf6 ou ...Qe7 pour couvrir f7 et achever leur développement.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

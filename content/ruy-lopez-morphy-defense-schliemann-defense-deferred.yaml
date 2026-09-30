@@ -1,0 +1,53 @@
+# Ruy Lopez: Morphy Defense, Schliemann Defense Deferred. Frozen defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bb5 a6 4.Ba4 f5, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 5.exf5. searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture is
+# left going free at the leaf.
+id: ruy-lopez-morphy-defense-schliemann-defense-deferred
+name: 'Ruy Lopez: Morphy Defense, Schliemann Defense Deferred'
+eco: C70
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, f5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...f5 sau khi đã chơi ...a6, một cú phản công vào tốt e4. Tốt f5 bị tốt e4 tấn công mà không quân nào bảo vệ, và tốt e4 cũng bị tốt f5 tấn công mà không quân Trắng nào bảo vệ. Trắng phải quyết định có ăn không.
+    en: Black has just played 4...f5 after having played ...a6, a countergambit against the e4 pawn. The f5 pawn is attacked by the e4 pawn with nothing defending it, and the e4 pawn is attacked by the f5 pawn with no White piece defending it. White has to decide whether to take.
+    fr: Les Noirs viennent de jouer 4...f5 après avoir joué ...a6, un contre-gambit contre le pion e4. Le pion f5 est attaqué par le pion e4 sans aucune défense, et le pion e4 est attaqué par le pion f5 sans qu'aucune pièce blanche ne le défende. Les Blancs doivent décider de prendre ou non.
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 5.exf5, chẳng hạn 5.Nc3 hoặc 5.d4. Đánh giá trong mục này dành cho nhánh Trắng ăn tốt f5 ngay.
+      en: White plays something other than 5.exf5, for example 5.Nc3 or 5.d4. The assessment in this entry is for the line where White takes the f5 pawn at once.
+      fr: Les Blancs jouent autre chose que 5.exf5, par exemple 5.Nc3 ou 5.d4. L'évaluation de cette fiche porte sur la ligne où les Blancs prennent tout de suite le pion f5.
+  children:
+    - ply: exf5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt f5 bằng tốt e, thắng thêm một tốt và rời khỏi cột e, nơi tốt e4 đang là mục tiêu.
+        en: White takes the f5 pawn with the e-pawn, winning a pawn and leaving the e-file, where the e4 pawn was the target.
+        fr: Les Blancs prennent le pion f5 avec le pion e, gagnant un pion et quittant la colonne e, où le pion e4 était la cible.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — Đen kém một tốt và không còn tốt f. Tốt Trắng bị chồng ở cột f (f2 và f5) và cột f nửa mở cho Đen. Tốt e5 của Đen bị mã f3 tấn công và chỉ có mã c6 bảo vệ, còn mã c6 bị tượng a4 tấn công nhưng có tốt b7 và d7 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven — Black is a pawn down and has no f-pawn left. White's pawns are doubled on the f-file (f2 and f5) and the f-file is half-open for Black. Black's e5 pawn is attacked by the knight on f3 and defended only by the knight on c6, and that knight is attacked by the bishop on a4 but defended by the b7 and d7 pawns."
+          fr: "Comptons les pions : huit pour les Blancs, sept pour les Noirs — les Noirs ont un pion de moins et n'ont plus de pion f. Les pions blancs sont doublés sur la colonne f (f2 et f5) et la colonne f est semi-ouverte pour les Noirs. Le pion e5 noir est attaqué par le cavalier f3 et défendu seulement par le cavalier c6, et ce cavalier est attaqué par le fou a4 mais défendu par les pions b7 et d7."
+        plan:
+          vi: Trắng chơi Nc3, d4 hoặc O-O, phát triển và giữ tốt thừa. Đen chơi ...Nf6 và ...Bc5, hoặc ...e4 để tấn công mã f3, rồi nhập thành và dùng cột f nửa mở.
+          en: White plays Nc3, d4 or O-O, developing and keeping the extra pawn. Black plays ...Nf6 and ...Bc5, or ...e4 to attack the knight on f3, then castles and uses the half-open f-file.
+          fr: Les Blancs jouent Nc3, d4 ou O-O, se développant et gardant le pion supplémentaire. Les Noirs jouent ...Nf6 et ...Bc5, ou ...e4 pour attaquer le cavalier f3, puis roquent et utilisent la colonne f semi-ouverte.
+        basis:
+          by: chan
+          at: '2026-09-30'

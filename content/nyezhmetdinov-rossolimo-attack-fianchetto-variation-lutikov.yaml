@@ -1,0 +1,74 @@
+# Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, Fianchetto Variation, Lutikov Gambit. Frozen
+# defining line 1.e4 c5 2.Nf3 Nc6 3.Bb5 g6 4.O-O Bg7 5.c3 Nf6 6.d4, which ends on White's own ply, so
+# the root is an opponent node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through
+# 6...Nxe4 7.Re1 d5. With the d-pawn gone from d7 the knight on c6 is pinned to the king by the bishop
+# on b5 (it has no legal move at the leaf). searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: nyezhmetdinov-rossolimo-attack-fianchetto-variation-lutikov
+name: 'Sicilian Defense: Nyezhmetdinov-Rossolimo Attack, Fianchetto Variation, Lutikov Gambit'
+eco: B31
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, Nc6, Bb5, g6, O-O, Bg7, c3, Nf6, d4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 6.d4, nhưng tốt e4 vẫn không có quân nào bảo vệ: mã f6 của Đen đang tấn công nó. Đồng thời tốt c5 của Đen bị tốt d4 tấn công mà không quân nào bảo vệ. Số tốt hai bên bằng nhau, tám mỗi bên.'
+    en: "White has just played 6.d4, but the e4 pawn still has no defender: Black's knight on f6 attacks it. At the same time Black's c5 pawn is attacked by the d4 pawn with nothing defending it. The pawn count is level, eight each."
+    fr: "Les Blancs viennent de jouer 6.d4, mais le pion e4 n'a toujours aucun défenseur : le cavalier f6 des Noirs l'attaque. En même temps, le pion c5 noir est attaqué par le pion d4 sans aucune défense. Le compte de pions est égal, huit de chaque côté."
+  dismissRest:
+    reason:
+      vi: Đen chọn nước khác thay vì 6...Nxe4, chẳng hạn 6...cxd4 hoặc 6...O-O. Đánh giá trong mục này dành cho nhánh Đen ăn tốt e4 bằng mã.
+      en: Black plays something other than 6...Nxe4, for example 6...cxd4 or 6...O-O. The assessment in this entry is for the line where Black takes the e4 pawn with the knight.
+      fr: Les Noirs jouent autre chose que 6...Nxe4, par exemple 6...cxd4 ou 6...O-O. L'évaluation de cette fiche porte sur la ligne où les Noirs prennent le pion e4 avec le cavalier.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e4 bằng mã: Trắng kém một tốt, bảy so với tám, và mã e4 tấn công tốt c3 và f2, cả hai đều có quân bảo vệ.'
+        en: 'Black takes the e4 pawn with the knight: White is a pawn down, seven to eight, and the knight on e4 attacks the c3 and f2 pawns, both of which are defended.'
+        fr: 'Les Noirs prennent le pion e4 avec le cavalier : les Blancs ont un pion de moins, sept contre huit, et le cavalier e4 attaque les pions c3 et f2, tous deux défendus.'
+      children:
+        - ply: Re1
+          annotation:
+            vi: Trắng đưa xe lên e1, tấn công mã e4 của Đen, con mã hiện không có quân nào bảo vệ.
+            en: White puts the rook on e1, attacking Black's knight on e4, which has no defender at the moment.
+            fr: Les Blancs placent la tour en e1, attaquant le cavalier e4 des Noirs, qui n'a pour l'instant aucun défenseur.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 7...d5, chẳng hạn 7...f5 hoặc 7...Nf6. Đánh giá trong mục này dành cho nhánh Đen bảo vệ mã e4 bằng tốt d.
+              en: Black plays something other than 7...d5, for example 7...f5 or 7...Nf6. The assessment in this entry is for the line where Black defends the knight on e4 with the d-pawn.
+              fr: Les Noirs jouent autre chose que 7...d5, par exemple 7...f5 ou 7...Nf6. L'évaluation de cette fiche porte sur la ligne où les Noirs défendent le cavalier e4 avec le pion d.
+          children:
+            - ply: d5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen bảo vệ mã e4 bằng tốt d. Nhưng tốt d đã rời d7 nên tượng b5 của Trắng ghim mã c6 vào vua e8.
+                en: Black defends the knight on e4 with the d-pawn. But the d-pawn has left d7, so White's bishop on b5 now pins the knight on c6 to the king on e8.
+                fr: Les Noirs défendent le cavalier e4 avec le pion d. Mais le pion d a quitté d7, si bien que le fou b5 des Blancs cloue maintenant le cavalier c6 au roi e8.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám — Trắng kém một tốt. Mã c6 của Đen bị tượng b5 ghim vào vua nên không có nước đi nào, bị tấn công một lần và chỉ có tốt b7 bảo vệ. Tốt d4 bị hai quân tấn công (tượng g7 và tốt c5, còn mã c6 bị ghim nên không ăn được) và có ba quân bảo vệ (tốt c3, mã f3, hậu d1), còn mã e4 bị xe e1 tấn công và chỉ có tốt d5 bảo vệ.'
+                  en: "Count the pawns: White seven, Black eight — White is a pawn down. Black's knight on c6 is pinned to the king by the bishop on b5, so it has no move at all, and it is attacked once and defended only by the b7 pawn. The d4 pawn is attacked twice (by the bishop on g7 and the c5 pawn; the pinned knight on c6 cannot capture) and defended three times (by the c3 pawn, the knight on f3 and the queen on d1), and the knight on e4 is attacked by the rook on e1 and defended only by the d5 pawn."
+                  fr: "Comptons les pions : sept pour les Blancs, huit pour les Noirs — les Blancs ont un pion de moins. Le cavalier c6 noir est cloué au roi par le fou b5, si bien qu'il n'a aucun coup, et il est attaqué une fois et défendu seulement par le pion b7. Le pion d4 est attaqué deux fois (par le fou g7 et le pion c5 ; le cavalier c6 cloué ne peut pas capturer) et défendu trois fois (par le pion c3, le cavalier f3 et la dame d1), et le cavalier e4 est attaqué par la tour e1 et défendu seulement par le pion d5."
+                plan:
+                  vi: Trắng chơi Nbd2 để thêm một quân tấn công mã e4, rồi dxc5 hoặc Bxc6+ để làm hỏng đội hình Đen. Đen chơi ...f5 để thêm quân bảo vệ mã e4, hoặc ...Nxd2 để đổi mã, rồi nhập thành.
+                  en: White plays Nbd2 to add an attacker against the knight on e4, then dxc5 or Bxc6+ to damage Black's set-up. Black plays ...f5 to add a defender to the knight on e4, or ...Nxd2 to trade it off, then castles.
+                  fr: Les Blancs jouent Nbd2 pour ajouter un attaquant contre le cavalier e4, puis dxc5 ou Bxc6+ pour abîmer le dispositif noir. Les Noirs jouent ...f5 pour ajouter un défenseur au cavalier e4, ou ...Nxd2 pour l'échanger, puis roquent.
+                basis:
+                  by: chan
+                  at: '2026-09-30'

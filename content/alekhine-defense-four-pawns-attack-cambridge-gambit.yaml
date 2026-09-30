@@ -1,0 +1,53 @@
+# Alekhine Defense: Four Pawns Attack, Cambridge Gambit. Frozen defining line 1.e4 Nf6 2.e5 Nd5
+# 3.d4 d6 4.c4 Nb6 5.f4 g5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 6.fxg5. searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this entry, and
+# no capture is left going free at the leaf.
+id: alekhine-defense-four-pawns-attack-cambridge-gambit
+name: 'Alekhine Defense: Four Pawns Attack, Cambridge Gambit'
+eco: B03
+category: gambit
+side: black
+definingLine: [e4, Nf6, e5, Nd5, d4, d6, c4, Nb6, f4, g5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the end of the defining line the pawn count is level at eight each. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 5...g5, thí ngay một tốt: tốt g5 bị tốt f4 của Trắng tấn công và không quân Đen nào bảo vệ nó. Trắng phải quyết định có ăn hay không.'
+    en: "Black has just played 5...g5, offering a pawn at once: the pawn on g5 is attacked by White's f4 pawn and no Black piece defends it. White has to decide whether to take it."
+    fr: 'Les Noirs viennent de jouer 5...g5, offrant aussitôt un pion : le pion g5 est attaqué par le pion f4 blanc et aucune pièce noire ne le défend. Les Blancs doivent décider de le prendre ou non.'
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 6.fxg5. Tốt g5 vẫn ở nguyên trên bàn, vẫn bị tốt f4 tấn công, nên Trắng còn có thể ăn nó ở một nước sau; đánh giá trong mục này là cho nhánh Trắng ăn ngay.
+      en: White plays something other than 6.fxg5. The pawn on g5 stays where it is, still attacked by the f4 pawn, so White may take it on a later move; the assessment in this entry is for the line where White takes it at once.
+      fr: Les Blancs jouent autre chose que 6.fxg5. Le pion g5 reste en place, toujours attaqué par le pion f4, si bien que les Blancs peuvent le prendre plus tard ; l'évaluation de cette fiche porte sur la ligne où les Blancs le prennent tout de suite.
+  children:
+    - ply: fxg5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt bằng tốt f: Đen mất luôn tốt g, còn bộ ba tốt c4, d4, e5 của Trắng vẫn nguyên vẹn.'
+        en: "White takes the pawn with the f-pawn: Black loses its g-pawn for good, while White's c4, d4 and e5 pawns all stay in place."
+        fr: 'Les Blancs prennent le pion avec le pion f : les Noirs perdent définitivement leur pion g, tandis que les pions c4, d4 et e5 des Blancs restent tous en place.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy — tốt đã thí chưa lấy lại được. Tốt g5 được tượng c1 bảo vệ. Trắng bị tốt chồng ở cột g (g2 và g5), nhưng Đen không còn tốt g nào nên tốt h đứng trơ trọi, còn cột f đã thành nửa mở cho Trắng vì Trắng không còn tốt f.'
+          en: "Count the pawns: White eight, Black seven, so the pawn offered has not come back. The pawn on g5 is defended by the bishop on c1. White's pawns are doubled on the g-file (g2 and g5), but Black has no g-pawn at all, so the h-pawn stands alone, and the f-file is half-open for White because White no longer has an f-pawn."
+          fr: "Comptons les pions : huit pour les Blancs, sept pour les Noirs, donc le pion offert n'est pas revenu. Le pion g5 est défendu par le fou c1. Les pions blancs sont doublés sur la colonne g (g2 et g5), mais les Noirs n'ont plus aucun pion g, si bien que le pion h reste isolé, et la colonne f est semi-ouverte pour les Blancs puisqu'ils n'ont plus de pion f."
+        plan:
+          vi: Trắng phát triển bằng Nf3 và Be2, giữ g5 được che chắn và củng cố tốt thừa. Đen chơi ...Bg7 để gây áp lực lên tốt e5, hoặc ...Rg8 để gây áp lực lên tốt g5.
+          en: White develops with Nf3 and Be2, keeps g5 covered and consolidates the extra pawn. Black plays ...Bg7 to put pressure on the e5 pawn, or ...Rg8 to put pressure on the g5 pawn.
+          fr: Les Blancs se développent par Nf3 et Be2, gardent g5 couvert et consolident le pion supplémentaire. Les Noirs jouent ...Bg7 pour mettre la pression sur le pion e5, ou ...Rg8 pour mettre la pression sur le pion g5.
+        basis:
+          by: chan
+          at: '2026-09-30'
