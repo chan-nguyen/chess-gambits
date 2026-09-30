@@ -1,0 +1,68 @@
+# Vienna Gambit, with Max Lange Defense: Hamppe-Muzio Gambit. Defining line 1.e4 e5 2.Nc3 Nc6 3.f4 exf4 4.Nf3 g5 5.Bc4 g4 6.O-O (the catalogue line runs one ply further; that ply is modelled below as the reply, so the line ends on the learner's own ply, invariant 5).
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: vienna-gambit-with-max-lange-defense-hamppe-muzio-gambit
+name: 'Vienna Gambit, with Max Lange Defense: Hamppe-Muzio Gambit'
+eco: C25
+category: gambit
+side: white
+definingLine:
+  - e4
+  - e5
+  - Nc3
+  - Nc6
+  - f4
+  - exf4
+  - Nf3
+  - g5
+  - Bc4
+  - g4
+  - O-O
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa nhập thành bằng 6.O-O, để mã f3 bị tốt g4 tấn công (mã được tốt g2, hậu và xe bảo vệ ba lần). Trắng kém một tốt, bảy đối tám, và tượng c4 tấn công f7, chỉ có vua bảo vệ.
+    en: White has just castled with 6.O-O, leaving the knight on f3 attacked by the g4 pawn (the knight is defended three times, by the g2 pawn, the queen and the rook). White is a pawn down, seven to eight, and the bishop on c4 attacks f7, which only the king defends.
+    fr: Les Blancs viennent de roquer par 6.O-O, laissant le cavalier f3 attaqué par le pion g4 (le cavalier est défendu trois fois, par le pion g2, la dame et la tour). Les Blancs sont un pion en moins, sept contre huit, et le fou c4 attaque f7, que seul le roi défend.
+  dismissRest:
+    reason:
+      vi: Đen chọn một nước khác thay vì 6...gxf3. Bài này chỉ đi theo nhánh ăn mã 6...gxf3; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: Black plays something other than 6...gxf3 here. This entry follows the capture 6...gxf3 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 6...gxf3. Cette fiche ne suit que la prise 6...gxf3 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: gxf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn mã bằng 6...gxf3. Tốt f3 bị tốt g2, hậu và xe tấn công, nên Trắng ăn lại ngay.
+        en: Black takes the knight with 6...gxf3. The pawn on f3 is attacked by the g2 pawn, the queen and the rook, so White recaptures at once.
+        fr: 'Les Noirs prennent le cavalier par 6...gxf3. Le pion f3 est attaqué par le pion g2, la dame et la tour : les Blancs reprennent aussitôt.'
+      children:
+        - ply: Qxf3
+          annotation:
+            vi: Trắng ăn lại bằng hậu, 7.Qxf3, để tốt g2 ở nhà và tấn công tốt f4.
+            en: White recaptures with the queen, 7.Qxf3, which leaves the g2 pawn at home and attacks the pawn on f4.
+            fr: Les Blancs reprennent avec la dame, 7.Qxf3, ce qui laisse le pion g2 à sa place et attaque le pion f4.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm quân: mỗi bên bảy tốt, nhưng Đen có hai mã còn Trắng chỉ có một, nên Trắng kém một quân. Tốt f4 bị hậu f3 tấn công mà không có quân bảo vệ, còn tốt f7 bị tượng c4 tấn công và chỉ có vua bảo vệ, vua này chưa nhập thành.'
+              en: "Count the material: seven pawns each, but Black has two knights to White's one, so White is a piece down. The pawn on f4 is attacked by the queen on f3 and has no defender, and the pawn on f7 is attacked by the bishop on c4 and defended only by the king, which has not castled."
+              fr: "Comptez le matériel : sept pions de chaque côté, mais les Noirs ont deux cavaliers contre un seul aux Blancs : les Blancs sont donc une pièce en moins. Le pion f4 est attaqué par la dame f3 et n'a aucun défenseur, et le pion f7 est attaqué par le fou c4 et défendu seulement par le roi, qui n'a pas roqué."
+            plan:
+              vi: Trắng ăn tốt f4 bằng Qxf4, rồi giải phóng tượng c1 bằng d3 hoặc d4. Đen bảo vệ bằng ...Qf6, giữ f7 được che chở, hoặc đuổi tượng bằng ...d5 và hoàn tất phát triển, cố giữ quân thừa.
+              en: White takes the pawn on f4 with Qxf4, then frees the bishop on c1 with d3 or d4. Black defends with ...Qf6, keeping f7 covered, or kicks the bishop with ...d5 and finishes development, trying to keep the extra piece.
+              fr: Les Blancs prennent le pion f4 par Qxf4, puis libèrent le fou c1 par d3 ou d4. Les Noirs se défendent par ...Qf6, gardant f7 couvert, ou chassent le fou par ...d5 et achèvent leur développement, en cherchant à garder la pièce en plus.
+            basis:
+              by: chan
+              at: '2026-09-30'

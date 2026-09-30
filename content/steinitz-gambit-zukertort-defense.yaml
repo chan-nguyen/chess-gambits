@@ -1,0 +1,66 @@
+# Vienna Gambit, with Max Lange Defense: Steinitz Gambit, Zukertort Defense. Defining line 1.e4 e5 2.Nc3 Nc6 3.f4 exf4 4.d4 Qh4+ 5.Ke2 (the catalogue line runs one ply further; that ply is modelled below as the reply, so the line ends on the learner's own ply, invariant 5).
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: steinitz-gambit-zukertort-defense
+name: 'Vienna Gambit, with Max Lange Defense: Steinitz Gambit, Zukertort Defense'
+eco: C25
+category: gambit
+side: white
+definingLine:
+  - e4
+  - e5
+  - Nc3
+  - Nc6
+  - f4
+  - exf4
+  - d4
+  - Qh4+
+  - Ke2
+soundness:
+  value: sound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Ke2, đáp lại nước chiếu bằng cách đưa vua lên e2, và từ bỏ quyền nhập thành. Trắng kém một tốt, bảy đối tám; tốt f4 của Đen bị tượng c1 tấn công và được hậu h4 bảo vệ.
+    en: White has just played 5.Ke2, answering the check by walking the king to e2, and has given up the right to castle. White is a pawn down, seven to eight; Black's pawn on f4 is attacked by the bishop on c1 and defended by the queen on h4.
+    fr: Les Blancs viennent de jouer 5.Ke2, répondant à l'échec en portant le roi en e2, et ont renoncé au roque. Les Blancs sont un pion en moins, sept contre huit ; le pion f4 noir est attaqué par le fou c1 et défendu par la dame h4.
+  dismissRest:
+    reason:
+      vi: Đen chọn một nước khác thay vì 5...d5. Bài này chỉ đi theo nhánh phản công 5...d5; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: Black plays something other than 5...d5 here. This entry follows the counter 5...d5 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 5...d5. Cette fiche ne suit que la contre-attaque 5...d5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen phản công ở trung tâm bằng 5...d5, tấn công tốt e4. Tốt d5 bị tốt e4 và mã c3 tấn công mà không có quân bảo vệ, nên Trắng ăn được nó.
+        en: Black counters in the centre with 5...d5, attacking the e4 pawn. The pawn on d5 is attacked by the e4 pawn and the knight on c3 and has no defender, so White can take it.
+        fr: "Les Noirs contre-attaquent au centre par 5...d5, attaquant le pion e4. Le pion d5 est attaqué par le pion e4 et le cavalier c3 et n'a aucun défenseur : les Blancs peuvent le prendre."
+      children:
+        - ply: exd5
+          annotation:
+            vi: Trắng ăn bằng tốt e, 6.exd5, tấn công mã c6 bằng tốt và đưa số tốt về cân bằng.
+            en: White takes with the e-pawn, 6.exd5, attacking the knight on c6 with a pawn and bringing the pawn count level.
+            fr: Les Blancs prennent avec le pion e, 6.exd5, attaquant le cavalier c6 avec un pion et rétablissant l'égalité du nombre de pions.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: mỗi bên bảy tốt, nên con tốt đã hiến được lấy lại và vật chất cân bằng. Trắng có hai tốt trên cột d, ở d4 và d5, và vua ở e2 đã mất quyền nhập thành. Mã c6 của Đen bị tốt d5 tấn công và được tốt b7 bảo vệ; tốt f4 bị tượng c1 tấn công và được hậu h4 bảo vệ.'
+              en: "Count the pawns: seven each, so the gambit pawn has come back and material is level. White has two pawns on the d-file, on d4 and d5, and the king on e2 has lost the right to castle. Black's knight on c6 is attacked by the d5 pawn and defended by the b7 pawn; the pawn on f4 is attacked by the bishop on c1 and defended by the queen on h4."
+              fr: 'Comptez les pions : sept de chaque côté, donc le pion offert est récupéré et le matériel est égal. Les Blancs ont deux pions sur la colonne d, en d4 et en d5, et le roi en e2 a perdu le droit de roquer. Le cavalier c6 noir est attaqué par le pion d5 et défendu par le pion b7 ; le pion f4 est attaqué par le fou c1 et défendu par la dame h4.'
+            plan:
+              vi: Đen có thể chen các nước chiếu như ...Bg4+ hoặc ...Qe7+ trước khi lo cho con mã. Trắng đuổi hậu bằng Nf3 rồi chỉ lấy tốt f4 bằng Bxf4 khi hậu không còn giữ tốt đó, trong khi vua vẫn chưa an toàn.
+              en: Black can slip in checks such as ...Bg4+ or ...Qe7+ before dealing with the knight. White drives the queen away with Nf3 and takes the pawn on f4 with Bxf4 only once the queen no longer guards it, while the king is still unsafe.
+              fr: Les Noirs peuvent glisser des échecs comme ...Bg4+ ou ...Qe7+ avant de s'occuper du cavalier. Les Blancs chassent la dame par Nf3 puis ne prennent le pion f4 par Bxf4 que lorsque la dame ne le garde plus, tandis que le roi n'est toujours pas à l'abri.
+            basis:
+              by: chan
+              at: '2026-09-30'
