@@ -1,0 +1,100 @@
+# King's Gambit Accepted: Kieseritzky Gambit, Rosenthal Defense, taught. The frozen line
+# 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 Qe7 ends on Black's ply, which the validator does
+# not allow as a defining line for a White entry (docs/CONTEXT.md, invariant 5), so
+# `definingLine` stops at White's own 5.Ne5, the root it shares with
+# `kings-gambit-accepted-kieseritzky-gambit`, and 5...Qe7, the move that names this entry,
+# is modelled as the root's reply. The modelled line is 5...Qe7 6.d4 Nf6 7.Bxf4 d6, so the
+# leaf has White to move; the plies where a capture would be left going free are played out
+# rather than stopped on. Every ply was replayed with chess.js; searchMate at 3 moves from
+# the leaf returns no-mate, the leaf is not in check and no capture is going free.
+id: kings-gambit-accepted-kieseritzky-gambit-rosenthal-defense
+name: "King's Gambit Accepted: Kieseritzky Gambit, Rosenthal Defense"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 5...Qe7 attacks the knight on e5 and the pawn on h4 at once, but 6.d4 defends
+      the knight and opens the c1 bishop against f4, and after 7.Bxf4 the gambit pawn has come
+      back and material is level. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Con mã Trắng vừa nhảy vào e5, nhòm thẳng f7, và Đen phải chọn cách đáp trả. Mục này theo dõi 5...Qe7, nước đưa hậu lên tấn công con mã.
+    en: White's knight has just jumped to e5, eyeing f7 directly, and Black has to choose a reply. This entry follows 5...Qe7, which brings the queen out to attack the knight.
+    fr: Le cavalier blanc vient de sauter en e5, visant directement f7, et les Noirs doivent choisir une réponse. Cette entrée suit 5...Qe7, qui sort la dame pour attaquer le cavalier.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác ngoài 5...Qe7, chẳng hạn 5...Nf6 hoặc 5...d6. Mỗi cách nằm ngoài phạm vi mục này.
+      en: Black plays something other than 5...Qe7, for example 5...Nf6 or 5...d6. Each of them is outside the scope of this entry.
+      fr: Les Noirs jouent autre chose que 5...Qe7, par exemple 5...Nf6 ou 5...d6. Chacun sort du cadre de cette entrée.
+  children:
+    - ply: Qe7
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Đen đưa hậu lên e7, nơi nó tấn công mã e5, con mã không có ai bảo vệ, và tốt h4, con tốt được xe h1 bảo vệ.
+        en: Black brings the queen to e7, where it attacks the knight on e5, which nothing defends, and the pawn on h4, which the rook on h1 defends.
+        fr: Les Noirs amènent la dame en e7, où elle attaque le cavalier e5, que rien ne défend, et le pion h4, que la tour h1 défend.
+      children:
+        - ply: d4
+          annotation:
+            vi: Trắng bảo vệ mã bằng tốt d4 và mở đường cho tượng c1 nhắm vào tốt f4.
+            en: White defends the knight with the d-pawn and opens the c1 bishop against the pawn on f4.
+            fr: Les Blancs défendent le cavalier avec le pion d et ouvrent le fou c1 contre le pion f4.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 6...Nf6, chẳng hạn 6...Nc6 hoặc 6...Bg7. Hai con tốt f4 và g4 đều bị tấn công và đều không có ai bảo vệ, nên mỗi nước đi khác nhau lo cho chúng theo cách riêng.
+              en: Black plays something other than 6...Nf6, for example 6...Nc6 or 6...Bg7. The pawns on f4 and g4 are both attacked and neither has a defender, so each alternative deals with them in its own way.
+              fr: Les Noirs jouent autre chose que 6...Nf6, par exemple 6...Nc6 ou 6...Bg7. Les pions f4 et g4 sont tous deux attaqués et aucun n'a de défenseur, si bien que chaque alternative s'en occupe à sa façon.
+          children:
+            - ply: Nf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen bảo vệ tốt g4 bằng mã và tấn công tốt e4, con tốt chưa có ai bảo vệ.
+                en: Black defends the pawn on g4 with the knight and attacks the pawn on e4, which has no defender yet.
+                fr: Les Noirs défendent le pion g4 avec le cavalier et attaquent le pion e4, qui n'a pas encore de défenseur.
+              children:
+                - ply: Bxf4
+                  annotation:
+                    vi: Trắng ăn tốt f4 bằng tượng, lấy lại con tốt gambit. Cùng với tốt d4, tượng giờ bảo vệ mã e5, nên mã bị đánh một lần và được bảo vệ hai lần.
+                    en: White takes the pawn on f4 with the bishop, winning the gambit pawn back. Together with the pawn on d4 the bishop now defends the knight on e5, which is attacked once and defended twice.
+                    fr: Les Blancs prennent le pion f4 avec le fou, regagnant le pion du gambit. Avec le pion d4, le fou défend maintenant le cavalier e5, qui est attaqué une fois et défendu deux fois.
+                  dismissRest:
+                    reason:
+                      vi: Đen chơi một nước khác thay vì 7...d6, chẳng hạn 7...Nc6 hoặc 7...Bg7, hoặc ăn tốt e4 không có ai bảo vệ bằng 7...Nxe4.
+                      en: Black plays something other than 7...d6, for example 7...Nc6 or 7...Bg7, or takes the pawn on e4, which nothing defends, with 7...Nxe4.
+                      fr: Les Noirs jouent autre chose que 7...d6, par exemple 7...Nc6 ou 7...Bg7, ou prennent avec 7...Nxe4 le pion e4, que rien ne défend.
+                  children:
+                    - ply: d6
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen tấn công mã e5 bằng tốt d. Giờ mã bị đánh hai lần, bởi tốt d6 và hậu e7, và được bảo vệ hai lần, bởi tốt d4 và tượng f4.
+                        en: Black attacks the knight on e5 with the d-pawn. The knight is now attacked twice, by the pawn on d6 and the queen on e7, and defended twice, by the pawn on d4 and the bishop on f4.
+                        fr: Les Noirs attaquent le cavalier e5 avec le pion d. Le cavalier est maintenant attaqué deux fois, par le pion d6 et la dame e7, et défendu deux fois, par le pion d4 et le fou f4.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm tốt: mỗi bên bảy, nên con tốt gambit đã trở về. Nhưng mã e5 của Trắng bị tốt d6 và hậu e7 tấn công, nên một con tốt có thể ăn nó bằng ...dxe5, và tốt e4 của Trắng bị mã f6 đánh mà không có ai bảo vệ.'
+                          en: "Count the pawns: seven each, so the gambit pawn has come back. But White's knight on e5 is attacked by the pawn on d6 and the queen on e7, so a pawn can take it with ...dxe5, and White's pawn on e4 is attacked by the knight on f6 and defended by nothing."
+                          fr: "Comptez les pions : sept de chaque côté, si bien que le pion du gambit est revenu. Mais le cavalier e5 des Blancs est attaqué par le pion d6 et la dame e7, si bien qu'un pion peut le prendre par ...dxe5, et le pion e4 des Blancs est attaqué par le cavalier f6 et défendu par rien."
+                        plan:
+                          vi: Trắng phải đưa mã đi, chẳng hạn về d3 hoặc c4, rồi lo cho tốt e4 mà Nxe4 đang đe dọa. Đen đe dọa ...dxe5 và ...Nxe4, và giữ tốt g4 nhờ tượng và mã bảo vệ.
+                          en: White has to move the knight, for example to d3 or c4, and then look to the pawn on e4, which Nxe4 threatens. Black threatens ...dxe5 and ...Nxe4 and keeps the pawn on g4 defended by the bishop and the knight.
+                          fr: Les Blancs doivent déplacer le cavalier, par exemple en d3 ou en c4, puis s'occuper du pion e4, que menace Nxe4. Les Noirs menacent ...dxe5 et ...Nxe4 et gardent le pion g4 défendu par le fou et le cavalier.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'

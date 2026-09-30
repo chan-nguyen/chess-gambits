@@ -1,0 +1,59 @@
+# King's Gambit Accepted: Kieseritzky Gambit, Brentano Defense, Caro Variation, taught.
+# Frozen defining line 1.e4 e5 2.f4 exf4 3.Nf3 g5 4.h4 g4 5.Ne5 d5 6.d4 Nf6 7.Bxf4 Nxe4
+# 8.Nd2 ends on White's own 8.Nd2, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Black's 8...Nf6 is modelled as the root's single reply, so the leaf has
+# White to move. Every ply was replayed with chess.js; searchMate at 3 moves from the leaf
+# returns no-mate, the leaf is not in check and no capture is going free.
+id: kieseritzky-gambit-brentano-defense-caro-variation
+name: "King's Gambit Accepted: Kieseritzky Gambit, Brentano Defense, Caro Variation"
+eco: C39
+category: gambit
+side: white
+definingLine: [e4, e5, f4, exf4, Nf3, g5, h4, g4, Ne5, d5, d4, Nf6, Bxf4, Nxe4, Nd2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: >-
+      A judgement. 8.Nd2 attacks the knight on e4 and keeps the knight on e5 pointed at g4 and f7,
+      but Black can retreat with 8...Nf6, which defends g4 a second time and leaves Black a pawn
+      up. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.Nd2, tấn công mã e4, con mã chỉ có tốt d5 bảo vệ. Mã d2 được bảo vệ ba lần, còn mã e5 vẫn đánh vào tốt g4 và tốt f7.
+    en: White has just played 8.Nd2, attacking the knight on e4, which only the pawn on d5 defends. The knight on d2 is defended three times, and the knight on e5 still attacks the pawn on g4 and the pawn on f7.
+    fr: Les Blancs viennent de jouer 8.Nd2, attaquant le cavalier e4, que seul le pion d5 défend. Le cavalier d2 est défendu trois fois, et le cavalier e5 attaque toujours le pion g4 et le pion f7.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 8...Nf6, chẳng hạn 8...Bg7 hoặc 8...f5. Đen cũng có thể đổi mã bằng 8...Nxd2, sau đó Trắng ăn lại.
+      en: Black plays something other than 8...Nf6, for example 8...Bg7 or 8...f5. Black can also trade the knight with 8...Nxd2, after which White recaptures.
+      fr: Les Noirs jouent autre chose que 8...Nf6, par exemple 8...Bg7 ou 8...f5. Les Noirs peuvent aussi échanger le cavalier par 8...Nxd2, après quoi les Blancs reprennent.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen lùi mã về f6, nơi nó bảo vệ tốt g4 lần thứ hai và tránh việc bị đổi, giữ nguyên con tốt hơn.
+        en: Black retreats the knight to f6, where it defends the pawn on g4 a second time and avoids the trade, keeping the extra pawn.
+        fr: Les Noirs replient le cavalier en f6, où il défend le pion g4 une seconde fois et évite l'échange, en gardant le pion de plus.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Đen hơn một tốt, đó là tốt g4 đã đẩy xa. Tốt đó bị đánh hai lần, bởi mã e5 và hậu d1, và được bảo vệ hai lần, bởi tượng c8 và mã f6. Vua Đen chưa nhập thành, còn f7 bị mã e5 tấn công một lần và chỉ có vua bảo vệ.'
+          en: "Count the pawns: White six, Black seven, so Black is a pawn up, the extra pawn being the advanced pawn on g4. That pawn is attacked twice, by the knight on e5 and the queen on d1, and defended twice, by the bishop on c8 and the knight on f6. Black's king has not castled, and f7 is attacked once, by the knight on e5, and defended once, by the king."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, si bien que les Noirs ont un pion d'avance, ce pion de plus étant le pion g4 avancé. Ce pion est attaqué deux fois, par le cavalier e5 et la dame d1, et défendu deux fois, par le fou c8 et le cavalier f6. Le roi noir n'a pas roqué, et f7 est attaqué une fois, par le cavalier e5, et défendu une fois, par le roi."
+        plan:
+          vi: Trắng có thể chơi Bb5+ chiếu vua, rồi đưa mã còn lại vào cuộc bằng Ndf3 hay Nb3, trong khi mã e5 giữ sức ép lên f7 và g4. Đen muốn thách thức mã e5 bằng ...Nbd7 hoặc ...Bd6 và giữ con tốt g4.
+          en: White can play Bb5+, which gives check, and then bring the other knight into play with Ndf3 or Nb3, while the knight on e5 keeps up the pressure on f7 and g4. Black aims to challenge the knight on e5 with ...Nbd7 or ...Bd6 and to keep the pawn on g4.
+          fr: Les Blancs peuvent jouer Bb5+, qui donne échec, puis mettre l'autre cavalier en jeu par Ndf3 ou Nb3, tandis que le cavalier e5 maintient la pression sur f7 et g4. Les Noirs visent à contester le cavalier e5 par ...Nbd7 ou ...Bd6 et à garder le pion g4.
+        basis:
+          by: chan
+          at: '2026-09-30'
