@@ -1,0 +1,64 @@
+# Blackmar-Diemer Gambit: Lemberger Countergambit, Soller Attack. Defining line 1.d4 d5 2.e4 dxe4 3.Nc3 e5 4.Be3.
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: blackmar-diemer-gambit-lemberger-countergambit-soller-attack
+name: 'Blackmar-Diemer Gambit: Lemberger Countergambit, Soller Attack'
+eco: D00
+category: gambit
+side: white
+definingLine:
+  - d4
+  - d5
+  - e4
+  - dxe4
+  - Nc3
+  - e5
+  - Be3
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Be3, đưa tượng ra một ô vừa bảo vệ tốt d4. Mã c3 vẫn tấn công tốt e4 của Đen, còn tốt e5 đang bị tốt d4 tấn công.
+    en: White has just played 4.Be3, developing the bishop to a square where it defends the d4 pawn. The knight on c3 still attacks Black's pawn on e4, and the e5 pawn is attacked by the d4 pawn.
+    fr: Les Blancs viennent de jouer 4.Be3, développant le fou sur une case d'où il défend le pion d4. Le cavalier c3 attaque toujours le pion e4 noir, et le pion e5 est attaqué par le pion d4.
+  dismissRest:
+    reason:
+      vi: Đen chọn một nước khác thay vì 4...exd4. Bài này chỉ đi theo nhánh ăn tốt d4; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: Black plays something other than 4...exd4 here. This entry follows the capture on d4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 4...exd4. Cette fiche ne suit que la prise en d4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt d4 bằng 4...exd4. Tốt này tấn công cả mã c3 lẫn tượng e3, nên Trắng phải xử lý ngay; tượng có thể ăn nó.
+        en: Black takes on d4 with 4...exd4. The pawn attacks both the knight on c3 and the bishop on e3, so White must act at once; the bishop can take it.
+        fr: Les Noirs prennent en d4, 4...exd4. Le pion attaque à la fois le cavalier c3 et le fou e3, si bien que les Blancs doivent réagir aussitôt ; le fou peut le prendre.
+      children:
+        - ply: Bxd4
+          annotation:
+            vi: Trắng ăn lại ở d4 bằng tượng, 5.Bxd4. Đây chính là quân đang bảo vệ ô này, và từ d4 tượng nhắm vào a7 và g7, cả hai đều được bảo vệ (bằng xe a8 và tượng f8); bản thân tượng bị hậu Đen tấn công và được hậu Trắng bảo vệ.
+            en: White takes back on d4 with the bishop, 5.Bxd4. It is the piece that was defending that square, and from d4 it aims at a7 and g7, both defended (by the rook on a8 and the bishop on f8); the bishop itself is attacked by Black's queen and defended by White's queen.
+            fr: Les Blancs reprennent en d4 avec le fou, 5.Bxd4. C'est la pièce qui défendait cette case, et depuis d4 il vise a7 et g7, tous deux défendus (par la tour a8 et par le fou f8) ; le fou lui-même est attaqué par la dame noire et défendu par la dame blanche.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng đang kém một tốt. Tốt e4 của Đen bị mã c3 tấn công mà không quân nào bảo vệ. Trắng đã phát triển một tượng và một mã còn Đen chưa phát triển quân nhẹ nào.'
+              en: "Count the pawns: White six, Black seven, so White is a pawn down. Black's pawn on e4 is attacked by the knight on c3 and defended by nothing. White has a bishop and a knight developed and Black no minor piece."
+              fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs ; les Blancs sont donc un pion en moins. Le pion e4 noir est attaqué par le cavalier c3 et n'est défendu par rien. Les Blancs ont un fou et un cavalier développés et les Noirs aucune pièce mineure."
+            plan:
+              vi: Trắng đe dọa Nxe4 để lấy lại tốt và sẽ phát triển tiếp bằng Nf3. Đen bảo vệ e4 bằng ...Nf6 hoặc ...Bf5, hoặc thách thức tượng bằng ...Nc6.
+              en: White threatens Nxe4 to win the pawn back and will go on developing with Nf3. Black defends e4 with ...Nf6 or ...Bf5, or challenges the bishop with ...Nc6.
+              fr: Les Blancs menacent Nxe4 pour reprendre le pion et poursuivront leur développement par Nf3. Les Noirs défendent e4 par ...Nf6 ou ...Bf5, ou défient le fou par ...Nc6.
+            basis:
+              by: chan
+              at: '2026-09-30'

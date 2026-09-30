@@ -1,0 +1,64 @@
+# Blackmar-Diemer Gambit: Lemberger Countergambit, Rasmussen Attack. Defining line 1.d4 d5 2.e4 dxe4 3.Nc3 e5 4.Nge2.
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: blackmar-diemer-gambit-lemberger-countergambit-rasmussen-attack
+name: 'Blackmar-Diemer Gambit: Lemberger Countergambit, Rasmussen Attack'
+eco: D00
+category: gambit
+side: white
+definingLine:
+  - d4
+  - d5
+  - e4
+  - dxe4
+  - Nc3
+  - e5
+  - Nge2
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.Nge2, thêm một quân bảo vệ cho tốt d4 (giờ đã có hậu và mã bảo vệ). Hai tốt e5 và e4 của Đen đều không có quân bảo vệ: e5 bị tốt d4 tấn công, e4 bị mã c3 tấn công.'
+    en: "White has just played 4.Nge2, a knight move that adds a defender to the d4 pawn (it is now defended by the queen and the knight). Black's pawns on e5 and e4 are both undefended: e5 is attacked by the d4 pawn and e4 by the knight on c3."
+    fr: 'Les Blancs viennent de jouer 4.Nge2, un coup de cavalier qui ajoute un défenseur au pion d4 (il est maintenant défendu par la dame et le cavalier). Les pions e5 et e4 noirs sont tous deux sans défenseur : e5 est attaqué par le pion d4 et e4 par le cavalier c3.'
+  dismissRest:
+    reason:
+      vi: Đen chọn một nước khác thay vì 4...exd4. Bài này chỉ đi theo nhánh ăn tốt d4; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: Black plays something other than 4...exd4 here. This entry follows the capture on d4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 4...exd4. Cette fiche ne suit que la prise en d4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt d4 bằng 4...exd4. Tốt này giờ tấn công mã c3, vốn được tốt b2 và mã e2 bảo vệ; còn tốt e4 vẫn bị chính con mã đó tấn công mà không có quân bảo vệ.
+        en: Black takes on d4 with 4...exd4. The pawn now attacks the knight on c3, which is defended by the b2 pawn and the knight on e2, and the pawn on e4 is still attacked by that same knight with nothing to defend it.
+        fr: Les Noirs prennent en d4, 4...exd4. Le pion attaque maintenant le cavalier c3, défendu par le pion b2 et par le cavalier e2, et le pion e4 reste attaqué par ce même cavalier sans être défendu.
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Trắng ăn lại bằng mã từ e2, 5.Nxd4, đúng là cú ăn lại mà 4.Nge2 đã chuẩn bị. Mã d4 bị hậu Đen tấn công và được hậu Trắng bảo vệ.
+            en: White recaptures with the knight from e2, 5.Nxd4, the recapture that 4.Nge2 prepared. The knight on d4 is attacked by Black's queen and defended by White's queen.
+            fr: Les Blancs reprennent avec le cavalier de e2, 5.Nxd4, la reprise que préparait 4.Nge2. Le cavalier d4 est attaqué par la dame noire et défendu par la dame blanche.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng đang kém một tốt. Tốt e4 của Đen bị mã c3 tấn công mà không quân nào bảo vệ. Trắng đã phát triển hai mã còn Đen chưa phát triển quân nhẹ nào, nên con tốt là cái giá để dẫn trước về phát triển.'
+              en: "Count the pawns: White six, Black seven, so White is a pawn down. Black's pawn on e4 is attacked by the knight on c3 and defended by nothing. White has two knights developed and Black no minor piece, so the pawn is the price of a lead in development."
+              fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs ; les Blancs sont donc un pion en moins. Le pion e4 noir est attaqué par le cavalier c3 et n'est défendu par rien. Les Blancs ont deux cavaliers développés et les Noirs aucune pièce mineure : le pion est le prix d'une avance de développement."
+            plan:
+              vi: Trắng muốn lấy lại tốt e4 bằng Nxe4 và tiếp tục phát triển, chẳng hạn bằng Bf4. Đen bảo vệ tốt bằng ...Nf6 hoặc ...Bf5 rồi phát triển nốt, cố giữ tốt thừa.
+              en: White wants to win the e4 pawn back with Nxe4 and keeps developing, for example with Bf4. Black defends it with ...Nf6 or ...Bf5 and then develops, trying to keep the extra pawn.
+              fr: Les Blancs veulent reprendre le pion e4 par Nxe4 et continuent leur développement, par exemple avec Bf4. Les Noirs le défendent par ...Nf6 ou ...Bf5 puis se développent, en essayant de garder le pion en plus.
+            basis:
+              by: chan
+              at: '2026-09-30'
