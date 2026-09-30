@@ -1,0 +1,112 @@
+# French Defense: Winawer Variation, Alekhine Gambit Accepted. Defining line ends on white's own ply (invariant 5); the single
+# modelled reply Bxc3+ is the line the dataset (tools/catalogue/source/ids.json)
+# gives this id. The line runs one ply further to bxc3, answering the check, so the leaf stops at a settled position (docs/CONTEXT.md, invariant 14).
+# Every ply was replayed with chess.js; the leaf was checked with searchMate (no forced
+# mate within 3 moves) and against resolution.ts (no check, no mate in one, no free
+# capture) before being written.
+id: french-defense-winawer-variation-alekhine-gambit-accepted
+name: 'French Defense: Winawer Variation, Alekhine Gambit Accepted'
+eco: C15
+category: gambit
+side: white
+definingLine:
+  - e4
+  - e6
+  - d4
+  - d5
+  - Nc3
+  - Bb4
+  - Ne2
+  - dxe4
+  - a3
+soundness:
+  value: dubious
+  reviewedAt: 2026-09-29
+  basis:
+    by: chan
+    at: 2026-09-29
+    source: 'A judgement inherited from this family’s review in
+      tools/catalogue/source/classification.yaml: real practical chances, but not a full refutation
+      of correct defence. No engine was consulted and no database was queried.'
+judgement:
+  by: chan
+  at: 2026-09-29
+  source:
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement
+    on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi:
+      Đây là thế cờ sau 1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.Ne2 dxe4 5.a3, đến lượt Đen chọn kế hoạch. Mục này
+      đi sâu riêng vào nước Bxc3+, tức Alekhine Gambit Accepted.
+    en: This is the position after 1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.Ne2 dxe4 5.a3, with Black to choose a
+      plan. This entry follows specifically Bxc3+, the Alekhine Gambit Accepted.
+    fr:
+      Voici la position après 1.e4 e6 2.d4 d5 3.Nc3 Bb4 4.Ne2 dxe4 5.a3, où c'est aux Noirs de choisir
+      un plan. Cette entrée suit spécifiquement Bxc3+, le Alekhine Gambit Accepted.
+  dismissRest:
+    reason:
+      vi:
+        Đen đáp lại bằng nước khác ngoài Bxc3+ — chẳng hạn đưa quân khác ra hoặc nhập thành — dẫn sang
+        một nhánh có tên riêng khác của khai cuộc này. Tương quan lực lượng tại đây không đổi dù
+        chọn nước nào, nên những lựa chọn đó nằm ngoài phạm vi của mục này.
+      en:
+        Black answers here with anything other than Bxc3+ — for instance developing a different piece or
+        castling — heading into a different named branch of this family. Material at this point is
+        unaffected by that choice, so those tries fall outside the scope of this entry.
+      fr:
+        Les Noirs répondent ici par autre chose que Bxc3+ — par exemple développer une autre pièce ou
+        roquer — menant vers une autre branche nommée de cette famille. Le matériel à ce stade ne
+        change pas selon ce choix, donc ces essais sortent du cadre de cette entrée.
+  children:
+    - ply: Bxc3+
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Alekhine Gambit Accepted. Đen chơi Bxc3+, ăn mã trên c3.
+        en: The Alekhine Gambit Accepted. Black plays Bxc3+, capturing the knight on c3.
+        fr: Le Alekhine Gambit Accepted. Les Noirs jouent Bxc3+, en prenant le cavalier en c3.
+      children:
+        - ply: bxc3
+          annotation:
+            vi:
+              Trắng ăn lại tượng vừa chiếu tướng trên c3 bằng bxc3, cách vừa giải quyết chiếu tướng vừa lấy
+              lại quân.
+            en:
+              White recaptures the checking bishop on c3 with bxc3, the only way to deal with the check that
+              also wins the piece back.
+            fr:
+              Les Blancs reprennent le fou qui donnait l'échec en c3 par bxc3, la façon de répondre à l'échec
+              qui reprend aussi la pièce.
+          outcome:
+            type: position
+            evaluation:
+              vi:
+                'Đếm quân: Đen thừa 1 mã, Trắng thừa 1 tượng. Cộng thêm tốt (Trắng 7, Đen 8), tính ra Đen hơn
+                khoảng 1 tốt quy đổi. Cả hai vua đều chưa nhập thành, vẫn còn đứng giữa bàn cờ.'
+              en:
+                "Counting the pieces: Black has an extra knight, White has an extra bishop. With the pawns at 7
+                for White and 8 for Black, that is Black ahead by roughly 1 pawn's worth of
+                material. Neither king has castled yet; both are still in the centre."
+              fr:
+                "En comptant les pièces : les Noirs ont un cavalier de plus et les Blancs ont un fou de plus.
+                Avec les pions (7 pour les Blancs, 8 pour les Noirs), cela fait les Noirs en avance
+                d'environ 1 pion de matériel. Aucun des deux rois n'a encore roqué ; tous deux
+                restent au centre."
+            plan:
+              vi:
+                Đen tìm cách giữ vững phần vật chất hơn, đổi quân khi thuận lợi và hoàn thiện phát triển mà
+                không mạo hiểm. Trắng chơi vì tốc độ phát triển và các đường mở nhắm vào vua Đen, cố
+                gắng chứng minh giá trị của quân đã thí trước khi đối phương kịp gỡ rối.
+              en:
+                Black looks to consolidate the extra material, trade pieces when it is convenient, and finish
+                development without taking risks. White plays for rapid development and open lines
+                toward the black king, trying to make the sacrifice count before Black untangles.
+              fr:
+                Les Noirs cherchent à consolider le surplus de matériel, échanger les pièces quand cela les
+                arrange, et terminer leur développement sans prendre de risques. Les Blancs jouent
+                pour un développement rapide et des lignes ouvertes vers le roi noir, essayant de
+                rentabiliser le sacrifice avant que les Noirs ne se démêlent.
+            basis:
+              by: chan
+              at: 2026-09-29
