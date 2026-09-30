@@ -1,0 +1,74 @@
+# Ruy Lopez: Central Countergambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6
+# 5.O-O d5, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through 6.exd5 Nxd5 7.Nxe5. The knight on c6 stands on the
+# a4-e8 diagonal in front of the king, so it is pinned and ...Nxe5 is not a legal move at the leaf
+# (checked against the legal move list). searchMate at 3 moves from the resulting position returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going free at
+# the leaf.
+id: ruy-lopez-central-countergambit
+name: 'Ruy Lopez: Central Countergambit'
+eco: C78
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bb5, a6, Ba4, Nf6, O-O, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement. At the leaf Black is a pawn down, six pawns to seven, and the knight on c6 is pinned to the king by the bishop on a4 while two White pieces attack it and only the b7 pawn defends it. The pinned knight cannot even take the undefended knight on e5. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 5...d5, tấn công tốt e4 lần thứ hai: tốt e4 bị tốt d5 và mã f6 cùng tấn công và không quân Trắng nào bảo vệ nó. Nhưng mã c6 của Đen đứng trên đường chéo a4-e8 ngay trước vua, bị tượng a4 ghim.'
+    en: "Black has just played 5...d5, hitting the e4 pawn a second time: it is attacked by the d5 pawn and the knight on f6 and no White piece defends it. But Black's knight on c6 stands on the a4-e8 diagonal right in front of the king, pinned by the bishop on a4."
+    fr: 'Les Noirs viennent de jouer 5...d5, attaquant le pion e4 une seconde fois : il est attaqué par le pion d5 et le cavalier f6 et aucune pièce blanche ne le défend. Mais le cavalier c6 noir se trouve sur la diagonale a4-e8, juste devant le roi, cloué par le fou a4.'
+  dismissRest:
+    reason:
+      vi: Trắng chọn nước khác thay vì 6.exd5, chẳng hạn 6.Nxe5. Đánh giá trong mục này dành cho nhánh Trắng ăn tốt d5 bằng tốt e.
+      en: White plays something other than 6.exd5, for example 6.Nxe5. The assessment in this entry is for the line where White takes on d5 with the e-pawn.
+      fr: Les Blancs jouent autre chose que 6.exd5, par exemple 6.Nxe5. L'évaluation de cette fiche porte sur la ligne où les Blancs prennent en d5 avec le pion e.
+  children:
+    - ply: exd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt d5 bằng tốt e: Trắng hơn một tốt, tám so với bảy, và tốt d5 vừa ăn bị hậu d8 cùng mã f6 tấn công mà không ai bảo vệ.'
+        en: 'White takes the d5 pawn with the e-pawn: White is a pawn up, eight to seven, and the pawn just captured on d5 is attacked by the queen on d8 and the knight on f6 with nothing defending it.'
+        fr: 'Les Blancs prennent le pion d5 avec le pion e : les Blancs ont un pion de plus, huit contre sept, et le pion qui vient de capturer en d5 est attaqué par la dame d8 et le cavalier f6 sans aucune défense.'
+      children:
+        - ply: Nxd5
+          annotation:
+            vi: Đen lấy lại tốt ngay bằng mã f6, đưa số tốt về bằng nhau, bảy mỗi bên. Nhưng tốt e5 giờ chỉ còn mã c6 bảo vệ, mà mã c6 đang bị ghim.
+            en: Black regains the pawn at once with the knight from f6, levelling the pawn count at seven each. But the e5 pawn is now defended only by the knight on c6, and that knight is pinned.
+            fr: Les Noirs reprennent aussitôt le pion avec le cavalier de f6, égalisant le compte de pions à sept de chaque côté. Mais le pion e5 n'est plus défendu que par le cavalier c6, et ce cavalier est cloué.
+          dismissRest:
+            reason:
+              vi: Trắng chơi nước khác thay vì 7.Nxe5. Khi đó tốt e5 vẫn chỉ được mã c6 bị ghim bảo vệ.
+              en: White plays something other than 7.Nxe5. The e5 pawn is then still defended only by the pinned knight on c6.
+              fr: Les Blancs jouent autre chose que 7.Nxe5. Le pion e5 n'est alors toujours défendu que par le cavalier c6 cloué.
+          children:
+            - ply: Nxe5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn tốt e5 bằng mã. Mã c6 của Đen bị ghim nên không thể ăn lại, và mã e5 của Trắng không có quân nào bảo vệ nhưng cũng không bị ăn được.
+                en: White takes the e5 pawn with the knight. Black's knight on c6 is pinned and cannot recapture, so the knight on e5, which nothing defends, cannot be taken.
+                fr: Les Blancs prennent le pion e5 avec le cavalier. Le cavalier c6 noir est cloué et ne peut pas reprendre, si bien que le cavalier e5, que rien ne défend, ne peut pas être pris.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen sáu — Đen kém một tốt. Mã c6 bị tượng a4 ghim vào vua trên đường chéo a4-e8, bị hai quân tấn công (mã e5 và tượng a4) mà chỉ có tốt b7 bảo vệ, và vì bị ghim nên nó không thể ăn mã e5 đang không được bảo vệ.'
+                  en: 'Count the pawns: White seven, Black six — Black is a pawn down. The knight on c6 is pinned to the king by the bishop on a4 along the a4-e8 diagonal, is attacked twice (by the knight on e5 and the bishop on a4) and defended only by the b7 pawn, and because it is pinned it cannot take the undefended knight on e5.'
+                  fr: 'Comptons les pions : sept pour les Blancs, six pour les Noirs — les Noirs ont un pion de moins. Le cavalier c6 est cloué au roi par le fou a4 sur la diagonale a4-e8, il est attaqué deux fois (par le cavalier e5 et le fou a4) et défendu seulement par le pion b7, et comme il est cloué il ne peut pas prendre le cavalier e5 non défendu.'
+                plan:
+                  vi: Trắng đe dọa Nxc6, sau đó nếu ...bxc6 thì Bxc6+ là nước chiếu đồng thời tấn công xe a8. Đen phải phá ghim hoặc thêm quân bảo vệ ngay, chẳng hạn ...Bd7 để gỡ ghim cho mã hoặc ...Qd6 để bảo vệ c6, rồi phát triển nốt và nhập thành.
+                  en: White threatens Nxc6, after which ...bxc6 allows Bxc6+, a check that also attacks the rook on a8. Black has to break the pin or add a defender at once, for example ...Bd7 to unpin the knight or ...Qd6 to defend c6, then finish developing and castle.
+                  fr: Les Blancs menacent Nxc6, après quoi ...bxc6 permet Bxc6+, un échec qui attaque aussi la tour a8. Les Noirs doivent briser le clouage ou ajouter un défenseur tout de suite, par exemple ...Bd7 pour déclouer le cavalier ou ...Qd6 pour défendre c6, puis achever leur développement et roquer.
+                basis:
+                  by: chan
+                  at: '2026-09-30'
