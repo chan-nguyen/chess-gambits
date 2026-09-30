@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Six hundred and sixty-one entries are authored — three from #15, eleven from #73, ten
+   * Six hundred and sixty-two entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -259,8 +259,12 @@ describe('the catalogue this repository ships', () => {
    * family, the Philidor Countergambit family, and single entries from the King's Indian
    * Defense, Nimzowitsch Defense, Ponziani Opening, the Portuguese Gambit, the Queen's
    * Gambit Declined Albin Countergambit and the Ruy Lopez — each a single root-to-leaf line,
-   * listed individually in the PR rather than here) — and the
-   * other 363
+   * listed individually in the PR rather than here), and one new named trap from #175
+   * batch 3a (the Sicilian Magnus Smith Trap, six root-to-leaf lines — #175 also
+   * extended four already-authored trees, siberian-trap, four-knights-game-halloween-gambit,
+   * kings-gambit-declined-norwalde-variation-bucker-gambit and danish-gambit-accepted,
+   * without adding new ids) — and the
+   * other 362
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -398,7 +402,7 @@ describe('the catalogue this repository ships', () => {
     ['classical-variation-rubinstein-countergambit', 1],
     ['damiano-defence-refutation', 2],
     ['danish-gambit', 4],
-    ['danish-gambit-accepted', 1],
+    ['danish-gambit-accepted', 2],
     ['danish-gambit-accepted-chigorin-defense', 1],
     ['danish-gambit-accepted-classical-defense', 1],
     ['danish-gambit-accepted-copenhagen-defense', 1],
@@ -452,7 +456,7 @@ describe('the catalogue this repository ships', () => {
     ['falkbeer-countergambit-nimzowitsch-marshall-countergambit', 1],
     ['falkbeer-countergambit-rubinstein-variation', 1],
     ['fishing-pole-trap', 3],
-    ['four-knights-game-halloween-gambit', 1],
+    ['four-knights-game-halloween-gambit', 3],
     ['four-knights-game-halloween-gambit-oldtimer-variation', 1],
     ['four-knights-game-halloween-gambit-plasma-variation', 1],
     ['four-knights-game-italian-variation-noa-gambit', 1],
@@ -662,7 +666,7 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-declined-mafia-defense', 1],
     ['kings-gambit-declined-miles-defense', 1],
     ['kings-gambit-declined-norwalde-variation', 1],
-    ['kings-gambit-declined-norwalde-variation-bucker-gambit', 1],
+    ['kings-gambit-declined-norwalde-variation-bucker-gambit', 2],
     ['kings-gambit-declined-norwalde-variation-schubert-variation', 1],
     ['kings-gambit-declined-panteldakis-countergambit', 1],
     ['kings-gambit-declined-panteldakis-countergambit-shirazi-line', 1],
@@ -711,6 +715,7 @@ describe('the catalogue this repository ships', () => {
     ['latvian-gambit-mlotkowski-variation', 1],
     ['legals-mate', 7],
     ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
+    ['magnus-smith-trap', 6],
     ['mexican-defense-horsefly-gambit', 1],
     ['mikenas-defense-pozarek-gambit', 1],
     ['milner-barry-trap', 1],
@@ -834,7 +839,7 @@ describe('the catalogue this repository ships', () => {
     ['semi-slav-defense-marshall-gambit-main-line', 1],
     ['semi-slav-defense-marshall-gambit-tolush-variation', 1],
     ['semi-slav-defense-noteboom-variation-anti-noteboom-gambit', 1],
-    ['siberian-trap', 1],
+    ['siberian-trap', 4],
     ['sicilian-defense-alapin-variation-anti-alapin-gambit', 1],
     ['sicilian-defense-brussels-gambit', 1],
     ['sicilian-defense-coles-sicilian-gambit', 1],
@@ -945,7 +950,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored six hundred and sixty-one have any', () => {
+  it('bakes keys on all 1024 entries, and only the authored six hundred and sixty-two have any', () => {
     expect(result.value.records).toHaveLength(1024)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)

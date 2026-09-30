@@ -1,9 +1,19 @@
 # King's Gambit Declined, Norwalde Variation, Bücker Gambit, taught. Frozen defining line
 # 1.e4 e5 2.f4 Qf6 3.Nc3 Qxf4 4.Nf3 Bb4 5.Bc4, which ends on White's own 5.Bc4 — the
 # learner's ply — so the root is an opponent node (docs/CONTEXT.md, invariant 5). Black's
-# 5...Nc6 is modelled as the root's single reply. The position after it was checked with
-# `searchMate` (bounded to 2 moves): no-mate, not in check, no free capture. Every ply was
-# replayed with chess.js.
+# 5...Nc6 and 5...Bxc3 are modelled as the root's replies. Every ply was replayed with
+# chess.js, and every `position` leaf sits at a position with no check, no mate in one and
+# no free capture.
+#
+# The "Nordwalde Trap" the source lists for #175 — 5...Bxc3 6.O-O Bb4 7.d4 Qxe4?? 8.Bxf7+
+# Kd8 9.Bxg8 Rxg8 10.Bg5+ "and the queen goes" — is not here, because replayed it is not a
+# trap White can be taught to set. 6.O-O declines to take the bishop on c3 at all, so after
+# 6...Bb4 White is a whole knight and a pawn down; 7...Qxe4 is Black's best move there, not
+# a blunder; and after 8.Bxf7+ the queen goes only on 8...Kxf7?? 9.Ng5+, while 8...Kd8,
+# 8...Kf8 or 8...Ke7 leave Black a bishop and a pawn up — 10.Bg5+ Be7 (or 10...Ke8) simply holds.
+# A line that needs the learner to play 6.O-O cannot be prescribed, so the 5...Bxc3 branch
+# is given its honest answer instead: 6.dxc3, when the c1 bishop hits the queen and Black's
+# best is to grab the e4 pawn with check.
 id: kings-gambit-declined-norwalde-variation-bucker-gambit
 name: "King's Gambit Declined: Norwalde Variation, Bücker Gambit"
 eco: C30
@@ -23,7 +33,7 @@ soundness:
       engine was consulted and no database was queried.
 judgement:
   by: chan
-  at: '2026-09-25'
+  at: '2026-09-30'
   source: >-
     Reply qualities, frequencies, evaluations and plans in this entry are one author's
     judgement on one date, not engine output and not database statistics.
@@ -34,9 +44,9 @@ tree:
     fr: Les Blancs ont développé leurs trois pièces mineures en seulement cinq coups, le dernier fou venant de se poser en c4, braqué droit sur f7, tandis que la dame noire erre encore en f4 depuis sa prise de pion précoce.
   dismissRest:
     reason:
-      vi: Đen chơi một nước khác thay vì 5...Nc6 — chẳng hạn ...Bxc3 đổi tượng lấy mã ngay hay ...Nf6 phát triển. Đánh giá vẫn tương tự, vì con hậu Đen vẫn đứng lộ liễu và Trắng vẫn dẫn trước về phát triển.
-      en: Black plays something else instead of 5...Nc6 — for instance ...Bxc3 trading the bishop for the knight at once, or ...Nf6 developing. The assessment is similar, since Black's queen still stands exposed and White still leads in development.
-      fr: Les Noirs jouent autre chose que 5...Nc6 — par exemple ...Bxc3 échangeant aussitôt le fou contre le cavalier, ou ...Nf6 en se développant. L'évaluation est similaire, la dame noire restant exposée et les Blancs gardant leur avance de développement.
+      vi: Đen chơi một nước khác thay vì 5...Nc6 hay 5...Bxc3 — chẳng hạn ...Nf6 hay ...d6 phát triển, hay ...Qf6 rút hậu về. Đánh giá vẫn tương tự, vì con hậu Đen vẫn đứng lộ liễu và Trắng vẫn dẫn trước về phát triển.
+      en: Black plays something else instead of 5...Nc6 or 5...Bxc3 — for instance ...Nf6 or ...d6 developing, or ...Qf6 bringing the queen back. The assessment is similar, since Black's queen still stands exposed and White still leads in development.
+      fr: Les Noirs jouent autre chose que 5...Nc6 ou 5...Bxc3 — par exemple ...Nf6 ou ...d6 en se développant, ou ...Qf6 en ramenant la dame. L'évaluation est similaire, la dame noire restant exposée et les Blancs gardant leur avance de développement.
   children:
     - ply: Nc6
       replyQuality: good
@@ -58,3 +68,48 @@ tree:
         basis:
           by: chan
           at: '2026-09-25'
+    - ply: Bxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đổi tượng lấy mã c3 ngay, trước khi con tượng bị a3 đuổi. Nước này bỏ cặp tượng, nhưng nó xoá con mã đang bảo vệ e4 — và cách Trắng ăn lại quyết định con tốt e4 có mất hay không.
+        en: Black trades the bishop for the c3 knight at once, before a3 can chase it. It gives up the bishop pair, but it removes the knight that was guarding e4 — and how White recaptures decides whether the e4 pawn goes with it.
+        fr: Les Noirs échangent aussitôt le fou contre le cavalier c3, avant que a3 ne le chasse. Cela cède la paire de fous, mais élimine le cavalier qui gardait e4 — et la façon dont les Blancs reprennent décide si le pion e4 s'en va avec lui.
+      children:
+        - ply: dxc3
+          annotation:
+            vi: Trắng ăn lại bằng tốt d, mở đường chéo cho tượng c1 — con tượng ấy giờ đang tấn công hậu f4. Con hậu phải đi, và con tốt e4 không còn ai bảo vệ.
+            en: White recaptures with the d-pawn, opening the c1 bishop's diagonal — that bishop is now attacking the queen on f4. The queen has to move, and the e4 pawn is left with no defender.
+            fr: Les Blancs reprennent du pion d, ouvrant la diagonale du fou c1 — ce fou attaque désormais la dame f4. La dame doit bouger, et le pion e4 se retrouve sans défenseur.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác. Con hậu f4 đang bị tượng c1 đánh, nên nước nào không phải nước hậu thì để Bxf4 lấy hậu đổi tượng. Trong các nước hậu, ngoài nước ăn ...Qxe4+ dựng bên dưới, ...Qf6 là ô lùi duy nhất không mất gì, để Trắng kém một tốt; những nước còn lại bị ăn ngay hoặc bỏ mất tốt e5 — ...Qf5 exf5, ...Qg5 Nxg5 hay Bxg5, ...Qh4+ Nxh4, ...Qg3+ hxg3, ...Qxh2 Nxh2 hay Rxh2, ...Qxf3 gxf3 hay Qxf3, ...Qe3+ Bxe3, ...Qd2+ bị bốn quân ăn, ...Qxc1 Qxc1 hay Rxc1, còn ...Qh6 và ...Qg4 để tốt e5 cho Nxe5.
+              en: Black plays something else. The queen on f4 is attacked by the c1 bishop, so any move that is not a queen move lets Bxf4 take the queen for the bishop. Among the queen moves, apart from the capture ...Qxe4+ modelled below, ...Qf6 is the one retreat that loses nothing and leaves White a pawn down; the rest are captured at once or drop the e5 pawn — ...Qf5 exf5, ...Qg5 Nxg5 or Bxg5, ...Qh4+ Nxh4, ...Qg3+ hxg3, ...Qxh2 Nxh2 or Rxh2, ...Qxf3 gxf3 or Qxf3, ...Qe3+ Bxe3, ...Qd2+ taken by any of four pieces, ...Qxc1 Qxc1 or Rxc1, and ...Qh6 and ...Qg4 leave e5 to Nxe5.
+              fr: Les Noirs jouent autre chose. La dame f4 est attaquée par le fou c1, donc tout coup qui n'est pas un coup de dame laisse Bxf4 prendre la dame contre le fou. Parmi les coups de dame, hormis la prise ...Qxe4+ modélisée ci-dessous, ...Qf6 est la seule retraite qui ne perde rien et laisse les Blancs avec un pion de moins ; les autres sont pris aussitôt ou abandonnent le pion e5 — ...Qf5 exf5, ...Qg5 Nxg5 ou Bxg5, ...Qh4+ Nxh4, ...Qg3+ hxg3, ...Qxh2 Nxh2 ou Rxh2, ...Qxf3 gxf3 ou Qxf3, ...Qe3+ Bxe3, ...Qd2+ pris par l'une de quatre pièces, ...Qxc1 Qxc1 ou Rxc1, et ...Qh6 et ...Qg4 laissent e5 à Nxe5.
+          children:
+            - ply: 'Qxe4+'
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Hậu ăn tốt e4 kèm chiếu — con tốt thứ hai, và nước chiếu buộc Trắng phải trả lời trước khi làm bất cứ điều gì với con hậu.
+                en: The queen takes the e4 pawn with check — a second pawn, and the check forces White to answer before doing anything about the queen.
+                fr: La dame prend le pion e4 avec échec — un second pion, et l'échec oblige les Blancs à répondre avant de s'occuper de la dame.
+              children:
+                - ply: Be2
+                  annotation:
+                    vi: Trắng chặn chiếu bằng tượng c4, giữ hậu trên bàn và không để mất thêm gì — Kf2, Kf1 hay Kd2 đều để con tượng c4 bị hậu ăn không. Bàn cờ ngừng chuyển động ở đây.
+                    en: White blocks the check with the c4 bishop, keeping the queens on and losing nothing more — Kf2, Kf1 or Kd2 would all leave the c4 bishop to be taken for nothing. The board stops moving here.
+                    fr: Les Blancs parent l'échec avec le fou c4, gardant les dames et ne perdant rien de plus — Kf2, Kf1 ou Kd2 laisseraient tous le fou c4 se faire prendre pour rien. L'échiquier cesse de bouger ici.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đếm tốt thì Trắng sáu, Đen tám — Trắng kém hai tốt, vì cả f4 lẫn e4 đều đã mất. Đổi lại Trắng có cặp tượng còn Đen chỉ còn con tượng c8, Trắng đã ra mã f3, tượng e2 và mở sẵn đường cho tượng c1 với quyền nhập thành ngay, trong khi Đen chưa đưa quân nào ra ngoài con hậu — con hậu ấy đã đi ba nước và đang đứng ở e4, trên cột e mà xe Trắng sẽ chiếm khi tượng e2 nhường đường sau khi nhập thành. Không quân nào đang bị treo.
+                      en: Count the pawns, six for White, eight for Black — White is two pawns down, with both f4 and e4 gone. In return White has the bishop pair against Black's lone c8 bishop, has the knight on f3 and the bishop on e2 out with the c1 bishop's diagonal already open and castling available at once, while Black has developed nothing but the queen — a queen that has now moved three times and stands on e4, on the e-file that White's rook will take once the e2 bishop has stepped aside after castling. Nothing is hanging.
+                      fr: Comptez les pions, six pour les Blancs, huit pour les Noirs — les Blancs ont deux pions de moins, f4 et e4 ayant tous deux disparu. En échange les Blancs ont la paire de fous contre le seul fou c8 des Noirs, ont sorti le cavalier f3 et le fou e2 avec la diagonale du fou c1 déjà ouverte et le roque disponible aussitôt, tandis que les Noirs n'ont rien développé hormis la dame — une dame qui a maintenant bougé trois fois et se trouve en e4, sur la colonne e que la tour blanche prendra dès que le fou e2 aura cédé la place après le roque. Rien n'est en prise.
+                    plan:
+                      vi: Trắng chơi O-O rồi Bd3 đuổi hậu kèm nhịp và nhường cột e cho Re1, Bf4 và Qd2 hoặc Qe2 để đưa mọi quân vào cột e và các đường chéo mở, và tìm cách mở thêm đường khi vua Đen còn ở e8. Đen phải trả lại nhịp bằng ...Nf6 hay ...Ne7 và ...d6, đưa hậu về ô an toàn hơn (...Qg6 hay ...Qc6), nhập thành sớm nhất có thể và tìm cách đổi quân để hai tốt thừa lên tiếng.
+                      en: White castles and then plays Bd3 to chase the queen with tempo and clear the e-file for Re1, Bf4 and Qd2 or Qe2 to bring everything to the e-file and the open diagonals, and looks for ways to open more lines while Black's king is still on e8. Black has to give tempi back with ...Nf6 or ...Ne7 and ...d6, move the queen to a safer square (...Qg6 or ...Qc6), castle as early as possible and look for trades so that the two extra pawns can tell.
+                      fr: Les Blancs roquent puis jouent Bd3 pour chasser la dame avec temps et libérer la colonne e pour Re1, Bf4 et Qd2 ou Qe2 pour tout amener sur la colonne e et les diagonales ouvertes, et cherchent à ouvrir d'autres lignes tant que le roi noir est en e8. Les Noirs doivent rendre des temps par ...Nf6 ou ...Ne7 et ...d6, mettre la dame sur une case plus sûre (...Qg6 ou ...Qc6), roquer au plus tôt et chercher des échanges pour que les deux pions de plus parlent.
+                    basis:
+                      by: chan
+                      at: '2026-09-30'
