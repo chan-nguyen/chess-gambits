@@ -1,0 +1,63 @@
+# Vienna Game: Zhuravlev Countergambit. Defining line 1.e4 e5 2.Nc3 Bb4 3.Qg4 Nf6.
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: vienna-game-zhuravlev-countergambit
+name: 'Vienna Game: Zhuravlev Countergambit'
+eco: C25
+category: gambit
+side: black
+definingLine:
+  - e4
+  - e5
+  - Nc3
+  - Bb4
+  - Qg4
+  - Nf6
+soundness:
+  value: unsound
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Nf6, tấn công hậu g4 của Trắng, vốn không có quân bảo vệ. Hậu đó cũng tấn công tốt g7, không có quân bảo vệ. Mỗi bên có tám tốt.
+    en: Black has just played 3...Nf6, attacking White's queen on g4, which has no defender. That queen also attacks the pawn on g7, which has no defender either. Each side has eight pawns.
+    fr: Les Noirs viennent de jouer 3...Nf6, attaquant la dame blanche g4, qui n'a aucun défenseur. Cette dame attaque aussi le pion g7, qui n'a pas non plus de défenseur. Chaque camp a huit pions.
+  dismissRest:
+    reason:
+      vi: Trắng chọn một nước khác thay vì 4.Qxg7. Bài này chỉ đi theo nhánh ăn tốt 4.Qxg7; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: White plays something other than 4.Qxg7 here. This entry follows the capture 4.Qxg7 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 4.Qxg7. Cette fiche ne suit que la prise 4.Qxg7 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Qxg7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt g7 bằng hậu, 4.Qxg7, vừa thoát khỏi mã vừa tấn công xe h8 và mã f6. Hậu không có quân bảo vệ.
+        en: White takes the g7 pawn with the queen, 4.Qxg7, which steps out of the knight's attack and attacks the rook on h8 and the knight on f6. The queen has no defender.
+        fr: Les Blancs prennent le pion g7 avec la dame, 4.Qxg7, ce qui l'enlève à l'attaque du cavalier et attaque la tour h8 et le cavalier f6. La dame n'a aucun défenseur.
+      children:
+        - ply: Rg8
+          annotation:
+            vi: Đen tấn công hậu ngay bằng 4...Rg8. Xe g8 được mã f6 bảo vệ nên Qxg8+ chỉ mất hậu đổi lấy xe.
+            en: Black attacks the queen at once with 4...Rg8. The rook on g8 is defended by the knight on f6, so Qxg8+ would only trade the queen for a rook.
+            fr: "Les Noirs attaquent aussitôt la dame par 4...Rg8. La tour g8 est défendue par le cavalier f6 : Qxg8+ ne ferait qu'échanger la dame contre une tour."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nên tốt g7 của Đen chưa được lấy lại. Hậu g7 của Trắng bị xe g8 tấn công mà không quân nào bảo vệ, nên nó phải đi tiếp. Xe Đen đã rời h8 nên Đen mất quyền nhập thành ngắn và chỉ còn quyền nhập thành dài.'
+              en: "Count the pawns: White eight, Black seven, so Black's g7 pawn has not come back. White's queen on g7 is attacked by the rook on g8 and has no defender, so it has to move again. Black's rook has left h8, so Black has lost the right to castle short and keeps only the right to castle long."
+              fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; le pion g7 noir n'est donc pas récupéré. La dame blanche g7 est attaquée par la tour g8 et n'a aucun défenseur : elle doit donc bouger encore. La tour noire a quitté h8, si bien que les Noirs ont perdu le droit de roquer côté roi et ne gardent que le grand roque."
+            plan:
+              vi: Trắng rút hậu, chẳng hạn bằng Qh6 hoặc Qg3, và cố giữ tốt thừa. Đen có nhịp đuổi hậu, chẳng hạn ...Rg6 nếu hậu đứng ở h6.
+              en: White retreats the queen, for example with Qh6 or Qg3, and tries to keep the extra pawn. Black gains time by chasing it, for example with ...Rg6 against a queen on h6.
+              fr: Les Blancs retirent la dame, par exemple par Qh6 ou Qg3, et cherchent à garder le pion en plus. Les Noirs gagnent du temps en la chassant, par exemple par ...Rg6 contre une dame en h6.
+            basis:
+              by: chan
+              at: '2026-09-30'

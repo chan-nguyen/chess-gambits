@@ -1,0 +1,60 @@
+# Vienna Game: Stanley Variation, Bronstein Gambit. Defining line 1.e4 e5 2.Nc3 Nc6 3.Bc4 Nf6 4.f4 Nxe4 5.Nf3.
+# Every ply was replayed with chess.js and the leaf was read off its FEN before any sentence was written.
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: vienna-game-stanley-variation-bronstein-gambit
+name: 'Vienna Game: Stanley Variation, Bronstein Gambit'
+eco: C28
+category: gambit
+side: white
+definingLine:
+  - e4
+  - e5
+  - Nc3
+  - Nc6
+  - Bc4
+  - Nf6
+  - f4
+  - Nxe4
+  - Nf3
+soundness:
+  value: dubious
+  reviewedAt: '2026-09-30'
+  basis:
+    by: chan
+    at: '2026-09-30'
+    source: A judgement, deepened from the frozen listed-tier classification in tools/catalogue/source/classification.yaml. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-09-30'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Nf3 sau khi hiến tốt e4. Mã Đen ở e4 bị mã c3 tấn công mà không có quân bảo vệ, còn tốt f4 của Trắng bị tốt e5 tấn công mà cũng không có quân bảo vệ. Đen hơn một tốt, tám đối bảy.
+    en: White has just played 5.Nf3 after giving up the e4 pawn. Black's knight on e4 is attacked by the knight on c3 and has no defender, and White's pawn on f4 is attacked by the e5 pawn and has no defender either. Black is a pawn up, eight to seven.
+    fr: Les Blancs viennent de jouer 5.Nf3 après avoir cédé le pion e4. Le cavalier noir e4 est attaqué par le cavalier c3 et n'a aucun défenseur, et le pion f4 blanc est attaqué par le pion e5 et n'a pas non plus de défenseur. Les Noirs ont un pion de plus, huit contre sept.
+  dismissRest:
+    reason:
+      vi: Đen chọn một nước khác thay vì 5...d5. Bài này chỉ đi theo nhánh 5...d5; các nước còn lại dẫn tới những biến khác chưa được lập bản đồ ở đây.
+      en: Black plays something other than 5...d5 here. This entry follows the reply 5...d5 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 5...d5. Cette fiche ne suit que la réponse 5...d5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen hỗ trợ mã bằng 5...d5, đồng thời dùng tốt tấn công tượng c4. Mã e4 giờ được tốt d5 bảo vệ.
+        en: Black supports the knight with 5...d5, which also attacks the bishop on c4 with a pawn. The knight on e4 is now defended by the d5 pawn.
+        fr: Les Noirs soutiennent le cavalier par 5...d5, qui attaque aussi le fou c4 avec un pion. Le cavalier e4 est maintenant défendu par le pion d5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt. Trắng cùng lúc có hai vấn đề: tượng c4 bị tốt d5 tấn công mà không có quân bảo vệ, và tốt f4 bị tốt e5 tấn công mà cũng không có quân bảo vệ. Mã c3 bị mã e4 tấn công nhưng được tốt b2 và d2 bảo vệ.'
+          en: 'Count the pawns: White seven, Black eight, so White is a pawn down. White has two problems at once: the bishop on c4 is attacked by the d5 pawn and has no defender, and the f4 pawn is attacked by the e5 pawn and has no defender either. The knight on c3 is attacked by the knight on e4 but defended by the b2 and d2 pawns.'
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Les Blancs ont deux problèmes à la fois : le fou c4 est attaqué par le pion d5 et n'a aucun défenseur, et le pion f4 est attaqué par le pion e5 et n'a pas non plus de défenseur. Le cavalier c3 est attaqué par le cavalier e4 mais défendu par les pions b2 et d2."
+        plan:
+          vi: 'Trắng phải chọn: Bxd5 ăn tốt, Bb3 cứu tượng, hoặc fxe5 giải tỏa tốt f. Đen có sẵn các nước ăn ...dxc4 và ...exf4.'
+          en: 'White has to choose: Bxd5 takes the pawn, Bb3 saves the bishop, and fxe5 releases the f-pawn. Black has the captures ...dxc4 and ...exf4 available.'
+          fr: 'Les Blancs doivent choisir : Bxd5 prend le pion, Bb3 sauve le fou, et fxe5 libère le pion f. Les Noirs disposent des prises ...dxc4 et ...exf4.'
+        basis:
+          by: chan
+          at: '2026-09-30'
