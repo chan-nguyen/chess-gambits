@@ -235,3 +235,45 @@ board itself does not need replacing, only the layer above it that already compu
   _shipped_ to the browser" — it has been, now. `chess.js` is MIT, same as it was as a
   build-time dependency, so nothing about the licence analysis for `src/components/board/`
   itself changes: no GPL code reaches the bundle, and the board library ban is unaffected.
+
+## Amended by #167: a mouse drag, living where the click already lives
+
+The owner asked (2026-09-29): "cho phép dùng chuột kéo thả để đi quân cờ tựa như trên
+chess.com" — play a move by dragging the piece with the mouse. "What would change this" above
+names "v2 requiring drag interaction after all" as one of its two triggers. This is that
+trigger, fired by product decision, and this amendment records it rather than re-litigating it.
+
+- **What changed.** `HomeBoard`, the input wrapper the home page (#131) and the analysis page
+  (#154) share, accepts a mouse drag beside the click and the key. A press on a piece of the
+  side to move becomes a drag once the mouse has travelled four pixels, so a click that wobbles
+  is still a click. The piece is then taken off its square — `Board` is handed the position
+  without it — and drawn under the pointer by `LiftedPiece`, with the board's own sprite and
+  colours. Dropped on a legal destination it plays through the same `resolveActivation` a
+  click does, and a promotion opens the same picker; dropped on its own square it stays
+  selected, as a click leaves it; dropped anywhere else, or off the board, it goes back. The
+  geometry — which square is under the pointer, the way up the board is drawn — is
+  `src/components/home/board-drag.ts`, as pure functions with their own tests.
+- **What did not change.** The board's shipped code — `Board.tsx`, `board-model.ts`,
+  `piece-sprite.tsx` and `Board.css` — is untouched: still 437 of 450 code lines,
+  still no pointer handler, no `draggable` and no drag event. `board-tripwire.test.ts` forbids
+  all of them there, and its denylist gains `onPointer` in this change, because that is the
+  handler the drag uses and "the board takes no input" should not rest on nobody having tried
+  it. The drag is the same shape as the click #131
+  added — `Board` renders, the layer above it listens — so the boundary this ADR draws around
+  the board holds for input the way #131's amendment showed it holds for rules. About 125 code
+  lines landed in `src/components/home/`, which the tripwire does not count and was never
+  meant to.
+- **Still no library.** Pointer Events and pointer capture are the platform's; nothing was
+  added to `package.json`. The reasons `react-chessboard` lost are unchanged: the accessible
+  grid is still ours to build, and F5 still mounts one board per reply. A drag is wired only
+  on the one interactive board a page has, never on a preview, so the cost of twenty
+  `DndContext`s this ADR measured does not arise.
+- **Mouse only.** A touch drag needs `touch-action: none` on the board, which would take page
+  scrolling away from a finger over it on the phone this site is built for first. Touch keeps
+  the tap. That is a choice to revisit if asked for, not a limit of the approach.
+- **Accessibility.** WCAG 2.2 _2.5.7 Dragging Movements_ (AA) asks that anything done by
+  dragging can be done with a single pointer without one: click-to-move is exactly that, and
+  it and the keyboard are unchanged. The lifted piece is decorative and `aria-hidden`, like the
+  board's canvas; the move a drop plays is announced by the same live region as any other.
+- **Not included.** The analysis page's position editor (#161) has its own input wrapper and
+  stays click-to-place; nobody asked for it to drag.

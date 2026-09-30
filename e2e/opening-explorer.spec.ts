@@ -243,3 +243,66 @@ test('the flip control turns the board, and moves keep it turned', async ({ page
   await expect(page).not.toHaveURL(/flip=/)
   await expect(cells.first()).toHaveAttribute('data-square', 'a8')
 })
+
+/**
+ * The centre of a square on screen, where a real mouse presses it. The board is below the
+ * fold at this viewport, and unlike `click()` a bare mouse does not scroll to what it means.
+ */
+const centreOf = async (page: Page, name: string): Promise<{ x: number; y: number }> => {
+  await page.locator('.home-board__surface').scrollIntoViewIfNeeded()
+  const box = await square(page, name).boundingBox()
+  if (box === null) throw new Error(`${name} is not on screen`)
+  return { x: box.x + box.width / 2, y: box.y + box.height / 2 }
+}
+
+test('a piece dragged with the mouse follows it and plays where it is dropped (#167)', async ({
+  page,
+}) => {
+  await page.goto(home)
+  const lifted = page.locator('.home-board__lifted')
+
+  const e2 = await centreOf(page, 'e2')
+  const e4 = await centreOf(page, 'e4')
+  await page.mouse.move(e2.x, e2.y)
+  await page.mouse.down()
+  await page.mouse.move(e4.x, e4.y, { steps: 8 })
+
+  // In the hand: off its square, drawn under the pointer, and its moves shown as for a click.
+  await expect(lifted).toBeVisible()
+  await expect(square(page, 'e2')).toHaveAttribute('aria-label', 'e2, ô trống')
+  await expect(page.locator('.board__square--marked')).toHaveCount(1)
+  await expect(page.locator('circle.board__target')).toHaveCount(2)
+
+  await page.mouse.up()
+  await expect(page.locator('.board__announcement')).toHaveText('Đã đi e4')
+  await expect(page).toHaveURL(/moves=e4$/)
+  await expect(lifted).toHaveCount(0)
+})
+
+test('a dragged piece goes back where it cannot go, and stays selected on its own square', async ({
+  page,
+}) => {
+  await page.goto(home)
+  await move(page, 'e2', 'e4', 'Đã đi e4')
+  const g8 = await centreOf(page, 'g8')
+
+  // Off the board altogether: back on g8, nothing selected, nothing played.
+  await page.mouse.move(g8.x, g8.y)
+  await page.mouse.down()
+  await page.mouse.move(g8.x + 500, g8.y, { steps: 8 })
+  await page.mouse.up()
+  await expect(square(page, 'g8')).toHaveAttribute('aria-label', 'g8, mã đen')
+  await expect(page.locator('.board__square--marked')).toHaveCount(0)
+  await expect(page).toHaveURL(/moves=e4$/)
+
+  // Lifted and put down on its own square it stays picked up, as a click leaves it — the
+  // click the browser sends after the drop does not put it down again — so one more click
+  // on a destination plays it.
+  await page.mouse.move(g8.x, g8.y)
+  await page.mouse.down()
+  await page.mouse.move(g8.x + 12, g8.y + 6, { steps: 4 })
+  await page.mouse.up()
+  await expect(page.locator('.board__square--marked')).toHaveCount(1)
+  await square(page, 'f6').click()
+  await expect(page.locator('.board__announcement')).toHaveText('Đã đi Nf6')
+})

@@ -110,6 +110,8 @@ describe('the board does not know chess (AC 8)', () => {
       'onDrop',
       'draggable',
       'PointerEvent',
+      // #167 added a drag one layer up, in `home/`; the handler it uses stays out of here.
+      'onPointer',
       'onMouseDown',
       'onTouchStart',
     ]) {
