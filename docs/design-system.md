@@ -398,7 +398,7 @@ Button; a Link navigates, a Button acts) · Badge · Tag · Input · Select · D
 
 | Component            | Responsibility                                                     | Notes                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | -------------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Board`              | Render a position                                                  | Own SVG (ADR-0003). `role="grid"`, 64 cells, roving tabindex, one polite live region. Position comes in as a derived FEN, never authored. **Display only in v1** — no piece is ever dragged                                                                                                                                                                                                                                              |
+| `Board`              | Render a position                                                  | Own SVG (ADR-0003). `role="grid"`, 64 cells, roving tabindex, one polite live region. Position comes in as a derived FEN, never authored. **Takes no input itself** — the home and analysis boards click, key and drag through `HomeBoard`, one layer up (#131, #167)                                                                                                                                                                    |
 | `BoardPreview`       | Small static board for branch choices                              | Same renderer, no coordinates, not in the tab order — many mount at once. Each marks its **own** candidate ply (#54): replies to one position differ by a single piece, so one mark per board is what tells them apart                                                                                                                                                                                                                   |
 | `MoveNavigator`      | Previous / next / jump to the game start / jump to the gambit root | Previous disabled at the **initial position**, next disabled at a leaf. Four controls, not three: since the walk begins at move one, "the start" and "the gambit root" are two different places and the root is what published links point at. One row at every width, which is why all four labels are short — measured in French at 360px by `e2e/move-navigation.spec.ts`                                                             |
 | `MoveList`           | Plies of the current path, current one marked                      | Monospace; click to jump. Starts at the initial position and runs through the defining line before the `?line=` path — one walk, drawn the same way throughout, because a defining-line ply is not a different kind of move to a learner reading a scoresheet                                                                                                                                                                            |
@@ -454,11 +454,12 @@ This is free, and it turns a graveyard into a small honest site with a large ind
 
 ### Why the home board does not reverse ADR-0003
 
-The home page has an interactive board: a visitor clicks a piece, clicks a destination, and
-the catalogue filters live to whatever matches the moves played so far. `ADR-0003` bans a
-board _library_, a drag interaction, and any rules logic inside `src/components/board/`
-specifically, and names "v2 requiring drag interaction" as its own trigger for being
-revisited. Neither condition is tripped, on any of its three axes:
+The home page has an interactive board: a visitor clicks a piece, clicks a destination — or,
+since #167, drags the piece there with the mouse — and the catalogue filters live to whatever
+matches the moves played so far. `ADR-0003` bans a board _library_ and any rules logic inside
+`src/components/board/` specifically, and named "v2 requiring drag interaction" as its own
+trigger for being revisited. That trigger fired with #167, by product decision, and the ADR's
+amendment for it records why the board still stands; the rest holds on all three axes:
 
 - **The rules engine is real, and it is confined to one directory.** #129 first shipped this
   board restricted to catalogue-only moves, looked up in a precomputed opening tree, so that
@@ -469,15 +470,18 @@ revisited. Neither condition is tripped, on any of its three axes:
   ADR-0004/0005) is now also a runtime one, and ADR-0003's own amendment for #131 records
   why that is the tripwire firing correctly rather than being defeated: the ban that matters
   is on rules logic reaching `src/components/board/`, and that boundary is unmoved.
-- **No drag.** Interaction is still click-to-move: select a square, then select a
-  highlighted destination — exactly the mode ADR-0003 itself names as the anticipated v2
-  interaction, because it is what the existing accessible grid already supports (a focused
-  cell, Enter/Space to activate) without adding a pointer-drag system at all.
+- **A drag, with the click still underneath it.** Click-to-move came first — select a square,
+  then a highlighted destination — because it is what the accessible grid already supports (a
+  focused cell, Enter/Space to activate). #167 adds a mouse drag on top, by the owner's request
+  ("tựa như trên chess.com"): a press that travels four pixels lifts the piece off its square
+  and draws it under the pointer (`LiftedPiece`), and the drop is answered by the same
+  `resolveActivation` a click is. It uses the platform's Pointer Events, not a library, and it
+  is the mouse's alone: touch keeps the tap, so a finger over the board still scrolls the page.
 - **`src/components/board/` is untouched.** The board lives entirely under
   `src/components/home/` and reuses the shipped `Board` component exactly as it ships —
   same props, same file, same 450-line budget, same tripwire
-  (`board-tripwire.test.ts`). The interaction (click delegation, keyboard activation,
-  selection state, the rules engine itself) lives one layer above `Board`, the same way
+  (`board-tripwire.test.ts`). The interaction (click delegation, keyboard activation, the
+  drag, selection state, the rules engine itself) lives one layer above `Board`, the same way
   `LearningSurface` already drives `Board` with a derived `fen` and a `marks` list without
   `Board` ever knowing why either one changed. The only visual change #131 made to `Board`
   itself is cosmetic: `marks` renders as a background tint rather than a ring, by explicit
@@ -578,8 +582,11 @@ Non-negotiable, and cheap now.
   reader saying "white knight on f3" must say it in Vietnamese or French. This is ours to write,
   which is one more reason the board is ours (ADR-0003).
 - **2.1.4 Character Key Shortcuts (Level A)** — see §4. Single-key shortcuts are switchable off.
-- **2.5.7 Dragging Movements (AA, new in 2.2)** — satisfied by construction: nothing in v1 is
-  dragged. When v2 adds practice mode it must be tap-piece-then-tap-square, not drag-only.
+- **2.5.7 Dragging Movements (AA, new in 2.2)** — satisfied by an alternative, not by absence
+  any more. Since #167 a piece on the home and analysis boards can be dragged with the mouse,
+  and every such move can also be played by clicking the piece and then its destination, or by
+  Enter/Space on the grid — neither of which changed when the drag arrived. A practice mode, if
+  one comes, is held to the same rule: tap-piece-then-tap-square, never drag-only.
 - **2.4.11 Focus Not Obscured (AA, new in 2.2)** — the mobile full-screen tree overlay must not cover
   the focused element when it opens or closes.
 - **Verified by**: automated axe checks in CI, plus a manual keyboard-only walkthrough of one full

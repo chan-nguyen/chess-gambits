@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Five hundred and fifty-nine entries are authored — three from #15, eleven from #73, ten
+   * Six hundred and sixty-one entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -219,14 +219,48 @@ describe('the catalogue this repository ships', () => {
    * Fianchetto), and twenty-three further family heads and named sub-variations spread across
    * the Bishop's Opening, Bird Opening, English Opening, English Defense, Englund Gambit
    * Declined, Dutch Defense Staunton Gambit, Blumenfeld Countergambit and Italian Game
-   * families, each a single root-to-leaf line), and fifty more from #162 batch m (a
+   * families, each a single root-to-leaf line), and fifty-two more from #162 batch n (Ruy
+   * Lopez Marshall Attack and Schliemann Defense sub-variations, the Scandinavian Portuguese
+   * Gambit's Banker and Jadoul Variations, seven Scotch Game/Scotch Gambit sub-variations, the
+   * Belgrade Gambit's Modern Defense, the Semi-Slav Marshall Gambit's Tolush Variation, the
+   * Delayed Alapin Basman-Palatnik Gambit, sixteen Sicilian Smith-Morra Gambit
+   * Accepted/Declined sub-variations, the Sicilian Wing Gambit's Romanian Defense, the Slav
+   * Winawer Countergambit's Anti-Winawer Gambit, three Steinitz Gambit defenses, four Two
+   * Knights Traxler Counterattack lines (bishop-sacrifice, knight-sacrifice, king-march and the
+   * Trenčianske Teplice Gambit), the Modern Defense Suttles/Tal Gambit, two Vienna Gambit with
+   * Max Lange Defense entries (Cunningham and Quelle), the Vienna Game's Paulsen Pollock
+   * Gambit and Vienna Gambit Bardeleben/Breyer/Main-Line variations, and the French Winawer
+   * Alekhine Gambit's Alatortsev Variation — each a single root-to-leaf line), and fifty more from
+   * #162 batch l (the
+   * Falkbeer Countergambit's Charousek Gambit Keres Variation; the Four Knights Game
+   * Halloween Gambit's Oldtimer and Plasma Variations; a French Defense spread — the
+   * Alekhine-Chatard Gambit, the la Bourdonnais Variation's Reuter Gambit, the Winawer
+   * Variation's Alekhine Gambit Accepted and Kan Variation, and the Baeuerle Gambit; the Grob
+   * Opening's Coca-Cola Gambit, Fritz Gambit Romford Countergambit and Zilbermints Gambit
+   * Schiller Defense; the Hungarian Opening Wiedenhagen-Beta Gambit; the Indian Defense's
+   * Maddigan and Pyrenees Gambits; the Italian Game's Classical Variation Greco Gambit (Greco
+   * Variation and Main Line) and a broad sweep of Evans Gambit named sub-variations —
+   * Alapin-Steinitz, Anderssen Defense, Cordel Line, Bronstein Defense, Compromised Defense,
+   * Lange Variation, Dufresne Defense, Johner Defense, Laroche Variation, Lasker Defense,
+   * Leonhardt Countergambit, McDonnell Defense Main Line, Mieses Defense, Mortimer-Evans
+   * Gambit, Pierce Defense and Sanders-Alapin Variation — plus Scotch Gambit sub-variations
+   * (de Riviere Defense, Double Gambit Accepted, Janowski Defense, Max Lange Attack and its
+   * Spielmann Defense); the Kieseritzky Gambit's Berlin Defense De Riviere Variation and
+   * Paulsen Defense Deferred; and a King's Gambit Accepted spread — Abbazia Defense and its
+   * Main Line, Allgaier Gambit's Horny and Schlechter Defenses, Bishop's Gambit's Bogoljubow
+   * Defense, Boren-Svenonius Variation, Bryan Countergambit and Classical Defense, the
+   * Blachly Gambit, Cunningham Defense's McCormick Defense and the Double Muzio Gambit's
+   * Young Gambit — twelve of the fifty ending one ply further, on the learner's own forced
+   * recapture after the modelled reply answers a check or leaves a piece en prise, each
+   * still a single root-to-leaf line), and fifty more from #162 batch m (a
    * family-diverse spread across the King's Gambit Accepted Kieseritzky, Muzio and Salvio
    * Gambit sub-variations, King's Gambit Declined sub-variations including the Falkbeer
    * Countergambit and Panteldakis Countergambit families, the whole Latvian Gambit Accepted
    * family, the Philidor Countergambit family, and single entries from the King's Indian
    * Defense, Nimzowitsch Defense, Ponziani Opening, the Portuguese Gambit, the Queen's
    * Gambit Declined Albin Countergambit and the Ruy Lopez — each a single root-to-leaf line,
-   * listed individually in the PR rather than here) — and the other 465
+   * listed individually in the PR rather than here) — and the
+   * other 363
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing
@@ -412,31 +446,42 @@ describe('the catalogue this repository ships', () => {
     ['englund-gambit-trap', 6],
     ['englund-gambit-zilbermints-gambit', 1],
     ['falkbeer-countergambit-charousek-gambit-accepted', 1],
+    ['falkbeer-countergambit-charousek-gambit-keres-variation', 1],
     ['falkbeer-countergambit-charousek-gambit-old-line', 1],
     ['falkbeer-countergambit-milner-barry-variation', 1],
     ['falkbeer-countergambit-nimzowitsch-marshall-countergambit', 1],
     ['falkbeer-countergambit-rubinstein-variation', 1],
     ['fishing-pole-trap', 3],
     ['four-knights-game-halloween-gambit', 1],
+    ['four-knights-game-halloween-gambit-oldtimer-variation', 1],
+    ['four-knights-game-halloween-gambit-plasma-variation', 1],
     ['four-knights-game-italian-variation-noa-gambit', 1],
     ['four-knights-game-scotch-variation-belgrade-gambit', 1],
     ['four-knights-game-scotch-variation-krause-gambit', 1],
     ['french-defense-advance-variation-milner-barry-gambit', 1],
     ['french-defense-alapin-gambit', 1],
+    ['french-defense-alekhine-chatard-attack-albin-chatard-gambit', 1],
+    ['french-defense-baeuerle-gambit', 1],
     ['french-defense-banzai-leong-gambit', 3],
     ['french-defense-carlson-gambit', 1],
     ['french-defense-diemer-duhm-gambit', 1],
     ['french-defense-diemer-duhm-gambit-accepted', 1],
+    ['french-defense-la-bourdonnais-variation-reuter-gambit', 1],
     ['french-defense-marshall-gambit', 1],
     ['french-defense-morphy-gambit', 1],
+    ['french-defense-winawer-variation-alekhine-gambit-accepted', 1],
+    ['french-defense-winawer-variation-alekhine-gambit-kan-variation', 1],
     ['french-defense-wing-gambit', 1],
     ['grob-opening-alessi-gambit', 1],
+    ['grob-opening-double-grob-coca-cola-gambit', 1],
     ['grob-opening-grob-gambit', 1],
     ['grob-opening-grob-gambit-basman-gambit', 1],
     ['grob-opening-grob-gambit-declined', 1],
     ['grob-opening-grob-gambit-fritz-gambit', 1],
+    ['grob-opening-grob-gambit-fritz-gambit-romford-countergambit', 1],
     ['grob-opening-grob-gambit-richter-grob-gambit', 1],
     ['grob-opening-romford-countergambit', 1],
+    ['grob-opening-zilbermints-gambit-schiller-defense', 1],
     ['grunfeld-defense-brinckmann-attack-grunfeld-gambit-accepted', 1],
     ['grunfeld-defense-gibbon-gambit', 1],
     ['gunderam-defense-stader-variation', 1],
@@ -448,6 +493,7 @@ describe('the catalogue this repository ships', () => {
     ['hungarian-opening-bucker-gambit', 1],
     ['hungarian-opening-pachman-gambit', 1],
     ['hungarian-opening-van-kuijk-gambit', 1],
+    ['hungarian-opening-wiedenhagen-beta-gambit', 1],
     ['hungarian-opening-winterberg-gambit', 1],
     ['indian-defense-anti-grunfeld-adorjan-gambit', 1],
     ['indian-defense-budapest-gambit', 5],
@@ -457,31 +503,62 @@ describe('the catalogue this repository ships', () => {
     ['indian-defense-gibbins-weidenhagen-gambit-accepted', 1],
     ['indian-defense-gibbins-weidenhagen-gambit-oshima-defense', 1],
     ['indian-defense-lazard-gambit', 2],
+    ['indian-defense-maddigan-gambit', 1],
     ['indian-defense-omega-gambit', 1],
+    ['indian-defense-pyrenees-gambit', 1],
     ['irish-gambit', 1],
     ['italian-game-blackburne-kostic-gambit', 2],
+    ['italian-game-classical-variation-greco-gambit-greco-variation', 1],
+    ['italian-game-classical-variation-greco-gambit-main-line', 1],
     ['italian-game-evans-gambit', 6],
     ['italian-game-evans-gambit-accepted', 1],
+    ['italian-game-evans-gambit-alapin-steinitz-variation', 1],
+    ['italian-game-evans-gambit-anderssen-defense', 1],
     ['italian-game-evans-gambit-anderssen-variation', 1],
+    ['italian-game-evans-gambit-anderssen-variation-cordel-line', 1],
+    ['italian-game-evans-gambit-bronstein-defense', 1],
+    ['italian-game-evans-gambit-compromised-defense', 1],
     ['italian-game-evans-gambit-declined', 1],
+    ['italian-game-evans-gambit-declined-lange-variation', 1],
+    ['italian-game-evans-gambit-dufresne-defense', 1],
     ['italian-game-evans-gambit-fontaine-countergambit', 1],
     ['italian-game-evans-gambit-hein-countergambit', 1],
+    ['italian-game-evans-gambit-johner-defense', 1],
+    ['italian-game-evans-gambit-laroche-variation', 1],
+    ['italian-game-evans-gambit-lasker-defense', 1],
+    ['italian-game-evans-gambit-leonhardt-countergambit', 1],
     ['italian-game-evans-gambit-main-line', 1],
     ['italian-game-evans-gambit-mayet-defense', 1],
     ['italian-game-evans-gambit-mcdonnell-defense', 1],
+    ['italian-game-evans-gambit-mcdonnell-defense-main-line', 1],
+    ['italian-game-evans-gambit-mieses-defense', 1],
+    ['italian-game-evans-gambit-mortimer-evans-gambit', 1],
+    ['italian-game-evans-gambit-pierce-defense', 1],
+    ['italian-game-evans-gambit-sanders-alapin-variation', 1],
     ['italian-game-evans-gambit-stone-ware-variation', 1],
     ['italian-game-jerome-gambit', 1],
     ['italian-game-rosentreter-gambit', 1],
     ['italian-game-rousseau-gambit', 1],
     ['italian-game-scotch-gambit', 1],
+    ['italian-game-scotch-gambit-de-riviere-defense', 1],
+    ['italian-game-scotch-gambit-double-gambit-accepted', 1],
+    ['italian-game-scotch-gambit-janowski-defense', 1],
+    ['italian-game-scotch-gambit-max-lange-attack', 1],
+    ['italian-game-scotch-gambit-max-lange-attack-spielmann-defense', 1],
     ['italian-game-two-knights-defense-fried-liver-attack', 1],
     ['italian-game-two-knights-defense-traxler-counterattack', 1],
     ['kadas-opening-kadas-gambit', 1],
     ['kadas-opening-schneider-gambit', 1],
     ['kadas-opening-steinbok-gambit', 1],
     ['kieninger-trap', 4],
+    ['kieseritzky-gambit-berlin-defense-de-riviere-variation', 1],
+    ['kieseritzky-gambit-paulsen-defense-deferred', 1],
     ['kings-gambit', 5],
     ['kings-gambit-accepted', 1],
+    ['kings-gambit-accepted-abbazia-defense', 1],
+    ['kings-gambit-accepted-abbazia-defense-main-line', 1],
+    ['kings-gambit-accepted-allgaier-horny-defense', 1],
+    ['kings-gambit-accepted-allgaier-schlechter-defense', 1],
     ['kings-gambit-accepted-basman-gambit', 1],
     ['kings-gambit-accepted-becker-defense', 1],
     ['kings-gambit-accepted-bishops-gambit', 1],
@@ -490,7 +567,11 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-accepted-bishops-gambit-bledow-countergambit', 1],
     ['kings-gambit-accepted-bishops-gambit-bledow-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-boden-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-bogoljubow-defense', 1],
     ['kings-gambit-accepted-bishops-gambit-bogoljubow-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-boren-svenonius-variation', 1],
+    ['kings-gambit-accepted-bishops-gambit-bryan-countergambit', 1],
+    ['kings-gambit-accepted-bishops-gambit-classical-defense', 1],
     ['kings-gambit-accepted-bishops-gambit-cozio-defense', 1],
     ['kings-gambit-accepted-bishops-gambit-cozio-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-first-jaenisch-variation', 1],
@@ -501,11 +582,14 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-accepted-bishops-gambit-lopez-variation', 1],
     ['kings-gambit-accepted-bishops-gambit-maurian-defense', 1],
     ['kings-gambit-accepted-bishops-gambit-steinitz-defense', 1],
+    ['kings-gambit-accepted-blachly-gambit', 1],
     ['kings-gambit-accepted-bonsch-osmolovsky-variation', 1],
     ['kings-gambit-accepted-breyer-gambit', 1],
     ['kings-gambit-accepted-carrera-gambit', 1],
     ['kings-gambit-accepted-cunningham-defense', 1],
+    ['kings-gambit-accepted-cunningham-defense-mccormick-defense', 1],
     ['kings-gambit-accepted-dodo-variation', 1],
+    ['kings-gambit-accepted-double-muzio-gambit-young-gambit', 1],
     ['kings-gambit-accepted-eisenberg-variation', 1],
     ['kings-gambit-accepted-fischer-defense', 1],
     ['kings-gambit-accepted-gaga-gambit', 1],
@@ -697,15 +781,21 @@ describe('the catalogue this repository ships', () => {
     ['richter-veresov-attack-malich-gambit', 2],
     ['rubinstein-trap', 1],
     ['ruy-lopez-berlin-defense-rio-gambit-accepted', 1],
+    ['ruy-lopez-closed-center-attack-basque-gambit', 1],
     ['ruy-lopez-closed-chigorin-defense-gajewski-gambit', 1],
     ['ruy-lopez-exchange-variation-alapin-gambit', 3],
     ['ruy-lopez-halloween-attack', 1],
     ['ruy-lopez-marshall-attack', 1],
+    ['ruy-lopez-marshall-attack-main-line', 1],
+    ['ruy-lopez-marshall-attack-re3-variation', 1],
     ['ruy-lopez-marshall-attack-steiner-variation', 1],
     ['ruy-lopez-morphy-defense-jaffe-gambit', 1],
     ['ruy-lopez-morphy-defense-norwegian-variation-nightingale-gambit', 1],
     ['ruy-lopez-open-karpov-gambit', 1],
+    ['ruy-lopez-open-skipworth-gambit', 1],
     ['ruy-lopez-schliemann-defense', 1],
+    ['ruy-lopez-schliemann-defense-dyckhoff-variation', 1],
+    ['ruy-lopez-schliemann-defense-jaenisch-gambit-accepted', 1],
     ['ruy-lopez-spanish-countergambit', 1],
     ['ruy-lopez-steinitz-defense-center-gambit', 1],
     ['scandinavian-defense-blackburne-gambit', 1],
@@ -716,26 +806,39 @@ describe('the catalogue this repository ships', () => {
     ['scandinavian-defense-kiel-variation-trap', 3],
     ['scandinavian-defense-main-line-leonhardt-gambit', 1],
     ['scandinavian-defense-portuguese-gambit', 1],
+    ['scandinavian-defense-portuguese-gambit-banker-variation', 1],
+    ['scandinavian-defense-portuguese-gambit-jadoul-variation', 1],
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scandinavian-variation-bogoljubow-variation-richter-gambit', 1],
     ['scotch-game-alekhine-gambit', 1],
     ['scotch-game-goring-gambit', 2],
+    ['scotch-game-goring-gambit-bardeleben-variation', 1],
     ['scotch-game-goring-gambit-double-pawn-sacrifice', 1],
+    ['scotch-game-goring-gambit-main-line', 1],
+    ['scotch-game-haxo-gambit', 1],
     ['scotch-game-napoleon-gambit', 1],
     ['scotch-game-relfsson-gambit', 1],
     ['scotch-game-scotch-gambit', 4],
     ['scotch-game-scotch-gambit-advance-variation', 1],
+    ['scotch-game-scotch-gambit-cochrane-anderssen-variation', 1],
+    ['scotch-game-scotch-gambit-dubois-reti-defense', 1],
+    ['scotch-game-scotch-gambit-goring-gambit-declined', 1],
+    ['scotch-game-scotch-gambit-kingside-variation', 1],
+    ['scotch-game-scotch-gambit-london-defense', 1],
     ['scotch-game-scotch-gambit-sarratt-variation', 1],
+    ['scotch-variation-belgrade-gambit-modern-defense', 1],
     ['scotch-variation-krause-gambit-leonhardt-defense', 1],
     ['semi-slav-defense-anti-moscow-gambit', 1],
     ['semi-slav-defense-gunderam-gambit', 1],
     ['semi-slav-defense-marshall-gambit', 1],
     ['semi-slav-defense-marshall-gambit-main-line', 1],
+    ['semi-slav-defense-marshall-gambit-tolush-variation', 1],
     ['semi-slav-defense-noteboom-variation-anti-noteboom-gambit', 1],
     ['siberian-trap', 1],
     ['sicilian-defense-alapin-variation-anti-alapin-gambit', 1],
     ['sicilian-defense-brussels-gambit', 1],
     ['sicilian-defense-coles-sicilian-gambit', 1],
+    ['sicilian-defense-delayed-alapin-variation-basman-palatnik-gambit', 1],
     ['sicilian-defense-double-dutch-gambit', 1],
     ['sicilian-defense-euwe-attack-prins-gambit', 1],
     ['sicilian-defense-halasz-gambit', 1],
@@ -752,19 +855,40 @@ describe('the catalogue this repository ships', () => {
     ['sicilian-defense-polish-gambit', 1],
     ['sicilian-defense-portsmouth-gambit', 1],
     ['sicilian-defense-smith-morra-gambit', 4],
+    ['sicilian-defense-smith-morra-gambit-accepted', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-chicago-defense', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-classical-formation', 1],
     ['sicilian-defense-smith-morra-gambit-accepted-danish-variation', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-fianchetto-defense', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-finegold-defense', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-kan-formation', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-larsen-defense', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-morphy-defense', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-paulsen-formation', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-pin-defense', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-siberian-variation', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-sozin-formation', 1],
+    ['sicilian-defense-smith-morra-gambit-accepted-taimanov-formation', 1],
+    ['sicilian-defense-smith-morra-gambit-declined-center-formation', 1],
     ['sicilian-defense-smith-morra-gambit-deferred', 1],
     ['sicilian-defense-wing-gambit', 1],
     ['sicilian-defense-wing-gambit-abrahams-variation', 1],
     ['sicilian-defense-wing-gambit-marshall-variation', 1],
+    ['sicilian-defense-wing-gambit-romanian-defense', 1],
     ['slav-defense-diemer-gambit', 1],
     ['slav-defense-geller-gambit', 1],
     ['slav-defense-slav-gambit-alekhine-attack', 1],
     ['slav-defense-winawer-countergambit', 1],
+    ['slav-defense-winawer-countergambit-anti-winawer-gambit', 1],
+    ['smith-morra-gambit-accepted-morphy-defense-deferred', 1],
     ['smith-morra-gambit-accepted-open-d-file-trap', 1],
+    ['smith-morra-gambit-accepted-scheveningen-formation', 1],
     ['sodium-attack-durkin-gambit', 1],
     ['st-george-defense-zilbermints-gambit', 1],
     ['stafford-gambit-rosen-trap', 2],
+    ['steinitz-gambit-fraser-minckwitz-defense', 1],
+    ['steinitz-gambit-paulsen-defense', 1],
+    ['steinitz-gambit-sorensen-defense', 1],
     ['tarrasch-defense-classical-variation-classical-tarrasch-gambit', 1],
     ['tarrasch-defense-grunfeld-gambit', 1],
     ['tarrasch-defense-schara-gambit', 1],
@@ -777,7 +901,12 @@ describe('the catalogue this repository ships', () => {
     ['traxler-counterattack-ke2-trap', 1],
     ['trompowsky-attack-edge-variation-hergert-gambit', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
+    ['two-knights-defense-traxler-counterattack-bishop-sacrifice-line', 1],
+    ['two-knights-defense-traxler-counterattack-king-march-line', 1],
+    ['two-knights-defense-traxler-counterattack-knight-sacrifice-line', 1],
+    ['two-knights-defense-traxler-variation-trencianske-teplice-gambit', 1],
     ['two-knights-defense-ulvestad-variation-kurkin-gambit', 1],
+    ['two-knights-variation-suttles-variation-tal-gambit', 1],
     ['van-geet-opening-berlin-gambit', 1],
     ['van-geet-opening-dougherty-gambit', 1],
     ['van-geet-opening-hector-gambit', 1],
@@ -786,19 +915,26 @@ describe('the catalogue this repository ships', () => {
     ['vant-kruijs-opening-keoni-hiva-gambit-akahi-variation', 1],
     ['vant-kruijs-opening-keoni-hiva-gambit-alua-variation', 1],
     ['vienna-gambit-with-max-lange-defense', 2],
+    ['vienna-gambit-with-max-lange-defense-cunningham-defense', 1],
     ['vienna-gambit-with-max-lange-defense-knight-variation', 1],
     ['vienna-gambit-with-max-lange-defense-pierce-gambit', 1],
+    ['vienna-gambit-with-max-lange-defense-quelle-gambit', 1],
     ['vienna-game-adams-gambit', 1],
     ['vienna-game-frankenstein-dracula-qd5-trap', 3],
     ['vienna-game-frankenstein-dracula-variation', 1],
     ['vienna-game-fyfe-gambit', 3],
     ['vienna-game-omaha-gambit', 1],
+    ['vienna-game-paulsen-variation-pollock-gambit', 1],
     ['vienna-game-philidor-countergambit', 1],
     ['vienna-game-vienna-gambit', 1],
+    ['vienna-game-vienna-gambit-bardeleben-variation', 1],
+    ['vienna-game-vienna-gambit-breyer-variation', 1],
+    ['vienna-game-vienna-gambit-main-line', 1],
     ['vienna-game-vienna-gambit-steinitz-variation', 1],
     ['vienna-game-wurzburger-trap', 1],
     ['ware-opening-ware-gambit', 1],
     ['ware-opening-wing-gambit', 1],
+    ['winawer-variation-alekhine-gambit-alatortsev-variation', 1],
     ['zukertort-opening-herrstrom-gambit', 1],
     ['zukertort-opening-lemberger-gambit', 1],
     ['zukertort-opening-lisitsyn-gambit', 1],
@@ -809,7 +945,7 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored five hundred and fifty-nine have any', () => {
+  it('bakes keys on all 1024 entries, and only the authored six hundred and sixty-one have any', () => {
     expect(result.value.records).toHaveLength(1024)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
