@@ -1,0 +1,67 @@
+# Scandinavian Defense: Portuguese Gambit, Correspondence Refutation. Defining line 1.e4 d5
+# 2.exd5 Nf6 3.d4 Bg4 4.f3 Bf5, which ends on Black's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). The frozen catalogue line runs one ply further (g4);
+# it is modelled below as a reply so the learner's ply ends the defining line, as the
+# catalogue build allows.
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry. The leaf leaves a capture going free, which its
+# `unsettled` note acknowledges.
+id: scandinavian-defense-portuguese-gambit-correspondence-refutation
+name: 'Scandinavian Defense: Portuguese Gambit, Correspondence Refutation'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, Bg4, f3, Bf5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement, deepened from the frozen listed-tier classification in
+      tools/catalogue/source/classification.yaml. At the end of the defining line White is a
+      pawn up, eight pawns against seven, but the pawn on d5 is attacked twice and defended
+      by nothing, so Black can take it back, and the bishop on f5 stands where a pawn push
+      on g4 can attack it. The rating of dubious is the catalogue's; the board at this point
+      shows a loose extra pawn rather than a clear advantage for White. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...Bf5, nên số tốt là Trắng tám, Đen bảy. Tốt d5 bị hậu d8 và mã f6 tấn công và không được quân nào bảo vệ, còn tượng f5 tấn công tốt c2, ô được hậu d1 bảo vệ.
+    en: Black has just played 4...Bf5, so the pawn count is White eight, Black seven. The pawn on d5 is attacked by the queen on d8 and the knight on f6 and defended by nothing, and the bishop on f5 attacks the pawn on c2, which the queen on d1 defends.
+    fr: Les Noirs viennent de jouer 4...Bf5, de sorte que le compte des pions est de huit pour les Blancs, sept pour les Noirs. Le pion d5 est attaqué par la dame d8 et le cavalier f6 et n'est défendu par aucune pièce, et le fou f5 attaque le pion c2, que la dame d1 défend.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 5.g4 ở đây, chẳng hạn 5.c4 hoặc 5.Bb5+. Mục này chỉ mô hình hóa 5.g4 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: lấy lại tốt d5.'
+      en: "White plays something other than 5.g4 here, for instance 5.c4 or 5.Bb5+. This entry models only 5.g4 and does not analyse those moves; Black's task usually stays the same: win the d5 pawn back."
+      fr: "Les Blancs jouent autre chose que 5.g4 ici, par exemple 5.c4 ou 5.Bb5+. Cette entrée ne modélise que 5.g4 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : regagner le pion d5."
+  children:
+    - ply: g4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đẩy 5.g4, dùng tốt tấn công tượng f5. Tượng không được quân nào bảo vệ, còn tốt g4 được tốt f3 bảo vệ và bị tượng cùng mã tấn công.
+        en: White pushes 5.g4, attacking the bishop on f5 with the pawn. The bishop is defended by nothing, and the pawn on g4 is defended by the pawn on f3 and attacked by the bishop and the knight.
+        fr: Les Blancs poussent 5.g4, attaquant le fou f5 avec le pion. Le fou n'est défendu par aucune pièce, et le pion g4 est défendu par le pion f3 et attaqué par le fou et le cavalier.
+      unsettled: Qxd5 and Nxd5 are formally free because nothing of White's guards d5, but both leave the bishop on f5, which the g4 pawn attacks and nothing defends, to be taken, so Black has to deal with the bishop first and the evaluation reads the position as it stands, with the pawn on d5 still White's.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt. Tượng f5 bị tốt g4 tấn công và không được quân nào bảo vệ, nên Đen phải di chuyển nó hoặc ăn ở g4 trước mọi việc khác, trong khi tốt d5 bị tấn công hai lần, bởi hậu d8 và mã f6, và không được quân nào bảo vệ.'
+          en: 'Count the pawns: White eight, Black seven, so White is a pawn up. The bishop on f5 is attacked by the pawn on g4 and defended by nothing, so Black must move it or capture on g4 before anything else, while the d5 pawn is attacked twice, by the queen on d8 and the knight on f6, and defended by nothing.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de plus. Le fou f5 est attaqué par le pion g4 et n'est défendu par aucune pièce, de sorte que les Noirs doivent le déplacer ou prendre en g4 avant toute autre chose, tandis que le pion d5 est attaqué deux fois, par la dame d8 et le cavalier f6, et n'est défendu par aucune pièce."
+        plan:
+          vi: Trắng chơi c4 để giữ tốt d5, rồi Nc3 và Be3. Đen chơi ...Bg6 để giữ tượng và ...h5 để đánh vào tốt g4.
+          en: White plays c4 to hold the pawn on d5, then Nc3 and Be3. Black plays ...Bg6 to keep the bishop and ...h5 to strike at the g4 pawn.
+          fr: Les Blancs jouent c4 pour tenir le pion d5, puis Nc3 et Be3. Les Noirs jouent ...Bg6 pour garder le fou et ...h5 pour frapper le pion g4.
+        basis:
+          by: chan
+          at: 2026-10-01
