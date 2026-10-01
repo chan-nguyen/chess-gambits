@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are eight hundred and sixty of them, and they are the ones the content tickets authored', () => {
+  test('there are eight hundred and sixty-five of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'accelerated-london-system-steinitz-countergambit',
       'accelerated-london-system-steinitz-countergambit-accepted',
@@ -273,6 +273,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'english-opening-anglo-scandinavian-defense-schulz-gambit',
       'english-opening-jaenisch-gambit',
       'english-opening-myers-gambit',
+      'english-opening-symmetrical-variation-combe-hasenfuss-trap',
       'english-opening-wade-gambit',
       'english-opening-wing-gambit',
       'english-opening-zilbermints-gambit',
@@ -716,11 +717,13 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'queens-pawn-game-hubsch-gambit',
       'queens-pawn-game-zurich-gambit',
       'rat-defense-english-rat-lisbon-gambit',
+      'reti-opening-zaitsik-zichulidze-trap',
       'reti-opening-zilbermints-gambit',
       'richter-veresov-attack-malich-gambit',
       'rubinstein-trap',
       'ruy-lopez-alapin-defense-alapin-gambit',
       'ruy-lopez-berlin-defense-rio-gambit-accepted',
+      'ruy-lopez-berlin-defense-tarrasch-trap',
       'ruy-lopez-central-countergambit',
       'ruy-lopez-classical-variation-cordel-gambit',
       'ruy-lopez-classical-variation-konikowski-gambit',
@@ -758,6 +761,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'ruy-lopez-spanish-countergambit',
       'ruy-lopez-spanish-countergambit-harding-gambit',
       'ruy-lopez-steinitz-defense-center-gambit',
+      'scandinavian-defense-balode-sondore-trap',
       'scandinavian-defense-blackburne-gambit',
       'scandinavian-defense-blackburne-kloosterboer-gambit',
       'scandinavian-defense-boehnke-gambit',
@@ -801,6 +805,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'sicilian-defense-coles-sicilian-gambit',
       'sicilian-defense-delayed-alapin-variation-basman-palatnik-gambit',
       'sicilian-defense-double-dutch-gambit',
+      'sicilian-defense-dragon-variation-bb5-trap',
       'sicilian-defense-euwe-attack-prins-gambit',
       'sicilian-defense-halasz-gambit',
       'sicilian-defense-kotov-gambit',

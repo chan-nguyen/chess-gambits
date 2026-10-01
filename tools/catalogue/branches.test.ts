@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Eight hundred and sixty-one entries are authored — three from #15, eleven from #73, ten
+   * Eight hundred and sixty-six entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -265,7 +265,10 @@ describe('the catalogue this repository ships', () => {
    * gambits with ten Bishop's Opening gambits; Sicilian, Ruy Lopez and Alekhine Defense
    * gambits; and the Vienna Game, Vienna Gambit with Max Lange Defense, Blackmar-Diemer
    * Gambit, Dutch Defense, Center Game and Englund Gambit Declined entries — each a single
-   * root-to-leaf line) — and the
+   * root-to-leaf line), and five new named traps from #174 batch trap-2a (the Berlin version
+   * of the Tarrasch Trap, the Balode-Sondore Scandinavian Trap, the Dragon Bb5+ Trap, the
+   * Combe-Hasenfuss Trap and the Zaitsik-Zichulidze Reti Trap, each named below with the
+   * number of root-to-leaf lines its tree has) — and the
    * other 163
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
@@ -483,6 +486,7 @@ describe('the catalogue this repository ships', () => {
     ['english-opening-anglo-scandinavian-defense-schulz-gambit', 1],
     ['english-opening-jaenisch-gambit', 1],
     ['english-opening-myers-gambit', 1],
+    ['english-opening-symmetrical-variation-combe-hasenfuss-trap', 1],
     ['english-opening-wade-gambit', 1],
     ['english-opening-wing-gambit', 1],
     ['english-opening-zilbermints-gambit', 1],
@@ -926,11 +930,13 @@ describe('the catalogue this repository ships', () => {
     ['queens-pawn-game-hubsch-gambit', 1],
     ['queens-pawn-game-zurich-gambit', 1],
     ['rat-defense-english-rat-lisbon-gambit', 1],
+    ['reti-opening-zaitsik-zichulidze-trap', 2],
     ['reti-opening-zilbermints-gambit', 1],
     ['richter-veresov-attack-malich-gambit', 2],
     ['rubinstein-trap', 1],
     ['ruy-lopez-alapin-defense-alapin-gambit', 1],
     ['ruy-lopez-berlin-defense-rio-gambit-accepted', 1],
+    ['ruy-lopez-berlin-defense-tarrasch-trap', 2],
     ['ruy-lopez-central-countergambit', 1],
     ['ruy-lopez-classical-variation-cordel-gambit', 1],
     ['ruy-lopez-classical-variation-konikowski-gambit', 1],
@@ -968,6 +974,7 @@ describe('the catalogue this repository ships', () => {
     ['ruy-lopez-spanish-countergambit', 1],
     ['ruy-lopez-spanish-countergambit-harding-gambit', 1],
     ['ruy-lopez-steinitz-defense-center-gambit', 1],
+    ['scandinavian-defense-balode-sondore-trap', 4],
     ['scandinavian-defense-blackburne-gambit', 1],
     ['scandinavian-defense-blackburne-kloosterboer-gambit', 1],
     ['scandinavian-defense-boehnke-gambit', 1],
@@ -1011,6 +1018,7 @@ describe('the catalogue this repository ships', () => {
     ['sicilian-defense-coles-sicilian-gambit', 1],
     ['sicilian-defense-delayed-alapin-variation-basman-palatnik-gambit', 1],
     ['sicilian-defense-double-dutch-gambit', 1],
+    ['sicilian-defense-dragon-variation-bb5-trap', 2],
     ['sicilian-defense-euwe-attack-prins-gambit', 1],
     ['sicilian-defense-halasz-gambit', 1],
     ['sicilian-defense-kotov-gambit', 1],
@@ -1151,8 +1159,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored eight hundred and sixty-one have any', () => {
-    expect(result.value.records).toHaveLength(1024)
+  it('bakes keys on all 1029 entries, and only the authored eight hundred and sixty-six have any', () => {
+    expect(result.value.records).toHaveLength(1029)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
