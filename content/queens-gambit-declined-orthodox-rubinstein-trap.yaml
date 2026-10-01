@@ -1,0 +1,181 @@
+# The Rubinstein Trap in the Orthodox Defense of the Queen's Gambit Declined, from White's side.
+# This is the trap that the literature (Wikipedia's article of that name, chess.com's opening
+# pages, chesstrapguide.com) calls THE Rubinstein Trap. The catalogue's older `rubinstein-trap`
+# is a different trap in a different opening (the Cambridge Springs Defense, D52, Black's side);
+# ids are never renamed, so this entry has its own id, and both entries now carry a page heading
+# (the content `name`) that says which opening they sit in; in the catalogue the two cards are
+# already kept apart by their families ("Cambridge Springs Defense: Rubinstein Trap" and
+# "Queen's Gambit Declined: Orthodox Defense, Rubinstein Trap").
+#
+# The defining line is 1.d4 d5 2.c4 e6 3.Nc3 Nf6 4.Bg5 Be7 5.e3 O-O 6.Nf3 Nbd7 7.Rc1 c6 8.Qc2
+# a6 9.cxd5 exd5 10.Bd3 Re8 11.O-O Ne4 12.Bf4. It ends on White's own ply, so the root is an
+# opponent node and Black's mistakes can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is D65 and category is `trap`, matching `traps.yaml`. The ECO comes from the dataset
+# row that contains this exact line, "Queen's Gambit Declined: Orthodox Defense, Rubinstein
+# Attack" (...7.Rc1 c6 8.Qc2 a6 9.cxd5 exd5 10.Bd3, D65), not from the "Bd3 Line" rows
+# (8.Bd3, D66/D67) that issue #173 named: those rows are a different 8th move and do not
+# contain the trap's moves.
+#
+# Sources are leads. chesstrapguide.com gives this line to 14.Bc7; Wikipedia gives the same
+# moves and says only that after 12...f5 13.Nxd5 Black "cannot recapture" because of Bc7 and
+# so White wins a pawn. The study chapter in issue #173 (L2) is a second form, in a different
+# move order (no Qc2 or ...a6) ending 11...Nh5? 12.Nxd5. All of it was replayed with chess.js
+# before any prose was written. What the replay found, and the file now says:
+#
+# - The trap is real, but it is two moves long on Black's side: 11...Ne4 12.Bf4 is not yet an
+#   error (12...Ndf6 is level), and the mistake is 12...f5?. Against it 13.Nxd5! only wins the
+#   queen if Black answers 13...cxd5? 14.Bc7. Black's accurate reply is 13...Bd6, which blocks
+#   the f4-c7 diagonal and leaves White a pawn up with the better game; that is what the entry
+#   teaches, honestly, rather than pretending Bc7 is forced.
+# - 12.Bxe4 is objectively stronger than 12.Bf4 for White (it wins a pawn by force with
+#   12...dxe4 13.Nxe4 Bxg5 14.Nexg5). The entry teaches 12.Bf4 because that is the move the
+#   trap needs, and says so.
+# - The L2 form (11...Nh5? 12.Nxd5) was replayed: it is legal and wins the d5 pawn after
+#   12...Nxf4 13.Nxf4, but it is a different position from this entry's tree, so it is not
+#   included; it could be a separate branch later.
+#
+# A private engine cross-check (the Stockfish build the analysis page ships, at moderate
+# depth) was used to decide which replies deserve a branch. It is not the source of any claim
+# in the lesson: every capture or count was read off the derived board.
+id: queens-gambit-declined-orthodox-rubinstein-trap
+name: "Queen's Gambit Declined: Orthodox Defense, Rubinstein Trap"
+eco: D65
+category: trap
+side: white
+definingLine:
+  - d4
+  - d5
+  - c4
+  - e6
+  - Nc3
+  - Nf6
+  - Bg5
+  - Be7
+  - e3
+  - O-O
+  - Nf3
+  - Nbd7
+  - Rc1
+  - c6
+  - Qc2
+  - a6
+  - cxd5
+  - exd5
+  - Bd3
+  - Re8
+  - O-O
+  - Ne4
+  - Bf4
+soundness:
+  value: sound
+  reviewedAt: 2026-10-01
+  basis:
+    by: chan
+    at: 2026-10-01
+    source: "A judgement, and the same label `traps.yaml` carries. It is about White's play: 12.Bf4 is a sound developing move that keeps equality against Black's best reply 12...Ndf6, and against 12...f5? White wins a pawn with the better game even if Black finds 13...Bd6, so nothing in this entry depends on the opponent cooperating. 12.Bxe4 is objectively stronger and the header says so. An engine was used privately at moderate depth to find the replies worth modelling and is not the source of any claim."
+judgement:
+  by: chan
+  at: 2026-10-01
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date. Every material count was read off the derived board.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 12.Bf4. Tượng d3 và hậu c2 cùng đứng trên đường chéo b1–h7, chỉ bị mã e4 của Đen chắn ngang; tượng f4 nhắm vào ô c7; hậu c2 và xe c1 cùng đứng trên cột c. Mã e4 bị mã c3 và tượng d3 đánh nhưng chỉ có tốt d5 bảo vệ.
+    en: White has just played 12.Bf4. The d3 bishop and the c2 queen stand on the b1–h7 diagonal with only Black's e4 knight in the way; the f4 bishop aims at c7; the queen on c2 and the rook on c1 share the c-file. The e4 knight is attacked by the c3 knight and the d3 bishop but protected only by the d5 pawn.
+    fr: Les Blancs viennent de jouer 12.Bf4. Le fou d3 et la dame c2 sont sur la diagonale b1–h7, avec seulement le cavalier e4 noir en travers ; le fou f4 vise c7 ; la dame c2 et la tour c1 partagent la colonne c. Le cavalier e4 est attaqué par le cavalier c3 et le fou d3, mais protégé seulement par le pion d5.
+  dismissRest:
+    reason:
+      vi: Mỗi nước còn lại đều cho Trắng một lợi thế rõ rệt, kể cả khi Đen không sa vào cái bẫy nào.
+      en: Every remaining move gives White a clear advantage, even without Black falling for the trap.
+      fr: Chacun des autres coups donne aux Blancs un avantage net, même sans que les Noirs tombent dans le piège.
+  dismissed:
+    - ply: Nef6
+      reason: 12...Nef6 retreats the attacked knight; 13.h3 Nf8 14.Bg3 leaves White slightly better and no trap.
+    - ply: g5
+      reason: 12...g5 13.Be5 Nxe5 14.Nxe5 f5 15.Bxe4 fxe4 16.Qb3 leaves Black with a weakened king and White better.
+  children:
+    - ply: Ndf6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Mã d7 nhảy sang f6 để bảo vệ mã e4 bằng một quân thật. Đây là cách đáp chuẩn: mã e4 giờ có hai người bảo vệ, và cái bẫy biến mất.'
+        en: 'The d7 knight goes to f6 and protects the e4 knight with a real piece. This is the standard answer: the e4 knight now has two defenders and the trap is gone.'
+        fr: "Le cavalier d7 va en f6 et protège le cavalier e4 avec une vraie pièce. C'est la réponse standard : le cavalier e4 a maintenant deux défenseurs et le piège a disparu."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Quân số hoàn toàn cân bằng: mỗi bên có bảy tốt, hậu, hai xe, hai tượng và hai mã. Mã e4 của Đen có hai quân bảo vệ (tốt d5 và mã f6) nên Trắng không thắng nó được, và thế cờ ngang.'
+          en: "Material is exactly level: each side has seven pawns, a queen, two rooks, two bishops and two knights. Black's e4 knight now has two defenders (the d5 pawn and the f6 knight), so White cannot win it, and the position is level."
+          fr: 'Le matériel est rigoureusement égal : chaque camp a sept pions, une dame, deux tours, deux fous et deux cavaliers. Le cavalier e4 noir a maintenant deux défenseurs (le pion d5 et le cavalier f6), les Blancs ne peuvent donc pas le gagner, et la position est égale.'
+        plan:
+          vi: Trắng đổi mã e4 (Nxe4 hoặc Bxe4) hoặc đưa mã lên e5 trước. Đây là một thế cờ cân bằng bình thường, không phải cái bẫy.
+          en: White trades the e4 knight (Nxe4 or Bxe4) or first puts a knight on e5. This is a normal, balanced position, not a trap.
+          fr: Les Blancs échangent le cavalier e4 (Nxe4 ou Bxe4) ou posent d'abord un cavalier en e5. C'est une position normale et équilibrée, pas un piège.
+        basis:
+          by: chan
+          at: 2026-10-01
+    - ply: f5
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: 'Đen đẩy tốt f5 để giữ mã e4 và chặn đường chéo b1–h7. Nhưng nước đó bỏ quên tốt d5: nó chỉ còn tốt c6 bảo vệ, trong khi mã c3 đang đánh nó.'
+        en: 'Black pushes the f-pawn to support the e4 knight and block the b1–h7 diagonal. But it forgets the d5 pawn: only the c6 pawn protects it, while the c3 knight attacks it.'
+        fr: "Les Noirs poussent le pion f pour soutenir le cavalier e4 et barrer la diagonale b1–h7. Mais ils oublient le pion d5 : seul le pion c6 le protège, alors que le cavalier c3 l'attaque."
+      children:
+        - ply: Nxd5
+          annotation:
+            vi: Mã c3 ăn tốt d5. Mã đứng đó không có quân nào bảo vệ, nên Đen có thể ăn lại bằng tốt c6; nhưng khi tốt c6 rời khỏi cột c, tượng f4 sẽ nhảy lên c7 đánh hậu d8. Nếu Đen không ăn lại, Trắng đã hơn một tốt.
+            en: The c3 knight takes the d5 pawn. It has no defender there, so Black can recapture with the c6 pawn; but once that pawn leaves the c-file, the f4 bishop jumps to c7 and attacks the queen on d8. If Black does not recapture, White is a pawn up.
+            fr: Le cavalier c3 prend le pion d5. Il n'a aucun défenseur là, les Noirs peuvent donc reprendre avec le pion c6 ; mais dès que ce pion quitte la colonne c, le fou f4 saute en c7 et attaque la dame d8. Si les Noirs ne reprennent pas, les Blancs ont un pion de plus.
+          dismissRest:
+            reason:
+              vi: 'Mọi nước còn lại đều không cứu nổi Đen: Trắng đã thắng một tốt, các quân Trắng phối hợp rất tốt, và còn một đòn phụ như Nc7 chĩa vào hai xe hay Nxe7+ ăn tượng. Trắng thắng thêm vật chất một cách rõ rệt.'
+              en: 'Every remaining move fails to save Black: White has won a pawn and its pieces work together too well: a second blow follows, such as Nc7 forking the rooks or Nxe7+ taking a bishop. White wins clear extra material.'
+              fr: 'Tout autre coup ne sauve pas les Noirs : les Blancs ont gagné un pion et leurs pièces coopèrent trop bien : un second coup suit, tel Nc7 qui fourche les tours ou Nxe7+ qui prend un fou. Les Blancs gagnent un net surplus de matériel.'
+          children:
+            - ply: Bd6
+              replyQuality: best
+              frequency: occasional
+              annotation:
+                vi: 'Đen chơi 13...Bd6: tượng đánh vào tượng f4 và chặn đường f4–c7, nên Bc7 không còn nữa. Đây là nước duy nhất không thua nhiều hơn một tốt.'
+                en: 'Black plays 13...Bd6: the bishop attacks the f4 bishop and blocks the f4–c7 diagonal, so Bc7 is no longer possible. It is the only move that does not lose a good deal more than a pawn.'
+                fr: "Les Noirs jouent 13...Bd6 : le fou attaque le fou f4 et barre la diagonale f4–c7, de sorte que Bc7 n'est plus possible. C'est le seul coup qui ne perde pas bien plus qu'un pion."
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Quân số: Trắng hơn một tốt (bảy tốt đấu sáu), vì tốt d5 của Đen đã mất. Mã d5 đứng rất mạnh nhưng đang bị tốt c6 đánh, nên Trắng phải xử lý trước; còn mã e4 của Đen chỉ có tốt f5 giữ, và tượng d6 của Đen đang bị tượng f4 đánh.'
+                  en: "Material count: White is a pawn up (seven pawns to six), because Black's d5 pawn is gone. The d5 knight is very strong but is attacked by the c6 pawn, so White has to deal with that first; Black's e4 knight is held only by the f5 pawn, and Black's d6 bishop is attacked by the f4 bishop."
+                  fr: "Décompte matériel : les Blancs ont un pion de plus (sept pions contre six), car le pion d5 noir a disparu. Le cavalier d5 est très fort mais attaqué par le pion c6, les Blancs doivent donc d'abord s'en occuper ; le cavalier e4 noir n'est tenu que par le pion f5, et le fou d6 noir est attaqué par le fou f4."
+                plan:
+                  vi: 'Trắng chơi 14.Qb3: hậu bảo vệ mã d5 theo đường b3–c4–d5 và nhắm vào tốt b7, rồi tiếp tục dồn ép bằng Bxd6 hoặc Nf4 tuỳ phản ứng của Đen. Đen phải tìm cách giải quyết mã d5 mạnh mà không mất thêm quân.'
+                  en: "White plays 14.Qb3: the queen protects the d5 knight along b3–c4–d5 and aims at the b7 pawn, then keeps the pressure with Bxd6 or Nf4 depending on Black's reply. Black has to find a way to deal with the strong d5 knight without losing more material."
+                  fr: 'Les Blancs jouent 14.Qb3 : la dame protège le cavalier d5 par b3–c4–d5 et vise le pion b7, puis maintiennent la pression par Bxd6 ou Nf4 selon la réponse des Noirs. Les Noirs doivent trouver comment régler le fort cavalier d5 sans perdre davantage de matériel.'
+                basis:
+                  by: chan
+                  at: 2026-10-01
+            - ply: cxd5
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: 'Tốt c6 ăn mã d5: Đen thắng một quân. Nhưng tốt c6 rời cột c, và hậu c2 cùng xe c1 giờ nhìn thẳng xuống ô c7, đúng chỗ tượng f4 sắp nhảy tới.'
+                en: 'The c6 pawn takes the d5 knight: Black wins a piece. But that pawn has left the c-file, and the queen on c2 and the rook on c1 now look straight down at c7, exactly where the f4 bishop is about to land.'
+                fr: 'Le pion c6 prend le cavalier d5 : les Noirs gagnent une pièce. Mais ce pion a quitté la colonne c, et la dame c2 et la tour c1 regardent maintenant droit vers c7, exactement là où le fou f4 va se poser.'
+              children:
+                - ply: Bc7
+                  annotation:
+                    vi: Tượng f4 nhảy lên c7, được hậu c2 bảo vệ, và đánh hậu d8. Hậu Đen không còn ô nào để chạy.
+                    en: The f4 bishop jumps to c7, protected by the c2 queen, and attacks the queen on d8. The black queen has nowhere to go.
+                    fr: Le fou f4 saute en c7, protégé par la dame c2, et attaque la dame d8. La dame noire n'a aucune case où aller.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Một quân không có ô tốt: hậu Đen ở d8 chỉ còn đúng một nước là Qxc7, vì c8, d7 và e8 đều bị chính quân Đen chiếm, và nước ăn ấy mất hậu vào Qxc7. Trước nước đi của Đen, Đen đang hơn hai điểm (một mã đổi một tốt); nhưng thắng hậu đổi một tượng đảo thành Trắng hơn bốn điểm.'
+                      en: "A piece with no good square: the black queen on d8 has exactly one move, Qxc7, because c8, d7 and e8 are all occupied by Black's own pieces, and that capture loses the queen to Qxc7. Before Black's move Black is two points ahead (a knight for a pawn); winning the queen for a bishop turns that into a four-point lead for White."
+                      fr: "Une pièce sans bonne case : la dame noire en d8 n'a qu'un seul coup, Qxc7, car c8, d7 et e8 sont occupées par les pièces noires, et cette prise perd la dame contre Qxc7. Avant le coup des Noirs, ils ont deux points d'avance (un cavalier contre un pion) ; gagner la dame contre un fou en fait quatre points d'avance pour les Blancs."
+                    plan:
+                      vi: Trắng ăn hậu Đen ở d8 hoặc c7 (Bxd8 sau khi Đen bỏ rơi hậu, hoặc Qxc7 sau Qxc7), đổi lấy nhiều nhất một tượng, rồi dùng hơn quân để xử lý mã e4. Đen không còn cách nào cứu hậu.
+                      en: White takes the black queen on d8 or c7 (Bxd8 if Black abandons it, or Qxc7 after Qxc7), at the price of a bishop at most, then uses the extra material to deal with the e4 knight. Black has no way to save the queen.
+                      fr: Les Blancs prennent la dame noire en d8 ou en c7 (Bxd8 si les Noirs l'abandonnent, ou Qxc7 après Qxc7), au prix d'un fou au plus, puis se servent du matériel supplémentaire pour régler le cavalier e4. Les Noirs n'ont aucun moyen de sauver la dame.
+                    basis:
+                      by: chan
+                      at: 2026-10-01

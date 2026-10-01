@@ -1,0 +1,239 @@
+# The Queen Amidala Trap, from Black's side of the Queen's Indian Defense, Fianchetto
+# Variation, Check Variation. The defining line is 1.d4 Nf6 2.c4 e6 3.Nf3 b6 4.g3 Ba6 5.b3 Bb4+
+# and it ends on Black's own ply, so the root is an opponent node and White's mistakes can carry
+# a quality (docs/CONTEXT.md, invariant 5). It is exactly the dataset row "Queen's Indian
+# Defense: Fianchetto Variation, Check Variation" (E15).
+#
+# ECO is E15 and category is `trap`, matching `traps.yaml`: a trap carries the ECO of the
+# opening it sits inside (ADR-0008).
+#
+# Sources are leads. The line 6.Nbd2 Bc3 7.Rb1 Bb7 8.Bg2 Be4 9.Nh4 Bxg2 10.Nxg2 Bxd4 is in
+# lichess study 7ndvaGkp (chapter 21) and thechesswebsite.com describes the idea in prose
+# (blocking the check with a knight); the Chessgames reference list that fed issue #173
+# credits the position to Shirazi-Benjamin 1984, which went 8.Bb2 Ne4. All of it was replayed
+# ply by ply with chess.js before any prose was written. What the replay found, and the file
+# now says:
+#
+# - The trap is real but modest. 6.Nbd2? is not a blunder: after 6...Bc3! 7.Rb1 Bb7 White is
+#   worse by roughly half a pawn, not lost. 6.Bd2 is the correct reply and is modelled with its
+#   own assessment. 6.Nfd2 is the same mistake with the other knight (the d2 knight is pinned
+#   and the bishop on b7 immediately hits the h1 rook), and is modelled too.
+# - The source's "8.Bg2??" does not survive replay as a blunder. 8.Bg2 is one of White's
+#   reasonable moves there; what it concedes is the d4 pawn. And 8...Be4, the source's reply,
+#   is not Black's best: 8...Bxd4 is, because the f3 knight is tied to the h1 rook, so 9.Nxd4
+#   runs into 9...Bxg2 and the bishop retreats with a pawn gained. The entry teaches 8...Bxd4
+#   and its evaluation says "a pawn", not a win.
+# - 8.Bb2 Ne4 (the Shirazi game) is not a blunder either. It is modelled as a level position in
+#   which Black has the more active pieces, which is what the game showed.
+# - The tempting alternatives 6.Nc3 (6...Bxc3+ wins the exchange, since the c1 bishop blocks the
+#   queen's way to a1) and 6.Qd2 (the queen is simply captured) are dismissed with their
+#   reasons. None of this needs a mate and none is claimed.
+#
+# A private engine cross-check (the Stockfish build the analysis page ships, at moderate
+# depth) was used to decide which replies deserve a branch. It is not the source of any claim
+# in the lesson: every capture or count was read off the derived board.
+id: queens-indian-defense-queen-amidala-trap
+name: "Queen's Indian Defense: Queen Amidala Trap"
+eco: E15
+category: trap
+side: black
+definingLine:
+  - d4
+  - Nf6
+  - c4
+  - e6
+  - Nf3
+  - b6
+  - g3
+  - Ba6
+  - b3
+  - Bb4+
+soundness:
+  value: sound
+  reviewedAt: 2026-10-01
+  basis:
+    by: chan
+    at: 2026-10-01
+    source: "A judgement, and the same label `traps.yaml` carries. It is about Black's play: 5...Bb4+ is a normal move in this line, and against the correct 6.Bd2 Black is level, so nothing in this entry depends on the opponent cooperating. The trap itself wins at most a pawn against best play and the entry says so. An engine was used privately at moderate depth to find the replies worth modelling and is not the source of any claim."
+judgement:
+  by: chan
+  at: 2026-10-01
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date. Every material count was read off the derived board.
+tree:
+  annotation:
+    vi: 'Đen vừa chiếu bằng 5...Bb4+. Trắng có {legal} cách đỡ: Bd2 (tượng), Nbd2, Nfd2 hoặc Nc3 (mã), hay Qd2 (hậu). Chỉ có 6.Bd2 giữ được cân bằng; các nước chặn bằng mã d2 đều đặt mã vào thế bị ghim vào vua e1.'
+    en: 'Black has just given check with 5...Bb4+. White has {legal} ways to meet it: Bd2 (the bishop), Nbd2, Nfd2 or Nc3 (a knight), or Qd2 (the queen). Only 6.Bd2 keeps the balance; the knight blocks on d2 all leave the knight pinned against the king on e1.'
+    fr: "Les Noirs viennent de donner échec par 5...Bb4+. Les Blancs ont {legal} façons d'y répondre : Bd2 (le fou), Nbd2, Nfd2 ou Nc3 (un cavalier), ou Qd2 (la dame). Seul 6.Bd2 conserve l'équilibre ; les interpositions de cavalier en d2 laissent toutes le cavalier cloué sur le roi e1."
+  counts:
+    legal:
+      count: legalReplies
+      expect: 5
+  dismissed:
+    - ply: Nc3
+      reason: '6.Nc3 Bxc3+ 7.Bd2 Bxa1 wins a rook for a bishop: the c1 bishop stands between the queen and a1, so the a1 bishop is not taken back at once.'
+    - ply: Qd2
+      reason: 6.Qd2 Bxd2+ wins the queen for a bishop.
+  children:
+    - ply: Bd2
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng chặn bằng tượng c1, và đây là nước đúng. Tượng b4 của Đen bị tượng d2 đánh mà không có quân nào bảo vệ, nên Đen phải đổi tượng, lùi, hoặc đỡ bằng ...c5.
+        en: White blocks with the c1 bishop, and this is the correct move. Black's b4 bishop is attacked by the d2 bishop and protected by nothing, so Black must trade it, retreat it, or support it with ...c5.
+        fr: "Les Blancs interposent avec le fou c1, et c'est le bon coup. Le fou b4 noir est attaqué par le fou d2 et protégé par rien : les Noirs doivent l'échanger, le reculer ou le soutenir par ...c5."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Quân số cân bằng: mỗi bên có tám tốt và cùng số quân. Đây là cách đỡ đúng của Trắng và cái bẫy không có hiệu lực: tượng d2 có thể ăn ngay tượng b4 trên chính đường chéo ấy, và không quân nào của Trắng bị đòn chĩa.'
+          en: "Material is level: each side has eight pawns and the same pieces. This is the correct block for White and the trap has no force: the d2 bishop can take the b4 bishop at once along the very same diagonal, and nothing of White's is forked."
+          fr: "Le matériel est égal : chaque camp a huit pions et les mêmes pièces. C'est la bonne interposition des Blancs et le piège n'a aucune force : le fou d2 peut prendre aussitôt le fou b4 sur cette même diagonale, et rien n'est fourché côté blanc."
+        plan:
+          vi: Đen thường đổi tượng bằng 6...Bxd2+ hoặc đỡ tượng bằng 6...c5, rồi đưa tượng a6 hoặc b7 vào chơi. Trắng phát triển bằng Bg2 và O-O. Hai bên cân bằng.
+          en: Black usually trades with 6...Bxd2+ or supports the bishop with 6...c5, then develops the a6 or b7 bishop. White develops with Bg2 and O-O. The game is balanced.
+          fr: Les Noirs échangent d'ordinaire par 6...Bxd2+ ou soutiennent le fou par 6...c5, puis développent le fou a6 ou b7. Les Blancs se développent par Bg2 et O-O. La partie est équilibrée.
+        basis:
+          by: chan
+          at: 2026-10-01
+    - ply: Nbd2
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: Trắng chặn bằng mã b1. Mã d2 giờ bị tượng b4 ghim vào vua e1, và ô c3 trống để tượng ấy nhảy xuống. Đây là cú vấp mà cái bẫy chờ.
+        en: White blocks with the b1 knight. The d2 knight is now pinned against the king on e1 by the b4 bishop, and c3 is empty for that bishop to jump to. This is the slip the trap waits for.
+        fr: Les Blancs interposent avec le cavalier b1. Le cavalier d2 est maintenant cloué sur le roi e1 par le fou b4, et c3 est libre pour que ce fou y saute. C'est la faute qu'attend le piège.
+      children:
+        - ply: Bc3
+          annotation:
+            vi: 'Tượng b4 nhảy xuống c3 và cùng lúc đánh xe a1 lẫn mã d2. Mã d2 có bốn quân bảo vệ, nhưng xe a1 thì không có ai: hậu d1 bị chính tượng c1 chắn đường.'
+            en: 'The b4 bishop drops to c3, attacking the a1 rook and the d2 knight at once. The d2 knight has four defenders, but the a1 rook has none: the queen on d1 is blocked by the c1 bishop.'
+            fr: "Le fou b4 descend en c3 et attaque à la fois la tour a1 et le cavalier d2. Le cavalier d2 a quatre défenseurs, mais la tour a1 n'en a aucun : la dame d1 est bloquée par le fou c1."
+          counts:
+            legal:
+              count: legalReplies
+              expect: 21
+          dismissRest:
+            reason:
+              vi: 'Trong {legal} nước hợp lệ của Trắng, mọi nước ngoài Rb1, Bb2 và Ba3 đều để mất trắng xe a1: 7...Bxa1 ăn xe mà không có quân nào ăn lại được, vì tượng c1 vẫn chắn đường hậu d1.'
+              en: "Of White's {legal} legal moves, every one except Rb1, Bb2 and Ba3 loses the a1 rook for nothing: 7...Bxa1 takes it and nothing can retake, because the c1 bishop still blocks the d1 queen."
+              fr: 'Sur les {legal} coups légaux des Blancs, tous sauf Rb1, Bb2 et Ba3 perdent la tour a1 pour rien : 7...Bxa1 la prend et rien ne peut reprendre, car le fou c1 bloque toujours la dame d1.'
+          dismissed:
+            - ply: Bb2
+              reason: '7.Bb2 Bxa1 8.Bxa1 gives the exchange: a rook for a bishop.'
+            - ply: Ba3
+              reason: '7.Ba3 Bxa1 8.Qxa1 gives the exchange: a rook for a bishop (the c1 square is clear now, so the queen can retake).'
+          children:
+            - ply: Rb1
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Xe lùi về b1, nước duy nhất cứu xe mà không mất chất. Mã d2 vẫn bị ghim, và Đen đã có lợi thế nhỏ.
+                en: The rook steps back to b1, the only move that saves it without losing material. The d2 knight is still pinned and Black already has a small edge.
+                fr: La tour recule en b1, le seul coup qui la sauve sans perdre de matériel. Le cavalier d2 reste cloué et les Noirs ont déjà un petit avantage.
+              children:
+                - ply: Bb7
+                  annotation:
+                    vi: 'Tượng a6 sang b7, nhắm dọc đường chéo dài b7–h1. Mã f3 giờ không đi đâu được: nếu nó rời f3, Bxh1 ăn xe, vì ô g2 còn trống. Tốt d4 chỉ còn đúng mã f3 bảo vệ.'
+                    en: 'The a6 bishop goes to b7, aiming down the long b7–h1 diagonal. The f3 knight now cannot go anywhere: if it leaves f3, Bxh1 takes the rook, since g2 is still empty. The d4 pawn is protected only by that knight.'
+                    fr: "Le fou a6 va en b7 et vise toute la grande diagonale b7–h1. Le cavalier f3 ne peut plus aller nulle part : s'il quitte f3, Bxh1 prend la tour, car g2 est encore vide. Le pion d4 n'est protégé que par ce cavalier."
+                  counts:
+                    legal:
+                      count: legalReplies
+                      expect: 22
+                  dismissRest:
+                    reason:
+                      vi: Trong {legal} nước hợp lệ của Trắng, những nước chưa nêu ở trên không mất quân ngay, nhưng không nước nào giải quyết được vấn đề của Trắng và Đen vẫn có lợi thế nhỏ trong từng nước.
+                      en: Of White's {legal} legal moves, the ones not named above do not lose a piece at once, but none solves White's problems and Black keeps a small edge in each.
+                      fr: Sur les {legal} coups légaux des Blancs, ceux qui ne sont pas cités plus haut ne perdent pas de pièce tout de suite, mais aucun ne résout les problèmes blancs et les Noirs gardent un petit avantage dans chacun.
+                  dismissed:
+                    - ply: Ne5
+                      reason: 8.Ne5 leaves f3, so 8...Bxh1 wins the rook for nothing.
+                    - ply: Ng5
+                      reason: 8.Ng5 leaves f3, so 8...Bxh1 wins the rook for nothing.
+                    - ply: Nh4
+                      reason: 8.Nh4 leaves f3, so 8...Bxh1 wins the rook for nothing.
+                    - ply: Ng1
+                      reason: 8.Ng1 leaves f3, so 8...Bxh1 wins the rook for nothing.
+                    - ply: Ra1
+                      reason: 8.Ra1 walks back into 8...Bxa1, which nothing retakes.
+                    - ply: Rb2
+                      reason: '8.Rb2 Bxb2 9.Bxb2 gives the exchange: a rook for a bishop.'
+                  children:
+                    - ply: Bg2
+                      replyQuality: inaccuracy
+                      frequency: common
+                      annotation:
+                        vi: 'Tượng f1 ra g2, che đường chéo dài và giải thoát cho mã f3 khỏi thế bị trói. Nhưng nó để lộ một điểm yếu: tốt d4 vẫn chỉ có mã f3 bảo vệ, và nếu mã ấy ăn lại, tượng b7 sẽ ăn tượng g2.'
+                        en: 'The f1 bishop goes to g2, blocking the long diagonal and freeing the f3 knight from its bind. But it exposes a weakness: the d4 pawn is still protected only by the f3 knight, and if that knight recaptures, the b7 bishop takes the g2 bishop.'
+                        fr: "Le fou f1 va en g2, barre la grande diagonale et libère le cavalier f3 de son immobilisation. Mais cela expose une faiblesse : le pion d4 n'est toujours protégé que par le cavalier f3, et si celui-ci reprend, le fou b7 prend le fou g2."
+                      children:
+                        - ply: Bxd4
+                          annotation:
+                            vi: Tượng c3 ăn tốt d4. Nếu Trắng ăn lại bằng mã f3 thì 9...Bxg2 ăn tượng g2, đánh luôn xe h1, và sau 10.Rg1 Bb7 Đen vẫn hơn một tốt. Nếu Trắng không ăn lại, Đen cũng hơn một tốt.
+                            en: The c3 bishop takes the d4 pawn. If White recaptures with the f3 knight, 9...Bxg2 takes the g2 bishop and attacks the h1 rook, and after 10.Rg1 Bb7 Black is still a pawn up. If White does not recapture, Black is a pawn up as well.
+                            fr: Le fou c3 prend le pion d4. Si les Blancs reprennent avec le cavalier f3, 9...Bxg2 prend le fou g2 et attaque la tour h1, et après 10.Rg1 Bb7 les Noirs ont toujours un pion de plus. Si les Blancs ne reprennent pas, les Noirs ont aussi un pion de plus.
+                          unsettled: 'White can take the d4 bishop for free with Nxd4, but that is the line the evaluation describes: ...Bxg2 and ...Bb7 follow and Black keeps the pawn, so playing it out adds nothing to the count below.'
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: 'Quân số: Đen hơn một tốt (tám tốt đấu bảy), vì tốt d4 của Trắng đã mất. Dù Trắng ăn lại tượng d4 bằng Nxd4, Bxg2 rồi Rg1 Bb7 cho kết quả cùng một tốt, và không quân nào của Trắng ăn lại được tốt ấy ngay.'
+                              en: "Material count: Black is a pawn up (eight pawns to seven), because White's d4 pawn is gone. Even if White takes the d4 bishop with Nxd4, Bxg2 followed by Rg1 Bb7 leaves the same single pawn, and no white piece can win that pawn back at once."
+                              fr: 'Décompte matériel : les Noirs ont un pion de plus (huit pions contre sept), car le pion d4 blanc a disparu. Même si les Blancs prennent le fou d4 par Nxd4, Bxg2 suivi de Rg1 Bb7 laisse le même unique pion, et aucune pièce blanche ne peut le regagner aussitôt.'
+                            plan:
+                              vi: Đen giữ tốt thừa bằng cách đổi bớt quân và nhập thành (sau ...Bxg2 là ...Bb7 hoặc ...O-O). Trắng cố đòi lại bằng áp lực trên cột d và đường chéo dài, nhưng ưu thế của Đen chỉ là một tốt, không phải một ván thắng ngay.
+                              en: Black keeps the extra pawn by trading pieces and castling (after ...Bxg2 comes ...Bb7 or ...O-O). White tries to win it back with pressure on the d-file and the long diagonal, but Black's edge is a single pawn, not an immediate win.
+                              fr: Les Noirs gardent le pion de plus en échangeant des pièces et en roquant (après ...Bxg2 viennent ...Bb7 ou ...O-O). Les Blancs tentent de le regagner par la pression sur la colonne d et la grande diagonale, mais l'avantage noir n'est qu'un pion, pas un gain immédiat.
+                            basis:
+                              by: chan
+                              at: 2026-10-01
+                    - ply: Bb2
+                      replyQuality: inaccuracy
+                      frequency: occasional
+                      annotation:
+                        vi: 'Tượng c1 sang b2, đánh tượng c3 và hy vọng đổi nó đi. Đen chưa vội đổi tượng: trước hết 8...Ne4 sẽ bảo vệ tượng c3.'
+                        en: 'The c1 bishop goes to b2, attacking the c3 bishop and hoping to trade it off. Black does not rush to trade: first 8...Ne4 will protect the c3 bishop.'
+                        fr: "Le fou c1 va en b2, attaque le fou c3 et espère l'échanger. Les Noirs n'échangent pas tout de suite : 8...Ne4 va d'abord protéger le fou c3."
+                      children:
+                        - ply: Ne4
+                          annotation:
+                            vi: Mã f6 nhảy lên e4, bảo vệ tượng c3 và cùng tượng ấy đánh mã d2 hai lần. Mã e4 cũng chắn đường chéo của chính tượng b7, nhưng đổi lại các quân Trắng ở b1, b2 và d2 mắc vào nhau.
+                            en: The f6 knight jumps to e4, protecting the c3 bishop and attacking the d2 knight twice with it. The e4 knight also blocks its own b7 bishop's diagonal, but in return White's pieces on b1, b2 and d2 get in each other's way.
+                            fr: Le cavalier f6 saute en e4, protège le fou c3 et attaque avec lui deux fois le cavalier d2. Le cavalier e4 barre aussi la diagonale de son propre fou b7, mais en échange les pièces blanches en b1, b2 et d2 se gênent mutuellement.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: 'Quân số cân bằng (tám tốt mỗi bên), nhưng các quân Đen hoạt động hơn: mã d2 của Trắng bị tượng c3 và mã e4 đánh hai lần và chỉ được ba quân bảo vệ, còn tượng b2 bị tượng c3 đánh và chỉ có xe b1 bảo vệ.'
+                              en: "Material is level (eight pawns each), but Black's pieces are more active: White's d2 knight is attacked twice, by the c3 bishop and the e4 knight, and defended three times, while the b2 bishop is attacked by the c3 bishop and defended only by the b1 rook."
+                              fr: 'Le matériel est égal (huit pions de chaque côté), mais les pièces noires sont plus actives : le cavalier d2 blanc est attaqué deux fois, par le fou c3 et le cavalier e4, et défendu trois fois, tandis que le fou b2 est attaqué par le fou c3 et défendu seulement par la tour b1.'
+                            plan:
+                              vi: Trắng cần gỡ rối, thường bằng Bc1 rồi e3 và Bg2. Đen thêm quân vào cuộc tấn công bằng ...Nc6 và ...Qf6, nhắm vào d4 và mã f3.
+                              en: White needs to untangle, usually with Bc1 followed by e3 and Bg2. Black adds pieces to the pressure with ...Nc6 and ...Qf6, aiming at d4 and the f3 knight.
+                              fr: Les Blancs doivent se démêler, d'ordinaire par Bc1 puis e3 et Bg2. Les Noirs ajoutent des pièces à la pression avec ...Nc6 et ...Qf6, visant d4 et le cavalier f3.
+                            basis:
+                              by: chan
+                              at: 2026-10-01
+    - ply: Nfd2
+      replyQuality: mistake
+      frequency: occasional
+      annotation:
+        vi: 'Trắng chặn bằng mã f3, nhường ô f3. Mã d2 bị ghim vào vua e1 và, quan trọng hơn, đường chéo dài từ b7 đến h1 giờ hoàn toàn trống: tượng a6 sang b7 sẽ đánh thẳng vào xe h1.'
+        en: 'White blocks with the f3 knight, giving up f3. The d2 knight is pinned against the king on e1 and, more importantly, the long diagonal from b7 to h1 is now completely clear: the a6 bishop going to b7 will hit the h1 rook directly.'
+        fr: 'Les Blancs interposent avec le cavalier f3, abandonnant f3. Le cavalier d2 est cloué sur le roi e1 et, surtout, la grande diagonale de b7 à h1 est maintenant entièrement libre : le fou a6 allant en b7 attaquera directement la tour h1.'
+      children:
+        - ply: Bb7
+          annotation:
+            vi: Tượng a6 sang b7 đánh thẳng vào xe h1, mà xe này không có quân nào bảo vệ. Mã d2 vẫn bị ghim nên không giúp được.
+            en: The a6 bishop goes to b7 and attacks the h1 rook directly, and that rook has no defender. The d2 knight is still pinned and cannot help.
+            fr: Le fou a6 va en b7 et attaque directement la tour h1, qui n'a aucun défenseur. Le cavalier d2 reste cloué et ne peut pas aider.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Quân số cân bằng (tám tốt mỗi bên), nhưng Trắng đang bị đòn chĩa: xe h1 bị tượng b7 đánh và không có quân bảo vệ, còn mã d2 là quân không còn ô nào đi vì nó bị ghim vào vua.'
+              en: 'Material is level (eight pawns each), but White is under pressure: the h1 rook is attacked by the b7 bishop with no defender, and the d2 knight is a piece with no move at all because it is pinned against the king.'
+              fr: 'Le matériel est égal (huit pions de chaque côté), mais les Blancs sont sous pression : la tour h1 est attaquée par le fou b7 sans défenseur, et le cavalier d2 est une pièce sans aucun coup, car il est cloué sur le roi.'
+            plan:
+              vi: Trắng phải cứu xe h1 ngay, thường bằng 7.f3 hoặc 7.Bg2. Đen tiếp tục với ...Ng4 và ...Ne3 nhắm vào các ô e3 và h2 đã yếu đi.
+              en: White has to save the h1 rook at once, usually with 7.f3 or 7.Bg2. Black continues with ...Ng4 and ...Ne3, aiming at the weakened e3 and h2 squares.
+              fr: Les Blancs doivent sauver la tour h1 aussitôt, d'ordinaire par 7.f3 ou 7.Bg2. Les Noirs poursuivent par ...Ng4 et ...Ne3, visant les cases e3 et h2 affaiblies.
+            basis:
+              by: chan
+              at: 2026-10-01
