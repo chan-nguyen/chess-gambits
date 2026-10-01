@@ -457,3 +457,75 @@ traps:
       already imported from the shorter defining line (4...Bc5) by the same prefix match, so
       this trap's own line — six plies deeper, ending on Black's own 5...Bxf2+ — is not a
       second entry for that line either.
+
+  - id: scholars-mate
+    name: "Scholar's Mate"
+    family: "King's Pawn Game"
+    eco: C20
+    side: white
+    soundness: dubious
+    line: [e4, e5, Qh5]
+    reason: >-
+      The first trap every learner asks about, from #173 item 9 (chesstrapguide.com): 2...Nc6
+      3.Bc4 Nf6?? 4.Qxf7#, replayed and confirmed. Taught from White's side with the sound
+      defences answered, as #173 asked: 3...g6 kicks the queen, and 3...Qe7, 3...Qf6 and 3...Nh6
+      guard f7, so against anyone who has seen it the queen has made a wasted move, which is the
+      reason the label is dubious and not sound. The catalogue already teaches Black's answer as
+      `kings-pawn-game-wayward-queen-attack-kiddie-countergambit` (2...Nf6); this entry is the
+      trap itself. The dataset row "King's Pawn Game: Wayward Queen Attack" (C20, 1.e4 e5 2.Qh5)
+      is not a gambit and has no classification entry, so this is its only catalogue entry.
+
+  - id: italian-game-belloni-trap
+    name: 'Italian Game: Belloni Trap'
+    family: 'Italian Game'
+    eco: C53
+    side: white
+    soundness: sound
+    line: [e4, e5, Nf3, Nc6, Bc4, Bc5, c3, d6, d4, exd4, cxd4, 'Bb4+', Kf1]
+    reason: >-
+      From #173 item 6 (chesstrapguide.com and thechesswebsite.com, neither giving a game).
+      7.Kf1 gives up both castling rights, but leaves the bishop on b4 held by the knight on
+      c6 alone, and that knight is the target of d5. The sources put the mistake on the second
+      move (8...Ne5?? 9.Qa4+); replaying it found the real error one move earlier: 7...Nf6?
+      8.d5! wins at least a knight for a pawn against every eighth move (8...O-O 9.dxc6 bxc6 is
+      the most stubborn), and 8...Ne5 9.Qa4+ is only the quickest way to lose the bishop. The
+      sources' alternative 7...Bg4 does not lose a piece, because 8.d5 Bxf3! 9.gxf3 Ne5
+      escapes the pin. ECO C53 is the dataset's "Italian Game: Classical Variation" (4.c3),
+      the longest row on this line; the C54 Cracow Variation row is the 4...Nf6 move order of
+      the same 7.Kf1 and the C50 row stops at 3...Bc5.
+
+  - id: french-defense-fort-knox-queen-trap
+    name: 'French Defense: Fort Knox Queen Trap'
+    family: 'French Defense'
+    eco: C10
+    side: white
+    soundness: sound
+    line: [e4, e6, d4, d5, Nc3, dxe4, Nxe4, Bd7, Nf3, Bc6, Bd3, Nf6, 'Nxf6+']
+    reason: >-
+      From #173 item 7, the lichess study chapter "Queen Trap - French Defense: Fort Knox"
+      (which plays 5.Bd3 Bc6 6.Nf3, the same position as the dataset's 5.Nf3 Bc6 6.Bd3). After
+      7.Nxf6+ Qxf6? 8.Bg5 the queen is trapped for good: every square she can reach is covered,
+      and the source's 8...Bxf3 9.Qd2 Qxd4?? 10.Bb5+ Qd7 11.Bxd7+ Nxd7 12.gxf3 replays and wins
+      the queen for a bishop. But it shows one way to lose her, not the best defence: 9...Bxg2
+      10.Bxf6 Bxh1 11.Be5 gives her up for a rook, a knight and a pawn, level on material
+      (twenty-six points each by count) though with Black's queenside undeveloped, so the entry
+      says so and teaches the sound recapture 7...gxf6 beside it. The dataset row is "French
+      Defense: Rubinstein Variation, Fort Knox Variation" (C10), a prefix of this line.
+
+  - id: queens-gambit-accepted-old-variation-b5-trap
+    name: "Queen's Gambit Accepted: Old Variation, b5 Trap"
+    family: "Queen's Gambit Accepted"
+    eco: D20
+    side: white
+    soundness: sound
+    line: [d4, d5, c4, dxc4, e3]
+    reason: >-
+      From #173 item 8 (lichess study chapter 8; chesstrapguide.com has the same idea after
+      3.e4, a different dataset row). 3...b5 4.a4 c6 5.axb5 cxb5? opens the long diagonal
+      f3-a8 and 6.Qf3 wins at least a piece against every reply, replayed and confirmed. The
+      source's finish is wrong: after 6...Nc6 7.Qxc6+ Bd7, 8.Qxa8? loses the queen to 8...Qxa8
+      because the b8 knight and c8 bishop have both left the eighth rank; 8.Qa6 is the move.
+      3...b5 is dubious rather than refuted, and 4...c6 is the reply that walks into the trap,
+      not the best defence. The dataset row "Queen's Gambit Accepted: Old Variation" (D20) is
+      exactly this line; `category: trap` is exempt from the misnomer exclusion and the ECO
+      check (ADR-0008).

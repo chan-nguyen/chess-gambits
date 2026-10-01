@@ -1,0 +1,193 @@
+# Queen's Gambit Accepted: Old Variation, b5 Trap. The frozen defining line is 1.d4 d5 2.c4
+# dxc4 3.e3, and it ends on White's own ply, so the root is an opponent node and Black's
+# replies can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is D20, matching `traps.yaml` and the dataset row "Queen's Gambit Accepted: Old
+# Variation" (1.d4 d5 2.c4 dxc4 3.e3, D20), which is exactly this line. `category: trap` is
+# exempt from the "Queen's Gambit is a misnomer" exclusion that keeps the family out of the
+# gambit catalogue, and from the ECO check (ADR-0008).
+#
+# Source: #173 item 8 (lichess study chapter 8; chesstrapguide.com has the same idea via
+# 3.e4). Replayed with chess.js the line is legal and the combination is real: after 3...b5
+# 4.a4 c6 5.axb5 cxb5? the long diagonal f3-a8 is open, the a8 rook has no square and no
+# defender, and 6.Qf3 wins at least a piece against every reply. But the source's finish is
+# wrong. In 6...Nc6 7.Qxc6+ Bd7 the source plays 8.Qxa8?, and that loses the queen to
+# 8...Qxa8, since the b8 knight and the c8 bishop are both off the eighth rank and the d8
+# queen sees a8. The move that keeps the knight is 8.Qa6, which this entry teaches. Nor is
+# 3...b5 a refutation in itself: it is a dubious move that the Stockfish 19 build the
+# analysis page ships (depth 16, an estimate and not a proof) rates about nine-tenths of a
+# pawn for White after 4.a4, and 4...c6 is the move that walks into the trap, not the best
+# defence (4...Bb7 is).
+#
+# No outcome here is a claimed mate; the leaves are material assessments (ADR-0005).
+id: queens-gambit-accepted-old-variation-b5-trap
+name: "Queen's Gambit Accepted: Old Variation, b5 Trap"
+eco: D20
+category: trap
+side: white
+definingLine: [d4, d5, c4, dxc4, e3]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement about 3.e3 and the answer 4.a4 to 3...b5, and the same label `traps.yaml`
+      carries. 3.e3 is the oldest way to play against the Queen's Gambit Accepted, and the
+      trap only needs Black to recapture 5...cxb5. A defender who sees it plays 4...Bb7 or
+      4...b4 and White is still slightly better by the analysis page's own Stockfish build
+      (depth 16, an estimate and not a proof). No mate is claimed.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material counts, computed by hand from the derived
+    FEN rather than from an engine.
+tree:
+  annotation:
+    vi: 'Trắng chơi 3.e3, nước cổ điển của Gambit Hậu bị nhận. Nó mở đường chéo cho tượng f1 để lấy lại tốt c4 ở nước sau. Đen đang hơn một tốt, và cách giữ tốt tham lam nhất là 3...b5, vì nó đẩy một tốt cánh hậu ra đúng chỗ mà tốt a2 của Trắng đang chờ.'
+    en: "White plays 3.e3, the classical move against the Queen's Gambit Accepted. It opens the diagonal for the f1 bishop so that it can win back the c4 pawn next. Black is a pawn up, and the greediest way to keep it is 3...b5, because it puts a queenside pawn exactly where White's a2 pawn is waiting."
+    fr: "Les Blancs jouent 3.e3, le coup classique contre le gambit dame accepté. Il ouvre la diagonale du fou f1 pour reprendre le pion c4 au coup suivant. Les Noirs ont un pion de plus, et la manière la plus gourmande de le garder est 3...b5, car elle pose un pion de l'aile dame exactement là où attend le pion a2 des Blancs."
+  dismissRest:
+    reason:
+      vi: 'Đen không chơi 3...b5, nên không có tốt nào ở b5 cho tốt a đánh vào và nước 4.a4 mất mục tiêu. Trắng tiếp tục bằng những nước thường lệ của Biến Cũ như Bxc4 hay Nf3, hoặc lấy ngay quân Đen bỏ treo, chẳng hạn 3...Bg4 mất tượng vì Qxg4 và 3...Bh3 mất tượng vì Nxh3.'
+      en: 'Black does not play 3...b5, so there is no pawn on b5 for the a-pawn to hit and 4.a4 has no target. White carries on with the usual Old Variation moves such as Bxc4 or Nf3, or takes whatever Black leaves hanging at once, for instance 3...Bg4, which loses the bishop to Qxg4, and 3...Bh3, which loses it to Nxh3.'
+      fr: "Les Noirs ne jouent pas 3...b5, donc il n'y a aucun pion en b5 que le pion a puisse attaquer et 4.a4 n'a plus de cible. Les Blancs continuent par les coups habituels de la variante ancienne comme Fxc4 ou Cf3, ou prennent tout de suite ce que les Noirs laissent en prise, par exemple 3...Fg4, qui perd le fou à cause de Dxg4, et 3...Fh3, qui le perd à cause de Cxh3."
+  children:
+    - ply: b5
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: 'Đen giữ tốt c4 bằng tốt b5. Nước này trông hợp lý vì tốt c4 giờ có tốt b5 bảo vệ, nhưng chính tốt b5 lại chưa có quân nào giữ. Thêm nữa, đường chéo f3-a8 đã thông, vì tốt d5 đã đổi đi và tốt b7 đã rời chỗ.'
+        en: 'Black keeps the c4 pawn with the b5 pawn. The move looks sensible because the c4 pawn now has the b5 pawn defending it, but the b5 pawn itself has no defender. And the f3-a8 diagonal is open, because the d5 pawn has gone and the b7 pawn has left.'
+        fr: "Les Noirs gardent le pion c4 avec le pion b5. Le coup paraît sensé car le pion c4 est maintenant défendu par le pion b5, mais le pion b5 lui-même n'a aucun défenseur. De plus la diagonale f3-a8 est ouverte, car le pion d5 a disparu et le pion b7 a quitté sa case."
+      children:
+        - ply: a4
+          annotation:
+            vi: 'Trắng đẩy tốt a4, tấn công tốt b5 không ai giữ. Cùng lúc đó đường chéo f3-a8 đang thông, nên hậu Trắng có thể ra f3 nhắm vào xe a8. Đen phải lo cùng lúc cho cả hai chuyện.'
+            en: "White pushes the a-pawn to a4, attacking the b5 pawn, which nobody guards. At the same time the f3-a8 diagonal is open, so White's queen can go to f3 and aim at the rook on a8. Black has to see to both things at once."
+            fr: "Les Blancs poussent le pion a en a4, attaquant le pion b5, que personne ne garde. En même temps la diagonale f3-a8 est ouverte, si bien que la dame blanche peut aller en f3 et viser la tour a8. Les Noirs doivent s'occuper des deux choses à la fois."
+          dismissRest:
+            reason:
+              vi: 'Đen chơi một nước khác. 4...c6 là nước trông như giải quyết cả hai chuyện cùng lúc, vì tốt c6 đánh vào b5 và chặn đường chéo f3-a8, nên chỉ nước ấy mới dẫn đúng vào cái bẫy này. Với các nước khác Trắng có cách riêng, chẳng hạn 4...a6 thì 5.Qf3 đánh ngay vào xe a8, còn 4...bxa4 thì 5.Qxa4+ ăn lại tốt kèm chiếu.'
+              en: 'Black plays something else. 4...c6 is the move that looks as if it settles both things at once, because the c6 pawn attacks b5 and blocks the f3-a8 diagonal, and only that move leads into exactly this trap. Against the others White has its own answers; against 4...a6, 5.Qf3 hits the rook on a8 at once, and against 4...bxa4, 5.Qxa4+ takes the pawn back with check.'
+              fr: 'Les Noirs jouent autre chose. 4...c6 est le coup qui semble régler les deux choses à la fois, car le pion c6 attaque b5 et bloque la diagonale f3-a8, et seul ce coup mène exactement à ce piège. Contre les autres, les Blancs ont leurs propres réponses ; contre 4...a6, 5.Df3 attaque aussitôt la tour a8, et contre 4...bxa4, 5.Dxa4+ reprend le pion avec échec.'
+          children:
+            - ply: c6
+              replyQuality: mistake
+              frequency: common
+              annotation:
+                vi: 'Đen đẩy tốt c6, một nước trông như giải quyết cả hai chuyện cùng lúc. Tốt c6 đánh vào b5 và chặn đường chéo f3-a8 bằng chính thân nó.'
+                en: 'Black pushes the c-pawn to c6, a move that looks as if it settles both things at once. The c6 pawn attacks b5 and blocks the f3-a8 diagonal with its own body.'
+                fr: 'Les Noirs poussent le pion c en c6, un coup qui semble régler les deux choses à la fois. Le pion c6 attaque b5 et bloque la diagonale f3-a8 de son propre corps.'
+              children:
+                - ply: axb5
+                  annotation:
+                    vi: 'Trắng ăn tốt b5 bằng tốt a. Tốt b5 của Trắng đánh vào c6, nên Đen phải chọn, và nếu ăn lại bằng cxb5 thì tốt c rời c6 và mở lại đường chéo f3-a8 mà nó đang chắn.'
+                    en: "White takes the b5 pawn with the a-pawn. White's pawn on b5 attacks c6, so Black has to choose, and if Black recaptures with cxb5, the c-pawn leaves c6 and reopens the f3-a8 diagonal it is blocking."
+                    fr: "Les Blancs prennent le pion b5 avec le pion a. Le pion b5 des Blancs attaque c6, donc les Noirs doivent choisir, et s'ils reprennent par cxb5, le pion c quitte c6 et rouvre la diagonale f3-a8 qu'il bloque."
+                  dismissed:
+                    - ply: c5
+                      reason: >-
+                        The c-pawn leaves the diagonal exactly as after 5...cxb5, so 6.Qf3 hits
+                        the undefended rook on a8 the same way and wins at least a piece.
+                  dismissRest:
+                    reason:
+                      vi: 'Đen chơi một nước khác và giữ tốt c6 tại chỗ, nên đường chéo f3-a8 vẫn đóng và chưa có cú Qf3 nào. Trắng chỉ việc đi lấy tốt c4: với 5...e6, 5...Nf6 hay 5...Bb7 thì sau Bxc4 Trắng hơn đúng một tốt, bảy tốt so với sáu.'
+                      en: 'Black plays something else and keeps the pawn on c6, so the f3-a8 diagonal stays closed and there is no Qf3 shot yet. White simply goes after the c4 pawn: after 5...e6, 5...Nf6 or 5...Bb7, Bxc4 leaves White exactly one pawn up, seven pawns against six.'
+                      fr: "Les Noirs jouent autre chose et gardent le pion en c6, si bien que la diagonale f3-a8 reste fermée et qu'il n'y a pas encore de coup Df3. Les Blancs n'ont qu'à aller chercher le pion c4 : après 5...e6, 5...Cf6 ou 5...Fb7, Fxc4 laisse les Blancs avec exactement un pion de plus, sept pions contre six."
+                  children:
+                    - ply: cxb5
+                      replyQuality: blunder
+                      frequency: common
+                      annotation:
+                        vi: 'Đen ăn lại tốt b5 bằng tốt c, một nước hoàn toàn tự nhiên vì nó lấy lại tốt. Nhưng tốt c rời c6, và đường chéo f3-a8 mở trở lại mà không còn quân nào của Đen đứng trên đó.'
+                        en: 'Black recaptures the b5 pawn with the c-pawn, a perfectly natural move because it wins the pawn back. But the c-pawn leaves c6, and the f3-a8 diagonal opens again with no black piece left on it.'
+                        fr: "Les Noirs reprennent le pion b5 avec le pion c, un coup parfaitement naturel puisqu'il regagne le pion. Mais le pion c quitte c6, et la diagonale f3-a8 s'ouvre de nouveau sans qu'il reste une pièce noire dessus."
+                      children:
+                        - ply: Qf3
+                          annotation:
+                            vi: 'Trắng đưa hậu ra f3, đe doạ Qxa8. Xe a8 không có nước đi nào và không có quân nào bảo vệ, vì mã b8 và tượng c8 chắn cả xe lẫn hậu d8.'
+                            en: 'White brings the queen out to f3, threatening Qxa8. The rook on a8 has no move and no defender, because the knight on b8 and the bishop on c8 shut in both the rook and the queen on d8.'
+                            fr: "Les Blancs sortent la dame en f3, menaçant Dxa8. La tour a8 n'a aucun coup et aucun défenseur, car le cavalier b8 et le fou c8 enferment à la fois la tour et la dame d8."
+                          counts:
+                            legal: { count: legalReplies, expect: 32 }
+                          dismissRest:
+                            reason:
+                              vi: 'Đen không có cách nào bảo vệ ô a8. Trong {legal} nước hợp lệ ở đây, hai nước dưới là hai nước tự nhiên nhất. Mọi nước còn lại cũng mất quân ngay, hoặc là xe a8, hoặc là quân Đen chắn đường hay để treo, nên Trắng luôn thắng ít nhất một quân.'
+                              en: 'Black has no way to protect a8. Of the {legal} legal replies here, the two below are the most natural. Every other reply also loses material at once, either the rook on a8 or the piece Black puts in the way or leaves hanging, so White always wins at least a piece.'
+                              fr: "Les Noirs n'ont aucun moyen de protéger a8. Parmi les {legal} coups légaux ici, les deux ci-dessous sont les plus naturels. Tous les autres coups perdent aussi du matériel sur-le-champ, soit la tour a8, soit la pièce que les Noirs placent en travers ou laissent en prise, si bien que les Blancs gagnent toujours au moins une pièce."
+                          children:
+                            - ply: Nc6
+                              replyQuality: blunder
+                              frequency: common
+                              annotation:
+                                vi: 'Đen chắn đường chéo bằng mã c6, ý định là che xe. Nhưng mã c6 không được quân nào bảo vệ, và hậu Trắng ăn nó kèm chiếu.'
+                                en: "Black blocks the diagonal with the knight on c6, meaning to cover the rook. But nothing defends the knight on c6, and White's queen takes it with check."
+                                fr: "Les Noirs bloquent la diagonale avec le cavalier c6, dans l'idée de couvrir la tour. Mais rien ne défend le cavalier c6, et la dame blanche le prend avec échec."
+                              children:
+                                - ply: 'Qxc6+'
+                                  annotation:
+                                    vi: 'Hậu ăn mã kèm chiếu vua e8. Đen chỉ có hai nước hợp lệ để đỡ chiếu, Bd7 hoặc Qd7.'
+                                    en: 'The queen takes the knight with check to the king on e8. Black has only two legal ways to answer it, Bd7 or Qd7.'
+                                    fr: "La dame prend le cavalier avec échec au roi e8. Les Noirs n'ont que deux façons légales d'y répondre, Fd7 ou Dd7."
+                                  dismissed:
+                                    - ply: Qd7
+                                      reason: >-
+                                        8.Qxd7+ trades queens and leaves White a knight up for a pawn,
+                                        the same count as the line below.
+                                  children:
+                                    - ply: Bd7
+                                      replyQuality: best
+                                      frequency: common
+                                      annotation:
+                                        vi: 'Đen đỡ chiếu bằng tượng c8. Tượng rời c8 nên hàng 8 mở ra, và hậu d8 giờ nhìn thẳng vào xe a8 qua hai ô b8 và c8 đã trống.'
+                                        en: 'Black blocks with the bishop from c8. The bishop leaves c8, so the eighth rank opens, and the queen on d8 now looks straight at the rook on a8 through the empty b8 and c8.'
+                                        fr: "Les Noirs parent avec le fou de c8. Le fou quitte c8, si bien que la huitième rangée s'ouvre, et la dame d8 regarde maintenant droit la tour a8 à travers b8 et c8, désormais vides."
+                                      children:
+                                        - ply: Qa6
+                                          annotation:
+                                            vi: 'Trắng không ăn Qxa8, vì Qxa8 Qxa8 mất hậu khi hậu d8 canh xe qua hàng 8. Hậu rút về a6, nơi không quân Đen nào đánh được, và nhắm vào tốt b5 và tốt a7.'
+                                            en: 'White does not take Qxa8, because Qxa8 Qxa8 loses the queen once the queen on d8 guards the rook along the eighth rank. The queen goes back to a6, where no black piece can hit it, and aims at the b5 and a7 pawns.'
+                                            fr: "Les Blancs ne jouent pas Dxa8, car Dxa8 Dxa8 perd la dame dès que la dame d8 garde la tour le long de la huitième rangée. La dame se replie en a6, où aucune pièce noire ne peut l'atteindre, et vise les pions b5 et a7."
+                                          outcome:
+                                            type: position
+                                            evaluation:
+                                              vi: 'Trắng hơn một mã đổi lấy một tốt: Trắng có hậu, hai xe, hai mã, hai tượng và sáu tốt; Đen có hậu, hai xe, hai tượng, một mã và bảy tốt. Tốt b5 được tượng d7 giữ và tốt a7 được xe a8 giữ, nên chưa có gì rơi, và Đen không có nước ăn nào miễn phí.'
+                                              en: 'White is a knight up for a pawn: White has the queen, two rooks, two knights, two bishops and six pawns; Black has the queen, two rooks, two bishops, one knight and seven pawns. The b5 pawn is held by the bishop on d7 and the a7 pawn by the rook on a8, so nothing is hanging yet, and Black has no free capture.'
+                                              fr: "Les Blancs ont un cavalier de plus pour un pion : les Blancs ont la dame, deux tours, deux cavaliers, deux fous et six pions ; les Noirs ont la dame, deux tours, deux fous, un cavalier et sept pions. Le pion b5 est tenu par le fou d7 et le pion a7 par la tour a8, donc rien n'est en prise pour l'instant, et les Noirs n'ont aucune prise gratuite."
+                                            plan:
+                                              vi: 'Trắng phát triển bằng Nf3 và Nc3, tăng áp lực lên các tốt b5 và c4, và đổi quân để biến quân hơn thành chiến thắng. Đen cố giữ các tốt ở b5 và c4 và tìm hoạt động bằng ...e6, ...Nf6 và ...Bd6.'
+                                              en: 'White develops with Nf3 and Nc3, adds pressure on the b5 and c4 pawns, and trades pieces to turn the extra knight into a win. Black tries to hold the pawns on b5 and c4 and looks for activity with ...e6, ...Nf6 and ...Bd6.'
+                                              fr: "Les Blancs se développent par Cf3 et Cc3, accentuent la pression sur les pions b5 et c4, et échangent des pièces pour transformer le cavalier de plus en victoire. Les Noirs essaient de tenir les pions b5 et c4 et cherchent de l'activité avec ...e6, ...Cf6 et ...Fd6."
+                                            basis:
+                                              by: chan
+                                              at: '2026-10-01'
+                            - ply: e6
+                              replyQuality: blunder
+                              frequency: common
+                              annotation:
+                                vi: 'Đen mở đường cho tượng f8 mà không để ý đến xe a8. Nhưng không có quân nào của Đen canh ô a8, và hậu Trắng sẽ ăn xe.'
+                                en: "Black opens the way for the f8 bishop without paying attention to the rook on a8. But no black piece guards a8, and White's queen will take the rook."
+                                fr: 'Les Noirs ouvrent la voie au fou f8 sans se soucier de la tour a8. Mais aucune pièce noire ne garde a8, et la dame blanche va prendre la tour.'
+                              children:
+                                - ply: Qxa8
+                                  annotation:
+                                    vi: 'Hậu ăn xe a8. Hậu đứng đó không bị quân nào của Đen tấn công, vì mã b8 và tượng c8 vẫn chắn hậu d8, và đường chéo về f3 vẫn trống.'
+                                    en: 'The queen takes the rook on a8. She is not attacked by any black piece there, because the knight on b8 and the bishop on c8 still shut in the queen on d8, and the diagonal back to f3 is still empty.'
+                                    fr: "La dame prend la tour a8. Elle n'y est attaquée par aucune pièce noire, car le cavalier b8 et le fou c8 enferment toujours la dame d8, et la diagonale du retour vers f3 est toujours vide."
+                                  outcome:
+                                    type: position
+                                    evaluation:
+                                      vi: 'Trắng hơn một xe đổi lấy một tốt: Trắng có hậu, hai xe, hai mã, hai tượng và sáu tốt; Đen có hậu, một xe, hai mã, hai tượng và bảy tốt. Hậu a8 không bị quân Đen nào tấn công, và các ô b7, c6, d5, e4, f3 trên đường chéo đều trống, nên hậu có thể rút về f3 bất cứ lúc nào.'
+                                      en: 'White is a rook up for a pawn: White has the queen, two rooks, two knights, two bishops and six pawns; Black has the queen, one rook, two knights, two bishops and seven pawns. The queen on a8 is not attacked by any black piece, and the squares b7, c6, d5, e4 and f3 on the diagonal are all empty, so she can step back to f3 whenever she likes.'
+                                      fr: "Les Blancs ont une tour de plus pour un pion : les Blancs ont la dame, deux tours, deux cavaliers, deux fous et six pions ; les Noirs ont la dame, une tour, deux cavaliers, deux fous et sept pions. La dame a8 n'est attaquée par aucune pièce noire, et les cases b7, c6, d5, e4 et f3 de la diagonale sont toutes vides, si bien qu'elle peut revenir en f3 quand elle veut."
+                                    plan:
+                                      vi: 'Trắng đưa hậu về f3 hoặc ăn tiếp tốt a7, phát triển nốt và đổi quân để biến quân hơn thành chiến thắng. Đen hơn một tốt trên bàn cờ, bảy tốt so với sáu, nên cố đòi lại hoạt động bằng ...Bd6 và ...Nf6, nhưng đã kém một xe.'
+                                      en: 'White brings the queen back to f3 or takes the a7 pawn as well, finishes development and trades pieces to turn the extra rook into a win. Black is a pawn up on the board, seven pawns to six, so it tries to get activity back with ...Bd6 and ...Nf6, but is a rook down.'
+                                      fr: "Les Blancs ramènent la dame en f3 ou prennent aussi le pion a7, achèvent leur développement et échangent des pièces pour transformer la tour de plus en victoire. Les Noirs ont un pion de plus sur l'échiquier, sept pions contre six, et essaient de retrouver de l'activité par ...Fd6 et ...Cf6, mais ont une tour de moins."
+                                    basis:
+                                      by: chan
+                                      at: '2026-10-01'

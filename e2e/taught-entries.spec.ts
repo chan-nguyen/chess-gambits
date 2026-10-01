@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are eight hundred and sixty of them, and they are the ones the content tickets authored', () => {
+  test('there are eight hundred and sixty-four of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'accelerated-london-system-steinitz-countergambit',
       'accelerated-london-system-steinitz-countergambit-accepted',
@@ -316,6 +316,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'french-defense-carlson-gambit',
       'french-defense-diemer-duhm-gambit',
       'french-defense-diemer-duhm-gambit-accepted',
+      'french-defense-fort-knox-queen-trap',
       'french-defense-la-bourdonnais-variation-reuter-gambit',
       'french-defense-marshall-gambit',
       'french-defense-morphy-gambit',
@@ -357,6 +358,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'indian-defense-omega-gambit',
       'indian-defense-pyrenees-gambit',
       'irish-gambit',
+      'italian-game-belloni-trap',
       'italian-game-blackburne-kostic-gambit',
       'italian-game-classical-variation-albin-gambit',
       'italian-game-classical-variation-greco-gambit-dubov-italian',
@@ -705,6 +707,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'portuguese-gambit-melbourne-shuffle-variation',
       'portuguese-opening-miguel-gambit',
       'portuguese-opening-portuguese-gambit',
+      'queens-gambit-accepted-old-variation-b5-trap',
       'queens-gambit-declined-albin-countergambit',
       'queens-gambit-declined-albin-countergambit-fianchetto-variation',
       'queens-gambit-declined-albin-countergambit-modern-line',
@@ -771,6 +774,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'scandinavian-defense-zilbermints-gambit',
       'scandinavian-variation-bogoljubow-variation-richter-gambit',
       'scheveningen-variation-delayed-keres-attack-perenyi-gambit',
+      'scholars-mate',
       'scotch-game-alekhine-gambit',
       'scotch-game-goring-gambit',
       'scotch-game-goring-gambit-bardeleben-variation',

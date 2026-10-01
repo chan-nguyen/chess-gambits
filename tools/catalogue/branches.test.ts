@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Eight hundred and sixty-one entries are authored — three from #15, eleven from #73, ten
+   * Eight hundred and sixty-five entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -265,7 +265,9 @@ describe('the catalogue this repository ships', () => {
    * gambits with ten Bishop's Opening gambits; Sicilian, Ruy Lopez and Alekhine Defense
    * gambits; and the Vienna Game, Vienna Gambit with Max Lange Defense, Blackmar-Diemer
    * Gambit, Dutch Defense, Center Game and Englund Gambit Declined entries — each a single
-   * root-to-leaf line) — and the
+   * root-to-leaf line), and four new named traps from #173 batch trap-1b (the Italian
+   * Game's Belloni Trap, the French Defense's Fort Knox Queen Trap, the Queen's Gambit
+   * Accepted's b5 Trap and Scholar's Mate, each a handful of root-to-leaf lines) — and the
    * other 163
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
@@ -526,6 +528,7 @@ describe('the catalogue this repository ships', () => {
     ['french-defense-carlson-gambit', 1],
     ['french-defense-diemer-duhm-gambit', 1],
     ['french-defense-diemer-duhm-gambit-accepted', 1],
+    ['french-defense-fort-knox-queen-trap', 4],
     ['french-defense-la-bourdonnais-variation-reuter-gambit', 1],
     ['french-defense-marshall-gambit', 1],
     ['french-defense-morphy-gambit', 1],
@@ -567,6 +570,7 @@ describe('the catalogue this repository ships', () => {
     ['indian-defense-omega-gambit', 1],
     ['indian-defense-pyrenees-gambit', 1],
     ['irish-gambit', 1],
+    ['italian-game-belloni-trap', 2],
     ['italian-game-blackburne-kostic-gambit', 2],
     ['italian-game-classical-variation-albin-gambit', 1],
     ['italian-game-classical-variation-greco-gambit-dubov-italian', 1],
@@ -915,6 +919,7 @@ describe('the catalogue this repository ships', () => {
     ['portuguese-gambit-melbourne-shuffle-variation', 1],
     ['portuguese-opening-miguel-gambit', 1],
     ['portuguese-opening-portuguese-gambit', 1],
+    ['queens-gambit-accepted-old-variation-b5-trap', 2],
     ['queens-gambit-declined-albin-countergambit', 1],
     ['queens-gambit-declined-albin-countergambit-fianchetto-variation', 1],
     ['queens-gambit-declined-albin-countergambit-modern-line', 1],
@@ -981,6 +986,7 @@ describe('the catalogue this repository ships', () => {
     ['scandinavian-defense-zilbermints-gambit', 2],
     ['scandinavian-variation-bogoljubow-variation-richter-gambit', 1],
     ['scheveningen-variation-delayed-keres-attack-perenyi-gambit', 1],
+    ['scholars-mate', 2],
     ['scotch-game-alekhine-gambit', 1],
     ['scotch-game-goring-gambit', 2],
     ['scotch-game-goring-gambit-bardeleben-variation', 1],
@@ -1151,8 +1157,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored eight hundred and sixty-one have any', () => {
-    expect(result.value.records).toHaveLength(1024)
+  it('bakes keys on all 1028 entries, and only the authored eight hundred and sixty-five have any', () => {
+    expect(result.value.records).toHaveLength(1028)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
