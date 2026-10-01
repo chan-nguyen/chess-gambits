@@ -266,7 +266,7 @@ describe('the catalogue this repository ships', () => {
    * gambits; and the Vienna Game, Vienna Gambit with Max Lange Defense, Blackmar-Diemer
    * Gambit, Dutch Defense, Center Game and Englund Gambit Declined entries — each a single
    * root-to-leaf line) — and the
-   * other 163
+   * other 175
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
    * being loosened to "at least zero", which would assert nothing and would keep passing

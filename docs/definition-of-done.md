@@ -38,6 +38,12 @@ instead of it.
 
 - [ ] Every invariant in `docs/CONTEXT.md` still holds
 - [ ] No chess claim is authored by a human where the build could prove it
+- [ ] **A change that adds, removes or renames a content file regenerates the golden lists** with
+      `npm run fixtures:golden` (`--check` to verify), never by hand: the known ids and compiled
+      file list in `content-cli.test.ts`, the `AUTHORED` map and its counts in `branches.test.ts`,
+      and the taught list in `taught-entries.spec.ts`. The command also names any other spec that
+      uses an entry the change taught as its "still listed" example, which no list can reveal.
+      The one-sentence-per-round comment in `branches.test.ts` stays a human's job
 - [ ] Content validation still fails on the adversarial fixtures, and the failure message names the
       file and the node
 - [ ] **Every number a lesson states about the legal replies to a position is a `count`**, declared
