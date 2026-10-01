@@ -725,3 +725,26 @@ traps:
       lost") is the game continuation, not a forced win, so the tree stops at 11.Nxe5 and
       the entry says so. The dataset moves reach the same position as the Berlin
       4.O-O d6 5.d4 Bd7 6.Nc3 Be7 7.Re1, which is why the row is coded C66.
+
+  - id: busch-gass-gambit-trap
+    name: 'Busch-Gass Gambit Trap'
+    family: "King's Pawn Game"
+    eco: C40
+    side: white
+    soundness: sound
+    line: [e4, e5, Nf3, Bc5, Nxe5]
+    reason: >-
+      The White side of the Busch-Gass Gambit, which the catalogue carries only from Black's
+      side (`kings-pawn-game-busch-gass-gambit`, rooted at 2...Bc5, which never reaches
+      3...Bxf2+). Named "Busch-Gass Gambit Trap (Krejcik-Baumgartner)" by chesstrapguide.com
+      (https://chesstrapguide.com/trap/busch-gass-trap/) and carried as the chapter "King Pawn
+      Game : Busch - Gass Gambit" of the lichess study "Chess Traps List"
+      (https://lichess.org/study/7ndvaGkp/aGqnooD6), two independent sources. The line is
+      3...Bxf2+ 4.Kxf2 Qh4+ 5.g3 Qxe4 6.Qe2 Qxh1 7.Bg2, and replaying it confirms that the
+      queen has no escape: all 29 of Black's legal moves lose her, 7...Qxg2+ for the bishop
+      at best and 7...Qxc1 8.Nd3+ or 7...Qxh2 8.Ng4+ to a discovered check up the open
+      e-file. It does not win the queen outright (she has already taken the h1 rook) and the
+      sacrifice is lost for Black before the trap, so the entry teaches the whole answer to
+      3...Bxf2+ and treats the queen trap as its sharpest branch. The tree begins after
+      3.Nxe5, a different position from the Black entry, so the two are two entries on two
+      lines. ECO C40 is the code of the surrounding dataset rows.
