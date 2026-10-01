@@ -24,7 +24,7 @@ const includes = classification.rules.filter((rule) => rule.include === true)
 /**
  * The rules that still say `side:` outright rather than naming the ply and letting the
  * build read the side off a board. Almost all of them predate #36, and this is the
- * ratchet: an eighty-third cannot be added without this number changing in a diff somebody
+ * ratchet: an eighty-fourth cannot be added without this number changing in a diff somebody
  * reviewed.
  *
  * It was 84 until #56 split the broad heads it had to: `Bird Opening`, `Van Geet Opening`,
@@ -36,14 +36,18 @@ const includes = classification.rules.filter((rule) => rule.include === true)
  * Lion Variation, Forcing Line` names a real sacrifice (7.Bxf7+) whose own ply comes out
  * level by `proveOffer` — the board only reads a deficit once the knight fork on move 8 is
  * played out — so naming a `sacrifice` ply for it would misdescribe which move gives the
- * material away, and an honest assertion beats a dishonest proof.
+ * material away, and an honest assertion beats a dishonest proof. #176 added one more:
+ * `Sicilian Defense: Najdorf Variation, Poisoned Pawn Variation` is a fourteen-ply row that
+ * stops on 7...Qb6, where White chooses between 8.Nb3 and the 8.Qd2 that puts b2 on offer —
+ * the offer is the next ply, so the row itself gives nothing away and the side can only be
+ * asserted, exactly as the Smith-Morra head's is.
  *
  * The count is not zero and pretending otherwise would be the dishonest version of this
  * test. What is left asserts a side over rows whose own lines give nothing away, which is
- * not something a ply can be named for; `published-sides.test.ts` lists the six entries
+ * not something a ply can be named for; `published-sides.test.ts` lists the seven entries
  * that reach the browser that way, one sentence of chess each.
  */
-const ASSERTED_SIDES = 82
+const ASSERTED_SIDES = 83
 
 describe('how the catalogue establishes which side a gambit belongs to', () => {
   it('proves the side of every rule reviewed on the board, and asserts none of them', () => {
@@ -126,13 +130,14 @@ describe('the exclusion list', () => {
  * published. #36 counted it at 45 and #56 worked through them one at a time.
  *
  * A rule that asserts `side` was never checked against a board. Run `proveOffer` over every
- * ply of every row those rules admit and 6 of them still have **no** provable offer by the
+ * ply of every row those rules admit and 7 of them still have **no** provable offer by the
  * side they claim — down from 45, of which 39 had a provable offer by the *other* side and
- * now name the ply that proves it. `Van Geet Opening` no longer says "Every one is White's"
+ * now name the ply that proves it. The seventh is not one of the 45: #176 admitted the
+ * Najdorf Poisoned Pawn Variation with an asserted side, on the argument written beside its rule in `classification.yaml`. `Van Geet Opening` no longer says "Every one is White's"
  * over ten rows that are Black's, and the Lemberger Countergambit is no longer filed as
  * Black's over six rows where only White gives anything up.
  *
- * The six that remain are not wrong orientations: no ply of their lines gives anything away
+ * The seven that remain are not wrong orientations: no ply of their lines gives anything away
  * for *either* side, because in every one of them the material changes hands past the end of
  * the line the entry publishes. `published-sides.test.ts` names them and says why, and the
  * rules in `classification.yaml` argue it beside each one. Pinned here so the number can
@@ -140,7 +145,7 @@ describe('the exclusion list', () => {
  * is refreshed.
  */
 describe('the orientation debt left in the entries published before this review', () => {
-  const UNPROVABLE = 6
+  const UNPROVABLE = 7
 
   it('is exactly the size it was measured at, and no larger', () => {
     const rows = readDataset(join('tools', 'catalogue', 'dataset'))

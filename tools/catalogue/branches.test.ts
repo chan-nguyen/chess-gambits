@@ -1151,8 +1151,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored eight hundred and sixty-one have any', () => {
-    expect(result.value.records).toHaveLength(1024)
+  it('bakes keys on all 1036 entries, and only the authored eight hundred and sixty-one have any', () => {
+    expect(result.value.records).toHaveLength(1036)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
