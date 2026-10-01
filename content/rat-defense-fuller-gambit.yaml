@@ -1,0 +1,59 @@
+# Rat Defense: Fuller Gambit. Frozen defining line 1.e4 d6 2.f4 d5 3.exd5 Nf6 ends on Black's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Part of batch t of
+# round 4 (#182). Every ply below was replayed with chess.js before it was annotated;
+# searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed anywhere
+# in this entry, and no capture is left going free at the leaf.
+id: 'rat-defense-fuller-gambit'
+name: 'Rat Defense: Fuller Gambit'
+eco: 'B00'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'd6'
+  - 'f4'
+  - 'd5'
+  - 'exd5'
+  - 'Nf6'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement. At the end of the defining line Black is a pawn down, seven pawns to eight, with only the knight on f6 developed, and the one target is the pawn on d5, which nothing defends yet. White can defend it or simply develop and let Black take it back, so the gambit offers a single target rather than a lasting advantage, and it is judged dubious. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Nf6, tấn công con tốt d5 mà Trắng vừa thắng được bằng 3.exd5. Cả mã lẫn hậu đều tấn công nó và không quân nào bảo vệ nó. Trắng có tám tốt, Đen có bảy tốt, và Trắng chưa phát triển quân nào.'
+    en: "Black has just played 3...Nf6, attacking the pawn on d5 that White won with 3.exd5. The knight and the queen both attack it and nothing defends it. White has eight pawns to Black's seven and has not developed a piece."
+    fr: "Les Noirs viennent de jouer 3...Nf6, attaquant le pion d5 que les Blancs ont gagné par 3.exd5. Le cavalier et la dame l'attaquent tous deux et rien ne le défend. Les Blancs ont huit pions contre sept aux Noirs et n'ont développé aucune pièce."
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 4.c4 ở đây, chẳng hạn 4.Nf3, phát triển một mã và để Đen ăn lại ở d5. Mục này đi theo nước bảo vệ con tốt.'
+      en: 'White plays something other than 4.c4 here, for instance 4.Nf3, which develops a knight and lets Black take back on d5. This entry follows the move that defends the pawn.'
+      fr: 'Les Blancs jouent autre chose que 4.c4 ici, par exemple 4.Nf3, qui développe un cavalier et laisse les Noirs reprendre en d5. Cette entrée suit le coup qui défend le pion.'
+  children:
+    - ply: 'c4'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng bảo vệ tốt d5 bằng tốt c. Tốt d5 giờ bị tấn công hai lần và được bảo vệ một lần, và Trắng tạm thời giữ được tốt hơn.'
+        en: 'White defends the pawn on d5 with the c-pawn. The pawn is now attacked twice and defended once, and White keeps the extra pawn for the moment.'
+        fr: "Les Blancs défendent le pion d5 avec le pion c. Le pion est maintenant attaqué deux fois et défendu une fois, et les Blancs gardent pour l'instant le pion supplémentaire."
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nghĩa là con tốt đã thí chưa lấy lại được. Mục tiêu là tốt d5: mã f6 và hậu d8 cùng tấn công nó, và chỉ có tốt c4 bảo vệ. Hai tốt d của Trắng bị chồng, ở d2 và d5, và Trắng chưa phát triển quân nào, trong khi Đen đã đưa ra một mã.'
+          en: "Count the pawns: White eight, Black seven, so the sacrificed pawn has not come back. The pawn on d5 is the target: the knight on f6 and the queen on d8 attack it, and only the pawn on c4 defends it. White's d-pawns are doubled, on d2 and d5, and White has not developed a piece, while Black has one knight out."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc le pion sacrifié n'est pas revenu. Le pion d5 est la cible : le cavalier f6 et la dame d8 l'attaquent, et seul le pion c4 le défend. Les pions d blancs sont doublés, en d2 et d5, et les Blancs n'ont développé aucune pièce, tandis que les Noirs ont sorti un cavalier."
+        plan:
+          vi: 'Đen tăng sức ép lên d5 bằng ...c6 hoặc ...e6, nhằm lấy lại con tốt. Trắng bảo vệ nó bằng Nc3 và phát triển bằng Nf3.'
+          en: 'Black adds pressure on d5 with ...c6 or ...e6, aiming to win the pawn back. White supports it with Nc3 and develops with Nf3.'
+          fr: 'Les Noirs augmentent la pression sur d5 par ...c6 ou ...e6, dans le but de regagner le pion. Les Blancs le soutiennent par Nc3 et se développent par Nf3.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

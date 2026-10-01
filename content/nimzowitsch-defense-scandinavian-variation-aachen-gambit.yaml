@@ -1,0 +1,60 @@
+# Nimzowitsch Defense: Scandinavian Variation, Aachen Gambit. Frozen defining line 1.e4 Nc6
+# 2.d4 d5 3.exd5 Nb4 ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'nimzowitsch-defense-scandinavian-variation-aachen-gambit'
+name: 'Nimzowitsch Defense: Scandinavian Variation, Aachen Gambit'
+eco: 'B00'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'Nc6'
+  - 'd4'
+  - 'd5'
+  - 'exd5'
+  - 'Nb4'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement. At the end of the defining line Black is a pawn down, seven pawns to eight, and the knight on b4 attacks the pawns on a2 and c2, which the rook and the queen defend, and the pawn on d5, which nothing defends yet. White can defend d5 with c4 and drive the knight away with a3, and nothing on the board pays Black for the missing pawn, so the line is judged unsound. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Nb4, tấn công các tốt a2 và c2 và nhắm vào tốt d5 mà Trắng vừa thắng được bằng 3.exd5. Trắng có tám tốt, Đen bảy tốt. Tốt d5 bị hậu d8 và mã b4 tấn công, và không quân nào bảo vệ nó.'
+    en: "Black has just played 3...Nb4, attacking the pawns on a2 and c2 and aiming at the pawn on d5 that White won with 3.exd5. White has eight pawns to Black's seven. The d5 pawn is attacked by the queen on d8 and the knight on b4, and nothing defends it."
+    fr: 'Les Noirs viennent de jouer 3...Nb4, attaquant les pions a2 et c2 et visant le pion d5 que les Blancs ont gagné par 3.exd5. Les Blancs ont huit pions contre sept aux Noirs. Le pion d5 est attaqué par la dame d8 et le cavalier b4, et rien ne le défend.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 4.c4 ở đây. Mục này đi theo nước bảo vệ tốt d5 bằng tốt c.'
+      en: 'White plays something other than 4.c4 here. This entry follows the move that defends the d5 pawn with the c-pawn.'
+      fr: 'Les Blancs jouent autre chose que 4.c4 ici. Cette entrée suit le coup qui défend le pion d5 avec le pion c.'
+  children:
+    - ply: 'c4'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng bảo vệ tốt d5 bằng tốt c, nên tốt d5 giờ bị tấn công hai lần và được bảo vệ một lần.'
+        en: 'White defends the d5 pawn with the c-pawn, so the pawn on d5 is now attacked twice and defended once.'
+        fr: 'Les Blancs défendent le pion d5 avec le pion c, donc le pion d5 est maintenant attaqué deux fois et défendu une fois.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nghĩa là con tốt đã thí chưa lấy lại được. Hai tốt d của Trắng bị chồng, ở d4 và d5, và tốt d5 bị hậu và mã tấn công nhưng chỉ có tốt c4 bảo vệ. Mã b4 của Đen đứng gần mép bàn cờ và sẽ bị tốt a3 tấn công.'
+          en: "Count the pawns: White eight, Black seven, so the sacrificed pawn has not come back. White's d-pawns are doubled, on d4 and d5, and the d5 pawn is attacked by the queen and the knight but defended only by the c4 pawn. Black's knight on b4 stands near the edge of the board and a3 would attack it."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc le pion sacrifié n'est pas revenu. Les pions d blancs sont doublés, en d4 et d5, et le pion d5 est attaqué par la dame et le cavalier mais défendu seulement par le pion c4. Le cavalier b4 des Noirs se tient près du bord de l'échiquier et a3 l'attaquerait."
+        plan:
+          vi: 'Trắng chơi a3 để xua mã, rồi phát triển bằng Nc3 và Nf3. Đen tấn công tốt d5 thêm lần nữa bằng ...e6 hoặc ...c6, và lùi mã về a6 nếu tốt đi lên a3.'
+          en: 'White plays a3 to drive the knight, then develops with Nc3 and Nf3. Black attacks the d5 pawn again with ...e6 or ...c6, and retreats the knight to a6 if the pawn goes to a3.'
+          fr: 'Les Blancs jouent a3 pour chasser le cavalier, puis se développent par Nc3 et Nf3. Les Noirs attaquent le pion d5 une fois de plus par ...e6 ou ...c6, et replient le cavalier en a6 si le pion va en a3.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

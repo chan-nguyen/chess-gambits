@@ -1,0 +1,65 @@
+# Nimzowitsch Defense: El Columpio Defense, El Columpio Gambit. Frozen defining line 1.e4 Nc6
+# 2.Nf3 Nf6 3.e5 Ng4 4.d4 d6 5.h3 Nh6 6.e6 ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'nimzowitsch-defense-el-columpio-defense-el-columpio-gambit'
+name: 'Nimzowitsch Defense: El Columpio Defense, El Columpio Gambit'
+eco: 'B00'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'Nc6'
+  - 'Nf3'
+  - 'Nf6'
+  - 'e5'
+  - 'Ng4'
+  - 'd4'
+  - 'd6'
+  - 'h3'
+  - 'Nh6'
+  - 'e6'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawn on e6 is attacked by the bishop on c8 and the pawn on f7 and defended by nothing, so White is about to be a pawn down. Black has two knights developed to White's one, and the only compensation is the doubled e-pawn that the recapture gives Black, which does not pay for the pawn. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 6.e6, đẩy một tốt lên e6, nơi tượng c8 và tốt f7 cùng tấn công nó và không quân nào bảo vệ. Số tốt hai bên bằng nhau, mỗi bên tám, và Đen đã phát triển hai mã so với một mã của Trắng.'
+    en: "White has just played 6.e6, pushing a pawn to e6, where the bishop on c8 and the pawn on f7 both attack it and nothing defends it. The pawns are level, eight each, and Black has two knights developed to White's one."
+    fr: "Les Blancs viennent de jouer 6.e6, poussant un pion en e6, où le fou c8 et le pion f7 l'attaquent tous deux sans que rien ne le défende. Les pions sont à égalité, huit de chaque côté, et les Noirs ont développé deux cavaliers contre un seul pour les Blancs."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 6...fxe6 ở đây. Mục này đi theo nước ăn bằng tốt f, ăn được tốt và làm tốt e của Đen bị chồng.'
+      en: "Black plays something other than 6...fxe6 here. This entry follows the capture with the f-pawn, which takes the pawn and doubles Black's e-pawns."
+      fr: 'Les Noirs jouent autre chose que 6...fxe6 ici. Cette entrée suit la capture avec le pion f, qui prend le pion et double les pions e noirs.'
+  children:
+    - ply: 'fxe6'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen ăn tốt bằng tốt f. Nước đó thắng một tốt và để Đen có hai tốt trên cột e, ở e6 và e7.'
+        en: 'Black takes the pawn with the f-pawn. That wins a pawn and leaves Black with two pawns on the e-file, on e6 and e7.'
+        fr: 'Les Noirs prennent le pion avec le pion f. Cela gagne un pion et laisse les Noirs avec deux pions sur la colonne e, en e6 et e7.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt. Hai tốt e của Đen bị chồng, ở e6 và e7. Mã h6 bị tượng c1 tấn công và được tốt g7 bảo vệ, nên Bxh6 gxh6 sẽ để các tốt h của Đen bị chồng và bị cô lập. Đen đã phát triển hai mã, Trắng một mã.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. Black's e-pawns are doubled, on e6 and e7. The knight on h6 is attacked by the bishop on c1 and defended by the g7 pawn, so Bxh6 gxh6 would leave Black's h-pawns doubled and isolated. Black has two knights developed and White one."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion de moins. Les pions e noirs sont doublés, en e6 et e7. Le cavalier h6 est attaqué par le fou c1 et défendu par le pion g7, donc Bxh6 gxh6 laisserait les pions h noirs doublés et isolés. Les Noirs ont développé deux cavaliers, les Blancs un seul.'
+        plan:
+          vi: 'Trắng chơi Bxh6 để phá các tốt cánh vua của Đen, rồi phát triển bằng Bc4 và Qe2. Đen tránh cuộc đổi quân bằng ...Nf5; nếu Trắng ăn ở h6, Đen ăn lại bằng tốt g.'
+          en: "White plays Bxh6 to wreck Black's kingside pawns, then develops with Bc4 and Qe2. Black avoids the trade with ...Nf5; if White does take on h6, Black recaptures with the g-pawn."
+          fr: "Les Blancs jouent Bxh6 pour abîmer les pions de l'aile roi noire, puis se développent par Bc4 et Qe2. Les Noirs évitent l'échange par ...Nf5 ; si les Blancs prennent en h6, les Noirs reprennent avec le pion g."
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

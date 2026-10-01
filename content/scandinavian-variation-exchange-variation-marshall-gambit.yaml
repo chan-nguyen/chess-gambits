@@ -1,0 +1,61 @@
+# Nimzowitsch Defense: Scandinavian Variation, Exchange Variation, Marshall Gambit. Frozen
+# defining line 1.e4 Nc6 2.d4 d5 3.exd5 Qxd5 4.Nc3 ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply
+# below was replayed with chess.js before it was annotated; searchMate at 3 moves from the
+# leaf returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture is
+# left going free at the leaf.
+id: 'scandinavian-variation-exchange-variation-marshall-gambit'
+name: 'Nimzowitsch Defense: Scandinavian Variation, Exchange Variation, Marshall Gambit'
+eco: 'B00'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'Nc6'
+  - 'd4'
+  - 'd5'
+  - 'exd5'
+  - 'Qxd5'
+  - 'Nc3'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, seven each, and White's pawn on d4 is attacked by the queen and the knight and defended only by the queen on d1. The gambit lets Black take it, leaving White a pawn down with only the knight on c3 developed, so White's compensation has to come from attacking the queen on d4; the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.Nc3, tấn công hậu d5. Số tốt hai bên bằng nhau, mỗi bên bảy, và tốt d4 của Trắng bị hậu và mã c6 tấn công mà chỉ có hậu d1 bảo vệ.'
+    en: "White has just played 4.Nc3, attacking the queen on d5. The pawns are level, seven each, and White's pawn on d4 is attacked by the queen and the knight on c6 and defended only by the queen on d1."
+    fr: 'Les Blancs viennent de jouer 4.Nc3, attaquant la dame d5. Les pions sont à égalité, sept de chaque côté, et le pion d4 blanc est attaqué par la dame et le cavalier c6 et défendu seulement par la dame d1.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 4...Qxd4 ở đây. Mục này đi theo nước hậu ăn tốt d4, thứ mà gambit của Trắng dâng ra.'
+      en: "Black plays something other than 4...Qxd4 here. This entry follows the queen taking the pawn on d4, which White's gambit offers."
+      fr: 'Les Noirs jouent autre chose que 4...Qxd4 ici. Cette entrée suit la dame qui prend le pion d4, ce que le gambit des Blancs offre.'
+  children:
+    - ply: 'Qxd4'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen ăn tốt d4 bằng hậu. Hậu bị hậu d1 tấn công và được mã c6 bảo vệ, và nó tấn công mã c3 cùng tốt f2.'
+        en: 'Black takes the pawn on d4 with the queen. The queen is attacked by the queen on d1 and defended by the knight on c6, and it attacks the knight on c3 and the pawn on f2.'
+        fr: 'Les Noirs prennent le pion d4 avec la dame. La dame est attaquée par la dame d1 et défendue par le cavalier c6, et elle attaque le cavalier c3 et le pion f2.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng kém một tốt. Cột d đã mở và hậu Đen đang đứng trên đó, bị hậu d1 tấn công và chỉ có mã c6 bảo vệ. Trắng mới phát triển mã c3; Đen đã đưa ra hậu và mã c6, còn hai tượng và mã g8 vẫn ở nhà.'
+          en: "Count the pawns: White six, Black seven, so White is a pawn down. The d-file is open and Black's queen stands on it, attacked by the queen on d1 and defended only by the knight on c6. White has developed the knight on c3; Black has the queen and the knight on c6 out, and both bishops and the knight on g8 are still at home."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de moins. La colonne d est ouverte et la dame noire s'y trouve, attaquée par la dame d1 et défendue seulement par le cavalier c6. Les Blancs ont développé le cavalier c3 ; les Noirs ont sorti la dame et le cavalier c6, et les deux fous et le cavalier g8 sont encore à la maison."
+        plan:
+          vi: 'Trắng tấn công hậu bằng Be3 và Nf3, rồi phát triển bằng Bd3. Đen dời hậu đi, chẳng hạn ...Qb4, và phát triển bằng ...Nf6 và ...Be6.'
+          en: 'White attacks the queen with Be3 and Nf3, then develops with Bd3. Black moves the queen away, for instance with ...Qb4, and develops with ...Nf6 and ...Be6.'
+          fr: 'Les Blancs attaquent la dame par Be3 et Nf3, puis se développent par Bd3. Les Noirs écartent la dame, par exemple par ...Qb4, et se développent par ...Nf6 et ...Be6.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

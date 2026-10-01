@@ -1,0 +1,91 @@
+# Petrov's Defense: Classical Attack, Marshall Variation, Chinese Gambit. Frozen defining line
+# 1.e4 e5 2.Nf3 Nf6 3.Nxe5 d6 4.Nf3 Nxe4 5.d4 d5 6.Bd3 Bd6 7.O-O O-O 8.c4 c6 9.Re1 Bg4 ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Part of
+# batch t of round 4 (#182). Every ply below was replayed with chess.js before it was
+# annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: 'classical-attack-marshall-variation-chinese-gambit'
+name: "Petrov's Defense: Classical Attack, Marshall Variation, Chinese Gambit"
+eco: 'C42'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nf6'
+  - 'Nxe5'
+  - 'd6'
+  - 'Nf3'
+  - 'Nxe4'
+  - 'd4'
+  - 'd5'
+  - 'Bd3'
+  - 'Bd6'
+  - 'O-O'
+  - 'O-O'
+  - 'c4'
+  - 'c6'
+  - 'Re1'
+  - 'Bg4'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, seven each, and Black's knight on e4 is attacked twice, by the bishop on d3 and the rook on e1, and defended only by the d5 pawn. White can take the knight and win the pawn on e4 with the rook, which leaves Black a pawn down with only the bishop pair for it, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 9...Bg4, tấn công mã f3, quân được tốt g2 và hậu bảo vệ. Số tốt hai bên bằng nhau, mỗi bên bảy, cả hai vua đã nhập thành, và mã e4 của Đen bị tượng d3 và xe e1 tấn công mà chỉ có tốt d5 bảo vệ.'
+    en: "Black has just played 9...Bg4, attacking the knight on f3, which the g2 pawn and the queen defend. The pawns are level, seven each, both kings have castled, and Black's knight on e4 is attacked by the bishop on d3 and the rook on e1 and defended only by the d5 pawn."
+    fr: 'Les Noirs viennent de jouer 9...Bg4, attaquant le cavalier f3, que le pion g2 et la dame défendent. Les pions sont à égalité, sept de chaque côté, les deux rois ont roqué, et le cavalier e4 des Noirs est attaqué par le fou d3 et la tour e1 et défendu seulement par le pion d5.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 10.Bxe4 ở đây, chẳng hạn 10.h3, tấn công tượng g4. Mục này đi theo nước ăn mã e4.'
+      en: 'White plays something other than 10.Bxe4 here, for instance 10.h3, attacking the bishop on g4. This entry follows the capture of the knight on e4.'
+      fr: 'Les Blancs jouent autre chose que 10.Bxe4 ici, par exemple 10.h3, attaquant le fou g4. Cette entrée suit la capture du cavalier e4.'
+  children:
+    - ply: 'Bxe4'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn mã bằng tượng. Tượng e4 bị tốt d5 tấn công và được xe e1 bảo vệ.'
+        en: 'White takes the knight with the bishop. The bishop on e4 is attacked by the pawn on d5 and defended by the rook on e1.'
+        fr: 'Les Blancs prennent le cavalier avec le fou. Le fou e4 est attaqué par le pion d5 et défendu par la tour e1.'
+      children:
+        - ply: 'dxe4'
+          annotation:
+            vi: 'Đen ăn tượng bằng tốt d. Tốt e4 tấn công mã f3 và bị xe e1 tấn công, và không quân nào bảo vệ nó.'
+            en: 'Black takes the bishop with the d-pawn. The pawn on e4 attacks the knight on f3 and is attacked by the rook on e1, and nothing defends it.'
+            fr: 'Les Noirs prennent le fou avec le pion d. Le pion e4 attaque le cavalier f3 et est attaqué par la tour e1, et rien ne le défend.'
+          dismissRest:
+            reason:
+              vi: 'Trắng chơi nước khác 11.Rxe4 ở đây. Mục này đi theo nước ăn tốt e4, thứ mà không quân nào ăn lại được.'
+              en: 'White plays something other than 11.Rxe4 here. This entry follows the capture of the pawn on e4, which nothing can take back.'
+              fr: 'Les Blancs jouent autre chose que 11.Rxe4 ici. Cette entrée suit la capture du pion e4, que rien ne peut reprendre.'
+          children:
+            - ply: 'Rxe4'
+              replyQuality: 'good'
+              frequency: 'common'
+              annotation:
+                vi: 'Trắng ăn tốt bằng xe, đồng thời chấm dứt đòn tấn công vào mã f3. Xe giờ tấn công tượng g4, quân không có gì bảo vệ.'
+                en: 'White takes the pawn with the rook, which also ends the attack on the knight on f3. The rook now attacks the bishop on g4, which nothing defends.'
+                fr: "Les Blancs prennent le pion avec la tour, ce qui met aussi fin à l'attaque contre le cavalier f3. La tour attaque maintenant le fou g4, que rien ne défend."
+              outcome:
+                type: 'position'
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Đen kém một tốt. Đen có cả hai tượng, ở d6 và g4, so với một tượng của Trắng, và tượng d6 nhắm vào tốt h2, quân được mã f3 và vua bảo vệ. Xe e4 tấn công tượng g4, quân không có gì bảo vệ.'
+                  en: "Count the pawns: White seven, Black six, so Black is a pawn down. Black has both bishops, on d6 and g4, against White's one bishop, and the bishop on d6 aims at the h2 pawn, which the knight on f3 and the king defend. The rook on e4 attacks the bishop on g4, which nothing defends."
+                  fr: 'Comptez les pions : sept pour les Blancs, six pour les Noirs, donc les Noirs ont un pion de moins. Les Noirs ont les deux fous, en d6 et g4, contre un seul fou blanc, et le fou d6 vise le pion h2, que le cavalier f3 et le roi défendent. La tour e4 attaque le fou g4, que rien ne défend.'
+                plan:
+                  vi: 'Đen đánh vào xe bằng ...f5, nước cũng bảo vệ tượng g4, và giữ tượng d6 nhắm vào h2. Trắng dời xe đến chỗ an toàn và phát triển bằng Nc3 và Be3.'
+                  en: 'Black hits the rook with ...f5, which also defends the bishop on g4, and keeps the bishop on d6 aimed at h2. White moves the rook to safety and develops with Nc3 and Be3.'
+                  fr: "Les Noirs attaquent la tour par ...f5, qui défend aussi le fou g4, et gardent le fou d6 dirigé vers h2. Les Blancs mettent la tour à l'abri et se développent par Nc3 et Be3."
+                basis:
+                  by: 'chan'
+                  at: '2026-10-01'
