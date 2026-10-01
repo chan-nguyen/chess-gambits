@@ -1,0 +1,67 @@
+# English Defense: Hartlaub Gambit Accepted. Defining line 1.c4 e6 2.d4 b6 3.Nc3 Bb7 4.e4 f5
+# 5.exf5 Nf6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: english-defense-hartlaub-gambit-accepted
+name: 'English Defense: Hartlaub Gambit Accepted'
+eco: A40
+category: gambit
+side: black
+definingLine: [c4, e6, d4, b6, Nc3, Bb7, e4, f5, exf5, Nf6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black is a pawn down, and the f5 pawn is attacked by the e6 pawn and
+      defended by nothing, so Black can win it back unless White acts. White to move can
+      capture on e6, and Black's compensation is the lead in development, two pieces against
+      one, and the bishop on b7 aimed at g2. The label is dubious. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Nf6, phát triển quân thứ hai. Trắng hơn một tốt, nhưng tốt f5 bị tốt e6 tấn công mà không có quân nào bảo vệ, còn tượng b7 tấn công tốt g2, được tượng f1 bảo vệ.
+    en: Black has just played 5...Nf6, developing the second piece. White is a pawn up, but the f5 pawn is attacked by the e6 pawn and defended by nothing, and the bishop on b7 attacks the g2 pawn, which the bishop on f1 defends.
+    fr: Les Noirs viennent de jouer 5...Nf6, développant la seconde pièce. Les Blancs ont un pion de plus, mais le pion f5 est attaqué par le pion e6 et rien ne le défend, et le fou b7 attaque le pion g2, que le fou f1 défend.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 6.fxe6 ở đây. Mục này chỉ đi theo 6.fxe6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 6.fxe6 here. This entry follows 6.fxe6 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 6.fxe6 ici. Cette entrée ne suit que 6.fxe6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: fxe6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn trên e6 bằng 6.fxe6, tấn công tốt d7 và để tốt e6 không có quân nào bảo vệ.
+        en: White takes on e6 with 6.fxe6, which attacks the d7 pawn and leaves the e6 pawn without protection.
+        fr: Les Blancs prennent en e6 par 6.fxe6, qui attaque le pion d7 et laisse le pion e6 sans protection.
+      children:
+        - ply: dxe6
+          annotation:
+            vi: Đen ăn lại bằng tốt d, 6...dxe6, mở cột d cho hậu và để tốt e6 của Đen bị cô lập.
+            en: Black retakes with the d-pawn, 6...dxe6, which opens the d-file for the queen and leaves Black's pawn on e6 isolated.
+            fr: Les Noirs reprennent avec le pion d, 6...dxe6, ce qui ouvre la colonne d à la dame et laisse isolé le pion noir e6.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Tốt e6 của Đen bị cô lập, và cột e nửa mở cho quân Trắng. Hậu d8 tấn công tốt d4, được hậu d1 bảo vệ, và tượng b7 tấn công tốt g2, được tượng f1 bảo vệ.'
+              en: "Count the pawns: White seven, Black six, so Black is a pawn down and the sacrifice has not come back. Black's pawn on e6 is isolated, and the e-file is half open for White's pieces. The queen on d8 attacks the d4 pawn, which the queen on d1 defends, and the bishop on b7 attacks the g2 pawn, which the bishop on f1 defends."
+              fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Le pion noir e6 est isolé, et la colonne e est semi-ouverte pour les pièces blanches. La dame d8 attaque le pion d4, que la dame d1 défend, et le fou b7 attaque le pion g2, que le fou f1 défend."
+            plan:
+              vi: Trắng phát triển bằng Nf3 và Bd3, nhập thành bằng O-O và nhắm vào tốt e6 bị cô lập bằng Qe2 và Re1. Đen ghim mã c3 bằng ...Bb4, nhập thành bằng ...O-O và phát triển bằng ...Nc6 và ...Qe7.
+              en: White develops with Nf3 and Bd3, castles with O-O and aims at the isolated pawn on e6 with Qe2 and Re1. Black pins the knight on c3 with ...Bb4, castles with ...O-O and develops with ...Nc6 and ...Qe7.
+              fr: Les Blancs se développent par Nf3 et Bd3, roquent par O-O et visent le pion isolé en e6 par Qe2 et Re1. Les Noirs clouent le cavalier c3 par ...Bb4, roquent par ...O-O et se développent par ...Nc6 et ...Qe7.
+            basis:
+              by: chan
+              at: 2026-10-01

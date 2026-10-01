@@ -1,0 +1,59 @@
+# Benoni Defense: Benoni-Staunton Gambit. Defining line 1.d4 c5 2.d5 f5 3.e4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: benoni-defense-benoni-staunton-gambit
+name: 'Benoni Defense: Benoni-Staunton Gambit'
+eco: A43
+category: gambit
+side: white
+definingLine: [d4, c5, d5, f5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 3.e4 puts a pawn on a square that the f5 pawn attacks and nothing
+      defends, and the f5 pawn is equally loose, but it is Black's move and White has no
+      piece developed. The label is dubious. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.e4, hiến một tốt. Tốt e4 bị tốt f5 tấn công và không có quân nào bảo vệ, còn tốt f5 cũng bị tốt e4 tấn công và không có quân nào bảo vệ.
+    en: White has just played 3.e4, offering a pawn. The e4 pawn is attacked by the f5 pawn and nothing defends it, and the f5 pawn is attacked by the e4 pawn and nothing defends it either.
+    fr: Les Blancs viennent de jouer 3.e4, offrant un pion. Le pion e4 est attaqué par le pion f5 et rien ne le défend, et le pion f5 est lui aussi attaqué par le pion e4 et rien ne le défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 3...fxe4 ở đây. Mục này chỉ đi theo 3...fxe4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 3...fxe4 here. This entry follows 3...fxe4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 3...fxe4 ici. Cette entrée ne suit que 3...fxe4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: fxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 3...fxe4. Các tốt Đen ở e4 và e7 giờ bị chồng, và tốt e4 không có quân nào bảo vệ.
+        en: Black takes the pawn with 3...fxe4. Black's pawns on e4 and e7 are now doubled, and the e4 pawn is defended by nothing.
+        fr: Les Noirs prennent le pion par 3...fxe4. Les pions noirs e4 et e7 sont maintenant doublés, et le pion e4 n'est défendu par rien.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt. Các tốt Đen ở e4 và e7 bị chồng và tốt e4 không có quân nào bảo vệ, nên Trắng có thể tấn công nó ngay bằng Nc3. Cột f nửa mở cho Đen, và Trắng chưa phát triển quân nào.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. Black's pawns on e4 and e7 are doubled and the e4 pawn is defended by nothing, so White can attack it at once with Nc3. The f-file is half open for Black, and White has no piece developed."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Les pions noirs e4 et e7 sont doublés et le pion e4 n'est défendu par rien, si bien que les Blancs peuvent l'attaquer tout de suite par Nc3. La colonne f est semi-ouverte pour les Noirs, et les Blancs n'ont développé aucune pièce."
+        plan:
+          vi: Trắng tấn công tốt trên e4 bằng Nc3 và phát triển bằng Nh3 và Be2. Đen bảo vệ tốt trên e4 bằng ...Nf6 và chơi ...g6, ...Bg7 và ...d6.
+          en: White attacks the pawn on e4 with Nc3 and develops with Nh3 and Be2. Black defends the pawn on e4 with ...Nf6 and plays ...g6, ...Bg7 and ...d6.
+          fr: Les Blancs attaquent le pion en e4 par Nc3 et se développent par Nh3 et Be2. Les Noirs défendent le pion en e4 par ...Nf6 et jouent ...g6, ...Bg7 et ...d6.
+        basis:
+          by: chan
+          at: 2026-10-01

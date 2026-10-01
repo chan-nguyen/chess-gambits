@@ -1,0 +1,61 @@
+# Queen's Indian Defense: Classical Variation, Taimanov Gambit. Defining line 1.d4 Nf6 2.c4
+# e6 3.Nf3 b6 4.g3 Bb7 5.Bg2 Be7 6.O-O O-O 7.d5 exd5 8.Nd4, which ends on White's own ply,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-indian-defense-classical-variation-taimanov-gambit
+name: "Queen's Indian Defense: Classical Variation, Taimanov Gambit"
+eco: E17
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, e6, Nf3, b6, g3, Bb7, Bg2, Be7, O-O, O-O, d5, exd5, Nd4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. White is a pawn down after 7...exd5, and the c4 pawn is attacked by the
+      d5 pawn with nothing defending it. White's hope is the bishop on g2, which would
+      attack the undefended bishop on b7 if the d5 pawn left the diagonal. That is a trap
+      more than a plan, so the label is dubious. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 8.Nd4, đang thiếu một tốt. Tốt c4 bị tốt d5 tấn công mà không có quân nào bảo vệ, còn tốt d5 bị tốt c4 và tượng g2 tấn công, và được tượng b7 và mã f6 bảo vệ.
+    en: White has just played 8.Nd4, a pawn down. The c4 pawn is attacked by the d5 pawn and nothing defends it, and the d5 pawn is attacked by the c4 pawn and the bishop on g2 and defended by the bishop on b7 and the knight on f6.
+    fr: Les Blancs viennent de jouer 8.Nd4, un pion en moins. Le pion c4 est attaqué par le pion d5 et rien ne le défend, et le pion d5 est attaqué par le pion c4 et le fou g2 et défendu par le fou b7 et le cavalier f6.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 8...Nc6 ở đây. Mục này chỉ đi theo 8...Nc6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 8...Nc6 here. This entry follows 8...Nc6 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 8...Nc6 ici. Cette entrée ne suit que 8...Nc6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nc6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen tấn công mã d4 bằng 8...Nc6. Con mã này cũng chắn tượng b7, nên tốt d5 giờ chỉ còn mã f6 bảo vệ.
+        en: Black attacks the knight on d4 with 8...Nc6. The knight also blocks the bishop on b7, so the d5 pawn is now defended only by the knight on f6.
+        fr: Les Noirs attaquent le cavalier d4 par 8...Nc6. Ce cavalier barre aussi la route du fou b7, si bien que le pion d5 n'est plus défendu que par le cavalier f6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt. Tốt d5 bị tốt c4 và tượng g2 tấn công mà chỉ có mã f6 bảo vệ, mã d4 bị mã c6 tấn công và được hậu bảo vệ, và cột e nửa mở cho quân Đen.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. The d5 pawn is attacked by the c4 pawn and the bishop on g2 and defended only by the knight on f6, the knight on d4 is attacked by the knight on c6 and defended by the queen, and the e-file is half open for Black's pieces."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Le pion d5 est attaqué par le pion c4 et le fou g2 et défendu seulement par le cavalier f6, le cavalier d4 est attaqué par le cavalier c6 et défendu par la dame, et la colonne e est semi-ouverte pour les pièces noires.'
+        plan:
+          vi: Trắng ăn trên d5 bằng cxd5, phát triển bằng Nc3 và Bf4, và giữ mã d4 được hậu bảo vệ. Đen đổi mã bằng ...Nxd4 và dùng cột e nửa mở bằng ...Re8.
+          en: White takes on d5 with cxd5, develops with Nc3 and Bf4, and keeps the knight on d4 defended by the queen. Black trades the knights with ...Nxd4 and uses the half-open e-file with ...Re8.
+          fr: Les Blancs prennent en d5 par cxd5, se développent par Nc3 et Bf4, et gardent le cavalier d4 défendu par la dame. Les Noirs échangent les cavaliers par ...Nxd4 et utilisent la colonne e semi-ouverte par ...Re8.
+        basis:
+          by: chan
+          at: 2026-10-01
