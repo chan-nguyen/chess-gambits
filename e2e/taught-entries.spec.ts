@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are eight hundred and sixty of them, and they are the ones the content tickets authored', () => {
+  test('there are eight hundred and sixty-five of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'accelerated-london-system-steinitz-countergambit',
       'accelerated-london-system-steinitz-countergambit-accepted',
@@ -117,6 +117,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'benoni-defense-benoni-gambit-schlenker-defense',
       'benoni-defense-cormorant-gambit',
       'benoni-defense-zilbermints-benoni-gambit',
+      'bird-opening-birds-eye-view-trap',
       'bird-opening-dutch-variation-batavo-gambit',
       'bird-opening-dutch-variation-dudweiler-gambit',
       'bird-opening-froms-gambit',
@@ -699,6 +700,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'polish-defense-spassky-gambit-accepted',
       'polish-opening-birmingham-gambit',
       'polish-opening-tartakower-gambit',
+      'ponziani-opening-flagship-trap',
       'ponziani-opening-ponziani-countergambit',
       'ponziani-opening-ponziani-countergambit-schmidt-attack',
       'ponziani-opening-vukovic-gambit',
@@ -711,7 +713,9 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'queens-gambit-declined-albin-countergambit-normal-line',
       'queens-gambit-declined-albin-countergambit-spassky-variation',
       'queens-gambit-declined-albin-countergambit-tartakower-defense',
+      'queens-gambit-declined-orthodox-rubinstein-trap',
       'queens-indian-defense-classical-variation-polugaevsky-gambit',
+      'queens-indian-defense-queen-amidala-trap',
       'queens-pawn-game-chigorin-variation-irish-gambit',
       'queens-pawn-game-hubsch-gambit',
       'queens-pawn-game-zurich-gambit',
@@ -797,6 +801,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'semi-slav-defense-noteboom-variation-anti-noteboom-gambit',
       'siberian-trap',
       'sicilian-defense-alapin-variation-anti-alapin-gambit',
+      'sicilian-defense-bobby-fischer-trap',
       'sicilian-defense-brussels-gambit',
       'sicilian-defense-coles-sicilian-gambit',
       'sicilian-defense-delayed-alapin-variation-basman-palatnik-gambit',

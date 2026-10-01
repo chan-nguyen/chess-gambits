@@ -142,15 +142,15 @@ const observeInteractions = (page: import('@playwright/test').Page): Promise<voi
  */
 test('filtering the full catalogue answers in under 100ms', async ({ page }) => {
   const cases: readonly { readonly from: string; readonly key: string; readonly then: RegExp }[] = [
-    { from: '', key: 'b', then: /Đang hiện 1011/ },
+    { from: '', key: 'b', then: /Đang hiện 1014/ },
     { from: 'C', key: '5', then: /Đang hiện 87/ },
-    { from: '', key: 'q', then: /Đang hiện 24 / },
+    { from: '', key: 'q', then: /Đang hiện 25 / },
   ]
 
   for (const { from, key, then } of cases) {
     await page.goto(`${gambits}?tier=all${from === '' ? '' : `&q=${from}`}`)
     const status = page.getByRole('main').getByRole('status')
-    await expect(status).toContainText('trong 1024 mục')
+    await expect(status).toContainText('trong 1029 mục')
 
     await page.getByLabel('Tìm theo tên hoặc mã ECO').click()
     await observeInteractions(page)

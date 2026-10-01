@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Eight hundred and sixty-one entries are authored — three from #15, eleven from #73, ten
+   * Eight hundred and sixty-six entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -265,7 +265,10 @@ describe('the catalogue this repository ships', () => {
    * gambits with ten Bishop's Opening gambits; Sicilian, Ruy Lopez and Alekhine Defense
    * gambits; and the Vienna Game, Vienna Gambit with Max Lange Defense, Blackmar-Diemer
    * Gambit, Dutch Defense, Center Game and Englund Gambit Declined entries — each a single
-   * root-to-leaf line) — and the
+   * root-to-leaf line), and five new named traps from #173 batch trap-1a (the Bobby Fischer
+   * Trap, the Queen Amidala Trap, the Queen's Gambit Declined Orthodox Defense's Rubinstein
+   * Trap, the Ponziani Flagship Trap and the Bird Opening's Bird's Eye View Trap, with
+   * respectively 3, 4, 3, 8 and 6 root-to-leaf lines) — and the
    * other 163
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
@@ -327,6 +330,7 @@ describe('the catalogue this repository ships', () => {
     ['benoni-defense-benoni-gambit-schlenker-defense', 1],
     ['benoni-defense-cormorant-gambit', 1],
     ['benoni-defense-zilbermints-benoni-gambit', 1],
+    ['bird-opening-birds-eye-view-trap', 6],
     ['bird-opening-dutch-variation-batavo-gambit', 1],
     ['bird-opening-dutch-variation-dudweiler-gambit', 1],
     ['bird-opening-froms-gambit', 3],
@@ -909,6 +913,7 @@ describe('the catalogue this repository ships', () => {
     ['polish-defense-spassky-gambit-accepted', 1],
     ['polish-opening-birmingham-gambit', 1],
     ['polish-opening-tartakower-gambit', 1],
+    ['ponziani-opening-flagship-trap', 8],
     ['ponziani-opening-ponziani-countergambit', 1],
     ['ponziani-opening-ponziani-countergambit-schmidt-attack', 1],
     ['ponziani-opening-vukovic-gambit', 1],
@@ -921,7 +926,9 @@ describe('the catalogue this repository ships', () => {
     ['queens-gambit-declined-albin-countergambit-normal-line', 1],
     ['queens-gambit-declined-albin-countergambit-spassky-variation', 1],
     ['queens-gambit-declined-albin-countergambit-tartakower-defense', 1],
+    ['queens-gambit-declined-orthodox-rubinstein-trap', 3],
     ['queens-indian-defense-classical-variation-polugaevsky-gambit', 1],
+    ['queens-indian-defense-queen-amidala-trap', 4],
     ['queens-pawn-game-chigorin-variation-irish-gambit', 1],
     ['queens-pawn-game-hubsch-gambit', 1],
     ['queens-pawn-game-zurich-gambit', 1],
@@ -1007,6 +1014,7 @@ describe('the catalogue this repository ships', () => {
     ['semi-slav-defense-noteboom-variation-anti-noteboom-gambit', 1],
     ['siberian-trap', 1],
     ['sicilian-defense-alapin-variation-anti-alapin-gambit', 1],
+    ['sicilian-defense-bobby-fischer-trap', 3],
     ['sicilian-defense-brussels-gambit', 1],
     ['sicilian-defense-coles-sicilian-gambit', 1],
     ['sicilian-defense-delayed-alapin-variation-basman-palatnik-gambit', 1],
@@ -1151,8 +1159,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored eight hundred and sixty-one have any', () => {
-    expect(result.value.records).toHaveLength(1024)
+  it('bakes keys on all 1029 entries, and only the authored eight hundred and sixty-six have any', () => {
+    expect(result.value.records).toHaveLength(1029)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the

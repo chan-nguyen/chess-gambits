@@ -245,6 +245,11 @@ traps:
       the delayed-dxc4 "Bd3?? dxc4! Bxf6 cxd3!" trick some sources describe for a related but
       distinct move order. Its dataset row is a Cambridge Springs sub-variation excluded in
       `classification.yaml`.
+      Its page heading (the content file's `name`) now carries the opening, "Cambridge Springs
+      Defense: Rubinstein Trap", because the trap the literature calls "the Rubinstein Trap"
+      is a different one, in the Queen's Gambit Declined
+      (`queens-gambit-declined-orthodox-rubinstein-trap`); the id is unchanged. In the
+      catalogue both cards already read "<family>: <name>", which keeps them apart.
 
   - id: scandinavian-defense-kiel-variation-trap
     name: 'Scandinavian Defense: Kiel Variation Trap'
@@ -457,3 +462,116 @@ traps:
       already imported from the shorter defining line (4...Bc5) by the same prefix match, so
       this trap's own line — six plies deeper, ending on Black's own 5...Bxf2+ — is not a
       second entry for that line either.
+
+  - id: sicilian-defense-bobby-fischer-trap
+    name: 'Bobby Fischer Trap'
+    family: 'Sicilian Defense'
+    eco: B35
+    side: white
+    soundness: sound
+    line: [e4, c5, Nf3, Nc6, d4, cxd4, Nxd4, g6, Nc3, Bg7, Be3, Nf6, Bc4, 'O-O', Bb3]
+    reason: >-
+      From #173 (batch trap-1): lichess study chapter 18 and the Chess Website's page for the
+      trap, which the Chessgames list credits to Fischer-Reshevsky 1958. After 8.Bb3 the
+      natural-looking 8...Na5? runs into 9.e5!, and 9...Ne8? loses the queen to 10.Bxf7+
+      (Rxf7 or Kxf7) 11.Ne6, because the knight on e8 stands between the f8 rook and the d8
+      queen. Replaying the line found what the sources leave out: 9...Nxb3 is Black's only
+      move that does not lose a piece outright, and after 10.exf6 Nxa1 11.fxg7 White keeps
+      only a modest edge, so the trap wins by force against 9...Ne8 and nothing else. Both
+      forms are modelled. The dataset row (Sicilian Defense: Accelerated Dragon, Modern Bc4
+      Variation, B35) ends at 7.Bc4; 7...O-O 8.Bb3 are this entry's two plies.
+
+  - id: queens-indian-defense-queen-amidala-trap
+    name: 'Queen Amidala Trap'
+    family: "Queen's Indian Defense"
+    eco: E15
+    side: black
+    soundness: sound
+    line: [d4, Nf6, c4, e6, Nf3, b6, g3, Ba6, b3, 'Bb4+']
+    reason: >-
+      From #173 (batch trap-1): lichess study chapter 21, the Chess Website's prose and the
+      Chessgames list (Shirazi-Benjamin 1984). Blocking the check with a knight lets 6...Bc3!
+      fork the a1 rook and the d2 knight; the dataset row is exactly "Queen's Indian Defense:
+      Fianchetto Variation, Check Variation" (E15). Replaying the line found the trap is
+      modest: 6.Nbd2? leaves White about half a pawn worse after 7.Rb1 Bb7, not lost, and the
+      source's 8.Bg2?? is not a blunder (what it concedes is the d4 pawn, and 8...Bxd4, not the
+      source's 8...Be4, is the way to take it). The entry says so and models 8.Bg2 and the
+      Shirazi game's 8.Bb2 as the two eighth moves, with 6.Bd2 as the correct reply.
+
+  - id: queens-gambit-declined-orthodox-rubinstein-trap
+    name: 'Orthodox Defense, Rubinstein Trap'
+    family: "Queen's Gambit Declined"
+    eco: D65
+    side: white
+    soundness: sound
+    line:
+      [
+        d4,
+        d5,
+        c4,
+        e6,
+        Nc3,
+        Nf6,
+        Bg5,
+        Be7,
+        e3,
+        'O-O',
+        Nf3,
+        Nbd7,
+        Rc1,
+        c6,
+        Qc2,
+        a6,
+        cxd5,
+        exd5,
+        Bd3,
+        Re8,
+        'O-O',
+        Ne4,
+        Bf4,
+      ]
+    reason: >-
+      From #173 (batch trap-1): the trap Wikipedia, chesstrapguide.com and the Chess Website
+      call the Rubinstein Trap, which is not the Cambridge Springs entry already in this file
+      (`rubinstein-trap`, D52, Black's side): the id is new and both pages now say which
+      opening they sit in. 12...f5? 13.Nxd5! wins a pawn at least, and the tempting
+      13...cxd5? 14.Bc7 traps the queen; the accurate 13...Bd6 is modelled honestly as a pawn
+      up for White. ECO is D65, from the dataset row "Queen's Gambit Declined: Orthodox
+      Defense, Rubinstein Attack" (...7.Rc1 c6 8.Qc2 a6 9.cxd5 exd5 10.Bd3), which contains
+      this exact line; the "Bd3 Line" rows (D66/D67) named in the issue have a different 8th
+      move. The second form in the issue (11...Nh5? 12.Nxd5, a different move order) was
+      replayed, wins a pawn, and is left out because it is a different position.
+
+  - id: ponziani-opening-flagship-trap
+    name: 'Flagship Trap'
+    family: 'Ponziani Opening'
+    eco: C44
+    side: white
+    soundness: sound
+    line: [e4, e5, Nf3, Nc6, c3, Nf6, d4, Nxe4, d5, Ne7, Nxe5, Ng6, Bd3]
+    reason: >-
+      From #173 (batch trap-1): chesstrapguide.com and the Chess Website (also called the
+      Ponziani Trap), credited in the reference list to Bachmann-Kunstmann 1899. 4...Nxe4 is
+      Black's main line, not the mistake; the error is 7...Nxf2?, and 8.Bxg6 Nxd1? 9.Bxf7+
+      Ke7 10.Bg5+ Kd6 11.Nc4+ Kc5 (every reply forced) 12.Nba3! sets up b4 mate, which most of
+      Black's replies walk into. Replaying the line found what the source hides: the sound
+      defence 8...hxg6 9.Kxf2 leaves White only a piece for a pawn, and 7...Nxe5 8.Bxe4 is
+      level; both are modelled. C44 is the dataset's code for the Jaenisch Counterattack
+      (3...Nf6), whose shortest row is 3...Nf6; the Vukovic Gambit row is a different
+      position (5...Bc5).
+
+  - id: bird-opening-birds-eye-view-trap
+    name: "Bird's Eye View Trap"
+    family: 'Bird Opening'
+    eco: A02
+    side: black
+    soundness: sound
+    line: [f4, Nf6, Nf3, d6, b3, e5]
+    reason: >-
+      From #173 (batch trap-1): lichess study chapter 14 and the Chess Website's prose. The
+      line 4.fxe5 dxe5 5.Nxe5 Bd6 6.Nf3 Ng4 7.h3 Bg3# is legal and the mate is real, but it
+      needs two White mistakes in a row. Replaying it found that 6.Bb2 holds (it defends the
+      knight and keeps the knight blocking the d6-h2 diagonal), that 5...Qd4 is even stronger
+      than the trap's 5...Bd6, and that 7.h4 is mated the same way while 7.Nd4, 7.Ng1 and
+      7.Nh4 lose to a three-move mate; all are modelled and proved. A02 is the dataset's code
+      for the bare "Bird Opening" (1.f4), the only matching row.

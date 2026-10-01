@@ -1,0 +1,326 @@
+# The Flagship Trap (also called the Ponziani Trap), from White's side of the Ponziani
+# Opening, Jaenisch Counterattack. The defining line is 1.e4 e5 2.Nf3 Nc6 3.c3 Nf6 4.d4 Nxe4
+# 5.d5 Ne7 6.Nxe5 Ng6 7.Bd3 and it ends on White's own ply, so the root is an opponent node
+# and Black's mistakes can carry a quality (docs/CONTEXT.md, invariant 5). 4...Nxe4 is Black's
+# main line, not the mistake; the error comes at move seven.
+#
+# ECO is C44 and category is `trap`, matching `traps.yaml`: a trap carries the ECO of the
+# opening it sits inside (ADR-0008). The dataset's row for the Jaenisch Counterattack (3...Nf6)
+# is C44; its Vukovic Gambit row (4...Nxe4 5.d5 Bc5) is a different position from this one
+# (5...Ne7) and is not touched.
+#
+# Sources are leads. The line 7...Nxf2 8.Bxg6 Nxd1 9.Bxf7+ Ke7 10.Bg5+ Kd6 11.Nc4+ Kc5
+# 12.Nba3 is on chesstrapguide.com and the Chess Website's Flagship Trap page, and is credited
+# to Bachmann-Kunstmann 1899 in the reference list that fed issue #173. It was replayed ply by
+# ply with chess.js before any prose was written. What the replay found, and the file now says:
+#
+# - Every ply of the line is legal and the king walk is forced: 9.Bxf7+ has one legal reply
+#   (Ke7), 10.Bg5+ has one (Kd6) and 11.Nc4+ has one (Kc5). The source continues 12...Nxc3
+#   13.Bxd8, which is true but hides the point of the trap: 12.Nba3 is a quiet move that
+#   threatens b2-b4 mate, and most of Black's replies at that node are mated at once by it. The
+#   count is derived by the build, not typed. 12.Bxd8 wins too, so the quiet move is not
+#   "stronger"; it is the one that sets a mating trap.
+# - 7...Nxf2 is not the end of the game by itself. After 8.Bxg6 the sound defence is
+#   8...hxg6 9.Kxf2, which leaves White a piece for a pawn ahead with the king a little
+#   exposed; that branch is modelled as an honest assessment. The queen grab 8...Nxd1? is the
+#   mistake that walks into the combination.
+# - The strongest 7th move is 7...Nxe5, which after 8.Bxe4 is level. It gets its own branch.
+#   The trap is a trap because 7...Nxf2 looks natural, not because 7.Bd3 refutes everything.
+# - At move eight most of Black's other replies are worse than they look: 8...d6 is mated in
+#   two (modelled as a trap branch) and several others in four; those longer mates are not
+#   claimed here and the catch-all says only that Black loses decisively.
+#
+# A private engine cross-check (the Stockfish build the analysis page ships, at moderate
+# depth) was used to decide which replies deserve a branch. It is not the source of any claim
+# in the lesson: every mate is proved by our own search, and every capture or count was read
+# off the derived board.
+id: ponziani-opening-flagship-trap
+name: 'Ponziani Opening: Flagship Trap'
+eco: C44
+category: trap
+side: white
+definingLine:
+  - e4
+  - e5
+  - Nf3
+  - Nc6
+  - c3
+  - Nf6
+  - d4
+  - Nxe4
+  - d5
+  - Ne7
+  - Nxe5
+  - Ng6
+  - Bd3
+soundness:
+  value: sound
+  reviewedAt: 2026-10-01
+  basis:
+    by: chan
+    at: 2026-10-01
+    source: "A judgement, and the same label `traps.yaml` carries. It is about White's play from move seven: against Black's best reply 7...Nxe5 White is level, and against 7...Nxf2 White keeps a piece for a pawn even if Black finds 8...hxg6, so nothing in this entry depends on the opponent cooperating. The mates are not a judgement; they are proved. An engine was used privately at moderate depth to find the replies worth modelling and is not the source of any claim."
+judgement:
+  by: chan
+  at: 2026-10-01
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date. The mates are not — they are machine-proved and replayed by CI. Every material count was read off the derived board.
+tree:
+  annotation:
+    vi: 'Trắng vừa đưa tượng ra d3. Tượng đánh vào mã e4 không được bảo vệ, còn mã e5 đang đánh mã g6. Đen có một nước trông rất hấp dẫn: 7...Nxf2, mã ăn tốt f2 và cùng lúc tấn công hậu d1, xe h1 và tượng d3.'
+    en: 'White has just brought the bishop out to d3. It attacks the undefended knight on e4, while the knight on e5 attacks the knight on g6. Black has one very tempting move: 7...Nxf2, taking the f2 pawn and attacking the queen on d1, the rook on h1 and the bishop on d3 all at once.'
+    fr: "Les Blancs viennent de sortir le fou en d3. Il attaque le cavalier e4 non défendu, tandis que le cavalier e5 attaque le cavalier g6. Les Noirs ont un coup très tentant : 7...Nxf2, qui prend le pion f2 et attaque d'un seul coup la dame d1, la tour h1 et le fou d3."
+  dismissRest:
+    reason:
+      vi: Mỗi nước còn lại đều để một trong hai mã bị bắt, hoặc đưa nó vào một ô bị ăn mất, và Trắng thắng ít nhất một quân đổi lấy một tốt.
+      en: Every remaining move leaves one of the two knights to be captured, or puts it on a square where it is taken, and White wins at least a piece for a pawn.
+      fr: Chacun des autres coups laisse l'un des deux cavaliers en prise, ou le pose sur une case où il est pris, et les Blancs gagnent au moins une pièce contre un pion.
+  dismissed:
+    - ply: Nc5
+      reason: 7...Nc5 8.Nxg6 Nxd3+ 9.Qxd3 hxg6 trades two pieces each and leaves the game level.
+    - ply: Nf6
+      reason: 7...Nf6 retreats the attacked knight; 8.Nxg6 hxg6 trades the g6 knight and the game stays roughly level.
+    - ply: Nd6
+      reason: 7...Nd6 saves the knight, but 8.f4 keeps the e5 knight supported and White is slightly better.
+    - ply: f5
+      reason: 7...f5 protects the e4 knight with a pawn; 8.Nxg6 hxg6 trades knights and White keeps a small edge.
+    - ply: Qe7
+      reason: 7...Qe7 hits the e5 knight; after 8.Nxg6 hxg6 the queen guards e4 and White keeps a small edge.
+    - ply: Qh4
+      reason: 7...Qh4 8.g3 drives the queen back with both black knights still loose; White is clearly better.
+    - ply: Qf6
+      reason: 7...Qf6 8.Ng4 attacks the queen with both black knights still loose; White is clearly better.
+    - ply: Ng5
+      reason: '7...Ng5 8.Nxg6 hxg6 9.Qe2+ wins a piece: the check wins the g5 knight.'
+    - ply: Nxc3
+      reason: 7...Nxc3 8.Bxg6 hxg6 9.Nxc3 leaves White a piece for a pawn ahead.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Mã g6 ăn mã e5 của Trắng: nó thoát khỏi đòn đánh và đứng giữa bàn cờ. Mã e4 vẫn bị tượng d3 đánh, nên Trắng ăn nó ngay bằng Bxe4.'
+        en: "The g6 knight takes White's knight on e5: it escapes the attack and lands in the centre. The e4 knight is still attacked by the d3 bishop, so White takes it at once with Bxe4."
+        fr: "Le cavalier g6 prend le cavalier e5 des Blancs : il échappe à l'attaque et se pose au centre. Le cavalier e4 reste attaqué par le fou d3, les Blancs le prennent donc aussitôt avec Bxe4."
+      children:
+        - ply: Bxe4
+          annotation:
+            vi: Tượng d3 ăn mã e4 và trả quân số về cân bằng. Mã e5 của Đen đứng giữa bàn cờ, còn tượng e4 của Trắng chĩa về h7.
+            en: The d3 bishop takes the e4 knight and restores the material balance. Black's knight stands on e5 in the middle of the board and White's bishop on e4 points at h7.
+            fr: Le fou d3 prend le cavalier e4 et rétablit l'équilibre matériel. Le cavalier noir se tient en e5 au centre de l'échiquier, et le fou e4 blanc vise h7.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Quân số hoàn toàn cân bằng: mỗi bên mất một mã, còn bảy tốt và cùng số quân (hậu, hai xe, hai tượng, một mã). Tượng e4 của Trắng chĩa vào h7, còn tốt d5 hạn chế các ô c6 và e6 của Đen; mã e5 của Đen đứng vững ở trung tâm. Thế cờ ngang, và đây là cách đáp đúng của Đen: ở đây không có cái bẫy nào.'
+              en: "Material is exactly level: each side has lost a knight and has seven pawns and the same pieces (queen, two rooks, two bishops, one knight). White's bishop on e4 bears on h7 and the d5 pawn takes c6 and e6 from Black, while Black's knight on e5 stands firmly in the centre. The position is level and this is the correct answer for Black: there is no trap here."
+              fr: "Le matériel est rigoureusement égal : chaque camp a perdu un cavalier et possède sept pions et les mêmes pièces (dame, deux tours, deux fous, un cavalier). Le fou e4 blanc vise h7 et le pion d5 ôte c6 et e6 aux Noirs, tandis que le cavalier e5 noir est solidement installé au centre. La position est égale et c'est la bonne réponse des Noirs : il n'y a pas de piège ici."
+            plan:
+              vi: Trắng phát triển nốt (nhập thành, Bf4 đánh vào mã e5), còn Đen đưa tượng ra c5 hoặc d6 rồi nhập thành. Mã e5 chỉ nên đổi khi có lợi, vì tốt d5 làm các quân nhẹ còn lại của Đen khó ra.
+              en: White finishes development (castling, Bf4 hitting the e5 knight); Black brings a bishop out to c5 or d6 and castles. The e5 knight should only be traded on good terms, because the d5 pawn makes it harder for Black's other minor pieces to come out.
+              fr: Les Blancs achèvent leur développement (roque, Bf4 contre le cavalier e5) ; les Noirs sortent un fou en c5 ou d6 puis roquent. Le cavalier e5 ne doit être échangé qu'à de bonnes conditions, car le pion d5 gêne la sortie des autres pièces mineures noires.
+            basis:
+              by: chan
+              at: 2026-10-01
+    - ply: Nxf2
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: 'Mã e4 ăn tốt f2 và chĩa ba quân: hậu d1, xe h1 và tượng d3 cùng bị tấn công. Nhìn thì Đen thắng hậu hoặc xe, nhưng mã g6 vẫn đang bị mã e5 đánh và Đen sắp phải trả giá cho điều đó.'
+        en: 'The e4 knight takes the f2 pawn and forks three pieces: the queen on d1, the rook on h1 and the bishop on d3 are all attacked. It looks as if Black wins the queen or a rook, but the g6 knight is still attacked by the e5 knight and Black is about to pay for it.'
+        fr: 'Le cavalier e4 prend le pion f2 et fourche trois pièces : la dame d1, la tour h1 et le fou d3 sont toutes attaquées. On croirait que les Noirs gagnent la dame ou une tour, mais le cavalier g6 reste attaqué par le cavalier e5 et les Noirs vont devoir le payer.'
+      children:
+        - ply: Bxg6
+          annotation:
+            vi: 'Trắng bỏ mặc cú chĩa: 8.Bxg6 ăn mã g6. Tượng đứng trên g6 đánh vào f7 và h7, và cùng với mã e5 nó đánh vào f7, nơi chỉ có vua Đen canh giữ.'
+            en: 'White ignores the fork: 8.Bxg6 takes the g6 knight. The bishop on g6 attacks f7 and h7, and together with the e5 knight it attacks f7, which only the black king guards.'
+            fr: 'Les Blancs ignorent la fourchette : 8.Bxg6 prend le cavalier g6. Le fou en g6 attaque f7 et h7, et avec le cavalier e5 il attaque f7, que seul le roi noir garde.'
+          dismissRest:
+            reason:
+              vi: 'Mọi nước còn lại đều không tốt hơn 8...hxg6: tượng g6 và mã e5 vẫn cùng nhắm vào f7, mã f2 của Đen vẫn lơ lửng, và Trắng giữ lợi thế rõ rệt trong từng nước.'
+              en: 'Every other move is no better than 8...hxg6: the g6 bishop and the e5 knight still attack f7 together, the black knight on f2 is still loose, and White keeps a clear advantage in each.'
+              fr: "Tout autre coup ne vaut pas mieux que 8...hxg6 : le fou g6 et le cavalier e5 attaquent toujours f7 ensemble, le cavalier noir f2 est toujours en l'air, et les Blancs gardent un avantage net dans chaque cas."
+          dismissed:
+            - ply: fxg6
+              reason: 8...fxg6 9.Kxf2 (or 9.Qe2 first) again leaves White a piece for a pawn ahead; same assessment as 8...hxg6.
+            - ply: Bc5
+              reason: 8...Bc5 9.Bxf7+ Kf8 10.Qf3 and White is clearly ahead.
+          children:
+            - ply: hxg6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: 'Tốt h ăn lại tượng. Đây là cách phòng thủ tốt nhất của Đen: cột h mở ra cho xe, còn mã f2 vẫn đang chĩa vào hậu và xe. Trắng ăn mã f2 bằng vua.'
+                en: "The h-pawn recaptures the bishop. This is Black's best defence: the h-file opens for the rook, and the knight on f2 still forks the queen and the rook. White takes that knight with the king."
+                fr: "Le pion h reprend le fou. C'est la meilleure défense des Noirs : la colonne h s'ouvre pour la tour, et le cavalier f2 fourche toujours la dame et la tour. Les Blancs prennent ce cavalier avec le roi."
+              children:
+                - ply: Kxf2
+                  annotation:
+                    vi: Vua Trắng ăn mã f2, chấm dứt cú chĩa và giữ lại quân dư.
+                    en: The white king takes the knight on f2, ending the fork and keeping the extra piece.
+                    fr: Le roi blanc prend le cavalier f2, met fin à la fourchette et garde la pièce de plus.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Trắng hơn một quân đổi lấy một tốt: Trắng còn hai mã và một tượng cùng sáu tốt, Đen chỉ còn hai tượng và bảy tốt. Hai tốt g của Đen bị chồng (g7 và g6), một khuyết tật không sửa được. Đổi lại vua Trắng đã mất quyền nhập thành và đứng ở f2, trên đường chiếu của ...Bc5+ và ...Qh4+.'
+                      en: "White is a piece for a pawn ahead: White has two knights and a bishop with six pawns, Black has only two bishops with seven. Black's g-pawns are doubled (g7 and g6), a defect that cannot be repaired. In return the white king has lost the right to castle and stands on f2, in the line of ...Bc5+ and ...Qh4+."
+                      fr: 'Les Blancs ont une pièce de plus pour un pion : deux cavaliers et un fou avec six pions, contre deux fous seulement et sept pions. Les pions g noirs sont doublés (g7 et g6), un défaut irréparable. En contrepartie le roi blanc a perdu le droit de roquer et se trouve en f2, sur la ligne de ...Bc5+ et ...Qh4+.'
+                    plan:
+                      vi: Trắng đáp các nước chiếu bằng nước chặn (Be3 trước ...Bc5+, g3 trước ...Qh4+) rồi đổi bớt quân để giữ quân dư ra. Đen dùng cột h mở và hai tượng để tạo đe doạ liên tục, nhưng phải tìm ra cách bù đắp cho một quân.
+                      en: White answers the checks with blocks (Be3 against ...Bc5+, g3 against ...Qh4+) and then trades pieces to keep the extra one. Black uses the open h-file and the two bishops to keep making threats, but has to find a way to make up for a piece.
+                      fr: Les Blancs répondent aux échecs par des interpositions (Be3 contre ...Bc5+, g3 contre ...Qh4+) puis échangent des pièces pour conserver la pièce de plus. Les Noirs se servent de la colonne h ouverte et des deux fous pour menacer sans cesse, mais doivent trouver de quoi compenser une pièce.
+                    basis:
+                      by: chan
+                      at: 2026-10-01
+            - ply: d6
+              replyQuality: blunder
+              frequency: rare
+              annotation:
+                vi: Đen đẩy tốt d6 để xua mã e5, nhưng chính tốt ấy lấp mất ô d6, lối thoát của vua. 9.Bxf7+ Ke7 rồi 10.Bg5 là chiếu hết; chuỗi này do máy chứng minh.
+                en: Black pushes the d-pawn to chase the e5 knight, but that pawn fills d6, the king's escape square. 9.Bxf7+ Ke7 and then 10.Bg5 is mate; the sequence is proved by machine.
+                fr: Les Noirs poussent le pion d pour chasser le cavalier e5, mais ce pion bouche d6, la case de fuite du roi. 9.Bxf7+ Ke7 puis 10.Bg5 est mat ; la séquence est prouvée par la machine.
+              outcome:
+                type: trap
+            - ply: Nxd1
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: 'Đen ăn hậu. Trông như đã thắng chắc, và đó chính là chỗ sai: tượng g6 và mã e5 của Trắng đã cùng chĩa vào f7, và vua Đen sắp bị lùa ra giữa bàn cờ bằng một chuỗi chiếu bắt buộc.'
+                en: "Black takes the queen. It looks decisive, and that is the mistake: White's bishop on g6 and knight on e5 already attack f7 together, and the black king is about to be driven into the open by a chain of forced checks."
+                fr: "Les Noirs prennent la dame. Cela semble décisif, et c'est là l'erreur : le fou g6 et le cavalier e5 des Blancs attaquent déjà f7 ensemble, et le roi noir va être chassé à découvert par une série d'échecs forcés."
+              children:
+                - ply: Bxf7+
+                  annotation:
+                    vi: Tượng ăn f7 với chiếu. Mã e5 bảo vệ tượng nên vua Đen không ăn được; d8, d7 và f8 đều có quân mình đứng. Chỉ còn Ke7.
+                    en: The bishop takes on f7 with check. The e5 knight protects it, so the black king cannot take, and d8, d7 and f8 are all occupied by Black's own pieces. Only Ke7 is left.
+                    fr: Le fou prend en f7 avec échec. Le cavalier e5 le protège, le roi noir ne peut donc pas le prendre, et d8, d7 et f8 sont occupées par ses propres pièces. Il ne reste que Ke7.
+                  children:
+                    - ply: Ke7
+                      annotation:
+                        vi: Nước duy nhất. Vua Đen đứng trên e7, ngay cạnh hậu d8, và đường chéo g5–d8 chạy xuyên qua ô e7.
+                        en: The only move. The black king stands on e7, right beside the queen on d8, and the g5–d8 diagonal runs through e7.
+                        fr: Le seul coup. Le roi noir se tient en e7, juste à côté de la dame d8, et la diagonale g5–d8 passe par e7.
+                      children:
+                        - ply: Bg5+
+                          annotation:
+                            vi: Tượng c1 ra g5 chiếu vua e7 (đường c1–g5 đã trống), và sau vua là hậu d8. Vua chỉ còn ô d6.
+                            en: The c1 bishop goes to g5, checking the king on e7 (the c1–g5 diagonal is clear) with the queen on d8 behind it. The king has only d6.
+                            fr: Le fou c1 va en g5 et donne échec au roi e7 (la diagonale c1–g5 est libre), avec la dame d8 derrière. Le roi n'a que d6.
+                          children:
+                            - ply: Kd6
+                              annotation:
+                                vi: Cũng là nước duy nhất. Vua Đen lên d6, ô mà mã Trắng sắp chiếu.
+                                en: Again the only move. The black king goes to d6, a square the white knight is about to check.
+                                fr: Encore le seul coup. Le roi noir va en d6, case que le cavalier blanc s'apprête à attaquer avec échec.
+                              children:
+                                - ply: Nc4+
+                                  annotation:
+                                    vi: Mã e5 chiếu từ c4. Vua đã rời e7 nên tượng g5 giờ nhìn thẳng vào hậu d8. Vua Đen chỉ còn c5.
+                                    en: The e5 knight checks from c4. The king has left e7, so the g5 bishop now looks straight at the queen on d8. The black king has only c5.
+                                    fr: Le cavalier e5 donne échec depuis c4. Le roi ayant quitté e7, le fou g5 regarde maintenant droit vers la dame d8. Le roi noir n'a que c5.
+                                  children:
+                                    - ply: Kc5
+                                      annotation:
+                                        vi: Vua Đen đứng trên c5, bị quân Trắng bao quanh nhưng chưa bị chiếu. Trắng đang thiếu một hậu. Ăn hậu ngay bằng Bxd8 cũng thắng, nhưng có một nước yên tĩnh đặt ra một cái bẫy chiếu hết.
+                                        en: The black king stands on c5, surrounded but not in check. White is a queen down. Taking the queen at once with Bxd8 also wins, but there is a quiet move that sets a mating trap.
+                                        fr: Le roi noir se tient en c5, cerné mais pas en échec. Les Blancs ont une dame de moins. Prendre aussitôt la dame par Bxd8 gagne aussi, mais il existe un coup tranquille qui tend un piège de mat.
+                                      children:
+                                        - ply: Nba3
+                                          annotation:
+                                            vi: 'Mã b1 sang a3: không chiếu, không ăn, nhưng nó canh ô b5 và bảo vệ mã c4. Trắng đe doạ b4: tốt b đi hai bước và chiếu, mà vua c5 không còn ô nào (b5, b6, c6, d6, d4 đều bị khống chế, còn c4 và b4 đều có người bảo vệ), nên b4 là chiếu hết. Trong {legal} nước hợp lệ của Đen, {mated} nước bị b4# chiếu hết ngay.'
+                                            en: "The b1 knight goes to a3: no check, no capture, but it guards b5 and protects the knight on c4. White now threatens b4: the b-pawn steps two squares with check, and the king on c5 has no square left (b5, b6, c6, d6 and d4 are all covered, and both c4 and b4 are defended), so b4 is mate. Of Black's {legal} legal moves, {mated} are mated at once by b4#."
+                                            fr: "Le cavalier b1 va en a3 : ni échec ni prise, mais il garde b5 et protège le cavalier c4. Les Blancs menacent maintenant b4 : le pion b avance de deux cases avec échec, et le roi c5 n'a plus de case (b5, b6, c6, d6 et d4 sont contrôlées, et c4 comme b4 sont défendues), donc b4 est mat. Sur les {legal} coups légaux des Noirs, {mated} sont matés sur-le-champ par b4#."
+                                          counts:
+                                            legal:
+                                              count: legalReplies
+                                              expect: 21
+                                            mated:
+                                              count: matedBy
+                                              ply: b4#
+                                              expect: 16
+                                          dismissRest:
+                                            reason:
+                                              vi: 'Mỗi nước trong số này đều bị 13.b4# chiếu hết ngay: không nước nào giải toả được vua c5 hay ngăn được tốt b.'
+                                              en: 'Every one of these is mated at once by 13.b4#: none of them frees the king on c5 or stops the b-pawn.'
+                                              fr: "Chacun de ces coups est maté sur-le-champ par 13.b4# : aucun ne libère le roi c5 ni n'arrête le pion b."
+                                          dismissed:
+                                            - ply: Qe8+
+                                              reason: 12...Qe8+ 13.Bxe8 gives the queen for a bishop; Black is lost.
+                                          children:
+                                            - ply: Nxc3
+                                              replyQuality: best
+                                              frequency: common
+                                              annotation:
+                                                vi: Mã d1 ăn tốt c3, lấy đi tốt đang bảo vệ b4 nên b4+ không còn là chiếu hết. Đây là cách đỡ tự nhiên nhất và là nước các nguồn nêu, nhưng Trắng vẫn ăn hậu.
+                                                en: The d1 knight takes the c3 pawn, removing the pawn that protects b4, so b4+ is no longer mate. It is the most natural defence and the one the sources give, but White still takes the queen.
+                                                fr: "Le cavalier d1 prend le pion c3, ôtant le pion qui protège b4 : b4+ n'est plus mat. C'est la défense la plus naturelle et celle que donnent les sources, mais les Blancs prennent quand même la dame."
+                                              children:
+                                                - ply: Bxd8
+                                                  annotation:
+                                                    vi: 'Tượng g5 ăn hậu d8: Trắng lấy lại hậu đã bỏ ở nước tám.'
+                                                    en: The g5 bishop takes the queen on d8, winning back the queen given up on move eight.
+                                                    fr: Le fou g5 prend la dame d8 et regagne la dame sacrifiée au huitième coup.
+                                                  outcome:
+                                                    type: position
+                                                    evaluation:
+                                                      vi: 'Quân số: Trắng có hai xe, hai mã, hai tượng và năm tốt, Đen có hai xe, hai tượng, một mã và sáu tốt, nghĩa là Trắng hơn một mã đổi một tốt sau khi đã lấy lại hậu. Vua Đen kẹt ở c5 và đã mất quyền nhập thành, còn hai mã Trắng ở a3 và c4 cùng tốt b2 vẫn nhắm vào các ô quanh nó.'
+                                                      en: 'Material count: White has two rooks, two knights, two bishops and five pawns; Black has two rooks, two bishops, one knight and six pawns, so White is a knight for a pawn ahead after winning the queen back. The black king is stuck on c5 and has lost the right to castle, and the white knights on a3 and c4 and the b2 pawn still bear on the squares around it.'
+                                                      fr: 'Décompte matériel : les Blancs ont deux tours, deux cavaliers, deux fous et cinq pions ; les Noirs deux tours, deux fous, un cavalier et six pions, soit un cavalier de plus pour un pion côté blanc après avoir regagné la dame. Le roi noir est bloqué en c5 et a perdu le droit de roquer, et les cavaliers blancs a3 et c4 ainsi que le pion b2 visent encore les cases autour de lui.'
+                                                    plan:
+                                                      vi: Trắng tiếp tục truy đuổi vua Đen (b4+, đưa xe vào cột b hoặc c) và giữ hai tượng. Mã c3 của Đen đang bị tốt b2 đánh nên Đen phải lo cứu nó và cứu vua cùng lúc, mà không còn hậu để giúp.
+                                                      en: White keeps hunting the black king (b4+, a rook to the b- or c-file) and keeps both bishops. Black's c3 knight is attacked by the b2 pawn, so Black has to save it and the king at the same time, with no queen to help.
+                                                      fr: 'Les Blancs poursuivent la chasse au roi noir (b4+, une tour sur la colonne b ou c) et gardent les deux fous. Le cavalier c3 noir est attaqué par le pion b2 : les Noirs doivent le sauver en même temps que le roi, sans dame pour les aider.'
+                                                    basis:
+                                                      by: chan
+                                                      at: 2026-10-01
+                                            - ply: a5
+                                              replyQuality: best
+                                              frequency: occasional
+                                              annotation:
+                                                vi: Tốt a5 canh ô b4, nên b4+ không còn là chiếu hết vì tốt a5 ăn được. Nhưng nó không cứu được hậu, và Trắng ăn hậu.
+                                                en: The a-pawn steps to a5 and guards b4, so b4+ is no longer mate because the a5 pawn can take it. But it does not save the queen, and White takes it.
+                                                fr: "Le pion a avance en a5 et garde b4 : b4+ n'est plus mat puisque le pion a5 peut le prendre. Mais cela ne sauve pas la dame, et les Blancs la prennent."
+                                              children:
+                                                - ply: Bxd8
+                                                  annotation:
+                                                    vi: 'Tượng g5 ăn hậu d8: Trắng lấy lại hậu đã bỏ ở nước tám.'
+                                                    en: The g5 bishop takes the queen on d8, winning back the queen given up on move eight.
+                                                    fr: Le fou g5 prend la dame d8 et regagne la dame sacrifiée au huitième coup.
+                                                  outcome:
+                                                    type: position
+                                                    evaluation:
+                                                      vi: 'Quân số: Trắng có hai xe, hai mã, hai tượng và sáu tốt, Đen có hai xe, hai tượng, một mã và sáu tốt, nghĩa là Trắng hơn một mã nguyên vẹn, vì hậu hai bên đã mất cả. Mã d1 của Đen đang bị vua e1 và xe a1 cùng đánh mà không có quân nào bảo vệ.'
+                                                      en: "Material count: White has two rooks, two knights, two bishops and six pawns; Black has two rooks, two bishops, one knight and six pawns, so White is a clean knight ahead, both queens being gone. Black's knight on d1 is attacked by the king on e1 and the rook on a1 and defended by nothing."
+                                                      fr: "Décompte matériel : les Blancs ont deux tours, deux cavaliers, deux fous et six pions ; les Noirs deux tours, deux fous, un cavalier et six pions, soit un cavalier net de plus pour les Blancs, les deux dames ayant disparu. Le cavalier d1 noir est attaqué par le roi e1 et la tour a1 et n'est défendu par rien."
+                                                    plan:
+                                                      vi: Trắng sẽ ăn mã d1 bằng vua hoặc xe nếu nó đứng yên, giữ hai tượng và dùng quân dư ra để truy đuổi vua c5. Đen phải lo cho mã d1 và cho vua cùng một lúc.
+                                                      en: White will take the d1 knight with the king or a rook if it stays there, keeps both bishops and uses the extra piece to hunt the king on c5. Black has to look after the d1 knight and the king at the same time.
+                                                      fr: Les Blancs prendront le cavalier d1 avec le roi ou une tour s'il reste là, gardent les deux fous et se servent de la pièce de plus pour chasser le roi c5. Les Noirs doivent s'occuper en même temps du cavalier d1 et du roi.
+                                                    basis:
+                                                      by: chan
+                                                      at: 2026-10-01
+                                            - ply: Qxg5
+                                              replyQuality: blunder
+                                              frequency: common
+                                              annotation:
+                                                vi: Hậu ăn tượng g5, tưởng là thoát nạn và thắng thêm một quân. Nhưng nước đó không làm gì với b4, và b4 là chiếu hết.
+                                                en: The queen takes the bishop on g5, expecting to escape and win a piece as well. But that does nothing about b4, and b4 is checkmate.
+                                                fr: La dame prend le fou g5, croyant s'échapper et gagner une pièce de plus. Mais cela ne change rien à b4, et b4 est mat.
+                                              outcome:
+                                                type: trap
+                                            - ply: Qe7+
+                                              replyQuality: blunder
+                                              frequency: occasional
+                                              annotation:
+                                                vi: Hậu chiếu từ e7 để bắt tượng g5 ăn. Tượng ăn hậu có chiếu, Đen ăn lại tượng, và b4 vẫn là chiếu hết; chuỗi này do máy chứng minh.
+                                                en: The queen checks from e7 to make the g5 bishop take. The bishop takes the queen with check, Black takes the bishop back, and b4 is still checkmate; the sequence is proved by machine.
+                                                fr: La dame donne échec en e7 pour forcer le fou g5 à prendre. Le fou prend la dame avec échec, les Noirs reprennent le fou, et b4 reste mat ; la séquence est prouvée par la machine.
+                                              outcome:
+                                                type: trap
+                                            - ply: Nxb2
+                                              replyQuality: blunder
+                                              frequency: occasional
+                                              annotation:
+                                                vi: Mã d1 ăn tốt b2, lấy đi tốt cần cho b4, nhưng nó rời d1 — ô từ đó nó canh e3. Giờ không còn quân nào của Đen ăn được ô e3, và Be3 là chiếu hết.
+                                                en: The d1 knight takes the b2 pawn, removing the pawn b4 needs, but it leaves d1, the square from which it guarded e3. Now no black piece can take on e3, and Be3 is checkmate.
+                                                fr: Le cavalier d1 prend le pion b2, ôtant le pion dont b4 a besoin, mais il quitte d1, case d'où il gardait e3. Plus aucune pièce noire ne peut prendre en e3, et Be3 est mat.
+                                              outcome:
+                                                type: trap
