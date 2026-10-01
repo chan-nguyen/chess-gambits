@@ -1,0 +1,97 @@
+# The Combe-Hasenfuss Trap, from the Folkestone Olympiad of 1933, played by Black. The
+# defining line is 1.c4 c5 2.d4 cxd4 3.Nf3 e5 and it ends on Black's own ply, so the root is an
+# opponent node and White's 4.Nxe5 can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is A30. chesstrapguide.com files the trap under the "Old Benoni", but that opening
+# starts 1.d4 c5 2.d5; this position is a Symmetrical English after 1.c4 c5, and the longest
+# dataset row on the way to it is "English Opening: Symmetrical Variation" (1.c4 c5, A30).
+# The dataset has no row for 2.d4, and a trap carries the ECO of the opening it sits inside
+# (ADR-0008).
+#
+# The source line (#174, item 5) is 4.Nxe5?? Qa5+. It replays and it works: the queen checks
+# along a5-e1, which White's own 2.d4 opened by moving the d-pawn, and the same move attacks
+# the knight on e5 along the fifth rank. None of White's five replies to the check protects
+# the knight, so 5...Qxe5 wins it. No outcome here is a claimed mate: the leaf is a material
+# assessment. "Black is no worse" for the replies the root catch-all covers was checked on
+# each of them with a private engine run (never shipped, never cited as an authority).
+id: english-opening-symmetrical-variation-combe-hasenfuss-trap
+name: 'English Opening: Symmetrical Variation, Combe-Hasenfuss Trap'
+eco: A30
+category: trap
+side: black
+definingLine: [c4, c5, d4, cxd4, Nf3, e5]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement about Black's play, not about the trap springing: 3...e5 defends the extra
+      pawn and a private engine run finds Black at least equal against every reply, so
+      nothing here depends on White blundering. The mistake is 4.Nxe5 and nothing else.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material counts, which were computed by hand from
+    the derived positions.
+tree:
+  annotation:
+    vi: Đen đã ăn tốt d4 và vừa đẩy e5 để giữ nó. Tốt e5 giờ không được quân nào bảo vệ, và mã f3 của Trắng ăn được ngay. Đó chính là mồi nhử, vì nếu mã ăn thì ...Qa5+ chiếu vua và đồng thời đánh vào mã.
+    en: Black has taken the d4 pawn and has just played ...e5 to hold it. The e5 pawn is defended by nothing and the white knight on f3 can take it at once. That is the bait - if the knight takes, ...Qa5+ checks the king and attacks the knight at the same time.
+    fr: Les Noirs ont pris le pion d4 et viennent de jouer ...e5 pour le garder. Le pion e5 n'est défendu par rien et le cavalier f3 peut le prendre aussitôt. C'est l'appât - si le cavalier prend, ...Qa5+ donne échec au roi et attaque en même temps le cavalier.
+  dismissRest:
+    reason:
+      vi: Trắng không ăn tốt e5 nên cái bẫy không có chỗ để nổ. Mục này không vẽ tiếp những nhánh đó. Đen không kém hơn trong nhánh nào, và thường chỉ cần phát triển bằng ...Nc6 và ...Nf6.
+      en: White does not take on e5, so the trap has nowhere to spring. This entry does not map those branches. Black is no worse in any of them, and usually only needs to develop with ...Nc6 and ...Nf6.
+      fr: Les Blancs ne prennent pas en e5, le piège n'a donc nulle part où se déclencher. Cette entrée ne cartographie pas ces branches. Dans aucune d'elles les Noirs ne sont moins bien, et ils n'ont en général qu'à se développer par ...Nc6 et ...Nf6.
+  children:
+    - ply: Nxe5
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt e5 bằng mã. Tốt ấy không ai bảo vệ nên nước ăn trông như miễn phí, nhưng con mã giờ nằm trên hàng 5, còn vua e1 nằm trên đường chéo a5-e1, và một nước hậu duy nhất sẽ đánh vào cả hai.
+        en: White takes the e5 pawn with the knight. The pawn was undefended, so the capture looks free, but the knight now stands on the fifth rank and the king on e1 lies on the a5-e1 diagonal, and a single queen move will hit both.
+        fr: Les Blancs prennent le pion e5 avec le cavalier. Le pion n'était pas défendu, la prise semble donc gratuite, mais le cavalier se trouve maintenant sur la cinquième rangée et le roi e1 sur la diagonale a5-e1, et un seul coup de dame va viser les deux.
+      children:
+        - ply: 'Qa5+'
+          counts:
+            legal: { count: legalReplies, expect: 5 }
+          annotation:
+            vi: Qa5+! Hậu chiếu vua e1 dọc đường chéo a5-e1, vốn đã mở vì tốt d của Trắng đã rời d2, và đồng thời đánh vào mã e5 dọc hàng 5. Không nước đỡ chiếu nào bảo vệ được mã, nên Đen sẽ ăn mã ngay sau đó.
+            en: Qa5+! The queen checks the king on e1 along the a5-e1 diagonal, open because White's d-pawn has left d2, and attacks the knight on e5 along the fifth rank at the same time. No way of meeting the check protects the knight, so Black takes it next move.
+            fr: Qa5+ ! La dame donne échec au roi e1 sur la diagonale a5-e1, ouverte parce que le pion d blanc a quitté d2, et attaque en même temps le cavalier e5 sur la cinquième rangée. Aucune parade à l'échec ne protège le cavalier, les Noirs le prendront donc au coup suivant.
+          dismissRest:
+            reason:
+              vi: Trắng có {legal} nước hợp lệ để đáp chiếu, và 5.Nd2 ở trên là nước ít tệ nhất. Các nước còn lại là 5.b4, 5.Nc3, 5.Bd2 và 5.Qd2, và không nước nào bảo vệ được mã e5, nên 5...Qxe5 ăn mã trong mọi nhánh. Sau 5.Nc3, tốt d4 còn ăn được chính con mã ấy bằng ...dxc3, nên đó là nước tệ nhất.
+              en: White has {legal} legal ways to meet the check, and 5.Nd2 above is the least bad. The others are 5.b4, 5.Nc3, 5.Bd2 and 5.Qd2, and none of them protects the knight on e5, so 5...Qxe5 wins it in every branch. After 5.Nc3 the d4 pawn can also take that very knight with ...dxc3, which makes it the worst of them.
+              fr: Les Blancs ont {legal} façons légales de parer l'échec, et 5.Nd2 ci-dessus est la moins mauvaise. Les autres sont 5.b4, 5.Nc3, 5.Bd2 et 5.Qd2, et aucune ne protège le cavalier e5, donc 5...Qxe5 le gagne dans chaque branche. Après 5.Nc3, le pion d4 peut en plus prendre ce cavalier par ...dxc3, ce qui en fait la pire de toutes.
+          children:
+            - ply: Nd2
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: 'Trắng chặn chiếu bằng mã b1. Đây là cách ít tệ nhất: mã được phát triển, và khác với 5.Nc3, tốt d4 không ăn được nó. Nhưng mã e5 vẫn không được ai bảo vệ.'
+                en: 'White blocks with the b1 knight. It is the least bad: the knight develops and, unlike 5.Nc3, the d4 pawn cannot take it. But the knight on e5 is still unprotected.'
+                fr: "Les Blancs interposent le cavalier b1. C'est la moins mauvaise parade : le cavalier se développe et, contrairement à 5.Nc3, le pion d4 ne peut pas le prendre. Mais le cavalier e5 reste sans protection."
+              children:
+                - ply: Qxe5
+                  annotation:
+                    vi: Qxe5. Hậu ăn mã mà không phải trả giá gì. Đen hơn nguyên một mã, vẫn giữ tốt d4, và hậu đứng giữa bàn cờ không bị quân nào của Trắng đe doạ.
+                    en: Qxe5. The queen takes the knight at no cost. Black is a whole knight up, still holds the d4 pawn, and the queen stands in the centre with no white piece attacking it.
+                    fr: Qxe5. La dame prend le cavalier sans rien payer. Les Noirs ont un cavalier entier de plus, gardent toujours le pion d4, et la dame est au centre sans qu'aucune pièce blanche l'attaque.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Đen hơn hẳn một mã. Hai bên đều còn bảy tốt, hậu và hai xe, nhưng Đen còn hai mã và hai tượng trong khi Trắng chỉ còn một mã và hai tượng. Tốt d4 của Đen được hậu e5 bảo vệ.
+                      en: Black is a whole knight up. Both sides still have seven pawns, a queen and two rooks, but Black has two knights and two bishops against White's one knight and two bishops. Black's d4 pawn is defended by the queen on e5.
+                      fr: Les Noirs ont un cavalier entier de plus. Les deux camps ont encore sept pions, une dame et deux tours, mais les Noirs ont deux cavaliers et deux fous contre un cavalier et deux fous aux Blancs. Le pion d4 noir est défendu par la dame e5.
+                    plan:
+                      vi: Đen phát triển ...Nc6 và ...Nf6, nhập thành và đổi quân dần để biến quân hơn thành thắng lợi. Trắng chỉ còn cách tìm cơ hội lấy lại tốt d4 bằng Nb3 hoặc Nf3 đánh vào hậu, nhưng một mã thì không gì bù lại được.
+                      en: Black develops ...Nc6 and ...Nf6, castles and trades pieces step by step to turn the extra knight into a win. White can only look to win back the d4 pawn with Nb3 or with Nf3, hitting the queen, but nothing makes up for a knight.
+                      fr: Les Noirs développent ...Nc6 et ...Nf6, roquent et échangent peu à peu les pièces pour transformer le cavalier gagné en victoire. Les Blancs ne peuvent que chercher à reprendre le pion d4 par Nb3 ou par Nf3 qui attaque la dame, mais rien ne compense un cavalier.
+                    basis:
+                      by: chan
+                      at: '2026-10-01'

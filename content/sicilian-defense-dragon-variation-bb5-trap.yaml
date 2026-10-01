@@ -1,0 +1,128 @@
+# The Bb5+ Trap in the Dragon Variation of the Sicilian (Borsony-Laustsen). The defining line
+# is 1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 g6 6.Be3 and it ends on White's own ply, so
+# the root is an opponent node and Black's 6...Ng4 can carry a quality (docs/CONTEXT.md,
+# invariant 5).
+#
+# ECO is B72, the code of the dataset's "Sicilian Defense: Dragon Variation" row for exactly
+# this position (6.Be3); a trap carries the ECO of the opening it sits inside (ADR-0008).
+#
+# The source is chesstrapguide.com's Borsony-Laustsen page (#174, item 4): 6...Ng4?? 7.Bb5+!
+# Bd7 8.Qxg4. It replays. The point is a pin and not a double attack: the knight on g4 is
+# attacked by the queen on d1 and defended only by the bishop on c8, and a bishop that blocks
+# the check on d7 is pinned to the king, so it cannot recapture. Replaying the other three
+# blocks showed that the line is not a clean win of a piece against the best defence. 7...Nd7
+# loses the knight to 8.Qxg4 and 7...Qd7 loses the queen to 8.Bxd7+, but 7...Nc6 keeps the
+# bishop on c8 free to guard g4, and White then wins the exchange and a pawn rather than a
+# piece (8.Nxc6 bxc6 9.Bxc6+ Bd7 10.Bxa8 Nxe3 11.fxe3 Qxa8, replayed). The entry says so in
+# the catch-all of the Bb5+ node.
+#
+# No outcome here is a claimed mate. "A piece ahead" for the replies a catch-all covers was
+# checked on each of them with a private engine run (never shipped, never cited as an
+# authority); every leaf's material count was computed from the derived position.
+id: sicilian-defense-dragon-variation-bb5-trap
+name: 'Sicilian Defense: Dragon Variation, Bb5+ Trap'
+eco: B72
+category: trap
+side: white
+definingLine: [e4, c5, Nf3, d6, d4, cxd4, Nxd4, Nf6, Nc3, g6, Be3]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement about White's set-up, not about the trap springing: 6.Be3 is a main-line
+      Dragon move and nothing depends on Black cooperating. The trap punishes 6...Ng4 and
+      nothing else.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material counts, which were computed by hand from
+    the derived positions.
+tree:
+  annotation:
+    vi: Trắng vừa đưa tượng ra e3, thế bố trí quen thuộc chống Rồng. Hậu d1 nhìn xuống ô g4 qua đường chéo d1-g4, còn tượng c8 của Đen cũng bảo vệ ô đó. Nước 6...Ng4 trông hợp lý vì mã đánh vào tượng e3, và đó đúng là nước mà cái bẫy này chờ.
+    en: White has just put the bishop on e3, the standard set-up against the Dragon. The queen on d1 looks at g4 along the d1-g4 diagonal, and Black's bishop on c8 guards that square too. 6...Ng4 looks reasonable because the knight hits the bishop on e3, and that is exactly the move this trap is waiting for.
+    fr: Les Blancs viennent de placer le fou en e3, la mise en place habituelle contre le Dragon. La dame d1 voit la case g4 sur la diagonale d1-g4, et le fou c8 noir la garde aussi. 6...Ng4 paraît raisonnable puisque le cavalier attaque le fou e3, et c'est exactement le coup qu'attend ce piège.
+  dismissRest:
+    reason:
+      vi: Đen không nhảy mã sang g4 và cũng không chơi 6...Bg7, nên không có cú chiếu Bb5+ nào để chờ. Mục này không vẽ tiếp những nhánh đó. Nếu Đen để hở một quân thì Trắng lấy quân đó, còn không thì Trắng cứ phát triển tiếp, và thế Nam Tư với f3, Qd2, O-O-O là cách quen thuộc.
+      en: Black neither jumps to g4 nor plays 6...Bg7, so there is no Bb5+ to wait for. This entry does not map those branches. If Black leaves a piece loose White takes it, and otherwise White carries on developing, the Yugoslav set-up with f3, Qd2 and O-O-O being the familiar way.
+      fr: Les Noirs ne sautent pas en g4 et ne jouent pas non plus 6...Bg7, il n'y a donc pas de Bb5+ à attendre. Cette entrée ne cartographie pas ces branches. Si les Noirs laissent une pièce en prise, les Blancs la prennent, sinon ils poursuivent leur développement, le dispositif yougoslave avec f3, Qd2 et O-O-O étant la voie habituelle.
+  children:
+    - ply: Ng4
+      replyQuality: blunder
+      frequency: occasional
+      annotation:
+        vi: Đen nhảy mã sang g4 để đánh vào tượng e3. Nhưng mã g4 bị hậu d1 tấn công và chỉ có tượng c8 bảo vệ, và nếu tượng ấy mất quyền di chuyển thì mã sẽ rơi.
+        en: Black jumps the knight to g4 to hit the bishop on e3. But the knight on g4 is attacked by the queen on d1 and defended only by the bishop on c8, and if that bishop loses its freedom to move the knight will fall.
+        fr: Les Noirs sautent en g4 pour attaquer le fou e3. Mais le cavalier g4 est attaqué par la dame d1 et défendu seulement par le fou c8, et si ce fou perd la liberté de bouger, le cavalier tombera.
+      children:
+        - ply: 'Bb5+'
+          counts:
+            legal: { count: legalReplies, expect: 4 }
+          annotation:
+            vi: Bb5+! Tượng chiếu vua e8 dọc đường chéo b5-e8. Nếu Đen chặn bằng tượng c8 thì tượng đó bị ghim vào vua và không còn bảo vệ nổi mã g4, trong khi hậu d1 vẫn đang tấn công con mã ấy.
+            en: Bb5+! The bishop checks the king on e8 along the b5-e8 diagonal. If Black blocks with the bishop from c8, that bishop is pinned to the king and can no longer defend the knight on g4, while the queen on d1 still attacks that knight.
+            fr: Bb5+ ! Le fou donne échec au roi e8 sur la diagonale b5-e8. Si les Noirs interposent le fou c8, ce fou est cloué sur le roi et ne peut plus défendre le cavalier g4, alors que la dame d1 attaque toujours ce cavalier.
+          dismissRest:
+            reason:
+              vi: Đen chỉ có {legal} nước hợp lệ, và 7...Bd7 là một trong số đó. 7...Nd7 chặn chính tượng c8 nên 8.Qxg4 ăn mã ngay, còn 7...Qd7 mất hậu vì 8.Bxd7+. Nước cứng đầu nhất là 7...Nc6, vì tượng c8 vẫn tự do bảo vệ mã g4 nên không có Qxg4. Nhưng 8.Nxc6 bxc6 9.Bxc6+ Bd7 10.Bxa8 Nxe3 11.fxe3 Qxa8 vẫn để Trắng hơn chất (xe đổi lấy tượng) và hơn một tốt.
+              en: Black has only {legal} legal replies, and 7...Bd7 is one of them. 7...Nd7 blocks the bishop on c8 itself, so 8.Qxg4 takes the knight at once, and 7...Qd7 loses the queen to 8.Bxd7+. The toughest is 7...Nc6, because the bishop on c8 is still free to guard the knight on g4, so there is no Qxg4. But 8.Nxc6 bxc6 9.Bxc6+ Bd7 10.Bxa8 Nxe3 11.fxe3 Qxa8 still leaves White the exchange and a pawn up.
+              fr: Les Noirs n'ont que {legal} réponses légales, et 7...Bd7 en fait partie. 7...Nd7 bloque le fou c8 lui-même, donc 8.Qxg4 prend le cavalier aussitôt, et 7...Qd7 perd la dame à cause de 8.Bxd7+. La plus tenace est 7...Nc6, car le fou c8 reste libre de garder le cavalier g4, donc il n'y a pas de Qxg4. Mais 8.Nxc6 bxc6 9.Bxc6+ Bd7 10.Bxa8 Nxe3 11.fxe3 Qxa8 laisse quand même aux Blancs la qualité et un pion de plus.
+          children:
+            - ply: Bd7
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: Đen chặn chiếu bằng tượng c8, cách chặn tự nhiên nhất. Nhưng tượng giờ bị ghim vào vua e8, không được rời đường chéo b5-e8, nghĩa là nó không thể ăn lại trên g4.
+                en: Black blocks with the bishop from c8, the most natural interposition. But the bishop is now pinned to the king on e8 and may not leave the b5-e8 diagonal, which means it cannot recapture on g4.
+                fr: Les Noirs interposent le fou c8, l'interposition la plus naturelle. Mais ce fou est maintenant cloué sur le roi e8 et ne peut pas quitter la diagonale b5-e8, ce qui signifie qu'il ne peut pas reprendre en g4.
+              children:
+                - ply: Qxg4
+                  annotation:
+                    vi: Qxg4! Hậu ăn mã. Tượng d7 nhìn thẳng vào g4 nhưng bị ghim nên không được ăn lại, còn nếu 8...Bxb5 thì mã Trắng ăn lại trên b5 và Trắng vẫn hơn nguyên một mã.
+                    en: Qxg4! The queen takes the knight. The bishop on d7 looks straight at g4 but is pinned and cannot recapture, and if 8...Bxb5 a white knight retakes on b5 and White is still a whole knight up.
+                    fr: Qxg4 ! La dame prend le cavalier. Le fou d7 voit g4 mais il est cloué et ne peut pas reprendre, et si 8...Bxb5, un cavalier blanc reprend en b5 et les Blancs restent un cavalier entier de plus.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng hơn hẳn một mã. Hai bên đều còn bảy tốt, hậu và hai xe, nhưng Trắng còn hai tượng và hai mã trong khi Đen chỉ còn hai tượng và một mã. Tượng d7 của Đen vẫn bị ghim trên đường chéo b5-e8.
+                      en: White is a whole knight up. Both sides still have seven pawns, a queen and two rooks, but White has two bishops and two knights against Black's two bishops and one knight. Black's bishop on d7 is still pinned on the b5-e8 diagonal.
+                      fr: Les Blancs ont un cavalier entier de plus. Les deux camps ont encore sept pions, une dame et deux tours, mais les Blancs ont deux fous et deux cavaliers contre deux fous et un cavalier aux Noirs. Le fou d7 noir est toujours cloué sur la diagonale b5-e8.
+                    plan:
+                      vi: Trắng giữ nguyên quân hơn, đổi tượng b5 lấy tượng d7 khi thuận lợi và nhập thành để đưa xe vào chơi. Đen có thể ăn 8...Bxb5 và gây rối ở cánh hậu, nhưng không có gì bù lại được một mã.
+                      en: White keeps the extra piece, trades the b5 bishop for the d7 bishop when convenient and castles to bring the rooks into play. Black can take 8...Bxb5 and stir up trouble on the queenside, but nothing makes up for a knight.
+                      fr: Les Blancs gardent la pièce gagnée, échangent le fou b5 contre le fou d7 quand c'est commode et roquent pour mettre les tours en jeu. Les Noirs peuvent prendre 8...Bxb5 et chercher du jeu à l'aile dame, mais rien ne compense un cavalier.
+                    basis:
+                      by: chan
+                      at: '2026-10-01'
+    - ply: Bg7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đưa tượng lên g7, đường chính của Rồng, và chưa nhảy mã sang g4 nên không có gì để Bb5+ trừng phạt.
+        en: Black develops the bishop to g7, the main line of the Dragon, and does not jump the knight to g4, so there is nothing for Bb5+ to punish.
+        fr: Les Noirs développent le fou en g7, la ligne principale du Dragon, et ne sautent pas en g4 avec le cavalier, il n'y a donc rien à punir par Bb5+.
+      children:
+        - ply: f3
+          annotation:
+            vi: f3. Tốt f lấy ô g4 khỏi tay mã Đen, giữ vững tốt e4 và chuẩn bị Qd2 cùng O-O-O. Đây là thế Nam Tư quen thuộc.
+            en: f3. The f-pawn takes g4 away from the black knight, holds the e4 pawn and prepares Qd2 and O-O-O. This is the familiar Yugoslav set-up.
+            fr: f3. Le pion f retire g4 au cavalier noir, soutient le pion e4 et prépare Qd2 et O-O-O. C'est la mise en place yougoslave habituelle.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau, mỗi bên còn đủ quân và bảy tốt vì chưa ai ăn thêm gì. Tốt f3 khống chế ô g4 nên con mã f6 không còn nhảy sang g4 được như trong cái bẫy này.
+              en: Material is level, with every piece on the board and seven pawns each, since nothing more has been captured. The f3 pawn controls g4, so the knight on f6 can no longer jump to g4 as in this trap.
+              fr: Le matériel est égal, toutes les pièces sont sur l'échiquier et chaque camp a sept pions, car rien n'a été pris de plus. Le pion f3 contrôle g4, si bien que le cavalier f6 ne peut plus sauter en g4 comme dans ce piège.
+            plan:
+              vi: Trắng chơi Qd2 và O-O-O, rồi tiến h4-h5 để mở cột h vào vua Đen. Đen nhập thành và phản công trên cột c bằng ...Nc6 và ...Rc8.
+              en: White plays Qd2 and O-O-O, then advances h4-h5 to open the h-file against the black king. Black castles and counterattacks on the c-file with ...Nc6 and ...Rc8.
+              fr: Les Blancs jouent Qd2 et O-O-O, puis avancent h4-h5 pour ouvrir la colonne h contre le roi noir. Les Noirs roquent et contre-attaquent sur la colonne c avec ...Nc6 et ...Rc8.
+            basis:
+              by: chan
+              at: '2026-10-01'

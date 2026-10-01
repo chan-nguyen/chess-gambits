@@ -647,3 +647,81 @@ traps:
       than the trap's 5...Bd6, and that 7.h4 is mated the same way while 7.Nd4, 7.Ng1 and
       7.Nh4 lose to a three-move mate; all are modelled and proved. A02 is the dataset's code
       for the bare "Bird Opening" (1.f4), the only matching row.
+
+  - id: scandinavian-defense-balode-sondore-trap
+    name: 'Scandinavian Defense: Balode-Sondore Trap'
+    family: 'Scandinavian Defense'
+    eco: B01
+    side: white
+    soundness: sound
+    line: [e4, d5, exd5, Qxd5, Nc3, Qd8, Bc4, Nf6, Nf3]
+    reason: >-
+      From chesstrapguide.com's Balode-Sondore page (#174), which gives 5...Bg4?? 6.Ne5!
+      Bh5?? 7.Qxh5! Nxh5 8.Bxf7# against the Valencian Variation. The line replays and the
+      final move is mate, but replaying also showed that the greedy 6...Bxd1 is mated at
+      once by 7.Bxf7#, and that 25 of Black's 36 replies to 6.Ne5 allow that mate. The
+      dataset files every 3...Qd8 row of the Scandinavian under B01 (Valencian Variation,
+      Ilundain Variation, Main Line) and has no row for 4.Bc4 or for this trap.
+
+  - id: sicilian-defense-dragon-variation-bb5-trap
+    name: 'Sicilian Defense: Dragon Variation, Bb5+ Trap'
+    family: 'Sicilian Defense'
+    eco: B72
+    side: white
+    soundness: sound
+    line: [e4, c5, Nf3, d6, d4, cxd4, Nxd4, Nf6, Nc3, g6, Be3]
+    reason: >-
+      From chesstrapguide.com's Borsony-Laustsen page (#174): 6...Ng4?? 7.Bb5+! Bd7 8.Qxg4.
+      The block on d7 pins the bishop that was guarding g4, so the queen takes the knight
+      for nothing. Replaying the other blocks showed the page overstates it against the
+      best defence: 7...Nc6 keeps the c8 bishop free to guard g4 and White wins the
+      exchange and a pawn rather than a piece. The dataset row for this position is
+      "Sicilian Defense: Dragon Variation" (B72, 6.Be3), a variation and not a trap.
+
+  - id: english-opening-symmetrical-variation-combe-hasenfuss-trap
+    name: 'English Opening: Symmetrical Variation, Combe-Hasenfuss Trap'
+    family: 'English Opening'
+    eco: A30
+    side: black
+    soundness: sound
+    line: [c4, c5, d4, cxd4, Nf3, e5]
+    reason: >-
+      From chesstrapguide.com's Combe-Hasenfuss page (Folkestone Olympiad, 1933, #174):
+      4.Nxe5?? Qa5+ and the queen takes the knight, because the check along a5-e1 and the
+      attack on e5 come from the same move and nothing White can play protects the knight.
+      The page files it under the "Old Benoni", but that opening starts 1.d4 c5 2.d5; this
+      is a Symmetrical English after 1.c4 c5, so the ECO is the dataset's A30 row for
+      1.c4 c5, the longest row on the way to this position.
+
+  - id: reti-opening-zaitsik-zichulidze-trap
+    name: 'Réti Opening: Zaitsik-Zichulidze Trap'
+    family: 'Réti Opening'
+    eco: A09
+    side: white
+    soundness: sound
+    line: [Nf3, d5, c4, Nf6, g3, Bf5, cxd5]
+    reason: >-
+      From chesstrapguide.com's Zaitsik-Zichulidze page (#174), which stops at 5.e4! Bxe4??
+      6.Qa4+. Replaying showed the mistake is the earlier recapture 4...Nxd5: the e-pawn
+      forks the knight on d5 and the bishop on f5, and 5...Bxe4, the one reply that avoids
+      the fork, loses the bishop to the check. The entry is therefore rooted at 4.cxd5 so
+      that 4...Nxd5 is a modelled reply with a quality, beside 4...Qxd5, the recapture that
+      does not run into it. ECO is the dataset's A09 row for 1.Nf3 d5 2.c4, the longest row
+      on the way here.
+
+  - id: ruy-lopez-berlin-defense-tarrasch-trap
+    name: 'Ruy Lopez: Berlin Defense, Tarrasch Trap'
+    family: 'Ruy Lopez'
+    eco: C66
+    side: white
+    soundness: sound
+    line: [e4, e5, Nf3, Nc6, Bb5, d6, d4, Bd7, Nc3, Nf6, 'O-O', Be7, Re1]
+    reason: >-
+      The dataset's own row "Ruy Lopez: Berlin Defense, Tarrasch Trap" (C66), which #118
+      left out in favour of the Open Defence version (`tarrasch-trap`, C83) and said should
+      be a sibling. Source: the lichess study chapter for Tarrasch vs Marco, 1892 (#174):
+      7...O-O?? 8.Bxc6 Bxc6 9.dxe5 dxe5 10.Qxd8 Raxd8 11.Nxe5. Every ply replays and White
+      wins a clean pawn; the chapter's long tail (11...Bxe4 ... 18.c4 and "the exchange is
+      lost") is the game continuation, not a forced win, so the tree stops at 11.Nxe5 and
+      the entry says so. The dataset moves reach the same position as the Berlin
+      4.O-O d6 5.d4 Bd7 6.Nc3 Be7 7.Re1, which is why the row is coded C66.
