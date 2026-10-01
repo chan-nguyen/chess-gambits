@@ -1,0 +1,61 @@
+# Caro-Kann Defense: Dinic Gambit. Defining line 1.e4 c6 2.Nf3 d5 3.d3 dxe4 4.Ng5, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: caro-kann-defense-dinic-gambit
+name: 'Caro-Kann Defense: Dinic Gambit'
+eco: B10
+category: gambit
+side: white
+definingLine: [e4, c6, Nf3, d5, d3, dxe4, Ng5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns against
+      eight, and the pawn on e4 is attacked twice and defended by nothing, so Black has to
+      decide at once how to hold it. Black can defend it with a developing move such as
+      4...Nf6, while White's knight on g5 has no target to win, since f7 and h7 are both
+      defended, which is why the entry is rated unsound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Ng5, nên số tốt là Trắng bảy, Đen tám. Tốt e4 bị tấn công hai lần, bởi mã g5 và tốt d3, và không được quân nào bảo vệ, còn tốt d3 bị tốt e4 và hậu d8 tấn công, được tốt c2, hậu d1 và tượng f1 bảo vệ.
+    en: White has just played 4.Ng5, so the pawn count is White seven, Black eight. The pawn on e4 is attacked twice, by the knight on g5 and the pawn on d3, and defended by nothing, while the pawn on d3 is attacked by the e4 pawn and the queen on d8 and defended by the c2 pawn, the queen on d1 and the bishop on f1.
+    fr: Les Blancs viennent de jouer 4.Ng5, de sorte que le compte des pions est de sept pour les Blancs, huit pour les Noirs. Le pion e4 est attaqué deux fois, par le cavalier g5 et le pion d3, et n'est défendu par aucune pièce, tandis que le pion d3 est attaqué par le pion e4 et la dame d8, et défendu par le pion c2, la dame d1 et le fou f1.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 4...Nf6 ở đây, chẳng hạn 4...exd3 hoặc 4...Bf5. Mục này chỉ mô hình hóa 4...Nf6 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: lấy lại con tốt và hoàn tất phát triển.'
+      en: "Black plays something other than 4...Nf6 here, for instance 4...exd3 or 4...Bf5. This entry models only 4...Nf6 and does not analyse those moves; White's task usually stays the same: win the pawn back and finish development."
+      fr: "Les Noirs jouent autre chose que 4...Nf6 ici, par exemple 4...exd3 ou 4...Bf5. Cette entrée ne modélise que 4...Nf6 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : regagner le pion et achever leur développement."
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen bảo vệ tốt e4 bằng 4...Nf6. Tốt này vẫn bị tấn công hai lần, bởi mã g5 và tốt d3, và giờ được bảo vệ một lần, bởi mã f6.
+        en: Black defends the e4 pawn with 4...Nf6. The pawn is still attacked twice, by the knight on g5 and the pawn on d3, and is now defended once, by the knight on f6.
+        fr: Les Noirs défendent le pion e4 par 4...Nf6. Le pion est toujours attaqué deux fois, par le cavalier g5 et le pion d3, et il est maintenant défendu une fois, par le cavalier f6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nhưng tốt e4 bị tấn công hai lần và chỉ được bảo vệ một lần, nên Trắng có thể lấy lại nó: sau Nxe4 Nxe4 dxe4 số tốt ngang nhau, mỗi bên bảy. Các tốt f7 và h7, những mục tiêu khác của mã g5, đều có quân bảo vệ.'
+          en: 'Count the pawns: White seven, Black eight, but the e4 pawn is attacked twice and defended once, so White can take it back: after Nxe4 Nxe4 dxe4 the count is level at seven each. The f7 and h7 pawns, the other targets of the knight on g5, are both defended.'
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs, mais le pion e4 est attaqué deux fois et défendu une fois, donc les Blancs peuvent le reprendre : après Nxe4 Nxe4 dxe4, le compte est égal, sept de chaque côté. Les pions f7 et h7, les autres cibles du cavalier g5, sont tous deux défendus.'
+        plan:
+          vi: Trắng ăn e4 bằng mã và phát triển bằng Be2 và O-O. Đen chơi ...Bf5 để bảo vệ e4 lần thứ hai, rồi ...e6 và ...Be7.
+          en: White takes on e4 with the knight and develops with Be2 and O-O. Black plays ...Bf5 to guard e4 a second time, then ...e6 and ...Be7.
+          fr: Les Blancs prennent en e4 avec le cavalier et se développent par Be2 et O-O. Les Noirs jouent ...Bf5 pour garder e4 une seconde fois, puis ...e6 et ...Be7.
+        basis:
+          by: chan
+          at: 2026-10-01

@@ -1,0 +1,61 @@
+# Caro-Kann Defense: Hillbilly Attack, Schaeffer Gambit. Defining line 1.e4 c6 2.Bc4 d5
+# 3.Bb3 dxe4 4.Qh5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: caro-kann-defense-hillbilly-attack-schaeffer-gambit
+name: 'Caro-Kann Defense: Hillbilly Attack, Schaeffer Gambit'
+eco: B10
+category: gambit
+side: white
+definingLine: [e4, c6, Bc4, d5, Bb3, dxe4, Qh5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns against
+      eight, and the queen and bishop both attack f7, which only the king defends. Black can
+      close the diagonal with 4...e6 or hit the queen with 4...g6, after which none of the
+      queen's targets can be won and the extra pawn is still Black's, which is why the entry
+      is rated unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Qh5, nên số tốt là Trắng bảy, Đen tám. Hậu h5 và tượng b3 cùng tấn công f7, ô chỉ có vua bảo vệ, và hậu cũng tấn công h7, ô được xe h8 bảo vệ.
+    en: White has just played 4.Qh5, so the pawn count is White seven, Black eight. The queen on h5 and the bishop on b3 both attack f7, which only the king defends, and the queen also attacks h7, which the rook on h8 defends.
+    fr: Les Blancs viennent de jouer 4.Qh5, de sorte que le compte des pions est de sept pour les Blancs, huit pour les Noirs. La dame h5 et le fou b3 attaquent tous deux f7, que seul le roi défend, et la dame attaque aussi h7, que la tour h8 défend.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 4...e6 ở đây, chẳng hạn 4...g6 hoặc 4...Nh6. Mục này chỉ mô hình hóa 4...e6 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: tìm cách dùng hậu và tượng để lấy lại con tốt.'
+      en: "Black plays something other than 4...e6 here, for instance 4...g6 or 4...Nh6. This entry models only 4...e6 and does not analyse those moves; White's task usually stays the same: find a way to use the queen and bishop to win the pawn back."
+      fr: "Les Noirs jouent autre chose que 4...e6 ici, par exemple 4...g6 ou 4...Nh6. Cette entrée ne modélise que 4...e6 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : trouver comment utiliser la dame et le fou pour regagner le pion."
+  children:
+    - ply: e6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen đóng đường chéo bằng 4...e6, nên tượng b3 không còn tấn công f7 và hậu h5 tấn công nó một mình, trong khi vua bảo vệ. Tốt e4 không bị quân nào tấn công.
+        en: Black closes the diagonal with 4...e6, so the bishop on b3 no longer attacks f7 and the queen on h5 attacks it alone, with the king defending. The pawn on e4 is attacked by nothing.
+        fr: Les Noirs ferment la diagonale par 4...e6, de sorte que le fou b3 n'attaque plus f7 et que la dame h5 l'attaque seule, le roi le défendant. Le pion e4 n'est attaqué par aucune pièce.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém đúng một tốt sạch. Hậu h5 tấn công f7, được vua bảo vệ, và h7, được xe bảo vệ, nên ăn ô nào cũng mất hậu, còn tượng b3 tấn công e6, ô được tượng c8 bảo vệ; tốt f7 bị hậu ghim vào vua nên không thể ăn lại ở đó.'
+          en: 'Count the pawns: White seven, Black eight, so White is a clean pawn down. The queen on h5 attacks f7, defended by the king, and h7, defended by the rook, so neither can be taken without losing the queen, and the bishop on b3 attacks e6, which the bishop on c8 defends; the pawn on f7 is pinned to the king by the queen and cannot recapture there.'
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion net de moins. La dame h5 attaque f7, défendu par le roi, et h7, défendu par la tour, de sorte qu'aucun des deux ne peut être pris sans perdre la dame, et le fou b3 attaque e6, que le fou c8 défend ; le pion f7 est cloué au roi par la dame et ne peut pas reprendre là."
+        plan:
+          vi: Trắng chơi Nc3 để tấn công tốt e4 và Qe2 để tấn công nó lần nữa. Đen chơi ...Nf6, đánh vào hậu và bảo vệ e4, rồi ...Be7 và ...O-O.
+          en: White plays Nc3 to attack the e4 pawn and Qe2 to attack it again. Black plays ...Nf6, hitting the queen and defending e4, then ...Be7 and ...O-O.
+          fr: Les Blancs jouent Nc3 pour attaquer le pion e4 et Qe2 pour l'attaquer une seconde fois. Les Noirs jouent ...Nf6, frappant la dame et défendant e4, puis ...Be7 et ...O-O.
+        basis:
+          by: chan
+          at: 2026-10-01

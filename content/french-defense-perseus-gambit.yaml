@@ -1,0 +1,60 @@
+# French Defense: Perseus Gambit. Defining line 1.e4 e6 2.d4 d5 3.Nf3, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-perseus-gambit
+name: 'French Defense: Perseus Gambit'
+eco: C00
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, Nf3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the e4 pawn is attacked by the d5 pawn and nothing defends it, and 3.Nf3 does not
+      guard it. After 3...dxe4 the pawn on e4 attacks the knight on f3, so White has to
+      spend a move saving the knight before it can go after the pawn, which is why the entry
+      is rated unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.Nf3, nên số tốt đang ngang nhau, mỗi bên tám. Tốt e4 bị tốt d5 tấn công và không được quân nào bảo vệ, còn mã f3 không bảo vệ nó.
+    en: White has just played 3.Nf3, so the pawn count is level, eight each. The e4 pawn is attacked by the pawn on d5 and defended by nothing, and the knight on f3 does not guard it.
+    fr: Les Blancs viennent de jouer 3.Nf3, de sorte que le compte des pions est égal, huit de chaque côté. Le pion e4 est attaqué par le pion d5 et n'est défendu par aucune pièce, et le cavalier f3 ne le garde pas.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 3...dxe4 ở đây, chẳng hạn 3...Nf6 hoặc 3...c5. Mục này chỉ mô hình hóa 3...dxe4 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: giữ vững trung tâm và hoàn tất phát triển.'
+      en: "Black plays something other than 3...dxe4 here, for instance 3...Nf6 or 3...c5. This entry models only 3...dxe4 and does not analyse those moves; White's task usually stays the same: hold the centre together and finish development."
+      fr: "Les Noirs jouent autre chose que 3...dxe4 ici, par exemple 3...Nf6 ou 3...c5. Cette entrée ne modélise que 3...dxe4 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : maintenir le centre et achever leur développement."
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 3...dxe4, và tốt e4 giờ tấn công mã f3, quân được hậu d1 và tốt g2 bảo vệ.
+        en: Black takes the pawn with 3...dxe4, and the pawn on e4 now attacks the knight on f3, which the queen on d1 and the pawn on g2 defend.
+        fr: Les Noirs prennent le pion par 3...dxe4, et le pion e4 attaque maintenant le cavalier f3, que la dame d1 et le pion g2 défendent.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt, và tốt e4 đang tấn công mã f3, nên Trắng phải di chuyển mã trước mọi việc khác. Tốt e4 chưa bị quân nào tấn công và cũng không có quân nào bảo vệ.'
+          en: 'Count the pawns: White seven, Black eight, so White is a pawn down, and the pawn on e4 attacks the knight on f3, so White has to move the knight before anything else. The pawn on e4 is attacked by nothing yet and defended by nothing either.'
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion de moins, et le pion e4 attaque le cavalier f3, de sorte que les Blancs doivent d'abord déplacer le cavalier. Le pion e4 n'est encore attaqué par rien et n'est défendu par rien non plus."
+        plan:
+          vi: Trắng chơi Nfd2 để tấn công tốt e4 và Nc3 để tấn công nó lần nữa. Đen bảo vệ nó bằng ...f5 hoặc ...Nf6, và tấn công d4 bằng ...c5, rồi ...Nc6.
+          en: White plays Nfd2 to attack the e4 pawn and Nc3 to attack it again. Black defends it with ...f5 or ...Nf6, and attacks d4 with ...c5, then ...Nc6.
+          fr: Les Blancs jouent Nfd2 pour attaquer le pion e4 et Nc3 pour l'attaquer une seconde fois. Les Noirs le défendent par ...f5 ou ...Nf6, et attaquent d4 par ...c5, puis ...Nc6.
+        basis:
+          by: chan
+          at: 2026-10-01

@@ -1,0 +1,61 @@
+# French Defense: St. George Defense, St. George Gambit. Defining line 1.e4 e6 2.d4 a6 3.c4
+# b5 4.cxb5 axb5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-st-george-defense-st-george-gambit
+name: 'French Defense: St. George Defense, St. George Gambit'
+eco: C00
+category: gambit
+side: black
+definingLine: [e4, e6, d4, a6, c4, b5, cxb5, axb5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, seven each, but
+      the b5 pawn is attacked by the bishop on f1 and defended by nothing, so White can take
+      it at once. Black's return is the half-open a-file, with the rook on a8 aimed at the
+      pawn on a2, which the rook on a1 defends, and that does not repay a pawn, which is why
+      the entry is rated unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa ăn lại 4...axb5, nên số tốt đang ngang nhau, mỗi bên bảy. Tốt b5 bị tượng f1 tấn công và không được quân nào bảo vệ, còn xe a8 tấn công tốt a2, ô được xe a1 bảo vệ.
+    en: Black has just recaptured 4...axb5, so the pawn count is level, seven each. The b5 pawn is attacked by the bishop on f1 and defended by nothing, and the rook on a8 attacks the pawn on a2, which the rook on a1 defends.
+    fr: Les Noirs viennent de reprendre par 4...axb5, de sorte que le compte des pions est égal, sept de chaque côté. Le pion b5 est attaqué par le fou f1 et n'est défendu par aucune pièce, et la tour a8 attaque le pion a2, que la tour a1 défend.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 5.Bxb5 ở đây, chẳng hạn 5.Nc3 hoặc 5.Nf3. Mục này chỉ mô hình hóa 5.Bxb5 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: giữ tốt b5 hoặc tận dụng cột a bán mở.'
+      en: "White plays something other than 5.Bxb5 here, for instance 5.Nc3 or 5.Nf3. This entry models only 5.Bxb5 and does not analyse those moves; Black's task usually stays the same: hold the b5 pawn or make use of the half-open a-file."
+      fr: "Les Blancs jouent autre chose que 5.Bxb5 ici, par exemple 5.Nc3 ou 5.Nf3. Cette entrée ne modélise que 5.Bxb5 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : garder le pion b5 ou profiter de la colonne a semi-ouverte."
+  children:
+    - ply: Bxb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 5.Bxb5, và không quân Đen nào tấn công được tượng.
+        en: White takes the pawn with 5.Bxb5, and nothing of Black's attacks the bishop.
+        fr: Les Blancs prennent le pion par 5.Bxb5, et aucune pièce noire n'attaque le fou.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Đen kém đúng một tốt sạch. Cột a là cột bán mở đối với Đen, xe a8 tấn công tốt a2, nhưng xe a1 bảo vệ nó. Tượng b5 tấn công tốt d7, ô được mã, tượng, hậu và vua cùng bảo vệ.'
+          en: 'Count the pawns: White seven, Black six, so Black is a clean pawn down. The a-file is half-open for Black, whose rook on a8 attacks the pawn on a2, but the rook on a1 defends it. The bishop on b5 attacks the pawn on d7, which the knight, bishop, queen and king all defend.'
+          fr: 'Comptez les pions : sept pour les Blancs, six pour les Noirs, donc les Noirs ont un pion net de moins. La colonne a est semi-ouverte pour les Noirs, dont la tour a8 attaque le pion a2, mais la tour a1 le défend. Le fou b5 attaque le pion d7, que le cavalier, le fou, la dame et le roi défendent tous.'
+        plan:
+          vi: Trắng chơi Nc3 và f3 để củng cố trung tâm, và đưa tượng về lại bằng Bd3. Đen chơi ...c6 để đánh vào tượng, rồi ...Nf6 và ...Qa5+.
+          en: White plays Nc3 and f3 to support the centre, and brings the bishop back with Bd3. Black plays ...c6 to hit the bishop, then ...Nf6 and ...Qa5+.
+          fr: Les Blancs jouent Nc3 et f3 pour soutenir le centre, et ramènent le fou par Bd3. Les Noirs jouent ...c6 pour frapper le fou, puis ...Nf6 et ...Qa5+.
+        basis:
+          by: chan
+          at: 2026-10-01
