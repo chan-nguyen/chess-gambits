@@ -1,0 +1,111 @@
+# Grünfeld Defense: Exchange Variation, Seville Variation. Defining line 1.d4 Nf6 2.c4 g6
+# 3.Nc3 d5 4.cxd5 Nxd5 5.e4 Nxc3 6.bxc3 Bg7 7.Bc4 c5 8.Ne2 Nc6 9.Be3 O-O 10.O-O Bg4 11.f3
+# Na5 12.Bxf7+, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: grunfeld-defense-exchange-variation-seville-variation
+name: 'Grünfeld Defense: Exchange Variation, Seville Variation'
+eco: D87
+category: gambit
+side: white
+definingLine:
+  [
+    d4,
+    Nf6,
+    c4,
+    g6,
+    Nc3,
+    d5,
+    cxd5,
+    Nxd5,
+    e4,
+    Nxc3,
+    bxc3,
+    Bg7,
+    Bc4,
+    c5,
+    Ne2,
+    Nc6,
+    Be3,
+    O-O,
+    O-O,
+    Bg4,
+    f3,
+    Na5,
+    Bxf7+,
+  ]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 12.Bxf7+ puts the bishop on a square that the rook and the king both
+      attack and nothing defends, and the piece is only repaid because the bishop on g4 is
+      attacked by the f3 pawn. It wins a pawn, but the whole line depends on that one
+      tactic, so the label is dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 12.Bxf7+, ăn tốt f7 với nước chiếu. Tượng f7 bị xe f8 và vua tấn công mà không có quân nào bảo vệ, còn tượng g4 của Đen bị tốt f3 tấn công.
+    en: White has just played 12.Bxf7+, taking the f7 pawn with check. The bishop on f7 is attacked by the rook on f8 and the king and nothing defends it, while Black's bishop on g4 is attacked by the f3 pawn.
+    fr: Les Blancs viennent de jouer 12.Bxf7+, prenant le pion f7 avec échec. Le fou f7 est attaqué par la tour f8 et le roi et rien ne le défend, tandis que le fou noir g4 est attaqué par le pion f3.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 12...Rxf7 ở đây. Mục này chỉ đi theo 12...Rxf7; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 12...Rxf7 here. This entry follows 12...Rxf7 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 12...Rxf7 ici. Cette entrée ne suit que 12...Rxf7 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Rxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tượng bằng 12...Rxf7. Tượng g4 vẫn bị tốt f3 tấn công.
+        en: Black takes the bishop with 12...Rxf7. The bishop on g4 is still attacked by the f3 pawn.
+        fr: Les Noirs prennent le fou par 12...Rxf7. Le fou g4 est toujours attaqué par le pion f3.
+      children:
+        - ply: fxg4
+          annotation:
+            vi: Trắng ăn tượng g4 bằng 13.fxg4, mở cột f giữa hai quân xe.
+            en: White takes the bishop on g4 with 13.fxg4, which opens the f-file between the two rooks.
+            fr: Les Blancs prennent le fou g4 par 13.fxg4, ce qui ouvre la colonne f entre les deux tours.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 13...Rxf1+ ở đây. Mục này chỉ đi theo 13...Rxf1+; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+              en: Black plays something other than 13...Rxf1+ here. This entry follows 13...Rxf1+ only; other moves lead to lines that are not mapped here.
+              fr: Les Noirs jouent autre chose que 13...Rxf1+ ici. Cette entrée ne suit que 13...Rxf1+ ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+          children:
+            - ply: Rxf1+
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen đổi xe bằng 13...Rxf1+, nước chiếu mà Trắng có thể đáp lại bằng cách ăn lại bằng vua hoặc hậu.
+                en: Black trades rooks with 13...Rxf1+, a check that White can answer by recapturing with the king or the queen.
+                fr: Les Noirs échangent les tours par 13...Rxf1+, un échec auquel les Blancs peuvent répondre en reprenant avec le roi ou avec la dame.
+              children:
+                - ply: Kxf1
+                  annotation:
+                    vi: Trắng ăn lại bằng vua, 14.Kxf1, giữ hậu trên d1 để bảo vệ tốt d4.
+                    en: White recaptures with the king, 14.Kxf1, which keeps the queen on d1 to defend the d4 pawn.
+                    fr: Les Blancs reprennent avec le roi, 14.Kxf1, ce qui garde la dame en d1 pour défendre le pion d4.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Trắng hơn một tốt. Tốt c5 bị tốt d4 tấn công và không có quân nào bảo vệ, nên Đen phải xử lý ngay, và mã a5 đứng ở rìa bàn cờ. Tốt d4 bị tấn công ba lần và được bảo vệ bốn lần.'
+                      en: 'Count the pawns: White seven, Black six, so White is a pawn up. The pawn on c5 is attacked by the d4 pawn and defended by nothing, so Black has to deal with it at once, and the knight on a5 stands on the rim. The d4 pawn is attacked three times and defended four times.'
+                      fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs ; les Blancs ont donc un pion de plus. Le pion c5 est attaqué par le pion d4 et rien ne le défend, si bien que les Noirs doivent y répondre tout de suite, et le cavalier a5 se trouve sur le bord de l'échiquier. Le pion d4 est attaqué trois fois et défendu quatre fois."
+                    plan:
+                      vi: Trắng ăn trên c5 bằng dxc5 nếu Đen bỏ mặc con tốt, đưa vua về chỗ an toàn bằng Kg1 và đưa xe vào cuộc bằng Rc1. Đen xử lý con tốt bằng ...b6 hoặc ...cxd4, và phát triển bằng ...Qd7 và ...Rc8.
+                      en: White takes on c5 with dxc5 if Black leaves the pawn, tucks the king away with Kg1 and brings the rook into play with Rc1. Black deals with the pawn with ...b6 or ...cxd4, and develops with ...Qd7 and ...Rc8.
+                      fr: Les Blancs prennent en c5 par dxc5 si les Noirs laissent le pion, mettent le roi à l'abri par Kg1 et mettent la tour en jeu par Rc1. Les Noirs règlent le sort du pion par ...b6 ou ...cxd4, et se développent par ...Qd7 et ...Rc8.
+                    basis:
+                      by: chan
+                      at: 2026-10-01

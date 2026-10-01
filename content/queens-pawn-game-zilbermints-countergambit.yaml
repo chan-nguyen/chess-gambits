@@ -1,0 +1,60 @@
+# Queen's Pawn Game: Zilbermints Countergambit. Defining line 1.d4 d5 2.Nf3 Nf6 3.c4 b5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-pawn-game-zilbermints-countergambit
+name: "Queen's Pawn Game: Zilbermints Countergambit"
+eco: D02
+category: gambit
+side: black
+definingLine: [d4, d5, Nf3, Nf6, c4, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 3...b5 offers a pawn that the c4 pawn takes at once, and the c4 pawn is
+      itself attacked twice, by the b5 and d5 pawns, so White must capture or lose it. Black
+      has only the knight on f6 developed. The label is unsound. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...b5, hiến một tốt. Tốt b5 bị tốt c4 tấn công và không có quân nào bảo vệ, còn tốt c4 bị các tốt b5 và d5 tấn công mà không có quân nào bảo vệ.
+    en: Black has just played 3...b5, offering a pawn. The b5 pawn is attacked by the c4 pawn and nothing defends it, and the c4 pawn is attacked by the b5 and d5 pawns and defended by nothing.
+    fr: Les Noirs viennent de jouer 3...b5, offrant un pion. Le pion b5 est attaqué par le pion c4 et rien ne le défend, et le pion c4 est attaqué par les pions b5 et d5 et rien ne le défend.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 4.cxb5 ở đây. Mục này chỉ đi theo 4.cxb5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 4.cxb5 here. This entry follows 4.cxb5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 4.cxb5 ici. Cette entrée ne suit que 4.cxb5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: cxb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 4.cxb5. Các tốt Trắng ở b5 và b2 giờ bị chồng, và cột b nửa mở cho Đen.
+        en: White takes the pawn with 4.cxb5. White's pawns on b5 and b2 are now doubled, and the b-file is half open for Black.
+        fr: Les Blancs prennent le pion par 4.cxb5. Les pions blancs b5 et b2 sont maintenant doublés, et la colonne b est semi-ouverte pour les Noirs.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Các tốt Trắng ở b5 và b2 bị chồng, và cột b nửa mở cho xe Đen, với tốt b5 là mục tiêu.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down and the sacrifice has not come back. White's pawns on b5 and b2 are doubled, and the b-file is half open for Black's rook, with the pawn on b5 as its target."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Les pions blancs b5 et b2 sont doublés, et la colonne b est semi-ouverte pour la tour noire, avec le pion b5 pour cible."
+        plan:
+          vi: Đen tấn công tốt b5 bằng ...a6 và phát triển bằng ...e6 và ...Be7. Trắng phát triển bằng e3 và Nc3 và bảo vệ tốt b5 bằng a4.
+          en: Black attacks the pawn on b5 with ...a6 and develops with ...e6 and ...Be7. White develops with e3 and Nc3 and supports the pawn on b5 with a4.
+          fr: Les Noirs attaquent le pion en b5 par ...a6 et se développent par ...e6 et ...Be7. Les Blancs se développent par e3 et Nc3 et soutiennent le pion en b5 par a4.
+        basis:
+          by: chan
+          at: 2026-10-01
