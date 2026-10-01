@@ -3499,3 +3499,131 @@ rules:
       tempo on the bishop and open the position before White consolidates — the direct
       alternative to the Fried Liver Attack in the same tree, and just as deliberate a
       sacrifice, but the dataset never calls it a "Gambit".
+
+  # ---------------------------------------------------------------- #176: the 4.Ng5 pawn and the Poisoned Pawn
+  # Found by the reference-list audit (#177): sacrifices the dataset never calls a gambit, so
+  # no rule had ever looked at them. Five rules, twelve rows.
+  #
+  # The 2026-09-16 review rests on judgement alone. These were also read against a published
+  # assessment, and each `source` names it: Wikipedia's account of the line and the lichess
+  # cloud evaluation (Stockfish) of the row's end position, both on 2026-10-01. Neither is the
+  # label. The label is still one person's judgement, and a reading that moves will not move it.
+  #
+  # Rows beside these that the prefixes below do NOT reach, because the dataset gives them a
+  # different head: the Pincus Variation (the same 6.d4 as the Lolli Attack, answered by
+  # 6...Bb4+); and, for the 5...Na5 of the Polerio Defense, the Blackburne, Colman, Maróczy,
+  # Paoli, Knorre and Steinitz variations and the C58 row that carries the bare name
+  # "Italian Game: Two Knights Defense" (6.Bb5+ c6 7.dxc6 bxc6 8.Be2). That last row shares
+  # its name with the quiet C55 rows, so no rule can single it out. They stay outside until
+  # somebody decides them; this is not a decision that they are not sacrifices.
+  - match: 'Italian Game: Two Knights Defense, Fritz'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 10, move: Nd4 }
+    soundness:
+      value: dubious
+      by: chan
+      at: '2026-10-01'
+      source: >-
+        Wikipedia, "Two Knights Defense" (retrieved 2026-10-01): says 5.exd5 practically wins
+        a pawn by force, that 5...Nd4 and 5...b5 are the notable alternatives to 5...Na5 and
+        usually transpose, and that White is a pawn up in the sharp 8.cxd4 sub-line. The
+        lichess cloud evaluation (Stockfish, depth 55, same day) reads +0.47 for White at the
+        end of the Fritz Variation row. A small edge for White and no refutation: dubious,
+        as the Ulvestad is.
+    reason: >-
+      After 4...d5 5.exd5 White is a pawn up, and 5...Nd4 does not take it back: ...Nxd5
+      and ...Qxd5 stay in hand, so Black picks the moment and the extra pawn stands until
+      then. That is what makes it a sacrifice and not a recapture delayed by a move. It is the
+      Ulvestad (5...b5, admitted above) by another route, and Wikipedia says the two
+      usually transpose, hence the same label. The Gruber row shows the pawn coming back
+      (6.c3 b5 7.Bf1 Nxd5 is level at 8.Ne4) and that is why `sacrifice` names ply 10, the
+      one ply every row here shares at which Black is a pawn down. The dataset never calls
+      it a "Gambit".
+  - match: 'Italian Game: Two Knights Defense, Lolli Attack'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 11, move: d4 }
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-10-01'
+      source: >-
+        Wikipedia, "Two Knights Defense" (retrieved 2026-10-01): of 5...Nxd5 it says White
+        gets a strong attack with the Lolli Attack (6.d4), which Fischer thought very strong,
+        and that Black usually finds it too hard to defend over the board. The lichess cloud
+        evaluation (Stockfish, depth 55, same day) reads +0.73 for White after 6.d4 with the
+        best reply, and about +1.8 after 6...exd4 7.O-O. Confirms the label.
+    reason: >-
+      5...Nxd5 has just levelled the material, so 6.d4 is a pawn White chooses to put en
+      prise, and a real one: 6...exd4 wins it, because 7.Qxd4 loses the queen to ...Nxd4.
+      What White gets for it is time, 7.O-O with the knight on g5 still pointing at f7
+      while Black's king stays in the centre. This is the quiet alternative to 6.Nxf7
+      from the same position, and the dataset calls it an "Attack", never a "Gambit".
+  - match: 'Italian Game: Two Knights Defense, Polerio Defense'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 10, move: Na5 }
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-10-01'
+      source: >-
+        Wikipedia, "Two Knights Defense" (retrieved 2026-10-01): calls 5...Na5 the standard
+        reply and the Chigorin Gambit, says Chigorin demonstrated Black's compensation in it
+        and that Black gambits a pawn for a lead in development. The lichess cloud
+        evaluation (Stockfish, depth 55, same day) reads 0.00 after 5...Na5, and the seven
+        rows end between -0.6 and +0.2. Confirms the label.
+    reason: >-
+      Black does not retake on d5. A pawn that could be retaken at once and is left standing
+      on purpose is a sacrifice in the sense of docs/CONTEXT.md, and that White may hand it
+      back later does not change it: material is given for development, and nothing on the
+      main line returns it (after 6.Bb5+ c6 7.dxc6 bxc6 8.Be2 White has seven pawns to six).
+      It is the same offer as the Fritz (5...Nd4) and the Ulvestad (5...b5) admitted above,
+      and Wikipedia names this one the Chigorin Gambit. Of the three it is the one the
+      engine reads as level, so `sound` here and `dubious` for the other two are readings
+      of different positions and not a change of standard. The prefix reaches the seven rows
+      named "Polerio Defense", and the build checks that each has Black a pawn down at
+      ply 10. The dataset never calls it a "Gambit".
+  - match: 'Sicilian Defense: Najdorf Variation, Poisoned Pawn Accepted'
+    include: true
+    unnamed: true
+    sacrifice: { ply: 15, move: Qd2 }
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-10-01'
+      source: >-
+        Wikipedia, "Sicilian Defence, Najdorf Variation" (retrieved 2026-10-01): calls 8.Qd2
+        Qxb2 9.Rb1 Qa3 the extremely complicated Poisoned Pawn Variation, and 10.e5 White's
+        only try to play for a win, every other line having been analysed to a draw with
+        best play. The lichess cloud evaluation (Stockfish, depth 54, same day) reads 0.00
+        for the position after 9...Qa3. Confirms the label.
+    reason: >-
+      8.Qd2 leaves b2 to the queen that has just come to b6, and nothing takes back there:
+      the pawn on c2 stands between the white queen and b2. After 8...Qxb2 9.Rb1 Qa3 White
+      is a pawn down (six pawns to seven) for the b-file and a lead in development, with
+      Black having brought out only the queen and the knight on f6. A pawn offered for the
+      initiative and tested at the highest level, which the dataset files under a "Variation"
+      and never a "Gambit".
+  - match: 'Sicilian Defense: Najdorf Variation, Poisoned Pawn Variation'
+    include: true
+    unnamed: true
+    side: white
+    soundness:
+      value: sound
+      by: chan
+      at: '2026-10-01'
+      source: >-
+        Wikipedia, "Sicilian Defence, Najdorf Variation" (retrieved 2026-10-01): the same
+        8.Qd2 line, assessed as drawn with best play outside 10.e5. The lichess cloud
+        evaluation (Stockfish, depth 65, same day) reads +0.08 for White at the end of this
+        row. Confirms the label.
+    reason: >-
+      7...Qb6 is where the pawn goes on offer. The queen already looks down the b-file at b2
+      and White chooses: 8.Nb3 blocks the file, so that ...Qxb2 is not even legal, and
+      8.Qd2 leaves b2 to be taken. The row stops on that choice, so no ply of its fourteen
+      gives anything away for either side and `side` is asserted, as the Smith-Morra's and
+      the Marshall Attack's are; the Accepted row beside it proves White on its own 8.Qd2.
+      White is the only side that can be right: the variation is named for the pawn that is
+      poisoned for Black, and Black never offers one here.

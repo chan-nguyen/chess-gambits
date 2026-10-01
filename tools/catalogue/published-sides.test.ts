@@ -25,7 +25,8 @@ import { proveOffer } from './sacrifice.ts'
  * side read off a board.
  *
  * What is left is a different kind of debt, and the difference is the reason this list still
- * exists rather than being emptied. **None of these six prints a side the board contradicts.**
+ * exists rather than being emptied. #176 added a seventh, deliberately. **None of these seven
+ * prints a side the board contradicts.**
  * No ply of their published lines gives anything away *for either side*, so there is nothing to
  * name and nothing to prove — the material in each of them changes hands past the end of the
  * line the entry publishes:
@@ -44,11 +45,15 @@ import { proveOffer } from './sacrifice.ts'
  *   even trade.
  * - `kings-gambit-declined-classical-svenonius-variation` — a declined line where c1 always
  *   recaptures on f4. Sixteen plies and nothing given.
+ * - `sicilian-defense-najdorf-variation-poisoned-pawn-variation` (#176) — fourteen plies ending
+ *   on 7...Qb6. White chooses there between 8.Nb3, which shuts the b-file, and the 8.Qd2 that
+ *   puts b2 on offer; the offer is the next ply, so this row gives nothing away for either side.
+ *   Its sibling `...-poisoned-pawn-accepted` reaches 8.Qd2 and proves White on its own ply.
  *
- * Emptying the list from here would mean removing six published entries, and every one of their
+ * Emptying the list from here would mean removing seven published entries, and every one of their
  * ids is frozen in `ids.json`: `missingPublishedIds` in `tools/catalogue/ids.ts` fails the build
  * on a published id that leaves the catalogue, and deleting those ids to silence it is exactly
- * the broken URL invariant 9 exists to prevent. Two of the six are the Smith-Morra and the
+ * the broken URL invariant 9 exists to prevent. Two of the seven are the Smith-Morra and the
  * Marshall Attack. The honest state is this list, short and argued, and the rules in
  * `classification.yaml` say beside each of them why `side` is still only asserted.
  */
@@ -76,6 +81,7 @@ const SILENT: readonly string[] = [
   'french-defense-marshall-gambit',
   'kings-gambit-declined-classical-svenonius-variation',
   'philidor-defense-lopez-countergambit',
+  'sicilian-defense-najdorf-variation-poisoned-pawn-variation',
   'sicilian-defense-smith-morra-gambit',
 ]
 
