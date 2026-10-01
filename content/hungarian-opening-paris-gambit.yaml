@@ -1,0 +1,68 @@
+# Hungarian Opening: Paris Gambit. Frozen defining line 1.g3 e5 2.Nh3 d5 3.f4 Bxh3 4.Bxh3 exf4
+# 5.O-O ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5). Part of batch t of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: 'hungarian-opening-paris-gambit'
+name: 'Hungarian Opening: Paris Gambit'
+eco: 'A00'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'g3'
+  - 'e5'
+  - 'Nh3'
+  - 'd5'
+  - 'f4'
+  - 'Bxh3'
+  - 'Bxh3'
+  - 'exf4'
+  - 'O-O'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line White has seven pawns to Black's eight, and the bishop pair is the main compensation: White has two bishops against one. Black's pawn on f4 is attacked twice, by the g3 pawn and the rook on f1, and defended by nothing, but it is Black's move, and Black can take on g3 or defend the pawn with ...Bd6, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa nhập thành bằng 5.O-O. Trắng có bảy tốt, Đen tám tốt. Tốt f4 của Đen bị tốt g3 và xe f1 tấn công mà không có gì bảo vệ, và Trắng có hai tượng so với một tượng của Đen.'
+    en: "White has just castled with 5.O-O. White has seven pawns to Black's eight. Black's pawn on f4 is attacked by the g3 pawn and the rook on f1 and nothing defends it, and White has two bishops against Black's one."
+    fr: 'Les Blancs viennent de roquer par 5.O-O. Les Blancs ont sept pions contre huit aux Noirs. Le pion f4 des Noirs est attaqué par le pion g3 et la tour f1 et rien ne le défend, et les Blancs ont deux fous contre un seul aux Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 5...fxg3 ở đây, chẳng hạn 5...Bd6, bảo vệ tốt f4. Mục này đi theo nước ăn tốt g3.'
+      en: 'Black plays something other than 5...fxg3 here, for instance 5...Bd6, which defends the f4 pawn. This entry follows the capture on g3.'
+      fr: 'Les Noirs jouent autre chose que 5...fxg3 ici, par exemple 5...Bd6, qui défend le pion f4. Cette entrée suit la capture en g3.'
+  children:
+    - ply: 'fxg3'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen ăn tốt g3 bằng tốt f. Tốt g3 giờ tấn công tốt h2.'
+        en: 'Black takes the pawn on g3 with the f-pawn. The pawn on g3 now attacks the pawn on h2.'
+        fr: 'Les Noirs prennent le pion g3 avec le pion f. Le pion g3 attaque maintenant le pion h2.'
+      children:
+        - ply: 'hxg3'
+          annotation:
+            vi: 'Trắng ăn lại bằng tốt h, để tốt g của Trắng bị cô lập trên g3.'
+            en: "White retakes with the h-pawn, which leaves White's g-pawn isolated on g3."
+            fr: 'Les Blancs reprennent avec le pion h, ce qui laisse le pion g blanc isolé en g3.'
+          outcome:
+            type: 'position'
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng kém một tốt, và tốt g của Trắng bị cô lập. Trắng có hai tượng so với một tượng của Đen, và cột f bán mở cho Trắng, với xe f1 tấn công tốt f7, quân được vua bảo vệ.'
+              en: "Count the pawns: White six, Black seven, so White is a pawn down, and White's g-pawn is isolated. White has two bishops against Black's one, and the f-file is half-open for White, with the rook on f1 attacking the f7 pawn, which the king defends."
+              fr: 'Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de moins, et le pion g blanc est isolé. Les Blancs ont deux fous contre un seul aux Noirs, et la colonne f est semi-ouverte pour les Blancs, la tour f1 attaquant le pion f7, que le roi défend.'
+            plan:
+              vi: 'Trắng giành trung tâm bằng d4 và phát triển bằng Nc3. Đen phát triển bằng ...Be7 và ...Nf6.'
+              en: 'White takes the centre with d4 and develops with Nc3. Black develops with ...Be7 and ...Nf6.'
+              fr: 'Les Blancs prennent le centre par d4 et se développent par Nc3. Les Noirs se développent par ...Be7 et ...Nf6.'
+            basis:
+              by: 'chan'
+              at: '2026-10-01'

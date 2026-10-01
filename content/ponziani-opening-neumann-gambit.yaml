@@ -1,0 +1,60 @@
+# Ponziani Opening: Neumann Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.c3 Nf6 4.Bc4 ends
+# on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Part of
+# batch t of round 4 (#182). Every ply below was replayed with chess.js before it was
+# annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: 'ponziani-opening-neumann-gambit'
+name: 'Ponziani Opening: Neumann Gambit'
+eco: 'C44'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nc6'
+  - 'c3'
+  - 'Nf6'
+  - 'Bc4'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, eight each, but White's pawn on e4 is attacked by the knight on f6 and nothing defends it, so Black can take it at once. White's only return is the bishop on c4 aimed at f7, which the king defends, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.Bc4, nhắm vào f7. Số tốt hai bên bằng nhau, mỗi bên tám. Tốt e4 của Trắng bị mã f6 tấn công và không có gì bảo vệ, còn tốt e5 của Đen bị mã f3 tấn công và được mã c6 bảo vệ.'
+    en: "White has just played 4.Bc4, aiming at f7. The pawns are level, eight each. White's pawn on e4 is attacked by the knight on f6 and nothing defends it, and Black's pawn on e5 is attacked by the knight on f3 and defended by the knight on c6."
+    fr: 'Les Blancs viennent de jouer 4.Bc4, visant f7. Les pions sont à égalité, huit de chaque côté. Le pion e4 des Blancs est attaqué par le cavalier f6 et rien ne le défend, et le pion e5 des Noirs est attaqué par le cavalier f3 et défendu par le cavalier c6.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 4...Nxe4 ở đây, chẳng hạn 4...Be7. Mục này đi theo nước ăn tốt e4.'
+      en: 'Black plays something other than 4...Nxe4 here, for instance 4...Be7. This entry follows the capture of the pawn on e4.'
+      fr: 'Les Noirs jouent autre chose que 4...Nxe4 ici, par exemple 4...Be7. Cette entrée suit la capture du pion e4.'
+  children:
+    - ply: 'Nxe4'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen ăn tốt e4 bằng mã. Mã tấn công các tốt c3, d2 và f2, đều được bảo vệ.'
+        en: 'Black takes the pawn on e4 with the knight. The knight attacks the pawns on c3, d2 and f2, all of which are defended.'
+        fr: 'Les Noirs prennent le pion e4 avec le cavalier. Le cavalier attaque les pions c3, d2 et f2, tous défendus.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt. Mã e4 của Đen tấn công các tốt c3, d2 và f2, đều được bảo vệ. Bxf7+ mất ngay tượng lấy một tốt, vì vua ăn lại, và Nxe5 mất ngay mã lấy một tốt, vì mã c6 ăn lại.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. Black's knight on e4 attacks the pawns on c3, d2 and f2, all of which are defended. Bxf7+ would lose the bishop for a pawn at once, because the king retakes, and Nxe5 would lose the knight for a pawn at once, because the knight on c6 retakes."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion de moins. Le cavalier e4 des Noirs attaque les pions c3, d2 et f2, tous défendus. Bxf7+ perdrait aussitôt le fou pour un pion, car le roi reprend, et Nxe5 perdrait aussitôt le cavalier pour un pion, car le cavalier c6 reprend.'
+        plan:
+          vi: 'Trắng nhập thành bằng O-O rồi đuổi mã bằng d3. Đen hỗ trợ mã bằng ...d5 và phát triển bằng ...Bd6.'
+          en: 'White castles with O-O, then drives the knight away with d3. Black supports the knight with ...d5 and develops with ...Bd6.'
+          fr: 'Les Blancs roquent par O-O, puis chassent le cavalier par d3. Les Noirs soutiennent le cavalier par ...d5 et se développent par ...Bd6.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

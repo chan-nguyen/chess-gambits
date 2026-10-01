@@ -1,0 +1,62 @@
+# Indian Defense: Budapest Gambit Accepted, Main Line, Alekhine Variation, Abonyi Variation.
+# Frozen defining line 1.d4 Nf6 2.c4 e5 3.dxe5 Ng4 4.e4 Nxe5 ends on Black's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182).
+# Every ply below was replayed with chess.js before it was annotated; searchMate at 3 moves
+# from the leaf returns no-mate, so no forced mate is claimed anywhere in this entry, and no
+# capture is left going free at the leaf.
+id: 'budapest-gambit-accepted-main-line-alekhine-variation-abonyi'
+name: 'Indian Defense: Budapest Gambit Accepted, Main Line, Alekhine Variation, Abonyi Variation'
+eco: 'A52'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'd4'
+  - 'Nf6'
+  - 'c4'
+  - 'e5'
+  - 'dxe5'
+  - 'Ng4'
+  - 'e4'
+  - 'Nxe5'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement. At the end of the defining line the pawns are level, seven each, so Black has won back the gambit pawn, and the knight on e5 attacks the pawn on c4, which the bishop on f1 defends. White has two pawns in the centre, on c4 and e4, and Black has none beyond the d7 pawn, so the line is judged dubious. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 4...Nxe5, ăn tốt e5 bằng mã. Số tốt hai bên bằng nhau, mỗi bên bảy. Mã e5 tấn công tốt c4, quân được tượng f1 bảo vệ, và tốt d7 bị hậu d1 tấn công nhưng được nhiều quân bảo vệ.'
+    en: 'Black has just played 4...Nxe5, taking the pawn on e5 with the knight. The pawns are level, seven each. The knight on e5 attacks the pawn on c4, which the bishop on f1 defends, and the pawn on d7 is attacked by the queen on d1 but well defended.'
+    fr: 'Les Noirs viennent de jouer 4...Nxe5, prenant le pion e5 avec le cavalier. Les pions sont à égalité, sept de chaque côté. Le cavalier e5 attaque le pion c4, que le fou f1 défend, et le pion d7 est attaqué par la dame d1 mais bien défendu.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 5.Nc3 ở đây, chẳng hạn 5.f4, tấn công mã bằng một tốt. Mục này đi theo nước phát triển mã.'
+      en: 'White plays something other than 5.Nc3 here, for instance 5.f4, attacking the knight with a pawn. This entry follows the knight development.'
+      fr: 'Les Blancs jouent autre chose que 5.Nc3 ici, par exemple 5.f4, attaquant le cavalier avec un pion. Cette entrée suit le développement du cavalier.'
+  children:
+    - ply: 'Nc3'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng phát triển mã lên c3, hỗ trợ tốt e4. Mã e5 của Đen vẫn tấn công tốt c4.'
+        en: "White develops the knight to c3, supporting the e4 pawn. Black's knight on e5 still attacks the pawn on c4."
+        fr: 'Les Blancs développent le cavalier en c3, soutenant le pion e4. Le cavalier e5 des Noirs attaque toujours le pion c4.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: mỗi bên bảy, nghĩa là con tốt đã thí đã lấy lại được. Trắng có các tốt c4 và e4 ở trung tâm, còn Đen chỉ có tốt d7. Mã e5 tấn công tốt c4, quân được tượng f1 bảo vệ, và Nxc4 sẽ mất mã lấy một tốt.'
+          en: 'Count the pawns: seven each, so the sacrificed pawn has come back. White has the pawns on c4 and e4 in the centre and Black only the d7 pawn. The knight on e5 attacks the pawn on c4, which the bishop on f1 defends, and Nxc4 would lose the knight for a pawn.'
+          fr: 'Comptez les pions : sept de chaque côté, donc le pion sacrifié est revenu. Les Blancs ont les pions c4 et e4 au centre et les Noirs seulement le pion d7. Le cavalier e5 attaque le pion c4, que le fou f1 défend, et Nxc4 perdrait le cavalier pour un pion.'
+        plan:
+          vi: 'Trắng đuổi mã bằng f4 và phát triển bằng Nf3. Đen phát triển bằng ...Bc5 và, khi mã bị tấn công, lùi nó bằng ...Nec6.'
+          en: 'White drives the knight away with f4 and develops with Nf3. Black develops with ...Bc5 and, when the knight is attacked, retreats it with ...Nec6.'
+          fr: 'Les Blancs chassent le cavalier par f4 et se développent par Nf3. Les Noirs se développent par ...Bc5 et, quand le cavalier est attaqué, le replient par ...Nec6.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'
