@@ -4,6 +4,22 @@
 # centre at once, and nothing is hanging for either side. searchMate at 4 moves from this
 # position returns unknown, which the stopping rule treats the same as no-mate, so no
 # forced mate is claimed.
+#
+# #175 item 7 asked for the "Old Benoni trap" — 2...e6 3.b4? a5 4.bxa5?? Bxc5 5.Bd2?? Qf6,
+# "and the a1 rook falls" — either as a second learner plan or as a note. Neither was
+# authored, because the reputation does not survive replay. Every ply is legal; the rest
+# was measured with chess.js and a local Stockfish 19 cross-check (depth 14 to 22), whose
+# figures stay in this comment and nowhere in the content:
+#  - 3.b4 and 4.bxa5 are not the errors the question marks say. 3.b4 is about half a pawn
+#    below White's best third move (3.Nc3), and 4.bxa5 is within a tenth of a pawn of 4.b5,
+#    the move it is supposed to be the blunder against.
+#  - Only 5.Bd2 is a real mistake, and it costs about a pawn, not a rook. 5...Qf6 does
+#    attack a1 and f2, but along the main line (6.e3 Qxa1 7.Bc3 Bb4 8.Bxb4) the queen is
+#    shut in the corner and Black stands one point ahead on the count, 34 to 33.
+#  - 2...e6 is itself no worse than 2...e5 (the cross-check puts it a hair ahead), so
+#    prescribing 2...e5 alone is not a mistake. A second plan would need honest replies to
+#    a dozen sensible third moves (3.Nc3, 3.e4, 3.Nd2, 3.c4, 3.Nf3 ...), and the trap that
+#    was meant to justify it is not worth that.
 id: benoni-defense-benoni-gambit-accepted
 name: 'Benoni Defense: Benoni Gambit Accepted'
 eco: A43

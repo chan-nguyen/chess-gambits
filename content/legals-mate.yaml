@@ -10,6 +10,22 @@
 # The mate after 6...Bxd1 is claimed with `type: trap` and nothing else. The move count,
 # the line and the certificate are produced by `npm run prove:mates` and replayed by
 # `npm run verify:mates` (ADR-0005). Every other line here was replayed with chess.js.
+#
+# #175 item 9 (chesstrapguide's move order 3.Bc4 Bg4 4.Nc3 g6??): replayed, it is the same
+# mate by another road. With the black knight still on b8 nothing but the d6 pawn can retake
+# on e5, so 4...g6?? 5.Nxe5! needs no h3: 5...Bxd1 6.Bxf7+ Ke7 7.Nd5# (proved below), and
+# 5...dxe5 6.Qxg4 wins the pinned bishop and leaves White a clean pawn up. The root's old
+# catch-all said the queen offer "needs two things Black has not given here" (the bishop
+# driven to h5 and the f6 square free of a knight) and called every other fourth move
+# ordinary play. That was false for this move and for others like it: after each of ...a6,
+# ...a5, ...b6, ...c5, ...g5 and ...g6, 5.Nxe5! leaves only the d6 pawn to retake, 5...Bxd1
+# walks into the same mate, 5...dxe5 loses the pinned bishop to Qxg4, and a three-ply
+# minimax over Black's replies leaves White at least two points up (checked with chess.js).
+# The catch-all is rewritten to say only what is true, and ...g6 is modelled as the example.
+# Why 4...Nc6 and 4...Nf6 are different is unchanged: a knight that can retake on e5 (c6) or
+# take the mating knight on d5 (f6) is what kills the combination there. The vendored
+# Stockfish 19 (ADR-0012) was run locally as a cross-check on the reply qualities; none of
+# its figures appears anywhere in the content.
 id: legals-mate
 name: "Légal's Mate"
 eco: C41
@@ -30,10 +46,12 @@ soundness:
       was consulted and no database was queried.
 judgement:
   by: chan
-  at: '2026-09-16'
+  at: '2026-10-01'
   source: >-
     Reply qualities, frequencies, evaluations and plans in this entry are one author's
-    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+    judgement on one date. The ...g6 branch added on 2026-10-01 was additionally cross-checked
+    locally against Stockfish 19, depth 14, to catch a quality that was plainly wrong; no
+    engine figure is published. The mate is not — it is machine-proved and replayed by CI.
 tree:
   annotation:
     vi: Tượng Đen ở g4 ghim mã f3 vào hậu d1. Cả cái bẫy nằm ở chỗ đó. Nếu Trắng đuổi được con tượng ấy về h5 rồi mới ăn ở e5 thì con hậu d1 trở thành một món mồi, và ăn nó là chiếu bí.
@@ -41,9 +59,9 @@ tree:
     fr: Le fou noir en g4 cloue le cavalier f3 sur la dame en d1. Tout le piège tient là. Si les Blancs chassent d'abord ce fou en h5 et ne prennent en e5 qu'ensuite, la dame en d1 devient un appât, et la prendre, c'est mat.
   dismissRest:
     reason:
-      vi: Đen chơi một nước khác. Kế hoạch của Trắng không đổi, đó là h3 khi tượng còn ở g4, và nếu không thì d3, Be3 rồi nhập thành. Nhưng đòn thí hậu cần hai điều mà Đen chưa cho ở đây, là con tượng đã bị buộc xuống h5 và ô f6 không có mã Đen đứng, vì nếu có thì nước chiếu bí Nd5 bị ăn mất. Những nhánh này là cờ Philidor và cờ Ý bình thường chứ không phải cái bẫy.
-      en: Black plays something else. White's plan does not change — h3 while the bishop is still on g4, and otherwise d3, Be3 and castling. But the queen offer needs two things Black has not given here — the bishop driven down to h5, and the f6 square free of a black knight, because a knight there simply takes the mating knight on d5. These lines are ordinary Philidor and Italian play rather than the trap.
-      fr: Les Noirs jouent autre chose. Le plan des Blancs ne change pas, h3 tant que le fou est en g4, et sinon d3, Be3 et le roque. Mais l'offre de dame exige deux choses que les Noirs n'ont pas données ici, le fou repoussé jusqu'en h5 et la case f6 libre de tout cavalier noir, car un cavalier là prend simplement le cavalier qui mate en d5. Ces lignes sont du Philidor et de la partie italienne ordinaires, pas le piège.
+      vi: Đen chơi một nước khác. Kế hoạch của Trắng không đổi — h3 khi tượng còn ở g4, và nếu không thì d3, Be3 rồi nhập thành. Các nước được dựng ở đây là những nước quan trọng nhất ở thế này, gồm ...Nc6 cho phép dạng h3 hoạt động, ...Nf6 chặn nó, nước đổi trên f3, và ...g6, nước rơi vào đúng nước chiếu bí đó mà không cần h3. Nhiều nước khác, chẳng hạn ...a6 hay ...a5, cũng rơi vào 5.Nxe5! theo cách tương tự, và không nước nào được dựng ở đây.
+      en: Black plays something else. White's plan does not change — h3 while the bishop is still on g4, and otherwise d3, Be3 and castling. The moves modelled here are the ones that matter most in this position — ...Nc6, which lets the h3 form work, ...Nf6, which stops it, the exchange on f3, and ...g6, which walks into the same mate without needing h3. Many of the other moves, such as ...a6 or ...a5, run into 5.Nxe5! in the same way, and none of them is mapped here.
+      fr: Les Noirs jouent autre chose. Le plan des Blancs ne change pas — h3 tant que le fou est en g4, et sinon d3, Be3 et le roque. Les coups cartographiés ici sont les plus importants dans cette position — ...Nc6, qui laisse la forme h3 fonctionner, ...Nf6, qui l'arrête, l'échange en f3, et ...g6, qui tombe dans le même mat sans qu'h3 soit nécessaire. Beaucoup d'autres coups, comme ...a6 ou ...a5, tombent de la même façon dans 5.Nxe5!, et aucun n'est cartographié ici.
   children:
     - ply: Nc6
       replyQuality: good
@@ -258,3 +276,57 @@ tree:
             basis:
               by: chan
               at: '2026-09-16'
+    - ply: g6
+      replyQuality: blunder
+      frequency: rare
+      annotation:
+        vi: Đen chơi g6, một nước chờ không làm gì cho tốt e5 hay thế ghim. Tốt e5 bị mã f3 tấn công và chỉ có tốt d6 bảo vệ, ngoài tốt ấy ra không quân nào ăn lại được ở đó — và đó chính xác là điều cái bẫy cần.
+        en: Black plays g6, a waiting move that does nothing about the e5 pawn or the pin. The pawn on e5 is attacked by the knight on f3 and defended only by the d6 pawn, and nothing but that pawn can retake there — which is exactly what the trap needs.
+        fr: Les Noirs jouent g6, un coup d'attente qui ne fait rien pour le pion e5 ni pour le clouage. Le pion e5 est attaqué par le cavalier f3 et défendu seulement par le pion d6, et rien d'autre que ce pion ne peut reprendre là — c'est exactement ce dont le piège a besoin.
+      children:
+        - ply: Nxe5
+          annotation:
+            vi: Trắng ăn ở e5 ngay, không cần h3 trước. Mã bị tốt d6 tấn công, còn hậu d1 bị tượng g4 tấn công xuyên qua ô f3 mà mã vừa rời đi. Đen không có mã trên c6 để ăn mã ấy không mất gì, nên lời mời là thật.
+            en: White takes on e5 at once, without h3 first. The knight is attacked by the d6 pawn, and the queen on d1 is attacked by the bishop on g4 through the f3 square the knight has just left. Black has no knight on c6 to take that knight for nothing, so the offer is genuine.
+            fr: Les Blancs prennent en e5 tout de suite, sans h3 d'abord. Le cavalier est attaqué par le pion d6, et la dame d1 l'est par le fou g4 à travers la case f3 que le cavalier vient de quitter. Les Noirs n'ont pas de cavalier en c6 pour prendre ce cavalier gratuitement, et l'offre est donc réelle.
+          dismissRest:
+            reason:
+              vi: Đen không ăn ở d1 cũng không ăn ở e5. Mọi nước khác đều mất quân ngay — ...Be6 mất một tốt, còn mỗi nước còn lại mất ít nhất cả một quân chỉ sau ba nước đi liên tiếp (Trắng, Đen, Trắng). Không đường nào trong số này được dựng ở đây.
+              en: Black takes neither on d1 nor on e5. Everything else loses material at once — ...Be6 costs a pawn, and each of the other replies costs at least a whole piece within three plies (White, Black, White). None of those lines is mapped here.
+              fr: Les Noirs ne prennent ni en d1 ni en e5. Tout autre coup perd aussitôt du matériel — ...Be6 coûte un pion, et chacune des autres réponses coûte au moins une pièce entière en trois demi-coups (Blancs, Noirs, Blancs). Aucune de ces lignes n'est cartographiée ici.
+          children:
+            - ply: Bxd1
+              replyQuality: blunder
+              frequency: occasional
+              annotation:
+                vi: Ăn hậu. Đây là nước thua, và phần còn lại do máy chứng minh chứ không do người khẳng định.
+                en: Taking the queen. This is the losing move, and what follows is proved by machine rather than asserted by a person.
+                fr: Prendre la dame. C'est le coup perdant, et la suite est prouvée par la machine plutôt qu'affirmée par un humain.
+              outcome:
+                type: trap
+            - ply: dxe5
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen ăn mã bằng tốt d và bỏ mặc con hậu. Đây là nước tốt nhất Đen có, nhưng tượng g4 giờ bị hậu tấn công và không có quân nào bảo vệ.
+                en: Black takes the knight with the d-pawn and leaves the queen alone. It is the best Black has, but the bishop on g4 is now attacked by the queen and nothing defends it.
+                fr: Les Noirs prennent le cavalier du pion d et laissent la dame tranquille. C'est le meilleur coup qu'ils aient, mais le fou g4 est maintenant attaqué par la dame et rien ne le défend.
+              children:
+                - ply: Qxg4
+                  annotation:
+                    vi: Hậu ăn tượng không ai bảo vệ. Mã đã hy sinh được trả lại bằng một tượng, và Trắng còn hơn một tốt.
+                    en: The queen takes the undefended bishop. The knight that was given up has come back as a bishop, and White is a pawn up.
+                    fr: La dame prend le fou non défendu. Le cavalier sacrifié est revenu sous la forme d'un fou, et les Blancs ont un pion de plus.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: Trắng hơn một tốt sạch, tám tốt đối với bảy, và đòn hy sinh mã đã được trả lại — Trắng có hậu, hai xe, hai tượng và một mã, Đen có hậu, hai xe, một tượng và hai mã. Đen không còn tốt d và tượng c4 vẫn nhắm vào f7, ô mà chỉ có vua bảo vệ.
+                      en: White is a clean pawn up, eight pawns against seven, and the knight sacrifice has come back — White has a queen, two rooks, two bishops and a knight, Black a queen, two rooks, one bishop and two knights. Black has no d-pawn left and the bishop on c4 still aims at f7, which only the king defends.
+                      fr: Les Blancs ont un pion net de plus, huit pions contre sept, et le sacrifice du cavalier est revenu — les Blancs ont une dame, deux tours, deux fous et un cavalier, les Noirs une dame, deux tours, un fou et deux cavaliers. Les Noirs n'ont plus de pion d et le fou c4 vise toujours f7, que seul le roi défend.
+                    plan:
+                      vi: Trắng chơi d3 hoặc d4, Be3 và nhập thành cánh hậu, giữ con tốt thừa và để tượng c4 tiếp tục đe doạ f7. Đen chơi ...Nf6 tấn công hậu, rồi ...Bg7 và ...O-O để an toàn cho vua.
+                      en: White plays d3 or d4, Be3 and castles long, keeping the extra pawn and leaving the bishop on c4 to go on threatening f7. Black plays ...Nf6, hitting the queen, then ...Bg7 and ...O-O to bring the king to safety.
+                      fr: Les Blancs jouent d3 ou d4, Be3 et roquent à l'aile dame, gardant le pion de plus et laissant le fou c4 menacer toujours f7. Les Noirs jouent ...Nf6, qui attaque la dame, puis ...Bg7 et ...O-O pour mettre le roi à l'abri.
+                    basis:
+                      by: chan
+                      at: '2026-10-01'
