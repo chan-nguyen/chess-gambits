@@ -1,0 +1,60 @@
+# Indian Defense: Anti-Grünfeld, Alekhine Variation, Leko Gambit. Defining line 1.d4 Nf6
+# 2.c4 g6 3.f3 e5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-anti-grunfeld-alekhine-variation-leko-gambit
+name: 'Indian Defense: Anti-Grünfeld, Alekhine Variation, Leko Gambit'
+eco: E60
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, g6, f3, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 3...e5 offers a pawn that the d4 pawn attacks and nothing defends, in
+      exchange for an open e1-h4 diagonal behind the f3 pawn, and no Black piece other than
+      the f6 knight has been developed. The label is dubious. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...e5, hiến tốt e. Tốt e5 bị tốt d4 tấn công và không có quân nào bảo vệ, còn tốt f3 đã để ngỏ đường chéo e1-h4: các ô f2 và g3 đều trống.'
+    en: 'Black has just played 3...e5, offering the e-pawn. The e5 pawn is attacked by the d4 pawn and nothing defends it, and the f3 pawn has left the e1-h4 diagonal open: f2 and g3 are both empty.'
+    fr: 'Les Noirs viennent de jouer 3...e5, offrant le pion e. Le pion e5 est attaqué par le pion d4 et rien ne le défend, et le pion f3 a laissé ouverte la diagonale e1-h4 : f2 et g3 sont toutes deux vides.'
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 4.dxe5 ở đây. Mục này chỉ đi theo 4.dxe5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 4.dxe5 here. This entry follows 4.dxe5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 4.dxe5 ici. Cette entrée ne suit que 4.dxe5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 4.dxe5. Tốt mới ở e5 tấn công mã f6, mà chỉ có hậu d8 bảo vệ con mã đó.
+        en: White takes the pawn with 4.dxe5. The new pawn on e5 attacks the f6 knight, and only the queen on d8 defends that knight.
+        fr: Les Blancs prennent le pion par 4.dxe5. Le nouveau pion en e5 attaque le cavalier f6, que seule la dame d8 défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Tốt Trắng ở e5 và e2 bị chồng, nhưng tốt e5 đang tấn công mã f6, mà chỉ có hậu bảo vệ, nên Đen phải xử lý ngay điều đó. Tốt f3 đã để ngỏ đường chéo e1-h4, và vua Trắng chưa nhập thành.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down and the sacrifice has not come back. White's pawns on e5 and e2 are doubled, but the e5 pawn attacks the f6 knight, which only the queen defends, so Black has to deal with that at once. The f3 pawn has left the e1-h4 diagonal open, and White's king has not castled."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Les pions blancs e5 et e2 sont doublés, mais le pion e5 attaque le cavalier f6, que seule la dame défend ; les Noirs doivent donc y répondre tout de suite. Le pion f3 a laissé ouverte la diagonale e1-h4, et le roi blanc n'a pas roqué."
+        plan:
+          vi: Đen đưa mã đi, chẳng hạn bằng ...Nh5, để hậu d8 nhìn thấy ô h4 và ...Qh4+ trở thành nước chiếu dọc đường chéo đang mở, rồi tiếp tục bằng ...Nc6 và ...Bb4+. Trắng đóng đường chéo bằng g3 hoặc phát triển bằng Nh3 và Bg5, và cố giữ con tốt hơn.
+          en: Black moves the knight, for instance with ...Nh5, so that the queen on d8 sees h4 and ...Qh4+ comes with check along the open diagonal, then continues with ...Nc6 and ...Bb4+. White closes the diagonal with g3 or develops with Nh3 and Bg5, and tries to keep the extra pawn.
+          fr: Les Noirs déplacent le cavalier, par exemple par ...Nh5, pour que la dame d8 voie h4 et que ...Qh4+ devienne un échec le long de la diagonale ouverte, puis poursuivent par ...Nc6 et ...Bb4+. Les Blancs ferment la diagonale par g3 ou se développent par Nh3 et Bg5, et cherchent à garder le pion en plus.
+        basis:
+          by: chan
+          at: 2026-10-01

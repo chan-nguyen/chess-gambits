@@ -1,0 +1,60 @@
+# Indian Defense: Gibbins-Weidenhagen Gambit, Maltese Falcon. Defining line 1.d4 Nf6 2.g4
+# Nxg4 3.f3 Nf6 4.e4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-gibbins-weidenhagen-gambit-maltese-falcon
+name: 'Indian Defense: Gibbins-Weidenhagen Gambit, Maltese Falcon'
+eco: A45
+category: gambit
+side: white
+definingLine: [d4, Nf6, g4, Nxg4, f3, Nf6, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. White has given the g-pawn for a broad pawn centre on d4, e4 and f3, but
+      the e4 pawn is already attacked by the knight on f6 and defended only by the f3 pawn,
+      and Black can add a second attacker at once. The pawn has not come back, so the label
+      is dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.e4, hoàn thành dải tốt trung tâm rộng ở d4, e4 và f3. Tốt e4 bị mã f6 tấn công và chỉ có tốt f3 bảo vệ.
+    en: White has just played 4.e4, completing a broad pawn centre on d4, e4 and f3. The e4 pawn is attacked by the knight on f6 and defended only by the f3 pawn.
+    fr: Les Blancs viennent de jouer 4.e4, achevant un large centre de pions en d4, e4 et f3. Le pion e4 est attaqué par le cavalier f6 et défendu seulement par le pion f3.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 4...d5 ở đây. Mục này chỉ đi theo 4...d5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 4...d5 here. This entry follows 4...d5 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 4...d5 ici. Cette entrée ne suit que 4...d5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: d5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi 4...d5, tấn công tốt e4 lần thứ hai. Tốt e4 giờ bị mã f6 và tốt d5 tấn công, mà chỉ có tốt f3 bảo vệ.
+        en: Black plays 4...d5, attacking the e4 pawn a second time. The e4 pawn is now attacked by the f6 knight and the d5 pawn, and defended only by the f3 pawn.
+        fr: Les Noirs jouent 4...d5, attaquant le pion e4 une seconde fois. Le pion e4 est maintenant attaqué par le cavalier f6 et le pion d5, et défendu seulement par le pion f3.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt. Tốt e4 bị tấn công hai lần mà chỉ được bảo vệ một lần, và cột g nửa mở cho xe Trắng, với mục tiêu là tốt g7 do tượng f8 bảo vệ.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. The e4 pawn is attacked twice and defended once, and the g-file is half open for White's rook, with the g7 pawn, defended by the bishop on f8, as its target."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Le pion e4 est attaqué deux fois et défendu une seule, et la colonne g est semi-ouverte pour la tour blanche, avec pour cible le pion g7, défendu par le fou f8.'
+        plan:
+          vi: Trắng chơi e5 để đuổi mã và chiếm không gian, rồi chống đỡ chuỗi tốt bằng f4 và phát triển bằng Nf3. Đen đáp lại e5 bằng ...Nfd7, rồi phá chuỗi tốt bằng ...c5 và ...e6.
+          en: White plays e5 to chase the knight and gain space, then supports the pawn chain with f4 and develops with Nf3. Black answers e5 with ...Nfd7, then undermines the chain with ...c5 and ...e6.
+          fr: Les Blancs jouent e5 pour chasser le cavalier et gagner de l'espace, puis soutiennent la chaîne de pions par f4 et se développent par Nf3. Les Noirs répondent à e5 par ...Nfd7, puis sapent la chaîne par ...c5 et ...e6.
+        basis:
+          by: chan
+          at: 2026-10-01

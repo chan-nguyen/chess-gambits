@@ -1,0 +1,58 @@
+# Indian Defense: Schnepper Gambit. Defining line 1.d4 Nf6 2.Nf3 b6 3.c3 e5, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-schnepper-gambit
+name: 'Indian Defense: Schnepper Gambit'
+eco: A47
+category: gambit
+side: black
+definingLine: [d4, Nf6, Nf3, b6, c3, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 3...e5 puts a pawn on a square that the d4 pawn and the knight on f3 both
+      attack and that nothing defends, and the f6 knight is the only Black piece developed.
+      The label is unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...e5, hiến tốt. Tốt e5 bị tốt d4 và mã f3 tấn công, và không có quân nào bảo vệ.
+    en: Black has just played 3...e5, offering a pawn. The e5 pawn is attacked by the d4 pawn and the f3 knight, and nothing defends it.
+    fr: Les Noirs viennent de jouer 3...e5, offrant un pion. Le pion e5 est attaqué par le pion d4 et le cavalier f3, et rien ne le défend.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 4.dxe5 ở đây. Mục này chỉ đi theo 4.dxe5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 4.dxe5 here. This entry follows 4.dxe5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 4.dxe5 ici. Cette entrée ne suit que 4.dxe5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 4.dxe5. Tốt mới ở e5 tấn công mã f6, được hậu và tốt g7 bảo vệ.
+        en: White takes the pawn with 4.dxe5. The new pawn on e5 attacks the f6 knight, which the queen and the g7 pawn defend.
+        fr: Les Blancs prennent le pion par 4.dxe5. Le nouveau pion en e5 attaque le cavalier f6, que la dame et le pion g7 défendent.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Các tốt Trắng ở e5 và e2 bị chồng, nhưng tốt e5 được mã f3 bảo vệ và đe dọa exf6, nước sẽ thắng một mã đổi lấy một tốt, nên Đen phải xử lý ngay.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down and the sacrifice has not come back. White's pawns on e5 and e2 are doubled, but the e5 pawn is defended by the knight on f3 and threatens exf6, which would win a knight for a pawn, so Black has to deal with it at once."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Les pions blancs e5 et e2 sont doublés, mais le pion e5 est défendu par le cavalier f3 et menace exf6, qui gagnerait un cavalier contre un pion ; les Noirs doivent donc y répondre tout de suite."
+        plan:
+          vi: Đen đưa mã đi bằng ...Ng4, tấn công tốt e5, rồi thêm ...Bb7 và ...Nc6. Trắng phát triển bằng Bf4 và Nbd2, giữ tốt hơn.
+          en: Black moves the knight with ...Ng4, which attacks the e5 pawn, and adds ...Bb7 and ...Nc6. White develops with Bf4 and Nbd2, keeping the extra pawn.
+          fr: Les Noirs déplacent le cavalier par ...Ng4, qui attaque le pion e5, et ajoutent ...Bb7 et ...Nc6. Les Blancs se développent par Bf4 et Nbd2, en gardant le pion en plus.
+        basis:
+          by: chan
+          at: 2026-10-01
