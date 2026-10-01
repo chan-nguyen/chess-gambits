@@ -1,0 +1,61 @@
+# Réti Opening: Reversed Blumenfeld Gambit. Frozen defining line 1.Nf3 d5 2.c4 d4 3.e3 c5
+# 4.b4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through the reply cxb4; searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: reti-opening-reversed-blumenfeld-gambit
+name: 'Réti Opening: Reversed Blumenfeld Gambit'
+eco: A09
+category: gambit
+side: white
+definingLine: [Nf3, d5, c4, d4, e3, c5, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, and
+      the b4 pawn is attacked by the c5 pawn with nothing to defend it, while the c5 pawn is
+      attacked by the b4 pawn and is undefended too. Black can take on b4, but then the d4
+      pawn is attacked twice and defended once; the practical chances are real for both sides,
+      and the gambit has not been shown to be sound against best play. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.b4. Tốt b4 bị tốt c5 của Đen tấn công mà không có quân nào bảo vệ, còn tốt c5 cũng bị tốt b4 tấn công và không được bảo vệ. Tốt d4 của Đen bị tốt e3 và mã f3 tấn công và được hậu và tốt c5 bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Đen ăn 4...cxb4.'
+    en: "White has just played 4.b4. The b4 pawn is attacked by Black's c5 pawn and nothing defends it, while the c5 pawn is also attacked by the b4 pawn and is undefended. Black's d4 pawn is attacked by the e3 pawn and the knight on f3 and defended by the queen and the c5 pawn. The pawn count is level, eight each. This entry follows Black capturing 4...cxb4."
+    fr: 'Les Blancs viennent de jouer 4.b4. Le pion b4 est attaqué par le pion c5 noir sans être défendu, et le pion c5 est lui aussi attaqué par le pion b4 sans être défendu. Le pion d4 noir est attaqué par le pion e3 et le cavalier f3 et défendu par la dame et le pion c5. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 4...cxb4 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...cxb4, nên tốt b4 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 4...cxb4 here, so the b4 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 4...cxb4 ici, si bien que le pion b4 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: cxb4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b4 bằng tốt c. Tốt b4 mới không có quân bảo vệ, nhưng tốt d4 giờ chỉ còn hậu bảo vệ, trong khi bị cả tốt e3 lẫn mã f3 tấn công.'
+        en: 'Black takes the b4 pawn with the c-pawn. The new pawn on b4 has no defender, but the d4 pawn is now defended only by the queen while the e3 pawn and the knight on f3 both attack it.'
+        fr: "Les Noirs prennent le pion b4 avec le pion c. Le nouveau pion b4 n'a pas de défenseur, mais le pion d4 n'est plus défendu que par la dame alors que le pion e3 et le cavalier f3 l'attaquent tous deux."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nhưng tốt d4 của Đen bị tấn công hai lần, bởi tốt e3 và mã f3, và chỉ được hậu bảo vệ một lần. Hậu Đen không thể ăn lại trên d4 mà không bị Nxd4 bắt mất, nên exd4 lấy lại con tốt ngay và số tốt thành bảy so với bảy. Sau đó Trắng có hai tốt d chồng, còn Đen có hai tốt b chồng.'
+          en: "Count the pawns: White seven, Black eight, but Black's d4 pawn is attacked twice, by the e3 pawn and the knight on f3, and defended only once, by the queen. Black's queen cannot recapture on d4 without being taken by Nxd4, so exd4 regains the pawn at once and the count becomes seven each. After that White has two doubled pawns on the d-file and Black has two on the b-file."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs, mais le pion d4 noir est attaqué deux fois, par le pion e3 et le cavalier f3, et défendu une seule fois, par la dame. La dame noire ne peut pas reprendre en d4 sans être prise par Nxd4, si bien que exd4 regagne aussitôt le pion et que le compte devient sept chacun. Ensuite les Blancs ont deux pions doublés sur la colonne d et les Noirs en ont deux sur la colonne b.'
+        plan:
+          vi: 'Trắng ăn bằng exd4, rồi Bb2 và a3 để thách thức tốt b4. Đen thêm quân bảo vệ cho tốt d4 bằng ...Nc6 và ...e5, rồi phát triển bằng ...Nf6.'
+          en: 'White takes with exd4, then plays Bb2 and a3 to challenge the b4 pawn. Black adds defenders to the d4 pawn with ...Nc6 and ...e5, then develops with ...Nf6.'
+          fr: 'Les Blancs prennent par exd4, puis jouent Bb2 et a3 pour défier le pion b4. Les Noirs ajoutent des défenseurs au pion d4 par ...Nc6 et ...e5, puis se développent par ...Nf6.'
+        basis:
+          by: chan
+          at: '2026-10-01'
