@@ -106,11 +106,14 @@ describe('what it regenerates', () => {
       "    ['stale', 1],",
       '  ])',
       "  it('bakes keys on all 1024 entries, and only the authored seventy have any', () => {",
+      '    expect(result.value.records).toHaveLength(1024)',
     ].join('\n')
     const result = regenerateBranches(fixture, inputs)
     if (!result.ok) throw new Error(result.message)
     expect(result.text).toContain('* Three entries are authored')
     expect(result.text).toContain('and the\n   * other 7\n   * are Tier 0')
+    expect(result.text).toContain('bakes keys on all 10 entries')
+    expect(result.text).toContain('expect(result.value.records).toHaveLength(10)')
     expect(result.text).toContain('only the authored three have any')
     expect(result.text).toContain("    ['alpha', 1],\n    ['bravo', 0],\n    ['charlie', 3],\n  ])")
     expect(result.text).not.toContain('stale')

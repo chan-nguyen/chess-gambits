@@ -6,7 +6,7 @@
  *   list of `<id>.json` files the compile step writes.
  * - `tools/catalogue/branches.test.ts` — the `AUTHORED` map (every authored id with the number of
  *   root-to-leaf lines its tree has), the counts written out in words in its comments and its
- *   test title, and the number of entries still at Tier 0.
+ *   test title, the number of entries in the whole catalogue, and the number still at Tier 0.
  * - `e2e/taught-entries.spec.ts` — the count in words and the sorted list of every taught id.
  *
  * Every number in those files is a fact about `content/` and the catalogue built from it. Typing
@@ -180,6 +180,20 @@ export const regenerateBranches = (text: string, inputs: GoldenInputs): Regenera
         /only the authored [a-z -]+ have any/,
         `only the authored ${numberWords(count)} have any`,
         'branches test title',
+      ),
+    (current) =>
+      replaceOnce(
+        current,
+        /bakes keys on all \d+ entries/,
+        `bakes keys on all ${inputs.totalEntries} entries`,
+        'branches entry total in the test title',
+      ),
+    (current) =>
+      replaceOnce(
+        current,
+        /(expect\(result\.value\.records\)\.toHaveLength\()\d+(\))/,
+        (_match, head, tail) => `${head}${inputs.totalEntries}${tail}`,
+        'branches entry total assertion',
       ),
     (current) =>
       replaceOnce(
