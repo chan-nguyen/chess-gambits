@@ -1,0 +1,60 @@
+# Polish Opening: Schuehler Gambit. Frozen defining line 1.b4 c6 2.Bb2 a5 3.b5 cxb5 4.e4,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through the reply b4; searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: polish-opening-schuehler-gambit
+name: 'Polish Opening: Schuehler Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [b4, c6, Bb2, a5, b5, cxb5, e4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and Black's b5 pawn is attacked by the bishop on f1 and has no defender, but Black can
+      advance it with ...b4, where the a5 pawn defends it. White has not been shown to get
+      more in return than the pawn on e4 in the centre and the bishop on b2 aimed at g7. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.e4, mở đường chéo cho tượng f1 nhắm vào tốt b5 của Đen. Tốt b5 bị tượng tấn công mà không có quân nào bảo vệ. Trắng đang kém một tốt, bảy so với tám. Mục này đi theo nước đáp 4...b4 của Đen.'
+    en: "White has just played 4.e4, which opens the diagonal of the bishop on f1 against Black's b5 pawn. The b5 pawn is attacked by the bishop and nothing defends it. White is a pawn down, seven pawns to eight. This entry follows Black's reply 4...b4."
+    fr: 'Les Blancs viennent de jouer 4.e4, ce qui ouvre au fou f1 la diagonale contre le pion b5 noir. Le pion b5 est attaqué par le fou sans être défendu. Les Blancs ont un pion de moins, sept contre huit. Cette entrée suit la réponse 4...b4 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...b4 ở đây. Mục này chỉ đi theo nước 4...b4.'
+      en: 'Black plays something other than 4...b4 here. This entry follows only 4...b4.'
+      fr: 'Les Noirs jouent autre chose que 4...b4 ici. Cette entrée ne suit que 4...b4.'
+  children:
+    - ply: b4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen đẩy tốt b lên b4, thoát khỏi tầm tấn công của tượng f1. Tốt b4 được tốt a5 bảo vệ, và chưa quân Trắng nào tấn công được nó.'
+        en: "Black pushes the pawn to b4, out of the f1 bishop's reach. The b4 pawn is defended by the a5 pawn, and none of White's pieces attacks it yet."
+        fr: "Les Noirs poussent le pion en b4, hors de portée du fou f1. Le pion b4 est défendu par le pion a5, et aucune pièce blanche ne l'attaque encore."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt thí chưa lấy lại được. Đen có hai tốt chồng ở b4 và b7, còn tốt a của Trắng bị cô lập vì Trắng không còn tốt b. Tượng b2 của Trắng nhắm vào tốt g7, vốn được tượng f8 bảo vệ.'
+          en: "Count the pawns: White seven, Black eight, so the gambit pawn has not come back. Black has doubled pawns on b4 and b7, and White's a-pawn is isolated, since no White pawn is left on the b-file. White's bishop on b2 aims at the g7 pawn, which the bishop on f8 defends."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion du gambit n'est pas revenu. Les Noirs ont des pions doublés en b4 et en b7, et le pion a blanc est isolé, puisqu'il ne reste aucun pion blanc sur la colonne b. Le fou blanc b2 vise le pion g7, que défend le fou f8."
+        plan:
+          vi: 'Trắng chơi a3 để thách thức tốt b4, rồi Nf3 và Bd3 và nhập thành. Đen thêm quân bảo vệ cho tốt b4 bằng ...Nc6, rồi phát triển bằng ...e6, ...Nf6 và ...Be7 và nhập thành.'
+          en: 'White plays a3 to challenge the b4 pawn, then Nf3 and Bd3, and castles. Black adds a defender to the b4 pawn with ...Nc6, then develops with ...e6, ...Nf6 and ...Be7 and castles.'
+          fr: 'Les Blancs jouent a3 pour défier le pion b4, puis Nf3 et Bd3, et roquent. Les Noirs ajoutent un défenseur au pion b4 par ...Nc6, puis se développent par ...e6, ...Nf6 et ...Be7 et roquent.'
+        basis:
+          by: chan
+          at: '2026-10-01'
