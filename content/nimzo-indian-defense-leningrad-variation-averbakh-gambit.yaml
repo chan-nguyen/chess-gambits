@@ -1,0 +1,66 @@
+# Nimzo-Indian Defense: Leningrad Variation, Averbakh Gambit. Defining line 1.d4 Nf6 2.c4 e6
+# 3.Nc3 Bb4 4.Bg5 h6 5.Bh4 c5 6.d5 b5, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: nimzo-indian-defense-leningrad-variation-averbakh-gambit
+name: 'Nimzo-Indian Defense: Leningrad Variation, Averbakh Gambit'
+eco: E30
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nc3, Bb4, Bg5, h6, Bh4, c5, d5, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 6...b5 offers a pawn that nothing defends, and Black's compensation is
+      the pin of the c3 knight against the king on e1 and the pressure on the d5 pawn, which
+      the e6 pawn and the f6 knight attack. That is real pressure but not yet material, so
+      the label is dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 6...b5, hiến một tốt. Tốt b5 bị tốt c4 tấn công và không có quân nào bảo vệ, còn tượng b4 ghim mã c3 vào vua e1.
+    en: Black has just played 6...b5, offering a pawn. The b5 pawn is attacked by the c4 pawn and nothing defends it, and the bishop on b4 pins the knight on c3 against the king on e1.
+    fr: Les Noirs viennent de jouer 6...b5, offrant un pion. Le pion b5 est attaqué par le pion c4 et rien ne le défend, et le fou b4 cloue le cavalier c3 contre le roi e1.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 7.cxb5 ở đây. Mục này chỉ đi theo 7.cxb5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 7.cxb5 here. This entry follows 7.cxb5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 7.cxb5 ici. Cette entrée ne suit que 7.cxb5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: cxb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 7.cxb5. Các tốt Trắng ở b5 và b2 giờ bị chồng, và tốt d5 không còn tốt c4 bảo vệ nữa.
+        en: White takes the pawn with 7.cxb5. White's pawns on b5 and b2 are now doubled, and the d5 pawn has lost the c4 pawn as a defender.
+        fr: Les Blancs prennent le pion par 7.cxb5. Les pions blancs b5 et b2 sont maintenant doublés, et le pion d5 n'a plus le pion c4 pour le défendre.
+      children:
+        - ply: exd5
+          annotation:
+            vi: Đen ăn trên d5 bằng 7...exd5. Mã c3 đang bị ghim nên không ăn lại được, còn hậu mà ăn lại thì sẽ bị ...Nxd5.
+            en: Black takes on d5 with 7...exd5. The pinned knight on c3 cannot recapture, and the queen cannot recapture without losing to ...Nxd5.
+            fr: Les Noirs prennent en d5 par 7...exd5. Le cavalier c3 est cloué et ne peut pas reprendre, et la dame ne peut pas reprendre sans perdre devant ...Nxd5.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen bảy, nên con tốt đã được lấy lại. Các tốt Trắng ở b5 và b2 bị chồng trên cột b, còn các tốt Đen ở d7 và d5 bị chồng trên cột d. Tượng b4 ghim mã c3 vào vua e1, và hậu d1 tấn công tốt d5, được mã f6 bảo vệ.'
+              en: "Count the pawns: White seven, Black seven, so the pawn has come back. White's pawns on b5 and b2 are doubled on the b-file, and Black's pawns on d7 and d5 are doubled on the d-file. The bishop on b4 pins the knight on c3 against the king on e1, and the queen on d1 attacks the d5 pawn, which the knight on f6 defends."
+              fr: 'Comptez les pions : sept pour les Blancs, sept pour les Noirs ; le pion est donc revenu. Les pions blancs b5 et b2 sont doublés sur la colonne b, et les pions noirs d7 et d5 sont doublés sur la colonne d. Le fou b4 cloue le cavalier c3 contre le roi e1, et la dame d1 attaque le pion d5, que le cavalier f6 défend.'
+            plan:
+              vi: Trắng tấn công tượng đang ghim bằng a3 và phát triển bằng e3 và Nf3. Đen nhập thành bằng ...O-O, tấn công tốt trên b5 bằng ...a6 và phát triển bằng ...Bb7 và ...Nc6.
+              en: White attacks the pinning bishop with a3 and develops with e3 and Nf3. Black castles with ...O-O, attacks the pawn on b5 with ...a6 and develops with ...Bb7 and ...Nc6.
+              fr: Les Blancs attaquent le fou qui cloue par a3 et se développent par e3 et Nf3. Les Noirs roquent par ...O-O, attaquent le pion en b5 par ...a6 et se développent par ...Bb7 et ...Nc6.
+            basis:
+              by: chan
+              at: 2026-10-01

@@ -1,0 +1,60 @@
+# Queen's Gambit Declined: Albin Countergambit, Balogh Variation. Defining line 1.d4 d5 2.c4
+# e5 3.dxe5 d4 4.Nf3 Nc6 5.Nbd2 Qe7, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-gambit-declined-albin-countergambit-balogh-variation
+name: "Queen's Gambit Declined: Albin Countergambit, Balogh Variation"
+eco: D08
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4, Nf3, Nc6, Nbd2, Qe7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black gives a pawn for the advanced d4 pawn and quick pressure on e5,
+      which two Black pieces attack and only the knight on f3 defends. It is a practical try
+      rather than a position where Black can claim an edge, so the label is dubious. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Qe7, thêm quân tấn công thứ hai vào tốt e5, vốn chỉ có mã f3 bảo vệ. Trắng hơn một tốt và phải tính đến sức ép lên e5.
+    en: Black has just played 5...Qe7, adding a second attacker to the e5 pawn, which only the knight on f3 defends. White is a pawn up and has to reckon with the pressure on e5.
+    fr: Les Noirs viennent de jouer 5...Qe7, ajoutant un second attaquant sur le pion e5, que seul le cavalier f3 défend. Les Blancs ont un pion de plus et doivent compter avec la pression sur e5.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 6.g3 ở đây. Mục này chỉ đi theo 6.g3; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 6.g3 here. This entry follows 6.g3 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 6.g3 ici. Cette entrée ne suit que 6.g3 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: g3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi 6.g3, chuẩn bị Bg2. Tốt e5 vẫn bị tấn công hai lần và chỉ được bảo vệ một lần.
+        en: White plays 6.g3, preparing Bg2. The e5 pawn stays attacked twice and defended once.
+        fr: Les Blancs jouent 6.g3, préparant Bg2. Le pion e5 reste attaqué deux fois et défendu une seule.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nhưng tốt e5 bị hậu e7 và mã c6 tấn công mà chỉ có mã f3 bảo vệ, nên Đen có thể ăn trên e5. Các tốt Trắng ở e5 và e2 bị chồng, còn tốt d4 của Đen bị mã f3 tấn công và được mã c6 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven, but the e5 pawn is attacked by the queen on e7 and the knight on c6 and defended only by the knight on f3, so Black can take on e5. White's pawns on e5 and e2 are doubled, and Black's pawn on d4 is attacked by the knight on f3 and defended by the knight on c6."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs, mais le pion e5 est attaqué par la dame e7 et le cavalier c6 et défendu seulement par le cavalier f3, si bien que les Noirs peuvent prendre en e5. Les pions blancs e5 et e2 sont doublés, et le pion noir d4 est attaqué par le cavalier f3 et défendu par le cavalier c6.'
+        plan:
+          vi: Đen ăn trên e5 bằng ...Nxe5 và phát triển bằng ...Nf6 và ...Bg4. Trắng phát triển bằng Bg2 và nhập thành bằng O-O, chấp nhận việc đổi mã trên e5.
+          en: Black takes on e5 with ...Nxe5 and develops with ...Nf6 and ...Bg4. White develops with Bg2 and castles with O-O, accepting the exchange of knights on e5.
+          fr: Les Noirs prennent en e5 par ...Nxe5 et se développent par ...Nf6 et ...Bg4. Les Blancs se développent par Bg2 et roquent par O-O, acceptant l'échange des cavaliers en e5.
+        basis:
+          by: chan
+          at: 2026-10-01
