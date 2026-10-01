@@ -1,0 +1,63 @@
+# Petrov's Defense: Cochrane Gambit, Bishop Check Line. Frozen defining line 1.e4 e5 2.Nf3 Nf6
+# 3.Nxe5 d6 4.Nxf7 Kxf7 5.Bc4+ ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'petrovs-defense-cochrane-gambit-bishop-check-line'
+name: "Petrov's Defense: Cochrane Gambit, Bishop Check Line"
+eco: 'C42'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nf6'
+  - 'Nxe5'
+  - 'd6'
+  - 'Nxf7'
+  - 'Kxf7'
+  - 'Bc4+'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line White has given a knight for two pawns, so White has eight pawns to Black's six but one minor piece fewer, and Black's king stands on f7 in check and has lost the right to castle. The check wins nothing by itself, because the king can step back to e8 or a pawn can block with ...d5, and the knight on f6 already attacks the undefended pawn on e4, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 5.Bc4+, chiếu vua Đen đang ở f7. Trắng đã thí một mã để lấy hai tốt: Trắng có tám tốt, Đen sáu tốt, và Trắng có hai tượng và một mã so với hai tượng và hai mã của Đen. Vua Đen bị kéo ra f7 và mất quyền nhập thành, và mã f6 của Đen tấn công tốt e4, quân không có gì bảo vệ.'
+    en: "White has just played 5.Bc4+, a check against the king on f7. White has given a knight for two pawns: White has eight pawns to Black's six, and two bishops and a knight against Black's two bishops and two knights. Black's king has been pulled to f7 and has lost the right to castle, and Black's knight on f6 attacks the pawn on e4, which nothing defends."
+    fr: 'Les Blancs viennent de jouer 5.Bc4+, un échec au roi noir en f7. Les Blancs ont donné un cavalier pour deux pions : ils ont huit pions contre six aux Noirs, et deux fous et un cavalier contre deux fous et deux cavaliers. Le roi noir a été attiré en f7 et a perdu le droit de roquer, et le cavalier f6 des Noirs attaque le pion e4, que rien ne défend.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 5...Ke8 ở đây, chẳng hạn 5...d5, chặn nước chiếu bằng một tốt. Mục này đi theo nước vua lùi về e8.'
+      en: 'Black plays something other than 5...Ke8 here, for instance 5...d5, blocking the check with a pawn. This entry follows the king stepping back to e8.'
+      fr: "Les Noirs jouent autre chose que 5...Ke8 ici, par exemple 5...d5, parant l'échec avec un pion. Cette entrée suit le roi qui recule en e8."
+  children:
+    - ply: 'Ke8'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen lùi vua về e8, thoát khỏi nước chiếu. Vua đã mất quyền nhập thành, và mã f6 vẫn tấn công tốt e4, quân không có gì bảo vệ.'
+        en: 'Black steps the king back to e8, out of the check. The king has lost the right to castle, and the knight on f6 still attacks the pawn on e4, which nothing defends.'
+        fr: "Les Noirs reculent le roi en e8, hors d'échec. Le roi a perdu le droit de roquer, et le cavalier f6 attaque toujours le pion e4, que rien ne défend."
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm quân: Trắng có tám tốt, Đen sáu tốt, nhưng Trắng đã đưa ra một mã để có chúng, nên Trắng có hai tượng và một mã so với hai tượng và hai mã của Đen. Vua Đen đã mất quyền nhập thành và đứng ở e8, còn tốt e4 bị mã f6 tấn công và không có gì bảo vệ.'
+          en: "Count the material: White has eight pawns to Black's six, but gave a knight for them, so White has two bishops and a knight against Black's two bishops and two knights. Black's king has lost the right to castle and stands on e8, and the pawn on e4 is attacked by the knight on f6 with nothing to defend it."
+          fr: 'Comptez le matériel : les Blancs ont huit pions contre six aux Noirs, mais ils ont donné un cavalier pour les obtenir, donc ils ont deux fous et un cavalier contre deux fous et deux cavaliers. Le roi noir a perdu le droit de roquer et se trouve en e8, et le pion e4 est attaqué par le cavalier f6 sans que rien ne le défende.'
+        plan:
+          vi: 'Trắng bảo vệ tốt e4 bằng Nc3 và nhập thành. Đen phát triển bằng ...Nc6 và ...Be7.'
+          en: 'White defends the e4 pawn with Nc3 and castles. Black develops with ...Nc6 and ...Be7.'
+          fr: 'Les Blancs défendent le pion e4 par Nc3 et roquent. Les Noirs se développent par ...Nc6 et ...Be7.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

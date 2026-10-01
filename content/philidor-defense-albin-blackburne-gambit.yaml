@@ -1,0 +1,67 @@
+# Philidor Defense: Albin-Blackburne Gambit. Frozen defining line 1.e4 e5 2.Nf3 d6 3.d4 Bg4
+# 4.dxe5 Nd7 ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Part of batch t of round 4 (#182). Every ply below was replayed with chess.js
+# before it was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: 'philidor-defense-albin-blackburne-gambit'
+name: 'Philidor Defense: Albin-Blackburne Gambit'
+eco: 'C41'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'd6'
+  - 'd4'
+  - 'Bg4'
+  - 'dxe5'
+  - 'Nd7'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line White has eight pawns to Black's seven, and White can take the d6 pawn with the e-pawn to win a second pawn. Black's recapture on d6 then leaves Black a pawn down, with White's pieces still at home, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 4...Nd7, tấn công tốt e5 lần thứ hai. Trắng có tám tốt, Đen bảy tốt. Tốt e5 bị mã d7 và tốt d6 tấn công và chỉ có mã f3 bảo vệ, quân bị tượng g4 tấn công.'
+    en: "Black has just played 4...Nd7, attacking the pawn on e5 a second time. White has eight pawns to Black's seven. The e5 pawn is attacked by the knight on d7 and the d6 pawn and defended only by the knight on f3, which the bishop on g4 attacks."
+    fr: 'Les Noirs viennent de jouer 4...Nd7, attaquant le pion e5 une seconde fois. Les Blancs ont huit pions contre sept aux Noirs. Le pion e5 est attaqué par le cavalier d7 et le pion d6 et défendu seulement par le cavalier f3, que le fou g4 attaque.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 5.exd6 ở đây, chẳng hạn 5.h3, tấn công tượng g4. Mục này đi theo nước ăn tốt d6.'
+      en: 'White plays something other than 5.exd6 here, for instance 5.h3, attacking the bishop on g4. This entry follows the capture of the pawn on d6.'
+      fr: 'Les Blancs jouent autre chose que 5.exd6 ici, par exemple 5.h3, attaquant le fou g4. Cette entrée suit la capture du pion d6.'
+  children:
+    - ply: 'exd6'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn tốt d6 bằng tốt e, thắng thêm một tốt và hơn hai tốt trong chốc lát. Tốt d6 bị tốt c7 và tượng f8 tấn công và được hậu bảo vệ.'
+        en: 'White takes the pawn on d6 with the e-pawn, winning a second pawn and standing two pawns up for the moment. The pawn on d6 is attacked by the c7 pawn and the bishop on f8 and defended by the queen.'
+        fr: 'Les Blancs prennent le pion d6 avec le pion e, gagnant un second pion et ayant deux pions de plus pour un instant. Le pion d6 est attaqué par le pion c7 et le fou f8 et défendu par la dame.'
+      children:
+        - ply: 'Bxd6'
+          annotation:
+            vi: 'Đen ăn lại tốt bằng tượng từ f8, và tượng giờ nhắm vào tốt h2.'
+            en: 'Black takes the pawn back with the bishop from f8, and the bishop now aims at the h2 pawn.'
+            fr: 'Les Noirs reprennent le pion avec le fou de f8, et le fou vise maintenant le pion h2.'
+          outcome:
+            type: 'position'
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen sáu, nghĩa là con tốt đã thí chưa lấy lại được. Trắng mới phát triển mã f3, còn Đen đã đưa ra mã d7 và hai tượng ở d6 và g4. Tượng g4 tấn công mã f3, quân được tốt g2 và hậu bảo vệ, và tượng d6 tấn công tốt h2, quân được xe h1 bảo vệ.'
+              en: 'Count the pawns: White seven, Black six, so the sacrificed pawn has not come back. White has developed only the knight on f3, while Black has the knight on d7 and the bishops on d6 and g4 out. The bishop on g4 attacks the knight on f3, which the g2 pawn and the queen defend, and the bishop on d6 attacks the h2 pawn, which the rook on h1 defends.'
+              fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs, donc le pion sacrifié n'est pas revenu. Les Blancs n'ont développé que le cavalier f3, tandis que les Noirs ont sorti le cavalier d7 et les fous d6 et g4. Le fou g4 attaque le cavalier f3, que le pion g2 et la dame défendent, et le fou d6 attaque le pion h2, que la tour h1 défend."
+            plan:
+              vi: 'Trắng phát triển bằng Be2 và Nc3, rồi nhập thành. Đen phát triển bằng ...Ngf6 và nhập thành.'
+              en: 'White develops with Be2 and Nc3, then castles. Black develops with ...Ngf6 and castles.'
+              fr: 'Les Blancs se développent par Be2 et Nc3, puis roquent. Les Noirs se développent par ...Ngf6 et roquent.'
+            basis:
+              by: 'chan'
+              at: '2026-10-01'

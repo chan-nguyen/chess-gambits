@@ -1,0 +1,63 @@
+# Petrov's Defense: Modern Attack, Tal Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nf6 3.d4
+# exd4 4.e5 Ne4 5.Bb5 ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'petrovs-defense-modern-attack-tal-gambit'
+name: "Petrov's Defense: Modern Attack, Tal Gambit"
+eco: 'C43'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nf6'
+  - 'd4'
+  - 'exd4'
+  - 'e5'
+  - 'Ne4'
+  - 'Bb5'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line White is a pawn down, seven pawns to eight, and has two minor pieces developed to Black's one. The pawn on d4 is attacked by the knight and the queen with nothing defending it, so White can regain the material, but Black's knight is established on e4 in the centre and attacks the f2 pawn, so the compensation is modest and the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 5.Bb5, tấn công tốt d7. Trắng kém một tốt, bảy tốt so với tám của Đen, và tốt d4 của Đen bị mã f3 và hậu tấn công mà không có gì bảo vệ. Mã e4 của Đen tấn công tốt f2, quân được vua bảo vệ.'
+    en: "White has just played 5.Bb5, attacking the pawn on d7. White is a pawn down, seven pawns to Black's eight, and Black's pawn on d4 is attacked by the knight on f3 and the queen with nothing defending it. Black's knight on e4 attacks the pawn on f2, which the king defends."
+    fr: 'Les Blancs viennent de jouer 5.Bb5, attaquant le pion d7. Les Blancs ont un pion de moins, sept pions contre huit aux Noirs, et le pion d4 des Noirs est attaqué par le cavalier f3 et la dame sans que rien ne le défende. Le cavalier e4 des Noirs attaque le pion f2, que le roi défend.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 5...Nc6 ở đây, chẳng hạn 5...Bb4+, chiếu vua. Mục này đi theo nước phát triển mã, bảo vệ tốt d4.'
+      en: 'Black plays something other than 5...Nc6 here, for instance 5...Bb4+, which gives check. This entry follows the knight development, which defends the pawn on d4.'
+      fr: 'Les Noirs jouent autre chose que 5...Nc6 ici, par exemple 5...Bb4+, qui donne échec. Cette entrée suit le développement du cavalier, qui défend le pion d4.'
+  children:
+    - ply: 'Nc6'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen phát triển mã lên c6, bảo vệ tốt d4. Mã bị tượng b5 tấn công và được các tốt b7 và d7 bảo vệ, và nó tấn công tốt e5, quân được mã f3 bảo vệ.'
+        en: 'Black develops the knight to c6, defending the pawn on d4. The knight is attacked by the bishop on b5 and defended by the b7 and d7 pawns, and it attacks the e5 pawn, which the knight on f3 defends.'
+        fr: 'Les Noirs développent le cavalier en c6, défendant le pion d4. Le cavalier est attaqué par le fou b5 et défendu par les pions b7 et d7, et il attaque le pion e5, que le cavalier f3 défend.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt. Tốt d4 bị mã f3 và hậu tấn công nhưng chỉ có mã c6 bảo vệ, cả hai vua đều chưa nhập thành, và mã e4 của Đen tấn công tốt f2, quân chỉ có vua bảo vệ.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. The pawn on d4 is attacked by the knight on f3 and the queen but defended only by the knight on c6, neither king has castled, and Black's knight on e4 attacks the f2 pawn, which only the king defends."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion de moins. Le pion d4 est attaqué par le cavalier f3 et la dame mais défendu seulement par le cavalier c6, aucun des deux rois n'a roqué, et le cavalier e4 des Noirs attaque le pion f2, que seul le roi défend."
+        plan:
+          vi: 'Trắng nhập thành, rồi đổi tượng lấy mã bằng Bxc6 và lấy lại tốt d4 bằng Nxd4. Đen ăn lại bằng tốt d và phát triển bằng ...Bc5.'
+          en: 'White castles, then trades the bishop for the knight with Bxc6 and wins the d4 pawn back with Nxd4. Black recaptures with the d-pawn and develops with ...Bc5.'
+          fr: 'Les Blancs roquent, puis échangent le fou contre le cavalier par Bxc6 et regagnent le pion d4 par Nxd4. Les Noirs reprennent avec le pion d et se développent par ...Bc5.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

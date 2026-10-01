@@ -1,0 +1,91 @@
+# Philidor Defense: Lopez Countergambit, Jaenisch Variation. Frozen defining line 1.e4 e5
+# 2.Nf3 d6 3.d4 f5 4.Bc4 exd4 5.Ng5 Nh6 6.Nxh7 ends on White's ply, which is the opponent's,
+# so the authored defining line stops one ply earlier, at 1.e4 e5 2.Nf3 d6 3.d4 f5 4.Bc4 exd4
+# 5.Ng5 Nh6 (docs/CONTEXT.md, invariant 5), and the dropped ply Nxh7 is modelled below as the
+# first reply; the shortened line is a prefix of the catalogue line, which the catalogue build
+# accepts. Part of batch t of round 4 (#182). Every ply below was replayed with chess.js
+# before it was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: 'philidor-defense-lopez-countergambit-jaenisch-variation'
+name: 'Philidor Defense: Lopez Countergambit, Jaenisch Variation'
+eco: 'C41'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'd6'
+  - 'd4'
+  - 'f5'
+  - 'Bc4'
+  - 'exd4'
+  - 'Ng5'
+  - 'Nh6'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the shortened defining line Black has eight pawns to White's seven, but the pawn on d4 is attacked by the queen and defended by nothing, and the knight on g5 attacks the pawn on h7, which only the rook defends, while the bishop on c4 eyes the empty f7 square. Black's pieces are not placed to hold both pawns, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 5...Nh6, đưa mã lên h6. Đen có tám tốt, Trắng bảy tốt. Tốt d4 của Đen bị hậu tấn công và không có gì bảo vệ, còn mã g5 của Trắng tấn công tốt h7, quân chỉ có xe bảo vệ.'
+    en: "Black has just played 5...Nh6, putting the knight on h6. Black has eight pawns to White's seven. Black's pawn on d4 is attacked by the queen and nothing defends it, and White's knight on g5 attacks the pawn on h7, which only the rook defends."
+    fr: 'Les Noirs viennent de jouer 5...Nh6, plaçant le cavalier en h6. Les Noirs ont huit pions contre sept aux Blancs. Le pion d4 des Noirs est attaqué par la dame et rien ne le défend, et le cavalier g5 des Blancs attaque le pion h7, que seule la tour défend.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 6.Nxh7 ở đây, chẳng hạn 6.Qxd4, ăn tốt d4. Mục này đi theo nước mã ăn tốt h7.'
+      en: 'White plays something other than 6.Nxh7 here, for instance 6.Qxd4, which takes the pawn on d4. This entry follows the knight taking the pawn on h7.'
+      fr: 'Les Blancs jouent autre chose que 6.Nxh7 ici, par exemple 6.Qxd4, qui prend le pion d4. Cette entrée suit le cavalier qui prend le pion h7.'
+  children:
+    - ply: 'Nxh7'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn tốt h7 bằng mã g5. Mã h7 bị xe h8 tấn công và không có gì bảo vệ, và nó tấn công tượng f8.'
+        en: 'White takes the pawn on h7 with the knight from g5. The knight on h7 is attacked by the rook on h8 and nothing defends it, and it attacks the bishop on f8.'
+        fr: 'Les Blancs prennent le pion h7 avec le cavalier de g5. Le cavalier h7 est attaqué par la tour h8 et rien ne le défend, et il attaque le fou f8.'
+      children:
+        - ply: 'Rxh7'
+          annotation:
+            vi: 'Đen ăn mã bằng xe h8. Xe h7 giờ bảo vệ mã h6, nhưng cột h và đường chéo h5-e8 đã mở cho hậu Trắng.'
+            en: "Black takes the knight with the rook from h8. The rook on h7 now defends the knight on h6, but the diagonal from h5 to e8 is open to White's queen."
+            fr: 'Les Noirs prennent le cavalier avec la tour de h8. La tour h7 défend maintenant le cavalier h6, mais la diagonale h5-e8 est ouverte à la dame blanche.'
+          dismissRest:
+            reason:
+              vi: 'Trắng chơi nước khác 7.Qh5+ ở đây. Mục này đi theo nước hậu chiếu vua Đen.'
+              en: 'White plays something other than 7.Qh5+ here. This entry follows the queen check against the Black king.'
+              fr: "Les Blancs jouent autre chose que 7.Qh5+ ici. Cette entrée suit l'échec de la dame contre le roi noir."
+          children:
+            - ply: 'Qh5+'
+              replyQuality: 'best'
+              frequency: 'common'
+              annotation:
+                vi: 'Trắng chiếu bằng hậu lên h5 qua đường chéo h5-e8. Hậu tấn công mã h6 và tốt f5 cùng lúc.'
+                en: 'White checks with the queen on h5 along the diagonal to e8. The queen attacks the knight on h6 and the pawn on f5 at once.'
+                fr: 'Les Blancs donnent échec avec la dame en h5 le long de la diagonale vers e8. La dame attaque à la fois le cavalier h6 et le pion f5.'
+              children:
+                - ply: 'Kd7'
+                  annotation:
+                    vi: 'Đen đưa vua lên d7. Vua đã mất quyền nhập thành.'
+                    en: 'Black moves the king to d7. The king has lost the right to castle.'
+                    fr: 'Les Noirs déplacent le roi en d7. Le roi a perdu le droit de roquer.'
+                  outcome:
+                    type: 'position'
+                    evaluation:
+                      vi: 'Đếm quân: số tốt bằng nhau, mỗi bên bảy, nhưng Trắng chỉ còn một mã so với hai mã của Đen, vì mã ăn ở h7 đã bị ăn lại. Vua Đen ở d7 đã mất quyền nhập thành, và mã h6 bị hậu h5 và tượng c1 tấn công và được tốt g7 cùng xe h7 bảo vệ. Tốt e4 của Trắng bị tốt f5 tấn công và không có gì bảo vệ.'
+                      en: "Count the material: the pawns are level at seven each, but White has one knight to Black's two, since the knight that took on h7 was taken back. Black's king on d7 has lost the right to castle, and the knight on h6 is attacked by the queen on h5 and the bishop on c1 and defended by the g7 pawn and the rook on h7. White's pawn on e4 is attacked by the f5 pawn and nothing defends it."
+                      fr: "Comptez le matériel : les pions sont à égalité, sept de chaque côté, mais les Blancs n'ont qu'un cavalier contre deux aux Noirs, car le cavalier qui a pris en h7 a été repris. Le roi noir en d7 a perdu le droit de roquer, et le cavalier h6 est attaqué par la dame h5 et le fou c1 et défendu par le pion g7 et la tour h7. Le pion e4 des Blancs est attaqué par le pion f5 et rien ne le défend."
+                    plan:
+                      vi: 'Trắng chơi Qg6, tấn công xe h7 và mã h6, rồi Bxh6. Đen cứu xe bằng ...Rh8.'
+                      en: 'White plays Qg6, attacking the rook on h7 and the knight on h6, and follows with Bxh6. Black saves the rook with ...Rh8.'
+                      fr: 'Les Blancs jouent Qg6, attaquant la tour h7 et le cavalier h6, puis Bxh6. Les Noirs sauvent la tour par ...Rh8.'
+                    basis:
+                      by: 'chan'
+                      at: '2026-10-01'
