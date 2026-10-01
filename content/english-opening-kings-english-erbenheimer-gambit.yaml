@@ -1,0 +1,60 @@
+# English Opening: King's English, Erbenheimer Gambit. Frozen defining line 1.c4 e5 2.Nc3
+# Nf6 3.Nf3 e4 4.Ng5 Ng4, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply Ngxe4;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: english-opening-kings-english-erbenheimer-gambit
+name: "English Opening: King's English, Erbenheimer Gambit"
+eco: A22
+category: gambit
+side: black
+definingLine: [c4, e5, Nc3, Nf6, Nf3, e4, Ng5, Ng4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      Black's e4 pawn is attacked by two knights and nothing defends it, while White's knight
+      on g5 is attacked by the queen; White can take the pawn with the attacked knight and be
+      a pawn up, and Black has not been shown to get anything concrete in return for it. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 4...Ng4, mở đường cho hậu d8 nhắm vào g5 và để mã g4 tấn công f2 và h2. Mã g5 của Trắng bị hậu tấn công mà không có quân nào bảo vệ, còn tốt e4 của Đen bị hai mã g5 và c3 tấn công mà không được bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Trắng ăn 5.Ngxe4.'
+    en: "Black has just played 4...Ng4, which opens the queen's line from d8 to g5 and lets the knight on g4 attack f2 and h2. White's knight on g5 is attacked by the queen and nothing defends it, while Black's e4 pawn is attacked by the knights on g5 and c3 and is undefended. The pawn count is level, eight each. This entry follows White taking 5.Ngxe4."
+    fr: "Les Noirs viennent de jouer 4...Ng4, ce qui ouvre la ligne de la dame de d8 vers g5 et permet au cavalier g4 d'attaquer f2 et h2. Le cavalier blanc g5 est attaqué par la dame sans être défendu, tandis que le pion e4 noir est attaqué par les cavaliers g5 et c3 sans être défendu. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 5.Ngxe4 des Blancs."
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 5.Ngxe4, chẳng hạn ăn bằng con mã còn lại. Mục này chỉ đi theo nước ăn bằng mã từ g5.'
+      en: 'White plays something other than 5.Ngxe4 here, for example capturing with the other knight. This entry follows only the capture with the knight from g5.'
+      fr: "Les Blancs jouent autre chose que 5.Ngxe4 ici, par exemple en prenant avec l'autre cavalier. Cette entrée ne suit que la prise avec le cavalier venu de g5."
+  children:
+    - ply: Ngxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt e4 bằng mã từ g5, vừa thoát khỏi đòn tấn công của hậu vừa giữ mã c3 ở nguyên chỗ. Chưa quân Đen nào tấn công được mã e4 mới.'
+        en: "White takes the e4 pawn with the knight from g5, which leaves the queen's attack and keeps the knight on c3 where it stands. None of Black's pieces attacks the new knight on e4."
+        fr: "Les Blancs prennent le pion e4 avec le cavalier venu de g5, ce qui quitte l'attaque de la dame et laisse le cavalier c3 en place. Aucune pièce noire n'attaque le nouveau cavalier e4."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen chưa lấy lại được tốt. Mã g4 của Đen không có quân bảo vệ và tấn công các tốt f2 và h2, nhưng cả hai đều được bảo vệ (f2 bởi mã e4, h2 bởi xe h1), còn h3 sẽ tấn công mã ngay.'
+          en: "Count the pawns: White eight, Black seven, so Black has not won the pawn back. Black's knight on g4 is undefended and attacks the f2 and h2 pawns, but both are defended (f2 by the knight on e4, h2 by the rook on h1), and h3 would hit the knight at once."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Noirs n'ont pas regagné le pion. Le cavalier noir g4 n'est pas défendu et attaque les pions f2 et h2, mais les deux sont défendus (f2 par le cavalier e4, h2 par la tour h1), et h3 attaquerait aussitôt le cavalier."
+        plan:
+          vi: 'Trắng chơi h3 để đuổi mã, rồi e3, d4 và Be2 và nhập thành. Đen chơi ...c6 và ...d5 để thách thức mã e4 và trung tâm, rồi ...Be7 và ...O-O.'
+          en: 'White plays h3 to hit the knight, then e3, d4 and Be2, and castles. Black plays ...c6 and ...d5 to challenge the knight on e4 and the centre, then ...Be7 and ...O-O.'
+          fr: 'Les Blancs jouent h3 pour attaquer le cavalier, puis e3, d4 et Be2, et roquent. Les Noirs jouent ...c6 et ...d5 pour défier le cavalier e4 et le centre, puis ...Be7 et ...O-O.'
+        basis:
+          by: chan
+          at: '2026-10-01'
