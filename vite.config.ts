@@ -45,8 +45,23 @@ export default defineConfig({
      * reason — a shared runner running unusually slow that day, not a hang in the tests
      * themselves. A clean sibling worktree ran the same cases in 15–27s. As with the two raises
      * above, the fix is more headroom, not a value tuned to one bad run.
+     *
+     * Raised again, 150s → 300s (2026-10-01): CI on PR #186 failed with two cases of
+     * `tools/content/content-cli.test.ts` (`export-pgn`) hitting exactly 150000ms. The six cases
+     * in that file that spawn a CLI each run the whole content gate (`loadContent` validates
+     * every file) in a child process. Run alone on a developer machine, `origin/main` takes
+     * 29.2–29.9s per case and 178s for the file; the tree that lands the open trap batches
+     * (PR #191, 876 content files) takes 36.6–41.7s per case and 225–237s for the file, and
+     * 37–50s per case inside the full suite. 31.1s of each run is `verifyCertificate`, and
+     * within it the independent minimality `searchMate` that `tools/mate/verify.ts` re-runs
+     * on every load (ADR-0005): `ruy-lopez-exchange-variation-alapin-gambit` costs 12.0s,
+     * `fishing-pole-trap` 11.7s and `bird-opening-birds-eye-view-trap` 7.2s, against a median
+     * of 6ms per file. 150s is four times the local time, which a slower or busy runner
+     * closes. This is headroom, not a fix: every new mate-in-3 entry adds seconds to every
+     * CLI case. The fix, a small fixture content directory for the CLI tests or memoizing
+     * the minimality search, is tracked in #192.
      */
-    testTimeout: 150_000,
+    testTimeout: 300_000,
     environment: 'jsdom',
     setupFiles: ['./src/test-setup.ts'],
     globals: true,
