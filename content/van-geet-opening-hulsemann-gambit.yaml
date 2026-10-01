@@ -1,0 +1,59 @@
+# Van Geet Opening: Hulsemann Gambit. Frozen defining line 1.Nc3 e5 2.e3 d5 3.Qh5 Be6,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through the reply Qxe5; searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: van-geet-opening-hulsemann-gambit
+name: 'Van Geet Opening: Hulsemann Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Nc3, e5, e3, d5, Qh5, Be6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the pawn on e5 is attacked by the queen on h5 and nothing defends it, so White can take
+      it for free; Black would then be a pawn down and has not been shown to get anything
+      concrete in return. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Be6, che f7 và bảo vệ thêm d5. Số tốt đang cân bằng, mỗi bên tám, nhưng tốt e5 của Đen bị hậu h5 tấn công mà không có quân nào bảo vệ. Mục này đi theo nước Trắng ăn tốt e5 bằng hậu.'
+    en: "Black has just played 3...Be6, covering f7 and supporting d5. The pawn count is level, eight each, but Black's pawn on e5 is attacked by the queen on h5 and nothing defends it. This entry follows White taking the e5 pawn with the queen."
+    fr: 'Les Noirs viennent de jouer 3...Be6, couvrant f7 et soutenant d5. Le compte des pions est égal, huit chacun, mais le pion e5 noir est attaqué par la dame h5 sans être défendu. Cette entrée suit la prise du pion e5 par la dame blanche.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 4.Qxe5, nên tốt e5 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'White plays something other than 4.Qxe5 here, so the e5 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Blancs jouent autre chose que 4.Qxe5 ici, si bien que le pion e5 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: Qxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt e5 không có ai bảo vệ bằng hậu. Hậu giờ ghim tượng e6 vào vua dọc cột e, và chưa quân Đen nào tấn công được hậu.'
+        en: "White takes the undefended e5 pawn with the queen. The queen now pins the bishop on e6 to the king along the e-file, and none of Black's pieces attacks it yet."
+        fr: "Les Blancs prennent avec la dame le pion e5 non défendu. La dame cloue maintenant le fou e6 au roi le long de la colonne e, et aucune pièce noire ne l'attaque encore."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen chưa lấy lại được gì. Tượng e6 bị hậu e5 ghim vào vua nên không thể đi nước nào, trong khi vua Đen chưa nhập thành.'
+          en: 'Count the pawns: White eight, Black seven, so Black has not won anything back. The bishop on e6 is pinned to the king by the queen on e5 and cannot move at all, while Black has not castled.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Noirs n'ont rien regagné. Le fou e6 est cloué au roi par la dame e5 et ne peut plus bouger du tout, tandis que les Noirs n'ont pas roqué."
+        plan:
+          vi: 'Đen chơi ...Nc6 tấn công hậu và giành một nhịp, rồi ...Nf6 và ...Be7 để gỡ thế ghim lên tượng e6 và chuẩn bị nhập thành. Trắng phải để ý ...Nc6; Nf3 và Bd3 đưa quân ra trong khi hậu tìm một chỗ an toàn.'
+          en: 'Black plays ...Nc6, which attacks the queen and gains a tempo, then ...Nf6 and ...Be7 to unpin the bishop on e6 and prepare castling. White has to watch for ...Nc6; Nf3 and Bd3 bring pieces out while the queen finds a safe post.'
+          fr: 'Les Noirs jouent ...Nc6, qui attaque la dame et gagne un temps, puis ...Nf6 et ...Be7 pour déclouer le fou e6 et préparer le roque. Les Blancs doivent surveiller ...Nc6 ; Nf3 et Bd3 sortent des pièces pendant que la dame cherche un poste sûr.'
+        basis:
+          by: chan
+          at: '2026-10-01'

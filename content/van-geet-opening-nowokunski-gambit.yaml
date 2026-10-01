@@ -1,0 +1,58 @@
+# Van Geet Opening: Nowokunski Gambit. Frozen defining line 1.Nc3 e5 2.f4 exf4 3.e4, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through the reply Nc6; searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: van-geet-opening-nowokunski-gambit
+name: 'Van Geet Opening: Nowokunski Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [Nc3, e5, f4, exf4, e4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and Black's pawn on f4 cannot be attacked at once, because the bishop on c1 is blocked
+      by the d2 pawn. White has not been shown to get more in return than a half-open f-file
+      and the pawn on e4 in the centre. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 3.e4. Trắng đang kém một tốt, bảy so với tám, và không còn tốt f. Tốt f4 của Đen không có quân nào bảo vệ, nhưng quân Trắng nào cũng chưa tấn công được nó, vì tượng c1 bị tốt d2 chặn đường. Mục này đi theo nước Đen phát triển 3...Nc6.'
+    en: "White has just played 3.e4. White is a pawn down, seven pawns to eight, and has no f-pawn. Black's pawn on f4 is undefended, but none of White's pieces can attack it, because the bishop on c1 is blocked by the d2 pawn. This entry follows Black developing with 3...Nc6."
+    fr: "Les Blancs viennent de jouer 3.e4. Les Blancs ont un pion de moins, sept contre huit, et n'ont plus de pion f. Le pion f4 noir n'est pas défendu, mais aucune pièce blanche ne peut l'attaquer, car le fou c1 est bloqué par le pion d2. Cette entrée suit le développement 3...Nc6 des Noirs."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 3...Nc6, chẳng hạn một nước ăn tốt hoặc một nước chiếu. Mục này chỉ đi theo nước phát triển quân bình thường.'
+      en: 'Black plays something other than 3...Nc6 here, such as a capture or a check. This entry follows only the quiet developing move.'
+      fr: 'Les Noirs jouent autre chose que 3...Nc6 ici, comme une prise ou un échec. Cette entrée ne suit que le coup de développement tranquille.'
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen phát triển mã ra c6 và giữ tốt f4, con tốt vẫn chưa có quân bảo vệ nhưng quân Trắng nào cũng chưa tấn công được.'
+        en: "Black develops the knight to c6 and keeps the f4 pawn, which still has no defender but which nothing of White's attacks."
+        fr: "Les Noirs développent le cavalier en c6 et gardent le pion f4, qui n'a toujours pas de défenseur mais que rien du côté blanc n'attaque."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt thí chưa lấy lại được. Tốt f4 chưa có quân bảo vệ, nhưng Trắng chưa tấn công được nó vì tượng c1 bị tốt d2 chặn. Trắng không còn tốt f, nên đường chéo từ h4 tới e1 đang mở và ...Qh4+ là nước có thể chơi chống lại vua chưa nhập thành.'
+          en: 'Count the pawns: White seven, Black eight, so the gambit pawn has not come back. The f4 pawn has no defender, but White cannot attack it yet because the bishop on c1 is blocked by the d2 pawn. White has no f-pawn, so the diagonal from h4 to e1 is open and ...Qh4+ is available against a king that has not castled.'
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion du gambit n'est pas revenu. Le pion f4 n'a pas de défenseur, mais les Blancs ne peuvent pas encore l'attaquer parce que le fou c1 est bloqué par le pion d2. Les Blancs n'ont plus de pion f, si bien que la diagonale de h4 à e1 est ouverte et que ...Qh4+ est possible contre un roi qui n'a pas roqué."
+        plan:
+          vi: 'Trắng chơi Nf3, nước che ô h4 trước ...Qh4+, rồi d4 và Bxf4 để lấy lại tốt. Đen bảo vệ tốt bằng ...g5, rồi phát triển bằng ...Nf6 và ...Bc5.'
+          en: 'White plays Nf3, which covers h4 against ...Qh4+, then d4 and Bxf4 to win the pawn back. Black defends the pawn with ...g5, then develops with ...Nf6 and ...Bc5.'
+          fr: 'Les Blancs jouent Nf3, qui couvre h4 contre ...Qh4+, puis d4 et Bxf4 pour regagner le pion. Les Noirs défendent le pion par ...g5, puis se développent par ...Nf6 et ...Bc5.'
+        basis:
+          by: chan
+          at: '2026-10-01'

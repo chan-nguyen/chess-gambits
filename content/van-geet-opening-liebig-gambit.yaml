@@ -1,0 +1,66 @@
+# Van Geet Opening: Liebig Gambit. Frozen defining line 1.Nc3 e5 2.e3 d5 3.Qh5 Nf6, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through the reply Qxe5+ and the learner's own Be7; searchMate at
+# 3 moves from the resulting position returns no-mate, so no forced mate is claimed
+# anywhere in this entry.
+id: van-geet-opening-liebig-gambit
+name: 'Van Geet Opening: Liebig Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Nc3, e5, e3, d5, Qh5, Nf6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      White's queen is attacked by the knight on f6 and Black's pawn on e5 is undefended, so
+      the queen can step away with a capture and a check; Black has not been shown to get
+      anything concrete in return for the pawn. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Nf6, tấn công hậu h5 của Trắng mà không có quân nào bảo vệ hậu. Tốt e5 của Đen cũng bị hậu tấn công mà không được bảo vệ, nên hậu có thể ăn tốt đó và chiếu vua cùng lúc. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Trắng ăn 4.Qxe5+ và Đen chặn chiếu bằng ...Be7.'
+    en: "Black has just played 3...Nf6, attacking White's queen on h5, which nothing defends. Black's pawn on e5 is also attacked by the queen and is undefended, so the queen can take it with check. The pawn count is level, eight each. This entry follows White taking 4.Qxe5+ and Black blocking with ...Be7."
+    fr: 'Les Noirs viennent de jouer 3...Nf6, attaquant la dame blanche en h5, que rien ne défend. Le pion e5 noir est lui aussi attaqué par la dame sans être défendu, si bien que la dame peut le prendre avec échec. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 4.Qxe5+ des Blancs et le blocage des Noirs par ...Be7.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 4.Qxe5+, chẳng hạn đưa hậu sang một ô khác. Mục này chỉ đi theo nước ăn tốt có chiếu.'
+      en: 'White plays something other than 4.Qxe5+ here, for example moving the queen to another square. This entry follows only the capture with check.'
+      fr: 'Les Blancs jouent autre chose que 4.Qxe5+ ici, par exemple en portant la dame sur une autre case. Cette entrée ne suit que la prise avec échec.'
+  children:
+    - ply: Qxe5+
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt e5 bằng hậu, vừa thoát khỏi đòn tấn công của mã vừa chiếu vua dọc cột e, vì Đen không còn tốt trên e7.'
+        en: "White takes the e5 pawn with the queen, which leaves the knight's attack and gives check along the e-file, since Black has no pawn left on e7."
+        fr: "Les Blancs prennent le pion e5 avec la dame, ce qui quitte l'attaque du cavalier et donne échec le long de la colonne e, puisque les Noirs n'ont plus de pion en e7."
+      children:
+        - ply: Be7
+          annotation:
+            vi: 'Đen chặn chiếu bằng tượng từ f8. Tượng e7 bị hậu Trắng tấn công nhưng được hậu Đen bảo vệ, và giờ nó bị ghim vào vua.'
+            en: "Black blocks the check with the bishop from f8. The bishop on e7 is attacked by White's queen but defended by Black's queen, and it is now pinned to the king."
+            fr: "Les Noirs parent l'échec avec le fou venu de f8. Le fou e7 est attaqué par la dame blanche mais défendu par la dame noire, et il est maintenant cloué au roi."
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen chưa lấy lại được tốt. Hậu Trắng trên e5 ghim tượng e7 vào vua dọc cột e, đồng thời tấn công mã f6 và tốt c7; quân nào cũng được bảo vệ — tượng và tốt c7 bởi hậu Đen, mã bởi tốt g7 — và chưa quân Đen nào tấn công được hậu Trắng.'
+              en: "Count the pawns: White eight, Black seven, so Black has not won the pawn back. White's queen on e5 pins the bishop on e7 to the king along the e-file and also attacks the knight on f6 and the pawn on c7; each of them is defended, the bishop and the c7 pawn by Black's queen and the knight by the g7 pawn, and none of Black's pieces attacks the queen yet."
+              fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Noirs n'ont pas regagné le pion. La dame blanche en e5 cloue le fou e7 au roi le long de la colonne e et attaque aussi le cavalier f6 et le pion c7 ; chacun est défendu, le fou et le pion c7 par la dame noire et le cavalier par le pion g7, et aucune pièce noire n'attaque encore la dame."
+            plan:
+              vi: 'Trắng chơi Nb5 để tấn công c7 lần thứ hai, rồi phát triển bằng Nf3 và Bd3. Đen nhập thành, nước gỡ thế ghim lên tượng e7, và che c7 bằng ...Na6 trước khi phát triển các quân còn lại.'
+              en: 'White plays Nb5 to attack c7 a second time, then develops with Nf3 and Bd3. Black castles, which unpins the bishop on e7, and covers c7 with ...Na6 before developing the other pieces.'
+              fr: 'Les Blancs jouent Nb5 pour attaquer c7 une seconde fois, puis se développent par Nf3 et Bd3. Les Noirs roquent, ce qui décloue le fou e7, et couvrent c7 par ...Na6 avant de développer les autres pièces.'
+            basis:
+              by: chan
+              at: '2026-10-01'

@@ -1,0 +1,63 @@
+# Van Geet Opening: Hergert Gambit. Frozen defining line 1.Nc3 d6 2.f4 e5 3.fxe5 Nc6,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through the reply exd6; searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry. The leaf carries `unsettled` because a capture is going free there.
+id: van-geet-opening-hergert-gambit
+name: 'Van Geet Opening: Hergert Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Nc3, d6, f4, e5, fxe5, Nc6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line Black is a pawn down, seven pawns to eight,
+      and the pawn on e5 is attacked twice with nothing defending it, so White can take on d6
+      and still be a pawn up once Black recaptures; Black has not been shown to get anything
+      concrete in return. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Nc6, tấn công tốt e5 của Trắng. Tốt e5 đã bị tốt d6 tấn công, và không có quân nào bảo vệ nó. Đen đang kém một tốt, bảy tốt so với tám. Mục này đi theo nước Trắng ăn 4.exd6.'
+    en: "Black has just played 3...Nc6, attacking White's pawn on e5. That pawn was already attacked by the d6 pawn, and nothing defends it. Black is a pawn down, seven pawns to eight. This entry follows White taking 4.exd6."
+    fr: 'Les Noirs viennent de jouer 3...Nc6, attaquant le pion e5 blanc. Ce pion était déjà attaqué par le pion d6, et rien ne le défend. Les Noirs ont un pion de moins, sept contre huit. Cette entrée suit la prise 4.exd6 des Blancs.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 4.exd6, chẳng hạn một nước phát triển quân nhằm giữ tốt e5. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'White plays something other than 4.exd6 here, for example a developing move that tries to hold the e5 pawn. This entry follows only the capture.'
+      fr: 'Les Blancs jouent autre chose que 4.exd6 ici, par exemple un coup de développement qui tente de garder le pion e5. Cette entrée ne suit que la prise.'
+  children:
+    - ply: exd6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt d6 bằng tốt e. Tốt d6 bị hậu, tượng f8 và tốt c7 tấn công, mà không có quân Trắng nào bảo vệ, nên Đen có thể ăn lại ngay.'
+        en: "White takes the d6 pawn with the e-pawn. The pawn on d6 is attacked by the queen, the bishop on f8 and the c7 pawn, and nothing of White's defends it, so Black can recapture at once."
+        fr: 'Les Blancs prennent le pion d6 avec le pion e. Le pion d6 est attaqué par la dame, le fou f8 et le pion c7, et aucune pièce blanche ne le défend, si bien que les Noirs peuvent reprendre aussitôt.'
+      unsettled: >-
+        Recapturing on d6 (Qxd6, Bxd6 or cxd6) is going free because nothing of White's
+        defends the pawn on d6; the evaluation counts that recapture, which brings the pawn
+        count to seven against six.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt trên bàn: Trắng tám, Đen sáu, nhưng tốt d6 sẽ không giữ được, vì nó bị tấn công ba lần mà không có quân nào bảo vệ. Khi Đen ăn lại thì còn bảy so với sáu, nên Đen vẫn kém một tốt.'
+          en: 'Count the pawns on the board: White eight, Black six, but the pawn on d6 will not last, since it is attacked three times and defended by nothing. Once Black recaptures it is seven against six, so Black is still a pawn down.'
+          fr: "Comptez les pions sur l'échiquier : huit pour les Blancs, six pour les Noirs, mais le pion d6 ne tiendra pas, puisqu'il est attaqué trois fois et que rien ne le défend. Quand les Noirs reprendront, ce sera sept contre six, et les Noirs auront toujours un pion de moins."
+        plan:
+          vi: 'Đen ăn lại, tự nhiên nhất là ...Bxd6, đường chéo của nó chĩa vào h2 dù xe h1 đang giữ tốt đó, rồi ...Nf6, ...Bg4 và ...O-O. Trắng phát triển bằng Nf3, e3 và Be2 rồi nhập thành, giữ tốt thừa.'
+          en: 'Black recaptures, most naturally with ...Bxd6, whose diagonal points at h2 although the rook on h1 guards that pawn, then plays ...Nf6, ...Bg4 and ...O-O. White develops with Nf3, e3 and Be2 and castles, keeping the extra pawn.'
+          fr: 'Les Noirs reprennent, le plus naturellement par ...Bxd6, dont la diagonale vise h2 bien que la tour h1 garde ce pion, puis jouent ...Nf6, ...Bg4 et ...O-O. Les Blancs se développent par Nf3, e3 et Be2 puis roquent, gardant le pion de plus.'
+        basis:
+          by: chan
+          at: '2026-10-01'
