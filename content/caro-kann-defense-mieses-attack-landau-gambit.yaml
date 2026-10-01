@@ -1,0 +1,53 @@
+# Caro-Kann Defense: Mieses Attack, Landau Gambit. Defining line 1.e4 c6 2.d4 d5 3.Bd3 Nf6
+# 4.e5 Nfd7 5.e6, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated. The leaf after 5...fxe6 is claimed as a trap with `type: trap` and nothing
+# else; the certificate beside this file is produced by `npm run prove:mates` and replayed
+# by `npm run verify:mates` (ADR-0005).
+id: caro-kann-defense-mieses-attack-landau-gambit
+name: 'Caro-Kann Defense: Mieses Attack, Landau Gambit'
+eco: B12
+category: gambit
+side: white
+definingLine: [e4, c6, d4, d5, Bd3, Nf6, e5, Nfd7, e6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement, deepened from the frozen listed-tier classification in
+      tools/catalogue/source/classification.yaml. At the end of the defining line the pawn
+      count is level, eight each, and the e6 pawn is attacked by the f7 pawn and defended by
+      nothing, so White is offering it for the pressure of the e6 pawn against d7 and f7 and
+      of the bishop on d3 against h7. The rating of unsound is the catalogue's, not the
+      result of a variation worked out here. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đẩy 5.e6, nên số tốt đang ngang nhau, mỗi bên tám. Tốt e6 bị tốt f7 tấn công và không được quân nào bảo vệ, đồng thời nó tấn công cả mã d7 lẫn tốt f7.
+    en: White has just pushed 5.e6, so the pawn count is level, eight each. The e6 pawn is attacked by the pawn on f7 and defended by nothing, and it attacks both the knight on d7 and the pawn on f7.
+    fr: Les Blancs viennent de pousser 5.e6, de sorte que le compte des pions est égal, huit de chaque côté. Le pion e6 est attaqué par le pion f7 et n'est défendu par aucune pièce, et il attaque à la fois le cavalier d7 et le pion f7.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 5...fxe6 ở đây, chẳng hạn 5...Nf6 hoặc 5...Nb6. Mục này chỉ mô hình hóa 5...fxe6 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: dùng tốt e6 và tượng d3 chống lại cánh vua Đen và hoàn tất phát triển.'
+      en: "Black plays something other than 5...fxe6 here, for instance 5...Nf6 or 5...Nb6. This entry models only 5...fxe6 and does not analyse those moves; White's task usually stays the same: use the e6 pawn and the bishop on d3 against Black's kingside and finish development."
+      fr: "Les Noirs jouent autre chose que 5...fxe6 ici, par exemple 5...Nf6 ou 5...Nb6. Cette entrée ne modélise que 5...fxe6 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : utiliser le pion e6 et le fou d3 contre l'aile roi noire et achever leur développement."
+  children:
+    - ply: fxe6
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 5...fxe6, nước này làm trống f7 và để đường chéo từ h5 tới e8 mở cho hậu Trắng. Đây là nước thua, và phần còn lại do máy chứng minh chứ không do người khẳng định.
+        en: Black takes the pawn with 5...fxe6, which empties f7 and leaves the diagonal from h5 to e8 open to White's queen. This is the losing move, and what follows is proved by machine rather than asserted by a person.
+        fr: Les Noirs prennent le pion par 5...fxe6, ce qui vide f7 et laisse la diagonale de h5 à e8 ouverte à la dame blanche. C'est le coup perdant, et la suite est prouvée par la machine plutôt qu'affirmée par un humain.
+      outcome:
+        type: trap

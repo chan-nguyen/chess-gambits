@@ -1,0 +1,61 @@
+# Caro-Kann Defense: Martian Gambit. Defining line 1.e4 c6 2.d4 d5 3.Nd2 dxe4 4.Nxe4 Bf5
+# 5.Ng5 Bg6 6.N1f3 h6 7.Ne6, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: caro-kann-defense-martian-gambit
+name: 'Caro-Kann Defense: Martian Gambit'
+eco: B18
+category: gambit
+side: white
+definingLine: [e4, c6, d4, d5, Nd2, dxe4, Nxe4, Bf5, Ng5, Bg6, N1f3, h6, Ne6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White has put a knight on e6, where
+      nothing defends it and the pawn on f7 attacks it, so White is offering a whole knight.
+      The knight attacks the queen on d8, the bishop on f8 and the pawn on g7, but 7...fxe6
+      removes it without losing anything, which is why the entry is rated unsound. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.Ne6, con mã tấn công hậu d8, tượng f8 và tốt g7. Mã không được quân nào bảo vệ và bị tốt f7 tấn công, còn số tốt đang ngang nhau, mỗi bên bảy.
+    en: White has just played 7.Ne6, a knight that attacks the queen on d8, the bishop on f8 and the pawn on g7. The knight is defended by nothing and attacked by the pawn on f7, and the pawn count is level, seven each.
+    fr: Les Blancs viennent de jouer 7.Ne6, un cavalier qui attaque la dame d8, le fou f8 et le pion g7. Le cavalier n'est défendu par aucune pièce et il est attaqué par le pion f7, et le compte des pions est égal, sept de chaque côté.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 7...fxe6 ở đây. Mục này chỉ mô hình hóa nước ăn mã; mã e6 tấn công cả hậu d8 lẫn tượng f8 và không được quân nào bảo vệ, nên ăn nó là cách đáp tự nhiên.
+      en: Black plays something other than 7...fxe6 here. This entry models only the capture of the knight; the knight on e6 attacks both the queen on d8 and the bishop on f8 and nothing defends it, so capturing it is the natural reply.
+      fr: Les Noirs jouent autre chose que 7...fxe6 ici. Cette entrée ne modélise que la prise du cavalier ; le cavalier e6 attaque à la fois la dame d8 et le fou f8 et aucune pièce ne le défend, donc le prendre est la réponse naturelle.
+  children:
+    - ply: fxe6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn mã bằng 7...fxe6, quân mà không quân Trắng nào có thể ăn lại. Tốt của Đen giờ bị chồng ở e7 và e6.
+        en: Black takes the knight with 7...fxe6, which nothing of White's can take back. Black's pawns are now doubled on e7 and e6.
+        fr: Les Noirs prennent le cavalier par 7...fxe6, ce que rien du côté blanc ne peut reprendre. Les pions noirs sont maintenant doublés en e7 et e6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen bảy, nhưng Trắng chỉ còn một mã trong khi Đen có hai, nên Trắng kém hẳn một mã. Tốt của Đen bị chồng ở e7 và e6, một khuyết điểm lâu dài nhưng nhỏ so với con mã đã mất.'
+          en: "Count the pawns: White seven, Black seven, but White has only one knight to Black's two, so White is a full knight down. Black's pawns are doubled on e7 and e6, a lasting flaw but a small one beside the missing knight."
+          fr: "Comptez les pions : sept pour les Blancs, sept pour les Noirs, mais les Blancs n'ont plus qu'un cavalier contre deux, donc ils ont un cavalier de moins. Les pions noirs sont doublés en e7 et e6, un défaut durable mais petit à côté du cavalier perdu."
+        plan:
+          vi: Trắng chơi Ne5 và Bd3 để tấn công tượng g6, quân không được quân nào bảo vệ, rồi O-O. Đen chơi ...Nf6 và ...Nbd7 để phát triển và kiểm soát e5, và cứ giữ con mã dư.
+          en: White plays Ne5 and Bd3 to attack the bishop on g6, which nothing defends, then O-O. Black plays ...Nf6 and ...Nbd7 to develop and cover e5, and simply keeps the extra knight.
+          fr: Les Blancs jouent Ne5 et Bd3 pour attaquer le fou g6, que rien ne défend, puis O-O. Les Noirs jouent ...Nf6 et ...Nbd7 pour se développer et couvrir e5, et gardent simplement le cavalier de plus.
+        basis:
+          by: chan
+          at: 2026-10-01

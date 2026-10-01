@@ -1,0 +1,62 @@
+# Scandinavian Defense: Modern Variation, Wing Gambit. Defining line 1.e4 d5 2.exd5 Nf6 3.d4
+# g6 4.c4 b5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: scandinavian-defense-modern-variation-wing-gambit
+name: 'Scandinavian Defense: Modern Variation, Wing Gambit'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, g6, c4, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn up, eight pawns against
+      seven, and the b5 pawn is attacked by the pawn on c4 and defended by nothing, so White
+      can take it at once. The pawn on d5 is attacked twice and defended once, but Black has
+      no quick way to win either pawn, and nothing on the board yet repays the pawn Black
+      has given, which is why the entry is rated dubious. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...b5, nên số tốt là Trắng tám, Đen bảy. Tốt b5 bị tốt c4 tấn công và không được quân nào bảo vệ, còn tốt d5 bị hậu d8 và mã f6 tấn công và được tốt c4 bảo vệ.
+    en: Black has just played 4...b5, so the pawn count is White eight, Black seven. The b5 pawn is attacked by the pawn on c4 and defended by nothing, and the pawn on d5 is attacked by the queen on d8 and the knight on f6 and defended by the pawn on c4.
+    fr: Les Noirs viennent de jouer 4...b5, de sorte que le compte des pions est de huit pour les Blancs, sept pour les Noirs. Le pion b5 est attaqué par le pion c4 et n'est défendu par aucune pièce, et le pion d5 est attaqué par la dame d8 et le cavalier f6 et défendu par le pion c4.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 5.Nc3 ở đây, chẳng hạn 5.cxb5 hoặc 5.Nf3. Mục này chỉ mô hình hóa 5.Nc3 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: tìm điều gì đó đáng giá để đổi lấy con tốt.'
+      en: "White plays something other than 5.Nc3 here, for instance 5.cxb5 or 5.Nf3. This entry models only 5.Nc3 and does not analyse those moves; Black's task usually stays the same: find something to show for the pawn."
+      fr: "Les Blancs jouent autre chose que 5.Nc3 ici, par exemple 5.cxb5 ou 5.Nf3. Cette entrée ne modélise que 5.Nc3 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : trouver de quoi justifier le pion."
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng phát triển 5.Nc3, tấn công tốt b5 lần thứ hai và bảo vệ tốt d5 lần thứ hai.
+        en: White develops with 5.Nc3, which attacks the b5 pawn a second time and defends the d5 pawn a second time.
+        fr: Les Blancs se développent par 5.Nc3, qui attaque le pion b5 une seconde fois et défend le pion d5 une seconde fois.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt. Tốt b5 bị tấn công hai lần, bởi tốt c4 và mã c3, và không được quân nào bảo vệ, nên Đen phải xử lý ngay, chẳng hạn bằng ...bxc4, sau đó Bxc4 vẫn để Trắng hơn một tốt, bảy so với sáu. Tốt d5 bị tấn công hai lần, bởi hậu d8 và mã f6, và được bảo vệ hai lần, bởi tốt c4 và mã c3.'
+          en: 'Count the pawns: White eight, Black seven, so White is a pawn up. The b5 pawn is attacked twice, by the pawn on c4 and the knight on c3, and defended by nothing, so Black has to deal with it at once, for instance with ...bxc4, after which Bxc4 still leaves White a pawn up, seven against six. The d5 pawn is attacked twice, by the queen on d8 and the knight on f6, and defended twice, by the pawn on c4 and the knight on c3.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de plus. Le pion b5 est attaqué deux fois, par le pion c4 et le cavalier c3, et n'est défendu par aucune pièce, de sorte que les Noirs doivent s'en occuper tout de suite, par exemple par ...bxc4, après quoi Bxc4 laisse encore un pion de plus aux Blancs, sept contre six. Le pion d5 est attaqué deux fois, par la dame d8 et le cavalier f6, et défendu deux fois, par le pion c4 et le cavalier c3."
+        plan:
+          vi: Trắng chơi Nf3 và Ne5 để đưa các mã vào trung tâm và ăn lại ở c4 bằng tượng. Đen chơi ...bxc4, ...Bg7 và ...O-O để hoàn tất phát triển.
+          en: White plays Nf3 and Ne5 to bring the knights into the centre and takes back on c4 with the bishop. Black plays ...bxc4, ...Bg7 and ...O-O to finish development.
+          fr: Les Blancs jouent Nf3 et Ne5 pour amener les cavaliers au centre et reprennent en c4 avec le fou. Les Noirs jouent ...bxc4, ...Bg7 et ...O-O pour achever leur développement.
+        basis:
+          by: chan
+          at: 2026-10-01
