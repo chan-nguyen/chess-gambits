@@ -77,7 +77,7 @@ const atGambit = async (page: Page, id: string, line: readonly string[]): Promis
 }
 
 test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () => {
-  test('there are eight hundred and sixty of them, and they are the ones the content tickets authored', () => {
+  test('there are eight hundred and sixty-one of them, and they are the ones the content tickets authored', () => {
     expect(taught.map((entry) => entry.id).sort()).toEqual([
       'accelerated-london-system-steinitz-countergambit',
       'accelerated-london-system-steinitz-countergambit-accepted',
@@ -212,6 +212,7 @@ test.describe('every taught entry, from the catalogue to every leaf (AC 7)', () 
       'budapest-gambit-accepted-main-line-adler-variation',
       'budapest-gambit-accepted-main-line-alekhine-variation',
       'budapest-gambit-accepted-main-line-rubinstein-variation',
+      'busch-gass-gambit-trap',
       'caro-kann-defense-alekhine-gambit',
       'caro-kann-defense-labahn-attack-double-gambit',
       'caro-kann-defense-mieses-gambit',

@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * Eight hundred and sixty-one entries are authored — three from #15, eleven from #73, ten
+   * Eight hundred and sixty-two entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -265,7 +265,8 @@ describe('the catalogue this repository ships', () => {
    * gambits with ten Bishop's Opening gambits; Sicilian, Ruy Lopez and Alekhine Defense
    * gambits; and the Vienna Game, Vienna Gambit with Max Lange Defense, Blackmar-Diemer
    * Gambit, Dutch Defense, Center Game and Englund Gambit Declined entries — each a single
-   * root-to-leaf line) — and the
+   * root-to-leaf line), and one new named trap from #174 batch 2b (the Busch-Gass Gambit Trap, from White's
+   * side, 6 root-to-leaf lines) — and the
    * other 163
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
@@ -422,6 +423,7 @@ describe('the catalogue this repository ships', () => {
     ['budapest-gambit-accepted-main-line-adler-variation', 1],
     ['budapest-gambit-accepted-main-line-alekhine-variation', 1],
     ['budapest-gambit-accepted-main-line-rubinstein-variation', 1],
+    ['busch-gass-gambit-trap', 6],
     ['caro-kann-defense-alekhine-gambit', 1],
     ['caro-kann-defense-labahn-attack-double-gambit', 2],
     ['caro-kann-defense-mieses-gambit', 1],
@@ -1151,8 +1153,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1024 entries, and only the authored eight hundred and sixty-one have any', () => {
-    expect(result.value.records).toHaveLength(1024)
+  it('bakes keys on all 1025 entries, and only the authored eight hundred and sixty-two have any', () => {
+    expect(result.value.records).toHaveLength(1025)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the
