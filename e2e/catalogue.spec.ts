@@ -133,24 +133,24 @@ const observeInteractions = (page: import('@playwright/test').Page): Promise<voi
 
 /**
  * Three keystrokes, each chosen against the real catalogue for what it costs. `b` matches
- * 1,016 of the 1,036 entries and is the worst case for the *matching*; `5` after a `C`
- * narrows 880 matches to 97, the largest result set the page still expands, and is the
- * worst case for the *rendering*; `q` matches twenty-four.
+ * 1,026 of the 1,051 entries and is the worst case for the *matching*; `5` after a `C`
+ * narrows 893 matches to 98, the largest result set the page still expands, and is the
+ * worst case for the *rendering*; `q` matches twenty-seven.
  *
  * All three scan every one of the thousand entries — `applyFilter` has no early exit — so
  * "over the full generated catalogue" holds for each of them.
  */
 test('filtering the full catalogue answers in under 100ms', async ({ page }) => {
   const cases: readonly { readonly from: string; readonly key: string; readonly then: RegExp }[] = [
-    { from: '', key: 'b', then: /Đang hiện 1016/ },
-    { from: 'C', key: '5', then: /Đang hiện 97/ },
-    { from: '', key: 'q', then: /Đang hiện 24 / },
+    { from: '', key: 'b', then: /Đang hiện 1026/ },
+    { from: 'C', key: '5', then: /Đang hiện 98/ },
+    { from: '', key: 'q', then: /Đang hiện 27 / },
   ]
 
   for (const { from, key, then } of cases) {
     await page.goto(`${gambits}?tier=all${from === '' ? '' : `&q=${from}`}`)
     const status = page.getByRole('main').getByRole('status')
-    await expect(status).toContainText('trong 1036 mục')
+    await expect(status).toContainText('trong 1051 mục')
 
     await page.getByLabel('Tìm theo tên hoặc mã ECO').click()
     await observeInteractions(page)
