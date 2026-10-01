@@ -1,0 +1,59 @@
+# Van Geet Opening: Pfeiffer Gambit. Frozen defining line 1.Nc3 d5 2.f4 d4 3.Ne4 e5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through the reply fxe5; searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: van-geet-opening-pfeiffer-gambit
+name: 'Van Geet Opening: Pfeiffer Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Nc3, d5, f4, d4, Ne4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      White's f4 pawn and Black's e5 pawn attack each other and neither is defended, so White
+      can simply take with fxe5 and be a pawn up. Black's play against the undefended knight
+      on e4 is real but has not been shown to be enough to win the pawn back by force. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...e5, tấn công tốt f4. Tốt f4 của Trắng bị tốt e5 tấn công mà không có quân nào bảo vệ, còn tốt e5 của Đen cũng bị tốt f4 tấn công và không được bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Trắng ăn 4.fxe5.'
+    en: "Black has just played 3...e5, attacking the f4 pawn. White's f4 pawn is attacked by the e5 pawn and nothing defends it, while Black's e5 pawn is attacked by the f4 pawn and is undefended too. The pawn count is level, eight each. This entry follows White taking 4.fxe5."
+    fr: 'Les Noirs viennent de jouer 3...e5, attaquant le pion f4. Le pion f4 blanc est attaqué par le pion e5 sans être défendu, et le pion e5 noir est lui aussi attaqué par le pion f4 sans être défendu. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 4.fxe5 des Blancs.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 4.fxe5, chẳng hạn một nước phát triển quân để nguyên thế căng thẳng giữa f4 và e5. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'White plays something other than 4.fxe5 here, for example a developing move that leaves the tension between f4 and e5 in place. This entry follows only the capture.'
+      fr: 'Les Blancs jouent autre chose que 4.fxe5 ici, par exemple un coup de développement qui laisse en place la tension entre f4 et e5. Cette entrée ne suit que la prise.'
+  children:
+    - ply: fxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt e5 bằng tốt f. Tốt mới trên e5 không có quân bảo vệ, nhưng chưa quân Đen nào tấn công được nó, và mã e4 cũng không được bảo vệ.'
+        en: "White takes the e5 pawn with the f-pawn. The new pawn on e5 is undefended, but none of Black's pieces attacks it yet, and the knight on e4 is undefended as well."
+        fr: "Les Blancs prennent le pion e5 avec le pion f. Le nouveau pion e5 n'est pas défendu, mais aucune pièce noire ne l'attaque encore, et le cavalier e4 n'est pas défendu non plus."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt trên bàn. Hai tốt e5 và e2 của Trắng bị chồng, và cả tốt e5 lẫn mã e4 đều không được bảo vệ, nên ...Qd5 sẽ tấn công cùng lúc cả hai. Tốt d4 của Đen lấy mất các ô c3 và e3 khỏi các quân Trắng.'
+          en: "Count the pawns: White eight, Black seven, so White is a pawn up on the board. White's pawns on e5 and e2 are doubled, and both the e5 pawn and the knight on e4 are undefended, so ...Qd5 would attack both at once. Black's pawn on d4 takes the c3 and e3 squares away from White's pieces."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de plus sur l'échiquier. Les pions blancs e5 et e2 sont doublés, et le pion e5 comme le cavalier e4 ne sont pas défendus, si bien que ...Qd5 les attaquerait tous deux à la fois. Le pion noir d4 retire les cases c3 et e3 aux pièces blanches."
+        plan:
+          vi: 'Trắng bảo vệ các quân yếu bằng Nf3 và d3, rồi Bf4 để củng cố e5. Đen tấn công chúng bằng ...Bf5, ...Nc6 và ...Qd5.'
+          en: 'White defends the loose pieces with Nf3 and d3, then Bf4 to support e5. Black attacks them with ...Bf5, ...Nc6 and ...Qd5.'
+          fr: 'Les Blancs défendent les pièces faibles par Nf3 et d3, puis Bf4 pour soutenir e5. Les Noirs les attaquent par ...Bf5, ...Nc6 et ...Qd5.'
+        basis:
+          by: chan
+          at: '2026-10-01'
