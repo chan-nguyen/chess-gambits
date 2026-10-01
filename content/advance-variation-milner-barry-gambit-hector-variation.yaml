@@ -1,0 +1,62 @@
+# French Defense: Advance Variation, Milner-Barry Gambit, Hector Variation. Defining line
+# 1.e4 e6 2.d4 d5 3.e5 c5 4.c3 Nc6 5.Nf3 Qb6 6.Bd3 cxd4 7.O-O, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: advance-variation-milner-barry-gambit-hector-variation
+name: 'French Defense: Advance Variation, Milner-Barry Gambit, Hector Variation'
+eco: C02
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, e5, c5, c3, Nc6, Nf3, Qb6, Bd3, cxd4, O-O]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White has castled without recapturing on
+      d4, so White is a pawn down, seven pawns against eight. Black's pawns are doubled on
+      d5 and d4, but the d4 pawn is attacked twice and defended twice, so the pawn is not
+      coming back by force, while Black has not castled. Nothing on the board yet repays the
+      pawn, which is why the entry is rated dubious. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa nhập thành bằng 7.O-O thay vì ăn lại ở d4, nên số tốt hiện là Trắng bảy, Đen tám. Tốt của Đen bị chồng trên cột d, ở d5 và d4, và tốt d4 bị tốt c3 cùng mã f3 tấn công, còn được hậu b6 và mã c6 bảo vệ.
+    en: White has just castled with 7.O-O instead of recapturing on d4, so the pawn count is White seven, Black eight. Black's pawns are doubled on the d-file, on d5 and d4, and the d4 pawn is attacked by the c3 pawn and the knight on f3 and defended by the queen on b6 and the knight on c6.
+    fr: Les Blancs viennent de roquer par 7.O-O au lieu de reprendre en d4, si bien que le compte des pions est de sept pour les Blancs, huit pour les Noirs. Les pions noirs sont doublés sur la colonne d, en d5 et d4, et le pion d4 est attaqué par le pion c3 et le cavalier f3, et défendu par la dame b6 et le cavalier c6.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 7...Bd7 ở đây, chẳng hạn 7...dxc3 hoặc 7...Nge7. Mục này chỉ mô hình hóa 7...Bd7 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: hoàn tất phát triển và tìm cách lấy lại con tốt.'
+      en: "Black plays something other than 7...Bd7 here, for instance 7...dxc3 or 7...Nge7. This entry models only 7...Bd7 and does not analyse those moves; White's task usually stays the same: finish development and look for a way to win the pawn back."
+      fr: "Les Noirs jouent autre chose que 7...Bd7 ici, par exemple 7...dxc3 ou 7...Nge7. Cette entrée ne modélise que 7...Bd7 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : achever leur développement et chercher à regagner le pion."
+  children:
+    - ply: Bd7
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển tượng từ c8 ra d7, thoát khỏi sau tốt e6, và giữ con tốt dư. Tốt d4 vẫn bị tấn công hai lần và được bảo vệ hai lần, nên Trắng không thể lấy lại nó chỉ bằng cách đổi quân ở d4.
+        en: Black develops the bishop from c8 to d7, out from behind the e6 pawn, and keeps the extra pawn. The d4 pawn is still attacked twice and defended twice, so White cannot win it back just by trading on d4.
+        fr: Les Noirs développent le fou de c8 en d7, qui sort de derrière le pion e6, et gardent le pion de plus. Le pion d4 reste attaqué deux fois et défendu deux fois, donc les Blancs ne peuvent pas le regagner simplement en échangeant en d4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt đã thí chưa được lấy lại. Tốt của Đen bị chồng ở d5 và d4, nhưng tốt d4 bị tấn công hai lần (bởi c3 và mã f3) và được bảo vệ hai lần (bởi hậu b6 và mã c6), nên đổi quân trên d4 không thắng được nó. Đen chưa nhập thành và vua vẫn đứng ở e8.'
+          en: "Count the pawns: White seven, Black eight, so the sacrificed pawn has not come back. Black's pawns are doubled on d5 and d4, but the d4 pawn is attacked twice (by c3 and the knight on f3) and defended twice (by the queen on b6 and the knight on c6), so a trade on d4 does not win it. Black has not castled and the king is still on e8."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion sacrifié n'est pas revenu. Les pions noirs sont doublés en d5 et d4, mais le pion d4 est attaqué deux fois (par c3 et le cavalier f3) et défendu deux fois (par la dame b6 et le cavalier c6), donc un échange en d4 ne le gagne pas. Les Noirs n'ont pas roqué et le roi est toujours en e8."
+        plan:
+          vi: Trắng chơi Re1 và Nbd2 để đưa những quân cuối cùng vào cuộc, rồi cxd4 để mở cột c. Đen chơi ...Rc8 và ...Nge7 để hoàn tất phát triển, và có thể ăn ở c3 bằng ...dxc3 khi thấy hợp thời.
+          en: White plays Re1 and Nbd2 to bring the last pieces into the game, then cxd4 to leave the c-file open. Black plays ...Rc8 and ...Nge7 to finish development, and may take on c3 with ...dxc3 when it suits.
+          fr: Les Blancs jouent Re1 et Nbd2 pour amener leurs dernières pièces dans la partie, puis cxd4 pour laisser la colonne c ouverte. Les Noirs jouent ...Rc8 et ...Nge7 pour achever leur développement, et peuvent prendre en c3 par ...dxc3 quand cela leur convient.
+        basis:
+          by: chan
+          at: 2026-10-01

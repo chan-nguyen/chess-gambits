@@ -1,0 +1,61 @@
+# French Defense: Orthoschnapp Gambit. Defining line 1.e4 e6 2.c4 d5 3.cxd5 exd5 4.Qb3,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-orthoschnapp-gambit
+name: 'French Defense: Orthoschnapp Gambit'
+eco: C00
+category: gambit
+side: white
+definingLine: [e4, e6, c4, d5, cxd5, exd5, Qb3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, seven each, but
+      the e4 pawn is attacked by the d5 pawn and defended by nothing, so Black can take it
+      at once without any White piece attacking the new pawn on e4. The queen on b3 attacks
+      b7 and d5, but both are defended, which is why the entry is rated dubious. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Qb3, nên số tốt đang ngang nhau, mỗi bên bảy. Tốt e4 bị tốt d5 tấn công và không được quân nào bảo vệ, còn hậu b3 tấn công b7, được tượng c8 bảo vệ, và d5, được hậu d8 bảo vệ.
+    en: White has just played 4.Qb3, so the pawn count is level, seven each. The e4 pawn is attacked by the pawn on d5 and defended by nothing, while the queen on b3 attacks b7, defended by the bishop on c8, and d5, defended by the queen on d8.
+    fr: Les Blancs viennent de jouer 4.Qb3, de sorte que le compte des pions est égal, sept de chaque côté. Le pion e4 est attaqué par le pion d5 et n'est défendu par aucune pièce, tandis que la dame b3 attaque b7, défendu par le fou c8, et d5, défendu par la dame d8.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 4...dxe4 ở đây, chẳng hạn 4...Nf6 hoặc 4...c6. Mục này chỉ mô hình hóa 4...dxe4 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: phát triển các quân còn lại và duy trì sức ép của hậu.'
+      en: "Black plays something other than 4...dxe4 here, for instance 4...Nf6 or 4...c6. This entry models only 4...dxe4 and does not analyse those moves; White's task usually stays the same: develop the remaining pieces and keep up the queen's pressure."
+      fr: "Les Noirs jouent autre chose que 4...dxe4 ici, par exemple 4...Nf6 ou 4...c6. Cette entrée ne modélise que 4...dxe4 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : développer les pièces restantes et maintenir la pression de la dame."
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 4...dxe4. Hậu b3 giờ tấn công cả f7 lẫn b7, nhưng f7 chỉ được vua bảo vệ, và Qxf7+ sẽ đơn giản là mất hậu.
+        en: Black takes the pawn with 4...dxe4. The queen on b3 now attacks f7 as well as b7, but f7 is defended only by the king, and Qxf7+ would simply lose the queen.
+        fr: Les Noirs prennent le pion par 4...dxe4. La dame b3 attaque maintenant f7 aussi bien que b7, mais f7 n'est défendu que par le roi, et Qxf7+ perdrait simplement la dame.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng kém một tốt. Hậu b3 tấn công b7, được tượng c8 bảo vệ, và f7, chỉ được vua bảo vệ, nên ăn ở ô nào trong hai ô đó cũng mất hậu. Hậu d8 của Đen nhìn xuống d2 theo cột d đang mở, ô được mã b1, tượng c1 và vua e1 bảo vệ.'
+          en: "Count the pawns: White six, Black seven, so White is a pawn down. The queen on b3 attacks b7, defended by the bishop on c8, and f7, defended only by the king, so taking on either square would cost the queen. Black's queen on d8 looks down the open d-file at d2, which the knight on b1, the bishop on c1 and the king on e1 defend."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de moins. La dame b3 attaque b7, défendu par le fou c8, et f7, défendu seulement par le roi, de sorte que prendre sur l'une ou l'autre case coûterait la dame. La dame d8 noire regarde d2 le long de la colonne d ouverte, case que le cavalier b1, le fou c1 et le roi e1 défendent."
+        plan:
+          vi: Trắng chơi Nc3 để tấn công tốt e4 và Bc4 để phát triển, nhắm vào f7. Đen chơi ...Nf6 để bảo vệ e4, rồi ...Be7 và ...O-O để hoàn tất phát triển.
+          en: White plays Nc3 to attack the e4 pawn and Bc4 to develop with an eye on f7. Black plays ...Nf6 to defend e4, then ...Be7 and ...O-O to finish development.
+          fr: Les Blancs jouent Nc3 pour attaquer le pion e4 et Bc4 pour se développer en visant f7. Les Noirs jouent ...Nf6 pour défendre e4, puis ...Be7 et ...O-O pour achever leur développement.
+        basis:
+          by: chan
+          at: 2026-10-01

@@ -1,0 +1,61 @@
+# French Defense: Banzai-Leong Gambit, Pinova Gambit. Defining line 1.e4 e6 2.b4 Bxb4 3.e5,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-banzai-leong-gambit-pinova-gambit
+name: 'French Defense: Banzai-Leong Gambit, Pinova Gambit'
+eco: C00
+category: gambit
+side: white
+definingLine: [e4, e6, b4, Bxb4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns against
+      eight, and the a-pawn is isolated because the b-pawn is gone. The pawn push to e5
+      attacks nothing and the bishop on b4 stays active, so White has nothing concrete to
+      show for the pawn, which is why the entry is rated unsound. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đẩy 3.e5, nước đi không tấn công gì, và số tốt là Trắng bảy, Đen tám vì tốt b đã bị ăn. Tượng b4 tấn công tốt d2, ô được mã b1, tượng c1, hậu d1 và vua e1 cùng bảo vệ.
+    en: White has just pushed 3.e5, which attacks nothing, and the pawn count is White seven, Black eight because the b-pawn was taken. The bishop on b4 attacks the pawn on d2, which the knight on b1, the bishop on c1, the queen on d1 and the king on e1 all defend.
+    fr: Les Blancs viennent de pousser 3.e5, qui n'attaque rien, et le compte des pions est de sept pour les Blancs, huit pour les Noirs parce que le pion b a été pris. Le fou b4 attaque le pion d2, que le cavalier b1, le fou c1, la dame d1 et le roi e1 défendent tous.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 3...Nc6 ở đây, chẳng hạn 3...Be7 hoặc 3...Ne7. Mục này chỉ mô hình hóa 3...Nc6 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: phát triển quân và tìm điều gì đó đáng giá để đổi lấy con tốt.'
+      en: "Black plays something other than 3...Nc6 here, for instance 3...Be7 or 3...Ne7. This entry models only 3...Nc6 and does not analyse those moves; White's task usually stays the same: develop and look for something to show for the pawn."
+      fr: "Les Noirs jouent autre chose que 3...Nc6 ici, par exemple 3...Be7 ou 3...Ne7. Cette entrée ne modélise que 3...Nc6 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : se développer et chercher de quoi justifier le pion."
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển 3...Nc6, tấn công tốt e5, con tốt không được quân nào bảo vệ.
+        en: Black develops with 3...Nc6, attacking the e5 pawn, which nothing defends.
+        fr: Les Noirs se développent par 3...Nc6, attaquant le pion e5, que rien ne défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém đúng một tốt sạch. Tốt e5 bị mã c6 tấn công và không được quân nào bảo vệ, còn tốt a của Trắng bị cô lập vì tốt b đã mất.'
+          en: "Count the pawns: White seven, Black eight, so White is a clean pawn down. The e5 pawn is attacked by the knight on c6 and defended by nothing, and White's a-pawn is isolated because the b-pawn is gone."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion net de moins. Le pion e5 est attaqué par le cavalier c6 et n'est défendu par aucune pièce, et le pion a blanc est isolé parce que le pion b a disparu."
+        plan:
+          vi: Trắng chơi Nf3 để bảo vệ e5 và c3 để tấn công tượng b4. Đen chơi ...Ba5 để giữ tượng, ...d6 để tấn công e5 lần nữa, và ...Nge7 để phát triển.
+          en: White plays Nf3 to defend e5 and c3 to attack the bishop on b4. Black plays ...Ba5 to keep the bishop, ...d6 to attack e5 again, and ...Nge7 to develop.
+          fr: Les Blancs jouent Nf3 pour défendre e5 et c3 pour attaquer le fou b4. Les Noirs jouent ...Ba5 pour garder le fou, ...d6 pour attaquer à nouveau e5, et ...Nge7 pour se développer.
+        basis:
+          by: chan
+          at: 2026-10-01

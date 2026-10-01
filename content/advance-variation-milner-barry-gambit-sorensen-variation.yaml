@@ -1,0 +1,61 @@
+# French Defense: Advance Variation, Milner-Barry Gambit, Sørensen Variation. Defining line
+# 1.e4 e6 2.d4 d5 3.e5 c5 4.c3 Nc6 5.Nf3 Qb6 6.Bd3 cxd4 7.cxd4 Bd7 8.O-O Nxd4 9.Ng5, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: advance-variation-milner-barry-gambit-sorensen-variation
+name: 'French Defense: Advance Variation, Milner-Barry Gambit, Sørensen Variation'
+eco: C02
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, e5, c5, c3, Nc6, Nf3, Qb6, Bd3, cxd4, cxd4, Bd7, O-O, Nxd4, Ng5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, six pawns against
+      seven, and the knight on g5 and the bishop on d3 both aim at h7. But Black's knight on
+      d4 cannot be attacked by anything White has, and Black has ways to cover h7, so the
+      attack is a threat to be answered rather than a permanent asset, which is why the
+      entry is rated dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.Ng5, con mã nhắm vào h7, f7 và e6. Số tốt hiện là Trắng sáu, Đen bảy, còn mã Đen đứng ở d4, nơi không quân Trắng nào tấn công được. Tốt h7 bị tấn công hai lần, bởi mã g5 và tượng d3, và được bảo vệ một lần, bởi xe h8.
+    en: White has just played 9.Ng5, a knight that aims at h7, f7 and e6. The pawn count is White six, Black seven, and Black's knight sits on d4, where nothing of White's attacks it. The h7 pawn is attacked twice, by the knight on g5 and the bishop on d3, and defended once, by the rook on h8.
+    fr: Les Blancs viennent de jouer 9.Ng5, un cavalier qui vise h7, f7 et e6. Le compte des pions est de six pour les Blancs, sept pour les Noirs, et le cavalier noir est en d4, où aucune pièce blanche ne l'attaque. Le pion h7 est attaqué deux fois, par le cavalier g5 et le fou d3, et défendu une fois, par la tour h8.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 9...g6 ở đây, chẳng hạn 9...Nh6 hoặc 9...Ne7. Mục này chỉ mô hình hóa 9...g6 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: đưa nốt các quân còn lại vào cuộc và giữ sức ép lên h7.'
+      en: "Black plays something other than 9...g6 here, for instance 9...Nh6 or 9...Ne7. This entry models only 9...g6 and does not analyse those moves; White's task usually stays the same: bring the remaining pieces into play and keep the pressure on h7."
+      fr: "Les Noirs jouent autre chose que 9...g6 ici, par exemple 9...Nh6 ou 9...Ne7. Cette entrée ne modélise que 9...g6 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : mettre en jeu les pièces restantes et maintenir la pression sur h7."
+  children:
+    - ply: g6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi 9...g6, đóng đường chéo giữa tượng d3 và h7. Mã g5 vẫn tấn công h7, ô này được xe h8 bảo vệ, nhưng cái giá là không còn tốt Đen nào kiểm soát f6 hay h6.
+        en: Black plays 9...g6, which shuts the diagonal between the bishop on d3 and h7. The knight on g5 still attacks h7, which the rook on h8 defends, but the cost is that no Black pawn now covers f6 or h6.
+        fr: Les Noirs jouent 9...g6, ce qui ferme la diagonale entre le fou d3 et h7. Le cavalier g5 attaque toujours h7, que la tour h8 défend, mais le prix à payer est qu'aucun pion noir ne couvre plus f6 ni h6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng đang kém một tốt. Tốt g6 chặn tượng d3 không tới được h7, nên mã g5 tấn công h7 một lần và xe h8 bảo vệ nó một lần; các mục tiêu khác, f7 và e6, cũng đều có quân bảo vệ. Đen chưa nhập thành, và không quân Trắng nào tấn công được mã d4.'
+          en: 'Count the pawns: White six, Black seven, so White is a pawn down. The pawn on g6 blocks the bishop on d3 from h7, so the knight on g5 attacks h7 once and the rook on h8 defends it once; the other targets, f7 and e6, are defended too. Black has not castled, and nothing White has attacks the knight on d4.'
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de moins. Le pion g6 empêche le fou d3 d'atteindre h7, si bien que le cavalier g5 attaque h7 une fois et que la tour h8 le défend une fois ; les autres cibles, f7 et e6, sont elles aussi défendues. Les Noirs n'ont pas roqué, et aucune pièce blanche n'attaque le cavalier d4."
+        plan:
+          vi: Trắng chơi Be3 để thách thức mã d4, rồi Nc3 và Re1 để đưa các quân còn lại vào cuộc. Đen chơi ...Bc5 và ...h6 để đuổi mã khỏi g5, rồi ...Ne7 để hoàn tất phát triển.
+          en: White plays Be3 to challenge the knight on d4, then Nc3 and Re1 to bring the remaining pieces into play. Black plays ...Bc5 and ...h6 to drive the knight from g5, then ...Ne7 to finish development.
+          fr: Les Blancs jouent Be3 pour défier le cavalier d4, puis Nc3 et Re1 pour mettre en jeu les pièces restantes. Les Noirs jouent ...Bc5 et ...h6 pour chasser le cavalier de g5, puis ...Ne7 pour achever leur développement.
+        basis:
+          by: chan
+          at: 2026-10-01
