@@ -1,0 +1,63 @@
+# Bird Opening: Siegener Gambit. Frozen defining line 1.f4 e5 2.d4 exd4 3.Nf3 c5 4.c3,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through the reply dxc3; searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry. The leaf carries `unsettled` because a capture is going free there.
+id: bird-opening-siegener-gambit
+name: 'Bird Opening: Siegener Gambit'
+eco: A02
+category: gambit
+side: white
+definingLine: [f4, e5, d4, exd4, Nf3, c5, c3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and the d4 pawn is attacked three times and defended once, but Black can take on c3
+      first and still be a pawn up after the recapture. White has not been shown to get more
+      in return than a half-open d-file. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.c3, đưa tốt c lên tấn công tốt d4 của Đen. Tốt d4 bị tốt c3, mã f3 và hậu tấn công và chỉ có tốt c5 bảo vệ, còn tốt c3 bị tốt d4 tấn công và được tốt b2 và mã b1 bảo vệ. Trắng đang kém một tốt, bảy so với tám. Mục này đi theo nước Đen ăn 4...dxc3.'
+    en: "White has just played 4.c3, attacking Black's d4 pawn with the c-pawn. The d4 pawn is attacked by the c3 pawn, the knight on f3 and the queen and defended only by the c5 pawn, while the c3 pawn is attacked by the d4 pawn and defended by the b2 pawn and the knight on b1. White is a pawn down, seven pawns to eight. This entry follows Black capturing 4...dxc3."
+    fr: 'Les Blancs viennent de jouer 4.c3, attaquant le pion d4 noir avec le pion c. Le pion d4 est attaqué par le pion c3, le cavalier f3 et la dame et défendu seulement par le pion c5, tandis que le pion c3 est attaqué par le pion d4 et défendu par le pion b2 et le cavalier b1. Les Blancs ont un pion de moins, sept contre huit. Cette entrée suit la prise 4...dxc3 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...dxc3, nên tốt c3 chưa bị ăn. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 4...dxc3 here, so the c3 pawn is not taken. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 4...dxc3 ici, si bien que le pion c3 n'est pas pris. Cette entrée ne suit que la prise."
+  children:
+    - ply: dxc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt c3 bằng tốt d. Tốt c3 mới bị tốt b2 và mã b1 tấn công mà không có quân Đen nào bảo vệ, nên Trắng sắp ăn lại.'
+        en: "Black takes the c3 pawn with the d-pawn. The new pawn on c3 is attacked by the b2 pawn and the knight on b1 and nothing of Black's defends it, so White is about to recapture."
+        fr: 'Les Noirs prennent le pion c3 avec le pion d. Le nouveau pion c3 est attaqué par le pion b2 et le cavalier b1 et aucune pièce noire ne le défend, si bien que les Blancs vont reprendre.'
+      unsettled: >-
+        Recapturing on c3 (bxc3 or Nxc3) is going free because nothing of Black's defends the
+        pawn on c3; the evaluation counts that recapture, which brings the pawn count to six
+        against seven.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, và tốt c3 của Đen sắp bị ăn lại, bằng bxc3 hoặc Nxc3. Khi đó là sáu so với bảy, nên Trắng vẫn kém một tốt. Lúc này Trắng không có tốt nào trên cột c và cột d, nên cột d là cột nửa mở của Trắng, và hậu d1 đã nhắm vào tốt d7, vốn được mã, tượng và hậu Đen bảo vệ.'
+          en: "Count the pawns: White six, Black eight, with Black's pawn on c3 about to be taken back, by bxc3 or Nxc3. Once it is, the count is six against seven, so White is still a pawn down. For the moment White has no pawn on the c- or d-file, so the d-file is half-open for White, and the queen on d1 already bears on the d7 pawn, which Black's knight, bishop and queen defend."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, le pion noir c3 étant sur le point d'être repris, par bxc3 ou Nxc3. Une fois qu'il l'est, le compte est de six contre sept, si bien que les Blancs ont toujours un pion de moins. Pour le moment, les Blancs n'ont aucun pion sur les colonnes c et d, si bien que la colonne d est semi-ouverte pour eux, et la dame d1 vise déjà le pion d7, que défendent le cavalier, le fou et la dame noirs."
+        plan:
+          vi: 'Trắng ăn lại bằng Nxc3 rồi chơi e4 để chiếm trung tâm, phát triển bằng Bc4 và nhập thành. Đen phát triển bằng ...Nc6 và ...Nf6, rồi ...d6 và ...Be7.'
+          en: 'White recaptures with Nxc3, then plays e4 to take the centre, develops with Bc4 and castles. Black develops with ...Nc6 and ...Nf6, then ...d6 and ...Be7.'
+          fr: 'Les Blancs reprennent par Nxc3, puis jouent e4 pour prendre le centre, se développent par Bc4 et roquent. Les Noirs se développent par ...Nc6 et ...Nf6, puis ...d6 et ...Be7.'
+        basis:
+          by: chan
+          at: '2026-10-01'
