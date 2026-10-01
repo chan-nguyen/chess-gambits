@@ -8,12 +8,20 @@
 # ADR-0008; the dataset's own row for this trap is excluded there since this entry is the
 # only one for it).
 #
-# The mate at the root is claimed with `type: trap` and nothing else; the move count and the
-# certificate are produced by `npm run prove:mates` and replayed by `npm run verify:mates`
-# (ADR-0005). Replayed with chess.js: the knight on f3 is the only thing guarding h2, and
-# Black's queen on c7 already bears on h2 along the completely open c7-h2 diagonal, with the
-# knight on g4 also covering that exact square, which is what stops the king from ever
-# recapturing there.
+# Three mates are claimed here, each with `type: trap` and nothing else; the move counts and
+# the certificates are produced by `npm run prove:mates` and replayed by
+# `npm run verify:mates` (ADR-0005). Replayed with chess.js: the knight on f3 is the only
+# thing guarding h2, and Black's queen on c7 already bears on h2 along the completely open
+# c7-h2 diagonal, with the knight on g4 also covering that exact square, which is what stops
+# the king from ever recapturing there.
+#
+# Until #175 the tree modelled 9.Ng5?? alone, and its catch-all said that every reply keeping
+# the knight on f3 kept the trap from springing. That was false: the textbook Siberian Trap
+# is 9.h3?? Nd4!, when the knight has to choose between the queen on e2 and the square h2 —
+# 10.Nxd4 Qh2#, 10.hxg4 Nxe2+ and the queen is gone for two knights — and 9.a3?? Nd4 is the
+# same story. Both are modelled now, every 10th-move reply is answered (mate proved where it
+# is a mate, material counted where it is material), and the catch-all says only what is true
+# of the replies it still covers.
 id: siberian-trap
 name: Siberian Trap
 eco: B21
@@ -22,23 +30,25 @@ side: black
 definingLine: [e4, c5, d4, cxd4, c3, dxc3, Nxc3, Nc6, Nf3, e6, Bc4, Qc7, 'O-O', Nf6, Qe2, Ng4]
 soundness:
   value: sound
-  reviewedAt: '2026-09-18'
+  reviewedAt: '2026-09-30'
   basis:
     by: chan
-    at: '2026-09-18'
+    at: '2026-09-30'
     source: >-
       A judgement, and the same label `traps.yaml` carries. The mate does not need Black to
       provoke anything further — the queen on c7 and the knight on g4 are already aimed at
       h2 the moment the position is reached, and White simply cannot move the f3 knight
-      without losing at once. A defender who leaves that knight alone is fine; the trap
-      punishes the single most common way to meet an attacked knight, moving it. No engine
-      was consulted and no database was queried.
+      without losing at once. Leaving the knight alone is not enough either: 9.h3 and 9.a3
+      both lose to ...Nd4, which forces that same knight to choose between the queen on e2
+      and the square h2. The trap punishes the two most common ways of meeting the position,
+      moving the knight and asking the g4 knight a question. No engine was consulted and no
+      database was queried.
 judgement:
   by: chan
-  at: '2026-09-18'
+  at: '2026-09-30'
   source: >-
     Reply qualities, frequencies, evaluations and plans in this entry are one author's
-    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+    judgement on one date. The mates are not — they are machine-proved and replayed by CI.
 tree:
   annotation:
     vi: Đen vừa chơi Ng4. Nước này trông giống một cách đe doạ tốt f2 bình thường, nhưng thực chất nó đang đóng vai trò thứ hai đứng canh ô h2 cùng với con hậu ở c7 — con hậu ấy đã nhìn thẳng vào h2 suốt từ đường chéo c7-h2 hoàn toàn thông thoáng, và điều duy nhất còn giữ ô đó lại là con mã f3 của Trắng.
@@ -49,9 +59,9 @@ tree:
     mated: { count: matedBy, ply: 'Qxh2#', expect: 5 }
   dismissRest:
     reason:
-      vi: Trắng chơi một nước khác. {Mated} trong {legal} nước hợp lệ ở đây đều là những nước đưa chính con mã f3 rời khỏi ô của nó, và mỗi lần như vậy hậu Đen lập tức chiếu bí bằng Qxh2#, vì không còn quân nào canh ô ấy và vua g1 không thể ăn hậu do chính con mã g4 cũng đang nhìn vào h2. Những nước còn lại đều giữ nguyên con mã trên f3 — chẳng hạn phát triển bình thường bằng Bd2 hay Nb1 — và ở đó cái bẫy chưa nổ ra ngay, nhưng con mã c6 vẫn còn ý định nhảy vào d4 để tiếp tục quấy rối con hậu và con mã f3 cùng lúc.
-      en: White plays anything else. {Mated} of the {legal} legal replies here move the very knight on f3 off its square, and every time that happens Black mates at once with Qxh2#, because nothing is left guarding that square and the king on g1 cannot capture the queen since the knight on g4 covers h2 too. The remaining replies all keep the knight on f3 in place — ordinary development such as Bd2 or Nb1, for instance — and there the trap does not spring immediately, though the knight on c6 still has ...Nd4 in reserve to keep hunting the queen and the f3 knight together.
-      fr: Les Blancs jouent autre chose. {Mated} des {legal} réponses légales ici déplacent précisément le cavalier f3 de sa case, et chaque fois cela arrive, les Noirs matent aussitôt par Qxh2#, car plus personne ne garde cette case et le roi en g1 ne peut pas prendre la dame puisque le cavalier g4 couvre aussi h2. Les réponses restantes gardent toutes le cavalier en place sur f3 — un développement ordinaire comme Bd2 ou Nb1, par exemple — et là le piège ne se déclenche pas immédiatement, bien que le cavalier c6 garde en réserve ...Nd4 pour continuer à traquer ensemble la dame et le cavalier f3.
+      vi: Trắng chơi một nước khác. {Mated} trong {legal} nước hợp lệ ở đây đưa con mã f3 rời khỏi ô của nó mà không chắn đường chéo, và mỗi lần như vậy Đen chiếu bí ngay bằng Qxh2#, vì không còn quân nào canh ô ấy và vua g1 không thể ăn hậu do chính con mã g4 cũng nhìn vào h2. Nước 9.Ne5 cũng rời f3 nhưng đứng chắn ngay trên đường chéo c7-h2, đổi lại con mã ấy bị ba quân tấn công — hậu c7 và cả hai con mã Đen — mà không có gì bảo vệ. Mọi nước còn lại đều giữ nguyên con mã trên f3 và ô h2 vẫn được canh, nên chưa có nước chiếu bí nào để chơi ngay — ở đây cái bẫy là một lời đe doạ, chưa phải một điều chắc chắn. Nước ăn duy nhất trong số đó, 9.Bxe6, đổi một con tượng lấy một con tốt. Hai nước tốt trông vô hại, 9.h3 và 9.a3, đáng học riêng vì ...Nd4 trừng phạt chúng, và được dựng thành nhánh bên dưới.
+      en: White plays anything else. {Mated} of the {legal} legal replies here move the f3 knight off its square without blocking the diagonal, and each time that happens Black mates at once with Qxh2#, because nothing is left guarding that square and the king on g1 cannot take the queen while the knight on g4 also covers h2. 9.Ne5 leaves f3 too but lands right on the c7-h2 diagonal and blocks it — at the price of a knight that is attacked three times, by the queen on c7 and both black knights, and defended by nothing. Every other reply keeps the knight on f3 and h2 covered, so there is no mate to play at once — here the trap is a threat, not yet a certainty. The one capture among them, 9.Bxe6, gives a bishop for a pawn. The two harmless-looking pawn moves 9.h3 and 9.a3 are worth studying on their own because ...Nd4 punishes them, and they are modelled below.
+      fr: Les Blancs jouent autre chose. {Mated} des {legal} réponses légales ici déplacent le cavalier f3 sans boucher la diagonale, et chaque fois les Noirs matent aussitôt par Qxh2#, car plus rien ne garde cette case et le roi g1 ne peut pas prendre la dame tant que le cavalier g4 couvre aussi h2. 9.Ne5 quitte f3 lui aussi mais se pose en plein sur la diagonale c7-h2 et la bouche — au prix d'un cavalier attaqué trois fois, par la dame c7 et les deux cavaliers noirs, et défendu par rien. Toutes les autres réponses gardent le cavalier en f3 et h2 couverte, si bien qu'il n'y a aucun mat à jouer sur-le-champ — ici le piège est une menace, pas encore une certitude. La seule prise du lot, 9.Bxe6, donne un fou pour un pion. Les deux coups de pion d'apparence inoffensive, 9.h3 et 9.a3, méritent une étude à part parce que ...Nd4 les punit, et ils sont modélisés ci-dessous.
   children:
     - ply: Ng5
       replyQuality: blunder
@@ -62,3 +72,104 @@ tree:
         fr: Les Blancs amènent le cavalier en g5, un coup qui paraît agressif (visant f7 ou h7) et qui ne songe pas du tout à la case h2 qu'il vient d'abandonner. C'est exactement le genre de coup d'apparence naturelle qu'attend le piège sibérien.
       outcome:
         type: trap
+    - ply: h3
+      replyQuality: blunder
+      frequency: common
+      annotation:
+        vi: Trắng đẩy tốt h3 để hỏi con mã g4, cách phản xạ nhất để đối phó với một con mã đang nhòm ngó f2 và h2. Nhưng con tốt h vừa rời h2, nên nếu con mã f3 biến mất thì Qh2 sẽ là chiếu bí trên một ô trống — và Đen có ngay một nước ép con mã ấy phải chọn.
+        en: White pushes h3 to ask the g4 knight the question, the most reflexive way to meet a knight eyeing f2 and h2. But the h-pawn has just left h2, so if the f3 knight ever disappears, Qh2 is mate on an empty square — and Black has a move that forces exactly that choice on the knight.
+        fr: Les Blancs poussent h3 pour interroger le cavalier g4, la façon la plus réflexe de traiter un cavalier qui lorgne f2 et h2. Mais le pion h vient de quitter h2, si bien que si le cavalier f3 disparaît, Qh2 est mat sur une case vide — et les Noirs ont un coup qui impose précisément ce choix au cavalier.
+      children:
+        - ply: Nd4
+          annotation:
+            vi: Đen phớt lờ con mã g4 đang bị tấn công và nhảy mã c6 vào d4, tấn công hậu e2 và đồng thời con mã f3. Bây giờ mọi nước ăn của Trắng đều có giá, Nxd4 bỏ ô h2 và bị Qh2# ngay, còn hxg4 thì để Nxe2+ lấy hậu.
+            en: Black ignores the attacked knight on g4 and jumps the c6 knight into d4, hitting the queen on e2 and the knight on f3 at the same time. Now every capture White has comes at a price, Nxd4 abandons h2 and is met by Qh2# on the spot, while hxg4 allows Nxe2+ to take the queen.
+            fr: Les Noirs ignorent le cavalier g4 attaqué et sautent le cavalier c6 en d4, frappant la dame e2 et le cavalier f3 en même temps. Désormais chaque prise blanche a un prix, Nxd4 abandonne h2 et se heurte à Qh2# sur-le-champ, tandis que hxg4 permet Nxe2+ qui gagne la dame.
+          counts:
+            legal: { count: legalReplies, expect: 41 }
+            mated: { count: matedBy, ply: 'Qh2#', expect: 6 }
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác. {Mated} trong {legal} nước hợp lệ ở đây đưa con mã f3 đi chỗ khác và bị hậu Đen chiếu bí ngay trên h2 — 10...Qh2#, hay 10...Qxh2# nếu chính con mã nhảy vào ô ấy — đúng cơ chế như ở gốc nhưng nay trên một ô h2 đã trống. Nước nào để hậu Trắng ở lại e2 thì mất hậu vào tay con mã d4 bằng ...Nxe2, thường kèm chiếu, đổi lấy đúng một con mã. Còn nếu hậu bước đi — Qd3, Qe3, Qd1, Qe1, Qd2 hay Qc2 — thì ...Nxf3+ ăn con mã còn lại kèm chiếu, và dù Trắng ăn lại bằng tốt g, bằng hậu, hay né vua sang h1, con mã g4 lùi về e5 và Đen vẫn giữ ít nhất con tốt thừa của gambit.
+              en: White plays anything else. {Mated} of the {legal} legal replies here move the f3 knight elsewhere and are mated at once by the black queen on h2 — 10...Qh2#, or 10...Qxh2# if the knight itself has jumped there — the same mechanism as at the root but now on an empty h2. Any reply that leaves the queen on e2 loses it to the d4 knight with ...Nxe2, usually with check, for just a knight. And if the queen steps away — Qd3, Qe3, Qd1, Qe1, Qd2 or Qc2 — ...Nxf3+ takes the other knight with check, and whether White recaptures with the g-pawn or the queen or steps the king to h1, the g4 knight drops back to e5 and Black keeps at least the gambit's extra pawn.
+              fr: Les Blancs jouent autre chose. {Mated} des {legal} réponses légales ici déplacent le cavalier f3 ailleurs et sont matées aussitôt par la dame noire en h2 — 10...Qh2#, ou 10...Qxh2# si le cavalier lui-même y a sauté — le même mécanisme qu'à la racine, mais sur une case h2 désormais vide. Toute réponse qui laisse la dame en e2 la perd sur ...Nxe2 du cavalier d4, le plus souvent avec échec, contre un simple cavalier. Et si la dame s'écarte — Qd3, Qe3, Qd1, Qe1, Qd2 ou Qc2 — ...Nxf3+ prend l'autre cavalier avec échec, et que les Blancs reprennent du pion g ou de la dame, ou glissent le roi en h1, le cavalier g4 recule en e5 et les Noirs conservent au moins le pion de plus du gambit.
+          children:
+            - ply: Nxd4
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: Trắng ăn con mã d4 đang tấn công hậu — nước ăn tự nhiên nhất, và cũng là nước bỏ ô h2. Phần còn lại do máy chứng minh chứ không do người khẳng định.
+                en: White takes the d4 knight that is attacking the queen — the most natural capture, and the one that abandons h2. What follows is proved by machine rather than asserted by a person.
+                fr: Les Blancs prennent le cavalier d4 qui attaque la dame — la prise la plus naturelle, et celle qui abandonne h2. La suite est prouvée par la machine plutôt qu'affirmée par un humain.
+              outcome:
+                type: trap
+            - ply: hxg4
+              replyQuality: mistake
+              frequency: common
+              annotation:
+                vi: Trắng ăn con mã g4 bằng tốt, giữ nguyên con mã f3 để canh h2. Ô ấy vẫn an toàn, nhưng con hậu e2 thì không — nó vẫn đang bị mã d4 tấn công.
+                en: White takes the g4 knight with the pawn, keeping the f3 knight in place to guard h2. That square is safe, but the queen on e2 is not — it is still attacked by the knight on d4.
+                fr: Les Blancs prennent le cavalier g4 du pion, gardant le cavalier f3 en place pour couvrir h2. Cette case est sûre, mais la dame e2 ne l'est pas — elle est toujours attaquée par le cavalier d4.
+              children:
+                - ply: 'Nxe2+'
+                  annotation:
+                    vi: Đen ăn hậu kèm chiếu. Trắng phải trả lời nước chiếu trước, và chỉ có ba cách — hai nước ăn lại ở e2 và một nước né vua.
+                    en: Black takes the queen with check. White has to answer the check first, and there are only three ways — two recaptures on e2 and one king move.
+                    fr: Les Noirs prennent la dame avec échec. Les Blancs doivent d'abord parer l'échec, et il n'y a que trois façons — deux reprises en e2 et un coup de roi.
+                  dismissed:
+                    - ply: Nxe2
+                      reason: Recaptures too, but the c3 knight was the only piece covering the c4 bishop against the black queen, so 11.Nxe2 Qxc4 drops a second piece for nothing.
+                    - ply: Kh1
+                      reason: Declines to recapture at all, leaving the e2 knight to walk away with a whole queen for nothing; strictly worse than either recapture, not modelled separately.
+                  children:
+                    - ply: Bxe2
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Trắng ăn lại bằng tượng, cách duy nhất không mất thêm quân, vì con tượng c4 rời luôn khỏi cột c nơi hậu Đen có thể ăn nó. Chuỗi bắt buộc kết thúc ở đây và mọi thứ đã có thể đếm được.
+                        en: White recaptures with the bishop, the only way not to lose more, since the c4 bishop thereby leaves the c-file on which Black's queen could take it. The forced sequence ends here and everything can be counted.
+                        fr: Les Blancs reprennent du fou, la seule façon de ne pas perdre davantage, car le fou c4 quitte ainsi la colonne c où la dame noire pouvait le prendre. La séquence forcée s'achève ici et tout peut se compter.
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: Đen đã đổi hai con mã lấy con hậu Trắng và vẫn giữ con tốt thừa của gambit. Trắng còn hai tượng, hai mã, hai xe và sáu tốt; Đen còn hậu, hai tượng, hai xe và bảy tốt. Cả hai vua đều đang an toàn — Trắng đã nhập thành, Đen chưa nhưng không quân Trắng nào nhìn vào e8 — và không quân nào đang bị treo ở cả hai bên.
+                          en: Black has given two knights for White's queen and still has the gambit's extra pawn. White has two bishops, two knights, two rooks and six pawns; Black has a queen, two bishops, two rooks and seven pawns. Both kings are safe for now — White has castled, Black has not but no white piece bears on e8 — and nothing is hanging on either side.
+                          fr: Les Noirs ont donné deux cavaliers pour la dame blanche et gardent le pion de plus du gambit. Les Blancs ont deux fous, deux cavaliers, deux tours et six pions ; les Noirs une dame, deux fous, deux tours et sept pions. Les deux rois sont en sécurité pour l'instant — les Blancs ont roqué, les Noirs non mais aucune pièce blanche ne vise e8 — et rien n'est en prise d'un côté ni de l'autre.
+                        plan:
+                          vi: Đen phát triển nốt bằng ...Be7 hoặc ...Bd6, ...O-O và ...d5 để mở đường chéo cho tượng c8 và tạo mục tiêu cho hậu. Con hậu là quân tầm xa duy nhất còn lại để tấn công, nên Đen tránh đổi quân và nhắm nó vào các tốt Trắng ở g4 và b2 cùng vua g1. Bốn quân nhẹ của Trắng phải phối hợp với nhau — Bf4 hay Be3, Rad1 chiếm cột d, Nd4 hoặc Nb5 quấy rối hậu — và tuyệt đối không mở thêm đường nào vào vua của mình.
+                          en: Black finishes developing with ...Be7 or ...Bd6, ...O-O and ...d5 to open the c8 bishop's diagonal and give the queen targets. The queen is the only long-range attacking piece left, so Black avoids trades and points it at White's pawns on g4 and b2 and at the king on g1. White's four minor pieces have to work together — Bf4 or Be3, Rad1 to take the d-file, Nd4 or Nb5 to harass the queen — and above all open no further lines towards their own king.
+                          fr: Les Noirs achèvent leur développement par ...Be7 ou ...Bd6, ...O-O et ...d5 pour ouvrir la diagonale du fou c8 et donner des cibles à la dame. La dame est la seule pièce à longue portée qui reste pour attaquer, donc les Noirs évitent les échanges et la braquent sur les pions blancs g4 et b2 et sur le roi g1. Les quatre pièces mineures blanches doivent coopérer — Bf4 ou Be3, Rad1 pour prendre la colonne d, Nd4 ou Nb5 pour harceler la dame — et surtout n'ouvrir aucune nouvelle ligne vers leur propre roi.
+                        basis:
+                          by: chan
+                          at: '2026-09-30'
+    - ply: a3
+      replyQuality: blunder
+      frequency: occasional
+      annotation:
+        vi: Trắng chơi a3, một nước cánh hậu hiền lành lấy ô b4 khỏi tay các quân Đen và chuẩn bị b4. Nước này không đụng tới con mã g4 và cũng không đụng tới ô h2 — nhưng nó cũng chẳng làm gì cho con hậu e2, và ...Nd4 khai thác đúng điểm đó.
+        en: White plays a3, a quiet queenside move that takes b4 from Black's pieces and prepares b4. It does not touch the g4 knight and it does not touch h2 — but it does nothing for the queen on e2 either, and ...Nd4 exploits exactly that.
+        fr: Les Blancs jouent a3, un coup tranquille à l'aile dame qui ôte b4 aux pièces noires et prépare b4. Il ne touche ni au cavalier g4 ni à h2 — mais il ne fait rien non plus pour la dame e2, et ...Nd4 exploite précisément cela.
+      children:
+        - ply: Nd4
+          annotation:
+            vi: Cùng một nước như sau 9.h3, mã c6 nhảy vào d4 tấn công hậu e2 và mã f3 cùng lúc. Ở đây con tốt h vẫn còn ở h2, nên nước chiếu bí sẽ là Qxh2# — và Trắng cũng không có hxg4 để ăn con mã g4.
+            en: The same move as after 9.h3, the c6 knight jumps into d4 and attacks the queen on e2 and the knight on f3 at once. Here the h-pawn is still on h2, so the mate would be Qxh2# — and White does not even have hxg4 to take the g4 knight.
+            fr: Le même coup qu'après 9.h3, le cavalier c6 saute en d4 et attaque la dame e2 et le cavalier f3 à la fois. Ici le pion h est encore en h2, le mat serait donc Qxh2# — et les Blancs n'ont même pas hxg4 pour prendre le cavalier g4.
+          counts:
+            legal: { count: legalReplies, expect: 42 }
+            mated: { count: matedBy, ply: 'Qxh2#', expect: 5 }
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác. {Mated} trong {legal} nước hợp lệ ở đây đưa con mã f3 đi chỗ khác và bị 10...Qxh2# chiếu bí ngay. Nước nào để hậu ở lại e2 thì mất hậu vào tay con mã d4 bằng ...Nxe2, thường kèm chiếu, đổi lấy một con mã. Nếu hậu bước đi — Qd3, Qe3, Qd1, Qe1, Qd2 hay Qc2 — thì ...Nxf3+ ăn con mã còn lại kèm chiếu, và dù Trắng ăn lại bằng tốt g, bằng hậu hay né vua sang h1, con mã g4 lùi về e5 và Đen vẫn giữ ít nhất con tốt thừa của gambit.
+              en: White plays anything else. {Mated} of the {legal} legal replies here move the f3 knight elsewhere and are mated at once by 10...Qxh2#. Any reply that leaves the queen on e2 loses it to the d4 knight with ...Nxe2, usually with check, for a knight. If the queen steps away — Qd3, Qe3, Qd1, Qe1, Qd2 or Qc2 — ...Nxf3+ takes the other knight with check, and whether White recaptures with the g-pawn or the queen or steps the king to h1, the g4 knight drops back to e5 and Black keeps at least the gambit's extra pawn.
+              fr: Les Blancs jouent autre chose. {Mated} des {legal} réponses légales ici déplacent le cavalier f3 ailleurs et sont matées aussitôt par 10...Qxh2#. Toute réponse qui laisse la dame en e2 la perd sur ...Nxe2 du cavalier d4, le plus souvent avec échec, contre un cavalier. Si la dame s'écarte — Qd3, Qe3, Qd1, Qe1, Qd2 ou Qc2 — ...Nxf3+ prend l'autre cavalier avec échec, et que les Blancs reprennent du pion g ou de la dame, ou glissent le roi en h1, le cavalier g4 recule en e5 et les Noirs conservent au moins le pion de plus du gambit.
+          children:
+            - ply: Nxd4
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: Trắng ăn con mã đang tấn công hậu, và con mã f3 rời khỏi ô canh h2 đúng như cái bẫy mong đợi. Với con tốt vẫn còn ở h2, nước chiếu bí là một nước ăn — và cũng do máy chứng minh.
+                en: White takes the knight that is attacking the queen, and the f3 knight leaves its guard on h2 exactly as the trap intends. With the pawn still on h2 the mate is a capture — and it is proved by machine like the others.
+                fr: Les Blancs prennent le cavalier qui attaque la dame, et le cavalier f3 quitte sa garde de h2 exactement comme le piège l'entend. Le pion étant encore en h2, le mat est une prise — et il est prouvé par la machine comme les autres.
+              outcome:
+                type: trap
