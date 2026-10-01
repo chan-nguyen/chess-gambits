@@ -1,0 +1,68 @@
+# Latvian Gambit: Mayet Attack, Polerio-Svedenborg Variation. Frozen defining line 1.e4 e5
+# 2.Nf3 f5 3.Bc4 fxe4 4.Nxe5 d5 ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'latvian-gambit-mayet-attack-polerio-svedenborg-variation'
+name: 'Latvian Gambit: Mayet Attack, Polerio-Svedenborg Variation'
+eco: 'C40'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'f5'
+  - 'Bc4'
+  - 'fxe4'
+  - 'Nxe5'
+  - 'd5'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, seven each, but Black's king still stands on e8 with the f7 pawn gone, so White has two checks, Bb5+ and Qh5+. Black's d5 pawn attacks the bishop on c4, yet the knight on e5 defends it and the checks come first, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 4...d5, tấn công tượng c4, quân được mã e5 bảo vệ. Số tốt hai bên bằng nhau, mỗi bên bảy, và tốt f7 đã mất, nên Trắng có các nước chiếu Bb5+ và Qh5+.'
+    en: 'Black has just played 4...d5, attacking the bishop on c4, which the knight on e5 defends. The pawns are level, seven each, and the f7 pawn is gone, so White has the checks Bb5+ and Qh5+.'
+    fr: 'Les Noirs viennent de jouer 4...d5, attaquant le fou c4, que le cavalier e5 défend. Les pions sont à égalité, sept de chaque côté, et le pion f7 a disparu, donc les Blancs ont les échecs Bb5+ et Qh5+.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 5.Bb5+ ở đây, chẳng hạn 5.Qh5+. Mục này đi theo nước tượng chiếu, cũng đưa tượng ra khỏi tầm của tốt d5.'
+      en: "White plays something other than 5.Bb5+ here, for instance 5.Qh5+. This entry follows the bishop check, which also takes the bishop out of the d5 pawn's reach."
+      fr: "Les Blancs jouent autre chose que 5.Bb5+ ici, par exemple 5.Qh5+. Cette entrée suit l'échec du fou, qui met aussi le fou hors de portée du pion d5."
+  children:
+    - ply: 'Bb5+'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng chiếu bằng tượng, đồng thời đưa tượng ra khỏi tầm của tốt d5. Đen phải chặn nước chiếu hoặc đi vua.'
+        en: "White gives check with the bishop, which also takes the bishop out of the d5 pawn's reach. Black has to block the check or move the king."
+        fr: "Les Blancs donnent échec avec le fou, qui se met aussi hors de portée du pion d5. Les Noirs doivent parer l'échec ou déplacer le roi."
+      children:
+        - ply: 'Nd7'
+          annotation:
+            vi: 'Đen chặn bằng mã d7. Mã giờ bị tượng ghim vào vua, nên nó không ăn được mã e5, quân không có gì bảo vệ.'
+            en: 'Black blocks with the knight on d7. The knight is now pinned to the king by the bishop, so it cannot take the knight on e5, which nothing defends.'
+            fr: 'Les Noirs parent avec le cavalier d7. Le cavalier est maintenant cloué au roi par le fou, donc il ne peut pas prendre le cavalier e5, que rien ne défend.'
+          outcome:
+            type: 'position'
+            evaluation:
+              vi: 'Đếm tốt: mỗi bên bảy, nghĩa là con tốt đã thí đã lấy lại được. Mã d7 bị tượng b5 ghim vào vua, bị tấn công hai lần, bởi tượng và mã e5, và được bảo vệ ba lần, bởi tượng c8, hậu và vua. Trắng còn có nước chiếu Qh5+, vì tốt f7 đã mất.'
+              en: 'Count the pawns: seven each, so the sacrificed pawn has come back. The knight on d7 is pinned to the king by the bishop on b5 and is attacked twice, by the bishop and the knight on e5, and defended three times, by the bishop on c8, the queen and the king. White also has the check Qh5+, since the f7 pawn is gone.'
+              fr: "Comptez les pions : sept de chaque côté, donc le pion sacrifié est revenu. Le cavalier d7 est cloué au roi par le fou b5 et est attaqué deux fois, par le fou et le cavalier e5, et défendu trois fois, par le fou c8, la dame et le roi. Les Blancs ont aussi l'échec Qh5+, puisque le pion f7 a disparu."
+            plan:
+              vi: 'Trắng ăn mã d7 bằng Nxd7 và, sau khi bị ăn lại, chiếu bằng Qh5+. Đen gỡ thế ghim bằng ...c6, tấn công tượng, và phát triển bằng ...Ngf6.'
+              en: 'White takes the knight on d7 with Nxd7 and, after the recapture, checks with Qh5+. Black unpins with ...c6, attacking the bishop, and develops with ...Ngf6.'
+              fr: 'Les Blancs prennent le cavalier d7 par Nxd7 et, après la reprise, donnent échec par Qh5+. Les Noirs rompent le clouage par ...c6, attaquant le fou, et se développent par ...Ngf6.'
+            basis:
+              by: 'chan'
+              at: '2026-10-01'

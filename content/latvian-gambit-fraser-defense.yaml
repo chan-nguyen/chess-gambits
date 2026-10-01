@@ -1,0 +1,65 @@
+# Latvian Gambit: Fraser Defense. Frozen defining line 1.e4 e5 2.Nf3 f5 3.Nxe5 Nc6 ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Part of
+# batch t of round 4 (#182). Every ply below was replayed with chess.js before it was
+# annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: 'latvian-gambit-fraser-defense'
+name: 'Latvian Gambit: Fraser Defense'
+eco: 'C40'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'f5'
+  - 'Nxe5'
+  - 'Nc6'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line Black has given the e5 pawn, so White has eight pawns to Black's seven. The knight on c6 attacks the knight on e5, which nothing defends, but White can simply trade on c6 or support the knight with d4, and Black has nothing else to show for the pawn, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Nc6, tấn công mã e5, quân không có gì bảo vệ. Trắng có tám tốt, Đen bảy tốt, vì tốt e5 đã mất. Tốt e4 của Trắng bị tốt f5 tấn công và cũng không có gì bảo vệ.'
+    en: "Black has just played 3...Nc6, attacking the knight on e5, which nothing defends. White has eight pawns to Black's seven, since the pawn on e5 has gone. The pawn on e4 is attacked by the f5 pawn and nothing defends it either."
+    fr: 'Les Noirs viennent de jouer 3...Nc6, attaquant le cavalier e5, que rien ne défend. Les Blancs ont huit pions contre sept aux Noirs, puisque le pion e5 a disparu. Le pion e4 est attaqué par le pion f5 et rien ne le défend non plus.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 4.Nxc6 ở đây, chẳng hạn 4.d4, bảo vệ mã bằng một tốt. Mục này đi theo nước ăn mã c6.'
+      en: 'White plays something other than 4.Nxc6 here, for instance 4.d4, defending the knight with a pawn. This entry follows the capture of the knight on c6.'
+      fr: 'Les Blancs jouent autre chose que 4.Nxc6 ici, par exemple 4.d4, défendant le cavalier avec un pion. Cette entrée suit la capture du cavalier c6.'
+  children:
+    - ply: 'Nxc6'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn mã c6, quân mà chỉ các tốt b7 và d7 mới ăn lại được.'
+        en: 'White takes the knight on c6, which only the b7 and d7 pawns can retake.'
+        fr: 'Les Blancs prennent le cavalier c6, que seuls les pions b7 et d7 peuvent reprendre.'
+      children:
+        - ply: 'dxc6'
+          annotation:
+            vi: 'Đen ăn lại bằng tốt d, làm các tốt c của Đen bị chồng, ở c6 và c7, và mở cột d cho hậu.'
+            en: "Black retakes with the d-pawn, which doubles Black's c-pawns, on c6 and c7, and opens the d-file for the queen."
+            fr: 'Les Noirs reprennent avec le pion d, ce qui double les pions c noirs, en c6 et c7, et ouvre la colonne d pour la dame.'
+          outcome:
+            type: 'position'
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nghĩa là con tốt đã thí chưa lấy lại được, và các tốt c của Đen bị chồng, ở c6 và c7. Tốt e4 bị tốt f5 tấn công và không có gì bảo vệ, và Trắng có nước chiếu Qh5+.'
+              en: "Count the pawns: White eight, Black seven, so the sacrificed pawn has not come back, and Black's c-pawns are doubled, on c6 and c7. The pawn on e4 is attacked by the f5 pawn and nothing defends it, and White has the check Qh5+."
+              fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc le pion sacrifié n'est pas revenu, et les pions c noirs sont doublés, en c6 et c7. Le pion e4 est attaqué par le pion f5 et rien ne le défend, et les Blancs ont l'échec Qh5+."
+            plan:
+              vi: 'Trắng bảo vệ tốt e4 bằng Nc3 và phát triển bằng Be2. Đen tăng sức ép lên e4 bằng ...Nf6 và phát triển bằng ...Be6.'
+              en: 'White defends the e4 pawn with Nc3 and develops with Be2. Black adds pressure on e4 with ...Nf6 and develops with ...Be6.'
+              fr: 'Les Blancs défendent le pion e4 par Nc3 et se développent par Be2. Les Noirs augmentent la pression sur e4 par ...Nf6 et se développent par ...Be6.'
+            basis:
+              by: 'chan'
+              at: '2026-10-01'
