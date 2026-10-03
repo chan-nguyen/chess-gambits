@@ -1,0 +1,61 @@
+# Caro-Kann Defense: Maróczy Variation, Maróczy Gambit. Defining line 1.e4 c6 2.d4 d5 3.f3
+# dxe4 4.fxe4 e5 5.Nf3 exd4 6.Bc4, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: caro-kann-defense-maroczy-variation-maroczy-gambit
+name: 'Caro-Kann Defense: Maróczy Variation, Maróczy Gambit'
+eco: B12
+category: gambit
+side: white
+definingLine: [e4, c6, d4, d5, f3, dxe4, fxe4, e5, Nf3, exd4, Bc4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, six pawns against
+      seven, and the e-pawn is isolated. Black's d4 pawn is attacked twice and defended
+      once, and the bishop on c4 attacks f7, which only the king defends, so White has real
+      targets, but the extra pawn is still Black's, which is why the entry is rated dubious.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Bc4, và số tốt là Trắng sáu, Đen bảy, trong đó tốt e của Trắng bị cô lập. Tốt d4 của Đen bị tấn công hai lần, bởi mã f3 và hậu d1, và được bảo vệ một lần, bởi hậu d8, còn tượng c4 tấn công f7, ô chỉ có vua bảo vệ.
+    en: White has just played 6.Bc4, and the pawn count is White six, Black seven, with White's e-pawn isolated. Black's d4 pawn is attacked twice, by the knight on f3 and the queen on d1, and defended once, by the queen on d8, and the bishop on c4 attacks f7, which only the king defends.
+    fr: Les Blancs viennent de jouer 6.Bc4, et le compte des pions est de six pour les Blancs, sept pour les Noirs, le pion e blanc étant isolé. Le pion d4 noir est attaqué deux fois, par le cavalier f3 et la dame d1, et défendu une fois, par la dame d8, et le fou c4 attaque f7, que seul le roi défend.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 6...Nf6 ở đây, chẳng hạn 6...Nd7 hoặc 6...b5. Mục này chỉ mô hình hóa 6...Nf6 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: dùng tượng c4 và các đường mở để bù cho con tốt.'
+      en: "Black plays something other than 6...Nf6 here, for instance 6...Nd7 or 6...b5. This entry models only 6...Nf6 and does not analyse those moves; White's task usually stays the same: use the bishop on c4 and the open lines to make up for the pawn."
+      fr: "Les Noirs jouent autre chose que 6...Nf6 ici, par exemple 6...Nd7 ou 6...b5. Cette entrée ne modélise que 6...Nf6 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : utiliser le fou c4 et les lignes ouvertes pour compenser le pion."
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển 6...Nf6, tấn công tốt e4, con tốt không được quân nào bảo vệ.
+        en: Black develops with 6...Nf6, attacking the e4 pawn, which nothing defends.
+        fr: Les Noirs se développent par 6...Nf6, attaquant le pion e4, que rien ne défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng kém một tốt, và tốt e của Trắng bị cô lập. Cả hai bên đều có một con tốt hở: tốt e4 bị mã f6 tấn công mà không được quân nào bảo vệ, còn tốt d4 bị tấn công hai lần, bởi mã f3 và hậu d1, và được bảo vệ một lần, bởi hậu d8. Tượng c4 tấn công f7, ô chỉ có vua bảo vệ.'
+          en: "Count the pawns: White six, Black seven, so White is a pawn down, and White's e-pawn is isolated. Both sides have a loose pawn: the e4 pawn is attacked by the knight on f6 and defended by nothing, and the d4 pawn is attacked twice, by the knight on f3 and the queen on d1, and defended once, by the queen on d8. The bishop on c4 attacks f7, which only the king defends."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de moins, et le pion e blanc est isolé. Chaque camp a un pion en l'air : le pion e4 est attaqué par le cavalier f6 et n'est défendu par aucune pièce, et le pion d4 est attaqué deux fois, par le cavalier f3 et la dame d1, et défendu une fois, par la dame d8. Le fou c4 attaque f7, que seul le roi défend."
+        plan:
+          vi: Trắng chơi e5 để tấn công mã f6 và O-O để đưa vua vào nơi an toàn. Đen chơi ...Nbd7 và ...Nb6 để đánh vào tượng c4, rồi ...Be6.
+          en: White plays e5 to attack the knight on f6 and O-O to bring the king to safety. Black plays ...Nbd7 and ...Nb6 to hit the bishop on c4, then ...Be6.
+          fr: Les Blancs jouent e5 pour attaquer le cavalier f6 et O-O pour mettre le roi à l'abri. Les Noirs jouent ...Nbd7 et ...Nb6 pour frapper le fou c4, puis ...Be6.
+        basis:
+          by: chan
+          at: 2026-10-01

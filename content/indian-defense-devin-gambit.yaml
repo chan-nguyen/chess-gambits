@@ -1,0 +1,59 @@
+# Indian Defense: Devin Gambit. Defining line 1.d4 Nf6 2.c4 e6 3.g4, which ends on White's
+# own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-devin-gambit
+name: 'Indian Defense: Devin Gambit'
+eco: E00
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, e6, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 3.g4 puts a pawn on a square that the f6 knight attacks and that no White
+      piece defends, so Black simply takes it, and nothing White has attacks the capturing
+      knight afterwards. The pawn is not regained by force, so the label is unsound. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.g4, hiến tốt g. Tốt g4 bị mã f6 tấn công và không có quân Trắng nào bảo vệ.
+    en: White has just played 3.g4, offering the g-pawn. The g4 pawn is attacked by the knight on f6 and no White piece defends it.
+    fr: Les Blancs viennent de jouer 3.g4, offrant le pion g. Le pion g4 est attaqué par le cavalier f6 et aucune pièce blanche ne le défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 3...Nxg4 ở đây. Mục này chỉ đi theo 3...Nxg4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 3...Nxg4 here. This entry follows 3...Nxg4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 3...Nxg4 ici. Cette entrée ne suit que 3...Nxg4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nxg4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 3...Nxg4. Không có quân Trắng nào tấn công con mã, còn mã thì tấn công các tốt f2 và h2, do vua và xe bảo vệ.
+        en: Black takes the pawn with 3...Nxg4. No White piece attacks the knight, and the knight attacks the pawns on f2 and h2, which the king and the rook defend.
+        fr: Les Noirs prennent le pion par 3...Nxg4. Aucune pièce blanche n'attaque le cavalier, et le cavalier attaque les pions f2 et h2, que le roi et la tour défendent.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt và chưa lấy lại được gì. Cột g nửa mở cho xe Trắng vì Trắng không còn tốt g, nhưng mã Đen trên g4 chắn cột đó phía trước tốt g7, được tượng f8 bảo vệ.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down and has regained nothing. The g-file is half open for White's rooks, since White has no g-pawn, but the black knight on g4 blocks it in front of the g7 pawn, which the bishop on f8 defends."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins et n'ont rien regagné. La colonne g est semi-ouverte pour les tours blanches, puisque les Blancs n'ont plus de pion g, mais le cavalier noir g4 la barre devant le pion g7, que le fou f8 défend."
+        plan:
+          vi: Trắng đuổi mã bằng h3 và dựng trung tâm bằng Nc3 và e4. Đen lui mã bằng ...Nf6, rồi phát triển bằng ...d5 và ...Bb4+, giữ tốt hơn.
+          en: White chases the knight with h3 and builds a centre with Nc3 and e4. Black retreats the knight with ...Nf6, then develops with ...d5 and ...Bb4+, keeping the extra pawn.
+          fr: Les Blancs chassent le cavalier par h3 et construisent un centre par Nc3 et e4. Les Noirs replient le cavalier par ...Nf6, puis se développent par ...d5 et ...Bb4+, en gardant le pion en plus.
+        basis:
+          by: chan
+          at: 2026-10-01

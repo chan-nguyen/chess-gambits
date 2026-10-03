@@ -1,0 +1,59 @@
+# King's Pawn Game: Clam Variation, Radisch Gambit. Frozen defining line 1.e4 e5 2.d3 Nf6 3.f4
+# Bc5 ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch t of round 4 (#182). Every ply below was replayed with chess.js before it was
+# annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: 'kings-pawn-game-clam-variation-radisch-gambit'
+name: "King's Pawn Game: Clam Variation, Radisch Gambit"
+eco: 'C20'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'd3'
+  - 'Nf6'
+  - 'f4'
+  - 'Bc5'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, eight each, and Black's pawn on e5 is attacked by the f4 pawn with nothing defending it, so White can win a pawn at once. Black's counters on the board are the bishop on c5 aiming at the knight on g1, which the rook on h1 defends, and the knight on f6 attacking the pawn on e4, which the d3 pawn defends, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Bc5, nhắm vào mã g1. Số tốt hai bên bằng nhau, mỗi bên tám. Tốt e5 của Đen bị tốt f4 tấn công và không có gì bảo vệ, còn tốt e4 của Trắng bị mã f6 tấn công và được tốt d3 bảo vệ.'
+    en: "Black has just played 3...Bc5, aiming at the knight on g1. The pawns are level, eight each. Black's pawn on e5 is attacked by the f4 pawn and nothing defends it, and White's pawn on e4 is attacked by the knight on f6 and defended by the d3 pawn."
+    fr: 'Les Noirs viennent de jouer 3...Bc5, visant le cavalier g1. Les pions sont à égalité, huit de chaque côté. Le pion e5 des Noirs est attaqué par le pion f4 et rien ne le défend, et le pion e4 des Blancs est attaqué par le cavalier f6 et défendu par le pion d3.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 4.fxe5 ở đây, chẳng hạn 4.Nc3, giữ nguyên thế căng. Mục này đi theo nước ăn tốt e5.'
+      en: 'White plays something other than 4.fxe5 here, for instance 4.Nc3, which keeps the tension. This entry follows the capture of the pawn on e5.'
+      fr: 'Les Blancs jouent autre chose que 4.fxe5 ici, par exemple 4.Nc3, qui maintient la tension. Cette entrée suit la capture du pion e5.'
+  children:
+    - ply: 'fxe5'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn tốt e5 bằng tốt f, thắng một tốt và để các tốt e của chính mình bị chồng, ở e4 và e5. Tốt e5 tấn công mã f6.'
+        en: "White takes the pawn on e5 with the f-pawn, winning a pawn and leaving White's own e-pawns doubled, on e4 and e5. The pawn on e5 attacks the knight on f6."
+        fr: 'Les Blancs prennent le pion e5 avec le pion f, gagnant un pion et laissant leurs propres pions e doublés, en e4 et e5. Le pion e5 attaque le cavalier f6.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nghĩa là con tốt đã thí chưa lấy lại được, và các tốt e của Trắng bị chồng, ở e4 và e5. Mã f6 bị tốt e5 tấn công và được hậu cùng tốt g7 bảo vệ, còn mã g1 của Trắng bị tượng c5 tấn công và được xe h1 bảo vệ. Bxg1 sẽ đổi tượng lấy mã, còn Nxe4 sẽ mất một mã lấy một tốt, với ý đồ ...Qh4+.'
+          en: "Count the pawns: White eight, Black seven, so the sacrificed pawn has not come back, and White's e-pawns are doubled, on e4 and e5. The knight on f6 is attacked by the e5 pawn and defended by the queen and the g7 pawn, and White's knight on g1 is attacked by the bishop on c5 and defended by the rook on h1. Bxg1 would trade the bishop for the knight, and Nxe4 would give a knight for a pawn, with ...Qh4+ as the point."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc le pion sacrifié n'est pas revenu, et les pions e blancs sont doublés, en e4 et e5. Le cavalier f6 est attaqué par le pion e5 et défendu par la dame et le pion g7, et le cavalier g1 des Blancs est attaqué par le fou c5 et défendu par la tour h1. Bxg1 échangerait le fou contre le cavalier, et Nxe4 donnerait un cavalier pour un pion, avec ...Qh4+ comme idée."
+        plan:
+          vi: 'Trắng đáp lại việc ăn ở e4 bằng Qg4 và nếu không thì phát triển bằng Nf3 và Nc3. Đen có thể ăn tốt bằng ...Nxe4, hoặc lùi mã.'
+          en: 'White meets the capture on e4 with Qg4 and otherwise develops with Nf3 and Nc3. Black can take the pawn with ...Nxe4, or retreat the knight.'
+          fr: 'Les Blancs répondent à la prise en e4 par Qg4 et sinon se développent par Nf3 et Nc3. Les Noirs peuvent prendre le pion par ...Nxe4, ou replier le cavalier.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

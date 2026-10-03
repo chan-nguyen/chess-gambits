@@ -1,0 +1,58 @@
+# Van Geet Opening: Tübingen Gambit. Frozen defining line 1.Nc3 Nf6 2.g4, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through the reply Nxg4; searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: van-geet-opening-tubingen-gambit
+name: 'Van Geet Opening: Tübingen Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [Nc3, Nf6, g4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the g4 pawn is attacked by the knight on f6 and nothing defends it, so Black can take it
+      for free; White would then be a pawn down and has not been shown to get more in return
+      than a half-open g-file. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 2.g4, đẩy tốt g ra g4. Tốt g4 bị mã f6 của Đen tấn công mà không có quân nào bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Đen ăn tốt, 2...Nxg4.'
+    en: "White has just played 2.g4, pushing the g-pawn to g4. The g4 pawn is attacked by Black's knight on f6 and nothing defends it. The pawn count is level, eight each. This entry follows Black taking the pawn with 2...Nxg4."
+    fr: 'Les Blancs viennent de jouer 2.g4, poussant le pion g en g4. Le pion g4 est attaqué par le cavalier f6 noir sans être défendu. Le compte des pions est égal, huit chacun. Cette entrée suit la prise du pion par les Noirs, 2...Nxg4.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 2...Nxg4, nên tốt g4 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 2...Nxg4 here, so the g4 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 2...Nxg4 ici, si bien que le pion g4 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: Nxg4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt g4 bằng mã. Mã g4 không có quân bảo vệ, nhưng chưa quân Trắng nào tấn công được nó, và nó đang tấn công các tốt f2 và h2.'
+        en: "Black takes the g4 pawn with the knight. The knight on g4 is undefended, but none of White's pieces attacks it yet, and it attacks the f2 and h2 pawns."
+        fr: "Les Noirs prennent le pion g4 avec le cavalier. Le cavalier g4 n'est pas défendu, mais aucune pièce blanche ne l'attaque encore, et il attaque les pions f2 et h2."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt. Trắng không còn tốt g, nên cột g là cột nửa mở của Trắng, nhắm vào tốt g7, vốn được tượng f8 bảo vệ. Mã g4 không được bảo vệ và có thể bị tấn công ngay bằng h3.'
+          en: 'Count the pawns: White seven, Black eight, so White is a pawn down. White has no g-pawn, so the g-file is half-open for White and points at the g7 pawn, which the bishop on f8 defends. The knight on g4 is undefended and can be attacked at once with h3.'
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion de moins. Les Blancs n'ont plus de pion g, si bien que la colonne g est semi-ouverte pour eux et pointe sur le pion g7, que défend le fou f8. Le cavalier g4 n'est pas défendu et peut être attaqué tout de suite par h3."
+        plan:
+          vi: 'Trắng chơi h3 để đuổi mã, rồi e4 và d4 chiếm trung tâm, phát triển bằng Bg2 và Nf3. Đen đáp lại bằng cách rút mã về ...Nf6, rồi xây dựng bằng ...d5 và ...e5.'
+          en: 'White plays h3 to hit the knight, then e4 and d4 to take the centre, developing with Bg2 and Nf3. Black answers by retreating the knight with ...Nf6, then builds with ...d5 and ...e5.'
+          fr: 'Les Blancs jouent h3 pour attaquer le cavalier, puis e4 et d4 pour prendre le centre, se développant par Bg2 et Nf3. Les Noirs répondent en retirant le cavalier par ...Nf6, puis construisent par ...d5 et ...e5.'
+        basis:
+          by: chan
+          at: '2026-10-01'

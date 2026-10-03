@@ -1,0 +1,62 @@
+# Caro-Kann Defense: Spike Variation, Scorpion-Grob Gambit. Defining line 1.e4 c6 2.g4 d5
+# 3.Nc3 dxe4 4.d3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: caro-kann-defense-spike-variation-scorpion-grob-gambit
+name: 'Caro-Kann Defense: Spike Variation, Scorpion-Grob Gambit'
+eco: B10
+category: gambit
+side: white
+definingLine: [e4, c6, g4, d5, Nc3, dxe4, d3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns against
+      eight, and the pawn on e4 is attacked twice and defended by nothing, so Black takes on
+      d3 with it, after which White recovers one pawn there. The g4 pawn pushed on move two is
+      attacked by the bishop on c8 and defended only by the queen, so it is a second target,
+      which is why the entry is rated unsound. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.d3, nên số tốt là Trắng bảy, Đen tám. Tốt e4 bị tấn công hai lần, bởi mã c3 và tốt d3, và không được quân nào bảo vệ, còn tốt g4 bị tượng c8 tấn công và được hậu d1 bảo vệ.
+    en: White has just played 4.d3, so the pawn count is White seven, Black eight. The pawn on e4 is attacked twice, by the knight on c3 and the pawn on d3, and defended by nothing, while the pawn on g4 is attacked by the bishop on c8 and defended by the queen on d1.
+    fr: Les Blancs viennent de jouer 4.d3, de sorte que le compte des pions est de sept pour les Blancs, huit pour les Noirs. Le pion e4 est attaqué deux fois, par le cavalier c3 et le pion d3, et n'est défendu par aucune pièce, tandis que le pion g4 est attaqué par le fou c8 et défendu par la dame d1.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 4...exd3 ở đây, chẳng hạn 4...Nf6 hoặc 4...g6. Mục này chỉ mô hình hóa 4...exd3 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: lấy lại con tốt và giữ cho tốt g4 được bảo vệ.'
+      en: "Black plays something other than 4...exd3 here, for instance 4...Nf6 or 4...g6. This entry models only 4...exd3 and does not analyse those moves; White's task usually stays the same: win the pawn back and keep the g4 pawn defended."
+      fr: "Les Noirs jouent autre chose que 4...exd3 ici, par exemple 4...Nf6 ou 4...g6. Cette entrée ne modélise que 4...exd3 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : regagner le pion et garder le pion g4 défendu."
+  children:
+    - ply: exd3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 4...exd3. Tốt d3 bị tấn công ba lần, bởi tốt c2, hậu d1 và tượng f1, và được bảo vệ một lần, bởi hậu d8.
+        en: Black takes the pawn with 4...exd3. The pawn on d3 is attacked three times, by the pawn on c2, the queen on d1 and the bishop on f1, and defended once, by the queen on d8.
+        fr: Les Noirs prennent le pion par 4...exd3. Le pion d3 est attaqué trois fois, par le pion c2, la dame d1 et le fou f1, et défendu une fois, par la dame d8.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, nên Trắng đang kém hai tốt trên bàn, nhưng tốt d3 bị tấn công ba lần và chỉ được bảo vệ một lần, nên Trắng ăn lại ngay và số tốt thành sáu so với bảy. Tốt g4 bị tượng c8 tấn công và được hậu d1 bảo vệ.'
+          en: 'Count the pawns: White six, Black eight, so White is two pawns down on the board, but the pawn on d3 is attacked three times and defended once, so White takes it back at once and the count becomes six against seven. The pawn on g4 is attacked by the bishop on c8 and defended by the queen on d1.'
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, donc les Blancs ont deux pions de moins sur l'échiquier, mais le pion d3 est attaqué trois fois et défendu une fois, de sorte que les Blancs le reprennent aussitôt et que le compte devient six contre sept. Le pion g4 est attaqué par le fou c8 et défendu par la dame d1."
+        plan:
+          vi: Trắng ăn lại bằng Bxd3, rồi chơi h3 để bảo vệ tốt g4 và phát triển bằng Nf3. Đen chơi ...Nf6 để tấn công tốt g4 lần thứ hai, rồi ...Nbd7 và ...e5.
+          en: White recaptures with Bxd3, then plays h3 to support the g4 pawn and develops with Nf3. Black plays ...Nf6 to attack the g4 pawn a second time, then ...Nbd7 and ...e5.
+          fr: Les Blancs reprennent par Bxd3, puis jouent h3 pour soutenir le pion g4 et se développent par Nf3. Les Noirs jouent ...Nf6 pour attaquer le pion g4 une seconde fois, puis ...Nbd7 et ...e5.
+        basis:
+          by: chan
+          at: 2026-10-01

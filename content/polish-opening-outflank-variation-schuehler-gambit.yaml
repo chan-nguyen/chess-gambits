@@ -1,0 +1,60 @@
+# Polish Opening: Outflank Variation, Schuehler Gambit. Frozen defining line 1.b4 c6 2.Bb2
+# a5 3.b5, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply cxb5;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: polish-opening-outflank-variation-schuehler-gambit
+name: 'Polish Opening: Outflank Variation, Schuehler Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [b4, c6, Bb2, a5, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, and
+      the b5 pawn is attacked by the c6 pawn with nothing to defend it; Black can simply take
+      it, after which White is a pawn down with an isolated a-pawn and has not been shown to
+      get more in return than the chance to open the f1 bishop with e4. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 3.b5, đẩy tốt b lên b5. Tốt b5 bị tốt c6 của Đen tấn công mà không có quân nào bảo vệ, còn tốt c6 bị tốt b5 tấn công và được mã b8 và các tốt b7 và d7 bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Đen ăn 3...cxb5.'
+    en: "White has just played 3.b5, pushing the b-pawn to b5. The b5 pawn is attacked by Black's c6 pawn and nothing defends it, while the c6 pawn is attacked by the b5 pawn and defended by the knight on b8 and the b7 and d7 pawns. The pawn count is level, eight each. This entry follows Black capturing 3...cxb5."
+    fr: 'Les Blancs viennent de jouer 3.b5, poussant le pion b en b5. Le pion b5 est attaqué par le pion c6 noir sans être défendu, tandis que le pion c6 est attaqué par le pion b5 et défendu par le cavalier b8 et par les pions b7 et d7. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 3...cxb5 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 3...cxb5, nên tốt b5 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 3...cxb5 here, so the b5 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 3...cxb5 ici, si bien que le pion b5 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: cxb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b5 bằng tốt c. Tốt b5 mới không có quân bảo vệ, nhưng chưa quân Trắng nào tấn công được nó vì tượng f1 bị tốt e2 chặn.'
+        en: "Black takes the b5 pawn with the c-pawn. The new pawn on b5 has no defender, but none of White's pieces attacks it yet, because the bishop on f1 is shut in by the e2 pawn."
+        fr: "Les Noirs prennent le pion b5 avec le pion c. Le nouveau pion b5 n'a pas de défenseur, mais aucune pièce blanche ne l'attaque encore, parce que le fou f1 est enfermé par le pion e2."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt thí chưa lấy lại được. Tốt b5 của Đen không có quân bảo vệ, nhưng chưa quân Trắng nào tấn công được nó vì tượng f1 bị tốt e2 chặn. Đen có hai tốt chồng ở b7 và b5, còn tốt a của Trắng bị cô lập vì Trắng không còn tốt b.'
+          en: "Count the pawns: White seven, Black eight, so the gambit pawn has not come back. Black's b5 pawn has no defender, but none of White's pieces attacks it yet, because the bishop on f1 is shut in by the e2 pawn. Black has doubled pawns on b7 and b5, and White's a-pawn is isolated, since no White pawn is left on the b-file."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion du gambit n'est pas revenu. Le pion b5 noir n'a pas de défenseur, mais aucune pièce blanche ne l'attaque encore, parce que le fou f1 est enfermé par le pion e2. Les Noirs ont des pions doublés en b7 et en b5, et le pion a blanc est isolé, puisqu'il ne reste aucun pion blanc sur la colonne b."
+        plan:
+          vi: 'Trắng chơi e4 để mở đường chéo cho tượng f1 nhắm vào tốt b5, rồi a3 và Nf3. Đen phát triển bằng ...Nf6, ...e6 và ...Be7, và đáp lại việc mở đường chéo của tượng bằng ...b4.'
+          en: "White plays e4 to open the diagonal of the bishop on f1 against the b5 pawn, then a3 and Nf3. Black develops with ...Nf6, ...e6 and ...Be7, and answers the opening of the bishop's diagonal with ...b4."
+          fr: "Les Blancs jouent e4 pour ouvrir au fou f1 la diagonale contre le pion b5, puis a3 et Nf3. Les Noirs se développent par ...Nf6, ...e6 et ...Be7, et répondent à l'ouverture de la diagonale du fou par ...b4."
+        basis:
+          by: chan
+          at: '2026-10-01'

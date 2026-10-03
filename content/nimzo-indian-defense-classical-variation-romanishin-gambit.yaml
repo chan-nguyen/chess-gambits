@@ -1,0 +1,60 @@
+# Nimzo-Indian Defense: Classical Variation, Romanishin Gambit. Defining line 1.d4 Nf6 2.c4
+# e6 3.Nc3 Bb4 4.Qc2 d5 5.a3 Bxc3+ 6.Qxc3 c5, which ends on Black's own ply, so the root is
+# an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: nimzo-indian-defense-classical-variation-romanishin-gambit
+name: 'Nimzo-Indian Defense: Classical Variation, Romanishin Gambit'
+eco: E36
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nc3, Bb4, Qc2, d5, a3, Bxc3+, Qxc3, c5]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 6...c5 attacks the d4 pawn and leaves the c5 pawn undefended, so White
+      can take it with 7.dxc5, but that would leave White with doubled c-pawns, and the d5
+      pawn attacks the c4 pawn at once. The pawn is therefore not hard to win back, which is
+      why the label is sound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 6...c5, tấn công tốt d4. Không có quân nào bảo vệ tốt c5, nên Trắng có thể ăn bằng 7.dxc5, nhưng khi đó các tốt Trắng ở c4 và c5 sẽ bị chồng.
+    en: Black has just played 6...c5, attacking the d4 pawn. Nothing defends the c5 pawn, so White can take it with 7.dxc5, but that would leave White's pawns on c4 and c5 doubled.
+    fr: Les Noirs viennent de jouer 6...c5, attaquant le pion d4. Rien ne défend le pion c5, si bien que les Blancs peuvent le prendre par 7.dxc5, mais leurs pions c4 et c5 seraient alors doublés.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 7.dxc5 ở đây. Mục này chỉ đi theo 7.dxc5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 7.dxc5 here. This entry follows 7.dxc5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 7.dxc5 ici. Cette entrée ne suit que 7.dxc5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxc5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 7.dxc5. Các tốt Trắng ở c4 và c5 giờ bị chồng, và tốt c4 bị tốt d5 tấn công, được hậu c3 bảo vệ.
+        en: White takes the pawn with 7.dxc5. White's pawns on c4 and c5 are now doubled, and the c4 pawn is attacked by the d5 pawn and defended by the queen on c3.
+        fr: Les Blancs prennent le pion par 7.dxc5. Les pions blancs c4 et c5 sont maintenant doublés, et le pion c4 est attaqué par le pion d5 et défendu par la dame c3.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng tạm giữ tốt hơn, nhưng đổi lại các tốt c4 và c5 bị chồng. Trắng có cặp tượng, c1 và f1, còn Đen chỉ còn một tượng ở c8 cùng hai mã.'
+          en: 'Count the pawns: White eight, Black seven, so White holds the extra pawn for now, but at the price of doubled pawns on c4 and c5. White has the bishop pair, on c1 and f1, while Black has a single bishop, on c8, and two knights.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Blancs gardent donc le pion en plus pour le moment, mais au prix de pions doublés en c4 et c5. Les Blancs ont la paire de fous, en c1 et f1, alors que les Noirs n'ont plus qu'un seul fou, en c8, et deux cavaliers."
+        plan:
+          vi: Đen nhập thành bằng ...O-O, ăn trên c4 bằng ...dxc4 và tấn công tốt trên c5 bằng ...Nbd7. Trắng phát triển bằng Nf3, rồi g3 và Bg2, nhập thành bằng O-O, và cố giữ cả hai tốt c đã tiến lên được bảo vệ.
+          en: Black castles with ...O-O, takes on c4 with ...dxc4 and attacks the pawn on c5 with ...Nbd7. White develops with Nf3, then g3 and Bg2, castles with O-O, and tries to keep both of its advanced c-pawns protected.
+          fr: Les Noirs roquent par ...O-O, prennent en c4 par ...dxc4 et attaquent le pion en c5 par ...Nbd7. Les Blancs se développent par Nf3, puis g3 et Bg2, roquent par O-O, et cherchent à garder protégés leurs deux pions c avancés.
+        basis:
+          by: chan
+          at: 2026-10-01

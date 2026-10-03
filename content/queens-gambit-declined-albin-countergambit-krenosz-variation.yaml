@@ -1,0 +1,61 @@
+# Queen's Gambit Declined: Albin Countergambit, Krenosz Variation. Defining line 1.d4 d5
+# 2.c4 e5 3.dxe5 d4 4.Nf3 Nc6 5.Nbd2 Bg4 6.h3 Bxf3 7.Nxf3 Bb4+ 8.Bd2 Qe7, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-gambit-declined-albin-countergambit-krenosz-variation
+name: "Queen's Gambit Declined: Albin Countergambit, Krenosz Variation"
+eco: D08
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4, Nf3, Nc6, Nbd2, Bg4, h3, Bxf3, Nxf3, Bb4+, Bd2, Qe7]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black is a pawn down and has traded a bishop for a knight on f3, so White
+      keeps both bishops, and the queen on e7 and the knight on c6 attack the e5 pawn, which
+      only the knight on f3 defends. It is a practical try rather than a position where
+      Black can claim an edge, so the label is dubious. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 8...Qe7, thêm quân tấn công thứ hai vào tốt e5, vốn chỉ có mã f3 bảo vệ. Hai tượng đối mặt nhau trên b4 và d2, và tượng d2 bị ghim vào vua e1.
+    en: Black has just played 8...Qe7, adding a second attacker to the e5 pawn, which only the knight on f3 defends. The bishops face each other on b4 and d2, and the bishop on d2 is pinned against the king on e1.
+    fr: Les Noirs viennent de jouer 8...Qe7, ajoutant un second attaquant sur le pion e5, que seul le cavalier f3 défend. Les deux fous se font face en b4 et d2, et le fou d2 est cloué contre le roi e1.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 9.g3 ở đây. Mục này chỉ đi theo 9.g3; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 9.g3 here. This entry follows 9.g3 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 9.g3 ici. Cette entrée ne suit que 9.g3 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: g3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi 9.g3, nhường ô g2 cho tượng f1. Tốt e5 vẫn bị tấn công hai lần và chỉ được bảo vệ một lần.
+        en: White plays 9.g3, which gives the bishop on f1 the g2 square. The e5 pawn stays attacked twice and defended once.
+        fr: Les Blancs jouent 9.g3, qui donne la case g2 au fou f1. Le pion e5 reste attaqué deux fois et défendu une seule.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nhưng tốt e5 bị hậu e7 và mã c6 tấn công mà chỉ có mã f3 bảo vệ, nên Đen có thể ăn trên e5. Trắng có cặp tượng, ở d2 và f1, so với một tượng của Đen ở b4, và tượng d2 đang bị ghim vào vua e1. Đen có thể đổi tượng ngay bằng ...Bxd2+, chấm dứt cặp tượng của Trắng.'
+          en: "Count the pawns: White eight, Black seven, but the e5 pawn is attacked by the queen on e7 and the knight on c6 and defended only by the knight on f3, so Black can take on e5. White has the bishop pair, on d2 and f1, against Black's single bishop on b4, and the bishop on d2 is pinned against the king on e1. Black can trade the bishops at once with ...Bxd2+, which would end White's bishop pair."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs, mais le pion e5 est attaqué par la dame e7 et le cavalier c6 et défendu seulement par le cavalier f3, si bien que les Noirs peuvent prendre en e5. Les Blancs ont la paire de fous, en d2 et f1, contre le seul fou noir en b4, et le fou d2 est cloué contre le roi e1. Les Noirs peuvent échanger les fous tout de suite par ...Bxd2+, ce qui mettrait fin à la paire de fous blanche.'
+        plan:
+          vi: Đen ăn trên e5 bằng ...Nxe5, hoặc nhập thành dài bằng ...O-O-O để giữ sức ép lên tốt trên e5. Trắng phát triển bằng Bg2 và nhập thành bằng O-O, và đổi tượng bị ghim bằng Bxb4 khi thuận lợi.
+          en: Black takes on e5 with ...Nxe5, or castles long with ...O-O-O to keep the pressure on the pawn on e5. White develops with Bg2 and castles with O-O, and trades the pinned bishop with Bxb4 when it suits.
+          fr: Les Noirs prennent en e5 par ...Nxe5, ou roquent côté dame par ...O-O-O pour garder la pression sur le pion en e5. Les Blancs se développent par Bg2 et roquent par O-O, et échangent le fou cloué par Bxb4 quand cela convient.
+        basis:
+          by: chan
+          at: 2026-10-01

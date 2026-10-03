@@ -1,0 +1,60 @@
+# Indian Defense: Gibbins-Weidenhagen Gambit, Stummer Gambit. Defining line 1.d4 Nf6 2.g4
+# Nxg4 3.e4 d6 4.Be2 Nf6 5.Nc3, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-gibbins-weidenhagen-gambit-stummer-gambit
+name: 'Indian Defense: Gibbins-Weidenhagen Gambit, Stummer Gambit'
+eco: A45
+category: gambit
+side: white
+definingLine: [d4, Nf6, g4, Nxg4, e4, d6, Be2, Nf6, Nc3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. White has two minor pieces out against one, and the e4 pawn is attacked
+      by the knight on f6 and defended by the knight on c3, but the g-pawn is simply gone
+      and nothing in White's camp attacks a Black piece or pawn. The label is dubious. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Nc3. Trắng đã phát triển hai quân nhẹ, Nc3 và Be2, còn Đen mới có mã f6. Tốt e4 bị mã f6 tấn công và được mã c3 bảo vệ, còn Trắng thiếu một tốt vì tốt g đã mất.
+    en: White has just played 5.Nc3. White has two minor pieces developed, Nc3 and Be2, against Black's one, the knight on f6. The e4 pawn is attacked by the f6 knight and defended by the c3 knight, and White is a pawn down because the g-pawn is gone.
+    fr: Les Blancs viennent de jouer 5.Nc3. Les Blancs ont développé deux pièces légères, Nc3 et Be2, contre une seule pour les Noirs, le cavalier f6. Le pion e4 est attaqué par le cavalier f6 et défendu par le cavalier c3, et les Blancs sont un pion en moins parce que le pion g a disparu.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 5...g6 ở đây. Mục này chỉ đi theo 5...g6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 5...g6 here. This entry follows 5...g6 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 5...g6 ici. Cette entrée ne suit que 5...g6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: g6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi 5...g6, chuẩn bị đưa tượng ra g7. Mã f6 vẫn tấn công tốt e4, còn mã c3 vẫn bảo vệ nó.
+        en: Black plays 5...g6, preparing to put the bishop on g7. The f6 knight still attacks the e4 pawn, and the c3 knight still defends it.
+        fr: Les Noirs jouent 5...g6, préparant la sortie du fou en g7. Le cavalier f6 attaque toujours le pion e4, et le cavalier c3 le défend toujours.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt. Trắng có hai quân đã phát triển so với một của Đen, và tốt e4 bị tấn công một lần, bởi mã f6, cũng được bảo vệ một lần, bởi mã c3. Cột g nửa mở cho xe Trắng, nhưng tốt g6 mà nó nhắm tới được các tốt f7 và h7 bảo vệ.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. White has two pieces developed against one, and the e4 pawn is attacked once, by the knight on f6, and defended once, by the knight on c3. The g-file is half open for White's rooks, but the g6 pawn it points at is defended by the f7 and h7 pawns."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Les Blancs ont deux pièces développées contre une, et le pion e4 est attaqué une fois, par le cavalier f6, et défendu une fois, par le cavalier c3. La colonne g est semi-ouverte pour les tours blanches, mais le pion g6 qu'elle vise est défendu par les pions f7 et h7."
+        plan:
+          vi: Trắng phát triển bằng Be3 và Qd2, nhập thành dài bằng O-O-O, rồi đẩy tốt h lên đánh tốt g6. Đen chơi ...Bg7 và ...O-O, rồi thách thức trung tâm bằng ...c5 hoặc ...e5.
+          en: White develops with Be3 and Qd2, castles long with O-O-O, then pushes the h-pawn against the g6 pawn. Black plays ...Bg7 and ...O-O, then challenges the centre with ...c5 or ...e5.
+          fr: Les Blancs se développent par Be3 et Qd2, roquent côté dame par O-O-O, puis poussent le pion h contre le pion g6. Les Noirs jouent ...Bg7 et ...O-O, puis défient le centre par ...c5 ou ...e5.
+        basis:
+          by: chan
+          at: 2026-10-01

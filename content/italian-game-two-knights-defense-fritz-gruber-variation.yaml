@@ -1,0 +1,63 @@
+# Italian Game, Two Knights Defense, Fritz, Gruber Variation. Frozen defining line 1.e4 e5
+# 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Nd4 6.c3 b5 7.Bf1 Nxd5 8.Ne4, which ends on White's
+# ply; the learner plays Black, so the authored definingLine stops one ply earlier, on
+# Black's own 7...Nxd5 (a prefix of the frozen line, as the catalogue build allows), and
+# 8.Ne4 is modelled below as the first reply (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: italian-game-two-knights-defense-fritz-gruber-variation
+name: 'Italian Game: Two Knights Defense, Fritz, Gruber Variation'
+eco: C57
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Nd4, c3, b5, Bf1, Nxd5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 7...Nxd5 the pawns are level at seven each, so the gambit pawn is
+      back, but the line stays labelled dubious: Black's knight on d4 is attacked by the c3
+      pawn and defended only by the e5 pawn, and White has a retreat for the attacked knight
+      on g5 that nothing attacks. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa lấy lại tốt bằng 7...Nxd5, số tốt ngang bằng, mỗi bên bảy. Mã g5 của Trắng bị hậu d8 tấn công mà không quân nào bảo vệ. Mã d4 của Đen bị tốt c3 tấn công và được tốt e5 bảo vệ. Trắng phải xử lý con mã bị tấn công ở g5.
+    en: Black has just won the pawn back with 7...Nxd5, and the pawns are level at seven each. White's knight on g5 is attacked by the queen on d8 and nothing defends it. Black's knight on d4 is attacked by the c3 pawn and defended by the e5 pawn. White has to deal with the attacked knight on g5.
+    fr: Les Noirs viennent de regagner le pion par 7...Nxd5, et les pions sont égaux, sept de chaque côté. Le cavalier g5 des Blancs est attaqué par la dame d8 et rien ne le défend. Le cavalier d4 des Noirs est attaqué par le pion c3 et défendu par le pion e5. Les Blancs doivent s'occuper du cavalier attaqué en g5.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 8.Ne4 ở đây. Mục này chỉ mô hình hóa nước lui mã về e4.
+      en: White plays something other than 8.Ne4 here. This entry models only the retreat of the knight to e4.
+      fr: Les Blancs jouent autre chose que 8.Ne4 ici. Cette entrée ne modélise que la retraite du cavalier en e4.
+  children:
+    - ply: Ne4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng lui mã về e4, nơi chưa có quân nào tấn công nó và nơi nó bảo vệ tốt c3. Mã d4 vẫn bị tốt c3 tấn công, và đến lượt Đen đi.
+        en: White retreats the knight to e4, where nothing attacks it and where it defends the c3 pawn. The knight on d4 is still attacked by the c3 pawn, and it is Black's move.
+        fr: Les Blancs reculent le cavalier en e4, où rien ne l'attaque et d'où il défend le pion c3. Le cavalier d4 est toujours attaqué par le pion c3, et c'est aux Noirs de jouer.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: mỗi bên bảy, nên tốt đã được lấy lại. Mã d4 của Đen bị một con tốt tấn công và chỉ được tốt e5 bảo vệ, nên nếu nó đứng yên thì cxd4 exd4 khiến Đen mất một mã để đổi lấy một tốt. Tốt b5 chỉ được chính con mã đó bảo vệ, và tượng f1 tấn công nó. Nước ăn duy nhất của Đen, ...Nxc3, có thể bị ăn lại.'
+          en: "Count the pawns: seven each, so the pawn is back. Black's knight on d4 is attacked by a pawn and defended only by the e5 pawn, so if it stays where it is, cxd4 exd4 costs Black a knight for a pawn. The b5 pawn is defended only by that same knight, and the bishop on f1 attacks it. Black's one capture, ...Nxc3, can be recaptured."
+          fr: "Comptez les pions : sept de chaque côté, donc le pion est récupéré. Le cavalier d4 des Noirs est attaqué par un pion et défendu seulement par le pion e5 ; s'il reste là, cxd4 exd4 coûte aux Noirs un cavalier contre un pion. Le pion b5 n'est défendu que par ce même cavalier, et le fou f1 l'attaque. La seule prise des Noirs, ...Nxc3, peut être reprise."
+        plan:
+          vi: Đen đưa mã d4 đi chỗ khác, chẳng hạn ...Ne6, nhưng khi đó tốt b5 mất quân bảo vệ duy nhất và tượng f1 có thể ăn nó kèm chiếu. Trắng ăn mã bằng cxd4 nếu nó đứng yên.
+          en: Black moves the d4 knight away, for example with ...Ne6, though then the b5 pawn loses its only defender and the bishop on f1 can take it with check. White takes on d4 with cxd4 if the knight stays.
+          fr: Les Noirs écartent le cavalier d4, par exemple par ...Ne6, mais le pion b5 perd alors son seul défenseur et le fou f1 peut le prendre avec échec. Les Blancs prennent en d4 par cxd4 si le cavalier reste.
+        basis:
+          by: chan
+          at: '2026-10-01'

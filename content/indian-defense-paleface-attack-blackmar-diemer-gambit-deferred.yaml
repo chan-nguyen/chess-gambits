@@ -1,0 +1,59 @@
+# Indian Defense: Paleface Attack, Blackmar-Diemer Gambit Deferred. Defining line 1.d4 Nf6
+# 2.f3 d5 3.e4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-paleface-attack-blackmar-diemer-gambit-deferred
+name: 'Indian Defense: Paleface Attack, Blackmar-Diemer Gambit Deferred'
+eco: A45
+category: gambit
+side: white
+definingLine: [d4, Nf6, f3, d5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 3.e4 offers a pawn that is attacked twice, by the d5 pawn and the f6
+      knight, and defended once, by the f3 pawn, and White has no piece developed. The label
+      is dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.e4, hiến tốt. Tốt e4 bị tốt d5 và mã f6 tấn công, mà chỉ có tốt f3 bảo vệ.
+    en: White has just played 3.e4, offering a pawn. The e4 pawn is attacked by the d5 pawn and the f6 knight and defended only by the f3 pawn.
+    fr: Les Blancs viennent de jouer 3.e4, offrant un pion. Le pion e4 est attaqué par le pion d5 et le cavalier f6 et défendu seulement par le pion f3.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 3...dxe4 ở đây. Mục này chỉ đi theo 3...dxe4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 3...dxe4 here. This entry follows 3...dxe4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 3...dxe4 ici. Cette entrée ne suit que 3...dxe4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxe4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 3...dxe4. Tốt e4 giờ bị tốt f3 tấn công và được mã f6 bảo vệ.
+        en: Black takes the pawn with 3...dxe4. The e4 pawn is now attacked by the f3 pawn and defended by the f6 knight.
+        fr: Les Noirs prennent le pion par 3...dxe4. Le pion e4 est maintenant attaqué par le pion f3 et défendu par le cavalier f6.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt. Tốt e4 của Đen bị tốt f3 tấn công và được mã f6 bảo vệ, và Trắng chưa phát triển quân nào trong khi Đen đã có mã f6.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. Black's e4 pawn is attacked by the f3 pawn and defended by the f6 knight, and White has no piece developed while Black has the knight on f6 out."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Le pion noir e4 est attaqué par le pion f3 et défendu par le cavalier f6, et les Blancs n'ont développé aucune pièce alors que les Noirs ont sorti le cavalier f6."
+        plan:
+          vi: Trắng phát triển bằng Nc3 và Bf4, nhắm lấy lại tốt e4 bằng cách ăn trên ô đó. Đen bảo vệ tốt bằng ...Bf5 và phát triển bằng ...e6 và ...Nc6.
+          en: White develops with Nc3 and Bf4, aiming to win the e4 pawn back by taking on it. Black defends the pawn with ...Bf5 and develops with ...e6 and ...Nc6.
+          fr: Les Blancs se développent par Nc3 et Bf4, visant à regagner le pion e4 en le prenant. Les Noirs défendent le pion par ...Bf5 et se développent par ...e6 et ...Nc6.
+        basis:
+          by: chan
+          at: 2026-10-01

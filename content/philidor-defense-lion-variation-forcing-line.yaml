@@ -1,0 +1,94 @@
+# Philidor Defense: Lion Variation, Forcing Line. Frozen defining line 1.e4 e5 2.Nf3 d6 3.d4
+# Nf6 4.Nc3 Nbd7 5.Bc4 Be7 6.Ng5 O-O 7.Bxf7+ Rxf7 8.Ne6 ends on White's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every
+# ply below was replayed with chess.js before it was annotated; searchMate at 3 moves from the
+# leaf returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture is
+# left going free at the leaf.
+id: 'philidor-defense-lion-variation-forcing-line'
+name: 'Philidor Defense: Lion Variation, Forcing Line'
+eco: 'C41'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'd6'
+  - 'd4'
+  - 'Nf6'
+  - 'Nc3'
+  - 'Nbd7'
+  - 'Bc4'
+  - 'Be7'
+  - 'Ng5'
+  - 'O-O'
+  - 'Bxf7+'
+  - 'Rxf7'
+  - 'Ne6'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line White has given a bishop for the pawn on f7 and has eight pawns to Black's seven, and the knight on e6 attacks the queen on d8 and the pawn on c7. Black has to save the queen, after which the knight takes on c7 with a fork, but the knight that ends up on a8 is hard to bring back, so the line is judged dubious rather than sound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 8.Ne6, đưa mã đến e6, nơi nó tấn công hậu d8 và tốt c7. Trắng có tám tốt, Đen bảy tốt, và Trắng đã đổi một tượng lấy tốt f7. Vua Đen đã nhập thành ở g8, còn xe Đen đứng ở f7.'
+    en: "White has just played 8.Ne6, putting the knight on e6, where it attacks the queen on d8 and the pawn on c7. White has eight pawns to Black's seven, having given a bishop for the pawn on f7. Black's king has castled to g8, and Black's rook stands on f7."
+    fr: 'Les Blancs viennent de jouer 8.Ne6, plaçant le cavalier en e6, où il attaque la dame d8 et le pion c7. Les Blancs ont huit pions contre sept aux Noirs, après avoir donné un fou pour le pion f7. Le roi noir a roqué en g8, et la tour noire se trouve en f7.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 8...Qe8 ở đây. Mục này đi theo nước hậu rời khỏi đòn tấn công của mã.'
+      en: "Black plays something other than 8...Qe8 here. This entry follows the queen leaving the knight's attack."
+      fr: "Les Noirs jouent autre chose que 8...Qe8 ici. Cette entrée suit la dame qui quitte l'attaque du cavalier."
+  children:
+    - ply: 'Qe8'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen đưa hậu đến e8, tránh khỏi mã e6 nhưng vẫn để tốt c7 bị mã tấn công.'
+        en: 'Black moves the queen to e8, out of the attack of the knight on e6, but the pawn on c7 is still attacked by the knight.'
+        fr: 'Les Noirs placent la dame en e8, hors de portée du cavalier e6, mais le pion c7 reste attaqué par le cavalier.'
+      children:
+        - ply: 'Nxc7'
+          annotation:
+            vi: 'Trắng ăn tốt c7 bằng mã, đồng thời tấn công hậu e8 và xe a8.'
+            en: 'White takes the pawn on c7 with the knight, attacking the queen on e8 and the rook on a8 at once.'
+            fr: 'Les Blancs prennent le pion c7 avec le cavalier, attaquant à la fois la dame e8 et la tour a8.'
+          dismissRest:
+            reason:
+              vi: 'Đen chơi nước khác 9...Qd8 ở đây. Mục này đi theo nước hậu lùi về d8, cứu được hậu và để xe a8 cho mã.'
+              en: 'Black plays something other than 9...Qd8 here. This entry follows the queen stepping back to d8, which saves it and leaves the rook on a8 to the knight.'
+              fr: 'Les Noirs jouent autre chose que 9...Qd8 ici. Cette entrée suit la dame qui recule en d8, ce qui la sauve et laisse la tour a8 au cavalier.'
+          children:
+            - ply: 'Qd8'
+              replyQuality: 'best'
+              frequency: 'common'
+              annotation:
+                vi: 'Đen lùi hậu về d8, cứu hậu và để xe a8 bị mã tấn công.'
+                en: 'Black steps the queen back to d8, saving it and leaving the rook on a8 attacked by the knight.'
+                fr: 'Les Noirs reculent la dame en d8, la sauvant et laissant la tour a8 attaquée par le cavalier.'
+              children:
+                - ply: 'Nxa8'
+                  annotation:
+                    vi: 'Trắng ăn xe bằng mã. Mã giờ đứng ở a8, sát mép bàn cờ.'
+                    en: 'White takes the rook with the knight. The knight now stands on a8, on the edge of the board.'
+                    fr: "Les Blancs prennent la tour avec le cavalier. Le cavalier se trouve maintenant en a8, au bord de l'échiquier."
+                  outcome:
+                    type: 'position'
+                    evaluation:
+                      vi: 'Đếm quân: Trắng có hai xe, một tượng và hai mã, Đen có một xe, hai tượng và hai mã, và Trắng có tám tốt so với sáu. Trắng hơn một chất và hai tốt, nhưng mã a8 đứng ở mép bàn cờ và Đen có thể săn nó bằng ...b6 và ...Bb7. Nxe4 sẽ mất một mã lấy một tốt, còn exd4 chỉ đổi tốt.'
+                      en: "Count the material: White has two rooks, one bishop and two knights against Black's one rook, two bishops and two knights, and eight pawns to six. White is up the exchange and two pawns, but the knight on a8 stands on the edge of the board and Black can hunt it with ...b6 and ...Bb7. Nxe4 would give a knight for a pawn, and exd4 would only trade pawns."
+                      fr: "Comptez le matériel : les Blancs ont deux tours, un fou et deux cavaliers contre une tour, deux fous et deux cavaliers aux Noirs, et huit pions contre six. Les Blancs ont l'avantage de la qualité et deux pions de plus, mais le cavalier a8 se trouve au bord de l'échiquier et les Noirs peuvent le chasser par ...b6 et ...Bb7. Nxe4 donnerait un cavalier pour un pion, et exd4 ne ferait qu'échanger des pions."
+                    plan:
+                      vi: 'Đen săn mã a8 bằng ...b6 và ...Bb7. Trắng nhập thành bằng O-O và phát triển bằng Bg5.'
+                      en: 'Black hunts the knight on a8 with ...b6 and ...Bb7. White castles with O-O and develops with Bg5.'
+                      fr: 'Les Noirs chassent le cavalier a8 par ...b6 et ...Bb7. Les Blancs roquent par O-O et se développent par Bg5.'
+                    basis:
+                      by: 'chan'
+                      at: '2026-10-01'

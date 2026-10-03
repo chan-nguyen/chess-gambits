@@ -1,0 +1,59 @@
+# Indian Defense: Medusa Gambit. Defining line 1.d4 Nf6 2.c4 g5, which ends on Black's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-medusa-gambit
+name: 'Indian Defense: Medusa Gambit'
+eco: A50
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, g5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 2...g5 leaves the g5 pawn attacked by the bishop on c1 with nothing
+      defending it, so White can take it at once, and the bishop on g5 is not attacked
+      afterwards. Black has no development lead to pay for the pawn, so the label is
+      unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...g5, hiến tốt ngay. Tốt g5 bị tượng c1 tấn công và không có quân Đen nào bảo vệ.
+    en: Black has just played 2...g5, offering a pawn at once. The g5 pawn is attacked by the bishop on c1 and no Black piece defends it.
+    fr: Les Noirs viennent de jouer 2...g5, offrant aussitôt un pion. Le pion g5 est attaqué par le fou c1 et aucune pièce noire ne le défend.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 3.Bxg5 ở đây. Mục này chỉ đi theo 3.Bxg5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 3.Bxg5 here. This entry follows 3.Bxg5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 3.Bxg5 ici. Cette entrée ne suit que 3.Bxg5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Bxg5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 3.Bxg5. Tượng giờ tấn công mã f6, được tốt e7 bảo vệ.
+        en: White takes the pawn with 3.Bxg5. The bishop now attacks the f6 knight, which the e7 pawn defends.
+        fr: Les Blancs prennent le pion par 3.Bxg5. Le fou attaque maintenant le cavalier f6, que le pion e7 défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Nếu Trắng chơi Bxf6 thì chỉ có tốt e7 ăn lại được, và các tốt f6 và f7 của Đen sẽ bị chồng. Cột g nửa mở cho xe Đen, nhưng tượng g5 chắn ngay trên cột đó, phía trước tốt g2.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down and the sacrifice has not come back. If White plays Bxf6, only the e7 pawn can recapture, which leaves Black's pawns on f6 and f7 doubled. The g-file is half open for Black's rooks, but the bishop on g5 blocks it in front of the g2 pawn."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Si les Blancs jouent Bxf6, seul le pion e7 peut reprendre, ce qui laisse les pions noirs f6 et f7 doublés. La colonne g est semi-ouverte pour les tours noires, mais le fou g5 la barre devant le pion g2."
+        plan:
+          vi: Đen tấn công tượng bằng ...Ne4, phát triển bằng ...Bg7 và thách thức trung tâm bằng ...c5. Trắng dời con tượng đang bị tấn công, chẳng hạn bằng Bf4, rồi phát triển bằng Nc3 và e3, cố giữ tốt hơn.
+          en: Black attacks the bishop with ...Ne4, develops with ...Bg7 and challenges the centre with ...c5. White moves the attacked bishop, for instance with Bf4, then develops with Nc3 and e3, trying to keep the extra pawn.
+          fr: Les Noirs attaquent le fou par ...Ne4, se développent par ...Bg7 et défient le centre par ...c5. Les Blancs déplacent le fou attaqué, par exemple par Bf4, puis se développent par Nc3 et e3, en cherchant à garder le pion en plus.
+        basis:
+          by: chan
+          at: 2026-10-01

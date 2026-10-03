@@ -1,0 +1,61 @@
+# French Defense: Advance Variation, Milner-Barry Gambit, Main Line. Defining line 1.e4 e6
+# 2.d4 d5 3.e5 c5 4.c3 Nc6 5.Nf3 Qb6 6.Bd3 cxd4 7.cxd4 Bd7 8.O-O, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-advance-variation-milner-barry-gambit-main-line
+name: 'French Defense: Advance Variation, Milner-Barry Gambit, Main Line'
+eco: C02
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, e5, c5, c3, Nc6, Nf3, Qb6, Bd3, cxd4, cxd4, Bd7, O-O]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, seven each, but
+      the d4 pawn is attacked twice and defended once, so Black can win a pawn at once;
+      White's return is the open c-file and the bishop on d3 aimed at h7. Nothing on the
+      board makes that return certain, which is why the entry is rated dubious. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa nhập thành bằng 8.O-O và số tốt đang ngang nhau, mỗi bên bảy. Tốt d4 bị tấn công hai lần, bởi hậu b6 và mã c6, và chỉ được bảo vệ một lần, bởi mã f3, nên Đen có thể thắng một tốt ở đó. Cột c đang mở, và tượng d3 nhắm vào h7, ô được xe h8 bảo vệ.
+    en: White has just castled with 8.O-O and the pawn count is level, seven each. The d4 pawn is attacked twice, by the queen on b6 and the knight on c6, and defended once, by the knight on f3, so Black can win a pawn there. The c-file is open, and the bishop on d3 bears on h7, which the rook on h8 defends.
+    fr: Les Blancs viennent de roquer par 8.O-O et le compte des pions est égal, sept de chaque côté. Le pion d4 est attaqué deux fois, par la dame b6 et le cavalier c6, et défendu une fois, par le cavalier f3, de sorte que les Noirs peuvent y gagner un pion. La colonne c est ouverte, et le fou d3 vise h7, que la tour h8 défend.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 8...Nxd4 ở đây, chẳng hạn 8...a6 hoặc 8...Rc8. Mục này chỉ mô hình hóa 8...Nxd4 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: giữ vững trung tâm và đưa nốt các quân còn lại vào cuộc.'
+      en: "Black plays something other than 8...Nxd4 here, for instance 8...a6 or 8...Rc8. This entry models only 8...Nxd4 and does not analyse those moves; White's task usually stays the same: hold the centre together and bring the remaining pieces into play."
+      fr: "Les Noirs jouent autre chose que 8...Nxd4 ici, par exemple 8...a6 ou 8...Rc8. Cette entrée ne modélise que 8...Nxd4 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : maintenir le centre et mettre en jeu les pièces restantes."
+  children:
+    - ply: Nxd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen thắng tốt bằng 8...Nxd4. Mã d4 bị tấn công một lần, bởi mã f3, và được bảo vệ một lần, bởi hậu b6, đồng thời nó cũng tấn công lại mã f3.
+        en: Black wins the pawn with 8...Nxd4. The knight on d4 is attacked once, by the knight on f3, and defended once, by the queen on b6, and it attacks the knight on f3 in turn.
+        fr: Les Noirs gagnent le pion par 8...Nxd4. Le cavalier d4 est attaqué une fois, par le cavalier f3, et défendu une fois, par la dame b6, et il attaque à son tour le cavalier f3.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng kém một tốt, và đổi quân ở d4 không lấy lại được nó: sau Nxd4 Qxd4 số tốt vẫn không đổi. Cột c đang mở, không còn tốt nào của hai bên trên đó, và tượng d3 vẫn nhắm vào h7, ô được xe h8 bảo vệ.'
+          en: 'Count the pawns: White six, Black seven, so White is a pawn down, and trading on d4 does not give it back: after Nxd4 Qxd4 the count is unchanged. The c-file is open, with no pawn of either side on it, and the bishop on d3 still bears on h7, which the rook on h8 defends.'
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de moins, et l'échange en d4 ne le rend pas : après Nxd4 Qxd4, le compte est inchangé. La colonne c est ouverte, sans aucun pion des deux camps, et le fou d3 vise toujours h7, que la tour h8 défend."
+        plan:
+          vi: Trắng chơi Nbd2 để đưa mã vào cuộc và thêm một quân bảo vệ f3, rồi Re1. Đen chơi ...Bc5, bảo vệ mã d4, và ...Ne7 để hoàn tất phát triển.
+          en: White plays Nbd2 to bring the knight into play and add a defender to f3, then Re1. Black plays ...Bc5, defending the knight on d4, and ...Ne7 to finish development.
+          fr: Les Blancs jouent Nbd2 pour mettre le cavalier en jeu et ajouter un défenseur à f3, puis Re1. Les Noirs jouent ...Bc5, défendant le cavalier d4, et ...Ne7 pour achever leur développement.
+        basis:
+          by: chan
+          at: 2026-10-01

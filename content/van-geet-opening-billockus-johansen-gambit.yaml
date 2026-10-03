@@ -1,0 +1,59 @@
+# Van Geet Opening: Billockus-Johansen Gambit. Defining line 1.Nc3 e5 2.Nf3 Bc5, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: van-geet-opening-billockus-johansen-gambit
+name: 'Van Geet Opening: Billockus-Johansen Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Nc3, e5, Nf3, Bc5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 2...Bc5 puts a bishop on a square that attacks f2, but the e5 pawn is
+      attacked by the knight on f3 and defended by nothing, and no other Black piece has
+      been developed. The label is unsound. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...Bc5, tấn công tốt f2, chỉ có vua bảo vệ. Tốt e5 bị mã f3 tấn công và không có quân nào bảo vệ.
+    en: Black has just played 2...Bc5, attacking the f2 pawn, which only the king defends. The e5 pawn is attacked by the knight on f3 and defended by nothing.
+    fr: Les Noirs viennent de jouer 2...Bc5, attaquant le pion f2, que seul le roi défend. Le pion e5 est attaqué par le cavalier f3 et rien ne le défend.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 3.Nxe5 ở đây. Mục này chỉ đi theo 3.Nxe5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 3.Nxe5 here. This entry follows 3.Nxe5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 3.Nxe5 ici. Cette entrée ne suit que 3.Nxe5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 3.Nxe5. Mã tấn công tốt f7, chỉ có vua bảo vệ, và tốt d7, được bốn quân bảo vệ.
+        en: White takes the pawn with 3.Nxe5. The knight attacks the f7 pawn, which only the king defends, and the d7 pawn, which four pieces defend.
+        fr: Les Blancs prennent le pion par 3.Nxe5. Le cavalier attaque le pion f7, que seul le roi défend, et le pion d7, que quatre pièces défendent.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Tượng c5 tấn công tốt f2, chỉ có vua bảo vệ, và mã e5 tấn công tốt f7, cũng chỉ có vua bảo vệ. Đen mới phát triển một quân nhẹ, còn Trắng hai.'
+          en: 'Count the pawns: White eight, Black seven, so Black is a pawn down and the sacrifice has not come back. The bishop on c5 attacks the f2 pawn, which only the king defends, and the knight on e5 attacks the f7 pawn, which only the king defends. Black has one minor piece developed, White has two.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Le fou c5 attaque le pion f2, que seul le roi défend, et le cavalier e5 attaque le pion f7, que seul le roi défend. Les Noirs ont développé une pièce légère, les Blancs deux."
+        plan:
+          vi: Đen thách thức mã bằng ...Nc6 và đưa hậu ra bằng ...Qh4, cùng tượng tấn công đôi vào f2. Trắng chiếm không gian bằng d4, tấn công tượng, và phát triển bằng e3 và Be2.
+          en: Black challenges the knight with ...Nc6 and brings the queen out with ...Qh4, doubling on f2 with the bishop. White takes space with d4, attacking the bishop, and develops with e3 and Be2.
+          fr: Les Noirs défient le cavalier par ...Nc6 et sortent la dame par ...Qh4, doublant avec le fou sur f2. Les Blancs prennent de l'espace par d4, attaquant le fou, et se développent par e3 et Be2.
+        basis:
+          by: chan
+          at: 2026-10-01

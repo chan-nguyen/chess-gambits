@@ -1,0 +1,80 @@
+# Italian Game, Two Knights Defense, Polerio Defense, Suhle Defense. Frozen defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Be2 h6, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: italian-game-two-knights-defense-polerio-defense-suhle-defense
+name: 'Italian Game: Two Knights Defense, Polerio Defense, Suhle Defense'
+eco: C59
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Na5, Bb5+, c6, dxc6, bxc6, Be2, h6]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 8...h6 White is a pawn up, seven pawns to six, but the knight on g5
+      is attacked by the h6 pawn and has no defender, so White has to spend a move on it;
+      that tempo is treated as enough compensation for the line to be labelled sound. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 8...h6, con tốt tấn công mã g5. Trắng có bảy tốt, Đen sáu tốt, và tốt e5, không có quân nào bảo vệ, hiện chưa bị tấn công.
+    en: Black has just played 8...h6, and the pawn attacks the knight on g5. White has seven pawns to Black's six, and the e5 pawn, which nothing defends, is not yet attacked.
+    fr: Les Noirs viennent de jouer 8...h6, et le pion attaque le cavalier g5. Les Blancs ont sept pions contre six, et le pion e5, que rien ne défend, n'est pas encore attaqué.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 9.Nf3 ở đây. Mục này chỉ mô hình hóa nước lui mã về f3.
+      en: White plays something other than 9.Nf3 here. This entry models only the retreat of the knight to f3.
+      fr: Les Blancs jouent autre chose que 9.Nf3 ici. Cette entrée ne modélise que la retraite du cavalier en f3.
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng lui mã về f3, nơi nó tấn công tốt e5, quân không có quân nào bảo vệ.
+        en: White retreats the knight to f3, where it attacks the e5 pawn, which nothing defends.
+        fr: Les Blancs reculent le cavalier en f3, d'où il attaque le pion e5, que rien ne défend.
+      children:
+        - ply: e4
+          annotation:
+            vi: Đen đẩy 9...e4, tấn công mã f3 và khống chế ô d3, không cho quân Trắng dùng.
+            en: Black pushes 9...e4, which attacks the knight on f3 and takes d3 away from the white pieces.
+            fr: Les Noirs poussent 9...e4, qui attaque le cavalier f3 et prive les pièces blanches de la case d3.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác thay vì 10.Ne5 ở đây. Mục này chỉ mô hình hóa nước mã lên e5.
+              en: White plays something other than 10.Ne5 here. This entry models only the knight move to e5.
+              fr: Les Blancs jouent autre chose que 10.Ne5 ici. Cette entrée ne modélise que le déplacement du cavalier en e5.
+          children:
+            - ply: Ne5
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng đặt mã lên e5, nơi nó tấn công các tốt c6 và f7 và không có tốt Đen nào tấn công nó.
+                en: White puts the knight on e5, where it attacks the c6 and f7 pawns and no Black pawn attacks it.
+                fr: Les Blancs placent le cavalier en e5, d'où il attaque les pions c6 et f7 et où aucun pion noir ne l'attaque.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên tốt chưa được lấy lại. Mã e5 đứng trên một ô không tốt Đen nào tấn công, vì tốt d đã mất và tốt f bị chính mã f6 chặn đường; nó tấn công c6 và f7, hai quân được mã a5 và vua bảo vệ. Tốt e4 của Đen được mã f6 bảo vệ và chưa bị quân nào tấn công. Mã a5 của Đen có thể về b7 an toàn, nhưng ô b3 bị các tốt a2 và c2 khống chế, còn ô c4 bị mã e5 và tượng e2 khống chế; nước ăn duy nhất của Đen, ...Qxd2+, sẽ bị ăn lại.'
+                  en: "Count the pawns: White seven, Black six, so the pawn has not come back. The knight on e5 stands on a square no Black pawn attacks, since the d-pawn is gone and the f-pawn is blocked by its own knight on f6; it attacks c6 and f7, which the knight on a5 and the king defend. Black's e4 pawn is defended by the f6 knight and nothing attacks it. Black's knight on a5 can reach b7 safely, but b3 is covered by the a2 and c2 pawns and c4 by the knight on e5 and the bishop on e2; Black's one capture, ...Qxd2+, is recaptured."
+                  fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs, donc le pion n'est pas récupéré. Le cavalier e5 se trouve sur une case qu'aucun pion noir n'attaque, puisque le pion d a disparu et que le pion f est bloqué par son propre cavalier f6 ; il attaque c6 et f7, que le cavalier a5 et le roi défendent. Le pion e4 des Noirs est défendu par le cavalier f6 et rien ne l'attaque. Le cavalier a5 des Noirs peut gagner b7 en sécurité, mais b3 est couverte par les pions a2 et c2 et c4 par le cavalier e5 et le fou e2 ; la seule prise des Noirs, ...Qxd2+, est reprise."
+                plan:
+                  vi: Đen tấn công mã bằng ...Qc7 hoặc ...Bd6 rồi tìm cách nhập thành. Trắng củng cố mã bằng d4, rồi phát triển bằng Nc3 và nhập thành; nếu Đen bắt tốt qua đường bằng ...exd3, Trắng ăn lại bằng Nxd3.
+                  en: Black attacks the knight with ...Qc7 or ...Bd6 and tries to castle. White supports the knight with d4, then develops with Nc3 and castles; if Black takes en passant with ...exd3, White recaptures with Nxd3.
+                  fr: Les Noirs attaquent le cavalier par ...Qc7 ou ...Bd6 et cherchent à roquer. Les Blancs soutiennent le cavalier par d4, puis se développent par Nc3 et roquent ; si les Noirs prennent en passant par ...exd3, les Blancs reprennent par Nxd3.
+                basis:
+                  by: chan
+                  at: '2026-10-01'

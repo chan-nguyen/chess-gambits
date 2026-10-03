@@ -1,0 +1,79 @@
+# Old Indian Defense: Janowski Variation, Grinberg Gambit. Defining line 1.d4 Nf6 2.c4 d6
+# 3.Nc3 Bf5 4.e4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: old-indian-defense-janowski-variation-grinberg-gambit
+name: 'Old Indian Defense: Janowski Variation, Grinberg Gambit'
+eco: A53
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, d6, Nc3, Bf5, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 4.e4 offers a pawn that Black can take with the bishop or the knight, and
+      White's return would be an attack on the b7 pawn if Black's bishop is exchanged. That
+      is a practical try, but Black keeps the extra pawn, so the label is dubious. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.e4, hiến một tốt và tấn công tượng f5, mà không có quân nào bảo vệ. Tốt e4 bị mã f6 và tượng f5 tấn công, và được mã c3 bảo vệ.
+    en: White has just played 4.e4, offering a pawn and attacking the bishop on f5, which nothing defends. The e4 pawn is attacked by the knight on f6 and the bishop on f5 and defended by the knight on c3.
+    fr: Les Blancs viennent de jouer 4.e4, offrant un pion et attaquant le fou f5, que rien ne défend. Le pion e4 est attaqué par le cavalier f6 et le fou f5 et défendu par le cavalier c3.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 4...Bxe4 ở đây. Mục này chỉ đi theo 4...Bxe4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 4...Bxe4 here. This entry follows 4...Bxe4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 4...Bxe4 ici. Cette entrée ne suit que 4...Bxe4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Bxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng tượng, 4...Bxe4. Tượng tấn công tốt g2, được tượng f1 bảo vệ, và bị mã c3 tấn công, được mã f6 bảo vệ.
+        en: Black takes the pawn with the bishop, 4...Bxe4. The bishop attacks the g2 pawn, which the bishop on f1 defends, and is attacked by the knight on c3 and defended by the knight on f6.
+        fr: Les Noirs prennent le pion avec le fou, 4...Bxe4. Le fou attaque le pion g2, que le fou f1 défend, et il est attaqué par le cavalier c3 et défendu par le cavalier f6.
+      children:
+        - ply: Nxe4
+          annotation:
+            vi: Trắng đổi mã lấy tượng bằng 5.Nxe4, mà mã f6 có thể ăn lại.
+            en: White trades the knight for the bishop with 5.Nxe4, which the knight on f6 can recapture.
+            fr: Les Blancs échangent le cavalier contre le fou par 5.Nxe4, que le cavalier f6 peut reprendre.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 5...Nxe4 ở đây. Mục này chỉ đi theo 5...Nxe4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+              en: Black plays something other than 5...Nxe4 here. This entry follows 5...Nxe4 only; other moves lead to lines that are not mapped here.
+              fr: Les Noirs jouent autre chose que 5...Nxe4 ici. Cette entrée ne suit que 5...Nxe4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+          children:
+            - ply: Nxe4
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen ăn lại bằng mã, 5...Nxe4. Đen đã đổi mất tượng ô trắng và giữ được tốt hơn.
+                en: Black recaptures with the knight, 5...Nxe4. Black has traded off its light-squared bishop and keeps the extra pawn.
+                fr: Les Noirs reprennent avec le cavalier, 5...Nxe4. Les Noirs ont échangé leur fou de cases blanches et gardent le pion en plus.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt. Đen không còn tượng ô trắng, nên tốt b7 không có quân nào bảo vệ, còn mã e4 tấn công tốt f2, được vua bảo vệ.'
+                  en: 'Count the pawns: White seven, Black eight, so White is a pawn down. Black no longer has a light-squared bishop, so the pawn on b7 is defended by no piece, and the knight on e4 attacks the pawn on f2, which the king defends.'
+                  fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Les Noirs n'ont plus de fou de cases blanches, si bien que le pion b7 n'est défendu par aucune pièce, et le cavalier e4 attaque le pion f2, que le roi défend."
+                plan:
+                  vi: Trắng tấn công tốt b7 bằng Qb3 và phát triển bằng Bd3 và Nf3. Đen bảo vệ nó bằng ...Qc8, lui con mã bị tượng tấn công bằng ...Nf6, phát triển mã còn lại bằng ...Nbd7 và chơi ...e6.
+                  en: White attacks the b7 pawn with Qb3 and develops with Bd3 and Nf3. Black defends it with ...Qc8, retreats the knight attacked by the bishop with ...Nf6, develops the other knight with ...Nbd7 and plays ...e6.
+                  fr: Les Blancs attaquent le pion b7 par Qb3 et se développent par Bd3 et Nf3. Les Noirs le défendent par ...Qc8, replient par ...Nf6 le cavalier attaqué par le fou, développent l'autre cavalier par ...Nbd7 et jouent ...e6.
+                basis:
+                  by: chan
+                  at: 2026-10-01

@@ -1,0 +1,59 @@
+# Nimzo-Indian Defense: Classical Variation, Vitolins-Adorjan Gambit. Defining line 1.d4 Nf6
+# 2.c4 e6 3.Nc3 Bb4 4.Qc2 O-O 5.a3 Bxc3+ 6.Qxc3 b5, which ends on Black's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: nimzo-indian-defense-classical-variation-vitolins-adorjan-gambit
+name: 'Nimzo-Indian Defense: Classical Variation, Vitolins-Adorjan Gambit'
+eco: E32
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nc3, Bb4, Qc2, O-O, a3, Bxc3+, Qxc3, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 6...b5 offers a pawn that the c4 pawn can take at once, and nothing in
+      Black's camp attacks a White piece, so the pawn is a real investment with no concrete
+      return yet. The label is dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 6...b5, hiến một tốt. Tốt b5 bị tốt c4 tấn công mà không có quân Đen nào bảo vệ, còn tốt c4 bị tốt b5 tấn công và được hậu c3 bảo vệ. Vua Đen đã nhập thành.
+    en: Black has just played 6...b5, offering a pawn. The b5 pawn is attacked by the c4 pawn and no Black piece defends it, and the c4 pawn is attacked by the b5 pawn and defended by the queen on c3. Black's king has already castled.
+    fr: Les Noirs viennent de jouer 6...b5, offrant un pion. Le pion b5 est attaqué par le pion c4 et aucune pièce noire ne le défend, et le pion c4 est attaqué par le pion b5 et défendu par la dame c3. Le roi noir a déjà roqué.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 7.cxb5 ở đây. Mục này chỉ đi theo 7.cxb5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 7.cxb5 here. This entry follows 7.cxb5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 7.cxb5 ici. Cette entrée ne suit que 7.cxb5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: cxb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 7.cxb5. Các tốt Trắng ở b5 và b2 giờ bị chồng, và hậu c3 tấn công tốt c7, được hậu d8 bảo vệ.
+        en: White takes the pawn with 7.cxb5. White's pawns on b5 and b2 are now doubled, and the queen on c3 attacks the c7 pawn, which the queen on d8 defends.
+        fr: Les Blancs prennent le pion par 7.cxb5. Les pions blancs b5 et b2 sont maintenant doublés, et la dame c3 attaque le pion c7, que la dame d8 défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Các tốt Trắng ở b5 và b2 bị chồng, nhưng Trắng có cặp tượng, ở c1 và f1, đối lại chỉ một tượng của Đen ở c8, và hậu c3 tấn công tốt c7, được hậu d8 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down and the sacrifice has not come back. White's pawns on b5 and b2 are doubled, but White has the bishop pair, on c1 and f1, against Black's single bishop on c8, and the queen on c3 attacks the c7 pawn, which the queen on d8 defends."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Les pions blancs b5 et b2 sont doublés, mais les Blancs ont la paire de fous, en c1 et f1, contre le seul fou noir en c8, et la dame c3 attaque le pion c7, que la dame d8 défend."
+        plan:
+          vi: Đen phát triển bằng ...Bb7 và tấn công tốt trên b5 bằng ...c6 và ...a6. Trắng phát triển bằng Nf3, rồi g3 và Bg2, nhập thành bằng O-O, và bảo vệ tốt trên b5 bằng a4.
+          en: Black develops with ...Bb7 and attacks the pawn on b5 with ...c6 and ...a6. White develops with Nf3, then g3 and Bg2, castles with O-O, and supports the pawn on b5 with a4.
+          fr: Les Noirs se développent par ...Bb7 et attaquent le pion en b5 par ...c6 et ...a6. Les Blancs se développent par Nf3, puis g3 et Bg2, roquent par O-O, et soutiennent le pion en b5 par a4.
+        basis:
+          by: chan
+          at: 2026-10-01

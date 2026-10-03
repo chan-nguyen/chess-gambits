@@ -1,0 +1,85 @@
+# Queen's Pawn Game: Accelerated London System, Steinitz Countergambit, Morris
+# Countergambit. Defining line 1.d4 d5 2.Bf4 c5 3.e4, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: accelerated-london-system-steinitz-countergambit-morris
+name: "Queen's Pawn Game: Accelerated London System, Steinitz Countergambit, Morris Countergambit"
+eco: D00
+category: gambit
+side: white
+definingLine: [d4, d5, Bf4, c5, e4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 3.e4 offers a pawn on a square that the d5 pawn attacks and nothing
+      defends, and the d4 pawn is also attacked, by the c5 pawn. With only the bishop on f4
+      developed, White has no compensation beyond the chance to regain a pawn, so the label
+      is unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.e4, hiến một tốt. Tốt e4 bị tốt d5 tấn công và không có quân nào bảo vệ, còn tượng f4 tấn công mã b8, được xe a8 bảo vệ.
+    en: White has just played 3.e4, offering a pawn. The e4 pawn is attacked by the d5 pawn and nothing defends it, and the bishop on f4 attacks the knight on b8, which the rook on a8 defends.
+    fr: Les Blancs viennent de jouer 3.e4, offrant un pion. Le pion e4 est attaqué par le pion d5 et rien ne le défend, et le fou f4 attaque le cavalier b8, que la tour a8 défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 3...dxe4 ở đây. Mục này chỉ đi theo 3...dxe4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 3...dxe4 here. This entry follows 3...dxe4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 3...dxe4 ici. Cette entrée ne suit que 3...dxe4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 3...dxe4. Tốt c5 giờ bị tốt d4 tấn công mà không có quân nào bảo vệ, còn tốt d4 bị hậu d8 và tốt c5 tấn công và chỉ có hậu d1 bảo vệ.
+        en: Black takes the pawn with 3...dxe4. The c5 pawn is now attacked by the d4 pawn and nothing defends it, and the d4 pawn is attacked by the queen on d8 and the c5 pawn and defended only by the queen on d1.
+        fr: Les Noirs prennent le pion par 3...dxe4. Le pion c5 est maintenant attaqué par le pion d4 et rien ne le défend, et le pion d4 est attaqué par la dame d8 et le pion c5 et défendu seulement par la dame d1.
+      children:
+        - ply: dxc5
+          annotation:
+            vi: Trắng ăn tốt c5 bằng 4.dxc5, đưa số tốt về ngang nhau. Hai hậu giờ đối mặt trên cột d đang mở, mỗi hậu chỉ có vua bảo vệ.
+            en: White takes the c5 pawn with 4.dxc5, bringing the pawns level. The queens now face each other on the open d-file, each defended only by its king.
+            fr: Les Blancs prennent le pion c5 par 4.dxc5, ramenant les pions à égalité. Les dames se font maintenant face sur la colonne d ouverte, chacune défendue seulement par son roi.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 4...Qxd1+ ở đây. Mục này chỉ đi theo 4...Qxd1+; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+              en: Black plays something other than 4...Qxd1+ here. This entry follows 4...Qxd1+ only; other moves lead to lines that are not mapped here.
+              fr: Les Noirs jouent autre chose que 4...Qxd1+ ici. Cette entrée ne suit que 4...Qxd1+ ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+          children:
+            - ply: Qxd1+
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen đổi hậu bằng 4...Qxd1+, nước chiếu mà Trắng chỉ đáp lại được bằng cách ăn lại bằng vua.
+                en: Black trades queens with 4...Qxd1+, a check that White can answer only by recapturing with the king.
+                fr: Les Noirs échangent les dames par 4...Qxd1+, un échec auquel les Blancs ne peuvent répondre qu'en reprenant avec le roi.
+              children:
+                - ply: Kxd1
+                  annotation:
+                    vi: Trắng ăn lại bằng vua, 5.Kxd1, và mất quyền nhập thành, với vua đứng trên cột d đang mở.
+                    en: White recaptures with the king, 5.Kxd1, and loses the right to castle, with the king standing on the open d-file.
+                    fr: Les Blancs reprennent avec le roi, 5.Kxd1, et perdent le droit de roquer, le roi se tenant sur la colonne d ouverte.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng bảy, Đen bảy, nên con tốt đã được lấy lại, nhưng hai hậu đã bị đổi và vua Trắng đứng trên d1, đã mất quyền nhập thành. Cột d đang mở và chĩa thẳng vào vua đó, các tốt Đen ở e7 và e4 bị chồng, và các tốt Trắng ở c5 và c2 cũng vậy. Tượng f4 tấn công mã b8, được xe a8 bảo vệ.'
+                      en: "Count the pawns: White seven, Black seven, so the pawn has come back, but the queens are off and White's king stands on d1, having lost the right to castle. The d-file is open and runs straight at that king, Black's pawns on e7 and e4 are doubled, and so are White's on c5 and c2. The bishop on f4 attacks the knight on b8, which the rook on a8 defends."
+                      fr: 'Comptez les pions : sept pour les Blancs, sept pour les Noirs ; le pion est donc revenu, mais les dames ont disparu et le roi blanc se tient en d1, ayant perdu le droit de roquer. La colonne d est ouverte et pointe droit sur ce roi, les pions noirs e7 et e4 sont doublés, et les pions blancs c5 et c2 le sont aussi. Le fou f4 attaque le cavalier b8, que la tour a8 défend.'
+                    plan:
+                      vi: Trắng phát triển bằng Nc3, tấn công tốt trên e4, và Nge2, rồi đưa vua về chỗ an toàn bằng Kc1. Đen phát triển bằng ...Nc6 và ...Be6, rồi nhập thành dài bằng ...O-O-O để xe vào cột d đang mở, với nước chiếu nếu vua Trắng vẫn còn trên d1.
+                      en: White develops with Nc3, which attacks the pawn on e4, and Nge2, and brings the king to safety with Kc1. Black develops with ...Nc6 and ...Be6, then castles long with ...O-O-O so that the rook comes to the open d-file, with check if the white king is still on d1.
+                      fr: Les Blancs se développent par Nc3, qui attaque le pion en e4, et Nge2, et mettent le roi à l'abri par Kc1. Les Noirs se développent par ...Nc6 et ...Be6, puis roquent côté dame par ...O-O-O pour que la tour arrive sur la colonne d ouverte, avec échec si le roi blanc est encore en d1.
+                    basis:
+                      by: chan
+                      at: 2026-10-01

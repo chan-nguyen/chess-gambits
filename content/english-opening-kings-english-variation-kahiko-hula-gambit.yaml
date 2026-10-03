@@ -1,0 +1,64 @@
+# English Opening: King's English Variation, Kahiko-Hula Gambit. Frozen defining line 1.c4
+# e5 2.e3 Nf6 3.f4 exf4 4.Nf3, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply fxe3;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry. The leaf carries `unsettled` because a capture is going
+# free there.
+id: english-opening-kings-english-variation-kahiko-hula-gambit
+name: "English Opening: King's English Variation, Kahiko-Hula Gambit"
+eco: A20
+category: gambit
+side: white
+definingLine: [c4, e5, e3, Nf6, f4, exf4, Nf3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and Black's f4 pawn is attacked by the e3 pawn with nothing to defend it; but Black can
+      take on e3 first and is still a pawn up after White recaptures. White has not been shown
+      to get anything concrete in return. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.Nf3. Tốt e3 của Trắng bị tốt f4 của Đen tấn công và được tốt d2 bảo vệ, còn tốt f4 của Đen bị tốt e3 tấn công mà không có quân nào bảo vệ. Trắng đang kém một tốt, bảy so với tám. Mục này đi theo nước Đen ăn 4...fxe3.'
+    en: "White has just played 4.Nf3. White's e3 pawn is attacked by Black's f4 pawn and defended by the d2 pawn, while Black's f4 pawn is attacked by the e3 pawn and nothing defends it. White is a pawn down, seven pawns to eight. This entry follows Black capturing 4...fxe3."
+    fr: 'Les Blancs viennent de jouer 4.Nf3. Le pion e3 blanc est attaqué par le pion f4 noir et défendu par le pion d2, tandis que le pion f4 noir est attaqué par le pion e3 sans être défendu. Les Blancs ont un pion de moins, sept contre huit. Cette entrée suit la prise 4...fxe3 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...fxe3, chẳng hạn một nước phát triển quân. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 4...fxe3 here, for example a developing move. This entry follows only the capture.'
+      fr: 'Les Noirs jouent autre chose que 4...fxe3 ici, par exemple un coup de développement. Cette entrée ne suit que la prise.'
+  children:
+    - ply: fxe3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e3 bằng tốt f. Tốt e3 mới không có quân nào bảo vệ và đang tấn công tốt d2, nên Trắng sắp ăn lại bằng tốt d.'
+        en: 'Black takes the e3 pawn with the f-pawn. The new pawn on e3 is undefended and attacks the d2 pawn, so White is about to recapture with the d-pawn.'
+        fr: "Les Noirs prennent le pion e3 avec le pion f. Le nouveau pion e3 n'est pas défendu et attaque le pion d2, si bien que les Blancs vont reprendre avec le pion d."
+      unsettled: >-
+        Recapturing on e3 with the d-pawn is going free, because nothing of Black's defends
+        the pawn on e3 and dxe3 is White's only recapture; the evaluation counts it, which
+        brings the pawn count to six against seven.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, và tốt e3 của Đen sắp bị ăn lại bằng dxe3. Khi đó là sáu so với bảy, nên Trắng vẫn kém một tốt, và tốt e của Trắng sẽ bị cô lập vì Trắng không còn tốt nào trên cột d và cột f.'
+          en: "Count the pawns: White six, Black eight, with Black's pawn on e3 about to be taken back by dxe3. Once it is, the count is six against seven, so White is still a pawn down, and White's e-pawn will be isolated, since White will have no pawn on the d- or f-file."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, le pion noir e3 étant sur le point d'être repris par dxe3. Une fois qu'il l'est, le compte est de six contre sept, si bien que les Blancs ont toujours un pion de moins, et le pion e blanc sera isolé, puisque les Blancs n'auront plus de pion sur les colonnes d et f."
+        plan:
+          vi: 'Trắng ăn lại bằng dxe3 rồi phát triển bằng Nc3, Be2 và nhập thành. Đen phát triển bằng ...Nc6 và ...Be7, nhập thành rồi đánh vào trung tâm bằng ...d5.'
+          en: 'White recaptures with dxe3, then develops with Nc3, Be2 and castles. Black develops with ...Nc6 and ...Be7, castles, then strikes in the centre with ...d5.'
+          fr: 'Les Blancs reprennent par dxe3, puis se développent par Nc3, Be2 et roquent. Les Noirs se développent par ...Nc6 et ...Be7, roquent, puis frappent au centre par ...d5.'
+        basis:
+          by: chan
+          at: '2026-10-01'

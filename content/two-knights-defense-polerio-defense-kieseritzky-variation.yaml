@@ -1,0 +1,65 @@
+# Italian Game, Two Knights Defense, Polerio Defense, Kieseritzky Variation. Frozen defining
+# line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.d3, which ends on White's ply; the
+# learner plays Black, so the authored definingLine stops one ply earlier, on Black's own
+# 5...Na5 (a prefix of the frozen line, as the catalogue build allows), and 6.d3 is modelled
+# below as the first reply (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: two-knights-defense-polerio-defense-kieseritzky-variation
+name: 'Italian Game: Two Knights Defense, Polerio Defense, Kieseritzky Variation'
+eco: C58
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Na5]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 5...Na5 White is a pawn up, eight pawns to seven, but the bishop on
+      c4 is attacked by the knight on a5 and nothing defends it, and the knight on g5 has no
+      defender while its targets f7 and h7 are both defended. Black gives the pawn for time,
+      and that is treated as enough for the line to be labelled sound. The pawn move 6.d3
+      that gives the line its name is the first reply modelled below. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Na5, Phòng thủ Polerio. Trắng hơn một tốt, tám tốt so với bảy, nhưng tượng c4 bị mã a5 tấn công và không quân nào bảo vệ nó. Tốt d5 bị hậu và mã f6 tấn công hai lần, chỉ được con tượng đó bảo vệ một lần, còn mã g5 của Trắng không có quân nào bảo vệ.
+    en: Black has just played 5...Na5, the Polerio Defense. White is a pawn up, eight pawns to seven, but the bishop on c4 is attacked by the knight on a5 and nothing defends it. The d5 pawn is attacked twice, by the queen and the f6 knight, and defended once, by that bishop, and White's knight on g5 has no defender.
+    fr: Les Noirs viennent de jouer 5...Na5, la défense Polerio. Les Blancs ont un pion de plus, huit pions contre sept, mais le fou c4 est attaqué par le cavalier a5 et rien ne le défend. Le pion d5 est attaqué deux fois, par la dame et par le cavalier f6, et défendu une fois, par ce fou, et le cavalier g5 des Blancs n'a aucun défenseur.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 6.d3 ở đây. Mục này chỉ mô hình hóa nước tốt bảo vệ tượng.
+      en: White plays something other than 6.d3 here. This entry models only the pawn move that defends the bishop.
+      fr: Les Blancs jouent autre chose que 6.d3 ici. Cette entrée ne modélise que le coup de pion qui défend le fou.
+  children:
+    - ply: d3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng bảo vệ tượng bằng 6.d3: tượng c4 giờ được tốt d3 bảo vệ, trong khi mã a5 vẫn tấn công nó.'
+        en: 'White defends the bishop with 6.d3: the bishop on c4 is now defended by the d3 pawn, while the knight on a5 still attacks it.'
+        fr: "Les Blancs défendent le fou par 6.d3 : le fou c4 est maintenant défendu par le pion d3, tandis que le cavalier a5 l'attaque toujours."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên tốt chưa được lấy lại. Tượng c4 bị mã a5 tấn công và được tốt d3 bảo vệ, nên ...Nxc4 dxc4 sẽ để Trắng có hai tốt chồng trên cột c. Tốt d5 bị hậu và mã f6 tấn công mà chỉ có tượng bảo vệ, nhưng ...Nxd5 có thể bị đáp bằng Qf3, tấn công con mã lần thứ hai và đồng thời nhắm vào f7. Mọi nước ăn của Đen (...Nxd5, ...Qxd5, ...Nxc4) đều bị ăn lại. Mã g5 được tượng c1 bảo vệ.'
+          en: 'Count the pawns: White eight, Black seven, so the pawn has not come back. The bishop on c4 is attacked by the knight on a5 and defended by the d3 pawn, so ...Nxc4 dxc4 would leave White with doubled pawns on the c-file. The d5 pawn is attacked by the queen and the f6 knight and defended by the bishop alone, but ...Nxd5 can be met by Qf3, which attacks the knight a second time and also bears on f7. Every capture Black has (...Nxd5, ...Qxd5, ...Nxc4) is recaptured. The knight on g5 is defended by the bishop on c1.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc le pion n'est pas récupéré. Le fou c4 est attaqué par le cavalier a5 et défendu par le pion d3, de sorte que ...Nxc4 dxc4 laisserait les Blancs avec des pions doublés sur la colonne c. Le pion d5 est attaqué par la dame et le cavalier f6 et défendu par le seul fou, mais ...Nxd5 peut être suivi de Qf3, qui attaque le cavalier une seconde fois et vise aussi f7. Toutes les prises des Noirs (...Nxd5, ...Qxd5, ...Nxc4) sont reprises. Le cavalier g5 est défendu par le fou c1."
+        plan:
+          vi: Đen đuổi mã g5 bằng ...h6 và, nếu nó lui về f3, tấn công nó lần nữa bằng ...e4. Trắng lui mã về f3 và, khi tốt đã lên e4, đưa nó vào trung tâm bằng Nd4.
+          en: Black drives the g5 knight back with ...h6 and, if it retreats to f3, hits it again with ...e4. White retreats the knight with Nf3 and, once the pawn is on e4, centralises it with Nd4.
+          fr: Les Noirs repoussent le cavalier g5 par ...h6 et, s'il recule en f3, l'attaquent de nouveau par ...e4. Les Blancs reculent le cavalier en f3 et, une fois le pion arrivé en e4, le centralisent par Nd4.
+        basis:
+          by: chan
+          at: '2026-10-01'

@@ -1,0 +1,66 @@
+# Queen's Pawn Game: Liedmann Gambit. Defining line 1.d4 c5 2.c4 cxd4 3.e3, which ends on
+# White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-pawn-game-liedmann-gambit
+name: "Queen's Pawn Game: Liedmann Gambit"
+eco: A43
+category: gambit
+side: white
+definingLine: [d4, c5, c4, cxd4, e3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. White is a pawn down after 2...cxd4, and 3.e3 offers the e-pawn as well:
+      the e3 pawn is attacked by the d4 pawn and defended by the f2 pawn and the bishop on
+      c1. Neither side has developed a piece yet, so any compensation for the two pawns
+      would have to come from White's faster development. The label is dubious. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 3.e3, hiến thêm tốt e, đang thiếu một tốt. Tốt e3 bị tốt d4 tấn công và được tốt f2 và tượng c1 bảo vệ, còn tốt d4 của Đen bị tốt e3 và hậu d1 tấn công mà không có quân nào bảo vệ.
+    en: White has just played 3.e3, offering the e-pawn as well, a pawn down already. The e3 pawn is attacked by the d4 pawn and defended by the f2 pawn and the bishop on c1, and Black's d4 pawn is attacked by the e3 pawn and the queen on d1 and defended by nothing.
+    fr: Les Blancs viennent de jouer 3.e3, offrant aussi le pion e, déjà un pion en moins. Le pion e3 est attaqué par le pion d4 et défendu par le pion f2 et le fou c1, et le pion noir d4 est attaqué par le pion e3 et la dame d1 et rien ne le défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 3...dxe3 ở đây. Mục này chỉ đi theo 3...dxe3; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 3...dxe3 here. This entry follows 3...dxe3 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 3...dxe3 ici. Cette entrée ne suit que 3...dxe3 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxe3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn thêm tốt bằng 3...dxe3. Tốt e3 giờ bị tốt f2 và tượng c1 tấn công mà không có quân nào bảo vệ.
+        en: Black takes the second pawn with 3...dxe3. The e3 pawn is now attacked by the f2 pawn and the bishop on c1 and defended by nothing.
+        fr: Les Noirs prennent le second pion par 3...dxe3. Le pion e3 est maintenant attaqué par le pion f2 et le fou c1 et rien ne le défend.
+      children:
+        - ply: Bxe3
+          annotation:
+            vi: Trắng ăn lại bằng tượng, 4.Bxe3, vừa phát triển tượng vừa tấn công tốt a7.
+            en: White takes back with the bishop, 4.Bxe3, which develops it with an attack on the a7 pawn.
+            fr: Les Blancs reprennent avec le fou, 4.Bxe3, ce qui le développe avec une attaque sur le pion a7.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng thiếu một tốt. Trắng không còn tốt nào trên cột d và cột e, nên cả hai cột đều nửa mở cho quân Trắng, và hậu d1 tấn công tốt d7, được bốn quân Đen bảo vệ. Tượng e3 tấn công tốt a7, được xe a8 bảo vệ.'
+              en: "Count the pawns: White six, Black seven, so White is a pawn down. White has no pawn on the d-file or the e-file, so both files are half open for White's pieces, and the queen on d1 attacks the d7 pawn, which four Black pieces defend. The bishop on e3 attacks the a7 pawn, which the rook on a8 defends."
+              fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs ; les Blancs sont donc un pion en moins. Les Blancs n'ont aucun pion sur la colonne d ni sur la colonne e, si bien que les deux colonnes sont semi-ouvertes pour les pièces blanches, et la dame d1 attaque le pion d7, que quatre pièces noires défendent. Le fou e3 attaque le pion a7, que la tour a8 défend."
+            plan:
+              vi: Trắng phát triển bằng Nc3, Nf3 và Be2, nhập thành bằng O-O và dùng cột d nửa mở nhắm vào tốt d của Đen. Đen phát triển bằng ...Nf6, ...Nc6 và ...e6, cố giữ tốt hơn.
+              en: White develops with Nc3, Nf3 and Be2, castles with O-O and uses the half-open d-file against Black's d-pawn. Black develops with ...Nf6, ...Nc6 and ...e6, trying to keep the extra pawn.
+              fr: Les Blancs se développent par Nc3, Nf3 et Be2, roquent par O-O et utilisent la colonne d semi-ouverte contre le pion d noir. Les Noirs se développent par ...Nf6, ...Nc6 et ...e6, en cherchant à garder le pion en plus.
+            basis:
+              by: chan
+              at: 2026-10-01

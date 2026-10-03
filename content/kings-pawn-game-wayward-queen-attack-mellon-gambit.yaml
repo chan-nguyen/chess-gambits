@@ -1,0 +1,66 @@
+# King's Pawn Game: Wayward Queen Attack, Mellon Gambit. Frozen defining line 1.e4 e5 2.Qh5
+# Nc6 3.Bc4 Nh6 4.d3 g6 5.Qf3 f6 6.Ne2 d5 ends on Black's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'kings-pawn-game-wayward-queen-attack-mellon-gambit'
+name: "King's Pawn Game: Wayward Queen Attack, Mellon Gambit"
+eco: 'C20'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Qh5'
+  - 'Nc6'
+  - 'Bc4'
+  - 'Nh6'
+  - 'd3'
+  - 'g6'
+  - 'Qf3'
+  - 'f6'
+  - 'Ne2'
+  - 'd5'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, eight each, but Black's pawn on d5 is attacked twice, by the bishop on c4 and the e4 pawn, and defended only by the queen, so White can take it at once. Black has only the two knights developed, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 6...d5, tấn công tượng c4 và tốt e4. Số tốt hai bên bằng nhau, mỗi bên tám, và tốt d5 bị tượng c4 và tốt e4 tấn công hai lần và chỉ có hậu bảo vệ.'
+    en: 'Black has just played 6...d5, attacking the bishop on c4 and the pawn on e4. The pawns are level, eight each, and the pawn on d5 is attacked twice, by the bishop on c4 and the e4 pawn, and defended only by the queen.'
+    fr: 'Les Noirs viennent de jouer 6...d5, attaquant le fou c4 et le pion e4. Les pions sont à égalité, huit de chaque côté, et le pion d5 est attaqué deux fois, par le fou c4 et le pion e4, et défendu seulement par la dame.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 7.Bxd5 ở đây, chẳng hạn 7.exd5, cũng ăn tốt d5. Mục này đi theo nước tượng ăn tốt.'
+      en: 'White plays something other than 7.Bxd5 here, for instance 7.exd5, which also takes the pawn on d5. This entry follows the capture with the bishop.'
+      fr: 'Les Blancs jouent autre chose que 7.Bxd5 ici, par exemple 7.exd5, qui prend aussi le pion d5. Cette entrée suit la capture avec le fou.'
+  children:
+    - ply: 'Bxd5'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn tốt d5 bằng tượng. Tượng bị hậu d8 tấn công và được tốt e4 bảo vệ, và nó tấn công mã c6, quân được tốt b7 bảo vệ.'
+        en: 'White takes the pawn on d5 with the bishop. The bishop is attacked by the queen on d8 and defended by the e4 pawn, and it attacks the knight on c6, which the b7 pawn defends.'
+        fr: 'Les Blancs prennent le pion d5 avec le fou. Le fou est attaqué par la dame d8 et défendu par le pion e4, et il attaque le cavalier c6, que le pion b7 défend.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng đã thắng một tốt ở d5. Tượng d5 tấn công mã c6, quân chỉ được tốt b7 bảo vệ, và hậu Đen tấn công tượng d5, quân được tốt e4 bảo vệ. Mã h6 của Đen bị tượng c1 tấn công và được tượng f8 bảo vệ. Cột d bán mở cho Đen. Qxd5 sẽ mất hậu lấy một tượng.'
+          en: "Count the pawns: White eight, Black seven, so White has won a pawn on d5. The bishop on d5 attacks the knight on c6, which only the b7 pawn defends, and Black's queen attacks the bishop on d5, which the e4 pawn defends. Black's knight on h6 is attacked by the bishop on c1 and defended by the bishop on f8. The d-file is half-open for Black. Qxd5 would lose the queen for a bishop."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont gagné un pion en d5. Le fou d5 attaque le cavalier c6, que seul le pion b7 défend, et la dame noire attaque le fou d5, que le pion e4 défend. Le cavalier h6 des Noirs est attaqué par le fou c1 et défendu par le fou f8. La colonne d est semi-ouverte pour les Noirs. Qxd5 perdrait la dame pour un fou.'
+        plan:
+          vi: 'Đen tấn công tượng d5 bằng ...Nb4 và phát triển bằng ...Bg4, đánh vào hậu. Trắng giữ tượng bằng Bb3 và dời hậu bằng Qg3.'
+          en: 'Black attacks the bishop on d5 with ...Nb4 and develops with ...Bg4, hitting the queen. White keeps the bishop with Bb3 and moves the queen with Qg3.'
+          fr: 'Les Noirs attaquent le fou d5 par ...Nb4 et se développent par ...Bg4, frappant la dame. Les Blancs gardent le fou par Bb3 et déplacent la dame par Qg3.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

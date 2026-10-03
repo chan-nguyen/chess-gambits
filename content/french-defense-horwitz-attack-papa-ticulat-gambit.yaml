@@ -1,0 +1,61 @@
+# French Defense: Horwitz Attack, Papa-Ticulat Gambit. Defining line 1.e4 e6 2.b3 d5 3.Bb2,
+# which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-horwitz-attack-papa-ticulat-gambit
+name: 'French Defense: Horwitz Attack, Papa-Ticulat Gambit'
+eco: C00
+category: gambit
+side: white
+definingLine: [e4, e6, b3, d5, Bb2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the e4 pawn is attacked by the d5 pawn and defended by nothing, so Black can take it
+      at once. The bishop on b2 aims at g7, which the bishop on f8 defends, so it does not
+      repay the pawn by itself, which is why the entry is rated dubious. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa phát triển tượng bằng 3.Bb2, nên số tốt đang ngang nhau, mỗi bên tám. Tốt e4 bị tốt d5 tấn công và không được quân nào bảo vệ, còn tượng b2 tấn công g7, ô được tượng f8 bảo vệ.
+    en: White has just developed the bishop with 3.Bb2, so the pawn count is level, eight each. The e4 pawn is attacked by the pawn on d5 and defended by nothing, and the bishop on b2 attacks g7, which the bishop on f8 defends.
+    fr: Les Blancs viennent de développer le fou par 3.Bb2, de sorte que le compte des pions est égal, huit de chaque côté. Le pion e4 est attaqué par le pion d5 et n'est défendu par aucune pièce, et le fou b2 attaque g7, que le fou f8 défend.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 3...dxe4 ở đây, chẳng hạn 3...Nf6 hoặc 3...Nc6. Mục này chỉ mô hình hóa 3...dxe4 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: phát triển nốt các quân còn lại và giữ tượng trên đường chéo dài.'
+      en: "Black plays something other than 3...dxe4 here, for instance 3...Nf6 or 3...Nc6. This entry models only 3...dxe4 and does not analyse those moves; White's task usually stays the same: develop the remaining pieces and keep the bishop on the long diagonal."
+      fr: "Les Noirs jouent autre chose que 3...dxe4 ici, par exemple 3...Nf6 ou 3...Nc6. Cette entrée ne modélise que 3...dxe4 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : développer les pièces restantes et garder le fou sur la grande diagonale."
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 3...dxe4. Không quân Trắng nào tấn công được tốt mới ở e4, và cột d giờ mở từ hậu d8 tới d2.
+        en: Black takes the pawn with 3...dxe4. Nothing of White's attacks the new pawn on e4, and the d-file is now open from the queen on d8 towards d2.
+        fr: Les Noirs prennent le pion par 3...dxe4. Aucune pièce blanche n'attaque le nouveau pion en e4, et la colonne d est désormais ouverte de la dame d8 vers d2.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém đúng một tốt sạch. Tượng b2 nhìn xuống đường chéo dài tới g7, ô được tượng f8 bảo vệ, còn hậu d8 tấn công d2, ô được mã b1, hậu d1 và vua e1 bảo vệ.'
+          en: 'Count the pawns: White seven, Black eight, so White is a clean pawn down. The bishop on b2 bears down the long diagonal on g7, which the bishop on f8 defends, and the queen on d8 attacks d2, which the knight on b1, the queen on d1 and the king on e1 defend.'
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion net de moins. Le fou b2 balaie la grande diagonale jusqu'à g7, que le fou f8 défend, et la dame d8 attaque d2, que le cavalier b1, la dame d1 et le roi e1 défendent."
+        plan:
+          vi: Trắng chơi Nc3 để tấn công tốt e4 và Qe2 để tấn công nó lần nữa. Đen chơi ...f5 để bảo vệ nó, rồi ...Nf6, cũng chắn luôn đường chéo của tượng.
+          en: White plays Nc3 to attack the pawn on e4 and Qe2 to attack it again. Black plays ...f5 to defend it, then ...Nf6, which also blocks the bishop's diagonal.
+          fr: Les Blancs jouent Nc3 pour attaquer le pion e4 et Qe2 pour l'attaquer une seconde fois. Les Noirs jouent ...f5 pour le défendre, puis ...Nf6, qui bloque aussi la diagonale du fou.
+        basis:
+          by: chan
+          at: 2026-10-01

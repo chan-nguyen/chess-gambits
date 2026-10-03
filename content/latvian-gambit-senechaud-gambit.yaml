@@ -1,0 +1,84 @@
+# Latvian Gambit: Senechaud Gambit. Frozen defining line 1.e4 e5 2.Nf3 f5 3.b4 ends on White's
+# ply, which is the opponent's, so the authored defining line stops one ply earlier, at 1.e4
+# e5 2.Nf3 f5 (docs/CONTEXT.md, invariant 5), and the dropped ply b4 is modelled below as the
+# first reply; the shortened line is a prefix of the catalogue line, which the catalogue build
+# accepts. Part of batch t of round 4 (#182). Every ply below was replayed with chess.js
+# before it was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: 'latvian-gambit-senechaud-gambit'
+name: 'Latvian Gambit: Senechaud Gambit'
+eco: 'C40'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'f5'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the shortened defining line the pawns are level, eight each, but Black's pawns on e5 and f5 are both attacked and nothing defends either of them, while the pawn on e4 is attacked once. White can take a pawn at once and Black has no piece developed, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 2...f5. Số tốt hai bên bằng nhau, mỗi bên tám. Tốt e4 của Trắng bị tốt f5 tấn công và không có gì bảo vệ, và các tốt e5 và f5 của Đen bị mã f3 và tốt e4 tấn công và không có gì bảo vệ.'
+    en: "Black has just played 2...f5. The pawns are level, eight each. White's pawn on e4 is attacked by the f5 pawn and nothing defends it, and Black's pawns on e5 and f5 are attacked by the knight on f3 and the pawn on e4 with nothing to defend them."
+    fr: 'Les Noirs viennent de jouer 2...f5. Les pions sont à égalité, huit de chaque côté. Le pion e4 des Blancs est attaqué par le pion f5 et rien ne le défend, et les pions e5 et f5 des Noirs sont attaqués par le cavalier f3 et le pion e4 sans que rien ne les défende.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 3.b4 ở đây, chẳng hạn 3.exf5, ăn tốt f5. Mục này đi theo nước đẩy tốt b.'
+      en: 'White plays something other than 3.b4 here, for instance 3.exf5, which takes the pawn on f5. This entry follows the b-pawn push.'
+      fr: 'Les Blancs jouent autre chose que 3.b4 ici, par exemple 3.exf5, qui prend le pion f5. Cette entrée suit la poussée du pion b.'
+  children:
+    - ply: 'b4'
+      replyQuality: 'inaccuracy'
+      frequency: 'rare'
+      annotation:
+        vi: 'Trắng đẩy tốt b lên b4 và dâng nó ra: tốt b4 bị tượng f8 tấn công và không có gì bảo vệ.'
+        en: 'White pushes the b-pawn to b4 and offers it: the pawn on b4 is attacked by the bishop on f8 and nothing defends it.'
+        fr: "Les Blancs poussent le pion b en b4 et l'offrent : le pion b4 est attaqué par le fou f8 et rien ne le défend."
+      children:
+        - ply: 'fxe4'
+          annotation:
+            vi: 'Đen ăn tốt e4 bằng tốt f. Tốt e4 tấn công mã f3, và Đen có hai tốt e, ở e5 và e4.'
+            en: 'Black takes the pawn on e4 with the f-pawn. The pawn on e4 attacks the knight on f3, and Black now has two pawns on the e-file, on e5 and e4.'
+            fr: 'Les Noirs prennent le pion e4 avec le pion f. Le pion e4 attaque le cavalier f3, et les Noirs ont maintenant deux pions sur la colonne e, en e5 et e4.'
+          dismissRest:
+            reason:
+              vi: 'Trắng chơi nước khác 4.Nxe5 ở đây. Mục này đi theo nước ăn tốt e5, cũng đưa mã khỏi đòn tấn công của tốt e4.'
+              en: 'White plays something other than 4.Nxe5 here. This entry follows the capture of the pawn on e5, which also takes the knight out of the attack of the pawn on e4.'
+              fr: "Les Blancs jouent autre chose que 4.Nxe5 ici. Cette entrée suit la capture du pion e5, qui met aussi le cavalier hors de l'attaque du pion e4."
+          children:
+            - ply: 'Nxe5'
+              replyQuality: 'good'
+              frequency: 'common'
+              annotation:
+                vi: 'Trắng ăn tốt e5 bằng mã, đưa mã khỏi đòn tấn công của tốt e4 và đưa số tốt về bằng nhau, mỗi bên bảy. Tốt b4 vẫn bị tượng f8 tấn công.'
+                en: 'White takes the pawn on e5 with the knight, which takes the knight out of the attack of the e4 pawn and levels the pawn count at seven each. The pawn on b4 is still attacked by the bishop on f8.'
+                fr: "Les Blancs prennent le pion e5 avec le cavalier, ce qui met le cavalier hors de l'attaque du pion e4 et remet le compte des pions à égalité, sept de chaque côté. Le pion b4 est toujours attaqué par le fou f8."
+              children:
+                - ply: 'Bxb4'
+                  annotation:
+                    vi: 'Đen ăn tốt b4 bằng tượng. Tượng giờ tấn công tốt d2, quân được nhiều quân bảo vệ.'
+                    en: 'Black takes the pawn on b4 with the bishop. The bishop now attacks the d2 pawn, which several pieces defend.'
+                    fr: 'Les Noirs prennent le pion b4 avec le fou. Le fou attaque maintenant le pion d2, que plusieurs pièces défendent.'
+                  outcome:
+                    type: 'position'
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng kém một tốt, và tốt a của Trắng bị cô lập vì tốt b đã mất. Tốt f7 đã mất nên Trắng có nước chiếu Qh5+; nếu Đen chặn bằng ...g6, mã ăn ở g6 sẽ tấn công xe h8. Nxd7 sẽ mất mã lấy một tốt.'
+                      en: "Count the pawns: White six, Black seven, so White is a pawn down, and White's a-pawn is isolated now that the b-pawn is gone. The f7 pawn is gone, so White has the check Qh5+; if Black blocks with ...g6, the knight taking on g6 attacks the rook on h8. Nxd7 would lose the knight for a pawn."
+                      fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de moins, et le pion a blanc est isolé depuis que le pion b a disparu. Le pion f7 a disparu, donc les Blancs ont l'échec Qh5+ ; si les Noirs parent par ...g6, le cavalier qui prend en g6 attaque la tour h8. Nxd7 perdrait le cavalier pour un pion."
+                    plan:
+                      vi: 'Trắng chiếu bằng Qh5+, và nếu Đen chặn bằng tốt g6 thì mã ăn nó, tấn công xe h8. Đen đáp lại nước chiếu bằng ...g6 và phát triển bằng ...Nf6.'
+                      en: 'White checks with Qh5+, and if Black blocks with a pawn on g6 the knight takes it, attacking the rook on h8. Black meets the check with ...g6 and develops with ...Nf6.'
+                      fr: "Les Blancs donnent échec par Qh5+, et si les Noirs parent avec un pion en g6 le cavalier le prend, attaquant la tour h8. Les Noirs répondent à l'échec par ...g6 et se développent par ...Nf6."
+                    basis:
+                      by: 'chan'
+                      at: '2026-10-01'

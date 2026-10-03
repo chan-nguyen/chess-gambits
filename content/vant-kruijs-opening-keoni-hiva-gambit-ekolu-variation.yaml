@@ -1,0 +1,65 @@
+# Van't Kruijs Opening: Keoni-Hiva Gambit, Ekolu Variation. Frozen defining line 1.e3 e5
+# 2.Nc3 d5 3.f4 exf4 4.Nf3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply fxe3;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry. The leaf carries `unsettled` because a capture is going
+# free there.
+id: vant-kruijs-opening-keoni-hiva-gambit-ekolu-variation
+name: "Van't Kruijs Opening: Keoni-Hiva Gambit, Ekolu Variation"
+eco: A00
+category: gambit
+side: white
+definingLine: [e3, e5, Nc3, d5, f4, exf4, Nf3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and Black's f4 pawn is attacked by the e3 pawn with nothing to defend it, but Black can
+      take on e3 first and still be a pawn up after White recaptures. White has not been shown
+      to get more in return than the half-open f-file and two developed knights. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.Nf3, đưa mã thứ hai ra. Tốt e3 của Trắng bị tốt f4 của Đen tấn công và được tốt d2 bảo vệ, còn tốt f4 bị tốt e3 tấn công mà không có quân nào bảo vệ. Trắng đang kém một tốt, bảy so với tám, nhưng đã có hai mã ra quân còn Đen chưa phát triển quân nào. Mục này đi theo nước Đen ăn 4...fxe3.'
+    en: "White has just played 4.Nf3, developing the second knight. White's e3 pawn is attacked by Black's f4 pawn and defended by the d2 pawn, while the f4 pawn is attacked by the e3 pawn and nothing defends it. White is a pawn down, seven pawns to eight, but has both knights out while Black has developed no piece. This entry follows Black capturing 4...fxe3."
+    fr: "Les Blancs viennent de jouer 4.Nf3, développant le second cavalier. Le pion e3 blanc est attaqué par le pion f4 noir et défendu par le pion d2, tandis que le pion f4 est attaqué par le pion e3 sans être défendu. Les Blancs ont un pion de moins, sept contre huit, mais ont sorti leurs deux cavaliers alors que les Noirs n'ont développé aucune pièce. Cette entrée suit la prise 4...fxe3 des Noirs."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...fxe3, nên tốt e3 chưa bị ăn. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 4...fxe3 here, so the e3 pawn is not taken. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 4...fxe3 ici, si bien que le pion e3 n'est pas pris. Cette entrée ne suit que la prise."
+  children:
+    - ply: fxe3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt e3 bằng tốt f. Tốt e3 mới bị tốt d2 tấn công mà không có quân Đen nào bảo vệ, nên Trắng sắp ăn lại.'
+        en: "Black takes the e3 pawn with the f-pawn. The new pawn on e3 is attacked by the d2 pawn and nothing of Black's defends it, so White is about to recapture."
+        fr: 'Les Noirs prennent le pion e3 avec le pion f. Le nouveau pion e3 est attaqué par le pion d2 et aucune pièce noire ne le défend, si bien que les Blancs vont reprendre.'
+      unsettled: >-
+        Recapturing on e3 with the d-pawn is going free because nothing of Black's defends the
+        pawn on e3 and dxe3 is White's only recapture; the evaluation counts it, which brings
+        the pawn count to six against seven.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, và tốt e3 của Đen sắp bị ăn lại bằng dxe3. Khi đó là sáu so với bảy, nên Trắng vẫn kém một tốt. Đổi lại Trắng đã đưa ra hai mã còn Đen chưa phát triển quân nào, và Trắng không còn tốt f nên cột f là cột nửa mở của Trắng.'
+          en: "Count the pawns: White six, Black eight, with Black's pawn on e3 about to be taken back by dxe3. Once it is, the count is six against seven, so White is still a pawn down. In return White has two knights out and Black has developed no piece, and White has no f-pawn, so the f-file is half-open for White."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, le pion noir e3 étant sur le point d'être repris par dxe3. Une fois qu'il l'est, le compte est de six contre sept, si bien que les Blancs ont toujours un pion de moins. En contrepartie, les Blancs ont sorti deux cavaliers alors que les Noirs n'ont développé aucune pièce, et les Blancs n'ont plus de pion f, si bien que la colonne f est semi-ouverte pour eux."
+        plan:
+          vi: 'Trắng ăn lại bằng dxe3 rồi phát triển bằng Bd3, nhập thành và đẩy e4 để đánh vào tốt d5. Đen phát triển bằng ...Nf6, ...Bd6 và ...O-O, rồi ...Nc6.'
+          en: 'White recaptures with dxe3, then develops with Bd3, castles and pushes e4 to hit the d5 pawn. Black develops with ...Nf6, ...Bd6 and ...O-O, then ...Nc6.'
+          fr: 'Les Blancs reprennent par dxe3, puis se développent par Bd3, roquent et poussent e4 pour attaquer le pion d5. Les Noirs se développent par ...Nf6, ...Bd6 et ...O-O, puis ...Nc6.'
+        basis:
+          by: chan
+          at: '2026-10-01'

@@ -1,0 +1,60 @@
+# King's Pawn Game: La Bourdonnais Gambit. Frozen defining line 1.e4 e5 2.Nf3 Qf6 3.Bc4 Qg6
+# 4.O-O ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5). Part of batch t of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: 'kings-pawn-game-la-bourdonnais-gambit'
+name: "King's Pawn Game: La Bourdonnais Gambit"
+eco: 'C40'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Qf6'
+  - 'Bc4'
+  - 'Qg6'
+  - 'O-O'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement carried over from the family summary, not from this line. At the end of the defining line White has castled, has two minor pieces developed against none, and the pawns are level, eight each, but the pawn on e4 is attacked by the queen on g6 and nothing defends it, so the offer costs White a pawn if White ignores it. Nothing on the board shows the offer refuted, so the label is the part of this entry the position supports least. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa nhập thành bằng 4.O-O. Số tốt hai bên bằng nhau, mỗi bên tám. Tốt e4 của Trắng bị hậu g6 tấn công và không có gì bảo vệ, còn tốt e5 của Đen bị mã f3 tấn công và cũng không có gì bảo vệ. Trắng đã phát triển hai quân nhẹ, Đen chưa phát triển quân nhẹ nào.'
+    en: "White has just castled with 4.O-O. The pawns are level, eight each. White's pawn on e4 is attacked by the queen on g6 and nothing defends it, and Black's pawn on e5 is attacked by the knight on f3 and nothing defends it either. White has two minor pieces developed and Black has none."
+    fr: 'Les Blancs viennent de roquer par 4.O-O. Les pions sont à égalité, huit de chaque côté. Le pion e4 des Blancs est attaqué par la dame g6 et rien ne le défend, et le pion e5 des Noirs est attaqué par le cavalier f3 et rien ne le défend non plus. Les Blancs ont développé deux pièces mineures et les Noirs aucune.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 4...d6 ở đây, chẳng hạn 4...Nc6. Mục này đi theo nước đẩy tốt bảo vệ e5.'
+      en: 'Black plays something other than 4...d6 here, for instance 4...Nc6. This entry follows the pawn move that defends e5.'
+      fr: 'Les Noirs jouent autre chose que 4...d6 ici, par exemple 4...Nc6. Cette entrée suit le coup de pion qui défend e5.'
+  children:
+    - ply: 'd6'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen bảo vệ tốt e5 bằng tốt d, nên tốt e5, bị mã f3 tấn công, giờ được bảo vệ một lần. Tốt e4 vẫn bị hậu g6 tấn công và không có gì bảo vệ.'
+        en: 'Black defends the e5 pawn with the d-pawn, so the pawn on e5, attacked by the knight on f3, is now defended once. The pawn on e4 is still attacked by the queen on g6 and nothing defends it.'
+        fr: 'Les Noirs défendent le pion e5 avec le pion d, donc le pion e5, attaqué par le cavalier f3, est maintenant défendu une fois. Le pion e4 est toujours attaqué par la dame g6 et rien ne le défend.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: mỗi bên tám, nghĩa là chưa có tốt nào bị mất. Tốt e4 bị hậu g6 tấn công và không có gì bảo vệ, còn tốt e5 của Đen bị mã f3 tấn công và được tốt d6 bảo vệ. Hậu Đen đã đi hai lần và Đen chưa phát triển quân nhẹ nào, trong khi Trắng đã nhập thành và có hai quân nhẹ ra. Bxf7+ và Nxe5 đều sẽ mất một quân lấy một tốt.'
+          en: "Count the pawns: eight each, so no pawn has been lost yet. The pawn on e4 is attacked by the queen on g6 and nothing defends it, and Black's pawn on e5 is attacked by the knight on f3 and defended by the d6 pawn. Black's queen has moved twice and Black has no minor piece out, while White has castled and has two minor pieces developed. Bxf7+ and Nxe5 would each give a piece for a pawn."
+          fr: "Comptez les pions : huit de chaque côté, donc aucun pion n'a encore été perdu. Le pion e4 est attaqué par la dame g6 et rien ne le défend, et le pion e5 des Noirs est attaqué par le cavalier f3 et défendu par le pion d6. La dame noire a joué deux fois et les Noirs n'ont aucune pièce mineure sortie, tandis que les Blancs ont roqué et ont deux pièces mineures développées. Bxf7+ et Nxe5 donneraient chacun une pièce pour un pion."
+        plan:
+          vi: 'Trắng bảo vệ tốt e4 bằng Nc3 và d3. Đen phát triển bằng ...Nc6 và ...Be7.'
+          en: 'White defends the e4 pawn with Nc3 and d3. Black develops with ...Nc6 and ...Be7.'
+          fr: 'Les Blancs défendent le pion e4 par Nc3 et d3. Les Noirs se développent par ...Nc6 et ...Be7.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

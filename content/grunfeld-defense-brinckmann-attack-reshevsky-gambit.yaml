@@ -1,0 +1,66 @@
+# Grünfeld Defense: Brinckmann Attack, Reshevsky Gambit. Defining line 1.d4 Nf6 2.c4 g6
+# 3.Nc3 d5 4.Bf4 Bg7 5.Rc1 O-O 6.e3 c5 7.dxc5 Qa5, which ends on Black's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: grunfeld-defense-brinckmann-attack-reshevsky-gambit
+name: 'Grünfeld Defense: Brinckmann Attack, Reshevsky Gambit'
+eco: D83
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, g6, Nc3, d5, Bf4, Bg7, Rc1, O-O, e3, c5, dxc5, Qa5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black has given the c-pawn and plays 7...Qa5 to pin the knight on c3
+      against the king and attack the unprotected pawn on c5. The pin is real, but White to
+      move can take on d5, so Black's compensation is brief. The label is dubious. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 7...Qa5, tấn công mã c3, mà hậu ghim vào vua e1, và tấn công tốt c5, không có quân nào bảo vệ. Trắng hơn một tốt.
+    en: Black has just played 7...Qa5, attacking the knight on c3, which the queen pins against the king on e1, and the c5 pawn, which nothing defends. White is a pawn up.
+    fr: Les Noirs viennent de jouer 7...Qa5, attaquant le cavalier c3, que la dame cloue contre le roi e1, et le pion c5, que rien ne défend. Les Blancs ont un pion de plus.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 8.cxd5 ở đây. Mục này chỉ đi theo 8.cxd5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 8.cxd5 here. This entry follows 8.cxd5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 8.cxd5 ici. Cette entrée ne suit que 8.cxd5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: cxd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn trên d5 bằng 8.cxd5. Tốt mới trên d5 bị mã f6 tấn công, được hậu d1 bảo vệ và cả mã c3 đang bị ghim, nhưng con mã đó không ăn lại được.
+        en: White takes on d5 with 8.cxd5. The new pawn on d5 is attacked by the knight on f6 and defended by the queen on d1 and by the pinned knight on c3, which cannot recapture.
+        fr: Les Blancs prennent en d5 par 8.cxd5. Le nouveau pion en d5 est attaqué par le cavalier f6 et défendu par la dame d1 et par le cavalier c3 cloué, qui ne peut pas reprendre.
+      children:
+        - ply: Qxc5
+          annotation:
+            vi: Đen ăn tốt c5 bằng 8...Qxc5, chấm dứt thế ghim và tấn công tốt d5, mã c3 và tốt e3.
+            en: Black takes the c5 pawn with 8...Qxc5, which ends the pin and attacks the d5 pawn, the knight on c3 and the pawn on e3.
+            fr: Les Noirs prennent le pion c5 par 8...Qxc5, ce qui met fin au clouage et attaque le pion d5, le cavalier c3 et le pion e3.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Trắng hơn một tốt và con tốt đã hiến chưa lấy lại được. Tốt d5 bị mã f6 và hậu c5 tấn công, được mã c3 và hậu d1 bảo vệ, còn mã b8 bị tượng f4 tấn công và được xe a8 bảo vệ.'
+              en: 'Count the pawns: White seven, Black six, so White is a pawn up and the sacrifice has not come back. The d5 pawn is attacked by the knight on f6 and the queen on c5 and defended by the knight on c3 and the queen on d1, and the knight on b8 is attacked by the bishop on f4 and defended by the rook on a8.'
+              fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs ; les Blancs ont donc un pion de plus et le sacrifice n'est pas revenu. Le pion d5 est attaqué par le cavalier f6 et la dame c5 et défendu par le cavalier c3 et la dame d1, et le cavalier b8 est attaqué par le fou f4 et défendu par la tour a8."
+            plan:
+              vi: Trắng phát triển bằng Nf3 và Be2 và nhập thành bằng O-O, giữ tốt d5 luôn được bảo vệ. Đen phát triển bằng ...Bg4 và ...Nbd7, và giữ sức ép lên tốt d5 bằng mã f6 và hậu c5.
+              en: White develops with Nf3 and Be2 and castles with O-O, keeping the d5 pawn defended. Black develops with ...Bg4 and ...Nbd7, and keeps up the pressure on the d5 pawn with the knight on f6 and the queen on c5.
+              fr: Les Blancs se développent par Nf3 et Be2 et roquent par O-O, en gardant le pion d5 défendu. Les Noirs se développent par ...Bg4 et ...Nbd7, et maintiennent la pression sur le pion d5 avec le cavalier f6 et la dame c5.
+            basis:
+              by: chan
+              at: 2026-10-01

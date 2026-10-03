@@ -1,0 +1,66 @@
+# Nimzo-Indian Defense: Spielmann Variation, Romanovsky Gambit. Defining line 1.d4 Nf6 2.c4
+# e6 3.Nc3 Bb4 4.Qb3 c5 5.dxc5 Nc6, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: nimzo-indian-defense-spielmann-variation-romanovsky-gambit
+name: 'Nimzo-Indian Defense: Spielmann Variation, Romanovsky Gambit'
+eco: E23
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nc3, Bb4, Qb3, c5, dxc5, Nc6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 5...Nc6 White is a pawn up on c5, and the bishop on b4, defended
+      only by the knight on c6, is attacked by the queen on b3. Black can win the pawn back
+      with ...Bxc5, which only levels the material, so the label is dubious. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Nc6, bảo vệ tượng b4 trước hậu b3. Trắng hơn một tốt trên c5, bị tượng b4 tấn công mà không có quân nào bảo vệ.
+    en: Black has just played 5...Nc6, which defends the bishop on b4 against the queen on b3. White is a pawn up on c5, which the bishop on b4 attacks and nothing defends.
+    fr: Les Noirs viennent de jouer 5...Nc6, qui défend le fou b4 contre la dame b3. Les Blancs ont un pion de plus en c5, attaqué par le fou b4 et que rien ne défend.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 6.Nf3 ở đây. Mục này chỉ đi theo 6.Nf3; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 6.Nf3 here. This entry follows 6.Nf3 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 6.Nf3 ici. Cette entrée ne suit que 6.Nf3 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng phát triển mã bằng 6.Nf3. Nước đi để tốt c5 không có quân bảo vệ, còn hậu b3 vẫn tấn công tượng b4, được mã c6 bảo vệ.
+        en: White develops the knight with 6.Nf3. It leaves the c5 pawn without protection, and the queen on b3 still attacks the bishop on b4, which the knight on c6 defends.
+        fr: Les Blancs développent le cavalier par 6.Nf3. Le coup laisse le pion c5 sans protection, et la dame b3 attaque toujours le fou b4, que le cavalier c6 défend.
+      children:
+        - ply: Bxc5
+          annotation:
+            vi: Đen lấy lại tốt bằng 6...Bxc5. Tượng giờ tấn công tốt f2, được vua bảo vệ.
+            en: Black takes the pawn back with 6...Bxc5. The bishop now attacks the f2 pawn, which the king defends.
+            fr: Les Noirs reprennent le pion par 6...Bxc5. Le fou attaque maintenant le pion f2, que le roi défend.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen bảy, nên con tốt đã được lấy lại. Đen đã phát triển ba quân nhẹ, các mã c6 và f6 cùng tượng c5, so với hai mã của Trắng, và hậu b3 tấn công tốt b7, được tượng c8 bảo vệ.'
+              en: "Count the pawns: White seven, Black seven, so the pawn has come back. Black has three minor pieces developed, the knights on c6 and f6 and the bishop on c5, against White's two knights, and the queen on b3 attacks the b7 pawn, which the bishop on c8 defends."
+              fr: 'Comptez les pions : sept pour les Blancs, sept pour les Noirs ; le pion est donc revenu. Les Noirs ont développé trois pièces légères, les cavaliers c6 et f6 et le fou c5, contre les deux cavaliers blancs, et la dame b3 attaque le pion b7, que le fou c8 défend.'
+            plan:
+              vi: Trắng phát triển bằng e3 và Be2 và nhập thành bằng O-O, giữ hậu trên b3 nhắm vào b7. Đen nhập thành bằng ...O-O và đánh vào trung tâm bằng ...d5, tấn công tốt trên c4.
+              en: White develops with e3 and Be2 and castles with O-O, keeping the queen on b3 aimed at b7. Black castles with ...O-O and strikes at the centre with ...d5, which attacks the pawn on c4.
+              fr: Les Blancs se développent par e3 et Be2 et roquent par O-O, en gardant la dame en b3 braquée sur b7. Les Noirs roquent par ...O-O et frappent au centre par ...d5, qui attaque le pion en c4.
+            basis:
+              by: chan
+              at: 2026-10-01

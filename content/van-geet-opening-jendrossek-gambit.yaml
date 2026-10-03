@@ -1,0 +1,59 @@
+# Van Geet Opening: Jendrossek Gambit. Frozen defining line 1.Nc3 d5 2.f4 d4 3.Ne4 f5
+# 4.Nf2 Nf6 5.Nf3 c5 6.b4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply cxb4;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: van-geet-opening-jendrossek-gambit
+name: 'Van Geet Opening: Jendrossek Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [Nc3, d5, f4, d4, Ne4, f5, Nf2, Nf6, Nf3, c5, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the b4 pawn is attacked by the c5 pawn and nothing defends it, so Black can simply take
+      it; White would then be a pawn down with an isolated a-pawn and has not been shown to
+      get anything concrete in return. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 6.b4, đưa tốt b ra b4. Tốt b4 bị tốt c5 của Đen tấn công mà không có quân nào bảo vệ, còn tốt c5 cũng bị tốt b4 tấn công và không được bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Đen ăn trên b4.'
+    en: "White has just played 6.b4, pushing the b-pawn to b4. That pawn is attacked by Black's c5 pawn and nothing defends it, while the c5 pawn is in turn attacked by the b4 pawn and is undefended too. The pawn count is level, eight each. This entry follows Black taking on b4."
+    fr: 'Les Blancs viennent de jouer 6.b4, poussant le pion b en b4. Ce pion est attaqué par le pion c5 noir sans être défendu, et le pion c5 est à son tour attaqué par le pion b4 sans être défendu non plus. Le compte des pions est égal, huit chacun. Cette entrée suit la prise en b4 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 6...cxb4, nên con tốt chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 6...cxb4 here, so the pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 6...cxb4 ici, si bien que le pion n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: cxb4
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b4 bằng tốt c. Tốt b4 mới không có quân nào bảo vệ, nhưng chưa quân Trắng nào tấn công được nó; còn tốt d4 bị mã f3 tấn công và chỉ có hậu bảo vệ.'
+        en: "Black takes the b4 pawn with the c-pawn. The new pawn on b4 is undefended, but none of White's pieces attacks it yet, while the pawn on d4 is attacked by the knight on f3 and defended only by the queen."
+        fr: "Les Noirs prennent le pion b4 avec le pion c. Le nouveau pion b4 n'est pas défendu, mais aucune pièce blanche ne l'attaque encore, tandis que le pion d4 est attaqué par le cavalier f3 et défendu seulement par la dame."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt thí chưa lấy lại được. Tốt a của Trắng giờ bị cô lập vì Trắng không còn tốt nào trên cột b, còn Đen có hai tốt chồng ở b4 và b7. Tốt d4 bị tấn công một lần, bởi mã f3, và được bảo vệ một lần, bởi hậu d8.'
+          en: "Count the pawns: White seven, Black eight, so the gambit pawn has not come back. White's a-pawn is now isolated, since no White pawn is left on the b-file, and Black has doubled pawns on b4 and b7. The pawn on d4 is attacked once, by the knight on f3, and defended once, by the queen on d8."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion du gambit n'est pas revenu. Le pion a blanc est maintenant isolé, puisqu'il ne reste aucun pion blanc sur la colonne b, et les Noirs ont des pions doublés en b4 et en b7. Le pion d4 est attaqué une fois, par le cavalier f3, et défendu une fois, par la dame d8."
+        plan:
+          vi: 'Trắng thách thức tốt b4 bằng a3 và Nd3, rồi phát triển tượng bằng Bb2. Đen củng cố tốt b4 bằng ...a5 và phát triển bằng ...e6 và ...Nc6.'
+          en: 'White challenges the b4 pawn with a3 and Nd3, then develops the bishop with Bb2. Black supports the b4 pawn with ...a5 and develops with ...e6 and ...Nc6.'
+          fr: 'Les Blancs défient le pion b4 par a3 et Nd3, puis développent le fou par Bb2. Les Noirs soutiennent le pion b4 par ...a5 et se développent par ...e6 et ...Nc6.'
+        basis:
+          by: chan
+          at: '2026-10-01'

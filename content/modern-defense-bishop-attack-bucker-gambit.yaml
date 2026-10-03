@@ -1,0 +1,61 @@
+# Modern Defense: Bishop Attack, Bücker Gambit. Defining line 1.e4 g6 2.d4 Bg7 3.Bc4 b5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: modern-defense-bishop-attack-bucker-gambit
+name: 'Modern Defense: Bishop Attack, Bücker Gambit'
+eco: B06
+category: gambit
+side: black
+definingLine: [e4, g6, d4, Bg7, Bc4, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the b5 pawn is attacked by the bishop on c4 and defended by nothing, so White can
+      simply take it at once with Bxb5. The bishop on c4 also attacks f7, which the king
+      defends, and nothing on the board yet repays the pawn Black has offered, which is why
+      the entry is rated unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...b5, nên số tốt đang ngang nhau, mỗi bên tám. Tốt b5 bị tượng c4 tấn công và không được quân nào bảo vệ, tượng c4 bị tốt b5 tấn công và không được quân nào bảo vệ, còn tốt d4 bị tượng g7 tấn công và được hậu d1 bảo vệ.
+    en: Black has just played 3...b5, so the pawn count is level, eight each. The b5 pawn is attacked by the bishop on c4 and defended by nothing, the bishop on c4 is attacked by the b5 pawn and defended by nothing, and the pawn on d4 is attacked by the bishop on g7 and defended by the queen on d1.
+    fr: Les Noirs viennent de jouer 3...b5, de sorte que le compte des pions est égal, huit de chaque côté. Le pion b5 est attaqué par le fou c4 et n'est défendu par aucune pièce, le fou c4 est attaqué par le pion b5 et n'est défendu par aucune pièce, et le pion d4 est attaqué par le fou g7 et défendu par la dame d1.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 4.Bxb5 ở đây, chẳng hạn 4.Bb3 hoặc 4.Be2, và như vậy từ chối con tốt. Mục này chỉ mô hình hóa 4.Bxb5 và không phân tích các nước kia; khi đó tốt b5 vẫn còn trên bàn và số tốt vẫn ngang nhau.
+      en: White plays something other than 4.Bxb5 here, for instance 4.Bb3 or 4.Be2, and so declines the pawn. This entry models only 4.Bxb5 and does not analyse those moves; the pawn on b5 is then still on the board and the count stays level.
+      fr: Les Blancs jouent autre chose que 4.Bxb5 ici, par exemple 4.Bb3 ou 4.Be2, et déclinent ainsi le pion. Cette entrée ne modélise que 4.Bxb5 et n'analyse pas ces coups ; le pion b5 est alors toujours sur l'échiquier et le compte reste égal.
+  children:
+    - ply: Bxb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 4.Bxb5. Không quân Đen nào tấn công được tượng, còn tốt d7 mà nó tấn công được bốn quân bảo vệ.
+        en: White takes the pawn with 4.Bxb5. Nothing of Black's attacks the bishop, and the pawn on d7 that it attacks is defended by four pieces.
+        fr: Les Blancs prennent le pion par 4.Bxb5. Aucune pièce noire n'attaque le fou, et le pion d7 qu'il attaque est défendu par quatre pièces.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt. Tốt d4 bị tượng g7 tấn công và được hậu d1 bảo vệ, còn tượng b5 không bị quân nào tấn công, dù ...c6 sẽ tấn công nó và mở đường chéo từ d8 tới a5 cho hậu.'
+          en: 'Count the pawns: White eight, Black seven, so White is a pawn up. The pawn on d4 is attacked by the bishop on g7 and defended by the queen on d1, and the bishop on b5 is attacked by nothing, though ...c6 would attack it and open the diagonal from d8 to a5 for the queen.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de plus. Le pion d4 est attaqué par le fou g7 et défendu par la dame d1, et le fou b5 n'est attaqué par rien, bien que ...c6 l'attaquerait et ouvrirait la diagonale de d8 à a5 pour la dame."
+        plan:
+          vi: Trắng chơi Nf3 và Nc3 để bảo vệ trung tâm và tượng, rồi O-O. Đen chơi ...c5 để tấn công d4, rồi ...Qa5+ và ...Nf6.
+          en: White plays Nf3 and Nc3 to support the centre and the bishop, then O-O. Black plays ...c5 to attack d4, then ...Qa5+ and ...Nf6.
+          fr: Les Blancs jouent Nf3 et Nc3 pour soutenir le centre et le fou, puis O-O. Les Noirs jouent ...c5 pour attaquer d4, puis ...Qa5+ et ...Nf6.
+        basis:
+          by: chan
+          at: 2026-10-01

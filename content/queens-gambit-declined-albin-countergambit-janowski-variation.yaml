@@ -1,0 +1,66 @@
+# Queen's Gambit Declined: Albin Countergambit, Janowski Variation. Defining line 1.d4 d5
+# 2.c4 e5 3.dxe5 d4 4.Nf3 Nc6 5.Nbd2 f6, which ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-gambit-declined-albin-countergambit-janowski-variation
+name: "Queen's Gambit Declined: Albin Countergambit, Janowski Variation"
+eco: D08
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4, Nf3, Nc6, Nbd2, f6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black is already a pawn down, and 5...f6 breaks at the e5 pawn, which the
+      f6 pawn and the knight on c6 attack and only the knight on f3 defends. It is a
+      practical try rather than a position where Black can claim an edge, so the label is
+      dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 5...f6, tấn công tốt e5 lần thứ hai: tốt f6 và mã c6 cùng tấn công nó mà chỉ có mã f3 bảo vệ. Trắng hơn một tốt, và tốt e5 có thể ăn trên f6.'
+    en: 'Black has just played 5...f6, attacking the e5 pawn a second time: the f6 pawn and the knight on c6 attack it and only the knight on f3 defends it. White is a pawn up, and the e5 pawn can take on f6.'
+    fr: "Les Noirs viennent de jouer 5...f6, attaquant le pion e5 une seconde fois : le pion f6 et le cavalier c6 l'attaquent et seul le cavalier f3 le défend. Les Blancs ont un pion de plus, et le pion e5 peut prendre en f6."
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 6.exf6 ở đây. Mục này chỉ đi theo 6.exf6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 6.exf6 here. This entry follows 6.exf6 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 6.exf6 ici. Cette entrée ne suit que 6.exf6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: exf6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 6.exf6. Tốt mới trên f6 bị hậu, mã g8 và tốt g7 tấn công, và không có quân nào bảo vệ.
+        en: White takes the pawn with 6.exf6. The new pawn on f6 is attacked by the queen, the knight on g8 and the g7 pawn, and nothing defends it.
+        fr: Les Blancs prennent le pion par 6.exf6. Le nouveau pion en f6 est attaqué par la dame, le cavalier g8 et le pion g7, et rien ne le défend.
+      children:
+        - ply: Nxf6
+          annotation:
+            vi: Đen ăn lại bằng mã, 6...Nxf6. Đen giờ không còn tốt nào trên cột e và cột f.
+            en: Black retakes with the knight, 6...Nxf6. Black now has no pawn on the e-file or the f-file.
+            fr: Les Noirs reprennent avec le cavalier, 6...Nxf6. Les Noirs n'ont plus aucun pion sur la colonne e ni sur la colonne f.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Trắng hơn một tốt. Đen không còn tốt nào trên cột e và cột f, nên cả hai cột đều nửa mở cho quân Đen, chĩa vào các tốt e2 và f2 của Trắng, nhưng vua Đen chưa nhập thành. Tốt d4 của Đen bị mã f3 tấn công và được hậu và mã c6 bảo vệ.'
+              en: "Count the pawns: White seven, Black six, so White is a pawn up. Black has no pawn on the e-file or the f-file, so both files are half open for Black's pieces, pointing at White's pawns on e2 and f2, but Black's king has not castled. Black's pawn on d4 is attacked by the knight on f3 and defended by the queen and the knight on c6."
+              fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs ; les Blancs ont donc un pion de plus. Les Noirs n'ont aucun pion sur la colonne e ni sur la colonne f ; les deux colonnes sont donc semi-ouvertes pour les pièces noires, pointées vers les pions blancs e2 et f2, mais le roi noir n'a pas roqué. Le pion noir d4 est attaqué par le cavalier f3 et défendu par la dame et le cavalier c6."
+            plan:
+              vi: Trắng dựng thế fianchetto bằng g3 và Bg2, nhập thành bằng O-O và giữ tốt hơn. Đen phát triển bằng ...Bf5 và ...Qd7 rồi nhập thành dài bằng ...O-O-O.
+              en: White fianchettoes with g3 and Bg2, castles with O-O and keeps the extra pawn. Black develops with ...Bf5 and ...Qd7 and castles long with ...O-O-O.
+              fr: Les Blancs fianchettent par g3 et Bg2, roquent par O-O et gardent le pion en plus. Les Noirs se développent par ...Bf5 et ...Qd7 puis roquent côté dame par ...O-O-O.
+            basis:
+              by: chan
+              at: 2026-10-01
