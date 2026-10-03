@@ -1,0 +1,59 @@
+# Indian Defense: Omega Gambit, Arafat Gambit. Defining line 1.d4 Nf6 2.e4 Nxe4 3.Bd3 Nf6
+# 4.Bg5, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-omega-gambit-arafat-gambit
+name: 'Indian Defense: Omega Gambit, Arafat Gambit'
+eco: A45
+category: gambit
+side: white
+definingLine: [d4, Nf6, e4, Nxe4, Bd3, Nf6, Bg5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. White is a pawn down, and the two bishops aim at f6 and h7, but both
+      targets are defended, so neither capture wins material at once. The pawn stays
+      missing, so the label is dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Bg5, đưa quân tượng thứ hai ra. Tượng g5 tấn công mã f6, được các tốt e7 và g7 bảo vệ, còn tượng d3 tấn công h7, được xe và mã bảo vệ. Trắng thiếu một tốt.
+    en: White has just played 4.Bg5, bringing the second bishop out. The bishop on g5 attacks the f6 knight, which the e7 and g7 pawns defend, and the bishop on d3 attacks h7, which the rook and the knight defend. White is a pawn down.
+    fr: Les Blancs viennent de jouer 4.Bg5, sortant le second fou. Le fou g5 attaque le cavalier f6, que les pions e7 et g7 défendent, et le fou d3 attaque h7, que la tour et le cavalier défendent. Les Blancs sont un pion en moins.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 4...e6 ở đây. Mục này chỉ đi theo 4...e6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 4...e6 here. This entry follows 4...e6 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 4...e6 ici. Cette entrée ne suit que 4...e6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: e6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi 4...e6, mở đường chéo cho tượng f8. Mã f6 vẫn được bảo vệ, giờ bằng hậu và tốt g7.
+        en: Black plays 4...e6, opening the diagonal of the f8 bishop. The f6 knight is still defended, now by the queen and the g7 pawn.
+        fr: Les Noirs jouent 4...e6, ouvrant la diagonale du fou f8. Le cavalier f6 reste défendu, maintenant par la dame et le pion g7.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng thiếu một tốt. Trắng đã đưa cả hai tượng ra so với một quân đã phát triển của Đen; tượng d3 tấn công h7, được xe bảo vệ, còn mã f6 không thể ăn lại ở đó một cách an toàn vì tượng g5 ghim nó vào hậu d8, và tượng g5 tấn công f6, được hậu và tốt g7 bảo vệ.'
+          en: 'Count the pawns: White seven, Black eight, so White is a pawn down. White has both bishops out against one developed Black piece; the bishop on d3 attacks h7, which the rook defends, while the knight on f6 cannot safely recapture there because the bishop on g5 pins it against the queen on d8, and the bishop on g5 attacks f6, which the queen and the g7 pawn defend.'
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs ; les Blancs sont donc un pion en moins. Les Blancs ont sorti leurs deux fous contre une seule pièce noire développée ; le fou d3 attaque h7, que la tour défend, tandis que le cavalier f6 ne peut pas y reprendre sans risque, car le fou g5 le cloue contre la dame d8, et le fou g5 attaque f6, que la dame et le pion g7 défendent.'
+        plan:
+          vi: Trắng chơi Nf3, giữ sức ép lên h7, và đáp lại việc tượng g5 bị tấn công bằng Bh4 hoặc Bxf6 trước khi nhập thành bằng O-O. Đen hỏi tượng g5 bằng ...h6, rồi phát triển bằng ...Be7 và ...d5.
+          en: White plays Nf3, keeping the pressure on h7, and answers the attack on the g5 bishop with Bh4 or Bxf6 before castling with O-O. Black asks the g5 bishop what it intends with ...h6, then develops with ...Be7 and ...d5.
+          fr: Les Blancs jouent Nf3, gardant la pression sur h7, et répondent à l'attaque du fou g5 par Bh4 ou Bxf6 avant de roquer par O-O. Les Noirs interrogent le fou g5 par ...h6, puis se développent par ...Be7 et ...d5.
+        basis:
+          by: chan
+          at: 2026-10-01

@@ -1,0 +1,60 @@
+# Semi-Slav Defense: Marshall Gambit, Forgotten Variation. Defining line 1.d4 d5 2.c4 e6
+# 3.Nc3 c6 4.e4 dxe4 5.Nxe4 Bb4+ 6.Nc3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: semi-slav-defense-marshall-gambit-forgotten-variation
+name: 'Semi-Slav Defense: Marshall Gambit, Forgotten Variation'
+eco: D31
+category: gambit
+side: white
+definingLine: [d4, d5, c4, e6, Nc3, c6, e4, dxe4, Nxe4, Bb4+, Nc3]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. White offered the e-pawn with 4.e4 and regained it at once with 5.Nxe4,
+      so material is level and the gambit has cost nothing. The pin on c3 that follows
+      5...Bb4+ 6.Nc3 is an annoyance rather than a defect, so the label is sound. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Nc3, chắn nước chiếu của tượng b4. Con tốt hiến bằng 4.e4 đã được lấy lại, nên số tốt ngang nhau, mỗi bên bảy. Mã c3 bị ghim vào vua e1 và được tốt b2 bảo vệ.
+    en: White has just played 6.Nc3, blocking the check of the bishop on b4. The pawn offered by 4.e4 has been recaptured, so the pawns are level, seven each. The knight on c3 is pinned against the king on e1 and defended by the b2 pawn.
+    fr: Les Blancs viennent de jouer 6.Nc3, bloquant l'échec du fou b4. Le pion offert par 4.e4 a été repris, si bien que les pions sont à égalité, sept de chaque côté. Le cavalier c3 est cloué contre le roi e1 et défendu par le pion b2.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 6...Nf6 ở đây. Mục này chỉ đi theo 6...Nf6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 6...Nf6 here. This entry follows 6...Nf6 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 6...Nf6 ici. Cette entrée ne suit que 6...Nf6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã bằng 6...Nf6. Tốt d4 giờ bị hậu d8 tấn công và được hậu d1 bảo vệ, còn mã c3 vẫn bị ghim.
+        en: Black develops the knight with 6...Nf6. The d4 pawn is now attacked by the queen on d8 and defended by the queen on d1, and the knight on c3 is still pinned.
+        fr: Les Noirs développent le cavalier par 6...Nf6. Le pion d4 est maintenant attaqué par la dame d8 et défendu par la dame d1, et le cavalier c3 reste cloué.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen bảy, nên con tốt đã được lấy lại. Tượng b4 ghim mã c3 vào vua e1, và tốt d4 bị hậu d8 tấn công và được hậu d1 bảo vệ. Cột e nửa mở cho Trắng vì Trắng không còn tốt e, và cột d nửa mở cho Đen.'
+          en: 'Count the pawns: White seven, Black seven, so the pawn has come back. The bishop on b4 pins the knight on c3 against the king on e1, and the d4 pawn is attacked by the queen on d8 and defended by the queen on d1. The e-file is half open for White, since White has no e-pawn, and the d-file is half open for Black.'
+          fr: "Comptez les pions : sept pour les Blancs, sept pour les Noirs ; le pion est donc revenu. Le fou b4 cloue le cavalier c3 contre le roi e1, et le pion d4 est attaqué par la dame d8 et défendu par la dame d1. La colonne e est semi-ouverte pour les Blancs, puisqu'ils n'ont plus de pion e, et la colonne d est semi-ouverte pour les Noirs."
+        plan:
+          vi: Trắng phát triển bằng Nf3 và Be2, tấn công tượng bằng a3 và nhập thành bằng O-O. Đen tăng sức ép lên d4 bằng ...c5 và phát triển bằng ...Nc6 và ...O-O.
+          en: White develops with Nf3 and Be2, attacks the bishop with a3 and castles with O-O. Black adds pressure on d4 with ...c5 and develops with ...Nc6 and ...O-O.
+          fr: Les Blancs se développent par Nf3 et Be2, attaquent le fou par a3 et roquent par O-O. Les Noirs augmentent la pression sur d4 par ...c5 et se développent par ...Nc6 et ...O-O.
+        basis:
+          by: chan
+          at: 2026-10-01

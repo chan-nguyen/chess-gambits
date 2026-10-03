@@ -1,0 +1,61 @@
+# Queen's Gambit Declined: Albin Countergambit, Fianchetto Variation, Bf5 Line. Defining
+# line 1.d4 d5 2.c4 e5 3.dxe5 d4 4.Nf3 Nc6 5.g3 Bf5, which ends on Black's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: albin-countergambit-fianchetto-variation-bf5-line
+name: "Queen's Gambit Declined: Albin Countergambit, Fianchetto Variation, Bf5 Line"
+eco: D09
+category: gambit
+side: black
+definingLine: [d4, d5, c4, e5, dxe5, d4, Nf3, Nc6, g3, Bf5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black has given a pawn for the advanced d4 pawn and two developed minor
+      pieces against one, and White's extra pawn on e5 is attacked once and defended once.
+      The bishop on f5 attacks the knight on b1, which the rook on a1 defends. It is a
+      practical try rather than a position where Black can claim an edge, so the label is
+      dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 5...Bf5, tấn công mã b1, được xe a1 bảo vệ. Trắng hơn một tốt với con tốt trên e5, bị mã c6 tấn công và được mã f3 bảo vệ.
+    en: Black has just played 5...Bf5, attacking the knight on b1, which the rook on a1 defends. White is a pawn up with the pawn on e5, which the knight on c6 attacks and the knight on f3 defends.
+    fr: Les Noirs viennent de jouer 5...Bf5, attaquant le cavalier b1, que la tour a1 défend. Les Blancs ont un pion de plus avec le pion e5, attaqué par le cavalier c6 et défendu par le cavalier f3.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 6.Bg2 ở đây. Mục này chỉ đi theo 6.Bg2; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 6.Bg2 here. This entry follows 6.Bg2 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 6.Bg2 ici. Cette entrée ne suit que 6.Bg2 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Bg2
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi 6.Bg2, hoàn tất thế fianchetto và sẵn sàng nhập thành.
+        en: White completes the fianchetto with 6.Bg2 and is ready to castle.
+        fr: Les Blancs achèvent le fianchetto par 6.Bg2 et sont prêts à roquer.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng vẫn giữ tốt hơn trên e5, và các tốt Trắng ở e5 và e2 bị chồng. Tốt e5 bị tấn công một lần và được bảo vệ một lần; mã b1 bị tượng f5 tấn công và được xe a1 bảo vệ; còn tốt d4 của Đen bị mã f3 và hậu d1 tấn công, và được hậu d8 và mã c6 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven, so White still holds the extra pawn on e5, and White's pawns on e5 and e2 are doubled. The e5 pawn is attacked once and defended once, the knight on b1 is attacked by the bishop on f5 and defended by the rook on a1, and Black's pawn on d4 is attacked by the knight on f3 and the queen on d1 and defended by the queen on d8 and the knight on c6."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Blancs gardent donc le pion en plus en e5, et les pions blancs e5 et e2 sont doublés. Le pion e5 est attaqué une fois et défendu une fois ; le cavalier b1 est attaqué par le fou f5 et défendu par la tour a1 ; et le pion noir d4 est attaqué par le cavalier f3 et la dame d1 et défendu par la dame d8 et le cavalier c6.'
+        plan:
+          vi: Đen phát triển bằng ...Qd7 và nhập thành dài bằng ...O-O-O, rồi đưa con mã còn lại ra bằng ...Nge7. Trắng nhập thành bằng O-O và phát triển mã b1 bằng Nbd2.
+          en: Black develops with ...Qd7 and castles long with ...O-O-O, then brings the other knight out with ...Nge7. White castles with O-O and develops the knight on b1 with Nbd2.
+          fr: Les Noirs se développent par ...Qd7 et roquent côté dame par ...O-O-O, puis sortent l'autre cavalier par ...Nge7. Les Blancs roquent par O-O et développent le cavalier b1 par Nbd2.
+        basis:
+          by: chan
+          at: 2026-10-01

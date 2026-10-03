@@ -1,0 +1,60 @@
+# Queen's Pawn Game: Chigorin Variation, Shaviliuk Gambit. Defining line 1.d4 d5 2.Nc3 e5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-pawn-game-chigorin-variation-shaviliuk-gambit
+name: "Queen's Pawn Game: Chigorin Variation, Shaviliuk Gambit"
+eco: D00
+category: gambit
+side: black
+definingLine: [d4, d5, Nc3, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 2...e5 puts a pawn on a square that the d4 pawn attacks and nothing
+      defends, and the d5 pawn is already attacked by the knight on c3, so Black has a pawn
+      to lose and a second to defend while no Black piece has been developed. The label is
+      unsound. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 2...e5, hiến một tốt. Tốt e5 bị tốt d4 tấn công và không có quân nào bảo vệ, còn tốt d5 bị mã c3 tấn công và được hậu d8 bảo vệ.
+    en: Black has just played 2...e5, offering a pawn. The e5 pawn is attacked by the d4 pawn and nothing defends it, and the d5 pawn is attacked by the knight on c3 and defended by the queen on d8.
+    fr: Les Noirs viennent de jouer 2...e5, offrant un pion. Le pion e5 est attaqué par le pion d4 et rien ne le défend, et le pion d5 est attaqué par le cavalier c3 et défendu par la dame d8.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 3.dxe5 ở đây. Mục này chỉ đi theo 3.dxe5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 3.dxe5 here. This entry follows 3.dxe5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 3.dxe5 ici. Cette entrée ne suit que 3.dxe5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxe5
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 3.dxe5. Cột d giờ nửa mở cho Trắng và hậu d1 cùng mã c3 tấn công tốt d5.
+        en: White takes the pawn with 3.dxe5. The d-file is half open for White and the queen on d1 now joins the knight on c3 against the d5 pawn.
+        fr: Les Blancs prennent le pion par 3.dxe5. La colonne d est semi-ouverte pour les Blancs et la dame d1 rejoint maintenant le cavalier c3 contre le pion d5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt và con tốt đã hiến chưa lấy lại được. Các tốt Trắng ở e5 và e2 bị chồng, nhưng tốt d5 bị mã c3 và hậu d1 tấn công mà chỉ có hậu d8 bảo vệ, nên Đen phải hành động ngay.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down and the sacrifice has not come back. White's pawns on e5 and e2 are doubled, but the d5 pawn is attacked by the knight on c3 and the queen on d1 and defended only by the queen on d8, so Black has to act at once."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins et le sacrifice n'est pas revenu. Les pions blancs e5 et e2 sont doublés, mais le pion d5 est attaqué par le cavalier c3 et la dame d1 et défendu seulement par la dame d8, si bien que les Noirs doivent agir tout de suite."
+        plan:
+          vi: Đen đẩy ...d4 để đuổi mã, rồi phát triển bằng ...Nc6, tấn công tốt e5, và ...Bf5. Trắng dời con mã đang bị tấn công, chẳng hạn bằng Nb5, rồi phát triển bằng Nf3 và Bf4, cùng bảo vệ tốt e5, rồi chơi e3.
+          en: Black pushes ...d4 to chase the knight, then develops with ...Nc6, which attacks the pawn on e5, and ...Bf5. White moves the attacked knight, for instance with Nb5, then develops with Nf3 and Bf4, which both defend the pawn on e5, and then plays e3.
+          fr: Les Noirs poussent ...d4 pour chasser le cavalier, puis se développent par ...Nc6, qui attaque le pion en e5, et ...Bf5. Les Blancs déplacent le cavalier attaqué, par exemple par Nb5, puis se développent par Nf3 et Bf4, qui défendent tous deux le pion en e5, et jouent ensuite e3.
+        basis:
+          by: chan
+          at: 2026-10-01

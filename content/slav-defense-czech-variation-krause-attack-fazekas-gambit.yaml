@@ -1,0 +1,79 @@
+# Slav Defense: Czech Variation, Krause Attack, Fazekas Gambit. Defining line 1.d4 d5 2.c4
+# c6 3.Nf3 Nf6 4.Nc3 dxc4 5.a4 Bf5 6.Ne5 Na6 7.e4, which ends on White's own ply, so the
+# root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: slav-defense-czech-variation-krause-attack-fazekas-gambit
+name: 'Slav Defense: Czech Variation, Krause Attack, Fazekas Gambit'
+eco: D17
+category: gambit
+side: white
+definingLine: [d4, d5, c4, c6, Nf3, Nf6, Nc3, dxc4, a4, Bf5, Ne5, Na6, e4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 7.e4 puts a pawn on a square that Black attacks twice and White defends
+      once, and it leaves the black pawn on c4, which nothing defends, as White's only
+      return. It is a sharp practical try rather than a sound sacrifice, so the label is
+      dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.e4, hiến một tốt. Tốt e4 bị mã f6 và tượng f5 tấn công và được mã c3 bảo vệ, còn tốt đó tấn công tượng f5, mà không có quân nào bảo vệ. Tốt c4 của Đen bị mã e5 và tượng f1 tấn công và không có quân nào bảo vệ.
+    en: White has just played 7.e4, offering a pawn. The e4 pawn is attacked by the knight on f6 and the bishop on f5 and defended by the knight on c3, and that pawn attacks the bishop on f5, which nothing defends. Black's pawn on c4 is attacked by the knight on e5 and the bishop on f1 and defended by nothing.
+    fr: Les Blancs viennent de jouer 7.e4, offrant un pion. Le pion e4 est attaqué par le cavalier f6 et le fou f5 et défendu par le cavalier c3, et ce pion attaque le fou f5, que rien ne défend. Le pion noir c4 est attaqué par le cavalier e5 et le fou f1 et rien ne le défend.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 7...Nxe4 ở đây. Mục này chỉ đi theo 7...Nxe4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 7...Nxe4 here. This entry follows 7...Nxe4 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 7...Nxe4 ici. Cette entrée ne suit que 7...Nxe4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 7...Nxe4. Mã e4 bị mã c3 tấn công và được tượng f5 bảo vệ, còn tốt c4 vẫn bị tấn công và không có quân nào bảo vệ.
+        en: Black takes the pawn with 7...Nxe4. The knight on e4 is attacked by the knight on c3 and defended by the bishop on f5, and the pawn on c4 is still attacked and undefended.
+        fr: Les Noirs prennent le pion par 7...Nxe4. Le cavalier e4 est attaqué par le cavalier c3 et défendu par le fou f5, et le pion c4 reste attaqué et sans défenseur.
+      children:
+        - ply: Bxc4
+          annotation:
+            vi: Trắng ăn lại trên c4 bằng 8.Bxc4, đưa tượng lên đường chéo nhắm vào f7 và tấn công mã a6.
+            en: White takes back on c4 with 8.Bxc4, putting the bishop on the diagonal that points at f7 and attacking the knight on a6.
+            fr: Les Blancs reprennent en c4 par 8.Bxc4, plaçant le fou sur la diagonale qui vise f7 et attaquant le cavalier a6.
+          dismissRest:
+            reason:
+              vi: Đen chơi nước khác thay vì 8...e6 ở đây. Mục này chỉ đi theo 8...e6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+              en: Black plays something other than 8...e6 here. This entry follows 8...e6 only; other moves lead to lines that are not mapped here.
+              fr: Les Noirs jouent autre chose que 8...e6 ici. Cette entrée ne suit que 8...e6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+          children:
+            - ply: e6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen chắn đường chéo bằng 8...e6. Tốt f7 giờ chỉ bị mã e5 tấn công và được vua bảo vệ, còn tốt e6 bị tượng c4 tấn công và được tốt f7 và tượng f5 bảo vệ.
+                en: Black blocks the diagonal with 8...e6. The f7 pawn is now attacked only by the knight on e5 and defended by the king, and the e6 pawn is attacked by the bishop on c4 and defended by the f7 pawn and the bishop on f5.
+                fr: Les Noirs bloquent la diagonale par 8...e6. Le pion f7 n'est plus attaqué que par le cavalier e5 et défendu par le roi, et le pion e6 est attaqué par le fou c4 et défendu par le pion f7 et le fou f5.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng thiếu một tốt. Mã e5 tấn công tốt f7, chỉ có vua bảo vệ, và tốt c6, được tốt b7 bảo vệ. Mã e4 của Đen bị mã c3 tấn công và được tượng f5 bảo vệ. Tượng c4 tấn công mã a6, được tốt b7 bảo vệ, và tốt e6, được tốt f7 và tượng f5 bảo vệ.'
+                  en: "Count the pawns: White six, Black seven, so White is a pawn down. The knight on e5 attacks the f7 pawn, which only the king defends, and the c6 pawn, which the b7 pawn defends. Black's knight on e4 is attacked by the knight on c3 and defended by the bishop on f5. The bishop on c4 attacks the knight on a6, which the b7 pawn defends, and the e6 pawn, which the f7 pawn and the bishop on f5 defend."
+                  fr: 'Comptez les pions : six pour les Blancs, sept pour les Noirs ; les Blancs sont donc un pion en moins. Le cavalier e5 attaque le pion f7, que seul le roi défend, et le pion c6, que le pion b7 défend. Le cavalier noir e4 est attaqué par le cavalier c3 et défendu par le fou f5. Le fou c4 attaque le cavalier a6, que le pion b7 défend, et le pion e6, que le pion f7 et le fou f5 défendent.'
+                plan:
+                  vi: Trắng nhập thành bằng O-O, chơi g4 để đánh tượng f5 và đưa hậu ra bằng Qf3. Đen đổi trên c3 bằng ...Nxc3, rồi phát triển bằng ...Nc7 và ...Bd6.
+                  en: White castles with O-O, plays g4 to hit the bishop on f5 and brings the queen out with Qf3. Black trades on c3 with ...Nxc3, then develops with ...Nc7 and ...Bd6.
+                  fr: Les Blancs roquent par O-O, jouent g4 pour frapper le fou f5 et sortent la dame par Qf3. Les Noirs échangent en c3 par ...Nxc3, puis se développent par ...Nc7 et ...Bd6.
+                basis:
+                  by: chan
+                  at: 2026-10-01
