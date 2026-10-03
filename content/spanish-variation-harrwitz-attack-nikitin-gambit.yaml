@@ -1,0 +1,65 @@
+# Ponziani Opening: Spanish Variation, Harrwitz Attack, Nikitin Gambit. Frozen defining line
+# 1.e4 e5 2.Nf3 Nc6 3.c3 d5 4.Bb5 dxe4 5.Nxe5 Qd5 6.Qa4 ends on White's own ply, so the root
+# is an opponent node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every
+# ply below was replayed with chess.js before it was annotated; searchMate at 3 moves from the
+# leaf returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture is
+# left going free at the leaf.
+id: 'spanish-variation-harrwitz-attack-nikitin-gambit'
+name: 'Ponziani Opening: Spanish Variation, Harrwitz Attack, Nikitin Gambit'
+eco: 'C44'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nc6'
+  - 'c3'
+  - 'd5'
+  - 'Bb5'
+  - 'dxe4'
+  - 'Nxe5'
+  - 'Qd5'
+  - 'Qa4'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line material is level, seven pawns each and all the pieces on, but White's knight on e5 is attacked by the queen on d5 and defended by nothing, while the queen on a4 and the bishop on b5 pin and attack the knight on c6. White has to trade or defend the knight at once, and nothing on the board pays for the lost tempo, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 6.Qa4. Vật chất ngang nhau, mỗi bên bảy tốt và đủ quân. Mã c6 của Đen bị tượng b5 ghim vào vua và bị tượng cùng mã e5 tấn công, còn mã e5 của Trắng bị hậu d5 tấn công và không có gì bảo vệ.'
+    en: "White has just played 6.Qa4. Material is level, seven pawns each and all the pieces on. Black's knight on c6 is pinned to the king by the bishop on b5 and attacked by the bishop and the knight on e5, and White's knight on e5 is attacked by the queen on d5 and nothing defends it."
+    fr: "Les Blancs viennent de jouer 6.Qa4. Le matériel est égal, sept pions de chaque côté et toutes les pièces sur l'échiquier. Le cavalier c6 des Noirs est cloué au roi par le fou b5 et attaqué par le fou et le cavalier e5, et le cavalier e5 des Blancs est attaqué par la dame d5 et rien ne le défend."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 6...Ne7 ở đây, chẳng hạn 6...Qxe5, ăn mã. Mục này đi theo nước mã lên e7, bảo vệ mã c6.'
+      en: 'Black plays something other than 6...Ne7 here, for instance 6...Qxe5, which takes the knight. This entry follows the knight to e7, which defends the knight on c6.'
+      fr: 'Les Noirs jouent autre chose que 6...Ne7 ici, par exemple 6...Qxe5, qui prend le cavalier. Cette entrée suit le cavalier en e7, qui défend le cavalier c6.'
+  children:
+    - ply: 'Ne7'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen đưa mã lên e7, bảo vệ mã c6 lần thứ ba. Mã e5 của Trắng vẫn bị hậu d5 tấn công và không có gì bảo vệ.'
+        en: "Black moves the knight to e7, which defends the knight on c6 a third time. White's knight on e5 is still attacked by the queen on d5 and nothing defends it."
+        fr: 'Les Noirs placent le cavalier en e7, ce qui défend le cavalier c6 une troisième fois. Le cavalier e5 des Blancs est toujours attaqué par la dame d5 et rien ne le défend.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm quân: mỗi bên bảy tốt và đủ quân, nên vật chất ngang nhau. Mã c6 bị tượng b5 ghim vào vua và bị tượng cùng mã e5 tấn công, nhưng được tốt b7, mã e7 và hậu d5 bảo vệ, còn mã e5 của Trắng bị hậu d5 tấn công và không có gì bảo vệ. Các nước ăn của Trắng hoặc chỉ đổi quân ở c6, hoặc mất quân: Nxf7, Qxa7 và Qxe4 đều bị ăn lại.'
+          en: "Count the material: seven pawns each and all the pieces on, so material is level. The knight on c6 is pinned to the king by the bishop on b5 and attacked by the bishop and the knight on e5, but defended by the b7 pawn, the knight on e7 and the queen on d5, and White's knight on e5 is attacked by the queen on d5 and nothing defends it. White's captures either only trade on c6 or lose material: Nxf7, Qxa7 and Qxe4 are all retaken."
+          fr: "Comptez le matériel : sept pions de chaque côté et toutes les pièces, donc le matériel est égal. Le cavalier c6 est cloué au roi par le fou b5 et attaqué par le fou et le cavalier e5, mais défendu par le pion b7, le cavalier e7 et la dame d5, et le cavalier e5 des Blancs est attaqué par la dame d5 et rien ne le défend. Les prises des Blancs ne font qu'échanger en c6 ou perdent du matériel : Nxf7, Qxa7 et Qxe4 sont toutes reprises."
+        plan:
+          vi: 'Trắng đổi ở c6 bằng Nxc6 và, sau khi bị ăn lại, đánh vào hậu bằng c4. Đen ăn lại mã bằng một quân.'
+          en: 'White trades on c6 with Nxc6 and, after the recapture, hits the queen with c4. Black recaptures the knight with a piece.'
+          fr: 'Les Blancs échangent en c6 par Nxc6 et, après la reprise, frappent la dame par c4. Les Noirs reprennent le cavalier avec une pièce.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

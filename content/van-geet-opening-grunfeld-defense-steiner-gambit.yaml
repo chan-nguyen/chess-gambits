@@ -1,0 +1,59 @@
+# Van Geet Opening: Grünfeld Defense, Steiner Gambit. Frozen defining line 1.e4 e5 2.f4 d5
+# 3.Nc3 dxe4 4.Nxe4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply exf4;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: van-geet-opening-grunfeld-defense-steiner-gambit
+name: 'Van Geet Opening: Grünfeld Defense, Steiner Gambit'
+eco: C31
+category: gambit
+side: white
+definingLine: [e4, e5, f4, d5, Nc3, dxe4, Nxe4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, seven each, but
+      White's f4 pawn is attacked by the e5 pawn and nothing defends it, so Black can take it
+      for free; White would then be a pawn down and has not been shown to get anything
+      concrete in return. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa ăn lại bằng 4.Nxe4, nên số tốt đang cân bằng, mỗi bên bảy. Nhưng tốt f4 của Trắng bị tốt e5 tấn công mà không có quân nào bảo vệ, còn tốt e5 của Đen cũng bị tốt f4 tấn công và không được bảo vệ. Mục này đi theo nước Đen ăn tốt f4.'
+    en: "White has just recaptured with 4.Nxe4, so the pawn count is level, seven each. But White's f4 pawn is attacked by the e5 pawn and nothing defends it, while Black's e5 pawn is attacked by the f4 pawn and is undefended too. This entry follows Black taking the f4 pawn."
+    fr: 'Les Blancs viennent de reprendre par 4.Nxe4, si bien que le compte des pions est égal, sept chacun. Mais le pion f4 blanc est attaqué par le pion e5 sans être défendu, et le pion e5 noir est lui aussi attaqué par le pion f4 sans être défendu. Cette entrée suit la prise du pion f4 par les Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...exf4, nên tốt f4 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 4...exf4 here, so the f4 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 4...exf4 ici, si bien que le pion f4 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: exf4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt f4 bằng tốt e. Không quân Trắng nào ăn được tốt f4 mới ngay lập tức: tượng c1 bị chính tốt d2 của mình chặn đường.'
+        en: "Black takes the f4 pawn with the e-pawn. None of White's pieces can take the new f4 pawn at once: the bishop on c1 is blocked by White's own d2 pawn."
+        fr: 'Les Noirs prennent le pion f4 avec le pion e. Aucune pièce blanche ne peut prendre tout de suite le nouveau pion f4 : le fou c1 est bloqué par son propre pion d2.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên con tốt thí chưa lấy lại được. Hai tốt f của Đen (f4 và f7) bị chồng, và cột e mở giữa hai vua chưa nhập thành, dù mã e4 của Trắng đang đứng ngay trên cột đó.'
+          en: "Count the pawns: White six, Black seven, so the gambit pawn has not come back. Black's f-pawns on f4 and f7 are doubled, and the e-file is open between two kings that have not castled, although White's own knight on e4 stands on it."
+          fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc le pion du gambit n'est pas revenu. Les pions f noirs, en f4 et en f7, sont doublés, et la colonne e est ouverte entre deux rois qui n'ont pas roqué, bien que le cavalier blanc en e4 s'y trouve."
+        plan:
+          vi: 'Trắng chơi d3 để mở đường chéo cho tượng tới f4, rồi Bxf4 lấy lại tốt nếu nó vẫn chưa có quân bảo vệ, phát triển thêm bằng Nf3 và Be2. Đen bảo vệ tốt bằng ...g5, thách thức mã bằng ...Nf6 và phát triển bằng ...Nc6 và ...Be7.'
+          en: "White plays d3 to open the bishop's diagonal to f4, then Bxf4 to win the pawn back if it is still undefended, developing with Nf3 and Be2. Black defends the pawn with ...g5, challenges the knight with ...Nf6 and develops with ...Nc6 and ...Be7."
+          fr: "Les Blancs jouent d3 pour ouvrir au fou la diagonale vers f4, puis Bxf4 pour regagner le pion s'il n'est pas encore défendu, se développant par Nf3 et Be2. Les Noirs défendent le pion par ...g5, défient le cavalier par ...Nf6 et se développent par ...Nc6 et ...Be7."
+        basis:
+          by: chan
+          at: '2026-10-01'

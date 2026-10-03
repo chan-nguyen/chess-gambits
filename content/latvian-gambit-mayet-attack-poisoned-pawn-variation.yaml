@@ -1,0 +1,89 @@
+# Latvian Gambit: Mayet Attack, Poisoned Pawn Variation. Frozen defining line 1.e4 e5 2.Nf3 f5
+# 3.Bc4 fxe4 4.Nxe5 Qg5 5.d4 Qxg2 ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'latvian-gambit-mayet-attack-poisoned-pawn-variation'
+name: 'Latvian Gambit: Mayet Attack, Poisoned Pawn Variation'
+eco: 'C40'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'f5'
+  - 'Bc4'
+  - 'fxe4'
+  - 'Nxe5'
+  - 'Qg5'
+  - 'd4'
+  - 'Qxg2'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement. At the end of the defining line the queen on g2 has taken a pawn but is far from its own king, which still stands on e8 with the f7 pawn gone, and Black has no piece developed except the queen. White has the checks Qh5+ and Bf7+ at once, so the line is judged unsound. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 5...Qxg2, ăn tốt g2 bằng hậu. Hậu tấn công xe h1, quân không có gì bảo vệ, và các tốt f2 và h2. Trắng có sáu tốt, Đen bảy tốt, và Trắng có các nước chiếu Qh5+ và Bf7+.'
+    en: "Black has just played 5...Qxg2, taking the g2 pawn with the queen. The queen attacks the rook on h1, which nothing defends, and the pawns on f2 and h2. White has six pawns to Black's seven, and White has the checks Qh5+ and Bf7+."
+    fr: 'Les Noirs viennent de jouer 5...Qxg2, prenant le pion g2 avec la dame. La dame attaque la tour h1, que rien ne défend, et les pions f2 et h2. Les Blancs ont six pions contre sept aux Noirs, et les Blancs ont les échecs Qh5+ et Bf7+.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 6.Qh5+ ở đây. Mục này đi theo nước hậu chiếu dọc đường chéo đã mở.'
+      en: 'White plays something other than 6.Qh5+ here. This entry follows the queen check along the open diagonal.'
+      fr: "Les Blancs jouent autre chose que 6.Qh5+ ici. Cette entrée suit l'échec de la dame le long de la diagonale ouverte."
+  children:
+    - ply: 'Qh5+'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng chiếu bằng hậu lên h5. Đen phải chặn nước chiếu hoặc đi vua.'
+        en: 'White checks with the queen on h5. Black has to block the check or move the king.'
+        fr: "Les Blancs donnent échec avec la dame en h5. Les Noirs doivent parer l'échec ou déplacer le roi."
+      children:
+        - ply: 'g6'
+          annotation:
+            vi: 'Đen chặn nước chiếu bằng tốt g6. Tốt g6 tấn công hậu h5, quân không có gì bảo vệ.'
+            en: 'Black blocks the check with the g6 pawn. The pawn on g6 attacks the queen on h5, which nothing defends.'
+            fr: "Les Noirs parent l'échec avec le pion g6. Le pion g6 attaque la dame h5, que rien ne défend."
+          dismissRest:
+            reason:
+              vi: 'Trắng chơi nước khác 7.Bf7+ ở đây. Mục này đi theo nước tượng chiếu, khiến Đen mất quyền nhập thành.'
+              en: 'White plays something other than 7.Bf7+ here. This entry follows the bishop check, which costs Black the right to castle.'
+              fr: "Les Blancs jouent autre chose que 7.Bf7+ ici. Cette entrée suit l'échec du fou, qui coûte aux Noirs le droit de roquer."
+          children:
+            - ply: 'Bf7+'
+              replyQuality: 'best'
+              frequency: 'common'
+              annotation:
+                vi: 'Trắng chiếu bằng tượng lên f7, giữ hậu h5 khỏi bị ăn trong chốc lát. Vua Đen phải đi và mất quyền nhập thành.'
+                en: 'White checks with the bishop on f7, which keeps the queen on h5 from being taken for the moment. The Black king has to move and loses the right to castle.'
+                fr: 'Les Blancs donnent échec avec le fou en f7, ce qui empêche pour le moment la prise de la dame h5. Le roi noir doit bouger et perd le droit de roquer.'
+              children:
+                - ply: 'Kd8'
+                  annotation:
+                    vi: 'Đen đưa vua lên d8.'
+                    en: 'Black moves the king to d8.'
+                    fr: 'Les Noirs déplacent le roi en d8.'
+                  outcome:
+                    type: 'position'
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Đen hơn một tốt, và các tốt f và h của Trắng đều bị cô lập. Vua Đen ở d8 đã mất quyền nhập thành. Hậu h5 của Trắng bị tốt g6 tấn công và, nếu tốt ăn, chỉ có tượng f7 ăn lại, còn xe h1 bị hậu g2 tấn công và không có gì bảo vệ, nhưng Trắng có nhiều nước chiếu, trong đó có Qg5+. Các nước ăn ở g6, h7 và d7 lúc đầu đều mất nhiều hơn một tốt, còn Bxg8 đổi tượng lấy mã nhưng để hậu và xe vẫn bị tấn công.'
+                      en: "Count the pawns: White six, Black seven, so Black is a pawn up, and White's f- and h-pawns are both isolated. Black's king on d8 has lost the right to castle. White's queen on h5 is attacked by the g6 pawn and, if that pawn takes, only the bishop on f7 retakes, while the rook on h1 is attacked by the queen on g2 and nothing defends it, but White has several checks, Qg5+ among them. The captures on g6, h7 and d7 each give up more than a pawn at first, and Bxg8 trades the bishop for the knight but leaves the queen and the rook attacked."
+                      fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc les Noirs ont un pion de plus, et les pions f et h blancs sont tous deux isolés. Le roi noir en d8 a perdu le droit de roquer. La dame h5 des Blancs est attaquée par le pion g6 et, si ce pion prend, seul le fou f7 reprend, tandis que la tour h1 est attaquée par la dame g2 et que rien ne la défend, mais les Blancs ont plusieurs échecs, dont Qg5+. Les prises en g6, h7 et d7 cèdent chacune plus d'un pion au départ, et Bxg8 échange le fou contre le cavalier mais laisse la dame et la tour attaquées."
+                    plan:
+                      vi: 'Trắng chiếu bằng Qg5+, nước cũng tấn công hậu g2, nên hai hậu bị đổi, và tượng c1 ăn lại kèm nước chiếu. Đen ăn hậu, rồi chặn nước chiếu của tượng bằng ...Be7.'
+                      en: "White checks with Qg5+, which also attacks the queen on g2, so the queens come off and the bishop from c1 retakes with check. Black takes the queen, then blocks the bishop's check with ...Be7."
+                      fr: "Les Blancs donnent échec par Qg5+, qui attaque aussi la dame g2, donc les dames s'échangent et le fou de c1 reprend avec échec. Les Noirs prennent la dame, puis parent l'échec du fou par ...Be7."
+                    basis:
+                      by: 'chan'
+                      at: '2026-10-01'

@@ -1,0 +1,62 @@
+# French Defense: Advance Variation, Ruisdonk Gambit. Defining line 1.e4 e6 2.d4 d5 3.e5 c5
+# 4.Nf3 cxd4 5.Bd3, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-advance-variation-ruisdonk-gambit
+name: 'French Defense: Advance Variation, Ruisdonk Gambit'
+eco: C02
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, e5, c5, Nf3, cxd4, Bd3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns against
+      eight, and the d4 pawn is attacked only by the knight on f3, because the bishop on d3
+      blocks the queen. Black can defend it with ...Nc6, after which Nxd4 would lose a
+      knight for a pawn, so the pawn is not coming back soon and nothing else on the board
+      repays it, which is why the entry is rated dubious. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 5.Bd3 và số tốt là Trắng bảy, Đen tám. Tốt d4 của Đen bị tấn công một lần, bởi mã f3, và không được quân nào bảo vệ, còn tượng d3 đứng chắn trước hậu trên cột d, nên hậu không tấn công được d4.
+    en: White has just played 5.Bd3 and the pawn count is White seven, Black eight. Black's d4 pawn is attacked once, by the knight on f3, and defended by nothing, and the bishop on d3 stands in front of the queen on the d-file, so the queen does not attack d4.
+    fr: Les Blancs viennent de jouer 5.Bd3 et le compte des pions est de sept pour les Blancs, huit pour les Noirs. Le pion d4 noir est attaqué une fois, par le cavalier f3, et n'est défendu par aucune pièce, et le fou d3 se tient devant la dame sur la colonne d, si bien que la dame n'attaque pas d4.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 5...Nc6 ở đây, chẳng hạn 5...Bd7 hoặc 5...Qb6. Mục này chỉ mô hình hóa 5...Nc6 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: hoàn tất phát triển và thách thức tốt d4.'
+      en: "Black plays something other than 5...Nc6 here, for instance 5...Bd7 or 5...Qb6. This entry models only 5...Nc6 and does not analyse those moves; White's task usually stays the same: complete development and challenge the d4 pawn."
+      fr: "Les Noirs jouent autre chose que 5...Nc6 ici, par exemple 5...Bd7 ou 5...Qb6. Cette entrée ne modélise que 5...Nc6 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : achever leur développement et défier le pion d4."
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen bảo vệ tốt d4 bằng 5...Nc6, đồng thời tấn công e5. Nếu Trắng chơi Nxd4 và Đen ăn lại bằng ...Nxd4, Trắng không thể ăn tiếp, vì tượng d3 chắn hậu trên cột d và không còn quân nào khác tấn công d4.
+        en: Black defends the d4 pawn with 5...Nc6, which also attacks e5. If White plays Nxd4 and Black recaptures with ...Nxd4, White cannot take again, because the bishop on d3 blocks the queen on the d-file and nothing else attacks d4.
+        fr: Les Noirs défendent le pion d4 par 5...Nc6, qui attaque aussi e5. Si les Blancs jouent Nxd4 et que les Noirs reprennent par ...Nxd4, les Blancs ne peuvent pas reprendre à leur tour, car le fou d3 bloque la dame sur la colonne d et aucune autre pièce n'attaque d4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt đã thí chưa được lấy lại. Tốt d4 bị tấn công một lần, bởi mã f3, và được bảo vệ một lần, bởi mã c6, còn tượng d3 ngăn hậu ăn lại ở d4. Tốt của Đen bị chồng ở d5 và d4.'
+          en: "Count the pawns: White seven, Black eight, so the sacrificed pawn has not come back. The d4 pawn is attacked once, by the knight on f3, and defended once, by the knight on c6, and the bishop on d3 keeps the queen from recapturing on d4. Black's pawns are doubled on d5 and d4."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion sacrifié n'est pas revenu. Le pion d4 est attaqué une fois, par le cavalier f3, et défendu une fois, par le cavalier c6, et le fou d3 empêche la dame de reprendre en d4. Les pions noirs sont doublés en d5 et d4."
+        plan:
+          vi: Trắng chơi O-O và c3 để thêm một quân tấn công d4. Đen chơi ...Nge7 để phát triển và ...Qb6, thêm một quân bảo vệ d4 và tạo sức ép lên b2.
+          en: White plays O-O and c3 to add a second attacker on d4. Black plays ...Nge7 to develop and ...Qb6, adding a second defender of d4 and pressure on b2.
+          fr: Les Blancs jouent O-O et c3 pour ajouter un second attaquant sur d4. Les Noirs jouent ...Nge7 pour se développer et ...Qb6, ajoutant un second défenseur de d4 et faisant pression sur b2.
+        basis:
+          by: chan
+          at: 2026-10-01

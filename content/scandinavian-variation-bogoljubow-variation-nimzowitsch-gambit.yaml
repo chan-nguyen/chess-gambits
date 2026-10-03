@@ -1,0 +1,69 @@
+# Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Nimzowitsch Gambit.
+# Frozen defining line 1.e4 Nc6 2.d4 d5 3.Nc3 dxe4 4.d5 Ne5 ends on Black's ply, which is the
+# opponent's, so the authored defining line stops one ply earlier, at 1.e4 Nc6 2.d4 d5 3.Nc3
+# dxe4 4.d5 (docs/CONTEXT.md, invariant 5), and the dropped ply Ne5 is modelled below as the
+# first reply; the shortened line is a prefix of the catalogue line, which the catalogue build
+# accepts. Part of batch t of round 4 (#182). Every ply below was replayed with chess.js
+# before it was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced
+# mate is claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: 'scandinavian-variation-bogoljubow-variation-nimzowitsch-gambit'
+name: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Nimzowitsch Gambit'
+eco: 'B00'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'Nc6'
+  - 'd4'
+  - 'd5'
+  - 'Nc3'
+  - 'dxe4'
+  - 'd5'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the shortened defining line White is a pawn down, seven pawns to eight, and the pawn on d5 attacks the knight on c6, but the pawn on e4 is attacked by the knight on c3 and defended by nothing, so White gets the pawn back at once. After that White has nothing more than the pawn on d5, which only the queen defends, and Black's knight can settle on e5, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.d5, tấn công mã c6, quân được tốt b7 bảo vệ. Trắng kém một tốt, bảy tốt so với tám của Đen, nhưng tốt e4 của Đen bị mã c3 tấn công và không quân nào bảo vệ.'
+    en: "White has just played 4.d5, attacking the knight on c6, which the b7 pawn defends. White is a pawn down, seven pawns to Black's eight, but the pawn on e4 is attacked by the knight on c3 and nothing defends it."
+    fr: 'Les Blancs viennent de jouer 4.d5, attaquant le cavalier c6, que le pion b7 défend. Les Blancs ont un pion de moins, sept pions contre huit aux Noirs, mais le pion e4 est attaqué par le cavalier c3 et rien ne le défend.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 4...Ne5 ở đây, chẳng hạn 4...Nb4. Mục này đi theo nước mã lên e5.'
+      en: 'Black plays something other than 4...Ne5 here, for instance 4...Nb4. This entry follows the knight to e5.'
+      fr: 'Les Noirs jouent autre chose que 4...Ne5 ici, par exemple 4...Nb4. Cette entrée suit le cavalier en e5.'
+  children:
+    - ply: 'Ne5'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen đưa mã lên e5, thoát khỏi đòn tấn công của tốt d5 và vào trung tâm. Tốt e4 của Đen vẫn bị mã c3 tấn công và không quân nào bảo vệ.'
+        en: 'Black moves the knight to e5, out of the attack of the d5 pawn and into the centre. The pawn on e4 is still attacked by the knight on c3 and nothing defends it.'
+        fr: 'Les Noirs placent le cavalier en e5, hors de portée du pion d5 et au centre. Le pion e4 est toujours attaqué par le cavalier c3 et rien ne le défend.'
+      children:
+        - ply: 'Nxe4'
+          annotation:
+            vi: 'Trắng ăn tốt e4 bằng mã, đưa số tốt về bằng nhau, mỗi bên bảy.'
+            en: 'White takes the pawn on e4 with the knight, which levels the pawn count at seven each.'
+            fr: 'Les Blancs prennent le pion e4 avec le cavalier, ce qui remet le compte des pions à égalité, sept de chaque côté.'
+          outcome:
+            type: 'position'
+            evaluation:
+              vi: 'Đếm tốt: mỗi bên bảy, nghĩa là con tốt đã thí đã lấy lại được. Tốt d5 bị hậu d8 tấn công và được hậu d1 bảo vệ, nên Đen không ăn được nó. Trắng không còn tốt e, Đen không còn tốt d, và cả hai vua đều chưa nhập thành.'
+              en: 'Count the pawns: seven each, so the sacrificed pawn has come back. The pawn on d5 is attacked by the queen on d8 and defended by the queen on d1, so Black cannot take it. White has no e-pawn and Black has no d-pawn, and neither king has castled.'
+              fr: "Comptez les pions : sept de chaque côté, donc le pion sacrifié est revenu. Le pion d5 est attaqué par la dame d8 et défendu par la dame d1, donc les Noirs ne peuvent pas le prendre. Les Blancs n'ont plus de pion e, les Noirs n'ont plus de pion d, et aucun des deux rois n'a roqué."
+            plan:
+              vi: 'Trắng giữ tốt d5 bằng c4 và phát triển bằng Nf3 và Be2. Đen thách thức tốt d5 bằng ...e6 và ...c6.'
+              en: 'White supports the d5 pawn with c4 and develops with Nf3 and Be2. Black challenges the pawn with ...e6 and ...c6.'
+              fr: 'Les Blancs soutiennent le pion d5 par c4 et se développent par Nf3 et Be2. Les Noirs défient le pion par ...e6 et ...c6.'
+            basis:
+              by: 'chan'
+              at: '2026-10-01'

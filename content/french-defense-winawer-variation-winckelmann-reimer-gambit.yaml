@@ -1,0 +1,61 @@
+# French Defense: Winawer Variation, Winckelmann-Reimer Gambit. Defining line 1.e4 e6 2.d4
+# d5 3.Nc3 Bb4 4.a3 Bxc3+ 5.bxc3 dxe4 6.f3, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-winawer-variation-winckelmann-reimer-gambit
+name: 'French Defense: Winawer Variation, Winckelmann-Reimer Gambit'
+eco: C15
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, Nc3, Bb4, a3, Bxc3+, bxc3, dxe4, f3]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is White seven, Black
+      eight, with the pawn on e4 attacked by the f3 pawn and defended by nothing, so Black
+      has to deal with it at once. White's c-pawns are doubled and the a-pawn is isolated, a
+      lasting cost, which White sets against the two bishops, and that is why the entry is
+      rated dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.f3, tấn công tốt e4, nên số tốt là Trắng bảy, Đen tám. Tốt c của Trắng bị chồng ở c3 và c2 và tốt a bị cô lập, nhưng Trắng có cả hai tượng đối đầu với một tượng của Đen, và tốt e4 bị tốt f3 tấn công mà không được quân nào bảo vệ.
+    en: White has just played 6.f3, attacking the pawn on e4, so the pawn count is White seven, Black eight. White's c-pawns are doubled on c3 and c2 and the a-pawn is isolated, but White has both bishops against Black's one, and the e4 pawn is attacked by the f3 pawn and defended by nothing.
+    fr: Les Blancs viennent de jouer 6.f3, attaquant le pion e4, de sorte que le compte des pions est de sept pour les Blancs, huit pour les Noirs. Les pions c blancs sont doublés en c3 et c2 et le pion a est isolé, mais les Blancs ont leurs deux fous contre un seul pour les Noirs, et le pion e4 est attaqué par le pion f3 et n'est défendu par aucune pièce.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 6...f5 ở đây, chẳng hạn 6...exf3 hoặc 6...Qd5. Mục này chỉ mô hình hóa 6...f5 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: dùng hai tượng và các đường mở để bù cho con tốt.'
+      en: "Black plays something other than 6...f5 here, for instance 6...exf3 or 6...Qd5. This entry models only 6...f5 and does not analyse those moves; White's task usually stays the same: use the two bishops and the open lines to make up for the pawn."
+      fr: "Les Noirs jouent autre chose que 6...f5 ici, par exemple 6...exf3 ou 6...Qd5. Cette entrée ne modélise que 6...f5 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : utiliser les deux fous et les lignes ouvertes pour compenser le pion."
+  children:
+    - ply: f5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen bảo vệ tốt e4 bằng 6...f5. Tốt e4 giờ bị tấn công một lần, bởi tốt f3, và được bảo vệ một lần, bởi tốt f5.
+        en: Black defends the pawn on e4 with 6...f5. The pawn on e4 is now attacked once, by the f3 pawn, and defended once, by the f5 pawn.
+        fr: Les Noirs défendent le pion e4 par 6...f5. Le pion e4 est maintenant attaqué une fois, par le pion f3, et défendu une fois, par le pion f5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt. Tốt c của Trắng bị chồng ở c3 và c2 và tốt a ở a3 bị cô lập, còn tốt của Đen bị chồng ở e6 và e4; Trắng có hai tượng đối đầu với một tượng.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down. White's c-pawns are doubled on c3 and c2 and the a-pawn on a3 is isolated, while Black's pawns are doubled on e6 and e4; White has the two bishops against one."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion de moins. Les pions c blancs sont doublés en c3 et c2 et le pion a en a3 est isolé, tandis que les pions noirs sont doublés en e6 et e4 ; les Blancs ont les deux fous contre un seul.'
+        plan:
+          vi: Trắng chơi Nh3 và Bg5 để phát triển kèm đe dọa hậu. Đen chơi ...Nf6 để bảo vệ e4 thêm lần nữa và ...c5 để tấn công d4, rồi ...Nc6.
+          en: White plays Nh3 and Bg5 to develop with a threat on the queen. Black plays ...Nf6 to guard e4 again and ...c5 to attack d4, then ...Nc6.
+          fr: Les Blancs jouent Nh3 et Bg5 pour se développer en menaçant la dame. Les Noirs jouent ...Nf6 pour garder à nouveau e4 et ...c5 pour attaquer d4, puis ...Nc6.
+        basis:
+          by: chan
+          at: 2026-10-01

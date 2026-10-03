@@ -1,0 +1,60 @@
+# Indian Defense: Budapest Gambit Accepted, Main Line. Defining line 1.d4 Nf6 2.c4 e5 3.dxe5
+# Ng4, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: indian-defense-budapest-gambit-accepted-main-line
+name: 'Indian Defense: Budapest Gambit Accepted, Main Line'
+eco: A52
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e5, dxe5, Ng4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black has given a pawn, and after 3...Ng4 the e5 pawn is attacked once
+      and defended by nothing, but White to move can defend it at once, so Black has to
+      prove that the activity of the knight on g4 is worth the pawn. The label is dubious.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Ng4 sau 3.dxe5, đang thiếu một tốt. Mã tấn công tốt e5, mà không quân nào bảo vệ, đồng thời tấn công các tốt f2 và h2, do vua và xe bảo vệ.
+    en: Black has just played 3...Ng4 after 3.dxe5, a pawn down. The knight attacks the e5 pawn, which nothing defends, and also the pawns on f2 and h2, which the king and the rook defend.
+    fr: Les Noirs viennent de jouer 3...Ng4 après 3.dxe5, un pion en moins. Le cavalier attaque le pion e5, que rien ne défend, ainsi que les pions f2 et h2, que le roi et la tour défendent.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 4.Bf4 ở đây. Mục này chỉ đi theo 4.Bf4; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 4.Bf4 here. This entry follows 4.Bf4 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 4.Bf4 ici. Cette entrée ne suit que 4.Bf4 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Bf4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi 4.Bf4, vừa bảo vệ tốt e5 vừa bảo vệ tốt h2.
+        en: White plays 4.Bf4, which defends the e5 pawn and the h2 pawn at once.
+        fr: Les Blancs jouent 4.Bf4, qui défend à la fois le pion e5 et le pion h2.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng vẫn giữ tốt hơn. Tốt Trắng ở e5 và e2 bị chồng, và tốt e5 bị tấn công một lần, bởi mã g4, cũng được bảo vệ một lần, bởi tượng f4.'
+          en: "Count the pawns: White eight, Black seven, so White still holds the extra pawn. White's pawns on e5 and e2 are doubled, and the e5 pawn is attacked once, by the knight on g4, and defended once, by the bishop on f4."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Blancs gardent donc le pion en plus. Les pions blancs e5 et e2 sont doublés, et le pion e5 est attaqué une fois, par le cavalier g4, et défendu une fois, par le fou f4.'
+        plan:
+          vi: Đen chiếu bằng ...Bb4+ và thêm quân tấn công tốt trên e5 bằng ...Nc6 và ...Qe7. Trắng thêm một quân bảo vệ bằng Nf3 và phát triển bằng Nc3 và e3, cố giữ tốt hơn.
+          en: Black checks with ...Bb4+ and adds attackers to the pawn on e5 with ...Nc6 and ...Qe7. White adds a defender with Nf3 and develops with Nc3 and e3, trying to keep the extra pawn.
+          fr: Les Noirs donnent échec par ...Bb4+ et ajoutent des attaquants sur le pion en e5 par ...Nc6 et ...Qe7. Les Blancs ajoutent un défenseur par Nf3 et se développent par Nc3 et e3, en cherchant à garder le pion en plus.
+        basis:
+          by: chan
+          at: 2026-10-01

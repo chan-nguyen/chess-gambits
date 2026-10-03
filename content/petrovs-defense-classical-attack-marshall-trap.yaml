@@ -1,0 +1,99 @@
+# Petrov's Defense: Classical Attack, Marshall Trap. Frozen defining line 1.e4 e5 2.Nf3 Nf6
+# 3.Nxe5 d6 4.Nf3 Nxe4 5.d4 d5 6.Bd3 Bd6 7.O-O O-O 8.c4 Bg4 9.cxd5 f5 10.Re1 Bxh2+ ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Part of
+# batch t of round 4 (#182). Every ply below was replayed with chess.js before it was
+# annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: 'petrovs-defense-classical-attack-marshall-trap'
+name: "Petrov's Defense: Classical Attack, Marshall Trap"
+eco: 'C42'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nf6'
+  - 'Nxe5'
+  - 'd6'
+  - 'Nf3'
+  - 'Nxe4'
+  - 'd4'
+  - 'd5'
+  - 'Bd3'
+  - 'Bd6'
+  - 'O-O'
+  - 'O-O'
+  - 'c4'
+  - 'Bg4'
+  - 'cxd5'
+  - 'f5'
+  - 'Re1'
+  - 'Bxh2+'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement. At the end of the defining line Black has given a bishop for a pawn with check, and the pawns are level at six each. The bishop on g4 is aimed at the queen on d1 with the knight on f3 in between. Every other White reply keeps that knight where it is and leaves Black having given a bishop for a pawn; only Nxh2 lets the bishop take the queen, so the line depends on White erring and is judged dubious. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 10...Bxh2+, thí tượng để lấy tốt h2 kèm nước chiếu. Tượng bị mã f3 và vua tấn công mà không quân nào bảo vệ. Tượng g4 nhắm vào hậu d1, với mã f3 đứng giữa. Số tốt hai bên bằng nhau, mỗi bên sáu.'
+    en: 'Black has just played 10...Bxh2+, giving a bishop for the pawn on h2 with check. The bishop is attacked by the knight on f3 and the king, and nothing defends it. The bishop on g4 is aimed at the queen on d1, with the knight on f3 in between. The pawns are level, six each.'
+    fr: 'Les Noirs viennent de jouer 10...Bxh2+, donnant un fou pour le pion h2 avec échec. Le fou est attaqué par le cavalier f3 et le roi, et rien ne le défend. Le fou g4 vise la dame d1, avec le cavalier f3 entre les deux. Les pions sont à égalité, six de chaque côté.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 11.Nxh2 ở đây. Mọi nước đáp còn lại, ăn bằng vua hoặc đi vua, đều giữ mã trên f3 giữa tượng g4 và hậu, nên cái bẫy không xảy ra.'
+      en: 'White plays something other than 11.Nxh2 here. Every other legal reply, which takes with the king or moves the king, keeps the knight on f3 between the bishop on g4 and the queen, so the trap does not arise.'
+      fr: 'Les Blancs jouent autre chose que 11.Nxh2 ici. Toute autre réponse légale, qui prend avec le roi ou déplace le roi, laisse le cavalier en f3 entre le fou g4 et la dame, donc le piège ne se produit pas.'
+  children:
+    - ply: 'Nxh2'
+      replyQuality: 'blunder'
+      frequency: 'occasional'
+      annotation:
+        vi: 'Trắng ăn tượng bằng mã f3. Nước đó đưa mã ra khỏi đường nối tượng g4 với hậu d1, quân được xe e1 bảo vệ.'
+        en: 'White takes the bishop with the knight from f3. That takes the knight off the line between the bishop on g4 and the queen on d1, which the rook on e1 defends.'
+        fr: 'Les Blancs prennent le fou avec le cavalier de f3. Cela retire le cavalier de la ligne entre le fou g4 et la dame d1, que la tour e1 défend.'
+      children:
+        - ply: 'Bxd1'
+          annotation:
+            vi: 'Đen ăn hậu bằng tượng g4. Tượng d1 bị xe e1 tấn công và không quân nào bảo vệ, nhưng Trắng đã mất hậu.'
+            en: 'Black takes the queen with the bishop from g4. The bishop on d1 is attacked by the rook on e1 and nothing defends it, but White has already lost the queen.'
+            fr: 'Les Noirs prennent la dame avec le fou de g4. Le fou d1 est attaqué par la tour e1 et rien ne le défend, mais les Blancs ont déjà perdu la dame.'
+          dismissRest:
+            reason:
+              vi: 'Trắng chơi nước khác 12.Rxd1 ở đây. Mục này đi theo nước ăn lại con tượng vừa ăn hậu.'
+              en: 'White plays something other than 12.Rxd1 here. This entry follows the recapture of the bishop that took the queen.'
+              fr: 'Les Blancs jouent autre chose que 12.Rxd1 ici. Cette entrée suit la reprise du fou qui a pris la dame.'
+          children:
+            - ply: 'Rxd1'
+              replyQuality: 'good'
+              frequency: 'common'
+              annotation:
+                vi: 'Trắng ăn tượng bằng xe. Qua cuộc đổi quân này, Đen đã đưa ra hai tượng để lấy hậu.'
+                en: 'White takes the bishop with the rook. Over the exchange Black has given two bishops for the queen.'
+                fr: 'Les Blancs prennent le fou avec la tour. Au cours de cet échange, les Noirs ont donné deux fous pour la dame.'
+              children:
+                - ply: 'Qxd5'
+                  annotation:
+                    vi: 'Đen ăn tốt d5, quân không có gì bảo vệ. Hậu giờ tấn công các tốt d4 và a2, và mã e4 được hậu cùng tốt f5 bảo vệ.'
+                    en: 'Black takes the pawn on d5, which nothing defended. The queen now attacks the pawns on d4 and a2, and the knight on e4 is defended by the queen and the f5 pawn.'
+                    fr: 'Les Noirs prennent le pion d5, que rien ne défendait. La dame attaque maintenant les pions d4 et a2, et le cavalier e4 est défendu par la dame et le pion f5.'
+                  outcome:
+                    type: 'position'
+                    evaluation:
+                      vi: 'Đếm quân: Đen có một hậu, hai xe và hai mã, Trắng có hai xe, hai tượng và hai mã, và Đen hơn một tốt, sáu so với năm. Tốt d4 của Trắng bị cô lập, bị hậu tấn công và không quân nào bảo vệ. Bxe4 chỉ đổi tượng lấy mã, vì hậu hoặc tốt f5 ăn lại.'
+                      en: "Count the material: Black has a queen, two rooks and two knights, White has two rooks, two bishops and two knights, and Black has six pawns to five. White's d4 pawn is isolated, attacked by the queen, and nothing defends it. Bxe4 would only trade the bishop for the knight, since the queen or the f5 pawn retakes."
+                      fr: "Comptez le matériel : les Noirs ont une dame, deux tours et deux cavaliers, les Blancs ont deux tours, deux fous et deux cavaliers, et les Noirs ont six pions contre cinq. Le pion d4 blanc est isolé, attaqué par la dame, et rien ne le défend. Bxe4 ne ferait qu'échanger le fou contre le cavalier, car la dame ou le pion f5 reprend."
+                    plan:
+                      vi: 'Trắng bảo vệ tốt d4 bằng Nf3 và phát triển bằng Nc3, nước tấn công hậu. Đen phát triển bằng ...Nc6, đổi mã bằng ...Nxc3 khi mã Trắng đến c3 và đưa xe lên cột e bằng ...Rae8; nếu tốt d4 không được bảo vệ, Đen ăn nó bằng hậu.'
+                      en: 'White defends the d4 pawn with Nf3 and develops with Nc3, which attacks the queen. Black develops with ...Nc6, trades the knights with ...Nxc3 when the white knight arrives on c3 and brings a rook to the e-file with ...Rae8; if the d4 pawn is left undefended, Black takes it with the queen.'
+                      fr: 'Les Blancs défendent le pion d4 par Nf3 et se développent par Nc3, qui attaque la dame. Les Noirs se développent par ...Nc6, échangent les cavaliers par ...Nxc3 quand le cavalier blanc arrive en c3 et amènent une tour sur la colonne e par ...Rae8 ; si le pion d4 reste sans défense, les Noirs le prennent avec la dame.'
+                    basis:
+                      by: 'chan'
+                      at: '2026-10-01'

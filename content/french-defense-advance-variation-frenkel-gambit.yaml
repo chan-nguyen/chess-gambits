@@ -1,0 +1,61 @@
+# French Defense: Advance Variation, Frenkel Gambit. Defining line 1.e4 e6 2.d4 d5 3.e5 c5
+# 4.b4, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-advance-variation-frenkel-gambit
+name: 'French Defense: Advance Variation, Frenkel Gambit'
+eco: C02
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, e5, c5, b4]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the b4 pawn is attacked by the c5 pawn
+      and defended by nothing, so Black can take it, and after ...cxb4 none of White's
+      pieces attacks the new pawn on b4. White gives up a pawn for no concrete return, which
+      is why the entry is rated unsound. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa đẩy 4.b4, đề nghị tốt b, nên số tốt vẫn ngang nhau, mỗi bên tám. Tốt b4 bị tốt c5 tấn công và không được quân nào bảo vệ, còn tốt d4 bị chính tốt c5 ấy tấn công và được hậu d1 bảo vệ.
+    en: White has just pushed 4.b4, offering the b-pawn, so the pawn count is still level, eight each. The b4 pawn is attacked by the c5 pawn and defended by nothing, while the d4 pawn is attacked by that same c5 pawn and defended by the queen on d1.
+    fr: Les Blancs viennent de pousser 4.b4, offrant le pion b, de sorte que le compte des pions reste égal, huit de chaque côté. Le pion b4 est attaqué par le pion c5 et n'est défendu par aucune pièce, tandis que le pion d4 est attaqué par ce même pion c5 et défendu par la dame d1.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 4...cxb4 ở đây, chẳng hạn 4...cxd4 hoặc 4...b6. Mục này chỉ mô hình hóa 4...cxb4 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: phát triển nhanh và tìm điều gì đó đáng giá để đổi lấy con tốt.'
+      en: "Black plays something other than 4...cxb4 here, for instance 4...cxd4 or 4...b6. This entry models only 4...cxb4 and does not analyse those moves; White's task usually stays the same: develop quickly and look for something to show for the pawn."
+      fr: "Les Noirs jouent autre chose que 4...cxb4 ici, par exemple 4...cxd4 ou 4...b6. Cette entrée ne modélise que 4...cxb4 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : se développer vite et chercher de quoi justifier le pion."
+  children:
+    - ply: cxb4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 4...cxb4, đồng thời loại bỏ con tốt đang tấn công d4. Không quân Trắng nào tấn công được tốt mới ở b4.
+        en: Black takes the pawn with 4...cxb4, which also removes the pawn that was attacking d4. Nothing of White's attacks the new pawn on b4.
+        fr: Les Noirs prennent le pion par 4...cxb4, ce qui retire aussi le pion qui attaquait d4. Aucune pièce blanche n'attaque le nouveau pion en b4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém đúng một tốt sạch và không có gì tấn công tốt b4, vốn được tượng f8 bảo vệ dọc theo đường chéo đang mở. Cả hai bên chưa phát triển quân nào, và trung tâm d4 và e5 của Trắng vẫn nguyên vẹn.'
+          en: "Count the pawns: White seven, Black eight, so White is a clean pawn down and nothing attacks the pawn on b4, which the bishop on f8 defends along the open diagonal. Neither side has developed a piece, and White's centre on d4 and e5 is intact."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion net de moins et rien n'attaque le pion b4, que le fou f8 défend le long de la diagonale ouverte. Aucun des deux camps n'a développé de pièce, et le centre blanc en d4 et e5 est intact."
+        plan:
+          vi: Trắng chơi a3 để thách thức tốt b4, rồi Nf3 để phát triển. Đen chơi ...Nc6 để tấn công d4 và ...a5 để hỗ trợ tốt b4.
+          en: White plays a3 to challenge the pawn on b4, then Nf3 to develop. Black plays ...Nc6 to attack d4 and ...a5 to support the pawn on b4.
+          fr: Les Blancs jouent a3 pour défier le pion b4, puis Nf3 pour se développer. Les Noirs jouent ...Nc6 pour attaquer d4 et ...a5 pour soutenir le pion b4.
+        basis:
+          by: chan
+          at: 2026-10-01

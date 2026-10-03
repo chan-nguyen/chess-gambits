@@ -1,0 +1,66 @@
+# Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Heinola-Deppe Gambit.
+# Frozen defining line 1.e4 Nc6 2.d4 d5 3.Nc3 e5 ends on Black's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply
+# below was replayed with chess.js before it was annotated; searchMate at 3 moves from the
+# leaf returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture is
+# left going free at the leaf.
+id: 'scandinavian-variation-bogoljubow-variation-heinola-deppe-gambit'
+name: 'Nimzowitsch Defense: Scandinavian Variation, Bogoljubow Variation, Heinola-Deppe Gambit'
+eco: 'B00'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'Nc6'
+  - 'd4'
+  - 'd5'
+  - 'Nc3'
+  - 'e5'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, eight each, and every central pawn is under attack: Black's pawn on d5 is attacked twice, by the e4 pawn and the knight on c3, and defended only by the queen, and White's pawn on d4 is attacked twice, by the knight on c6 and the e5 pawn, and defended only by the queen. White is to move and can take a pawn at once, on e5 or on d5, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...e5, tấn công tốt d4. Số tốt hai bên bằng nhau, mỗi bên tám, và mọi tốt trung tâm đều đang bị tấn công: tốt d4 của Trắng bị mã c6 và tốt e5 tấn công và chỉ có hậu bảo vệ, còn tốt d5 của Đen bị tốt e4 và mã c3 tấn công và chỉ có hậu bảo vệ.'
+    en: "Black has just played 3...e5, attacking the pawn on d4. The pawns are level, eight each, and every central pawn is under attack: White's d4 pawn is attacked by the knight on c6 and the e5 pawn and defended only by the queen, and Black's d5 pawn is attacked by the e4 pawn and the knight on c3 and defended only by the queen."
+    fr: 'Les Noirs viennent de jouer 3...e5, attaquant le pion d4. Les pions sont à égalité, huit de chaque côté, et tous les pions centraux sont attaqués : le pion d4 blanc est attaqué par le cavalier c6 et le pion e5 et défendu seulement par la dame, et le pion d5 noir est attaqué par le pion e4 et le cavalier c3 et défendu seulement par la dame.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 4.dxe5 ở đây, chẳng hạn 4.exd5, cũng ăn một tốt. Mục này đi theo nước ăn ở e5.'
+      en: 'White plays something other than 4.dxe5 here, for instance 4.exd5, which also takes a pawn. This entry follows the capture on e5.'
+      fr: 'Les Blancs jouent autre chose que 4.dxe5 ici, par exemple 4.exd5, qui prend aussi un pion. Cette entrée suit la capture en e5.'
+  children:
+    - ply: 'dxe5'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn tốt bằng tốt d, thắng một tốt và để các tốt e của chính mình bị chồng, ở e4 và e5. Tốt e5 bị mã c6 tấn công và không quân nào bảo vệ.'
+        en: "White takes the pawn with the d-pawn, winning a pawn and leaving White's own e-pawns doubled, on e4 and e5. The pawn on e5 is attacked by the knight on c6 and nothing defends it."
+        fr: 'Les Blancs prennent le pion avec le pion d, gagnant un pion et laissant leurs propres pions e doublés, en e4 et e5. Le pion e5 est attaqué par le cavalier c6 et rien ne le défend.'
+      children:
+        - ply: 'd4'
+          annotation:
+            vi: 'Đen đẩy tốt d lên d4, tấn công mã c3, quân chỉ được tốt b2 bảo vệ. Tốt d4 được hậu và mã c6 bảo vệ.'
+            en: 'Black pushes the d-pawn to d4, attacking the knight on c3, which only the b2 pawn defends. The d4 pawn is defended by the queen and the knight on c6.'
+            fr: 'Les Noirs poussent le pion d en d4, attaquant le cavalier c3, que seul le pion b2 défend. Le pion d4 est défendu par la dame et le cavalier c6.'
+          outcome:
+            type: 'position'
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nghĩa là con tốt đã thí chưa lấy lại được. Hai tốt e của Trắng bị chồng, ở e4 và e5, và tốt e5 bị mã c6 tấn công mà không có quân nào bảo vệ, nên con tốt hơn đang chịu sức ép ngay. Tốt d4 đang tấn công mã c3. Qxd4 sẽ mất hậu lấy một tốt, vì Đen ăn lại.'
+              en: "Count the pawns: White eight, Black seven, so the sacrificed pawn has not come back. White's e-pawns are doubled, on e4 and e5, and the e5 pawn is attacked by the knight on c6 with nothing to defend it, so the extra pawn is already under pressure. The pawn on d4 attacks the knight on c3. Qxd4 would lose the queen for a pawn, since Black retakes."
+              fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc le pion sacrifié n'est pas revenu. Les pions e blancs sont doublés, en e4 et e5, et le pion e5 est attaqué par le cavalier c6 sans que rien ne le défende, donc le pion supplémentaire est déjà sous pression. Le pion d4 attaque le cavalier c3. Qxd4 perdrait la dame pour un pion, car les Noirs reprennent."
+            plan:
+              vi: 'Trắng đưa mã đi bằng Nd5, rồi phát triển bằng Nf3, nước bảo vệ tốt e5, và Bc4. Đen phát triển bằng ...Nge7 và ...Be6, cả hai nhằm vào mã d5.'
+              en: 'White moves the knight with Nd5, then develops with Nf3, which defends the e5 pawn, and Bc4. Black develops with ...Nge7 and ...Be6, both aimed at the knight on d5.'
+              fr: 'Les Blancs déplacent le cavalier par Nd5, puis se développent par Nf3, qui défend le pion e5, et Bc4. Les Noirs se développent par ...Nge7 et ...Be6, tous deux dirigés contre le cavalier d5.'
+            basis:
+              by: 'chan'
+              at: '2026-10-01'

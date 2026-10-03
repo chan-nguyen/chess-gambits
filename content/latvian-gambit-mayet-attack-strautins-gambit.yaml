@@ -1,0 +1,59 @@
+# Latvian Gambit: Mayet Attack, Strautins Gambit. Frozen defining line 1.e4 e5 2.Nf3 f5 3.Bc4
+# b5 ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch t of round 4 (#182). Every ply below was replayed with chess.js before it was
+# annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: 'latvian-gambit-mayet-attack-strautins-gambit'
+name: 'Latvian Gambit: Mayet Attack, Strautins Gambit'
+eco: 'C40'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'f5'
+  - 'Bc4'
+  - 'b5'
+soundness:
+  value: 'unsound'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line the pawns are level, eight each, but Black's pawns on e5 and f5 are attacked with nothing defending either of them, and the b5 pawn attacks a bishop that is itself undefended, so both sides have loose pieces and it is White's move. White can attack the rook on a8 and the knight on g8 with the bishop at once, so the line is judged unsound. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...b5, tấn công tượng c4, quân không có gì bảo vệ. Số tốt hai bên bằng nhau, mỗi bên tám. Các tốt e5 và f5 của Đen bị tấn công và không có gì bảo vệ, và tốt e4 của Trắng bị tốt f5 tấn công và cũng không có gì bảo vệ.'
+    en: "Black has just played 3...b5, attacking the bishop on c4, which nothing defends. The pawns are level, eight each. Black's pawns on e5 and f5 are attacked with nothing to defend them, and White's pawn on e4 is attacked by the f5 pawn and nothing defends it either."
+    fr: 'Les Noirs viennent de jouer 3...b5, attaquant le fou c4, que rien ne défend. Les pions sont à égalité, huit de chaque côté. Les pions e5 et f5 des Noirs sont attaqués sans que rien ne les défende, et le pion e4 des Blancs est attaqué par le pion f5 et rien ne le défend non plus.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 4.Bd5 ở đây, chẳng hạn 4.Bb3, cũng đưa tượng ra khỏi tầm của tốt b5. Mục này đi theo nước tượng lên d5.'
+      en: "White plays something other than 4.Bd5 here, for instance 4.Bb3, which also takes the bishop out of the b5 pawn's reach. This entry follows the bishop to d5."
+      fr: 'Les Blancs jouent autre chose que 4.Bd5 ici, par exemple 4.Bb3, qui met aussi le fou hors de portée du pion b5. Cette entrée suit le fou en d5.'
+  children:
+    - ply: 'Bd5'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng đưa tượng lên d5, nơi nó tấn công xe a8 và mã g8 và bảo vệ tốt e4.'
+        en: 'White moves the bishop to d5, where it attacks the rook on a8 and the knight on g8 and defends the pawn on e4.'
+        fr: 'Les Blancs placent le fou en d5, où il attaque la tour a8 et le cavalier g8 et défend le pion e4.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: mỗi bên tám, nghĩa là chưa có tốt nào bị mất. Xe a8 bị tượng d5 tấn công và không có gì bảo vệ, còn các tốt e5 và f5 bị mã f3 và tốt e4 tấn công và không có gì bảo vệ. Đen có cả ba quân bị tấn công cùng lúc. fxe4 chỉ đổi tốt, vì tượng d5 ăn lại.'
+          en: 'Count the pawns: eight each, so no pawn has been lost yet. The rook on a8 is attacked by the bishop on d5 and nothing defends it, and the pawns on e5 and f5 are attacked by the knight on f3 and the pawn on e4 and nothing defends them. Black has all three attacked at once. fxe4 would only trade pawns, since the bishop on d5 retakes.'
+          fr: "Comptez les pions : huit de chaque côté, donc aucun pion n'a encore été perdu. La tour a8 est attaquée par le fou d5 et rien ne la défend, et les pions e5 et f5 sont attaqués par le cavalier f3 et le pion e4 et rien ne les défend. Les Noirs ont les trois attaqués à la fois. fxe4 ne ferait qu'échanger des pions, car le fou d5 reprend."
+        plan:
+          vi: 'Đen thử ...c6, tấn công tượng. Trắng đổi ở g8 bằng Bxg8 và, sau khi bị ăn lại, tiếp tục bằng Qe2, giữ sức ép lên các tốt e5 và f5.'
+          en: 'Black tries ...c6, attacking the bishop. White trades on g8 with Bxg8 and, after the recapture, continues with Qe2, keeping the pressure on the e5 and f5 pawns.'
+          fr: 'Les Noirs essaient ...c6, attaquant le fou. Les Blancs échangent en g8 par Bxg8 et, après la reprise, continuent par Qe2, gardant la pression sur les pions e5 et f5.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

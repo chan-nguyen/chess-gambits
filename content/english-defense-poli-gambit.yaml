@@ -1,0 +1,67 @@
+# English Defense: Poli Gambit. Defining line 1.d4 e6 2.c4 b6 3.e4 Bb7 4.f3 f5 5.exf5 Nh6,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: english-defense-poli-gambit
+name: 'English Defense: Poli Gambit'
+eco: A40
+category: gambit
+side: black
+definingLine: [d4, e6, c4, b6, e4, Bb7, f3, f5, exf5, Nh6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Black is a pawn down, and the f5 pawn is attacked by the e6 pawn and the
+      knight on h6 and defended by nothing, so Black can win it back unless White acts.
+      White to move can act at once, by taking the knight with the bishop on c1 or by
+      capturing on e6, and Black's lead in development is the whole compensation. The label
+      is dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 5...Nh6, tấn công tốt f5 lần thứ hai: tốt này bị tốt e6 và mã h6 tấn công và không có quân nào bảo vệ. Mã h6 bị tượng c1 tấn công và được tốt g7 bảo vệ. Trắng hơn một tốt.'
+    en: 'Black has just played 5...Nh6, attacking the f5 pawn a second time: it is attacked by the e6 pawn and the knight on h6 and defended by nothing. The knight on h6 is attacked by the bishop on c1 and defended by the g7 pawn. White is a pawn up.'
+    fr: 'Les Noirs viennent de jouer 5...Nh6, attaquant le pion f5 une seconde fois : il est attaqué par le pion e6 et le cavalier h6 et rien ne le défend. Le cavalier h6 est attaqué par le fou c1 et défendu par le pion g7. Les Blancs ont un pion de plus.'
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 6.Bxh6 ở đây. Mục này chỉ đi theo 6.Bxh6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 6.Bxh6 here. This entry follows 6.Bxh6 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 6.Bxh6 ici. Cette entrée ne suit que 6.Bxh6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Bxh6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn mã bằng 6.Bxh6, nên Đen phải ăn lại trên h6.
+        en: White takes the knight with 6.Bxh6, so Black has to recapture on h6.
+        fr: Les Blancs prennent le cavalier par 6.Bxh6, si bien que les Noirs doivent reprendre en h6.
+      children:
+        - ply: gxh6
+          annotation:
+            vi: Đen ăn lại bằng tốt g, 6...gxh6, để các tốt Đen ở h7 và h6 bị chồng và mở cột g.
+            en: Black recaptures with the g-pawn, 6...gxh6, which leaves Black's pawns on h7 and h6 doubled and opens the g-file.
+            fr: Les Noirs reprennent avec le pion g, 6...gxh6, ce qui laisse doublés les pions noirs h7 et h6 et ouvre la colonne g.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen thiếu một tốt. Các tốt Đen ở h7 và h6 bị chồng, tốt f5 bị tốt e6 tấn công mà không có quân nào bảo vệ, nên Trắng phải giải quyết, chẳng hạn bằng fxe6, và các cột f và g nửa mở cho quân Đen.'
+              en: "Count the pawns: White eight, Black seven, so Black is a pawn down. Black's pawns on h7 and h6 are doubled, the f5 pawn is attacked by the e6 pawn and defended by nothing, so White has to settle it, for instance with fxe6, and the f- and g-files are half open for Black's pieces."
+              fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Noirs sont donc un pion en moins. Les pions noirs h7 et h6 sont doublés, le pion f5 est attaqué par le pion e6 et rien ne le défend, si bien que les Blancs doivent régler la question, par exemple par fxe6, et les colonnes f et g sont semi-ouvertes pour les pièces noires.'
+            plan:
+              vi: Trắng giải quyết tốt f5 bằng fxe6 và phát triển bằng Nc3. Đen phát triển bằng ...Bg7, ...Qf6 và ...Nc6, dùng cột f nửa mở.
+              en: White settles the f5 pawn with fxe6 and develops with Nc3. Black develops with ...Bg7, ...Qf6 and ...Nc6, using the half-open f-file.
+              fr: Les Blancs règlent le sort du pion f5 par fxe6 et se développent par Nc3. Les Noirs se développent par ...Bg7, ...Qf6 et ...Nc6, en utilisant la colonne f semi-ouverte.
+            basis:
+              by: chan
+              at: 2026-10-01

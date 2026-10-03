@@ -1,0 +1,60 @@
+# Grob Opening: Zilbermints Gambit, Zilbermints-Hartlaub Gambit. Frozen defining line 1.g4
+# d5 2.e4 dxe4 3.Nc3 e5 4.d3, which ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply exd3;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: grob-opening-zilbermints-gambit-zilbermints-hartlaub-gambit
+name: 'Grob Opening: Zilbermints Gambit, Zilbermints-Hartlaub Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [g4, d5, e4, dxe4, Nc3, e5, d3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and Black's e4 pawn is attacked twice and has no defender, but Black can take on d3
+      first, where the pawn is recaptured and Black still has an extra pawn. White has not
+      been shown to get anything concrete in return. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.d3, tấn công tốt e4 lần thứ hai. Tốt e4 bị mã c3 và tốt d3 tấn công mà không có quân nào bảo vệ, còn tốt d3 bị tốt e4 và hậu d8 tấn công và được tốt c2, hậu và tượng f1 bảo vệ. Trắng đang kém một tốt, bảy so với tám. Mục này đi theo nước Đen ăn 4...exd3.'
+    en: 'White has just played 4.d3, attacking the e4 pawn a second time. The e4 pawn is attacked by the knight on c3 and the d3 pawn and nothing defends it, while the d3 pawn is attacked by the e4 pawn and the queen on d8 and defended by the c2 pawn, the queen and the bishop on f1. White is a pawn down, seven pawns to eight. This entry follows Black capturing 4...exd3.'
+    fr: 'Les Blancs viennent de jouer 4.d3, attaquant le pion e4 une seconde fois. Le pion e4 est attaqué par le cavalier c3 et par le pion d3 sans être défendu, tandis que le pion d3 est attaqué par le pion e4 et par la dame d8 et défendu par le pion c2, la dame et le fou f1. Les Blancs ont un pion de moins, sept contre huit. Cette entrée suit la prise 4...exd3 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...exd3, nên tốt e4 không ăn trên d3. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 4...exd3 here, so the e4 pawn does not take on d3. This entry follows only the capture.'
+      fr: 'Les Noirs jouent autre chose que 4...exd3 ici, si bien que le pion e4 ne prend pas en d3. Cette entrée ne suit que la prise.'
+  children:
+    - ply: exd3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt d3 bằng tốt từ e4. Tốt d3 mới bị tốt c2, hậu và tượng f1 tấn công mà chỉ có hậu d8 bảo vệ, nên Trắng sắp ăn lại.'
+        en: 'Black takes the d3 pawn with the pawn from e4. The new pawn on d3 is attacked by the c2 pawn, the queen and the bishop on f1, and only the queen on d8 defends it, so White is about to recapture.'
+        fr: 'Les Noirs prennent le pion d3 avec le pion venu de e4. Le nouveau pion d3 est attaqué par le pion c2, la dame et le fou f1, et seule la dame d8 le défend, si bien que les Blancs vont reprendre.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, và tốt d3 của Đen sắp bị ăn lại, đưa số tốt về sáu so với bảy: Trắng vẫn kém một tốt. Tốt g4 của Trắng bị tượng c8 tấn công một lần và được hậu bảo vệ một lần.'
+          en: "Count the pawns: White six, Black eight, with Black's pawn on d3 about to be taken back, which brings the count to six against seven: White is still a pawn down. White's g4 pawn is attacked once, by the bishop on c8, and defended once, by the queen."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, le pion noir d3 étant sur le point d'être repris, ce qui ramène le compte à six contre sept : les Blancs ont toujours un pion de moins. Le pion g4 blanc est attaqué une fois, par le fou c8, et défendu une fois, par la dame."
+        plan:
+          vi: 'Trắng ăn lại bằng Bxd3, rồi phát triển bằng Bd2 và Qe2. Đen phát triển bằng ...Nc6, ...Be6 và ...Qd7, rồi nhập thành dài.'
+          en: 'White recaptures with Bxd3, then develops with Bd2 and Qe2. Black develops with ...Nc6, ...Be6 and ...Qd7, then castles long.'
+          fr: 'Les Blancs reprennent par Bxd3, puis se développent par Bd2 et Qe2. Les Noirs se développent par ...Nc6, ...Be6 et ...Qd7, puis font le grand roque.'
+        basis:
+          by: chan
+          at: '2026-10-01'

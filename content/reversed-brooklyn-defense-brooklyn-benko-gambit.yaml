@@ -1,0 +1,61 @@
+# Hungarian Opening: Reversed Brooklyn Defense, Brooklyn Benko Gambit. Frozen defining line
+# 1.g3 e5 2.Nf3 e4 3.Ng1 Nf6 4.b4 ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'reversed-brooklyn-defense-brooklyn-benko-gambit'
+name: 'Hungarian Opening: Reversed Brooklyn Defense, Brooklyn Benko Gambit'
+eco: 'A00'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'g3'
+  - 'e5'
+  - 'Nf3'
+  - 'e4'
+  - 'Ng1'
+  - 'Nf6'
+  - 'b4'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement. At the end of the defining line the pawns are level, eight each, but the b4 pawn is attacked by the bishop on f8 and nothing defends it, and White has no piece developed, since the knight went out and came back. The pawn is therefore not paid for by any lead in development, so the line is judged dubious. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.b4, dâng tốt b. Số tốt hai bên bằng nhau, mỗi bên tám. Tốt b4 bị tượng f8 tấn công và không có gì bảo vệ, và Trắng chưa phát triển quân nhẹ nào, vì mã đã đi ra rồi quay về.'
+    en: 'White has just played 4.b4, offering the b-pawn. The pawns are level, eight each. The pawn on b4 is attacked by the bishop on f8 and nothing defends it, and White has no minor piece developed, since the knight went out and came back.'
+    fr: "Les Blancs viennent de jouer 4.b4, offrant le pion b. Les pions sont à égalité, huit de chaque côté. Le pion b4 est attaqué par le fou f8 et rien ne le défend, et les Blancs n'ont développé aucune pièce mineure, puisque le cavalier est sorti puis revenu."
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 4...Bxb4 ở đây, chẳng hạn 4...d5. Mục này đi theo nước ăn tốt b4.'
+      en: 'Black plays something other than 4...Bxb4 here, for instance 4...d5. This entry follows the capture of the pawn on b4.'
+      fr: 'Les Noirs jouent autre chose que 4...Bxb4 ici, par exemple 4...d5. Cette entrée suit la capture du pion b4.'
+  children:
+    - ply: 'Bxb4'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen ăn tốt b4 bằng tượng. Tượng giờ tấn công tốt d2, quân được nhiều quân bảo vệ.'
+        en: 'Black takes the pawn on b4 with the bishop. The bishop now attacks the d2 pawn, which several pieces defend.'
+        fr: 'Les Noirs prennent le pion b4 avec le fou. Le fou attaque maintenant le pion d2, que plusieurs pièces défendent.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém một tốt, và tốt a của Trắng bị cô lập vì tốt b đã mất. Cột b bán mở cho xe Trắng, nhưng Trắng chưa phát triển quân nhẹ nào, còn Đen đã đưa ra mã f6 và tượng b4.'
+          en: "Count the pawns: White seven, Black eight, so White is a pawn down, and White's a-pawn is isolated now that the b-pawn is gone. The b-file is half-open for White's rook, but White has no minor piece developed, while Black has the knight on f6 and the bishop on b4 out."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion de moins, et le pion a blanc est isolé depuis que le pion b a disparu. La colonne b est semi-ouverte pour la tour blanche, mais les Blancs n'ont développé aucune pièce mineure, tandis que les Noirs ont sorti le cavalier f6 et le fou b4."
+        plan:
+          vi: 'Trắng phát triển bằng Bg2 và Nh3. Đen chiếm trung tâm bằng ...d5 và phát triển bằng ...Nc6.'
+          en: 'White develops with Bg2 and Nh3. Black takes the centre with ...d5 and develops with ...Nc6.'
+          fr: 'Les Blancs se développent par Bg2 et Nh3. Les Noirs prennent le centre par ...d5 et se développent par ...Nc6.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

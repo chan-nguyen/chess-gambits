@@ -1,0 +1,65 @@
+# Queen's Pawn Game: Chandler Gambit. Defining line 1.d4 d5 2.Nf3 c5 3.g3 cxd4 4.Bg2, which
+# ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: queens-pawn-game-chandler-gambit
+name: "Queen's Pawn Game: Chandler Gambit"
+eco: D02
+category: gambit
+side: white
+definingLine: [d4, d5, Nf3, c5, g3, cxd4, Bg2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 3...cxd4 the pawn on d4 is attacked by the knight on f3 and the
+      queen on d1 and defended by nothing, so White can regain it, but White is then left
+      without a d-pawn while Black keeps the pawn on d5. The label is dubious. No engine was
+      consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Bg2, đang thiếu một tốt. Tốt d4 mà Đen vừa ăn bị mã f3 và hậu d1 tấn công và không có quân nào bảo vệ, còn tượng g2 nhắm vào tốt d5 nhưng mã f3 đang đứng chắn đường.
+    en: White has just played 4.Bg2, a pawn down. The pawn on d4 that Black took is attacked by the knight on f3 and the queen on d1 and defended by nothing, and the bishop on g2 is aimed at the d5 pawn, but the knight on f3 stands in its way.
+    fr: Les Blancs viennent de jouer 4.Bg2, un pion en moins. Le pion d4 que les Noirs ont pris est attaqué par le cavalier f3 et la dame d1 et rien ne le défend, et le fou g2 est braqué sur le pion d5, mais le cavalier f3 lui barre la route.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 4...Nf6 ở đây. Mục này chỉ đi theo 4...Nf6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 4...Nf6 here. This entry follows 4...Nf6 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 4...Nf6 ici. Cette entrée ne suit que 4...Nf6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Nf6
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen phát triển mã bằng 4...Nf6, bảo vệ tốt d5 lần thứ hai nhưng không bảo vệ được tốt d4, vẫn bị mã f3 và hậu d1 tấn công.
+        en: Black develops the knight with 4...Nf6, which defends the d5 pawn a second time but does not defend the d4 pawn, still attacked by the knight on f3 and the queen on d1.
+        fr: Les Noirs développent le cavalier par 4...Nf6, qui défend le pion d5 une seconde fois mais ne défend pas le pion d4, toujours attaqué par le cavalier f3 et la dame d1.
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Trắng lấy lại tốt bằng 5.Nxd4, đưa mã vào trung tâm.
+            en: White regains the pawn with 5.Nxd4, putting the knight in the centre.
+            fr: Les Blancs regagnent le pion par 5.Nxd4, plaçant le cavalier au centre.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen bảy, nên con tốt đã được lấy lại. Trắng không còn tốt d và Đen không còn tốt c, nên cột d nửa mở cho Trắng và cột c nửa mở cho Đen. Tượng g2 tấn công tốt d5, được hậu và mã f6 bảo vệ, và mã d4 không bị tốt nào tấn công.'
+              en: 'Count the pawns: White seven, Black seven, so the pawn has come back. White has no d-pawn and Black has no c-pawn, so the d-file is half open for White and the c-file for Black. The bishop on g2 attacks the d5 pawn, which the queen and the knight on f6 defend, and the knight on d4 is not attacked by any pawn.'
+              fr: "Comptez les pions : sept pour les Blancs, sept pour les Noirs ; le pion est donc revenu. Les Blancs n'ont plus de pion d et les Noirs n'ont plus de pion c, si bien que la colonne d est semi-ouverte pour les Blancs et la colonne c pour les Noirs. Le fou g2 attaque le pion d5, que la dame et le cavalier f6 défendent, et le cavalier d4 n'est attaqué par aucun pion."
+            plan:
+              vi: Đen thách thức mã bằng ...e5, rồi phát triển bằng ...Nc6 và ...Be7. Trắng đáp lại bằng cách dời con mã đang bị tấn công, chẳng hạn bằng Nb3, rồi nhập thành bằng O-O và phát triển bằng Nc3.
+              en: Black challenges the knight with ...e5, then develops with ...Nc6 and ...Be7. White answers by moving the attacked knight, for instance with Nb3, then castles with O-O and develops with Nc3.
+              fr: Les Noirs défient le cavalier par ...e5, puis se développent par ...Nc6 et ...Be7. Les Blancs répondent en déplaçant le cavalier attaqué, par exemple par Nb3, puis roquent par O-O et se développent par Nc3.
+            basis:
+              by: chan
+              at: 2026-10-01

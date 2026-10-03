@@ -1,0 +1,66 @@
+# King's Indian Defense: Four Pawns Attack, Florentine Gambit. Defining line 1.d4 Nf6 2.c4
+# g6 3.Nc3 Bg7 4.e4 d6 5.f4 O-O 6.Nf3 c5 7.d5 e6 8.Be2 exd5 9.e5, which ends on White's own
+# ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: kings-indian-defense-four-pawns-attack-florentine-gambit
+name: "King's Indian Defense: Four Pawns Attack, Florentine Gambit"
+eco: E77
+category: gambit
+side: white
+definingLine: [d4, Nf6, c4, g6, Nc3, Bg7, e4, d6, f4, O-O, Nf3, c5, d5, e6, Be2, exd5, e5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. White is a pawn down: the e5 pawn attacks the knight on f6, and the d5
+      pawn is attacked three times and defended once. Black can take the e5 pawn at once,
+      though, and no White piece has yet won anything, so the label is dubious. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.e5, đồng thời tấn công mã f6 và tốt d6. Tốt e5 bị tốt d6 tấn công và được tốt f4 và mã f3 bảo vệ, còn tốt d5 của Đen bị tốt c4, mã c3 và hậu d1 tấn công mà chỉ có mã f6 bảo vệ.
+    en: White has just played 9.e5, attacking the knight on f6 and the d6 pawn at once. The e5 pawn is attacked by the d6 pawn and defended by the f4 pawn and the knight on f3, and Black's d5 pawn is attacked by the c4 pawn, the knight on c3 and the queen on d1 and defended only by the knight on f6.
+    fr: Les Blancs viennent de jouer 9.e5, attaquant à la fois le cavalier f6 et le pion d6. Le pion e5 est attaqué par le pion d6 et défendu par le pion f4 et le cavalier f3, et le pion noir d5 est attaqué par le pion c4, le cavalier c3 et la dame d1 et défendu seulement par le cavalier f6.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 9...dxe5 ở đây. Mục này chỉ đi theo 9...dxe5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: Black plays something other than 9...dxe5 here. This entry follows 9...dxe5 only; other moves lead to lines that are not mapped here.
+      fr: Les Noirs jouent autre chose que 9...dxe5 ici. Cette entrée ne suit que 9...dxe5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: dxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 9...dxe5. Tốt e5 giờ bị tốt f4 và mã f3 tấn công mà không có quân nào bảo vệ.
+        en: Black takes the pawn with 9...dxe5. The e5 pawn is now attacked by the f4 pawn and the knight on f3 and defended by nothing.
+        fr: Les Noirs prennent le pion par 9...dxe5. Le pion e5 est maintenant attaqué par le pion f4 et le cavalier f3 et rien ne le défend.
+      children:
+        - ply: fxe5
+          annotation:
+            vi: Trắng ăn lại bằng tốt f, 10.fxe5, lại tấn công mã f6.
+            en: White takes back with the f-pawn, 10.fxe5, which attacks the knight on f6 again.
+            fr: Les Blancs reprennent avec le pion f, 10.fxe5, qui attaque de nouveau le cavalier f6.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên Trắng thiếu một tốt. Tốt e5 tấn công mã f6, được hậu và tượng g7 bảo vệ, còn tốt d5 của Đen bị tốt c4, mã c3 và hậu d1 tấn công, và được hậu d8 và mã f6 bảo vệ. Tốt c4 của Trắng bị tốt d5 tấn công và được tượng e2 bảo vệ.'
+              en: "Count the pawns: White six, Black seven, so White is a pawn down. The e5 pawn attacks the knight on f6, which the queen and the bishop on g7 defend, and Black's d5 pawn is attacked by the c4 pawn, the knight on c3 and the queen on d1 and defended by the queen on d8 and the knight on f6. White's c4 pawn is attacked by the d5 pawn and defended by the bishop on e2."
+              fr: 'Comptez les pions : six pour les Blancs, sept pour les Noirs ; les Blancs sont donc un pion en moins. Le pion e5 attaque le cavalier f6, que la dame et le fou g7 défendent, et le pion noir d5 est attaqué par le pion c4, le cavalier c3 et la dame d1 et défendu par la dame d8 et le cavalier f6. Le pion blanc c4 est attaqué par le pion d5 et défendu par le fou e2.'
+            plan:
+              vi: Trắng nhập thành bằng O-O, phát triển tượng c1 và giữ tốt e5 được mã f3 bảo vệ. Đen đưa mã đang bị tấn công đi bằng ...Ne4 và thách thức tốt e5 bằng ...Nc6.
+              en: White castles with O-O, develops the bishop on c1 and keeps the e5 pawn defended by the knight on f3. Black moves the attacked knight with ...Ne4 and challenges the pawn on e5 with ...Nc6.
+              fr: Les Blancs roquent par O-O, développent le fou c1 et gardent le pion e5 défendu par le cavalier f3. Les Noirs déplacent le cavalier attaqué par ...Ne4 et défient le pion en e5 par ...Nc6.
+            basis:
+              by: chan
+              at: 2026-10-01

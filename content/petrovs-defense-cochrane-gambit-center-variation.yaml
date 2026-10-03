@@ -1,0 +1,63 @@
+# Petrov's Defense: Cochrane Gambit, Center Variation. Frozen defining line 1.e4 e5 2.Nf3 Nf6
+# 3.Nxe5 d6 4.Nxf7 Kxf7 5.d4 ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'petrovs-defense-cochrane-gambit-center-variation'
+name: "Petrov's Defense: Cochrane Gambit, Center Variation"
+eco: 'C42'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nf6'
+  - 'Nxe5'
+  - 'd6'
+  - 'Nxf7'
+  - 'Kxf7'
+  - 'd4'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line White has given a knight for two pawns, eight pawns to six, so White is a minor piece down, and the knight on f6 attacks the pawn on e4 with nothing defending it. Black's king on f7 has lost the right to castle, but it can stay there or step to g8, and the pawns on d4 and e4 are not enough to pay for the piece, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 5.d4, dựng trung tâm sau khi đã thí một mã để lấy hai tốt. Trắng có tám tốt, Đen sáu tốt, và Trắng có hai tượng và một mã so với hai tượng và hai mã của Đen. Vua Đen ở f7 đã mất quyền nhập thành, và mã f6 tấn công tốt e4, quân không có gì bảo vệ.'
+    en: "White has just played 5.d4, building a centre after giving a knight for two pawns. White has eight pawns to Black's six, and two bishops and a knight against Black's two bishops and two knights. Black's king on f7 has lost the right to castle, and the knight on f6 attacks the pawn on e4, which nothing defends."
+    fr: 'Les Blancs viennent de jouer 5.d4, construisant un centre après avoir donné un cavalier pour deux pions. Les Blancs ont huit pions contre six aux Noirs, et deux fous et un cavalier contre deux fous et deux cavaliers. Le roi noir en f7 a perdu le droit de roquer, et le cavalier f6 attaque le pion e4, que rien ne défend.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 5...Nc6 ở đây, chẳng hạn 5...c5. Mục này đi theo nước phát triển mã, tấn công tốt d4.'
+      en: 'Black plays something other than 5...Nc6 here, for instance 5...c5. This entry follows the knight development, which attacks the pawn on d4.'
+      fr: 'Les Noirs jouent autre chose que 5...Nc6 ici, par exemple 5...c5. Cette entrée suit le développement du cavalier, qui attaque le pion d4.'
+  children:
+    - ply: 'Nc6'
+      replyQuality: 'good'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen phát triển mã lên c6, tấn công tốt d4, quân được hậu bảo vệ. Tốt e4 vẫn bị mã f6 tấn công và không có gì bảo vệ.'
+        en: 'Black develops the knight to c6, attacking the pawn on d4, which the queen defends. The pawn on e4 is still attacked by the knight on f6, and nothing defends it.'
+        fr: 'Les Noirs développent le cavalier en c6, attaquant le pion d4, que la dame défend. Le pion e4 est toujours attaqué par le cavalier f6, et rien ne le défend.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm quân: Trắng hơn hai tốt, tám so với sáu, nhưng thiếu một quân nhẹ: hai tượng và một mã so với hai tượng và hai mã. Tốt e4 bị mã f6 tấn công mà không có gì bảo vệ, còn tốt d4 bị mã c6 tấn công và được hậu bảo vệ. Vua Đen ở f7 không còn quyền nhập thành.'
+          en: "Count the material: White is two pawns up, eight to six, but a minor piece down: two bishops and a knight against two bishops and two knights. The pawn on e4 is attacked by the knight on f6 with nothing to defend it, and the pawn on d4 is attacked by the knight on c6 and defended by the queen. Black's king on f7 has lost the right to castle."
+          fr: 'Comptez le matériel : les Blancs ont deux pions de plus, huit contre six, mais une pièce mineure de moins : deux fous et un cavalier contre deux fous et deux cavaliers. Le pion e4 est attaqué par le cavalier f6 sans que rien ne le défende, et le pion d4 est attaqué par le cavalier c6 et défendu par la dame. Le roi noir en f7 a perdu le droit de roquer.'
+        plan:
+          vi: 'Trắng bảo vệ tốt e4 bằng Nc3 và đáp lại nước phá trung tâm bằng e5, tấn công mã. Đen phá bằng ...d5, tấn công tốt e4.'
+          en: 'White defends the e4 pawn with Nc3 and answers a break in the centre with e5, attacking the knight. Black breaks with ...d5, attacking the e4 pawn.'
+          fr: 'Les Blancs défendent le pion e4 par Nc3 et répondent à une rupture au centre par e5, attaquant le cavalier. Les Noirs rompent par ...d5, attaquant le pion e4.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

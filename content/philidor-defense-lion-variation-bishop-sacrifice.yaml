@@ -1,0 +1,65 @@
+# Philidor Defense: Lion Variation, Bishop Sacrifice. Frozen defining line 1.e4 e5 2.Nf3 d6
+# 3.d4 Nf6 4.Nc3 Nbd7 5.Bc4 Be7 6.Bxf7+ ends on White's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5). Part of batch t of round 4 (#182). Every ply below was
+# replayed with chess.js before it was annotated; searchMate at 3 moves from the leaf returns
+# no-mate, so no forced mate is claimed anywhere in this entry, and no capture is left going
+# free at the leaf.
+id: 'philidor-defense-lion-variation-bishop-sacrifice'
+name: 'Philidor Defense: Lion Variation, Bishop Sacrifice'
+eco: 'C41'
+category: 'gambit'
+side: 'white'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'd6'
+  - 'd4'
+  - 'Nf6'
+  - 'Nc3'
+  - 'Nbd7'
+  - 'Bc4'
+  - 'Be7'
+  - 'Bxf7+'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: "A judgement. At the end of the defining line White has taken the pawn on f7 with the bishop, so White has eight pawns to Black's seven, but the bishop is attacked by the king and nothing defends it, so White is giving a bishop for one pawn. The compensation is a king pulled to f7 without the right to castle, which is a real target but not a certain gain, so the line is judged dubious. No engine was consulted and no database was queried."
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 6.Bxf7+, ăn tốt f7 bằng tượng kèm nước chiếu. Tượng bị vua tấn công và không có gì bảo vệ. Trắng có tám tốt, Đen bảy tốt.'
+    en: "White has just played 6.Bxf7+, taking the pawn on f7 with the bishop and giving check. The bishop is attacked by the king and nothing defends it. White has eight pawns to Black's seven."
+    fr: 'Les Blancs viennent de jouer 6.Bxf7+, prenant le pion f7 avec le fou et donnant échec. Le fou est attaqué par le roi et rien ne le défend. Les Blancs ont huit pions contre sept aux Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác 6...Kxf7 ở đây, chẳng hạn đi vua về f8, để tượng f7 còn trên bàn. Mục này đi theo nước vua ăn tượng.'
+      en: 'Black plays something other than 6...Kxf7 here, such as the king to f8, which leaves the bishop on f7 on the board. This entry follows the king taking the bishop.'
+      fr: "Les Noirs jouent autre chose que 6...Kxf7 ici, comme le roi en f8, qui laisse le fou f7 sur l'échiquier. Cette entrée suit le roi qui prend le fou."
+  children:
+    - ply: 'Kxf7'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Đen ăn tượng bằng vua. Vua giờ đứng ở f7 và đã mất quyền nhập thành, và Trắng đã đổi một tượng lấy một tốt.'
+        en: 'Black takes the bishop with the king. The king now stands on f7 and has lost the right to castle, and White has given a bishop for one pawn.'
+        fr: 'Les Noirs prennent le fou avec le roi. Le roi se trouve maintenant en f7 et a perdu le droit de roquer, et les Blancs ont donné un fou pour un pion.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm quân: Trắng có tám tốt, Đen bảy tốt, nhưng Trắng đã đưa ra một tượng để lấy tốt đó, nên Trắng có một tượng và hai mã so với hai tượng và hai mã của Đen. Vua Đen đã mất quyền nhập thành và đứng ở f7, nơi cả Ng5+ lẫn Nxe5+ đều chiếu. dxe5 chỉ đổi tốt, còn Nxe5+ sẽ mất ngay một mã lấy một tốt.'
+          en: "Count the material: White has eight pawns to Black's seven, but gave a bishop for the pawn, so White has one bishop and two knights against Black's two bishops and two knights. Black's king has lost the right to castle and stands on f7, where both Ng5+ and Nxe5+ give check. dxe5 would only trade pawns, and Nxe5+ would give a knight for a pawn at once."
+          fr: "Comptez le matériel : les Blancs ont huit pions contre sept aux Noirs, mais ils ont donné un fou pour ce pion, donc ils ont un fou et deux cavaliers contre deux fous et deux cavaliers. Le roi noir a perdu le droit de roquer et se trouve en f7, où Ng5+ comme Nxe5+ donnent échec. dxe5 ne ferait qu'échanger des pions, et Nxe5+ donnerait aussitôt un cavalier pour un pion."
+        plan:
+          vi: 'Trắng thử Ng5+ rồi Ne6, tấn công hậu d8 và tốt c7. Đen đáp lại bằng ...Kg8 và sau đó cứu hậu bằng ...Qe8.'
+          en: 'White tries Ng5+ and then Ne6, attacking the queen on d8 and the pawn on c7. Black answers with ...Kg8 and then saves the queen with ...Qe8.'
+          fr: 'Les Blancs essaient Ng5+ puis Ne6, attaquant la dame d8 et le pion c7. Les Noirs répondent par ...Kg8 et sauvent ensuite la dame par ...Qe8.'
+        basis:
+          by: 'chan'
+          at: '2026-10-01'

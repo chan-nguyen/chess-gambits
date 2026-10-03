@@ -1,0 +1,61 @@
+# French Defense: Rubinstein Variation, Ellis Gambit. Defining line 1.e4 e6 2.d4 d5 3.Nc3
+# dxe4 4.Nxe4 e5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-rubinstein-variation-ellis-gambit
+name: 'French Defense: Rubinstein Variation, Ellis Gambit'
+eco: C10
+category: gambit
+side: black
+definingLine: [e4, e6, d4, d5, Nc3, dxe4, Nxe4, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, seven each, but
+      White can take the e5 pawn at once with dxe5, since nothing defends it. Black's return
+      has to come from the queen trade that follows, which forces White's king to d1, and
+      that is not enough to repay a pawn, which is why the entry is rated unsound. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...e5, nên số tốt đang ngang nhau, mỗi bên bảy. Tốt e5 bị tốt d4 tấn công và không được quân nào bảo vệ, còn tốt d4 bị tấn công hai lần, bởi tốt e5 và hậu d8, và được bảo vệ một lần, bởi hậu d1.
+    en: Black has just played 4...e5, so the pawn count is level, seven each. The e5 pawn is attacked by the d4 pawn and defended by nothing, and the d4 pawn is attacked twice, by the e5 pawn and the queen on d8, and defended once, by the queen on d1.
+    fr: Les Noirs viennent de jouer 4...e5, de sorte que le compte des pions est égal, sept de chaque côté. Le pion e5 est attaqué par le pion d4 et n'est défendu par aucune pièce, et le pion d4 est attaqué deux fois, par le pion e5 et la dame d8, et défendu une fois, par la dame d1.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 5.dxe5 ở đây, chẳng hạn 5.Nf3 hoặc 5.Bd3. Mục này chỉ mô hình hóa 5.dxe5 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: dùng cột d bán mở và phát triển nhanh để bù cho con tốt.'
+      en: "White plays something other than 5.dxe5 here, for instance 5.Nf3 or 5.Bd3. This entry models only 5.dxe5 and does not analyse those moves; Black's task usually stays the same: use the half-open d-file and quick development to make up for the pawn."
+      fr: "Les Blancs jouent autre chose que 5.dxe5 ici, par exemple 5.Nf3 ou 5.Bd3. Cette entrée ne modélise que 5.dxe5 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : utiliser la colonne d semi-ouverte et un développement rapide pour compenser le pion."
+  children:
+    - ply: dxe5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 5.dxe5. Hai hậu giờ đối mặt nhau trên cột d đang mở, mỗi hậu chỉ được vua của mình bảo vệ.
+        en: White takes the pawn with 5.dxe5. The queens now face each other on the open d-file, each defended only by its own king.
+        fr: Les Blancs prennent le pion par 5.dxe5. Les dames sont maintenant face à face sur la colonne d ouverte, chacune défendue seulement par son propre roi.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên Đen kém đúng một tốt sạch. Đen có thể ăn hậu ở d1 với chiếu và vua Trắng buộc phải ăn lại, vì không quân nào khác làm được: khi đó vua đứng ở d1, mất quyền nhập thành, trên một cột không còn tốt nào, trong khi Đen vẫn còn quyền nhập thành.'
+          en: "Count the pawns: White seven, Black six, so Black is a clean pawn down. Black can take on d1 with check and White's king must recapture, since nothing else can: it would then stand on d1, having lost the right to castle, on a file with no pawns left on it, while Black can still castle."
+          fr: 'Comptez les pions : sept pour les Blancs, six pour les Noirs, donc les Noirs ont un pion net de moins. Les Noirs peuvent prendre en d1 avec échec et le roi blanc doit reprendre, car aucune autre pièce ne le peut : il se trouverait alors en d1, privé du droit de roquer, sur une colonne où il ne reste aucun pion, tandis que les Noirs peuvent encore roquer.'
+        plan:
+          vi: Đen chơi Qxd1+ và, sau khi Trắng ăn lại bằng vua, chơi ...Nc6 và ...Bg4+ để đuổi vua trong lúc các tượng Trắng và mã g1 còn nằm ở hàng một. Trắng giữ con tốt dư bằng f4 và Nf3.
+          en: Black plays Qxd1+ and, after White recaptures with the king, ...Nc6 and ...Bg4+ to chase the king while White's bishops and the knight on g1 are still on the first rank. White holds the extra pawn with f4 and Nf3.
+          fr: Les Noirs jouent Qxd1+ et, après la reprise du roi blanc, ...Nc6 et ...Bg4+ pour chasser le roi tandis que les fous blancs et le cavalier g1 sont encore sur la première rangée. Les Blancs gardent le pion de plus par f4 et Nf3.
+        basis:
+          by: chan
+          at: 2026-10-01

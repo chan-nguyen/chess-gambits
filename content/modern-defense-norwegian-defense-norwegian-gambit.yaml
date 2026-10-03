@@ -1,0 +1,63 @@
+# Modern Defense: Norwegian Defense, Norwegian Gambit. Defining line 1.e4 g6 2.d4 Nf6 3.e5
+# Nh5 4.Be2 d6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: modern-defense-norwegian-defense-norwegian-gambit
+name: 'Modern Defense: Norwegian Defense, Norwegian Gambit'
+eco: B06
+category: gambit
+side: black
+definingLine: [e4, g6, d4, Nf6, e5, Nh5, Be2, d6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement, deepened from the frozen listed-tier classification in
+      tools/catalogue/source/classification.yaml. At the end of the defining line the pawn
+      count is level, eight each, and White has lost nothing. Black's knight on h5 stands on
+      the rim, attacked by the bishop on e2 and defended only by the pawn on g6, and the e5
+      pawn that Black's d6 pawn presses is defended by the d4 pawn. The rating of dubious is
+      the catalogue's; what the board shows is a displaced knight rather than any
+      compensation. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...d6, nên số tốt đang ngang nhau, mỗi bên tám. Mã h5 bị tượng e2 tấn công và chỉ được tốt g6 bảo vệ, còn tốt e5 bị tốt d6 tấn công và được tốt d4 bảo vệ.
+    en: Black has just played 4...d6, so the pawn count is level, eight each. The knight on h5 is attacked by the bishop on e2 and defended only by the pawn on g6, and the pawn on e5 is attacked by the d6 pawn and defended by the d4 pawn.
+    fr: Les Noirs viennent de jouer 4...d6, de sorte que le compte des pions est égal, huit de chaque côté. Le cavalier h5 est attaqué par le fou e2 et n'est défendu que par le pion g6, et le pion e5 est attaqué par le pion d6 et défendu par le pion d4.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 5.Nf3 ở đây, chẳng hạn 5.c3 hoặc 5.Nc3. Mục này chỉ mô hình hóa 5.Nf3 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: đưa con mã ở mép bàn cờ trở lại cuộc chơi.'
+      en: "White plays something other than 5.Nf3 here, for instance 5.c3 or 5.Nc3. This entry models only 5.Nf3 and does not analyse those moves; Black's task usually stays the same: bring the knight on the rim back into the game."
+      fr: "Les Blancs jouent autre chose que 5.Nf3 ici, par exemple 5.c3 ou 5.Nc3. Cette entrée ne modélise que 5.Nf3 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : ramener le cavalier du bord dans la partie."
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng phát triển 5.Nf3, bảo vệ tốt e5 lần thứ hai và chắn đường chéo từ tượng e2 tới mã h5. Mã h5 không còn bị tấn công, nhưng nó vẫn đứng ở mép bàn cờ.
+        en: White develops with 5.Nf3, which defends the e5 pawn a second time and blocks the line from the bishop on e2 to the knight on h5. The knight on h5 is no longer attacked, but it still stands on the rim.
+        fr: Les Blancs se développent par 5.Nf3, qui défend le pion e5 une seconde fois et bloque la ligne entre le fou e2 et le cavalier h5. Le cavalier h5 n'est plus attaqué, mais il reste au bord de l'échiquier.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: mỗi bên tám, nên chưa ai mất gì. Mã h5 chỉ còn một ô an toàn để lui là g7: f6 bị tốt e5 khống chế, f4 bị tượng c1 khống chế và g3 bị các tốt f2 và h2 khống chế. Tốt e5 bị tốt d6 tấn công và được bảo vệ hai lần, bởi d4 và mã f3.'
+          en: 'Count the pawns: eight each, so nothing has been lost yet. The knight on h5 has only one safe retreat, g7: f6 is covered by the e5 pawn, f4 by the bishop on c1 and g3 by the pawns on f2 and h2. The e5 pawn is attacked by the d6 pawn and defended twice, by d4 and the knight on f3.'
+          fr: "Comptez les pions : huit de chaque côté, donc rien n'est encore perdu. Le cavalier h5 n'a plus qu'une seule retraite sûre, g7 : f6 est couvert par le pion e5, f4 par le fou c1 et g3 par les pions f2 et h2. Le pion e5 est attaqué par le pion d6 et défendu deux fois, par d4 et le cavalier f3."
+        plan:
+          vi: Trắng chơi O-O và Nc3 để đưa thêm quân ra trong khi d4 và mã f3 giữ e5 được bảo vệ. Đen chơi ...Nc6 và ...Bg7 để tăng sức ép lên d4 và e5.
+          en: White plays O-O and Nc3 to bring more pieces out while d4 and the knight on f3 keep e5 defended. Black plays ...Nc6 and ...Bg7 to add pressure on d4 and e5.
+          fr: Les Blancs jouent O-O et Nc3 pour sortir d'autres pièces pendant que d4 et le cavalier f3 gardent e5 défendu. Les Noirs jouent ...Nc6 et ...Bg7 pour accentuer la pression sur d4 et e5.
+        basis:
+          by: chan
+          at: 2026-10-01

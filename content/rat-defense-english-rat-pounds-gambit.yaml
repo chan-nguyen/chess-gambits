@@ -1,0 +1,63 @@
+# Rat Defense: English Rat, Pounds Gambit. Defining line 1.d4 d6 2.c4 e5 3.dxe5 Be6, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry. The leaf leaves a capture going free, which its
+# `unsettled` note acknowledges.
+id: rat-defense-english-rat-pounds-gambit
+name: 'Rat Defense: English Rat, Pounds Gambit'
+eco: A41
+category: gambit
+side: black
+definingLine: [d4, d6, c4, e5, dxe5, Be6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement, deepened from the frozen listed-tier classification in
+      tools/catalogue/source/classification.yaml. At the end of the defining line White is a
+      pawn up, eight pawns against seven, but both the e5 pawn and the c4 pawn are attacked
+      and defended by nothing, so White has two pawns to look after at once. The rating of
+      unsound is the catalogue's; the board at this point shows two loose pawns rather than
+      a clear advantage for White. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Be6, nên số tốt là Trắng tám, Đen bảy. Tốt e5 bị tốt d6 tấn công và không được quân nào bảo vệ, còn tốt c4 bị tượng e6 tấn công và không được quân nào bảo vệ.
+    en: Black has just played 3...Be6, so the pawn count is White eight, Black seven. The pawn on e5 is attacked by the pawn on d6 and defended by nothing, and the pawn on c4 is attacked by the bishop on e6 and defended by nothing.
+    fr: Les Noirs viennent de jouer 3...Be6, de sorte que le compte des pions est de huit pour les Blancs, sept pour les Noirs. Le pion e5 est attaqué par le pion d6 et n'est défendu par aucune pièce, et le pion c4 est attaqué par le fou e6 et n'est défendu par aucune pièce.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 4.Nf3 ở đây, chẳng hạn 4.exd6 hoặc 4.Nc3. Mục này chỉ mô hình hóa 4.Nf3 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: lấy lại một tốt.'
+      en: "White plays something other than 4.Nf3 here, for instance 4.exd6 or 4.Nc3. This entry models only 4.Nf3 and does not analyse those moves; Black's task usually stays the same: win a pawn back."
+      fr: "Les Blancs jouent autre chose que 4.Nf3 ici, par exemple 4.exd6 ou 4.Nc3. Cette entrée ne modélise que 4.Nf3 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : regagner un pion."
+  children:
+    - ply: Nf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng bảo vệ tốt e5 bằng 4.Nf3. Tốt e5 giờ bị tấn công một lần, bởi tốt d6, và được bảo vệ một lần, bởi mã f3, nhưng tốt c4 vẫn bị tượng e6 tấn công và không được quân nào bảo vệ, vì tốt e2 chặn tượng f1.
+        en: White defends the e5 pawn with 4.Nf3. The pawn on e5 is now attacked once, by the d6 pawn, and defended once, by the knight on f3, but the pawn on c4 is still attacked by the bishop on e6 and defended by nothing, because the pawn on e2 blocks the bishop on f1.
+        fr: Les Blancs défendent le pion e5 par 4.Nf3. Le pion e5 est maintenant attaqué une fois, par le pion d6, et défendu une fois, par le cavalier f3, mais le pion c4 est toujours attaqué par le fou e6 et n'est défendu par aucune pièce, parce que le pion e2 bloque le fou f1.
+      unsettled: "Bxc4 is going free because the pawn on e2 blocks the bishop on f1, so nothing of White's guards c4, and the evaluation already counts on that capture: the pawn count becomes seven each, so playing it out would only repeat what the leaf says."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng tạm thời hơn một tốt, nhưng tốt c4 bị tượng e6 tấn công và không được quân nào bảo vệ, vì tốt e2 chặn tượng f1, nên Đen ăn lại và số tốt thành bảy đều. Tốt e5 bị tốt d6 tấn công và được mã f3 bảo vệ.'
+          en: 'Count the pawns: White eight, Black seven, so White is a pawn up for the moment, but the pawn on c4 is attacked by the bishop on e6 and defended by nothing, because the pawn on e2 blocks the bishop on f1, so Black takes it back and the count becomes seven each. The e5 pawn is attacked by the d6 pawn and defended by the knight on f3.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont provisoirement un pion de plus, mais le pion c4 est attaqué par le fou e6 et n'est défendu par aucune pièce, parce que le pion e2 bloque le fou f1, de sorte que les Noirs le reprennent et que le compte devient sept partout. Le pion e5 est attaqué par le pion d6 et défendu par le cavalier f3."
+        plan:
+          vi: Trắng chơi e3 để giải phóng tượng f1 và Nc3 để phát triển. Đen chơi ...Bxc4 để lấy lại con tốt và, nếu e3 tấn công tượng đó, đổi nó bằng ...Bxf1 trước khi chơi ...Nc6 và ...dxe5.
+          en: White plays e3 to free the bishop on f1 and Nc3 to develop. Black plays ...Bxc4 to regain the pawn and, if e3 then attacks that bishop, trades it with ...Bxf1 before ...Nc6 and ...dxe5.
+          fr: Les Blancs jouent e3 pour libérer le fou f1 et Nc3 pour se développer. Les Noirs jouent ...Bxc4 pour regagner le pion et, si e3 attaque ce fou, l'échangent par ...Bxf1 avant ...Nc6 et ...dxe5.
+        basis:
+          by: chan
+          at: 2026-10-01

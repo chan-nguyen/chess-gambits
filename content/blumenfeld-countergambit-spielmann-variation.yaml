@@ -1,0 +1,67 @@
+# Blumenfeld Countergambit: Spielmann Variation. Defining line 1.d4 Nf6 2.c4 e6 3.Nf3 c5
+# 4.d5 b5 5.Bg5 exd5 6.cxd5 h6, which ends on Black's own ply, so the root is an opponent
+# node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: blumenfeld-countergambit-spielmann-variation
+name: 'Blumenfeld Countergambit: Spielmann Variation'
+eco: E10
+category: gambit
+side: black
+definingLine: [d4, Nf6, c4, e6, Nf3, c5, d5, b5, Bg5, exd5, cxd5, h6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. Material is level at seven pawns each, because the exchange on d5 cost
+      each side one, and Black's b5 and c5 pawns give a queenside majority of three pawns
+      against two. The h6 pawn attacks the bishop on g5, which the knight on f3 defends.
+      Those are modest assets, so the label is dubious. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 6...h6, tấn công tượng g5, được mã f3 bảo vệ. Mã f6 bị chính con tượng đó tấn công và được hậu và tốt g7 bảo vệ, và số tốt đang ngang nhau, mỗi bên bảy.
+    en: Black has just played 6...h6, attacking the bishop on g5, which the knight on f3 defends. The knight on f6 is attacked by that bishop and defended by the queen and the g7 pawn, and the pawns are level, seven each.
+    fr: Les Noirs viennent de jouer 6...h6, attaquant le fou g5, que le cavalier f3 défend. Le cavalier f6 est attaqué par ce fou et défendu par la dame et le pion g7, et les pions sont à égalité, sept de chaque côté.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 7.Bxf6 ở đây. Mục này chỉ đi theo 7.Bxf6; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 7.Bxf6 here. This entry follows 7.Bxf6 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 7.Bxf6 ici. Cette entrée ne suit que 7.Bxf6 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: Bxf6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đổi tượng lấy mã bằng 7.Bxf6, nên Đen phải ăn lại trên f6.
+        en: White trades the bishop for the knight with 7.Bxf6, so Black has to recapture on f6.
+        fr: Les Blancs échangent le fou contre le cavalier par 7.Bxf6, si bien que les Noirs doivent reprendre en f6.
+      children:
+        - ply: Qxf6
+          annotation:
+            vi: Đen ăn lại bằng hậu, 7...Qxf6, tấn công tốt b2 và mã f3, và giữ được cả hai tượng.
+            en: Black recaptures with the queen, 7...Qxf6, which attacks the b2 pawn and the knight on f3, and keeps the two bishops.
+            fr: Les Noirs reprennent avec la dame, 7...Qxf6, qui attaque le pion b2 et le cavalier f3, et gardent les deux fous.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng bảy, Đen bảy, nên vật chất ngang nhau. Đen có cặp tượng, ở c8 và f8, đối lại chỉ một tượng của Trắng ở f1, và có thế đa số ba tốt chống hai ở cánh hậu. Tốt b2 bị hậu f6 tấn công và không có quân nào bảo vệ, còn mã f3 bị hậu tấn công và được các tốt e2 và g2 bảo vệ.'
+              en: "Count the pawns: White seven, Black seven, so material is level. Black has the bishop pair, on c8 and f8, against White's single bishop on f1, and a queenside majority of three pawns against two. The b2 pawn is attacked by the queen on f6 and defended by nothing, and the knight on f3 is attacked by the queen and defended by the e2 and g2 pawns."
+              fr: "Comptez les pions : sept pour les Blancs, sept pour les Noirs ; le matériel est donc égal. Les Noirs ont la paire de fous, en c8 et f8, contre le seul fou blanc en f1, et une majorité de trois pions contre deux à l'aile dame. Le pion b2 est attaqué par la dame f6 et rien ne le défend, et le cavalier f3 est attaqué par la dame et défendu par les pions e2 et g2."
+            plan:
+              vi: Trắng bảo vệ tốt b2 bằng Qc2 và thách thức cánh hậu bằng Nc3 và a4. Đen phát triển bằng ...Bb7 và ...Bd6, nhập thành bằng ...O-O và đẩy thế đa số cánh hậu bằng ...c4 và ...b4.
+              en: White defends the b2 pawn with Qc2 and challenges the queenside with Nc3 and a4. Black develops with ...Bb7 and ...Bd6, castles with ...O-O and advances the queenside majority with ...c4 and ...b4.
+              fr: Les Blancs défendent le pion b2 par Qc2 et défient l'aile dame par Nc3 et a4. Les Noirs se développent par ...Bb7 et ...Bd6, roquent par ...O-O et font avancer la majorité de l'aile dame par ...c4 et ...b4.
+            basis:
+              by: chan
+              at: 2026-10-01

@@ -1,0 +1,61 @@
+# Modern Defense: Lizard Defense, Mittenberger Gambit. Defining line 1.e4 g6 2.d4 Bg7 3.Nc3
+# d5, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: modern-defense-lizard-defense-mittenberger-gambit
+name: 'Modern Defense: Lizard Defense, Mittenberger Gambit'
+eco: B06
+category: gambit
+side: black
+definingLine: [e4, g6, d4, Bg7, Nc3, d5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the d5 pawn is attacked twice and defended once, so White can win a pawn at once with
+      exd5. Black's return is the bishop on g7 bearing on d4, which the queen defends, and
+      nothing on the board repays the pawn yet, which is why the entry is rated dubious. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...d5, nên số tốt đang ngang nhau, mỗi bên tám. Tốt d5 bị tấn công hai lần, bởi tốt e4 và mã c3, và được bảo vệ một lần, bởi hậu d8, còn tượng g7 tấn công tốt d4, ô được hậu d1 bảo vệ.
+    en: Black has just played 3...d5, so the pawn count is level, eight each. The d5 pawn is attacked twice, by the pawn on e4 and the knight on c3, and defended once, by the queen on d8, and the bishop on g7 attacks the pawn on d4, which the queen on d1 defends.
+    fr: Les Noirs viennent de jouer 3...d5, de sorte que le compte des pions est égal, huit de chaque côté. Le pion d5 est attaqué deux fois, par le pion e4 et le cavalier c3, et défendu une fois, par la dame d8, et le fou g7 attaque le pion d4, que la dame d1 défend.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 4.exd5 ở đây, chẳng hạn 4.e5 hoặc 4.Nf3. Mục này chỉ mô hình hóa 4.exd5 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: giữ sức ép lên d4 bằng tượng g7 và phát triển nhanh.'
+      en: "White plays something other than 4.exd5 here, for instance 4.e5 or 4.Nf3. This entry models only 4.exd5 and does not analyse those moves; Black's task usually stays the same: keep the pressure on d4 with the bishop on g7 and develop quickly."
+      fr: "Les Blancs jouent autre chose que 4.exd5 ici, par exemple 4.e5 ou 4.Nf3. Cette entrée ne modélise que 4.exd5 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : maintenir la pression sur d4 avec le fou g7 et se développer rapidement."
+  children:
+    - ply: exd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 4.exd5, nên tốt mới ở d5 bị hậu d8 tấn công một lần và được mã c3 bảo vệ một lần.
+        en: White takes the pawn with 4.exd5, so the new pawn on d5 is attacked once, by the queen on d8, and defended once, by the knight on c3.
+        fr: Les Blancs prennent le pion par 4.exd5, de sorte que le nouveau pion d5 est attaqué une fois, par la dame d8, et défendu une fois, par le cavalier c3.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt. Tốt d5 bị tấn công một lần và được bảo vệ một lần, còn tốt d4 bị tượng g7 tấn công và được hậu d1 bảo vệ, nên sức ép của Đen lên d4 là có thật nhưng chưa đủ để thắng nó.'
+          en: "Count the pawns: White eight, Black seven, so White is a pawn up. The d5 pawn is attacked once and defended once, and the pawn on d4 is attacked by the bishop on g7 and defended by the queen on d1, so Black's pressure on d4 is real but not yet enough to win it."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de plus. Le pion d5 est attaqué une fois et défendu une fois, et le pion d4 est attaqué par le fou g7 et défendu par la dame d1, de sorte que la pression noire sur d4 est réelle mais pas encore suffisante pour le gagner.'
+        plan:
+          vi: Trắng chơi Bc4 và Nge2 để bảo vệ d5 và d4. Đen chơi ...Nf6 để tấn công d5 lần nữa và ...c6 để thách thức nó.
+          en: White plays Bc4 and Nge2 to support d5 and d4. Black plays ...Nf6 to attack d5 again and ...c6 to challenge it.
+          fr: Les Blancs jouent Bc4 et Nge2 pour soutenir d5 et d4. Les Noirs jouent ...Nf6 pour attaquer d5 à nouveau et ...c6 pour le défier.
+        basis:
+          by: chan
+          at: 2026-10-01

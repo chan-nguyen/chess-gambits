@@ -1,0 +1,61 @@
+# French Defense: St. George Defense, Sanky-George Gambit. Defining line 1.e4 e6 2.d4 a6
+# 3.c4 b5, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-st-george-defense-sanky-george-gambit
+name: 'French Defense: St. George Defense, Sanky-George Gambit'
+eco: C00
+category: gambit
+side: black
+definingLine: [e4, e6, d4, a6, c4, b5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, and
+      the b5 pawn is held only by the a6 pawn. White can add a second attacker on b5 with a
+      developing move such as Nc3, after which cxb5 axb5 and a capture on b5 with the knight
+      wins a pawn, which is why the entry is rated unsound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...b5, nên số tốt đang ngang nhau, mỗi bên tám. Tốt b5 bị tốt c4 tấn công và được tốt a6 bảo vệ, còn tốt c4 bị tốt b5 tấn công và được tượng f1 bảo vệ.
+    en: Black has just played 3...b5, so the pawn count is level, eight each. The b5 pawn is attacked by the pawn on c4 and defended by the pawn on a6, and the c4 pawn is attacked by the b5 pawn and defended by the bishop on f1.
+    fr: Les Noirs viennent de jouer 3...b5, de sorte que le compte des pions est égal, huit de chaque côté. Le pion b5 est attaqué par le pion c4 et défendu par le pion a6, et le pion c4 est attaqué par le pion b5 et défendu par le fou f1.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 4.Nc3 ở đây, chẳng hạn 4.cxb5 hoặc 4.a3. Mục này chỉ mô hình hóa 4.Nc3 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: hỗ trợ tốt b5 hoặc đổi nó đi.'
+      en: "White plays something other than 4.Nc3 here, for instance 4.cxb5 or 4.a3. This entry models only 4.Nc3 and does not analyse those moves; Black's task usually stays the same: support the b5 pawn or trade it off."
+      fr: "Les Blancs jouent autre chose que 4.Nc3 ici, par exemple 4.cxb5 ou 4.a3. Cette entrée ne modélise que 4.Nc3 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : soutenir le pion b5 ou l'échanger."
+  children:
+    - ply: Nc3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng phát triển 4.Nc3, tấn công tốt b5 lần thứ hai và bảo vệ tốt e4.
+        en: White develops with 4.Nc3, which attacks the b5 pawn a second time and defends the e4 pawn.
+        fr: Les Blancs se développent par 4.Nc3, qui attaque le pion b5 une seconde fois et défend le pion e4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: mỗi bên tám, nên chưa ai mất gì, nhưng tốt b5 bị tấn công hai lần, bởi tốt c4 và mã c3, và chỉ được bảo vệ một lần, bởi tốt a6. Sau cxb5 axb5 thì tốt ở b5 sẽ bị mã và tượng f1 tấn công mà không được quân nào bảo vệ, nên Đen phải hành động ngay để khỏi mất tốt.'
+          en: 'Count the pawns: eight each, so nothing has been lost yet, but the b5 pawn is attacked twice, by the pawn on c4 and the knight on c3, and defended once, by the pawn on a6. After cxb5 axb5 the pawn on b5 would be attacked by the knight and the bishop on f1 and defended by nothing, so Black has to act at once to avoid losing a pawn.'
+          fr: "Comptez les pions : huit de chaque côté, donc rien n'est encore perdu, mais le pion b5 est attaqué deux fois, par le pion c4 et le cavalier c3, et défendu une fois, par le pion a6. Après cxb5 axb5, le pion b5 serait attaqué par le cavalier et le fou f1 et ne serait défendu par aucune pièce, de sorte que les Noirs doivent agir tout de suite pour ne pas perdre un pion."
+        plan:
+          vi: Trắng ăn b5 bằng tốt c và, khi Đen ăn lại bằng tốt a, ăn lần nữa ở b5 bằng mã, thắng một tốt, rồi phát triển bằng Nf3 và Bd3. Đen chơi ...b4 để đuổi mã khỏi c3, rồi ...Bb7 và ...Nf6 để phát triển.
+          en: White takes on b5 with the c-pawn and, once Black recaptures with the a-pawn, takes again on b5 with the knight, winning a pawn, then develops with Nf3 and Bd3. Black plays ...b4 to drive the knight from c3, then ...Bb7 and ...Nf6 to develop.
+          fr: Les Blancs prennent en b5 avec le pion c et, quand les Noirs reprennent avec le pion a, reprennent en b5 avec le cavalier, gagnant un pion, puis se développent par Nf3 et Bd3. Les Noirs jouent ...b4 pour chasser le cavalier de c3, puis ...Bb7 et ...Nf6 pour se développer.
+        basis:
+          by: chan
+          at: 2026-10-01

@@ -1,0 +1,61 @@
+# Catalan Opening: Closed, Spassky Gambit. Defining line 1.d4 Nf6 2.c4 e6 3.g3 Be7 4.Bg2 d5
+# 5.Nf3 O-O 6.O-O Nbd7 7.Qc2 c6 8.b3 b6 9.Rd1 Bb7 10.Nc3 b5, which ends on Black's own ply,
+# so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch u of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: catalan-opening-closed-spassky-gambit
+name: 'Catalan Opening: Closed, Spassky Gambit'
+eco: E08
+category: gambit
+side: black
+definingLine:
+  [d4, Nf6, c4, e6, g3, Be7, Bg2, d5, Nf3, O-O, O-O, Nbd7, Qc2, c6, b3, b6, Rd1, Bb7, Nc3, b5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. 10...b5 offers a pawn that the c4 pawn and the knight on c3 attack twice
+      and only the c6 pawn defends, and White's queen on c2 already attacks the h7 pawn. The
+      pawn is a real investment, so the label is dubious. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 10...b5, hiến một tốt. Tốt b5 bị tốt c4 và mã c3 tấn công và được tốt c6 bảo vệ, còn tốt d5 bị cùng hai quân đó tấn công và được các tốt c6 và e6 và mã f6 bảo vệ.
+    en: Black has just played 10...b5, offering a pawn. The b5 pawn is attacked by the c4 pawn and the knight on c3 and defended by the c6 pawn, and the d5 pawn is attacked by the same two pieces and defended by the c6 and e6 pawns and the knight on f6.
+    fr: Les Noirs viennent de jouer 10...b5, offrant un pion. Le pion b5 est attaqué par le pion c4 et le cavalier c3 et défendu par le pion c6, et le pion d5 est attaqué par ces deux mêmes pièces et défendu par les pions c6 et e6 et le cavalier f6.
+  dismissRest:
+    reason:
+      vi: Trắng chơi nước khác thay vì 11.cxb5 ở đây. Mục này chỉ đi theo 11.cxb5; các nước còn lại dẫn tới những biến chưa được lập bản đồ ở đây.
+      en: White plays something other than 11.cxb5 here. This entry follows 11.cxb5 only; other moves lead to lines that are not mapped here.
+      fr: Les Blancs jouent autre chose que 11.cxb5 ici. Cette entrée ne suit que 11.cxb5 ; les autres coups mènent à des lignes qui ne sont pas cartographiées ici.
+  children:
+    - ply: cxb5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt bằng 11.cxb5. Tốt mới trên b5 bị tốt c6 tấn công và được mã c3 bảo vệ.
+        en: White takes the pawn with 11.cxb5. The new pawn on b5 is attacked by the c6 pawn and defended by the knight on c3.
+        fr: Les Blancs prennent le pion par 11.cxb5. Le nouveau pion en b5 est attaqué par le pion c6 et défendu par le cavalier c3.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt. Tốt b5 bị tốt c6 tấn công và được mã c3 bảo vệ, cột b nửa mở cho quân Đen, và hậu c2 tấn công tốt h7, được vua và mã f6 bảo vệ.'
+          en: "Count the pawns: White eight, Black seven, so White is a pawn up. The pawn on b5 is attacked by the c6 pawn and defended by the knight on c3, the b-file is half open for Black's pieces, and the queen on c2 attacks the h7 pawn, which the king and the knight on f6 defend."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs ; les Blancs ont donc un pion de plus. Le pion b5 est attaqué par le pion c6 et défendu par le cavalier c3, la colonne b est semi-ouverte pour les pièces noires, et la dame c2 attaque le pion h7, que le roi et le cavalier f6 défendent.'
+        plan:
+          vi: Đen chơi ...Rc8, ...cxb5 và ...Qb6 trên cột b nửa mở. Trắng phát triển bằng Bf4 và Rac1, bảo vệ tốt trên b5 bằng a4, và giữ hậu nhắm vào h7.
+          en: Black plays ...Rc8, ...cxb5 and ...Qb6 on the half-open b-file. White develops with Bf4 and Rac1, supports the pawn on b5 with a4, and keeps the queen aimed at h7.
+          fr: Les Noirs jouent ...Rc8, ...cxb5 et ...Qb6 sur la colonne b semi-ouverte. Les Blancs se développent par Bf4 et Rac1, soutiennent le pion en b5 par a4, et gardent la dame braquée sur h7.
+        basis:
+          by: chan
+          at: 2026-10-01

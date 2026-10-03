@@ -1,0 +1,63 @@
+# Scandinavian Defense: Kloosterboer Gambit. Defining line 1.e4 d5 2.exd5 c6 3.dxc6 e5,
+# which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant
+# 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: scandinavian-defense-kloosterboer-gambit
+name: 'Scandinavian Defense: Kloosterboer Gambit'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, c6, dxc6, e5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line Black has given up two pawns, White eight
+      against Black six, and the pawn on c6 is attacked by the knight on b8 and the pawn on
+      b7 and defended by nothing. Black's return is two half-open files, the c-file and the
+      d-file, and quick development rather than anything on the board yet, and White has
+      natural ways to hold the extra material, such as a developing move that defends c6,
+      which is why the entry is rated unsound. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...e5 sau khi Trắng ăn hai lần ở d5 và c6, nên số tốt là Trắng tám, Đen sáu. Tốt c6 bị mã b8 và tốt b7 tấn công và không được quân nào bảo vệ, còn cột c và cột d là các cột bán mở đối với Đen.
+    en: Black has just played 3...e5 after White took twice, on d5 and on c6, so the pawn count is White eight, Black six. The pawn on c6 is attacked by the knight on b8 and the pawn on b7 and defended by nothing, and the c-file and the d-file are half-open for Black.
+    fr: Les Noirs viennent de jouer 3...e5 après que les Blancs ont pris deux fois, en d5 et en c6, de sorte que le compte des pions est de huit pour les Blancs, six pour les Noirs. Le pion c6 est attaqué par le cavalier b8 et le pion b7 et n'est défendu par aucune pièce, et les colonnes c et d sont semi-ouvertes pour les Noirs.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 4.Bb5 ở đây, chẳng hạn 4.cxb7 hoặc 4.Nf3. Mục này chỉ mô hình hóa 4.Bb5 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: lấy lại một tốt và phát triển nhanh.'
+      en: "White plays something other than 4.Bb5 here, for instance 4.cxb7 or 4.Nf3. This entry models only 4.Bb5 and does not analyse those moves; Black's task usually stays the same: win a pawn back and develop quickly."
+      fr: "Les Blancs jouent autre chose que 4.Bb5 ici, par exemple 4.cxb7 ou 4.Nf3. Cette entrée ne modélise que 4.Bb5 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : regagner un pion et se développer rapidement."
+  children:
+    - ply: Bb5
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng chơi 4.Bb5, bảo vệ tốt c6 bằng tượng. Tốt c6 vẫn bị tấn công hai lần, bởi mã b8 và tốt b7, và giờ được bảo vệ một lần, bởi tượng b5.
+        en: White plays 4.Bb5, defending the c6 pawn with the bishop. The pawn on c6 is still attacked twice, by the knight on b8 and the pawn on b7, and is now defended once, by the bishop on b5.
+        fr: Les Blancs jouent 4.Bb5, défendant le pion c6 avec le fou. Le pion c6 est toujours attaqué deux fois, par le cavalier b8 et le pion b7, et il est maintenant défendu une fois, par le fou b5.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen sáu, nên Trắng hơn hai tốt trên bàn, nhưng tốt c6 bị tấn công hai lần và chỉ được bảo vệ một lần, nên Đen có thể lấy lại một tốt ngay: sau ...Nxc6 Bxc6+ bxc6 số tốt là bảy so với sáu. Cột c và cột d là các cột bán mở đối với Đen.'
+          en: 'Count the pawns: White eight, Black six, so White is two pawns up on the board, but the c6 pawn is attacked twice and defended once, so Black can win a pawn back at once: after ...Nxc6 Bxc6+ bxc6 the count is seven against six. The c-file and the d-file are half-open for Black.'
+          fr: "Comptez les pions : huit pour les Blancs, six pour les Noirs, donc les Blancs ont deux pions de plus sur l'échiquier, mais le pion c6 est attaqué deux fois et défendu une fois, de sorte que les Noirs peuvent regagner un pion tout de suite : après ...Nxc6 Bxc6+ bxc6, le compte est de sept contre six. Les colonnes c et d sont semi-ouvertes pour les Noirs."
+        plan:
+          vi: Trắng chơi Nf3 và O-O để phát triển và đưa vua vào nơi an toàn. Đen chơi ...Nxc6 và ...Nf6, lấy lại một tốt và phát triển.
+          en: White plays Nf3 and O-O to develop and bring the king to safety. Black plays ...Nxc6 and ...Nf6, regaining a pawn and developing.
+          fr: Les Blancs jouent Nf3 et O-O pour se développer et mettre le roi à l'abri. Les Noirs jouent ...Nxc6 et ...Nf6, regagnant un pion et se développant.
+        basis:
+          by: chan
+          at: 2026-10-01

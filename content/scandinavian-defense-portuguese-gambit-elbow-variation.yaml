@@ -1,0 +1,63 @@
+# Scandinavian Defense: Portuguese Gambit, Elbow Variation. Defining line 1.e4 d5 2.exd5 Nf6
+# 3.d4 Bg4 4.Bb5+ c6, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: scandinavian-defense-portuguese-gambit-elbow-variation
+name: 'Scandinavian Defense: Portuguese Gambit, Elbow Variation'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, Bg4, Bb5+, c6]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement, deepened from the frozen listed-tier classification in
+      tools/catalogue/source/classification.yaml. At the end of the defining line White is a
+      pawn up, eight pawns against seven, but the bishop on b5 and the pawn on d5 are both
+      attacked and defended by nothing, and the queen on d1 is attacked by the bishop on g4.
+      The rating of dubious is the catalogue's; the board at this point shows White with
+      several things under attack at once, which is the practical price of the extra pawn.
+      No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 4...c6, nên số tốt là Trắng tám, Đen bảy. Tượng b5 bị tốt c6 tấn công và không được quân nào bảo vệ, trong khi chính tốt đó bị tượng ghim vào vua; tốt d5 bị hậu d8 và mã f6 tấn công và không được quân nào bảo vệ, còn tượng g4 tấn công hậu d1, quân chỉ có vua bảo vệ.
+    en: Black has just played 4...c6, so the pawn count is White eight, Black seven. The bishop on b5 is attacked by the c6 pawn and defended by nothing, while that pawn is itself pinned to the king by the bishop; the pawn on d5 is attacked by the queen on d8 and the knight on f6 and defended by nothing, and the bishop on g4 attacks the queen on d1, which only the king defends.
+    fr: Les Noirs viennent de jouer 4...c6, de sorte que le compte des pions est de huit pour les Blancs, sept pour les Noirs. Le fou b5 est attaqué par le pion c6 et n'est défendu par aucune pièce, tandis que ce pion est lui-même cloué au roi par le fou ; le pion d5 est attaqué par la dame d8 et le cavalier f6 et n'est défendu par aucune pièce, et le fou g4 attaque la dame d1, que seul le roi défend.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 5.dxc6 ở đây, chẳng hạn 5.Be2 hoặc 5.f3. Mục này chỉ mô hình hóa 5.dxc6 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: lấy lại một tốt và phát triển nhanh.'
+      en: "White plays something other than 5.dxc6 here, for instance 5.Be2 or 5.f3. This entry models only 5.dxc6 and does not analyse those moves; Black's task usually stays the same: win a pawn back and develop quickly."
+      fr: "Les Blancs jouent autre chose que 5.dxc6 ici, par exemple 5.Be2 ou 5.f3. Cette entrée ne modélise que 5.dxc6 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : regagner un pion et se développer rapidement."
+  children:
+    - ply: dxc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng ăn tốt c6 bằng 5.dxc6, loại bỏ con tốt đang tấn công tượng b5 và giờ tấn công tốt b7. Tốt c6 được tượng bảo vệ.
+        en: White takes the c6 pawn with 5.dxc6, which removes the pawn that attacked the bishop on b5 and now attacks the pawn on b7. The c6 pawn is defended by the bishop.
+        fr: Les Blancs prennent le pion c6 par 5.dxc6, ce qui retire le pion qui attaquait le fou b5 et attaque maintenant le pion b7. Le pion c6 est défendu par le fou.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen sáu, nên Trắng hơn hai tốt trên bàn, nhưng tốt c6 bị tấn công hai lần, bởi mã b8 và tốt b7, và chỉ được bảo vệ một lần, bởi tượng b5, nên Đen có thể lấy lại một tốt ngay: sau ...Nxc6 Bxc6+ bxc6 số tốt là bảy so với sáu. Hậu d1 của Trắng bị tượng g4 tấn công và được vua bảo vệ, còn ...Bxd1 sẽ gặp c7+, một nước chiếu lộ từ tượng b5, trong đó tốt tấn công cả hậu d8 lẫn mã b8.'
+          en: "Count the pawns: White eight, Black six, so White is two pawns up on the board, but the c6 pawn is attacked twice, by the knight on b8 and the pawn on b7, and defended once, by the bishop on b5, so Black can win a pawn back at once: after ...Nxc6 Bxc6+ bxc6 the count is seven against six. White's queen on d1 is attacked by the bishop on g4 and defended by the king, and ...Bxd1 runs into c7+, a discovered check from the bishop on b5, with the pawn attacking both the queen on d8 and the knight on b8."
+          fr: "Comptez les pions : huit pour les Blancs, six pour les Noirs, donc les Blancs ont deux pions de plus sur l'échiquier, mais le pion c6 est attaqué deux fois, par le cavalier b8 et le pion b7, et défendu une fois, par le fou b5, de sorte que les Noirs peuvent regagner un pion tout de suite : après ...Nxc6 Bxc6+ bxc6, le compte est de sept contre six. La dame d1 blanche est attaquée par le fou g4 et défendue par le roi, et ...Bxd1 se heurte à c7+, un échec à la découverte du fou b5, le pion attaquant à la fois la dame d8 et le cavalier b8."
+        plan:
+          vi: Trắng chơi Ne2 để chắn đường chéo từ tượng tới hậu, rồi O-O. Đen chơi ...Nxc6, ...e6 và ...Bd6 để lấy lại một tốt và phát triển.
+          en: White plays Ne2 to block the bishop's line to the queen, then O-O. Black plays ...Nxc6, ...e6 and ...Bd6 to regain a pawn and develop.
+          fr: Les Blancs jouent Ne2 pour bloquer la diagonale du fou vers la dame, puis O-O. Les Noirs jouent ...Nxc6, ...e6 et ...Bd6 pour regagner un pion et se développer.
+        basis:
+          by: chan
+          at: 2026-10-01

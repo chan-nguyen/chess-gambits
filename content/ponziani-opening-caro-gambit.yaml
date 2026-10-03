@@ -1,0 +1,61 @@
+# Ponziani Opening: Caro Gambit. Frozen defining line 1.e4 e5 2.Nf3 Nc6 3.c3 d5 4.Qa4 Bd7 ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5). Part of
+# batch t of round 4 (#182). Every ply below was replayed with chess.js before it was
+# annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is claimed
+# anywhere in this entry, and no capture is left going free at the leaf.
+id: 'ponziani-opening-caro-gambit'
+name: 'Ponziani Opening: Caro Gambit'
+eco: 'C44'
+category: 'gambit'
+side: 'black'
+definingLine:
+  - 'e4'
+  - 'e5'
+  - 'Nf3'
+  - 'Nc6'
+  - 'c3'
+  - 'd5'
+  - 'Qa4'
+  - 'Bd7'
+soundness:
+  value: 'dubious'
+  reviewedAt: '2026-10-01'
+  basis:
+    by: 'chan'
+    at: '2026-10-01'
+    source: 'A judgement. At the end of the defining line the pawns are level, eight each, but the pawn on d5 is attacked by the e4 pawn and nothing defends it, and the bishop on d7 stands in front of the queen, so Black cannot retake on d5 at once. White can win a pawn, so the line is judged dubious rather than sound. No engine was consulted and no database was queried.'
+judgement:
+  by: 'chan'
+  at: '2026-10-01'
+  source: "Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics."
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 4...Bd7, bảo vệ mã c6, quân bị hậu a4 tấn công. Số tốt hai bên bằng nhau, mỗi bên tám. Tốt d5 bị tốt e4 tấn công và không có gì bảo vệ, còn mã c6 được tốt b7 và tượng d7 bảo vệ.'
+    en: 'Black has just played 4...Bd7, defending the knight on c6, which the queen on a4 attacks. The pawns are level, eight each. The pawn on d5 is attacked by the e4 pawn and nothing defends it, and the knight on c6 is defended by the b7 pawn and the bishop on d7.'
+    fr: 'Les Noirs viennent de jouer 4...Bd7, défendant le cavalier c6, que la dame a4 attaque. Les pions sont à égalité, huit de chaque côté. Le pion d5 est attaqué par le pion e4 et rien ne le défend, et le cavalier c6 est défendu par le pion b7 et le fou d7.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác 5.exd5 ở đây, chẳng hạn 5.d3. Mục này đi theo nước ăn tốt d5.'
+      en: 'White plays something other than 5.exd5 here, for instance 5.d3. This entry follows the capture of the pawn on d5.'
+      fr: 'Les Blancs jouent autre chose que 5.exd5 ici, par exemple 5.d3. Cette entrée suit la capture du pion d5.'
+  children:
+    - ply: 'exd5'
+      replyQuality: 'best'
+      frequency: 'common'
+      annotation:
+        vi: 'Trắng ăn tốt d5 bằng tốt e. Tốt d5 giờ tấn công mã c6, và Đen không thể ăn lại ở d5 vì tượng d7 chắn đường của hậu.'
+        en: 'White takes the pawn on d5 with the e-pawn. The pawn on d5 now attacks the knight on c6, and Black cannot retake on d5, because the bishop on d7 blocks the queen.'
+        fr: 'Les Blancs prennent le pion d5 avec le pion e. Le pion d5 attaque maintenant le cavalier c6, et les Noirs ne peuvent pas reprendre en d5, car le fou d7 bloque la dame.'
+      outcome:
+        type: 'position'
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt, và các tốt d của Trắng bị chồng, ở d5 và d2. Mã c6 bị tốt d5 và hậu a4 tấn công và được tốt b7 và tượng d7 bảo vệ, tượng d7 nhắm xuyên qua mã vào hậu a4, nên mã đi đâu cũng mở ra đòn tấn công vào hậu, và cột d bán mở cho Đen.'
+          en: "Count the pawns: White eight, Black seven, so White is a pawn up, and White's d-pawns are doubled, on d5 and d2. The knight on c6 is attacked by the d5 pawn and the queen on a4 and defended by the b7 pawn and the bishop on d7, the bishop on d7 aims through the knight at the queen on a4, so any move of the knight uncovers an attack on the queen, and the d-file is half-open for Black."
+          fr: 'Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de plus, et les pions d blancs sont doublés, en d5 et d2. Le cavalier c6 est attaqué par le pion d5 et la dame a4 et défendu par le pion b7 et le fou d7, le fou d7 vise à travers le cavalier la dame a4, donc tout déplacement du cavalier découvre une attaque contre la dame, et la colonne d est semi-ouverte pour les Noirs.'
+        plan:
+          vi: 'Trắng lùi hậu bằng Qd1 khi mã mở đường cho tượng, rồi phát triển bằng Be2 và nhập thành. Đen dời mã bằng ...Nd4, đánh vào mã f3 và mở đường cho tượng d7 tấn công hậu.'
+          en: 'White retreats the queen with Qd1 once the knight uncovers the attack of the bishop, then develops with Be2 and castles. Black moves the knight with ...Nd4, hitting the knight on f3 and uncovering the attack of the bishop on d7 on the queen.'
+          fr: "Les Blancs replient la dame par Qd1 quand le cavalier découvre l'attaque du fou, puis se développent par Be2 et roquent. Les Noirs déplacent le cavalier par ...Nd4, frappant le cavalier f3 et découvrant l'attaque du fou d7 sur la dame."
+        basis:
+          by: 'chan'
+          at: '2026-10-01'
