@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs'
-import { join } from 'node:path'
+import { basename, extname, join } from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { build } from '../catalogue/build.ts'
-import { loadContent } from './entries.ts'
+import { yamlFilesUnder } from './entries.ts'
 import type { GoldenInputs } from './golden-lists.ts'
 import {
   listedTaughtIds,
@@ -186,8 +186,9 @@ describe('mentionsOf', () => {
 
 describe('the real repository', () => {
   it('is already up to date: regenerating the three golden lists changes nothing', () => {
-    const content = loadContent('content')
-    if (!content.ok) throw new Error('the real content does not validate')
+    // `build` loads and validates every content file itself, and that is most of the time this test
+    // takes (it timed out on CI at a thousand entries when it also called `loadContent` first), so
+    // the authored ids are read from the file names, and each is checked to be a catalogue entry.
     const catalogue = build({
       datasetDir: join('tools', 'catalogue', 'dataset'),
       sourceDir: join('tools', 'catalogue', 'source'),
@@ -196,8 +197,14 @@ describe('the real repository', () => {
     if (!catalogue.ok) throw new Error('the real catalogue does not build')
 
     const records = catalogue.value.records
+    const known = new Set(records.map((record) => record.id))
+    const contentIds = yamlFilesUnder('content').map((file) => basename(file, extname(file)))
+    expect(
+      contentIds.filter((id) => !known.has(id)),
+      'a content file whose name is not an entry id',
+    ).toStrictEqual([])
     const inputs: GoldenInputs = {
-      contentIds: content.entries.map(({ entry }) => entry.id),
+      contentIds,
       taughtIds: records.filter((record) => record.tier === 'taught').map((record) => record.id),
       branchCounts: new Map(records.map((record) => [record.id, record.branchKeys.length])),
       totalEntries: records.length,
@@ -215,5 +222,5 @@ describe('the real repository', () => {
     })
 
     expect(stale, 'run `npm run fixtures:golden` and commit the result').toStrictEqual([])
-  }, 240_000)
+  })
 })
