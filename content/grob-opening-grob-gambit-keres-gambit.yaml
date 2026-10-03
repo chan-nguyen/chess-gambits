@@ -1,0 +1,60 @@
+# Grob Opening: Grob Gambit, Keres Gambit. Frozen defining line 1.g4 d5 2.Bg2 e5 3.d4 exd4
+# 4.c3, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through the reply Nc6; searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry.
+id: grob-opening-grob-gambit-keres-gambit
+name: 'Grob Opening: Grob Gambit, Keres Gambit'
+eco: A00
+category: gambit
+side: white
+definingLine: [g4, d5, Bg2, e5, d4, exd4, c3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and the g4 pawn is attacked by the bishop on c8 and has no defender, so Black can take
+      it for free; White has not been shown to get more in return than the half-open d-file
+      and the bishop on g2 pressing on the d5 pawn. No engine was consulted and no database
+      was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.c3, đưa tốt c lên tấn công tốt d4 của Đen. Tốt d4 bị tốt c3 và hậu tấn công mà không có quân nào bảo vệ, còn tốt g4 của Trắng bị tượng c8 tấn công mà không được bảo vệ. Trắng đang kém một tốt, bảy so với tám. Mục này đi theo nước Đen phát triển 4...Nc6.'
+    en: "White has just played 4.c3, attacking Black's d4 pawn with the c-pawn. The d4 pawn is attacked by the c3 pawn and the queen and nothing defends it, while White's g4 pawn is attacked by the bishop on c8 and is undefended. White is a pawn down, seven pawns to eight. This entry follows Black developing with 4...Nc6."
+    fr: 'Les Blancs viennent de jouer 4.c3, attaquant le pion d4 noir avec le pion c. Le pion d4 est attaqué par le pion c3 et la dame sans être défendu, tandis que le pion g4 blanc est attaqué par le fou c8 sans être défendu. Les Blancs ont un pion de moins, sept contre huit. Cette entrée suit le développement 4...Nc6 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...Nc6 ở đây. Mục này chỉ đi theo nước 4...Nc6.'
+      en: 'Black plays something other than 4...Nc6 here. This entry follows only 4...Nc6.'
+      fr: 'Les Noirs jouent autre chose que 4...Nc6 ici. Cette entrée ne suit que 4...Nc6.'
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen phát triển mã b8 ra c6, bảo vệ tốt d4. Tốt d4 giờ bị tấn công hai lần nhưng cũng được bảo vệ một lần, còn tốt g4 của Trắng vẫn bị tượng c8 tấn công mà không có quân bảo vệ.'
+        en: "Black develops the knight from b8 to c6, which defends the d4 pawn. The d4 pawn is now attacked twice and defended once, and White's g4 pawn is still attacked by the bishop on c8 with no defender."
+        fr: 'Les Noirs développent le cavalier de b8 en c6, ce qui défend le pion d4. Le pion d4 est maintenant attaqué deux fois et défendu une fois, et le pion g4 blanc reste attaqué par le fou c8 sans défenseur.'
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt thí chưa lấy lại được. Tốt g4 của Trắng bị tượng c8 tấn công mà không có quân bảo vệ. Tượng g2 nhắm vào tốt d5, vốn được hậu bảo vệ, và cột d là cột nửa mở của Trắng.'
+          en: "Count the pawns: White seven, Black eight, so the gambit pawn has not come back. White's g4 pawn is attacked by the bishop on c8 and has no defender. The bishop on g2 bears on the d5 pawn, which the queen defends, and the d-file is half-open for White."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion du gambit n'est pas revenu. Le pion g4 blanc est attaqué par le fou c8 et n'a pas de défenseur. Le fou g2 vise le pion d5, que défend la dame, et la colonne d est semi-ouverte pour les Blancs."
+        plan:
+          vi: 'Trắng đẩy tốt g bằng g5, hỗ trợ bằng h4 rồi ăn trên d4 bằng cxd4. Đen ăn tốt g4 bằng ...Bxg4 nếu Trắng bỏ qua, nếu không thì tấn công tốt g5 bằng ...Be7 và ...h6.'
+          en: 'White advances the g-pawn with g5, supports it with h4 and takes on d4 with cxd4. Black takes the g4 pawn with ...Bxg4 if White neglects it, and otherwise attacks the g5 pawn with ...Be7 and ...h6.'
+          fr: 'Les Blancs avancent le pion g par g5, le soutiennent par h4 et prennent en d4 par cxd4. Les Noirs prennent le pion g4 par ...Bxg4 si les Blancs le négligent, et sinon attaquent le pion g5 par ...Be7 et ...h6.'
+        basis:
+          by: chan
+          at: '2026-10-01'

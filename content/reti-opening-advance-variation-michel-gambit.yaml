@@ -1,0 +1,60 @@
+# Réti Opening: Advance Variation, Michel Gambit. Frozen defining line 1.Nf3 d5 2.c4 d4
+# 3.b4 c5, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply bxc5;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: reti-opening-advance-variation-michel-gambit
+name: 'Réti Opening: Advance Variation, Michel Gambit'
+eco: A09
+category: gambit
+side: black
+definingLine: [Nf3, d5, c4, d4, b4, c5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, and
+      White can take on c5 with the b-pawn, since the c5 pawn is attacked by it and nothing
+      defends it; Black would then be a pawn down but would face White's doubled c-pawns. The
+      practical chances are real, but Black has not been shown to regain the pawn by force. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...c5. Tốt b4 của Trắng bị tốt c5 tấn công mà không có quân nào bảo vệ, còn tốt c5 cũng bị tốt b4 tấn công và không được bảo vệ. Tốt d4 của Đen bị mã f3 tấn công và được hậu và tốt c5 bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Trắng ăn 4.bxc5.'
+    en: "Black has just played 3...c5. White's b4 pawn is attacked by the c5 pawn and nothing defends it, while the c5 pawn is also attacked by the b4 pawn and is undefended. Black's d4 pawn is attacked by the knight on f3 and defended by the queen and the c5 pawn. The pawn count is level, eight each. This entry follows White taking 4.bxc5."
+    fr: 'Les Noirs viennent de jouer 3...c5. Le pion b4 blanc est attaqué par le pion c5 sans être défendu, et le pion c5 est lui aussi attaqué par le pion b4 sans être défendu. Le pion d4 noir est attaqué par le cavalier f3 et défendu par la dame et le pion c5. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 4.bxc5 des Blancs.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 4.bxc5, nên tốt c5 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'White plays something other than 4.bxc5 here, so the c5 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Blancs jouent autre chose que 4.bxc5 ici, si bien que le pion c5 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: bxc5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt c5 bằng tốt b. Tốt c5 mới không có quân nào bảo vệ, nhưng chưa quân Đen nào tấn công được nó, và tốt d4 của Đen giờ chỉ còn hậu bảo vệ.'
+        en: "White takes the c5 pawn with the b-pawn. The new pawn on c5 is undefended, but none of Black's pieces attacks it yet, and Black's d4 pawn is now defended only by the queen."
+        fr: "Les Blancs prennent le pion c5 avec le pion b. Le nouveau pion c5 n'est pas défendu, mais aucune pièce noire ne l'attaque encore, et le pion d4 noir n'est plus défendu que par la dame."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen kém một tốt. Hai tốt c5 và c4 của Trắng bị chồng, và tốt c5 không có quân bảo vệ, dù chưa quân Đen nào tấn công được nó. Tốt d4 của Đen bị mã f3 tấn công một lần và được hậu bảo vệ một lần.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down. White's pawns on c5 and c4 are doubled, and the c5 pawn has no defender, although none of Black's pieces attacks it yet. Black's d4 pawn is attacked once, by the knight on f3, and defended once, by the queen."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Noirs ont un pion de moins. Les pions blancs c5 et c4 sont doublés, et le pion c5 n'a pas de défenseur, bien qu'aucune pièce noire ne l'attaque encore. Le pion d4 noir est attaqué une fois, par le cavalier f3, et défendu une fois, par la dame."
+        plan:
+          vi: 'Đen chơi ...Nc6 và ...e5, rồi ...Bxc5 nếu con tốt vẫn chưa được bảo vệ, nhằm giành lại tốt c5. Trắng bảo vệ tốt c5 bằng Ba3 rồi phát triển bằng g3 và Bg2 và nhập thành.'
+          en: 'Black plays ...Nc6 and ...e5, then ...Bxc5 if the pawn is still unsupported, aiming to win back the c5 pawn. White supports the c5 pawn with Ba3, then develops with g3 and Bg2 and castles.'
+          fr: "Les Noirs jouent ...Nc6 et ...e5, puis ...Bxc5 si le pion n'est pas encore soutenu, dans le but de regagner le pion c5. Les Blancs soutiennent le pion c5 par Ba3, puis se développent par g3 et Bg2 et roquent."
+        basis:
+          by: chan
+          at: '2026-10-01'

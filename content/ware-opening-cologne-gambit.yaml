@@ -1,0 +1,58 @@
+# Ware Opening: Cologne Gambit. Frozen defining line 1.a4 b6 2.d4 d5 3.Nc3 Nd7, which ends
+# on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through the reply Nxd5; searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: ware-opening-cologne-gambit
+name: 'Ware Opening: Cologne Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [a4, b6, d4, d5, Nc3, Nd7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      Black's d5 pawn is attacked by the knight on c3 and nothing defends it, so White can
+      simply take it; Black would then be a pawn down and has not been shown to get anything
+      concrete in return. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...Nd7. Tốt d5 của Đen bị mã c3 tấn công mà không có quân nào bảo vệ, vì mã d7 không bảo vệ d5. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Trắng ăn 4.Nxd5.'
+    en: "Black has just played 3...Nd7. Black's d5 pawn is attacked by the knight on c3 and nothing defends it, since the knight on d7 does not guard d5. The pawn count is level, eight each. This entry follows White taking 4.Nxd5."
+    fr: 'Les Noirs viennent de jouer 3...Nd7. Le pion d5 noir est attaqué par le cavalier c3 sans être défendu, puisque le cavalier d7 ne garde pas d5. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 4.Nxd5 des Blancs.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 4.Nxd5, nên tốt d5 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'White plays something other than 4.Nxd5 here, so the d5 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Blancs jouent autre chose que 4.Nxd5 ici, si bien que le pion d5 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: Nxd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt d5 bằng mã. Mã d5 đứng giữa bàn cờ, chưa quân Đen nào tấn công được nó, và nó tấn công các tốt b6, c7 và e7, quân nào cũng được bảo vệ.'
+        en: "White takes the d5 pawn with the knight. The knight on d5 stands in the centre, none of Black's pieces attacks it yet, and it attacks the b6, c7 and e7 pawns, each of which is defended."
+        fr: "Les Blancs prennent le pion d5 avec le cavalier. Le cavalier d5 se tient au centre, aucune pièce noire ne l'attaque encore, et il attaque les pions b6, c7 et e7, chacun étant défendu."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen kém một tốt và chưa lấy lại được. Cột d là cột nửa mở của Đen vì Đen không còn tốt d, nhưng mã d7 của chính Đen đang chắn cột đó. Mã d5 của Trắng chưa bị tấn công, và ...e6 hoặc ...c6 sẽ đuổi nó.'
+          en: "Count the pawns: White eight, Black seven, so Black is a pawn down and has not won it back. The d-file is half-open for Black, since Black has no d-pawn, but Black's own knight on d7 blocks it. White's knight on d5 is not attacked yet, and ...e6 or ...c6 will chase it."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Noirs ont un pion de moins et ne l'ont pas regagné. La colonne d est semi-ouverte pour les Noirs, puisqu'ils n'ont plus de pion d, mais leur propre cavalier d7 la bloque. Le cavalier blanc d5 n'est pas encore attaqué, et ...e6 ou ...c6 le chasserait."
+        plan:
+          vi: 'Đen chơi ...e6 để đuổi mã, rồi ...Bb7 và ...Ngf6. Trắng giữ tốt thừa bằng Nf3, Bf4, e3 và Bd3, rút mã về c3 nếu nó bị tấn công.'
+          en: 'Black plays ...e6 to chase the knight, then ...Bb7 and ...Ngf6. White keeps the extra pawn with Nf3, Bf4, e3 and Bd3, retreating the knight to c3 if it is attacked.'
+          fr: "Les Noirs jouent ...e6 pour chasser le cavalier, puis ...Bb7 et ...Ngf6. Les Blancs gardent le pion de plus par Nf3, Bf4, e3 et Bd3, en ramenant le cavalier en c3 s'il est attaqué."
+        basis:
+          by: chan
+          at: '2026-10-01'

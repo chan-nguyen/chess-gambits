@@ -1,0 +1,60 @@
+# English Opening: Symmetrical Variation, Napolitano Gambit. Frozen defining line 1.c4 c5
+# 2.Nf3 Nf6 3.b4, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5). Replayed with chess.js through the reply cxb4;
+# searchMate at 3 moves from the resulting position returns no-mate, so no forced mate is
+# claimed anywhere in this entry.
+id: english-opening-symmetrical-variation-napolitano-gambit
+name: 'English Opening: Symmetrical Variation, Napolitano Gambit'
+eco: A30
+category: gambit
+side: white
+definingLine: [c4, c5, Nf3, Nf6, b4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the b4 pawn is attacked by the c5 pawn and nothing defends it, so Black can simply take
+      it; White would then have an isolated a-pawn and some practical chances, but has not
+      been shown to regain the pawn by force. No engine was consulted and no database was
+      queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 3.b4. Tốt b4 bị tốt c5 của Đen tấn công mà không có quân nào bảo vệ, còn tốt c5 cũng bị tốt b4 tấn công và không được bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Đen ăn 3...cxb4.'
+    en: "White has just played 3.b4. The b4 pawn is attacked by Black's c5 pawn and nothing defends it, while the c5 pawn is in turn attacked by the b4 pawn and is undefended too. The pawn count is level, eight each. This entry follows Black capturing 3...cxb4."
+    fr: 'Les Blancs viennent de jouer 3.b4. Le pion b4 est attaqué par le pion c5 noir sans être défendu, et le pion c5 est à son tour attaqué par le pion b4 sans être défendu non plus. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 3...cxb4 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 3...cxb4, nên con tốt chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 3...cxb4 here, so the pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 3...cxb4 ici, si bien que le pion n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: cxb4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b4 bằng tốt c. Tốt b4 mới không có quân nào bảo vệ, nhưng chưa quân Trắng nào tấn công được nó, và tốt c4 của Trắng cũng không có quân bảo vệ.'
+        en: "Black takes the b4 pawn with the c-pawn. The new pawn on b4 is undefended, but none of White's pieces attacks it yet, and White's c4 pawn has no defender either."
+        fr: "Les Noirs prennent le pion b4 avec le pion c. Le nouveau pion b4 n'est pas défendu, mais aucune pièce blanche ne l'attaque encore, et le pion c4 blanc n'a pas non plus de défenseur."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên con tốt thí chưa lấy lại được. Tốt a của Trắng bị cô lập vì Trắng không còn tốt nào trên cột b, còn Đen có hai tốt chồng ở b4 và b7. Tốt b4 không có quân bảo vệ, và Trắng có thể tấn công nó ngay bằng a3.'
+          en: "Count the pawns: White seven, Black eight, so the gambit pawn has not come back. White's a-pawn is isolated, since no White pawn is left on the b-file, and Black has doubled pawns on b4 and b7. The b4 pawn has no defender, and White can attack it at once with a3."
+          fr: "Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc le pion du gambit n'est pas revenu. Le pion a blanc est isolé, puisqu'il ne reste aucun pion blanc sur la colonne b, et les Noirs ont des pions doublés en b4 et en b7. Le pion b4 n'a pas de défenseur, et les Blancs peuvent l'attaquer tout de suite par a3."
+        plan:
+          vi: 'Trắng thách thức tốt b4 bằng a3, rồi e3, d4 và Bd3 để phát triển và chiếm trung tâm. Đen củng cố tốt b4 bằng ...a5 và phát triển bằng ...e6 và ...Nc6.'
+          en: 'White challenges the b4 pawn with a3, then plays e3, d4 and Bd3 to develop and take the centre. Black supports the b4 pawn with ...a5 and develops with ...e6 and ...Nc6.'
+          fr: 'Les Blancs défient le pion b4 par a3, puis jouent e3, d4 et Bd3 pour se développer et prendre le centre. Les Noirs soutiennent le pion b4 par ...a5 et se développent par ...e6 et ...Nc6.'
+        basis:
+          by: chan
+          at: '2026-10-01'

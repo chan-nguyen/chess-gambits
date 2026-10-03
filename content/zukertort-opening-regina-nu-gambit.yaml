@@ -1,0 +1,64 @@
+# Zukertort Opening: Regina-Nu Gambit. Frozen defining line 1.Nf3 d5 2.b3 c5 3.c4 dxc4
+# 4.Nc3, which ends on White's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). Replayed with chess.js through the reply cxb3; searchMate at 3 moves from
+# the resulting position returns no-mate, so no forced mate is claimed anywhere in this
+# entry. The leaf carries `unsettled` because a capture is going free there.
+id: zukertort-opening-regina-nu-gambit
+name: 'Zukertort Opening: Regina-Nu Gambit'
+eco: A06
+category: gambit
+side: white
+definingLine: [Nf3, d5, b3, c5, c4, dxc4, Nc3]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn down, seven pawns to eight,
+      and Black's c4 pawn is attacked by the b3 pawn and undefended, but Black can take on b3
+      first and still be a pawn up after the recapture. White has not been shown to get more
+      in return than two developed knights and the half-open c-file. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Trắng vừa chơi 4.Nc3, phát triển mã từ b1. Trắng đang kém một tốt, bảy so với tám. Tốt b3 của Trắng bị tốt c4 của Đen tấn công và được tốt a2 và hậu bảo vệ, còn tốt c4 bị tốt b3 tấn công mà không có quân nào bảo vệ. Mục này đi theo nước Đen ăn 4...cxb3.'
+    en: "White has just played 4.Nc3, developing the knight from b1. White is a pawn down, seven pawns to eight. White's b3 pawn is attacked by Black's c4 pawn and defended by the a2 pawn and the queen, while the c4 pawn is attacked by the b3 pawn and nothing defends it. This entry follows Black capturing 4...cxb3."
+    fr: 'Les Blancs viennent de jouer 4.Nc3, développant le cavalier de b1. Les Blancs ont un pion de moins, sept contre huit. Le pion b3 blanc est attaqué par le pion c4 noir et défendu par le pion a2 et la dame, tandis que le pion c4 est attaqué par le pion b3 sans être défendu. Cette entrée suit la prise 4...cxb3 des Noirs.'
+  dismissRest:
+    reason:
+      vi: 'Đen chơi một nước khác thay vì 4...cxb3, nên tốt b3 chưa bị ăn. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'Black plays something other than 4...cxb3 here, so the b3 pawn is not taken. This entry follows only the capture.'
+      fr: "Les Noirs jouent autre chose que 4...cxb3 ici, si bien que le pion b3 n'est pas pris. Cette entrée ne suit que la prise."
+  children:
+    - ply: cxb3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen ăn tốt b3 bằng tốt c. Tốt b3 mới bị tốt a2 và hậu tấn công mà không có quân Đen nào bảo vệ, nên Trắng sắp ăn lại.'
+        en: "Black takes the b3 pawn with the c-pawn. The new pawn on b3 is attacked by the a2 pawn and the queen and nothing of Black's defends it, so White is about to recapture."
+        fr: 'Les Noirs prennent le pion b3 avec le pion c. Le nouveau pion b3 est attaqué par le pion a2 et la dame et aucune pièce noire ne le défend, si bien que les Blancs vont reprendre.'
+      unsettled: >-
+        Recapturing on b3 (axb3 or Qxb3) is going free because nothing of Black's defends the
+        pawn on b3; the evaluation counts that recapture, which brings the pawn count to six
+        against seven.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng sáu, Đen tám, và tốt b3 của Đen sắp bị ăn lại, bằng axb3 hoặc Qxb3. Khi đó là sáu so với bảy, nên Trắng vẫn kém một tốt. Đổi lại Trắng đã đưa ra hai mã còn Đen chưa phát triển quân nào, và Trắng không còn tốt c nên cột c là cột nửa mở của Trắng.'
+          en: "Count the pawns: White six, Black eight, with Black's pawn on b3 about to be taken back, by axb3 or Qxb3. Once it is, the count is six against seven, so White is still a pawn down. In return White has two knights out and Black has developed no piece, and White has no c-pawn, so the c-file is half-open for White."
+          fr: "Comptez les pions : six pour les Blancs, huit pour les Noirs, le pion noir b3 étant sur le point d'être repris, par axb3 ou Qxb3. Une fois qu'il l'est, le compte est de six contre sept, si bien que les Blancs ont toujours un pion de moins. En contrepartie, les Blancs ont sorti deux cavaliers alors que les Noirs n'ont développé aucune pièce, et les Blancs n'ont plus de pion c, si bien que la colonne c est semi-ouverte pour eux."
+        plan:
+          vi: 'Trắng ăn lại bằng axb3, rồi phát triển bằng e3 và Be2 và nhập thành. Đen phát triển bằng ...Nc6, ...e6, ...Nf6 và ...Be7.'
+          en: 'White recaptures with axb3, then develops with e3 and Be2 and castles. Black develops with ...Nc6, ...e6, ...Nf6 and ...Be7.'
+          fr: 'Les Blancs reprennent par axb3, puis se développent par e3 et Be2 et roquent. Les Noirs se développent par ...Nc6, ...e6, ...Nf6 et ...Be7.'
+        basis:
+          by: chan
+          at: '2026-10-01'

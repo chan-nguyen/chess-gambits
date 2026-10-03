@@ -1,0 +1,58 @@
+# Van Geet Opening: Melleby Gambit. Frozen defining line 1.Nc3 d5 2.f4 d4 3.Ne4 c5, which
+# ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Replayed with chess.js through the reply Nxc5; searchMate at 3 moves from the resulting
+# position returns no-mate, so no forced mate is claimed anywhere in this entry.
+id: van-geet-opening-melleby-gambit
+name: 'Van Geet Opening: Melleby Gambit'
+eco: A00
+category: gambit
+side: black
+definingLine: [Nc3, d5, f4, d4, Ne4, c5]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the c5 pawn is attacked by the knight on e4 and nothing defends it, so White can simply
+      take it; Black would then be a pawn down and has not been shown to get more in return
+      than a half-open c-file. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 3...c5, hỗ trợ tốt d4. Tốt c5 bị mã e4 tấn công mà không có quân nào bảo vệ. Số tốt đang cân bằng, mỗi bên tám. Mục này đi theo nước Trắng ăn 4.Nxc5.'
+    en: 'Black has just played 3...c5, supporting the d4 pawn. The c5 pawn is attacked by the knight on e4 and nothing defends it. The pawn count is level, eight each. This entry follows White taking 4.Nxc5.'
+    fr: 'Les Noirs viennent de jouer 3...c5, soutenant le pion d4. Le pion c5 est attaqué par le cavalier e4 sans être défendu. Le compte des pions est égal, huit chacun. Cette entrée suit la prise 4.Nxc5 des Blancs.'
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi một nước khác thay vì 4.Nxc5, nên tốt c5 chưa bị ăn ngay. Mục này chỉ đi theo nước ăn tốt.'
+      en: 'White plays something other than 4.Nxc5 here, so the c5 pawn is not taken at once. This entry follows only the capture.'
+      fr: "Les Blancs jouent autre chose que 4.Nxc5 ici, si bien que le pion c5 n'est pas pris tout de suite. Cette entrée ne suit que la prise."
+  children:
+    - ply: Nxc5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Trắng ăn tốt c5 bằng mã. Mã giờ tấn công tốt b7, vốn được tượng c8 bảo vệ, và chưa quân hay tốt Đen nào tấn công được mã.'
+        en: "White takes the c5 pawn with the knight. The knight now attacks the b7 pawn, which the bishop on c8 defends, and none of Black's pieces or pawns attacks the knight at once."
+        fr: "Les Blancs prennent le pion c5 avec le cavalier. Le cavalier attaque maintenant le pion b7, que défend le fou c8, et aucune pièce ni aucun pion noir n'attaque le cavalier tout de suite."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Đen chưa lấy lại được tốt. Mã c5 chưa bị tấn công, nhưng ...b6 sẽ tấn công nó, và cột c của Đen là cột nửa mở, vì Đen không còn tốt c còn tốt c2 của Trắng vẫn đứng trên cột đó.'
+          en: "Count the pawns: White eight, Black seven, so Black has not won the pawn back. The knight on c5 is not attacked yet, but ...b6 will attack it, and Black's c-file is half-open, since Black has no c-pawn while White's c2 pawn still stands on it."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Noirs n'ont pas regagné le pion. Le cavalier c5 n'est pas encore attaqué, mais ...b6 l'attaquera, et la colonne c des Noirs est semi-ouverte, puisque les Noirs n'ont plus de pion c alors que le pion c2 blanc s'y trouve toujours."
+        plan:
+          vi: 'Trắng dời mã khi tốt b Đen tấn công nó và phát triển bằng Nf3, e3 và Be2, thách thức tốt d4. Đen chơi ...b6 để đuổi mã, rồi ...Bb7 và ...Nf6, dùng cột c nửa mở.'
+          en: 'White moves the knight when the black b-pawn attacks it and develops with Nf3, e3 and Be2, challenging the d4 pawn. Black plays ...b6 to chase the knight, then ...Bb7 and ...Nf6, using the half-open c-file.'
+          fr: "Les Blancs déplacent le cavalier quand le pion b noir l'attaque et se développent par Nf3, e3 et Be2, défiant le pion d4. Les Noirs jouent ...b6 pour chasser le cavalier, puis ...Bb7 et ...Nf6, en utilisant la colonne c semi-ouverte."
+        basis:
+          by: chan
+          at: '2026-10-01'
