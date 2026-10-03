@@ -1,0 +1,68 @@
+# Italian Game, Two Knights Defense, Lolli Attack. Frozen defining line 1.e4 e5 2.Nf3 Nc6
+# 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Nxd5 6.d4, which ends on White's own ply, so the root is an
+# opponent node (docs/CONTEXT.md, invariant 5). Part of batch w of round 4 (#182). Every ply
+# below was replayed with chess.js before it was annotated; searchMate at 3 moves from the
+# leaf returns no-mate, so no forced mate is claimed anywhere in this entry, and no capture
+# is left going free at the leaf.
+id: italian-game-two-knights-defense-lolli-attack
+name: 'Italian Game: Two Knights Defense, Lolli Attack'
+eco: C57
+category: gambit
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Nxd5, d4]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawns are level at seven each, but
+      the d4 pawn is attacked twice and defended once, so White is prepared to give it up:
+      the bishop on c4 attacks the black knight on d5 and the knight on g5 attacks the f7
+      and h7 pawns, while neither side has castled. The label is the catalogue's; this entry
+      records the compensation as development and pressure and claims nothing stronger. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.d4, Lolli Attack, đưa ra tốt d. Số tốt ngang bằng, mỗi bên bảy, nhưng tốt d4 bị tốt e5 và mã c6 tấn công mà chỉ có hậu bảo vệ. Mã d5 của Đen bị tượng c4 tấn công và được hậu bảo vệ, còn mã g5 của Trắng tấn công các tốt f7 và h7.
+    en: White has just played 6.d4, the Lolli Attack, offering the d-pawn. The pawns are level at seven each, but the d4 pawn is attacked by the e5 pawn and the knight on c6 and defended only by the queen. Black's knight on d5 is attacked by the bishop on c4 and defended by the queen, and White's knight on g5 attacks the f7 and h7 pawns.
+    fr: Les Blancs viennent de jouer 6.d4, l'attaque Lolli, offrant le pion d. Les pions sont égaux, sept de chaque côté, mais le pion d4 est attaqué par le pion e5 et le cavalier c6 et défendu seulement par la dame. Le cavalier d5 des Noirs est attaqué par le fou c4 et défendu par la dame, et le cavalier g5 des Blancs attaque les pions f7 et h7.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 6...exd4 ở đây. Mục này chỉ mô hình hóa nước ăn tốt.
+      en: Black plays something other than 6...exd4 here. This entry models only taking the pawn.
+      fr: Les Noirs jouent autre chose que 6...exd4 ici. Cette entrée ne modélise que la prise du pion.
+  children:
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen nhận tốt bằng 6...exd4, mở cột e và để Trắng còn sáu tốt so với bảy tốt của Đen.
+        en: Black accepts with 6...exd4, which opens the e-file and leaves White with six pawns to Black's seven.
+        fr: Les Noirs acceptent par 6...exd4, ce qui ouvre la colonne e et laisse les Blancs avec six pions contre sept aux Noirs.
+      children:
+        - ply: O-O
+          annotation:
+            vi: Trắng nhập thành bằng 7.O-O, đưa vua ra khỏi cột e đang mở và xe lên f1. Mã g5 bị hậu d8 tấn công và được tượng c1 bảo vệ.
+            en: White castles with 7.O-O, taking the king off the open e-file and bringing the rook to f1. The knight on g5 is attacked by the queen on d8 and defended by the bishop on c1.
+            fr: Les Blancs roquent par 7.O-O, sortant le roi de la colonne e ouverte et amenant la tour en f1. Le cavalier g5 est attaqué par la dame d8 et défendu par le fou c1.
+          outcome:
+            type: position
+            evaluation:
+              vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên tốt d chưa được lấy lại. Trắng đã nhập thành, còn vua Đen vẫn đứng ở e8 mà không có gì che chắn trên cột e đang mở: không bên nào còn tốt e và mọi ô từ e1 đến e7 đều trống. Tượng c4 của Trắng tấn công mã d5, quân chỉ có hậu bảo vệ, còn mã g5 tấn công f7 và h7, cả hai đều đang được bảo vệ.'
+              en: "Count the pawns: White six, Black seven, so the d-pawn has not come back. White has castled, while Black's king still stands on e8 with nothing in front of it on the open e-file: neither side has an e-pawn and every square from e1 to e7 is empty. White's bishop on c4 attacks the knight on d5, which only the queen defends, and the knight on g5 attacks f7 and h7, both of which are defended."
+              fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc le pion d n'est pas récupéré. Les Blancs ont roqué, tandis que le roi noir est toujours en e8 sans rien devant lui sur la colonne e ouverte : aucun camp n'a de pion e et toutes les cases de e1 à e7 sont vides. Le fou c4 des Blancs attaque le cavalier d5, que seule la dame défend, et le cavalier g5 attaque f7 et h7, tous deux défendus."
+            plan:
+              vi: Trắng đưa xe lên cột mở bằng Re1 và nhắm hậu vào f7 bằng Qf3 hoặc Qh5. Đen hóa giải đòn tấn công bằng cách phát triển quân, chẳng hạn ...Nce7 và ...Be6, rồi tìm cách đưa vua vào nơi an toàn.
+              en: White brings a rook to the open file with Re1 and aims the queen at f7 with Qf3 or Qh5. Black blunts the attack by developing, for example with ...Nce7 and ...Be6, and tries to get the king to safety.
+              fr: Les Blancs amènent une tour sur la colonne ouverte par Re1 et visent f7 avec la dame par Qf3 ou Qh5. Les Noirs émoussent l'attaque en se développant, par exemple par ...Nce7 et ...Be6, et cherchent à mettre le roi à l'abri.
+            basis:
+              by: chan
+              at: '2026-10-01'
