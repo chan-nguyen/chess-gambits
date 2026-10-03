@@ -1,0 +1,83 @@
+# Italian Game, Two Knights Defense, Polerio Defense, Göring Variation. Frozen defining line
+# 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Be2 h6 9.Nf3 e4
+# 10.Ne5 Qc7, which ends on Black's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: two-knights-defense-polerio-defense-goring-variation
+name: 'Italian Game: Two Knights Defense, Polerio Defense, Göring Variation'
+eco: C59
+category: gambit
+side: black
+definingLine:
+  [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Na5, Bb5+, c6, dxc6, bxc6, Be2, h6, Nf3, e4, Ne5, Qc7]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 10...Qc7 White is a pawn up, seven pawns to six, but the knight on
+      e5 is attacked by the queen and has no defender, Black's e4 pawn takes d3 and f3 away
+      from the white pieces, and White has not castled. That is treated as enough
+      compensation for the line to be labelled sound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: 'Đen vừa chơi 10...Qc7, Biến Göring: hậu tấn công mã e5, quân không có quân nào bảo vệ. Trắng có bảy tốt, Đen sáu tốt, và tốt e4 của Đen khống chế d3 và f3, không cho quân Trắng dùng.'
+    en: "Black has just played 10...Qc7, the Göring Variation: the queen attacks the knight on e5, which nothing defends. White has seven pawns to Black's six, and Black's e4 pawn takes d3 and f3 away from the white pieces."
+    fr: 'Les Noirs viennent de jouer 10...Qc7, la variante Göring : la dame attaque le cavalier e5, que rien ne défend. Les Blancs ont sept pions contre six, et le pion e4 des Noirs prive les pièces blanches de d3 et f3.'
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 11.d4 ở đây. Mục này chỉ mô hình hóa nước tốt bảo vệ con mã.
+      en: White plays something other than 11.d4 here. This entry models only the pawn move that defends the knight.
+      fr: Les Blancs jouent autre chose que 11.d4 ici. Cette entrée ne modélise que le coup de pion qui défend le cavalier.
+  children:
+    - ply: d4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng bảo vệ mã bằng 11.d4, đồng thời cho Đen cơ hội bắt tốt qua đường ở d3.
+        en: White defends the knight with 11.d4, which also offers Black the en passant capture on d3.
+        fr: Les Blancs défendent le cavalier par 11.d4, ce qui offre aussi aux Noirs la prise en passant en d3.
+      children:
+        - ply: exd3
+          annotation:
+            vi: 'Đen bắt tốt qua đường bằng 11...exd3, loại bỏ con tốt bảo vệ mã: số tốt ngang bằng, mỗi bên sáu, mã e5 lại bị hậu tấn công, còn tốt d3 bị mã, tượng, hậu và tốt c2 tấn công.'
+            en: 'Black captures en passant with 11...exd3, which removes the pawn that defended the knight: the pawns are level at six each, the knight on e5 is attacked by the queen again, and the pawn on d3 is attacked by the knight, the bishop, the queen and the c2 pawn.'
+            fr: 'Les Noirs prennent en passant par 11...exd3, ce qui supprime le pion qui défendait le cavalier : les pions sont égaux, six de chaque côté, le cavalier e5 est de nouveau attaqué par la dame, et le pion d3 est attaqué par le cavalier, le fou, la dame et le pion c2.'
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác thay vì 12.Nxd3 ở đây. Mục này chỉ mô hình hóa nước ăn lại bằng mã, đồng thời đưa mã thoát khỏi đòn tấn công của hậu.
+              en: White plays something other than 12.Nxd3 here. This entry models only the recapture with the knight, which also takes the knight out of the queen's attack.
+              fr: Les Blancs jouent autre chose que 12.Nxd3 ici. Cette entrée ne modélise que la reprise par le cavalier, qui sort aussi le cavalier de l'attaque de la dame.
+          children:
+            - ply: Nxd3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng ăn lại bằng mã, 12.Nxd3, đồng thời đưa mã thoát khỏi đòn tấn công của hậu. Số tốt là sáu của Trắng và năm của Đen.
+                en: White recaptures with the knight, 12.Nxd3, which also takes it out of the queen's attack. The pawn count is six for White and five for Black.
+                fr: Les Blancs reprennent avec le cavalier, 12.Nxd3, ce qui le sort aussi de l'attaque de la dame. Le décompte des pions est de six pour les Blancs et cinq pour les Noirs.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen năm, nên Trắng vẫn giữ được một tốt hơn. Cột e mở suốt từ đầu đến cuối vì không bên nào còn tốt e: vua Trắng ở e1 được chính tượng e2 che chắn, còn vua Đen ở e8 chưa nhập thành và đứng trên cùng cột đó. Hậu c7 tấn công h2, quân được xe h1 bảo vệ, và nước ăn duy nhất của Đen, ...Qxh2, sẽ mất hậu để đổi lấy một tốt.'
+                  en: "Count the pawns: White six, Black five, so White has kept an extra pawn. The e-file is open from end to end, since neither side has an e-pawn: White's king on e1 is shielded by its own bishop on e2, and Black's king on e8 has not castled and stands on the same file. The queen on c7 attacks h2, which the rook on h1 defends, and Black's one capture, ...Qxh2, would lose the queen for a pawn."
+                  fr: "Comptez les pions : six pour les Blancs, cinq pour les Noirs, donc les Blancs gardent un pion de plus. La colonne e est ouverte de bout en bout, car aucun camp n'a de pion e : le roi blanc en e1 est protégé par son propre fou e2, et le roi noir en e8, qui n'a pas roqué, se trouve sur la même colonne. La dame c7 attaque h2, que la tour h1 défend, et la seule prise des Noirs, ...Qxh2, perdrait la dame pour un pion."
+                plan:
+                  vi: Trắng đưa tượng c1 ra bằng b3 và Bb2, rồi nhập thành. Đen phát triển bằng ...Bd6, nhập thành và thách thức mã d3 bằng ...Bf5.
+                  en: White brings the c1 bishop out with b3 and Bb2, and castles. Black develops with ...Bd6, castles and challenges the d3 knight with ...Bf5.
+                  fr: Les Blancs sortent le fou c1 par b3 et Bb2, puis roquent. Les Noirs se développent par ...Bd6, roquent et défient le cavalier d3 par ...Bf5.
+                basis:
+                  by: chan
+                  at: '2026-10-01'

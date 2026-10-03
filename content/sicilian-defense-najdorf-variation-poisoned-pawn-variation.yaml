@@ -1,0 +1,89 @@
+# Sicilian Defense, Najdorf Variation, Poisoned Pawn Variation. Frozen defining line 1.e4 c5
+# 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5 e6 7.f4 Qb6, which ends on Black's ply; the
+# learner plays White, so the authored definingLine stops one ply earlier, on White's own
+# 7.f4 (a prefix of the frozen line, as the catalogue build allows), and 7...Qb6 is modelled
+# below as the first reply (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-najdorf-variation-poisoned-pawn-variation
+name: 'Sicilian Defense: Najdorf Variation, Poisoned Pawn Variation'
+eco: B97
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, d4, cxd4, Nxd4, Nf6, Nc3, a6, Bg5, e6, f4]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 7.f4 the pawns are level at seven each and the b2 pawn has no
+      defender, so Black can win it with the queen at the price of time: White has the
+      knights on c3 and d4 and the bishop on g5 out, while Black has developed only the f6
+      knight. That is treated as enough compensation for the line to be labelled sound. No
+      engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 7.f4. Số tốt ngang bằng, mỗi bên bảy. Tượng g5 tấn công mã f6, quân được hậu và tốt g7 bảo vệ, và mã d4 tấn công tốt e6, quân được tốt f7 và tượng c8 bảo vệ. Hậu Đen có thể lên b6 để tấn công mã d4 và tốt b2.
+    en: White has just played 7.f4, and the pawns are level at seven each. The bishop on g5 attacks the f6 knight, which the queen and the g7 pawn defend, and the knight on d4 attacks the e6 pawn, which the f7 pawn and the bishop on c8 defend. Black's queen can go to b6 to attack the knight on d4 and the b2 pawn.
+    fr: Les Blancs viennent de jouer 7.f4, et les pions sont égaux, sept de chaque côté. Le fou g5 attaque le cavalier f6, que la dame et le pion g7 défendent, et le cavalier d4 attaque le pion e6, que le pion f7 et le fou c8 défendent. La dame noire peut aller en b6 pour attaquer le cavalier d4 et le pion b2.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 7...Qb6 ở đây. Mục này chỉ mô hình hóa nước hậu lên b6.
+      en: Black plays something other than 7...Qb6 here. This entry models only the queen move to b6.
+      fr: Les Noirs jouent autre chose que 7...Qb6 ici. Cette entrée ne modélise que le déplacement de la dame en b6.
+  children:
+    - ply: Qb6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen chơi 7...Qb6, tấn công mã d4, quân được hậu d1 bảo vệ, và tốt b2, quân không có quân nào bảo vệ.
+        en: Black plays 7...Qb6, attacking the knight on d4, which the queen on d1 defends, and the b2 pawn, which nothing defends.
+        fr: Les Noirs jouent 7...Qb6, attaquant le cavalier d4, que la dame d1 défend, et le pion b2, que rien ne défend.
+      children:
+        - ply: Qd2
+          annotation:
+            vi: 'Trắng chơi 8.Qd2, bảo vệ mã d4 và đưa hậu ra, nhưng tốt b2 vẫn không có quân bảo vệ: hậu d2 không với tới nó vì tốt c2 chắn đường.'
+            en: 'White plays 8.Qd2, which defends the knight on d4 and brings the queen out, but the b2 pawn is still undefended: the queen on d2 does not reach it because the c2 pawn is in the way.'
+            fr: "Les Blancs jouent 8.Qd2, qui défend le cavalier d4 et sort la dame, mais le pion b2 reste sans défenseur : la dame d2 ne l'atteint pas car le pion c2 est sur le chemin."
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì 8...Qxb2 ở đây. Mục này chỉ mô hình hóa nước ăn tốt.
+              en: Black plays something other than 8...Qxb2 here. This entry models only taking the pawn.
+              fr: Les Noirs jouent autre chose que 8...Qxb2 ici. Cette entrée ne modélise que la prise du pion.
+          children:
+            - ply: Qxb2
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen ăn tốt b2 bằng 8...Qxb2, nên Đen có bảy tốt so với sáu của Trắng. Hậu đứng ở b2 tấn công xe a1, quân không có quân nào bảo vệ, cùng mã c3 và các tốt a2, c2.
+                en: Black takes the b2 pawn with 8...Qxb2, so Black has seven pawns to White's six. The queen on b2 attacks the rook on a1, which nothing defends, as well as the knight on c3 and the pawns on a2 and c2.
+                fr: Les Noirs prennent le pion b2 par 8...Qxb2, ce qui leur donne sept pions contre six. La dame en b2 attaque la tour a1, que rien ne défend, ainsi que le cavalier c3 et les pions a2 et c2.
+              children:
+                - ply: Rb1
+                  annotation:
+                    vi: Trắng tấn công hậu bằng 9.Rb1, đồng thời cứu xe khỏi bị ăn ở a1. Xe b1 được mã c3 bảo vệ, và Trắng không còn quyền nhập thành bên hậu.
+                    en: White attacks the queen with 9.Rb1, which also saves the rook from capture on a1. The rook on b1 is defended by the knight on c3, and White has lost the right to castle long.
+                    fr: Les Blancs attaquent la dame par 9.Rb1, ce qui sauve aussi la tour de la prise en a1. La tour b1 est défendue par le cavalier c3, et les Blancs ont perdu le droit de roquer côté dame.
+                  outcome:
+                    type: position
+                    evaluation:
+                      vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên tốt b2 chưa được lấy lại. Hậu b2 của Đen bị xe b1 tấn công và ô duy nhất nó đi được mà không bị tấn công là a3: mọi ô khác nó có thể tới, kể cả các nước ăn ở a2, b1, c2 và c3, đều bị một quân Trắng khống chế. Ngoài hậu ra Đen mới chỉ phát triển mã f6, còn mã b8, hai tượng c8 và f8 cùng hai xe vẫn đứng ở ô ban đầu, trong khi hai mã c3 và d4, tượng g5, hậu d2 và xe b1 của Trắng đã ra quân. Các nước ăn ...Qxa2, ...Qxc2, ...Qxc3, ...Qxb1+ và ...Nxe4 của Đen đều bị ăn lại.'
+                      en: "Count the pawns: White six, Black seven, so the b2 pawn has not come back. Black's queen on b2 is attacked by the rook on b1, and the only square it can go to without being attacked is a3: every other square it can reach, including its captures on a2, b1, c2 and c3, is covered by a white piece. Besides the queen Black has developed only the f6 knight, with the knight on b8, the bishops on c8 and f8 and both rooks still on their starting squares, while White has the knights on c3 and d4, the bishop on g5, the queen on d2 and the rook on b1 out. Black's captures ...Qxa2, ...Qxc2, ...Qxc3, ...Qxb1+ and ...Nxe4 are all recaptured."
+                      fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc le pion b2 n'est pas récupéré. La dame b2 des Noirs est attaquée par la tour b1, et la seule case où elle peut aller sans être attaquée est a3 : toutes les autres cases qu'elle peut atteindre, y compris ses prises en a2, b1, c2 et c3, sont couvertes par une pièce blanche. En dehors de la dame, les Noirs n'ont développé que le cavalier f6, le cavalier b8, les fous c8 et f8 et les deux tours restant sur leur case de départ, tandis que les Blancs ont sorti les cavaliers c3 et d4, le fou g5, la dame d2 et la tour b1. Les prises ...Qxa2, ...Qxc2, ...Qxc3, ...Qxb1+ et ...Nxe4 des Noirs sont toutes reprises."
+                    plan:
+                      vi: Đen phải xử lý con hậu đang bị tấn công, và ...Qa3 là ô duy nhất không bị tấn công; sau đó Trắng chọn giữa Bxf6, nước làm hỏng các tốt cánh vua của Đen, và f5, mở đường về phía vua ở e8. Đen tiếp tục bằng ...Nc6 để bắt đầu phát triển.
+                      en: Black has to deal with the attacked queen, and ...Qa3 is the only square where nothing attacks it; White then chooses between Bxf6, which breaks Black's kingside pawns after the recapture, and f5, which opens lines towards the king on e8. Black follows with ...Nc6 to start developing.
+                      fr: Les Noirs doivent s'occuper de la dame attaquée, et ...Qa3 est la seule case où rien ne l'attaque ; les Blancs choisissent alors entre Bxf6, qui abîme les pions de l'aile roi noire après la reprise, et f5, qui ouvre des lignes vers le roi en e8. Les Noirs poursuivent par ...Nc6 pour commencer à se développer.
+                    basis:
+                      by: chan
+                      at: '2026-10-01'

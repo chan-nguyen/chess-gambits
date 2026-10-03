@@ -1,0 +1,83 @@
+# Sicilian Defense, Najdorf Variation, Poisoned Pawn Accepted. Frozen defining line 1.e4 c5
+# 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6 6.Bg5 e6 7.f4 Qb6 8.Qd2 Qxb2 9.Rb1 Qa3, which ends
+# on Black's ply; the learner plays White, so the authored definingLine stops one ply
+# earlier, on White's own 9.Rb1 (a prefix of the frozen line, as the catalogue build
+# allows), and 9...Qa3 is modelled below as the first reply (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: sicilian-defense-najdorf-variation-poisoned-pawn-accepted
+name: 'Sicilian Defense: Najdorf Variation, Poisoned Pawn Accepted'
+eco: B97
+category: gambit
+side: white
+definingLine: [e4, c5, Nf3, d6, d4, cxd4, Nxd4, Nf6, Nc3, a6, Bg5, e6, f4, Qb6, Qd2, Qxb2, Rb1]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 9.Rb1 Black is a pawn up, seven pawns to six, but the queen on b2
+      is attacked by the rook and the only square where nothing attacks it is a3, and Black
+      has developed only the f6 knight besides the queen. That is treated as enough
+      compensation for the line to be labelled sound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 9.Rb1, tấn công hậu Đen ở b2, quân vừa ăn tốt b2 ở nước trước. Đen hơn một tốt, bảy tốt so với sáu, nhưng hậu chỉ còn một ô, a3, mà quân Trắng không tấn công được, và ngoài hậu Đen mới chỉ phát triển mã f6; mã b8 và hai tượng c8, f8 vẫn chưa di chuyển.
+    en: 'White has just played 9.Rb1, attacking the black queen on b2, which took the b2 pawn on the previous move. Black is a pawn up, seven pawns to six, but the only square the queen can go to without being attacked is a3, and besides the queen Black has developed only the f6 knight: the knight on b8 and the bishops on c8 and f8 have not moved.'
+    fr: "Les Blancs viennent de jouer 9.Rb1, attaquant la dame noire en b2, qui a pris le pion b2 au coup précédent. Les Noirs ont un pion de plus, sept contre six, mais la seule case où la dame peut aller sans être attaquée est a3, et en dehors de la dame les Noirs n'ont développé que le cavalier f6 : le cavalier b8 et les fous c8 et f8 n'ont pas bougé."
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước khác thay vì 9...Qa3 ở đây. Mục này chỉ mô hình hóa nước hậu lui về a3.
+      en: Black plays something other than 9...Qa3 here. This entry models only the queen retreat to a3.
+      fr: Les Noirs jouent autre chose que 9...Qa3 ici. Cette entrée ne modélise que le repli de la dame en a3.
+  children:
+    - ply: Qa3
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen lui hậu về a3, ô duy nhất mà không quân nào có thể ăn nó. Hậu tấn công mã c3 và tốt a2, cả hai đều đang được bảo vệ.
+        en: Black retreats the queen to a3, the one square where nothing can capture it. The queen attacks the knight on c3 and the a2 pawn, both of which are defended.
+        fr: Les Noirs reculent la dame en a3, la seule case où rien ne peut la capturer. La dame attaque le cavalier c3 et le pion a2, tous deux défendus.
+      children:
+        - ply: Bxf6
+          annotation:
+            vi: Trắng ăn mã bằng 10.Bxf6. Chỉ có tốt g7 mới ăn lại được ở f6, nên cấu trúc tốt của Đen sắp bị thay đổi.
+            en: White takes the knight with 10.Bxf6. Only the g7 pawn can recapture on f6, so Black's pawn structure is about to change.
+            fr: Les Blancs prennent le cavalier par 10.Bxf6. Seul le pion g7 peut reprendre en f6, de sorte que la structure de pions des Noirs va être modifiée.
+          dismissRest:
+            reason:
+              vi: Đen chơi một nước khác thay vì ăn lại bằng tốt g ở đây. Mục này chỉ mô hình hóa nước 10...gxf6.
+              en: Black plays something other than recapturing with the g-pawn here. This entry models only 10...gxf6.
+              fr: Les Noirs jouent autre chose que la reprise par le pion g ici. Cette entrée ne modélise que 10...gxf6.
+          children:
+            - ply: gxf6
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Đen ăn lại bằng 10...gxf6. Số tốt vẫn là bảy của Đen và sáu của Trắng, nhưng các tốt f7 và f6 của Đen giờ bị chồng và tốt h7 bị cô lập.
+                en: Black recaptures with 10...gxf6. The pawns are still seven for Black and six for White, but Black's pawns on f7 and f6 are now doubled and the h7 pawn is isolated.
+                fr: Les Noirs reprennent par 10...gxf6. Les pions sont toujours sept pour les Noirs et six pour les Blancs, mais les pions f7 et f6 des Noirs sont maintenant doublés et le pion h7 est isolé.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng sáu, Đen bảy, nên tốt chưa được lấy lại. Các tốt Đen bị chồng ở f7 và f6 và tốt h7 bị cô lập, không còn gì trên cột g, nên thế che chắn phía cánh vua của Đen đã bị phá vỡ. Cột b nửa mở cho xe b1 của Trắng, quân tấn công tốt b7 được tượng c8 bảo vệ. Hậu a3 của Đen tấn công mã c3 và tốt a2, cả hai đều được bảo vệ, và ngoài hậu ra các quân Đen còn lại chưa di chuyển. Các nước ăn của Trắng ở e6, b7 và a6 đều có thể bị ăn lại.'
+                  en: "Count the pawns: White six, Black seven, so the pawn has not come back. Black's pawns are doubled on f7 and f6 and the h7 pawn is isolated, with nothing left on the g-file, so the pawn cover on Black's kingside is broken. The b-file is half-open for White's rook on b1, which attacks the b7 pawn, defended by the bishop on c8. Black's queen on a3 attacks the knight on c3 and the a2 pawn, both defended, and besides the queen Black's remaining pieces have not moved. White's captures on e6, b7 and a6 can each be recaptured."
+                  fr: "Comptez les pions : six pour les Blancs, sept pour les Noirs, donc le pion n'est pas récupéré. Les pions noirs sont doublés en f7 et f6 et le pion h7 est isolé, sans rien sur la colonne g, de sorte que la couverture de pions de l'aile roi noire est brisée. La colonne b est semi-ouverte pour la tour b1 des Blancs, qui attaque le pion b7, défendu par le fou c8. La dame a3 des Noirs attaque le cavalier c3 et le pion a2, tous deux défendus, et en dehors de la dame les pièces noires restantes n'ont pas bougé. Les prises des Blancs en e6, b7 et a6 peuvent chacune être reprises."
+                plan:
+                  vi: Trắng phát triển bằng Be2 và nhập thành ngắn, giữ xe trên cột b nửa mở để nhắm vào tốt b7. Đen phát triển bằng ...Nc6 và ...Be7 rồi tìm cách đưa vua vào nơi an toàn.
+                  en: White develops with Be2 and castles short, keeping the rook on the half-open b-file against the b7 pawn. Black develops with ...Nc6 and ...Be7 and tries to bring the king to safety.
+                  fr: Les Blancs se développent par Be2 et roquent côté roi, en gardant la tour sur la colonne b semi-ouverte contre le pion b7. Les Noirs se développent par ...Nc6 et ...Be7 et cherchent à mettre le roi à l'abri.
+                basis:
+                  by: chan
+                  at: '2026-10-01'

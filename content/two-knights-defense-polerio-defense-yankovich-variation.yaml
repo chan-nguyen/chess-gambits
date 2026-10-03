@@ -1,0 +1,66 @@
+# Italian Game, Two Knights Defense, Polerio Defense, Yankovich Variation. Frozen defining
+# line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.d3 h6 7.Nf3 e4 8.Qe2 Nxc4 9.dxc4
+# Bc5 10.Nfd2, which ends on White's ply; the learner plays Black, so the authored
+# definingLine stops one ply earlier, on Black's own 9...Bc5 (a prefix of the frozen line,
+# as the catalogue build allows), and 10.Nfd2 is modelled below as the first reply
+# (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: two-knights-defense-polerio-defense-yankovich-variation
+name: 'Italian Game: Two Knights Defense, Polerio Defense, Yankovich Variation'
+eco: C58
+category: gambit
+side: black
+definingLine:
+  [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Na5, d3, h6, Nf3, e4, Qe2, Nxc4, dxc4, Bc5]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 9...Bc5 White is a pawn up, eight pawns to seven, but its c-pawns
+      are doubled on c2 and c4 after the exchange on c4, Black has the bishop pair, and the
+      bishop on c5 bears on the f2 pawn while White's king has not castled. That is treated
+      as enough compensation for the line to be labelled sound. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 9...Bc5. Trắng có tám tốt, Đen bảy tốt, nhưng cuộc đổi quân ở c4 để lại cho Trắng hai tốt chồng ở c2 và c4, còn Đen có cặp tượng. Mã f3 của Trắng không gặp nguy vì tốt e4 bên cạnh bị hậu e2 ghim vào vua e8, nên không ăn được mã; tượng c5 tấn công tốt f2, quân được hậu và vua bảo vệ.
+    en: Black has just played 9...Bc5. White has eight pawns to Black's seven, but the exchange on c4 has left White with doubled pawns on c2 and c4, and Black has the bishop pair. White's knight on f3 is not in danger, because the neighbouring e4 pawn is pinned to the king on e8 by the queen on e2 and cannot take it; the bishop on c5 attacks the f2 pawn, which the queen and the king defend.
+    fr: Les Noirs viennent de jouer 9...Bc5. Les Blancs ont huit pions contre sept, mais l'échange en c4 leur a laissé des pions doublés en c2 et c4, et les Noirs ont la paire de fous. Le cavalier f3 des Blancs n'est pas en danger, car le pion e4 voisin est cloué au roi e8 par la dame e2 et ne peut donc pas le prendre ; le fou c5 attaque le pion f2, que la dame et le roi défendent.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 10.Nfd2 ở đây. Mục này chỉ mô hình hóa nước mã f3 lên d2.
+      en: White plays something other than 10.Nfd2 here. This entry models only the knight move from f3 to d2.
+      fr: Les Blancs jouent autre chose que 10.Nfd2 ici. Cette entrée ne modélise que le déplacement du cavalier de f3 en d2.
+  children:
+    - ply: Nfd2
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng đưa mã f3 lên d2, nơi nó cùng hậu e2 tấn công tốt e4, quân chỉ có mã f6 bảo vệ.
+        en: White moves the f3 knight to d2, where it attacks the e4 pawn together with the queen on e2; only the f6 knight defends that pawn.
+        fr: Les Blancs amènent le cavalier f3 en d2, d'où il attaque avec la dame e2 le pion e4, que seul le cavalier f6 défend.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên tốt chưa được lấy lại, nhưng các tốt c của Trắng bị chồng ở c2 và c4 và Đen có cặp tượng. Tốt e4 bị mã d2 và hậu tấn công mà chỉ có mã f6 bảo vệ, và hậu e2 ghim nó vào vua e8. Tượng c5 tấn công f2, quân được hậu và vua bảo vệ, tốt c2 không có quân bảo vệ, và các nước ăn của Đen ở d5 và f2 đều có thể bị ăn lại.'
+          en: "Count the pawns: White eight, Black seven, so the pawn has not come back, but White's c-pawns are doubled on c2 and c4 and Black has the bishop pair. The e4 pawn is attacked by the knight on d2 and the queen and defended only by the f6 knight, and the queen on e2 pins it to the king on e8. The bishop on c5 attacks f2, which the queen and the king defend, the c2 pawn has no defender, and Black's captures on d5 and f2 can all be recaptured."
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc le pion n'est pas récupéré, mais les pions c des Blancs sont doublés en c2 et c4 et les Noirs ont la paire de fous. Le pion e4 est attaqué par le cavalier d2 et la dame et défendu seulement par le cavalier f6, et la dame e2 le cloue au roi e8. Le fou c5 attaque f2, que la dame et le roi défendent, le pion c2 n'a aucun défenseur, et les prises des Noirs en d5 et f2 peuvent toutes être reprises."
+        plan:
+          vi: Đen nhập thành, đưa vua khỏi cột e và gỡ thế ghim cho tốt e4, rồi phát triển tượng bằng ...Bg4. Trắng nhập thành và đưa mã lên b3 để thách thức tượng c5.
+          en: Black castles, which takes the king off the e-file and unpins the e4 pawn, and develops the bishop with ...Bg4. White castles and brings the knight to b3 to challenge the bishop on c5.
+          fr: Les Noirs roquent, ce qui sort le roi de la colonne e et débloque le pion e4, puis développent le fou par ...Bg4. Les Blancs roquent et amènent le cavalier en b3 pour défier le fou c5.
+        basis:
+          by: chan
+          at: '2026-10-01'
