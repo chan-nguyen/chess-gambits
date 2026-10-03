@@ -1,0 +1,157 @@
+# Scholar's Mate, from White's side. The frozen defining line is 1.e4 e5 2.Qh5 and it ends
+# on White's own ply, so the root is an opponent node and Black's replies can carry a quality
+# (docs/CONTEXT.md, invariant 5). The Black side of the same position is taught by
+# `kings-pawn-game-wayward-queen-attack-kiddie-countergambit`; this entry is the trap itself.
+#
+# ECO is C20, matching `traps.yaml` and the dataset row "King's Pawn Game: Wayward Queen
+# Attack" (1.e4 e5 2.Qh5). The dataset has no row for the trap, which is a mate and not a
+# variation.
+#
+# Source: #173 item 9 (chesstrapguide.com, 2...Nc6 3.Bc4 Nf6?? 4.Qxf7#). The line replays and
+# the mate is real, but #173 asked for the sound defences to be answered honestly, and they
+# are what this entry is mostly about: 3...g6 kicks the queen, and 3...Qe7, 3...Qf6 and
+# 3...Nh6 all guard f7. The Qxf7# mate itself is claimed with `type: trap` and nothing else;
+# the move count and the certificate are produced by `npm run prove:mates` and replayed by
+# `npm run verify:mates` (ADR-0005). Every other line here was replayed with chess.js, and
+# the relative strength of the replies was cross-checked with the Stockfish 19 build the
+# analysis page ships (depth 16, an estimate and not a proof). By that estimate 2.Qh5 itself
+# is a shade worse than level for White, which is what `dubious` records.
+id: scholars-mate
+name: "Scholar's Mate"
+eco: C20
+category: trap
+side: white
+definingLine: [e4, e5, Qh5]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement, and the same label `traps.yaml` carries. Against 2...Nc6 3.Bc4 the mate
+      works on any reply that leaves f7 guarded by the king alone, but a player who has seen
+      the idea once answers 3...g6, 3...Qe7 or 3...Qf6 and White has spent a queen move on
+      nothing. The mate is not a judgement; it is proved. The engine cross-check was a depth
+      limited estimate from the analysis page's own Stockfish build, not a database query.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date. The mate is not — it is machine-proved and replayed by CI.
+tree:
+  counts:
+    legal: { count: legalReplies, expect: 26 }
+    mated: { count: matedBy, ply: 'Qxe5#', expect: 1 }
+  annotation:
+    vi: 'Trắng ra hậu ngay nước thứ hai. Hậu ở h5 nhìn dọc hàng ngang vào tốt e5, mà tốt ấy chưa có quân nào bảo vệ, và nhìn theo đường chéo h5-f7 vào tốt f7, ô chỉ có vua Đen canh giữ. Đen phải lo cho tốt e5 trước, và nước tự nhiên nhất là 2...Nc6, vừa bảo vệ tốt vừa phát triển một quân.'
+    en: "White brings the queen out on move two. From h5 it looks along the fifth rank at the e5 pawn, which nothing defends yet, and along the h5-f7 diagonal at the f7 pawn, a square guarded by Black's king alone. Black has to see to the e5 pawn first, and the most natural move is 2...Nc6, which defends it and develops a piece in one go."
+    fr: "Les Blancs sortent la dame dès le deuxième coup. Depuis h5 elle regarde le long de la cinquième rangée vers le pion e5, que rien ne défend encore, et le long de la diagonale h5-f7 vers le pion f7, une case que le roi noir garde seul. Les Noirs doivent d'abord s'occuper du pion e5, et le coup le plus naturel est 2...Cc6, qui le défend et développe une pièce du même coup."
+  dismissRest:
+    reason:
+      vi: 'Đen không chơi 2...Nc6, nên không có thế Bc4 và Qxf7 như ở nhánh dưới. Nước hay gặp nhất trong số này là 2...Nf6, đánh thẳng vào hậu; Trắng ăn Qxe5+ kèm chiếu, và nhánh ấy được dạy từ phía quân Đen ở mục Kiddie Countergambit. Chỉ có {mated} trong {legal} nước hợp lệ ở đây bị chiếu bí ngay, đó là 2...Ke7 vì Qxe5#.'
+      en: "Black does not play 2...Nc6, so the game of Bc4 and Qxf7 below does not arise. The most common of these is 2...Nf6, which hits the queen at once; White takes Qxe5+ with check, and that branch is taught from Black's side in the Kiddie Countergambit entry. Only {mated} of the {legal} legal replies here is mated on the spot, 2...Ke7, by Qxe5#."
+      fr: "Les Noirs ne jouent pas 2...Cc6, donc la partie de Fc4 et Dxf7 ci-dessous n'a pas lieu. Le plus fréquent de ces coups est 2...Cf6, qui attaque aussitôt la dame ; les Blancs prennent Dxe5+ avec échec, et cette branche est enseignée du côté noir dans l'entrée Kiddie Countergambit. Seul {mated} des {legal} coups légaux ici est maté sur-le-champ, 2...Re7, par Dxe5#."
+  children:
+    - ply: Nc6
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: 'Đen bảo vệ tốt e5 bằng mã và phát triển một quân cùng lúc. Mã c6 là nước tự nhiên nhất và cũng là nước cái bẫy chờ sẵn, vì nó không đụng gì tới ô f7.'
+        en: 'Black defends the e5 pawn with a knight and develops a piece in the same move. It is the most natural move and the one the trap is waiting for, because it does nothing for the f7 square.'
+        fr: "Les Noirs défendent le pion e5 avec un cavalier et développent une pièce du même coup. C'est le coup le plus naturel et celui qu'attend le piège, car il ne fait rien pour la case f7."
+      children:
+        - ply: Bc4
+          annotation:
+            vi: 'Trắng đưa tượng ra c4. Giờ hậu h5 và tượng c4 cùng nhắm vào f7, trong khi ô ấy chỉ có vua Đen giữ. Tượng bảo vệ chính ô mà hậu sắp ăn, nên vua không thể ăn lại.'
+            en: "White develops the bishop to c4. Now the queen on h5 and the bishop on c4 both bear on f7, and only Black's king guards it. The bishop defends the very square the queen is about to take on, so the king cannot take back."
+            fr: 'Les Blancs développent le fou en c4. Désormais la dame en h5 et le fou en c4 visent tous deux f7, que le roi noir est seul à garder. Le fou défend la case même où la dame va prendre, si bien que le roi ne peut pas reprendre.'
+          counts:
+            legal: { count: legalReplies, expect: 28 }
+            mated: { count: matedBy, ply: 'Qxf7#', expect: 20 }
+          dismissed:
+            - ply: Qe7
+              reason: >-
+                Guards f7 with the queen, so Qxf7+ Qxf7 Bxf7+ Kxf7 only gives up a queen and a
+                bishop for a queen and a pawn. White has to go on developing.
+            - ply: Qf6
+              reason: >-
+                Guards f7 with the queen, the same way as 3...Qe7. Qxf7+ Qxf7 Bxf7+ Kxf7 is
+                again a bishop given for a pawn.
+            - ply: Nh6
+              reason: >-
+                Guards f7 with the knight. Qxf7+ Nxf7 Bxf7+ Kxf7 gives up a queen and a bishop
+                for a pawn and a knight.
+            - ply: Qg5
+              reason: >-
+                Offers a queen trade but leaves f7 to the king. 4.Qxf7+ Kd8 is forced and
+                5.Qxf8# mates, one move later than the others.
+            - ply: Qh4
+              reason: >-
+                Same as 3...Qg5. 4.Qxf7+ Kd8 is forced and 5.Qxf8# mates.
+            - ply: Ke7
+              reason: >-
+                Steps onto the square the queen would give check on. 4.Qxf7+ leaves the king
+                one legal move, Kd6, and wins a pawn with check.
+            - ply: d5
+              reason: >-
+                Attacks the bishop, but 4.Bxd5 wins the pawn, and 4...Qxd5? loses the queen
+                to 5.exd5.
+          dismissRest:
+            reason:
+              vi: 'Nước nào trong số còn lại cũng để f7 chỉ còn vua canh, và Qxf7# là chiếu bí ngay. Cả thảy có {mated} trong {legal} nước hợp lệ ở đây bị Qxf7# chiếu bí, trong đó có cả 3...Nf6 được dựng thành nhánh riêng bên dưới.'
+              en: 'Every one of the remaining replies leaves f7 guarded by the king alone, and Qxf7# is mate at once. In all, {mated} of the {legal} legal replies here are mated by Qxf7#, 3...Nf6 among them, which has its own branch below.'
+              fr: 'Chacun des coups restants laisse f7 gardé par le seul roi, et Dxf7# est mat sur-le-champ. En tout, {mated} des {legal} coups légaux ici sont matés par Dxf7#, dont 3...Cf6, qui a sa propre branche ci-dessous.'
+          children:
+            - ply: Nf6
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: 'Đen đuổi hậu bằng mã, một phản xạ rất tự nhiên. Mã f6 tấn công hậu h5 nhưng không canh f7, và hậu Trắng chẳng cần chạy đi đâu: nó ăn luôn ở f7. Phần còn lại do máy chứng minh chứ không do người khẳng định.'
+                en: 'Black chases the queen with a knight, a perfectly natural reflex. The knight on f6 attacks the queen on h5 but does not guard f7, and the queen has no need to move: it simply takes on f7. What follows is proved by machine rather than asserted by a person.'
+                fr: "Les Noirs chassent la dame avec un cavalier, un réflexe parfaitement naturel. Le cavalier f6 attaque la dame en h5 mais ne garde pas f7, et la dame n'a nul besoin de bouger : elle prend simplement en f7. La suite est prouvée par la machine plutôt qu'affirmée par un humain."
+              outcome:
+                type: trap
+            - ply: g6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: 'Đen đẩy tốt g6 đuổi hậu bằng một tốt, và đây là câu trả lời đúng. Hậu Trắng không còn ở lại h5 được, và Đen có thêm ô g7 cho tượng. Cái bẫy chỉ còn lại cho ai chưa từng thấy nó.'
+                en: 'Black drives the queen away with a pawn, and this is the right answer. The white queen cannot stay on h5, and Black gains the g7 square for the bishop. The trap is left for those who have not seen it before.'
+                fr: "Les Noirs chassent la dame avec un pion, et c'est la bonne réponse. La dame blanche ne peut pas rester en h5, et les Noirs gagnent la case g7 pour le fou. Le piège ne reste bon que contre ceux qui ne l'ont jamais vu."
+              children:
+                - ply: Qf3
+                  annotation:
+                    vi: 'Hậu về f3, vẫn nhắm vào f7 cùng tượng c4 và đe doạ Qxf7# lần nữa. Đổi lại, f3 là ô mà mã g1 muốn tới, nên mã ấy sẽ phải đi đường khác.'
+                    en: 'The queen goes to f3, still aiming at f7 together with the bishop on c4 and threatening Qxf7# again. In exchange, f3 is the square the g1 knight wants, so that knight will have to go another way.'
+                    fr: 'La dame va en f3, visant toujours f7 avec le fou c4 et menaçant de nouveau Dxf7#. En contrepartie, f3 est la case que veut le cavalier g1, qui devra donc passer par ailleurs.'
+                  counts:
+                    legal: { count: legalReplies, expect: 32 }
+                    mated: { count: matedBy, ply: 'Qxf7#', expect: 22 }
+                  dismissRest:
+                    reason:
+                      vi: 'Đen chơi một nước khác. {Mated} trong {legal} nước hợp lệ ở đây bị Qxf7# chiếu bí ngay, vì sau g6 f7 vẫn chỉ còn vua canh. Những nước còn lại không để bị chiếu bí ngay, và 4...Nf6, chắn cột f giữa hậu f3 và tốt f7, là nước đáng học nhất nên được dựng thành nhánh riêng.'
+                      en: 'Black plays something else. {Mated} of the {legal} legal replies here are mated at once by Qxf7#, because after ...g6 the f7 square is still guarded by the king alone. The remaining replies are not mated at once, and 4...Nf6, which blocks the f-file between the queen on f3 and the pawn on f7, is the one worth learning and has its own branch.'
+                      fr: "Les Noirs jouent autre chose. {Mated} des {legal} coups légaux ici sont matés sur-le-champ par Dxf7#, car après ...g6 la case f7 n'est toujours gardée que par le roi. Les coups restants ne sont pas matés sur-le-champ, et 4...Cf6, qui coupe la colonne f entre la dame f3 et le pion f7, est le plus utile à connaître et a sa propre branche."
+                  children:
+                    - ply: Nf6
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: 'Đen chắn cột f bằng mã và phát triển thêm một quân. Hậu Trắng không còn thấy f7, tượng c4 một mình chẳng làm được gì, và Đen đã thoát khỏi mọi đòn tấn công.'
+                        en: 'Black blocks the f-file with a knight and develops another piece. The white queen no longer sees f7, the bishop on c4 can do nothing on its own, and Black has come through every attack.'
+                        fr: 'Les Noirs coupent la colonne f avec un cavalier et développent une pièce de plus. La dame blanche ne voit plus f7, le fou c4 ne peut rien tout seul, et les Noirs ont traversé toutes les attaques.'
+                      outcome:
+                        type: position
+                        evaluation:
+                          vi: 'Đếm quân thì hai bên ngang nhau, mỗi bên tám tốt, hai mã, hai tượng, hai xe và một hậu. Đen đã ra cả hai mã, còn Trắng mới ra tượng và hậu, mà hậu lại đang đứng trên ô f3 của mã g1. Cái bẫy không thành: f7 có vua giữ, hậu f3 bị mã f6 chắn đường, và Bxf7+ chỉ mất tượng đổi một tốt.'
+                          en: 'By the count the sides are level, each with eight pawns, two knights, two bishops, two rooks and a queen. Black has developed both knights, while White has only brought out the bishop and the queen, and the queen is standing on the square the g1 knight wants. The trap has failed: the king guards f7, the knight on f6 cuts the queen off from it, and Bxf7+ would only lose the bishop for a pawn.'
+                          fr: "Au décompte, les deux camps sont à égalité, chacun avec huit pions, deux cavaliers, deux fous, deux tours et une dame. Les Noirs ont développé leurs deux cavaliers, alors que les Blancs n'ont sorti que le fou et la dame, et la dame occupe la case que veut le cavalier g1. Le piège a échoué : le roi garde f7, le cavalier f6 coupe la dame de cette case, et Fxf7+ ne ferait que perdre le fou pour un pion."
+                        plan:
+                          vi: 'Trắng chơi Ne2 để mã có chỗ đi, rồi d3, Nbc3 và O-O như một thế cờ Ý bình thường, chấp nhận rằng nước hậu ra sớm đã mất vài nhịp. Đen chơi Bg7, d6 và O-O, và chơi ...Na5 nếu muốn đổi con tượng c4. Bài học của nhánh này: cái bẫy chỉ bắt được người chưa biết nó, còn với người đã biết thì đó là một nước hậu bỏ phí.'
+                          en: 'White plays Ne2 so the knight has a square, then d3, Nbc3 and castling as in an ordinary Italian setup, accepting that the early queen move cost a few tempi. Black plays ...Bg7, ...d6 and castles, and plays ...Na5 if it wants to trade off the bishop on c4. The lesson of this branch is that the trap only catches people who do not know it, and against anyone who does it is a wasted queen move.'
+                          fr: "Les Blancs jouent Ce2 pour que le cavalier ait une case, puis d3, Cbc3 et le roque comme dans une mise en place italienne ordinaire, en acceptant que la sortie précoce de la dame ait coûté quelques temps. Les Noirs jouent ...Fg7, ...d6 et roquent, et jouent ...Ca5 s'ils veulent échanger le fou c4. La leçon de cette branche est que le piège ne prend que ceux qui ne le connaissent pas, et contre qui le connaît ce n'est qu'un coup de dame perdu."
+                        basis:
+                          by: chan
+                          at: '2026-10-01'

@@ -1,0 +1,146 @@
+# The Zaitsik-Zichulidze Trap, in the Reti Opening. The defining line is 1.Nf3 d5 2.c4 Nf6
+# 3.g3 Bf5 4.cxd5 and it ends on White's own ply, so the root is an opponent node and
+# Black's 4...Nxd5 can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# ECO is A09, the dataset's "Reti Opening" row for 1.Nf3 d5 2.c4 and the longest row on the
+# way to this position; it has no row for 2...Nf6 or 3.g3 (ADR-0008: a trap carries the ECO of
+# the opening it sits inside).
+#
+# The source is chesstrapguide.com's Zaitsik-Zichulidze page (#174, item 6): 4.cxd5 Nxd5 5.e4!
+# Bxe4?? 6.Qa4+, the root being 5.e4. It replays and the second blow works, but replaying
+# showed that the mistake is the earlier 4...Nxd5 and not the 5...Bxe4 the page stops at: the
+# e-pawn forks the knight on d5 and the bishop on f5, and every one of Black's replies but
+# one lets the pawn take a piece (checked for all 34). Taking the pawn is the one move that
+# avoids the fork, and it loses the bishop to Qa4+. So the root is placed at 4.cxd5, one ply
+# earlier than the issue suggests, so that 4...Nxd5 is a modelled reply with a quality
+# (invariant 5) and 4...Qxd5, the recapture that does not fork, is shown beside it.
+#
+# No outcome here is a claimed mate: the leaves are material assessments. "Well ahead" and
+# "a piece" for the replies the catch-alls cover were checked on each of them with a private
+# engine run (never shipped, never cited as an authority).
+id: reti-opening-zaitsik-zichulidze-trap
+name: 'Réti Opening: Zaitsik-Zichulidze Trap'
+eco: A09
+category: trap
+side: white
+definingLine: [Nf3, d5, c4, Nf6, g3, Bf5, cxd5]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement about White's play, not about the trap springing: 4.cxd5 is a normal
+      capture and 4...Qxd5 5.Nc3 leaves the game level and healthy for White. The trap
+      punishes 4...Nxd5 and nothing else.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the material counts, which were computed by hand from
+    the derived positions.
+tree:
+  annotation:
+    vi: Trắng vừa ăn tốt d5 bằng tốt c. Mã f6 và tượng f5 của Đen đều đã ra quân, và Đen phải chọn cách ăn lại. Ăn bằng mã (4...Nxd5) là nước tự nhiên nhất, nhưng nó đặt mã d5 và tượng f5 đúng vào hai ô mà một tốt đứng ở e4 sẽ đánh cùng lúc.
+    en: White has just taken on d5 with the c-pawn. Black's knight on f6 and bishop on f5 are both out, and Black has to choose how to recapture. Recapturing with the knight (4...Nxd5) is the most natural, but it puts the knight on d5 and the bishop on f5 on the two squares a pawn on e4 attacks at once.
+    fr: Les Blancs viennent de prendre en d5 avec le pion c. Le cavalier f6 et le fou f5 des Noirs sont sortis, et les Noirs doivent choisir comment reprendre. Reprendre avec le cavalier (4...Nxd5) est le plus naturel, mais cela place le cavalier d5 et le fou f5 sur les deux cases qu'un pion en e4 attaque à la fois.
+  dismissRest:
+    reason:
+      vi: Đen không ăn lại bằng mã hay bằng hậu, nên đòn phân thân của tốt e4 lên d5 và f5 không có ở đây. Mục này không vẽ tiếp những nhánh đó. Nếu Đen để hở một quân thì Trắng lấy, còn không thì Trắng phát triển bằng Bg2, Nc3 và nhập thành.
+      en: Black recaptures with neither the knight nor the queen, so the e4 fork on d5 and f5 is not available here. This entry does not map those branches. If Black leaves a piece loose White takes it, and otherwise White develops with Bg2, Nc3 and castling.
+      fr: Les Noirs ne reprennent ni avec le cavalier ni avec la dame, la fourchette e4 sur d5 et f5 n'existe donc pas ici. Cette entrée ne cartographie pas ces branches. Si les Noirs laissent une pièce en prise, les Blancs la prennent, sinon ils se développent par Bg2, Nc3 et le roque.
+  children:
+    - ply: Nxd5
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: Đen ăn lại bằng mã, nước tự nhiên nhất. Nhưng mã d5 và tượng f5 giờ nằm ở hai ô mà một tốt trên e4 sẽ đánh cùng lúc, và tốt e2 chỉ cần một nước để lên đó.
+        en: Black recaptures with the knight, the most natural move. But the knight on d5 and the bishop on f5 now stand on the two squares a pawn on e4 attacks at once, and the e2 pawn needs only one move to get there.
+        fr: Les Noirs reprennent avec le cavalier, le coup le plus naturel. Mais le cavalier d5 et le fou f5 occupent maintenant les deux cases qu'un pion en e4 attaque à la fois, et le pion e2 n'a besoin que d'un coup pour y arriver.
+      children:
+        - ply: e4
+          annotation:
+            vi: e4! Tốt tấn công mã d5 và tượng f5 cùng một lúc. Cách duy nhất để thoát khỏi đòn phân thân là ăn chính tốt e4 bằng tượng, và cách đó rơi vào Qa4+.
+            en: e4! The pawn attacks the knight on d5 and the bishop on f5 at the same time. The only way out of the fork is to take the pawn itself with the bishop, and that walks into Qa4+.
+            fr: e4 ! Le pion attaque en même temps le cavalier d5 et le fou f5. La seule façon d'échapper à la fourchette est de prendre le pion lui-même avec le fou, et cela tombe sur Qa4+.
+          dismissRest:
+            reason:
+              vi: Mọi nước khác đều để tốt e4 ăn một quân, exd5 hoặc exf5, và Đen chỉ lấy lại được cùng lắm là một hay hai tốt. Gồm cả 5...Nb4 và 5...Nf6, nơi tốt ăn tượng f5, lẫn 5...Bg4, nước chống đỡ cứng đầu nhất, nơi 6.exd5 ăn mã.
+              en: Every other reply lets the e4 pawn take a piece, exd5 or exf5, and Black gets back a pawn or two at most. That includes 5...Nb4 and 5...Nf6, where the pawn takes the bishop on f5, and 5...Bg4, the most resilient defence, where 6.exd5 takes the knight.
+              fr: Toute autre réponse laisse le pion e4 prendre une pièce, exd5 ou exf5, et les Noirs ne récupèrent qu'un pion ou deux au mieux. Cela vaut pour 5...Nb4 et 5...Nf6, où le pion prend le fou f5, comme pour 5...Bg4, la défense la plus tenace, où 6.exd5 prend le cavalier.
+          children:
+            - ply: Bxe4
+              replyQuality: blunder
+              frequency: common
+              annotation:
+                vi: Đen ăn tốt e4 bằng tượng. Trông như vừa cứu quân vừa hơn một tốt, nhưng tượng e4 giờ nằm trên hàng 4 thông thoáng với hậu Trắng, còn vua e8 nằm trên đường chéo a4-e8.
+                en: Black takes the e4 pawn with the bishop. It looks as if the piece is saved and a pawn won, but the bishop on e4 now stands on a fourth rank open to the white queen, and the king on e8 lies on the a4-e8 diagonal.
+                fr: Les Noirs prennent le pion e4 avec le fou. On dirait que la pièce est sauvée et un pion gagné, mais le fou e4 se trouve maintenant sur une quatrième rangée ouverte à la dame blanche, et le roi e8 sur la diagonale a4-e8.
+              children:
+                - ply: 'Qa4+'
+                  counts:
+                    legal: { count: legalReplies, expect: 5 }
+                  annotation:
+                    vi: Qa4+! Hậu chiếu vua e8 dọc đường chéo a4-e8 và đồng thời đánh vào tượng e4 dọc hàng 4. Không nước đỡ chiếu nào bảo vệ được tượng, nên tượng e4 sẽ rơi.
+                    en: Qa4+! The queen checks the king on e8 along the a4-e8 diagonal and attacks the bishop on e4 along the fourth rank at the same time. No way of meeting the check protects the bishop, so the bishop on e4 falls.
+                    fr: Qa4+ ! La dame donne échec au roi e8 sur la diagonale a4-e8 et attaque en même temps le fou e4 sur la quatrième rangée. Aucune parade à l'échec ne protège le fou, le fou e4 tombe donc.
+                  dismissRest:
+                    reason:
+                      vi: Đen có {legal} nước hợp lệ để đỡ chiếu, và 6...c6 ở trên là nước tự nhiên nhất. Các nước còn lại là 6...b5, 6...Nc6, 6...Nd7 và 6...Qd7, và không nước nào bảo vệ được tượng e4, nên Trắng ăn nó bằng 7.Qxe4 trong mọi nhánh.
+                      en: Black has {legal} legal ways to meet the check, and 6...c6 above is the most natural. The others are 6...b5, 6...Nc6, 6...Nd7 and 6...Qd7, and none of them protects the bishop on e4, so White takes it with 7.Qxe4 in every branch.
+                      fr: Les Noirs ont {legal} façons légales de parer l'échec, et 6...c6 ci-dessus est la plus naturelle. Les autres sont 6...b5, 6...Nc6, 6...Nd7 et 6...Qd7, et aucune ne protège le fou e4, donc les Blancs le prennent par 7.Qxe4 dans chaque branche.
+                  children:
+                    - ply: c6
+                      replyQuality: mistake
+                      frequency: common
+                      annotation:
+                        vi: Đen chặn chiếu bằng tốt c, nước tự nhiên nhất vì nó còn bảo vệ mã d5. Nhưng tốt c6 không bảo vệ được tượng e4, và hậu a4 vẫn nhìn thẳng vào đó.
+                        en: Black blocks the check with the c-pawn, the most natural move since it also protects the knight on d5. But the c6 pawn does not protect the bishop on e4, and the queen on a4 still looks straight at it.
+                        fr: Les Noirs parent l'échec avec le pion c, le coup le plus naturel puisqu'il protège aussi le cavalier d5. Mais le pion c6 ne protège pas le fou e4, et la dame a4 le fixe toujours.
+                      children:
+                        - ply: Qxe4
+                          annotation:
+                            vi: Qxe4. Hậu ăn tượng, và Trắng hơn một tượng đổi lấy một tốt. Hậu e4 cũng đánh vào mã d5, nhưng mã được tốt c6 và hậu d8 bảo vệ.
+                            en: Qxe4. The queen takes the bishop, and White is a bishop up for a pawn. The queen on e4 also hits the knight on d5, but the knight is protected by the c6 pawn and the queen on d8.
+                            fr: Qxe4. La dame prend le fou, et les Blancs ont un fou pour un pion. La dame e4 attaque aussi le cavalier d5, mais celui-ci est protégé par le pion c6 et la dame d8.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Trắng hơn một tượng đổi lấy một tốt. Trắng còn hai tượng, hai mã, hậu, hai xe và sáu tốt, Đen còn một tượng, hai mã, hậu, hai xe và bảy tốt. Ngoài ra Trắng đã mất tốt e, còn tượng f8 của Đen là tượng duy nhất còn lại.
+                              en: White is a bishop up for a pawn. White has two bishops, two knights, a queen, two rooks and six pawns, Black one bishop, two knights, a queen, two rooks and seven pawns. White has given up the e-pawn, and the bishop on f8 is the only bishop Black has left.
+                              fr: Les Blancs ont un fou pour un pion. Ils ont deux fous, deux cavaliers, une dame, deux tours et six pions, les Noirs un fou, deux cavaliers, une dame, deux tours et sept pions. Les Blancs ont abandonné le pion e, et le fou f8 est le seul fou qui reste aux Noirs.
+                            plan:
+                              vi: Trắng đưa tượng ra g2, nhập thành và phát triển nốt các quân, rồi đổi quân để giữ lợi thế vật chất. Đen có các tốt c6 và e7 để mở đường phát triển, nhưng thiếu một tượng thì khó lấy lại được gì.
+                              en: White puts the bishop on g2, castles and finishes development, then trades pieces to keep the material edge. Black has the c6 and e7 pawns to open lines for development, but a bishop down there is little to get back.
+                              fr: Les Blancs mettent le fou en g2, roquent et achèvent leur développement, puis échangent les pièces pour conserver l'avantage matériel. Les Noirs ont les pions c6 et e7 pour ouvrir des lignes de développement, mais avec un fou de moins il y a peu à regagner.
+                            basis:
+                              by: chan
+                              at: '2026-10-01'
+    - ply: Qxd5
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn lại bằng hậu và giữ mã ở f6. Không quân nào bị mất, nhưng hậu đứng giữa bàn cờ sẽ bị mã c3 đuổi đi.
+        en: Black recaptures with the queen and keeps the knight on f6. Nothing is lost, but a queen in the middle of the board can be chased by a knight on c3.
+        fr: Les Noirs reprennent avec la dame et gardent le cavalier en f6. Rien n'est perdu, mais une dame au centre de l'échiquier peut être chassée par un cavalier en c3.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Nc3. Mã vừa ra quân vừa đánh vào hậu d5, nên Trắng được thêm một nhịp phát triển.
+            en: Nc3. The knight develops and attacks the queen on d5 at the same time, so White gains a tempo in development.
+            fr: Nc3. Le cavalier se développe et attaque la dame d5 en même temps, les Blancs gagnent donc un temps de développement.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau, mỗi bên còn đủ quân và bảy tốt vì tốt c của Trắng và tốt d của Đen đã đổi cho nhau. Hậu d5 của Đen đang bị mã c3 tấn công nên phải đi tiếp, và đó là nhịp mà Trắng vừa lấy được.
+              en: Material is level, with every piece on the board and seven pawns each, since White's c-pawn and Black's d-pawn were traded. Black's queen on d5 is attacked by the knight on c3 and must move again, and that is the tempo White has just gained.
+              fr: Le matériel est égal, toutes les pièces sont sur l'échiquier et chaque camp a sept pions, puisque le pion c blanc et le pion d noir ont été échangés. La dame d5 noire est attaquée par le cavalier c3 et doit rejouer, c'est le temps que les Blancs viennent de gagner.
+            plan:
+              vi: Đen đưa hậu đi, ví dụ 5...Qa5, rồi phát triển nốt quân. Trắng đưa tượng ra g2, nhập thành và tiến d3 hoặc d4, giữ ưu thế phát triển nhỏ mà không có đòn đánh trực tiếp nào.
+              en: Black moves the queen, for instance 5...Qa5, and finishes development. White puts the bishop on g2, castles and plays d3 or d4, keeping a small lead in development without any direct blow.
+              fr: Les Noirs déplacent la dame, par exemple 5...Qa5, et achèvent leur développement. Les Blancs mettent le fou en g2, roquent et jouent d3 ou d4, gardant une petite avance de développement sans coup direct.
+            basis:
+              by: chan
+              at: '2026-10-01'

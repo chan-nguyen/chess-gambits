@@ -4,6 +4,28 @@
 # (docs/CONTEXT.md, invariant 5). Replayed with chess.js through 15.Be3. searchMate at 3 moves from
 # the resulting position returns no-mate, so no forced mate is claimed anywhere in this entry, and
 # no capture is left going free at the leaf.
+#
+# #175 item 8 added 15.Bxd5 as a second reply, with the trap that follows it. The source
+# (chesstrapguide's "Rombaua Trap"; thechesswebsite names it but the page is members-only, so
+# nothing there could be checked) gives 15.Bxd5?? cxd5 16.Bf4?? Bg4 17.Re2 Bf3 18.Qf1 Bxf4
+# 19.Qxh3. Replayed with chess.js the line is legal, and it ends with White taking Black's
+# queen, so as written it wins nothing for Black: 18...Bxf4?? is the blunder. What replay does
+# support is the idea one move earlier. 16.Bf4?? Bxf4! wins a piece, because the only retake
+# is gxf4 and that tears the king's shield apart: 17...Bg4 hits the queen, and every White
+# move then loses at least material. 15.Bxd5 itself is only an inaccuracy (it trades a bishop
+# for the knight and gives Black the bishop pair), not the mistake the source's two question
+# marks suggest. The branch is modelled as that: Bxd5 (inaccuracy), cxd5, Bf4 (blunder),
+# Bxf4, gxf4, Bg4, with a position leaf there and not a mate claim: the refutation is a heavy
+# loss of material, and the engine cross-check finds mates only against some of White's moves
+# after 17...Bg4 (Qb3, Qc2, Re2), not against all of them. The source's 16...Bg4 is also good
+# for Black, but 16...Bxf4 is simply stronger.
+#
+# Home of the branch: this entry, not the head entry `ruy-lopez-marshall-attack` (root 8...d5,
+# a position leaf at 9.exd5). This entry's root is the position after 14...Qh3, exactly where
+# 15.Bxd5 is White's move; the head entry would need a dozen plies of main line before it could
+# even reach the trap, and that main line is the job of this entry and its siblings.
+# The vendored Stockfish 19 (ADR-0012) was run locally as a cross-check on the reply
+# qualities; none of its figures appears anywhere in the content.
 id: ruy-lopez-marshall-attack-modern-main-line
 name: 'Ruy Lopez: Marshall Attack, Modern Main Line'
 eco: C89
@@ -49,8 +71,8 @@ soundness:
     source: A judgement. At the end of the defining line White has seven pawns to Black's six, so Black is a pawn down. The label is the author's judgement of the whole gambit. No engine was consulted and no database was queried.
 judgement:
   by: chan
-  at: '2026-09-30'
-  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics.
+  at: '2026-10-01'
+  source: Reply qualities, frequencies, evaluations and plans in this entry are one author's judgement on one date, not engine output and not database statistics. The 15.Bxd5 branch added on 2026-10-01 was additionally cross-checked locally against Stockfish 19, depth 14 to 16, to catch a quality that was plainly wrong; no engine figure is published.
 tree:
   annotation:
     vi: Đen vừa chơi 14...Qh3. Đen vẫn kém một tốt, sáu so với bảy, và tốt g3 của Trắng đang bị tượng d6 cùng hậu h3 tấn công, còn tốt h2 bị hậu h3 tấn công mà chỉ có vua g1 bảo vệ.
@@ -82,3 +104,67 @@ tree:
         basis:
           by: chan
           at: '2026-09-30'
+    - ply: Bxd5
+      replyQuality: inaccuracy
+      frequency: occasional
+      annotation:
+        vi: Trắng dùng tượng ăn mã d5. Nước này đổi tượng lấy mã và cho Đen cặp tượng, trong khi hậu h3 và tượng d6 vẫn nhắm vào vua. Đây mới chỉ là một nước thiếu chính xác, chưa phải sai lầm mất quân.
+        en: White takes the knight on d5 with the bishop. The move trades a bishop for the knight and gives Black the bishop pair, while the queen on h3 and the bishop on d6 still bear on the king. It is an inaccuracy, not yet a mistake that loses material.
+        fr: Les Blancs prennent le cavalier d5 avec le fou. Le coup échange un fou contre un cavalier et donne la paire de fous aux Noirs, tandis que la dame h3 et le fou d6 visent toujours le roi. C'est une imprécision, pas encore une faute qui perd du matériel.
+      children:
+        - ply: cxd5
+          annotation:
+            vi: Đen ăn lại bằng tốt. Đen giờ có đôi tượng chống lại một tượng và một mã, số tốt vẫn là bảy đối sáu nghiêng về Trắng, và cả tượng d6 lẫn hậu h3 đều tấn công tốt g3.
+            en: Black retakes with the pawn. Black now has the two bishops against a bishop and a knight, the pawn count is still seven against six for White, and the bishop on d6 and the queen on h3 both attack the pawn on g3.
+            fr: Les Noirs reprennent du pion. Ils ont maintenant les deux fous contre un fou et un cavalier, le compte des pions reste de sept contre six pour les Blancs, et le fou d6 comme la dame h3 attaquent le pion g3.
+          dismissRest:
+            reason:
+              vi: Trắng không chơi 16.Bf4. Những nước như 16.Qb3, 16.Qf3 hay 16.Be3 là các cách đi tiếp khác và không nước nào được dựng ở đây.
+              en: White does not play 16.Bf4. Moves such as 16.Qb3, 16.Qf3 or 16.Be3 are other ways to go on, and none of them is mapped here.
+              fr: Les Blancs ne jouent pas 16.Bf4. Des coups comme 16.Qb3, 16.Qf3 ou 16.Be3 sont d'autres façons de continuer, et aucun n'est cartographié ici.
+          children:
+            - ply: Bf4
+              replyQuality: blunder
+              frequency: rare
+              annotation:
+                vi: Trắng đưa tượng ra f4, mời đổi tượng cùng màu ô tối. Trông tự nhiên, nhưng quân duy nhất có thể ăn lại trên f4 là tốt g3, mà tốt g3 chính là tấm khiên che vua Trắng.
+                en: White brings the bishop out to f4, offering to trade the dark-squared bishops. It looks natural, but the only piece that can retake on f4 is the pawn on g3, and that pawn is the shield of White's king.
+                fr: Les Blancs sortent le fou en f4 et offrent l'échange des fous de cases noires. Cela paraît naturel, mais la seule pièce qui puisse reprendre en f4 est le pion g3, et ce pion est le bouclier du roi blanc.
+              children:
+                - ply: Bxf4
+                  annotation:
+                    vi: Đen ăn tượng. Đen giờ hơn một tượng đổi lấy một tốt, trừ khi tốt g3 ăn lại — và chính nước ăn lại mới là nước sai.
+                    en: Black takes the bishop. Black is now a bishop up for a pawn unless the g3 pawn retakes — and retaking is where it goes wrong.
+                    fr: Les Noirs prennent le fou. Ils ont un fou de plus pour un pion, sauf si le pion g3 reprend — et reprendre est justement ce qui tourne mal.
+                  dismissRest:
+                    reason:
+                      vi: Tượng đen trên f4 chỉ bị tốt g3 tấn công. Trắng không ăn lại, và mọi nước khác đều để Đen hơn một tượng đổi lấy một tốt xét theo quân số. Đó là những đường tiếp khác và không đường nào được dựng ở đây.
+                      en: The black bishop on f4 is attacked by the g3 pawn alone. White does not retake, and every other reply leaves Black a bishop for a pawn up on the count. Those are different continuations and none is mapped here.
+                      fr: Le fou noir en f4 n'est attaqué que par le pion g3. Les Blancs ne reprennent pas, et tout autre coup laisse aux Noirs un fou de plus pour un pion au compte. Ce sont d'autres continuations et aucune n'est cartographiée ici.
+                  children:
+                    - ply: gxf4
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Trắng ăn lại bằng tốt g, quân duy nhất làm được điều đó. Số tốt vẫn là bảy đối sáu nghiêng về Trắng, nhưng vua đã mất tốt g che chắn và các tốt Trắng bị chồng đôi trên f2 và f4.
+                        en: White retakes with the g-pawn, the only piece that can. The pawn count is still seven against six for White, but the king has lost its g-pawn and White's pawns are doubled on f2 and f4.
+                        fr: Les Blancs reprennent du pion g, la seule pièce qui le puisse. Le compte des pions reste de sept contre six pour les Blancs, mais le roi a perdu son pion g et les pions blancs sont doublés en f2 et f4.
+                      children:
+                        - ply: Bg4
+                          annotation:
+                            vi: Tượng Đen tấn công hậu d1. Hậu h3 bảo vệ nó, nên Qxg4 sẽ mất hậu vì Qxg4+.
+                            en: Black's bishop attacks the queen on d1. The queen on h3 defends it, so Qxg4 would lose the queen to Qxg4+.
+                            fr: Le fou noir attaque la dame d1. La dame h3 le défend, si bien que Qxg4 perdrait la dame sur Qxg4+.
+                          outcome:
+                            type: position
+                            evaluation:
+                              vi: Trắng vẫn hơn một tốt, bảy đối sáu, và các quân nặng nhẹ ngang nhau — hậu, hai xe và một mã đối với hậu, hai xe và một tượng. Nhưng nước ăn lại đã phá tấm khiên che vua. Không còn tốt g, các tốt f bị chồng đôi trên f2 và f4 không thể sửa lại, và không tốt Trắng nào còn có thể bảo vệ f3 hay g2 nữa. Tượng g4 của Đen tấn công hậu d1 và chỉ cách f3 một nước, nơi cùng với hậu h3 nó nhắm vào g2, ô mà chỉ có vua bảo vệ.
+                              en: White still has the extra pawn, seven against six, and the pieces are level — a queen, two rooks and a knight against a queen, two rooks and a bishop. But the recapture has broken the king's shield. There is no g-pawn, the f-pawns are doubled on f2 and f4 and cannot be repaired, and no White pawn can ever defend f3 or g2 again. Black's bishop on g4 attacks the queen on d1 and is one move from f3, where with the queen on h3 it aims at g2, which only the king defends.
+                              fr: Les Blancs gardent le pion de plus, sept contre six, et les pièces sont à égalité — une dame, deux tours et un cavalier contre une dame, deux tours et un fou. Mais la reprise a brisé le bouclier du roi. Il n'y a plus de pion g, les pions f sont doublés en f2 et f4 sans remède, et plus aucun pion blanc ne pourra défendre f3 ou g2. Le fou noir en g4 attaque la dame d1 et n'est qu'à un coup de f3, d'où, avec la dame h3, il vise g2, que seul le roi défend.
+                            plan:
+                              vi: Đen muốn chơi ...Bxd1 hoặc ...Bf3, dồn mọi quân nhắm vào g2. Trắng phải cứu hậu ngay lập tức; những cách thử là Re3, thách thức hậu h3, và f3, thách thức tượng.
+                              en: Black wants ...Bxd1 or ...Bf3, with everything aimed at g2. White has to save the queen at once; the tries are Re3, challenging the queen on h3, and f3, challenging the bishop.
+                              fr: Les Noirs veulent ...Bxd1 ou ...Bf3, avec tout dirigé vers g2. Les Blancs doivent sauver la dame aussitôt ; les essais sont Re3, qui défie la dame h3, et f3, qui défie le fou.
+                            basis:
+                              by: chan
+                              at: '2026-10-01'

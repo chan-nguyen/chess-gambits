@@ -1,0 +1,183 @@
+# The Tarrasch Trap, Berlin version, in the Ruy Lopez. The defining line is the dataset row
+# "Ruy Lopez: Berlin Defense, Tarrasch Trap" up to White's own ply: 1.e4 e5 2.Nf3 Nc6 3.Bb5
+# d6 4.d4 Bd7 5.Nc3 Nf6 6.O-O Be7 7.Re1. The row's move order is the Steinitz one (3...d6) but
+# it reaches the same position as the Berlin 3...Nf6 4.O-O d6 5.d4 Bd7 6.Nc3 Be7 7.Re1, which
+# is why the dataset codes it C66. The line ends on White's ply, so the root is an opponent
+# node and Black's 7...O-O can carry a quality (docs/CONTEXT.md, invariant 5).
+#
+# This is NOT the Open Defence trap of `tarrasch-trap` (C83, 5...Nxe4): same name, a different
+# position and a different URL. #118 chose the C83 one for that id and said this one should be
+# a sibling; it is.
+#
+# The source (#174, item 1; lichess study chapter 20) is Tarrasch vs Marco, 1892: 7...O-O??
+# 8.Bxc6 Bxc6 9.dxe5 dxe5 10.Qxd8 Raxd8 11.Nxe5 Bxe4 12.Nxe4 Nxe4 13.Nd3 f5 14.f3 Bc5+ 15.Nxc5
+# Nxc5 16.Bg5 Rd5 17.Be7 Re8 18.c4 "and the exchange is lost". Every ply replays. What does not
+# hold is the tail: that is the game continuation, and Black has better at moves 10, 11 and 14
+# (10...Rfxd8, not the Raxd8 of the game, loses less; 14...Bc5+ is the worst of the three
+# sensible tries). What is forced is shorter and just as real: after 7...O-O White wins a
+# clean pawn by 8.Bxc6 Bxc6 9.dxe5, whichever way Black answers, and the tree stops at 11.Nxe5,
+# where the pawn is won. It is not a trap that wins a piece, and nothing here claims a mate.
+#
+# 7...O-O is labelled a mistake, not a blunder: a private engine run at depth 24 gives
+# 8.Bxc6 as White's only good move after it, +1.4, against +0.4 for the next best; the same run
+# at depth 20 finds every reply to 9.dxe5 losing at least a pawn, and the best recapture at
+# move 10 is 10...Rfxd8. Those engine runs are private, never shipped and never cited as an
+# authority; the pawn counts in the leaves were computed from the derived positions.
+id: ruy-lopez-berlin-defense-tarrasch-trap
+name: 'Ruy Lopez: Berlin Defense, Tarrasch Trap'
+eco: C66
+category: trap
+side: white
+definingLine: [e4, e5, Nf3, Nc6, Bb5, d6, d4, Bd7, Nc3, Nf6, 'O-O', Be7, Re1]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement about White's set-up, not about the trap springing: this is the main-line
+      Berlin/Steinitz structure and nothing depends on Black cooperating. The trap punishes
+      7...O-O and the extra pawn it wins is small but clean.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, including the pawn counts, which were computed by hand from the
+    derived positions.
+tree:
+  annotation:
+    vi: Trắng vừa đưa xe lên e1 để bảo vệ tốt e4. Tốt e5 của Đen đang bị tốt d4 và mã f3 tấn công, và chỉ có tốt d6 cùng mã c6 giữ nó. Cách đúng là giải toả ngay căng thẳng ở trung tâm, chẳng hạn bằng 7...exd4. Nhập thành liền bằng 7...O-O trông an toàn và hợp lý, nhưng lại để tốt e5 rơi vào một chuỗi đổi quân quen thuộc.
+    en: White has just put the rook on e1 to protect the e4 pawn. Black's e5 pawn is attacked by the d4 pawn and the f3 knight and held only by the d6 pawn and the knight on c6. The right way is to release the tension in the centre at once, for example with 7...exd4. Castling straight away with 7...O-O looks safe and natural, but it leaves the e5 pawn to a familiar sequence of exchanges.
+    fr: Les Blancs viennent de poser la tour en e1 pour protéger le pion e4. Le pion e5 noir est attaqué par le pion d4 et le cavalier f3, et il n'est tenu que par le pion d6 et le cavalier c6. La bonne méthode est de relâcher aussitôt la tension au centre, par exemple avec 7...exd4. Roquer tout de suite par 7...O-O paraît sûr et naturel, mais laisse le pion e5 à une séquence d'échanges bien connue.
+  dismissRest:
+    reason:
+      vi: Đen chơi một nước thứ bảy khác. Mục này chỉ vẽ cái bẫy sau 7...O-O và nước giải toả đúng 7...exd4, không vẽ tiếp những nhánh còn lại.
+      en: Black plays a different seventh move. This entry maps only the trap after 7...O-O and the correct release 7...exd4, not the other branches.
+      fr: Les Noirs jouent un autre septième coup. Cette entrée ne cartographie que le piège après 7...O-O et le relâchement correct 7...exd4, pas les autres branches.
+  children:
+    - ply: 'O-O'
+      replyQuality: mistake
+      frequency: common
+      annotation:
+        vi: Đen nhập thành mà không giải toả căng thẳng ở trung tâm. Tốt e5 vẫn chỉ có tốt d6 và mã c6 giữ, và mã c6 có thể bị đổi mất bằng một nước ăn của tượng b5.
+        en: Black castles without releasing the tension in the centre. The e5 pawn is still held only by the d6 pawn and the knight on c6, and that knight can be exchanged away by a capture from the bishop on b5.
+        fr: Les Noirs roquent sans relâcher la tension au centre. Le pion e5 n'est toujours tenu que par le pion d6 et le cavalier c6, et ce cavalier peut être échangé par une prise du fou b5.
+      children:
+        - ply: Bxc6
+          annotation:
+            vi: Bxc6! Tượng ăn mã c6, một trong hai quân đang giữ e5. Đen ăn lại bằng cách nào thì tốt e5 cũng bị hai quân Trắng đánh mà chỉ còn tốt d6 giữ.
+            en: Bxc6! The bishop takes the knight on c6, one of the two pieces holding e5. Whichever way Black recaptures, the e5 pawn is attacked twice by White and held only once, by the d6 pawn.
+            fr: Bxc6 ! Le fou prend le cavalier c6, l'une des deux pièces qui tiennent e5. Quelle que soit la reprise noire, le pion e5 est attaqué deux fois par les Blancs et tenu une seule fois, par le pion d6.
+          dismissed:
+            - ply: bxc6
+              reason: >-
+                Recaptures with the b-pawn, which doubles the c-pawns and loses the e5 pawn the
+                same way: 9.dxe5 Ng4 10.Bf4 Nxe5 11.Bxe5 dxe5 12.Nxe5 leaves White a clean
+                pawn up (replayed).
+          dismissRest:
+            reason:
+              vi: Đen không ăn lại quân tượng c6, nên Trắng hơn nguyên một mã. Nước nào trong số này cũng để Trắng hơn ít nhất một quân.
+              en: Black does not recapture on c6, so White is a whole knight up. Every one of these replies leaves White at least a piece ahead.
+              fr: Les Noirs ne reprennent pas en c6, les Blancs ont donc un cavalier entier de plus. Chacune de ces réponses laisse les Blancs au moins une pièce devant.
+          children:
+            - ply: Bxc6
+              replyQuality: best
+              frequency: common
+              annotation:
+                vi: Đen ăn lại bằng tượng d7, cách tốt nhất vì giữ nguyên cấu trúc tốt. Nhưng tốt e5 giờ bị hai quân Trắng đánh mà chỉ còn tốt d6 giữ.
+                en: Black recaptures with the bishop, the best way since it keeps the pawn structure intact. But the e5 pawn is now attacked twice and held only by the d6 pawn.
+                fr: Les Noirs reprennent avec le fou, le meilleur moyen puisqu'il garde la structure de pions intacte. Mais le pion e5 est maintenant attaqué deux fois et tenu seulement par le pion d6.
+              children:
+                - ply: dxe5
+                  annotation:
+                    vi: dxe5! Tốt ăn tốt e5 và đồng thời tấn công mã f6, nên Đen phải phản ứng ngay. Dù Đen làm gì, Trắng cũng kết thúc hơn ít nhất một tốt.
+                    en: dxe5! The pawn takes on e5 and attacks the knight on f6 at the same time, so Black must react at once. Whatever Black does, White comes out at least a pawn ahead.
+                    fr: dxe5 ! Le pion prend en e5 et attaque en même temps le cavalier f6, les Noirs doivent donc réagir aussitôt. Quoi que fassent les Noirs, les Blancs s'en sortent avec au moins un pion de plus.
+                  dismissed:
+                    - ply: Ng4
+                      reason: >-
+                        Counterattacks e5 and f2, but 10.Bf4 dxe5 11.Bxe5 Nxe5 12.Nxe5 Be8
+                        still leaves White a clean pawn up (replayed).
+                    - ply: Nd7
+                      reason: >-
+                        Moves the attacked knight, but 10.exd6 Bxd6 11.Nd4 leaves White a
+                        clean pawn up (replayed).
+                  dismissRest:
+                    reason:
+                      vi: Mọi nước khác đều tệ hơn. Nếu Đen không ăn lại e5 và không đi mã f6 thì exf6 ăn mã, còn các nước mã còn lại là Ne8, Nh5, Nd5 và Nxe4 đều để Trắng hơn ít nhất một tốt.
+                      en: Every other reply is worse. If Black neither retakes on e5 nor moves the f6 knight, exf6 takes the knight, and the remaining knight moves, Ne8, Nh5, Nd5 and Nxe4, each leave White at least a pawn ahead.
+                      fr: Toute autre réponse est pire. Si les Noirs ne reprennent pas en e5 et ne déplacent pas le cavalier f6, exf6 prend le cavalier, et les autres coups de cavalier, Ne8, Nh5, Nd5 et Nxe4, laissent chacun les Blancs au moins un pion devant.
+                  children:
+                    - ply: dxe5
+                      replyQuality: best
+                      frequency: common
+                      annotation:
+                        vi: Đen ăn lại tốt bằng tốt d, nước tự nhiên nhất và cũng ít thiệt nhất. Nhưng cột d giờ đã mở, hai hậu nhìn thẳng vào nhau, và tốt e5 mới không có quân nào bảo vệ.
+                        en: Black recaptures with the d-pawn, the most natural move and the least costly. But the d-file is now open, the queens face each other, and the new e5 pawn has no defender.
+                        fr: Les Noirs reprennent avec le pion d, le coup le plus naturel et le moins coûteux. Mais la colonne d est maintenant ouverte, les dames se font face, et le nouveau pion e5 n'a aucun défenseur.
+                      children:
+                        - ply: Qxd8
+                          annotation:
+                            vi: Qxd8! Hậu ăn hậu ngay trên cột d mở. Đen buộc phải ăn lại, và sau đó tốt e5 vẫn không có quân nào bảo vệ.
+                            en: Qxd8! The queen takes the queen along the open d-file. Black has to recapture, and afterwards the e5 pawn still has no defender.
+                            fr: Qxd8 ! La dame prend la dame sur la colonne d ouverte. Les Noirs doivent reprendre, et ensuite le pion e5 n'a toujours aucun défenseur.
+                          dismissRest:
+                            reason:
+                              vi: Đen có thể ăn lại hậu bằng xe a8 (10...Raxd8) hoặc bằng tượng (10...Bxd8), và cả hai đều để 11.Nxe5 ăn tốt theo cùng một cách. Mọi nước không ăn lại hậu đều để Trắng hơn hẳn.
+                              en: Black can recapture the queen with the a8 rook (10...Raxd8) or with the bishop (10...Bxd8), and both still allow 11.Nxe5 to win the pawn in the same way. Any reply that does not recapture leaves White far ahead.
+                              fr: Les Noirs peuvent reprendre la dame avec la tour a8 (10...Raxd8) ou avec le fou (10...Bxd8), et les deux laissent 11.Nxe5 gagner le pion de la même façon. Toute réponse qui ne reprend pas laisse les Blancs très largement devant.
+                          children:
+                            - ply: Rfxd8
+                              replyQuality: best
+                              frequency: common
+                              annotation:
+                                vi: Đen ăn lại hậu bằng xe f8, cách chính xác nhất trong ba cách ăn lại. Nhưng tốt e5 vẫn không còn quân nào bảo vệ.
+                                en: Black recaptures with the f8 rook, the most accurate of the three recaptures. But the e5 pawn still has no defender.
+                                fr: Les Noirs reprennent avec la tour f8, la plus précise des trois reprises. Mais le pion e5 n'a toujours aucun défenseur.
+                              children:
+                                - ply: Nxe5
+                                  annotation:
+                                    vi: Nxe5! Mã ăn tốt e5 và đồng thời tấn công tượng c6. Trắng đã thắng được một tốt.
+                                    en: Nxe5! The knight takes the e5 pawn and attacks the bishop on c6 at the same time. White has won a pawn.
+                                    fr: Nxe5 ! Le cavalier prend le pion e5 et attaque en même temps le fou c6. Les Blancs ont gagné un pion.
+                                  outcome:
+                                    type: position
+                                    evaluation:
+                                      vi: Trắng hơn một tốt. Trắng có bốn tốt ở cánh vua, e4, f2, g2 và h2, đấu ba tốt f7, g7 và h7 của Đen, còn ba tốt cánh hậu của hai bên thì ngang nhau. Mỗi bên còn ba quân nhẹ và hai xe, và mã e5 đang tấn công tượng c6.
+                                      en: White is a pawn up. White has four pawns on the kingside, e4, f2, g2 and h2, against Black's three, f7, g7 and h7, while the queenside pawns are three each. Each side still has three minor pieces and two rooks, and the knight on e5 attacks the bishop on c6.
+                                      fr: Les Blancs ont un pion de plus. Ils ont quatre pions à l'aile roi, e4, f2, g2 et h2, contre trois aux Noirs, f7, g7 et h7, tandis que les pions de l'aile dame sont trois de chaque côté. Chaque camp a encore trois pièces mineures et deux tours, et le cavalier e5 attaque le fou c6.
+                                    plan:
+                                      vi: Đen phải lo cho tượng c6 đang bị đánh, thường bằng 11...Be8 hoặc 11...Bd7. Trắng giữ tốt thừa bằng Nd3, f3 hoặc Be3, rồi đưa xe a1 về d1 để tranh cột d. Nếu Đen tham ăn 11...Bxe4? thì sau 12.Nxe4 Nxe4 13.Nd3, mã e4 bị xe e1 tấn công và Đen rơi vào thế rất khó.
+                                      en: Black has to deal with the attacked bishop on c6, usually by 11...Be8 or 11...Bd7. White keeps the extra pawn with Nd3, f3 or Be3, then brings the a1 rook to d1 to contest the d-file. If Black greedily plays 11...Bxe4?, then after 12.Nxe4 Nxe4 13.Nd3 the knight on e4 is attacked by the rook on e1 and Black is in serious trouble.
+                                      fr: Les Noirs doivent s'occuper du fou c6 attaqué, en général par 11...Be8 ou 11...Bd7. Les Blancs gardent le pion de plus avec Nd3, f3 ou Be3, puis amènent la tour a1 en d1 pour disputer la colonne d. Si les Noirs prennent gloutonnement par 11...Bxe4?, alors après 12.Nxe4 Nxe4 13.Nd3 le cavalier e4 est attaqué par la tour e1 et les Noirs sont en grande difficulté.
+                                    basis:
+                                      by: chan
+                                      at: '2026-10-01'
+    - ply: exd4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen giải toả căng thẳng ngay bằng cách ăn tốt d4. Đây là cách đúng, vì tốt e5 biến mất khỏi mục tiêu của Trắng và không còn gì để cái bẫy ăn.
+        en: Black releases the tension at once by taking on d4. This is the right way, because the e5 pawn disappears from White's targets and there is nothing left for the trap to win.
+        fr: Les Noirs relâchent aussitôt la tension en prenant en d4. C'est la bonne méthode, car le pion e5 disparaît des cibles blanches et il ne reste plus rien à gagner pour le piège.
+      children:
+        - ply: Nxd4
+          annotation:
+            vi: Nxd4. Mã ăn lại và đứng ngay trung tâm. Từ đây ván cờ cân bằng, và các nước Bxc6, dxe5 của cái bẫy không còn mục tiêu nào.
+            en: Nxd4. The knight recaptures and stands in the centre. From here the game is balanced, and the Bxc6 and dxe5 ideas of the trap have no target left.
+            fr: Nxd4. Le cavalier reprend et s'installe au centre. À partir de là la partie est équilibrée, et les idées Bxc6 et dxe5 du piège n'ont plus de cible.
+          outcome:
+            type: position
+            evaluation:
+              vi: Quân số ngang nhau, mỗi bên còn bảy tốt, hậu, hai xe, hai tượng và hai mã. Tốt e5 đã biến mất nên chuỗi đổi quân Bxc6, dxe5, Qxd8 không còn gì để ăn.
+              en: Material is level, with seven pawns, a queen, two rooks, two bishops and two knights each. The e5 pawn has gone, so the sequence Bxc6, dxe5, Qxd8 has nothing left to win.
+              fr: Le matériel est égal, chaque camp a sept pions, une dame, deux tours, deux fous et deux cavaliers. Le pion e5 a disparu, la séquence Bxc6, dxe5, Qxd8 n'a donc plus rien à gagner.
+            plan:
+              vi: Đen thường đổi mã bằng 8...Nxd4 9.Bxd7+ Nxd7 10.Qxd4 rồi nhập thành. Trắng đưa tượng ra f4 và xe a1 về d1 với thế chủ động nhẹ.
+              en: Black usually trades knights with 8...Nxd4 9.Bxd7+ Nxd7 10.Qxd4 and castles. White brings the bishop to f4 and the a1 rook to d1 with a slight initiative.
+              fr: Les Noirs échangent en général les cavaliers par 8...Nxd4 9.Bxd7+ Nxd7 10.Qxd4 et roquent. Les Blancs amènent le fou en f4 et la tour a1 en d1 avec une légère initiative.
+            basis:
+              by: chan
+              at: '2026-10-01'

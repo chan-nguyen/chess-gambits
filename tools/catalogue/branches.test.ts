@@ -118,7 +118,7 @@ describe('the catalogue this repository ships', () => {
   if (!result.ok) throw new Error('the real catalogue does not build')
 
   /**
-   * One thousand and thirty-three entries are authored — three from #15, eleven from #73, ten
+   * One thousand and forty-eight entries are authored — three from #15, eleven from #73, ten
    * from #93, ten from #94's group B, ten from #95, twenty-five from #102 (group D,
    * including damiano-defence-refutation's tree), twenty-four from #103 (group E), fifteen
    * from #109 (group F, seven remaining family heads and eight Sicilian short lines),
@@ -274,7 +274,17 @@ describe('the catalogue this repository ships', () => {
    * Zukertort, Réti, Grob, Polish, Ware and Van't Kruijs Openings; and the Italian Game Two
    * Knights Defense Fritz, Lolli and Polerio lines with the Najdorf Poisoned Pawn) — each a
    * single root-to-leaf line, which leaves three entries unauthored on purpose, the ones
-   * the specs name as their still-listed examples — and the
+   * the specs name as their still-listed examples — and fifteen new named traps from the trap batches of #173 and #174
+   * (batch trap-1b: the Italian Game's Belloni Trap, the French Defense's Fort Knox Queen
+   * Trap, the Queen's Gambit Accepted's b5 Trap and Scholar's Mate; batch trap-1a: the Bobby
+   * Fischer Trap, the Queen Amidala Trap, the Queen's Gambit Declined Orthodox Defense's
+   * Rubinstein Trap, the Ponziani Flagship Trap and the Bird Opening's Bird's Eye View Trap;
+   * batch trap-2a: the Berlin version of the Tarrasch Trap, the Balode-Sondore Scandinavian
+   * Trap, the Dragon Bb5+ Trap, the Combe-Hasenfuss Trap and the Zaitsik-Zichulidze Reti
+   * Trap; batch trap-2b: the Busch-Gass Gambit Trap, from White's side, each named below
+   * with the number of root-to-leaf lines its tree has), and the trees that #175 extended in
+   * batches 3a and 3b without adding an id (the Magnus Smith Trap, which #178 had taught as
+   * a single line, now has six root-to-leaf lines) — and the
    * other 3
    * are Tier 0, with no content file at all. Each authored entry is named here
    * with the number of root-to-leaf lines its tree actually has, rather than the whole set
@@ -343,6 +353,7 @@ describe('the catalogue this repository ships', () => {
     ['benoni-defense-benoni-staunton-gambit', 1],
     ['benoni-defense-cormorant-gambit', 1],
     ['benoni-defense-zilbermints-benoni-gambit', 1],
+    ['bird-opening-birds-eye-view-trap', 6],
     ['bird-opening-dutch-variation-batavo-gambit', 1],
     ['bird-opening-dutch-variation-dudweiler-gambit', 1],
     ['bird-opening-froms-gambit', 3],
@@ -446,6 +457,7 @@ describe('the catalogue this repository ships', () => {
     ['budapest-gambit-accepted-main-line-alekhine-variation-2', 1],
     ['budapest-gambit-accepted-main-line-alekhine-variation-abonyi', 1],
     ['budapest-gambit-accepted-main-line-rubinstein-variation', 1],
+    ['busch-gass-gambit-trap', 6],
     ['caro-kann-defense-alekhine-gambit', 1],
     ['caro-kann-defense-alien-gambit', 1],
     ['caro-kann-defense-dinic-gambit', 1],
@@ -477,7 +489,7 @@ describe('the catalogue this repository ships', () => {
     ['classical-variation-rubinstein-countergambit', 1],
     ['damiano-defence-refutation', 2],
     ['danish-gambit', 4],
-    ['danish-gambit-accepted', 1],
+    ['danish-gambit-accepted', 2],
     ['danish-gambit-accepted-chigorin-defense', 1],
     ['danish-gambit-accepted-classical-defense', 1],
     ['danish-gambit-accepted-copenhagen-defense', 1],
@@ -501,7 +513,7 @@ describe('the catalogue this repository ships', () => {
     ['dutch-defense-senechaud-gambit', 1],
     ['dutch-defense-spielmann-gambit', 1],
     ['dutch-defense-staunton-gambit', 1],
-    ['dutch-defense-staunton-gambit-accepted', 1],
+    ['dutch-defense-staunton-gambit-accepted', 2],
     ['dutch-defense-staunton-gambit-alekhine-variation', 1],
     ['dutch-defense-staunton-gambit-american-attack', 1],
     ['dutch-defense-staunton-gambit-chigorin-variation', 1],
@@ -528,6 +540,7 @@ describe('the catalogue this repository ships', () => {
     ['english-opening-kings-english-variation-bellon-gambit', 1],
     ['english-opening-kings-english-variation-kahiko-hula-gambit', 1],
     ['english-opening-myers-gambit', 1],
+    ['english-opening-symmetrical-variation-combe-hasenfuss-trap', 1],
     ['english-opening-symmetrical-variation-napolitano-gambit', 1],
     ['english-opening-wade-gambit', 1],
     ['english-opening-wing-gambit', 1],
@@ -558,7 +571,7 @@ describe('the catalogue this repository ships', () => {
     ['falkbeer-countergambit-nimzowitsch-marshall-countergambit', 1],
     ['falkbeer-countergambit-rubinstein-variation', 1],
     ['fishing-pole-trap', 3],
-    ['four-knights-game-halloween-gambit', 1],
+    ['four-knights-game-halloween-gambit', 3],
     ['four-knights-game-halloween-gambit-oldtimer-variation', 1],
     ['four-knights-game-halloween-gambit-plasma-variation', 1],
     ['four-knights-game-italian-variation-noa-gambit', 1],
@@ -577,6 +590,7 @@ describe('the catalogue this repository ships', () => {
     ['french-defense-carlson-gambit', 1],
     ['french-defense-diemer-duhm-gambit', 1],
     ['french-defense-diemer-duhm-gambit-accepted', 1],
+    ['french-defense-fort-knox-queen-trap', 4],
     ['french-defense-horwitz-attack-papa-ticulat-gambit', 1],
     ['french-defense-la-bourdonnais-variation-reuter-gambit', 1],
     ['french-defense-marshall-gambit', 1],
@@ -643,6 +657,7 @@ describe('the catalogue this repository ships', () => {
     ['indian-defense-pyrenees-gambit', 1],
     ['indian-defense-schnepper-gambit', 1],
     ['irish-gambit', 1],
+    ['italian-game-belloni-trap', 2],
     ['italian-game-blackburne-kostic-gambit', 2],
     ['italian-game-classical-variation-albin-gambit', 1],
     ['italian-game-classical-variation-greco-gambit-dubov-italian', 1],
@@ -883,7 +898,7 @@ describe('the catalogue this repository ships', () => {
     ['kings-gambit-declined-mafia-defense', 1],
     ['kings-gambit-declined-miles-defense', 1],
     ['kings-gambit-declined-norwalde-variation', 1],
-    ['kings-gambit-declined-norwalde-variation-bucker-gambit', 1],
+    ['kings-gambit-declined-norwalde-variation-bucker-gambit', 2],
     ['kings-gambit-declined-norwalde-variation-schubert-variation', 1],
     ['kings-gambit-declined-panteldakis-countergambit', 1],
     ['kings-gambit-declined-panteldakis-countergambit-greco-variation', 1],
@@ -945,10 +960,10 @@ describe('the catalogue this repository ships', () => {
     ['latvian-gambit-mayet-attack-strautins-gambit', 1],
     ['latvian-gambit-mlotkowski-variation', 1],
     ['latvian-gambit-senechaud-gambit', 1],
-    ['legals-mate', 7],
+    ['legals-mate', 9],
     ['lion-defense-anti-philidor-lions-cave-lion-claw-gambit', 1],
     ['lopez-gianutio-countergambit-hein-variation', 1],
-    ['magnus-smith-trap', 1],
+    ['magnus-smith-trap', 6],
     ['mexican-defense-horsefly-gambit', 1],
     ['mikenas-defense-pozarek-gambit', 1],
     ['milner-barry-trap', 1],
@@ -1030,6 +1045,7 @@ describe('the catalogue this repository ships', () => {
     ['polish-opening-schuehler-gambit', 1],
     ['polish-opening-tartakower-gambit', 1],
     ['ponziani-opening-caro-gambit', 1],
+    ['ponziani-opening-flagship-trap', 8],
     ['ponziani-opening-neumann-gambit', 1],
     ['ponziani-opening-ponziani-countergambit', 1],
     ['ponziani-opening-ponziani-countergambit-schmidt-attack', 1],
@@ -1037,6 +1053,7 @@ describe('the catalogue this repository ships', () => {
     ['portuguese-gambit-melbourne-shuffle-variation', 1],
     ['portuguese-opening-miguel-gambit', 1],
     ['portuguese-opening-portuguese-gambit', 1],
+    ['queens-gambit-accepted-old-variation-b5-trap', 2],
     ['queens-gambit-declined-albin-countergambit', 1],
     ['queens-gambit-declined-albin-countergambit-balogh-variation', 1],
     ['queens-gambit-declined-albin-countergambit-fianchetto-variation', 1],
@@ -1046,8 +1063,10 @@ describe('the catalogue this repository ships', () => {
     ['queens-gambit-declined-albin-countergambit-normal-line', 1],
     ['queens-gambit-declined-albin-countergambit-spassky-variation', 1],
     ['queens-gambit-declined-albin-countergambit-tartakower-defense', 1],
+    ['queens-gambit-declined-orthodox-rubinstein-trap', 3],
     ['queens-indian-defense-classical-variation-polugaevsky-gambit', 1],
     ['queens-indian-defense-classical-variation-taimanov-gambit', 1],
+    ['queens-indian-defense-queen-amidala-trap', 4],
     ['queens-pawn-game-chandler-gambit', 1],
     ['queens-pawn-game-chigorin-variation-irish-gambit', 1],
     ['queens-pawn-game-chigorin-variation-shaviliuk-gambit', 1],
@@ -1061,12 +1080,14 @@ describe('the catalogue this repository ships', () => {
     ['reti-opening-advance-variation-michel-gambit', 1],
     ['reti-opening-advance-variation-navara-gambit', 1],
     ['reti-opening-reversed-blumenfeld-gambit', 1],
+    ['reti-opening-zaitsik-zichulidze-trap', 2],
     ['reti-opening-zilbermints-gambit', 1],
     ['reversed-brooklyn-defense-brooklyn-benko-gambit', 1],
     ['richter-veresov-attack-malich-gambit', 2],
     ['rubinstein-trap', 1],
     ['ruy-lopez-alapin-defense-alapin-gambit', 1],
     ['ruy-lopez-berlin-defense-rio-gambit-accepted', 1],
+    ['ruy-lopez-berlin-defense-tarrasch-trap', 2],
     ['ruy-lopez-central-countergambit', 1],
     ['ruy-lopez-classical-variation-cordel-gambit', 1],
     ['ruy-lopez-classical-variation-konikowski-gambit', 1],
@@ -1081,7 +1102,7 @@ describe('the catalogue this repository ships', () => {
     ['ruy-lopez-marshall-attack', 1],
     ['ruy-lopez-marshall-attack-main-line', 1],
     ['ruy-lopez-marshall-attack-main-line-spassky-variation', 1],
-    ['ruy-lopez-marshall-attack-modern-main-line', 1],
+    ['ruy-lopez-marshall-attack-modern-main-line', 2],
     ['ruy-lopez-marshall-attack-modern-variation', 1],
     ['ruy-lopez-marshall-attack-original-marshall-attack', 1],
     ['ruy-lopez-marshall-attack-re3-variation', 1],
@@ -1104,6 +1125,7 @@ describe('the catalogue this repository ships', () => {
     ['ruy-lopez-spanish-countergambit', 1],
     ['ruy-lopez-spanish-countergambit-harding-gambit', 1],
     ['ruy-lopez-steinitz-defense-center-gambit', 1],
+    ['scandinavian-defense-balode-sondore-trap', 4],
     ['scandinavian-defense-blackburne-gambit', 1],
     ['scandinavian-defense-blackburne-kloosterboer-gambit', 1],
     ['scandinavian-defense-boehnke-gambit', 1],
@@ -1129,6 +1151,7 @@ describe('the catalogue this repository ships', () => {
     ['scandinavian-variation-bogoljubow-variation-richter-gambit', 1],
     ['scandinavian-variation-exchange-variation-marshall-gambit', 1],
     ['scheveningen-variation-delayed-keres-attack-perenyi-gambit', 1],
+    ['scholars-mate', 2],
     ['scotch-game-alekhine-gambit', 1],
     ['scotch-game-goring-gambit', 2],
     ['scotch-game-goring-gambit-bardeleben-variation', 1],
@@ -1154,12 +1177,14 @@ describe('the catalogue this repository ships', () => {
     ['semi-slav-defense-marshall-gambit-main-line', 1],
     ['semi-slav-defense-marshall-gambit-tolush-variation', 1],
     ['semi-slav-defense-noteboom-variation-anti-noteboom-gambit', 1],
-    ['siberian-trap', 1],
+    ['siberian-trap', 4],
     ['sicilian-defense-alapin-variation-anti-alapin-gambit', 1],
+    ['sicilian-defense-bobby-fischer-trap', 3],
     ['sicilian-defense-brussels-gambit', 1],
     ['sicilian-defense-coles-sicilian-gambit', 1],
     ['sicilian-defense-delayed-alapin-variation-basman-palatnik-gambit', 1],
     ['sicilian-defense-double-dutch-gambit', 1],
+    ['sicilian-defense-dragon-variation-bb5-trap', 2],
     ['sicilian-defense-euwe-attack-prins-gambit', 1],
     ['sicilian-defense-halasz-gambit', 1],
     ['sicilian-defense-kotov-gambit', 1],
@@ -1243,7 +1268,7 @@ describe('the catalogue this repository ships', () => {
     ['teichmann-defense-seidel-hall-attack', 1],
     ['torre-attack-classical-defense-petrosian-gambit', 1],
     ['torre-attack-wagner-gambit', 1],
-    ['traxler-counterattack-ke2-trap', 1],
+    ['traxler-counterattack-ke2-trap', 5],
     ['trompowsky-attack-edge-variation-hergert-gambit', 1],
     ['trompowsky-attack-raptor-variation-hergert-gambit', 1],
     ['two-knights-defense-polerio-defense-bishop-check-line', 1],
@@ -1332,8 +1357,8 @@ describe('the catalogue this repository ships', () => {
     ['zukertort-opening-vos-gambit', 1],
   ])
 
-  it('bakes keys on all 1036 entries, and only the authored one thousand and thirty-three have any', () => {
-    expect(result.value.records).toHaveLength(1036)
+  it('bakes keys on all 1051 entries, and only the authored one thousand and forty-eight have any', () => {
+    expect(result.value.records).toHaveLength(1051)
     for (const record of result.value.records) {
       expect(record.branchKeys).toHaveLength(AUTHORED.get(record.id) ?? 0)
       // Distinct, because a card counts them into a set: a duplicate would make the

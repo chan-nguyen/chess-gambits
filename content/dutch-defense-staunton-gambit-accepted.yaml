@@ -3,6 +3,37 @@
 # with chess.js through 2...fxe4: Black takes the pawn at once, the only piece that can
 # capture there. Nothing is hanging at the resulting position. searchMate at 4 moves from
 # this position returns no-mate, so no forced mate is claimed anywhere in this entry.
+#
+# #175 item 6 turned the leaf at 2...fxe4 into a choice between two plans, because a learner
+# node that is a leaf teaches nothing about what White plays there. 3.Nc3 keeps the old leaf's
+# content (the pawn count, the plan) at the position it actually describes; 3.f3 is new. The
+# dataset has no row for 3.f3, so this entry's own tree carries it, and docs/CONTEXT.md
+# allows a learner node with several children as a deliberate act, each child justified on
+# its own: 3.Nc3 hits the pawn with a piece and develops, and 3.f3 hits it with a pawn,
+# opens the f-file and recaptures on f3 with a developing knight. They are different
+# investments, not two spellings of one.
+#
+# Source of the 3.f3 line: the audit issue's G19, "Staunton Queen Trap" (Blackmar vs Labry,
+# 1876) — 3.f3 exf3 4.Nxf3 Nf6 5.Bd3 e6 6.Ng5 g6?? 7.Nxh7! Rxh7 8.Bxg6+ Rf7 9.Bg5 Be7
+# 10.O-O Kf8 11.Bxf7 Kxf7 12.Bxf6 Bxf6 13.Qh5+. Replayed with chess.js: every ply is legal
+# and the trap holds — 6...g6?? loses to the knight sacrifice on h7, which wins two pawns
+# and pins the rook on f7 to its king. What replaying changed:
+#  - The page's name is a misnomer: no queen is trapped; the point is the pin on f7.
+#  - After 8...Rf7 several White moves are about equally strong (Bg5, O-O, Nc3 and d5 all
+#    come out far ahead on the engine cross-check), and later in the game the score's 12.Bxf6
+#    is not even White's best — 12.Qh5+ at once is much stronger — so prescribing one
+#    continuation would teach an arbitrary choice. The branch ends at
+#    8...Rf7, where the lesson is complete: the knight has come back as two pawns, and the
+#    rook on f7 and the rook on a8 cannot move. The rest of the source line is legal and
+#    winning, and is simply not taught here.
+#  - 6...g6 is the mistake, not 5...e6: the engine rates 5...e6 only slightly worse than the
+#    alternatives (...g6, ...d5, ...Nc6), so it is an inaccuracy, and 6.Ng5 already leaves
+#    White the easier game.
+# C's "Staunton Gambit Trap" (Black's trap against 4.Bg5 d5 5.Bxf6) is the wrong side for
+# this entry and is not used.
+#
+# The vendored Stockfish 19 (the analysis page's build, ADR-0012) was run locally as a
+# cross-check on the reply qualities; none of its figures appears anywhere in the content.
 id: dutch-defense-staunton-gambit-accepted
 name: 'Dutch Defense: Staunton Gambit Accepted'
 eco: A82
@@ -22,10 +53,12 @@ soundness:
       and no database was queried.
 judgement:
   by: chan
-  at: '2026-09-25'
+  at: '2026-10-01'
   source: >-
     Reply qualities, frequencies, evaluations and plans in this entry are one author's
-    judgement on one date, not engine output and not database statistics.
+    judgement on one date, not engine output and not database statistics. The 3.Nc3 and 3.f3
+    branches added on 2026-10-01 were additionally cross-checked locally against Stockfish 19,
+    depth 14 to 18, to catch a quality that was plainly wrong; no engine figure is published.
 tree:
   annotation:
     vi: Trắng chơi 2.e4, mời Đen ăn con tốt trung tâm này ngay sau nước đi đầu tiên của Phòng thủ Hà Lan, đổi lấy việc mở tung trung tâm trước khi Đen kịp hoàn thiện phát triển.
@@ -41,19 +74,149 @@ tree:
       replyQuality: best
       frequency: common
       annotation:
-        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt f5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt, chấp nhận thử thách gắt gao nhất của gambit.
-        en: Black takes the pawn at once, the only piece that can capture there. The f5 pawn has done its capturing and Black is now a clean pawn up, accepting the sternest test of the gambit.
-        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le pion f5 a fait sa capture et les Noirs ont maintenant un pion net d'avance, acceptant le test le plus sévère du gambit.
-      outcome:
-        type: position
-        evaluation:
-          vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch, còn Trắng chưa có gì cụ thể để bù lại ngoài cột e nửa mở và ý định dồn quân nhanh vào vị trí mà con tốt f5 để lại một lỗ hổng ở e6.
-          en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up, and White has nothing concrete yet to show for it beyond the half-open e-file and the intention to develop quickly into the hole the f5 pawn left behind on e6.
-          fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance, et les Blancs n'ont encore rien de concret à montrer, hormis la colonne e semi-ouverte et l'intention de se développer rapidement vers le trou laissé en e6 par le pion f5.
-        plan:
-          vi: Trắng chơi Nc3, Bg5 hay Bc4 và Qe2, dồn quân nhanh vào trung tâm và cột e trước khi Đen kịp củng cố. Đen chơi Nf6, g6 hay c6, hoàn tất phát triển một cách chắc chắn và giữ vững con tốt thừa vào tàn cuộc.
-          en: White plays Nc3, Bg5 or Bc4 and Qe2, developing quickly onto the centre and the e-file before Black can consolidate. Black plays ...Nf6, ...g6 or ...c6, completing development soundly and holding the extra pawn for the endgame.
-          fr: Les Blancs jouent Nc3, Bg5 ou Bc4 et Qe2, se développant rapidement sur le centre et la colonne e avant que les Noirs ne consolident. Les Noirs jouent ...Nf6, ...g6 ou ...c6, achevant leur développement solidement et gardant le pion supplémentaire pour la finale.
-        basis:
-          by: chan
-          at: '2026-09-25'
+        vi: Đen ăn con tốt ngay lập tức, quân duy nhất có thể ăn tại đó. Con tốt f5 đã hoàn thành việc ăn quân và Đen giờ hơn hẳn một tốt, chấp nhận thử thách gắt gao nhất của gambit. Trắng giờ có hai kế hoạch để chọn — 3.Nc3 tấn công tốt e4 bằng một quân, còn 3.f3 tấn công nó bằng một tốt và mở cột f.
+        en: Black takes the pawn at once, the only piece that can capture there. The f5 pawn has done its capturing and Black is now a clean pawn up, accepting the sternest test of the gambit. White now has two plans to choose between — 3.Nc3 attacks the pawn on e4 with a piece, and 3.f3 attacks it with a pawn and opens the f-file.
+        fr: Les Noirs prennent aussitôt le pion, la seule pièce pouvant capturer là. Le pion f5 a fait sa capture et les Noirs ont maintenant un pion net d'avance, acceptant le test le plus sévère du gambit. Les Blancs ont maintenant deux plans au choix — 3.Nc3 attaque le pion e4 avec une pièce, et 3.f3 l'attaque avec un pion et ouvre la colonne f.
+      children:
+        - ply: Nc3
+          annotation:
+            vi: Trắng phát triển mã và tấn công ngay con tốt e4, quân mà chưa có gì bảo vệ. Đây là kế hoạch quen thuộc của Gambit Staunton, và các nhánh tiếp theo của nó có những mục riêng.
+            en: White develops the knight and attacks the pawn on e4, which nothing defends. This is the familiar plan of the Staunton Gambit, and its further branches have entries of their own.
+            fr: Les Blancs développent le cavalier et attaquent aussitôt le pion e4, que rien ne défend. C'est le plan habituel du gambit Staunton, dont les branches suivantes ont leurs propres entrées.
+          outcome:
+            type: position
+            evaluation:
+              vi: Đếm tốt thì Đen tám, Trắng bảy. Đen hơn đúng một tốt sạch và gambit chưa lấy lại được gì. Nhưng mã c3 đang tấn công tốt e4 mà chưa có quân nào bảo vệ, nên Trắng dọa ăn lại ngay bằng Nxe4.
+              en: Count the pawns and it is eight for Black, seven for White. Black is a clean pawn up and the gambit has not won anything back yet. But the knight on c3 attacks the pawn on e4 and nothing defends it, so White threatens to win it back at once with Nxe4.
+              fr: Comptez les pions, huit pour les Noirs, sept pour les Blancs. Les Noirs ont un pion net d'avance et le gambit n'a encore rien récupéré. Mais le cavalier c3 attaque le pion e4, que rien ne défend, si bien que les Blancs menacent de le reprendre aussitôt par Nxe4.
+            plan:
+              vi: Đen bảo vệ tốt e4 bằng ...Nf6 hoặc ...d5, rồi hoàn thiện phát triển và giữ con tốt thừa. Trắng đáp lại bằng Bg5 và Qd2 hay Bc4 và Qe2, dồn quân nhanh vào trung tâm trước khi Đen kịp củng cố.
+              en: Black defends the pawn on e4 with ...Nf6 or ...d5, then finishes developing and keeps the extra pawn. White answers with Bg5 and Qd2, or Bc4 and Qe2, getting its pieces to the centre before Black can consolidate.
+              fr: Les Noirs défendent le pion e4 par ...Nf6 ou ...d5, puis achèvent leur développement et gardent le pion supplémentaire. Les Blancs répondent par Bg5 et Qd2, ou Bc4 et Qe2, amenant vite leurs pièces au centre avant que les Noirs ne se consolident.
+            basis:
+              by: chan
+              at: '2026-10-01'
+        - ply: f3
+          annotation:
+            vi: Trắng tấn công tốt e4 bằng f3. Nếu Đen ăn tiếp trên f3, mã sẽ ăn lại bằng một nước phát triển, và Trắng chịu thua một tốt để đổi lấy các đường mở và nhịp phát triển nhanh hơn.
+            en: White attacks the pawn on e4 with f3. If Black takes on f3 as well, the knight recaptures with a developing move, and White is a pawn down in return for open lines and quicker development.
+            fr: Les Blancs attaquent le pion e4 par f3. Si les Noirs prennent aussi en f3, le cavalier reprend par un coup de développement, et les Blancs sont un pion en moins en échange de lignes ouvertes et d'un développement plus rapide.
+          dismissRest:
+            reason:
+              vi: Đen không ăn trên f3. Họ có thể bảo vệ tốt e4 bằng ...d5 hay ...Nf6, đẩy nó đi bằng ...e3, hoặc chơi một nước phát triển yên lặng. Mỗi cách đó là một ván khác với ván mà mục này dựng, và không cách nào được dựng ở đây.
+              en: Black does not take on f3. Black can defend the pawn on e4 with ...d5 or ...Nf6, push it on with ...e3, or play a quiet developing move. Each of those is a different game from the one this entry maps, and none of them is mapped here.
+              fr: Les Noirs ne prennent pas en f3. Ils peuvent défendre le pion e4 par ...d5 ou ...Nf6, le pousser par ...e3, ou jouer un coup de développement tranquille. Chacun de ces choix donne une autre partie que celle que cartographie cette entrée, et aucun n'est cartographié ici.
+          children:
+            - ply: exf3
+              replyQuality: inaccuracy
+              frequency: common
+              annotation:
+                vi: Đen ăn thêm con tốt trên f3. Trong chốc lát Đen hơn hai tốt, tám đối sáu, cho đến khi mã Trắng ăn lại.
+                en: Black takes the second pawn on f3. For a moment Black is two pawns up, eight against six, until White's knight recaptures.
+                fr: Les Noirs prennent le second pion en f3. Un instant, ils ont deux pions de plus, huit contre six, jusqu'à ce que le cavalier blanc reprenne.
+              children:
+                - ply: Nxf3
+                  annotation:
+                    vi: Mã ăn lại trên f3 và phát triển cùng một lúc. Trắng còn sáu tốt, Đen bảy, và cột f đã mở cho Trắng.
+                    en: The knight recaptures on f3 and develops in the same move. White has six pawns against Black's seven, and the f-file is open for White.
+                    fr: Le cavalier reprend en f3 et se développe du même coup. Les Blancs ont six pions contre sept aux Noirs, et la colonne f est ouverte pour les Blancs.
+                  dismissRest:
+                    reason:
+                      vi: Đen không đi mã f6. Các cách phát triển khác như ...g6, ...d5 hay ...e6 là những thế trận khác đối với cùng kế hoạch Nxf3 và Bd3, và không thế nào được dựng ở đây.
+                      en: Black does not play the knight to f6. Other ways of developing, such as ...g6, ...d5 or ...e6, are different set-ups against the same Nxf3 and Bd3 plan, and none of them is mapped here.
+                      fr: Les Noirs ne jouent pas le cavalier en f6. D'autres développements, comme ...g6, ...d5 ou ...e6, sont d'autres dispositifs face au même plan Nxf3 et Bd3, et aucun n'est cartographié ici.
+                  children:
+                    - ply: Nf6
+                      replyQuality: good
+                      frequency: common
+                      annotation:
+                        vi: Đen đưa mã ra f6, bảo vệ h7 và nhìn vào e4 và g4.
+                        en: Black brings the knight out to f6, covering h7 and eyeing e4 and g4.
+                        fr: Les Noirs sortent le cavalier en f6, couvrant h7 et visant e4 et g4.
+                      children:
+                        - ply: Bd3
+                          annotation:
+                            vi: Tượng ra d3, nhắm dọc đường chéo vào h7, quân mà chỉ có xe h8 và mã f6 bảo vệ.
+                            en: The bishop comes out to d3 and aims along the diagonal at h7, which only the rook on h8 and the knight on f6 defend.
+                            fr: Le fou sort en d3 et vise le long de la diagonale h7, que seuls la tour h8 et le cavalier f6 défendent.
+                          dismissRest:
+                            reason:
+                              vi: Đen không chơi ...e6. Các nước như ...g6 hay ...d5 là những thế trận khác và không thế nào được dựng ở đây.
+                              en: Black does not play ...e6. Moves such as ...g6 or ...d5 are other set-ups, and none of them is mapped here.
+                              fr: Les Noirs ne jouent pas ...e6. Des coups comme ...g6 ou ...d5 sont d'autres dispositifs, et aucun n'est cartographié ici.
+                          children:
+                            - ply: e6
+                              replyQuality: inaccuracy
+                              frequency: common
+                              annotation:
+                                vi: Đen đi e6 để mở đường cho tượng f8. Nhưng tốt f đã mất, nên f7 chỉ còn vua bảo vệ và g6 chỉ còn tốt h7 bảo vệ.
+                                en: Black plays e6 to open the f8 bishop. With the f-pawn gone, though, f7 is guarded only by the king and g6 only by the h7 pawn.
+                                fr: Les Noirs jouent e6 pour ouvrir le fou f8. Mais le pion f ayant disparu, f7 n'est plus gardé que par le roi et g6 que par le pion h7.
+                              children:
+                                - ply: Ng5
+                                  annotation:
+                                    vi: Mã nhảy lên g5 và tấn công h7 lần thứ hai. Mã g5 và tượng d3 cùng nhắm vào con tốt này, còn xe h8 và mã f6 cùng bảo vệ nó.
+                                    en: The knight jumps to g5 and attacks h7 a second time. The knight and the bishop on d3 both aim at the pawn, and the rook on h8 and the knight on f6 both defend it.
+                                    fr: Le cavalier saute en g5 et attaque h7 une seconde fois. Le cavalier et le fou d3 visent tous deux le pion, que la tour h8 et le cavalier f6 défendent tous deux.
+                                  dismissRest:
+                                    reason:
+                                      vi: Đen không chơi ...g6. Quân tốt h7 bị tấn công hai lần, bởi mã g5 và tượng d3, và được bảo vệ hai lần, bởi xe h8 và mã f6. Các nước khác, chẳng hạn ...d5, ...Nc6 hay ...d6, xoay quanh sự thật đó theo cách riêng và không nước nào được dựng ở đây.
+                                      en: Black does not play ...g6. The pawn on h7 is attacked twice, by the knight on g5 and the bishop on d3, and defended twice, by the rook on h8 and the knight on f6. Other moves, such as ...d5, ...Nc6 or ...d6, are different ways of living with that and none is mapped here.
+                                      fr: Les Noirs ne jouent pas ...g6. Le pion h7 est attaqué deux fois, par le cavalier g5 et le fou d3, et défendu deux fois, par la tour h8 et le cavalier f6. D'autres coups, comme ...d5, ...Nc6 ou ...d6, sont d'autres façons de vivre avec cela, et aucun n'est cartographié ici.
+                                  children:
+                                    - ply: g6
+                                      replyQuality: blunder
+                                      frequency: occasional
+                                      annotation:
+                                        vi: Đen đi g6 để chắn đường chéo của tượng d3. Nhưng con tốt g6 giờ đứng cùng đường với h7, và nó chỉ được tốt h7 bảo vệ — một đòn hy sinh sẽ khiến cả hai quân tốt rơi cùng lúc.
+                                        en: Black plays g6 to shut the bishop's diagonal. But the pawn on g6 now stands on the same line as h7 and is guarded only by the h7 pawn — a sacrifice will make both fall at once.
+                                        fr: Les Noirs jouent g6 pour fermer la diagonale du fou. Mais le pion g6 se tient maintenant sur la même ligne que h7 et n'est gardé que par le pion h7 — un sacrifice va faire tomber les deux à la fois.
+                                      children:
+                                        - ply: Nxh7
+                                          annotation:
+                                            vi: Trắng hy sinh mã ở h7. Quân mã này bị xe h8 và mã f6 tấn công mà không có quân nào bảo vệ, nhưng nếu Đen ăn, tốt g6 sẽ bị tượng ăn kèm chiếu.
+                                            en: White sacrifices the knight on h7. It is attacked by the rook on h8 and the knight on f6 and defended by nothing, but if Black takes, the g6 pawn is left to the bishop with check.
+                                            fr: Les Blancs sacrifient le cavalier en h7. Il est attaqué par la tour h8 et le cavalier f6 et défendu par personne, mais si les Noirs le prennent, le pion g6 est livré au fou avec échec.
+                                          dismissRest:
+                                            reason:
+                                              vi: Đen không ăn lại bằng xe. Ăn bằng mã, ...Nxh7, bị Bxg6+ chiếu ngay, và mọi nước khác đều để con mã Trắng đứng nguyên trên h7. Không đường nào trong số này được dựng ở đây.
+                                              en: Black does not recapture with the rook. Recapturing with the knight, ...Nxh7, runs into Bxg6+ at once, and every other reply leaves White's knight standing on h7. None of those lines is mapped here.
+                                              fr: Les Noirs ne reprennent pas de la tour. Reprendre du cavalier, ...Nxh7, se heurte aussitôt à Bxg6+, et tout autre coup laisse le cavalier blanc sur h7. Aucune de ces lignes n'est cartographiée ici.
+                                          children:
+                                            - ply: Rxh7
+                                              replyQuality: best
+                                              frequency: common
+                                              annotation:
+                                                vi: Đen ăn mã bằng xe, giữ mã f6 ở lại bảo vệ vua.
+                                                en: Black takes the knight with the rook, keeping the f6 knight at home.
+                                                fr: Les Noirs prennent le cavalier de la tour, gardant le cavalier f6 chez lui.
+                                              children:
+                                                - ply: 'Bxg6+'
+                                                  annotation:
+                                                    vi: Tượng ăn tốt g6 kèm chiếu và đồng thời tấn công xe h7. Trắng đã bỏ một mã để lấy hai tốt, và giờ Đen phải lo cho cả vua lẫn xe.
+                                                    en: The bishop takes the g6 pawn with check and attacks the rook on h7 at the same time. White has given a knight for two pawns, and Black now has to look after both the king and the rook.
+                                                    fr: Le fou prend le pion g6 avec échec et attaque en même temps la tour h7. Les Blancs ont donné un cavalier pour deux pions, et les Noirs doivent maintenant s'occuper à la fois du roi et de la tour.
+                                                  dismissed:
+                                                    - ply: Ke7
+                                                      reason: Leaves the rook on h7 en prise. 9.Bxh7 Nxh7 trades a bishop for a rook, which brings the material level, and the king on e7 has lost the right to castle; it is worse for Black than 8...Rf7.
+                                                  children:
+                                                    - ply: Rf7
+                                                      replyQuality: best
+                                                      frequency: common
+                                                      annotation:
+                                                        vi: Xe chạy sang f7, ô duy nhất vừa chắn được nước chiếu vừa giữ được xe. Nhưng giờ nó bị tượng g6 ghim vào vua.
+                                                        en: The rook goes to f7, the one square that both blocks the check and saves it. But it is now pinned to the king by the bishop on g6.
+                                                        fr: La tour va en f7, la seule case qui pare l'échec tout en la sauvant. Mais elle est maintenant clouée au roi par le fou g6.
+                                                      outcome:
+                                                        type: position
+                                                        evaluation:
+                                                          vi: Tính theo quân số, Đen hơn một mã đổi lấy một tốt — hai mã, hai tượng, hai xe và năm tốt đối với một mã, hai tượng, hai xe và sáu tốt. Nhưng xe f7 bị tượng g6 ghim vào vua và không có nước đi nào, xe a8 bị chính quân mình bịt kín, và vua e8 không còn nhập thành cánh vua được nữa.
+                                                          en: On the count Black is a knight up for a pawn — two knights, two bishops, two rooks and five pawns against one knight, two bishops, two rooks and six pawns. But the rook on f7 is pinned to the king by the bishop on g6 and has no move, the rook on a8 is shut in by its own pieces, and the king on e8 can no longer castle on the kingside.
+                                                          fr: Au compte, les Noirs ont un cavalier de plus pour un pion — deux cavaliers, deux fous, deux tours et cinq pions contre un cavalier, deux fous, deux tours et six pions. Mais la tour f7 est clouée au roi par le fou g6 et n'a aucun coup, la tour a8 est enfermée par ses propres pièces, et le roi e8 ne peut plus roquer côté roi.
+                                                        plan:
+                                                          vi: Trắng thêm quân vào cuộc tấn công nhắm vào xe bị ghim và mã f6 — Bg5, nhập thành rồi Rf1. Đen cần gỡ thế ghim bằng ...Be7 và ...Kf8, rồi đưa các quân cánh hậu ra bằng ...d5 và ...Nc6.
+                                                          en: White adds pieces against the pinned rook and the f6 knight — Bg5, castling and Rf1. Black needs to untangle with ...Be7 and ...Kf8, then bring the queenside pieces out with ...d5 and ...Nc6.
+                                                          fr: Les Blancs ajoutent des pièces contre la tour clouée et le cavalier f6 — Bg5, le roque puis Rf1. Les Noirs doivent se démêler par ...Be7 et ...Kf8, puis sortir les pièces de l'aile dame par ...d5 et ...Nc6.
+                                                        basis:
+                                                          by: chan
+                                                          at: '2026-10-01'

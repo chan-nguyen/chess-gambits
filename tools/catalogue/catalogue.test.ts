@@ -107,9 +107,13 @@ describe('AC 1 — the catalogue is built from the dataset', () => {
 
 describe('AC 2 — classification is a reviewed decision', () => {
   it('keeps the Queen’s Gambit out, because it is not a sacrifice', () => {
+    // A hand-entered trap inside the family is not the opening, and `category: trap` is exempt
+    // from the misnomer exclusion (ADR-0008).
     const queens = catalogue.records.filter(
       (entry) =>
-        entry.name.startsWith("Queen's Gambit") && !entry.name.includes('Albin Countergambit'),
+        entry.category !== 'trap' &&
+        entry.name.startsWith("Queen's Gambit") &&
+        !entry.name.includes('Albin Countergambit'),
     )
     expect(queens).toEqual([])
   })
