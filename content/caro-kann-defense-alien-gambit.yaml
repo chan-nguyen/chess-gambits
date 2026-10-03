@@ -1,0 +1,62 @@
+# Caro-Kann Defense: Alien Gambit. Defining line 1.e4 c6 2.d4 d5 3.Nc3 dxe4 4.Nxe4 Nf6 5.Ng5
+# h6 6.Nxf7, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: caro-kann-defense-alien-gambit
+name: 'Caro-Kann Defense: Alien Gambit'
+eco: B15
+category: gambit
+side: white
+definingLine: [e4, c6, d4, d5, Nc3, dxe4, Nxe4, Nf6, Ng5, h6, Nxf7]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White has put a knight on f7, where
+      nothing defends it and the king can take it for free, so White is offering a whole
+      knight for the f7 pawn. The knight attacks the queen on d8 and the rook on h8, but
+      6...Kxf7 removes it, and nothing in the position gives White enough in return for the
+      piece, which is why the entry is rated unsound. No engine was consulted and no
+      database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 6.Nxf7, ăn tốt f7, nên số tốt là Trắng bảy, Đen sáu. Mã f7 bị vua e8 tấn công và không được quân nào bảo vệ, đồng thời nó tấn công cả hậu d8 lẫn xe h8.
+    en: White has just played 6.Nxf7, capturing the f7 pawn, so the pawn count is White seven, Black six. The knight on f7 is attacked by the king on e8 and defended by nothing, and it attacks both the queen on d8 and the rook on h8.
+    fr: Les Blancs viennent de jouer 6.Nxf7, prenant le pion f7, de sorte que le compte des pions est de sept pour les Blancs, six pour les Noirs. Le cavalier f7 est attaqué par le roi e8 et n'est défendu par aucune pièce, et il attaque à la fois la dame d8 et la tour h8.
+  dismissRest:
+    reason:
+      vi: Đen chơi nước khác thay vì 6...Kxf7 ở đây. Mục này chỉ mô hình hóa nước ăn mã; mã f7 tấn công cả hậu d8 lẫn xe h8, nên một nước đáp bỏ mặc nó sẽ cho Trắng cơ hội ăn một trong hai quân.
+      en: Black plays something other than 6...Kxf7 here. This entry models only the capture of the knight; the knight on f7 attacks both the queen on d8 and the rook on h8, so a reply that leaves it alone gives White the chance to take one of them.
+      fr: Les Noirs jouent autre chose que 6...Kxf7 ici. Cette entrée ne modélise que la prise du cavalier ; le cavalier f7 attaque à la fois la dame d8 et la tour h8, donc une réponse qui le laisse en place donne aux Blancs l'occasion de prendre l'une des deux.
+  children:
+    - ply: Kxf7
+      replyQuality: best
+      frequency: common
+      annotation:
+        vi: Đen ăn mã bằng vua, 6...Kxf7. Vua bị lộ ở f7 và không còn quyền nhập thành, nhưng không quân Trắng nào có thể ăn lại ở f7.
+        en: Black takes the knight with the king, 6...Kxf7. The king is exposed on f7 and can no longer castle, but nothing of White's can take back on f7.
+        fr: Les Noirs prennent le cavalier avec le roi, 6...Kxf7. Le roi est exposé en f7 et ne peut plus roquer, mais aucune pièce blanche ne peut reprendre en f7.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen sáu, nhưng Trắng chỉ còn một mã trong khi Đen có hai, nên Trắng kém một mã để đổi lấy một tốt. Vua f7 không còn quyền nhập thành và đường chéo từ c4 tới f7 đang mở, nên Bc4+ là một nước chiếu, nhưng Đen có thể đáp bằng ...e6, còn Qh5+ sẽ mất hậu vì mã f6 ăn được.'
+          en: "Count the pawns: White seven, Black six, but White has only one knight to Black's two, so White is a knight down for a pawn. The king on f7 can no longer castle and the diagonal from c4 to f7 is open, so Bc4+ is a check, but Black can answer it with ...e6, and Qh5+ would lose the queen to the knight on f6."
+          fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs, mais les Blancs n'ont plus qu'un cavalier contre deux, donc ils ont un cavalier de moins pour un pion. Le roi f7 ne peut plus roquer et la diagonale de c4 à f7 est ouverte, de sorte que Bc4+ est un échec, mais les Noirs peuvent y répondre par ...e6, et Qh5+ perdrait la dame, que le cavalier f6 prendrait."
+        plan:
+          vi: Trắng chơi Bc4+, rồi Nf3 và Qe2, nhanh chóng đưa quân lên chống lại con vua bị lộ. Đen chặn bằng ...e6, rồi phát triển bằng ...Bd6 và ...Qe7 để bảo vệ tốt e6.
+          en: White plays Bc4+, then Nf3 and Qe2, bringing pieces up quickly against the exposed king. Black blocks with ...e6, then develops with ...Bd6 and ...Qe7 to defend the pawn on e6.
+          fr: Les Blancs jouent Bc4+, puis Nf3 et Qe2, amenant vite leurs pièces contre le roi exposé. Les Noirs bloquent par ...e6, puis se développent par ...Bd6 et ...Qe7 pour défendre le pion e6.
+        basis:
+          by: chan
+          at: 2026-10-01

@@ -1,0 +1,60 @@
+# Owen Defense: Hekili-Loa Gambit. Defining line 1.e4 b6 2.d4 c5 3.dxc5 Nc6, which ends on
+# Black's own ply, so the root is an opponent node (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: owen-defense-hekili-loa-gambit
+name: 'Owen Defense: Hekili-Loa Gambit'
+eco: B00
+category: gambit
+side: black
+definingLine: [e4, b6, d4, c5, dxc5, Nc6]
+soundness:
+  value: unsound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line White is a pawn up, eight pawns against
+      seven, and the c5 pawn is attacked by the b6 pawn and defended by nothing, but White
+      can defend it with a developing move such as Be3. Black has nothing on the board yet
+      to repay the pawn, which is why the entry is rated unsound. No engine was consulted
+      and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Nc6, nên số tốt là Trắng tám, Đen bảy. Tốt c5 bị tốt b6 tấn công và không được quân nào bảo vệ, còn hậu Trắng tấn công tốt d7, ô được ba quân Đen bảo vệ.
+    en: Black has just played 3...Nc6, so the pawn count is White eight, Black seven. The pawn on c5 is attacked by the pawn on b6 and defended by nothing, and White's queen attacks the pawn on d7, which three Black pieces defend.
+    fr: Les Noirs viennent de jouer 3...Nc6, de sorte que le compte des pions est de huit pour les Blancs, sept pour les Noirs. Le pion c5 est attaqué par le pion b6 et n'est défendu par aucune pièce, et la dame blanche attaque le pion d7, que trois pièces noires défendent.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 4.Be3 ở đây, chẳng hạn 4.cxb6 hoặc 4.Nc3. Mục này chỉ mô hình hóa 4.Be3 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: lấy lại tốt c5 và phát triển.'
+      en: "White plays something other than 4.Be3 here, for instance 4.cxb6 or 4.Nc3. This entry models only 4.Be3 and does not analyse those moves; Black's task usually stays the same: win the c5 pawn back and develop."
+      fr: "Les Blancs jouent autre chose que 4.Be3 ici, par exemple 4.cxb6 ou 4.Nc3. Cette entrée ne modélise que 4.Be3 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : regagner le pion c5 et se développer."
+  children:
+    - ply: Be3
+      replyQuality: good
+      frequency: occasional
+      annotation:
+        vi: Trắng bảo vệ tốt c5 bằng 4.Be3. Tốt này bị tấn công một lần, bởi tốt b6, và được bảo vệ một lần, bởi tượng e3.
+        en: White defends the c5 pawn with 4.Be3. The pawn is attacked once, by the pawn on b6, and defended once, by the bishop on e3.
+        fr: Les Blancs défendent le pion c5 par 4.Be3. Le pion est attaqué une fois, par le pion b6, et défendu une fois, par le fou e3.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng hơn một tốt. Tốt c5 bị tấn công một lần và được bảo vệ một lần, nên sau ...bxc5 Bxc5 số tốt là bảy so với sáu. Tốt d7 bị hậu d1 tấn công và được tượng c8, hậu d8 và vua e8 bảo vệ.'
+          en: 'Count the pawns: White eight, Black seven, so White is a pawn up. The c5 pawn is attacked once and defended once, so after ...bxc5 Bxc5 the count is seven against six. The pawn on d7 is attacked by the queen on d1 and defended by the bishop on c8, the queen on d8 and the king on e8.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont un pion de plus. Le pion c5 est attaqué une fois et défendu une fois, de sorte qu'après ...bxc5 Bxc5 le compte est de sept contre six. Le pion d7 est attaqué par la dame d1 et défendu par le fou c8, la dame d8 et le roi e8."
+        plan:
+          vi: Trắng chơi Nc3 và Nf3 để phát triển và ăn lại ở c5 bằng tượng nếu Đen ăn ở đó. Đen chơi ...bxc5, rồi ...Bb7 và ...e6 để phát triển.
+          en: White plays Nc3 and Nf3 to develop and recaptures on c5 with the bishop if Black takes there. Black plays ...bxc5, then ...Bb7 and ...e6 to develop.
+          fr: Les Blancs jouent Nc3 et Nf3 pour se développer et reprennent en c5 avec le fou si les Noirs y prennent. Les Noirs jouent ...bxc5, puis ...Bb7 et ...e6 pour se développer.
+        basis:
+          by: chan
+          at: 2026-10-01

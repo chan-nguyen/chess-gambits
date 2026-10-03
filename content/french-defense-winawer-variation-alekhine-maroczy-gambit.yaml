@@ -1,0 +1,61 @@
+# French Defense: Winawer Variation, Alekhine-Maróczy Gambit. Defining line 1.e4 e6 2.d4 d5
+# 3.Nc3 Bb4 4.Ne2, which ends on White's own ply, so the root is an opponent node
+# (docs/CONTEXT.md, invariant 5).
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from each leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at any leaf.
+id: french-defense-winawer-variation-alekhine-maroczy-gambit
+name: 'French Defense: Winawer Variation, Alekhine-Maróczy Gambit'
+eco: C15
+category: gambit
+side: white
+definingLine: [e4, e6, d4, d5, Nc3, Bb4, Ne2]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. At the end of the defining line the pawn count is level, eight each, but
+      the knight on c3 is pinned to the king by the bishop on b4, so the only defender of
+      the e4 pawn cannot move, and Black can take the pawn at once with 4...dxe4. The knight
+      on e2 only reinforces c3 and does not unpin it, which is why the entry is rated
+      dubious. No engine was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Trắng vừa chơi 4.Ne2, nên số tốt đang ngang nhau, mỗi bên tám. Mã c3 bị tượng b4 tấn công và được tốt b2 cùng mã e2 bảo vệ, đồng thời bị ghim vào vua e1; tốt e4 bị tốt d5 tấn công và chỉ được chính mã bị ghim ấy bảo vệ.
+    en: White has just played 4.Ne2, so the pawn count is level, eight each. The knight on c3 is attacked by the bishop on b4 and defended by the pawn on b2 and the knight on e2, and it is also pinned to the king on e1; the e4 pawn is attacked by the pawn on d5 and defended only by that pinned knight.
+    fr: Les Blancs viennent de jouer 4.Ne2, de sorte que le compte des pions est égal, huit de chaque côté. Le cavalier c3 est attaqué par le fou b4 et défendu par le pion b2 et le cavalier e2, et il est aussi cloué au roi e1 ; le pion e4 est attaqué par le pion d5 et n'est défendu que par ce cavalier cloué.
+  dismissRest:
+    reason:
+      vi: 'Đen chơi nước khác thay vì 4...dxe4 ở đây, chẳng hạn 4...Nc6 hoặc 4...Nf6. Mục này chỉ mô hình hóa 4...dxe4 và không phân tích các nước kia; nhiệm vụ của Trắng thường vẫn như cũ: thách thức tượng b4 và giữ vững trung tâm.'
+      en: "Black plays something other than 4...dxe4 here, for instance 4...Nc6 or 4...Nf6. This entry models only 4...dxe4 and does not analyse those moves; White's task usually stays the same: challenge the bishop on b4 and hold the centre together."
+      fr: "Les Noirs jouent autre chose que 4...dxe4 ici, par exemple 4...Nc6 ou 4...Nf6. Cette entrée ne modélise que 4...dxe4 et n'analyse pas ces coups ; la tâche des Blancs reste en général la même : défier le fou b4 et maintenir le centre."
+  children:
+    - ply: dxe4
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Đen ăn tốt bằng 4...dxe4. Mã c3 vẫn bị ghim vào vua, nên không quân Trắng nào có thể di chuyển mà tấn công được tốt mới ở e4.
+        en: Black takes the pawn with 4...dxe4. The knight on c3 stays pinned to the king, so nothing of White's that can move attacks the new pawn on e4.
+        fr: Les Noirs prennent le pion par 4...dxe4. Le cavalier c3 reste cloué au roi, si bien qu'aucune pièce blanche capable de bouger n'attaque le nouveau pion en e4.
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng bảy, Đen tám, nên Trắng kém đúng một tốt sạch. Mã c3 bị tượng b4 ghim vào vua e1 và không thể ăn ở e4, tốt của Đen bị chồng ở e6 và e4, còn tốt d4 bị tấn công một lần, bởi hậu d8, và được bảo vệ hai lần, bởi mã e2 và hậu d1.'
+          en: "Count the pawns: White seven, Black eight, so White is a clean pawn down. The knight on c3 is pinned to the king on e1 by the bishop on b4 and cannot take on e4, Black's pawns are doubled on e6 and e4, and the d4 pawn is attacked once, by the queen on d8, and defended twice, by the knight on e2 and the queen on d1."
+          fr: 'Comptez les pions : sept pour les Blancs, huit pour les Noirs, donc les Blancs ont un pion net de moins. Le cavalier c3 est cloué au roi e1 par le fou b4 et ne peut pas prendre en e4, les pions noirs sont doublés en e6 et e4, et le pion d4 est attaqué une fois, par la dame d8, et défendu deux fois, par le cavalier e2 et la dame d1.'
+        plan:
+          vi: 'Trắng chơi a3 để đặt câu hỏi cho tượng b4: nếu tượng ăn ở c3 thì mã từ e2 ăn lại và tấn công tốt e4 lần nữa, còn nếu tượng lui, chẳng hạn ...Be7, thì mã c3 hết bị ghim và có thể ăn ở e4. Đen chơi ...f5 để bảo vệ tốt e4, rồi ...Nf6 và ...O-O để hoàn tất phát triển.'
+          en: 'White plays a3 to put the question to the bishop on b4: if the bishop takes on c3 the knight from e2 recaptures and attacks the e4 pawn again, and if it retreats, for instance with ...Be7, the knight on c3 is unpinned and can take on e4. Black plays ...f5 to defend the e4 pawn, then ...Nf6 and ...O-O to finish development.'
+          fr: "Les Blancs jouent a3 pour poser la question au fou b4 : si le fou prend en c3, le cavalier venu de e2 reprend et attaque à nouveau le pion e4, et s'il se replie, par exemple par ...Be7, le cavalier c3 n'est plus cloué et peut prendre en e4. Les Noirs jouent ...f5 pour défendre le pion e4, puis ...Nf6 et ...O-O pour achever leur développement."
+        basis:
+          by: chan
+          at: 2026-10-01

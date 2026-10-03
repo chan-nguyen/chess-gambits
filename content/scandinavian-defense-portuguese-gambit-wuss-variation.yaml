@@ -1,0 +1,66 @@
+# Scandinavian Defense: Portuguese Gambit, Wuss Variation. Defining line 1.e4 d5 2.exd5 Nf6
+# 3.d4 Bg4, which ends on Black's own ply, so the root is an opponent node (docs/CONTEXT.md,
+# invariant 5). The frozen catalogue line runs one ply further (Be2); it is modelled below
+# as a reply so the learner's ply ends the defining line, as the catalogue build allows.
+# Part of batch s of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry. The leaf leaves a capture going free, which its
+# `unsettled` note acknowledges.
+id: scandinavian-defense-portuguese-gambit-wuss-variation
+name: 'Scandinavian Defense: Portuguese Gambit, Wuss Variation'
+eco: B01
+category: gambit
+side: black
+definingLine: [e4, d5, exd5, Nf6, d4, Bg4]
+soundness:
+  value: dubious
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement, deepened from the frozen listed-tier classification in
+      tools/catalogue/source/classification.yaml. At the end of the defining line White is a
+      pawn up, eight pawns against seven, but the pawn on d5 is attacked twice and defended
+      by nothing, so Black can take it back, and the bishop on g4 attacks the queen on d1,
+      which only the king defends. The rating of dubious is the catalogue's; the board at
+      this point shows a loose extra pawn rather than a clear advantage for White. No engine
+      was consulted and no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa chơi 3...Bg4, nên số tốt là Trắng tám, Đen bảy. Tượng g4 tấn công hậu d1, quân chỉ có vua bảo vệ, còn tốt d5 bị hậu d8 và mã f6 tấn công và không được quân nào bảo vệ.
+    en: Black has just played 3...Bg4, so the pawn count is White eight, Black seven. The bishop on g4 attacks the queen on d1, which only the king defends, and the pawn on d5 is attacked by the queen on d8 and the knight on f6 and defended by nothing.
+    fr: Les Noirs viennent de jouer 3...Bg4, de sorte que le compte des pions est de huit pour les Blancs, sept pour les Noirs. Le fou g4 attaque la dame d1, que seul le roi défend, et le pion d5 est attaqué par la dame d8 et le cavalier f6 et n'est défendu par aucune pièce.
+  dismissRest:
+    reason:
+      vi: 'Trắng chơi nước khác thay vì 4.Be2 ở đây, chẳng hạn 4.Nf3 hoặc 4.f3. Mục này chỉ mô hình hóa 4.Be2 và không phân tích các nước kia; nhiệm vụ của Đen thường vẫn như cũ: lấy lại tốt d5.'
+      en: "White plays something other than 4.Be2 here, for instance 4.Nf3 or 4.f3. This entry models only 4.Be2 and does not analyse those moves; Black's task usually stays the same: win the d5 pawn back."
+      fr: "Les Blancs jouent autre chose que 4.Be2 ici, par exemple 4.Nf3 ou 4.f3. Cette entrée ne modélise que 4.Be2 et n'analyse pas ces coups ; la tâche des Noirs reste en général la même : regagner le pion d5."
+  children:
+    - ply: Be2
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng lùi tượng 4.Be2, chắn đường chéo từ tượng g4 tới hậu và tấn công tượng g4. Tượng e2 được hậu, vua và mã g1 bảo vệ, còn tượng g4 được mã f6 bảo vệ.
+        en: White develops the bishop with 4.Be2, which blocks the line from the bishop on g4 to the queen and attacks the bishop on g4. The bishop on e2 is defended by the queen, the king and the knight on g1, and the bishop on g4 is defended by the knight on f6.
+        fr: Les Blancs développent le fou par 4.Be2, ce qui bloque la ligne entre le fou g4 et la dame et attaque le fou g4. Le fou e2 est défendu par la dame, le roi et le cavalier g1, et le fou g4 est défendu par le cavalier f6.
+      unsettled: "Qxd5 and Nxd5 are going free because nothing of White's guards d5, but neither is played at once: the bishop on g4 is attacked by the bishop on e2 with the queen on d1 behind it and defended only by the knight on f6, so either capture drops a piece (after ...Qxd5 comes Bxg4 Nxg4 Qxg4) and Black trades with ...Bxe2 first. The evaluation already counts on the capture that follows: the pawn count becomes seven each, so playing it out would only repeat what the leaf says."
+      outcome:
+        type: position
+        evaluation:
+          vi: 'Đếm tốt: Trắng tám, Đen bảy, nên Trắng tạm thời hơn một tốt, nhưng tốt d5 bị tấn công hai lần, bởi hậu d8 và mã f6, và không được quân nào bảo vệ, nên Đen có thể ăn lại bằng ...Qxd5 và số tốt thành bảy đều, nhưng chưa phải ngay: tượng g4 bị tượng e2 tấn công, với hậu d1 đứng sau nó, và chỉ được mã f6 bảo vệ, nên ...Qxd5 ngay lúc này sẽ mất một quân vì Bxg4 Nxg4 Qxg4, và Đen phải đổi quân trước, bằng ...Bxe2.'
+          en: 'Count the pawns: White eight, Black seven, so White is a pawn up for the moment, but the pawn on d5 is attacked twice, by the queen on d8 and the knight on f6, and defended by nothing, so Black can take it back with ...Qxd5 and the count becomes seven each, but not at once: the bishop on g4 is attacked by the bishop on e2 with the queen on d1 behind it and defended only by the knight on f6, so ...Qxd5 now would lose a piece to Bxg4 Nxg4 Qxg4, and Black has to trade first, with ...Bxe2.'
+          fr: "Comptez les pions : huit pour les Blancs, sept pour les Noirs, donc les Blancs ont provisoirement un pion de plus, mais le pion d5 est attaqué deux fois, par la dame d8 et le cavalier f6, et n'est défendu par aucune pièce, de sorte que les Noirs peuvent le reprendre par ...Qxd5 et que le compte devient sept partout, mais pas tout de suite : le fou g4 est attaqué par le fou e2, avec la dame d1 derrière lui, et n'est défendu que par le cavalier f6, si bien que ...Qxd5 maintenant perdrait une pièce après Bxg4 Nxg4 Qxg4, et que les Noirs doivent d'abord échanger par ...Bxe2."
+        plan:
+          vi: Trắng ăn lại ở e2, rồi chơi Nf3 để phát triển và c4 để tấn công quân nào vừa đáp xuống d5. Đen chơi ...Bxe2 và ...Qxd5 để lấy lại con tốt.
+          en: White recaptures on e2, then plays Nf3 to develop and c4 to attack whatever has landed on d5. Black plays ...Bxe2 and ...Qxd5 to regain the pawn.
+          fr: Les Blancs reprennent en e2, puis jouent Nf3 pour se développer et c4 pour attaquer ce qui est arrivé en d5. Les Noirs jouent ...Bxe2 et ...Qxd5 pour regagner le pion.
+        basis:
+          by: chan
+          at: 2026-10-01
