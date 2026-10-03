@@ -1,0 +1,83 @@
+# Italian Game, Two Knights Defense, Polerio Defense, Bogoljubow Variation. Frozen defining
+# line 1.e4 e5 2.Nf3 Nc6 3.Bc4 Nf6 4.Ng5 d5 5.exd5 Na5 6.Bb5+ c6 7.dxc6 bxc6 8.Qf3, which
+# ends on White's ply; the learner plays Black, so the authored definingLine stops one ply
+# earlier, on Black's own 7...bxc6 (a prefix of the frozen line, as the catalogue build
+# allows), and 8.Qf3 is modelled below as the first reply (docs/CONTEXT.md, invariant 5).
+#
+# Part of batch w of round 4 (#182). Every ply below was replayed with chess.js before it
+# was annotated; searchMate at 3 moves from the leaf returns no-mate, so no forced mate is
+# claimed anywhere in this entry, and no capture is left going free at the leaf.
+id: two-knights-defense-polerio-defense-bogoljubow-variation
+name: 'Italian Game: Two Knights Defense, Polerio Defense, Bogoljubow Variation'
+eco: C58
+category: gambit
+side: black
+definingLine: [e4, e5, Nf3, Nc6, Bc4, Nf6, Ng5, d5, exd5, Na5, Bb5+, c6, dxc6, bxc6]
+soundness:
+  value: sound
+  reviewedAt: '2026-10-01'
+  basis:
+    by: chan
+    at: '2026-10-01'
+    source: >-
+      A judgement. After 7...bxc6 White is a pawn up, seven pawns to six, but the bishop on
+      b5 is attacked by the c6 pawn, the b-file is half-open for Black's rook and the knight
+      on g5 has no defender while its targets f7 and h7 are both defended. That is treated
+      as enough compensation for the line to be labelled sound. No engine was consulted and
+      no database was queried.
+judgement:
+  by: chan
+  at: '2026-10-01'
+  source: >-
+    Reply qualities, frequencies, evaluations and plans in this entry are one author's
+    judgement on one date, not engine output and not database statistics.
+tree:
+  annotation:
+    vi: Đen vừa ăn lại bằng 7...bxc6. Trắng có bảy tốt, Đen sáu tốt, và tượng b5 bị con tốt mới ở c6 tấn công. Mã g5 không có quân bảo vệ và tấn công f7 và h7, cả hai đều đang được bảo vệ, còn cột b nửa mở cho Đen.
+    en: Black has just retaken with 7...bxc6. White has seven pawns to Black's six, and the bishop on b5 is attacked by the new pawn on c6. The knight on g5 has no defender and attacks f7 and h7, both of which are defended, and the b-file is half-open for Black.
+    fr: Les Noirs viennent de reprendre par 7...bxc6. Les Blancs ont sept pions contre six, et le fou b5 est attaqué par le nouveau pion c6. Le cavalier g5 n'a aucun défenseur et attaque f7 et h7, tous deux défendus, et la colonne b est semi-ouverte pour les Noirs.
+  dismissRest:
+    reason:
+      vi: Trắng chơi một nước khác thay vì 8.Qf3 ở đây. Mục này chỉ mô hình hóa nước hậu lên f3.
+      en: White plays something other than 8.Qf3 here. This entry models only the queen move to f3.
+      fr: Les Blancs jouent autre chose que 8.Qf3 ici. Cette entrée ne modélise que la sortie de la dame en f3.
+  children:
+    - ply: Qf3
+      replyQuality: good
+      frequency: common
+      annotation:
+        vi: Trắng chơi 8.Qf3, tấn công mã f6, quân được hậu và tốt g7 bảo vệ, và tấn công tốt c6 dọc đường chéo. Tượng b5 bị tốt c6 tấn công mà không có quân bảo vệ, nhưng nếu tốt ăn nó thì hậu có thể ăn xe a8.
+        en: White plays 8.Qf3, attacking the knight on f6, which the queen and the g7 pawn defend, and the c6 pawn along the diagonal. The bishop on b5 is attacked by the c6 pawn and undefended, but if the pawn takes it, the queen can capture the rook on a8.
+        fr: Les Blancs jouent 8.Qf3, attaquant le cavalier f6, que la dame et le pion g7 défendent, et le pion c6 le long de la diagonale. Le fou b5 est attaqué par le pion c6 et n'est pas défendu, mais si le pion le prend, la dame peut capturer la tour a8.
+      children:
+        - ply: Be7
+          annotation:
+            vi: Đen phát triển bằng 8...Be7, tượng này thay hậu bảo vệ mã f6 và dọn đường để nhập thành ngắn. Tượng b5 của Trắng vẫn đang bị tốt c6 tấn công.
+            en: Black develops with 8...Be7, which takes over the defence of the f6 knight from the queen and clears the way to castle short. White's bishop on b5 is still attacked by the c6 pawn.
+            fr: Les Noirs se développent par 8...Be7, qui reprend à la dame la défense du cavalier f6 et prépare le petit roque. Le fou b5 des Blancs est toujours attaqué par le pion c6.
+          dismissRest:
+            reason:
+              vi: Trắng chơi một nước khác thay vì 9.Bd3 ở đây. Mục này chỉ mô hình hóa nước lui tượng về d3.
+              en: White plays something other than 9.Bd3 here. This entry models only the retreat of the bishop to d3.
+              fr: Les Blancs jouent autre chose que 9.Bd3 ici. Cette entrée ne modélise que la retraite du fou en d3.
+          children:
+            - ply: Bd3
+              replyQuality: good
+              frequency: common
+              annotation:
+                vi: Trắng lui tượng về d3, nơi hậu và tốt c2 bảo vệ nó, và tượng cùng mã g5 cùng tấn công h7.
+                en: White retreats the bishop to d3, where the queen and the c2 pawn defend it, and the bishop and the g5 knight both attack h7.
+                fr: Les Blancs reculent le fou en d3, où la dame et le pion c2 le défendent, et le fou et le cavalier g5 attaquent tous deux h7.
+              outcome:
+                type: position
+                evaluation:
+                  vi: 'Đếm tốt: Trắng bảy, Đen sáu, nên tốt chưa được lấy lại. Tượng d3 và mã g5 cùng tấn công h7, quân được xe và mã f6 bảo vệ, còn hậu f3 tấn công mã f6, quân được tượng e7 và tốt g7 bảo vệ. Mã a5 của Đen đứng ở rìa bàn cờ, và ô duy nhất nó đi được mà không bị tấn công là b7: ô b3 bị các tốt a2 và c2 khống chế, còn ô c4 bị tượng d3 khống chế. Nước ăn duy nhất của Đen, ...Qxd3, sẽ đổi hậu lấy một tượng.'
+                  en: "Count the pawns: White seven, Black six, so the pawn has not come back. The bishop on d3 and the knight on g5 attack h7, which the rook and the f6 knight defend, and the queen on f3 attacks the f6 knight, which the bishop on e7 and the g7 pawn defend. Black's knight on a5 stands on the rim, and the only square it can go to without being attacked is b7: b3 is covered by the a2 and c2 pawns and c4 by the bishop on d3. Black's one capture, ...Qxd3, would give up the queen for a bishop."
+                  fr: "Comptez les pions : sept pour les Blancs, six pour les Noirs, donc le pion n'est pas récupéré. Le fou d3 et le cavalier g5 attaquent h7, que la tour et le cavalier f6 défendent, et la dame f3 attaque le cavalier f6, que le fou e7 et le pion g7 défendent. Le cavalier a5 des Noirs est au bord de l'échiquier, et la seule case où il peut aller sans être attaqué est b7 : b3 est couverte par les pions a2 et c2, et c4 par le fou d3. La seule prise des Noirs, ...Qxd3, sacrifierait la dame pour un fou."
+                plan:
+                  vi: Đen nhập thành ngắn rồi đẩy ...h6 để đuổi mã lui. Trắng cũng nhập thành và phát triển bằng Nc3.
+                  en: Black castles short and then pushes ...h6 to drive the knight back. White castles as well and develops with Nc3.
+                  fr: Les Noirs roquent côté roi puis poussent ...h6 pour repousser le cavalier. Les Blancs roquent aussi et se développent par Nc3.
+                basis:
+                  by: chan
+                  at: '2026-10-01'
